@@ -31,6 +31,16 @@ theme = "hugo-elate-theme"
       url = "/contribute/"
       name = "Contribute"
       weight = 10
+
+    [[menu.postpend]]
+      url = "/integrate/"
+      name = "Integrate"
+      weight = 10
+
+    [[menu.postpend]]
+      url = "/extend/"
+      name = "Extend"
+      weight = 10
   
   # Hero section
   [params.hero]
