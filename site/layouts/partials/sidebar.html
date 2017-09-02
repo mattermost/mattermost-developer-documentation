@@ -1,11 +1,12 @@
 <div id="sidebar-menu" class="col-md-2 hidden-xs hidden-sm">
     <a href="/contribute">Contribute</a>
     <ul class="main-menu nav nav-stacked affix-top">
+        {{ range where .Site.Pages ".Params.section" "contribute" }}
         <li>
-            {{ if eq .Title "Getting Started" }}
-            <a class="active" href="/contribute/getting-started">Getting Started</a>
+            {{ if eq $.Title .Title }}
+            <a style="color:#7f7f7f" href="{{ .URL }}">{{ .Title }}</a>
             {{ else }}
-            <a href="/contribute/getting-started">Getting Started</a>
+            <a href="{{ .URL }}">{{ .Title }}</a>
             {{ end }}
             {{ if or (eq .Params.subsection "getting-started") (eq .Title "Getting Started")  }}
             <ul class="sub-menu">
@@ -19,19 +20,6 @@
             </ul>
             {{ end }}
         </li>
-        <li>
-            <a href="/contribute/server">Server</a>
-            {{ if or (eq .Params.subsection "server") (eq .Title "Server")  }}
-            <ul class="sub-menu">
-                {{ range where .Site.RegularPages.ByWeight "Params.subsection" "server" }}
-                    {{ if eq $.Title .Title }}
-                    <li>{{ .Title }}</li>
-                    {{ else }}
-                    <li><a href="{{ .URL }}">{{ .Title }}</a></li>
-                    {{ end }}
-                {{ end }}
-            </ul>
-            {{ end }}
-        </li>
+        {{ end }}
     </ul>
 </div>
