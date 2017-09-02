@@ -8,9 +8,8 @@
             {{ else }}
             <a href="{{ .URL }}">{{ .Title }}</a>
             {{ end }}
-            {{ if or (eq .Params.subsection "getting-started") (eq .Title "Getting Started")  }}
             <ul class="sub-menu">
-                {{ range where .Site.RegularPages.ByWeight "Params.subsection" "getting-started" }}
+                {{ range .Pages.ByWeight }}
                     {{ if eq $.Title .Title }}
                     <li>{{ .Title }}</li>
                     {{ else }}
@@ -18,7 +17,6 @@
                     {{ end }}
                 {{ end }}
             </ul>
-            {{ end }}
         </li>
         {{ end }}
     </ul>

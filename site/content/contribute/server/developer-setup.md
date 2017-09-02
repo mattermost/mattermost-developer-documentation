@@ -2,7 +2,7 @@
 title: "Developer Setup"
 date: 2017-08-20T11:35:32-04:00
 weight: 2
-subsection: "getting-started"
+subsection: "server"
 ---
 
 <div class="section" id="installing-developer-components-on-mac-os-x">
