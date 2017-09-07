@@ -10,7 +10,7 @@
             {{ end }}
             <ul class="sub-menu">
                 {{ range .Pages.ByWeight }}
-                    {{ if eq $.Title .Title }}
+                    {{ if and (eq $.Title .Title) (eq $.Params.subsection .Params.subsection) }}
                     <li>{{ .Title }}</li>
                     {{ else }}
                     <li><a href="{{ .URL }}">{{ .Title }}</a></li>

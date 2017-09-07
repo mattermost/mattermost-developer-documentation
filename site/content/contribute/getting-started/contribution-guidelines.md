@@ -6,7 +6,7 @@ subsection: "getting-started"
 ---
 
 <div class="section" id="code-contribution-guidelines">
-<span id="code-contribution-guidelines"></span><h1>Code Contribution Guidelines</h1>
+<span id="code-contribution-guidelines"></span><h1>Contribution Guidelines</h1>
 <p>Thank you for your interest in contributing to Mattermost. To help with translations, <a class="reference external" href="https://docs.mattermost.com/developer/localization.html">see the localization process</a>. For code contributions, here's the process:</p>
 <div class="section" id="choose-a-ticket">
 <span id="choose-a-ticket"></span><h2>Choose a Ticket</h2>
@@ -98,14 +98,5 @@ subsection: "getting-started"
 </li>
 </ol>
 <p>If you've included your mailing address in the signed <a class="reference external" href="https://www.mattermost.org/mattermost-contributor-agreement/">Contributor License Agreement</a>, you may receive a <a class="reference external" href="https://forum.mattermost.org/t/limited-edition-mattermost-mugs/143">Limited Edition Mattermost Mug</a> as a thank you gift after your first pull request is merged.</p>
-<div class="section" id="core-committers">
-<span id="core-committers"></span><h3>Core Committers</h3>
-<p>Core committers on Mattermost repositories consist of vetted core team members, including both community contributors as well as staff from Mattermost, Inc., who are trusted to review and merge PRs.</p>
-<p>Repository: https://github.com/mattermost/platform</p>
-<ul class="simple">
-<li><strong>Core committers include</strong>: coreyhulen, crspeller, csduarte, enahum, grundleborg, hmhealey, jwilander</li>
-<li><strong>Product managers include</strong>: asaadmahmood, esethna, it33, jasonblais, lfbrock</li>
-</ul>
-</div>
 </div>
 </div>

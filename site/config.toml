@@ -6,8 +6,6 @@ theme = "hugo-elate-theme"
 
 [params]
   
-  custom_css = ["css/custom1.css", "css/custom2.css"]
-
   # Meta
   author = ""
   description = ""
@@ -28,19 +26,24 @@ theme = "hugo-elate-theme"
 
     # postpended links
     [[menu.postpend]]
-      url = "/contribute/"
+      url = "/contribute/getting-started"
       name = "Contribute"
-      weight = 10
+      weight = 1
 
     [[menu.postpend]]
       url = "/integrate/"
       name = "Integrate"
-      weight = 10
+      weight = 2
 
     [[menu.postpend]]
       url = "/extend/"
       name = "Extend"
-      weight = 10
+      weight = 3
+
+    [[menu.postpend]]
+      url = "/blog/"
+      name = "Blog"
+      weight = 4
   
   # Hero section
   [params.hero]

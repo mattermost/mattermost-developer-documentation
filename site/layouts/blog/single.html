@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+
+<html>
+    <head>
+        {{ partial "head.html" .}}
+    </head>
+<body>
+    {{ partial "nav2.html" .}}
+    <div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="well well-sm">
+                    <h3>{{ .Title }}<br> <small>{{ .Description }}</small></h3>
+                    <hr>
+                    {{ .Content }}
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <div class="well well-sm"> <!-- Post-specific stats -->
+                <h4>{{ .Date.Format "January 2, 2006" }}<br>
+                <small>{{ .WordCount }} words</small></h4>
+                <hr>
+                <strong>Categories</strong>
+                <ul class="list-unstyled">
+                {{ range .Params.categories }}
+                    <li><a href="/categories/{{ . | urlize }}">{{ . }}</a></li>
+                {{ end }}
+                </ul>
+                <hr>
+                <strong>Tags</strong><br>
+                {{ range .Params.tags }}<a class="label label-default" href="/tags/{{ . | urlize }}">{{ . }}</a> {{ end }}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
