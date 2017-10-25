@@ -10,8 +10,6 @@
     <body>
         {{ partial "nav.html" .}}
 
-        {{ partial "notification.html" .}}
-
 		{{ partial "hero.html" .}}
 		
         {{ partial "intro.html" .}}
@@ -34,10 +32,6 @@
 
 		{{ if .Site.Params.counters.enable }}
         	{{ partial "counters.html" .}}
-        {{ end }}
-
-		{{ if .Site.Params.contact.enable }}
-        	{{ partial "contact.html" .}}
         {{ end }}
 
         {{ if .Site.Params.footer.enable }}

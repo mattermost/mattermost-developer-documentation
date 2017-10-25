@@ -1,3 +1,5 @@
+{{ if .Site.Params.notification.enable }}
 <div class='notification-bar' style="">
-    <a href="/blog/repo-split/">On September 6th the platform repository will be split. Click through for more details.</a>
+    <a href="{{ .Site.BaseURL}}{{ .Site.Params.notification.url }}">{{ .Site.Params.notification.text }}</a>
 </div>
+{{ end }}

@@ -33,7 +33,7 @@ subsection: "getting-started"
 <span id="install-mattermost-and-set-up-a-fork"></span><h2>Install Mattermost and set up a Fork</h2>
 <p>Once you have a ticket:</p>
 <ol class="simple">
-<li>Follow the <a class="reference external" href="/contribute/getting-started/developer-setup/">developer setup instructions</a> to install Mattermost.</li>
+<li>Follow the <a class="reference external" href="{{< contributeurl >}}/getting-started/developer-setup/">developer setup instructions</a> to install Mattermost.</li>
 <li>Create a branch with <code class="docutils literal"><span class="pre">&lt;branch</span> <span class="pre">name&gt;</span></code> set to the ID of the ticket you're working on, for example <code class="docutils literal"><span class="pre">PLT-394</span></code>, using the command: <code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">&lt;branch</span> <span class="pre">name&gt;</span></code></li>
 <li>Take a look at the <a class="reference external" href="https://docs.mattermost.com/developer/developer-flow.html">developer flow</a> to learn how to work with the Mattermost codebase.</li>
 </ol>

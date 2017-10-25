@@ -154,6 +154,6 @@ repository by <a class="reference external" href="https://docs.mattermost.com/de
 </div>
 
 <div style="margin-top: 15px;">
-<span class="pull-left"><a href="/contribute/server/developer-workflow/">< Back to Workflow</a></span>
+<span class="pull-left"><a href="{{< contributeurl >}}/server/developer-workflow/">< Back to Workflow</a></span>
 </div>
 <br/>
