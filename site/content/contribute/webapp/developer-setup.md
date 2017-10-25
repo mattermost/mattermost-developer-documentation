@@ -10,7 +10,7 @@ subsection: "webapp"
 <p>Set up your development environment for building, running, and testing the Mattermost webapp.</p>
 
 <div style="margin-top: 15px;">
-<span class="pull-left"><a href="/contribute/webapp/">< Back to Webapp</a></span>
-<span class="pull-right"><a href="/contribute/webapp/developer-workflow/">Go to Development Workflow ></a></span>
+<span class="pull-left"><a href="{{< contributeurl >}}/webapp/">< Back to Webapp</a></span>
+<span class="pull-right"><a href="{{< contributeurl >}}/webapp/developer-workflow/">Go to Development Workflow ></a></span>
 </div>
 <br/>

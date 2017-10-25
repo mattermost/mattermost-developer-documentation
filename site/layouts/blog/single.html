@@ -29,12 +29,12 @@
                 <strong>Categories</strong>
                 <ul class="list-unstyled">
                 {{ range .Params.categories }}
-                    <li><a href="/categories/{{ . | urlize }}">{{ . }}</a></li>
+                    <li><a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}">{{ . }}</a></li>
                 {{ end }}
                 </ul>
                 <hr>
                 <strong>Tags</strong><br>
-                {{ range .Params.tags }}<a class="label label-default" href="/tags/{{ . | urlize }}">{{ . }}</a> {{ end }}
+                {{ range .Params.tags }}<a class="label label-default" href="{{ $.Site.BaseURL }}tags/{{ . | urlize }}">{{ . }}</a> {{ end }}
             </div>
         </div>
     </div>

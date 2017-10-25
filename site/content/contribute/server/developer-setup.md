@@ -476,7 +476,7 @@ eval $(docker-machine env default) #skip this line if you are using Docker for W
 </div>
 
 <div style="margin-top: 15px;">
-<span class="pull-left"><a href="/contribute/server/">< Back to Server</a></span>
-<span class="pull-right"><a href="/contribute/server/developer-workflow/">Go to Development Workflow ></a></span>
+<span class="pull-left"><a href="{{< contributeurl >}}/server/">< Back to Server</a></span>
+<span class="pull-right"><a href="{{< contributeurl >}}/server/developer-workflow/">Go to Development Workflow ></a></span>
 </div>
 <br/>

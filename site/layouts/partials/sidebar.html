@@ -1,8 +1,9 @@
 <div id="sidebar-menu" class="col-md-2 hidden-xs hidden-sm">
-    {{ if eq .Section "contribute" }}
-    <a href="/contribute">Contribute</a>
+    {{ range .Site.Params.sidebar.item }}
+    {{ if eq $.Section .name }}
+    <a href="{{ $.Site.BaseURL }}/{{ .name }}">{{ .displayName }}</a>
     <ul class="main-menu nav nav-stacked affix-top">
-        {{ range where .Site.Pages ".Params.section" "contribute" }}
+        {{ range where $.Site.Pages ".Params.section" .name }}
         <li>
             {{ if eq $.Title .Title }}
             <a style="color:#7f7f7f" href="{{ .URL }}">{{ .Title }}</a>
@@ -22,10 +23,5 @@
         {{ end }}
     </ul>
     {{ end }}
-    {{ if eq .Section "integrate" }}
-    <a href="/integrate">Integrate</a>
-    {{ end }}
-    {{ if eq .Section "extend" }}
-    <a href="/extend">Extend</a>
     {{ end }}
 </div>

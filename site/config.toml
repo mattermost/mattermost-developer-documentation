@@ -6,11 +6,31 @@ theme = "hugo-elate-theme"
 publishDir = "../docs"
 
 [params]
-  
+
   # Meta
   author = ""
   description = ""
   email = ""
+
+  [params.notification]
+    enable = false
+    url = "blog/repo-split"
+    text = "On September 6th the platform repository will be split. Click through for more details."
+
+  [params.sidebar]
+
+  [[params.sidebar.item]]
+    name = "contribute"
+    displayName = "Contribute"
+
+  [[params.sidebar.item]]
+    name = "integrate"
+    displayName = "Integrate"
+
+  [[params.sidebar.item]]
+    name = "extend"
+    displayName = "Extend"
+
   # Navigation
   [params.navigation]
     brand = "Mattermost Developers"
@@ -18,7 +38,7 @@ publishDir = "../docs"
 
     # You can add custom links before or after the default links
     # Assign a weight to define the order
-    
+
     # prepended links
     #[[menu.prepend]]
     #  url = "http://gohugo.io"
@@ -45,12 +65,12 @@ publishDir = "../docs"
       url = "/blog/"
       name = "Blog"
       weight = 4
-  
+
   # Hero section
   [params.hero]
     title = "All your Mattermost development needs"
     subtitle = ''
- 
+
   # Intro section
   # Available icons: http://simplelineicons.com/
   [params.intro]
@@ -58,7 +78,7 @@ publishDir = "../docs"
   [[params.intro.item]]
     title = "Contribute"
     description = "Join the hunrdeds of contributors and submit code directly to the Mattermost open-source project."
-    url = "/contribute/"
+    url = "contribute/getting-started"
     button = "Start Contributing"
     icon = "icon-bulb"
     img = "img_7.jpg"
@@ -66,7 +86,7 @@ publishDir = "../docs"
   [[params.intro.item]]
     title = "Integrate"
     description = "Integrate with Mattermsot through incoming and outgoing webhooks, slash commands, OAuth 2.0 and the REST API."
-    url = "/integrate"
+    url = "integrate"
     button = "Start Integrating"
     icon = "icon-wrench"
     img = "img_8.jpg"
@@ -74,7 +94,7 @@ publishDir = "../docs"
   [[params.intro.item]]
     title = "Extend"
     description = "Extend Mattermost to fit your purpose through powerful client and server plugins, embedding or forking."
-    url = "#"
+    url = "extend"
     button = "Start Extending"
     icon = "icon-rocket"
     img = "img_10.jpg"
