@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Welcome on Mattermost Developers</title>
-    <link>https://jwilander.github.io/mattermost-developer-documentation/tags/welcome/</link>
+    <link>https://mattermost.github.io/mattermost-developer-documentation/tags/welcome/</link>
     <description>Recent content in Welcome on Mattermost Developers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 04 Sep 2017 11:06:47 -0400</lastBuildDate>
     
-	<atom:link href="https://jwilander.github.io/mattermost-developer-documentation/tags/welcome/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mattermost.github.io/mattermost-developer-documentation/tags/welcome/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Welcome!</title>
-      <link>https://jwilander.github.io/mattermost-developer-documentation/blog/welcome/</link>
+      <link>https://mattermost.github.io/mattermost-developer-documentation/blog/welcome/</link>
       <pubDate>Mon, 04 Sep 2017 11:06:47 -0400</pubDate>
       
-      <guid>https://jwilander.github.io/mattermost-developer-documentation/blog/welcome/</guid>
+      <guid>https://mattermost.github.io/mattermost-developer-documentation/blog/welcome/</guid>
       <description>Welcome to developers.mattermost.com!</description>
     </item>
     

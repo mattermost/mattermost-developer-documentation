@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mobile on Mattermost Developers</title>
-    <link>https://jwilander.github.io/mattermost-developer-documentation/contribute/mobile/</link>
+    <link>https://mattermost.github.io/mattermost-developer-documentation/contribute/mobile/</link>
     <description>Recent content in Mobile on Mattermost Developers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 19 Aug 2017 12:01:23 -0400</lastBuildDate>
     
-	<atom:link href="https://jwilander.github.io/mattermost-developer-documentation/contribute/mobile/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mattermost.github.io/mattermost-developer-documentation/contribute/mobile/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Environment Setup</title>
-      <link>https://jwilander.github.io/mattermost-developer-documentation/contribute/mobile/developer-setup/</link>
+      <link>https://mattermost.github.io/mattermost-developer-documentation/contribute/mobile/developer-setup/</link>
       <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
       
-      <guid>https://jwilander.github.io/mattermost-developer-documentation/contribute/mobile/developer-setup/</guid>
+      <guid>https://mattermost.github.io/mattermost-developer-documentation/contribute/mobile/developer-setup/</guid>
       <description>Envrionment Setup The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version here and the Android version here. Source code can be found at: https://github.com/mattermost/mattermost-mobile
 If you run into any issues getting your environment set up, check the Troubleshooting section at the bottom for common solutions.
 Development Environment Setup Mac OS X Install XCode 8.3. Install Homebrew. Using Homebrew, install Node.</description>

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogs on Mattermost Developers</title>
-    <link>https://jwilander.github.io/mattermost-developer-documentation/blog/</link>
+    <link>https://mattermost.github.io/mattermost-developer-documentation/blog/</link>
     <description>Recent content in Blogs on Mattermost Developers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 04 Sep 2017 11:09:47 -0400</lastBuildDate>
     
-	<atom:link href="https://jwilander.github.io/mattermost-developer-documentation/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mattermost.github.io/mattermost-developer-documentation/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Platform Repository Splitting</title>
-      <link>https://jwilander.github.io/mattermost-developer-documentation/blog/repo-split/</link>
+      <link>https://mattermost.github.io/mattermost-developer-documentation/blog/repo-split/</link>
       <pubDate>Mon, 04 Sep 2017 11:09:47 -0400</pubDate>
       
-      <guid>https://jwilander.github.io/mattermost-developer-documentation/blog/repo-split/</guid>
+      <guid>https://mattermost.github.io/mattermost-developer-documentation/blog/repo-split/</guid>
       <description>A reminder that Mattermost will be separating the /platform repo into two repositories on September 6th:
  a new repository for webapp client code, hosted at github.com/mattermost/mattermost-webapp existing repository (/platform) renamed to /mattermost-server, containing the server code.  Why the change? Separates PRs for client and server with better naming conventions. This is similar to React Native and Redux repositories and helps us:
  work on one part of the system (webapp/server) without worrying about the other.</description>
@@ -24,10 +24,10 @@
     
     <item>
       <title>Welcome!</title>
-      <link>https://jwilander.github.io/mattermost-developer-documentation/blog/welcome/</link>
+      <link>https://mattermost.github.io/mattermost-developer-documentation/blog/welcome/</link>
       <pubDate>Mon, 04 Sep 2017 11:06:47 -0400</pubDate>
       
-      <guid>https://jwilander.github.io/mattermost-developer-documentation/blog/welcome/</guid>
+      <guid>https://mattermost.github.io/mattermost-developer-documentation/blog/welcome/</guid>
       <description>Welcome to developers.mattermost.com!</description>
     </item>
     
