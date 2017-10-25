@@ -1,5 +1,5 @@
 # Page settings
-baseURL = "https://jwilander.github.io/mattermost-developer-documentation/"
+baseURL = "https://mattermost.github.io/mattermost-developer-documentation/"
 title = "Mattermost Developers"
 languageCode = "en-us"
 theme = "hugo-elate-theme"

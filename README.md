@@ -1,6 +1,8 @@
 # Mattermost Developer Documentation
 
-Website for Mattermost developer documentation, built using [Hugo](https://gohugo.io/). Hosted at https://jwilander.github.io/mattermost-developer-documentation
+**STILL IN DEVELOPMENT**
+
+Website for Mattermost developer documentation, built using [Hugo](https://gohugo.io/). Hosted at https://mattermost.github.io/mattermost-developer-documentation
 
 ## Contributing
 
