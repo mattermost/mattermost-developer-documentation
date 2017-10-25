@@ -3,6 +3,7 @@ baseurl = "localhost:1313"
 title = "Mattermost Developers"
 languageCode = "en-us"
 theme = "hugo-elate-theme"
+publishDir = "../docs"
 
 [params]
   

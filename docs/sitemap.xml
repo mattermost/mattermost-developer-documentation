@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>localhost:1313/contribute/getting-started/contribution-guidelines/</loc>
+    <lastmod>2017-08-20T12:33:36-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/contribute/getting-started/core-developers/</loc>
+    <lastmod>2017-08-20T12:33:36-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/contribute/mobile/developer-setup/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/contribute/server/developer-setup/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/contribute/webapp/developer-setup/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/contribute/getting-started/respositories/</loc>
+    <lastmod>2017-08-20T12:32:15-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/contribute/server/developer-workflow/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/contribute/server/rest-api/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/blog/repo-split/</loc>
+    <lastmod>2017-09-04T11:09:47-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/blog/welcome/</loc>
+    <lastmod>2017-09-04T11:06:47-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/contribute/</loc>
+    <lastmod>2017-08-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/extend/</loc>
+    <lastmod>2017-08-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/contribute/getting-started/</loc>
+    <lastmod>2017-08-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/integrate/</loc>
+    <lastmod>2017-08-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/contribute/mobile/</loc>
+    <lastmod>2017-08-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/contribute/server/</loc>
+    <lastmod>2017-08-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/contribute/webapp/</loc>
+    <lastmod>2017-08-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/categories/announcement/</loc>
+    <lastmod>2017-09-04T11:09:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/blog/</loc>
+    <lastmod>2017-09-04T11:09:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/categories/</loc>
+    <lastmod>2017-09-04T11:09:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/tags/example/</loc>
+    <lastmod>2017-09-04T11:09:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/</loc>
+    <lastmod>2017-08-20T12:33:36-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/tags/</loc>
+    <lastmod>2017-09-04T11:09:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost:1313/tags/welcome/</loc>
+    <lastmod>2017-09-04T11:06:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

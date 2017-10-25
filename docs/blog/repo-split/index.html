@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+    <head>
+            <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Platform Repository Splitting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    
+    <meta http-equiv="content-language" content="en-us" />
+
+  
+
+    
+    
+    <meta name="og:site_name" content="Mattermost Developers">
+    <meta name="og:title" content="Platform Repository Splitting">
+    <meta name="og:url" content="localhost:1313/blog/repo-split/">
+    <meta name="og:image" content="localhost:1313images/">
+    <meta name="twitter:title" content="Mattermost Developers" />
+    <meta name="twitter:url" content="localhost:1313/blog/repo-split/" />
+    <meta name="twitter:image" content="localhost:1313images/" />
+    <meta name="twitter:card" content="" />
+    
+    
+    
+    <link rel="canonical" href="#ZgotmplZ"/>
+
+    
+    <link rel="shortcut icon" type="image/png" href="/img/favicon-32x32.png"/>
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
+    
+    
+    <link rel="stylesheet" href="/css/animate.css">
+    
+    <link rel="stylesheet" href="/css/icomoon.css">
+    
+    <link rel="stylesheet" href="/css/simple-line-icons.css">
+    
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/tabs.css">
+    <link rel="stylesheet" href="/css/bar.css">
+
+    
+    <link rel="stylesheet" href="/css/style.css">
+
+    
+    
+
+    
+    <script src="/js/modernizr-2.6.2.min.js"></script>
+    
+    
+    <script src="/js/tabs.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </head>
+<body>
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">
+        Mattermost Developers
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+            <li><a href="/contribute/getting-started"><span>Contribute</span></a></li>
+        
+            <li><a href="/integrate/"><span>Integrate</span></a></li>
+        
+            <li><a href="/extend/"><span>Extend</span></a></li>
+        
+            <li><a href="/blog/"><span>Blog</span></a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="well well-sm">
+                    <h3>Platform Repository Splitting<br> <small></small></h3>
+                    <hr>
+                    
+
+<p>A reminder that Mattermost will be separating the <code>/platform</code> repo into two repositories on September 6th:</p>
+
+<ul>
+<li>a new repository for webapp client code, hosted at github.com/mattermost/mattermost-webapp</li>
+<li>existing repository (<code>/platform</code>) renamed to <code>/mattermost-server</code>, containing the server code.</li>
+</ul>
+
+<h3 id="why-the-change">Why the change?</h3>
+
+<p>Separates PRs for client and server with better naming conventions. This is similar to <a href="https://github.com/mattermost/mattermost-mobile">React Native</a> and <a href="https://github.com/mattermost/mattermost-redux">Redux</a> repositories and helps us:</p>
+
+<ul>
+<li>work on one part of the system (webapp/server) without worrying about the other.</li>
+<li>review PRs more easily as the webapp/server code is logically separated.</li>
+</ul>
+
+<p>It&rsquo;s also the first step towards de-coupling UI versions from the server, similar to the React Native apps, and helps model the architecture we want to achieve for the server.</p>
+
+<h3 id="how-does-this-affect-me">How does this affect me?</h3>
+
+<p>Foremost, build process is not affected for most, with <code>make run</code> working as expected. There may however be some canges to the build process, which we&rsquo;ll announce closer to September 6th.</p>
+
+<p>Those running private forks would need to separate their server and webapp code after 4.2 is branched, and mimic what we&rsquo;ll do when we split the platform repo. A doc with tips and best practices will be prepared to help with the transition.</p>
+
+<p>Finally, those with work-in-progress PRs on September 6th may need to re-submit their pull request after the separation. For instance, PRs changing the UI would need to be re-submitted to the new <code>mattermost-webapp</code> repository.</p>
+
+<h3 id="questions">Questions?</h3>
+
+<p>Respond to our <a href="https://forum.mattermost.org/t/mattermost-separating-platform-into-two-repositories-on-september-6th/3708">forum post</a> or to our <a href="https://pre-release.mattermost.com/core/pl/e9d7rjq993yptryesd5ppe37sa">post in the Developers channel</a>.</p>
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3">
+            <div class="well well-sm"> 
+                <h4>September 4, 2017<br>
+                <small>242 words</small></h4>
+                <hr>
+                <strong>Categories</strong>
+                <ul class="list-unstyled">
+                
+                    <li><a href="/categories/announcement">announcement</a></li>
+                
+                </ul>
+                <hr>
+                <strong>Tags</strong><br>
+                <a class="label label-default" href="/tags/example">example</a> 
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

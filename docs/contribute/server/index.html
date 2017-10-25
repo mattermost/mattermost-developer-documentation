@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+    <head>
+            <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    
+    <meta http-equiv="content-language" content="en-us" />
+
+  
+
+    
+    
+    <meta name="og:site_name" content="Mattermost Developers">
+    <meta name="og:title" content="Server">
+    <meta name="og:url" content="localhost:1313/contribute/server/">
+    <meta name="og:image" content="localhost:1313images/">
+    <meta name="twitter:title" content="Mattermost Developers" />
+    <meta name="twitter:url" content="localhost:1313/contribute/server/" />
+    <meta name="twitter:image" content="localhost:1313images/" />
+    <meta name="twitter:card" content="" />
+    
+    
+    
+    <link rel="canonical" href="#ZgotmplZ"/>
+
+    
+    <link rel="shortcut icon" type="image/png" href="/img/favicon-32x32.png"/>
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
+    
+    
+    <link rel="stylesheet" href="/css/animate.css">
+    
+    <link rel="stylesheet" href="/css/icomoon.css">
+    
+    <link rel="stylesheet" href="/css/simple-line-icons.css">
+    
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/tabs.css">
+    <link rel="stylesheet" href="/css/bar.css">
+
+    
+    <link rel="stylesheet" href="/css/style.css">
+
+    
+    
+
+    
+    <script src="/js/modernizr-2.6.2.min.js"></script>
+    
+    
+    <script src="/js/tabs.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </head>
+<body>
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">
+        Mattermost Developers
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+            <li><a href="/contribute/getting-started"><span>Contribute</span></a></li>
+        
+            <li><a href="/integrate/"><span>Integrate</span></a></li>
+        
+            <li><a href="/extend/"><span>Extend</span></a></li>
+        
+            <li><a href="/blog/"><span>Blog</span></a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="sidebar-menu" class="col-md-2 hidden-xs hidden-sm">
+    
+    <a href="/contribute">Contribute</a>
+    <ul class="main-menu nav nav-stacked affix-top">
+        
+        <li>
+            
+            <a href="/contribute/getting-started/">Getting Started</a>
+            
+            <ul class="sub-menu">
+                
+                    
+                    <li><a href="/contribute/getting-started/contribution-guidelines/">Contribution Guidelines</a></li>
+                    
+                
+                    
+                    <li><a href="/contribute/getting-started/core-developers/">Core Developers</a></li>
+                    
+                
+                    
+                    <li><a href="/contribute/getting-started/respositories/">Project Respositories</a></li>
+                    
+                
+            </ul>
+        </li>
+        
+        <li>
+            
+            <a href="/contribute/mobile/">Mobile</a>
+            
+            <ul class="sub-menu">
+                
+                    
+                    <li><a href="/contribute/mobile/developer-setup/">Environment Setup</a></li>
+                    
+                
+            </ul>
+        </li>
+        
+        <li>
+            
+            <a style="color:#7f7f7f" href="/contribute/server/">Server</a>
+            
+            <ul class="sub-menu">
+                
+                    
+                    <li><a href="/contribute/server/developer-setup/">Environment Setup</a></li>
+                    
+                
+                    
+                    <li><a href="/contribute/server/developer-workflow/">Workflow</a></li>
+                    
+                
+                    
+                    <li><a href="/contribute/server/rest-api/">REST API</a></li>
+                    
+                
+            </ul>
+        </li>
+        
+        <li>
+            
+            <a href="/contribute/webapp/">Webapp</a>
+            
+            <ul class="sub-menu">
+                
+                    
+                    <li><a href="/contribute/webapp/developer-setup/">Environment Setup</a></li>
+                    
+                
+            </ul>
+        </li>
+        
+    </ul>
+    
+    
+    
+</div>
+
+    <div class="col-lg-10">
+        
+
+<h1 id="server">Server</h1>
+
+<p>The Mattermost server is written in <a href="https://golang.org/">Go</a> and lives in the <a href="https://github.com/mattermost/platform">mattermost/platform</a> respository.</p>
+
+<h2 id="network-diagram">Network Diagram</h2>
+
+<p><img src="/img/mattermost-network.png" style="width: 1200px"/></p>
+
+<h2 id="server-packages">Server Packages</h2>
+
+<p>The server consists of several different Go packages:</p>
+
+<ul>
+<li><code>api</code> - Version 3 of the RESTful JSON Web Service <em>(scheduled for deprecation January 18th, 2018)</em></li>
+<li><code>api4</code> - Version 4 of the RESTful JSON Web Service</li>
+<li><code>app</code> - Logic layer for getting, modifying, and interacting with models</li>
+<li><code>cmd</code> - Command line interface</li>
+<li><code>einterfaces</code> - Interfaces for Enterprise Edition features</li>
+<li><code>jobs</code> - Job server and scheduling</li>
+<li><code>model</code> - Definitions and helper functions for data models</li>
+<li><code>store</code> - Storage layer for interacting with caches and databases</li>
+<li><code>util</code> - Utility functions for various tasks</li>
+<li><code>web</code> - Serves static pages</li>
+</ul>
+
+<p><div style="margin-top: 15px;">
+<span class="pull-right"><a href="/contribute/server/developer-setup/">Go to Environment Setup &gt;</a></span>
+</div>
+<br/></p>
+
+    </div>
+</body>
+</html>
+

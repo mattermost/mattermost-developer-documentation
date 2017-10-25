@@ -1,4 +1,5 @@
 <div id="sidebar-menu" class="col-md-2 hidden-xs hidden-sm">
+    {{ if eq .Section "contribute" }}
     <a href="/contribute">Contribute</a>
     <ul class="main-menu nav nav-stacked affix-top">
         {{ range where .Site.Pages ".Params.section" "contribute" }}
@@ -20,4 +21,11 @@
         </li>
         {{ end }}
     </ul>
+    {{ end }}
+    {{ if eq .Section "integrate" }}
+    <a href="/integrate">Integrate</a>
+    {{ end }}
+    {{ if eq .Section "extend" }}
+    <a href="/extend">Extend</a>
+    {{ end }}
 </div>
