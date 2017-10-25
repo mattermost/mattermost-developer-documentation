@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mattermost Developers</title>
-    <link>localhost:1313/</link>
+    <link>https://jwilander.github.io/mattermost-developer-documentation/</link>
     <description>Recent content on Mattermost Developers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 20 Aug 2017 12:33:36 -0400</lastBuildDate>
     
-	<atom:link href="localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jwilander.github.io/mattermost-developer-documentation/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Contribution Guidelines</title>
-      <link>localhost:1313/contribute/getting-started/contribution-guidelines/</link>
+      <link>https://jwilander.github.io/mattermost-developer-documentation/contribute/getting-started/contribution-guidelines/</link>
       <pubDate>Sun, 20 Aug 2017 12:33:36 -0400</pubDate>
       
-      <guid>localhost:1313/contribute/getting-started/contribution-guidelines/</guid>
+      <guid>https://jwilander.github.io/mattermost-developer-documentation/contribute/getting-started/contribution-guidelines/</guid>
       <description>Contribution Guidelines Thank you for your interest in contributing to Mattermost. To help with translations, see the localization process. For code contributions, here&#39;s the process:
 Choose a Ticket Choose a ticket from the Help Wanted GitHub Issues list. Make sure that it doesn&#39;t have an open pull request for it.   Before starting to work on the ticket, comment to let people know you&#39;re working on it. If you have questions, post them in Mattermost forum or join the Contributors channel and announce the ticket you&#39;d like to work on so it can be assigned to you.</description>
     </item>
     
     <item>
       <title>Core Developers</title>
-      <link>localhost:1313/contribute/getting-started/core-developers/</link>
+      <link>https://jwilander.github.io/mattermost-developer-documentation/contribute/getting-started/core-developers/</link>
       <pubDate>Sun, 20 Aug 2017 12:33:36 -0400</pubDate>
       
-      <guid>localhost:1313/contribute/getting-started/core-developers/</guid>
+      <guid>https://jwilander.github.io/mattermost-developer-documentation/contribute/getting-started/core-developers/</guid>
       <description>Core Developers A core developer is a maintainer on the Mattermost project that has merge access to the Mattermost repositories. They are responsible for reviewing pull requests, cultivating the Mattermost developer community and guiding the technical vision of Mattermost. If you have a question or need some help, these are the people to ask.
 Below is the list of core developers working on Mattermost:
  Corey Hulen  @corey on pre-release.</description>
@@ -34,10 +34,10 @@ Below is the list of core developers working on Mattermost:
     
     <item>
       <title>Environment Setup</title>
-      <link>localhost:1313/contribute/mobile/developer-setup/</link>
+      <link>https://jwilander.github.io/mattermost-developer-documentation/contribute/mobile/developer-setup/</link>
       <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
       
-      <guid>localhost:1313/contribute/mobile/developer-setup/</guid>
+      <guid>https://jwilander.github.io/mattermost-developer-documentation/contribute/mobile/developer-setup/</guid>
       <description>Envrionment Setup The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version here and the Android version here. Source code can be found at: https://github.com/mattermost/mattermost-mobile
 If you run into any issues getting your environment set up, check the Troubleshooting section at the bottom for common solutions.
 Development Environment Setup Mac OS X Install XCode 8.3. Install Homebrew. Using Homebrew, install Node.</description>
@@ -45,30 +45,30 @@ Development Environment Setup Mac OS X Install XCode 8.3. Install Homebrew. Usin
     
     <item>
       <title>Environment Setup</title>
-      <link>localhost:1313/contribute/server/developer-setup/</link>
+      <link>https://jwilander.github.io/mattermost-developer-documentation/contribute/server/developer-setup/</link>
       <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
       
-      <guid>localhost:1313/contribute/server/developer-setup/</guid>
+      <guid>https://jwilander.github.io/mattermost-developer-documentation/contribute/server/developer-setup/</guid>
       <description>Environment Setup Set up your development environment for building, running, and testing Mattermost.
 Mac OS X Ubuntu 16.04 Windows Archlinux CentOS 7  If you are developing with the Docker container, install and configure Docker CE:   Follow the Docker installation instructions at https://docs.docker.com/docker-for-mac/. Edit your /etc/hosts file to include the following line:   127.0.0.1&amp;#160;&amp;#160;&amp;#160;&amp;#160; dockerhost  Download and install Brew, which you’ll use for installing dependencies. Follow the Brew installation instructions at https://brew.</description>
     </item>
     
     <item>
       <title>Environment Setup</title>
-      <link>localhost:1313/contribute/webapp/developer-setup/</link>
+      <link>https://jwilander.github.io/mattermost-developer-documentation/contribute/webapp/developer-setup/</link>
       <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
       
-      <guid>localhost:1313/contribute/webapp/developer-setup/</guid>
+      <guid>https://jwilander.github.io/mattermost-developer-documentation/contribute/webapp/developer-setup/</guid>
       <description>Environment Setup Set up your development environment for building, running, and testing the Mattermost webapp.
 &amp;lt; Back to Webapp Go to Development Workflow &amp;gt;</description>
     </item>
     
     <item>
       <title>Project Respositories</title>
-      <link>localhost:1313/contribute/getting-started/respositories/</link>
+      <link>https://jwilander.github.io/mattermost-developer-documentation/contribute/getting-started/respositories/</link>
       <pubDate>Sun, 20 Aug 2017 12:32:15 -0400</pubDate>
       
-      <guid>localhost:1313/contribute/getting-started/respositories/</guid>
+      <guid>https://jwilander.github.io/mattermost-developer-documentation/contribute/getting-started/respositories/</guid>
       <description>Project Repositories platform Star  Language: Go
 The platform repository is the main repository for the Mattermost open-source project and is where the server source code lives.
  desktop Star  Language: JavaScript
@@ -79,19 +79,19 @@ The mattermost-mobile repository holds the React Native implemenation for the se
     
     <item>
       <title>Workflow</title>
-      <link>localhost:1313/contribute/server/developer-workflow/</link>
+      <link>https://jwilander.github.io/mattermost-developer-documentation/contribute/server/developer-workflow/</link>
       <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
       
-      <guid>localhost:1313/contribute/server/developer-workflow/</guid>
+      <guid>https://jwilander.github.io/mattermost-developer-documentation/contribute/server/developer-workflow/</guid>
       <description> Workflow </description>
     </item>
     
     <item>
       <title>REST API</title>
-      <link>localhost:1313/contribute/server/rest-api/</link>
+      <link>https://jwilander.github.io/mattermost-developer-documentation/contribute/server/rest-api/</link>
       <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
       
-      <guid>localhost:1313/contribute/server/rest-api/</guid>
+      <guid>https://jwilander.github.io/mattermost-developer-documentation/contribute/server/rest-api/</guid>
       <description>REST API This page documents the process for implementing endpoints for version 4 of the Mattermost REST API. If you have questions please ask in the APIv4 channel. The project leads are Joram Wilander (&amp;#64;joram) on development and Jason Blais (&amp;#64;jason) on product management.
 Looking for the API reference? That can be found here: https://api.mattermost.com.
 Adding an Endpoint To add an endpoint to API version 4, each item on the following checklist must be completed:</description>
@@ -99,10 +99,10 @@ Adding an Endpoint To add an endpoint to API version 4, each item on the followi
     
     <item>
       <title>Platform Repository Splitting</title>
-      <link>localhost:1313/blog/repo-split/</link>
+      <link>https://jwilander.github.io/mattermost-developer-documentation/blog/repo-split/</link>
       <pubDate>Mon, 04 Sep 2017 11:09:47 -0400</pubDate>
       
-      <guid>localhost:1313/blog/repo-split/</guid>
+      <guid>https://jwilander.github.io/mattermost-developer-documentation/blog/repo-split/</guid>
       <description>A reminder that Mattermost will be separating the /platform repo into two repositories on September 6th:
  a new repository for webapp client code, hosted at github.com/mattermost/mattermost-webapp existing repository (/platform) renamed to /mattermost-server, containing the server code.  Why the change? Separates PRs for client and server with better naming conventions. This is similar to React Native and Redux repositories and helps us:
  work on one part of the system (webapp/server) without worrying about the other.</description>
@@ -110,10 +110,10 @@ Adding an Endpoint To add an endpoint to API version 4, each item on the followi
     
     <item>
       <title>Welcome!</title>
-      <link>localhost:1313/blog/welcome/</link>
+      <link>https://jwilander.github.io/mattermost-developer-documentation/blog/welcome/</link>
       <pubDate>Mon, 04 Sep 2017 11:06:47 -0400</pubDate>
       
-      <guid>localhost:1313/blog/welcome/</guid>
+      <guid>https://jwilander.github.io/mattermost-developer-documentation/blog/welcome/</guid>
       <description>Welcome to developers.mattermost.com!</description>
     </item>
     
