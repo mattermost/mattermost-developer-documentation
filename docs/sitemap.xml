@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://mattermost.github.io/mattermost-developer-documentation/extend/server/hello-world/</loc>
+    <lastmod>2017-10-26T17:54:54-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mattermost.github.io/mattermost-developer-documentation/contribute/getting-started/contribution-guidelines/</loc>
     <lastmod>2017-08-20T12:33:36-04:00</lastmod>
   </url>
@@ -43,6 +48,31 @@
   </url>
   
   <url>
+    <loc>https://mattermost.github.io/mattermost-developer-documentation/extend/server/api-reference/</loc>
+    <lastmod>2017-10-26T17:54:54-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mattermost.github.io/mattermost-developer-documentation/extend/server/</loc>
+    <lastmod>2017-10-26T17:56:25-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mattermost.github.io/mattermost-developer-documentation/extend/webapp/</loc>
+    <lastmod>2017-10-26T17:56:25-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mattermost.github.io/mattermost-developer-documentation/extend/</loc>
+    <lastmod>2017-10-26T17:56:19-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mattermost.github.io/mattermost-developer-documentation/extend/example-plugins/</loc>
+    <lastmod>2017-10-26T17:54:54-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mattermost.github.io/mattermost-developer-documentation/blog/repo-split/</loc>
     <lastmod>2017-09-04T11:09:47-04:00</lastmod>
   </url>
@@ -54,11 +84,6 @@
   
   <url>
     <loc>https://mattermost.github.io/mattermost-developer-documentation/contribute/</loc>
-    <lastmod>2017-08-19T12:01:23-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mattermost.github.io/mattermost-developer-documentation/extend/</loc>
     <lastmod>2017-08-19T12:01:23-04:00</lastmod>
   </url>
   
@@ -113,7 +138,7 @@
   
   <url>
     <loc>https://mattermost.github.io/mattermost-developer-documentation/</loc>
-    <lastmod>2017-08-20T12:33:36-04:00</lastmod>
+    <lastmod>2017-10-26T17:54:54-05:00</lastmod>
     <priority>0</priority>
   </url>
   
