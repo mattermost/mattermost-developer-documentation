@@ -1,11 +1,6 @@
-+++
-title = "Extend"
-date = "2017-08-19T12:01:23-04:00"
-section = "extend"
-+++
+---
+title: Extend
+date: 2017-10-26T17:56:19-05:00
+---
 
-# Extend
-
-Under construction!
-
-
+Mattermost has a plugin mechanism that can be used to extend both the server and web app.

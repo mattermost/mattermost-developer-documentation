@@ -6,10 +6,21 @@
     <description>Recent content on Mattermost Developers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Aug 2017 12:33:36 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 26 Oct 2017 17:54:54 -0500</lastBuildDate>
     
 	<atom:link href="https://mattermost.github.io/mattermost-developer-documentation/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Quick Start (Hello, world!)</title>
+      <link>https://mattermost.github.io/mattermost-developer-documentation/extend/server/hello-world/</link>
+      <pubDate>Thu, 26 Oct 2017 17:54:54 -0500</pubDate>
+      
+      <guid>https://mattermost.github.io/mattermost-developer-documentation/extend/server/hello-world/</guid>
+      <description>Hello, world! This guide will walk you through the basics of extending the Mattermost server.
+Prerequisites Mattermost plugins extend the server using a Go API. You&amp;rsquo;ll need a functioning Go environment, so follow Go&amp;rsquo;s Getting Started guide if needed.
+You&amp;rsquo;ll also need a Mattermost server to install and test the plugin. This server must have an enterprise license and &amp;ldquo;Enable&amp;rdquo; and &amp;ldquo;EnableUploads&amp;rdquo; set to true in the &amp;ldquo;PluginSettings&amp;rdquo; section of its config file.</description>
+    </item>
     
     <item>
       <title>Contribution Guidelines</title>
@@ -95,6 +106,24 @@ The mattermost-mobile repository holds the React Native implemenation for the se
       <description>REST API This page documents the process for implementing endpoints for version 4 of the Mattermost REST API. If you have questions please ask in the APIv4 channel. The project leads are Joram Wilander (&amp;#64;joram) on development and Jason Blais (&amp;#64;jason) on product management.
 Looking for the API reference? That can be found here: https://api.mattermost.com.
 Adding an Endpoint To add an endpoint to API version 4, each item on the following checklist must be completed:</description>
+    </item>
+    
+    <item>
+      <title>API Reference</title>
+      <link>https://mattermost.github.io/mattermost-developer-documentation/extend/server/api-reference/</link>
+      <pubDate>Thu, 26 Oct 2017 17:54:54 -0500</pubDate>
+      
+      <guid>https://mattermost.github.io/mattermost-developer-documentation/extend/server/api-reference/</guid>
+      <description>The server API for plugins can be found on GoDoc.</description>
+    </item>
+    
+    <item>
+      <title>Example Plugins</title>
+      <link>https://mattermost.github.io/mattermost-developer-documentation/extend/example-plugins/</link>
+      <pubDate>Thu, 26 Oct 2017 17:54:54 -0500</pubDate>
+      
+      <guid>https://mattermost.github.io/mattermost-developer-documentation/extend/example-plugins/</guid>
+      <description>Construction</description>
     </item>
     
     <item>
