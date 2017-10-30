@@ -1,8 +1,8 @@
-# Mattermost Developer Documentation
+# Mattermost Developer Documentation [![Build Status](https://travis-ci.org/mattermost/mattermost-developer-documentation.svg?branch=master)](https://travis-ci.org/mattermost/mattermost-developer-documentation)
 
 **STILL IN DEVELOPMENT**
 
-Website for Mattermost developer documentation, built using [Hugo](https://gohugo.io/). Hosted at https://mattermost.github.io/mattermost-developer-documentation
+Website for Mattermost developer documentation, built using [Hugo](https://gohugo.io/). Master can be viewed at http://mattermost-developer-documentation.s3-website-us-east-1.amazonaws.com/branches/master/
 
 ## Contributing
 
