@@ -1,5 +1,6 @@
 # Page settings
-baseURL = "https://mattermost.github.io/mattermost-developer-documentation/"
+baseURL = ""
+relativeURLs = true
 title = "Mattermost Developers"
 languageCode = "en-us"
 theme = "hugo-elate-theme"

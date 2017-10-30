@@ -1,0 +1,20 @@
+dist: trusty
+sudo: false
+before_install:
+  - mkdir bin
+  - export PATH=$PATH:$PWD/bin
+  - wget https://github.com/gohugoio/hugo/releases/download/v0.30.2/hugo_0.30.2_Linux-64bit.tar.gz -O /tmp/hugo.tar.gz
+  - tar -xvf /tmp/hugo.tar.gz hugo && mv hugo bin
+script:
+  - make dist
+deploy:
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: mattermost-developer-documentation
+  local_dir: dist/html
+  upload-dir: branches/$TRAVIS_BRANCH
+  acl: public_read
+  skip_cleanup: true
+  on:
+    all_branches: true
