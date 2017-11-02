@@ -1,5 +1,8 @@
 dist: trusty
 sudo: false
+language: go
+go:
+  - 1.x
 before_install:
   - mkdir bin
   - export PATH=$PATH:$PWD/bin
