@@ -39,22 +39,16 @@
 {{ end }}
 
 {{ define "ParenthesizedResults" }}
-    {{- if .Remaining -}}
-        {{- $nextFieldCount := or (index .Remaining 0).Names (slice "_") | len -}}
-        {{- if gt (len .Remaining) 1 -}}
-            {{- template "ParenthesizedResults" dict "Count" (add .Count $nextFieldCount) "HTML" .HTML "Remaining" (after 1 .Remaining) "Results" .Results -}}
-        {{- else -}}
-            {{- template "ParenthesizedResults" dict "Count" (add .Count $nextFieldCount) "HTML" .HTML "Remaining" (slice) "Results" .Results -}}
-        {{- end -}}
-    {{- else -}}
-        {{- if gt .Count 1 }}({{ end -}}
+    {{- if .Results -}}
+        {{- $needsParentheses := or (gt (len .Results) 1) (index .Results 0).Names -}}
+        {{- if $needsParentheses }}({{ end -}}
         {{- if .HTML }}{{ template "FieldsHTML" .Results }}{{ else }}{{ template "FieldsString" .Results }}{{ end -}}
-        {{- if gt .Count 1 }}){{ end -}}
+        {{- if $needsParentheses }}){{ end -}}
     {{- end -}}
 {{ end }}
 
-{{ define "ResultsString" }}{{ template "ParenthesizedResults" dict "Count" 0 "HTML" false "Remaining" . "Results" . }}{{ end }}
-{{ define "ResultsHTML" }}{{ template "ParenthesizedResults" dict "Count" 0 "HTML" true "Remaining" . "Results" . }}{{ end }}
+{{ define "ResultsString" }}{{ template "ParenthesizedResults" dict "HTML" false "Results" . }}{{ end }}
+{{ define "ResultsHTML" }}{{ template "ParenthesizedResults" dict "HTML" true "Results" . }}{{ end }}
 
 {{ define "FunctionSignatureHTML" }}
     <pre><code>
