@@ -5,6 +5,7 @@ subsection: server
 weight: 10
 ---
 
-Below is the documentation for the two main mechanisms used by server plugins, the API and hooks. All of this documentation can also be found on [GoDoc](https://godoc.org/github.com/mattermost/mattermost-server/plugin).
+#### This is the documentation for the Go <code>github.com/mattermost/mattermost-server/plugin</code> package. It can also be found on [GoDoc](https://godoc.org/github.com/mattermost/mattermost-server/plugin).
+***
 
 {{<plugingodocs>}}

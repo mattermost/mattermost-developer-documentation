@@ -1,17 +1,18 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"go/ast"
 	"go/build"
 	"go/doc"
 	"go/importer"
 	"go/parser"
+	"go/printer"
 	"go/token"
 	"go/types"
 	"log"
 	"os"
-	"regexp"
 	"strings"
 )
 
@@ -32,15 +33,16 @@ type InterfaceDocs struct {
 	Methods []*MethodDocs
 }
 
-type Docs struct {
-	API   InterfaceDocs
-	Hooks InterfaceDocs
+type ExampleDocs struct {
+	Comment string
+	Code    string
 }
 
-var singleCommentNewline *regexp.Regexp = regexp.MustCompile("([^\n])\n([^\n])")
-
-func cleanComment(comment string) string {
-	return strings.TrimSpace(singleCommentNewline.ReplaceAllString(comment, "$1 $2"))
+type Docs struct {
+	Comment  string
+	API      InterfaceDocs
+	Hooks    InterfaceDocs
+	Examples map[string]*ExampleDocs
 }
 
 func fields(list *ast.FieldList, info *types.Info) (fields []*Field) {
@@ -93,7 +95,26 @@ func generateDocs() (*Docs, error) {
 			return nil, err
 		}
 
+		var files []*ast.File
+		for _, f := range pkg.Files {
+			files = append(files, f)
+		}
+		docs.Examples = make(map[string]*ExampleDocs)
+		for _, example := range doc.Examples(files...) {
+			buf := &bytes.Buffer{}
+			printer.Fprint(buf, fset, example.Play)
+			docs.Examples[example.Name] = &ExampleDocs{
+				Comment: strings.TrimSpace(example.Doc),
+				Code:    buf.String(),
+			}
+		}
+
 		godocs := doc.New(pkg, path, 0)
+
+		if godocs.Name == "plugin" {
+			docs.Comment = strings.TrimSpace(godocs.Doc)
+		}
+
 		for _, t := range godocs.Types {
 			var interfaceDocs *InterfaceDocs
 			switch t.Name {
@@ -104,7 +125,7 @@ func generateDocs() (*Docs, error) {
 			default:
 				continue
 			}
-			interfaceDocs.Comment = cleanComment(t.Doc)
+			interfaceDocs.Comment = t.Doc
 			for _, spec := range t.Decl.Specs {
 				typeSpec, ok := spec.(*ast.TypeSpec)
 				if !ok {
@@ -118,7 +139,7 @@ func generateDocs() (*Docs, error) {
 					f := method.Type.(*ast.FuncType)
 					methodDocs := &MethodDocs{
 						Name:       method.Names[0].Name,
-						Comment:    cleanComment(method.Doc.Text()),
+						Comment:    strings.TrimSpace(method.Doc.Text()),
 						Parameters: fields(f.Params, info),
 						Results:    fields(f.Results, info),
 					}

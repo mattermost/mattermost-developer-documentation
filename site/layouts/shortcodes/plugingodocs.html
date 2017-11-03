@@ -59,7 +59,15 @@
 {{ define "InterfaceTOC" }}
     <ul>
         {{ range .Interface.Methods }}
-        <li><a href="#{{ $.Name}}.{{ .Name }}">{{ .Name }}({{ template "FieldsString" .Parameters }}) {{ template "ResultsString" .Results }}</a></li>
+        <li><a href="#{{ $.Name }}.{{ .Name }}">{{ .Name }}({{ template "FieldsString" .Parameters }}) {{ template "ResultsString" .Results }}</a></li>
+        {{ end }}
+    </ul>
+{{ end }}
+
+{{ define "ExamplesTOC" }}
+    <ul>
+        {{ range $name, $example := . }}
+        <li><a href="#Examples.{{ $name }}">{{ substr $name 1 1 | upper }}{{ substr (strings.TrimPrefix "_" $name) 1 }}</a></li>
         {{ end }}
     </ul>
 {{ end }}
@@ -74,22 +82,40 @@
     {{ end }}
 {{ end }}
 
+{{ define "ExampleDocs" }}
+    {{ range $name, $example := . }}
+        {{ if hasPrefix $name "_" }}
+            <div>
+                <h1 id="Examples.{{ $name }}">Example: {{ substr $name 1 1 | upper }}{{ substr (strings.TrimPrefix "_" $name) 1 }}</h1>
+                <p>{{ markdownify $example.Comment }}</p>
+                <p>{{ highlight $example.Code "go" "" }}</p>
+            </div>
+        {{ end }}
+    {{ end }}
+{{ end }}
+
 {{ if $docs }}
+    <p>{{ markdownify $docs.Comment }}</p>
     <div>
-        <div>
-            <h1>API</h1>
-            <p>{{ markdownify $docs.API.Comment }}</p>
-            {{ template "InterfaceTOC" dict "Name" "API" "Interface" $docs.API }}
-        </div>
-        <div>
-            <h1>Hooks</h1>
-            <p>{{ markdownify $docs.Hooks.Comment }}</p>
-            {{ template "InterfaceTOC" dict "Name" "Hooks" "Interface" $docs.Hooks }}
-        </div>
-        <hr />
-        {{ template "InterfaceMethodDocs" dict "Name" "API" "Interface" $docs.API }}
-        {{ template "InterfaceMethodDocs" dict "Name" "Hooks" "Interface" $docs.Hooks }}
+        <h1>API</h1>
+        <p>{{ markdownify $docs.API.Comment }}</p>
+        {{ template "InterfaceTOC" dict "Name" "API" "Interface" $docs.API }}
     </div>
+    <div>
+        <h1>Hooks</h1>
+        <p>{{ markdownify $docs.Hooks.Comment }}</p>
+        {{ template "InterfaceTOC" dict "Name" "Hooks" "Interface" $docs.Hooks }}
+    </div>
+    <div>
+        <h1>Examples</h1>
+        {{ template "ExamplesTOC" $docs.Examples }}
+    </div>
+    <hr />
+    {{ template "InterfaceMethodDocs" dict "Name" "API" "Interface" $docs.API }}
+    <hr />
+    {{ template "InterfaceMethodDocs" dict "Name" "Hooks" "Interface" $docs.Hooks }}
+    <hr />
+    {{ template "ExampleDocs" $docs.Examples }}
 {{ else }}
     Run <code>make plugin-godocs</code> to generate this documentation.
 {{ end }}
