@@ -23,26 +23,7 @@ Run this command to download the source code for the Mattermost server: `go get 
 
 Now, create a directory to act as your workspace, and create a file named "plugin.go" inside of it with the following contents:
 
-```go
-package main
-
-import (
-	"fmt"
-	"net/http"
-
-	"github.com/mattermost/mattermost-server/plugin/rpcplugin"
-)
-
-type MyPlugin struct{}
-
-func (p *MyPlugin) ServeHTTP(w http.ResponseWriter, _ *http.Request) {
-	fmt.Fprintf(w, "Hello, world!")
-}
-
-func main() {
-	rpcplugin.Main(&MyPlugin{})
-}
-```
+{{<plugingoexamplecode name="_helloWorld">}}
 
 This plugin will register an HTTP handler that will respond with "Hello, world!" when requested.
 
