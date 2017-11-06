@@ -13,7 +13,7 @@ This guide will walk you through the basics of extending the Mattermost server.
 
 Mattermost plugins extend the server using a Go API. You'll need a functioning Go environment, so follow [Go's Getting Started](https://golang.org/doc/install) guide if needed.
 
-You'll also need a Mattermost server to install and test the plugin. This server must have an enterprise license and "Enable" and "EnableUploads" set to true in the "PluginSettings" section of its config file.
+You'll also need a Mattermost server to install and test the plugin. This server must have "Enable" and "EnableUploads" set to true in the "PluginSettings" section of its config file.
 
 ## Building the Plugin
 
@@ -47,6 +47,8 @@ You should now have a file named "plugin.tar.gz" in your workspace. Congratulati
 
 ## Installing the Plugin
 
-Navigate to the plugins page in the system console, and activate the plugin.
+Open up Mattermost as a system administrator, navigate to **Plugins > Management** and upload the `plugin.tar.gz` you generated above.
+
+Click "Activate" under the plugin when it's done uploading.
 
 Type the following path into your address bar, appending it to your Mattermost server's domain, and you'll be greeted by your plugin: `/plugins/com.mattermost.server-hello-world`
