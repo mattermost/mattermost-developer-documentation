@@ -123,14 +123,14 @@ subsection: "server"
 <blockquote>
 <div><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">build-essential</span></code></div></blockquote>
 <ol class="arabic" start="3">
-<li><p class="first">Download and install Go 1.8 for Linux:</p>
+<li><p class="first">Download and install Go 1.9.x for Linux:</p>
 <blockquote>
 <div><ol class="loweralpha">
 <li><p class="first">Download the Go binary.</p>
-<p><code class="docutils literal"><span class="pre">wget</span> <span class="pre">https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz</span></code></p>
+<p><code class="docutils literal"><span class="pre">wget</span> <span class="pre">https://redirector.gvt1.com/edgedl/go/go1.9.2.linux-amd64.tar.gz</span></code></p>
 </li>
 <li><p class="first">Install the Go binary.</p>
-<p><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">tar</span> <span class="pre">-C</span> <span class="pre">/usr/local</span> <span class="pre">-xzf</span> <span class="pre">go1.8.linux-amd64.tar.gz</span></code></p>
+<p><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">tar</span> <span class="pre">-C</span> <span class="pre">/usr/local</span> <span class="pre">-xzf</span> <span class="pre">go1.9.2.linux-amd64.tar.gz</span></code></p>
 </li>
 </ol>
 </div></blockquote>
@@ -232,7 +232,7 @@ subsection: "server"
 </div></blockquote>
 <ol class="arabic simple" start="3">
 <li>Download and install Node.js from <a class="reference external" href="https://nodejs.org/">https://nodejs.org/</a>.</li>
-<li>Download and install Go 1.8 from <a class="reference external" href="https://golang.org/dl/">https://golang.org/dl/</a>.</li>
+<li>Download and install Go 1.9.x from <a class="reference external" href="https://golang.org/dl/">https://golang.org/dl/</a>.</li>
 <li>Install Yarn. Go to <a class="reference external" href="https://yarnpkg.com/en/docs/install#windows-tab">https://yarnpkg.com/en/docs/install#windows-tab</a> and follow the installation instructions.</li>
 <li>Fork Mattermost on GitHub.com from <a class="reference external" href="https://github.com/mattermost/platform">https://github.com/mattermost/platform</a>, then:</li>
 </ol>
@@ -282,7 +282,7 @@ eval $(docker-machine env default) #skip this line if you are using Docker for W
 <div><code class="docutils literal"><span class="pre">127.0.0.1</span> <span class="pre">dockerhost</span></code></div></blockquote>
 </div></blockquote>
 <ol class="arabic simple" start="2">
-<li>Install Go 1.8.</li>
+<li>Install Go 1.9.x</li>
 </ol>
 <blockquote>
 <div><code class="docutils literal"><span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">go</span></code></div></blockquote>
@@ -386,14 +386,14 @@ eval $(docker-machine env default) #skip this line if you are using Docker for W
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">Download and install Go 1.8 for Linux:</p>
+<li><p class="first">Download and install Go 1.9.x for Linux:</p>
 <blockquote>
 <div><ol class="loweralpha">
 <li><p class="first">Download the Go binary.</p>
-<p><code class="docutils literal"><span class="pre">wget</span> <span class="pre">https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz</span></code></p>
+<p><code class="docutils literal"><span class="pre">wget</span> <span class="pre">https://redirector.gvt1.com/edgedl/go/go1.9.2.linux-amd64.tar.gz</span></code></p>
 </li>
 <li><p class="first">Install the Go binary.</p>
-<p><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">tar</span> <span class="pre">-C</span> <span class="pre">/usr/local</span> <span class="pre">-xzf</span> <span class="pre">go1.8.linux-amd64.tar.gz</span></code></p>
+<p><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">tar</span> <span class="pre">-C</span> <span class="pre">/usr/local</span> <span class="pre">-xzf</span> <span class="pre">go1.9.2.linux-amd64.tar.gz</span></code></p>
 </li>
 </ol>
 </div></blockquote>
