@@ -1,7 +1,7 @@
 ---
 title: Onboarding
 date: 2017-11-07T19:30:07-05:00
-section: onboarding
+section: internal
 ---
 
 ### Helpful links
