@@ -20,6 +20,20 @@ This will require you to have signed in using MFA (When you first enable MFA, yo
 
 Once you switch to another account for the first time, you can quickly switch back and forth through the menu bar dropdown.
 
+# Enabling MFA (Multi-Factor Authentication)
+
+All developers that access AWS are required to enable MFA on their account(s). To enable MFA, follow these instructions:
+
+1. Download Authy, Google Authenticator, or any other MFA app for your smartphone of choice
+2. Sign in to the AWS console with your username/password
+3. From the 'Services' dropdown in the top-left corner of the AWS Console, choose 'IAM' from the 'Security, Identity, and Compliance' section
+4. Click on 'Users' in the left-most column of the page
+5. Find your username in the list of users in the centre of the page and click on it
+6. Click on the 'Security Credentials' tab on the 'Summary' page that appears
+7. Click on the pencil icon beside the 'Assigned MFA device' label in the 'Sign-in credentials' section
+8. Follow the on-screen instructions to activate MFA on your device
+9. Sign out of the AWS Console and sign back in
+
 # Accessing the Machines on AWS
 
 Most of the machines at the time of writing use an SSH key. If the description for the machine says it uses a key such as "mm-admin", "mm-ci", or "mm-dev", you'll need to get that key from someone else.
