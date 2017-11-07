@@ -33,6 +33,10 @@ pygmentsCodefences = true
     name = "extend"
     displayName = "Extend"
 
+  [[params.sidebar.item]]
+    name = "internal"
+    displayName = "Internal"
+
   # Navigation
   [params.navigation]
     brand = "Mattermost Developers"
