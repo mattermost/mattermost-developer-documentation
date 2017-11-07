@@ -15,7 +15,7 @@
     {{- else if in . "." -}}
         {{- $name := index (split . "." | last 1) 0 }}
         {{- $package := strings.TrimSuffix $name . | strings.TrimSuffix "." -}}
-        <a href="https://godoc.org/{{ $package }}" target="_blank">{{ index (split $package "/" | last 1) 0 }}</a>.<a href="https://godoc.org/{{ $package }}#{{ $name }}" target="_blank">{{ $name }}</a>
+        <a href="https://godoc.org/{{ $package }}">{{ index (split $package "/" | last 1) 0 }}</a>.<a href="https://godoc.org/{{ $package }}#{{ $name }}">{{ $name }}</a>
     {{- else }}{{ range split . "/" | last 1 }}{{ . }}{{ end }}
     {{- end -}}
 {{ end }}
@@ -77,7 +77,7 @@
         <div>
             <h1 id="{{ $.Name }}.{{ .Name }}">({{ $.Name }}) {{ .Name }}</h1>
             <p>{{ template "FunctionSignatureHTML" . }}</p>
-            <p>{{ markdownify .Comment }}</p>
+            <p>{{ safeHTML .HTML }}</p>
         </div>
     {{ end }}
 {{ end }}
@@ -87,7 +87,7 @@
         {{ if hasPrefix $name "_" }}
             <div>
                 <h1 id="Examples.{{ $name }}">Example: {{ substr $name 1 1 | upper }}{{ substr (strings.TrimPrefix "_" $name) 1 }}</h1>
-                <p>{{ markdownify $example.Comment }}</p>
+                <p>{{ safeHTML $example.HTML }}</p>
                 <p>{{ highlight $example.Code "go" "" }}</p>
             </div>
         {{ end }}
@@ -95,15 +95,15 @@
 {{ end }}
 
 {{ if $docs }}
-    <p>{{ markdownify $docs.Comment }}</p>
+    <p>{{ safeHTML $docs.HTML }}</p>
     <div>
         <h1>API</h1>
-        <p>{{ markdownify $docs.API.Comment }}</p>
+        <p>{{ safeHTML $docs.API.HTML }}</p>
         {{ template "InterfaceTOC" dict "Name" "API" "Interface" $docs.API }}
     </div>
     <div>
         <h1>Hooks</h1>
-        <p>{{ markdownify $docs.Hooks.Comment }}</p>
+        <p>{{ safeHTML $docs.Hooks.HTML }}</p>
         {{ template "InterfaceTOC" dict "Name" "Hooks" "Interface" $docs.Hooks }}
     </div>
     <div>

@@ -13,7 +13,6 @@ import (
 	"go/types"
 	"log"
 	"os"
-	"strings"
 )
 
 type Field struct {
@@ -23,26 +22,32 @@ type Field struct {
 
 type MethodDocs struct {
 	Name       string
-	Comment    string
+	HTML       string
 	Parameters []*Field `json:"Parameters,omitempty"`
 	Results    []*Field `json:"Results,omitempty"`
 }
 
 type InterfaceDocs struct {
-	Comment string
+	HTML    string
 	Methods []*MethodDocs
 }
 
 type ExampleDocs struct {
-	Comment string
-	Code    string
+	HTML string
+	Code string
 }
 
 type Docs struct {
-	Comment  string
+	HTML     string
 	API      InterfaceDocs
 	Hooks    InterfaceDocs
 	Examples map[string]*ExampleDocs
+}
+
+func docHTML(text string) string {
+	buf := &bytes.Buffer{}
+	doc.ToHTML(buf, text, nil)
+	return buf.String()
 }
 
 func fields(list *ast.FieldList, info *types.Info) (fields []*Field) {
@@ -87,7 +92,9 @@ func generateDocs() (*Docs, error) {
 		return nil, err
 	}
 
-	var docs Docs
+	docs := Docs{
+		Examples: make(map[string]*ExampleDocs),
+	}
 
 	for path, pkg := range pkgs {
 		info, err := typeCheck(pkg, "github.com/mattermost/mattermost-server/"+path, fset)
@@ -99,20 +106,19 @@ func generateDocs() (*Docs, error) {
 		for _, f := range pkg.Files {
 			files = append(files, f)
 		}
-		docs.Examples = make(map[string]*ExampleDocs)
 		for _, example := range doc.Examples(files...) {
 			buf := &bytes.Buffer{}
 			printer.Fprint(buf, fset, example.Play)
 			docs.Examples[example.Name] = &ExampleDocs{
-				Comment: strings.TrimSpace(example.Doc),
-				Code:    buf.String(),
+				HTML: docHTML(example.Doc),
+				Code: buf.String(),
 			}
 		}
 
 		godocs := doc.New(pkg, path, 0)
 
 		if godocs.Name == "plugin" {
-			docs.Comment = strings.TrimSpace(godocs.Doc)
+			docs.HTML = docHTML(godocs.Doc)
 		}
 
 		for _, t := range godocs.Types {
@@ -125,7 +131,7 @@ func generateDocs() (*Docs, error) {
 			default:
 				continue
 			}
-			interfaceDocs.Comment = t.Doc
+			interfaceDocs.HTML = docHTML(t.Doc)
 			for _, spec := range t.Decl.Specs {
 				typeSpec, ok := spec.(*ast.TypeSpec)
 				if !ok {
@@ -139,7 +145,7 @@ func generateDocs() (*Docs, error) {
 					f := method.Type.(*ast.FuncType)
 					methodDocs := &MethodDocs{
 						Name:       method.Names[0].Name,
-						Comment:    strings.TrimSpace(method.Doc.Text()),
+						HTML:       docHTML(method.Doc.Text()),
 						Parameters: fields(f.Params, info),
 						Results:    fields(f.Results, info),
 					}
