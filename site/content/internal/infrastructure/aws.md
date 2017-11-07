@@ -23,7 +23,7 @@ Once you switch to another account for the first time, you can quickly switch ba
 # Enabling MFA (Multi-Factor Authentication)
 
 All developers that access AWS are required to enable MFA on their account(s). To enable MFA, follow these instructions:
-1. Download the Google Authenticator app for your smartphone of choice
+1. Download the Authy, Google Authenticator, or any other MFA app for your smartphone of choice
 2. Sign in to the AWS console with your username/password
 3. From the 'Services' dropdown in the top-left corner of the AWS Console, choose 'IAM' from the 'Security, Identity, and Compliance' section
 4. Click on 'Users' in the left-most column of the page
