@@ -24,7 +24,7 @@ cd ~/Sites/mattermost-developer-documentation/site
 hugo server -D
 ```
 
-4. Go to http://localhost:1313/mattermost-developer-documentation to see the running server
+4. Go to http://localhost:1313 to see the running server
 
 5. Make your changes (add a new page/post, modify layouts, etc.) and test against local server
 
