@@ -1,6 +1,6 @@
 ---
-title: Infrastructure
-date: 2017-11-06T19:30:07-05:00
+title: Onboarding
+date: 2017-11-07T19:30:07-05:00
 section: onboarding
 ---
 
@@ -11,28 +11,28 @@ section: onboarding
   - Developer Reading List - top of dev channel
 
 ### Mentor For The Day
-  - Meet with a dev team member every day for about 30 mins.  Dev team will rotate daily to expose new hire to everyone.  Run approximately for 2 weeks. Get to know each other, feel free to talk about non-work related stuff.
+  - Meet with a dev team member every day for about 30 mins.  Dev team will rotate daily to expose the new hire to everyone.  The process with run for approximately for 2 weeks. The goal is to get to know each other, feel free to talk about non-work related stuff.
   - Schedule to be sent by manager in channel
 
 ### Meet with a few PMs
   - List to be sent by manager in channel
     
-### Channels and Teams to be a part of
+### Channels and Teams
   - You should be added to the private team `Private Core` and join the following channels
     - Alerts
     - Announcements
     - Community/Customers
     - New CLA Entries
     - Platform Meeting
-    - Private Off-Topic
-    - Social: *
+    - Private Off-Topic (optional)
+    - Social: * (optional)
     - Standup
     - Welcome
-  - Private channels to be added to in `Contributors`
+  - Private channels to join in `Contributors`
     - Security
     - Developer: Private
     - Confidential Bugs
-  - Public channels you should add yourself too in `Contributors`
+  - Public channels to join in `Contributors`
     - Developers
     - Bugs
     - Contributors
@@ -43,7 +43,7 @@ section: onboarding
     - Server Performance (optional)
 
 ### Meetings and Accounts
-  - You manager should notice people ops to about adding you to all the appropriate developer meetings
+  - You manager should notify `people-ops` and have you added to all appropriate meetings
   - DevOps to setup various accounts as needed
     - email `@mattermost.com`
       - Add to email groups
