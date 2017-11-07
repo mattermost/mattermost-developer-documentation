@@ -8,10 +8,10 @@ section: onboarding
   - https://docs.mattermost.com/guides/developer.html
   - https://docs.mattermost.com/developer/developer-flow.html
   - Security: Read through the security channel and look at the past exploits
-  - Developer Reading List - top of dev channel
+  - Developer Reading List - top of public Developer channel
 
 ### Mentor For The Day
-  - Meet with a dev team member every day for about 30 mins.  Dev team will rotate daily to expose the new hire to everyone.  The process with run for approximately for 2 weeks. The goal is to get to know each other, feel free to talk about non-work related stuff.
+  - Meet with a dev team member every day for about 30 mins.  Dev member will rotate daily to expose the new hire to everyone.  The process with run for approximately for 2 weeks. The goal is to get to know each other, feel free to talk about non-work related stuff.
   - Schedule to be sent by manager in channel
 
 ### Meet with a few PMs
