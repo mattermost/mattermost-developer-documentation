@@ -6,10 +6,10 @@ section: internal
 
 # Release Cutting Process
 
-**Note: To cut a build you need access to matterbuild. Please ask Christopher Speller for access if you don't have it.**
-
 On code complete day, work with the PM on rotation to get all the pull requests for the current release merged into `master`. Once that is done and you've confirmed with the PM, cut the first release candidate by following these steps:
 
+1. Give yourself access to matterbuild by adding yourself in the platform-private repo. See an [example here](https://github.com/mattermost/platform-private/commit/89f91d81bd4602f4708270c0ca7626da8fc45291) of Chris Brown adding himself.
+1. Trigger the matterbuild Jenkins job to update it https://build.mattermost.com/job/matterbuild.
 1. Submit a PR to uncomment the upgrade code for the release version and add it to the version array. Use these PRs as examples, [https://github.com/mattermost/mattermost-server/pull/6336/files](https://github.com/mattermost/mattermost-server/pull/6336/files) and [https://github.com/mattermost/mattermost-server/pull/6600/files](https://github.com/mattermost/mattermost-server/pull/6600/files).
 2. Once the above PR is merged, post `/mb cut X.X.X-rc1` into a private channel. Replace `X.X.X` with the release version, ex: `3.10.0`. This will begin cutting the build and make an automatic post to the Release Discussion channel.
 3. Wait approximately 40 minutes for the build to finish. If the build fails, you will need to delete the version tags from the mattermost-server, mattermost-webapp and enterprise repositories by running `git push origin :vX.X.X-rc1` in all of them. Then simply repeat step 2. You can monitor build status from https://build.mattermost.com.
