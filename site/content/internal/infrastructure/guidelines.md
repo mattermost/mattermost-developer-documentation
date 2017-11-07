@@ -22,3 +22,9 @@ For example, each service that requires an AWS access token should use its own i
 ### Follow the principle of least privilege.
 
 If a service doesn't require access to a given resource, it shouldn't have access to that resource.
+
+### Configuration and provisioning should be reproducible.
+
+Usually this means everything you do should be reviewed and committed as code to a repo. The only thing you should have to do manually to deploy is `aws cloudformation deploy`, `serverless deploy`, `kubectl apply`, etc.
+
+If there's a good reason you can't define everything as code, create thorough step-by-step documentation of everything you do.
