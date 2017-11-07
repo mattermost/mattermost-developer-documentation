@@ -5,7 +5,7 @@ title = "Mattermost Developers"
 languageCode = "en-us"
 theme = "hugo-elate-theme"
 publishDir = "../docs"
-pygmentsCodefences = true
+pygmentsCodeFences = true
 
 [params]
 
