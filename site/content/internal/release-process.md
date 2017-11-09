@@ -29,7 +29,7 @@ Work with the PM on rotation to decide when to cut new release candidates. The g
 
 Again, the build automation will update all the servers and post in the Release Discussion channel.
 
-In addition to cutting new release candidates, you should merge the release branch into master on a daily basis. You can do this by either making a pull request to merge `release-X.X` into `master` or by manually merging locally, making sure to run all the tests, and pushing to master.
+In addition to cutting new release candidates, you should merge the release branch into master on a daily basis. You can do this by making a pull request to merge `release-X.X` into `master`.
 
 When it's time to cut the final build, confirm with the PM that no more changes need to be merged. To cut the final release:
 
