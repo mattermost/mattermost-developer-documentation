@@ -1,6 +1,7 @@
 # build artifacts
 /dist
 /site/data/PluginGoDocs.json
+/site/data/PluginManifestDocs.json
 
 # os artifacts
 *.swp

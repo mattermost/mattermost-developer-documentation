@@ -1,0 +1,40 @@
+{{ $docs := .Site.Data.PluginManifestDocs }}
+
+{{ define "ToC" }}
+    {{ if eq .Schema.Type "object" }}
+        <ul>
+            {{ range .Schema.ObjectProperties }}
+                <li><a href="#{{ $.Prefix }}{{ .Name }}">{{ .Name }}</a>{{ if .Schema }} - {{ title .Schema.Type }}{{ end }}</li>
+                {{ if .Schema }}{{ template "ToC" dict "Schema" .Schema "Prefix" (print $.Prefix .Name ".") }}{{ end }}
+            {{ end }}
+        </ul>
+    {{ else if eq .Schema.Type "array" | or (eq .Schema.Type "dict") }}
+        {{ if .Schema.ValueSchema }}{{ template "ToC" dict "Schema" .Schema.ValueSchema "Prefix" $.Prefix }}{{ end }}
+    {{ end }}
+{{ end }}
+
+{{ define "Docs" }}
+    {{ safeHTML .Schema.DocHTML }}
+    {{ if eq .Schema.Type "object" }}
+        <ul>
+            {{ range .Schema.ObjectProperties }}
+            <li id="{{ $.Prefix }}{{ .Name }}">
+                <p><tt>{{ .Name }}</tt>{{ if .Schema }} - {{ title .Schema.Type }}{{ end }}</p>
+                {{ safeHTML .DocHTML }}
+                {{ if .Schema }}{{ template "Docs" dict "Schema" .Schema "Prefix" (print $.Prefix .Name ".") }}{{ end }}
+            </li>
+            {{ end }}
+        </ul>
+    {{ else if eq .Schema.Type "array" | or (eq .Schema.Type "dict") }}
+        {{ if .Schema.ValueSchema }}{{ template "Docs" dict "Schema" .Schema.ValueSchema "Prefix" $.Prefix }}{{ end }}
+    {{ end }}
+{{ end }}
+
+{{ if $docs }}
+    <h1>Table of Contents</h1>
+    {{ template "ToC" dict "Schema" $docs.Schema "Prefix" "" }}
+    <h1>Reference</h1>
+    {{ template "Docs" dict "Schema" $docs.Schema "Prefix" "" }}
+{{ else }}
+    Run <code>make plugin-data</code> to generate this documentation.
+{{ end }}
