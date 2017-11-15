@@ -1,0 +1,7 @@
+{{ $docs := .Site.Data.PluginJSDocs }}
+
+{{ if $docs }}
+    {{ $docs.Reference | markdownify }}
+{{ else }}
+    Run <code>make plugin-data</code> to generate this documentation.
+{{ end }}
