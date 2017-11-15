@@ -23,7 +23,7 @@ You'll also need a Mattermost server to install and test the plugin. This server
 
 ## Setting up the Workspace
 
-To quickly set up a workspace, change into a directory where you want store your plugins in development and run:
+To quickly set up a workspace, change into a directory where you want to store your plugins in development and run:
 
 ```
 mdk init plugin --name helloworld --components ProfilePopover --skip-prompts
