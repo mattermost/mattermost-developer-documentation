@@ -6,28 +6,6 @@
     {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
     {{ with .Site.LanguageCode }}<meta http-equiv="content-language" content="{{ . }}" />{{ end }}
 
-    <!-- Facebook and Twitter integration -->
-    {{ if not .Site.Params.OpenGraph.hide }}
-    <meta name="og:site_name" content="{{ .Site.Title }}">
-    <meta name="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
-    <meta name="og:url" content="{{ .Permalink }}">
-    <meta name="og:image" content="{{ .Site.BaseURL }}images/{{ .Site.Params.sidebar.avatar }}">
-    <meta name="twitter:title" content="{{ .Site.Title }}" />
-    <meta name="twitter:url" content="{{ .Permalink }}" />
-    <meta name="twitter:image" content="{{ .Site.BaseURL }}images/{{ .Site.Params.sidebar.avatar }}" />
-    <meta name="twitter:card" content="" />
-    {{ end }}
-<!--     
-    <meta property="og:title" content=""/>
-    <meta property="og:image" content=""/>
-    <meta property="og:url" content=""/>
-    <meta property="og:site_name" content=""/>
-    <meta property="og:description" content=""/>
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
- -->    
     <!-- canonical link tag -->
     <link rel="canonical" href="{{ .Permalink }}"/>
 
@@ -35,31 +13,14 @@
     <link rel="shortcut icon" type="image/png" href="{{ .Site.BaseURL }}/img/favicon-32x32.png"/>
 
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
-    
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/animate.css">
-    <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/icomoon.css">
-    <!-- Simple Line Icons -->
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/simple-line-icons.css">
-    <!-- Magnific Popup -->
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/magnific-popup.css">
+
     <!-- Bootstrap  -->
     <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/bootstrap.css">
     <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/tabs.css">
     <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/bar.css">
-
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/style.css">
-
-    {{ range .Site.Params.custom_css }}
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}{{ . }}">
-    {{ end }}
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/markdown.css">
 
     <!-- Modernizr JS -->
     <script src="{{ .Site.BaseURL }}/js/modernizr-2.6.2.min.js"></script>
-    <!-- FOR IE9 below -->
-    <!--[if lt IE 9]>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
     <script src="{{ .Site.BaseURL }}/js/tabs.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
