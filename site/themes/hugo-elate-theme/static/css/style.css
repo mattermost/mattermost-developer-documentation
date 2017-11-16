@@ -23,6 +23,10 @@ body {
   position: relative;
 }
 
+table {
+  margin-bottom: 30px;
+}
+
 a {
   color: #52d3aa;
   -webkit-transition: 0.5s;
