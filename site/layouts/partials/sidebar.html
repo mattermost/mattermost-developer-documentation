@@ -1,27 +1,40 @@
 <div id="sidebar-menu" class="col-md-2 hidden-xs hidden-sm">
     {{ range .Site.Params.sidebar.item }}
     {{ if eq $.Section .name }}
-    <a href="{{ $.Site.BaseURL }}/{{ .name }}">{{ .displayName }}</a>
+    {{ range where $.Site.Pages ".Params.section" .name }}
+    {{ if eq $.Title .Title }}
+    <a style="color:#333333" href="{{ .URL }}">{{ .Title }}</a>
+    {{ else }}
+    <a href="{{ .URL }}">{{ .Title }}</a>
+    {{ end }}
     <ul class="main-menu nav nav-stacked affix-top">
-        {{ range where $.Site.Pages ".Params.section" .name }}
         <li>
-            {{ if eq $.Title .Title }}
-            <a style="color:#7f7f7f" href="{{ .URL }}">{{ .Title }}</a>
-            {{ else }}
-            <a href="{{ .URL }}">{{ .Title }}</a>
-            {{ end }}
-            <ul class="sub-menu">
-                {{ range .Pages.ByWeight }}
-                    {{ if and (eq $.Title .Title) (eq $.Params.subsection .Params.subsection) }}
-                    <li>{{ .Title }}</li>
-                    {{ else }}
-                    <li><a href="{{ .URL }}">{{ .Title }}</a></li>
-                    {{ end }}
+            {{ range .Sections }}
+                {{ if eq $.Title .Title }}
+                <a style="color:#333333" href="{{ .URL }}">{{ .Title }}</a>
+                {{ else }}
+                <a href="{{ .URL }}">{{ .Title }}</a>
                 {{ end }}
-            </ul>
+                {{ range .Pages.ByWeight }}
+                    <ul class="sub-menu">
+                        {{ if and (eq $.Title .Title) (eq $.Params.subsection .Params.subsection) }}
+                        <li>{{ .Title }}</li>
+                        {{ else }}
+                        <li><a href="{{ .URL }}">{{ .Title }}</a></li>
+                        {{ end }}
+                    </ul>
+                {{ end }}
+            {{ end}}
+            {{ range .Pages.ByWeight }}
+                {{ if and (eq $.Title .Title) (eq $.Params.subsection .Params.subsection) }}
+                <a style="color:#333333" href="{{ .URL }}">{{ .Title }}</a>
+                {{ else }}
+                <a href="{{ .URL }}">{{ .Title }}</a>
+                {{ end }}
+            {{ end }}
         </li>
-        {{ end }}
     </ul>
+    {{ end }}
     {{ end }}
     {{ end }}
 </div>
