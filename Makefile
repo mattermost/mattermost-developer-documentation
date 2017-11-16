@@ -15,7 +15,6 @@ backend-plugin-data:
 frontend-plugin-data:
 	rm -rf scripts/mattermost-webapp
 	cd scripts && git clone https://github.com/mattermost/mattermost-webapp.git
-	cd scripts/mattermost-webapp && git checkout plugin-docs
 	cd scripts && npm install
 	mkdir -p site/data
 	node scripts/plugin-jsdocs.js > site/data/PluginJSDocs.json
