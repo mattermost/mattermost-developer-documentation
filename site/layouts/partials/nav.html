@@ -17,7 +17,11 @@
                     <li class="active"><a href="#" data-nav-section="home"><span>{{ with .Site.Params.navigation.home }}{{ . | markdownify }}{{ end }}</span></a></li>
 
                     {{ range .Site.Menus.postpend }}
+                        {{ $drafts := index $.Site.Params.navigation.drafts 0}}
+                        {{ $draft := index $drafts .Name }}
+                        {{ if or (eq $.Site.BuildDrafts true) (eq $draft false) }}
                         <li><a class="external" href="{{ .URL }}"><span>{{ .Name | markdownify }}</span></a></li>
+                        {{ end }}
                     {{ end }}
                 </ul>
             </div>
