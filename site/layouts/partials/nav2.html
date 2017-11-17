@@ -8,7 +8,11 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         {{ range .Site.Menus.postpend }}
+            {{ $drafts := index $.Site.Params.navigation.drafts 0}}
+            {{ $draft := index $drafts .Name }}
+            {{ if or (eq $.Site.BuildDrafts true) (eq $draft false) }}
             <li><a href="{{ .URL }}"><span>{{ .Name | markdownify }}</span></a></li>
+            {{ end }}
         {{ end }}
       </ul>
     </div>
