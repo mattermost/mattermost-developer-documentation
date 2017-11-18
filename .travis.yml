@@ -10,13 +10,25 @@ before_install:
 script:
   - make dist
 deploy:
-  provider: s3
-  access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key: $AWS_SECRET_ACCESS_KEY
-  bucket: mattermost-developer-documentation
-  local_dir: dist/html
-  upload-dir: branches/$TRAVIS_BRANCH
-  acl: public_read
-  skip_cleanup: true
-  on:
-    all_branches: true
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: mattermost-developer-documentation
+    local_dir: dist/html
+    upload-dir: branches/$TRAVIS_BRANCH
+    acl: public_read
+    skip_cleanup: true
+    on:
+      all_branches: true
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: mattermost-developer-documentation
+    local_dir: dist/html
+    upload-dir: commits/$TRAVIS_COMMIT
+    acl: public_read
+    skip_cleanup: true
+    on:
+      all_branches: true
+after_deploy:
+  - 'curl -H "Authorization: token $GITHUB_ACCESS_TOKEN" --data "{\"state\": \"success\", \"target_url\": \"http://mattermost-developer-documentation.s3-website-us-east-1.amazonaws.com/commits/$TRAVIS_COMMIT\", \"description\": \"Deployed to S3\", \"context\": \"continuous-integration/travis-ci/after-deploy\"}" "https://api.github.com/repos/mattermost/mattermost-developer-documentation/statuses/$TRAVIS_COMMIT"'
