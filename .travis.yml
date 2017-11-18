@@ -31,4 +31,4 @@ deploy:
     on:
       all_branches: true
 after_deploy:
-  - 'curl -H "Authorization: token $GITHUB_ACCESS_TOKEN" --data "{\"state\": \"success\", \"target_url\": \"http://mattermost-developer-documentation.s3-website-us-east-1.amazonaws.com/commits/$TRAVIS_COMMIT\", \"description\": \"Deployed to S3\", \"context\": \"continuous-integration/travis-ci/after-deploy\"}" "https://api.github.com/repos/mattermost/mattermost-developer-documentation/statuses/$TRAVIS_COMMIT"'
+  - 'curl -H "Authorization: token $GITHUB_ACCESS_TOKEN" --data "{\"state\": \"success\", \"target_url\": \"http://mattermost-developer-documentation.s3-website-us-east-1.amazonaws.com/commits/$TRAVIS_COMMIT\", \"description\": \"Deployed to S3\", \"context\": \"continuous-integration/s3-deploy\"}" "https://api.github.com/repos/mattermost/mattermost-developer-documentation/statuses/$TRAVIS_COMMIT"'
