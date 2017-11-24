@@ -1,7 +1,7 @@
 ---
 title: Server Plugins
 date: 2017-10-26T17:56:25-05:00
-subsection: plugins
+subsection: Plugins
 weight: 10
 ---
 

@@ -1,40 +1,66 @@
-<div id="sidebar-menu" class="col-md-2 hidden-xs hidden-sm">
-    {{ range .Site.Params.sidebar.item }}
-    {{ if eq $.Section .name }}
-    {{ range where $.Site.Pages ".Params.section" .name }}
-    {{ if eq $.Title .Title }}
-    <a style="color:#333333" href="{{ .URL }}">{{ .Title }}</a>
-    {{ else }}
-    <a href="{{ .URL }}">{{ .Title }}</a>
-    {{ end }}
-    <ul class="main-menu nav nav-stacked affix-top">
-        <li>
+<div class="col-lg-3 sidebar">
+    <div class="sidebar__menu-toggle">
+        {{ .Title }}
+        <i class="fa fa-bars pull-right"></i>
+    </div>
+    <div class="row sidebar__links">
+        {{ range .Site.Params.sidebar.item }}
+        {{ if eq $.Section .name }}
+        {{ range where $.Site.Pages ".Params.section" .name }}
+        {{ $expanded := or (eq $.Params.subsection .Title) (eq $.Title .Title) (eq $.Parent.Params.subsection .Title) }}
+
+        {{ $.Scratch.Set "icon" "fa-plus-square-o" }}
+        {{ if $expanded }}
+            {{ $.Scratch.Set "icon" "fa-minus-square-o" }}
+        {{ end }}
+
+        {{ if eq $.Title .Title }}
+        <span class="item active"><i class="sub-menu__toggle fa {{$.Scratch.Get "icon"}}" aria-hidden="true"></i><a class="active" href="#"> {{ .Title }}</a></span>
+        {{ else }}
+        <span class="item"><i class="sub-menu__toggle fa {{$.Scratch.Get "icon"}}" aria-hidden="true"></i><a href="{{ .URL }}"> {{ .Title }}</a></span>
+        {{ end }}
+        {{ if $expanded }}
+        <ul class="sub-menu" style="display: block">
+        {{ else }}
+        <ul class="sub-menu">
+        {{ end }}
             {{ range .Sections }}
+                {{ $subexpanded := or (eq .Title $.Params.subsection) (eq $.Title .Title) }}
+
+                {{ $.Scratch.Set "subicon" "fa-plus-square-o" }}
+                {{ if $subexpanded }}
+                    {{ $.Scratch.Set "subicon" "fa-minus-square-o" }}
+                {{ end }}
+
                 {{ if eq $.Title .Title }}
-                <a style="color:#333333" href="{{ .URL }}">{{ .Title }}</a>
+                <span class="item active"><i class="sub-menu__toggle fa {{$.Scratch.Get "subicon"}}" aria-hidden="true"></i><a class="active" href="{{ .URL }}"> {{ .Title }}</a></span>
                 {{ else }}
-                <a href="{{ .URL }}">{{ .Title }}</a>
+                <span class="item"><i class="sub-menu__toggle fa {{$.Scratch.Get "subicon"}}" aria-hidden="true"></i><a href="{{ .URL }}"> {{ .Title }}</a></span>
+                {{ end }}
+                {{ if $subexpanded }}
+                <ul class="sub-menu" style="display: block">
+                {{ else }}
+                <ul class="sub-menu">
                 {{ end }}
                 {{ range .Pages.ByWeight }}
-                    <ul class="sub-menu">
-                        {{ if and (eq $.Title .Title) (eq $.Params.subsection .Params.subsection) }}
-                        <li>{{ .Title }}</li>
-                        {{ else }}
-                        <li><a href="{{ .URL }}">{{ .Title }}</a></li>
-                        {{ end }}
-                    </ul>
+                    {{ if eq $.Title .Title }}
+                    <a class="item active" href="{{ .URL }}">{{ .Title }}</a>
+                    {{ else }}
+                    <a class="item" href="{{ .URL }}">{{ .Title }}</a>
+                    {{ end }}
                 {{ end }}
-            {{ end}}
+                </ul>
+            {{ end }}
             {{ range .Pages.ByWeight }}
                 {{ if and (eq $.Title .Title) (eq $.Params.subsection .Params.subsection) }}
-                <a style="color:#333333" href="{{ .URL }}">{{ .Title }}</a>
+                <a class="item active" href="{{ .URL }}">{{ .Title }}</a>
                 {{ else }}
-                <a href="{{ .URL }}">{{ .Title }}</a>
+                <a class="item" href="{{ .URL }}">{{ .Title }}</a>
                 {{ end }}
             {{ end }}
-        </li>
-    </ul>
-    {{ end }}
-    {{ end }}
-    {{ end }}
+        </ul>
+        {{ end }}
+        {{ end }}
+        {{ end }}
+    </div>
 </div>
