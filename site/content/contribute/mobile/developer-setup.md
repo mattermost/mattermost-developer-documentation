@@ -3,7 +3,7 @@ draft: true
 title: "Environment Setup"
 date: 2017-08-20T11:35:32-04:00
 weight: 2
-subsection: "mobile"
+subsection: Mobile
 ---
 
 <div class="section" id="mobile-developer-machine-setup">

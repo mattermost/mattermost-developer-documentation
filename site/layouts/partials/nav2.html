@@ -1,22 +1,22 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{{ .Site.BaseURL }}">
-        {{ .Site.Params.navigation.brand }}
-      </a>
+<header>
+    <a href="index.html"><img src="/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
     </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+    <ul class="header__links--right">
+        <li><a href="{{ .Site.BaseURL }}">Home</a></li>
         {{ range .Site.Menus.postpend }}
             {{ $drafts := index $.Site.Params.navigation.drafts 0}}
             {{ $draft := index $drafts .Name }}
             {{ if or (eq $.Site.BuildDrafts true) (eq $draft false) }}
-            <li><a href="{{ .URL }}"><span>{{ .Name | markdownify }}</span></a></li>
+                {{ if eq (lower .Name) $.Section }}
+                    <li class="active"><a href="{{ .URL }}">{{ .Name | markdownify }}</a></li>
+                {{ else }}
+                    <li><a href="{{ .URL }}">{{ .Name | markdownify }}</a></li>
+                {{ end }}
             {{ end }}
         {{ end }}
-      </ul>
-    </div>
-  </div>
-</nav>
+    </ul>
+</header>
 
 {{ partial "notification.html" .}}

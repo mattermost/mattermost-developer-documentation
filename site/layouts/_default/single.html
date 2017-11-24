@@ -10,9 +10,15 @@
     </head>
 <body>
     {{ partial "nav2.html" .}}
-    {{ partial "sidebar.html" .}}
-    <div class="col-lg-6">
-        {{ .Content }}
+    <div id="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                {{ partial "sidebar.html" .}}
+                <div class="col-lg-9 doc-content">
+                    {{ .Content }}
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

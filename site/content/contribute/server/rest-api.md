@@ -3,7 +3,7 @@ draft: true
 title: "REST API"
 date: 2017-08-20T11:35:32-04:00
 weight: 4
-subsection: "server"
+subsection: Server
 ---
 
 # REST API

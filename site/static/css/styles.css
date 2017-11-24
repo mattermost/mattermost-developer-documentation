@@ -2345,6 +2345,7 @@ body {
   display: flex;
   flex-direction: column;
   font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
   min-height: 100vh; }
 
 a {
@@ -2388,6 +2389,7 @@ h6 {
 header {
   background: #FAFAFA;
   font-weight: 300;
+  font-size: 16px;
   height: 100px;
   line-height: 100px;
   padding: 0 30px;
@@ -2482,6 +2484,43 @@ footer {
     font-size: 20px;
     margin-top: 15px; }
 
+
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td,
+table > tfoot > tr > th,
+table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+}
+table > caption + thead > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > th,
+table > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+table > tbody + tbody {
+  border-top: 2px solid #ddd;
+}
+
+table > tbody > tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
 .doc-content {
   margin: 50px 0 0;
   padding-left: 50px; }
@@ -2491,6 +2530,8 @@ footer {
     background: #f5f5f5;
     border-radius: 5px;
     padding: 14px; }
+  .doc-content table {
+    .table-striped; }
 
 .homepage .homepage__bg {
   -moz-transform: skew(0deg, -5deg);
