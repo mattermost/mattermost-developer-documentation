@@ -2522,7 +2522,7 @@ table > tbody > tr:nth-of-type(odd) {
 }
 
 .doc-content {
-  margin: 30px 0 0;
+  margin: 50px 0 0;
   padding-left: 50px; }
   .doc-content img {
     margin: 2em 0; }

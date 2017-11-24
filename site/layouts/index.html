@@ -5,41 +5,22 @@
 <!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
 <html>
     <head>
-        {{ partial "homehead.html" .}}
+        {{ partial "head.html" .}}
     </head>
-    <body>
+    <body class="homepage">
         {{ partial "nav.html" .}}
 
-		{{ partial "hero.html" .}}
-		
-        {{ partial "intro.html" .}}
+        <div id="wrapper">
+            <div class="homepage__bg"></div>
+            {{ partial "hero.html" .}}
 
-        {{ partial "mailinglist.html" .}}
+            <div class="container-fluid">
+                {{ partial "intro.html" .}}
 
-		{{ if .Site.Params.work.enable }}
-       		{{ partial "work.html" .}}
-       	{{ end }}
+                {{ partial "mailinglist.html" .}}
+            </div>
+        </div>
 
-		{{ if .Site.Params.testimonials.enable }}
-        	{{ partial "testimonials.html" .}}
-		{{ end }}
-
-		{{ if .Site.Params.services.enable }}
-        	{{ partial "services.html" .}}
-		{{ end }}
-
-		{{ if .Site.Params.about.enable }}
-        	{{ partial "about.html" .}}
-		{{ end }}
-
-		{{ if .Site.Params.counters.enable }}
-        	{{ partial "counters.html" .}}
-        {{ end }}
-
-        {{ if .Site.Params.footer.enable }}
-        	{{ partial "footer.html" .}}
-        {{ end }}
-
-        {{ partial "js.html" .}}
+        {{ partial "footer.html" .}}
     </body>
 </html>
