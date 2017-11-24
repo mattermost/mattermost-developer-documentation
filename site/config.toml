@@ -3,7 +3,6 @@ baseURL = ""
 relativeURLs = true
 title = "Mattermost Developers"
 languageCode = "en-us"
-theme = "hugo-elate-theme"
 publishDir = "../docs"
 pygmentsCodeFences = true
 pygmentsStyle = "manni"
