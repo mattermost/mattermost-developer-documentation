@@ -3,7 +3,7 @@ draft: true
 title: "Core Developers"
 date: 2017-08-20T12:33:36-04:00
 weight: 2
-subsection: "getting-started"
+subsection: Getting Started
 ---
 
 # Core Developers

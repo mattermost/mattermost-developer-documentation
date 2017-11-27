@@ -3,7 +3,7 @@ draft: true
 title: "Selectors"
 date: 2017-08-20T11:35:32-04:00
 weight: 5
-subsection: "redux"
+subsection: Redux
 ---
 
 # Selectors

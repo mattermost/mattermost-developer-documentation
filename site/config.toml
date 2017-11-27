@@ -3,7 +3,6 @@ baseURL = ""
 relativeURLs = true
 title = "Mattermost Developers"
 languageCode = "en-us"
-theme = "hugo-elate-theme"
 publishDir = "../docs"
 pygmentsCodeFences = true
 pygmentsStyle = "manni"
@@ -22,6 +21,9 @@ pygmentsStyle = "manni"
     enable = false
     url = "blog/repo-split"
     text = "On September 6th the platform repository will be split. Click through for more details."
+
+  [params.search]
+    enable = false
 
   [params.sidebar]
 
@@ -102,8 +104,7 @@ pygmentsStyle = "manni"
     description = "Join the hunrdeds of contributors and submit code directly to the Mattermost open-source project."
     url = "contribute/getting-started"
     button = "Start Contributing"
-    icon = "icon-bulb"
-    img = "img_7.jpg"
+    icon = "/img/contribute-icon.svg"
     draft = true
 
   [[params.intro.item]]
@@ -111,8 +112,7 @@ pygmentsStyle = "manni"
     description = "Integrate with Mattermost through incoming and outgoing webhooks, slash commands, OAuth 2.0 and the REST API."
     url = "integrate"
     button = "Start Integrating"
-    icon = "icon-wrench"
-    img = "img_8.jpg"
+    icon = "/img/integrate-icon.svg"
     draft = true
 
   [[params.intro.item]]
@@ -120,8 +120,7 @@ pygmentsStyle = "manni"
     description = "Extend Mattermost to fit your purpose through powerful client and server plugins, embedding or forking."
     url = "extend/plugins"
     button = "Start Extending"
-    icon = "icon-rocket"
-    img = "img_10.jpg"
+    icon = "/img/extend-icon.svg"
     draft = false
 
   #[params.intro.video]
