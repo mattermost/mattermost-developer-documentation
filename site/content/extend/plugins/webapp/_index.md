@@ -9,7 +9,7 @@ weight: 20
 
 Web app plugins are capable of overriding and extending React UI components of the Mattermost web and desktop apps.
 
-Looking for a quick start? [See our "Hello, world!" example](/extend/plugins/webapp/hello-world/).
+Looking for a quick start? [See our "Hello, world!" guide](/extend/plugins/webapp/hello-world/).
 
 Want the web app plugin reference doc? [Find it here](/extend/plugins/webapp/reference/).
 
@@ -17,7 +17,7 @@ Want the web app plugin reference doc? [Find it here](/extend/plugins/webapp/ref
 
 #### Override React Components
 
-You can provide your own implementations of React components to replace the default Mattermost components.
+Use your own implementations of web app React components to replace the default Mattermost implementations.
 
 For example, if you want to build a custom implementation of the profile popover (sometimes called the profile hovercard) that appears when a user's profile picture is clicked on, simply write your own implementation of the [ProfilePopover](/extend/plugins/webapp/reference/#profilepopover) component and include it in your plugin.
 
