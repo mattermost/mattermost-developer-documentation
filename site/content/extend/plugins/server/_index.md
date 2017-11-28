@@ -5,4 +5,36 @@ subsection: Plugins
 weight: 10
 ---
 
-Plugins are capable of extending the Mattermost server by running processes on the server that interact with Mattermost via RPC.
+# Server Plugins
+
+Server plugins are capable of extending the Mattermost server by running processes on the server that interact with Mattermost via remote procedure calls (RPC).
+
+Looking for a quick start? [See our "Hello, world!" guide](/extend/plugins/server/hello-world/).
+
+Want the server plugin reference doc? [Find it here](/extend/plugins/server/reference/).
+
+## Features
+
+#### API
+
+Using the [RPC API](/extend/plugins/server/reference/#api) your server plugin has fast and efficient access to create, read, update and delete operations on server data models.
+
+A simple and common use case is a plugin listening to some third-party webhook and creating new posts in Mattermost based on events received from the webhook.
+
+#### Hooks
+
+With [hooks](/extend/plugins/server/reference/#hooks) get alerted by RPC when certain server events occur. For example, when the server configuration changes get alerted by hooking into the [OnConfigurationChange](/extend/plugins/server/reference/#Hooks.OnConfigurationChange) hook.
+
+#### Extend the REST API
+
+By making use of the [ServeHTTP](/extend/plugins/server/reference/#Hooks.ServeHTTP) hook your plugin can extend the existing Mattermost REST API.
+
+This can be extremely useful when building plugins that contain both web app and server parts. The server part can expose new functionality to the web app part, as if it was just another part of the Mattermost REST API.
+
+## How It Works
+
+When a plugin is uploaded to a Mattermost server and activated, the server checks to see if there is a backend portion included as part of the plugin by looking at the [plugin's manifest](/extend/plugins/manifest-reference/). If one is found, the server will start a new process using the executable included with the plugin.
+
+Immediately after start-up, the `OnActivate` hook will be triggered via RPC. Similarly, on plugin deactivation the `OnDeactivate` hook is triggered.
+
+Once running, the server plugin is free to listen to hooks, make API calls, interact with third-party services or do whatever else it needs to.
