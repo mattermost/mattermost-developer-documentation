@@ -22,7 +22,7 @@ subsection: Redux
     ```
 
 <div style="margin-top: 15px;">
-<span class="pull-left"><a href="{{< contributeurl >}}/redux/">< Back to Redux</a></span>
-<span class="pull-right"><a href="{{< contributeurl >}}/redux/developer-workflow/">Go to Development Workflow ></a></span>
+<span class="pull-left"><a href="/contribute/redux/">< Back to Redux</a></span>
+<span class="pull-right"><a href="/contribute/redux/developer-workflow/">Go to Development Workflow ></a></span>
 </div>
 <br/>

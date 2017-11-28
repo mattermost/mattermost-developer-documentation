@@ -18,6 +18,6 @@ New to Redux? Then check out these links:
 * https://github.com/gaearon/redux-thunk
 
 <div style="margin-top: 15px;">
-<span class="pull-right"><a href="{{< contributeurl >}}/redux/developer-setup/">Go to Environment Setup ></a></span>
+<span class="pull-right"><a href="/contribute/redux/developer-setup/">Go to Environment Setup ></a></span>
 </div>
 <br/>

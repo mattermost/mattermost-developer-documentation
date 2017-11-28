@@ -29,6 +29,6 @@ The server consists of several different Go packages:
 * `web` - Serves static pages
 
 <div style="margin-top: 15px;">
-<span class="pull-right"><a href="{{< contributeurl >}}/server/developer-setup/">Go to Environment Setup ></a></span>
+<span class="pull-right"><a href="/contribute/server/developer-setup/">Go to Environment Setup ></a></span>
 </div>
 <br/>
