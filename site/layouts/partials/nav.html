@@ -1,11 +1,11 @@
 <header>
-    <a href="index.html"><img src="img/logo.svg" class="logo__colored" alt="Mattermost Logo" width="212px"></a>
-    <a href="index.html"><img src="img/logo--white.svg" class="logo__white" alt="Mattermost Logo" width="212px"></a>
+    <a href="/"><img src="img/logo.svg" class="logo__colored" alt="Mattermost Logo" width="212px"></a>
+    <a href="/"><img src="img/logo--white.svg" class="logo__white" alt="Mattermost Logo" width="212px"></a>
     <div class="header__menu-toggle">
         <i class="fa fa-bars"></i>
     </div>
     <ul class="header__links--right">
-        <li class="active"><a href="index.html">Home</a></li>
+        <li class="active"><a href="/">Home</a></li>
         {{ range .Site.Menus.postpend }}
             {{ $drafts := index $.Site.Params.navigation.drafts 0}}
             {{ $draft := index $drafts .Name }}
