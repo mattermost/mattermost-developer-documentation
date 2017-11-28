@@ -17,13 +17,13 @@ Want the server plugin reference doc? [Find it here](/extend/plugins/server/refe
 
 #### RPC API
 
-With the [RPC API](/extend/plugins/server/reference/#api), your server plugin can create, read, update and delete operations on server data models.
+With the [RPC API](/extend/plugins/server/reference/#API), your server plugin can create, read, update and delete operations on server data models.
 
 A common use case is a plugin listening to a third-party webhook, creating posts in Mattermost based on events received from the webhook.
 
 #### Hooks
 
-With [hooks](/extend/plugins/server/reference/#hooks), get alerted by RPC when certain server events occur. For example, use the [OnConfigurationChange](/extend/plugins/server/reference/#Hooks.OnConfigurationChange) hook to get alerted of server configuration changes.
+With [hooks](/extend/plugins/server/reference/#Hooks), get alerted by RPC when certain server events occur. For example, use the [OnConfigurationChange](/extend/plugins/server/reference/#Hooks.OnConfigurationChange) hook to get alerted of server configuration changes.
 
 #### REST API
 

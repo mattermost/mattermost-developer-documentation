@@ -97,12 +97,12 @@
 {{ if $docs }}
     <p>{{ safeHTML $docs.HTML }}</p>
     <div>
-        <h1 id="api">API</h1>
+        <h1 id="API">API</h1>
         <p>{{ safeHTML $docs.API.HTML }}</p>
         {{ template "InterfaceTOC" dict "Name" "API" "Interface" $docs.API }}
     </div>
     <div>
-        <h1 id="hooks">Hooks</h1>
+        <h1 id="Hooks">Hooks</h1>
         <p>{{ safeHTML $docs.Hooks.HTML }}</p>
         {{ template "InterfaceTOC" dict "Name" "Hooks" "Interface" $docs.Hooks }}
     </div>
