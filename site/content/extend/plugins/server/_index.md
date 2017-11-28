@@ -27,7 +27,7 @@ With [hooks](/extend/plugins/server/reference/#hooks), get alerted by RPC when c
 
 #### REST API
 
-Use the ServeHTTP](/extend/plugins/server/reference/#Hooks.ServeHTTP) hook to extend the existing Mattermost REST API with your plugin.
+Use the [ServeHTTP](/extend/plugins/server/reference/#Hooks.ServeHTTP) hook to extend the existing Mattermost REST API with your plugin.
 
 This is useful when building plugins that contain both web app and server parts. The server part can expose new functionality to the web app part, as if it was another part of the Mattermost REST API.
 
