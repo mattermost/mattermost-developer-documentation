@@ -45,7 +45,7 @@ On web app launch, a request is made to the server to get a list of plugins that
 
 Once downloaded and executed, each plugin should have registered itself on the window. The web app then uses this to initialize the plugins by passing arguments, such as a function for registering components. Each plugin then registers the components they want to override, causing actions containing component implementations to be dispatched to the web app's plugin reducer.
 
-To use these components, the web app makes use of a component called `Pluggable`. Any time the `Pluggable` component wraps a Mattermost React component, that component becomes overridable. On render, the `Pluggable` component checks if the plugin reducer has a custom implementation of the component it wraps - if it does, it renders the custom component. Otherwise it renders the default Mattermost implementation.
+To use these components, the web app makes use of a component called `Pluggable`. Any time `Pluggable` wraps a Mattermost React component, it becomes overridable. On render, `Pluggable` checks if the plugin reducer has a custom implementation of the component it wraps - if so, it renders the custom component. Otherwise it renders the default Mattermost implementation.
 
 `Pluggable` is also used to add new extension points, by not wrapping any components and providing a prop called `pluggableName`. For an example, see how the [Root](/extend/plugins/webapp/reference/#root) component extension point is created.
 
