@@ -9,7 +9,7 @@ weight: 10
 
 Server plugins are capable of extending the Mattermost server by running processes on the server that interact with Mattermost via remote procedure calls (RPC).
 
-Looking for a quick start? [See our "Hello, world!" guide](/extend/plugins/server/hello-world/).
+Looking for a quick start? [See our "Hello, world!" tutorial](/extend/plugins/server/hello-world/).
 
 Want the server plugin reference doc? [Find it here](/extend/plugins/server/reference/).
 

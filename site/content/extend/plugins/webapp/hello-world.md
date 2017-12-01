@@ -7,7 +7,7 @@ weight: -10
 
 # Hello, world!
 
-This guide will walk you through the basics of extending the Mattermost web app.
+This tutorial will walk you through the basics of extending the Mattermost web app.
 
 ## Prerequisites
 
