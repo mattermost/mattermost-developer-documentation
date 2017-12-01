@@ -7,7 +7,7 @@ weight: -10
 
 # Hello, world!
 
-This guide will walk you through the basics of extending the Mattermost server.
+This tutorial will walk you through the basics of extending the Mattermost server.
 
 ## Prerequisites
 

@@ -9,7 +9,7 @@ weight: 20
 
 Web app plugins are capable of overriding and extending React UI components of the Mattermost web and desktop apps.
 
-Looking for a quick start? [See our "Hello, world!" guide](/extend/plugins/webapp/hello-world/).
+Looking for a quick start? [See our "Hello, world!" tutorial](/extend/plugins/webapp/hello-world/).
 
 Want the web app plugin reference doc? [Find it here](/extend/plugins/webapp/reference/).
 
