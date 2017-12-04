@@ -35,6 +35,7 @@ Now, we'll need to define a manifest, which is required for every plugin. Create
 
 ```yaml
 id: com.mattermost.server-hello-world
+name: Server "Hello, world!"
 backend:
     executable: plugin
 ```
