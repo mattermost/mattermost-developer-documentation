@@ -14,26 +14,32 @@
 {{ end }}
 
 {{ define "Docs" }}
-    {{ safeHTML .Schema.DocHTML }}
     {{ if eq .Schema.Type "object" }}
         <ul>
             {{ range .Schema.ObjectProperties }}
             <li id="{{ $.Prefix }}{{ .Name }}">
                 <p><tt>{{ .Name }}</tt>{{ if .Schema }} - {{ title .Schema.Type }}{{ end }}</p>
                 {{ safeHTML .DocHTML }}
-                {{ if .Schema }}{{ template "Docs" dict "Schema" .Schema "Prefix" (print $.Prefix .Name ".") }}{{ end }}
+                {{ if .Schema }}
+                    {{ safeHTML .Schema.DocHTML }}
+                    {{ template "Docs" dict "Schema" .Schema "Prefix" (print $.Prefix .Name ".") }}
+                {{ end }}
             </li>
             {{ end }}
         </ul>
     {{ else if eq .Schema.Type "array" | or (eq .Schema.Type "dict") }}
-        {{ if .Schema.ValueSchema }}{{ template "Docs" dict "Schema" .Schema.ValueSchema "Prefix" $.Prefix }}{{ end }}
+        {{ if .Schema.ValueSchema }}
+            {{ safeHTML .Schema.ValueSchema.DocHTML }}
+            {{ template "Docs" dict "Schema" .Schema.ValueSchema "Prefix" $.Prefix }}
+        {{ end }}
     {{ end }}
 {{ end }}
 
 {{ if $docs }}
-    <h1>Table of Contents</h1>
+    {{ safeHTML $docs.Schema.DocHTML }}
+    <h2>Table of Contents</h2>
     {{ template "ToC" dict "Schema" $docs.Schema "Prefix" "" }}
-    <h1>Documentation</h1>
+    <h2>Documentation</h2>
     {{ template "Docs" dict "Schema" $docs.Schema "Prefix" "" }}
 {{ else }}
     Run <code>make plugin-data</code> to generate this documentation.
