@@ -5,4 +5,6 @@ subsection: Plugins
 weight: 30
 ---
 
+# Manifest Reference
+
 {{<pluginmanifestdocs>}}
