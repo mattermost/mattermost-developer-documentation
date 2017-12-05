@@ -1,11 +1,11 @@
 ---
-title: Reference
+title: Web App Reference
 date: 2017-10-26T17:54:54-05:00
 subsection: Web App Plugins
 weight: 10
 ---
 
-# Reference
+# Web App Reference
 
 ## PluginClass
 
