@@ -27,9 +27,9 @@ Now, create a directory to act as your workspace, and create a file named "plugi
 
 This plugin will register an HTTP handler that will respond with "Hello, world!" when requested.
 
-Run this command to build the executable that will be distributed with your plugin: `go build plugin.go`
+Run this command to build the executable that will be distributed with your plugin: `go build -o plugin.exe plugin.go`
 
-**Note:** Your executable is platform specific! If you're building the plugin for a server running on a different operating system, you'll need to use a slightly different command. For example, if you're using developing the plugin from MacOS and deploying to a Linux server, you'll need to use this command: `GOOS=linux GOARCH=amd64 go build plugin.go`
+**Note:** Your executable is platform specific! If you're building the plugin for a server running on a different operating system, you'll need to use a slightly different command. For example, if you're using developing the plugin from MacOS and deploying to a Linux server, you'll need to use this command: `GOOS=linux GOARCH=amd64 go build -o plugin.exe plugin.go`. Also note that the ".exe" extension is required if you'd like your plugin to run on Windows, but is otherwise optional.
 
 Now, we'll need to define a manifest, which is required for every plugin. Create a file named "plugin.yaml" with the following contents:
 
@@ -37,12 +37,12 @@ Now, we'll need to define a manifest, which is required for every plugin. Create
 id: com.mattermost.server-hello-world
 name: Server "Hello, world!"
 backend:
-    executable: plugin
+    executable: plugin.exe
 ```
 
 This manifest gives the server the location of our executable within our bundle.
 
-Bundle the manifest and executable up with this command: `tar -czvf plugin.tar.gz plugin plugin.yaml`
+Bundle the manifest and executable up with this command: `tar -czvf plugin.tar.gz plugin.exe plugin.yaml`
 
 You should now have a file named "plugin.tar.gz" in your workspace. Congratulations! This is your first plugin!
 
