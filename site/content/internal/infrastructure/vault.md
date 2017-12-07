@@ -18,13 +18,17 @@ export VAULT_ADDR='https://vault.mattermost.com'
 
 # Authenticating
 
-Authentication is done via Okta:
+Authentication is done via OneLogin and RADIUS:
 
 ```
-vault auth -method=okta username=chris
+vault auth -method=radius username=chris@mattermost.com
 ```
 
-(Change "chris" to whatever your username is.)
+(Change "chris@mattermost.com" to whatever your email address is.)
+
+OneLogin users must have the "Developers" role in order to authenticate.
+
+Note: If authentication times out or fails for any reason other than "access denied by the authentication server", have a OneLogin admin verify that the Vault server IP addresses are whitelisted in the OneLogin RADIUS configuration.
 
 # SSH'ing into a Machine
 
