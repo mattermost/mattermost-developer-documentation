@@ -43,7 +43,7 @@ Below is the list of core committers working on Mattermost:
   - Dev areas: Security, Integrations, Plugins, Server Architecture
 - **Jonathan Fritz**
   - `@jonathan` on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@jonathan) and [@MusikPolice](https://github.com/MusikPolice) on GitHub
-  - Dev areas: Desktop, Message Export
+  - Dev areas: Desktop, Message Compliance
 - **Martin Kraft**
   - `@martin.kraft` on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@martin.kraft) and [@mkraft](https://github.com/mkraft) on GitHub
   - Dev areas: React Native, Web App, Redux
