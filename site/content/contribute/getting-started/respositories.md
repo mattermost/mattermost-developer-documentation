@@ -50,7 +50,7 @@ The `mattermost-redux` repository is the driver for the web and mobile apps. It 
 </h2>
 **Language:** JavaScript
 
-The `desktop` repository contains the Electron desktop app that wraps the Mattermost webapp.
+The `desktop` repository contains the Electron desktop app that wraps the Mattermost web app.
 
 <hr>
 
