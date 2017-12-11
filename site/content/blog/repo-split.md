@@ -22,7 +22,7 @@ Separates PRs for client and server with better naming conventions. This is simi
 It's also the first step towards de-coupling UI versions from the server, similar to the React Native apps, and helps model the architecture we want to achieve for the server.
 
 ### How does this affect me?
-Foremost, build process is not affected for most, with `make run` working as expected. There may however be some canges to the build process, which we'll announce closer to September 6th.
+Foremost, build process is not affected for most, with `make run` working as expected. Some webapp-related make commands will be removed from the server repo. Type `make help` to see the availalble commands. There may however be some canges to the build process, which we'll announce closer to September 6th.
 
 Those running private forks would need to separate their server and webapp code after 4.2 is branched, and mimic what we'll do when we split the platform repo. A doc with tips and best practices will be prepared to help with the transition.
 
