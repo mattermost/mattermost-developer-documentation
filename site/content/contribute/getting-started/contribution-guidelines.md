@@ -24,11 +24,11 @@ The pre-release Mattermost instance gets updated daily to latest master of both 
 
 ## Choose a Ticket
 
-1. Choose a ticket from the help wanted GitHub issues for the project you want to contribute you to.
+1. Choose a ticket from the help wanted GitHub issues for the project you want to contribute to.
   * [Server Help Wanted](https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+%5BHelp+Wanted%5D+label%3AGo)
   * [Web App Help Wanted](https://github.com/mattermost/mattermost-server/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+%5BHelp+Wanted%5D+label%3AReactJS+)
-  * [Mobile Help Wanted](https://github.com/mattermost/mattermost-mobile/issues?q=is%3Aopen+is%3Aissue+label%3A%22Help+Wanted%22)
-  * [Desktop Help Wanted](https://github.com/mattermost/desktop/issues?q=is%3Aissue+is%3Aopen+label%3A%22Help+Wanted%22)
+  * [Mobile App Help Wanted](https://github.com/mattermost/mattermost-mobile/issues?q=is%3Aopen+is%3Aissue+label%3A%22Help+Wanted%22)
+  * [Desktop App Help Wanted](https://github.com/mattermost/desktop/issues?q=is%3Aissue+is%3Aopen+label%3A%22Help+Wanted%22)
   * [Redux Help Wanted](https://github.com/mattermost/mattermost-redux/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+%5BHelp+Wanted%5D)
 2. Before starting work on the ticket, comment to let people know you're working on it.
 3. If you have questions, the best way is to join the [Developers](https://pre-release.mattermost.com/core/channels/developers) channel and post your question.
@@ -71,12 +71,12 @@ Before submitting a pull request, check that:
 1. You've signed the [Contributor License Agreement](http://www.mattermost.org/mattermost-contributor-agreement/), so you can be added to the Mattermost [Approved Contributor List](https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true).
 2. Your code follows the [Mattermost Style Guide](http://docs.mattermost.com/developer/style-guide.html).
 3. Change is thoroughly tested, including appropriate unit tests, E2E tests and manual testing.
-4. User interface strings are included in localization files, [server](https://github.com/mattermost/mattermost-server/blob/master/i18n/en.json) and [webapp](https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json)).
+4. User interface strings are included in localization files, in [server](https://github.com/mattermost/mattermost-server/blob/master/i18n/en.json) and [webapp](https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json).
 
 When submitting a PR, check that:
 
 1. PR is submitted against `master`.
-2. PR title begins with the GitHub or Jira Ticket ID (e.g. `PLT-394` or `GH-394`).
+2. PR title begins with the JIRA or GitHub Ticket ID (e.g. `PLT-394` or `GH-394`).
 3. PR summary template is filled out.
 
 After submitting a PR, before it's merged:
