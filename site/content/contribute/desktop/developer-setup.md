@@ -41,14 +41,14 @@ $ npm run package:<all | windows | mac | linux>
 
 ### Dependencies
 Need to install some software required by `electron-builder` to build packages.
-Please see [electron-builder wiki](https://github.com/electron-userland/electron-builder/wiki/Multi-Platform-Build) for detailed description.
+Please see [electron-builder wiki](https://www.electron.build/multi-platform-build) for detailed description.
 - Windows: Nothing.
 - macOS: `brew install gnu-tar`
 - Linux (64 bit): `icnsutils`, `graphicsmagick` and `xz-utils` if Ubuntu is used.
 
 ### Code signing
 Set environment variables to build trusted packages.
-Please see [electron-builder wiki](https://github.com/electron-userland/electron-builder/wiki/Code-Signing) for detailed description.
+Please see [electron-builder wiki](https://www.electron.build/code-signing) for detailed description.
 
 | Environment Variable | Description |
 |---|---|
