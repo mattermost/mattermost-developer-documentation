@@ -1,16 +1,17 @@
-	<section id="fh5co-home" data-section="home" style="background-image: url(images/full_image_2.jpg);" data-stellar-background-ratio="0.5">
-		<div class="gradient"></div>
-		<div class="container">
-			<div class="text-wrap">
-				<div class="text-inner">
-					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
-							<h1 class="to-animate">{{ with .Site.Params.hero.title }}{{ . | markdownify }}{{ end }}</h1>
-							<h2 class="to-animate">{{ with .Site.Params.hero.subtitle }}{{ . | markdownify }}{{ end }}</h2>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="slant"></div>
-	</section>
+<div class="homepage__intro text-center">
+    <div class="container-fluid">
+        <h1 class="weight--300">Mattermost for Developers</h1>
+        <h5 class="weight--300">All your Mattermost development needs.</h5>
+        <div class="homepage-search row">
+            {{ if .Site.Params.search.enable }}
+            <div class="homepage-search__input col-sm-9">
+                <img src="img/search-icon.svg" width="24px" height="24px" alt="Search icon">
+                <input type="text" class="transparent" placeholder="Search developer documentation">
+            </div>
+            <div class="homepage-search__button col-sm-3">
+                <input type="button" class="btn btn-white btn-shadow form-control" value="Get Started">
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>

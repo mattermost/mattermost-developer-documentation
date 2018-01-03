@@ -1,4 +1,5 @@
 +++
+draft = true
 title = "Server"
 date = "2017-08-19T12:01:23-04:00"
 section = "contribute"
@@ -28,6 +29,6 @@ The server consists of several different Go packages:
 * `web` - Serves static pages
 
 <div style="margin-top: 15px;">
-<span class="pull-right"><a href="{{< contributeurl >}}/server/developer-setup/">Go to Environment Setup ></a></span>
+<span class="pull-right"><a href="/contribute/server/developer-setup/">Go to Environment Setup ></a></span>
 </div>
 <br/>

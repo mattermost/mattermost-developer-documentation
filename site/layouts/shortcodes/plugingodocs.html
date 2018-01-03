@@ -75,7 +75,7 @@
 {{ define "InterfaceMethodDocs" }}
     {{ range .Interface.Methods }}
         <div>
-            <h1 id="{{ $.Name }}.{{ .Name }}">({{ $.Name }}) {{ .Name }}</h1>
+            <h3 id="{{ $.Name }}.{{ .Name }}">({{ $.Name }}) {{ .Name }}</h3>
             <p>{{ template "FunctionSignatureHTML" . }}</p>
             <p>{{ safeHTML .HTML }}</p>
         </div>
@@ -86,7 +86,7 @@
     {{ range $name, $example := . }}
         {{ if hasPrefix $name "_" }}
             <div>
-                <h1 id="Examples.{{ $name }}">Example: {{ substr $name 1 1 | upper }}{{ substr (strings.TrimPrefix "_" $name) 1 }}</h1>
+                <h2 id="Examples.{{ $name }}">Example: {{ substr $name 1 1 | upper }}{{ substr (strings.TrimPrefix "_" $name) 1 }}</h2>
                 <p>{{ safeHTML $example.HTML }}</p>
                 <p>{{ highlight $example.Code "go" "" }}</p>
             </div>
@@ -97,17 +97,17 @@
 {{ if $docs }}
     <p>{{ safeHTML $docs.HTML }}</p>
     <div>
-        <h1>API</h1>
+        <h2 id="API">API</h2>
         <p>{{ safeHTML $docs.API.HTML }}</p>
         {{ template "InterfaceTOC" dict "Name" "API" "Interface" $docs.API }}
     </div>
     <div>
-        <h1>Hooks</h1>
+        <h2 id="Hooks">Hooks</h2>
         <p>{{ safeHTML $docs.Hooks.HTML }}</p>
         {{ template "InterfaceTOC" dict "Name" "Hooks" "Interface" $docs.Hooks }}
     </div>
     <div>
-        <h1>Examples</h1>
+        <h2>Examples</h2>
         {{ template "ExamplesTOC" $docs.Examples }}
     </div>
     <hr />
@@ -117,5 +117,5 @@
     <hr />
     {{ template "ExampleDocs" $docs.Examples }}
 {{ else }}
-    Run <code>make plugin-godocs</code> to generate this documentation.
+    Run <code>make plugin-data</code> to generate this documentation.
 {{ end }}

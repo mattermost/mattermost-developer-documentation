@@ -1,8 +1,9 @@
 ---
+draft: true
 title: "Environment Setup"
 date: 2017-08-20T11:35:32-04:00
 weight: 2
-subsection: "server"
+subsection: Server
 ---
 
 <div class="section" id="installing-developer-components-on-mac-os-x">
@@ -476,7 +477,7 @@ eval $(docker-machine env default) #skip this line if you are using Docker for W
 </div>
 
 <div style="margin-top: 15px;">
-<span class="pull-left"><a href="{{< contributeurl >}}/server/">< Back to Server</a></span>
-<span class="pull-right"><a href="{{< contributeurl >}}/server/developer-workflow/">Go to Development Workflow ></a></span>
+<span class="pull-left"><a href="/contribute/server/">< Back to Server</a></span>
+<span class="pull-right"><a href="/contribute/server/developer-workflow/">Go to Development Workflow ></a></span>
 </div>
 <br/>

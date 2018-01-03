@@ -1,8 +1,9 @@
 ---
+draft: true
 title: "REST API"
 date: 2017-08-20T11:35:32-04:00
 weight: 4
-subsection: "server"
+subsection: Server
 ---
 
 # REST API
@@ -154,6 +155,6 @@ repository by <a class="reference external" href="https://docs.mattermost.com/de
 </div>
 
 <div style="margin-top: 15px;">
-<span class="pull-left"><a href="{{< contributeurl >}}/server/developer-workflow/">< Back to Workflow</a></span>
+<span class="pull-left"><a href="/contribute/server/developer-workflow/">< Back to Workflow</a></span>
 </div>
 <br/>

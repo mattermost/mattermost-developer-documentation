@@ -1,29 +1,19 @@
-    <header role="banner" id="fh5co-header">
-        <div class="container">
-            <!-- <div class="row"> -->
-            <nav class="navbar navbar-default">
-                <div class="navbar-header">
-                    <!-- Mobile Toggle Menu Button -->
-                    <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" href="index.html">{{ with .Site.Params.navigation.brand }}{{ . | markdownify }}{{ end }}</a> 
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                  <ul class="nav navbar-nav navbar-right">
-
-                    {{ range .Site.Menus.prepend }}
-                        <li><a class="external" href="{{ .URL }}"><span>{{ .Name | markdownify }}</span></a></li>
-                    {{ end }}
-
-                    <li class="active"><a href="#" data-nav-section="home"><span>{{ with .Site.Params.navigation.home }}{{ . | markdownify }}{{ end }}</span></a></li>
-
-                    {{ range .Site.Menus.postpend }}
-                        <li><a class="external" href="{{ .URL }}"><span>{{ .Name | markdownify }}</span></a></li>
-                    {{ end }}
-                </ul>
-            </div>
-        </nav>
-        <!-- </div> -->
+<header>
+    <a href="/"><img src="img/logo.svg" class="logo__colored" alt="Mattermost Logo" width="212px"></a>
+    <a href="/"><img src="img/logo--white.svg" class="logo__white" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
     </div>
+    <ul class="header__links--right">
+        <li class="active"><a href="/">Home</a></li>
+        {{ range .Site.Menus.postpend }}
+            {{ $drafts := index $.Site.Params.navigation.drafts 0}}
+            {{ $draft := index $drafts .Name }}
+            {{ if or (eq $.Site.BuildDrafts true) (eq $draft false) }}
+            <li><a class="external" href="{{ .URL }}">{{ .Name }}</a></li>
+            {{ end }}
+        {{ end }}
+    </ul>
 </header>
 
 {{ partial "notification.html" .}}

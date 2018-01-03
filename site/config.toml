@@ -3,9 +3,9 @@ baseURL = ""
 relativeURLs = true
 title = "Mattermost Developers"
 languageCode = "en-us"
-theme = "hugo-elate-theme"
 publishDir = "../docs"
 pygmentsCodeFences = true
+pygmentsStyle = "manni"
 
 [params]
 
@@ -14,28 +14,38 @@ pygmentsCodeFences = true
   description = ""
   email = ""
 
+  [params.mailinglist]
+    enable = false
+
   [params.notification]
     enable = false
     url = "blog/repo-split"
     text = "On September 6th the platform repository will be split. Click through for more details."
+
+  [params.search]
+    enable = false
 
   [params.sidebar]
 
   [[params.sidebar.item]]
     name = "contribute"
     displayName = "Contribute"
+    draft = true
 
   [[params.sidebar.item]]
     name = "integrate"
     displayName = "Integrate"
+    draft = true
 
   [[params.sidebar.item]]
     name = "extend"
     displayName = "Extend"
+    draft = false
 
   [[params.sidebar.item]]
     name = "internal"
     displayName = "Internal"
+    draft = true
 
   # Navigation
   [params.navigation]
@@ -63,7 +73,7 @@ pygmentsCodeFences = true
       weight = 2
 
     [[menu.postpend]]
-      url = "/extend/"
+      url = "/extend/plugins/"
       name = "Extend"
       weight = 3
 
@@ -71,6 +81,14 @@ pygmentsCodeFences = true
       url = "/blog/"
       name = "Blog"
       weight = 4
+
+    # Workaround to add draft status to menu items
+    [[params.navigation.drafts]]
+      Contribute = true
+      Integrate = true
+      Extend = false
+      Blog = true
+      Internal = false
 
   # Hero section
   [params.hero]
@@ -86,24 +104,24 @@ pygmentsCodeFences = true
     description = "Join the hunrdeds of contributors and submit code directly to the Mattermost open-source project."
     url = "contribute/getting-started"
     button = "Start Contributing"
-    icon = "icon-bulb"
-    img = "img_7.jpg"
+    icon = "/img/contribute-icon.svg"
+    draft = true
 
   [[params.intro.item]]
     title = "Integrate"
-    description = "Integrate with Mattermsot through incoming and outgoing webhooks, slash commands, OAuth 2.0 and the REST API."
+    description = "Integrate with Mattermost through incoming and outgoing webhooks, slash commands, OAuth 2.0 and the REST API."
     url = "integrate"
     button = "Start Integrating"
-    icon = "icon-wrench"
-    img = "img_8.jpg"
+    icon = "/img/integrate-icon.svg"
+    draft = true
 
   [[params.intro.item]]
     title = "Extend"
     description = "Extend Mattermost to fit your purpose through powerful client and server plugins, embedding or forking."
-    url = "extend"
+    url = "extend/plugins"
     button = "Start Extending"
-    icon = "icon-rocket"
-    img = "img_10.jpg"
+    icon = "/img/extend-icon.svg"
+    draft = false
 
   #[params.intro.video]
   #  enable = true

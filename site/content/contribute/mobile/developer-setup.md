@@ -1,8 +1,9 @@
 ---
+draft: true
 title: "Environment Setup"
 date: 2017-08-20T11:35:32-04:00
 weight: 2
-subsection: "mobile"
+subsection: Mobile
 ---
 
 <div class="section" id="mobile-developer-machine-setup">
@@ -160,7 +161,7 @@ subsection: "mobile"
 
 
 <div style="margin-top: 15px;">
-<span class="pull-left"><a href="{{< contributeurl >}}/mobile/">< Back to Mobile</a></span>
-<span class="pull-right"><a href="{{< contributeurl >}}/mobile/developer-workflow/">Go to Workflow ></a></span>
+<span class="pull-left"><a href="/contribute/mobile/">< Back to Mobile</a></span>
+<span class="pull-right"><a href="/contribute/mobile/developer-workflow/">Go to Workflow ></a></span>
 </div>
 <br/>

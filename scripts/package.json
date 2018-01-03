@@ -1,0 +1,16 @@
+{
+  "name": "mattermost-plugin-docs",
+  "version": "0.0.1",
+  "description": "Generate webapp plugin docs from Mattermost source code comments",
+  "main": "plugin-jsdocs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joram Wilander",
+  "license": "MIT",
+  "dependencies": {
+    "fs-promise": "^2.0.3",
+    "glob": "^7.1.2",
+    "react-component-metadata": "3.1.0"
+  }
+}
