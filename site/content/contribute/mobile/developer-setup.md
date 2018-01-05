@@ -7,7 +7,7 @@ subsection: Mobile
 ---
 
 <div class="section" id="mobile-developer-machine-setup">
-<span id="mobile-developer-setup"></span><h1>Envrionment Setup</h1>
+<span id="mobile-developer-setup"></span><h1>Environment Setup</h1>
 <p>The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version <a class="reference external" href="http://about.mattermost.com/mattermost-ios-app/">here</a> and the Android version <a class="reference external" href="http://about.mattermost.com/mattermost-android-app/">here</a>. Source code can be found at: <a class="reference external" href="https://github.com/mattermost/mattermost-mobile">https://github.com/mattermost/mattermost-mobile</a></p>
 <p>If you run into any issues getting your environment set up, check the Troubleshooting section at the bottom for common solutions.</p>
 <div class="section" id="development-environment-setup">
