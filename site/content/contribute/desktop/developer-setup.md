@@ -2,7 +2,7 @@
 title: "Environment Setup"
 date: 2018-01-02T10:44:11-05:00
 weight: 2
-subsection: "desktop"
+subsection: "Desktop App"
 ---
 
 # Environment Setup
