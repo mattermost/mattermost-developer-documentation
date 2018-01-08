@@ -1,8 +1,0 @@
----
-videos:
-- id: Q4MgnxbpZas
-  description: Listen to an introduction to the Mattermost codebase & architecture by Mattermost, Inc. CTO Corey Hulen!
-  title: Mattermost Dev Talk - Introduction to Codebase & Architecture
-- id: cVRmzXjpp7Y
-  title: Mattermost Dev Talk - Localization
-  description: Come watch a presentation on how localization works at Mattermost, presented by Elias Nahum, engineer at Mattermost, Inc.
