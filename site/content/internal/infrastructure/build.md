@@ -12,13 +12,13 @@ Most of our automated builds currently take place on Jenkins at [build.mattermos
 
 ### Updating Go
 
-Builds on this Jenkins installation use a globally installed Golang distribution. To update it, you'll need to access the master instance and all of its slaves. Make sure the machine isn't in use, then run the following (replacing "1.9.2" with the desired Go version):
+Builds on this Jenkins installation use a globally installed Golang distribution. To update it, you'll need to access the master instance and all of its slaves. Make sure the machine isn't in use, then run the following (replacing "{{< goversion >}}" with the desired Go version):
 
 ```bash
-wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz
+wget https://storage.googleapis.com/golang/go{{< goversion >}}.linux-amd64.tar.gz
 sudo su
 rm -r /usr/local/go/
-tar -C /usr/local -xzf go1.9.2.linux-amd64.tar.gz
+tar -C /usr/local -xzf go{{< goversion >}}.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 env GOOS=windows GOARCH=amd64 go install std
 env GOOS=darwin GOARCH=amd64 go install std

@@ -7,7 +7,7 @@ section = "contribute"
 
 # Server
 
-The Mattermost server is written in [Go](https://golang.org/) and lives in the [mattermost/platform](https://github.com/mattermost/platform) respository.
+The Mattermost server is written in [Go](https://golang.org/) and lives in the [mattermost/platform](https://github.com/mattermost/platform) repository.
 
 ## Network Diagram
 
