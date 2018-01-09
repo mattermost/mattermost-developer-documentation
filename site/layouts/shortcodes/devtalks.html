@@ -1,11 +1,16 @@
 <div class="youtube-videos">
-    {{ range $.Site.Data.devtalks.youtube.videos }}
-        <div class="youtube-video" >
-            <h3>{{ .title }}</h3>
-            <div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
-                <iframe src="//www.youtube.com/embed/{{ .id }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="YouTube Video"></iframe>
+    {{ $devtalks := .Site.Data.devtalks.youtube }}
+    {{ if $devtalks }}
+        {{ range $devtalks.videos }}
+            <div class="youtube-video" >
+                <h3>{{ .title }}</h3>
+                <div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
+                    <iframe src="//www.youtube.com/embed/{{ .id }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="YouTube Video"></iframe>
+                </div>
+                <p>{{ .description }}</p>
             </div>
-            <p>{{ .description }}</p>
-        </div>
+        {{ end }}
+    {{ else }}
+        Run <code>make devtalks-data</code> to populate the list of developer talks.
     {{ end }}
 </div>
