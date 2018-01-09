@@ -20,5 +20,5 @@ frontend-plugin-data:
 	node scripts/plugin-jsdocs.js > site/data/PluginJSDocs.json
 
 devtalks-data:
-	mkdir -p site/data/devtalks
-	go run scripts/devtalks.go > site/data/devtalks/youtube.json
+	mkdir -p site/data
+	go run scripts/devtalks.go > site/data/DevTalks.json
