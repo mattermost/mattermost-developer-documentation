@@ -23,7 +23,7 @@ To install `SignTool` you'll need the Microsoft Windows Software Development Kit
 
 To sign a `.exe` you can do
 ```bash
-SignTool sign /f path to your PFX file /p your PFX file password /tr http://tsa.starfieldtech.com /td SHA256 path to the code you want to sign
+SignTool sign /f [PATH_TO_THE_PFX_FILE] /p [PFX_FILE_PASSWORD] /tr http://tsa.starfieldtech.com /td SHA256 [PATH_TO_UNSIGNED_EXE]
 ```
 
 #### Code Signing on macOS and Linux
