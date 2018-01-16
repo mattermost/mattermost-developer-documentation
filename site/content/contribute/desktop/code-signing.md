@@ -17,7 +17,14 @@ In order to code sign releases on behalf of Mattermost Inc., you'll need a `.pfx
 This file has been shared in LastPass. Talk to Joram Wilander, Corey Hulen, or Jonathan Fritz to get access to it. 
 
 #### Code Signing on Windows
-On Windows hosts, Microsoft's [`signtool`](https://msdn.microsoft.com/en-us/library/windows/desktop/aa387764(v=vs.85).aspx) utility can be used to code sign releases.
+On Windows hosts, Microsoft's [`SignTool`](https://msdn.microsoft.com/en-us/library/windows/desktop/aa387764(v=vs.85).aspx) utility can be used to code sign releases.
+
+To install `SignTool` you'll need the Microsoft Windows Software Development Kit (SDK). If you have a copy of Visual Studio installed, you might already have it included with the commandlines packaged with Visual Studio.
+
+To sign a `.exe` you can do
+```bash
+SignTool sign /f path to your PFX file /p your PFX file password /tr http://tsa.starfieldtech.com /td SHA256 path to the code you want to sign
+```
 
 #### Code Signing on macOS and Linux
 On macOS and Linux hosts, the open source [`osssigntool`](https://sourceforge.net/projects/osslsigncode/) can be used to code sign releases. It can be installed via Homebrew on macOS:
