@@ -4,9 +4,9 @@ date: 2018-01-16T10:32:51-05:00
 subsection: "Desktop App"
 ---
 # Code Signing
-When releasing the Mattermost Desktop application for Windows and macOS, we have to sign the executable with a certificate that allows the end users' computer to verify our identity. 
+When releasing the Mattermost Desktop application for Windows and macOS, we have to sign the executable with a certificate that allows the end user's computer to verify our identity. 
 
-The signing procedure varies depending on the platform that the release is destined for, and the platform that the signing operation is performed on. This page attempts to document the procedure and some common pitfalls that developers may encounter along the way.
+The signing procedure varies depending on the platform that the release is destined for and the platform that the signing operation is performed on. This page attempts to document the procedure and some common pitfalls that developers may encounter along the way.
 
 ## Code Signing Windows Releases
 Releases destined for Windows can be code signed on Windows, macOS, or Linux. 
@@ -40,7 +40,7 @@ Where
 <ul>
     <li>**PATH_TO_THE_PFX_FILE** is the absolute path to the `.pfx` file that was obtained in the Prerequisites section above</li>
     <li>**PFX_FILE_PASSWORD** is the password that protects the `.pfx` file from being misused</li>
-    <li>**PATH_TO_UNSIGNED_EXE** is the absolute path of the unsided executable that you want to sign. It is typically in the `release/win` or `release/win-ia32` subdirectory of the repository</li>
+    <li>**PATH_TO_UNSIGNED_EXE** is the absolute path of the unsigned executable that you want to sign. It is typically in the `release/win` or `release/win-ia32` subdirectory of the repository</li>
     <li>**PATH_TO_WRITE_SIGNED_EXE_TO** is the absolute path to write the signed executable to
 </ul>
 
@@ -92,7 +92,19 @@ If you aren't a member of the Mattermost, Inc. team, talk to Joram Wilander, Cor
 
 Once you are a member of the team, click the **Download Manual Profiles** button at the bottom of the Accounts dialog. Next, highlight **Mattermost, Inc.** in the team list, and click the **Manage Certificates...** button. 
 
-In the dialog that appears, ensure that you have a **Developer ID Application** certificate under the **macOS Distribution Certificates** heading. The entry in the **Status** column for this certificate will be `Missing Private Key`:
+In the dialog that appears, ensure that you have a **Developer ID Application** certificate under the **macOS Distribution Certificates** heading:
+{{< figure src="/img/code-signing/missing-private-key.png" width="600px" >}}
+
+If you do not see the **macOS Distribution Certificates** heading or the **Developer ID Application** certificate is missing, you can download the certificate from [The Apple Developers Portal](https://developers.apple.com). Sign in with your Apple ID and select **Certificates, IDs & Profiles** from the left hand sidebar:  
+{{< figure src="/img/code-signing/apple-developer-lhs.png" width="600px" >}}
+
+From the drop down box in the top left hand corner of the **Certificates, Identifiers & Profiles** page that appears, select **macOS**. Next, under the **Certificates** heading in the left hand sidebar, select **All**. The **Mattermost, Inc. Developer ID Application** certificate should appear in the centre panel of the screen. Click on it to expand it and then click on the **Download** button that appears.
+{{< figure src="/img/code-signing/apple-developer-download-cert.png" width="600px" >}}
+
+Once downloaded, you can double-click on the certificate file to import it into your local keychain.
+{{< figure src="/img/code-signing/keychain-access.png" width="600px" >}}   
+
+Back in XCode, the entry in the **Status** column of the **Manage Certificates...** dialog for this certificate will be `Missing Private Key`:
 {{< figure src="/img/code-signing/missing-private-key.png" width="600px" >}}
 
 The private key is available in a `.p12` file that has been shared in LastPass. Talk to Joram Wilander, Corey Hulen, or Jonathan Fritz to get access to it. Once downloaded, double-click on the file to import it into your macOS keychain. It should appear in the **Keys** category of your **login** keychain:
