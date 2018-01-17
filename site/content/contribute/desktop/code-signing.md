@@ -21,10 +21,16 @@ On Windows hosts, Microsoft's [`SignTool`](https://msdn.microsoft.com/en-us/libr
 
 To install `SignTool` you'll need the Microsoft Windows Software Development Kit (SDK). If you have a copy of Visual Studio installed, you might already have it included with the commandlines packaged with Visual Studio.
 
-To sign a `.exe` you can do
+After successfully [building and packaging](/contribute/desktop/developer-setup#building) the Mattermost Desktop application for Windows, you can run the signing command from the root of the repository:
 ```bash
 SignTool sign /f [PATH_TO_THE_PFX_FILE] /p [PFX_FILE_PASSWORD] /tr http://tsa.starfieldtech.com /td SHA256 [PATH_TO_UNSIGNED_EXE]
 ```
+Where
+<ul>
+    <li>**PATH_TO_THE_PFX_FILE** is the absolute path to the `.pfx` file that was obtained in the Prerequisites section above</li>
+    <li>**PFX_FILE_PASSWORD** is the password that protects the `.pfx` file from being misused</li>
+    <li>**PATH_TO_UNSIGNED_EXE** is the absolute path of the unsigned executable that you want to sign. It is typically in the `release/win` or `release/win-ia32` subdirectory of the repository</li>
+</ul>
 
 #### Code Signing on macOS and Linux
 On macOS and Linux hosts, the open source [`osssigntool`](https://sourceforge.net/projects/osslsigncode/) can be used to code sign releases. It can be installed via Homebrew on macOS:
