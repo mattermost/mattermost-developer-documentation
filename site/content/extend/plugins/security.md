@@ -16,7 +16,7 @@ Plugins have the ability to execute arbitrary code on your server. If they aren'
 
 ### Sandboxing
 
-To mitigate the server-side security concerns, Mattermost can run plugin executables in a sandbox on supported platforms. Currently, Linux is the only operating system that Mattermost supports sandboxing for.
+If you're on a platform that supports it, you should ensure that Mattermost is able to sandbox your plugins. Sandboxing is currently only supported on Linux.
 
 #### Linux Sandboxing
 
