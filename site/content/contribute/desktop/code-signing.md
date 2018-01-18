@@ -133,7 +133,7 @@ Finally, you'll need to install the `electron-osx-sign` utility via NPM:
 
 #### Signing the Release
 Note that once the code signing certificate and private key have been imported as described in the **Prerequisites** section above, the application will automatically be code signed during [building and packaging](/contribute/desktop/developer-setup#building). To confirm that this step has been completed, skip down to the **Verifying the Signature** section below. 
-If the application was built and pacakged by somebody else, and you need to sign to the `.app` that they produced, you can run the signing command from the root of the repository:
+If the application was built and packaged by somebody else, and you need to sign to the `.app` that they produced, you can run the signing command from the root of the repository:
 ```bash
 ~$ electron-osx-sign release/mac/Mattermost.app
  > Name: Developer ID Application: Mattermost, Inc. (****) 
