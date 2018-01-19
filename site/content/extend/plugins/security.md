@@ -10,7 +10,9 @@ weight: 35
 
 Plugins are powerful. You should only install plugins that you've thoroughly reviewed as they have the potential to compromise the security of your installation.
 
-Only System Administrators can upload custom plugins and only if [`PluginSettings` > `PluginUploads` in config.json](https://docs.mattermost.com/administration/config-settings.html#enable-plugin-uploads) is set to `true`. In Mattermost v4.7 and later, sandboxing adds an additional layer of security for server plugins.
+Only System Administrators can upload custom plugins. They can be disabled in the **System Console > Plugins > Configuration** page.
+
+In Mattermost v4.7 and later, sandboxing adds an additional layer of security for server plugins.
 
 ## Server Considerations
 
