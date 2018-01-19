@@ -10,6 +10,8 @@ weight: 35
 
 Plugins are powerful. You should only install plugins that you've thoroughly reviewed as they have the potential to compromise the security of your installation.
 
+Only System Administrators can upload custom plugins and only if [`PluginSettings` > `PluginUploads` in config.json](https://docs.mattermost.com/administration/config-settings.html#enable-plugin-uploads) is set to `true`. In Mattermost v4.7 and later, sandboxing adds an additional layer of security for server plugins.
+
 ## Server Considerations
 
 Plugins have the ability to execute arbitrary code on your server. If they aren't properly isolated, they can do just about *anything*. For example, they could read your config file to get your database password, connect to your database, then exfiltrate sensitive user information.
