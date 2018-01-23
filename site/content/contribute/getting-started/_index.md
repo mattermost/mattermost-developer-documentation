@@ -1,9 +1,9 @@
-+++
-draft = true
-title = "Getting Started"
-date = "2017-08-19T12:01:23-04:00"
-section = "contribute"
-+++
+---
+draft: true
+title: "Getting Started"
+date: "2017-08-19T12:01:23-04:00"
+section: "contribute"
+---
 
 # Getting Started
 
@@ -26,4 +26,3 @@ Each part of the project will have it's own developer setup instructions, your n
 Unsure where you want to contribute? [Try starting with the server](/contribute/server/developer-setup/).
 
 Finally, before you go submitting any code please give [our contribution guidelines a read](/contribute/getting-started/contribution-guidelines/).
-

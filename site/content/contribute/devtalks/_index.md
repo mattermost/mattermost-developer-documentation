@@ -1,8 +1,8 @@
-+++
-title = "Mattermost Dev Talks"
-date = "2018-01-05T09:51:35-05:00"
-section = "contribute"
-+++
+---
+title: "Mattermost Dev Talks"
+date: "2018-01-05T09:51:35-05:00"
+section: "contribute"
+---
 
 # Mattermost Dev Talks
 Approximately once a month, a member of the Mattermost team releases a developer talk that discusses the architecture, design principles, and tools that the Mattermost project uses.
