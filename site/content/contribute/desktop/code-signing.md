@@ -172,7 +172,7 @@ If the `electron-osx-sign` command failed with an error message like this one:
 ```
 It is likely that you have not successfully imported the Mattermost Developer ID Application certificate and associated private key. See the Prerequisites section above.
 
-#### Code Object is not Signed at all
+##### Code Object is not Signed at all
 If the `electron-osx-sign` command failed with an error message like this one:
 ```bash
 ~$ electron-osx-sign release/mac/Mattermost.app
@@ -183,6 +183,18 @@ Mattermost.app/Contents/MacOS/Mattermost: code object is not signed at all
 In subcomponent: /Users/jfritz/go/src/github.com/mattermost/desktop/release/mac/Mattermost.app/Contents/LICENSE.txt
 ```
 You have resource files in the wrong place in your release folder. According to [Apple's Developer Docs](https://developer.apple.com/library/content/documentation/Security/Conceptual/CodeSigningGuide/Procedures/Procedures.html), all resource files (i.e. anything that isn't code) must be in the `Content/Resources` folder within the `.app` package. In this case, the `LICENSE.txt` file is located in the top-level `Contents` directory, causing the code signing operation to fail. This can be fixed by moving any non-code resource files into the `Content/Resources` directory.
+
+##### Signing Doesn't Work via SSH
+If you're attempting to perform code signing on a remote box via SSH (for instance, if the build is being run on a macOS slave controlled by Jenkins), you will need to unlock the keychain that contains the signing certificate and private key before either can be used. 
+
+To unlock the keychain, run this command before attempting to sign the code:
+```bash
+security -v unlock-keychain -p KEYCHAIN_PASSWORD_HERE
+```
+To avoid committing the password for the slave machine to GitHub, you can save the password to a file that resides on the slave machine, and read it from that file during signing:
+```bash
+security -v unlock-keychain -p $(cat /Users/administrator/keychain-password.txt)
+```
 
 #### Verifying the Signature
 Once you have successfully signed the release, you can use the `codesign` utility that ships with macOS to verify that the signature was applied correctly.
