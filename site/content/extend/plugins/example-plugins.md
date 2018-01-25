@@ -27,3 +27,29 @@ Topics demonstrated:
 * Defines a settings schema, allowing system administrators to configure the plugin via system console UI.
 * Implements tests using the [plugin/plugintest](https://godoc.org/github.com/mattermost/mattermost-server/plugin/plugintest) package.
 * Compiles and publishes releases for multiple platforms using Travis-CI.
+
+## LDAP plugin to pull additional user attributes
+
+This plugin is pre-packaged and can be used by Enterprise customers to pull additional user attributes.
+
+**This endpoint only requires a valid session and no other permissions. Only non-confidential AD/LDAP fields should be exposed.**
+
+1. Configure the LdapServer, LdapPort, BaseDN, BindUsername, BindPassword, UserFilter and IdAttribute fields under LdapSettings in config.json. 
+  - When using SAML SSO, the IdAttribute must be the email field in LDAP that is mapped to the user in SAML.
+
+2. Add the plugin configuration under PluginSettings.Plugins in config.json. The list under “Attributes” will specify which AD/LDAP attributes the API endpoint pulls.
+
+```
+"PluginSettings": {
+    “Enable”: true,
+    "Plugins": {
+        "ldapextras": {
+            "Enabled": true,
+            "Attributes": ["attribute1", "attribute2"]
+        }
+    }
+}
+```
+
+3. Restart the Mattermost server.
+4. To confirm the plugin works, perform an HTTP GET against your-mattermost-url.com/plugins/ldapextras/users/{user_id}/attributes which will return a JSON object with attribute names as keys with the appropriate values.
