@@ -114,7 +114,7 @@ Succeeded
 ```
 
 **NOTE:** This verification step will pass even if the certificate that was used to sign the build is expired. Always copy the signed executable to a Windows box, right-click on it, select Properties > Digital Signatures > Details > View Certificates > General and ensure that no validation errors are shown.
-{{< figure src="/img/code-signing/valid-windows-signature.png" width="600px" >}}
+{{< figure src="/img/code-signing/valid-windows-signature.png" width="900px" >}}
 
 ## Code Signing macOS Releases
 Releases destined for macOS can **only** be code signed on a macOS host. It is not possible to sign macOS releases on a Windows or Linux host.
