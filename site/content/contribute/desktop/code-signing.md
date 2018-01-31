@@ -16,6 +16,24 @@ In order to code sign releases on behalf of Mattermost Inc., you'll need a `.pfx
 
 This file has been shared in LastPass. Talk to Joram Wilander, Corey Hulen, or Jonathan Fritz to get access to it. 
 
+#### Regenerating the .pfx File
+Signing certicates occasionally expire. When renewed, the registrar will provide you with  a `.spc` (Software Publishing Certificate) and a `.pem` (Public Key) file. These must be combined with a corresponding `.key` (Private Key) file to create the `.pfx` (Personal Information Exchange) file that is used to sign builds.
+
+First, verify that the `.pem` and `.key` files match:
+```bash
+~$ openssl x509 -noout -modulus -in public.pem | openssl md5
+ba31f9e34b7ef88af514b0a23f1b72b8
+~$ openssl rsa -noout -modulus -in private.key | openssl md5
+ba31f9e34b7ef88af514b0a23f1b72b8
+```
+If the md5 hash of the modulus of each file matches, they are a valid pair.
+
+Next, combine the two files into a single `.pfx` file:
+```bash
+~$ openssl pkcs12 -inkey private.key -in public.pem -out mattermost-desktop-windows.pfx -export
+```
+You will be prompted for a password. This password will lock the `.pfx` file, and must be provided every time somebody tries to use it. The resulting file can be used in the next step to sign builds.
+
 #### Code Signing on Windows
 On Windows hosts, Microsoft's [`SignTool`](https://msdn.microsoft.com/en-us/library/windows/desktop/aa387764(v=vs.85).aspx) utility can be used to code sign releases.
 
@@ -94,6 +112,9 @@ Number of certificates: 5
 
 Succeeded
 ```
+
+**NOTE:** This verification step will pass even if the certificate that was used to sign the build is expired. Always copy the signed executable to a Windows box, right-click on it, select Properties > Digital Signatures > Details > View Certificates > General and ensure that no validation errors are shown.
+{{< figure src="/img/code-signing/valid-windows-signature.png" width="900px" >}}
 
 ## Code Signing macOS Releases
 Releases destined for macOS can **only** be code signed on a macOS host. It is not possible to sign macOS releases on a Windows or Linux host.
