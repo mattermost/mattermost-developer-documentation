@@ -74,6 +74,7 @@ Where
     <li>**PATH_TO_UNSIGNED_EXE** is the absolute path of the unsigned executable that you want to sign. It is typically in the `release/win` or `release/win-ia32` subdirectory of the repository</li>
     <li>**PATH_TO_WRITE_SIGNED_EXE_TO** is the absolute path to write the signed executable to
 </ul>
+Note that on some Linux systems, attempting to overwite PATH_TO_UNSIGNED_EXE with PATH_TO_WRITE_SIGNED_EXE_TO can result in a crash. It's best to write the signed exe to a different path, and then use a `mv` command to overwrite the unsigned exe with the signed exe.
 
 #### Verifying the Signature:
 Once you have successfully signed the release, you can use the `verify` flag of the `osslsigncode` utility to ensure that the signature was applied correctly. 
