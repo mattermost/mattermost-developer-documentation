@@ -52,4 +52,4 @@ Topics demonstrated:
 * Defines a settings schema, allowing system administrators to configure the plugin via system console UI.
 * Implements tests using the [plugin/plugintest](https://godoc.org/github.com/mattermost/mattermost-server/plugin/plugintest) package.
 * Creates rich posts using custom post types.
-* Extends existing webapp components to extend the UI.
+* Extends existing webapp components to add elements to the UI.
