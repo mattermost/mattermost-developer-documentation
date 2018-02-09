@@ -42,7 +42,7 @@ Topics demonstrated:
 
 ## Zoom
 
-The [Zoom plugin for Mattermost](https://github.com/mattermost/mattermost-plugin-zoom) adds UI elements that allow users to easily create and join Zoom meetings.
+The [Zoom plugin for Mattermost](https://github.com/mattermost/mattermost-plugin-zoom) adds UI elements that allow users to easily create and join Zoom meetings:
 
 <img src="/img/extend/zoom-plugin-screenshot.png" width="445" height="295" />
 
