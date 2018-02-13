@@ -20,8 +20,18 @@ function generate(dst) {
 
         const results = files.map(filename => fsp.readFile(filename, 'utf-8').then(content => metadata(content)));
 
-        return Promise.all(results).then((data) => {
+        return Promise.all(results.map((promise, i) => {
+            // Don't fail on rejected promise, just output errors
+            return promise.catch(err => {
+                console.error('Error from ' + files[i]);
+                console.error(err);
+            });
+        })).then((data) => {
             data.forEach(components => {
+                if (!components) {
+                    return;
+                }
+
                 Object.keys(components).forEach(key => {
                     const component = components[key];
                     // Pluggable components must have a getComponentName method
