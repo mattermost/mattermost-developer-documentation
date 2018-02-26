@@ -35,7 +35,7 @@ Because we use the [Thunk middleware for Redux](https://github.com/gaearon/redux
 ```javascript
 function loadAndSelectChannel(channelId) {
     return async (dispatch, getState) => {
-        const channels = getState().entities.channels.channels;
+        const {channels} = getState().entities.channels;
 
         if (!channels.hasOwnProperty(channelId)) {
             // Optionally call another action to asynchronously load the channel over the network
