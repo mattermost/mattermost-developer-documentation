@@ -3,53 +3,178 @@ draft: true
 title: "Actions"
 date: 2017-08-20T11:35:32-04:00
 weight: 4
-subsection: Redux
+subsection: Mattermost Redux
 ---
 
 # Actions
 
-Actions are any sort of logic that will result in the manipulation of store state. The means by which actions manipulate the store is through dispatches. Dispatches will take an object with an action type and some data, and pass it along to the reducers to be transformed into the correct format and placed in the state of the store. An example action might be getting a user, which would use the web client utility to fetch the user and then dispatch that user to the store.
+Similar to other frameworks like Flux, actions in Redux represent a single change to the Redux store as a plain JavaScript object.
 
-Actions live in the `src/actions/` directory.
+```javascript
+{
+    type: 'SELECT_CHANNEL',
+    data: channelId
+}
+```
+
+They are created by functions called action creators. In regular Redux, this function will take some arguments and return an action representing how the store should be changed. Something to note with Mattermost Redux is that we typically refer to the action creators as the "actions" themselves since there's often a single action creator for a given type of action.
+
+```javascript
+function selectChannel(channelId) {
+    return {
+        type: 'SELECT_CHANNEL',
+        data: channelId
+    };
+}
+```
+
+This action is later received by the Redux store's reducers which will know how to read the contents of the action and modify the store accordingly.
+
+Because we use the [Thunk middleware for Redux](https://github.com/gaearon/redux-thunk), we have the ability to use more powerful action creators that can read the state of the store, perform asynchronous actions like network requests, and dispatch multiple actions when needed. Instead of returning a plain object, these action creators return a function that takes the Redux store's `dispatch` and `getState` to be able to dispatch actions as needed.
+
+```javascript
+function loadAndSelectChannel(channelId) {
+    return async (dispatch, getState) => {
+        const {channels} = getState().entities.channels;
+
+        if (!channels.hasOwnProperty(channelId)) {
+            // Optionally call another action to asynchronously load the channel over the network
+            dispatch(setChannelLoading(true));
+
+            await dispatch(loadChannel(channelId));
+
+            dispatch(setChannelLoading(false));
+        }
+
+        // Switch to the channel
+        dispatch(selectChannel(channelId));
+    };
+}
+```
+
+Actions live in the `src/actions` directory with the constants that define their types being in the `src/action_types` directory.
+
+## Using Actions
+
+To use an action, you need to pass it into the `dispatch` method of the Redux store so that it can be passed off to the reducers.
+
+```javascript
+const store = createReduxStore();
+
+store.dispatch(loadAndSelectChannel(channelId));
+```
+
+Since both the Mattermost web and mobile apps also use React, the `dispatch` method is provided for us by using the `connect` function [React Redux](https://github.com/reactjs/react-redux) to wrap our components.
+
+```javascript
+// src/components/widget/index.jsx
+
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+import {loadAndSelectChannel} from 'src/actions/channels';
+
+import Widget from './widget';
+
+// mapDispatchToProps is used to automatically attach `store.dispatch` to the actions
+// so that the component doesn't need to know that it even exists
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators({ // bindActionCreators does the hard work here
+            loadAndSelectChannel
+        }, dispatch)
+    };
+}
+
+export default connect(null, mapDispatchToProps)(Widget);
+
+// src/components/widget/widget.jsx
+
+export default class Widget extends React.PureComponent {
+    handleClick = () => {
+        // Note that we aren't passing in dispatch here since it's already been
+        // done by bindActionCreators
+        this.props.actions.loadAndSelectChannel(this.props.channelId);
+    };
+
+    render() {
+        return (
+            <button onClick={this.handleClick}>
+                {'Click me!'}
+            </button>
+        );
+    }
+}
+```
 
 ## Adding an Action
 
-Actions must:
+To add a new Redux action, you must
+1. If you're adding a new action type, add a constant to one of the files in `src/action_types` to be the type of your new action. This is only required if your action is going to be dispatching a unique action instead of just dispatching existing actions.
+```javascript
+export default keyMirror({
+    DO_ACTION: null
+});
+```
+2. Add an action creator to `src/actions`. This function needs to either return a plain JavaScript object for a regular action or a function for a Thunk action. If it's a Thunk action, it should also return an object with two fields: a `data` field containing the results of the action and an `error` field containing an error if one occurs.
+```javascript
+function doSimpleAction() {
+    return {
+        type: ActionTypes.DO_SIMPLE_ACTION,
+        data: 1234
+    };
+}
 
-* Return [async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) so the caller can [await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) on them
-* The async function must return an object with an error property containing the error (`{error: yourerrorhere}`), while dispatching an error to store state
-* The async function must return the result in an object containing data (`{data: yourresulthere}`) or if there is nothing to return `true` in place of the result, while dispatching the data
-* May be chained to return the results of other actions
-* Be unit tested
+function doThunkAction() {
+    return async (dispatch, getState) => {
+        let data;
+        try {
+            data = await doSomething();
+        } catch(e) {
+            const error = {
+                message: e.message
+            };
 
-Follow the steps below to add a new action.
+            dispatch({
+                type: ActionTypes.DO_THUNK_ACTION_FAILED,
+                data: error
+            });
 
-### Add Action Types
+            return error;
+        }
 
-Action types are the constants the reducers use to know what type of data they are receiving and what to do with it. Generally, there are two kinds of action types you'll need to worry about: data and requests.
+        dispatch({
+            type: ActionTypes.DO_THUNK_ACTION,
+            data
+        });
 
-Data action types are what you'll use to dispatch the result of your action to the reducers. If your action is manipulating or fetching data in a format already handled by the store, then there might be no need to add a new action type. An example data action type is `RECEIVED_USER`.
+        return {
+            data
+        };
+    };
+}
+```
+3. If you're adding a new action type, add or update existing reducers to handle the new action. More information about reducers is available [here](/contribute/redux/reducers).
+4. Add unit tests to make sure that the action has the intended effects on the store. These will be located in `test/actions`. More information on unit testing reducers is available below.
 
-Request action types are used to track the state of server requests. Non-optimisitic actions that use the web client utility to interact with the server need three request action types, one for the start of the request, one for success and one for failure. If the request you're using already has action types, then no need to add any. Examples of request action types are `USER_REQUEST`, `USER_SUCCESS` and `USER_FAILURE`.
+### Adding a new API Action
 
-Note that if you're planning on writing an optimistic action, you do not need to specify request action types.
+If your action is wrapping an API call, there's a few things that you will need to do differently:
+1. For your endpoint, you'll need to add a new method to the JavaScript client located in `src/client/client4.js`. This method will look similar to the other methods in that class.
+2. In addition to the new action type that you'll be adding, you'll also normally need to add action types to indicate the status of the request. These are not required for optimistic actions.
+```javascript
+// For a getUser request
+export default keyMirror({
+    // Used to update the request state in the store
+    USER_REQUEST: null,
+    USER_SUCCESS: null,
+    USER_FAILURE: null,
 
-Add your action types to the appropriate file in `src/action_types/`. When adding request action types you'll also need to add the reducer in `src/reducers/requests/`. Just follow the examples in those files, it's fairly straight forward.
-
-### Add a Web Service Function
-
-If your action is going to use a new REST API endpoint on the server, you'll need to add a function to the web client utility.
-
-The web client lives at `src/client/client4.js`. [Fetch](https://developer.mozilla.org/en/docs/Web/API/Fetch_API) is the library used to interact with the Mattermost REST API.
-
-Adding a function should also be fairly straight-forward, just use the existing functions as an example.
-
-### Implementing the Action
-
-The actual implementation of the action will vary depending on what you're trying to accomplish. Actions live in the `src/actions/` directory. Make sure to add your action to the appropriate file.
-
-If your action is a one-to-one mapping of a web client function, all you need to do is use the `bindClientFunc` function to do the mapping.
-
+    // Used to pass new user data to the store
+    USER_RECEIVED: null
+});
+```
+3. When adding the action creator, if it simply calls the client, you can use the `bindClientFunc` helper function to create it for you. More complicated calls will need to dispatch the different request actions as necessary.
 ```javascript
 export function getUser(userId) {
     return bindClientFunc(
@@ -61,97 +186,29 @@ export function getUser(userId) {
     );
 }
 ```
-
-The above action just gets a user and is a one-to-one mapping to the `getUser` web client function.
-
-If it's not a one-to-one mapping and you need to manipulate the data you get back from the web client, then you'll need to do a bit more manual work.
-
-```javascript
-export function getProfiles(page = 0, perPage = General.PROFILE_CHUNK_SIZE) {
-    return async (dispatch, getState) => {
-      dispatch({type: UserTypes.PROFILES_REQUEST}, getState);
-
-      const {currentUserId} = getState().entities.users;
-
-      let profiles;
-      try {
-          profiles = await Client4.getProfiles(page, perPage);
-          removeUserFromList(currentUserId, profiles);
-      } catch (error) {
-          forceLogoutIfNecessary(error, dispatch);
-          dispatch(batchActions([
-              {type: UserTypes.PROFILES_FAILURE, error},
-              getLogErrorAction(error)
-          ]), getState);
-          return {error};
-      }
-
-      dispatch(batchActions([
-          {
-              type: UserTypes.RECEIVED_PROFILES_LIST,
-              data: profiles
-          },
-          {
-              type: UserTypes.PROFILES_SUCCESS
-          }
-      ]));
-
-      return {data: profiles};
-    };
-}
+4. Make the necessary changes to the reducers to handle your action as well as adding a reducer to update the `requests` section of the store. In most cases, you can use the `handleRequest` and `initialRequestState` helper functions to construct the reducer for you. More information about reducers is available [here](/contribute/redux/reducers).
 ```
-
-In the above action, we need to remove the current user from profile list so that we don't overwrite it in the state. Because of the need to do that, we could not use `bindClientFunc`.
-
-It is also possible to write optimistic actions that dispatch data to the store immediately before waiting for a response from the server. These are a little more advanced and should only be used in situations that warrant them. The framework that drives this is [redux-offline](https://github.com/jevakallio/redux-offline).
-
-```javascript
-export function deletePost(post) {
-    return async (dispatch) => {
-        const delPost = {...post};
-
-        dispatch({
-            type: PostTypes.POST_DELETED,
-            data: delPost,
-            meta: {
-                offline: {
-                    effect: () => Client4.deletePost(post.id),
-                    commit: {type: PostTypes.POST_DELETED},
-                    rollback: {
-                        type: PostTypes.RECEIVED_POST,
-                        data: delPost
-                    }
-                }
-            }
-        });
-    };
+function getUser(state = initialRequestState(), action) {
+    return handleRequest(
+        UserTypes.USER_REQUEST,
+        UserTypes.USER_SUCCESS,
+        UserTypes.USER_FAILURE,
+        state,
+        action
+    );
 }
+
+export default combineReducers({
+    getUser
+});
 ```
+5. Add unit tests to make sure that the action has the intended effects on the store. These will be located in `test/actions`. More information on unit testing reducers is available below.
 
-There can also be actions that just wrap one or more existing actions.
+### Testing an Action
 
-```javascript
-export function flagPost(postId) {
-    return async (dispatch, getState) => {
-        const {currentUserId} = getState().entities.users;
-        const preference = {
-            user_id: currentUserId,
-            category: Preferences.CATEGORY_FLAGGED_POST,
-            name: postId,
-            value: 'true'
-        };
+Unit tests for actions are located in the `test/actions` directory in files corresponding to those in `src/actions`. These tests are written using the [mochajs framework](https://mochajs.org/). In that folder, there are many examples of how those tests should look. Most follow the same general pattern of:
+1. Construct the initial test state. Note that this doesn't need to be shared between tests as it is in many other cases.
+2. Mock any actions that would contact the server. This is done using the [nock server mocking framework](https://github.com/node-nock/nock) to mock the server.
+3. Dispatch the action and look for the results.
 
-        return await savePreferences(currentUserId, [preference])(dispatch, getState);
-    };
-}
-```
-
-Make sure to also add your function to the default export at the bottom of the file.
-
-### Testing the Action
-
-The final piece is testing your action. We use the [mochajs framework](https://mochajs.org/) for testing, along with the [nock server mocking framework](https://github.com/node-nock/nock) to mock the server.
-
-The tests for actions live in `test/actions/`. Add your test to the appropriate file following one of the many examples for the other actions.
-
-Make sure to read the [README](https://github.com/mattermost/mattermost-redux/blob/master/README.md) for information on running the tests.
+For more information on running the unit tests, see the [Developer Workflow documentation](/contribute/redux/developer-workflow) or check out the [README](https://github.com/mattermost/mattermost-redux/blob/master/README.md) in the mattermost-redux repository.

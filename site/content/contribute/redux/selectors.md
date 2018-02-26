@@ -2,98 +2,94 @@
 draft: true
 title: "Selectors"
 date: 2017-08-20T11:35:32-04:00
-weight: 5
-subsection: Redux
+weight: 6
+subsection: Mattermost Redux
 ---
 
 # Selectors
 
-Selectors are the method used to retrieve data from the state of the store. We use [reselect](https://github.com/reactjs/reselect). If you'd like to know more about reselect and how we use it at Mattermost, [check out this developer talk given by core developer Harrison Healey](https://www.youtube.com/watch?v=6N2X7gEwmaQ).
+Selectors are functions used to compute data from the data in the Redux stores. This is done using [Reselect](https://github.com/reactjs/reselect), a library designed to do this efficiently by memoizing any results so that they are only recalculated if relevant parts of the store change. The code for this is in the `src/selectors` folder of the Mattermost Redux repository.
 
-Selectors live in the `src/selectors/` directory.
+For more information about reselect and how we use it at Mattermost, [check out this developer talk given by core developer Harrison Healey](https://www.youtube.com/watch?v=6N2X7gEwmaQ).
+
+## Using a Selector
+
+Selectors are simple functions that take the state from the redux store and return some data computed from them. Most selectors take simply the state of the redux store and return some data from the store.
+
+```javascript
+const currentUser = getCurrentUser(state);
+const currentTeam = getCurrentTeam(state);
+```
+
+Selectors can also receive additional arguments however extra care must be taken to ensure that the extra argument doesn't prevent proper memoization. Instead of providing the selector directly, a factory function will usually be provided so that each location or component that users the selector can be memoized separately.
+
+```javascript
+const getPostsInThread = makeGetPostsInThread();
+
+const selectedPost = getSelectedPost(state);
+const postsInSelectedThread = getPostsInThread(state, selectedPost.root_id);
+```
+
+For an example of how a selector like `makeGetPostInThread` could be used with React, see [here](/contribute/redux/react-redux).
 
 ## Adding a Selector
 
-Selectors must:
-
-* Receive `state` as the first argument and return data based solely on what's in the state
-* Be created with `createSelector` whenever the data is manipulated or formatted before return
-* Be unit tested
-
-Follow the steps below to add a new selector.
-
-### Implementing the Selector
-
-If your selector is just pulling data directly from the state without any manipulation, simply return the data you need.
-
+The most basic selector is just a function that takes in the state and returns a part of it without any memoization or complicated logic. All these provide is that they make it easier to access part of the store without having to remember exactly where the data is.
 
 ```javascript
-export function getUser(state, id) {
-  return state.entities.users.profiles[id];
+export function getCurrentUserId(state) {
+    return state.entities.users.currentUserId;
 }
 ```
 
-The above example is just simply pulling a user out of the profiles entity and requires no computation or formatting.
-
-If your selector needs to select based on some more advanced requirements or needs the result in a specific format then you'll need to make use of the `createSelector` function from [reselect](https://github.com/reactjs/reselect). If you're not sure what this is good for, [check out the previously mentioned developer talk](https://www.youtube.com/watch?v=6N2X7gEwmaQ). The short form reason is using reselect allows for memoization and only runs the computation of selectors when the state affecting that selector has actually changed.
-
-The basic usage for `createSelector` is to pass it all the selector functions needed as inputs to your computation. The last argument should then be a function that takes in the results of each previous selector, performs some computations, and then returns the result.
+To create a selector that actually computes some data, you need to use Reselect's [`createSelector`](https://github.com/reactjs/reselect#createselectorinputselectors--inputselectors-resultfunc) to combine simple selectors like the one above and provide some proper memoziation.
 
 ```javascript
-export const getUsersByUsername = createSelector(
-    getUsers,
-    (users) => {
-      const usersByUsername = {};
+export const getCurrentUser = createSelector(
+    getCurrentUserId,
+    (state) => state.entities.users.profiles,
+    (currentUserId, profiles) => {
+        if (!profiles.hasOwnProperty(currentUserId)) {
+            // Current user not found
+            return {};
+        }
 
-      for (const id in users) {
-          if (users.hasOwnProperty(id)) {
-              const user = users[id];
-              usersByUsername[user.username] = user;
-          }
-      }
-
-      return usersByUsername;
+        return profiles[currentUserId];
     }
 );
 ```
 
-Here we're using the `getUsers` selector to feed users into our function that builds a map of users with username as the key.
+The way that `createSelector` works is that it takes any number of "input selectors" followed by a single "result function". When you call the selector, it calls all of the input selectors to get the values that will be passed into the result function. If any of those have changed, it passes them to the result function to calculate and return the final result. If none of those values change, it skips the result function, and just returns the previous value.
 
-So far that's pretty straightforward, but what if you want to select some data based on an argument? That is a little more tricky if you haven't wrapped your head around the purpose of reselect and how createSelector works, so if you haven't watched the developer talk linked above, I would strongly suggest it.
+By keeping the input selectors simple and memoizing based on their results, we can skip recalculating the final value which saves time and keeps it so that `getCurrentUser(state) === getCurrentUser(state)` even when `getCurrentUser` returns an object that can't normally be compared with `===`. This is incredibly important when using Redux with React as your selectors will likely be called many times per second so minimizing time taken and returning new objects sparingly can have significant performance gains.
 
-To accomplish this we need to create factory function that will create the selector, instead of just creating the selector directly.
+While Reselect doesn't encourage the use of selectors with parameters, these can be passed in when calling the selector. Any arguments passed in will be provided to the input selectors, but not the result function. If necessary, you can work around this by including an extra input selector to pass the argument along.
 
 ```javascript
-function getAllFiles(state) {
-    return state.entities.files.files;
-}
-
-function getFilesIdsByPosts(state, post) {
-    return state.entities.files.fileIdsByPostId;
-}
-
-export function makeGetFilesForPost() {
+export function makeGetUser() {
     return createSelector(
-      getAllFiles,
-      getFilesIdsForPost,
-      (state, postId) => postId,
-      (allFiles, fileIdsForPost, postId) => {
-          return fileIdsForPost.map((id) => allFiles[id]);
-      }
+        getProfiles,
+        (state, userId) => userId,
+        (userId, profiles) => {
+            if (!profiles.hasOwnProperty(userId)) {
+                // User not found
+                return {};
+            }
+
+            return profiles[userId];
+        }
     );
 }
-
-// Usage by a third party application
-const getFilesForPost = makeGetFilesForPost();
-const files = getFilesForPost(state, 'somepostid');
 ```
 
-This can look a bit confusing, but there is little happening here we haven't seen before. All that we're doing is using three selectors with `createSelector`, the third selector just happens to be returning its second argument so that our final function has access to it. Remember that every selector always takes state in as the first argument.
+Note that when we make a selector that takes arguments, we typically wrap it in a factory function so that we can create multiple instances of the selector that are each memoized separately. This is because having a single instance of the above `getUser` selector and calling it with different user IDs would prevent any memoization since it would be constantly called with different IDs leading it to recalculate on each call.
 
-If you're thinking, "I don't get it. Why can't we just create the selector normally?" then think about how selectors work and remember that if the state changes then the computation happens again. When the postId changes, that counts as a state change, so every time we provide a different `postId` to our selector we lose all the benefits of memoization, which is the whole reason for using reselect. Instead, we create copies of our selector everywhere we know the post id shouldn't change frequently. That may seem a little crazy at first, but if you think about how componentized React is, it's not that bad. All you really need to do is use the factory function to create an instance of your selector for each component and use it solely for that component.
+This may sound unnecessary if you're writing a one-off selector, but if you think of something like a `getPost` selector in the Mattermost app, we will frequently be rendering 100+ post components each with their own copy of the `getPost` selector. With only a single copy of that selector, it would be constantly recalculating, but with 100+ copies, each only recalculates and rerenders when their specific post changes.
 
-### Testing the Selector
+### Testing an Action
 
-To test your selector you'll want to add a test to the appropriate file in the `tests/selectors` directory.
+Unit tests for selectors are located in the `test/selectors` directory in files corresponding to those in `src/selectors`. These tests are written using the [mochajs framework](https://mochajs.org/). In that folder, there are many examples of how those tests should look. Most follow the same general pattern of:
+1. Construct the initial test state. Note that this doesn't need to be shared between tests as it is in many other cases.
+2. Pass the state into the selector and check the results. The tests for some more complicated selectors do this multiple times while changing different parts of the store to ensure that the memoization is working correctly since it can be very important in certain areas of the app.
 
-Testing selectors invovles building some test state and confirming that the data returned from your selector matches what you would expect it to return. Use other tests as examples and make sure to read the [README](https://github.com/mattermost/mattermost-redux/blob/master/README.md) for information on running the tests.
+For more information on running the unit tests, see the [Developer Workflow documentation](/contribute/redux/developer-workflow) or check out the [README](https://github.com/mattermost/mattermost-redux/blob/master/README.md) in the mattermost-redux repository.
