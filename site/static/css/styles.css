@@ -2686,3 +2686,36 @@ table > tbody > tr:nth-of-type(odd) {
   .homepage-boxes {
     margin-top: -13em; } }
 
+.nav-triangle-box {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+}
+
+.nav-triangle-link {
+  display: block;
+  height: 100%;
+  background-color: #ebebeb;
+  transform-origin: top left;
+  transform: skewX(45deg);
+}
+
+.nav-triangle-link-home {
+  background-color: #108af4;
+}
+
+.nav-i {
+  color: #c2c2c2;
+  position: absolute;
+  right: 9px;
+  top: 2px;
+  transform-origin: top left;
+  transform: skewX(-45deg);
+}
+
+.nav-i-home {
+  color: #b3e0fb;
+}
