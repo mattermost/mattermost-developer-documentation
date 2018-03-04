@@ -14,10 +14,16 @@
             {{ $.Scratch.Set "icon" "fa-minus-square-o" }}
         {{ end }}
 
-        {{ if eq $.Title .Title }}
-        <span class="item active"><i class="sub-menu__toggle fa {{$.Scratch.Get "icon"}}" aria-hidden="true"></i><a class="active" href="#"> {{ .Title }}</a></span>
+        {{if eq (len (.Pages)) 0}}
+            {{ $.Scratch.Set "iconstyle" "display: none" }}
         {{ else }}
-        <span class="item"><i class="sub-menu__toggle fa {{$.Scratch.Get "icon"}}" aria-hidden="true"></i><a href="{{ .URL }}"> {{ .Title }}</a></span>
+            {{ $.Scratch.Set "iconstyle" "" }}
+        {{ end }}
+
+        {{ if eq $.Title .Title }}
+        <span class="item active"><i class="sub-menu__toggle fa {{$.Scratch.Get "icon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a class="active" href="#"> {{ .Title }}</a></span>
+        {{ else }}
+        <span class="item"><i class="sub-menu__toggle fa {{$.Scratch.Get "icon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a href="{{ .URL }}"> {{ .Title }}</a></span>
         {{ end }}
         {{ if $expanded }}
         <ul class="sub-menu" style="display: block">
@@ -32,10 +38,16 @@
                     {{ $.Scratch.Set "subicon" "fa-minus-square-o" }}
                 {{ end }}
 
-                {{ if eq $.Title .Title }}
-                <span class="item active"><i class="sub-menu__toggle fa {{$.Scratch.Get "subicon"}}" aria-hidden="true"></i><a class="active" href="{{ .URL }}"> {{ .Title }}</a></span>
+                {{if eq (len (.Pages)) 0}}
+                    {{ $.Scratch.Set "iconstyle" "display: none" }}
                 {{ else }}
-                <span class="item"><i class="sub-menu__toggle fa {{$.Scratch.Get "subicon"}}" aria-hidden="true"></i><a href="{{ .URL }}"> {{ .Title }}</a></span>
+                    {{ $.Scratch.Set "iconstyle" "" }}
+                {{ end }}
+
+                {{ if eq $.Title .Title }}
+                <span class="item active"><i class="sub-menu__toggle fa {{$.Scratch.Get "subicon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a class="active" href="{{ .URL }}"> {{ .Title }}</a></span>
+                {{ else }}
+                <span class="item"><i class="sub-menu__toggle fa {{$.Scratch.Get "subicon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a href="{{ .URL }}"> {{ .Title }}</a></span>
                 {{ end }}
                 {{ if $subexpanded }}
                 <ul class="sub-menu" style="display: block">
