@@ -62,7 +62,7 @@ Incoming webhooks support more than just the `text` field. Here is a full list o
 
 | Parameter | Description | Required |
 |---|---|---|
-| text | [Markdown-formatted](https://docs.mattermost.com/help/messaging/formatting-text.html) message to display in the post | If `attachments` is not set, yes |
+| text | [Markdown-formatted](https://docs.mattermost.com/help/messaging/formatting-text.html) message to display in the post. | If `attachments` is not set, yes |
 | channel | Overrides the channel the message posts in.<br> Use an "@" followed by a username to send to a direct message.<br> Defaults to the channel set during webhook creation. | No |
 | username | Overrides the username the message posts as.<br> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-usernames). | No |
 | icon\_url | Overrides the profile picture the message posts with.<br> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons). | No |
