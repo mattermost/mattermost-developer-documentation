@@ -2686,3 +2686,24 @@ table > tbody > tr:nth-of-type(odd) {
   .homepage-boxes {
     margin-top: -13em; } }
 
+.steps-row {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.steps-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border: 1px solid #007bff;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    margin-right: 35px;
+    color: #007bff;
+}
+
+.steps-header {
+    margin-bottom: 10px;
+}
