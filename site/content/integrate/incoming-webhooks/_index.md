@@ -63,13 +63,13 @@ Incoming webhooks support more than just the `text` field. Here is a full list o
 | Parameter | Description | Required |
 |---|---|---|
 | text | [Markdown-formatted](https://docs.mattermost.com/help/messaging/formatting-text.html) message to display in the post. | If `attachments` is not set, yes |
-| channel | Overrides the channel the message posts in.<br> Use an "@" followed by a username to send to a direct message.<br> Defaults to the channel set during webhook creation. | No |
+| channel | Overrides the channel the message posts in.<br> Use an "@" followed by a username to send to a direct message.<br> Defaults to the channel set during webhook creation.<br> The webhook can post to any public channel and private channel the webhook creator is in.<br> Posts to direct messages will appear in the DM between the targeted user and the webhook creator. | No |
 | username | Overrides the username the message posts as.<br> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-usernames). | No |
 | icon\_url | Overrides the profile picture the message posts with.<br> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons). | No |
 | type | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with "custom\_". | No |
 | attachments | [Message attachments](https://docs.mattermost.com/developer/message-attachments.html) used for richer formatting options. | If `text` is not set, yes |
 
-An example request using some more parameters would like this:
+An example request using some more parameters would look like this:
 
 ```http
 POST /hooks/xxx-generatedkey-xxx HTTP/1.1
@@ -81,7 +81,7 @@ Content-Length: 63
   "channel": "town-square",
   "username": "test-automation",
   "icon_url": "https://www.mattermost.org/wp-content/uploads/2016/04/icon.png",
-  "text": "#### Test results for July 27th, 2017\n<!channel> please review failed tests.\n
+  "text": "#### Test results for July 27th, 2017\n@channel please review failed tests.\n
   | Component  | Tests Run   | Tests Failed                                   |
   |:-----------|:-----------:|:-----------------------------------------------|
   | Server     | 948         | :white_check_mark: 0                           |
@@ -90,3 +90,7 @@ Content-Length: 63
   "
 }
 ```
+
+### Slack Compatibility
+
+See the [admin guide's notes on Slack compatibillity](https://docs.mattermost.com/developer/webhooks-incoming.html#slack-compatibility).
