@@ -38,7 +38,8 @@ timestamp=1445532266&
 token=zmigewsanbbsdf59xnmduzypjc&
 trigger_word=some&
 user_id=rnina9994bde8mua79zqcg5hmo&
-user_name=somename
+user_name=somename&
+file_ids=znana9194bde8mua70zqcg5hmo
 ```
 
 If you configured your webhook to use `application/json` content, the request would be:
@@ -61,7 +62,8 @@ Content-Type: application/json
   "token": "zmigewsanbbsdf59xnmduzypjc",
   "trigger_word": "some",
   "user_id": "rnina9994bde8mua79zqcg5hmo",
-  "user_name": "somename"
+  "user_name": "somename",
+  "file_ids": "znana9194bde8mua70zqcg5hmo"
 }
 ```
 
