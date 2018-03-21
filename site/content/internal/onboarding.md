@@ -2,12 +2,13 @@
 title: Onboarding
 date: 2017-11-07T14:28:35-05:00
 section: internal
+weight: 10
 ---
 
 ### Helpful links
   - https://docs.mattermost.com/guides/developer.html
   - https://docs.mattermost.com/developer/developer-flow.html
-  - Security: Read through the security channel and look at the past exploits
+  - Security: Read through the security channel / issues spreadsheet and look at past exploits
   - Developer Reading List - top of public Developer channel
 
 ### Mentor For The Day
@@ -50,12 +51,11 @@ section: internal
         - dev-ops
         - build
     - LDAP account
-    - OKTA account
+    - OneLogin account
     - VPN account
-    - Add to github contributors
-    - Add to AWS
+    - Add to GitHub contributors
+    - Add IAM user to master AWS account
     - Add to Azure
-    - Add to vault
 
 ### Potential topics to chat with a daily mentor about
   - Github workflow
