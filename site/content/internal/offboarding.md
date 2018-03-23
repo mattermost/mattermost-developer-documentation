@@ -75,3 +75,5 @@ The following is a list of things to do. It should be kept as complete and up-to
 * **Revoke access to G Suite account**
 
 * **Revoke access to Zendesk** – Currently, this means rotating Alice's password.
+
+* **Re-key Vault** – If the user had a share of the Vault key, you should [regenerate Vault's master key and key shares](https://www.vaultproject.io/guides/operations/rekeying-and-rotating.html).
