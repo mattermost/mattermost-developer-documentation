@@ -25,7 +25,7 @@ That not enough? You can include [interactive message buttons](/intergrate/messa
 
 ### I want to build an advanced bot
 
-To build a richer bot integration you can make full use of the [Mattermost REST API](/integrate/api). Everything you see a Mattermost client doing, your integration can do too with this API.
+To build a richer bot integration you can make full use of the [Mattermost REST API](/integrate/rest-api). Everything you see a Mattermost client doing, your integration can do too with this API.
 
 ### One of these alone isn't enough
 
