@@ -28,11 +28,18 @@ The `PluginClass.initialize()` method is called by the Mattermost web app on fir
 plugin.initialize(registerComponents, store);
 ```
 
-*`registerComponents(components, postTypeComponents)`*
+##### registerComponents(components, postTypeComponents, mainMenuActions)
 
-Is a function passed in by the web app, to be called by your initialize function for specifying which components your plugin is overriding and which components will be rendered for certain post types. `components` is an object mapping component names to your component implementations and `postTypeComponents` is an object mapping post types to your equivalent component implementations.
+Is a function passed in by the web app, to be called by your initialize function for specifying which components your plugin is overriding and which components will be rendered for certain post types.
 
-*`store`*
+* `components` is an object mapping component names to your component implementations
+* `postTypeComponents` is an object mapping post types to your equivalent component implementations
+* `mainMenuActions` is an array of objects used to add items to the sidebar dropdown menus, sometimes referred to as the main menu. Each object contains the following fields:
+ * `text` - String or JSX object to render in the menu
+ * `action` - Function to call when the item is clicked on
+ * `mobile_icon` - (Optional) Icon to display in the sidebar menu when the app is in mobile view. Defaults to [plus-square](https://fontawesome.com/v4.7.0/icon/plus-square/)
+
+##### store
 
 Is the [Redux](https://redux.js.org/docs/basics/Store.html) store of the web app. Inject any reducers your plugin might have into this.
 
@@ -44,10 +51,18 @@ The entry point `index.js` of your application might contain:
 ```javascript
 import ProfilePopover from './components/profile_popover';
 import SomePost from './components/some_post';
+import MenuIcon from './components/menu_icon';
+import {openExampleModal} from './actions';
 
 class PluginClass {
     initialize(registerComponents, store) {
-        registerComponents({ProfilePopover}, {'custom_somepost': SomePost});
+        const menuItems = [{
+            text: 'Plugin Menu Item',
+            action: () => store.dispatch(openExampleModal()),
+            mobile_icon: MenuIcon
+        }];
+
+        registerComponents({ProfilePopover}, {custom_somepost: SomePost}, menuItems);
     }
 }
 
@@ -96,3 +111,80 @@ The theme object has the following properties:
 | mentionHighlightLink | Color of text for mention links in posts |
 | codeTheme | Code block theme, either 'github', 'monokai', 'solarized-dark' or 'solarized-light' |
 
+## Exported Libraries and Functions
+
+The web app exports a number of libraries and functions on the [window](https://developer.mozilla.org/en-US/docs/Web/API/Window) object for plugins to use. We recommend importing as many libraries from the window as possible. Below is a list of the exposed libraries and functions:
+
+
+| Library | Description |
+| -------- | ----------- |
+| react | Standard [ReactJS](https://reactjs.org/) library |
+| react-dom | [ReactDOM](https://reactjs.org/docs/react-dom.html) |
+| redux | [Redux](https://redux.js.org/) |
+| react-redux | [React bindings for Redux](https://github.com/reactjs/react-redux) |
+| react-bootstrap | [Bootstrap for React](https://react-bootstrap.github.io/) |
+| post-utils | Post utility functions for common post related tasks |
+
+#### post-utils
+
+Contains the following post utility functions:
+
+##### `formatText(text, options)`
+Performs formatting of text including Markdown, highlighting mentions and search terms and converting URLs, hashtags, @mentions and ~channels to links by taking a string and returning a string of formatted HTML.
+
+* `text` - String of text to format, e.g. a post's message.
+* `options` - (Optional) An object containing the following formatting options
+ * `searchTerm` - If specified, this word is highlighted in the resulting HTML. Defaults to nothing.
+ * `mentionHighlight` - Specifies whether or not to highlight mentions of the current user. Defaults to true.
+ * `mentionKeys` - A list of mention keys for the current user to highlight.
+ * `singleline` - Specifies whether or not to remove newlines. Defaults to false.
+ * `emoticons` - Enables emoticon parsing with a data-emoticon attribute. Defaults to true.
+ * `markdown` - Enables markdown parsing. Defaults to true.
+ * `siteURL` - The origin of this Mattermost instance. If provided, links to channels and posts will be replaced with internal links that can be handled by a special click handler.
+ * `atMentions` - Whether or not to render "@" mentions into spans with a data-mention attribute. Defaults to false.
+ * `channelNamesMap` - An object mapping channel display names to channels. If provided, ~channel mentions will be replaced with links to the relevant channel.
+ * `team` - The current team object.
+ * `proxyImages` - If specified, images are proxied. Defaults to false.
+
+##### `messageHtmlToComponent(html, isRHS, options)`
+Converts HTML to React components.
+
+* `html` - String of HTML to convert to React components.
+* `isRHS` - Boolean indicating if the resulting components are to be displayed in the right-hand sidebar. Has some minor effects on how UI events are triggered for components in the RHS.
+* `options` - (Optional) An object containing options
+ * `mentions` - If set, mentions are replaced with the AtMention component. Defaults to true.
+ * `emoji` - If set, emoji text is replaced with the PostEmoji component. Defaults to true.
+ * `images` - If set, markdown images are replaced with the PostMarkdown component. Defaults to true.
+ * `latex` - If set, latex is replaced with the LatexBlock component. Defaults to true.
+
+##### Usage Example
+
+A short usage example of a PostType component using the post utility functions to format text.
+
+```javascript
+const React = window.react;
+const PostUtils = window['post-utils']; // import the post utilities
+import PropTypes from 'prop-types';
+import {makeStyleFromTheme} from 'mattermost-redux/utils/theme_utils';
+
+export default class PostTypeFormatted extends React.PureComponent {
+
+    // ...
+
+    render() {
+        const style = getStyle(this.props.theme);
+        const post = this.props.post;
+
+        const formattedText = PostUtils.formatText(post.message); // format the text
+
+        return (
+            <div
+                style={style.container}
+            >
+                {'Formatted text: '}
+                {PostUtils.messageHtmlToComponent(formattedText)} // convert the html to components
+            </div>
+        );
+    }
+}
+```
