@@ -132,7 +132,7 @@ Contains the following post utility functions:
 ##### `formatText(text, options)`
 Performs formatting of text including Markdown, highlighting mentions and search terms and converting URLs, hashtags, @mentions and ~channels to links by taking a string and returning a string of formatted HTML.
 
-* `text` - String of text to format, e.g. a post's message
+* `text` - String of text to format, e.g. a post's message.
 * `options` - (Optional) An object containing the following formatting options
  * `searchTerm` - If specified, this word is highlighted in the resulting HTML. Defaults to nothing.
  * `mentionHighlight` - Specifies whether or not to highlight mentions of the current user. Defaults to true.
@@ -143,14 +143,14 @@ Performs formatting of text including Markdown, highlighting mentions and search
  * `siteURL` - The origin of this Mattermost instance. If provided, links to channels and posts will be replaced with internal links that can be handled by a special click handler.
  * `atMentions` - Whether or not to render "@" mentions into spans with a data-mention attribute. Defaults to false.
  * `channelNamesMap` - An object mapping channel display names to channels. If provided, ~channel mentions will be replaced with links to the relevant channel.
- * `team` - The current team.
+ * `team` - The current team object.
  * `proxyImages` - If specified, images are proxied. Defaults to false.
 
 ##### `messageHtmlToComponent(html, isRHS, options)`
 Converts HTML to React components.
 
-* `html` - String of HTML to convert to React components
-* `isRHS` - Boolean indicating if the resulting componets are to be displayed in the right-hand sidebar
+* `html` - String of HTML to convert to React components.
+* `isRHS` - Boolean indicating if the resulting components are to be displayed in the right-hand sidebar. Has some minor effects on how UI events are triggered for components in the RHS.
 * `options` - (Optional) An object containing options
  * `mentions` - If set, mentions are replaced with the AtMention component. Defaults to true.
  * `emoji` - If set, emoji text is replaced with the PostEmoji component. Defaults to true.
