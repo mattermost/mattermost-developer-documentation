@@ -101,7 +101,7 @@ pygmentsStyle = "manni"
 
   [[params.intro.item]]
     title = "Contribute"
-    description = "Join the hunrdeds of contributors and submit code directly to the Mattermost open-source project."
+    description = "Join the hundreds of contributors and submit code directly to the Mattermost open-source project."
     url = "contribute/getting-started"
     button = "Start Contributing"
     icon = "/img/contribute-icon.svg"
