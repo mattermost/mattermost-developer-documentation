@@ -67,7 +67,7 @@ Content-Type: application/json
 }
 ```
 
-Upon receiving one of theses requests, your integration should immediately confirm that the `token` provided in the request body matches the one give to you when first creating the webhooks. If it does not match, it is strongly recommended that you reject the request. This ensures that the request actually came from Mattermost.
+Upon receiving one of these requests, your integration should immediately confirm that the `token` provided in the request body matches the one given to you after the webhook was created. If it does not match, it is strongly recommended that you reject the request. This ensures that the request actually came from Mattermost.
 
 If your application does not want to post a message back into the channel as a response, simply return a 200 status code with no response body.
 
@@ -94,7 +94,7 @@ Outgoing webhooks support more than just the `text` field. Here is a full list o
 | username | Overrides the username the message posts as.<br> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-usernames). | No |
 | icon\_url | Overrides the profile picture the message posts with.<br> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons). | No |
 | attachments | [Message attachments](https://docs.mattermost.com/developer/message-attachments.html) used for richer formatting options. | If `text` is not set, yes |
-| type | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with "custom\_". | No |
+| type | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with "custom\_". Passing `attachments` will ignore this field and set the type to `slack\_attachment`. | No |
 | props | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br> Mainly used by other integrations accessing posts through the REST API.<br> The following keys are reserved: "from\_webhook", "override\_username", "override\_icon\_url", "webhook\_display\_name" and "attachments". | No |
 
 An example request using some more parameters would look like this:
