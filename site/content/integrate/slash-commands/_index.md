@@ -6,17 +6,18 @@ section: "integrate"
 
 # Slash Commands
 
-Slash commands are messages that begin with `/` and trigger an HTTP request to a web service that can in turn can post one or more messages in response. 
+Slash commands are messages that begin with `/` and trigger an HTTP request to a web service that can in turn post one or more messages in response.
 
-These custom slash commands are distinguished from the built-in slash commands included with Mattermost, and unlike outgoing webhooks, work in private channels and direct messages, and can be configured to auto-complete when typing.
+Unlike outgoing webhooks, slash commands work in private channels and direct messages in addition to public channels, and can be configured to auto-complete when typing. Note that while Mattermost includes a number of built-in slash commands, this document concerns itself only with the slash commands that can be configured as custom integrations.
+
 
 ### Basic Usage
 
-Follow [the admin guide](https://docs.mattermost.com/developer/slash-commands.html#custom-slash-command) to create the custom slash command. 
+Follow [the admin guide](https://docs.mattermost.com/developer/slash-commands.html#custom-slash-command) to create a slash command. 
 
 After creating the slash command, you'll be given a `token`. __Treat this as a secret.__ Anyone who has this token will be able to mimic requests to your application.
 
-If you configured a custom slash command with a trigger word of `test`, a request URL of `http://example.com/slash-command` and a `POST` request method, and someone posts the message 
+If you configured a slash command with a trigger word of `test`, a request URL of `http://example.com/slash-command` and a `POST` request method, and someone posts the message 
 
 ```
 /test asd
@@ -47,9 +48,9 @@ user_name=somename
 
 As evidenced by the `Content-Type`, this is a typical `form-urlencoded` payload similar to what you would receive from a `<form method="POST">` element on an HTML web page.
 
-Upon receiving one of these requests, your integration should immediately confirm that the `token` provided in the request body matches the one give to you when first creating the slash command. If it does not match, it is strongly recommended that you reject the request. This ensures that the request actually came from Mattermost.
+Upon receiving one of these requests, your integration should immediately confirm that the `token` provided in the request body matches the one given to you after the slash command was created. If it does not match, it is strongly recommended that you reject the request. This ensures that the request actually came from Mattermost.
 
-Emit a message in the channel where the slash command was invoked by responding with a 200 status code and including a response body as follows:
+Once the request is verified, you can emit a message in the channel where the slash command was invoked by responding with a 200 status code and including a response body as follows:
 
 ```http
 HTTP/1.1 200 OK
@@ -99,6 +100,10 @@ Content-Length: 696
 
 ### FAQ
 
+#### How do I debug slash commands?
+
+To debug slash commands in System Console > Logs, set System Console > Logging > Enable Webhook Debugging to true and set System Console > Logging > Console Log Level to DEBUG.
+
 #### What if my slash command takes time to build a response?
 
 Reply immediately with an `ephemeral` message to confirm response of the command, and then use the `response_url` to send up to five additional messages within a 30-minute time period from the original command invocation.
@@ -117,7 +122,13 @@ Additionally, this feature may be deprecated from Mattermost in the future.
 
 #### Why does my slash command always fail with `returned an empty response`?
 
-If you are emitting the `application/json` `Content-Type`, your body must be valid JSON. Any JSON decoding failure will result in this error message.
+If you are emitting the `Content-Type: application/json` header, your body must be valid JSON. Any JSON decoding failure will result in this error message.
+
+Also, you must provide a `response_type`. Mattermost does not assume a default if this field is missing.
+
+#### Why does my slash command print the JSON data instead of formatting it?
+
+Ensure you are emitting the `Content-Type: application/json` header, otherwise your body will be treated as plain text and posted as such.
 
 #### Are slash commands Slack-compatible?
 

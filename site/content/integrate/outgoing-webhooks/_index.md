@@ -67,7 +67,7 @@ Content-Type: application/json
 }
 ```
 
-Upon receiving one of these requests, your integration should immediately confirm that the `token` provided in the request body matches the one give to you when first creating the webhooks. If it does not match, it is strongly recommended that you reject the request. This ensures that the request actually came from Mattermost.
+Upon receiving one of these requests, your integration should immediately confirm that the `token` provided in the request body matches the one given to you after the webhook was created. If it does not match, it is strongly recommended that you reject the request. This ensures that the request actually came from Mattermost.
 
 If your application does not want to post a message back into the channel as a response, simply return a 200 status code with no response body.
 
