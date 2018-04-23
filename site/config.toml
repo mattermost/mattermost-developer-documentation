@@ -63,29 +63,29 @@ pygmentsStyle = "manni"
 
     # postpended links
     [[menu.postpend]]
-      url = "/contribute/getting-started"
+      url = "contribute/getting-started"
       name = "Contribute"
       weight = 1
 
     [[menu.postpend]]
-      url = "/integrate/"
+      url = "integrate/getting-started"
       name = "Integrate"
       weight = 2
 
     [[menu.postpend]]
-      url = "/extend/plugins/"
+      url = "extend/plugins"
       name = "Extend"
       weight = 3
 
     [[menu.postpend]]
-      url = "/blog/"
+      url = "blog/
       name = "Blog"
       weight = 4
 
     # Workaround to add draft status to menu items
     [[params.navigation.drafts]]
       Contribute = true
-      Integrate = true
+      Integrate = false
       Extend = false
       Blog = true
       Internal = false
@@ -110,10 +110,10 @@ pygmentsStyle = "manni"
   [[params.intro.item]]
     title = "Integrate"
     description = "Integrate with Mattermost through incoming and outgoing webhooks, slash commands, OAuth 2.0 and the REST API."
-    url = "integrate"
+    url = "integrate/getting-started"
     button = "Start Integrating"
     icon = "/img/integrate-icon.svg"
-    draft = true
+    draft = false
 
   [[params.intro.item]]
     title = "Extend"
