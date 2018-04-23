@@ -78,7 +78,7 @@ pygmentsStyle = "manni"
       weight = 3
 
     [[menu.postpend]]
-      url = "blog/
+      url = "blog"
       name = "Blog"
       weight = 4
 
