@@ -8,14 +8,13 @@ section: "integrate"
 
 ### [hubot-mattermost](https://github.com/loafoe/hubot-matteruser)
 
-Hubot is "chat bot" created by GitHub that listens for commands and executes actions based on your requests.
+Hubot is a "chat bot" created by GitHub that listens for commands and executes actions based on your requests.
 
 `hubot-matteruser` is a Hubot adapter for Mattermost written in coffee script that uses the Mattermost Web Services API and WebSockets to deliver Hubot functionality.
 
 ### [bitbucket-mattermost-bridge](https://github.com/danielkappelle/bitbucket-mattermost-bridge)
 
 This integration, written in Python, converts Bitbucket outgoing webhook events to be posted into Mattermost using an incoming webhook.
-
 
 ### [MattermostOnFire](https://github.com/jedfonner/MattermostOnFire)
 
