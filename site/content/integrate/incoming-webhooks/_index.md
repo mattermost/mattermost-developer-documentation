@@ -76,22 +76,16 @@ An example request using some more parameters would look like this:
 POST /hooks/xxx-generatedkey-xxx HTTP/1.1
 Host: your-mattermost-server
 Content-Type: application/json
-Content-Length: 63
+Content-Length: 630
 
 {
   "channel": "town-square",
   "username": "test-automation",
   "icon_url": "https://www.mattermost.org/wp-content/uploads/2016/04/icon.png",
-  "text": "#### Test results for July 27th, 2017\n@channel please review failed tests.\n
-  | Component  | Tests Run   | Tests Failed                                   |
-  |:-----------|:-----------:|:-----------------------------------------------|
-  | Server     | 948         | :white_check_mark: 0                           |
-  | Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |
-  | iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |
-  "
+  "text": "#### Test results for July 27th, 2017\n@channel please review failed tests.\n\n| Component  | Tests Run   | Tests Failed                                   |\n|:-----------|:-----------:|:-----------------------------------------------|\n| Server     | 948         | :white_check_mark: 0                           |\n| Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |\n| iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |"
 }
 ```
 
 ### Slack Compatibility
 
-See the [admin guide's notes on Slack compatibillity](https://docs.mattermost.com/developer/webhooks-incoming.html#slack-compatibility).
+See the [admin guide's notes on Slack compatibility](https://docs.mattermost.com/developer/webhooks-incoming.html#slack-compatibility).

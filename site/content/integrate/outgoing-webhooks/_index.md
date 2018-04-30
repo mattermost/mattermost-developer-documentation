@@ -102,19 +102,13 @@ An example request using some more parameters would look like this:
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 637
+Content-Length: 755
 
 {
   "response_type": "comment",
   "username": "test-automation",
   "icon_url": "https://www.mattermost.org/wp-content/uploads/2016/04/icon.png",
-  "text": "#### Test results for July 27th, 2017\n@channel here are the requested test results.\n
-  | Component  | Tests Run   | Tests Failed                                   |
-  |:-----------|:-----------:|:-----------------------------------------------|
-  | Server     | 948         | :white_check_mark: 0                           |
-  | Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |
-  | iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |
-  ",
+    "text": "\n#### Test results for July 27th, 2017\n@channel here are the requested test results.\n\n| Component  | Tests Run   | Tests Failed                                   |\n| ---------- | ----------- | ---------------------------------------------- |\n| Server     | 948         | :white_check_mark: 0                           |\n| Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |\n| iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |\n\t\t      ",
   "props": {
     "test_data": {
       "server": 948,
@@ -127,5 +121,5 @@ Content-Length: 637
 
 ### Slack Compatibility
 
-See the [admin guide's notes on Slack compatibillity](https://docs.mattermost.com/developer/webhooks-outgoing.html#slack-compatibility).
+See the [admin guide's notes on Slack compatibility](https://docs.mattermost.com/developer/webhooks-outgoing.html#slack-compatibility).
 
