@@ -63,22 +63,22 @@ pygmentsStyle = "manni"
 
     # postpended links
     [[menu.postpend]]
-      url = "contribute/getting-started"
+      url = "/contribute/getting-started"
       name = "Contribute"
       weight = 1
 
     [[menu.postpend]]
-      url = "integrate/getting-started"
+      url = "/integrate/getting-started"
       name = "Integrate"
       weight = 2
 
     [[menu.postpend]]
-      url = "extend/plugins"
+      url = "/extend/plugins"
       name = "Extend"
       weight = 3
 
     [[menu.postpend]]
-      url = "blog"
+      url = "/blog"
       name = "Blog"
       weight = 4
 
