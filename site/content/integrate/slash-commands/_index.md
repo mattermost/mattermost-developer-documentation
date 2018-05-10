@@ -62,6 +62,16 @@ Content-Length: 59
 
 Be sure to set the `Content-Type` to `application/json` otherwise your response will be displayed as plaintext.
 
+### Delayed and multiple responses
+
+You can use the `response_url` parameter to supply multiple responses or a delayed response to a slash command. Response URLs can be used to send five additional messages within a 30-minute time period from the original command invocation.
+
+Delayed responses are useful when the action takes more than three seconds to perform. For instance:
+- Retrieval of data from external third-party services, where the response time may take longer than three seconds.
+- Report generation, batch processing or other long-running processes that take longer than three seconds to respond.
+
+Any requests that are made to the response URL should either be a plain text or JSON-encoded body. The JSON-encoded message supports both [Markdown formatting](https://docs.mattermost.com/help/messaging/formatting-text.html) and [message attachments](https://docs.mattermost.com/developer/message-attachments.html).
+
 ### Parameters
 
 Slash command responses support more than just the `text` field. Here is a full list of supported parameters.
