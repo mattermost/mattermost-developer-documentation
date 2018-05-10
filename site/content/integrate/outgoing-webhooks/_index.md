@@ -89,7 +89,7 @@ Outgoing webhooks support more than just the `text` field. Here is a full list o
 
 | Parameter | Description | Required |
 |---|---|---|
-| text | [Markdown-formatted](https://docs.mattermost.com/help/messaging/formatting-text.html) message to display in the post. | If `attachments` is not set, yes |
+| text | [Markdown-formatted](https://docs.mattermost.com/help/messaging/formatting-text.html) message to display in the post.<br> To trigger notifications, use `@<username>`, `@channel` and `@here` like you would in normal Mattermost messaging. | If `attachments` is not set, yes |
 | response\_type | Set to "comment" to reply to the message that triggered it.<br> Set to blank or "post" to create a regular message.<br> Defaults to "post". | No |
 | username | Overrides the username the message posts as.<br> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-usernames). | No |
 | icon\_url | Overrides the profile picture the message posts with.<br> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons). | No |
@@ -123,3 +123,8 @@ Content-Length: 755
 
 See the [admin guide's notes on Slack compatibility](https://docs.mattermost.com/developer/webhooks-outgoing.html#slack-compatibility).
 
+### Tips and Best Practices
+
+1. If `text` is longer than 4000 characters, the message is split into multiple consecutive posts, each within the 4000 character limit.
+2. Your webhook integration may be written in any programming language as long as it supports handling HTTP POST requests.
+3. Outgoing webhooks are supported in public channels only. If you need a trigger that works in a private channel or a direct message, consider using a [slash command](/integrate/slash-commands) instead.
