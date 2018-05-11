@@ -127,9 +127,9 @@ During development, you may override this behaviour by setting `ServiceSettings.
 
 #### Should I configure my slash command to use `POST` or `GET`?
 
-While it is possible to configure a slash command to emit a GET request, the corresponding payload sent by Mattermost is emitted as part of the body instead of being sent in the query string. This is non-standard, may cause problems with some software stacks and is not recommended at this time. 
+Best practices suggest using `GET` only if a request is considered idempotent. This means that the request can be repeated safely and can be expected to return the same response for a given input. Some servers hosting your slash command may also impose a limit to the amount of data passed through the query string of a `GET` request.
 
-Additionally, this feature may be deprecated from Mattermost in the future.
+Ultimately, however, the choice is yours. If in doubt, configure your slash command to receive a `POST` request.
 
 #### Why does my slash command always fail with `returned an empty response`?
 
