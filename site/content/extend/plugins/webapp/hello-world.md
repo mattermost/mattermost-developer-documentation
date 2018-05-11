@@ -64,10 +64,25 @@ This will drop a `helloworld.tar.gz` of your built plugin into `./hellworld/dist
 
 ## Installing the Plugin
 
-Open up Mattermost as a system administrator, navigate to **Plugins > Management** and upload the `helloworld.tar.gz` you generated above.
+Install the plugin in one of the following ways:
 
-Click "Activate" under the plugin when it's done uploading.
+1) Through System Console UI:
+ - Log in to Mattermost as a System Admin.
+ - Navigate to **Plugins > Management** and upload the `plugin.tar.gz` you generated above.
+ - Click "Activate" under the plugin after it has uploaded.
 
+2) Through `config.json`:
+ - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.json/plugin.yaml``, in this case `helloworld`.
+ - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins`. The directory should look something like
+ 
+ ```
+ mattermost/
+    plugins/
+        helloworld/
+            webapp/
+                helloworld_bundle.js
+ ```
+ - Restart the Mattermost server.
 Navigate to a regular Mattermost page and click on a user's name or profile picture.
 
 You should see the normal popover replace with your blank one that states "Hello world!".
