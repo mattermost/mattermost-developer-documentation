@@ -56,15 +56,15 @@ Install the plugin in one of the following ways:
  - Click "Activate" under the plugin after it has uploaded.
 
 2) Through `config.json`:
- - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.json/plugin.yaml``, in this case `com.mattermost.server-hello-world/`.
+ - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.json/plugin.yaml``, in this case `helloworld`.
  - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins`. The directory should look something like
  
  ```
  mattermost/
     plugins/
-        com.mattermost.server-hello-world/
-            plugin.yaml
-            plugin.exe
+        helloworld/
+            webapp/
+                helloworld_bundle.js
  ```
  - Restart the Mattermost server.
 
