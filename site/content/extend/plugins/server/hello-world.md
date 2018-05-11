@@ -50,7 +50,22 @@ You should now have a file named "plugin.tar.gz" in your workspace. Congratulati
 
 Install the plugin in one of the following ways:
 
- - Log in to Mattermost as a System Admin, navigate to **Plugins > Management** and upload the `plugin.tar.gz` you generated above. Then click "Activate" under the plugin after it has uploaded.
- - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file and restart the server
+1) Through System Console UI:
+ - Log in to Mattermost as a System Admin.
+ - Navigate to **Plugins > Management** and upload the `plugin.tar.gz` you generated above.
+ - Click "Activate" under the plugin after it has uploaded.
 
-Type the following path into your address bar, appending it to your Mattermost server's domain, and you'll be greeted by your plugin: `/plugins/com.mattermost.server-hello-world`
+2) Through `config.json`:
+ - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.json/plugin.yaml``, in this case `com.mattermost.server-hello-world/`.
+ - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins`. The directory should look something like
+ 
+ ```
+ mattermost/
+    plugins/
+        com.mattermost.server-hello-world/
+            plugin.yaml
+            plugin.exe
+ ```
+ - Restart the Mattermost server.
+
+Once you've installed the plugin in one of the ways above, type the following path into your address bar, appending it to your Mattermost server's domain, and you'll be greeted by your plugin: `/plugins/com.mattermost.server-hello-world`.
