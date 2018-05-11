@@ -64,9 +64,10 @@ This will drop a `helloworld.tar.gz` of your built plugin into `./hellworld/dist
 
 ## Installing the Plugin
 
-Open up Mattermost as a system administrator, navigate to **Plugins > Management** and upload the `helloworld.tar.gz` you generated above.
+Install the plugin in one of the following ways:
 
-Click "Activate" under the plugin when it's done uploading.
+ - Log in to Mattermost as a System Admin, navigate to **Plugins > Management** and upload the `plugin.tar.gz` you generated above. Then click "Activate" under the plugin after it has uploaded.
+ - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file and restart the server
 
 Navigate to a regular Mattermost page and click on a user's name or profile picture.
 
