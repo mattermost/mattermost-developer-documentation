@@ -48,8 +48,9 @@ You should now have a file named "plugin.tar.gz" in your workspace. Congratulati
 
 ## Installing the Plugin
 
-Open up Mattermost as a system administrator, navigate to **Plugins > Management** and upload the `plugin.tar.gz` you generated above.
+Install the plugin in one of the following ways:
 
-Click "Activate" under the plugin when it's done uploading.
+ - Log in to Mattermost as a System Admin, navigate to **Plugins > Management** and upload the `plugin.tar.gz` you generated above. Then click "Activate" under the plugin after it has uploaded.
+ - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file and restart the server
 
 Type the following path into your address bar, appending it to your Mattermost server's domain, and you'll be greeted by your plugin: `/plugins/com.mattermost.server-hello-world`
