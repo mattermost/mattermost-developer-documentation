@@ -2707,3 +2707,7 @@ table > tbody > tr:nth-of-type(odd) {
 .steps-header {
     margin-bottom: 10px;
 }
+
+.alert {
+    font-size: 95%;
+}
