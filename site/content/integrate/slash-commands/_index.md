@@ -131,6 +131,10 @@ Best practice suggests using `GET` only if a request is considered idempotent. T
 
 Ultimately, however, the choice is yours. If in doubt, configure your slash command to use a `POST` request.
 
+<div class="alert alert-warning" role="alert">
+Note that slash commands configured to use a <code>GET</code> request were broken prior to Mattermost release 5.0.0. The payload was incorrectly encoded in the body of the <code>GET</code> request instead of in the query string. While it was still technically possible to extract the payload, this was non-standard and broke some development stacks.
+</div>
+
 #### Why does my slash command always fail with `returned an empty response`?
 
 If you are emitting the `Content-Type: application/json` header, your body must be valid JSON. Any JSON decoding failure will result in this error message.
