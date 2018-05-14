@@ -127,9 +127,9 @@ During development, you may override this behaviour by setting `ServiceSettings.
 
 #### Should I configure my slash command to use `POST` or `GET`?
 
-Best practices suggest using `GET` only if a request is considered idempotent. This means that the request can be repeated safely and can be expected to return the same response for a given input. Some servers hosting your slash command may also impose a limit to the amount of data passed through the query string of a `GET` request.
+Best practice suggests using `GET` only if a request is considered idempotent. This means that the request can be repeated safely and can be expected to return the same response for a given input. Some servers hosting your slash command may also impose a limit to the amount of data passed through the query string of a `GET` request.
 
-Ultimately, however, the choice is yours. If in doubt, configure your slash command to receive a `POST` request.
+Ultimately, however, the choice is yours. If in doubt, configure your slash command to use a `POST` request.
 
 #### Why does my slash command always fail with `returned an empty response`?
 
