@@ -15,7 +15,12 @@ Join the [Developers community channel](https://pre-release.mattermost.com/core/
 
 Here's a general workflow a Mattermost developer working on the [mattermost-server](https://github.com/mattermost/mattermost-server) repository:
 
-1. Take a look at the [Repository structure](https://docs.mattermost.com/developer/developer-flow.html#repository-structure) to find out where to look for what you're working on.
+1. Review the repository structure to familiarize yourself with the project
+ * [./api/](https://github.com/mattermost/mattermost-server/tree/master/api) holds all API and application related code
+ * [./model/](https://github.com/mattermost/mattermost-server/tree/master/model) holds all data model definitions and the Go driver
+ * [./store/](https://github.com/mattermost/mattermost-server/tree/master/store) holds all database querying code
+ * [./utils/](https://github.com/mattermost/mattermost-server/tree/master/utils) holds all utilities, such as the mail utility
+ * [./i18n/](https://github.com/mattermost/mattermost-server/tree/master/i18n) holds all localization files for the server
 2. On your fork, create a branch `MM-####` where #### is the ticket number if it is a [Jira](https://mattermost.atlassian.net) ticket, or `GH-####` if it is a GitHub Issue without a Jira ticket.
 3. Make the code changes required to complete your ticket, making sure to write or modify unit tests where appropriate.
 4. To test your changes, run `make run` from the root directory of the server respository. This will start up the server and a watcher process that will build any changes to the client as you make them. To get changes to the server it must be restarted with `make restart-server`. Your server will be running at `http://localhost:8065`.
@@ -58,13 +63,3 @@ After that, you can generate random data to populate the Mattermost database usi
 ```
 platform sampledata
 ```
-
-### Repository structure ###
-
-For server work, you'll be working in the [server repository](https://github.com/mattermost/mattermost-server).
- * [./api/](https://github.com/mattermost/mattermost-server/tree/master/api) holds all API and application related code
- * [./model/](https://github.com/mattermost/mattermost-server/tree/master/model) holds all data model definitions and the Go driver
- * [./store/](https://github.com/mattermost/mattermost-server/tree/master/store) holds all database querying code
- * [./utils/](https://github.com/mattermost/mattermost-server/tree/master/utils) holds all utilities, such as the mail utility
- * [./i18n/](https://github.com/mattermost/mattermost-server/tree/master/i18n) holds all localization files for the server
- 
