@@ -8,7 +8,6 @@ subsection: Getting Started
 
 # Project Repositories
 
-
 <h2><a href="https://github.com/mattermost/mattermost-server">mattermost-server</a>
 <a class="github-button" href="https://github.com/mattermost/mattermost-server" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star mattermost/mattermost-server on GitHub">Star</a>
 </h2>
