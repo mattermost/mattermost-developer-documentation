@@ -53,6 +53,15 @@ The `desktop` repository contains the Electron desktop app that wraps the Matter
 
 <hr>
 
+<h2><a href="https://github.com/mattermost/docs">docs</a>
+<a class="github-button" href="https://github.com/mattermost/docs" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star mattermost/docs on GitHub">Star</a>
+</h2>
+<b>Language: HTML, Markdown and RST</b>
+
+The `docs` repository holds the documentation for product features, user's guide and the administrator's guide for the Mattermost project.
+
+<hr>
+
 <h2><a href="https://github.com/mattermost/mattermost-api-reference">mattermost-api-reference</a>
 <a class="github-button" href="https://github.com/mattermost/mattermost-api-reference" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star mattermost/mattermost-api-reference on GitHub">Star</a>
 </h2>
