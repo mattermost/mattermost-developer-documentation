@@ -50,16 +50,16 @@ For example, if you wanted to run `TestPostUpdate` in `api/post_test.go`, you wo
 go test -v -run='TestPostUpdate' ./api
 ```
 
-### Useful platform commands ###
+### Useful mattermost commands ###
 
-During development you may want to reset the database and generate random data for testing your changes. For this purpose, Mattermost has the following commands in the platform CLI:
+During development you may want to reset the database and generate random data for testing your changes. For this purpose, Mattermost has the following commands in the mattermost CLI:
 
 You can reset your database to the initial state using:
 ```
-platform reset
+mattermost reset
 ```
 
 After that, you can generate random data to populate the Mattermost database using:
 ```
-platform sampledata
+mattermost sampledata
 ```
