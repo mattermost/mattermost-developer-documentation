@@ -30,16 +30,16 @@ Here's a general workflow a Mattermost developer working on the [mattermost-weba
 7. Respond to feedback on your pull request and make changes as necessary by commiting to your branch and pushing it. You might need to [rebase your changes](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) if another pull request creates conflicts.
 8. That's it! Rejoice that you've helped make Mattermost better.
 
-### Useful platform commands ###
+### Useful mattermost commands ###
 
-During development you may want to reset the database and generate random data for testing your changes. For this purpose, Mattermost has the following commands in the platform CLI:
+During development you may want to reset the database and generate random data for testing your changes. For this purpose, Mattermost has the following commands in the mattermost CLI:
 
 You can reset your database to the initial state using:
 ```
-platform reset
+mattermost reset
 ```
 
 After that, you can generate random data to populate the Mattermost database using:
 ```
-platform sampledata
+mattermost sampledata
 ```
