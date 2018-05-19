@@ -9,9 +9,13 @@ section: "contribute"
 
 Welcome to the Mattermost project!
 
-We're very glad that you want to help contribute and our goal here is to make that as easy as possible.
+We're very glad you want to join hundreds of community members who have contributed code to Mattermost repositories in GitHub.
 
-First you'll need to decide which part(s) of the project you'll want to contribute to. There are a number of different pieces that make up the entirety of Mattermost and each of these pieces fills a purpose in the overall Mattermost architecture and vision. Click through each to learn more:
+Our goal is to make your experience as best as possible. Follow these simple steps to contribute:
+
+1. **Sign up to our Mattermost community site** at [pre-release.mattermost.com](https://pre-release.mattermost.com) and join the [Contributors channel](https://pre-release.mattermost.com/core/channels/tickets) to ask questions.
+
+2. **Choose which project you want to contribute to**. Click through each to learn more. If you're not sure, try starting with the [server project](/contribute/server/contributing), which offers an easy way to introduce you to the codebase.
 
 * [Server](/contribute/server/) - The highly scalable Mattermost server
 * [Webapp](/contribute/webapp/) - The browser webapp built with React
@@ -19,10 +23,10 @@ First you'll need to decide which part(s) of the project you'll want to contribu
 * [Desktop](/contribute/desktop/) - The Electron desktop app that wraps the webapp
 * [Redux](/contribute/redux/) - The Redux-based web, storage and logic driver of the web and mobile apps
 
-There are some smaller parts of the project not listed here, [see the project repositories page for a full list](/contribute/getting-started/respositories/).
+[See the project repositories page](/contribute/getting-started/respositories/) for a full list of open projects.
 
-Each part of the project will have it's own developer setup instructions, your next step should be to set up your machine using one of those.
+3. **Set up your developer machine**. Each project has its own developer setup instructions.
 
-Unsure where you want to contribute? [Try starting with the server](/contribute/server/developer-setup/).
+4. **Select a [ticket](https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+label%3A%22Up+For+Grabs%22)** and comment to let people know you’re working on it. If there’s no ticket for what you want to work on, follow the process [here](https://docs.mattermost.com/developer/contribution-guide.html#pull-requests-for-minor-corrections-and-improvements-without-a-ticket-are-welcome).
 
-Finally, before you go submitting any code please give [our contribution guidelines a read](/contribute/getting-started/contribution-guidelines/).
+5. **Start developing**. Each project has its own developer flow for tips on working with the Mattermost codebase. When your changes are ready, run through our [checklist for pull requests](/contribute/contribution-checklist). Note that if it’s your first contribution, there is a standard [CLA](https://www.mattermost.org/mattermost-contributor-agreement/) to sign.
