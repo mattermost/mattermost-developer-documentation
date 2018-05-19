@@ -6,6 +6,8 @@ section: internal
 
 # Release Cutting Process
 
+**Note: To cut a build you need access to matterbuild. Please ask Christopher for access if you don't have it.**
+
 On code complete day, work with the PM on rotation to get all the pull requests for the current release merged into `master`. Once that is done and you've confirmed with the PM, cut the first release candidate by following these steps:
 
 1. Give yourself access to matterbuild by adding yourself in the platform-private repo. See an [example here](https://github.com/mattermost/platform-private/commit/89f91d81bd4602f4708270c0ca7626da8fc45291). You will need to know your user Id in the Pre-release server.
