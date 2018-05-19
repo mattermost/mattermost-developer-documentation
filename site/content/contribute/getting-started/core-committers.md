@@ -1,5 +1,4 @@
 ---
-draft: true
 title: "Core Committers"
 date: 2017-08-20T12:33:36-04:00
 weight: 2
