@@ -1,11 +1,11 @@
 ---
-title: "Workflow"
+title: "Server Workflow"
 date: 2017-08-20T11:35:32-04:00
 weight: 3
 subsection: Server
 ---
 
-# Workflow
+# Server Workflow
 
 If you haven't [set up your developer environment](https://docs.mattermost.com/developer/dev-setup.html), please do so before continuing with this section.
 
