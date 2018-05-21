@@ -8,7 +8,7 @@ subsection: Getting Started
 
 # Contributions Without Ticket
 
-Contributions for minor corrections and improvements without a ticket are welcome
+Contributions for minor corrections and improvements without a ticket are welcome.
 
 It is acceptable to submit a PR for a bug or incremental improvement, with less than 20 lines of code change, without a Help Wanted ticket if the change to existing behaviour is minor. All pull requests submitted without a corresponding ticket will first be reviewed by a core team product manager. Some examples of minor corrections and improvements include:
 
