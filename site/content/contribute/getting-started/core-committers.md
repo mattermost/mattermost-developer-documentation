@@ -16,10 +16,10 @@ Below is the list of core committers working on Mattermost:
   - Dev areas: High Availability, Orchestration/Kubernetes, Push Proxy, Classic Mobile Apps
 - **Joram Wilander**
   - @joram on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@joram) and [@jwilander](https://github.com/jwilander) on GitHub
-  - Dev areas: Webapp, Redux, REST API, Developer Toolkit, OAuth SSO, Statuses, WebSocket, Licensing
+  - Dev areas: Web App, Redux, REST API, Developer Toolkit, OAuth SSO, Statuses, WebSocket, Licensing, Kubernetes, Performance
 - **Christopher Speller**
   - @christopher on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@christopher) and [@crspeller](https://github.com/crspeller) on GitHub
-  - Dev areas: Performance, Security, Build, LDAP, Load Tests, Webpack, Permissions
+  - Dev areas: Performance, Security, Build, LDAP, Load Tests, Webpack, Permissions, Kubernetes
 - **Harrison Healey**
   - @harrison on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@harrison) and [@hmhealey](https://github.com/hmhealey) on GitHub
   - Dev areas: Markdown, React Native, Autocomplete, UI, Emojis, Reactions, Files
@@ -31,24 +31,24 @@ Below is the list of core committers working on Mattermost:
   - Dev areas: Import/Export (Slack, Bulk Loading, etc.), Diagnostics/Telemetry, Search, Permissions
 - **Saturnino Abril**
   - @saturnino on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@saturnino) and [@saturninoabril](https://github.com/saturninoabril) on GitHub
-  - Dev areas: Webapp, React Native, REST API, UI Tests
+  - Dev areas: Web App, Redux, React Native, REST API, UI Tests
 - **Chris Duarte**
   - @uberchris on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@uberchris) and [@csduarte](https://github.com/csduarte) on GitHub
 - **Carlos Panato**
   - @cpanato on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@cpanato) and [@cpanato](https://github.com/cpanato) on GitHub
-  - Dev areas: Webapp, Redux, REST API, WebSocket Events
+  - Dev areas: Web App, Redux, REST API, WebSocket Events, Kubernetes
 - **Martin Kraft**
   - @martin.kraft on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@martin.kraft) and [@mkraft](https://github.com/mkraft) on GitHub
-  - Dev areas: All areas
+  - Dev areas: Permissions, Compliance, Redux, Web App, Emoji
 - **Jesús Espino**
   - @jesus.espino on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@jesus.espino) and [@jespino](https://github.com/jespino) on GitHub
-  - Dev areas: Webapp, Permissions and Compliance, Sample data generation
+  - Dev areas: Web App, Permissions, Compliance, Redux, CLI, System Console, Sample Data
 - **Jesse Hallam**
   - @jesse.hallam on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@jesse.hallam) and [@lieut-data](https://github.com/lieut-data) on GitHub
-  - Dev areas: Performance, Webapp, Database
+  - Dev areas: Performance, Web App, Database, Developer Toolkit
 - **Sudheer Timmaraju**
   - @sudheerdev on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@sudheerdev) and [@sudheerDev](https://github.com/sudheerDev) on GitHub
-  - Dev areas: Webapp, React, Redux, Performance
+  - Dev areas: Web App, React, Redux, Performance
 
 Below is the list of core developers working on individual Mattermost repositories:
 
