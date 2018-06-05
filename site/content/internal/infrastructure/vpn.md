@@ -1,7 +1,6 @@
 ---
 title: "VPN"
 date: 2018-05-28T16:08:19+02:00
-draft: true
 ---
 
 # Setup VPN access
