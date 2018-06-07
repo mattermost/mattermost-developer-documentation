@@ -48,9 +48,8 @@ The [profanity filter plugin for Mattermost](https://github.com/mattermost/matte
 
 Topics demonstrated:
 
-* // XX @crspeller perhaps you can help fill this in?
-*
-*
+* Interception and modification of posts prior to writing them into the database.
+* Rejection of posts prior to writing them into the database.
 
 ## Memes
 
