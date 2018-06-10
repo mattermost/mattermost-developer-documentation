@@ -1,6 +1,6 @@
 ---
 title: "Mattermost Redux"
-date: "2017-08-19T12:01:23-04:00"
+date: "2018-05-19T12:01:23-04:00"
 section: "contribute"
 ---
 
@@ -26,8 +26,3 @@ If you'd like to know more, check out these links:
 * [The Thunk middleware for Redux](https://github.com/gaearon/redux-thunk) is used to allow for asynchronous actions which are not supported by vanilla Redux. Thunk is used extensively when writing Redux actions in mattermost-redux, however it is fairly simple to grasp.
 * [Reselect](https://github.com/reactjs/reselect) is a library for creating "selectors" which are helper functions to compute data from the Redux store in an efficient manner. You're most likely to need to use Reselect if you're adding new data to the Redux store. More information on how we use Reselect is available in the section on [selectors](/contribute/redux/selectors).
 * [React Redux](https://github.com/reactjs/react-redux) is used to allow React components to more easily connect to the store in a React-friendly manner. More information on how we use React Redux is available in the section on [using Redux with React](/contribute/redux/react-redux).
-
-<div style="margin-top: 15px;">
-<span class="pull-right"><a href="/contribute/redux/developer-setup/">Go to Environment Setup ></a></span>
-</div>
-<br/>

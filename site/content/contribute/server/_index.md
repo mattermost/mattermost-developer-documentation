@@ -1,22 +1,25 @@
 ---
 title: "Server"
-date: "2017-08-19T12:01:23-04:00"
+date: "2018-08-19T12:01:23-04:00"
 section: "contribute"
 ---
 
 # Server
 
-The Mattermost server is written in [Go](https://golang.org/) and lives in the [mattermost/platform](https://github.com/mattermost/platform) repository.
+The server is the highly scalable backbone of the Mattermost project. Written in Go it compiles to a single, standalone binary. It is generally stateless except for the WebSocket connections and some in-memory caches.
 
-## Network Diagram
+Communication with Mattermost clients and integrations mainly occurs through the RESTful JSON web API and WebSocket connections primarily used for event delivery.
 
-<img src="/img/mattermost-network.png" style="width: 1200px"/>
+Data storage is done with MySQL or PostgreSQL for non-binary data. Files are stored locally, on network drives or in a service such as S3 or Minio.
+
+## Repository
+
+https://github.com/mattermost/mattermost-server
 
 ## Server Packages
 
 The server consists of several different Go packages:
 
-* `api` - Version 3 of the RESTful JSON Web Service *(scheduled for deprecation January 18th, 2018)*
 * `api4` - Version 4 of the RESTful JSON Web Service
 * `app` - Logic layer for getting, modifying, and interacting with models
 * `cmd` - Command line interface
@@ -26,8 +29,3 @@ The server consists of several different Go packages:
 * `store` - Storage layer for interacting with caches and databases
 * `util` - Utility functions for various tasks
 * `web` - Serves static pages
-
-<div style="margin-top: 15px;">
-<span class="pull-right"><a href="/contribute/server/developer-setup/">Go to Environment Setup ></a></span>
-</div>
-<br/>

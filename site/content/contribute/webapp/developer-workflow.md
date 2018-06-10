@@ -1,15 +1,13 @@
 ---
-title: "Webapp Workflow"
+title: "Web App Workflow"
 date: 2017-08-20T11:35:32-04:00
 weight: 3
-subsection: Webapp
+subsection: Web App
 ---
 
-# Webapp Workflow
+# Web App Workflow
 
 If you haven't [set up your developer environment](https://docs.mattermost.com/developer/dev-setup.html), please do so before continuing with this section.
-
-Join the [Developers community channel](https://pre-release.mattermost.com/core/channels/developers) to ask questions from community members and the Mattermost core team.
 
 ### Workflow ###
 
@@ -23,7 +21,7 @@ Here's a general workflow a Mattermost developer working on the [mattermost-weba
  * [./utils/](https://github.com/mattermost/mattermost-webapp/tree/master/utils) holds all widely-used utilities
  * [./tests/](https://github.com/mattermost/mattermost-webapp/tree/master/tests) holds all the client unit tests
 2. On your fork, create a branch `MM-####` where #### is the ticket number if it is a [Jira](https://mattermost.atlassian.net) ticket, or `GH-####` if it is a GitHub Issue without a Jira ticket.
-3. Make the code changes required to complete your ticket, making sure to write or modify unit tests where appropriate.
+3. Make the code changes required to complete your ticket, making sure to write or modify unit tests where appropriate. Use `make test` to run the unit tests.
 4. To test your changes, run `make run` from the root directory of the server respository. This will start up the server and a watcher process that will build any changes to the client as you make them. To get changes to the server it must be restarted with `make restart-server`. Your server will be running at `http://localhost:8065`.
 5. Once everything works to meet the ticket requirements, stop Mattermost by running `make stop` in the server repository, then run `make check-style` to check your syntax and `make test` to run the tests.
 6. Commit your changes, push your branch and [create a pull request](https://docs.mattermost.com/developer/contribution-guide.html#preparing-a-pull-request).
@@ -33,6 +31,8 @@ Here's a general workflow a Mattermost developer working on the [mattermost-weba
 ### Useful mattermost commands ###
 
 During development you may want to reset the database and generate random data for testing your changes. For this purpose, Mattermost has the following commands in the mattermost CLI:
+
+Install the server with `go install ./cmd/mattermost` in the server repository.
 
 You can reset your database to the initial state using:
 ```

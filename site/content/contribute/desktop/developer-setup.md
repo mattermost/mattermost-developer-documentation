@@ -5,7 +5,7 @@ weight: 2
 subsection: "Desktop App"
 ---
 
-# Environment Setup
+# Developer  Setup
 
 ## Prerequisites
 - C++ environment which supports C++11 (e.g. VS 2015, Xcode, GCC)
