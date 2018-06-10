@@ -59,3 +59,15 @@ Below is the list of core developers working on individual Mattermost repositori
 - **Kyâne Pichou** - [mattermost-docker](https://github.com/mattermost/mattermost-docker)
   - @pichouk on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@pichouk) and [@pichouk](https://github.com/pichouk) on GitHub
 
+The core team also has product managers who do a lot of great work designing, prioritizing and coordinating. They are:
+
+- **Lindsay Brock**
+  - @lindsay on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@lindsay) and [@lfbrock](https://github.com/lfbrock) on GitHub
+- **Jason Blais**
+  - @jason on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@jason) and [@jasonblais](https://github.com/jasonblais) on GitHub
+- **Eric Sethna**
+  - @eric on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@eric) and [@esethna](https://github.com/esethna) on GitHub
+- **Amy Blais**
+  - @amyblais on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@amyblais) and [@amyblais](https://github.com/amyblais) on GitHub
+- **Katie Wiersgalla**
+  - @katie.wiersgalla on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@katie.wiersgalla) and [@wiersgallak](https://github.com/wiersgallak) on GitHub
