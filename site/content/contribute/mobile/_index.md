@@ -6,9 +6,18 @@ section: "contribute"
 
 # Mobile
 
-The Mattermost mobile apps are written in [JavaScript](https://golang.org/) using [React Native](https://facebook.github.io/react-native/) and [Redux](http://redux.js.org/). The code lives in the [mattermost-mobile](https://github.com/mattermost/mattermost-mobile) respository.
+The Mattermost mobile apps are written in [JavaScript](https://golang.org/) using [React Native](https://facebook.github.io/react-native/) and [Redux](http://redux.js.org/).
 
-<div style="margin-top: 15px;">
-<span class="pull-right"><a href="/contribute/webapp/developer-setup/">Go to Environment Setup ></a></span>
-</div>
-<br/>
+It is powered by [mattermost-redux](/contribute/redux) which handles the majority of the logic, client-side storage and server communication.
+
+## Repository
+
+https://github.com/mattermost/mattermost-mobile
+
+## Channel
+
+https://pre-release.mattermost.com/core/channels/native-mobile-apps
+
+## Help Wanted
+
+[Find help wanted tickets here.](https://github.com/mattermost/mattermost-mobile/issues?q=is%3Aopen+is%3Aissue+label%3A%22Help+Wanted%22)
