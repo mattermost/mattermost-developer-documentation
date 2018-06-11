@@ -2525,7 +2525,9 @@ table > tbody > tr:nth-of-type(odd) {
   margin: 50px 0 0;
   padding-left: 50px; }
   .doc-content img {
-    margin: 2em 0; }
+    margin: 1em 0; 
+    max-width: 800px;
+  }
   .doc-content pre {
     background: #f5f5f5;
     border-radius: 5px;

@@ -1,166 +1,167 @@
 ---
-title: "Environment Setup"
+title: "Developer Setup"
 date: 2017-08-20T11:35:32-04:00
 weight: 2
 subsection: Mobile
 ---
 
-<div class="section" id="mobile-developer-machine-setup">
-<span id="mobile-developer-setup"></span><h1>Environment Setup</h1>
-<p>The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version <a class="reference external" href="http://about.mattermost.com/mattermost-ios-app/">here</a> and the Android version <a class="reference external" href="http://about.mattermost.com/mattermost-android-app/">here</a>. Source code can be found at: <a class="reference external" href="https://github.com/mattermost/mattermost-mobile">https://github.com/mattermost/mattermost-mobile</a></p>
-<p>If you run into any issues getting your environment set up, check the Troubleshooting section at the bottom for common solutions.</p>
-<div class="section" id="development-environment-setup">
-<h2>Development Environment Setup</h2>
-<div class="section" id="mac-os-x">
-<h3>Mac OS X</h3>
-<ol class="arabic simple">
-<li>Install <a class="reference external" href="https://developer.apple.com/download/">XCode 8.3</a>.</li>
-<li>Install <a class="reference external" href="http://brew.sh/">Homebrew</a>.</li>
-<li>Using Homebrew, install <a class="reference external" href="https://nodejs.org">Node.js</a> and npm.</li>
-</ol>
-<blockquote>
-<div><code class="docutils literal"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">node</span></code></div></blockquote>
-<ol class="arabic simple" start="4">
-<li>Using Homebrew, install <a class="reference external" href="https://github.com/facebook/watchman">Watchman</a>.</li>
-</ol>
-<blockquote>
-<div><code class="docutils literal"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">watchman</span></code></div></blockquote>
-<ol class="arabic simple" start="5">
-<li>Using npm, install the React Native CLI tools globally.</li>
-</ol>
-<blockquote>
-<div><code class="docutils literal"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">react-native-cli</span></code></div></blockquote>
-<ol class="arabic" start="6">
-<li><p class="first">Using Homebrew or npm install <a class="reference external" href="https://yarnpkg.com">Yarn</a>.</p>
-<p><code class="docutils literal"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">yarn</span></code> or <code class="docutils literal"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">yarn</span></code></p>
-</li>
-<li><p class="first">Fork <a class="reference external" href="https://github.com/mattermost/mattermost-mobile">mattermost-mobile</a> on GitHub.</p>
-</li>
-<li><p class="first">Clone your fork locally.</p>
-</li>
-</ol>
-<blockquote>
-<div><p><code class="docutils literal"><span class="pre">cd</span></code> into the folder that you want to store the local copy of your code</p>
-<p><code class="docutils literal"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/&lt;username&gt;/mattermost-mobile.git</span></code></p>
-<p><code class="docutils literal"><span class="pre">cd</span> <span class="pre">mattermost-mobile</span></code></p>
-</div></blockquote>
-<ol class="arabic simple" start="9">
-<li>Using npm, download any other dependencies.</li>
-</ol>
-<blockquote>
-<div><code class="docutils literal"><span class="pre">make</span> <span class="pre">pre-run</span></code></div></blockquote>
-<ol class="arabic simple" start="10">
-<li><em>Optional:</em> Install Mattermost locally so that you can run unit tests and connect to the server while doing development.</li>
-</ol>
-<blockquote>
-<div><ol class="loweralpha simple">
-<li>Follow the steps in the <a class="reference external" href="developer-setup.html">Developer Machine Setup</a> to install Mattermost.</li>
-<li>Edit your Mattermost instance’s configuration file to allow sign-up without an invite.</li>
-</ol>
-<blockquote>
-<div>In <code class="docutils literal"><span class="pre">config/config.json</span></code>, set <code class="docutils literal"><span class="pre">&quot;EnableOpenServer&quot;</span></code> to <code class="docutils literal"><span class="pre">true</span></code></div></blockquote>
-<ol class="loweralpha simple" start="3">
-<li>Start/restart your server.</li>
-</ol>
-<blockquote>
-<div><code class="docutils literal"><span class="pre">make</span> <span class="pre">restart-server</span></code></div></blockquote>
-</div></blockquote>
-</div>
-</div>
-<div class="section" id="test-environment-setup">
-<h2>Test Environment Setup</h2>
-<div class="section" id="android-device">
-<h3>Android (Device)</h3>
-<ol class="arabic simple">
-<li>Install the Android SDK (can be skipped if you already have Android Studio installed).</li>
-</ol>
-<blockquote>
-<div><ol class="loweralpha simple">
-<li>Go to <a class="reference external" href="https://developer.android.com/studio/index.html#downloads">the Android developer downloads page</a>, scroll down to the Get Just the Command Line Tools, and download the zip file suitable for your operating system.</li>
-<li>Unzip the SDK to somewhere on your hard drive. For example, <code class="docutils literal"><span class="pre">/Users/&lt;username&gt;/Library/Android/sdk</span></code> on Mac OS X.</li>
-</ol>
-</div></blockquote>
-<ol class="arabic simple" start="2">
-<li>Configure the following environment variables:</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>Set <code class="docutils literal"><span class="pre">ANDROID_HOME</span></code> to where Android SDK is located (likely <code class="docutils literal"><span class="pre">/Users/&lt;username&gt;/Library/Android/sdk</span></code>)</li>
-<li>Add <code class="docutils literal"><span class="pre">ANDROID_HOME/tools</span></code> and <code class="docutils literal"><span class="pre">ANDROID_HOME/platform-tools</span></code> to the <code class="docutils literal"><span class="pre">PATH</span></code>.</li>
-</ul>
-</div></blockquote>
-<ol class="arabic simple" start="3">
-<li>Run <code class="docutils literal"><span class="pre">android</span></code> to open the Android SDK Manager and install the following packages:</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li>Tools &gt; Android SDK Tools 25.2.5 or higher</li>
-<li>Tools &gt; Android SDK Platform-tools 25.0.3</li>
-<li>Tools &gt; Android SDK Build-tools 25.0.2</li>
-<li>Tools &gt; Android SDK Build-tools 25.0.1</li>
-<li>Android 6.0 &gt; SDK Platform 23</li>
-<li>Android 6.0 &gt; Google APIs 23</li>
-<li>Android 5.1.1 &gt; SDK Platform 22</li>
-<li>Android 5.1.1 &gt; Google APIs 22</li>
-<li>Extras &gt; Android Support Repository and/or Androud Support Library</li>
-<li>Extras &gt; Google Play Services</li>
-<li>Extras &gt; Google Repository</li>
-</ul>
-</div></blockquote>
-<ol class="arabic simple" start="4">
-<li>Connect your Android device to your computer.</li>
-<li>Enable USB Debugging on your device.</li>
-<li>Ensure that your device is listed in the output of <code class="docutils literal"><span class="pre">adb</span> <span class="pre">devices</span></code>.</li>
-<li>Start the React Native packager to deploy the APK to your device.</li>
-</ol>
-<blockquote>
-<div><code class="docutils literal"><span class="pre">make</span> <span class="pre">run-android</span></code></div></blockquote>
-<ol class="arabic simple" start="8">
-<li>The installed APK may not be opened automatically. You may need to manually open the Mattermost app on your device.</li>
-</ol>
-</div>
-</div>
-<div class="section" id="troubleshooting">
-<h2>Troubleshooting</h2>
-<div class="section" id="errors-when-running-make-run-android">
-<h3>Errors when running ‘make run-android’</h3>
-<dl class="docutils">
-<dt>Error message</dt>
-<dd><div class="first last highlight-none"><div class="highlight"><pre><span></span>React-native-vector-icons: cannot find dependencies
-</pre></div>
-</div>
-</dd>
-<dt>Solution</dt>
-<dd>Make sure the <strong>Extras &gt; Android Support Repository</strong> package is installed with the Android SDK.</dd>
-<dt>Error message</dt>
-<dd><div class="first last highlight-none"><div class="highlight"><pre><span></span>Execution failed for task &#39;:app:packageAllDebugClassesForMultiDex&#39;.
-&gt; java.util.zip.ZipException: duplicate entry: android/support/v7/appcompat/R$anim.class
-</pre></div>
-</div>
-</dd>
-<dt>Solution</dt>
-<dd><p class="first">Clean the Android part of the mattermost-mobile project. Issue the following commands:</p>
-<ol class="last arabic simple">
-<li><code class="docutils literal"><span class="pre">cd</span> <span class="pre">android</span></code></li>
-<li><code class="docutils literal"><span class="pre">./gradlew</span> <span class="pre">clean</span></code></li>
-</ol>
-</dd>
-<dt>Error message</dt>
-<dd><div class="first last highlight-none"><div class="highlight"><pre><span></span>Execution failed for task &#39;:app:installDebug&#39;.
-&gt; com.android.builder.testing.api.DeviceException: com.android.ddmlib.InstallException: Failed to finalize session : INSTALL_FAILED_UPDATE_INCOMPATIBLE: Package com.mattermost.react.native signatures do not match the previously installed version; ignoring!
-</pre></div>
-</div>
-</dd>
-<dt>Solution</dt>
-<dd>The development version of the Mattermost app cannot be installed alongside a release version. Open <code class="docutils literal"><span class="pre">android/app/build.gradle</span></code> and change the applicationId from <code class="docutils literal"><span class="pre">&quot;com.mattermost.react.native&quot;</span></code> to a unique string for your app.</dd>
-</dl>
-</div>
-</div>
-</div>
+# Developer Setup
+
+The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version [here](http://about.mattermost.com/mattermost-ios-app/) and the Android version [here](http://about.mattermost.com/mattermost-android-app/). Source code can be found at https://github.com/mattermost/mattermost-mobile.
+
+If you run into any issues getting your environment set up, check the [Troubleshooting section]() at the bottom for common solutions.
+
+A macOS computer is required to build the Mattermost iOS mobile app.
+
+## Environment Setup
+
+### iOS and Android
+
+Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using [Homebrew] as a package manager.
+
+1. Install [NodeJS](https://nodejs.org/en/). This includes NPM which is also needed. (minimum required version is 9.3.0)
+
+    - To install using Homebrew open a terminal and execute ..
+
+        ```sh
+        $ brew install node
+        ```
+
+    -   Install using NVM by following the instructions [here][https://github.com/creationix/nvm#install-script]
+    -   Download and install the package from the [NodeJS
+        website][https://nodejs.org/en/]
+
+2. Install [Watchman](https://facebook.github.io/watchman/). (minimum required version is 4.9.0)
+
+    - To install using Homebrew open a terminal and execute ..
+
+        ```sh
+        $ brew install watchman
+        ```
+3. Now use **npm** to install [React Native CLI Tools](http://facebook.github.io/react-native/docs/understanding-cli.html) globally (minimum required version is 2.0.1)
+    ```sh 
+    $ npm -g install react-native-cli
+    ```
+
+4. We use GitHub to host the source code so we recommend that you install [Git](https://git-scm.com/) to get the source code. Optionally, you can also contribute by submitting [pull requests](https://help.github.com/articles/creating-a-pull-request/). If you do not have git installed you can do so with Homebrew by opening a terminal and executing:
+    ```sh
+    $ brew install git
+    ```
+
+### iOS
+
+1.  Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12) to build and run the app on iOS. (minimum required version is 9.0)
+2.  Install [Cocoapods](https://cocoapods.org/) using the `gem` method. You\'ll need it to install the project's iOS dependencies. (required version is 1.3.1)
+
+### Android
+
+1.  Download and install [Android Studio or the Android SDK command line tools](https://developer.android.com/studio/index.html#downloads).
+
+2. Make sure you have the following ENV VARS configured:
+    - `ANDROID_HOME` to where Android SDK is located (likely `/Users/<username>/Library/Android/sdk`)
+    - Make sure your `PATH` includes `ANDROID_HOME/tools` and `ANDROID_HOME/platform-tools`
+        -   On Mac, this usually requires adding the following lines to your `~/.bash_profile` file:
+
+            ```sh
+            export ANDROID_HOME=/Users/<username>/Library/Android/sdk
+            export PATH=$ANDROID_HOME/platform-tools:$PATH
+            export PATH=$ANDROID_HOME/tools:$PATH
+            ```
+        - Then reload your bash configuration:
+        
+            ```sh
+            source ~/.bash_profile
+            ```
+
+3. In the SDK Manager using Android Studio or the [Android SDK command line tool](https://developer.android.com/studio/command-line/sdkmanager.html), ensure the following are installed
+    - SDK Tools (you may have to click "Show Package Details" to expand packages)
+        ![image](/img/mobile_SDK_Tools.png)
+        - Android SDK Build-Tools (multiple versions)
+            - 23.0.3
+            - 25.0.3
+            - 26.0.1
+        - Android Emulator
+        - Android SDK Platform-Tools
+        - Android SDK Tools
+        - Google Play services
+        - Intel x86 Emulator Accelerator (HAXM installer)
+        - Support Repository
+           -   Android Support Repository
+           -   Google Repository
+
+    - SDK Platforms (you may have to click "Show Package Details" to expand packages)
+        ![image](/img/mobile_SDK_Platforms.png)
+        - Android 6 (Marshmallow)
+            - Google APIs
+            - Android SDK Platform 23
+            - Intel x86 Atom\_64 System Image
+        - Any other API version that you want to test
 
 
-<div style="margin-top: 15px;">
-<span class="pull-left"><a href="/contribute/mobile/">< Back to Mobile</a></span>
-<span class="pull-right"><a href="/contribute/mobile/developer-workflow/">Go to Workflow ></a></span>
-</div>
-<br/>
+## Pulling the Source Code
+
+In order to develop and build the Mattermost mobile apps you'll need to get a copy of the source code. Forking the `mattermost-mobile` repository will also make it easy to contribute your work back to the project in the future.
+
+1.  Fork the [mattermost-mobile](https://github.com/mattermost/mattermost-mobile) repository on GitHub.
+
+2. Clone your fork locally:
+    - Open a terminal
+    - Change to a directory you want to hold your local copy
+    - Run `git clone https://github.com/<username>/mattermost-mobile.git` if you want to use HTTPS, or `git clone git@github.com:<username>/mattermost-mobile.git` if you want to use SSH
+
+    **`<username>` refers to the username or organization in GitHub that forked the repository**
+
+3.  Change the directory to `mattermost-mobile`.
+    ```sh
+    cd mattermost-mobile
+    ```
+
+4.  Run `make pre-run` in order to install all the dependencies.
+
+## Troubleshooting
+
+### Errors When Running 'make run-android'
+
+##### Error message
+```sh
+React-native-vector-icons: cannot find dependencies
+```
+
+##### Solution
+Make sure the **Extras > Android Support Repository** package is installed with the Android SDK.
+
+#### Error message
+```sh
+Execution failed for task ':app:packageAllDebugClassesForMultiDex'.
+> java.util.zip.ZipException: duplicate entry: android/support/v7/appcompat/R$anim.class
+```
+
+#### Solution
+Clean the Android part of the mattermost-mobile project. Issue the following commands:
+
+1. ``cd android``
+2. ``./gradlew clean``
+
+##### Error message
+```sh
+Execution failed for task ':app:installDebug'.
+> com.android.builder.testing.api.DeviceException: com.android.ddmlib.InstallException: Failed to finalize session : INSTALL_FAILED_UPDATE_INCOMPATIBLE: Package com.mattermost.react.native signatures do not match the previously installed version; ignoring!
+```
+
+##### Solution
+The development version of the Mattermost app cannot be installed alongside a release version. Open ``android/app/build.gradle`` and change the applicationId from ``"com.mattermost.react.native"`` to a unique string for your app.
+
+### Errors When Running 'make run-ios'
+
+##### Error message
+```sh
+xcrun: error: unable to find utility "instruments", not a developer tool or in PATH
+```
+
+##### Solution
+  - Launch XCode and agree to the terms first.
+  - Go to **Preferences -> Locations** and you'll see an option to select a version of the Command Line Tools. Click the select box and choose any version to use.
+
+  ![](/img/xcode_preferences.png)
+
+  - After this go back to the command line and run ``make run-ios`` again.

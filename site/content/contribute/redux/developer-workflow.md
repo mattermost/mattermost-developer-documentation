@@ -23,10 +23,10 @@ If you look at the [Mattermost Redux repository](https://github.com/mattermost/m
 ## Useful Commands
 
 - `make test` - Run the unit tests against a mocked server. Running this is required before submitting a pull request.
-- `yarn run test-no-mock` - Run the unit tests against a real Mattermost server. This server is expected to be available at `http://localhost:8065` with the `TeamSettings.EnableOpenServer` setting set to true.
+- `npm run test-no-mock` - Run the unit tests against a real Mattermost server. This server is expected to be available at `http://localhost:8065` with the `TeamSettings.EnableOpenServer` setting set to true.
 - `make check-style` - Run ESLint to check code style. Running this is required before submitting a pull request.
-- `yarn run dev` or `yarn run dev:watch` - Attempts to compile Mattermost Redux and copy it into the node_modules folder of the web app. It attempts to install it into `../mattermost-webapp` or a location specified in the `WEBAPP_DIR` environment variable. The `:watch` variation will continue running in the background and update the installed version with any changes that you make while it runs.
-- `yarn run dev-mobile` or `yarn run dev-mobile:watch` - Attempts to compile Mattermost Redux and copy it into the node_modules folder of the mobile app. It attempts to install it into `../mattermost-mobile` or a location specified in the `MOBILE_DIR` environment variable. The `:watch` variation will continue running in the background and update the installed version with any changes that you make while it runs.
+- `npm run dev` or `npm run dev:watch` - Attempts to compile Mattermost Redux and copy it into the node_modules folder of the web app. It attempts to install it into `../mattermost-webapp` or a location specified in the `WEBAPP_DIR` environment variable. The `:watch` variation will continue running in the background and update the installed version with any changes that you make while it runs.
+- `npm run dev-mobile` or `npm run dev-mobile:watch` - Attempts to compile Mattermost Redux and copy it into the node_modules folder of the mobile app. It attempts to install it into `../mattermost-mobile` or a location specified in the `MOBILE_DIR` environment variable. The `:watch` variation will continue running in the background and update the installed version with any changes that you make while it runs.
 
 ## Working with the Mattermost Redux library
 
@@ -38,17 +38,18 @@ If you're making changes to Mattermost Redux for use in the Mattermost web app, 
 
 2. Run the following command to install Mattermost Redux from your local copy. While this is running, it will detect any changes you make and automatically copy them over to the web app.
 
-        `yarn run dev:watch`
+        `npm run dev:watch`
 
-Similarly, if you're developing for the Mattermost mobile app, you can set the `MOBILE_DIR` environment variable and run a watcher with `yarn run dev-mobile`.
+Similarly, if you're developing for the Mattermost mobile app, you can set the `MOBILE_DIR` environment variable and run a watcher with `npm run dev-mobile`.
 
 ## Submitting a Pull Request
 
 Once your changes are complete, there are a few things to do before submitting a pull request back to the [Mattermost Redux repository](https://github.com/mattermost/mattermost-redux).
+
 1. Add or update unit tests as necessary. All new features should include unit tests.
 2. Run `make test` to confirm that your changes pass all the unit tests.
 3. Run `make check-style` to confirm that your changes fit [the style guide](https://docs.mattermost.com/developer/style-guide.html#javascript).
 
 Once those are done, submit a pull request to the [Mattermost Redux repository](https://github.com/mattermost/mattermost-redux) for review.
 
-Once that has been approved and merged, submit a pull request to the [mattermost-webapp](https://github.com/mattermost/mattermost-webapp) and/or [mattermost-mobile](https://github.com/mattermost/mattermost-mobile) repositories including any other changes as well as updating the package.json and yarn.lock files to include your Mattermost Redux changes.
+Once that has been approved and merged, submit a pull request to the [mattermost-webapp](https://github.com/mattermost/mattermost-webapp) and/or [mattermost-mobile](https://github.com/mattermost/mattermost-mobile) repositories including any other changes as well as updating the package.json and npm.lock files to include your Mattermost Redux changes.
