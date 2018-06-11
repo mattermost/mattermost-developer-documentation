@@ -18,6 +18,6 @@ It is acceptable to submit a PR for a bug or incremental improvement, with less 
  - [Fix Android app crashing when saving user notification settings](https://github.com/mattermost/mattermost-mobile/pull/364)
  - [Fix recent mentions search not working](https://github.com/mattermost/mattermost-server/pull/5878)
  
-Larger pull requests, including those that require a change to documentation or user expectations, [require a Help Wanted issue opened by the core team](http://docs.mattermost.com/process/help-wanted.html) so that the change can be tested, documented and supported.
+Core committers who review the PR are entitled to reject it if they feel it significantly changes behavior or user expectations, which requires a `Help Wanted` ticket opened by the core team. This helps ensure that everything going into the project aligns with a unified vision.
 
 The best way to discuss opening a Help Wanted ticket with the core team is by [starting a conversation in the feature idea forum](https://www.mattermost.org/feature-ideas/) or [opening an issue in the GitHub repository](https://github.com/mattermost/mattermost-server/issues/new). Alternatively, don't hesitate to come chat about it in the [Contributors](https://pre-release.mattermost.com/core/channels/tickets) or [Developers](https://pre-release.mattermost.com/core/channels/developers) channels.

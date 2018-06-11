@@ -9,7 +9,9 @@ subsection: Getting Started
 
 Thanks for your interest in contributing to Mattermost! Come [join our "Contributors" community channel](https://pre-release.mattermost.com/core/channels/tickets) on our daily build server, where you can discuss questions with community members and the Mattermost core team.
 
-To help with translations, [see the localization process](https://docs.mattermost.com/developer/localization.html), follow this checklist for submitting a pull request (PR):
+To help with translations, [see the localization process](https://docs.mattermost.com/developer/localization.html).
+
+Follow this checklist for submitting a pull request (PR):
 
 1. You've signed the [Contributor License Agreement](http://www.mattermost.org/mattermost-contributor-agreement/), so you can be added to the Mattermost [Approved Contributor List](https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true).
  - If you've included your mailing address in the signed [Contributor License Agreement](https://www.mattermost.org/mattermost-contributor-agreement/), you may receive a [Limited Edition Mattermost Mug](https://forum.mattermost.org/t/limited-edition-mattermost-mugs/143) as a thank you gift after your first pull request is merged.
