@@ -1,11 +1,11 @@
 ---
-title: "Developer Workflow"
+title: "Mobile Apps Workflow"
 date: 2018-05-20T11:35:32-04:00
 weight: 3
 subsection: Mobile
 ---
 
-# Developer  Workflow
+# Mobile Apps  Workflow
 
 ## Running and Building the Apps
 
