@@ -4,7 +4,7 @@
  */
 /* FONT PATH
  * -------------------------- */
-@font-face {
+ @font-face {
   font-family: 'FontAwesome';
   src: url("../fonts/fontawesome-webfont.eot?v=4.7.0");
   src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
@@ -2358,7 +2358,8 @@ a {
 
 #wrapper {
   flex: 1;
-  padding-bottom: 10rem; }
+  padding-bottom: 3em;
+  }
 
 p {
   margin-bottom: 24px; }
@@ -2539,11 +2540,12 @@ table > tbody > tr:nth-of-type(odd) {
   -webkit-transform: skew(0deg, -5deg);
   transform: skew(0deg, -5deg);
   background-image: linear-gradient(-135deg, #1ba4f7 0%, #4641ff 100%);
-  height: 110%;
+  height: 90%;
   left: 0;
   position: absolute;
   top: -15%;
-  width: 100%; }
+  width: 100%;
+  }
   .homepage .homepage__bg:before {
     background: url("../img/introBgTop.svg") no-repeat;
     content: '';
@@ -2585,8 +2587,9 @@ table > tbody > tr:nth-of-type(odd) {
 
 .homepage__intro {
   color: #fff;
-  padding: 16em 0 20em;
-  position: relative; }
+  padding: 14em 0;
+  position: relative;
+  }
   .homepage__intro h1 {
     margin-bottom: 1.7rem; }
 
