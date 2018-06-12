@@ -1,10 +1,10 @@
 ---
-title: "Mobile"
-date: "2018-06-19T12:01:23-04:00"
+title: "Mobile Apps"
+date: "2018-02-19T12:01:23-04:00"
 section: "contribute"
 ---
 
-# Mobile
+# Mobile Apps
 
 The Mattermost mobile apps are written in [JavaScript](https://golang.org/) using [React Native](https://facebook.github.io/react-native/) and [Redux](http://redux.js.org/).
 

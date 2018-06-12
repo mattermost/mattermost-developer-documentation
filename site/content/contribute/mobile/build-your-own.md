@@ -1,6 +1,6 @@
 ---
 title: "Build Your Own App"
-date: 2018-06-20T11:35:32-04:00
+date: 2018-05-20T11:35:32-04:00
 weight: 6
 subsection: Mobile
 ---
