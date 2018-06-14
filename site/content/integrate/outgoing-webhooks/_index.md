@@ -125,6 +125,6 @@ See the [admin guide's notes on Slack compatibility](https://docs.mattermost.com
 
 ### Tips and Best Practices
 
-1. If `text` is longer than 4000 characters, the message is split into multiple consecutive posts, each within the 4000 character limit.
+1. If the `text` is longer than the allowable character limit per post, the message is split into multiple consecutive posts, each within the character limit. Servers running Mattermost Server v5.0 or later [can support posts up to 16383 characters](https://docs.mattermost.com/administration/important-upgrade-notes.html).
 2. Your webhook integration may be written in any programming language as long as it supports handling HTTP POST requests.
 3. Outgoing webhooks are supported in public channels only. If you need a trigger that works in a private channel or a direct message, consider using a [slash command](/integrate/slash-commands) instead.
