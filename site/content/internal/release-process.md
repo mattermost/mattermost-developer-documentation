@@ -47,7 +47,7 @@ After a couple days pass you will need to set the CI servers to point back to `m
 
 After a release branch is cut, we need to merge the release branch into `master` daily to sync all changes made in the release branch.
 
-To do, so follow these steps for the following repositories:
+To do so follow, these steps for the following repositories:
 
 * mattermost-server
 * mattermost-webapp
