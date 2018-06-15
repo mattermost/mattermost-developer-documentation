@@ -54,7 +54,9 @@ To do, so follow these steps for the following repositories:
 * mattermost-redux
 * enterprise
 
-1. Create a branch:
+1. Alert developers in the [Developers channel](https://pre-release.mattermost.com/core/channels/core-developers) not to make commits against `master` in any of the repositories above. [See a sample message here](https://pre-release.mattermost.com/core/pl/fmsnihajrtfh8bhepiy331wtka).
+
+2. Create a branch:
 
 ```Bash
 $ git checkout master
@@ -67,8 +69,8 @@ $ git merge upstream/release-X.X --no-ff # where X.X is the release number
 $ git push origin <name-of-the-branch>
 ```
 
-2. Open a PR for the branch.
-3. After the PR is approved, create a merge commit:
+3. Open a PR for the branch.
+4. After the PR is approved, create a merge commit:
 
 ```Bash
 $ git checkout master
