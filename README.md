@@ -4,7 +4,7 @@ Website for Mattermost developer documentation, built using [Hugo](https://gohug
 
 ## Contributing
 
-Set up steps for Mac OS X:
+Set up steps for Mac OS X: 
 
 1. Install Hugo
 ```
