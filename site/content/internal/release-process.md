@@ -45,20 +45,19 @@ After a couple days pass you will need to set the CI servers to point back to `m
 
 # Daily Merges from Release Branch to Master Branch
 
-During the release/rc cuts we need to merge daily the release branch into master to sync all changes made in the release branch.
+After a release branch is cut, we need to merge the release branch into `master` daily to sync all changes made in the release branch.
 
-Before start the merge process, please post a message in the Developers channel to alert the Developers to not perform any commits to master in any of the repositories described below.
-
-To do that you will need to perform some commands in the following repositories:
+To do so follow, these steps for the following repositories:
 
 * mattermost-server
 * mattermost-webapp
 * mattermost-redux
 * enterprise
 
-You need to create a branch and after the merge open a Pull request for each repository.
+1. Alert developers in the [Developers channel](https://pre-release.mattermost.com/core/channels/core-developers) not to make commits against `master` in any of the repositories above. [See a sample message here](https://pre-release.mattermost.com/core/pl/fmsnihajrtfh8bhepiy331wtka).
 
-To merge the release branch into master:
+2. Create a branch:
+
 ```Bash
 $ git checkout master
 $ git fetch upstream -p
@@ -70,14 +69,13 @@ $ git merge upstream/release-X.X --no-ff # where X.X is the release number
 $ git push origin <name-of-the-branch>
 ```
 
-Then create a PR.
-After the PR get reviewed and approved you need to create a merge commit. To do that, follow:
+3. Open a PR for the branch.
+4. After the PR is approved, create a merge commit:
 
 ```Bash
 $ git checkout master
 $ git merge <name-of-the-branch> --ff-only
 $ git push upstream master
 ```
-
 
 That's it!
