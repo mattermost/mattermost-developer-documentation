@@ -12,7 +12,7 @@ On code complete day, work with the PM on rotation to get all the pull requests 
 2. Trigger the matterbuild Jenkins job to update it https://build.mattermost.com/job/matterbuild.
 3. Submit a PR to uncomment the upgrade code for the release version and add it to the version array. Use these PRs as examples, [https://github.com/mattermost/mattermost-server/pull/6336/files](https://github.com/mattermost/mattermost-server/pull/6336/files) and [https://github.com/mattermost/mattermost-server/pull/6600/files](https://github.com/mattermost/mattermost-server/pull/6600/files).
 4. Once the above PR is merged, post `/mb cut X.X.X-rc1` into a private channel. Replace `X.X.X` with the release version, ex: `3.10.0`. This will begin cutting the build and make an automatic post to the Release Discussion channel.
-5. Wait approximately 40 minutes for the build to finish. If the build fails, you will need to delete the version tags from the mattermost-server, mattermost-webapp and enterprise repositories by running `git push origin :vX.X.X-rc1` in all of them. Then simply repeat step 4. You can monitor build status from https://build.mattermost.com.
+5. Wait approximately 25 minutes for the build to finish. If the build fails, you will need to delete the version tags from the mattermost-server, mattermost-webapp and enterprise repositories by running `git push origin :vX.X.X-rc1` in all of them. Then simply repeat step 4. You can monitor build status from https://build.mattermost.com.
 6. Once the build finishes, submit a PR to `master` to add the upgrade code for the next release. For example, [https://github.com/mattermost/mattermost-server/pull/6337/files](https://github.com/mattermost/mattermost-server/pull/6337/files) and [https://github.com/mattermost/mattermost-server/pull/6616/files](https://github.com/mattermost/mattermost-server/pull/6616/files).
 
 The build automation will take care of updating all the CI and test servers, and it will make a post in the Release Discussion channel with all the download links. It will also create the release branch named `release-X.X`, with `X-X` replace by the major and minor version numbers.
@@ -42,5 +42,40 @@ After a couple days pass you will need to set the CI servers to point back to `m
 
 1. Post `/mb setci master` into a private channel.
 2. Post `/mb setprerelease master` into a private channel.
+
+# Daily Merges from Release Branch to Master Branch
+
+After a release branch is cut, we need to merge the release branch into `master` daily to sync all changes made in the release branch.
+
+To do so follow, these steps for the following repositories:
+
+* mattermost-server
+* mattermost-webapp
+* mattermost-redux
+* enterprise
+
+1. Alert developers in the [Developers channel](https://pre-release.mattermost.com/core/channels/core-developers) not to make commits against `master` in any of the repositories above. [See a sample message here](https://pre-release.mattermost.com/core/pl/fmsnihajrtfh8bhepiy331wtka).
+
+2. Create a branch:
+
+```Bash
+$ git checkout master
+$ git fetch upstream -p
+$ git merge upstream/master
+$ git push origin master
+
+$ git checkout -b <name-of-the-branch> # ie. release-x.x-daily-merge-yyyymmdd
+$ git merge upstream/release-X.X --no-ff # where X.X is the release number
+$ git push origin <name-of-the-branch>
+```
+
+3. Open a PR for the branch.
+4. After the PR is approved, create a merge commit:
+
+```Bash
+$ git checkout master
+$ git merge <name-of-the-branch> --ff-only
+$ git push upstream master
+```
 
 That's it!
