@@ -10,7 +10,7 @@ subsection: "Desktop App"
 ## Prerequisites
 - C++ environment which supports C++11 (e.g. VS 2015, Xcode, GCC)
 - Python 2.7
-- Node.js 4.2.0 or later
+- Node.js 8 or later
 - Yarn
 - Git
 

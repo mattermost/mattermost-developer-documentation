@@ -2,7 +2,7 @@
 title: "Reducers"
 date: 2017-08-20T11:35:32-04:00
 weight: 5
-subsection: Mattermost Redux
+subsection: Redux
 ---
 
 # Reducers

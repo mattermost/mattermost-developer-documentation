@@ -2,7 +2,7 @@
 title: "Migrating to Flow"
 date: 2017-08-20T11:35:32-04:00
 weight: 8
-subsection: Mattermost Redux
+subsection: Redux
 ---
 
 # Migrating the Redux Library to Flow

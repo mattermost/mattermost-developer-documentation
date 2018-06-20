@@ -5,7 +5,7 @@ section: "contribute"
 ---
 
 # Desktop App
-The Mattermost desktop app is an [Electron](https://electronjs.org/) wrapper around the <a href="/contribute/webapp">webapp</a> project. It lives in the [mattermost/desktop]() repository. The desktop app runs on Windows, Linux, and macOS.
+The Mattermost desktop app is an [Electron](https://electronjs.org/) wrapper around the [web app](/contribute/webapp) project. It lives in the [mattermost/desktop](https://github.com/mattermost/desktop) repository. The desktop app runs on Windows, Linux, and macOS.
 
 ## Repository
 

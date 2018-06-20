@@ -2,7 +2,7 @@
 title: "Using Redux with React"
 date: 2017-08-20T11:35:32-04:00
 weight: 7
-subsection: Mattermost Redux
+subsection: Redux
 ---
 
 # Using Redux with React
