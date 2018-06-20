@@ -84,7 +84,7 @@ pygmentsStyle = "manni"
 
     # Workaround to add draft status to menu items
     [[params.navigation.drafts]]
-      Contribute = true
+      Contribute = false
       Integrate = false
       Extend = false
       Blog = true
@@ -105,7 +105,7 @@ pygmentsStyle = "manni"
     url = "contribute/getting-started"
     button = "Start Contributing"
     icon = "/img/contribute-icon.svg"
-    draft = true
+    draft = false
 
   [[params.intro.item]]
     title = "Integrate"

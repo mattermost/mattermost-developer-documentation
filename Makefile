@@ -21,4 +21,6 @@ frontend-plugin-data:
 
 devtalks-data:
 	mkdir -p site/data
+ifdef YOUTUBE_API_KEY
 	go run scripts/devtalks.go > site/data/DevTalks.json
+endif

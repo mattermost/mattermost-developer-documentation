@@ -1,16 +1,16 @@
 ---
-title: "Environment Setup"
+title: "Developer Setup"
 date: 2018-01-02T10:44:11-05:00
 weight: 2
 subsection: "Desktop App"
 ---
 
-# Environment Setup
+# Developer  Setup
 
 ## Prerequisites
 - C++ environment which supports C++11 (e.g. VS 2015, Xcode, GCC)
 - Python 2.7
-- Node.js 4.2.0 or later
+- Node.js 8 or later
 - Yarn
 - Git
 
@@ -82,3 +82,29 @@ $ npm run lint:js
 ### `npm run watch`
 Reload the application automatically when you have saved source codes.
 When using this mode, you can use "React Developer Tools" in the Developer Tools window.
+
+## Directory Structure
+```
+Mattermost Desktop
+├── docs/ - Documentations.
+├── resources/ - Resources which are used outside of the application codes, and original images of assets.
+├── scripts/ - Helper scripts.
+├── src/ - Application source code.
+│   ├── assets/ - Assets which are loaded from the application codes.
+│   ├── browser/ - Implementation of Electron's renderer process.
+│   │   ├── components/ - React.js components.
+│   │   ├── css/ - Stylesheets.
+│   │   ├── js/ - Helper JavaScript modules.
+│   │   └── webview/ - Injection code for Electron's <webview> tag.
+│   ├── common/ - Common JavaScript modules for both Electron's processes.
+│   └── main/ - Implementation of Electron's main process.
+│       └── menus/ - Application menu.
+└── test/ - Automated tests.
+    ├── modules/ - Scripts which are commonly used in tests.
+    └── specs/ - Test scripts.
+```
+
+### Other directories
+- `node_modules/` - Third party Node.js modules to develop and build the application.
+- `release/` - Packaged distributable applications.
+- `src/node_modules/` - Third party Node.js modules to use in the application.
