@@ -22,7 +22,7 @@ None of that make any sense to you, or new to React and Redux? Then check out th
 - https://facebook.github.io/react/tutorial/tutorial.html
 - http://redux.js.org/
 
-The components for the webapp currently live in the `components/` directory in the [mattermost-webapp repository].
+The components for the webapp currently live in the `components/` directory in the [mattermost-webapp repository](https://github.com/mattermost/mattermost-webapp).
 
 ## Designing your Component
 
