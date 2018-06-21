@@ -22,7 +22,7 @@ None of that make any sense to you, or new to React and Redux? Then check out th
 - https://facebook.github.io/react/tutorial/tutorial.html
 - http://redux.js.org/
 
-The components for the webapp currently live in the `components/` directory in the [mattermost-webapp repository].
+The components for the webapp currently live in the `components/` directory in the [mattermost-webapp repository](https://github.com/mattermost/mattermost-webapp).
 
 ## Designing your Component
 
@@ -178,113 +178,106 @@ The last required piece of building a webapp component is to test it. That can b
 Below is a brief guide on how to do component testing:
 
 1. Match snapshot using default or expected props. Consider the global `mm_config` as necessary. Note that while the snapshot is convenient, we require not to rely solely on this for every test case as this is easily overlooked by initiating `jest -updateSnapshot` without carefully inspecting the change.
+    ```javascript
+    test('should match snapshot, not send email notifications', () => {
+        global.window.mm_config.SendEmailNotifications = 'false';
+        const wrapper = shallow(<EmailNotificationSetting {...requiredProps}/>);
 
-```javascript
-test('should match snapshot, not send email notifications', () => {
-    global.window.mm_config.SendEmailNotifications = 'false';
-    const wrapper = shallow(<EmailNotificationSetting {...requiredProps}/>);
-
-    expect(wrapper).toMatchSnapshot();
-});
-```
+        expect(wrapper).toMatchSnapshot();
+    });
+    ```
 
 2. Add verification to important elements.
-
-```javascript
-expect(wrapper.find('#emailNotificationImmediately').exists()).toBe(true);
-```
+    ```javascript
+    expect(wrapper.find('#emailNotificationImmediately').exists()).toBe(true);
+    ```
 
 3. Simulate the event and verify state changes accordingly.
+    ```javascript
+    test('should pass handleChange', () => {
+        const wrapper = mountWithIntl(<EmailNotificationSetting {...requiredProps}/>);
+        wrapper.find('#emailNotificationImmediately').simulate('change');
 
-```javascript
-test('should pass handleChange', () => {
-    const wrapper = mountWithIntl(<EmailNotificationSetting {...requiredProps}/>);
-    wrapper.find('#emailNotificationImmediately').simulate('change');
-
-    expect(wrapper.state('enableEmail')).toBe('true');
-    expect(wrapper.state('emailInterval')).toBe(30);
-});
-```
+        expect(wrapper.state('enableEmail')).toBe('true');
+        expect(wrapper.state('emailInterval')).toBe(30);
+    });
+    ```
 
 4. Ensure that all functions of a component are tested. This can be done via events, state changes or just calling it directly.
+    ```javascript
+    wrapper.instance().handleExpand();
 
-```javascript
-wrapper.instance().handleExpand();
-
-expect(newUpdateSection).toBeCalled();
-expect(newUpdateSection).toHaveBeenCalledTimes(1);
-expect(newUpdateSection).toBeCalledWith('email');
-```
+    expect(newUpdateSection).toBeCalled();
+    expect(newUpdateSection).toHaveBeenCalledTimes(1);
+    expect(newUpdateSection).toBeCalledWith('email');
+    ```
 
 5. When a function is passed to a component via props, make sure to test it if it gets called for a particular event call or its state changes.
+    ```javascript
+    test('should pass handleSubmit', () => {
+        const newOnSubmit = jest.fn();
+        const newUpdateSection = jest.fn();
+        const props = {...requiredProps, onSubmit: newOnSubmit, updateSection: newUpdateSection};
+        const wrapper = mountWithIntl(<EmailNotificationSetting {...props}/>);
 
-```javascript
-test('should pass handleSubmit', () => {
-    const newOnSubmit = jest.fn();
-    const newUpdateSection = jest.fn();
-    const props = {...requiredProps, onSubmit: newOnSubmit, updateSection: newUpdateSection};
-    const wrapper = mountWithIntl(<EmailNotificationSetting {...props}/>);
+        wrapper.instance().handleSubmit();
 
-    wrapper.instance().handleSubmit();
+        expect(newOnSubmit).not.toBeCalled();
+        expect(newUpdateSection).toHaveBeenCalledTimes(1);
+        expect(newUpdateSection).toBeCalledWith('');
 
-    expect(newOnSubmit).not.toBeCalled();
-    expect(newUpdateSection).toHaveBeenCalledTimes(1);
-    expect(newUpdateSection).toBeCalledWith('');
+        wrapper.find('#emailNotificationNever').simulate('change');
+        wrapper.instance().handleSubmit();
 
-    wrapper.find('#emailNotificationNever').simulate('change');
-    wrapper.instance().handleSubmit();
+        expect(newOnSubmit).toBeCalled();
+        expect(newOnSubmit).toHaveBeenCalledTimes(1);
+        expect(newOnSubmit).toBeCalledWith({enableEmail: 'false'});
 
-    expect(newOnSubmit).toBeCalled();
-    expect(newOnSubmit).toHaveBeenCalledTimes(1);
-    expect(newOnSubmit).toBeCalledWith({enableEmail: 'false'});
+        expect(savePreference).toHaveBeenCalledTimes(1);
+        expect(savePreference).toBeCalledWith('notifications', 'email_interval', '0');
 
-    expect(savePreference).toHaveBeenCalledTimes(1);
-    expect(savePreference).toBeCalledWith('notifications', 'email_interval', '0');
+        ...
+        wrapper.find('textarea').simulate('keydown', {
+            preventDefault: jest.fn(),
+            keyCode: Constants.KeyCodes.ENTER,
+            ctrlKey: false
+        });
 
-    ...
-    wrapper.find('textarea').simulate('keydown', {
-        preventDefault: jest.fn(),
-        keyCode: Constants.KeyCodes.ENTER,
-        ctrlKey: false
+        expect(patchChannel).toBeCalledWith('fake-id', {purpose: 'purpose'});
     });
-
-    expect(patchChannel).toBeCalledWith('fake-id', {purpose: 'purpose'});
-});
-```
+    ```
 
 6. Test the component's internal or lifecycle methods by having different sets of props.
+    ```javascript
+    test('should pass componentWillReceiveProps', () => {
+        const nextProps = {
+            enableEmail: true,
+            emailInterval: 30
+        };
+        const wrapper = mountWithIntl(<EmailNotificationSetting {...requiredProps}/>);
+        wrapper.setProps(nextProps);
 
-```javascript
-test('should pass componentWillReceiveProps', () => {
-    const nextProps = {
-        enableEmail: true,
-        emailInterval: 30
-    };
-    const wrapper = mountWithIntl(<EmailNotificationSetting {...requiredProps}/>);
-    wrapper.setProps(nextProps);
+        expect(wrapper.state('enableEmail')).toBe(nextProps.enableEmail);
+        expect(wrapper.state('emailInterval')).toBe(nextProps.emailInterval);
 
-    expect(wrapper.state('enableEmail')).toBe(nextProps.enableEmail);
-    expect(wrapper.state('emailInterval')).toBe(nextProps.emailInterval);
-
-    ...
-    const shouldUpdate = wrapper.instance().shouldComponentUpdate({show: true});
-    expect(shouldUpdate).toBe(true);
-});
-```
+        ...
+        const shouldUpdate = wrapper.instance().shouldComponentUpdate({show: true});
+        expect(shouldUpdate).toBe(true);
+    });
+    ```
 
 7. Provide a simple mockup to an imported component or library if necessary.
+    ```javascript
+    jest.mock('actions/user_actions.jsx', () => ({
+        savePreference: jest.fn()
+    }));
 
-```javascript
-jest.mock('actions/user_actions.jsx', () => ({
-    savePreference: jest.fn()
-}));
-
-jest.mock('react-router/es6', () => ({
-    browserHistory: {
-        push: jest.fn()
-    }
-}));
-```
+    jest.mock('react-router/es6', () => ({
+        browserHistory: {
+            push: jest.fn()
+        }
+    }));
+    ```
 
 Finally, initiate the following commands:
 
