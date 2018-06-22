@@ -24,9 +24,16 @@ VPN Server: https://vpn2.mattermost.com
     - Download the User locked profile
     <span style="display:block;text-align:center">![VPN HomePage 2](/img/vpn_2.png)</span>
 
-* Install the client
+* Install the GUI client
 
 * Import the config file to the OpenVpn client
 <span style="display:block;text-align:center">![VPN Clinet](/img/vpn_3.png)</span>
 
 * Connect to the VPN
+
+* Alternatively, install and connect using CLI client
+
+```bash
+brew install openvpn
+sudo openvpn --config client.opvn --auth-retry interact
+```
