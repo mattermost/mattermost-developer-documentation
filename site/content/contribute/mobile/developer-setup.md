@@ -19,34 +19,53 @@ A macOS computer is required to build the Mattermost iOS mobile app.
 
 Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using [Homebrew] as a package manager.
 
-1. Install [NodeJS](https://nodejs.org/en/). This includes NPM which is also needed. (minimum required version is 9.3.0)
+#### Install [NodeJS](https://nodejs.org/en/). This includes NPM which is also needed. (minimum required version is 9.3.0)
 
-    - To install using Homebrew open a terminal and execute ..
+##### MacOS
+- To install using Homebrew open a terminal and execute ..
 
-        ```sh
-        $ brew install node
-        ```
+```sh
+    $ brew install node
+```
+-   Install using NVM by following the instructions [here](https://github.com/creationix/nvm#install-script)
+-   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
+##### Linux
+-	Install using your distributions package manager (Note that different distros provide
+	different node versions which might be lower than 9.3.0 and may cause problems)
+-   Install using NVM by following the instructions [here](https://github.com/creationix/nvm#install-script)
+-   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
 
-    -   Install using NVM by following the instructions [here][https://github.com/creationix/nvm#install-script]
-    -   Download and install the package from the [NodeJS
-        website][https://nodejs.org/en/]
-
-2. Install [Watchman](https://facebook.github.io/watchman/). (minimum required version is 4.9.0)
-
-    - To install using Homebrew open a terminal and execute ..
-
-        ```sh
-        $ brew install watchman
-        ```
-3. Now use **npm** to install [React Native CLI Tools](http://facebook.github.io/react-native/docs/understanding-cli.html) globally (minimum required version is 2.0.1)
-    ```sh 
-    $ npm -g install react-native-cli
-    ```
-
-4. We use GitHub to host the source code so we recommend that you install [Git](https://git-scm.com/) to get the source code. Optionally, you can also contribute by submitting [pull requests](https://help.github.com/articles/creating-a-pull-request/). If you do not have git installed you can do so with Homebrew by opening a terminal and executing:
+#### Install [Watchman](https://facebook.github.io/watchman/). (minimum required version is 4.9.0)
+##### MacOS
+- To install using Homebrew open a terminal and execute ..
     ```sh
-    $ brew install git
+    $ brew install watchman
     ```
+##### Linux
+- On Linux you have to build Watchman yourself. See the official [Watchman guide](https://facebook.github.io/watchman/docs/install.html#installing-from-source).
+	- Note that you need to increase your inotify limits for watchman to work properly
+	- If you encounter a warning about a missing C++ compiler you need to install the c++
+	  extension from you distros package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++)
+
+#### Install ```react-native-cli``` tools
+
+Use *npm* to install [React Native CLI Tools](http://facebook.github.io/react-native/docs/understanding-cli.html) globally (minimum required version is 2.0.1)
+
+```sh
+$ npm -g install react-native-cli
+```
+
+#### Obtaining the source code
+We use GitHub to host the source code so we recommend that you install [Git](https://git-scm.com/) to get the source code. Optionally, you can also contribute by submitting [pull requests](https://help.github.com/articles/creating-a-pull-request/). If you do not have git installed you can do so with Homebrew by opening a terminal and executing:
+
+##### MacOS
+
+```sh
+$ brew install git
+```
+
+##### Linux
+Some distributions come with git preinstalled but you'll most likely have to install ityourself. For Ubuntu and RHEL/Fedora the package is simply called ```git```
 
 ### iOS
 
@@ -55,39 +74,56 @@ Install the following prerequisite software to develop and build the iOS or Andr
 
 ### Android
 
-1.  Download and install [Android Studio or the Android SDK command line tools](https://developer.android.com/studio/index.html#downloads).
+#### Download and install [Android Studio or the Android SDK command line tools](https://developer.android.com/studio/index.html#downloads).
 
-2. Make sure you have the following ENV VARS configured:
-    - `ANDROID_HOME` to where Android SDK is located (likely `/Users/<username>/Library/Android/sdk`)
+#### Environment Variables
+Make sure you have the following ENV VARS configured:
+    - `ANDROID_HOME` to where Android SDK is located (likely `/Users/<username>/Library/Android/sdk` or `/home/<username>/Android/Sdk`)
     - Make sure your `PATH` includes `ANDROID_HOME/tools` and `ANDROID_HOME/platform-tools`
-        -   On Mac, this usually requires adding the following lines to your `~/.bash_profile` file:
+##### MacOS
+-   On Mac, this usually requires adding the following lines to your `~/.bash_profile` file:
 
-            ```sh
-            export ANDROID_HOME=/Users/<username>/Library/Android/sdk
-            export PATH=$ANDROID_HOME/platform-tools:$PATH
-            export PATH=$ANDROID_HOME/tools:$PATH
-            ```
-        - Then reload your bash configuration:
-        
-            ```sh
-            source ~/.bash_profile
-            ```
+    ```sh
+    export ANDROID_HOME=/Users/<username>/Library/Android/sdk
+    export PATH=$ANDROID_HOME/platform-tools:$PATH
+    export PATH=$ANDROID_HOME/tools:$PATH
+    ```
+- Then reload your bash configuration:
 
-3. In the SDK Manager using Android Studio or the [Android SDK command line tool](https://developer.android.com/studio/command-line/sdkmanager.html), ensure the following are installed
-    - SDK Tools (you may have to click "Show Package Details" to expand packages)
-        ![image](/img/mobile_SDK_Tools.png)
-        - Android SDK Build-Tools (multiple versions)
-            - 23.0.3
-            - 25.0.3
-            - 26.0.1
-        - Android Emulator
-        - Android SDK Platform-Tools
-        - Android SDK Tools
-        - Google Play services
-        - Intel x86 Emulator Accelerator (HAXM installer)
-        - Support Repository
-           -   Android Support Repository
-           -   Google Repository
+    ```sh
+    source ~/.bash_profile
+    ```
+##### Linux
+-   On Linux the home folder is located under ```/home/<username>``` which results in a slightly different path
+
+    ```sh
+    export ANDROID_HOME=/home/<username>/Android/Sdk
+    export PATH=$ANDROID_HOME/platform-tools:$PATH
+    export PATH=$ANDROID_HOME/tools:$PATH
+    ```
+- Then also relead you configuration
+    ```sh
+    source ~/.bash_profile
+    ```
+    - Note that depending on the shell your using this might need to be put into a different file such as ```~/.zshrc```. Adjust this accordingly.
+    - Also this documentation assumes you chose the default path for your Android SDK installation. If you chose a different path adjust accordingly.
+
+### Install the proper SDKs and SDK Tools
+In the SDK Manager using Android Studio or the [Android SDK command line tool](https://developer.android.com/studio/command-line/sdkmanager.html), ensure the following are installed
+- SDK Tools (you may have to click "Show Package Details" to expand packages)
+    ![image](/img/mobile_SDK_Tools.png)
+    - Android SDK Build-Tools (multiple versions)
+        - 23.0.3
+        - 25.0.3
+        - 26.0.1
+    - Android Emulator
+    - Android SDK Platform-Tools
+    - Android SDK Tools
+    - Google Play services
+    - Intel x86 Emulator Accelerator (HAXM installer)
+    - Support Repository
+       -   Android Support Repository
+       -   Google Repository
 
     - SDK Platforms (you may have to click "Show Package Details" to expand packages)
         ![image](/img/mobile_SDK_Platforms.png)
@@ -150,6 +186,15 @@ Execution failed for task ':app:installDebug'.
 
 ##### Solution
 The development version of the Mattermost app cannot be installed alongside a release version. Open ``android/app/build.gradle`` and change the applicationId from ``"com.mattermost.react.native"`` to a unique string for your app.
+
+#### Error Message
+```
+[Error] Error: Compilation of µWebSockets has failed and there is no pre-compiled binary available for your system. Please install a supported C++11 compiler and reinstall the module 'uws'.
+... looping infinitely ...
+```
+##### Solution
+
+Your most likely using the wrong version of npm. Recommended is 9.3.0.
 
 ### Errors When Running 'make run-ios'
 
