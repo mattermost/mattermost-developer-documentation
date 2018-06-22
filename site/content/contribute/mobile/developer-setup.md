@@ -67,12 +67,12 @@ $ brew install git
 ##### Linux
 Some distributions come with git preinstalled but you'll most likely have to install ityourself. For Ubuntu and RHEL/Fedora the package is simply called ```git```
 
-### iOS
+### Additional setup for iOS
 
 1.  Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12) to build and run the app on iOS. (minimum required version is 9.0)
 2.  Install [Cocoapods](https://cocoapods.org/) using the `gem` method. You\'ll need it to install the project's iOS dependencies. (required version is 1.3.1)
 
-### Android
+### Additional setup for Android
 
 #### Download and install [Android Studio or the Android SDK command line tools](https://developer.android.com/studio/index.html#downloads).
 
@@ -108,7 +108,7 @@ Make sure you have the following ENV VARS configured:
     - Note that depending on the shell your using this might need to be put into a different file such as ```~/.zshrc```. Adjust this accordingly.
     - Also this documentation assumes you chose the default path for your Android SDK installation. If you chose a different path adjust accordingly.
 
-### Install the proper SDKs and SDK Tools
+### Installing the right SDKs and SDK Tools
 In the SDK Manager using Android Studio or the [Android SDK command line tool](https://developer.android.com/studio/command-line/sdkmanager.html), ensure the following are installed
 - SDK Tools (you may have to click "Show Package Details" to expand packages)
     ![image](/img/mobile_SDK_Tools.png)
@@ -134,7 +134,7 @@ In the SDK Manager using Android Studio or the [Android SDK command line tool](h
         - Any other API version that you want to test
 
 
-## Pulling the Source Code
+## Obtaining the Source Code
 
 In order to develop and build the Mattermost mobile apps you'll need to get a copy of the source code. Forking the `mattermost-mobile` repository will also make it easy to contribute your work back to the project in the future.
 
