@@ -31,7 +31,7 @@ VPN Server: https://vpn2.mattermost.com
 
 * Connect to the VPN
 
-* Alternatively, install and connect using CLI client
+* Alternatively, install and connect using the CLI client
 
 ```bash
 brew install openvpn
