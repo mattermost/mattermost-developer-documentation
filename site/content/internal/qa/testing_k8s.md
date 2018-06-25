@@ -1,44 +1,43 @@
 ---
-title: "Testing MM on k8s"
+title: "Testing Mattermost on Kubernetes"
 date: 2018-06-25T13:31:26+02:00
 subsection: internal
 ---
 
-We are testing Mattermost in Kubernetes, we have our helm charts for [Enterprise Edition](https://github.com/mattermost/mattermost-kubernetes/) and for Team Edition.
+We have helm charts for [Enterprise Edition](https://github.com/mattermost/mattermost-kubernetes/) and Team Edition to test Mattermost in Kubernetes (k8s).
 
-Currently we have one Kubernetes cluster running on Azure and this document will describe how our internal QA and Devs can access the cluster and Mattermost for config and CLI tests.
+Currently we have one k8s cluster running on Azure. This document describes how our internal QA and Devs can access the cluster for config.json and CLI tests. The cluster has one Mattermost server running, which is public accessible at https://ci-k8s-mysql.azure.k8s.mattermost.com.
 
-Wee have one Mattermost installation running in this cluster. This instance is public accessible and can be accessed with this url:
+To access the k8s pods for CLI tests, please follow these steps:
 
-https://ci-k8s-mysql.azure.k8s.mattermost.com
+1. If you don't have an Azure account, contact the Dev Ops team to create one.
 
-To access the Pods for CLI tests, please follow the steps below:
-
-1. Have an Azure account (Please contact DevOPS team)
-2. Install the Azure Cli
+2. Install the Azure CLI
     * For Mac:
         ```Bash
         $ brew install az
         ```
 
-3. Install `kubectl` to run commands in Kubernetes:
-    * you can install following this [instruction](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-    * or you can use the az-cli to install:
-        ```Bash
-        $ az aks install-cli
-        ```
+3. Install `kubectl` to run commands in k8s. You can follow [these instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/), or use the following Azure CLI:
 
-4. Login in the Azure cloud
+```Bash
+$ az aks install-cli
+```
+
+4. Log in to the Azure cloud:
+
 ```Bash
 $ az login
 ```
 
-5. Download the configuration to access the k8s cluster (aks kubeconfig)
+5. Download the configuration file to access the k8s cluster:
+
 ```Bash
 $ az aks get-credentials --name mm-test-helm --resource-group mm-test-helm-k8s
 ```
 
 6. Test if you can see the pods running in the cluster:
+
 ```Bash
 $ kubectl get pods --namespace ci-k8s-mysql
 NAME                                                     READY     STATUS    RESTARTS   AGE
@@ -50,7 +49,8 @@ mm-k8s-mysql-mysqlha-0                                   2/2       Running   0  
 mm-k8s-mysql-mysqlha-1                                   2/2       Running   0          3d
 ```
 
-7. To access the Mattermost server get one of the two `mm-k8s-mysql-mattermost-app` pods. In the example above you can pick the `mm-k8s-mysql-mattermost-app-7b565d9d85-glg2k`. Then run the following command:
+7. To access the Mattermost server, find one of the two running `mm-k8s-mysql-mattermost-app` pods. In the example above you can pick the `mm-k8s-mysql-mattermost-app-7b565d9d85-glg2k` pod and run the following command:
+
 ```Bash
 $ kubectl exec -it mm-k8s-mysql-mattermost-app-7b565d9d85-glg2k --namespace ci-k8s-mysql -- /bin/bash
 ```
@@ -58,12 +58,11 @@ $ kubectl exec -it mm-k8s-mysql-mattermost-app-7b565d9d85-glg2k --namespace ci-k
 8. Perform your tests.
 
 NOTE:
-* Please remember that any configuration changes made will be lost when the pod is replaced, this can happen when we upgrade the server or at any time when Kubernetes understand that needs a restart.
-* If you need to perform a configuration change you need to change the confimap that holds the configuration and kill all mattermost running pods to get new pods with new configuration
+* Please remember that any configuration changes you make are lost when the pod is replaced. This happens when the server is upgraded or restarted.
+* To apply a configuration change, update the k8s configmap and kill all running pods. This creates new pods with the new configuration settings. Follow these steps to apply the configuration changes:
 
-Change the configmap to apply configuration changes:
+1. Get the configmap:
 
-1. Get the confimap:
 ```Bash
 $ kubectl get configmap --namespace ci-k8s-mysql
 NAME                                      DATA      AGE
@@ -73,14 +72,14 @@ mm-k8s-mysql-minio                        1         3d
 mm-k8s-mysql-mysqlha                      4         3d
 ```
 
-In our case the confimap is: `mm-k8s-mysql-mattermost-app-config-json`
-Edit that:
+2. In our case, the configmap is: `mm-k8s-mysql-mattermost-app-config-json`. Edit it by first running:
+
 ```Bash
 $ kubectl edit configmap mm-k8s-mysql-mattermost-app-config-json --namespace ci-k8s-mysql
 ```
 
-Make the changes you need, save and exit the editor
-To kill and get new pods, do the following:
+3. Then make the changes you need in a text editor and save the file.
+4. Kill the existing pods and create new ones:
 
 ```Bash
 $ kubectl get pods --namespace ci-k8s-mysql -l "app=mm-k8s-mysql-mattermost-app"
@@ -91,7 +90,7 @@ mm-k8s-mysql-mattermost-app-7b565d9d85-glg2k   1/1       Running   0          3d
 $ kubectl delete pods --namespace ci-k8s-mysql mm-k8s-mysql-mattermost-app-7b565d9d85-7wwsb mm-k8s-mysql-mattermost-app-7b565d9d85-glg2k
 ```
 
-For the jobserver:
+5. Do the same for the job server:
 ```Bash
 $ kubectl get pods --namespace ci-k8s-mysql -l "app=mm-k8s-mysql-mattermost-app-jobserver"
 NAME                                                     READY     STATUS    RESTARTS   AGE
@@ -100,4 +99,4 @@ mm-k8s-mysql-mattermost-app-jobserver-7455cc9bdc-tl9bn   1/1       Running   0  
 $ kubectl delete pods --namespace ci-k8s-mysql mm-k8s-mysql-mattermost-app-jobserver-7455cc9bdc-tl9bn
 ```
 
-After a few seconds you should have new pods running.
+6. After a few seconds you should have new pods running with the updated configuration settings.
