@@ -1,0 +1,42 @@
+---
+title: "Subpath Support"
+date: 2018-06-25T15:35:09-04:00
+draft: true
+---
+Mattermost 5.1 will include support for [serving Mattermost from subpaths](https://mattermost.atlassian.net/browse/MM-10366). This allows Mattermost to be exposed at something like https://example.com/company/mattermost, with your proxy server exposing different services at other subpaths. Subpath support is configured via the [Site URL](https://docs.mattermost.com/administration/config-settings.html?highlight=siteurl#site-url). 
+
+#### Using subpaths in production
+
+In production, after configuration and restart, the application server will expect all HTTP requests to be anchored to the configured subpath. This includes static assets, API calls, and websockets. For convenience, the application server will redirect any unexpected requests back into this subpath, e.g. forwarding http://example.com/login to http://example.com/company/mattermost/login.
+
+The pre-built static assets shipped with Mattermost assume being hosted at `/static/`. In production, when the `SiteURL` is configured with a subpath such as https://example.com/company/mattermost, the application server will rewrite any affected assets on startup to point at `/company/mattermost/static` instead. This rewriting can be done manually with the `mattermost config subpath` command:
+
+```
+mattermost config subpath --path /company/mattermost
+```
+
+Rewriting the static assets manually may be necessary when deploying to a CDN.
+
+#### Using subpaths in development
+
+In development, with webpack running, the static assets are rewritten whenever a source file changes. While the server is still configured via the `SiteURL`, webpack requires this to be set via an environment variable:
+```
+cd mattermost-webapp/
+make stop
+export MM_SERVICESETTINGS_SITEURL='http://localhost:8065/company/mattermost'
+make run
+```
+
+To resume testing at the root, either define a `SiteURL` with no subpath or unset the environment variable:
+```
+unset MM_SERVICESETTINGS_SITEURL
+make restart
+```
+
+Note that this environment variable is also honoured by the server as an override to config.json as described in [Configuration Settings](https://docs.mattermost.com/administration/config-settings.html#configuration-settings), so feel free to throw this export in your shell's initialization script to apply to both the server and the webapp simultaneously.
+
+#### How does it work?
+
+Under the covers, in development, our [webpack.config.js](https://github.com/mattermost/mattermost-webapp/blob/daefd1c76844612f3aaccfb5e42f12000e59cbfd/webpack.config.js#L136) is parsing the `MM_SERVICESETTINGS_SITEURL` environment variable to extract the subpath. This is first used by [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/) to anchor the assets loaded by [root.html](https://github.com/mattermost/mattermost-webapp/blob/master/root.html). It is then exported into the node environment as `process.env.PUBLIC_PATH` and used by [entry.js](https://github.com/mattermost/mattermost-webapp/blob/master/entry.js) to define [`__webpack_public_path__`](https://webpack.js.org/guides/public-path/), affecting all modules loaded dynamically after the web application starts.
+
+In production, with a non-root subpath, the application server [rewrites](https://github.com/mattermost/mattermost-server/blob/dd35ad43caab407cc70ef3b153b3f94d57242ed9/utils/subpath.go#L26) root.html to export `window.publicPath`. This is checked by entry.js to similarly define `__webpack_public_path__`. Since `HtmlWebpackPlugin` is only run during development, the server also rewrites parts of `root.html` and various CSS files to reflect the correct subpath. To make the rewriting robust against multiple subpath changes, the application server [uses](https://github.com/mattermost/mattermost-server/blob/dd35ad43caab407cc70ef3b153b3f94d57242ed9/utils/subpath.go#L50) any existing definition of `window.publicPath` to match the appropriate strings.
