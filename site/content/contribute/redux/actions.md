@@ -109,98 +109,106 @@ export default class Widget extends React.PureComponent {
 ## Adding an Action
 
 To add a new Redux action, you must
-1. If you're adding a new action type, add a constant to one of the files in `src/action_types` to be the type of your new action. This is only required if your action is going to be dispatching a unique action instead of just dispatching existing actions.
-```javascript
-export default keyMirror({
-    DO_ACTION: null
-});
-```
-2. Add an action creator to `src/actions`. This function needs to either return a plain JavaScript object for a regular action or a function for a Thunk action. If it's a Thunk action, it should also return an object with two fields: a `data` field containing the results of the action and an `error` field containing an error if one occurs.
-```javascript
-function doSimpleAction() {
-    return {
-        type: ActionTypes.DO_SIMPLE_ACTION,
-        data: 1234
-    };
-}
 
-function doThunkAction() {
-    return async (dispatch, getState) => {
-        let data;
-        try {
-            data = await doSomething();
-        } catch(e) {
-            const error = {
-                message: e.message
-            };
+1. If you're adding a new action type, add a constant to one of the files in `src/action_types` to be the type of your new action. This is only required if your action is going to be dispatching a unique action instead of just dispatching existing actions.
+
+    ```javascript
+    export default keyMirror({
+        DO_ACTION: null
+    });
+    ```
+
+2. Add an action creator to `src/actions`. This function needs to either return a plain JavaScript object for a regular action or a function for a Thunk action. If it's a Thunk action, it should also return an object with two fields: a `data` field containing the results of the action and an `error` field containing an error if one occurs.
+
+    ```javascript
+    function doSimpleAction() {
+        return {
+            type: ActionTypes.DO_SIMPLE_ACTION,
+            data: 1234
+        };
+    }
+
+    function doThunkAction() {
+        return async (dispatch, getState) => {
+            let data;
+            try {
+                data = await doSomething();
+            } catch(e) {
+                const error = {
+                    message: e.message
+                };
+
+                dispatch({
+                    type: ActionTypes.DO_THUNK_ACTION_FAILED,
+                    data: error
+                });
+
+                return error;
+            }
 
             dispatch({
-                type: ActionTypes.DO_THUNK_ACTION_FAILED,
-                data: error
+                type: ActionTypes.DO_THUNK_ACTION,
+                data
             });
 
-            return error;
-        }
-
-        dispatch({
-            type: ActionTypes.DO_THUNK_ACTION,
-            data
-        });
-
-        return {
-            data
+            return {
+                data
+            };
         };
-    };
-}
-```
+    }
+    ```
+
 3. If you're adding a new action type, add or update existing reducers to handle the new action. More information about reducers is available [here](/contribute/redux/reducers).
 4. Add unit tests to make sure that the action has the intended effects on the store. These will be located in `test/actions`. More information on unit testing reducers is available below.
 
 ### Adding a new API Action
 
 If your action is wrapping an API call, there's a few things that you will need to do differently:
+
 1. For your endpoint, you'll need to add a new method to the JavaScript client located in `src/client/client4.js`. This method will look similar to the other methods in that class.
+
 2. In addition to the new action type that you'll be adding, you'll also normally need to add action types to indicate the status of the request. These are not required for optimistic actions.
-```javascript
-// For a getUser request
-export default keyMirror({
-    // Used to update the request state in the store
-    USER_REQUEST: null,
-    USER_SUCCESS: null,
-    USER_FAILURE: null,
+    ```javascript
+    // For a getUser request
+    export default keyMirror({
+        // Used to update the request state in the store
+        USER_REQUEST: null,
+        USER_SUCCESS: null,
+        USER_FAILURE: null,
 
-    // Used to pass new user data to the store
-    USER_RECEIVED: null
-});
-```
+        // Used to pass new user data to the store
+        USER_RECEIVED: null
+    });
+    ```
 3. When adding the action creator, if it simply calls the client, you can use the `bindClientFunc` helper function to create it for you. More complicated calls will need to dispatch the different request actions as necessary.
-```javascript
-export function getUser(userId) {
-    return bindClientFunc(
-        Client4.getUser, // The client method
-        UserTypes.USER_REQUEST, // The type of action dispatched when the request is started
-        [UserTypes.RECEIVED_USER, UserTypes.USER_SUCCESS], // One or more types of actions dispatched when the request is completed
-        UserTypes.USER_FAILURE, // The type of action dispatched when the request fails
-        userId // Any other arguments to the action that will be passed to the client call
-    );
-}
-```
-4. Make the necessary changes to the reducers to handle your action as well as adding a reducer to update the `requests` section of the store. In most cases, you can use the `handleRequest` and `initialRequestState` helper functions to construct the reducer for you. More information about reducers is available [here](/contribute/redux/reducers).
-```
-function getUser(state = initialRequestState(), action) {
-    return handleRequest(
-        UserTypes.USER_REQUEST,
-        UserTypes.USER_SUCCESS,
-        UserTypes.USER_FAILURE,
-        state,
-        action
-    );
-}
 
-export default combineReducers({
-    getUser
-});
-```
+    ```javascript
+    export function getUser(userId) {
+        return bindClientFunc(
+            Client4.getUser, // The client method
+            UserTypes.USER_REQUEST, // The type of action dispatched when the request is started
+            [UserTypes.RECEIVED_USER, UserTypes.USER_SUCCESS], // One or more types of actions dispatched when the request is completed
+            UserTypes.USER_FAILURE, // The type of action dispatched when the request fails
+            userId // Any other arguments to the action that will be passed to the client call
+        );
+    }
+    ```
+4. Make the necessary changes to the reducers to handle your action as well as adding a reducer to update the `requests` section of the store. In most cases, you can use the `handleRequest` and `initialRequestState` helper functions to construct the reducer for you. More information about reducers is available [here](/contribute/redux/reducers).
+    ```
+    function getUser(state = initialRequestState(), action) {
+        return handleRequest(
+            UserTypes.USER_REQUEST,
+            UserTypes.USER_SUCCESS,
+            UserTypes.USER_FAILURE,
+            state,
+            action
+        );
+    }
+
+    export default combineReducers({
+        getUser
+    });
+    ```
 5. Add unit tests to make sure that the action has the intended effects on the store. These will be located in `test/actions`. More information on unit testing reducers is available below.
 
 ### Testing an Action
