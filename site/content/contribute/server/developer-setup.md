@@ -18,7 +18,14 @@ subsection: Server
 
 <div id="mac" class="tabcontent" style="display: block;">
 {{% md %}}
-1. Install and configure Docker CE using the instructions at https://docs.docker.com/docker-for-mac/
+1. Install and configure Docker CE
+
+    1. Follow the instructions at https://docs.docker.com/docker-for-mac/
+    2. Edit your `/etc/hosts` file to include the following line:
+
+        ```sh
+        127.0.0.1     dockerhost
+        ```
 
 2. Download and install homebrew, using the instructions at https://brew.sh/
 
@@ -205,13 +212,15 @@ subsection: Server
 <div id="archlinux" class="tabcontent">
 {{% md %}}
 1. Install and configure Docker CE:
-    ```sh
-    pacman -S docker
-    gpasswd -a user docker
-    systemctl enable docker.service
-    systemctl start docker.service
-    newgrp docker
-    ```
+    1. Execute the following commands:
+
+        ```sh
+        pacman -S docker
+        gpasswd -a user docker
+        systemctl enable docker.service
+        systemctl start docker.service
+        newgrp docker
+        ```
     2. Edit your `/etc/hosts/ to include the following line:
 
         ```sh
