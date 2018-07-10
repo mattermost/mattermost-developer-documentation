@@ -21,10 +21,8 @@ export VAULT_ADDR='https://vault.mattermost.com'
 Authentication is done via OneLogin and RADIUS:
 
 ```
-vault auth -method=radius username=chris@mattermost.com
+vault login -method=radius username=your_username@mattermost.com
 ```
-
-(Change "chris@mattermost.com" to whatever your email address is.)
 
 OneLogin users must have the "Developers" role in order to authenticate.
 
