@@ -85,9 +85,8 @@ Make sure you have the following ENV VARS configured:
 -   On Mac, this usually requires adding the following lines to your `~/.bash_profile` file:
 
     ```sh
-    export ANDROID_HOME=/Users/<username>/Library/Android/sdk
-    export PATH=$ANDROID_HOME/platform-tools:$PATH
-    export PATH=$ANDROID_HOME/tools:$PATH
+    export ANDROID_HOME=$HOME/Library/Android/sdk
+    export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$PATH
     ```
 - Then reload your bash configuration:
 
