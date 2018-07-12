@@ -21,12 +21,13 @@ import (
 type Type string
 
 const (
-	Array  Type = "array"
-	Bool        = "bool"
-	Dict        = "dict"
-	Number      = "number"
-	Object      = "object"
-	String      = "string"
+	Array     Type = "array"
+	Bool           = "bool"
+	Dict           = "dict"
+	Number         = "number"
+	Object         = "object"
+	String         = "string"
+	Interface      = "interface"
 )
 
 type ObjectProperty struct {
@@ -151,6 +152,11 @@ func astTypeDocs(expr ast.Expr, typesByName map[string]*doc.Type, info *types.In
 		return &TypeDocs{
 			Type:        Dict,
 			ValueSchema: astTypeDocs(x.Value, typesByName, info),
+		}
+	case *ast.InterfaceType:
+		return &TypeDocs{
+			Type: Interface,
+			// ValueSchema: astTypeDocs(x.Value, typesByName, info),
 		}
 	}
 

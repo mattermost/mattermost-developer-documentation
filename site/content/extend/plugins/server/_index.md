@@ -1,13 +1,13 @@
 ---
 title: Server Plugins
-date: 2017-10-26T17:56:25-05:00
-subsection: Plugins (Beta)
+date: 2018-07-10T00:00:00-05:00
+subsection: Plugins
 weight: 10
 ---
 
 # Server Plugins
 
-Server plugins are capable of extending the Mattermost server by running processes on the server that interact with Mattermost via remote procedure calls (RPC).
+Server plugins are subprocesses invoked by the server that communicate with Mattermost using remote procedure calls (RPC).
 
 Looking for a quick start? [See our "Hello, world!" tutorial](/extend/plugins/server/hello-world/).
 
@@ -17,24 +17,24 @@ Want the server plugin reference doc? [Find it here](/extend/plugins/server/refe
 
 #### RPC API
 
-With the [RPC API](/extend/plugins/server/reference/#API), your server plugin can create, read, update and delete operations on server data models.
+Use the [RPC API](/extend/plugins/server/reference/#API) to execute create, read, update and delete (CRUD) operations on server data models.
 
-A common use case is a plugin listening to a third-party webhook, creating posts in Mattermost based on events received from the webhook.
+For example, your plugin can consume events from a third-party webhook and create corresponding posts in Mattermost, without having to host your code outside Mattermost.
 
 #### Hooks
 
-With [hooks](/extend/plugins/server/reference/#Hooks), get alerted by RPC when certain server events occur. For example, use the [OnConfigurationChange](/extend/plugins/server/reference/#Hooks.OnConfigurationChange) hook to get alerted of server configuration changes.
+Register for [hooks](/extend/plugins/server/reference/#Hooks) and get alerted when certain events occur. 
+
+For example, consume the [OnConfigurationChange](/extend/plugins/server/reference/#Hooks.OnConfigurationChange) hook to respond to server configuration changes, or the [MessageHasBeenPosted](/extend/plugins/server/reference/#Hooks.MessageHasBeenPosted) hook to respond to posts.
 
 #### REST API
 
-Use the [ServeHTTP](/extend/plugins/server/reference/#Hooks.ServeHTTP) hook to extend the existing Mattermost REST API with your plugin.
+Implement the [ServeHTTP](/extend/plugins/server/reference/#Hooks.ServeHTTP) hook to extend the existing Mattermost REST API.
 
-This is useful when building plugins that contain both web app and server parts. The server part can expose new functionality to the web app part, as if it was another part of the Mattermost REST API.
+Plugins with both a web app and server component can leverage this REST API to exchange data. Alternatively, expose your REST API to services and developers connecting from outside Mattermost.
 
 ## How It Works
 
-When a plugin is uploaded to a Mattermost server and activated, the server checks to see if there is a backend portion included as part of the plugin by looking at the [plugin's manifest](/extend/plugins/manifest-reference/). If one is found, the server will start a new process using the executable included with the plugin.
+When starting a plugin, the server consults the [plugin's manifest](/extend/plugins/manifest-reference/) to determine if a server component was included. If found, the server launches a new process using the executable included with the plugin.
 
-Immediately after start-up, the `OnActivate` hook is triggered via RPC. Similarly, on plugin deactivation the `OnDeactivate` hook is triggered.
-
-Once running, the server plugin can listen to hooks, make API calls, interact with third-party services or do whatever else it needs to.
+The server will trigger the [OnActivate](/extend/plugins/server/reference/#Hooks.OnActivate) hook if the plugin is successfully started, allowing you to perform startup events. If the plugin is disabled, the server will trigger the [OnDeactivate](/extend/plugins/server/reference/#Hooks.OnDeactivate) hook. While running, the server plugin can consume hook events, make API calls, launch threads or subprocesses of its own, interact with third-party services or do anything else a regular program can do.
