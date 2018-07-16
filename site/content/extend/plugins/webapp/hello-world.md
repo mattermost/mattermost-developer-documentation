@@ -115,7 +115,7 @@ class HelloWorldPlugin {
     }
 }
 
-window.plugins['helloworld'] = new HelloWorldPlugin();
+window.registerPlugin('helloworld', new HelloWorldPlugin());
 ```
 
 Generate a minified bundle ready to install as a web app plugin:
