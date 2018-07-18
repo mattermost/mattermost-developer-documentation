@@ -23,7 +23,7 @@ What this means is that the focus is less on overriding Mattermost UI components
 #### More New Features
 In addition to the larger changes above, the new plugin system in Mattermost 5.2 will also have some other cool new features:
 
-* Enhanced plugin logging - log like you normally would to stdout or stderr and it will get captured in the Mattermost server logs
+* Enhanced plugin logging - log like you normally would to stdout or stderr, or use the new logging API, either way it will get captured in the Mattermost server logs
 * Custom WebSocket events - publish your own WebSocket events from the server-side of your plugin and add function handlers for those events on your client-side
 * Expanded APIs - new APIs give more power and options both server-side and client-side
 * CLI management - fully manage plugins from the Mattermost command-line interface
