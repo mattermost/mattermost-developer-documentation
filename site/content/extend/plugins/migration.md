@@ -134,6 +134,18 @@ and then import your modules naturally:
 import React from 'react';
 ```
 
+Note however that the exported variables have changed to the following:
+
+| Prior to Mattermost 5.2 | Mattermost 5.2 |
+| --- | --- |
+| window.react | window.React |
+| window['react-dom'] | window.ReactDom |
+| window.redux | window.Redux |
+| window['react-redux'] | window.ReactRedux |
+| window['react-bootstrap'] | window.ReactBootstrap |
+| window['post-utils'] | window.PostUtils |
+| _N/A_ | window.PropTypes |
+
 ### Initialization
 
 The `initialize` callback used to receive a `registerComponents` callback to configure components, post types and main menu overrides:
