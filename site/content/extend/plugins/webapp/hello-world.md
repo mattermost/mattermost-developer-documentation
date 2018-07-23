@@ -105,7 +105,7 @@ class HelloWorldPlugin {
     }
 }
 
-window.registerPlugin('helloworld', new HelloWorldPlugin());
+window.registerPlugin('com.mattermost.webapp-hello-world', new HelloWorldPlugin());
 ```
 
 Generate a minified bundle ready to install as a web app plugin:
@@ -123,7 +123,7 @@ and create a file named `plugin.json` with the following contents:
 
 ```json
 {
-    "id": "helloworld",
+    "id": "com.mattermost.webapp-hello-world",
     "name": "helloworld",
     "description": "",
     "webapp": {
@@ -132,13 +132,15 @@ and create a file named `plugin.json` with the following contents:
 }
 ```
 
+This manifest gives the server the location of our web app  within our bundle. (Note that you may alternatively use `plugin.yaml`, as shown in [../../server/hello-world/](../../server/hello-world/).)
+
 Bundle the manifest and entry point into a tar file:
 
 ```bash
-mkdir -p helloworld
-cp -r webapp/dist/main.js helloworld/
-cp plugin.json helloworld/
-tar -czvf helloworld.tar.gz helloworld
+mkdir -p com.mattermost.webapp-hello-world
+cp -r webapp/dist/main.js com.mattermost.webapp-hello-world/
+cp plugin.json com.mattermost.webapp-hello-world/
+tar -czvf plugin.tar.gz com.mattermost.webapp-hello-world
 ```
 
 You should now have a file named `plugin.tar.gz` in your workspace. Congratulations! This is your first web app plugin!
@@ -153,16 +155,15 @@ Install the plugin in one of the following ways:
  - Click "Activate" under the plugin after it has uploaded.
 
 2) Through `config.json`:
- - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.json/plugin.yaml``, in this case `helloworld`.
+ - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.json``, in this case `com.mattermost.webapp-hello-world`.
  - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins`. The directory should look something like
  
  ```
  mattermost/
     plugins/
-        helloworld/
-            webapp/
-                dist/
-                    main.js
+        com.mattermost.webapp-hello-world/
+            plugin.json
+            main.js
  ```
  - Restart the Mattermost server.
 

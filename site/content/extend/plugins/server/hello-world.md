@@ -63,7 +63,7 @@ backend:
     executable: plugin.exe
 ```
 
-This manifest gives the server the location of our executable within our bundle.
+This manifest gives the server the location of our executable within our bundle. (Note that you may alternatively use `plugin.json`, as shown in [../../webapp/hello-world/](../../webapp/hello-world/).)
 
 Bundle the manifest and executable into a tar file:
 
@@ -71,7 +71,7 @@ Bundle the manifest and executable into a tar file:
 tar -czvf plugin.tar.gz plugin.exe plugin.yaml
 ```
 
-You should now have a file named `plugin.tar.gz` in your workspace. Congratulations! This is your first plugin!
+You should now have a file named `plugin.tar.gz` in your workspace. Congratulations! This is your first server plugin!
 
 ## Installing the Plugin
 
@@ -83,7 +83,7 @@ Install the plugin in one of the following ways:
  - Click "Activate" under the plugin after it has uploaded.
 
 2) Through `config.json`:
- - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.json/plugin.yaml``, in this case `com.mattermost.server-hello-world/`.
+ - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.yaml``, in this case `com.mattermost.server-hello-world/`.
  - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins`. The directory should look something like
  
  ```
