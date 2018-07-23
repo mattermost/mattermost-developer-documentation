@@ -22,12 +22,6 @@ Register your own React components to be added to the channel header, sidebars, 
 
 For example, the [Mattermost Zoom Plugin](https://github.com/mattermost/mattermost-plugin-zoom) registers a button in the channel header to trigger a Zoom call and post a link to the call in the current channel.
 
-### Replace Existing Components
-
-Some components, such as the user details popover, can be replaced altogether. This API makes your plugin responsible for any content displayed. Note that replaced components won't automatically get improvements in future Mattermost releases unless you update your plugin.
-
-For an example, see the [hovercardexample plugin](https://github.com/jwilander/hovercardexample).
-
 #### Add New Root Components
 
 Register your own React components alongside other root components like the sidebars and modals. This enables whole new interactions that aren't constrained by the set of existing components. This API is geared towards power and flexibility, but may require fine tuning with future Mattermost releases.
@@ -49,7 +43,5 @@ On web app launch, a request is made to the server to get a list of plugins that
 Once downloaded and executed, each plugin should have registered itself via the global [registerPlugin](/extend/plugins/webapp/reference/#registerPlugin). The web app then invokes the `initialize` function defined on the plugin class, passing a registry and store. The registry passed allows the plugin to register (and unregister) components, event callbacks and Redux reducers to track plugin state. The store passed is the same Redux store used by the web app, giving the plugin access to the full state of the web app.
 
 Components registered by the plugin via the registry are tracked in the Redux store and used by `Pluggable` components throughout the web app. `Pluggable` components with a `pluggableName` attribute can render multiple such components registered by plugins.
-
-`Pluggable` components without a `pluggableName` attribute adopt the name of their only child component, and allow for completely replacing it. The last plugin to replace such a component is the one used to render it.
 
 Custom post types work similarly, but are registered slightly differently, use a separate reducer and have more of a custom implementation.

@@ -33,43 +33,43 @@ npm install --save-dev webpack webpack-cli babel-loader babel-core babel-preset-
 npm install --save react
 ```
 
-Configure Babel by creating a `.babelrc` file:
-
-```json
-{
-  "presets": ["env", "react"]
-}
-```
-
 Configure Webpack by creating a `webpack.config.js` file:
 
 ```js
 var path = require('path');
-var webpack = require('webpack');
 
 module.exports = {
     entry: [
         './src/index.jsx',
     ],
     resolve: {
-        extensions: ['*', '.js', '.jsx']
+        modules: [
+            'src',
+            'node_modules',
+        ],
+        extensions: ['*', '.js', '.jsx'],
     },
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: 'babel-loader',
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env', 'react'],
+                    },
+                },
             },
         ],
     },
     externals: {
-        react: 'react',
+        react: 'React',
     },
     output: {
         path: path.join(__dirname, '/dist'),
         publicPath: '/',
-        filename: 'main.js'
+        filename: 'main.js',
     },
 };
 ```
@@ -79,7 +79,7 @@ Observe that `react` is specified as an external library. This allows you to tes
 Now create the entry point file and output directory:
 ```bash
 mkdir src dist
-touch src/index.js
+touch src/index.jsx
 ```
 
 Then populate `src/index.jsx` with the following:
@@ -87,23 +87,13 @@ Then populate `src/index.jsx` with the following:
 import React from 'react'
 
 // Courtesy of https://feathericons.com/
-const ApertureIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="-3 -3 30 30" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-aperture">
-        <circle cx="12" cy="12" r="10" fill="none"/></circle>
-        <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
-        <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
-        <line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
-        <line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
-        <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
-        <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line>
-    </svg>
-);
+const Icon = () => <i className='icon fa fa-plug'/>;
 
 class HelloWorldPlugin {
     initialize(registry, store) {
         registry.registerChannelHeaderButtonAction(
             // icon - JSX element to use as the button's icon
-            <ApertureIcon />,
+            <Icon />,
             // action - a function called when the button is clicked, passed the channel and channel member as arguments
             // null,
             () => { 
