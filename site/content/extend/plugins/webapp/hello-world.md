@@ -9,7 +9,7 @@ weight: -10
 
 This tutorial will walk you through the basics of extending the Mattermost web app. 
 
-Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2 once support for plugins stabilized and left beta. Consult the [migration](/extend/plugins/migration) document to upgrade your older plugin code.
+Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration](/extend/plugins/migration) document to upgrade older plugins.
 
 ## Prerequisites
 

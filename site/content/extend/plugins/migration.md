@@ -1,21 +1,23 @@
 ---
-title: Migrating v1 Plugins
+title: Migrating Plugins
 date: 2018-07-10T00:00:00-05:00
 subsection: Plugins (Beta)
 weight: 50
 ---
 
-# Migrating v1 Plugins
+# Migrating Plugins from Mattermost 5.1 and earlier
 
-Plugins v2 introduces breaking changes relative to the plugins beta. This page documents the changes necessary to migrate your existing plugins.
+Mattermost 5.2 introduces breaking changes to the plugins beta. This page documents the changes necessary to migrate your existing plugins to be compatible with Mattermost 5.2 and later.
+
+See [mattermost-plugin-zoom](https://github.com/mattermost/mattermost-plugin-zoom/compare/98eca6653e1a62c6b758e39b24d6ea075905c210...master) for an example migration involving both a server and web app component.
 
 ## Server changes
 
-Although the changes under the cover are significant, the required changes to server plugins are minimal.
+Although the underlying changes are significant, the required migration for server plugins is minimal.
 
 ### Entry Point
 
-The plugin entry point used to be:
+The plugin entry point was previously:
 
 ```go
 import "github.com/mattermost/mattermost-server/plugin/rpcplugin"
@@ -37,7 +39,7 @@ func main() {
 
 ### Hook Parameters
 
-Most hook callbacks now contain a leading `plugin.Context` parameter. Consult the [Hooks](http://localhost:1313/extend/plugins/server/reference/#Hooks) documentation for more details, but for example, the `ServeHTTP` hook used to be:
+Most hook callbacks now contain a leading `plugin.Context` parameter. Consult the [Hooks](http://localhost:1313/extend/plugins/server/reference/#Hooks) documentation for more details, but for example, the `ServeHTTP` hook was previously:
 
 ```go
 func (p *MyPlugin) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -96,7 +98,7 @@ The changes to web app plugins are more significant than server plugins.
 
 ### Entry Point
 
-The plugin entry point used to be registered by directly manipulating a global variable:
+The plugin entry point was previously registered by directly manipulating a global variable:
 
 ```js
 window.plugins['my-plugin'] = new MyPlugin();
@@ -199,27 +201,3 @@ class MyPlugin {
 ```
 
 Restructuring your plugin to use the new registry API will likely prove to be the hardest part of migrating.
-
-### Uninitialization
-
-The `uninitialize` callback used to be called `deinitialize`:
-```js
-class MyPlugin {
-    // ...
-    deinitialize() {
-        // ...
-    }
-    // ...
-}
-```
-
-Change it to `uninitialize`:
-```js
-class MyPlugin {
-    // ...
-    uninitialize() {
-        // ...
-    }
-    // ...
-}
-```
