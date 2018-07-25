@@ -41,6 +41,12 @@ Some useful `make` commands:
 * `make run-fullmap` will run the server and build the client with the full source map for easier debugging
 * `make clean` cleans your local environment of temporary files
 * `make nuke` wipes your local environment back to a completely fresh start
+* `make package` creates packages for distributing your builds and puts them in the `~/go/src/github.com/mattermost/mattermost-server/dist` directory. If you want to make packages for targets other than your build machine, you must run the following commands first:
+
+    1. Modify permissions on `/usr/local/go`. Replace `{user}` and `{group}` with the user and group that you are logged in with and run `sudo chown -R {user}.{group} /usr/local/go`
+    2. If you are developing on OS X, set up your environment to cross-compile Apple OS X binaries: `env GOOS=darwin GOARCH=amd64 go install std
+    3. If you are developing on Windows, set up your environment to cross-compile Windows binaries: `env GOOS=windows GOARCH=amd64 go install std`, then `sudo apt-get install zip`
+    4. If you are developing on Linux, set up your environment to cross-compile Linux binaries: `env GOOS=linux GOARCH=amd64 go install std`
 
 ### Running only specific server unit tests
 
