@@ -53,15 +53,21 @@ func docHTML(text string) string {
 }
 
 func fields(list *ast.FieldList, info *types.Info) (fields []*Field) {
+	if info == nil {
+		panic("nil")
+	}
 	if list != nil {
 		for _, x := range list.List {
-			field := &Field{
-				Type: info.TypeOf(x.Type).String(),
+			xType := info.TypeOf(x.Type)
+			if xType != nil {
+				field := &Field{
+					Type: xType.String(),
+				}
+				for _, name := range x.Names {
+					field.Names = append(field.Names, name.Name)
+				}
+				fields = append(fields, field)
 			}
-			for _, name := range x.Names {
-				field.Names = append(field.Names, name.Name)
-			}
-			fields = append(fields, field)
 		}
 	}
 	return

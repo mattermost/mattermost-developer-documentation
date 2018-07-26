@@ -73,6 +73,7 @@
 {{ end }}
 
 {{ define "InterfaceMethodDocs" }}
+    <h2>{{ .Name }}</h3>
     {{ range .Interface.Methods }}
         <div>
             <h3 id="{{ $.Name }}.{{ .Name }}">({{ $.Name }}) {{ .Name }}</h3>

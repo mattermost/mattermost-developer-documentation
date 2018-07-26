@@ -1,37 +1,60 @@
 ---
 title: Quick Start (Hello, world!)
-date: 2017-10-26T17:54:54-05:00
+date: 2018-07-10T00:00:00-05:00
 subsection: Server Plugins
 weight: -10
 ---
 
 # Hello, world!
 
-This tutorial will walk you through the basics of extending the Mattermost server.
+This tutorial will walk you through the basics of writing a Mattermost plugin with a server component.
+
+Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration](/extend/plugins/migration) document to upgrade older plugins.
 
 ## Prerequisites
 
-Mattermost plugins extend the server using a Go API. You'll need a functioning Go environment, so follow [Go's Getting Started](https://golang.org/doc/install) guide if needed.
+Mattermost plugins extend the server using a Go API. In the future, gRPC will be supported, allowing you to write plugins in any language. For now, you'll need a functioning Go environment, so follow [Go's Getting Started](https://golang.org/doc/install) guide if needed.
 
-You'll also need a Mattermost server to install and test the plugin. This server must have "Enable" and "EnableUploads" set to true in the "PluginSettings" section of its config file.
+You'll also need a Mattermost server to install and test the plugin. This server must have [Enable](https://docs.mattermost.com/administration/config-settings.html#enable-plugins) set to true in the [PluginSettings](https://docs.mattermost.com/administration/config-settings.html#plugins-beta) section of its config file. If you want to upload plugins via the System Console or API, you'll also need to set [EnableUploads](https://docs.mattermost.com/administration/config-settings.html#enable-plugin-uploads) to true in the same section.
 
 ## Building the Plugin
 
 The process that will communicate with the Mattermost server is built using a set of APIs provided by the source code for the Mattermost server.
 
-Run this command to download the source code for the Mattermost server: `go get -u github.com/mattermost/mattermost-server`
+Download the source code for the Mattermost server:
 
-Now, create a directory to act as your workspace, and create a file named "plugin.go" inside of it with the following contents:
+```bash
+go get -u github.com/mattermost/mattermost-server
+```
+
+Now, create a directory to act as your workspace:
+
+```bash
+mkdir -p $GOPATH/src/my-plugin
+cd $GOPATH/src/my-plugin
+```
+
+Create a file named `plugin.go` with the following contents:
 
 {{<plugingoexamplecode name="_helloWorld">}}
 
 This plugin will register an HTTP handler that will respond with "Hello, world!" when requested.
 
-Run this command to build the executable that will be distributed with your plugin: `go build -o plugin.exe plugin.go`
+Build the executable that will be distributed with your plugin: 
 
-**Note:** Your executable is platform specific! If you're building the plugin for a server running on a different operating system, you'll need to use a slightly different command. For example, if you're using developing the plugin from MacOS and deploying to a Linux server, you'll need to use this command: `GOOS=linux GOARCH=amd64 go build -o plugin.exe plugin.go`. Also note that the ".exe" extension is required if you'd like your plugin to run on Windows, but is otherwise optional.
+```bash
+go build -o plugin.exe plugin.go
+```
 
-Now, we'll need to define a manifest, which is required for every plugin. Create a file named "plugin.yaml" with the following contents:
+**Note:** Your executable is platform specific! If you're building the plugin for a server running on a different operating system, you'll need to use a slightly different command. For example, if you're developing the plugin from MacOS and deploying to a Linux server, you'll need to use this command: 
+
+```bash
+GOOS=linux GOARCH=amd64 go build -o plugin.exe plugin.go
+```
+
+Also note that the ".exe" extension is required if you'd like your plugin to run on Windows, but is otherwise optional. Consider referencing [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) for helpful build scripts.
+
+Now, we'll need to define the required manifest describing your plugin's entry point. Create a file named `plugin.yaml` with the following contents:
 
 ```yaml
 id: com.mattermost.server-hello-world
@@ -40,11 +63,15 @@ backend:
     executable: plugin.exe
 ```
 
-This manifest gives the server the location of our executable within our bundle.
+This manifest gives the server the location of our executable within our bundle. (Note that you may alternatively use `plugin.json`, as shown in [../../webapp/hello-world/](../../webapp/hello-world/).)
 
-Bundle the manifest and executable up with this command: `tar -czvf plugin.tar.gz plugin.exe plugin.yaml`
+Bundle the manifest and executable into a tar file:
 
-You should now have a file named "plugin.tar.gz" in your workspace. Congratulations! This is your first plugin!
+```bash
+tar -czvf plugin.tar.gz plugin.exe plugin.yaml
+```
+
+You should now have a file named `plugin.tar.gz` in your workspace. Congratulations! This is your first server plugin!
 
 ## Installing the Plugin
 
@@ -56,7 +83,7 @@ Install the plugin in one of the following ways:
  - Click "Activate" under the plugin after it has uploaded.
 
 2) Through `config.json`:
- - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.json/plugin.yaml``, in this case `com.mattermost.server-hello-world/`.
+ - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.yaml``, in this case `com.mattermost.server-hello-world/`.
  - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins`. The directory should look something like
  
  ```
@@ -68,4 +95,4 @@ Install the plugin in one of the following ways:
  ```
  - Restart the Mattermost server.
 
-Once you've installed the plugin in one of the ways above, type the following path into your address bar, appending it to your Mattermost server's domain, and you'll be greeted by your plugin: `/plugins/com.mattermost.server-hello-world`.
+Once you've installed the plugin in one of the ways above, browse to `https://<your-mattermost-server>/plugins/com.mattermost.server-hello-world`, and you'll be greeted by your plugin.

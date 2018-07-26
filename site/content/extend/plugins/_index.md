@@ -1,6 +1,6 @@
 ---
 title: Plugins (Beta)
-date: 2017-10-26T17:56:19-05:00
+date: 2018-07-10T00:00:00-05:00
 section: extend
 ---
 
@@ -13,16 +13,16 @@ Plugins are still in early beta and we're looking for your feedback! Share const
 ## Features
 
 ### Customize User Interfaces
-Using web app plugins, easily override a set of Mattermost React components, inject your own custom components and render custom post components by post type. Powerful UI customization without having to fork the web app source and rebase on every Mattermost release.
+Write a web app plugin to add to the channel header, sidebars, main menu and more. Register your plugin against a post type to render custom posts. Or wire up a root component to build an entirely new experience. All this is possible without having to fork the source code and rebase on every Mattermost release.
 
 ### Launch Tightly Integrated Services
-Launch and manage server plugins as services from your Mattermost server with access to hooks and an RPC API. Listen for and intercept events in real-time on the Mattermost server with hooks and performantly interact with the server through the API.
+Launch and manage server plugins as services from your Mattermost server over RPC. Handle events via real-time hooks and invoke Mattermost server methods directly using a dedicated plugin API.
 
 ### Extend the Mattermost REST API
-Extend the Mattermost REST API with custom endpoints for use by the web app plugins or by third-party services. Custom endpoints have access to all the features of the standard Mattermost REST API, including personal access tokens and OAuth 2.0.
+Extend the Mattermost REST API with custom endpoints for use by web app plugins or third-party services. Custom endpoints have access to all the features of the standard Mattermost REST API, including personal access tokens and OAuth 2.0.
 
 ### Simple Development and Installation
-Using the [mdk tool](https://www.npmjs.com/package/mdk), and both our [server](/extend/plugins/server/hello-world) and [web app](/extend/plugins/webapp/hello-world) quick start guides, it's simple to set up a plugin development environment. Once built, simply tar and gzip your plugin, and [upload it to a Mattermost server through the System Console](https://about.mattermost.com/default-plugin-uploads).
+Using the [server](/extend/plugins/server/hello-world) and [web app](/extend/plugins/webapp/hello-world) quick start guides, it's simple to set up a plugin development environment. Or base your implementation off of [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample), complete with best practices and build scripts. Once bundled as a gzipped tar file, upload your plugin to a Mattermost server through the [System Console](https://about.mattermost.com/default-plugin-uploads) or via the [API](https://api.mattermost.com/#tag/plugins).
 
 ----
-Read more about [web app](/extend/plugins/webapp/) and [server](/extend/plugins/server/) plugins.
+Read more about [server](/extend/plugins/server/) and [web app](/extend/plugins/webapp/) plugins.

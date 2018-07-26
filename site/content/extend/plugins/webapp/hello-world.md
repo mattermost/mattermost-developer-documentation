@@ -1,66 +1,149 @@
 ---
 title: Quick Start (Hello, world!)
-date: 2017-10-26T17:54:54-05:00
+date: 2018-07-10T00:00:00-05:00
 subsection: Web App Plugins
 weight: -10
 ---
 
 # Hello, world!
 
-This tutorial will walk you through the basics of extending the Mattermost web app.
+This tutorial will walk you through the basics of extending the Mattermost web app. 
+
+Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration](/extend/plugins/migration) document to upgrade older plugins.
 
 ## Prerequisites
 
-The Mattermost web app is built using [ReactJS](https://reactjs.org/) with [Redux](https://redux.js.org/) and the plugins will use the same, so it's a good idea to become familiar with those first. You're also going to need [npm](https://www.npmjs.com/get-npm).
+Plugins, just like the Mattermost web app itself, are built using [ReactJS](https://reactjs.org/) with [Redux](https://redux.js.org/). Make sure to install [npm](https://www.npmjs.com/get-npm) to manage your JavaScript dependencies.
 
-Once you have npm installed, install the Mattermost Developer Kit (MDK) tool which will help you set up your workspace.
-
-```
-npm install -g mdk
-```
-
-You'll also need a Mattermost server to install and test the plugin. This server must have "Enable" and "EnableUploads" set to true in the "PluginSettings" section of its config file.
+You'll also need a Mattermost server to install and test the plugin. This server must have [Enable](https://docs.mattermost.com/administration/config-settings.html#enable-plugins) set to true in the [PluginSettings](https://docs.mattermost.com/administration/config-settings.html#plugins-beta) section of its config file. If you want to upload plugins via the System Console or API, you'll also need to set [EnableUploads](https://docs.mattermost.com/administration/config-settings.html#enable-plugin-uploads) to true in the same section.
 
 ## Setting up the Workspace
 
-To quickly set up a workspace, change into a directory where you want to store your plugins in development and run:
+Create a directory to act as your plugin workspace. With that directory, create and switch to a `webapp` directory:
 
+```bash
+mkdir webapp
+cd webapp
 ```
-mdk init plugin --name helloworld --components ProfilePopover --skip-prompts
+
+Install the necessary NPM dependencies:
+
+```bash
+npm install --save-dev webpack webpack-cli babel-loader babel-core babel-preset-env babel-preset-react
+npm install --save react
 ```
 
-This will create your plugin workspace in a directory called `helloworld`.
+Configure Webpack by creating a `webpack.config.js` file:
 
-In the future, you can run `mdk init plugin` to have prompts walk you through the setup.
+```js
+var path = require('path');
 
-## Building the Plugin
-
-As you might have noticed with the command you ran above, this hello world example is going to override the ProfilePopover component of the Mattermost web app.
-
-Open up the popover component file at `./helloworld/webapp/components/profile_popover/profile_popover.jsx`.
-
-Scroll down to the `render` function and change it to this:
-
+module.exports = {
+    entry: [
+        './src/index.jsx',
+    ],
+    resolve: {
+        modules: [
+            'src',
+            'node_modules',
+        ],
+        extensions: ['*', '.js', '.jsx'],
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env', 'react'],
+                    },
+                },
+            },
+        ],
+    },
+    externals: {
+        react: 'React',
+    },
+    output: {
+        path: path.join(__dirname, '/dist'),
+        publicPath: '/',
+        filename: 'main.js',
+    },
+};
 ```
-render() {
-    const style = getStyle(this.props.theme);
-    return (
-        <div
-            style={{...style.container, left: this.props.positionLeft, top: this.props.positionTop}}
-        >
-            {'Hello world!'}
-        </div>
-    );
+
+Observe that `react` is specified as an external library. This allows you to test your code locally (e.g. with [jest](https://jestjs.io/) and snapshots) but leverage the version of React shipped with Mattermost to avoid bloating your plugin.
+
+Now create the entry point file and output directory:
+```bash
+mkdir src dist
+touch src/index.jsx
+```
+
+Then populate `src/index.jsx` with the following:
+```js
+import React from 'react'
+
+// Courtesy of https://feathericons.com/
+const Icon = () => <i className='icon fa fa-plug'/>;
+
+class HelloWorldPlugin {
+    initialize(registry, store) {
+        registry.registerChannelHeaderButtonAction(
+            // icon - JSX element to use as the button's icon
+            <Icon />,
+            // action - a function called when the button is clicked, passed the channel and channel member as arguments
+            // null,
+            () => { 
+                alert("Hello World!"); 
+            },
+            // dropdown_text - string or JSX element shown for the dropdown button description
+            "Hello World",
+        );
+    }
+}
+
+window.registerPlugin('com.mattermost.webapp-hello-world', new HelloWorldPlugin());
+```
+
+Generate a minified bundle ready to install as a web app plugin:
+
+```bash
+./node_modules/.bin/webpack --mode=production
+```
+
+Now, we'll need to define the required manifest describing your plugin's entry point. Move up one directory into your plugin workspace:
+```bash
+cd ../
+```
+
+and create a file named `plugin.json` with the following contents:
+
+```json
+{
+    "id": "com.mattermost.webapp-hello-world",
+    "name": "helloworld",
+    "description": "",
+    "webapp": {
+        "bundle_path": "main.js"
+    }
 }
 ```
 
-Save the file, and then in the `./helloworld` directory run:
+This manifest gives the server the location of our web app  within our bundle. (Note that you may alternatively use `plugin.yaml`, as shown in [../../server/hello-world/](../../server/hello-world/).)
 
-```
-make build
+Bundle the manifest and entry point into a tar file:
+
+```bash
+mkdir -p com.mattermost.webapp-hello-world
+cp -r webapp/dist/main.js com.mattermost.webapp-hello-world/
+cp plugin.json com.mattermost.webapp-hello-world/
+tar -czvf plugin.tar.gz com.mattermost.webapp-hello-world
 ```
 
-This will drop a `helloworld.tar.gz` of your built plugin into `./hellworld/dist/`.
+You should now have a file named `plugin.tar.gz` in your workspace. Congratulations! This is your first web app plugin!
 
 ## Installing the Plugin
 
@@ -72,17 +155,16 @@ Install the plugin in one of the following ways:
  - Click "Activate" under the plugin after it has uploaded.
 
 2) Through `config.json`:
- - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.json/plugin.yaml``, in this case `helloworld`.
+ - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.json``, in this case `com.mattermost.webapp-hello-world`.
  - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins`. The directory should look something like
  
  ```
  mattermost/
     plugins/
-        helloworld/
-            webapp/
-                helloworld_bundle.js
+        com.mattermost.webapp-hello-world/
+            plugin.json
+            main.js
  ```
  - Restart the Mattermost server.
-Navigate to a regular Mattermost page and click on a user's name or profile picture.
 
-You should see the normal popover replace with your blank one that states "Hello world!".
+Navigate to a regular Mattermost page and observe the new icon in the channel header. Shrink the window until it switches into mobile view, and open the channel menu to observe the dropdown text displayed. Click on either the text or the icon and observe the alert dialog.

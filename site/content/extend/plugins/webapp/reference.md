@@ -1,6 +1,6 @@
 ---
 title: Web App Reference
-date: 2017-10-26T17:54:54-05:00
+date: 2018-07-10T00:00:00-05:00
 subsection: Web App Plugins
 weight: 10
 ---
@@ -9,71 +9,66 @@ weight: 10
 
 ## PluginClass
 
-The PluginClass interface has a single method that is used by the Mattermost web app to initialize your plugin.
+The PluginClass interface defines two methods used by the Mattermost web app to `initialize` and `uninitialize` your plugin:
 
 ```javascript
 class PluginClass {
-    initialize(registerComponents, store)
+    /**
+     * initialize is called by the webapp when the plugin is first loaded.
+     * Receives the following:
+     * - registry - an instance of the registry tied to your plugin id
+     * - store - the Redux store of the web app.
+     */
+    initialize(registry, store)
+
+    /**
+     * uninitialize is called by the webapp if your plugin is uninstalled
+     */
+    uninitialize()
 }
 ```
 
-### Methods
-
-#### `initialize()`
-The `PluginClass.initialize()` method is called by the Mattermost web app on first load. To register your plugin you must expose it on `window`. See the example below for more informaton.
-
-#### Syntax
-
-```javascript
-plugin.initialize(registerComponents, store);
-```
-
-##### registerComponents(components, postTypeComponents, mainMenuActions)
-
-Is a function passed in by the web app, to be called by your initialize function for specifying which components your plugin is overriding and which components will be rendered for certain post types.
-
-* `components` is an object mapping component names to your component implementations
-* `postTypeComponents` is an object mapping post types to your equivalent component implementations
-* `mainMenuActions` is an array of objects used to add items to the sidebar dropdown menus, sometimes referred to as the main menu. Each object contains the following fields:
- * `text` - String or JSX object to render in the menu
- * `action` - Function to call when the item is clicked on
- * `mobile_icon` - (Optional) Icon to display in the sidebar menu when the app is in mobile view. Defaults to [plus-square](https://fontawesome.com/v4.7.0/icon/plus-square/)
-
-##### store
-
-Is the [Redux](https://redux.js.org/docs/basics/Store.html) store of the web app. Inject any reducers your plugin might have into this.
+Your plugin should implement this class and register it using the global `registerPlugin` method defined on the window by the webapp. Use the provided [registry](#registry) to register components, post type overrides and callbacks. Use the store to access the global state of the web app, but note that you should use the registry to register any custom reducers your plugin might require.
 
 ### Example
 
 The entry point `index.js` of your application might contain:
 
-
 ```javascript
-import ProfilePopover from './components/profile_popover';
+import UserPopularity from './components/profile_popover/user_popularity';
 import SomePost from './components/some_post';
 import MenuIcon from './components/menu_icon';
 import {openExampleModal} from './actions';
 
 class PluginClass {
-    initialize(registerComponents, store) {
-        const menuItems = [{
-            text: 'Plugin Menu Item',
-            action: () => store.dispatch(openExampleModal()),
-            mobile_icon: MenuIcon
-        }];
+    initialize(registry, store) {
+        registry.registerPopoverUserAttributesComponent(
+            UserPopularity,
+        );
+        registry.registerPostTypeComponent(
+            'custom_somepost',
+            SomePost,
+        );
+        registry.registerMainMenuAction(
+            'Plugin Menu Item',
+            () => store.dispatch(openExampleModal()),
+            mobile_icon: MenuIcon,
+        );
+    }
 
-        registerComponents({ProfilePopover}, {custom_somepost: SomePost}, menuItems);
+    uninitialize() {
+        // No clean up required.
     }
 }
 
-window.plugins['yourpluginid'] = new PluginClass();
+window.registerPlugin('myplugin', new PluginClass());
 ```
 
-This will override the ProfilePopover component and render your SomePost component for any post with the type 'custom_somepost'.
+This will add a custom `UserPopularity` component to the profile popover, render a custom `SomePost` component for any post with the type `custom_somepost`, and insert a custom main menu item.
 
-## Pluggable Components
+## Registry
 
-Below is a list of components that can be plugged into. The props defined are passed by default from the Mattermost web app and can be used by your implementation of the component. If needed, you can add more props to your implementation and pass them in using a container.
+An instance of the plugin registry is passed to each plugin via the `initialize` callback.
 
 {{<pluginjsdocs>}}
 
@@ -114,7 +109,6 @@ The theme object has the following properties:
 ## Exported Libraries and Functions
 
 The web app exports a number of libraries and functions on the [window](https://developer.mozilla.org/en-US/docs/Web/API/Window) object for plugins to use. We recommend importing as many libraries from the window as possible. Below is a list of the exposed libraries and functions:
-
 
 | Library | Description |
 | -------- | ----------- |
@@ -159,7 +153,7 @@ Converts HTML to React components.
 
 ##### Usage Example
 
-A short usage example of a PostType component using the post utility functions to format text.
+A short usage example of a `PostType` component using the post utility functions to format text.
 
 ```javascript
 const React = window.react;

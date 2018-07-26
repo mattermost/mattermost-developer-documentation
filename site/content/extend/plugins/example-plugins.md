@@ -1,6 +1,6 @@
 ---
 title: Example Plugins
-date: 2017-10-26T17:54:54-05:00
+date: 2018-07-10T00:00:00-05:00
 subsection: Plugins (Beta)
 weight: 40
 ---
