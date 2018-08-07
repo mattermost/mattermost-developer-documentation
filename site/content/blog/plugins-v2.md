@@ -22,8 +22,8 @@ In addition to the larger changes above, the new plugin system in Mattermost 5.2
 
 * __Enhanced plugin logging__ - log like you normally would to stdout or stderr, or use the new logging API, and either way it will get captured in the Mattermost structured server logs
 * __Custom WebSocket events__ - publish your own WebSocket events from the server-side of your plugin and add function handlers for those events on your client-side
-* __Expanded APIs__ - new APIs give more power and options both server-side and client-side
-* __CLI management__ - fully manage plugins from the Mattermost command-line interface
+* __Expanded APIs__ - new APIs give more power and options both server-side and client-side (thanks to [dschalla](https://github.com/dschalla) for the help here!)
+* __CLI management__ - fully manage plugins from the Mattermost command-line interface (thanks to [santos22](https://github.com/santos22) for the help here!)
 
 #### Breaking Changes
 All these great changes will require changes to any plugins built for pre-5.2 versions of Mattermost. See our [migration guide](https://developers.mattermost.com/extend/plugins/migration/) for steps on how to update your plugins.
