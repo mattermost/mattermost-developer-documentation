@@ -28,7 +28,13 @@ class PluginClass {
 }
 ```
 
-Your plugin should implement this class and register it using the global `registerPlugin` method defined on the window by the webapp. Use the provided [registry](#registry) to register components, post type overrides and callbacks. Use the store to access the global state of the web app, but note that you should use the registry to register any custom reducers your plugin might require.
+<a name="registerPlugin"/>
+Your plugin should implement this class and register it using the global `registerPlugin` method defined on the window by the webapp: 
+```javascript
+window.registerPlugin('myplugin', new PluginClass());
+```
+
+Use the provided [registry](#registry) to register components, post type overrides and callbacks. Use the store to access the global state of the web app, but note that you should use the registry to register any custom reducers your plugin might require.
 
 ### Example
 
@@ -108,16 +114,17 @@ The theme object has the following properties:
 
 ## Exported Libraries and Functions
 
-The web app exports a number of libraries and functions on the [window](https://developer.mozilla.org/en-US/docs/Web/API/Window) object for plugins to use. We recommend importing as many libraries from the window as possible. Below is a list of the exposed libraries and functions:
+The web app exports a number of libraries and functions on the [window](https://developer.mozilla.org/en-US/docs/Web/API/Window) object for plugins to use. To avoid bloating your plugin, we recommend depending on these using [Webpack externals](https://webpack.js.org/configuration/externals/) or importing them manually from the window. Below is a list of the exposed libraries and functions:
 
-| Library | Description |
-| -------- | ----------- |
-| react | Standard [ReactJS](https://reactjs.org/) library |
-| react-dom | [ReactDOM](https://reactjs.org/docs/react-dom.html) |
-| redux | [Redux](https://redux.js.org/) |
-| react-redux | [React bindings for Redux](https://github.com/reactjs/react-redux) |
-| react-bootstrap | [Bootstrap for React](https://react-bootstrap.github.io/) |
-| post-utils | Post utility functions for common post related tasks |
+| Library | Exported Name | Description |
+| ------- | ------------- | ----------- |
+| react | window.React | [ReactJS](https://reactjs.org/) |
+| react-dom | window.ReactDOM | [ReactDOM](https://reactjs.org/docs/react-dom.html) |
+| redux | window.Redux | [Redux](https://redux.js.org/) |
+| react-redux | window.ReactRedux | [React bindings for Redux](https://github.com/reactjs/react-redux) |
+| react-bootstrap | window.ReactBootstrap | [Bootstrap for React](https://react-bootstrap.github.io/) |
+| prop-types | window.PropTypes | [PropTypes](https://www.npmjs.com/package/prop-types) |
+| post-utils | window.PostUtils | Mattermost post utility functions (see below) |
 
 #### post-utils
 
