@@ -84,10 +84,11 @@
 {{ end }}
 
 {{ define "ExampleDocs" }}
+    <h2>Examples</h3>
     {{ range $name, $example := . }}
         {{ if hasPrefix $name "_" }}
             <div>
-                <h2 id="Examples.{{ $name }}">Example: {{ substr $name 1 1 | upper }}{{ substr (strings.TrimPrefix "_" $name) 1 }}</h2>
+                <h3 id="Examples.{{ $name }}">(Example) {{ substr $name 1 1 | upper }}{{ substr (strings.TrimPrefix "_" $name) 1 }}</h2>
                 <p>{{ safeHTML $example.HTML }}</p>
                 <p>{{ highlight $example.Code "go" "" }}</p>
             </div>

@@ -15,6 +15,14 @@ To get started extending server-side functionality with plugins, take a look at 
 
 To get started extending browser-side functionality with plugins, take a look at our [web app "Hello, world!" tutorial](../webapp/hello-world).
 
+## Demo Plugin
+
+To see a demonstration of all server-side hooks and webapp components, take a look at our [demo plugin](https://github.com/mattermost/mattermost-plugin-demo).
+
+## Sample Plugin
+
+To see a stripped down version of the demo plugin with just the build scripts and templates to get started, take a look at our [sample plugin](https://github.com/mattermost/mattermost-plugin-sample).
+
 ## Zoom
 
 The [Zoom plugin for Mattermost](https://github.com/mattermost/mattermost-plugin-zoom) adds UI elements that allow users to easily create and join Zoom meetings:

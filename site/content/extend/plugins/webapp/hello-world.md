@@ -114,12 +114,7 @@ Generate a minified bundle ready to install as a web app plugin:
 ./node_modules/.bin/webpack --mode=production
 ```
 
-Now, we'll need to define the required manifest describing your plugin's entry point. Move up one directory into your plugin workspace:
-```bash
-cd ../
-```
-
-and create a file named `plugin.json` with the following contents:
+Now, we'll need to define the required manifest describing your plugin's entry point. Create a file named `plugin.json` with the following contents:
 
 ```json
 {
@@ -138,7 +133,7 @@ Bundle the manifest and entry point into a tar file:
 
 ```bash
 mkdir -p com.mattermost.webapp-hello-world
-cp -r webapp/dist/main.js com.mattermost.webapp-hello-world/
+cp -r dist/main.js com.mattermost.webapp-hello-world/
 cp plugin.json com.mattermost.webapp-hello-world/
 tar -czvf plugin.tar.gz com.mattermost.webapp-hello-world
 ```
@@ -150,21 +145,25 @@ You should now have a file named `plugin.tar.gz` in your workspace. Congratulati
 Install the plugin in one of the following ways:
 
 1) Through System Console UI:
- - Log in to Mattermost as a System Admin.
- - Navigate to **Plugins > Management** and upload the `plugin.tar.gz` you generated above.
- - Click "Activate" under the plugin after it has uploaded.
+
+   - Log in to Mattermost as a System Admin.
+   - Open the System Console at `/admin_console`
+   - Navigate to **Plugins (Beta) > Management** and upload the `plugin.tar.gz` you generated above.
+   - Click **Enable** under the plugin after it has uploaded.
 
 2) Through `config.json`:
- - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.json``, in this case `com.mattermost.webapp-hello-world`.
- - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins`. The directory should look something like
+
+ - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.yaml``, in this case `com.mattermost.server-hello-world/`.
+ - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins` relative to your Mattermost installation directory. The resulting directory structure should look something like:
  
- ```
- mattermost/
-    plugins/
-        com.mattermost.webapp-hello-world/
-            plugin.json
-            main.js
- ```
+    ```
+     mattermost/
+        plugins/
+            com.mattermost.webapp-hello-world/
+                plugin.json
+                main.js
+     ```
  - Restart the Mattermost server.
 
-Navigate to a regular Mattermost page and observe the new icon in the channel header. Shrink the window until it switches into mobile view, and open the channel menu to observe the dropdown text displayed. Click on either the text or the icon and observe the alert dialog.
+Navigate to a regular Mattermost page and observe the new icon in the channel header. Click the icon and observe the alert dialog.
+

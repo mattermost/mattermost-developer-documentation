@@ -24,3 +24,6 @@ devtalks-data:
 ifdef YOUTUBE_API_KEY
 	go run scripts/devtalks.go > site/data/DevTalks.json
 endif
+
+dev:
+	cd site && hugo server -D
