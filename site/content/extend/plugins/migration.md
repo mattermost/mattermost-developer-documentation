@@ -39,7 +39,7 @@ func main() {
 
 ### Hook Parameters
 
-Most hook callbacks now contain a leading `plugin.Context` parameter. Consult the [Hooks](http://localhost:1313/extend/plugins/server/reference/#Hooks) documentation for more details, but for example, the `ServeHTTP` hook was previously:
+Most hook callbacks now contain a leading `plugin.Context` parameter. Consult the [Hooks](../server/reference/#Hooks) documentation for more details, but for example, the `ServeHTTP` hook was previously:
 
 ```go
 func (p *MyPlugin) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -57,7 +57,7 @@ func (p *MyPlugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.R
 
 ### API Changes
 
-Most of the previous API calls remain available and unchanged, with the notable exception of removing the `KeyValueStore()`. Use [KVSet](http://localhost:1313/extend/plugins/server/reference/#API.KVSet), [KVGet](http://localhost:1313/extend/plugins/server/reference/#API.KVGet) and [KVDelete](http://localhost:1313/extend/plugins/server/reference/#API.KVDelete) instead:
+Most of the previous API calls remain available and unchanged, with the notable exception of removing the `KeyValueStore()`. Use [KVSet](../server/reference/#API.KVSet), [KVGet](../server/reference/#API.KVGet) and [KVDelete](../server/reference/#API.KVDelete) instead:
 
 ```go
 func (p *MyPlugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Request) {
