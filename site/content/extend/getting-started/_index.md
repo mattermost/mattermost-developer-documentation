@@ -12,7 +12,7 @@ Mattermost can be extended by building and installing plugins, by embedding Matt
 
 ### Plugins (Beta)
 
-Plugins are a powerful way to add new functionality and UI to Mattermost - in an easy to maintain and update way. They are easy to build and give you more power than any other integration method.
+Plugins are easy to build, effortless to maintain, and offer powerful new options to add functionality and UI to the server and web/desktop apps in ways not available with any other integration method.
 
 [Read more about plugins.](/extend/plugins)
 
@@ -26,4 +26,4 @@ Mattermost is a great communication platform but sometimes it's more convenient 
 
 Mattermost is open-source, which means you have the ability to fork the source code if you need to modify Mattermost in ways not otherwise supported.
 
-[Read about licensing around forking Mattermost.](https://github.com/mattermost/mattermost-server/blob/master/LICENSE.txt)
+[Read about creating a deriative work of Mattermost.](https://docs.mattermost.com/overview/faq.html#how-can-i-create-a-derivative-work-of-mattermost-as-my-own-commercial-solution)

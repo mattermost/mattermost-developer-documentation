@@ -14,7 +14,7 @@ Questions about embedding Mattermost? Ask in the [Developer Toolkit channel](htt
 
 ### Browser Extensions and Add-Ons
 
-Many modern browsers have support for extensions or add-ons that would allow you to build and embed a Mattermost client on web pages of your choice. For Chrome there are [extensions](https://developer.chrome.com/extensions), Firefox has [add-ons](https://addons.mozilla.org/en-US/developers/), and IE/Edge have [extensions](https://docs.microsoft.com/en-us/microsoft-edge/extensions).
+Many modern browsers have support for extensions or add-ons that would allow you to build and embed a Mattermost client on web pages of your choice. Chrome has [extensions](https://developer.chrome.com/extensions), Firefox has [add-ons](https://addons.mozilla.org/en-US/developers/), and IE/Edge have [extensions](https://docs.microsoft.com/en-us/microsoft-edge/extensions).
 
 We have an open-source [demo Chrome extension](https://github.com/mattermost/mattermost-chrome-extension) that demonstrates how to get an access token for a user. You can use this demo extension as a starting point for building your embedded Mattermost client.
 
