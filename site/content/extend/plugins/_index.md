@@ -1,6 +1,6 @@
 ---
 title: Plugins (Beta)
-date: 2018-07-10T00:00:00-05:00
+date: 2017-07-10T00:00:00-05:00
 section: extend
 ---
 

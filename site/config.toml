@@ -73,7 +73,7 @@ pygmentsStyle = "manni"
       weight = 2
 
     [[menu.postpend]]
-      url = "/extend/plugins"
+      url = "/extend/getting-started"
       name = "Extend"
       weight = 3
 
@@ -118,7 +118,7 @@ pygmentsStyle = "manni"
   [[params.intro.item]]
     title = "Extend"
     description = "Extend Mattermost to fit your purpose through powerful client and server plugins, embedding or forking."
-    url = "extend/plugins"
+    url = "extend/getting-started"
     button = "Start Extending"
     icon = "/img/extend-icon.svg"
     draft = false
