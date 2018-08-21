@@ -2,8 +2,6 @@ dist: trusty
 sudo: false
 language: go
 go: 1.x
-git:
-  depth: false
 env:
   - HUGO_VERSION="0.45.1"
 
