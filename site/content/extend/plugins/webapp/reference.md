@@ -29,7 +29,7 @@ class PluginClass {
 ```
 
 <a name="registerPlugin"/>
-Your plugin should implement this class and register it using the global `registerPlugin` method defined on the window by the webapp: 
+Your plugin should implement this class and register it using the global `registerPlugin` method defined on the window by the webapp:
 ```javascript
 window.registerPlugin('myplugin', new PluginClass());
 ```
