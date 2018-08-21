@@ -7,7 +7,7 @@ weight: -10
 
 # Hello, world!
 
-This tutorial will walk you through the basics of extending the Mattermost web app. 
+This tutorial will walk you through the basics of extending the Mattermost web app.
 
 Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration](/extend/plugins/migration) document to upgrade older plugins.
 
@@ -96,8 +96,8 @@ class HelloWorldPlugin {
             <Icon />,
             // action - a function called when the button is clicked, passed the channel and channel member as arguments
             // null,
-            () => { 
-                alert("Hello World!"); 
+            () => {
+                alert("Hello World!");
             },
             // dropdown_text - string or JSX element shown for the dropdown button description
             "Hello World",
@@ -155,7 +155,7 @@ Install the plugin in one of the following ways:
 
  - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.yaml``, in this case `com.mattermost.server-hello-world/`.
  - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins` relative to your Mattermost installation directory. The resulting directory structure should look something like:
- 
+
     ```
      mattermost/
         plugins/

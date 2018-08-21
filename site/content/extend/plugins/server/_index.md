@@ -23,7 +23,7 @@ For example, your plugin can consume events from a third-party webhook and creat
 
 #### Hooks
 
-Register for [hooks](/extend/plugins/server/reference/#Hooks) and get alerted when certain events occur. 
+Register for [hooks](/extend/plugins/server/reference/#Hooks) and get alerted when certain events occur.
 
 For example, consume the [OnConfigurationChange](/extend/plugins/server/reference/#Hooks.OnConfigurationChange) hook to respond to server configuration changes, or the [MessageHasBeenPosted](/extend/plugins/server/reference/#Hooks.MessageHasBeenPosted) hook to respond to posts.
 

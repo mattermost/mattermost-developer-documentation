@@ -45,13 +45,13 @@ Create a file named `plugin.go` with the following contents:
 
 This plugin will register an HTTP handler that will respond with "Hello, world!" when requested.
 
-Build the executable that will be distributed with your plugin: 
+Build the executable that will be distributed with your plugin:
 
 ```bash
 go build -o plugin.exe plugin.go
 ```
 
-**Note:** Your executable is platform specific! If you're building the plugin for a server running on a different operating system, you'll need to use a slightly different command. For example, if you're developing the plugin from MacOS and deploying to a Linux server, you'll need to use this command: 
+**Note:** Your executable is platform specific! If you're building the plugin for a server running on a different operating system, you'll need to use a slightly different command. For example, if you're developing the plugin from MacOS and deploying to a Linux server, you'll need to use this command:
 
 ```bash
 GOOS=linux GOARCH=amd64 go build -o plugin.exe plugin.go
@@ -68,7 +68,7 @@ server:
     executable: plugin.exe
 ```
 
-This manifest gives the server the location of our executable within our bundle. (Note that you may alternatively use `plugin.json`, as shown in [../../webapp/hello-world/](../../webapp/hello-world/).) Consult the [manifest reference](/extend/plugins/manifest-reference/) for more details, including how to define a cross-platform bundle by defining multiple executables.
+This manifest gives the server the location of our executable within our bundle. (Note that you may alternatively use `plugin.json`, as shown in [webapp/hello-world/](../../webapp/hello-world/).) Consult the [manifest reference](/extend/plugins/manifest-reference/) for more details, including how to define a cross-platform bundle by defining multiple executables.
 
 Bundle the manifest and executable into a tar file:
 
@@ -93,7 +93,7 @@ Install the plugin in one of the following ways:
 
  - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.yaml``, in this case `com.mattermost.server-hello-world/`.
  - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins` relative to your Mattermost installation directory. The resulting directory structure should look something like:
- 
+
     ```
      mattermost/
         plugins/
