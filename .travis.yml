@@ -2,21 +2,15 @@ dist: trusty
 sudo: false
 language: go
 go: 1.x
-git:
-  depth: false
 env:
   - HUGO_VERSION="0.45.1"
-
 before_install:
   - mkdir bin
   - export PATH=$PATH:$PWD/bin
-  - wget -q https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz
- -O /tmp/hugo.tar.gz
+  - wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -O /tmp/hugo.tar.gz
   - tar -xvf /tmp/hugo.tar.gz hugo && mv hugo bin
-
 script:
   - make dist
-
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY_ID
