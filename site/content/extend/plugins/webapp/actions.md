@@ -7,11 +7,9 @@ weight: 11
 
 # Redux Actions
 
-When building web app plugins, it is common to want to perform actions that the web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between our different JavaScript clients.
+When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients.
 
-If you want to learn more about these actions, see the [contributor documentation on them](/contribute/redux/actions).
-
-Here we'll show how to use these actions with a plugin.
+Here we'll show how to use Redux actions with a plugin. To learn more about these actions, see the [contributor documentation](/contribute/redux/actions).
 
 ## Prerequisites
 
@@ -65,12 +63,12 @@ export default class ActionExample extends React.PureComponent {
     render() {
         return (
             <div>
-                {'The user\'s first name is ' + this.props.user.first_name}
+                {'First name: ' + this.props.user.first_name}
                 <a
                     href='#'
                     onClick={this.updateFirstName}
                 >
-                    Click me to update the user's first name!
+                    Click me to update the first name!
                 </a>
             </div>
         );
