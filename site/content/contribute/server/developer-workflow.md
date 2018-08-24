@@ -41,7 +41,7 @@ Some useful `make` commands:
 * `make run-fullmap` will run the server and build the client with the full source map for easier debugging
 * `make clean` cleans your local environment of temporary files
 * `make nuke` wipes your local environment back to a completely fresh start
-* `make package` creates packages for distributing your builds and puts them in the `~/go/src/github.com/mattermost/mattermost-server/dist` directory. You need to build the `mattermost-webapp` first and the you can package the app.
+* `make package` creates packages for distributing your builds and puts them in the `~/go/src/github.com/mattermost/mattermost-server/dist` directory. First you will need to run `make build` and `make build-webapp`.
 
 ### Running only specific server unit tests
 
