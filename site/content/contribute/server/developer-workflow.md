@@ -41,14 +41,18 @@ Some useful `make` commands:
 * `make run-fullmap` will run the server and build the client with the full source map for easier debugging
 * `make clean` cleans your local environment of temporary files
 * `make nuke` wipes your local environment back to a completely fresh start
+* `make package` creates packages for distributing your builds and puts them in the `~/go/src/github.com/mattermost/mattermost-server/dist` directory. First you will need to run `make build` and `make build-webapp`.
 
 ### Running only specific server unit tests
 
 Since running every single unit test takes a lot of time while making changes, you can run a subset of the serverside unit tests by using the following:
+
 ```
 go test -v -run='<test name or regex>' ./<package containing test>
 ```
+
 For example, if you wanted to run `TestPostUpdate` in `api/post_test.go`, you would run the following:
+
 ```
 go test -v -run='TestPostUpdate' ./api
 ```
@@ -60,11 +64,13 @@ During development you may want to reset the database and generate random data f
 Install the server with `go install ./cmd/mattermost` in the server repository.
 
 You can reset your database to the initial state using:
+
 ```
 mattermost reset
 ```
 
 After that, you can generate random data to populate the Mattermost database using:
+
 ```
 mattermost sampledata
 ```

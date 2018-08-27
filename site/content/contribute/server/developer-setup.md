@@ -50,7 +50,7 @@ subsection: Server
 
 6. Clone the Mattermost source code from your fork:
     1. Set up the directories:
-    
+
         ```sh
         mkdir -p ~/go/src/github.com/mattermost
         cd ~/go/src/github.com/mattermost
@@ -128,7 +128,7 @@ subsection: Server
 
 6. Clone the Mattermost source code from your fork:
     1. Set up the directories:
-    
+
         ```sh
         mkdir -p ~/go/src/github.com/mattermost
         cd ~/go/src/github.com/mattermost
@@ -253,7 +253,7 @@ subsection: Server
 
 6. Clone the Mattermost source code from your fork:
     1. Set up the directories:
-    
+
         ```sh
         mkdir -p ~/go/src/github.com/mattermost
         cd ~/go/src/github.com/mattermost
@@ -342,7 +342,7 @@ subsection: Server
 
 6. Clone the Mattermost source code from your fork:
     1. Set up the directories:
-    
+
         ```sh
         mkdir -p ~/go/src/github.com/mattermost
         cd ~/go/src/github.com/mattermost
