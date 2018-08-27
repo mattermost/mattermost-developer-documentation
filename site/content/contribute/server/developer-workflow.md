@@ -36,6 +36,7 @@ Some useful `make` commands:
 * `make run` will run the server, symlink your mattermost-webapp folder and start a watcher for the web app
 * `make stop` stops the server and the web app watcher
 * `make run-server` will run only the server and not the client
+* `make debug-server` will run the server in the `delve` debugger
 * `make stop-server` stops only the server
 * `make clean-docker` stops and removes your Docker images and is a good way to wipe your database
 * `make run-fullmap` will run the server and build the client with the full source map for easier debugging
