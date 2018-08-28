@@ -17,7 +17,7 @@ Looking to build a plugin? [Then you want the plugin author documenation.](/exte
 
 ## Overview
 
-Plugins are generally made of at least three parts: a manifest, a server binary and a JavaScript bundle.
+Plugins are generally made of at least two parts: a manifest and a server binary and/or a JavaScript bundle.
 
 The manifest tells Mattermost what the plugin is and provides a set of metadata used by the server to install and run the plugin. For more information you can see the [manifest reference](/extend/plugins/manifest-reference). Manifests may be defined in JSON or YAML.
 
@@ -33,7 +33,7 @@ Check out the [`plugin` package](https://github.com/mattermost/mattermost-server
 
 ## Adding an API 
 
-To add a plugin API you need to add the signature of your new method to the [API interface](https://github.com/mattermost/mattermost-server/blob/master/plugin/api.go). You then need to implement the API in the [plugin_api.go](https://github.com/mattermost/mattermost-server/blob/master/app/plugin_api.go) of the `app` package. Finally, you would need to run `make pluginapi` to generate the RPC glue code needed for your new API.
+To add a plugin API you need to add the signature of your new method to the [API interface](https://github.com/mattermost/mattermost-server/blob/master/plugin/api.go). You then need to implement the API in the [plugin_api.go](https://github.com/mattermost/mattermost-server/blob/master/app/plugin_api.go) of the `app` package. Finally, you would need to run `make pluginapi` to generate the RPC glue code needed for your new API and `make plugin-mocks` to generate the mocks used for plugin testing.
 
 That's it! Submit your pull request.
 
