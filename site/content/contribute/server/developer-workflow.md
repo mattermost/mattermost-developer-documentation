@@ -75,3 +75,12 @@ After that, you can generate random data to populate the Mattermost database usi
 ```
 mattermost sampledata
 ```
+
+When Docker starts, the SMTP server is available on port 2500. Username and password are not required. You can access Inbucket webmail on port 9000.
+
+### Testing with GitLab Omnibus
+
+To test a locally compiled version of Mattermost with GitLab Omnibus, replace the following GitLab files:
+
+* The compiled `mattermost` binary in `/opt/gitlab/embedded/bin/mattermost`
+* The assets (templates, i18n, fonts, webapp) in `/opt/gitlab/embedded/service/mattermost`
