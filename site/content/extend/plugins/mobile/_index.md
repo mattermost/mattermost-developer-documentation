@@ -2,7 +2,7 @@
 title: Mobile Plugins
 date: 2018-07-10T00:00:00-05:00
 subsection: Plugins (Beta)
-weight: 20
+weight: 30
 ---
 
 # Mobile Plugins
