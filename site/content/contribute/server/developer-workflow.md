@@ -76,7 +76,13 @@ After that, you can generate random data to populate the Mattermost database usi
 mattermost sampledata
 ```
 
-When Docker starts, the SMTP server is available on port 2500. Username and password are not required. You can access Inbucket webmail on port 9000.
+### Testing email notifications
+
+When Docker starts, the SMTP server is available on port 2500. Username and password are not required.
+
+You can access Inbucket webmail on port 9000.
+
+For additional information on configuring an SMTP email server, including troubleshooting steps, see [https://docs.mattermost.com/install/smtp-email-setup.html](https://docs.mattermost.com/install/smtp-email-setup.html).
 
 ### Testing with GitLab Omnibus
 
