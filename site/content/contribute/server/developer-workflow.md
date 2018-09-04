@@ -75,3 +75,18 @@ After that, you can generate random data to populate the Mattermost database usi
 ```
 mattermost sampledata
 ```
+
+### Testing email notifications
+
+When Docker starts, the SMTP server is available on port 2500. Username and password are not required.
+
+You can access Inbucket webmail on port 9000.
+
+For additional information on configuring an SMTP email server, including troubleshooting steps, see [https://docs.mattermost.com/install/smtp-email-setup.html](https://docs.mattermost.com/install/smtp-email-setup.html).
+
+### Testing with GitLab Omnibus
+
+To test a locally compiled version of Mattermost with GitLab Omnibus, replace the following GitLab files:
+
+* The compiled `mattermost` binary in `/opt/gitlab/embedded/bin/mattermost`
+* The assets (templates, i18n, fonts, webapp) in `/opt/gitlab/embedded/service/mattermost`
