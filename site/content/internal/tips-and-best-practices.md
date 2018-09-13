@@ -19,4 +19,4 @@ Video calls are also encouraged, something many find richly satisfying. Sample q
 2. How did you get involved with Mattermost?
 3. Anything we can do to improve the contributor process?
 
-For an excellent video on how to build effective open source campaigns, [see ere](https://www.youtube.com/watch?v=rTiLgSF5KHQ). 
+For an excellent video on how to build effective open source campaigns, [see here](https://www.youtube.com/watch?v=rTiLgSF5KHQ). 
