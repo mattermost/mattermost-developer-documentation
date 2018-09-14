@@ -12,6 +12,7 @@ subsection: Server
   <button class="tablinks active" onclick="openTab(event, 'mac')">Mac OS X</button>
   <button class="tablinks" onclick="openTab(event, 'ubuntu')">Ubuntu 16.04</button>
   <button class="tablinks" onclick="openTab(event, 'windows')">Windows</button>
+  <button class="tablinks" onclick="openTab(event, 'windows_wsl')">Windows WSL</button>
   <button class="tablinks" onclick="openTab(event, 'archlinux')">Archlinux</button>
   <button class="tablinks" onclick="openTab(event, 'centos')">CentOS 7</button>
 </div>
@@ -205,6 +206,86 @@ subsection: Server
     make run-server
     make stop-server # stop the server after it starts succesfully
     ```
+
+{{% /md %}}
+</div>
+
+<div id="windows_wsl" class="tabcontent">
+{{% md %}}
+
+#### Installing on Window 10 and the Windows Subsystem for Linux (WSL)
+
+##### This is an unofficial guide. Community testing, feedback and improvements are welcome and greatly appreciated. You can propose updates by [editing the GitHub source file here](https://github.com/mattermost/mattermost-developer-documentation/blob/windows-wsl/site/content/contribute/server/developer-setup.md).
+
+Set up your development environment for building, running, and testing Mattermost.
+
+1. Install the Windows Subsystem for Linux following https://docs.microsoft.com/en-us/windows/wsl/install-win10
+
+1. Install and setup Docker. If you are using Windows 10 Pro or Enterprise, you can use Docker for Windows.
+    1. Install Docker for Windows https://docs.docker.com/docker-for-windows/
+    1. Add the line `127.0.0.1 dockerhost` to `C:\Windows\System32\drivers\etc\hosts` using a text editor with administrator privileges.
+
+1. Link Windows Subsystem for Linux to Docker for Windows. Refer to this blog article for more information: https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4. You should end up with the Docker client running on Linux (WSL) sending commands to your Docker Engine daemon installed on Windows.
+  
+1. Install the build-essential package
+  In bash `sudo apt-get install build-essential`
+
+1. Download and install Go 1.10 for Linux:
+    1. Download the Go binary.  
+        In bash``wget https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz``
+    1. Install the Go binary.  
+        In bash``sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz``
+
+1. Set up your Go workspace:  
+    1. In PowerShell ``mkdir d:\Projects\go``
+    1. In bash ``ln -s "/mnt/d/Projects/go" /home/<Linux User>/go``
+    1. Add the following lines to your ``~/.bashrc`` file in bash:
+
+        ```bash
+        export GOPATH=$HOME/go
+        export PATH=$PATH:$GOPATH/bin
+        export PATH=$PATH:/usr/local/go/bin
+        ulimit -n 8096
+        ```
+    1. Reload your bash configuration. `source ~/.bashrc`
+
+1. Install Node.js:
+    1. Add the Node.js repository to your repository list.
+      ``curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -``
+    1. Install Node.js
+      ``sudo apt-get install -y nodejs``
+
+1. Fork Mattermost server on GitHub from https://github.com/mattermost/mattermost-server.
+
+1. Fork Mattermost webapp on GitHub from https://github.com/mattermost/mattermost-webapp.
+
+1. Download the Mattermost code from your forked repositories:
+    1. Create the directory for the code.
+    ``mkdir -p ~/go/src/github.com/mattermost``
+    1. Change to the directory that you created.
+    ``cd ~/go/src/github.com/mattermost``
+    1. Clone your Mattermost server fork. In the following command, replace *{username}* with your GitHub username.
+    ``git clone https://github.com/{username}/mattermost-server.git``
+    1. Clone your Mattermost webapp fork. In the following command, replace *{username}* with your GitHub username.
+    ``git clone https://github.com/{username}/mattermost-webapp.git``
+
+### Troubleshooting:
+1. If you see an error like `the input device is not a TTY.  If you are using mintty, try prefixing the command with 'winpty'`.  Reinstall git for windows and make sure you choose `Use Windows' default console window` instead of `Use MinTTY`
+1.  If you see the follow message sometimes the LDAP docker container is slow to start, either increase the wait time in the make file or run `make run` twice in a row.
+
+```
+Ldap test user test.one
+starting mattermost-openldap
+ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)
+ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)
+ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)
+ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)
+ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)
+ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)
+Makefile:102: recipe for target 'start-docker' failed
+```
+
+Now that everything is set up, you are ready to compile and run Mattermost.
 
 {{% /md %}}
 </div>
