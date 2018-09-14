@@ -227,8 +227,8 @@ Set up your development environment for building, running, and testing Mattermos
 
 1. Link Windows Subsystem for Linux to Docker for Windows. Refer to this blog article for more information: https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4. You should end up with the Docker client running on Linux (WSL) sending commands to your Docker Engine daemon installed on Windows.
   
-1. Install the build-essential package
-  In bash `sudo apt-get install build-essential`
+1. Install the build-essential and libpng16-dev package
+  In bash `sudo apt-get install build-essential libpng16-dev`
 
 1. Download and install Go 1.10 for Linux:
     1. Download the Go binary.  
