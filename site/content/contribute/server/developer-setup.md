@@ -213,8 +213,9 @@ subsection: Server
 <div id="windows_wsl" class="tabcontent">
 {{% md %}}
 
-###  *EXPERIMENTAL*
 #### Installing on Window 10 and the Windows Subsystem for Linux (WSL)
+
+##### This is an unofficial guide. Community testing, feedback and improvements are welcome and greatly appreciated. You can propose updates by [editing the GitHub source file here](https://github.com/mattermost/mattermost-developer-documentation/blob/windows-wsl/site/content/contribute/server/developer-setup.md).
 
 Set up your development environment for building, running, and testing Mattermost.
 
@@ -224,7 +225,7 @@ Set up your development environment for building, running, and testing Mattermos
     1. Install Docker for Windows https://docs.docker.com/docker-for-windows/
     1. Add the line `127.0.0.1 dockerhost` to `C:\Windows\System32\drivers\etc\hosts` using a text editor with administrator privileges.
 
-1. Link Windows Subsystem for Linux to Docker for Windows.  When in doubt refer to the great blog article at https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4.  You should end up with the Docker client running on Linux (WSL) sending commands to your Docker Engine daemon installed on Windows.
+1. Link Windows Subsystem for Linux to Docker for Windows. Refer to this blog article for more information: https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4. You should end up with the Docker client running on Linux (WSL) sending commands to your Docker Engine daemon installed on Windows.
   
 1. Install the build-essential package
   In bash `sudo apt-get install build-essential`
