@@ -43,7 +43,7 @@ Some useful `make` commands:
 * `make clean` cleans your local environment of temporary files
 * `make nuke` wipes your local environment back to a completely fresh start
 * `make package` creates packages for distributing your builds and puts them in the `~/go/src/github.com/mattermost/mattermost-server/dist` directory. First you will need to run `make build` and `make build-webapp`.
-* `make megacheck` will run the tool [megacheck](https://github.com/dominikh/go-tools/tree/master/cmd/megacheck) against the code base to find potential issues in the code. Please note the results are guidelines, and not in all cases mandatory. If in doubt, feel free to ask in the `Developers` channel on pre-release.
+* `make megacheck` runs the tool [megacheck](https://github.com/dominikh/go-tools/tree/master/cmd/megacheck) against the code base to find potential issues in the code. Please note the results are guidelines, and not mandatory in all cases. If in doubt, ask in the [Developers community channel](https://pre-release.mattermost.com/core/channels/developers).
 
 ### Running only specific server unit tests
 
