@@ -1,5 +1,5 @@
 ---
-title: "Guidelines for Contributing an Integration"
+title: "Guidelines for Contributing"
 date: 2017-09-10T12:33:36-04:00
 subsection: Getting Started
 ---
@@ -12,8 +12,8 @@ Please use the guidelines below to help you get started:
 
 ### Plan your integration
 
-  - Outline the user stories that this integration will support
-  - Choose what [integration type](https://developers.mattermost.com/integrate/getting-started/how-should-i-integrate/) is ideal for your user stories
+  - Outline the user stories that this integration will support.
+  - Choose what [integration type](https://developers.mattermost.com/integrate/getting-started/how-should-i-integrate/) is ideal for your user stories.
   - If required by your integration, determine the authentication method best for your integration. (See more information on [Personal Access Tokens](https://docs.mattermost.com/developer/personal-access-tokens.html/) and [OAuth 2.0 applications](https://docs.mattermost.com/developer/oauth-2-0-applications.html/) to help you decide.)
   - Consider the user experience. Review our [guidelines for UX](https://docs.mattermost.com/developer/fx-guidelines.html) for user experience design for ideas and guidance. We are happy to give feedback as well on our contributors server!
 
@@ -21,7 +21,7 @@ Please use the guidelines below to help you get started:
  
   - Check out our [Getting Started guide](https://developers.mattermost.com/contribute/getting-started/), review integration samples, or use our [Developer toolkit](https://docs.mattermost.com/developer/toolkit.html/) to help you as you are starting development.
   - Don’t hesitate to ask for help from our team or other developers on our [public Mattermost server](https://pre-release.mattermost.com/core/channels/developers/) if you have questions or get stuck. 
-  - Determine process for installing and running your integration alongside Mattermost. Consider adding auto restart for server restarts. 
+  - Determine the process for installing and running your integration alongside Mattermost. Consider adding auto restart for server restarts. 
   - Test your integration to ensure it is working properly and there are no surprises to your end users. Want another set of eyes or someone else to test? We can help here too :) .
 
  ### Support your integration through documentation
