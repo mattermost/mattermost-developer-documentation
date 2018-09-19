@@ -154,6 +154,25 @@ In order to develop and build the Mattermost mobile apps you'll need to get a co
 
 ## Troubleshooting
 
+### Errors When Running 'make run'
+
+##### Error message
+```sh
+FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory
+```
+
+##### Solution
+-   Increase `max_old_space_size` of the nodejs instance.  On Mac, add the following line to your `~/.bash_profile` file:
+
+    ```sh
+    export NODE_OPTIONS=--max_old_space_size=12000
+    ```
+- Then reload your bash configuration:
+
+    ```sh
+    source ~/.bash_profile
+    ```
+
 ### Errors When Running 'make run-android'
 
 ##### Error message
