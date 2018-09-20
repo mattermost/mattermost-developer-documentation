@@ -29,8 +29,8 @@ Please use the guidelines below to help you get started:
   - Share how your integration works and what it does in a Read.me doc. 
   - Create screenshots to highlight features and show off your integration.
   - Make sure you include a license file with your integration. We recommend Apache v2, MIT, or BSD-3 to ensure you’re compatible with Mattermost.
-  - Provide instruction for installing and configuring  your integration alongside Mattermost.  
-  - Encourage feedback by telling others how they can communicate with you through Github or by reaching out directly!
+  - Provide instructions for installing and configuring your integration alongside Mattermost.  
+  - Encourage feedback by telling others how they can communicate with you through Github or by reaching out directly.
   - Want an example?  Feel free to check [this one](https://github.com/matterhorn-chat/matterhorn/) out! 
 
  ### Submit your integration
