@@ -1,10 +1,10 @@
 ---
-title: "Guidelines for Contributing"
+title: "Sharing My Integration"
 date: 2017-09-10T12:33:36-04:00
 subsection: Getting Started
 ---
 
-# Guidelines for Contributing an Integration
+# Sharing is Caring
 
 Contributing an integration is a great way to add new functionality to your system and to share with the community. We want the process to be easy and want to help you produce a great integration that others will enjoy as well!  
 
