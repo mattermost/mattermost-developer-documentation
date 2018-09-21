@@ -17,22 +17,22 @@ Please use the guidelines below to help you get started:
   - If required by your integration, determine the authentication method best for your integration. (See more information on [Personal Access Tokens](https://docs.mattermost.com/developer/personal-access-tokens.html/) and [OAuth 2.0 applications](https://docs.mattermost.com/developer/oauth-2-0-applications.html/) to help you decide.)
   - Consider the user experience. Review our [guidelines for UX](https://docs.mattermost.com/developer/fx-guidelines.html) for user experience design for ideas and guidance. We are happy to give feedback as well on our contributors server!
 
- ### Develop your integration
+### Develop your integration
  
   - Check out our [Getting Started guide](https://developers.mattermost.com/contribute/getting-started/), review integration samples, or use our [Developer toolkit](https://docs.mattermost.com/developer/toolkit.html/) to help you as you are starting development.
   - Don’t hesitate to ask for help from our team or other developers on our [public Mattermost server](https://pre-release.mattermost.com/core/channels/developers/) if you have questions or get stuck. 
   - Determine the process for installing and running your integration alongside Mattermost. Consider adding auto restart for server restarts. 
   - Test your integration to ensure it is working properly and there are no surprises to your end users. Want another set of eyes or someone else to test? We can help here too :) .
 
- ### Support your integration through documentation
+### Support your integration through documentation
  
   - Share how your integration works and what it does in a Read.me doc. 
   - Create screenshots to highlight features and show off your integration.
   - Make sure you include a license file with your integration. We recommend Apache v2, MIT, or BSD-3 to ensure you’re compatible with Mattermost.
   - Provide instructions for installing and configuring your integration alongside Mattermost.  
-  - Encourage feedback by telling others how they can communicate with you through Github or by reaching out directly.
-  - Want an example?  Feel free to check [this one](https://github.com/matterhorn-chat/matterhorn/) out! 
+  - Encourage feedback by telling others how they can communicate with you through GitHub or by reaching out directly.
+  - Want an example? Feel free to check [this one](https://github.com/matterhorn-chat/matterhorn/) out! 
 
- ### Submit your integration
+### Submit your integration
  
-[Give us a link](https://www.mattermost.org/share-your-mattermost-projects/) to your project and supporting materials. We’ll add it to our [community contributions](https://about.mattermost.com/community-applications/) page and share with others that its available!
+[Give us a link](https://www.mattermost.org/share-your-mattermost-projects/) to your project and supporting materials. We’ll add it to our [community contributions](https://about.mattermost.com/community-applications/) page and share with others that it's available!
