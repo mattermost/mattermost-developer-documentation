@@ -1,9 +1,72 @@
 ---
 title: Migrating Plugins
-date: 2018-07-10T00:00:00-05:00
+date: 2018-10-01T00:00:00-05:00
 subsection: Plugins (Beta)
 weight: 50
 ---
+# Migrating Plugins from Mattermost 5.5 and earlier
+
+The plugin package exposed by Mattermost 5.6 and later drops support for automatically unmarshalling a plugin's configuration onto the struct embedding `MattermostPlugin`. As server plugins are inherently concurrent (hooks being called asynchronously) and the plugin configuration can change at any time, access to the configuration must be synchronized.
+
+Plugins compiled against 5.5 and earlier will continue to work without modification, automatically unmarshalling a plugin's configuration but with the existing risk of a corrupted read or write. Once the plugin is recompiled against Mattermost 5.6, it will be necessary to manually unmarshal your plugin's configuration. Client-only plugins and server plugins without public fields require no modifications.
+
+Note that you do not need to wait until Mattermost 5.6 to make these changes, as the hardened approach explained below will work with Mattermost 5.5 and earlier. Any implementation of `OnConfigurationChange` you define overrides the one automatically unmarshalling.
+
+## Server changes
+
+### Loading configuration
+
+Previously, any public fields defined on the struct embedding `MattermostPlugin` would be automatically unmarshalled from the plugin's configuration:
+
+```go
+type Plugin struct {
+    plugin.MattermostPlugin
+
+    Greeting string
+}
+
+
+func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello %s!", p.Greeting)
+}
+```
+
+Unfortunately, writing to `Greeting` while the plugin may be concurrently reading from same could result in a corrupted read or write. The [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) and [mattermost-plugin-demo](https://github.com/mattermost/mattermost-plugin-demo) have both been updated with more complete examples, but the general idea is to manually handle the `OnConfigurationChange` hook and synchronize access to these variables. One such way is with a [sync.RWMutex](https://golang.org/pkg/sync/#RWMutex):
+
+```go
+type Plugin struct {
+    plugin.MattermostPlugin
+
+    greetingLock sync.Mutex
+    greeting string
+}
+
+func (p *Plugin) OnConfigurationChange() error {
+    type configuration struct {
+        Greeting string
+    }
+
+    // Load the public configuration fields from the Mattermost server configuration.
+    if err := p.API.LoadPluginConfiguration(configuration); err != nil {
+        return errors.Wrap(err, "failed to load plugin configuration")
+    }
+
+    p.configurationLock.Lock()
+    defer p.configurationLock.Unlock()
+    p.greeting = configuration.Greeting
+
+    return nil
+}
+
+func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Request) {
+    p.configurationLock.RLock()
+    defer p.configurationLock.RUnlock()
+
+    fmt.Fprintf(w, "Hello %s!", p.greeting)
+}
+```
+
+Unfortunately, this adds a fair bit of extra complexity. You may wish to base your updated implementation off of [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) or [mattermost-plugin-demo](https://github.com/mattermost/mattermost-plugin-demo) to simplify your code.
 
 # Migrating Plugins from Mattermost 5.1 and earlier
 
