@@ -100,16 +100,16 @@ subsection: Server
     sudo apt-get install build-essential
     ```
 
-3. Download and install Go 1.9 for Linux:
+3. Download and install Go 1.11 for Linux:
     1. Download the Go binary:
 
         ```sh
-        wget https://storage.googleapis.com/golang/go1.9.4.linux-amd64.tar.gz
+        wget https://storage.googleapis.com/golang/go1.11.linux-amd64.tar.gz
         ```
     2. Install the Go binary:
 
         ```sh
-        sudo tar -C /usr/local -xzf go1.9.4.linux-amd64.tar.gz
+        sudo tar -C /usr/local -xzf go1.11.linux-amd64.tar.gz
         ```
 
 4. Set up your Go workspace:
@@ -230,11 +230,11 @@ Set up your development environment for building, running, and testing Mattermos
 1. Install the build-essential and libpng16-dev package
   In bash `sudo apt-get install build-essential libpng16-dev`
 
-1. Download and install Go 1.10 for Linux:
+1. Download and install Go 1.11 for Linux:
     1. Download the Go binary.  
-        In bash``wget https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz``
+        In bash``wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz``
     1. Install the Go binary.  
-        In bash``sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz``
+        In bash``sudo tar -C /usr/local -xzf go1.11.linux-amd64.tar.gz``
 
 1. Set up your Go workspace:  
     1. In PowerShell ``mkdir d:\Projects\go``
@@ -308,7 +308,7 @@ Now that everything is set up, you are ready to compile and run Mattermost.
         127.0.0.1     dockerhost
         ```
 
-2. Install Go 1.9:
+2. Install Go:
     ```sh
     pacman -S go
     ```
@@ -386,16 +386,16 @@ Now that everything is set up, you are ready to compile and run Mattermost.
     sudo yum install -y wget libpng12
     ```
 
-3. Download and install Go 1.9 for Linux:
+3. Download and install Go 1.11 for Linux:
     1. Download the Go binary:
 
         ```sh
-        wget https://storage.googleapis.com/golang/go1.9.4.linux-amd64.tar.gz
+        wget https://storage.googleapis.com/golang/go1.11.linux-amd64.tar.gz
         ```
     2. Install the Go binary:
 
         ```sh
-        sudo tar -C /usr/local -xzf go1.9.4.linux-amd64.tar.gz
+        sudo tar -C /usr/local -xzf go1.11.linux-amd64.tar.gz
         ```
 
 4. Set up your Go workspace:
