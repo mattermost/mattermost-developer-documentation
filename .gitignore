@@ -10,3 +10,6 @@
 # os artifacts
 *.swp
 .DS_Store
+
+# IDE artifacts
+.idea/
