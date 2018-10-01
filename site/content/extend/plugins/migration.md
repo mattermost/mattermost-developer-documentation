@@ -31,7 +31,7 @@ func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Req
 }
 ```
 
-Unfortunately, writing to `Greeting` while the plugin may be concurrently reading from same could result in a corrupted read or write. The [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) and [mattermost-plugin-demo](https://github.com/mattermost/mattermost-plugin-demo) have both been updated with more complete examples, but the general idea is to manually handle the `OnConfigurationChange` hook and synchronize access to these variables. One such way is with a [sync.RWMutex](https://golang.org/pkg/sync/#RWMutex):
+Writing to `Greeting` while the plugin may be concurrently reading from same could result in a corrupted read or write. The [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) and [mattermost-plugin-demo](https://github.com/mattermost/mattermost-plugin-demo) have both been updated with more complete examples, but the general idea is to manually handle the `OnConfigurationChange` hook and synchronize access to these variables. One such way is with a [sync.RWMutex](https://golang.org/pkg/sync/#RWMutex):
 
 ```go
 type Plugin struct {
