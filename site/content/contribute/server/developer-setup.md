@@ -69,6 +69,16 @@ subsection: Server
     make stop-server # stop the server after it starts succesfully
     ```
 
+8. You can check if the server is running using the following `curl` command or opening the URL in your web browser:
+
+   ```sh
+   curl https://localhost:8065/api/v4/system/ping
+   ```
+
+   The server should return a JSON object containing `"status":"OK"`.
+
+   **Notice:** The server root will return a `404 Not Found` status, since the web app is not configured as part of the server setup. Please refer to the [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for the setup steps.
+
 {{% /md %}}
 </div>
 
@@ -147,6 +157,16 @@ subsection: Server
     make stop-server # stop the server after it starts succesfully
     ```
 
+8. You can check if the server is running using the following `curl` command or opening the URL in your web browser:
+
+   ```sh
+   curl https://localhost:8065/api/v4/system/ping
+   ```
+
+   The server should return a JSON object containing `"status":"OK"`.
+
+   **Notice:** The server root will return a `404 Not Found` status, since the web app is not configured as part of the server setup. Please refer to the [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for the setup steps.
+
 {{% /md %}}
 </div>
 
@@ -207,6 +227,16 @@ subsection: Server
     make stop-server # stop the server after it starts succesfully
     ```
 
+9. You can check if the server is running opening the following URL in your web browser:
+
+   ```sh
+   https://localhost:8065/api/v4/system/ping
+   ```
+
+   The server should return a JSON object containing `"status":"OK"`.
+
+   **Notice:** The server root will return a `404 Not Found` status, since the web app is not configured as part of the server setup. Please refer to the [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for the setup steps.
+
 {{% /md %}}
 </div>
 
@@ -226,7 +256,7 @@ Set up your development environment for building, running, and testing Mattermos
     1. Add the line `127.0.0.1 dockerhost` to `C:\Windows\System32\drivers\etc\hosts` using a text editor with administrator privileges.
 
 1. Link Windows Subsystem for Linux to Docker for Windows. Refer to this blog article for more information: https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4. You should end up with the Docker client running on Linux (WSL) sending commands to your Docker Engine daemon installed on Windows.
-  
+
 1. Install the build-essential and libpng16-dev package
   In bash `sudo apt-get install build-essential libpng16-dev`
 
@@ -268,6 +298,16 @@ Set up your development environment for building, running, and testing Mattermos
     ``git clone https://github.com/{username}/mattermost-server.git``
     1. Clone your Mattermost webapp fork. In the following command, replace *{username}* with your GitHub username.
     ``git clone https://github.com/{username}/mattermost-webapp.git``
+
+1. You can check if the server is running using the following `curl` command or opening the URL in your web browser:
+
+   ```sh
+   curl https://localhost:8065/api/v4/system/ping
+   ```
+
+   The server should return a JSON object containing `"status":"OK"`.
+
+   **Notice:** The server root will return a `404 Not Found` status, since the web app is not configured as part of the server setup. Please refer to the [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for the setup steps.
 
 ### Troubleshooting:
 1. If you see an error like `the input device is not a TTY.  If you are using mintty, try prefixing the command with 'winpty'`.  Reinstall git for windows and make sure you choose `Use Windows' default console window` instead of `Use MinTTY`
@@ -351,6 +391,16 @@ Now that everything is set up, you are ready to compile and run Mattermost.
     make run-server
     make stop-server # stop the server after it starts succesfully
     ```
+
+8. You can check if the server is running using the following `curl` command or opening the URL in your web browser:
+
+   ```sh
+   curl https://localhost:8065/api/v4/system/ping
+   ```
+
+   The server should return a JSON object containing `"status":"OK"`.
+
+   **Notice:** The server root will return a `404 Not Found` status, since the web app is not configured as part of the server setup. Please refer to the [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for the setup steps.
 
 {{% /md %}}
 </div>
@@ -440,6 +490,16 @@ Now that everything is set up, you are ready to compile and run Mattermost.
     make run-server
     make stop-server # stop the server after it starts succesfully
     ```
+
+8. You can check if the server is running using the following `curl` command or opening the URL in your web browser:
+
+   ```sh
+   curl https://localhost:8065/api/v4/system/ping
+   ```
+
+   The server should return a JSON object containing `"status":"OK"`.
+
+   **Notice:** The server root will return a `404 Not Found` status, since the web app is not configured as part of the server setup. Please refer to the [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for the setup steps.
 
 {{% /md %}}
 </div>
