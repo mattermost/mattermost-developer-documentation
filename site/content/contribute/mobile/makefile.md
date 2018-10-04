@@ -39,8 +39,9 @@ These make commands are used to ensure that the code follows the linter rules an
 
 The set of commands for building the app are used in conjunction with [Fastlane](https://fastlane.tools/) and a set of environment variables that can be found under the project's fastlane directory.
 
-- **make build-ios**: Builds the iOS app and generates the Mattermost.ipa file in the project's root directory to be distributed.
-- **make build-android**: Builds the Android app and generates the Mattermost.apk file in the project's root directory to be distributed.
+- **make build**: Builds the app for both platforms Android and iOS in sequence and generates the apk and ipa files in the project's root directory to be distributed.
+- **make build-ios**: Builds the iOS app and generates the ipa file in the project's root directory to be distributed.
+- **make build-android**: Builds the Android app and generates the apk file in the project's root directory to be distributed.
 - **make unsigned-ios**: Builds the iOS app and generates an unsigned Mattermost-unsigned.ipa file in the project's root directory.
 - **make unsigned-android**: Builds the Android app and generates an unsigned Mattermost-unsigned.apk file in the project's root directory.
 
