@@ -48,7 +48,7 @@ For guidance on migrating a webapp component to Redux, read the next section.
 There are a few steps involved with migrating a component to use Redux. Some of them may not apply to every component and they may change slightly based on the component you're working on. In general, you can these steps as a checklist for work that needs to be done on each component.
 
 1. Move any `PropTypes` from the bottom of the file to be defined at the top of the component, [as shown here](/contribute/webapp/build-component#designing-your-component).
-    - Also replace any `React.PropTypes` usages with just `PropTypes` and add `import PropTypes fron 'prop-types';` to the file imports.
+    - Also replace any `React.PropTypes` usages with just `PropTypes` and add `import PropTypes from 'prop-types';` to the file imports.
     - Please make sure to add documentation for each prop, as shown in the above link.
 2. Switch the component to extend `React.PureComponent` instead of `React.Component` and remove the `shouldComponentUpdate` function if it exists.
 3. If the component imports any stores (ex. `user_store.jsx`), create a container by:  
