@@ -5,6 +5,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"go/ast"
 	"go/build"
 	"go/doc"
@@ -65,6 +66,19 @@ func fields(list *ast.FieldList, info *types.Info) (fields []*Field) {
 				}
 				for _, name := range x.Names {
 					field.Names = append(field.Names, name.Name)
+				}
+				fields = append(fields, field)
+			} else if _, ok := x.Type.(*ast.Ellipsis); ok {
+				field := &Field{}
+				for _, name := range x.Names {
+					field.Names = append(field.Names, name.Name)
+				}
+				t := x.Type.(*ast.Ellipsis)
+				switch t.Elt.(type) {
+				case *ast.Ident:
+					field.Type = fmt.Sprintf("...%s", t.Elt.(*ast.Ident).String())
+				case *ast.InterfaceType:
+					field.Type = "...interface{}"
 				}
 				fields = append(fields, field)
 			}
