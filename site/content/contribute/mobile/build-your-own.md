@@ -9,7 +9,7 @@ subsection: Mobile Apps
 
 You can build the app from source and distribute it within your team or company either using the App Stores, Enterprise App Stores or EMM providers, or another way of your choosing.
 
-We recommend using the **make build-**\* commands in conjunction with [Fastlane](https://docs.fastlane.tools/#choose-your-installation-method). With Fastlane, you can also configure the app using environment
+We recommend using the **make build**\* commands in conjunction with [Fastlane](https://docs.fastlane.tools/#choose-your-installation-method). With Fastlane, you can also configure the app using environment
 variables.
 
 ### Build Preparations
@@ -19,6 +19,50 @@ First of all, ensure that the following remains exactly the same as in the origi
 - The package ID for the Android app and the Bundle Identifier for the iOS app remain the same as the one in the original mattermost-mobile repo, com.mattermost.rnbeta.
 - Android-specific source files remain under `android/app/src/main/java/com/mattermost/rnbeta`
 - Your [environment variables](https://github.com/mattermost/mattermost-mobile/blob/master/fastlane/env_vars_example) are set according to your needs
+
+#### Setting up Environment Variables
+
+In order to use the **make build**, **make build-android** and/or **make build-ios** commands, you'll need to set a few environment variables. In this guide, we will explain them. In order to make fastlane work with these environment variables you have two options:
+
+* Copy the file with your variables to `../mattermost-mobile/fastlane/.env` where `.env` is the file name.
+
+or
+
+* Create an .sh file with your variables (for example `my_env.sh`), and execute `source my_env.sh` in the terminal session where you will later execute the **make** commands
+
+| Variable            | Description                                | Default    | Platform  |
+|---------------------|--------------------------------------------|------------|-----------|
+| COMMIT\_CHANGES\_TO\_GIT | Should the fastlane script ensure that there are no changes to git before building the app and that every change made during the build is committed back to git.<br>Valid values are: true, false | false | Android, iOS |
+| BRANCH\_TO\_BUILD | Defines the git branch that is going to be used for generating the build. <br>**Make sure you set this value is set if to an existing branch**.| master | Android, iOS |
+| GIT\_LOCAL\_BRANCH | Defines the local branch to be created from BRANCH\_TO\_BUILD to ensure the base branch does not get any new commits on it.<br>**Make sure a branch with this name does not yet exist in your local git**. |  | Android, iOS |
+| RESET\_GIT\_BRANCH | Defines if once the build is done the branch should reset to the initial state before building and delete the branch created to build the app.<br>Valid values are: true, false | false | Android, iOS |
+| VERSION\_NUMBER | Set the version of the app on build time if you want to use another one than the one set in the project. |  | Android, iOS |
+| INCREMENT\_VERSION\_<br>NUMBER\_MESSAGE | Set the commit message when changing the app version number. | Bump app version number to | Android, iOS |
+| INCREMENT\_BUILD\_NUMBER | Defines if the app build number should be incremented.<br>Valid values are: true, false | false | Android, iOS |
+| BUILD\_NUMBER | Set the build number of the app on build time if you want to use another than the next number. |  | Android, iOS | 
+| INCREMENT\_BUILD\_<br>NUMBER\_MESSAGE | Set the commit message when changing the app build number. | Bump app build number to | Android, iOS |
+| APP\_NAME | The name of the app as it is going to be shown in the device home screen. | Mattermost Beta | Android, iOS |
+| REPLACE\_ASSETS | Replaces the icons of the app with the ones found under the folder *dist/assets/release/icons/* and the splash screen with the one found under the folder *dist/assets/release/splash\_screen/*. Valid values are: true, false | false | Android, iOS |
+| MAIN\_APP\_IDENTIFIER | The bundle / package identifier for the app. | com.mattermost.rnbeta | Android, iOS |
+| BUILD\_FOR\_RELEASE | Defines if the app should be built in release mode. Valid values are: true, false <br> **Make sure you set this value to true if you plan to submit this app to TestFlight, Google Play or distribute it in any other way**. | false | Android, iOS |
+| SUBMIT\_ANDROID\_TO\_<br>GOOGLE\_PLAY | Should the app be submitted to the Play Store once it finishes to build, use along with **SUPPLY\_TRACK**. Valid values are: true, false | false | Android |
+| SUPPLY\_TRACK | The track of the application to use when submitting the app to Google Play Store. Valid values are: alpha, beta, production <br> **We strongly recommend not submitting the app to to production, instead try any of the other tracks and then promote your app using the Google Play console**. | production | Android |
+| SUPPLY\_PACKAGE\_NAME | The package Id of your application, make sure it matches **MAIN\_APP\_IDENTIFIER**. | com.mattermost.rnbeta | Android |
+| SUPPLY\_JSON\_KEY | The path to the service account json file used to authenticate with Google. <br> See the [Supply documentation]( https://docs.fastlane.tools/actions/supply/#setup) to learn more. |  | Android |
+| EXTENSION\_APP\_IDENTIFIER | The bundle identifier for the share extension. | com.mattermost.rnbeta.MattermostShare | iOS |
+| FASTLANE\_TEAM\_ID | The ID of your Apple Developer Portal Team. |  | iOS |
+| IOS\_ICLOUD\_CONTAINER | The iOS iCloud container identifier used to support iCloud storage. | iCloud.com.mattermost.rnbeta | iOS |
+| IOS\_APP\_GROUP | The iOS App Group identifier used to share data between the app and the share extension. |  | iOS |
+| SYNC\_PROVISIONING\_PROFILES | Should we run **match** to sync the provisioning profiles. Valid values are: true, false | false | iOS |
+| MATCH\_USERNAME | Your Apple ID Username. |  | iOS |
+| MATCH\_PASSWORD | Your Apple ID Password. |  | iOS |
+| MATCH\_GIT\_URL | URL to the git repo containing all the certificates. <br> **Make sure this git repo is set to private. Remember this repo will be used to sync the provisioning profiles and other certificates**.|  | iOS |
+| MATCH\_APP\_IDENTIFIER | The Bundle Identifiers for the app (comma-separated). In our case refers to the identifiers of the app and the share extension | com.mattermost.rnbeta.MattermostShare,<br>com.mattermost.rnbeta | iOS |
+| MATCH\_TYPE | Define the provisioning profile type to sync. Valid values are: appstore, adhoc, development, enterprise <br> **Make sure you set this value to the same type as the IOS\_BUILD\_EXPORT\_METHOD as you want to have the same provisioning profiles installed in the machine so they are found when signing the app**. | adhoc | iOS |
+| SUBMIT\_IOS\_TO\_TESTFLIGHT | Submit the app to TestFlight once the build finishes. Valid values are: true, false | false | iOS |
+| PILOT\_USERNAME | Your Apple ID Username used to deploy the app to TestFlight. |  | iOS |
+| PILOT\_SKIP\_WAITING\_<br>FOR\_BUILD\_PROCESSING | Do not wait until TestFlight finishes processing the app.<br>Valid values are: true, false | true | iOS |
+
 
 ### Build the Android App
 
@@ -53,29 +97,6 @@ The keystore contains a single key, valid for 10000 days. The alias is a name th
 
 **Once you publish the app on the Play Store, you will need to republish your app under a different package id (losing all downloads and ratings) if you change the signing key at any point, so backup your keystore and don't forget the password.**
 
-#### Setting up Environment Variables
-
-In order to use the **make build-android** command, you'll need to set a few environment variables. In this guide, we will explain some of them. You can refer to the
-[env\_vars\_example](https://github.com/mattermost/mattermost-mobile/blob/master/fastlane/env_vars_example) file under the fastlane directory to see all of them. In order to make fastlane work with these environment variables you have two options:
-
-* Copy the file with your variables to `../mattermost-mobile/fastlane/.env` where `.env` is the file name.
-
-or
-
-* Create an .sh file with your variables (for example `my_env.sh`), and execute `source my_env.sh` in the terminal session where you will later execute `make build-android`
-
-| Variable            | Description                                | Default    |
-|---------------------|--------------------------------------------|------------|
-| SUBMIT\_ANDROID\_TO\_<br>GOOGLE\_PLAY | Should the app be submitted to the Play Store once it finishes to build, use along with **SUPPLY\_TRACK**. Valid values are: true, false | false      |
-| ANDROID\_BUILD\_FOR\_RELEASE | Defines if the Android app should be built in release mode. Valid values are: true, false. <br>**Make sure you set this value to true if you plan to submit this app to the Play Store or distribute it in any other way**.| false |
-| ANDROID\_PACKAGE\_ID | The package ID for the android app. | com.mattermost.rnbeta |
-| ANDROID\_APP\_NAME | The name of the app as it is going to be shown in the Android home screen. | Mattermost Beta |
-| ANDROID\_REPLACE\_ASSETS | Replaces app icons with the ones found under the folder *dist/assets/release/icons/android* and the splash screen with the ones found under the folder */dist/assets/release/splash\_screen/android*. Valid values are: true, false | false |
-| ANDROID\_INCREMENT\_<br>BUILD\_NUMBER | Increases the Android app build number, required when a new build is going to be publish to the Google Play Store. Valid values are: true, false | false |
-| ANDROID\_COMMIT\_INCREMENT\_<br>BUILD\_NUMBER\_MESSAGE | The message that will be used for committing to git the increment of the build number, the actual number will be appended to the end of this message. | Version Bump to |
-| SUPPLY\_TRACK | The track of the application to use when submitting the app to Google Play Store. Valid values are: alpha, beta, production <br> **We strongly recommend not submitting the app to to production, instead try any of the other tracks and then promote your app using the Google Play console**. | production |
-| SUPPLY\_PACKAGE\_NAME | The package Id of your application, make sure it matches **ANDROID\_PACKAGE\_ID**. | com.mattermost.rnbeta |
-| SUPPLY\_JSON\_KEY | The path to the service account json file used to authenticate with Google. <br> See the [Supply documentation]( https://docs.fastlane.tools/actions/supply/#setup) to learn more. |  |
 
 #### Building the App
 
@@ -85,51 +106,13 @@ Once all the previous steps are done, execute the following command from within 
 $ make build-android
 ```
 
-This will start the build process following the environment variables you've set. Once it finishes, it will create a *Mattermost.apk* file in the project's root directory. If you have not set Fastlane to submit the app to the Play Store, you can use this file to manually publish and distribute the app.
+This will start the build process following the environment variables you've set. Once it finishes, it will create an *.apk* file with the `APP_NAME` as the filename in the project's root directory. If you have not set Fastlane to submit the app to the Play Store, you can use this file to manually publish and distribute the app.
 
 ### Build the iOS App
 
 Apple requires that all apps be digitally signed with a certificate before they can be installed, so to distribute your iOS application via Apple App Store, you'll need to generate a signed release IPA. The process is the same as any other native iOS app, but in our case we've created a set of scripts in conjunction with Fastlane to make this process easier than the standard manual process.
 
 We make use of [Match](https://docs.fastlane.tools/actions/match/) to sync your provisioning profiles (the profiles will be created for you if needed), then use [Gym](https://docs.fastlane.tools/actions/gym/) to build and sign the app, and then optionally use [Pilot](https://docs.fastlane.tools/actions/pilot/) to submit the app to TestFlight in order for you to promote the app to the App Store.
-
-#### Setting up environment variables
-
-In order to use the **make build-ios** command, you'll need to set a few environment variables. In this guide, we will explain some of them. You can refer to the [env\_vars\_example](https://github.com/mattermost/mattermost-mobile/blob/master/fastlane/env_vars_example) file under the fastlane directory to see all of them. In order to make fastlane work with these environment variables you have two options:
-
-*  Copy the file with your variables to `../mattermost-mobile/fastlane/.env` where `.env` is the file name.
-
-or
-
-*  Create an .sh file with your variables (for example `my_env.sh`),
-    and execute `source my_env.sh` in the terminal session where you
-    will later execute `make build-ios`
-
-**You must use your own provisioning profiles and certificates as well
-as your own Bundle Identifiers. If you use the default values, you
-will be unable to build and sign the app.**
-
-| Variable          | Description                            | Default value   |
-|---------------------|--------------------------------------------|------------|
-| SYNC\_IOS\_<br>PROVISIONING\_PROFILES | Should we run **match** to sync the provisioning profiles. Valid values are: true, false | false |
-| SUBMIT\_IOS\_TO\_TESTFLIGHT | Submit the app to TestFlight once the build finishes. Valid values are: true, false | false |
-| IOS\_BUILD\_FOR\_RELEASE | Defines if the iOS app should be built in release mode. Valid values are: true, false <br> **Make sure you set this value to true if you plan to submit this app to TestFlight or distribute it in any other way**. | false |
-| IOS\_REPLACE\_ASSETS | Replaces the icons of the app with the ones found under the folder *dist/assets/release/icons/ios* and the splash screen with the one found under the folder *dist/assets/release/splash\_screen/ios*. Valid values are: true, false | false |
-| IOS\_INCREMENT\_BUILD\_NUMBER | Increases the iOS app build number, required when a new build is going to be publish to TestFlight and the Apple App Store. Valid values are: true, false | false |
-| IOS\_COMMIT\_INCREMENT\_<br>BUILD\_NUMBER\_MESSAGE | The message that will be used for committing to git the increment of the build number, the actual number will be appended to the end of this message. | Version Bump to |
-| IOS\_APP\_NAME    | The name of the app as it is going to be shown in the iOS home screen. | Mattermost Beta |
-| IOS\_MAIN\_APP\_IDENTIFIER | The Bundle Identifier for the app. | com.mattermost.rnbeta |
-| IOS\_EXTENSION\_APP\_IDENTIFIER | The Bundle Identifier for the share extension app. | com.mattermost.rnbeta.MattermostShare |
-| IOS\_APP\_GROUP | The iOS App Group identifier used to share data between the app and the share extension. |  |
-| IOS\_ICLOUD\_CONTAINER | The iOS iCloud container identifier used to support iCloud storage. | iCloud.com.mattermost.rnbeta |
-| IOS\_BUILD\_EXPORT\_METHOD | Method used to export the archive. Valid values are: app-store, ad-hoc, enterprise, development | adhoc |
-| MATCH\_USERNAME | Your Apple ID Username. |  |
-| MATCH\_PASSWORD | Your Apple ID Password. |  |
-| MATCH\_GIT\_URL | URL to the git repo containing all the certificates. <br> **Make sure this git repo is set to private. Remember this repo will be used to sync the provisioning profiles and other certificates**.|  |
-| MATCH\_APP\_IDENTIFIER | The Bundle Identifiers for the app (comma-separated). In our case refers to the identifiers of the app and the share extension | com.mattermost.rnbeta.MattermostShare,<br>com.mattermost.rnbeta |
-| MATCH\_TYPE | Define the provisioning profile type to sync. Valid values are: appstore, adhoc, development, enterprise <br> **Make sure you set this value to the same type as the IOS\_BUILD\_EXPORT\_METHOD as you want to have the same provisioning profiles installed the machine so they are found when signing the app**. | adhoc |
-| FASTLANE\_TEAM\_ID | The ID of your Apple Developer Portal Team. |  |
-| PILOT\_USERNAME | Your Apple ID Username. |  |
 
 #### Building the App
 
@@ -139,7 +122,18 @@ Once all the previous steps are done, you can run the following command from wit
 $ make build-ios
 ```
 
-This will start the build process following the environment variables you've set. Once it finishes, it will create a *Mattermost.ipa* file in the project's root directory. If you have not set Fastlane to submit the app to TestFlight, you can use this file to manually publish and distribute the app.
+This will start the build process following the environment variables you've set. Once it finishes, it will create an *.ipa* file with the `APP_NAME` as the filename in the project's root directory. If you have not set Fastlane to submit the app to TestFlight, you can use this file to manually publish and distribute the app.
+
+### Build both platforms in sequence
+
+Once all the previous steps are done, you can choose to build the Android and iOS apps in sequence with just one command, to do so run the following command from within the project's directory
+
+```sh
+$ make build
+```
+
+This will start the build process following the environment variables you've set, first by building the Android app and then the iOS app. Once it finishes, it will create an *.apk* and an *.ipa* file with the `APP_NAME` as the filename in the project's root directory. If you have not set Fastlane to submit the app to the Google Play Store and/or TestFlight, you can use this file to manually publish and distribute the app.
+
 
 ## Push Notifications with Your Own Build
 
