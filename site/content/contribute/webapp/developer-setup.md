@@ -28,7 +28,7 @@ Set up your development environment for building, running, and testing the Matte
 2. Clone the fork, replacing `{yourgithubusername}` with your GitHub username:
 
     ```sh
-    git clone https://github.com/{yourgithubusername}/mattermost-server.git
+    git clone https://github.com/{yourgithubusername}/mattermost-webapp.git
     ```
 
 3. Test your environment:
