@@ -19,16 +19,13 @@ subsection: Server
 
 <div id="mac" class="tabcontent" style="display: block;">
 {{% md %}}
-1. Install and configure Docker CE
+1. Install and configure Docker CE following the instructions at https://docs.docker.com/docker-for-mac/.
 
-    1. Follow the instructions at https://docs.docker.com/docker-for-mac/
-    2. Run `sudo nano /etc/hosts` in your terminal and edit your `/etc/hosts` file to include the following line:
+    1. Run `sudo nano /etc/hosts` in your terminal to open your `/etc/hosts` file.
+    2. Add `127.0.0.1    dockerhost` to the file.
+    3. Save the file (with ^O) and exit (with ^X).
 
-        ```sh
-        127.0.0.1     dockerhost
-        ```
-
-2. Download and install homebrew, using the instructions at https://brew.sh/
+2. Download and install homebrew following the instructions at https://brew.sh/.
 
 3. Install Go:
     ```sh
@@ -37,7 +34,7 @@ subsection: Server
 
 4. Set up your Go workspace:
     1. `mkdir ~/go`
-    2. Add the following lines to your `~/.bash_profile` file:
+    2. `sudo nano ~/.bash_profile` to open your `bash_profile` file, and add the following lines:
 
         ```sh
         export GOPATH=$HOME/go
@@ -47,37 +44,34 @@ subsection: Server
         ```
 
     3. `source ~/.bash_profile`
-5. Go to https://github.com/mattermost/mattermost-server and create a fork
+
+5. Go to https://github.com/mattermost/mattermost-server and create a fork.
 
 6. Clone the Mattermost source code from your fork:
-    1. Set up the directories:
+
+    1. Set up directories:
 
         ```sh
         mkdir -p ~/go/src/github.com/mattermost
         cd ~/go/src/github.com/mattermost
         ```
-    3. Clone the fork, replacing `{yourgithubusername}` with your GitHub username:
+        
+    2. Clone the fork, replacing `{yourgithubusername}` with your GitHub username:
 
         ```sh
         git clone https://github.com/{yourgithubusername}/mattermost-server.git
         ```
 
-7. Start up the server and test your environment:
+7. Start the server and test your environment:
+
     ```sh
     cd mattermost-server
     make run-server
-    make stop-server # stop the server after it starts succesfully
+    curl http://localhost:8065/api/v4/system/ping # confirm the server is running. The server should return a JSON object containing "status":"OK"
+    make stop-server                              # stop the server after it starts succesfully
     ```
 
-8. You can check if the server is running using the following `curl` command or opening the URL in your web browser:
-
-   ```sh
-   curl https://localhost:8065/api/v4/system/ping
-   ```
-
-   The server should return a JSON object containing `"status":"OK"`.
-
-   **Notice:** The server root will return a `404 Not Found` status, since the web app is not configured as part of the server setup. Please refer to the [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for the setup steps.
+**Note:** The server root will return a `404 Not Found` status, since the web app is not configured as part of the server setup. Please refer to the [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for the setup steps.
 
 {{% /md %}}
 </div>
