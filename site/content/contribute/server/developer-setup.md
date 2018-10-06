@@ -22,7 +22,7 @@ subsection: Server
 1. Install and configure Docker CE
 
     1. Follow the instructions at https://docs.docker.com/docker-for-mac/
-    2. Edit your `/etc/hosts` file to include the following line:
+    2. Run `sudo nano /etc/hosts` in your terminal and edit your `/etc/hosts` file to include the following line:
 
         ```sh
         127.0.0.1     dockerhost
