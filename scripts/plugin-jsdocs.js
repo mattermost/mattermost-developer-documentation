@@ -15,7 +15,7 @@ const pluginRegistryClassMethods = registryParsed.body.find(statement =>
 ).map(statement => ({
     Name: statement.key.name,
     Parameters: statement.value.params.map(param => param.name),
-    Comments: statement.leadingComments.map(comment => comment.value.trim()),
+    Comments: statement.leadingComments ? statement.leadingComments.map(comment => comment.value.trim()) : [],
 }));
 
 output = {
