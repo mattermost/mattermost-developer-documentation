@@ -21,7 +21,7 @@ Tracking what gets posted into a channel and receiving real-time events about it
 
 If you want your users to be able to trigger actions from within Mattermost, adding your own custom [slash command](/integrate/slash-commands) will do the trick.
 
-That's not enough? You can include <a target="_blank" href="https://docs.mattermost.com/developer/interactive-messages.html">interactive messages</a> in posts from your slash commands, as well as from incoming and outgoing webhooks.
+That's not enough? You can include <a target="_blank" href="https://docs.mattermost.com/developer/interactive-message-buttons.html">interactive messages</a> in posts from your slash commands, as well as from incoming and outgoing webhooks.
 
 ### I want to build an advanced bot
 
