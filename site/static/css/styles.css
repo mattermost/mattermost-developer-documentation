@@ -2356,6 +2356,10 @@ a {
 .container-fluid {
   max-width: 1140px; }
 
+.container {
+  padding-bottom: 2em;
+}
+
 #wrapper {
   flex: 1;
   padding-bottom: 3em;
@@ -2371,11 +2375,20 @@ h4,
 h5,
 h6 {
   font-weight: 400;
-  margin-bottom: 1em; }
+  margin-bottom: 1em;
+  margin-top: 1.8em; }
 
 .btn {
   cursor: pointer;
-  padding: .8em 2em; }
+  padding: .6em 1.3em; }
+
+.btn.btn-xs {
+  padding: .8em 2em;
+}
+
+.btn .fa {
+  margin-left: 5px;
+}
 
 .btn-full {
   width: 100%;
@@ -2444,6 +2457,52 @@ footer {
   width: 3.8rem; }
 .footer__icons i {
   color: #fff; }
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+ margin-top: 0;
+}
+
+.blog-list .well-sm {
+  margin: 4rem 0;
+}
+
+.blog-single .tags-sidebar {
+  font-size: .9rem;
+}
+
+.tags-sidebar .list-unstyled {
+  padding-top: .5rem;
+}
+
+.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 85%;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  background: #999;
+}
 
 .sidebar {
   line-height: 40px;
@@ -2524,9 +2583,12 @@ table > tbody > tr:nth-of-type(odd) {
 
 .doc-content {
   margin: 50px 0 0;
-  padding-left: 50px; }
+}
+.sidebar + .doc-content {
+  padding-left: 50px;
+}
   .doc-content img {
-    margin: 1em 0; 
+    margin: 1em 0;
     max-width: 800px;
   }
   .doc-content pre {
@@ -2693,7 +2755,7 @@ table > tbody > tr:nth-of-type(odd) {
 
 .steps-row {
     display: flex;
-    margin-bottom: 25px;
+    margin: 3rem 0;
 }
 
 .steps-number {

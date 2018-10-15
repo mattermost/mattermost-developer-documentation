@@ -8,11 +8,11 @@
     <head>
         {{ partial "head.html" .}}
     </head>
-<body>
+<body class="blog-single">
     {{ partial "nav2.html" .}}
     <div class="container">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9 doc-content">
             <div class="well well-sm">
                     <h3>{{ .Title }}<br> <small>{{ .Description }}</small></h3>
                     <hr>
@@ -21,20 +21,22 @@
         </div>
 
         <!-- Sidebar -->
-        <div class="col-md-3">
+        <div class="col-md-3 doc-content tags-sidebar">
             <div class="well well-sm"> <!-- Post-specific stats -->
-                <h4>{{ .Date.Format "January 2, 2006" }}<br>
-                <small>{{ .WordCount }} words</small></h4>
+                <h6>{{ .Date.Format "January 2, 2006" }}<br>
+                <small>{{ .WordCount }} words</small></h6>
                 <hr>
-                <strong>Categories</strong>
+                <div>Categories</div>
                 <ul class="list-unstyled">
                 {{ range .Params.categories }}
                     <li><a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}">{{ . }}</a></li>
                 {{ end }}
                 </ul>
                 <hr>
-                <strong>Tags</strong><br>
+                <div>Tags</div>
+                <div class="list-unstyled">
                 {{ range .Params.tags }}<a class="label label-default" href="{{ $.Site.BaseURL }}tags/{{ . | urlize }}">{{ . }}</a> {{ end }}
+                </div>
             </div>
         </div>
     </div>
