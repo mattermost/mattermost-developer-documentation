@@ -72,7 +72,7 @@ subsection: Server
 8. You can check if the server is running using the following `curl` command or opening the URL in your web browser:
 
    ```sh
-   curl https://localhost:8065/api/v4/system/ping
+   curl http://localhost:8065/api/v4/system/ping
    ```
 
    The server should return a JSON object containing `"status":"OK"`.
