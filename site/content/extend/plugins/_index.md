@@ -8,7 +8,7 @@ section: extend
 
 Mattermost supports plugins that offer powerful features for extending and deeply integrating with both the server and web/desktop apps.
 
-Plugins are still in early beta and we're looking for your feedback! Share constructive feedback [on our forum post](https://forum.mattermost.org/t/plugin-system-upgrade-in-mattermost-5-2/5498) or join the [Developer Toolkit channel](https://pre-release.mattermost.com/core/channels/developer-toolkit) on our Mattermost community instance.
+Plugins are still in beta and we're looking for your feedback! Share constructive feedback [on our forum post](https://forum.mattermost.org/t/plugin-system-upgrade-in-mattermost-5-2/5498) or join the [Developer Toolkit channel](https://pre-release.mattermost.com/core/channels/developer-toolkit) on our Mattermost community instance.
 
 ## Features
 
@@ -25,4 +25,4 @@ Extend the Mattermost REST API with custom endpoints for use by web app plugins 
 Using the [server](/extend/plugins/server/hello-world) and [web app](/extend/plugins/webapp/hello-world) quick start guides, it's simple to set up a plugin development environment. Or base your implementation off of [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample), complete with build scripts and templates. Once bundled as a gzipped tar file, upload your plugin to a Mattermost server through the [System Console](https://about.mattermost.com/default-plugin-uploads) or via the [API](https://api.mattermost.com/#tag/plugins).
 
 ----
-Read more about [server](/extend/plugins/server/) and [web app](/extend/plugins/webapp/) plugins.
+Read the plugins [overview](/extend/plugins/overview) to learn more.

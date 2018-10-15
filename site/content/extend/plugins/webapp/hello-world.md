@@ -151,7 +151,7 @@ Install the plugin in one of the following ways:
    - Navigate to **Plugins (Beta) > Management** and upload the `plugin.tar.gz` you generated above.
    - Click **Enable** under the plugin after it has uploaded.
 
-2) Through `config.json`:
+2) Or, manually:
 
  - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.yaml``, in this case `com.mattermost.server-hello-world/`.
  - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins` relative to your Mattermost installation directory. The resulting directory structure should look something like:
