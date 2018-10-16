@@ -14,7 +14,7 @@ The plugin manifest provides required metadata about the plugin, such as name an
 See the [manifest reference](/extend/plugins/manifest-reference) for more information.
 
 ### Server
-The server component of a plugin is written in Go and runs as a subprocess of the Mattermost server process. The Go code is centered around extending the [MattermostPlugin](https://godoc.org/github.com/mattermost/mattermost-server/plugin#MattermostPlugin) struct that contains an [API](/extend/plugins/server/reference/#API) and allows for the implementation of [Hook](/extend/plugins/server/reference/#Hooks) methods that enable the plugin to interact with the Mattermost server.
+The server component of a plugin is written in Go and runs as a subprocess of the Mattermost server process. The Go code extends the [MattermostPlugin](https://godoc.org/github.com/mattermost/mattermost-server/plugin#MattermostPlugin) struct that contains an [API](/extend/plugins/server/reference/#API) and allows for the implementation of [Hook](/extend/plugins/server/reference/#Hooks) methods that enable the plugin to interact with the Mattermost server.
 
 The sample plugin implements this simply in [plugin.go](https://github.com/mattermost/mattermost-plugin-sample/blob/master/server/plugin.go) and the demo plugin splits the API and hook usage throughout [multiple files](https://github.com/mattermost/mattermost-plugin-demo/tree/master/server).
 
@@ -30,8 +30,9 @@ The desktop app is a shim of the web app, meaning any plugin that works in the w
 Read more about the web app component of plugins [here](/extend/plugins/webapp).
 
 ### Mobile App
-Currently there is no mobile app component of plugins but rest assured that it is planned and coming in the future.
+Currently there is no mobile app component of plugins but it is planned for the near term.
+
 
 ---
 
-If you'd like to understand how plugins work under the covers, [see the contributor documentation on plugins](/contribute/server/plugins).
+If you'd like to better understand how plugins work, [see the contributor documentation on plugins](/contribute/server/plugins).
