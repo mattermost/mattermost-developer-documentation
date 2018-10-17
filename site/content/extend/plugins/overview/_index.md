@@ -33,6 +33,6 @@ Read more about the web app component of plugins [here](/extend/plugins/webapp).
 Currently there is no mobile app component of plugins but it is planned for the near term.
 
 
----
+----
 
 If you'd like to better understand how plugins work, [see the contributor documentation on plugins](/contribute/server/plugins).
