@@ -19,7 +19,7 @@ Looking to build a plugin? [Then you want the plugin author documenation.](/exte
 
 Plugins are generally made of at least two parts: a manifest and a server binary and/or a JavaScript bundle.
 
-The manifest tells Mattermost what the plugin is and provides a set of metadata used by the server to install and run the plugin. For more information you can see the [manifest reference](/extend/plugins/manifest-reference). Manifests may be defined in JSON or YAML.
+The manifest tells Mattermost what the plugin is and provides a set of metadata used by the server to install and run the plugin. Please see the [manifest reference](/extend/plugins/manifest-reference) for more information. Manifests may be defined in JSON or YAML.
 
 The server binary is a compiled (generally Go) program that extends the [MattermostPlugin](https://godoc.org/github.com/mattermost/mattermost-server/plugin#MattermostPlugin) struct of the [plugin](https://godoc.org/github.com/mattermost/mattermost-server/plugin) package. When enabled, the plugin's server binary is started as a process by the Mattermost server. Plugin builders then have access to interact with the Mattermost over RPC through the plugin [API](https://godoc.org/github.com/mattermost/mattermost-server/plugin#API) and [Hooks](https://godoc.org/github.com/mattermost/mattermost-server/plugin#Hooks). The server-side of plugins is built using the [go-plugin](https://github.com/hashicorp/go-plugin) library from Hashicorp. More information is available on the [server-side of plugins in the author documentation](/extend/plugins/server).
 
