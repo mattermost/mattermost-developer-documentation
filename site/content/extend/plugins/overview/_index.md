@@ -21,9 +21,9 @@ The sample plugin implements this simply in [plugin.go](https://github.com/matte
 Read more about the server-side of plugins [here](/extend/plugins/server).
 
 ### Web/Desktop App
-The web app component of a plugin is written in JavaScript with [React](https://reactjs.org) and [Redux](https://redux.js.org/). The plugin's bundled JavaScript is included on the page and runs alongside the web app code as a [PluginClass](/extend/plugins/webapp/reference/#pluginclass) that has initialize and deinitialize methods available for implementation. The initialize function is passed the [registry](/extend/plugins/webapp/reference/#registry) which allows the plugin to register React components, actions and hooks to modify and interact with the Mattermost web app.
+The web app component of a plugin is written in JavaScript with [React](https://reactjs.org) and [Redux](https://redux.js.org/). The plugin's bundled JavaScript is included on the page and runs alongside the web app code as a [PluginClass](/extend/plugins/webapp/reference/#pluginclass) that has initialize and deinitialize methods available for implementation. The initialize function is passed through the [registry](/extend/plugins/webapp/reference/#registry) which allows the plugin to register React components, actions and hooks to modify and interact with the Mattermost web app.
 
-The sample plugin has a [shell of an implemented PluginClass](https://github.com/mattermost/mattermost-plugin-sample/blob/master/webapp/src/index.js) while the demo plugin [contains a more complete example](https://github.com/mattermost/mattermost-plugin-demo/blob/master/webapp/src/plugin.jsx).
+The sample plugin has a [shell of an implemented PluginClass](https://github.com/mattermost/mattermost-plugin-sample/blob/master/webapp/src/index.js), while the demo plugin [contains a more complete example](https://github.com/mattermost/mattermost-plugin-demo/blob/master/webapp/src/plugin.jsx).
 
 The desktop app is a shim of the web app, meaning any plugin that works in the web app will also work in the desktop app.
 
