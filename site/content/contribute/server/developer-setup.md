@@ -19,11 +19,14 @@ subsection: Server
 
 <div id="mac" class="tabcontent" style="display: block;">
 {{% md %}}
-1. Install and configure Docker CE following the instructions at https://docs.docker.com/docker-for-mac/.
+1. Install and configure Docker CE.
 
-    1. Run `sudo nano /etc/hosts` in your terminal to open your `/etc/hosts` file.
-    2. Add `127.0.0.1    dockerhost` to the file.
-    3. Save the file (with ^O) and exit (with ^X).
+    1. Follow the instructions at https://docs.docker.com/docker-for-mac/.
+    2. Edit `/etc/hosts` file as an administrator (e.g. `sudo`) to define `dockerhost` for use by various Mattermost build scripts. Add the following line:
+      
+       ```sh
+       127.0.0.1    dockerhost
+       ```
 
 2. Download and install homebrew following the instructions at https://brew.sh/.
 
@@ -34,16 +37,7 @@ subsection: Server
 
 4. Set up your Go workspace:
     1. `mkdir ~/go`
-    2. `sudo nano ~/.bash_profile` to open your `bash_profile` file, and add the following lines:
-
-        ```sh
-        export GOPATH=$HOME/go
-        export PATH=$PATH:$GOPATH/bin
-        export PATH=$PATH:/usr/local/go/bin
-        ulimit -n 8096
-        ```
-
-    3. `source ~/.bash_profile`
+    2. `source ~/.bash_profile`
 
 5. Go to https://github.com/mattermost/mattermost-server and create a fork.
 
