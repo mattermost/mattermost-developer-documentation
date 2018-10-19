@@ -11,29 +11,35 @@ Set up your development environment for building, running, and testing the Matte
 
 1. Set up your [development environment for the Mattermost server](/contribute/server/developer-setup). 
 
- - Running these steps will also install Git on your machine, and Homebrew for Mac.
+2. Install dependencies
 
-2. Install Node.js and npm following the instructions at https://www.npmjs.com/get-npm.
-
-3. On Mac, install libpng:
-
+ - On Mac, use [Homebrew](https://brew.sh/) to install Node.js v10 and libpng:
+ 
     ```sh
-    brew install libpng
+    brew install node@10 libpng
     ```
+
+ - For other platforms, install Node.js v10 from https://www.npmjs.com/get-npm.
 
 #### Setup
 
 1. Go to https://github.com/mattermost/mattermost-webapp and create a fork.
 
-2. Clone the fork, replacing `{yourgithubusername}` with your GitHub username:
+2. Clone the fork next to your mattermost-server directory, replacing `{yourgithubusername}` with your GitHub username:
 
     ```sh
-    git clone https://github.com/{yourgithubusername}/mattermost-webapp.git
+    git clone https://github.com/{yourgithubusername}/mattermost-webapp.git $(go env GOPATH)/go/src/mattermost/mattermost-webapp
     ```
 
-3. Test your environment:
+3. Link your server with the webapp:
 
     ```sh
-    cd mattermost-webapp
-    make test # If all tests pass, your install was successful.
+    ln -s $(go env GOPATH)/src/github.com/mattermost/mattermost-webapp/dist $(go env GOPATH)/src/github.com/mattermost/mattermost-server/client
+    ```
+
+4. Test your environment:
+
+    ```sh
+    cd $(go env GOPATH)/go/src/mattermost/mattermost-webapp
+    make test
     ```
