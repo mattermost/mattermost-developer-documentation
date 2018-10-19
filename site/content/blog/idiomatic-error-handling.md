@@ -47,7 +47,7 @@ if result := <-pchan; result.Err != nil {
 }
 ```
 
-Notice the redundant else condition. Here's the code [written idiomatically](https://github.com/jespino/platform/blob/2ab1b82d18af545f8483daa1f22af057eb37b879/app/notification.go#L38-L42):
+Notice the `if` statement ending in a `return`, making the `else` unnecessary. Here's the code [written idiomatically](https://github.com/jespino/platform/blob/2ab1b82d18af545f8483daa1f22af057eb37b879/app/notification.go#L38-L42):
 ```go
 result := <-pchan
 if result.Err != nil {
@@ -56,7 +56,7 @@ if result.Err != nil {
 profileMap := result.Data.(map[string]*model.User)
 ```
 
-Notice that eliminating the `else` condition required pre-declaring `result` instead of defining it inline. While this is but a minor improvement, but frequently that `else` block is much longer with nested conditional statements of its own.
+Eliminating the `else` condition required pre-declaring `result` instead of defining it inline. While this is but a minor improvement, frequently that `else` block is much longer with nested conditional statements of its own.
 
 ### Is it ok to still declare variables inline to a conditional?
 
