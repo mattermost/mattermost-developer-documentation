@@ -15,10 +15,10 @@ If you look at the [Mattermost Redux repository](https://github.com/mattermost/m
 	- `src/actions` contains the Redux actions used by the library. Most of the logic that uses the stored data and contacts the server is located here.
 	- `src/client` contains the JavaScript drivers to communicate with the Mattermost server. If you're not wanting to use all of the logic from this library but are instead building your own, this code will be the most useful for you.
 	- `src/reducers` contains the Redux reducers that handle actions and use them to update the stored data.
-	- `src/selectors` cntains the selectors used to compute data from the store or just access it more easily.
-	- `src/store` cntains the setup code for the Redux store that can be extended by applications that use this library.
-	- `src/utils` cntains utility functions and classes that are shared between the Mattermost web and mobile apps.
-- `test` cntains unit tests and mocking for server calls.
+	- `src/selectors` contains the selectors used to compute data from the store or just access it more easily.
+	- `src/store` contains the setup code for the Redux store that can be extended by applications that use this library.
+	- `src/utils` contains utility functions and classes that are shared between the Mattermost web and mobile apps.
+- `test` contains unit tests and mocking for server calls.
 
 ## Useful Commands
 
