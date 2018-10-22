@@ -132,7 +132,7 @@ subsection: Server
         mkdir -p ~/go/src/github.com/mattermost
         cd ~/go/src/github.com/mattermost
         ```
-    3. Clone the fork, replacing `{yourgithubusername}` with your GitHub username:
+    2. Clone the fork, replacing `{yourgithubusername}` with your GitHub username:
 
         ```sh
         git clone https://github.com/{yourgithubusername}/mattermost-server.git
@@ -299,7 +299,7 @@ Set up your development environment for building, running, and testing Mattermos
 
 ### Troubleshooting:
 1. If you see an error like `the input device is not a TTY.  If you are using mintty, try prefixing the command with 'winpty'`.  Reinstall git for windows and make sure you choose `Use Windows' default console window` instead of `Use MinTTY`
-1.  If you see the follow message sometimes the LDAP docker container is slow to start, either increase the wait time in the make file or run `make run` twice in a row.
+1.  The LDAP docker container is sometimes slow to start. If you see the following message, either increase the wait time in the make file or run `make run` twice in a row.
 
 ```
 Ldap test user test.one
@@ -367,7 +367,7 @@ Now that everything is set up, you are ready to compile and run Mattermost.
         mkdir -p ~/go/src/github.com/mattermost
         cd ~/go/src/github.com/mattermost
         ```
-    3. Clone the fork, replacing `{yourgithubusername}` with your GitHub username:
+    2. Clone the fork, replacing `{yourgithubusername}` with your GitHub username:
 
         ```sh
         git clone https://github.com/{yourgithubusername}/mattermost-server.git
@@ -466,7 +466,7 @@ Now that everything is set up, you are ready to compile and run Mattermost.
         mkdir -p ~/go/src/github.com/mattermost
         cd ~/go/src/github.com/mattermost
         ```
-    3. Clone the fork, replacing `{yourgithubusername}` with your GitHub username:
+    2. Clone the fork, replacing `{yourgithubusername}` with your GitHub username:
 
         ```sh
         git clone https://github.com/{yourgithubusername}/mattermost-server.git
