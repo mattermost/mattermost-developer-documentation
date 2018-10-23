@@ -14,7 +14,13 @@
     <div class="row">
         <div class="col-md-9 doc-content">
             <div class="well well-sm">
-                    <h3>{{ .Title }}<br> <small>{{ .Description }}</small></h3>
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">{{ .Title }}<br> <small>{{ .Description }}</small></div>
+                        <div class="blog-item__info">
+                            {{ .Date.Format "January 2, 2006" }}
+                            <small class="blog-item__count">{{ .WordCount }} words</small>
+                        </div>
+                    </div>
                     <hr>
                     {{ .Content }}
             </div>
@@ -23,9 +29,6 @@
         <!-- Sidebar -->
         <div class="col-md-3 doc-content tags-sidebar">
             <div class="well well-sm"> <!-- Post-specific stats -->
-                <h6>{{ .Date.Format "January 2, 2006" }}<br>
-                <small>{{ .WordCount }} words</small></h6>
-                <hr>
                 <div>Categories</div>
                 <ul class="list-unstyled">
                 {{ range .Params.categories }}
