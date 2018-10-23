@@ -10,7 +10,7 @@
                 {{ .description }}
             </p>
             {{ if or (eq $.Site.BuildDrafts true) (eq .draft false) }}
-            <a href="{{ .url }}" class="btn btn-primary btn-shadow btn-md">{{ .button }}</a>
+            <a href="{{ .url }}" class="btn btn-primary btn-shadow btn-xs">{{ .button }}</a>
             {{ else }}
             <span class="btn btn-secondary btn-shadow btn-md">Coming Soon</a>
             {{ end }}

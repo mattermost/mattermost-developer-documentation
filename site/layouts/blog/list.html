@@ -8,12 +8,12 @@
     <head>
         {{ partial "head.html" .}}
     </head>
-<body>
+<body class="blog-list">
     {{ partial "nav2.html" .}}
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
-            <h2>Mattermost Developer Blog</h2>
+            <div class="col-md-9 doc-content">
+            <h3>Mattermost Developer Blog</h3>
             {{ range first 10 .Data.Pages }}
                 {{ .Render "summary" }}
             {{ end }}

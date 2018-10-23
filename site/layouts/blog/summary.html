@@ -1,9 +1,9 @@
 <div class="well well-sm">
-    <h4>
-        <a href="{{ .Permalink }}">{{ .Title }}</a> <small class="pull-right">Posted on {{ .Date.Format "Jan 2, 2006" }}</small><br>
-        <small>{{ .Description }}</small>
-    </h4>
+    <h5>
+        <a href="{{ .Permalink }}">{{ .Title }}</a> <small class="blog-item__date pull-right">Posted on {{ .Date.Format "Jan 2, 2006" }}</small>
+    </h5>
+    <small>{{ .Description }}</small>
     <hr>
     <p>{{ .Summary }}</p>
-    <a class="btn btn-primary btn-xs" href="{{ .Permalink }}">Read More <span class="fa fa-angle-double-right"></span></a>
+    <a class="btn btn-primary btn-sm" href="{{ .Permalink }}">Read More <span class="fa fa-angle-right"></span></a>
 </div>
