@@ -7,7 +7,7 @@ subsection: Web App
 
 # Web App Workflow
 
-If you haven't [set up your developer environment](https://docs.mattermost.com/developer/dev-setup.html), please do so before continuing with this section.
+If you haven't [set up your developer environment](https://developers.mattermost.com/contribute/webapp/developer-setup/), please do so before continuing with this section.
 
 ### Workflow ###
 
