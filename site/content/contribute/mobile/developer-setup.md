@@ -20,7 +20,7 @@ A macOS computer is required to build the Mattermost iOS mobile app.
 Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using [Homebrew](https://brew.sh/) as a package manager.
 
 #### Install [NodeJS](https://nodejs.org/en/). 
-This includes NPM which is also needed. Currently version 9.3.0 is recommended, 8.x works as well. 10.x is **not** working.
+This includes NPM which is also needed. Currently version 9.3.0 is recommended, 8.x and 10.x works as well. 11.x is **not** working.
 
 ##### MacOS
 - To install using Homebrew open a terminal and execute ..
