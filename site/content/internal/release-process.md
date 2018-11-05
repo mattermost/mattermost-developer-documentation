@@ -8,9 +8,9 @@ section: internal
 
 **Note: To cut a build you need access to matterbuild. Please ask Christopher/Carlos for access if you don't have it.**
 
-Developers and PMs decide when to create the release branch. The branch can be created from master or from an existing release branch, it depends which type of release we are planning. If it is a Quality Release, the new branch should be branched off the previous release, otherwise the branch should be off the master branch.
+Developers and PMs decide when to create the release branch. The branch can be created from master or from an existing release branch, depending on which type of release we are planning. If it is a Quality Release, the new branch should be branched off the previous release, otherwise the branch should be off the master branch.
 
-All commits go to master branch and then are cherry-picked to the appropriate branch. Commits to master follow the PR process, once approved and merged the developer should cherry-pick that commit to the appropriate branch. No PR is needed.
+All commits go to master branch and are then cherry-picked to the appropriate branch. Commits to master follow the PR process and once the PR is approved and merged, the developer should cherry-pick that commit to the appropriate branch. No PR is needed for cherry-picks.
 
 On code complete day, work with the PM on rotation to get all the pull requests for the current release merged into `master` and cherry-picked to the correct branch. Once that is done and you've confirmed with the PM, cut the first release candidate by following these steps:
 
