@@ -153,7 +153,9 @@ spec:
           - "-c"
           - |
             cp /mnt/plugins/init-plugins.sh /tmp && cd /tmp && chmod +x init-plugins.sh
+            ls -la
             ./init-plugins.sh
+            ls -la /mattermost/plugins
         volumeMounts:
         - name: mattermost-init-plugins
           mountPath: /mnt/plugins/
