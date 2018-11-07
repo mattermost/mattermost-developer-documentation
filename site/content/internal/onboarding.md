@@ -2,7 +2,7 @@
 title: Onboarding
 date: 2017-11-07T14:28:35-05:00
 section: internal
-weight: 10
+weight: 30
 ---
 
 ### Helpful links
@@ -17,7 +17,7 @@ weight: 10
 
 ### Meet with a few PMs
   - List to be sent by manager in channel
-    
+
 ### Channels and Teams
   - You should be added to the private team `Private Core` and join the following channels
     - Alerts
