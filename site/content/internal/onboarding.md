@@ -16,7 +16,7 @@ weight: 30
 - Schedule to be sent by manager in channel
 
 ### Meet with a few PMs
-- List to be sent by manager in channel
+  - List to be sent by manager in channel
 
 ### Channels and Teams
 - You should be added to the private team `Private Core` and join the following channels

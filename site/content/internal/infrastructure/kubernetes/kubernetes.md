@@ -5,6 +5,8 @@ subsection: infrastructure/kubernetes
 weight: 10
 ---
 
+# Community Mattermost running on Kubernetes
+
 The objective of this page is to describe the process to move our Mattermost server ([community.mattermost.com](https://community.mattermost.com)) running on AWS using EC2 machines to Kubernetes.
 
 ## Setup Kubernetes Cluster (K8s cluster, ingress and cert manager)
@@ -151,7 +153,9 @@ spec:
           - "-c"
           - |
             cp /mnt/plugins/init-plugins.sh /tmp && cd /tmp && chmod +x init-plugins.sh
+            ls -la
             ./init-plugins.sh
+            ls -la /mattermost/plugins
         volumeMounts:
         - name: mattermost-init-plugins
           mountPath: /mnt/plugins/
