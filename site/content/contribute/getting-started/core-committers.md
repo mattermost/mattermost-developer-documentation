@@ -49,6 +49,15 @@ Below is the list of core committers working on Mattermost:
 - **Sudheer Timmaraju**
   - @sudheerdev on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@sudheerdev) and [@sudheerDev](https://github.com/sudheerDev) on GitHub
   - Dev areas: Web App, React, Redux, Performance
+- **Daniel Schalla**
+  - @dschalla on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@dschalla) and [@dschalla](https://github.com/dschalla) on GitHub
+  - Dev areas: Security, Plugins, Integrations, Performance
+- **Hyeseong Kim**
+  - @cometkim on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@cometkim) and [@cometkim](https://github.com/cometkim) on GitHub
+  - Dev areas: Web App, React, Redux, REST API
+- **Hanzei**
+  - @hanzei on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@hanzei) and [@hanzei](https://github.com/hanzei) on GitHub
+  - Dev areas: Plugins, Integrations, Matterpoll
 
 Below is the list of core developers working on individual Mattermost repositories:
 
