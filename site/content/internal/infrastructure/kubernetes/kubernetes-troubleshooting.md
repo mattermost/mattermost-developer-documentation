@@ -13,6 +13,7 @@ First if you don't have `kubectl` installed you will need to install, also if yo
 
 Also you will need the AWS Keys for the Main Mattermost AWS account. You can get one using Onelogin, please follow this [instructions](../../onelogin-aws)
 
+<<<<<<< HEAD
 ### To install kubectl on MacOS
 
 ```Bash
@@ -34,6 +35,13 @@ To check the kubectl version:
 ```Bash
 $ kubectl version --short --client
 ```
+=======
+When using the Onelogin-aws and you want to get the Kubernetes configuration please select the main Mattermost AWS account.
+
+### To install kubectl
+
+Follow the instructions in this [page](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+>>>>>>> add troubleshooting and how to access the cluster
 
 ### Configure kubectl for Amazon EKS
 
