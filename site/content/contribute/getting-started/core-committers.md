@@ -57,7 +57,7 @@ Below is the list of core committers working on Mattermost:
   - Dev areas: Web App, React, Redux, REST API
 - **Hanzei**
   - @hanzei on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/messages/@hanzei) and [@hanzei](https://github.com/hanzei) on GitHub
-  - Dev areas: Plugins, Integrations, Matterpoll
+  - Dev areas: Plugins, Integrations, Security
 
 Below is the list of core developers working on individual Mattermost repositories:
 
