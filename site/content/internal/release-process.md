@@ -2,6 +2,7 @@
 title: Release Process
 date: 2017-11-07T14:28:35-05:00
 section: internal
+weight: 100
 ---
 
 # Release Cutting Process
