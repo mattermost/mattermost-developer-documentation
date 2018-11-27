@@ -9,7 +9,7 @@ subsection: Web App
 
 The last required piece of building a webapp component is to test it. That can be done using the component testing framework described in this blog post: https://grundleborg.github.io/posts/react-component-testing-in-mattermost/.
 
-[Jest](https://jestjs.io/en/) and [Enzyme](https://github.com/airbnb/enzyme) are the main framework and testing utilities being used in testing components and utility files of ``mattermost-webapp``.  Please visit their respective documentation for detailed information on how to get started, best practices and updates.
+[Jest](https://jestjs.io/en/) and [Enzyme](https://airbnb.io/enzyme/) are the main framework and testing utilities being used in testing components and utility files of ``mattermost-webapp``.  Please visit their respective documentation for detailed information on how to get started, best practices and updates.
 
 Below is a brief guide on how to do component testing:
 
