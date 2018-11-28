@@ -3415,7 +3415,7 @@ table>tbody>tr:nth-of-type(odd) {
     -webkit-transform: skew(0deg, -5deg);
     transform: skew(0deg, -5deg);
     background-image: linear-gradient(-135deg, #1ba4f7 0%, #4641ff 100%);
-    height: 90%;
+    height: 100%;
     left: 0;
     position: absolute;
     top: -15%;
@@ -3445,9 +3445,11 @@ table>tbody>tr:nth-of-type(odd) {
 .homepage header {
     background: transparent;
     color: #fff;
+    /*
     left: 0;
     position: absolute;
     top: 0;
+    */
     width: 100%;
 }
 
@@ -3479,7 +3481,8 @@ table>tbody>tr:nth-of-type(odd) {
 
 .homepage__intro {
     color: #fff;
-    padding: 14em 0;
+    padding-top: 8em;
+    padding-bottom: 14em;
     position: relative;
 }
 
