@@ -141,18 +141,7 @@ Below is a brief guide on how to do component testing:
     });
     ```
 
-9. Provide a mockup of a function required by the component but also passed other exported functions out of it to prevent potential error when those were used indirectly by another functions.
-    ```javascript
-    jest.mock('utils/utils', () => {
-        const original = require.requireActual('utils/utils');
-        return {
-            ...original,
-            isMobile: jest.fn(() => true),
-        };
-    });
-    ```
-
-10. Simply mock the ``mattermost-redux`` action as necessary with readable action type with arguments.
+9.  Simply mock the ``mattermost-redux`` action as necessary with readable action type with arguments.
     ```javascript
     jest.mock('mattermost-redux/actions/channels', () => {
         const original = require.requireActual('mattermost-redux/actions/channels');
@@ -167,7 +156,7 @@ Below is a brief guide on how to do component testing:
     expect(testStore.getActions()).toEqual(expectedActions);
     ```
 
-11. For utility functions, list all test cases with test description, input and output.
+10. For utility functions, list all test cases with test description, input and output.
     ```javascript
     describe('stripMarkdown | RemoveMarkdown', () => {
     const testCases = [{
