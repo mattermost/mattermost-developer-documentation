@@ -9,13 +9,13 @@ subsection: Web App
 
 This page describes how to build a new React component in the webapp. All new components must meet the following requirements:
 
-1. Be pure, meaning that all information required to render is passed in by props
-2. Have no direct store interaction. Use a container to wrap the component if needed
-3. Have component tests
-4. Be generic and re-usable when possible
-5. Have documented props
+1. Is pure, meaning that all information required to render is passed in by props
+2. Has no direct store interaction. Use a container to wrap the component if needed
+3. Has component tests
+4. Is generic and re-usable when possible
+5. Has documented props
 
-These requirements will be talked about in more detail in the following sections.
+These requirements are discussed in more detail in the following sections.
 
 None of that makes any sense to you, or new to React and Redux? Then check out these links:
 
