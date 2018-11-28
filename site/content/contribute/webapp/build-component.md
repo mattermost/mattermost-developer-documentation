@@ -171,4 +171,5 @@ export default class ItemList extends React.PureComponent {
 }
 ```
 
+---
 To test your component, [follow the guide here](/contribute/webapp/unit-testing).
