@@ -9,7 +9,7 @@ subsection: Web App
 
 The last required piece of building a webapp component is to test it. That can be done using the component testing framework described in this blog post: https://grundleborg.github.io/posts/react-component-testing-in-mattermost/.
 
-[Jest](https://jestjs.io/en/) and [Enzyme](https://airbnb.io/enzyme/) are the main framework and testing utilities being used in testing components and utility files of ``mattermost-webapp``.  Please visit their respective documentation for detailed information on how to get started, best practices and updates.
+[Jest](https://jestjs.io/en/) and [Enzyme](https://airbnb.io/enzyme/) are the main framework and testing utilities used in testing components and utility files of ``mattermost-webapp``.  Please visit their respective documentation for detailed information on how to get started, best practices and updates.
 
 Below is a brief guide on how to do component testing:
 
@@ -80,7 +80,7 @@ Below is a brief guide on how to do component testing:
     });
     ```
 
-6. When a function is passed to a component via props, make sure to test it if it gets called for a particular event call or its state changes.
+6. When a function is passed to a component via props, make sure to test if it gets called for a particular event call or its state changes.
     ```javascript
     test('should call functions on handleSubmit', () => {
         const newOnSubmit = jest.fn();
@@ -130,7 +130,7 @@ Below is a brief guide on how to do component testing:
     });
     ```
 
-8. Provide a mockup of a function required by the component but also passed other exported functions out of it to prevent potential error when those were used indirectly by another functions.
+8. Provide a mockup of a function required by the component but also pass other exported functions out of it to prevent potential error when those were used indirectly by another functions.
     ```javascript
     jest.mock('utils/utils', () => {
         const original = require.requireActual('utils/utils');
