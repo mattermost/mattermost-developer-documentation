@@ -16,6 +16,9 @@
                 {{ partial "sidebar.html" .}}
                 <div class="col-lg-9 doc-content">
                     {{ partial "page-edit.html" . }}
+                    <h1 class="mt-0 doc-title">
+                        {{ .Title }}
+                    </h1>
                     {{ partial "hanchor.html" .Content }}
                 </div>
             </div>

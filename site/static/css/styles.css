@@ -3390,6 +3390,14 @@ table>tbody>tr:nth-of-type(odd) {
     margin: 50px 0 0;
 }
 
+.doc-content .edit-github {
+  padding-top: 0.9rem;
+}
+
+.doc-content .doc-title {
+  display: inline-block;
+}
+
 .sidebar+.doc-content {
     padding-left: 50px;
 }
