@@ -1,49 +1,64 @@
 ---
 title: "End-to-End Testing"
-date: 2017-08-20T11:35:32-04:00
+date: 2018-12-04T11:35:32-04:00
 weight: 6
 subsection: Web App
 ---
 
-This page describes how to run End-to-End (E2E) testing and build tests for a section or page of the Mattermost web application.
+# End-to-End Testing
 
-## Under the Hood
+This page describes how to run End-to-End (E2E) testing and build tests for a section or page of the Mattermost web application.  Under the hood, we are using [Cypress](https://www.cypress.io/) which is "fast, easy and reliable testing for anything that runs in a browser."
 
-The E2E testing is usually run against [Selenium](http://www.seleniumhq.org/) and, for ease of use, tests are written in [Nightwatch.js](http://nightwatchjs.org/) which is an easy to use Node.js based E2E testing solution for browser based apps and websites. It uses the powerful W3C WebDriver API to perform commands and assertions on DOM elements. To get started, see the Nightwatch.js documentation, specifically:
+Not familiar with Cypress? Here are the documentations that will help you get started.
 
-    - [Developer Guide](http://nightwatchjs.org/guide//), and
-    - [API Reference](http://nightwatchjs.org/api//).
+    - [Developer Guide](https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell), and
+    - [API Reference](https://docs.cypress.io/api/api/table-of-contents.html).
 
-## Quick Overview of Running E2E Testing
+## Quick Overview on How to Run E2E Testing
 
-1.  Run a local Mattermost instance by initiating `make run` to the mattermost-server folder. Confirm that the instance has started successfully.
-2.  Change directory to mattermost-webapp and run `npm run test:e2e`. This will start full E2E testing. To run partial testing, select a specific tag and initiate `npm run test:e2e tagname` (e.g. `npm run test:e2e login`).
-3.  Full testing makes use of both Chrome and Firefox browsers, while partial testing uses Chrome only.
-4.  Tests are executed according to your selection and will display whether the tests passed or failed.
+1.  Run a local server instance by initiating `make run` to the mattermost-server folder. Confirm that the instance has started successfully.
+   - Run `make test-data` to preload your server instance with initial seed data.  Generated data like users are typically used for logging, etc.
+   - Each test case should handle the required system or account settings but in case you encountered some unexpected error while testing, you may want to run the server with default config based on `mattermost-server/config/default.json`).
+2.  Change directory to mattermost-webapp and initiate `npm run cypress:run` in the command line. This will start full E2E testing. To run partial testing, you may initiate `npm run cypress:open` in the command line which will open its desktop app.  From there, you may select particular test you would like to run.
+3.  Tests are executed according to your selection and will display whether the tests passed or failed.
 
 ## Folder Structures
 
-E2E tests files are located at mattermost-webapp/tests/e2e. This folder
-includes utility and actual tests. Usually, you will be writing tests in
-the following folders:
+The folder structure is based from [Cypress scaffold](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Folder-Structure) which was created on initial run.  Folders are:
+```
+|-- cypress
+  |-- fixtures
+  |-- integration
+  |-- support
+```
 
-- `/pages`:
-    1.  Files are named with a prefix of Page.js which contain [Page Objects](https://martinfowler.com/bliki/PageObject.html).
-    2.  Each file typically consists of commands, url, section, elements and selector.
-    3.  Selector can be either CSS or XPath locate strategies but, for convenience and readability, the default CSS selector is used with corresponding element IDs.
-- `/tests`:
-    1.  Files are named with a prefix of .element.js (which contains assertions to the element's presence) and .action.js (which contains assertions to the element/s given an action).
-    2.  Files are group into separate folders depending on their purpose or similarity.
+- `/cypress/fixtures` or [Fixture Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Fixture-Files):
+    1.  Fixtures are used as external pieces of static data that can be used by tests.
+    2.  Typically use with the `cy.fixture()` command and most often when stubbing Network Requests.
+- `/cypress/integration` or [Test Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Test-files)
+    1.  To start writing tests,
+        - simply create a new file (e.g. `login_spec.js`) within `cypress/integration` folder and;
+        - refresh tests list in the Cypress Test Runner and new file should have appeared in the list.
+- `/cypress/support` or [Support Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Support-file)
+    1.  The support file is a place to put reusable behavior such as Custom Commands or global overrides that wants to be applied and available to all of spec files.
 
-## Writing an E2E test
+## What requires an E2E Test?
 
-1. After you've written a feature, plugin or bug fix, assess whether it requires E2E testing.
-2. Identify its DOM structure by inspecting elements.
-3. Ensure that all relevant elements for assertion are assigned with element IDs.
-4. Under /pages folder, review existing files to check whether the DOM structure already has an existing Page Object.
-    - If no file exists, add a new one containing the Page Object.
-    - If a file does exist, then update the corresponding page file accordingly.
-5. Under tests folder, review existing files to check whether a related tag or test already exists.
-    - If no file exists, add a new test file for both elements and action assertions.
-    - If a file does exist, then update the corresponding test file accordingly.
-6. Initiate E2E test commands, preferably with tags or partial testing for quick iteration and then full testing for final observation.
+1. All test cases defined in the Release Checklist
+2. New feature or story
+3. Bug fixes
+4. Cases that are not covered by unit or integration tests
+
+## Interested in Contributing to E2E Testing through Help Wanted Tickets
+
+1. All help wanted tickets are under [server repository's GitHub issues](https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+label%3A%22Up+For+Grabs%22), which will have label related to end-to-end testing.  Comment to let everyone know you're working on it.
+2. Each ticket is filled up with specific test steps and assertions that need to accomplish as a minimum requirement.  Additional steps and assertions for robusts test implementation are very much welcome.
+3. Join our channel at [UI Test Automation](https://community.mattermost.com/core/channels/ui-test-automation) and talk to us as fellow contributors, collaborate and learn with each other.
+
+## Guide in Writing E2E Testing
+
+1. The [recommended practice](https://docs.cypress.io/guides/references/best-practices.html#Selecting-Elements) of Cypress is to use `data-*` attribute to provide context to selectors, but we prefer to use element ID instead of it.
+   - If element ID is not present in the webapp, you may add it in `camelCase` form with human readable name (e.g. `<div id='sidebarTitle'>`). Watch out for potential breaking change the snapshot of unit testing.  Run `make test` to see if all are passing, and run `npm run updatesnapshot` or `npm run test -- -u`, if necessary to update snapshot testing.
+2. Add commands or shortcuts to `cypress/support/commands.js` (e.g. `toAccountSettingsModal`) that makes it easier to access a page, section, modal and etc. by simply using it like `cy.toAccountSettingsModal('user-1')`.
+3. Organize `cypress/integration` with a subfolder to group similar tests.
+4. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/2058/files#diff-c42a18e742b351c0ade058ed0c4b5c5eR10) as a guide on how to write and submit an end-to-end testing PR.
