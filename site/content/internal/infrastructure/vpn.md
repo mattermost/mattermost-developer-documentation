@@ -2,6 +2,7 @@
 title: "VPN"
 date: 2018-05-28T16:08:19+02:00
 subsection: internal
+weight: 20
 ---
 
 # Setup VPN access

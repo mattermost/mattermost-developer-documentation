@@ -8,11 +8,11 @@ pygmentsCodeFences = true
 pygmentsStyle = "manni"
 
 [params]
-
   # Meta
   author = ""
   description = ""
   email = ""
+  ghrepo = "https://github.com/mattermost/mattermost-developer-documentation/"
 
   [params.mailinglist]
     enable = false

@@ -20,7 +20,7 @@ A macOS computer is required to build the Mattermost iOS mobile app.
 Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using [Homebrew](https://brew.sh/) as a package manager.
 
 #### Install [NodeJS](https://nodejs.org/en/). 
-This includes NPM which is also needed. Currently version 9.3.0 is recommended, 8.x works as well. 10.x is **not** working.
+This includes NPM which is also needed. Currently version 9.3.0 is recommended, 8.x and 10.x works as well. 11.x is **not** working.
 
 ##### MacOS
 - To install using Homebrew open a terminal and execute ..
@@ -210,3 +210,23 @@ xcrun: error: unable to find utility "instruments", not a developer tool or in P
   ![](/img/xcode_preferences.png)
 
   - After this go back to the command line and run ``make run-ios`` again.
+
+##### Error message
+```sh
+Getting Cocoapods dependencies
+/Library/Ruby/Site/2.0.0/rubygems/dependency.rb:315:in `to_specs': Could not find 'cocoapods' (>= 0) among 17 total gem(s) (Gem::LoadError)
+Checked in 'GEM_PATH=/Users/<username>/.rvm/gems/ruby-2.4.2:/Users/<username>/.rvm/gems/ruby-2.4.2@global', execute `gem env` for more information
+    from /Library/Ruby/Site/2.0.0/rubygems/dependency.rb:324:in `to_spec'
+    from /Library/Ruby/Site/2.0.0/rubygems/core_ext/kernel_gem.rb:64:in `gem'
+    from /Users/<username>/Software/ruby/bin/pod:22:in `<main>'
+make: *** [.podinstall] Error 1
+```
+
+##### Solution
+  - Install cocoapods with `gem install cocoapods`
+  - If that fails with the below, then reinstall ruby with OpenSSL using `rvm reinstall 2.3.0 --with-openssl-dir=/usr/local/opt/openssl` and then install cocoapods
+    ```sh
+    ERROR:  While executing gem ... (Gem::Exception)
+    Unable to require openssl, install OpenSSL and rebuild ruby (preferred) or use non-HTTPS sources
+    ```
+  - Run `make run-ios` again

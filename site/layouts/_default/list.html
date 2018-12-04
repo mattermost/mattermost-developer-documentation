@@ -15,7 +15,8 @@
             <div class="row">
                 {{ partial "sidebar.html" .}}
                 <div class="col-lg-9 doc-content">
-                    {{ .Content }}
+                    {{ partial "page-edit.html" . }}
+                    {{ partial "hanchor.html" .Content }}
                 </div>
             </div>
         </div>
@@ -23,4 +24,3 @@
     {{ partial "footer.html" .}}
 </body>
 </html>
-

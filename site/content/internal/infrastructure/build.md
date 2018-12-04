@@ -2,6 +2,7 @@
 title: Build
 date: 2017-11-20T20:52:46-05:00
 subsection: internal
+weight: 50
 ---
 
 # Jenkins

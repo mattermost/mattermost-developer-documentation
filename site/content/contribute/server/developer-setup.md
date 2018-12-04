@@ -146,13 +146,10 @@ subsection: Server
     ```
 
 8. You can check if the server is running using the following `curl` command or opening the URL in your web browser:
-
    ```sh
-   curl https://localhost:8065/api/v4/system/ping
+   curl http://localhost:8065/api/v4/system/ping
    ```
-
    The server should return a JSON object containing `"status":"OK"`.
-
    **Notice:** The server root will return a `404 Not Found` status, since the web app is not configured as part of the server setup. Please refer to the [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for the setup steps.
 
 {{% /md %}}
@@ -216,13 +213,10 @@ subsection: Server
     ```
 
 9. You can check if the server is running opening the following URL in your web browser:
-
    ```sh
-   https://localhost:8065/api/v4/system/ping
+   http://localhost:8065/api/v4/system/ping
    ```
-
    The server should return a JSON object containing `"status":"OK"`.
-
    **Notice:** The server root will return a `404 Not Found` status, since the web app is not configured as part of the server setup. Please refer to the [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for the setup steps.
 
 {{% /md %}}
@@ -288,13 +282,10 @@ Set up your development environment for building, running, and testing Mattermos
     ``git clone https://github.com/{username}/mattermost-webapp.git``
 
 1. You can check if the server is running using the following `curl` command or opening the URL in your web browser:
-
    ```sh
-   curl https://localhost:8065/api/v4/system/ping
+   curl http://localhost:8065/api/v4/system/ping
    ```
-
    The server should return a JSON object containing `"status":"OK"`.
-
    **Notice:** The server root will return a `404 Not Found` status, since the web app is not configured as part of the server setup. Please refer to the [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for the setup steps.
 
 ### Troubleshooting:
@@ -381,13 +372,10 @@ Now that everything is set up, you are ready to compile and run Mattermost.
     ```
 
 8. You can check if the server is running using the following `curl` command or opening the URL in your web browser:
-
    ```sh
-   curl https://localhost:8065/api/v4/system/ping
+   curl http://localhost:8065/api/v4/system/ping
    ```
-
    The server should return a JSON object containing `"status":"OK"`.
-
    **Notice:** The server root will return a `404 Not Found` status, since the web app is not configured as part of the server setup. Please refer to the [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for the setup steps.
 
 {{% /md %}}
@@ -480,13 +468,10 @@ Now that everything is set up, you are ready to compile and run Mattermost.
     ```
 
 8. You can check if the server is running using the following `curl` command or opening the URL in your web browser:
-
    ```sh
-   curl https://localhost:8065/api/v4/system/ping
+   curl http://localhost:8065/api/v4/system/ping
    ```
-
    The server should return a JSON object containing `"status":"OK"`.
-
    **Notice:** The server root will return a `404 Not Found` status, since the web app is not configured as part of the server setup. Please refer to the [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for the setup steps.
 
 {{% /md %}}

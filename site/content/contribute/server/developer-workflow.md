@@ -7,7 +7,7 @@ subsection: Server
 
 # Server Workflow
 
-If you haven't [set up your developer environment](https://docs.mattermost.com/developer/dev-setup.html), please do so before continuing with this section.
+If you haven't [set up your developer environment](https://developers.mattermost.com/contribute/server/developer-setup/), please do so before continuing with this section.
 
 Join the [Developers community channel](https://pre-release.mattermost.com/core/channels/developers) to ask questions from community members and the Mattermost core team.
 
@@ -22,7 +22,7 @@ Here's a general workflow a Mattermost developer working on the [mattermost-serv
  * [./utils/](https://github.com/mattermost/mattermost-server/tree/master/utils) holds all utilities, such as the mail utility
  * [./i18n/](https://github.com/mattermost/mattermost-server/tree/master/i18n) holds all localization files for the server
 2. On your fork, create a branch `MM-####` where #### is the ticket number if it is a [Jira](https://mattermost.atlassian.net) ticket, or `GH-####` if it is a GitHub Issue without a Jira ticket.
-3. Make the code changes required to complete your ticket, making sure to write or modify unit tests where appropriate.
+3. Make the code changes required to complete your ticket, making sure to write or modify unit tests where appropriate. Make sure to use [testify](https://github.com/stretchr/testify) for new tests.
 4. To test your changes, run `make run-server` from the root directory of the server respository. This will start up the server at `http://localhost:8065`. To get changes to the server it must be restarted with `make restart-server`. If you want to test with the web app, you may also run `make run` which will start the server and a watcher for changes to the web app.
 5. Once everything works to meet the ticket requirements, stop Mattermost by running `make stop` in the server repository, then run `make check-style` to check your syntax and `make test` to run the tests.
 6. Commit your changes, push your branch and [create a pull request](https://docs.mattermost.com/developer/contribution-guide.html#preparing-a-pull-request).

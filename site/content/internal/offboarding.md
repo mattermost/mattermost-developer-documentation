@@ -2,7 +2,7 @@
 title: Offboarding
 date: 2018-03-19T14:59:29-05:00
 section: internal
-weight: 20
+weight: 30
 ---
 
 When an employee leaves the company, any credentials they had should be revoked. The more things they had access to, the harder this is, so when onboarding, it's important to give them only the necessary privileges. It's also important to avoid shared secrets that cannot be revoked from one person.

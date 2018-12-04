@@ -2,13 +2,18 @@
 title: Release Process
 date: 2017-11-07T14:28:35-05:00
 section: internal
+weight: 100
 ---
 
 # Release Cutting Process
 
-**Note: To cut a build you need access to matterbuild. Please ask Christopher for access if you don't have it.**
+**Note: To cut a build you need access to matterbuild. Please ask Christopher/Carlos for access if you don't have it.**
 
-On code complete day, work with the PM on rotation to get all the pull requests for the current release merged into `master`. Once that is done and you've confirmed with the PM, cut the first release candidate by following these steps:
+Developers and PMs decide when to create the release branch. The branch can be created from master or from an existing release branch, depending on which type of release we are planning. If it is a Quality Release, the new branch should be branched off the previous release, otherwise the branch should be off the master branch.
+
+All commits go to master branch and are then cherry-picked to the appropriate branch. Commits to master follow the PR process and once the PR is approved and merged, the developer should cherry-pick that commit to the appropriate branch. No PR is needed for cherry-picks.
+
+On code complete day, work with the PM on rotation to get all the pull requests for the current release merged into `master` and cherry-picked to the correct branch. Once that is done and you've confirmed with the PM, cut the first release candidate by following these steps:
 
 1. Give yourself access to matterbuild by adding yourself in the platform-private repo. See an [example here](https://github.com/mattermost/platform-private/commit/89f91d81bd4602f4708270c0ca7626da8fc45291). You will need to know your user Id in the Pre-release server.
 2. Trigger the matterbuild Jenkins job to update it https://build.mattermost.com/job/matterbuild.
@@ -45,39 +50,5 @@ After a couple days pass you will need to set the CI servers to point back to `m
 1. Post `/mb setci master` into a private channel.
 2. Post `/mb setprerelease master` into a private channel.
 
-# Daily Merges from Release Branch to Master Branch
-
-After a release branch is cut, we need to merge the release branch into `master` daily to sync all changes made in the release branch.
-
-To do so follow, these steps for the following repositories:
-
-* mattermost-server
-* mattermost-webapp
-* mattermost-redux
-* enterprise
-
-1. Alert developers in the [Developers channel](https://pre-release.mattermost.com/core/channels/core-developers) not to make commits against `master` in any of the repositories above. [See a sample message here](https://pre-release.mattermost.com/core/pl/fmsnihajrtfh8bhepiy331wtka).
-
-2. Create a branch:
-
-```Bash
-$ git checkout master
-$ git fetch upstream -p
-$ git merge upstream/master
-$ git push origin master
-
-$ git checkout -b <name-of-the-branch> # ie. release-x.x-daily-merge-yyyymmdd
-$ git merge upstream/release-X.X --no-ff # where X.X is the release number
-$ git push origin <name-of-the-branch>
-```
-
-3. Open a PR for the branch.
-4. After the PR is approved, create a merge commit:
-
-```Bash
-$ git checkout master
-$ git merge <name-of-the-branch> --ff-only
-$ git push upstream master
-```
 
 That's it!
