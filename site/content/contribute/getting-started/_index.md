@@ -12,7 +12,7 @@ We're very glad you want to join hundreds of community members who have contribu
 
 Our goal is to make your experience as best as possible. Follow these simple steps to contribute:
 
-{{< bignumber number="1" title="Sign up to our Mattermost site" content="Go to [pre-release.mattermost.com](https://pre-release.mattermost.com/signup_user_complete/?id=f1924a8db44ff3bb41c96424cdc20676) and join the [Developers](https://pre-release.mattermost.com/core/channels/developers) and [Contributors](https://pre-release.mattermost.com/core/channels/tickets) channels to ask questions." >}}
+{{< bignumber number="1" title="Sign up to our Mattermost site" content="Go to [community.mattermost.com](https://community.mattermost.com/signup_user_complete/?id=f1924a8db44ff3bb41c96424cdc20676) and join the [Developers](https://community.mattermost.com/core/channels/developers) and [Contributors](https://community.mattermost.com/core/channels/tickets) channels to ask questions." >}}
 
 
 {{< bignumber number="2" title="Choose which project you want to contribute to" content="Click through them in the sidebar on the left. If you're not sure, try starting with the [server project](/contribute/server), which offers an easy way to introduce you to the codebase." >}}
