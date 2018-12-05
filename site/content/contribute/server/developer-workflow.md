@@ -39,7 +39,6 @@ Some useful `make` commands:
 * `make debug-server` will run the server in the `delve` debugger
 * `make stop-server` stops only the server
 * `make clean-docker` stops and removes your Docker images and is a good way to wipe your database
-* `make run-fullmap` will run the server and build the client with the full source map for easier debugging
 * `make clean` cleans your local environment of temporary files
 * `make nuke` wipes your local environment back to a completely fresh start
 * `make package` creates packages for distributing your builds and puts them in the `~/go/src/github.com/mattermost/mattermost-server/dist` directory. First you will need to run `make build` and `make build-client`.
