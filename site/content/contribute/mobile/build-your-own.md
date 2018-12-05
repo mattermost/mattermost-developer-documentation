@@ -5,8 +5,6 @@ weight: 6
 subsection: Mobile Apps
 ---
 
-# Build Your Own App from Source
-
 You can build the app from source and distribute it within your team or company either using the App Stores, Enterprise App Stores or EMM providers, or another way of your choosing.
 
 We recommend using the **make build**\* commands in conjunction with [Fastlane](https://docs.fastlane.tools/#choose-your-installation-method). With Fastlane, you can also configure the app using environment
@@ -39,7 +37,7 @@ or
 | VERSION\_NUMBER | Set the version of the app on build time if you want to use another one than the one set in the project. |  | Android, iOS |
 | INCREMENT\_VERSION\_<br>NUMBER\_MESSAGE | Set the commit message when changing the app version number. | Bump app version number to | Android, iOS |
 | INCREMENT\_BUILD\_NUMBER | Defines if the app build number should be incremented.<br>Valid values are: true, false | false | Android, iOS |
-| BUILD\_NUMBER | Set the build number of the app on build time if you want to use another than the next number. |  | Android, iOS | 
+| BUILD\_NUMBER | Set the build number of the app on build time if you want to use another than the next number. |  | Android, iOS |
 | INCREMENT\_BUILD\_<br>NUMBER\_MESSAGE | Set the commit message when changing the app build number. | Bump app build number to | Android, iOS |
 | APP\_NAME | The name of the app as it is going to be shown in the device home screen. | Mattermost Beta | Android, iOS |
 | REPLACE\_ASSETS | Replaces the icons of the app with the ones found under the folder *dist/assets/release/icons/* and the splash screen with the one found under the folder *dist/assets/release/splash\_screen/*. Valid values are: true, false | false | Android, iOS |

@@ -7,7 +7,7 @@ weight: 40
 
 Most of our infrastructure is hosted in AWS.
 
-# Accessing AWS
+## Accessing AWS
 
 You can sign into the web console for the master AWS account at this URL:
 
@@ -21,7 +21,7 @@ This will require you to have signed in using MFA (When you first enable MFA, yo
 
 Once you switch to another account for the first time, you can quickly switch back and forth through the menu bar dropdown.
 
-# Enabling MFA (Multi-Factor Authentication)
+## Enabling MFA (Multi-Factor Authentication)
 
 All developers that access AWS are required to enable MFA on their account(s). To enable MFA, follow these instructions:
 
@@ -35,13 +35,13 @@ All developers that access AWS are required to enable MFA on their account(s). T
 8. Follow the on-screen instructions to activate MFA on your device
 9. Sign out of the AWS Console and sign back in
 
-# Accessing the Machines on AWS
+## Accessing the Machines on AWS
 
 Most of the machines at the time of writing use an SSH key. If the description for the machine says it uses a key such as "mm-admin", "mm-ci", or "mm-dev", you'll need to get that key from someone else.
 
 If the machine does not have an SSH key associated with it, you'll need to generate an SSH key and have it signed by [Vault](../vault).
 
-# Creating Machines on AWS
+## Creating Machines on AWS
 
 Unless the machine is for your personal use only, use [Vault](../vault) to control access to it: Create it *without* a key, then give it the following user data.
 
@@ -54,7 +54,7 @@ write_files:
     content: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDHDwQhQ3eRiW4CV5RKAJb0n9P/07aHrku5hAVc+M59ejZHPVD/4sEfSaKvIXNTcY5TsrudzEhY3nVBsJDcJjb5qC5ayy+JNGFNnF05JoZ4E3tggJm5HQv3Znm/N6s65ZMA0HsZojCvEf+K8P0AKdJWiZbZGF095+N3WL9bUQIxBmCIBVPAOQSTCo8QKeorFfxhw/XcmH3s/KDV52/hEt6RWTxaDup03r7y8fbVo81F4QJ2ItmHgL3vGSpJk/nkLB2RWxT6zp4JIEo7PZ6S2Gm/2jaW+B5DftUd0gI8GKo9+vhtWjEEbOdu/mz92/GHLHW+s3TnftLeXVs7a8UYwdh/qJ4P64U3wlA//igo7ToXONsZ4TwmcKg6FD9JAq+LKTC0+prx/Gulx5esiPS+bgnkM/CMuoWMtucLoXaNz9ELBmeb6QSj1a7T/4LFzBiefT977OIhglORnEsKvY0HXvzX66a73Lm3bC9mUXxi1HSJNTDdLOmnVK+ipVjViy2/C9KJmKL3ePwBQSJ9d9IK76W4SGXTGT4mTVBSSF6j+/2a4tXq9c3NCuEWyXgPJRP1t6Iib42oAosxPoZ4zeBZM05BHbveD2b0G/bmeaZRgsEaZ3Qjnr50a6Wke7Vr9q3QGjn3+8QEdUdrnCTN8dlloLYhwY9pgh1JEYDaCdPHSP1ppw==
 ```
 
-# Best Practices
+## Best Practices
 
 * Do not configure services to use access keys that are associated with a human IAM user. Create separate IAM users for each service and write strict access policies for them.
 * Do not create multiple IAM users for yourself. There are extremely few legitimate reasons for a human to need a second IAM user.

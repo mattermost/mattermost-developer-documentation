@@ -2,6 +2,7 @@
 title: "Plugin System Overhaul"
 date: 2018-07-18T15:35:09-04:00
 ---
+
 Mattermost 5.2 will include major overhauls to the plugin system. Over the last six months of plugins being in beta, we've received a lot of great feedback from our community and customers building Mattermost plugins, as well as from our core team. We've taken this experience and feedback and used it to enhance our plugin system. This brings us a step closer to moving plugins out of beta and into a full stable release.
 
 #### Switching to HashiCorp's go-plugin

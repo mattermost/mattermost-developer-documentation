@@ -5,8 +5,6 @@ subsection: Web App Plugins
 weight: 10
 ---
 
-# Web App Reference
-
 ## PluginClass
 
 The PluginClass interface defines two methods used by the Mattermost web app to `initialize` and `uninitialize` your plugin:

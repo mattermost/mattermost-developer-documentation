@@ -4,8 +4,6 @@ date: "2017-01-19T12:01:23-04:00"
 section: "integrate"
 ---
 
-# Examples
-
 See a full list of all Mattermost integrations <a target="_blank" href="https://about.mattermost.com/community-applications/">here</a>.
 
 ### [Hubot Adapter](https://github.com/loafoe/hubot-matteruser)

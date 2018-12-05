@@ -5,8 +5,6 @@ subsection: Plugins (Beta)
 weight: 30
 ---
 
-# Mobile Plugins
-
 Full support for mobile plugins is still a work in progress.
 
 [Server plugins](/extend/plugins/server/) can interact with mobile clients, but there isn't currently an ability to customize the mobile user experience, the user interface, or render custom post types.

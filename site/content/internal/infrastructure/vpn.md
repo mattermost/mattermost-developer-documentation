@@ -5,7 +5,7 @@ subsection: internal
 weight: 20
 ---
 
-# Setup VPN access
+## Setup VPN access
 
 VPN Server: https://vpn2.mattermost.com
 

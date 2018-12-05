@@ -3,18 +3,18 @@ title: "Code Signing"
 date: 2018-01-16T10:32:51-05:00
 subsection: "Desktop App"
 ---
-# Code Signing
+
 When releasing the Mattermost Desktop application for Windows and macOS, we have to sign the executable with a certificate that allows the end user's computer to verify our identity. 
 
 The signing procedure varies depending on the platform that the release is destined for and the platform that the signing operation is performed on. This page attempts to document the procedure and some common pitfalls that developers may encounter along the way.
 
 ## Code Signing Windows Releases
-Releases destined for Windows can be code signed on Windows, macOS, or Linux. 
+Releases destined for Windows can be code signed on Windows, macOS, or Linux.
 
 #### Prerequisites
-In order to code sign releases on behalf of Mattermost Inc., you'll need a `.pfx` (Personal Information Exchange) file that contains Mattermost's public key (SSL certificate file), and the associated private key file. The file is protected by a password that you'll need in order to use it. 
+In order to code sign releases on behalf of Mattermost Inc., you'll need a `.pfx` (Personal Information Exchange) file that contains Mattermost's public key (SSL certificate file), and the associated private key file. The file is protected by a password that you'll need in order to use it.
 
-This file has been shared in LastPass. Talk to Joram Wilander, Corey Hulen, or Jonathan Fritz to get access to it. 
+This file has been shared in LastPass. Talk to Joram Wilander, Corey Hulen, or Jonathan Fritz to get access to it.
 
 #### Regenerating the .pfx File
 Signing certicates occasionally expire. When renewed, the registrar will provide you with  a `.spc` (Software Publishing Certificate) and a `.pem` (Public Key) file. These must be combined with a corresponding `.key` (Private Key) file to create the `.pfx` (Personal Information Exchange) file that is used to sign builds.
@@ -77,9 +77,9 @@ Where
 Note that on some Linux systems, attempting to overwite PATH_TO_UNSIGNED_EXE with PATH_TO_WRITE_SIGNED_EXE_TO can result in a crash. It's best to write the signed exe to a different path, and then use a `mv` command to overwrite the unsigned exe with the signed exe.
 
 #### Verifying the Signature:
-Once you have successfully signed the release, you can use the `verify` flag of the `osslsigncode` utility to ensure that the signature was applied correctly. 
+Once you have successfully signed the release, you can use the `verify` flag of the `osslsigncode` utility to ensure that the signature was applied correctly.
 ```bash
-~$ osslsigncode verify PATH_TO_SIGNED_EXE 
+~$ osslsigncode verify PATH_TO_SIGNED_EXE
 Current PE checksum   : 03CF3E32
 Calculated PE checksum: 03CF3E32
 
@@ -121,23 +121,23 @@ Succeeded
 Releases destined for macOS can **only** be code signed on a macOS host. It is not possible to sign macOS releases on a Windows or Linux host.
 
 #### Prerequisites
-In order to code sign releases on behalf of Mattermost Inc., you'll need to be a member of the Apple Developer program and a part of the Mattermost, Inc. team. You can check your team membership in Xcode by selecting **Preferences** from the **Xcode** menu, and opening the **Accounts** tab in the dialog box that appears. 
+In order to code sign releases on behalf of Mattermost Inc., you'll need to be a member of the Apple Developer program and a part of the Mattermost, Inc. team. You can check your team membership in Xcode by selecting **Preferences** from the **Xcode** menu, and opening the **Accounts** tab in the dialog box that appears.
 {{< figure src="/img/code-signing/xcode-accounts-mattermost.png" width="600px" >}}
 If you aren't a member of the Mattermost, Inc. team, talk to Joram Wilander, Corey Hulen, or Jonathan Fritz.
 
-Once you are a member of the team, click the **Download Manual Profiles** button at the bottom of the Accounts dialog. Next, highlight **Mattermost, Inc.** in the team list, and click the **Manage Certificates...** button. 
+Once you are a member of the team, click the **Download Manual Profiles** button at the bottom of the Accounts dialog. Next, highlight **Mattermost, Inc.** in the team list, and click the **Manage Certificates...** button.
 
 In the dialog that appears, ensure that you have a **Developer ID Application** certificate under the **macOS Distribution Certificates** heading:
 {{< figure src="/img/code-signing/missing-private-key.png" width="600px" >}}
 
-If you do not see the **macOS Distribution Certificates** heading or the **Developer ID Application** certificate is missing, you can download the certificate from [The Apple Developers Portal](https://developers.apple.com). Sign in with your Apple ID and select **Certificates, IDs & Profiles** from the left hand sidebar:  
+If you do not see the **macOS Distribution Certificates** heading or the **Developer ID Application** certificate is missing, you can download the certificate from [The Apple Developers Portal](https://developers.apple.com). Sign in with your Apple ID and select **Certificates, IDs & Profiles** from the left hand sidebar:
 {{< figure src="/img/code-signing/apple-developer-lhs.png" width="600px" >}}
 
 From the drop down box in the top left hand corner of the **Certificates, Identifiers & Profiles** page that appears, select **macOS**. Next, under the **Certificates** heading in the left hand sidebar, select **All**. The **Mattermost, Inc. Developer ID Application** certificate should appear in the centre panel of the screen. Click on it to expand it and then click on the **Download** button that appears.
 {{< figure src="/img/code-signing/apple-developer-download-cert.png" width="600px" >}}
 
 Once downloaded, you can double-click on the certificate file to import it into your local keychain.
-{{< figure src="/img/code-signing/keychain-access.png" width="600px" >}}   
+{{< figure src="/img/code-signing/keychain-access.png" width="600px" >}}
 
 Back in XCode, the entry in the **Status** column of the **Manage Certificates...** dialog for this certificate will be `Missing Private Key`:
 {{< figure src="/img/code-signing/missing-private-key.png" width="600px" >}}
@@ -146,27 +146,27 @@ The private key is available in a `.p12` file that has been shared in LastPass. 
 {{< figure src="/img/code-signing/private-key.png" width="600px" >}}
 
 Back in Xcode, under **Xcode** > **Preferences** > **Accounts** > **Manage Certificates...**, the **Status** column entry for the **Developer ID Application** certificate should now be empty:
-{{< figure src="/img/code-signing/empty-status.png" width="600px" >}} 
+{{< figure src="/img/code-signing/empty-status.png" width="600px" >}}
 
 Finally, you'll need to install the `electron-osx-sign` utility via NPM:
 ```bash
 ~$ npm install -g electron-osx-sign
-``` 
+```
 
 #### Signing the Release
-Note that once the code signing certificate and private key have been imported as described in the **Prerequisites** section above, the application will automatically be code signed during [building and packaging](/contribute/desktop/developer-setup#building). To confirm that this step has been completed, skip down to the **Verifying the Signature** section below. 
+Note that once the code signing certificate and private key have been imported as described in the **Prerequisites** section above, the application will automatically be code signed during [building and packaging](/contribute/desktop/developer-setup#building). To confirm that this step has been completed, skip down to the **Verifying the Signature** section below.
 If the application was built and packaged by somebody else, and you need to sign to the `.app` that they produced, you can run the signing command from the root of the repository:
 ```bash
 ~$ electron-osx-sign release/mac/Mattermost.app
- > Name: Developer ID Application: Mattermost, Inc. (****) 
- > Hash: **** +3s 
+ > Name: Developer ID Application: Mattermost, Inc. (****)
+ > Hash: **** +3s
  * Disable by setting `pre-embed-previsioning-profile` to `false`. +1ms
  * Disable by setting `pre-auto-entitlements` to `false`. +0ms
- > Application: Mattermost.app 
- > Platform: darwin 
- > Entitlements: undefined 
- > Child entitlements: undefined 
- > Additional binaries: [] 
+ > Application: Mattermost.app
+ > Platform: darwin
+ > Entitlements: undefined
+ > Child entitlements: undefined
+ > Additional binaries: []
  > Identity: { name: 'Developer ID Application: Mattermost, Inc. (****)',
   hash: '****' } +0ms
   Electron Framework +0ms
@@ -207,7 +207,7 @@ In subcomponent: /Users/jfritz/go/src/github.com/mattermost/desktop/release/mac/
 You have resource files in the wrong place in your release folder. According to [Apple's Developer Docs](https://developer.apple.com/library/content/documentation/Security/Conceptual/CodeSigningGuide/Procedures/Procedures.html), all resource files (i.e. anything that isn't code) must be in the `Content/Resources` folder within the `.app` package. In this case, the `LICENSE.txt` file is located in the top-level `Contents` directory, causing the code signing operation to fail. This can be fixed by moving any non-code resource files into the `Content/Resources` directory.
 
 ##### Signing Doesn't Work via SSH
-If you're attempting to perform code signing on a remote box via SSH (for instance, if the build is being run on a macOS slave controlled by Jenkins), you will need to unlock the keychain that contains the signing certificate and private key before either can be used. 
+If you're attempting to perform code signing on a remote box via SSH (for instance, if the build is being run on a macOS slave controlled by Jenkins), you will need to unlock the keychain that contains the signing certificate and private key before either can be used.
 
 To unlock the keychain, run this command before attempting to sign the code:
 ```bash

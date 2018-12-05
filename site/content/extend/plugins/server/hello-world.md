@@ -1,11 +1,9 @@
 ---
-title: Quick Start (Hello, world!)
+title: Quick Start
 date: 2018-07-10T00:00:00-05:00
 subsection: Server Plugins
 weight: -10
 ---
-
-# Hello, world!
 
 This tutorial will walk you through the basics of writing a Mattermost plugin with a server component.
 

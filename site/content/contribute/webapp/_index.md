@@ -4,8 +4,6 @@ date: "2018-03-19T12:01:23-04:00"
 section: "contribute"
 ---
 
-# Web App
-
 The Mattermost web app is written in JavaScript using [React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/).
 
 It is powered by [mattermost-redux](/contribute/redux) which handles the majority of the logic, client-side storage and server communication.

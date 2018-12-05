@@ -5,8 +5,6 @@ weight: 2
 subsection: Web App
 ---
 
-# Developer Setup
-
 ## Prerequisites
 - Git
 - homebrew (for Mac)

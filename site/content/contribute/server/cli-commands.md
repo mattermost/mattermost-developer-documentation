@@ -5,8 +5,6 @@ weight: 5
 subsection: Server
 ---
 
-# CLI Commands
-
 Mattermost provides a CLI (command-line interface) to administer and handle specific administrative tasks.
 
 ## Understanding the CLI
