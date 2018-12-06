@@ -5,8 +5,6 @@ weight: 3
 subsection: Redux
 ---
 
-# Redux Workflow
-
 ## Project Structure
 
 If you look at the [Mattermost Redux repository](https://github.com/mattermost/mattermost-redux), you'll see the following folders:

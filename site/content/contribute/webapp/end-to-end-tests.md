@@ -1,11 +1,9 @@
 ---
-title: "End-to-End Tests"
+title: "End-to-End Testing"
 date: 2017-08-20T11:35:32-04:00
-weight: 6 
+weight: 6
 subsection: Web App
 ---
-
-# End-to-End Testing
 
 This page describes how to run End-to-End (E2E) testing and build tests for a section or page of the Mattermost web application.
 
@@ -44,8 +42,8 @@ the following folders:
 3. Ensure that all relevant elements for assertion are assigned with element IDs.
 4. Under /pages folder, review existing files to check whether the DOM structure already has an existing Page Object.
     - If no file exists, add a new one containing the Page Object.
-    - If a file does exist, then update the corresponding page file accordingly. 
+    - If a file does exist, then update the corresponding page file accordingly.
 5. Under tests folder, review existing files to check whether a related tag or test already exists.
-    - If no file exists, add a new test file for both elements and action assertions. 
+    - If no file exists, add a new test file for both elements and action assertions.
     - If a file does exist, then update the corresponding test file accordingly.
 6. Initiate E2E test commands, preferably with tags or partial testing for quick iteration and then full testing for final observation.

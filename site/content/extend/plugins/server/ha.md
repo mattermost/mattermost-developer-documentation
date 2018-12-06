@@ -5,8 +5,6 @@ subsection: Server Plugins
 weight: 60
 ---
 
-# High Availability
-
 Mattermost Enterprise Edition servers with an E20 license have the ability to run in [High Availability (HA)](https://docs.mattermost.com/deployment/cluster.html) mode, meaning a cluster of Mattermost app servers running together as a single Mattermost deployment.
 
 It is imporant that all plugins consider HA environments when being built.
@@ -23,7 +21,7 @@ Let's say we have two Mattermost app servers running together in HA and an insta
 2. An HTTP request is made to the server-side of the plugin to set `hello`
 3. The plugin process running on app server 1 handles the request and stores `hello` in a variable
 
-In this scenario, the trigger word is now only set for the plugin process running on app server 1. The plugin process running on app server 2 is unaware that the trigger word is `hello`. This means when someone posts a message containing `hello` and the request is load balanced to app server 2, the plugin is not going to alert our user when it should. 
+In this scenario, the trigger word is now only set for the plugin process running on app server 1. The plugin process running on app server 2 is unaware that the trigger word is `hello`. This means when someone posts a message containing `hello` and the request is load balanced to app server 2, the plugin is not going to alert our user when it should.
 
 The proper way to deal with this case would be for the plugin to store the trigger word in a global store, such as the KV store. Then any time a user posts the plugin can pull the trigger word from the store and properly alert the user, regardless of which app server handles the request.
 

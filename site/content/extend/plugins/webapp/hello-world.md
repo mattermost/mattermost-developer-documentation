@@ -1,11 +1,9 @@
 ---
-title: Quick Start (Hello, world!)
+title: Quick Start
 date: 2018-07-10T00:00:00-05:00
 subsection: Web App Plugins
 weight: -10
 ---
-
-# Hello, world!
 
 This tutorial will walk you through the basics of extending the Mattermost web app.
 
@@ -166,4 +164,3 @@ Install the plugin in one of the following ways:
  - Restart the Mattermost server.
 
 Navigate to a regular Mattermost page and observe the new icon in the channel header. Click the icon and observe the alert dialog.
-

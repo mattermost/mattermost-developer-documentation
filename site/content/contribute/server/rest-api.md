@@ -5,8 +5,6 @@ weight: 4
 subsection: Server
 ---
 
-# REST API
-
 The REST API is a JSON web service that facilitates communication between Mattermost clients, as well as integrations, and the server.
 
 The server is currently on API version 4.

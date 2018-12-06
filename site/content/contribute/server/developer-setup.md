@@ -5,7 +5,6 @@ weight: 2
 subsection: Server
 ---
 
-# Developer Setup
 <p>Set up your development environment for building, running, and testing the Mattermost server.</p>
 
 <div class="tab">
@@ -252,12 +251,12 @@ Set up your development environment for building, running, and testing Mattermos
   In bash `sudo apt-get install build-essential libpng16-dev`
 
 1. Download and install Go 1.11 for Linux:
-    1. Download the Go binary.  
+    1. Download the Go binary.
         In bash``wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz``
-    1. Install the Go binary.  
+    1. Install the Go binary.
         In bash``sudo tar -C /usr/local -xzf go1.11.linux-amd64.tar.gz``
 
-1. Set up your Go workspace:  
+1. Set up your Go workspace:
     1. In PowerShell ``mkdir d:\Projects\go``
     1. In bash ``ln -s "/mnt/d/Projects/go" /home/<Linux User>/go``
     1. Add the following lines to your ``~/.bashrc`` file in bash:

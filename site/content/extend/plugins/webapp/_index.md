@@ -5,8 +5,6 @@ subsection: Plugins (Beta)
 weight: 20
 ---
 
-# Web App Plugins
-
 Web app plugins extend and modify the Mattermost web and desktop apps, without having to fork and rebase on every Mattermost release.
 
 Looking for a quick start? [See our "Hello, world!" tutorial](/extend/plugins/webapp/hello-world/).

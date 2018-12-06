@@ -5,8 +5,6 @@ weight: 4
 subsection: Mobile Apps
 ---
 
-# Makefile Commands
-
 We've included a bunch of make commands in order to control the development flow and to ensure that everything works as expected. Always try and use these make commands unless they can't accomplish what you need to do.
 
 Every make command has to be run from a terminal in the project's root directory. Try running **make help** to get a short description in your terminal about every make command available.

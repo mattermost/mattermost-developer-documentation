@@ -1,7 +1,6 @@
 ---
 title: "npm@6"
 date: 2018-05-22T10:16:52-04:00
-draft: false
 categories:
   - "announcement"
 ---

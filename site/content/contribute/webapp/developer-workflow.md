@@ -5,8 +5,6 @@ weight: 3
 subsection: Web App
 ---
 
-# Web App Workflow
-
 If you haven't [set up your developer environment](https://developers.mattermost.com/contribute/webapp/developer-setup/), please do so before continuing with this section.
 
 ### Workflow ###

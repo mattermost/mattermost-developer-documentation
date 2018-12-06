@@ -5,8 +5,6 @@ weight: 6
 subsection: Redux
 ---
 
-# Selectors
-
 Selectors are functions used to compute data from the data in the Redux stores. This is done using [Reselect](https://github.com/reactjs/reselect), a library designed to do this efficiently by memoizing any results so that they are only recalculated if relevant parts of the store change. The code for this is in the `src/selectors` folder of the Mattermost Redux repository.
 
 For more information about reselect and how we use it at Mattermost, [check out this developer talk given by core developer Harrison Healey](https://www.youtube.com/watch?v=6N2X7gEwmaQ).

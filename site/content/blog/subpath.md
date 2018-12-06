@@ -2,7 +2,8 @@
 title: "Subpath Support"
 date: 2018-06-25T15:35:09-04:00
 ---
-Mattermost 5.1 will include support for [serving Mattermost from subpaths](https://mattermost.atlassian.net/browse/MM-10366). This allows Mattermost to be exposed at something like https://example.com/company/mattermost, with your proxy server exposing different services at other subpaths. Subpath support is configured via the [Site URL](https://docs.mattermost.com/administration/config-settings.html?highlight=siteurl#site-url). 
+
+Mattermost 5.1 will include support for [serving Mattermost from subpaths](https://mattermost.atlassian.net/browse/MM-10366). This allows Mattermost to be exposed at something like https://example.com/company/mattermost, with your proxy server exposing different services at other subpaths. Subpath support is configured via the [Site URL](https://docs.mattermost.com/administration/config-settings.html?highlight=siteurl#site-url).
 
 #### Using subpaths in production
 

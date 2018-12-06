@@ -5,8 +5,6 @@ weight: 8
 subsection: Redux
 ---
 
-# Migrating the Redux Library to Flow
-
 The Mattermost team wants to improve the quality, security and stability of the code, and one way to do this is by introducing the usage of type checking. Thus, we have decided to introduce Flow in our codebase. As a first step, we want to start migrating the mattermost-redux library (in the future we will also migrate the webapp and mobile app).
 
 This campaign will help with the migration by annotating the javascript code with Flow annotations.

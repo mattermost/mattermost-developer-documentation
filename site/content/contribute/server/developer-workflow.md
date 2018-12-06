@@ -5,8 +5,6 @@ weight: 3
 subsection: Server
 ---
 
-# Server Workflow
-
 If you haven't [set up your developer environment](https://developers.mattermost.com/contribute/server/developer-setup/), please do so before continuing with this section.
 
 Join the [Developers community channel](https://pre-release.mattermost.com/core/channels/developers) to ask questions from community members and the Mattermost core team.

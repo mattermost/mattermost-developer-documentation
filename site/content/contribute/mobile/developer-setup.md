@@ -5,8 +5,6 @@ weight: 2
 subsection: Mobile Apps
 ---
 
-# Developer Setup
-
 The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version [here](http://about.mattermost.com/mattermost-ios-app/) and the Android version [here](http://about.mattermost.com/mattermost-android-app/). Source code can be found at https://github.com/mattermost/mattermost-mobile.
 
 If you run into any issues getting your environment set up, check the [Troubleshooting](#troubleshooting) section at the bottom for common solutions.
@@ -19,7 +17,7 @@ A macOS computer is required to build the Mattermost iOS mobile app.
 
 Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using [Homebrew](https://brew.sh/) as a package manager.
 
-#### Install [NodeJS](https://nodejs.org/en/). 
+#### Install [NodeJS](https://nodejs.org/en/).
 This includes NPM which is also needed. Currently version 10.11.0 is recommended with npm 6.4.1. 11.x is **not** working.
 
 ##### MacOS

@@ -5,8 +5,6 @@ weight: 1
 subsection: Getting Started
 ---
 
-# Contribution Checklist
-
 Thanks for your interest in contributing to Mattermost! Come [join our "Contributors" community channel](https://pre-release.mattermost.com/core/channels/tickets) on our daily build server, where you can discuss questions with community members and the Mattermost core team.
 
 To help with translations, [see the localization process](https://docs.mattermost.com/developer/localization.html).

@@ -5,8 +5,6 @@ weight: 2
 subsection: Redux
 ---
 
-# Developer Setup
-
 ## Prerequisites
 - Git
 

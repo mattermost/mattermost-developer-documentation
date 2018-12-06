@@ -5,8 +5,6 @@ weight: 4
 subsection: Redux
 ---
 
-# Actions
-
 Similar to other frameworks like Flux, actions in Redux represent a single change to the Redux store as a plain JavaScript object.
 
 ```javascript

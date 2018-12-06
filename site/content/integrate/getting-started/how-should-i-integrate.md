@@ -5,8 +5,6 @@ weight: 1
 subsection: Getting Started
 ---
 
-# How Should I Integrate?
-
 Very good question! Mattermost has many different integration points and this page will help you pick the right one(s) for the job.
 
 ### I just want to post into Mattermost

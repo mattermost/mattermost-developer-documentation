@@ -4,8 +4,6 @@ date: "2017-08-19T12:01:23-04:00"
 section: "integrate"
 ---
 
-# Slash Commands
-
 Slash commands are messages that begin with `/` and trigger an HTTP request to a web service that can in turn post one or more messages in response.
 
 Unlike outgoing webhooks, slash commands work in private channels and direct messages in addition to public channels, and can be configured to auto-complete when typing. Note that while Mattermost includes a number of built-in slash commands, this document concerns itself only with the slash commands that can be configured as custom integrations.
@@ -13,15 +11,15 @@ Unlike outgoing webhooks, slash commands work in private channels and direct mes
 
 ### Basic Usage
 
-Follow [the admin guide](https://docs.mattermost.com/developer/slash-commands.html#custom-slash-command) to create a slash command. 
+Follow [the admin guide](https://docs.mattermost.com/developer/slash-commands.html#custom-slash-command) to create a slash command.
 
 After creating the slash command, you'll be given a `token`. __Treat this as a secret.__ Anyone who has this token will be able to mimic requests to your application.
 
-If you configured a slash command with a trigger word of `test`, a request URL of `http://example.com/slash-command` and a `POST` request method, and someone posts the message 
+If you configured a slash command with a trigger word of `test`, a request URL of `http://example.com/slash-command` and a `POST` request method, and someone posts the message
 
 ```
 /test asd
-``` 
+```
 
 to your Town Square channel, your endpoint will receive:
 
@@ -148,8 +146,3 @@ Ensure you are emitting the `Content-Type: application/json` header, otherwise y
 #### Are slash commands Slack-compatible?
 
 See the [admin guide's notes on Slack compatibillity](https://docs.mattermost.com/developer/slash-commands.html#slack-compatibility).
-
-
-
-
-

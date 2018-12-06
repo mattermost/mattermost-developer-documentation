@@ -4,8 +4,6 @@ date: "2018-05-19T12:01:23-04:00"
 section: "contribute"
 ---
 
-# Getting Started
-
 Welcome to the Mattermost project!
 
 We're very glad you want to join hundreds of community members who have contributed code to Mattermost repositories in GitHub.

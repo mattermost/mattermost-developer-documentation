@@ -5,7 +5,7 @@ weight: 5
 subsection: Web App
 ---
 
-# Unit Testing - Component and Utility files
+## Component and Utility files
 
 The last required piece of building a webapp component is to test it. That can be done using the component testing framework described in this blog post: https://grundleborg.github.io/posts/react-component-testing-in-mattermost/.
 
@@ -209,7 +209,7 @@ a. Mock the specific function being used by the component but also passed other 
     ```
 
 ### 3. Getting "UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'data' of undefined"
-a. Use async mock function with resolved value. "Cannot read property" can be ``error``, ``data``, ``exists``, ``match``, or whatever the resolve value that the function returns. 
+a. Use async mock function with resolved value. "Cannot read property" can be ``error``, ``data``, ``exists``, ``match``, or whatever the resolve value that the function returns.
 
 - On the file being tested: If the function returns a value, like below it returns it waits for the return value of ``data``.
 
@@ -224,10 +224,10 @@ a. Use async mock function with resolved value. "Cannot read property" can be ``
     const addUsersToTeam = jest.fn();
 
     // DO NOT mock async function with undefined resolved value.
-    const addUsersToTeam: jest.fn(() => {    
-        return new Promise((resolve) => {    
-            process.nextTick(() => resolve());    
-        });    
+    const addUsersToTeam: jest.fn(() => {
+        return new Promise((resolve) => {
+            process.nextTick(() => resolve());
+        });
     }),
 
     // DO mock async function with resolved value.  Observed the used of "mockResolvedValue".
@@ -240,7 +240,7 @@ a. Use async mock function with resolved value. "Cannot read property" can be ``
     ```
 
 b. Use async test callback for async function instance
-   
+
 - On the file being tested: If the instance function is async.
 
     ```javascript

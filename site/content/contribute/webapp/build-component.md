@@ -5,8 +5,6 @@ weight: 4
 subsection: Web App
 ---
 
-# Building a Web App React Component
-
 This page describes how to build a new React component in the webapp. All new components must meet the following requirements:
 
 1. Is pure, meaning that all information required to render is passed in by props

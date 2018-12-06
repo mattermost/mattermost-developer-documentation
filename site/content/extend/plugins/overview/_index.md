@@ -4,7 +4,6 @@ date: 2018-07-10T00:00:00-05:00
 subsection: Plugins (Beta)
 weight: 1
 ---
-# Overview
 
 Plugins are defined by a manifest file and contain at least a server or web app component, or both. The [sample plugin](https://github.com/mattermost/mattermost-plugin-sample) is a starting point and illustrates the different components of a Mattermost plugin. A more detailed example is the [demo plugin](https://github.com/mattermost/mattermost-plugin-demo), which showcases many of the features of plugins.
 
