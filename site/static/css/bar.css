@@ -1,15 +1,19 @@
 .notification-bar {
     background-color: purple;
     color: white;
-    padding: 5px 15px;
     text-align: center;
     width: 100%;
 }
 
+.notification-bar a {
+    padding: 5px 32px;
+}
+
 .closed {
-  display: none;
+    display: none;
 }
 
 .notification-bar .notification-bar__close {
     color: white;
+    padding: 5px 5px 5px 0;
 }
