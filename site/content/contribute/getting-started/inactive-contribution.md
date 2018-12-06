@@ -5,8 +5,6 @@ weight: 1.5
 subsection: Getting Started
 ---
 
-# Inactive Contributions
-
 This process describes how inactive contributions are managed at Mattermost, inspired by the [Kubernetes project](https://github.com/kubernetes/kubernetes):
 
 1. After 14 days of inactivity, a contribution becomes stale.
