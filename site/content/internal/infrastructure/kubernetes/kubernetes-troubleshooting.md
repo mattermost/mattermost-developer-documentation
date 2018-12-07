@@ -66,23 +66,6 @@ mattermost-community-1                            1/1     Running   0          2
 mattermost-community-jobserver-65985bfc47-88qq9   1/1     Running   0          5h
 ```
 
-
-# Switch Back to EC2
-
-This will be a temporary because we are aiming to use only Kubernetes for the `community.mattermost.com`.
-
-For any reason or something really bad happens and you need to switch back to the EC2 machines you need to do the following:
-
-    - Login in the main Mattermost AWS account
-    - Go to the Route53
-    - Select the `mattermost.com`
-    - Delete the entries for `community` and `pre-release`
-    - Add a two entries for `pre-release` with a CNAME pointing to the proxy-server (the DNS names you can get in the EC2 Dashboard and filter by `pre-release`)
-
-    Wait for the DNS renew and try to access.
-    All the EC2 servers are getting updates and they are up and running.
-
-
 # Troubleshooting
 
 #### Namespaces
