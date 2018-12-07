@@ -1,5 +1,10 @@
 {{ if .Site.Params.notification.enable }}
-<div class='notification-bar' style="">
-    <a href="{{ .Site.BaseURL}}{{ .Site.Params.notification.url }}">{{ .Site.Params.notification.text }}</a>
+<div class='notification-bar sticky-top'>
+    <button type="button" class="close notification-bar__close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <a href="{{ .Site.Params.notification.url | absURL }}">
+        {{ .Site.Params.notification.text }}
+    </a>
 </div>
 {{ end }}
