@@ -174,9 +174,9 @@ changes in the project.
 
 - Replace `android/app/google-services.json` with the one you downloaded earlier
 - Open `android/app/google-services.json`, find the project\_number and copy the value
-- Open `android/app/src/main/AndroidManifest.xml` file, look for the line `<meta-data android:name="com.wix.reactnativenotifications.gcmSenderId" android:value="184930218130\0"/>` and replace the value with the one that you copied in the previous step
+- Open `android/app/src/main/AndroidManifest.xml` file, look for the line `<meta-data android:name="com.wix.reactnativenotifications.gcmSenderId" android:value="184930218130\"/>` and replace the value with the one that you copied in the previous step
 
-**Leave the trailing \0 intact**
+**Leave the trailing \ intact**
 
 At this point, you can build the Mattermost app for Android.
 
