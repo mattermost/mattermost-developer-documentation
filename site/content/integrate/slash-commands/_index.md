@@ -84,6 +84,7 @@ Slash command responses support more than just the `text` field. Here is a full 
 | attachments | [Message attachments](https://docs.mattermost.com/developer/message-attachments.html) used for richer formatting options. | If `text` is not set, yes |
 | type | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with `custom_`. Passing `attachments` will ignore this field and set the type to `slack_attachment`. | No |
 | props | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br> Mainly used by other integrations accessing posts through the REST API.<br> The following keys are reserved: `from_webhook`, `override_username`, `override_icon_url` and `attachments`. | No |
+| extra\_responses | Sends additional responses to channels listed in an array. These responses are processed as separate posts. All fields except for `goto_location` are applied. | No |
 
 An example request using some more parameters would look like this:
 
