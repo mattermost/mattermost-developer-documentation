@@ -113,8 +113,6 @@ Content-Length: 696
 
 To debug slash commands in System Console > Logs, set System Console > Logging > Enable Webhook Debugging to true and set System Console > Logging > Console Log Level to DEBUG.
 
-@DSchalla Good suggestion. Would something like this work?
-
 #### How do I send multiple responses from a slash command.
 
 You can send multiple responses with an `extra_responses` parameter as follows.
