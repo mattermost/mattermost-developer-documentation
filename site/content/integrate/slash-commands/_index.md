@@ -83,9 +83,8 @@ Slash command responses support more than just the `text` field. Here is a full 
 | goto\_location | A URL to redirect the user to. Supports many protocols, including `http://`, `https://`, `ftp://`, `ssh://` and `mailto://`.| No |
 | attachments | [Message attachments](https://docs.mattermost.com/developer/message-attachments.html) used for richer formatting options. | If `text` is not set, yes |
 | type | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with `custom_`. Passing `attachments` will ignore this field and set the type to `slack_attachment`. | No |
-| props | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br> Mainly used by other integrations accessing posts through the REST API.<br> The following keys are reserved: `from_webhook`, `override_username`, `override_icon_url` and `attachments`. | No |
 | extra\_responses | Sends additional responses to channels listed in an array. These responses are processed as separate posts. All fields except for `goto_location` are applied. | No |
-
+| props | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br> Mainly used by other integrations accessing posts through the REST API.<br> The following keys are reserved: `from_webhook`, `override_username`, `override_icon_url` and `attachments`. | No |
 An example request using some more parameters would look like this:
 
 ```http
@@ -113,6 +112,42 @@ Content-Length: 696
 #### How do I debug slash commands?
 
 To debug slash commands in System Console > Logs, set System Console > Logging > Enable Webhook Debugging to true and set System Console > Logging > Console Log Level to DEBUG.
+
+@DSchalla Good suggestion. Would something like this work?
+
+#### How do I send multiple responses from a slash command.
+
+You can send multiple responses with an `extra_responses` parameter as follows.
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 696
+
+{
+    "response_type": "in_channel",
+    "text": "\n#### Test results for July 27th, 2017\n@channel here are the requested test results.\n\n| Component  | Tests Run   | Tests Failed                                   |\n| ---------- | ----------- | ---------------------------------------------- |\n| Server     | 948         | :white_check_mark: 0                           |\n| Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |\n| iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |\n\t\t      ",
+    "username": "test-automation"
+    "icon_url": "https://www.mattermost.org/wp-content/uploads/2016/04/icon.png",
+    "props": {
+        "test_data": {
+            "ios": 78,
+            "server": 948,
+            "web": 123
+        }
+    },
+    "extra_responses": [
+       {
+         "text": "message 2",
+         "username": "test-automation"
+       },
+       {
+         "text": "message 3",
+         "username": "test-automation"
+       }
+     ]
+}
+```
 
 #### What if my slash command takes time to build a response?
 
