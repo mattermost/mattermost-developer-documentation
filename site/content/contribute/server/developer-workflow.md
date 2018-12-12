@@ -14,11 +14,11 @@ Join the [Developers community channel](https://pre-release.mattermost.com/core/
 Here's a general workflow a Mattermost developer working on the [mattermost-server](https://github.com/mattermost/mattermost-server) repository:
 
 1. Review the repository structure to familiarize yourself with the project
- * [./api/](https://github.com/mattermost/mattermost-server/tree/master/api) holds all API and application related code
- * [./model/](https://github.com/mattermost/mattermost-server/tree/master/model) holds all data model definitions and the Go driver
- * [./store/](https://github.com/mattermost/mattermost-server/tree/master/store) holds all database querying code
- * [./utils/](https://github.com/mattermost/mattermost-server/tree/master/utils) holds all utilities, such as the mail utility
- * [./i18n/](https://github.com/mattermost/mattermost-server/tree/master/i18n) holds all localization files for the server
+    * [./api/](https://github.com/mattermost/mattermost-server/tree/master/api) holds all API and application related code
+    * [./model/](https://github.com/mattermost/mattermost-server/tree/master/model) holds all data model definitions and the Go driver
+    * [./store/](https://github.com/mattermost/mattermost-server/tree/master/store) holds all database querying code
+    * [./utils/](https://github.com/mattermost/mattermost-server/tree/master/utils) holds all utilities, such as the mail utility
+    * [./i18n/](https://github.com/mattermost/mattermost-server/tree/master/i18n) holds all localization files for the server
 2. On your fork, create a branch `MM-####` where #### is the ticket number if it is a [Jira](https://mattermost.atlassian.net) ticket, or `GH-####` if it is a GitHub Issue without a Jira ticket.
 3. Make the code changes required to complete your ticket, making sure to write or modify unit tests where appropriate. Make sure to use [testify](https://github.com/stretchr/testify) for new tests.
 4. To test your changes, run `make run-server` from the root directory of the server respository. This will start up the server at `http://localhost:8065`. To get changes to the server it must be restarted with `make restart-server`. If you want to test with the web app, you may also run `make run` which will start the server and a watcher for changes to the web app.

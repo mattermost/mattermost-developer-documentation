@@ -1,10 +1,10 @@
 /*!
- *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
- *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
- */
+*  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
+*  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+*/
 
 /* FONT PATH
- * -------------------------- */
+* -------------------------- */
 
 @font-face {
     font-family: 'FontAwesome';
@@ -218,8 +218,10 @@
     color: #ffffff;
 }
 
-/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
-   readers do not read off random characters that represent icons */
+/*
+Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+readers do not read off random characters that represent icons
+*/
 
 .fa-glass:before {
     content: "\f000";
@@ -3114,13 +3116,13 @@ h6 {
 }
 
 .hanchor {
-  font-size: 70%;
-  visibility: hidden;
-  color:silver;
+    font-size: 70%;
+    visibility: hidden;
+    color:silver;
 }
 
 h1:hover a, h2:hover a, h3:hover a, h4:hover a {
-  visibility: visible
+    visibility: visible
 }
 
 .btn {
@@ -3391,11 +3393,11 @@ table>tbody>tr:nth-of-type(odd) {
 }
 
 .doc-content .edit-github {
-  padding-top: 0.9rem;
+    padding-top: 0.9rem;
 }
 
 .doc-content .doc-title {
-  display: inline-block;
+    display: inline-block;
 }
 
 .sidebar+.doc-content {
@@ -3588,11 +3590,11 @@ table>tbody>tr:nth-of-type(odd) {
 
 @media (max-width: 768px) {
     header {
-      padding: 0 20px;
+        padding: 0 20px;
     }
 
     .doc-content {
-      padding: 0 20px;
+        padding: 0 20px;
     }
 
     .header__links--right {
@@ -3604,15 +3606,19 @@ table>tbody>tr:nth-of-type(odd) {
         line-height: 50px;
         margin: 0 -15px;
     }
+
     .header__links--right li {
         display: block;
     }
+
     .header__links--right li.active {
         background: #f5f5f5;
     }
+
     .header__links--right li.active a {
         color: #000 !important;
     }
+
     .header__links--right a {
         display: block;
     }

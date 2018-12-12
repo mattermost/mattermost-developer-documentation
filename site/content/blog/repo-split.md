@@ -3,9 +3,9 @@ draft: true
 title: "Platform Repository Splitting"
 date: 2017-09-04T11:09:47-04:00
 categories:
-  - "announcement"
+    - "announcement"
 tags:
-  - "example"
+    - "example"
 ---
 
 A reminder that Mattermost will be separating the `/platform` repo into two repositories on September 6th:

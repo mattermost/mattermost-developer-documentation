@@ -28,7 +28,7 @@ type Plugin struct {
 
 
 func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello %s!", p.Greeting)
+    fmt.Fprintf(w, "Hello %s!", p.Greeting)
 }
 ```
 
@@ -87,7 +87,7 @@ The plugin entry point was previously:
 import "github.com/mattermost/mattermost-server/plugin/rpcplugin"
 
 func main() {
-	rpcplugin.Main(&HelloWorldPlugin{})
+    rpcplugin.Main(&HelloWorldPlugin{})
 }
 ```
 
@@ -97,7 +97,7 @@ Change the imported package and invoke `ClientMain` instead:
 import "github.com/mattermost/mattermost-server/plugin"
 
 func main() {
-	plugin.ClientMain(&HelloWorldPlugin{})
+    plugin.ClientMain(&HelloWorldPlugin{})
 }
 ```
 
@@ -125,17 +125,17 @@ Most of the previous API calls remain available and unchanged, with the notable 
 
 ```go
 func (p *MyPlugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Request) {
-	key := r.URL.Query().Get("key")
-	switch r.Method {
-	case http.MethodGet:
-		value, _ := p.API.KVGet(key)
-		fmt.Fprintf(w, string(value))
-	case http.MethodPut:
-		value := r.URL.Query().Get("value")
-		p.API.KVSet(key, []byte(value))
-	case http.MethodDelete:
-		p.API.KVDelete(key)
-	}
+    key := r.URL.Query().Get("key")
+    switch r.Method {
+    case http.MethodGet:
+        value, _ := p.API.KVGet(key)
+        fmt.Fprintf(w, string(value))
+    case http.MethodPut:
+        value := r.URL.Query().Get("value")
+        p.API.KVSet(key, []byte(value))
+    case http.MethodDelete:
+        p.API.KVDelete(key)
+    }
 }
 ```
 
@@ -224,14 +224,14 @@ import {configureZoom} from './actions/zoom';
 
 class MyPlugin {
     initialize(registerComponents) {
-         registerComponents(
-             {ChannelHeaderButton, MobileChannelHeaderButton},
-             {custom_zoom: PostTypeZoom},
-             {
-                 id: 'zoom-configuration',
-                 text: 'Zoom Configuration',
-                 action: configureZoom,
-             },
+        registerComponents(
+            {ChannelHeaderButton, MobileChannelHeaderButton},
+            {custom_zoom: PostTypeZoom},
+            {
+                id: 'zoom-configuration',
+                text: 'Zoom Configuration',
+                action: configureZoom,
+            },
         );
     }
 }
