@@ -82,23 +82,23 @@ Install the plugin in one of the following ways:
 
 1) Through System Console UI:
 
-   - Log in to Mattermost as a System Admin.
-   - Open the System Console at `/admin_console`
-   - Navigate to **Plugins (Beta) > Management** and upload the `plugin.tar.gz` you generated above.
-   - Click **Enable** under the plugin after it has uploaded.
+    - Log in to Mattermost as a System Admin.
+    - Open the System Console at `/admin_console`
+    - Navigate to **Plugins (Beta) > Management** and upload the `plugin.tar.gz` you generated above.
+    - Click **Enable** under the plugin after it has uploaded.
 
 2) Or, manually:
 
- - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.yaml``, in this case `com.mattermost.server-hello-world/`.
- - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins` relative to your Mattermost installation directory. The resulting directory structure should look something like:
+    - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.yaml``, in this case `com.mattermost.server-hello-world/`.
+    - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins` relative to your Mattermost installation directory. The resulting directory structure should look something like:
 
     ```
-     mattermost/
+    mattermost/
         plugins/
             com.mattermost.server-hello-world/
                 plugin.yaml
                 plugin.exe
-     ```
- - Restart the Mattermost server.
+    ```
+    - Restart the Mattermost server.
 
 Once you've installed the plugin in one of the ways above, browse to `https://<your-mattermost-server>/plugins/com.mattermost.server-hello-world`, and you'll be greeted by your plugin.

@@ -28,11 +28,11 @@ To add the subcommand, start by creating a new `Command` instance, for example:
 
 ```go
 var ChannelShowCmd = &cobra.Command{
-      Use:   "show",
-      Short: "Show channel info",
-      Long:  "Show channel information, including the name, header, purpose and the number of members.",
-      Example: "  channel show --team myteam --channel mychannel"
-      RunE: showChannelCmdF,
+    Use:   "show",
+    Short: "Show channel info",
+    Long:  "Show channel information, including the name, header, purpose and the number of members.",
+    Example: "  channel show --team myteam --channel mychannel"
+    RunE: showChannelCmdF,
 }
 ```
 
@@ -84,9 +84,9 @@ steps of the previous section. However, you must also register the new command i
 
 ```go
 var EmojiCmd = &cobra.Command{
-      Use:   "emoji",
-      Short: "Emoji management",
-      Long:  "Lists, creates and deletes custom emoji",
+    Use:   "emoji",
+    Short: "Emoji management",
+    Long:  "Lists, creates and deletes custom emoji",
 }
 func init() {
     ...

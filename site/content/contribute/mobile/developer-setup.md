@@ -30,7 +30,7 @@ This includes NPM which is also needed. Currently version 10.11.0 is recommended
 -   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
 ##### Linux
 -	Install using your distributions package manager (Note that different distros provide
-	different node versions which might be lower than 9.3.0 and may cause problems)
+    different node versions which might be lower than 9.3.0 and may cause problems)
 -   Install using NVM by following the instructions [here](https://github.com/creationix/nvm#install-script)
 -   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
 
@@ -42,9 +42,9 @@ This includes NPM which is also needed. Currently version 10.11.0 is recommended
     ```
 ##### Linux
 - On Linux you have to build Watchman yourself. See the official [Watchman guide](https://facebook.github.io/watchman/docs/install.html#installing-from-source).
-	- Note that you need to increase your inotify limits for watchman to work properly
-	- If you encounter a warning about a missing C++ compiler you need to install the c++
-	  extension from you distros package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++)
+    - Note that you need to increase your inotify limits for watchman to work properly
+    - If you encounter a warning about a missing C++ compiler you need to install the c++
+    extension from you distros package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++)
 
 #### Install ```react-native-cli``` tools
 
@@ -120,8 +120,8 @@ In the SDK Manager using Android Studio or the [Android SDK command line tool](h
     - Google Play services
     - Intel x86 Emulator Accelerator (HAXM installer)
     - Support Repository
-       -   Android Support Repository
-       -   Google Repository
+        -   Android Support Repository
+        -   Google Repository
 
     - SDK Platforms (you may have to click "Show Package Details" to expand packages)
         ![image](/img/mobile_SDK_Platforms.png)
@@ -202,12 +202,13 @@ xcrun: error: unable to find utility "instruments", not a developer tool or in P
 ```
 
 ##### Solution
-  - Launch XCode and agree to the terms first.
-  - Go to **Preferences -> Locations** and you'll see an option to select a version of the Command Line Tools. Click the select box and choose any version to use.
 
-  ![](/img/xcode_preferences.png)
+- Launch XCode and agree to the terms first.
+- Go to **Preferences -> Locations** and you'll see an option to select a version of the Command Line Tools. Click the select box and choose any version to use.
 
-  - After this go back to the command line and run ``make run-ios`` again.
+![](/img/xcode_preferences.png)
+
+- After this go back to the command line and run ``make run-ios`` again.
 
 ##### Error message
 ```sh
@@ -221,10 +222,10 @@ make: *** [.podinstall] Error 1
 ```
 
 ##### Solution
-  - Install cocoapods with `gem install cocoapods`
-  - If that fails with the below, then reinstall ruby with OpenSSL using `rvm reinstall 2.3.0 --with-openssl-dir=/usr/local/opt/openssl` and then install cocoapods
-    ```sh
-    ERROR:  While executing gem ... (Gem::Exception)
-    Unable to require openssl, install OpenSSL and rebuild ruby (preferred) or use non-HTTPS sources
-    ```
-  - Run `make run-ios` again
+- Install cocoapods with `gem install cocoapods`
+- If that fails with the below, then reinstall ruby with OpenSSL using `rvm reinstall 2.3.0 --with-openssl-dir=/usr/local/opt/openssl` and then install cocoapods
+```sh
+ERROR:  While executing gem ... (Gem::Exception)
+Unable to require openssl, install OpenSSL and rebuild ruby (preferred) or use non-HTTPS sources
+```
+- Run `make run-ios` again

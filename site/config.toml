@@ -26,7 +26,6 @@ pygmentsStyle = "manni"
     enable = false
 
   [params.sidebar]
-
   [[params.sidebar.item]]
     name = "contribute"
     displayName = "Contribute"
@@ -98,7 +97,6 @@ pygmentsStyle = "manni"
   # Intro section
   # Available icons: http://simplelineicons.com/
   [params.intro]
-
   [[params.intro.item]]
     title = "Contribute"
     description = "Join the hundreds of contributors and submit code directly to the Mattermost open-source project."

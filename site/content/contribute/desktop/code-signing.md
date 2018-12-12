@@ -4,7 +4,7 @@ date: 2018-01-16T10:32:51-05:00
 subsection: "Desktop App"
 ---
 
-When releasing the Mattermost Desktop application for Windows and macOS, we have to sign the executable with a certificate that allows the end user's computer to verify our identity. 
+When releasing the Mattermost Desktop application for Windows and macOS, we have to sign the executable with a certificate that allows the end user's computer to verify our identity.
 
 The signing procedure varies depending on the platform that the release is destined for and the platform that the signing operation is performed on. This page attempts to document the procedure and some common pitfalls that developers may encounter along the way.
 

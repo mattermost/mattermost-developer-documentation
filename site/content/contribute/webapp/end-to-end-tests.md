@@ -11,8 +11,8 @@ This page describes how to run End-to-End (E2E) testing and build tests for a se
 
 The E2E testing is usually run against [Selenium](http://www.seleniumhq.org/) and, for ease of use, tests are written in [Nightwatch.js](http://nightwatchjs.org/) which is an easy to use Node.js based E2E testing solution for browser based apps and websites. It uses the powerful W3C WebDriver API to perform commands and assertions on DOM elements. To get started, see the Nightwatch.js documentation, specifically:
 
-  - [Developer Guide](http://nightwatchjs.org/guide//), and
-  - [API Reference](http://nightwatchjs.org/api//).
+    - [Developer Guide](http://nightwatchjs.org/guide//), and
+    - [API Reference](http://nightwatchjs.org/api//).
 
 ## Quick Overview of Running E2E Testing
 
