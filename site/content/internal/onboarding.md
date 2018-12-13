@@ -75,3 +75,15 @@ weight: 30
 - Org chart and roles
 - Operation Gaming
 - Redshift Analytics stuff
+
+## GitHub Mattermost Organization Membership
+
+If you've previously contributed to a repository within the `mattermost` organization, you'll show up with a `Contributor` tag:
+
+![contributor](/internal/contributor.png)
+
+Once you're added to the `mattermost` organization on GitHub, you'll show up with the `Member` tag:
+
+![member](/internal/member.png)
+
+By default, however, this tag only appear to other members within the organization: anyone outside will continue to see only the `Contributor` tag. If you want your membership in the `mattermost` organization to be public, follow the steps on https://help.github.com/articles/publicizing-or-hiding-organization-membership/ to find your username on https://github.com/orgs/mattermost/people and change your `Organization visibility` to `Public`.
