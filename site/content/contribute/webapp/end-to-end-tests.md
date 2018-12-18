@@ -9,8 +9,8 @@ This page describes how to run End-to-End (E2E) testing and to build tests for a
 
 Not familiar with Cypress? Here are the documentations that will help you get started:
 
-    - [Developer Guide](https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell)
-    - [API Reference](https://docs.cypress.io/api/api/table-of-contents.html)
+  - [Developer Guide](https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell)
+  - [API Reference](https://docs.cypress.io/api/api/table-of-contents.html)
 
 ## Quick Overview on How to Run E2E Testing
 
@@ -42,15 +42,15 @@ The folder structure is based from [Cypress scaffold](https://docs.cypress.io/gu
 
 ## What requires an E2E Test?
 
-1. All test cases defined in the Release Checklist
-2. New feature or story
+1. Test cases defined in help-wanted E2E issues, which are drawn from the release testing list
+2. New features or stories
 3. Bug fixes
 4. Cases that are not covered by unit or integration tests
 
 ## Interested in Contributing to E2E Testing through Help Wanted Tickets
 
 1. All help wanted tickets are under [server repository's GitHub issues](https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+label%3A%22Up+For+Grabs%22). Look for issues with `Add E2E Tests` and `Up For Grabs` labels, and comment to let everyone know you're working on it.
-2. Each ticket is filled up with specific test steps and assertions that need to be accomplished as a minimum requirement.  Additional steps and assertions for robusts test implementation are much welcome.
+2. Each ticket is filled up with specific test steps and verifications that need to be accomplished as a minimum requirement.  Additional steps and assertions for robust test implementation are much welcome.
 3. Join our channel at [UI Test Automation](https://community.mattermost.com/core/channels/ui-test-automation) and talk to us as fellow contributors, and collaborate and learn with one another.
 
 ## Guide for Writing E2E Testing
