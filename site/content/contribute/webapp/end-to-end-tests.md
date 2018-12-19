@@ -7,7 +7,7 @@ subsection: Web App
 
 This page describes how to run End-to-End (E2E) testing and to build tests for a section or page of the Mattermost web application.  Under the hood, we are using [Cypress](https://www.cypress.io/) which is "fast, easy and reliable testing for anything that runs in a browser."
 
-Not familiar with Cypress? Here are the documentations that will help you get started:
+Not familiar with Cypress? Here is some documentation that will help you get started:
 
   - [Developer Guide](https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell)
   - [API Reference](https://docs.cypress.io/api/api/table-of-contents.html)
@@ -22,7 +22,7 @@ Not familiar with Cypress? Here are the documentations that will help you get st
 
 ## Folder Structures
 
-The folder structure is based from [Cypress scaffold](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Folder-Structure) which was created on initial run.  Folders are:
+The folder structure is based on the [Cypress scaffold](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Folder-Structure) which was created on initial run.  Folders are:
 ```
 |-- cypress
   |-- fixtures
