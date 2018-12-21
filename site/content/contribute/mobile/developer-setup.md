@@ -238,7 +238,7 @@ FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memo
 ```
 
 ##### Solution
-- Increase `max_old_space_size` of the nodejs instance.
+- Increase `max_old_space_size` of the NodeJS instance.
     - On macOS, add the following line to your `~/.bash_profile` file: `export NODE_OPTIONS=--max_old_space_size=12000`
 
 - Then reload your bash configuration:
