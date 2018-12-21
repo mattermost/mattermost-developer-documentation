@@ -229,3 +229,20 @@ ERROR:  While executing gem ... (Gem::Exception)
 Unable to require openssl, install OpenSSL and rebuild ruby (preferred) or use non-HTTPS sources
 ```
 - Run `make run-ios` again
+
+### Errors When Running 'react-native packager'
+
+##### Error message
+```sh
+FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory
+```
+
+##### Solution
+- Increase `max_old_space_size` of the NodeJS instance.
+    - On macOS, add the following line to your `~/.bash_profile` file: `export NODE_OPTIONS=--max_old_space_size=12000`
+
+- Then reload your bash configuration:
+
+    ```sh
+    source ~/.bash_profile
+    ```
