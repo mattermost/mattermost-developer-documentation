@@ -4,7 +4,7 @@ date: "2017-10-29T13:47:55+09:00"
 section: "contribute"
 ---
 
-# Customization and its Limitations
+# Customizing Mattermost
 Mattermost allows for a variety of customization options and variations, making it possible to create a more adequate experience depending on the needs of each deployment.
 
 There are a few limitations regarding [how the re-branding of Mattermost](https://www.mattermost.org/trademark-standards-of-use/) must be handled, as well as the fact that changes to the Enterprise Edition's source code isn't supported. However these can be overcome with the utilization of [Plugins](/extend/getting-started).
@@ -22,4 +22,4 @@ Some parts of server-side customizations don't require changes to the source cod
 Note: Modifications to server files can be utilized on both Team Edition and Enterprise Editions.
 
 ## Web App
-Mattermost's web application runs on React, and [its codebase](https://github.com/mattermost/mattermost-webapp) has been open-sourced (regardless of which edition your server uses). You can view details on how to customize the web app in [here](). Keep in mind, however, that some changes to the webapp can also leverage the [Plugin](/extend/plugins/webapp) framework, which can help reduce the necessity of rebasing your custom client to each Mattermost release.
+Mattermost's web application runs on React, and [its codebase](https://github.com/mattermost/mattermost-webapp) has been open-sourced (regardless of which edition your server uses). You can view details on how to customize the web app in [here](/contribute/customization/webapp). Keep in mind, however, that some changes to the webapp can also leverage the [Plugin](/extend/plugins/webapp) framework, which can help reduce the necessity of rebasing your custom client to each Mattermost release.
