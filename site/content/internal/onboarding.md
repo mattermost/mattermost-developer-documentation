@@ -45,8 +45,8 @@ weight: 30
 
 ### Meetings and Accounts
 - You manager should notify `people-ops` and have you added to all appropriate meetings
+    - `people-ops` will also set up your `@mattermost.com` email 
 - DevOps to setup various accounts as needed
-    - email `@mattermost.com`
     - Add to email groups
         - dev-ops
         - build
