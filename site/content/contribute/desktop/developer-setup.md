@@ -5,8 +5,6 @@ weight: 2
 subsection: "Desktop App"
 ---
 
-# Developer  Setup
-
 ## Prerequisites
 - C++ environment which supports C++11 (e.g. VS 2015, Xcode, GCC)
 - Python 2.7

@@ -1,7 +1,6 @@
 ---
 title: "Go: Idiomatic Error Handling"
 date: 2018-10-18T00:00:00-04:00
-draft: false
 ---
 
 Go is an extremely opinionated programming language. `import` something in a file that's not used? It won't compile, and there's no flag to override. While there are [workarounds](https://godoc.org/golang.org/x/tools/cmd/goimports), the end result remains the same: Go files are never cluttered by unused imports. This is true for all Go code everywhere, making every Go project more accessible.

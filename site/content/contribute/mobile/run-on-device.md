@@ -5,8 +5,6 @@ weight: 5
 subsection: Mobile Apps
 ---
 
-# Run on a Device
-
 If you want to test the app or if you want to make a contribution it is always a good idea to run the app on an actual device. This will let you ensure that the app is working correctly and in a performant way before making a pull request.
 
 ### Running on Android Devices

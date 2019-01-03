@@ -5,8 +5,6 @@ weight: 3
 subsection: Web App
 ---
 
-# Web App Workflow
-
 If you haven't [set up your developer environment](https://developers.mattermost.com/contribute/webapp/developer-setup/), please do so before continuing with this section.
 
 ### Workflow ###
@@ -14,12 +12,12 @@ If you haven't [set up your developer environment](https://developers.mattermost
 Here's a general workflow a Mattermost developer working on the [mattermost-webapp](https://github.com/mattermost/mattermost-webapp) repository:
 
 1. Review the repository structure to familiarize yourself with the project
- * [./components/](https://github.com/mattermost/mattermost-webapp/tree/master/components) holds all the [React](https://facebook.github.io/react/) UI components and views
- * [./actions/](https://github.com/mattermost/mattermost-webapp/tree/master/actions) holds all [Flux actions](https://facebook.github.io/flux/docs/in-depth-overview.html#content) where the majority of the logic of the webapp takes place
- * [./stores/](https://github.com/mattermost/mattermost-webapp/tree/master/stores) holds the stores responsible for storing and providing the views with data
- * [./i18n/](https://github.com/mattermost/mattermost-webapp/tree/master/i18n) holds the localization files for the client
- * [./utils/](https://github.com/mattermost/mattermost-webapp/tree/master/utils) holds all widely-used utilities
- * [./tests/](https://github.com/mattermost/mattermost-webapp/tree/master/tests) holds all the client unit tests
+    * [./components/](https://github.com/mattermost/mattermost-webapp/tree/master/components) holds all the [React](https://facebook.github.io/react/) UI components and views
+    * [./actions/](https://github.com/mattermost/mattermost-webapp/tree/master/actions) holds all [Flux actions](https://facebook.github.io/flux/docs/in-depth-overview.html#content) where the majority of the logic of the webapp takes place
+    * [./stores/](https://github.com/mattermost/mattermost-webapp/tree/master/stores) holds the stores responsible for storing and providing the views with data
+    * [./i18n/](https://github.com/mattermost/mattermost-webapp/tree/master/i18n) holds the localization files for the client
+    * [./utils/](https://github.com/mattermost/mattermost-webapp/tree/master/utils) holds all widely-used utilities
+    * [./tests/](https://github.com/mattermost/mattermost-webapp/tree/master/tests) holds all the client unit tests
 2. On your fork, create a branch `MM-####` where #### is the ticket number if it is a [Jira](https://mattermost.atlassian.net) ticket, or `GH-####` if it is a GitHub Issue without a Jira ticket.
 3. Make the code changes required to complete your ticket, making sure to write or modify unit tests where appropriate. Use `make test` to run the unit tests.
 4. To test your changes, run `make run` from the root directory of the server respository. This will start up the server and a watcher process that will build any changes to the client as you make them. To get changes to the server it must be restarted with `make restart-server`. Your server will be running at `http://localhost:8065`.

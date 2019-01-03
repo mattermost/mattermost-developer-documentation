@@ -5,8 +5,6 @@ weight: 3
 subsection: Server
 ---
 
-# Server Workflow
-
 If you haven't [set up your developer environment](https://developers.mattermost.com/contribute/server/developer-setup/), please do so before continuing with this section.
 
 Join the [Developers community channel](https://pre-release.mattermost.com/core/channels/developers) to ask questions from community members and the Mattermost core team.
@@ -16,11 +14,11 @@ Join the [Developers community channel](https://pre-release.mattermost.com/core/
 Here's a general workflow a Mattermost developer working on the [mattermost-server](https://github.com/mattermost/mattermost-server) repository:
 
 1. Review the repository structure to familiarize yourself with the project
- * [./api/](https://github.com/mattermost/mattermost-server/tree/master/api) holds all API and application related code
- * [./model/](https://github.com/mattermost/mattermost-server/tree/master/model) holds all data model definitions and the Go driver
- * [./store/](https://github.com/mattermost/mattermost-server/tree/master/store) holds all database querying code
- * [./utils/](https://github.com/mattermost/mattermost-server/tree/master/utils) holds all utilities, such as the mail utility
- * [./i18n/](https://github.com/mattermost/mattermost-server/tree/master/i18n) holds all localization files for the server
+    * [./api/](https://github.com/mattermost/mattermost-server/tree/master/api) holds all API and application related code
+    * [./model/](https://github.com/mattermost/mattermost-server/tree/master/model) holds all data model definitions and the Go driver
+    * [./store/](https://github.com/mattermost/mattermost-server/tree/master/store) holds all database querying code
+    * [./utils/](https://github.com/mattermost/mattermost-server/tree/master/utils) holds all utilities, such as the mail utility
+    * [./i18n/](https://github.com/mattermost/mattermost-server/tree/master/i18n) holds all localization files for the server
 2. On your fork, create a branch `MM-####` where #### is the ticket number if it is a [Jira](https://mattermost.atlassian.net) ticket, or `GH-####` if it is a GitHub Issue without a Jira ticket.
 3. Make the code changes required to complete your ticket, making sure to write or modify unit tests where appropriate. Make sure to use [testify](https://github.com/stretchr/testify) for new tests.
 4. To test your changes, run `make run-server` from the root directory of the server respository. This will start up the server at `http://localhost:8065`. To get changes to the server it must be restarted with `make restart-server`. If you want to test with the web app, you may also run `make run` which will start the server and a watcher for changes to the web app.
@@ -39,7 +37,6 @@ Some useful `make` commands:
 * `make debug-server` will run the server in the `delve` debugger
 * `make stop-server` stops only the server
 * `make clean-docker` stops and removes your Docker images and is a good way to wipe your database
-* `make run-fullmap` will run the server and build the client with the full source map for easier debugging
 * `make clean` cleans your local environment of temporary files
 * `make nuke` wipes your local environment back to a completely fresh start
 * `make package` creates packages for distributing your builds and puts them in the `~/go/src/github.com/mattermost/mattermost-server/dist` directory. First you will need to run `make build` and `make build-client`.

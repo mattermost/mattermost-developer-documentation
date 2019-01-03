@@ -5,8 +5,6 @@ weight: 2
 subsection: Mobile Apps
 ---
 
-# Developer Setup
-
 The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version [here](http://about.mattermost.com/mattermost-ios-app/) and the Android version [here](http://about.mattermost.com/mattermost-android-app/). Source code can be found at https://github.com/mattermost/mattermost-mobile.
 
 If you run into any issues getting your environment set up, check the [Troubleshooting](#troubleshooting) section at the bottom for common solutions.
@@ -19,8 +17,8 @@ A macOS computer is required to build the Mattermost iOS mobile app.
 
 Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using [Homebrew](https://brew.sh/) as a package manager.
 
-#### Install [NodeJS](https://nodejs.org/en/). 
-This includes NPM which is also needed. Currently version 9.3.0 is recommended, 8.x and 10.x works as well. 11.x is **not** working.
+#### Install [NodeJS](https://nodejs.org/en/).
+This includes NPM which is also needed. Currently version 10.11.0 is recommended with npm 6.4.1. 11.x is **not** working.
 
 ##### MacOS
 - To install using Homebrew open a terminal and execute ..
@@ -32,7 +30,7 @@ This includes NPM which is also needed. Currently version 9.3.0 is recommended, 
 -   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
 ##### Linux
 -	Install using your distributions package manager (Note that different distros provide
-	different node versions which might be lower than 9.3.0 and may cause problems)
+    different node versions which might be lower than 9.3.0 and may cause problems)
 -   Install using NVM by following the instructions [here](https://github.com/creationix/nvm#install-script)
 -   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
 
@@ -44,9 +42,9 @@ This includes NPM which is also needed. Currently version 9.3.0 is recommended, 
     ```
 ##### Linux
 - On Linux you have to build Watchman yourself. See the official [Watchman guide](https://facebook.github.io/watchman/docs/install.html#installing-from-source).
-	- Note that you need to increase your inotify limits for watchman to work properly
-	- If you encounter a warning about a missing C++ compiler you need to install the c++
-	  extension from you distros package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++)
+    - Note that you need to increase your inotify limits for watchman to work properly
+    - If you encounter a warning about a missing C++ compiler you need to install the c++
+    extension from you distros package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++)
 
 #### Install ```react-native-cli``` tools
 
@@ -122,8 +120,8 @@ In the SDK Manager using Android Studio or the [Android SDK command line tool](h
     - Google Play services
     - Intel x86 Emulator Accelerator (HAXM installer)
     - Support Repository
-       -   Android Support Repository
-       -   Google Repository
+        -   Android Support Repository
+        -   Google Repository
 
     - SDK Platforms (you may have to click "Show Package Details" to expand packages)
         ![image](/img/mobile_SDK_Platforms.png)
@@ -204,12 +202,13 @@ xcrun: error: unable to find utility "instruments", not a developer tool or in P
 ```
 
 ##### Solution
-  - Launch XCode and agree to the terms first.
-  - Go to **Preferences -> Locations** and you'll see an option to select a version of the Command Line Tools. Click the select box and choose any version to use.
 
-  ![](/img/xcode_preferences.png)
+- Launch XCode and agree to the terms first.
+- Go to **Preferences -> Locations** and you'll see an option to select a version of the Command Line Tools. Click the select box and choose any version to use.
 
-  - After this go back to the command line and run ``make run-ios`` again.
+![](/img/xcode_preferences.png)
+
+- After this go back to the command line and run ``make run-ios`` again.
 
 ##### Error message
 ```sh
@@ -223,10 +222,27 @@ make: *** [.podinstall] Error 1
 ```
 
 ##### Solution
-  - Install cocoapods with `gem install cocoapods`
-  - If that fails with the below, then reinstall ruby with OpenSSL using `rvm reinstall 2.3.0 --with-openssl-dir=/usr/local/opt/openssl` and then install cocoapods
+- Install cocoapods with `gem install cocoapods`
+- If that fails with the below, then reinstall ruby with OpenSSL using `rvm reinstall 2.3.0 --with-openssl-dir=/usr/local/opt/openssl` and then install cocoapods
+```sh
+ERROR:  While executing gem ... (Gem::Exception)
+Unable to require openssl, install OpenSSL and rebuild ruby (preferred) or use non-HTTPS sources
+```
+- Run `make run-ios` again
+
+### Errors When Running 'react-native packager'
+
+##### Error message
+```sh
+FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory
+```
+
+##### Solution
+- Increase `max_old_space_size` of the NodeJS instance.
+    - On macOS, add the following line to your `~/.bash_profile` file: `export NODE_OPTIONS=--max_old_space_size=12000`
+
+- Then reload your bash configuration:
+
     ```sh
-    ERROR:  While executing gem ... (Gem::Exception)
-    Unable to require openssl, install OpenSSL and rebuild ruby (preferred) or use non-HTTPS sources
+    source ~/.bash_profile
     ```
-  - Run `make run-ios` again

@@ -4,7 +4,8 @@ date: 2018-10-01T00:00:00-05:00
 subsection: Plugins (Beta)
 weight: 50
 ---
-# Migrating Plugins from Mattermost 5.5 and earlier
+
+## Migrating Plugins from Mattermost 5.5 and earlier
 
 The plugin package exposed by Mattermost 5.6 and later drops support for automatically unmarshalling a plugin's configuration onto the struct embedding `MattermostPlugin`. As server plugins are inherently concurrent (hooks being called asynchronously) and the plugin configuration can change at any time, access to the configuration must be synchronized.
 
@@ -12,9 +13,9 @@ Plugins compiled against 5.5 and earlier will continue to work without modificat
 
 Note that you do not need to wait until Mattermost 5.6 to make these changes, as the hardened approach explained below will work with Mattermost 5.5 and earlier. Any implementation of `OnConfigurationChange` you define overrides the one automatically unmarshalling.
 
-## Server changes
+### Server changes
 
-### Loading configuration
+#### Loading configuration
 
 Previously, any public fields defined on the struct embedding `MattermostPlugin` would be automatically unmarshalled from the plugin's configuration:
 
@@ -27,7 +28,7 @@ type Plugin struct {
 
 
 func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello %s!", p.Greeting)
+    fmt.Fprintf(w, "Hello %s!", p.Greeting)
 }
 ```
 
@@ -68,17 +69,17 @@ func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Req
 
 Unfortunately, this adds a fair bit of extra complexity. You may wish to base your updated implementation off of [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) or [mattermost-plugin-demo](https://github.com/mattermost/mattermost-plugin-demo) to simplify your code.
 
-# Migrating Plugins from Mattermost 5.1 and earlier
+## Migrating Plugins from Mattermost 5.1 and earlier
 
 Mattermost 5.2 introduces breaking changes to the plugins beta. This page documents the changes necessary to migrate your existing plugins to be compatible with Mattermost 5.2 and later.
 
 See [mattermost-plugin-zoom](https://github.com/mattermost/mattermost-plugin-zoom/compare/98eca6653e1a62c6b758e39b24d6ea075905c210...master) for an example migration involving both a server and web app component.
 
-## Server changes
+### Server changes
 
 Although the underlying changes are significant, the required migration for server plugins is minimal.
 
-### Entry Point
+#### Entry Point
 
 The plugin entry point was previously:
 
@@ -86,7 +87,7 @@ The plugin entry point was previously:
 import "github.com/mattermost/mattermost-server/plugin/rpcplugin"
 
 func main() {
-	rpcplugin.Main(&HelloWorldPlugin{})
+    rpcplugin.Main(&HelloWorldPlugin{})
 }
 ```
 
@@ -96,11 +97,11 @@ Change the imported package and invoke `ClientMain` instead:
 import "github.com/mattermost/mattermost-server/plugin"
 
 func main() {
-	plugin.ClientMain(&HelloWorldPlugin{})
+    plugin.ClientMain(&HelloWorldPlugin{})
 }
 ```
 
-### Hook Parameters
+#### Hook Parameters
 
 Most hook callbacks now contain a leading `plugin.Context` parameter. Consult the [Hooks](../server/reference/#Hooks) documentation for more details, but for example, the `ServeHTTP` hook was previously:
 
@@ -118,23 +119,23 @@ func (p *MyPlugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.R
 }
 ```
 
-### API Changes
+#### API Changes
 
 Most of the previous API calls remain available and unchanged, with the notable exception of removing the `KeyValueStore()`. Use [KVSet](../server/reference/#API.KVSet), [KVGet](../server/reference/#API.KVGet) and [KVDelete](../server/reference/#API.KVDelete) instead test:
 
 ```go
 func (p *MyPlugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Request) {
-	key := r.URL.Query().Get("key")
-	switch r.Method {
-	case http.MethodGet:
-		value, _ := p.API.KVGet(key)
-		fmt.Fprintf(w, string(value))
-	case http.MethodPut:
-		value := r.URL.Query().Get("value")
-		p.API.KVSet(key, []byte(value))
-	case http.MethodDelete:
-		p.API.KVDelete(key)
-	}
+    key := r.URL.Query().Get("key")
+    switch r.Method {
+    case http.MethodGet:
+        value, _ := p.API.KVGet(key)
+        fmt.Fprintf(w, string(value))
+    case http.MethodPut:
+        value := r.URL.Query().Get("value")
+        p.API.KVSet(key, []byte(value))
+    case http.MethodDelete:
+        p.API.KVDelete(key)
+    }
 }
 ```
 
@@ -155,11 +156,11 @@ This would generate something like the following in your server logs:
 {"level":"error","ts":1531494669.8368616,"caller":"app/plugin_api.go:260","msg":"missing referer","plugin_id":""my-plugin"}
 ```
 
-## Web App Changes
+### Web App Changes
 
 The changes to web app plugins are more significant than server plugins.
 
-### Entry Point
+#### Entry Point
 
 The plugin entry point was previously registered by directly manipulating a global variable:
 
@@ -173,7 +174,7 @@ Instead, use the globally exported `registerPlugin` method:
 window.registerPlugin('my-plugin', new MyPlugin());
 ```
 
-### Externalizing Dependencies
+#### Externalizing Dependencies
 
 The plugins beta suggested relying on the global export of common libraries from the web app:
 
@@ -211,7 +212,7 @@ Note however that the exported variables have changed to the following:
 | window['post-utils'] | window.PostUtils |
 | _N/A_ | window.PropTypes |
 
-### Initialization
+#### Initialization
 
 The `initialize` callback used to receive a `registerComponents` callback to configure components, post types and main menu overrides:
 
@@ -223,14 +224,14 @@ import {configureZoom} from './actions/zoom';
 
 class MyPlugin {
     initialize(registerComponents) {
-         registerComponents(
-             {ChannelHeaderButton, MobileChannelHeaderButton},
-             {custom_zoom: PostTypeZoom},
-             {
-                 id: 'zoom-configuration',
-                 text: 'Zoom Configuration',
-                 action: configureZoom,
-             },
+        registerComponents(
+            {ChannelHeaderButton, MobileChannelHeaderButton},
+            {custom_zoom: PostTypeZoom},
+            {
+                id: 'zoom-configuration',
+                text: 'Zoom Configuration',
+                action: configureZoom,
+            },
         );
     }
 }

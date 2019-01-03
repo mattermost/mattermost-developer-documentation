@@ -1,9 +1,8 @@
 ---
 title: "npm@6"
 date: 2018-05-22T10:16:52-04:00
-draft: false
 categories:
-  - "announcement"
+    - "announcement"
 ---
 
 Heads up that with [PR#1239](https://github.com/mattermost/mattermost-webapp/pull/1239), we're effectively switching to [npm@6](https://medium.com/npm-inc/announcing-npm-6-5d0b1799a905).

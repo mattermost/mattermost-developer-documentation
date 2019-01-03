@@ -5,8 +5,6 @@ weight: 7
 subsection: Redux
 ---
 
-# Using Redux with React
-
 Using Redux with React is fairly straightforward thanks to the [React Redux](https://github.com/reactjs/react-redux) library. It provides the `connect` function to create higher order components that have access to the Redux store to set their props.
 
 A typical Redux-connected component will be in its own folder with two files: `index.jsx` containing the code to connect to the Redux store and the file where the component is actually implemented. This helps to keep the Redux logic separate from the rendering for the component which keeps it more easily readable and makes it easier to test since it can be done without the whole Redux store.

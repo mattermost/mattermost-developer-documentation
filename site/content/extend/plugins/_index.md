@@ -4,8 +4,6 @@ date: 2017-07-10T00:00:00-05:00
 section: extend
 ---
 
-# Plugins (Beta)
-
 Mattermost supports plugins that offer powerful features for extending and deeply integrating with both the server and web/desktop apps.
 
 Plugins are still in beta and we're looking for your feedback! Share constructive feedback [on our forum post](https://forum.mattermost.org/t/plugin-system-upgrade-in-mattermost-5-2/5498) or join the [Developer Toolkit channel](https://pre-release.mattermost.com/core/channels/developer-toolkit) on our Mattermost community instance.

@@ -4,8 +4,6 @@ date: "2017-08-19T12:01:23-04:00"
 section: "integrate"
 ---
 
-# Outgoing Webhooks
-
 Outgoing webhooks let you receive an event as an HTTP POST when messages get posted into a Mattermost channel, with the option to respond with your own message.
 
 They can be configured to send events for one or both of the following conditions:
@@ -111,9 +109,9 @@ Content-Length: 755
     "text": "\n#### Test results for July 27th, 2017\n@channel here are the requested test results.\n\n| Component  | Tests Run   | Tests Failed                                   |\n| ---------- | ----------- | ---------------------------------------------- |\n| Server     | 948         | :white_check_mark: 0                           |\n| Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |\n| iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |\n\t\t      ",
   "props": {
     "test_data": {
-      "server": 948,
-      "web": 123,
-      "ios": 78
+    "server": 948,
+    "web": 123,
+    "ios": 78
     }
   }
 }

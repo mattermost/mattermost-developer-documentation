@@ -5,7 +5,7 @@ languageCode = "en-us"
 theme = "hugo-elate-theme"
 
 [params]
-  
+
   custom_css = ["css/custom1.css", "css/custom2.css"]
 
   # Meta
@@ -19,7 +19,7 @@ theme = "hugo-elate-theme"
 
     # You can add custom links before or after the default links
     # Assign a weight to define the order
-    
+
     # prepended links
     #[[menu.prepend]]
     #  url = "http://gohugo.io"
@@ -31,12 +31,12 @@ theme = "hugo-elate-theme"
       url = "/contribute/"
       name = "Contribute"
       weight = 10
-  
+
   # Hero section
   [params.hero]
     title = "All your Mattermost development needs"
     subtitle = ''
- 
+
   # Intro section
   # Available icons: http://simplelineicons.com/
   [params.intro]

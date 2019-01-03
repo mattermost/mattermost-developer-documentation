@@ -5,8 +5,6 @@ weight: 4
 subsection: Web App
 ---
 
-# Building a Web App React Component
-
 This page describes how to build a new React component in the webapp. All new components must meet the following requirements:
 
 1. Is pure, meaning that all information required to render is passed in by props
@@ -37,13 +35,13 @@ As an example, let's imagine we're building an ItemList component with the purpo
 ```javascript
 static propTypes = {
     /**
-     * Sets the title of the list
-     */
+    * Sets the title of the list
+    */
     title: PropTypes.string,
 
     /**
-     * An array of item components to display
-     */
+    * An array of item components to display
+    */
     items: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 ```
@@ -66,19 +64,19 @@ Continuing the ItemList example above, maybe our parent component doesn't care a
 ```javascript
 static propTypes = {
     /**
-     * Sets the title of the list
-     */
+    * Sets the title of the list
+    */
     title: PropTypes.string,
 
     /**
-     * An array of item components to display
-     */
+    * An array of item components to display
+    */
     items: PropTypes.arrayOf(PropTypes.object).isRequired,
 
     actions: PropTypes.shape({
         /**
-         * An action to remove an item from the list
-         */
+        * An action to remove an item from the list
+        */
         removeItem: React.PropTypes.func.isRequired
     }).isRequired
 }
@@ -130,19 +128,19 @@ Our ItemList example might look something like this:
 export default class ItemList extends React.PureComponent {
     static propTypes = {
         /**
-         * Sets the title of the list
-         */
+        * Sets the title of the list
+        */
         title: PropTypes.string,
 
         /**
-         * An array of item components to display
-         */
+        * An array of item components to display
+        */
         items: PropTypes.arrayOf(PropTypes.object).isRequired
 
         actions: PropTypes.shape({
             /**
-             * An action to remove an item from the list
-             */
+            * An action to remove an item from the list
+            */
             removeItem: React.PropTypes.func.isRequired
         }).isRequired
     }

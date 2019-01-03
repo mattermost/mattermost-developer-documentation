@@ -7,12 +7,12 @@ subsection: Web App
 
 Set up your development environment for building, running, and testing the Mattermost web app.
 
-1. Set up your [development environment for the Mattermost server](/contribute/server/developer-setup). 
+1. Set up your [development environment for the Mattermost server](/contribute/server/developer-setup).
 
 2. Install dependencies
 
  - On Mac, use [Homebrew](https://brew.sh/) to install Node.js v10 and libpng:
- 
+
         ```sh
         brew install node@10 libpng
         ```

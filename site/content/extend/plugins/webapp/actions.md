@@ -5,8 +5,6 @@ subsection: Web App Plugins
 weight: 11
 ---
 
-# Redux Actions
-
 When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients.
 
 Here we'll show how to use Redux actions with a plugin. To learn more about these actions, see the [contributor documentation](/contribute/redux/actions).
@@ -92,7 +90,7 @@ import ActionExample from './action_example.jsx';
 
 const mapStateToProps = (state) => {
     const currentUserId = state.entities.users.currentUserId;
-    
+
     return {
         user: state.entities.users.profiles[currentUserId],
     };

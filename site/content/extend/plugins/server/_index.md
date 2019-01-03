@@ -5,8 +5,6 @@ subsection: Plugins (Beta)
 weight: 10
 ---
 
-# Server Plugins
-
 Server plugins are subprocesses invoked by the server that communicate with Mattermost using remote procedure calls (RPC).
 
 Looking for a quick start? [See our "Hello, world!" tutorial](/extend/plugins/server/hello-world/).

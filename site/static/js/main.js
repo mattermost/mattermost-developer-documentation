@@ -7,4 +7,8 @@ $(document).ready(function(){
         $(this).parent().next('.sub-menu').toggle();
         $(this).toggleClass('fa-plus-square-o fa-minus-square-o');
     });
+
+    $('.notification-bar__close').on('click', function(){
+       $(".notification-bar").addClass("closed");
+    });
 });

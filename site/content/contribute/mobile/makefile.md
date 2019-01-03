@@ -5,8 +5,6 @@ weight: 4
 subsection: Mobile Apps
 ---
 
-# Makefile Commands
-
 We've included a bunch of make commands in order to control the development flow and to ensure that everything works as expected. Always try and use these make commands unless they can't accomplish what you need to do.
 
 Every make command has to be run from a terminal in the project's root directory. Try running **make help** to get a short description in your terminal about every make command available.
@@ -15,8 +13,8 @@ Every make command has to be run from a terminal in the project's root directory
 
 These make commands are used to install dependencies, to configure necessary steps before running or building the app, and to clean everything.
 
- - **make pre-run**: Downloads and installs any project dependencies and sets up the app assets required to build and run the app. Run this command when setting up your environment or after a **make clean**.
- - **make clean**: Removes all downloaded dependencies, clears the cache of those dependencies and deletes any builds that were created. It will not reset the repo, so your current changes will still be there.
+- **make pre-run**: Downloads and installs any project dependencies and sets up the app assets required to build and run the app. Run this command when setting up your environment or after a **make clean**.
+- **make clean**: Removes all downloaded dependencies, clears the cache of those dependencies and deletes any builds that were created. It will not reset the repo, so your current changes will still be there.
 
 ## Commands to Run the App
 

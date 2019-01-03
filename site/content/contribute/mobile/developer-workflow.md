@@ -5,8 +5,6 @@ weight: 3
 subsection: Mobile Apps
 ---
 
-# Mobile Apps  Workflow
-
 ## Running and Building the Apps
 
 Use the [Makefile commands](/contribute/mobile/makefile) to run and build the apps. See these instructions [for developing on a real device](/contribute/mobile/run-on-device).

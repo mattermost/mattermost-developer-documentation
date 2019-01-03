@@ -5,8 +5,6 @@ subsection: Web App Plugins
 weight: 10
 ---
 
-# Web App Reference
-
 ## PluginClass
 
 The PluginClass interface defines two methods used by the Mattermost web app to `initialize` and `uninitialize` your plugin:
@@ -14,16 +12,16 @@ The PluginClass interface defines two methods used by the Mattermost web app to 
 ```javascript
 class PluginClass {
     /**
-     * initialize is called by the webapp when the plugin is first loaded.
-     * Receives the following:
-     * - registry - an instance of the registry tied to your plugin id
-     * - store - the Redux store of the web app.
-     */
+    * initialize is called by the webapp when the plugin is first loaded.
+    * Receives the following:
+    * - registry - an instance of the registry tied to your plugin id
+    * - store - the Redux store of the web app.
+    */
     initialize(registry, store)
 
     /**
-     * uninitialize is called by the webapp if your plugin is uninstalled
-     */
+    * uninitialize is called by the webapp if your plugin is uninstalled
+    */
     uninitialize()
 }
 ```
@@ -135,17 +133,17 @@ Performs formatting of text including Markdown, highlighting mentions and search
 
 * `text` - String of text to format, e.g. a post's message.
 * `options` - (Optional) An object containing the following formatting options
- * `searchTerm` - If specified, this word is highlighted in the resulting HTML. Defaults to nothing.
- * `mentionHighlight` - Specifies whether or not to highlight mentions of the current user. Defaults to true.
- * `mentionKeys` - A list of mention keys for the current user to highlight.
- * `singleline` - Specifies whether or not to remove newlines. Defaults to false.
- * `emoticons` - Enables emoticon parsing with a data-emoticon attribute. Defaults to true.
- * `markdown` - Enables markdown parsing. Defaults to true.
- * `siteURL` - The origin of this Mattermost instance. If provided, links to channels and posts will be replaced with internal links that can be handled by a special click handler.
- * `atMentions` - Whether or not to render "@" mentions into spans with a data-mention attribute. Defaults to false.
- * `channelNamesMap` - An object mapping channel display names to channels. If provided, ~channel mentions will be replaced with links to the relevant channel.
- * `team` - The current team object.
- * `proxyImages` - If specified, images are proxied. Defaults to false.
+* `searchTerm` - If specified, this word is highlighted in the resulting HTML. Defaults to nothing.
+* `mentionHighlight` - Specifies whether or not to highlight mentions of the current user. Defaults to true.
+* `mentionKeys` - A list of mention keys for the current user to highlight.
+* `singleline` - Specifies whether or not to remove newlines. Defaults to false.
+* `emoticons` - Enables emoticon parsing with a data-emoticon attribute. Defaults to true.
+* `markdown` - Enables markdown parsing. Defaults to true.
+* `siteURL` - The origin of this Mattermost instance. If provided, links to channels and posts will be replaced with internal links that can be handled by a special click handler.
+* `atMentions` - Whether or not to render "@" mentions into spans with a data-mention attribute. Defaults to false.
+* `channelNamesMap` - An object mapping channel display names to channels. If provided, ~channel mentions will be replaced with links to the relevant channel.
+* `team` - The current team object.
+* `proxyImages` - If specified, images are proxied. Defaults to false.
 
 ##### `messageHtmlToComponent(html, isRHS, options)`
 Converts HTML to React components.
@@ -153,10 +151,10 @@ Converts HTML to React components.
 * `html` - String of HTML to convert to React components.
 * `isRHS` - Boolean indicating if the resulting components are to be displayed in the right-hand sidebar. Has some minor effects on how UI events are triggered for components in the RHS.
 * `options` - (Optional) An object containing options
- * `mentions` - If set, mentions are replaced with the AtMention component. Defaults to true.
- * `emoji` - If set, emoji text is replaced with the PostEmoji component. Defaults to true.
- * `images` - If set, markdown images are replaced with the PostMarkdown component. Defaults to true.
- * `latex` - If set, latex is replaced with the LatexBlock component. Defaults to true.
+* `mentions` - If set, mentions are replaced with the AtMention component. Defaults to true.
+* `emoji` - If set, emoji text is replaced with the PostEmoji component. Defaults to true.
+* `images` - If set, markdown images are replaced with the PostMarkdown component. Defaults to true.
+* `latex` - If set, latex is replaced with the LatexBlock component. Defaults to true.
 
 ##### Usage Example
 

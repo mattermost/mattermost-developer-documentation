@@ -4,8 +4,6 @@ date: "2017-08-19T12:01:23-04:00"
 section: "integrate"
 ---
 
-# Slash Commands
-
 Slash commands are messages that begin with `/` and trigger an HTTP request to a web service that can in turn post one or more messages in response.
 
 Unlike outgoing webhooks, slash commands work in private channels and direct messages in addition to public channels, and can be configured to auto-complete when typing. Note that while Mattermost includes a number of built-in slash commands, this document concerns itself only with the slash commands that can be configured as custom integrations.
@@ -13,15 +11,15 @@ Unlike outgoing webhooks, slash commands work in private channels and direct mes
 
 ### Basic Usage
 
-Follow [the admin guide](https://docs.mattermost.com/developer/slash-commands.html#custom-slash-command) to create a slash command. 
+Follow [the admin guide](https://docs.mattermost.com/developer/slash-commands.html#custom-slash-command) to create a slash command.
 
 After creating the slash command, you'll be given a `token`. __Treat this as a secret.__ Anyone who has this token will be able to mimic requests to your application.
 
-If you configured a slash command with a trigger word of `test`, a request URL of `http://example.com/slash-command` and a `POST` request method, and someone posts the message 
+If you configured a slash command with a trigger word of `test`, a request URL of `http://example.com/slash-command` and a `POST` request method, and someone posts the message
 
 ```
 /test asd
-``` 
+```
 
 to your Town Square channel, your endpoint will receive:
 
@@ -81,12 +79,13 @@ Slash command responses support more than just the `text` field. Here is a full 
 | text | [Markdown-formatted](https://docs.mattermost.com/help/messaging/formatting-text.html) message to display in the post. | If `attachments` is not set, yes |
 | response\_type | Set to blank or `ephemeral` to reply with a message that only the user can see. <br> Set to `in_channel` to create a regular message.<br> Defaults to `ephemeral`. | No |
 | username | Overrides the username the message posts as.<br> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-usernames). | No |
+| channel\_id | Overrides the channel to which the message gets posted.<br> Defaults to the channel in which the command was issued. | No |
 | icon\_url | Overrides the profile picture the message posts with.<br> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons). | No |
 | goto\_location | A URL to redirect the user to. Supports many protocols, including `http://`, `https://`, `ftp://`, `ssh://` and `mailto://`.| No |
 | attachments | [Message attachments](https://docs.mattermost.com/developer/message-attachments.html) used for richer formatting options. | If `text` is not set, yes |
 | type | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with `custom_`. Passing `attachments` will ignore this field and set the type to `slack_attachment`. | No |
+| extra\_responses | An array of responses used to send more than one post in your response. Each item in this array takes the shape of its own command response, so it can include any of the other parameters listed here, except `goto\_location` and `extra\_responses` itself. Available in Mattermost v5.6 and later. | No |
 | props | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br> Mainly used by other integrations accessing posts through the REST API.<br> The following keys are reserved: `from_webhook`, `override_username`, `override_icon_url` and `attachments`. | No |
-
 An example request using some more parameters would look like this:
 
 ```http
@@ -114,6 +113,40 @@ Content-Length: 696
 #### How do I debug slash commands?
 
 To debug slash commands in System Console > Logs, set System Console > Logging > Enable Webhook Debugging to true and set System Console > Logging > Console Log Level to DEBUG.
+
+#### How do I send multiple responses from a slash command.
+
+You can send multiple responses with an `extra_responses` parameter as follows.
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 696
+
+{
+    "response_type": "in_channel",
+    "text": "\n#### Test results for July 27th, 2017\n@channel here are the requested test results.\n\n| Component  | Tests Run   | Tests Failed                                   |\n| ---------- | ----------- | ---------------------------------------------- |\n| Server     | 948         | :white_check_mark: 0                           |\n| Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |\n| iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |\n\t\t      ",
+    "username": "test-automation"
+    "icon_url": "https://www.mattermost.org/wp-content/uploads/2016/04/icon.png",
+    "props": {
+        "test_data": {
+            "ios": 78,
+            "server": 948,
+            "web": 123
+        }
+    },
+    "extra_responses": [
+       {
+         "text": "message 2",
+         "username": "test-automation"
+       },
+       {
+         "text": "message 3",
+         "username": "test-automation"
+       }
+     ]
+}
+```
 
 #### What if my slash command takes time to build a response?
 
@@ -148,8 +181,3 @@ Ensure you are emitting the `Content-Type: application/json` header, otherwise y
 #### Are slash commands Slack-compatible?
 
 See the [admin guide's notes on Slack compatibillity](https://docs.mattermost.com/developer/slash-commands.html#slack-compatibility).
-
-
-
-
-

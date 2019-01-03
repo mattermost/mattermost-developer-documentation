@@ -5,8 +5,6 @@ weight: 8
 subsection: Redux
 ---
 
-# Migrating the Redux Library to Flow
-
 The Mattermost team wants to improve the quality, security and stability of the code, and one way to do this is by introducing the usage of type checking. Thus, we have decided to introduce Flow in our codebase. As a first step, we want to start migrating the mattermost-redux library (in the future we will also migrate the webapp and mobile app).
 
 This campaign will help with the migration by annotating the javascript code with Flow annotations.
@@ -23,11 +21,11 @@ If you're interested in contributing, please join the [Flow channel on pre-relea
 
 List of current contributors, in alphabetical order:
 
- - Fede ([@gnufede](https://github.com/gnufede))
- - Harrison Healey ([@hmhealey](https://github.com/hmhealey>))
- - Jesús Espino ([@jespino](https://github.com/jespino>))
- - Jesse Hallam ([@lieut-data](https://github.com/lieut-data>))
- - Sudheer ([@sudheerDev](https://github.com/sudheerDev))
+- Fede ([@gnufede](https://github.com/gnufede))
+- Harrison Healey ([@hmhealey](https://github.com/hmhealey>))
+- Jesús Espino ([@jespino](https://github.com/jespino>))
+- Jesse Hallam ([@lieut-data](https://github.com/lieut-data>))
+- Sudheer ([@sudheerDev](https://github.com/sudheerDev))
 
 For guidance on migrating a file to Flow, please read the next section.
 
@@ -36,9 +34,9 @@ For guidance on migrating a file to Flow, please read the next section.
 There are a few steps involved with migrating a file to use Flow. Some of them may not apply to every file and they may change slightly based on the file you're working on. In general, you can follow these steps as a checklist for work that needs to be done on each file.
 
 1. If you are receiving or returning an object, it must be defined as a flow type (if the flow type is not defined yet, go to `src/types` and create it).
-  - An exception is a dynamic object where each key is an identifier -- for example, you can return `{[string]: Post}`.
+    - An exception is a dynamic object where each key is an identifier -- for example, you can return `{[string]: Post}`.
 2. We prefer "strict" objects definitions -- for example, `{|key1: string, key2: string|}` is better than `{key1: string, key2: string}`.
-  - An exception is if we are not able to determine all properties.
+    - An exception is if we are not able to determine all properties.
 3. If the object is stored in the global store in any way, the data must be added to the `src/types/store.js`.
 4. Check that everything still passes in the `make flow` command.
 
