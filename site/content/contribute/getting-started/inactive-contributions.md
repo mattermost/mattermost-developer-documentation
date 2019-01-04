@@ -16,7 +16,7 @@ This process describes how inactive contributions are managed at Mattermost, ins
  - Note: Contributions should never become orphaned because of reviewers. The Coordinator will be responsible for receiving a response from the reviewers during the stale period, which may be that the maintainers aren't able to accept the contribution in its current form.
 
 3. After another 30 days of inactivity, a contribution becomes inactive.
- - Community Coordinator notes that the contribution has been inactive for 60 days, thanks for the contribution and closes the issue. They also add an `lifecycle/3:orphaned` label to the contribution, and adds an `Up For Grabs` label to the associated help wanted ticket, if appropriate.
+ - Community Coordinator notes that the contribution has been inactive for 60 days, thanks for the contribution and closes the contribution. They also add an `lifecycle/3:orphaned` label to the contribution, and adds an `Up For Grabs` label to the associated help wanted ticket, if appropriate.
 
 Special notes:
 
