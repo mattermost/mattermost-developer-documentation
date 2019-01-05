@@ -26,7 +26,7 @@ Set up your development environment for building, running, and testing the Matte
     ```sh
     export GITHUB_USERNAME=my_username
     mkdir -p $(go env GOPATH)/src/github.com/mattermost
-    git clone https://github.com/$GITHUB_USERNAME/mattermost-webapp.git $(go env GOPATH)/go/src/mattermost/mattermost-webapp
+    git clone https://github.com/$GITHUB_USERNAME/mattermost-webapp.git $(go env GOPATH)/src/mattermost/mattermost-webapp
     ```
 
 6. Link the `client` directory in your server with the `dist` directory in your webapp:
@@ -38,6 +38,6 @@ Set up your development environment for building, running, and testing the Matte
 7. Test your environment:
 
     ```sh
-    cd $(go env GOPATH)/go/src/mattermost/mattermost-webapp
+    cd $(go env GOPATH)/src/mattermost/mattermost-webapp
     make test
     ```
