@@ -13,35 +13,15 @@ First if you don't have `kubectl` installed you will need to install, also if yo
 
 Also you will need the AWS Keys for the Main Mattermost AWS account. You can get one using Onelogin, please follow this [instructions](../../onelogin-aws)
 
-<<<<<<< HEAD
-### To install kubectl on MacOS
+Steps:
 
-```Bash
-$ brew install kubernetes-cli
-```
-
-Also you can download the AWS kubectl:
-
-```Bash
-$ curl -o kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/darwin/amd64/kubectl
-
-$ chmod +x ./kubectl
-$ mkdir $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
-$ echo 'export PATH=$HOME/bin:$PATH' >> ~/.bash_profile
-```
-
-To check the kubectl version:
-
-```Bash
-$ kubectl version --short --client
-```
-=======
-When using the Onelogin-aws and you want to get the Kubernetes configuration please select the main Mattermost AWS account.
+- run `onelogin-aws-login` in the command line, it will ask your username, password and the two-factor auth.
+- select `arn:aws:iam::521493210219:role/OneLoginPowerUsers`
+- export the environment variable `AWS_PROFILE` which will be something like `521493210219/OneLoginPowerUsers/YOUR_EMAIL`
 
 ### To install kubectl
 
 Follow the instructions in this [page](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
->>>>>>> add troubleshooting and how to access the cluster
 
 ### Configure kubectl for Amazon EKS
 
@@ -49,9 +29,9 @@ Follow the instructions in this [page](https://docs.aws.amazon.com/eks/latest/us
 
 ### Create a kubeconfig for Amazon EKS
 
-Follow the instructions in this [page](https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html)
+Cluster Name: `mattermost-prod-k8s`
 
-NOTE: Please talk with Carlos to get the cluster name.
+Follow the instructions in this [page](https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html)
 
 
 ### Check if you can see the pods
