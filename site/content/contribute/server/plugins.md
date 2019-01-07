@@ -37,4 +37,4 @@ That's it! Submit your pull request.
 
 ## Questions?
 
-If you have any questions, feel free to ask in the [Developer Toolkit channel](https://pre-release.mattermost.com/core/channels/developer-toolkit) of our Mattermost community instance.
+If you have any questions, feel free to ask in the [Developer Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) of our Mattermost community instance.
