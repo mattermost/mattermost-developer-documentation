@@ -12,7 +12,7 @@ https://github.com/mattermost/mattermost-redux
 
 ## Channel
 
-https://pre-release.mattermost.com/core/channels/redux
+https://community.mattermost.com/core/channels/redux
 
 ## Help Wanted
 
