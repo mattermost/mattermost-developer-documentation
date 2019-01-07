@@ -13,7 +13,7 @@ All commits go to master branch and are then cherry-picked to the appropriate br
 
 On code complete day, work with the PM on rotation to get all the pull requests for the current release merged into `master` and cherry-picked to the correct branch. Once that is done and you've confirmed with the PM, cut the first release candidate by following these steps:
 
-1. Give yourself access to matterbuild by adding yourself in the platform-private repo. See an [example here](https://github.com/mattermost/platform-private/commit/89f91d81bd4602f4708270c0ca7626da8fc45291). You will need to know your user Id in the Pre-release server.
+1. Give yourself access to matterbuild by adding yourself in the platform-private repo. See an [example here](https://github.com/mattermost/platform-private/commit/89f91d81bd4602f4708270c0ca7626da8fc45291). You will need to know your user Id in the community server.
 2. Trigger the matterbuild Jenkins job to update it https://build.mattermost.com/job/matterbuild.
 3. Submit a PR to uncomment the upgrade code for the release version and add it to the version array. Use these PRs as examples, [https://github.com/mattermost/mattermost-server/pull/6336/files](https://github.com/mattermost/mattermost-server/pull/6336/files) and [https://github.com/mattermost/mattermost-server/pull/6600/files](https://github.com/mattermost/mattermost-server/pull/6600/files).
 4. Once the above PR is merged, post `/mb cut X.X.X-rc1` into a private channel. Replace `X.X.X` with the release version, ex: `3.10.0`. This will begin cutting the build and make an automatic post to the Release Discussion channel.
