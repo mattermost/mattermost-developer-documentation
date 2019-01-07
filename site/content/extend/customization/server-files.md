@@ -5,7 +5,6 @@ weight: 1
 subsection: Customizing Mattermost
 ---
 
-# Server Files
 In both Mattermost Team and Enterprise editions, you have the freedom to alter how content is displayed by being able to change the contents of localized files and email templates.
 
 Before proceeding with the steps below, make sure you have completed the [mattermost-server](/contribute/server/developer-setup/) and [mattermost-webapp](/contribute/webapp/developer-setup/) setup process.

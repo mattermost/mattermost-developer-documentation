@@ -1,10 +1,9 @@
 ---
 title: "Customizing Mattermost"
 date: "2017-10-29T13:47:55+09:00"
-section: "contribute"
+section: "extend"
 ---
 
-# Customizing Mattermost
 Mattermost allows for a variety of customization options and variations, making it possible to create a more adequate experience depending on the needs of each deployment.
 
 There are a few limitations regarding [how the re-branding of Mattermost](https://www.mattermost.org/trademark-standards-of-use/) must be handled, as well as the fact that changes to the Enterprise Edition's source code isn't supported. However these can be overcome with the utilization of [Plugins](/extend/getting-started).

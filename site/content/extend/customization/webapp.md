@@ -5,7 +5,6 @@ weight: 1
 subsection: Customizing Mattermost
 ---
 
-# Web App
 Customizations to the Mattermost Web App can be performed in cases where you need to customize branding, alter localization strings, or fulfill security requirements that are not immediately offered out-of-the-box.  
   
 ## Customization steps 
