@@ -21,8 +21,8 @@ export VAULT_ADDR='https://vault.mattermost.com'
 
 Authentication is done via OneLogin and RADIUS:
 
-```
-vault login -method=radius username=your_username@mattermost.com
+```Bash
+$ vault login -method=radius username=your_username@mattermost.com
 ```
 
 OneLogin users must have the "Developers" role in order to authenticate.
@@ -33,13 +33,17 @@ Note: If authentication times out or fails for any reason other than "access den
 
 You can use a command like the following to sign your SSH key and connect to a machine:
 
-```
-vault ssh -mount-point=dev-ssh-signer -mode=ca -role=default ubuntu@52.87.227.129
+```Bash
+$ vault ssh -mount-point=dev-ssh-signer -mode=ca -role=default -private-key-path=~/.ssh/id_ed25519 -public-key-path=~/.ssh/id_ed25519.pub ubuntu@52.87.227.129
 ```
 
 Creating a wrapper or alias for this command is recommended.
 
-The command assumes you have an SSH key at ~/.ssh/id_rsa. If you don't, you'll need to use a modified command or generate an SSH key with `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`.
+Generate an `ed25519` SSH key with:
+
+```Bash
+$ ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519 -C "your_username@mattermost.com"
+```
 
 ## Configuring SSH on a Host Machine
 
