@@ -9,7 +9,7 @@ In both Mattermost Team and Enterprise editions, you have the freedom to alter h
 
 Before proceeding with the steps below, make sure you have completed the [mattermost-server](/contribute/server/developer-setup/) and [mattermost-webapp](/contribute/webapp/developer-setup/) setup process.
 ## i18n Files
-The `i18n` files define many of the contents seen in email notifications, and responses from the server.
+The `i18n` files define many of the contents seen in email notifications and responses from the server.
 
 1. Edit contents of files in the `mattermost-server/i18n` directory according to your requirements.
 
@@ -23,21 +23,21 @@ tar -cvf i18n.tar *
 sudo service mattermost stop
 ```
 
-4. In your Mattermost deployment, backup and remove the files inside `i18n` that will no longer be in use.
+4. In your Mattermost deployment, back up and remove the files inside `i18n` that will no longer be in use.
 ```
 cd ~/mattermost/i18n
 tar -cvf i18n-yyyy-MM-dd.tar *
 rm -f *.json
 ```
 
-4. Transfer your custom `i18n.tar` file to the deployment server and extract it in the `i18n` directory  
+5. Transfer your custom `i18n.tar` file to the deployment server and extract it in the `i18n` directory.  
 ```
 mv i18n.tar mattermost/i18n
 cd ~/mattermost/i18n
 tar -xvf i18n.tar
 ```
 
-5. Restart your Mattermost instance   
+6. Restart your Mattermost instance.   
 ```
 sudo service mattermost start
 ```
@@ -57,12 +57,12 @@ sudo service mattermost stop
 cd ~/mattermost/templates
 mv post_body_full.html post_body_full_yyyy_MM_dd.html
 ```
-4. Transfer your custom `post_body_full.html` file to the deployment server and place it inside `templates`  
+4. Transfer your custom `post_body_full.html` file to the deployment server and place it inside `templates`.  
 ```
 mv ./post_body_full.html ~/mattermost/templates/
 ```
 
-5. Restart your Mattermost instance   
+5. Restart your Mattermost instance.   
 ```
 sudo service mattermost start
 ```

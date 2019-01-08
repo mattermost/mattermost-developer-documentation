@@ -10,12 +10,12 @@ Customizations to the Mattermost Web App can be performed in cases where you nee
 ## Customization steps 
 With that in mind, customizing and deploying your Mattermost Web App can be done in a few steps:  
 
-1. Fork the [mattermost-webapp](https://github.com/mattermost/mattermost-webapp) repository, and then clone your fork in your local environment.  
+1. Fork the [mattermost-webapp](https://github.com/mattermost/mattermost-webapp) repository and then clone your fork in your local environment.  
 ```
 git clone https://github.com/<yourgithubusername>/mattermost-webapp
 ```
 
-2. Create a separate branch to perform customization tasks in, as it's not recommended to perform them in the `master` branch (more details about that in the next section regarding rebasing).  
+2. Create a separate branch for your customized version, as it's not recommended to perform them in the `master` branch (more details about that in the next section regarding rebasing).  
 ```
 git checkout -b custom_branch
 ```
@@ -44,9 +44,9 @@ tar -xvf dist.tar
 ```
 
 ## Rebasing to latest version
-Challenges arise when creating a separate custom branch from an active open-source project like `mattermost-webapp`, as the project gets new commits and pull requests on a daily basis, your custom webapp can quickly become outdated.
+Challenges arise when creating a separate custom branch from an active open-source project like `mattermost-webapp`. As the project gets new commits and pull requests on a daily basis, your custom webapp can quickly become outdated.
 
-To deal with that, you'll need to leverate Git's [interactive rebasing functionality](https://git-scm.com/docs/git-rebase#_interactive_mode) in the following way:
+To deal with that, you'll need to leverage Git's [interactive rebasing functionality](https://git-scm.com/docs/git-rebase#_interactive_mode) in the following way:
 
 1. Add an upstream with the original `mattermost-webapp` repository.  
 ```
@@ -66,7 +66,7 @@ git rebase -i master
 ```  
 Use `git rebase --continue` after resolving any conflicts that arise during rebase process
 
-4. Push new version back to remote (Note: Rebasing requires that you override previous remote version with a `force` push, be sure you've tested that your rebase was successful before completing this last command)  
+4. Push new version back to remote (Note: Rebasing requires that you override previous remote version with a `force` push. Be sure you've tested that your rebase was successful before completing this last command).  
 ```
 git push -f origin custom_branch  
 ```

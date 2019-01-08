@@ -11,14 +11,14 @@ Before proceeding with the steps below, make sure you have completed the [matter
 
 1. Customize the project according to your requirements.
 
-3. Build binary files for Mattermost server.  
+2. Build binary files for Mattermost server.  
 ```
 make build
 ```
 
-4. Assemble essential files.  
+3. Assemble essential files.  
 ```
 make package
 ```  
 
-5. Transfer desired `.tar.gz` file to server for deployment.
+4. Transfer desired `.tar.gz` file to server for deployment.
