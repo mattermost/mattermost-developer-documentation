@@ -10,7 +10,7 @@ This page helps developers access and perform any type of maintenance in the Pro
 
 1. Make sure you have `kubectl` version 1.10 or later installed. If not, follow [these instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-2. Use your OneLogin account to retrieve AWS Keys for the main Mattermost AWS account following [these instructions](../../onelogin-aws).
+2. Use your OneLogin account to retrieve AWS Keys for the main Mattermost AWS account following [these instructions](../../onelogin-aws) to install onelogin-aws command line application.
 
 Steps:
 
@@ -18,11 +18,15 @@ Steps:
 - select `arn:aws:iam::521493210219:role/OneLoginPowerUsers`
 - export the environment variable `AWS_PROFILE` which will be something like `521493210219/OneLoginPowerUsers/YOUR_EMAIL`
 
-3. Configure kubectl for Amazon EKS following [these instructions](https://docs.aws.amazon.com/eks/latest/userguide/configure-kubectl.html).
+3. Install `aws-iam-authenticator` following [these instructions](https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html#eks-prereqs) section `To install aws-iam-authenticator for Amazon EKS`.
 
-4. Create a kubeconfig for Amazon EKS following [these instructions](https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html)
+4. Get the kubeconfig
 
 Cluster Name: `mattermost-prod-k8s`
+
+```Bash
+$ aws eks update-kubeconfig --name mattermost-prod-k8s --region us-east-1
+```
 
 5. Confirm the set up is correct by checking if the puds are running in the K8s cluster:
 
