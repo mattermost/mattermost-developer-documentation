@@ -60,3 +60,21 @@ The folder structure is based on the [Cypress scaffold](https://docs.cypress.io/
 2. Add commands or shortcuts to `cypress/support/commands.js` (e.g. `toAccountSettingsModal`) that makes it easier to access a page, section, modal and etc. by simply using it as `cy.toAccountSettingsModal('user-1')`.
 3. Organize `cypress/integration` with a subfolder to group similar tests.
 4. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/2058/files#diff-c42a18e742b351c0ade058ed0c4b5c5eR10) as a guide on how to write and submit an end-to-end testing PR.
+
+## Troubleshooting
+
+### Cypress Failed To Start After Running 'npm run cypress:run'
+
+Either the command line exits immediately without running any test or it logs out like the following.
+
+##### Error message
+```sh
+✖  Verifying Cypress can run /Users/user/Library/Caches/Cypress/3.1.3/Cypress.app
+   → Cypress Version: 3.1.3
+Cypress failed to start.
+
+This is usually caused by a missing library or dependency.
+```
+
+##### Solution
+Clear node options by initiating `unset NODE_OPTIONS` in the command line. Running `npm run cypress:run` should proceed with Cypress testing.
