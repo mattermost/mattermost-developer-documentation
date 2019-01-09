@@ -6,7 +6,7 @@ section: extend
 
 With Mattermost's rich RESTful web service API and OAuth 2.0 support it's possible to build your own clients to embed Mattermost within any application of your choice.
 
-Questions about embedding Mattermost? Ask in the [Developer Toolkit channel](https://pre-release.mattermost.com/core/channels/developer-toolkit) on our Mattermost community instance.
+Questions about embedding Mattermost? Ask in the [Developer Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) on our Mattermost community instance.
 
 ## Embedding Methods
 

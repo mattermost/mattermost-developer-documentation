@@ -12,7 +12,7 @@ https://github.com/mattermost/desktop
 
 ## Channel
 
-https://pre-release.mattermost.com/core/channels/desktop-app
+https://community.mattermost.com/core/channels/desktop-app
 
 ## Help Wanted
 

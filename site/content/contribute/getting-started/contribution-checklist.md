@@ -5,7 +5,7 @@ weight: 1
 subsection: Getting Started
 ---
 
-Thanks for your interest in contributing to Mattermost! Come [join our "Contributors" community channel](https://pre-release.mattermost.com/core/channels/tickets) on our daily build server, where you can discuss questions with community members and the Mattermost core team.
+Thanks for your interest in contributing to Mattermost! Come [join our "Contributors" community channel](https://community.mattermost.com/core/channels/tickets) on our daily build server, where you can discuss questions with community members and the Mattermost core team.
 
 To help with translations, [see the localization process](https://docs.mattermost.com/developer/localization.html).
 
@@ -25,6 +25,6 @@ Follow this checklist for submitting a pull request (PR):
 7. PR title begins with the JIRA or GitHub Ticket ID (e.g. `MM-394` or `GH-394`) and summary template is filled out.
 8. Once submitted, the automated build process must pass for the PR.
 
-That's all! If you have any feedback about this checklist, let us know in the [Contributors channel](https://pre-release.mattermost.com/core/channels/tickets).
+That's all! If you have any feedback about this checklist, let us know in the [Contributors channel](https://community.mattermost.com/core/channels/tickets).
 
 To learn about the review process for each project, read the CONTRIBUTING.md file of that GitHub repository.

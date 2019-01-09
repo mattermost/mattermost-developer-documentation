@@ -80,4 +80,4 @@ if cacheItem, ok := cache.Get(key); ok {
 
 ### Contributing
 
-Interested in helping us complete these changes? Find an unclaimed [ticket](https://mattermost.atlassian.net/browse/MM-12535), and join us on [pre-release.mattermost.com](https://pre-release.mattermost.com/core/channels/developers) to discuss further.
+Interested in helping us complete these changes? Find an unclaimed [ticket](https://mattermost.atlassian.net/browse/MM-12535), and join us on [community.mattermost.com](https://community.mattermost.com/core/channels/developers) to discuss further.

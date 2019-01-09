@@ -14,7 +14,7 @@ https://github.com/mattermost/mattermost-mobile
 
 ## Channel
 
-https://pre-release.mattermost.com/core/channels/native-mobile-apps
+https://community.mattermost.com/core/channels/native-mobile-apps
 
 ## Help Wanted
 

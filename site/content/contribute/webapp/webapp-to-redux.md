@@ -17,7 +17,7 @@ By completing this campaign, we're looking to:
 
 ## Contributing
 
-If you're interested in contributing please join the [Redux channel on pre-release.mattermost.com](https://pre-release.mattermost.com/core/channels/redux). Progress on moving individual componentsover to use Redux is [tracked on this spreadsheet](https://docs.google.com/spreadsheets/d/1AlFS2F4H74JsONxIS_VNZBxrVJolZxFh7yN46RNCwyg/edit#gid=0). If you want to work on one of the components let us know in the Redux channel or by making a comment on the spreadsheet.
+If you're interested in contributing please join the [Redux channel on community.mattermost.com](https://community.mattermost.com/core/channels/redux). Progress on moving individual componentsover to use Redux is [tracked on this spreadsheet](https://docs.google.com/spreadsheets/d/1AlFS2F4H74JsONxIS_VNZBxrVJolZxFh7yN46RNCwyg/edit#gid=0). If you want to work on one of the components let us know in the Redux channel or by making a comment on the spreadsheet.
 
 List of contributors, in alphabetical order:
 

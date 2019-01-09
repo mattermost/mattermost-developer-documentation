@@ -7,7 +7,7 @@ subsection: Server
 
 If you haven't [set up your developer environment](https://developers.mattermost.com/contribute/server/developer-setup/), please do so before continuing with this section.
 
-Join the [Developers community channel](https://pre-release.mattermost.com/core/channels/developers) to ask questions from community members and the Mattermost core team.
+Join the [Developers community channel](https://community.mattermost.com/core/channels/developers) to ask questions from community members and the Mattermost core team.
 
 ### Workflow
 
@@ -40,7 +40,7 @@ Some useful `make` commands:
 * `make clean` cleans your local environment of temporary files
 * `make nuke` wipes your local environment back to a completely fresh start
 * `make package` creates packages for distributing your builds and puts them in the `~/go/src/github.com/mattermost/mattermost-server/dist` directory. First you will need to run `make build` and `make build-client`.
-* `make megacheck` runs the tool [megacheck](https://github.com/dominikh/go-tools/tree/master/cmd/megacheck) against the code base to find potential issues in the code. Please note the results are guidelines, and not mandatory in all cases. If in doubt, ask in the [Developers community channel](https://pre-release.mattermost.com/core/channels/developers).
+* `make megacheck` runs the tool [megacheck](https://github.com/dominikh/go-tools/tree/master/cmd/megacheck) against the code base to find potential issues in the code. Please note the results are guidelines, and not mandatory in all cases. If in doubt, ask in the [Developers community channel](https://community.mattermost.com/core/channels/developers).
 
 ### Running only specific server unit tests
 

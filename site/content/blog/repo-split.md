@@ -29,4 +29,4 @@ Those running private forks would need to separate their server and webapp code 
 Finally, those with work-in-progress PRs on September 6th may need to re-submit their pull request after the separation. For instance, PRs changing the UI would need to be re-submitted to the new `mattermost-webapp` repository.
 
 ### Questions?
-Respond to our [forum post](https://forum.mattermost.org/t/mattermost-separating-platform-into-two-repositories-on-september-6th/3708) or to our [post in the Developers channel](https://pre-release.mattermost.com/core/pl/e9d7rjq993yptryesd5ppe37sa).
+Respond to our [forum post](https://forum.mattermost.org/t/mattermost-separating-platform-into-two-repositories-on-september-6th/3708) or to our [post in the Developers channel](https://community.mattermost.com/core/pl/e9d7rjq993yptryesd5ppe37sa).
