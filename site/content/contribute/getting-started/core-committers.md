@@ -56,6 +56,9 @@ Below is the list of core committers working on Mattermost:
 - **Hanzei**
     - @hanzei on [community.mattermost.com](https://community.mattermost.com/core/messages/@hanzei) and [@hanzei](https://github.com/hanzei) on GitHub
     - Dev areas: Plugins, Integrations, Security
+- **Lev Brouk**
+    - @lev.brouk on [community.mattermost.com](https://community.mattermost.com/core/messages/@lev.brouk) and [@levb](https://github.com/levb) on GitHub
+    - Dev areas: Developer toolkit, performance
 - **Brad Coughlin**
     - @brad on [community.mattermost.com](https://community.mattermost.com/core/messages/@brad) and [@bradjcoughlin](https://github.com/bradjcoughlin) on GitHub
     - Dev areas: Web App, React, Redux
