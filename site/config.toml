@@ -86,7 +86,7 @@ pygmentsStyle = "manni"
       Contribute = false
       Integrate = false
       Extend = false
-      Blog = true
+      Blog = false
       Internal = false
 
   # Hero section
