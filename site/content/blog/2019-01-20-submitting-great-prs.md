@@ -7,7 +7,7 @@ If you want to submit good pull requests, you need start with our [contribution 
 
 But this blog post isn't about writing great code, it's about making your pull request a great experience for you and your reviewers.
 
-I still remember my first pull request. I was a co-op student a few days into my first term with a company. This was before the days of GitHub, and for that matter we weren't even using git at the time. I staged my changes and notified my mentor. Without even looking at my code, he sat me down and said something like this, "Jesse, before you ask anyone else to review your code, I want you to review it yourself." He asked me don the hat of a reviewer, read through my code, make comments just like a real reviewer, and then send those comments back to him.
+I still remember my first pull request. I was a co-op student a few days into my first term with a company. This was before the days of GitHub, and for that matter we weren't even using git at the time. I staged my changes and notified my mentor. Without even looking at my code, he sat me down and said something like this, "Jesse, before you ask anyone else to review your code, I want you to review it yourself." He asked me to don the hat of a reviewer, read through my code, make comments just like a real reviewer, and then send those comments back to him.
 
 I am forever grateful to my mentor for shaping my thinking about reviewing code. Having given more than a few reviews since then, let me share some advice, starting with what my mentor taught me:
 
