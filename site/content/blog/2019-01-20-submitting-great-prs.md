@@ -13,7 +13,7 @@ I am forever grateful to my mentor for shaping my thinking about reviewing code.
 
 ### 1) Review your own code first.
 
-You be the one to catch styling issues. You be the one to ask, "does this variable name make any sense?" You be the one to identify problem areas and points of confusion. You be the first reviewer.
+Be the one to catch styling issues. Be the one to ask, "does this variable name make any sense?" Be the one to identify problem areas and points of confusion. Be the first reviewer.
 
 Now, not everything deserves to be fixed in every pull request. I love to refactor code, but there's a time and a place and fixing a one-line bug isn't usually the time to fix a multi-file, variable naming issue. This leads to my second point:
 
@@ -35,8 +35,6 @@ and also:
 
 > I really wanted to fix the variable names in this file, but it's out of scope for this pull request.
 
-It's amazing how much you can avoid doing by using the phrase, "out of scope!" Keep that in your back pocket :)
-
 Of course, sometimes you have to fix something else before you can get to the issue at hand. Maybe you decide to bite the bullet and fix that variable name problem because it clarifies the feature you're adding. On to my third point:
 
 ### 3) Clean up your history.
@@ -49,7 +47,7 @@ and repeating this process. Commit early and commit often! It's just easier to u
 
 But a reviewer doesn't need to see that commit history. As a reviewer myself, I'd want to see one of two things. Either a single squashed commit with all of your changes, or a history breaking up your changes into logical groupings. Put that variable name fix in its own commit, commit your feature change on top of it, and add a note to your PR's description. Your reviewers can then use the commits tab in GitHub to review those changes independently.
 
-Maybe you're the kind of developer that writes a pristine commit history the first time, but most of us rely on `git rebase`. If you aren't familiar with rebasing, it might seem terrifying or magical, but it doesn't need to be: play with it, master it, and use it often. Hands down, it's my favourite feature in git.
+Maybe you're the kind of developer that writes a pristine commit history the first time, but most of us rely on `git rebase`. If you aren't familiar with rebasing, it might seem terrifying or magical, but it doesn't need to be: play with it, master it, and use it often. Hands down, it's my favourite feature in git. If you need help getting started here, check out Atlassian's excellent [tutorial on git rebase](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase).
 
 Keep in mind though that rebasing is something to do before you submit your pull request, not after, and this leads to my last point:
 
