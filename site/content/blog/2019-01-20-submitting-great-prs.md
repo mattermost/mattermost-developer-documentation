@@ -3,19 +3,19 @@ title: "Submitting Great PRs"
 date: 2019-01-20T00:00:00-04:00
 ---
 
-If you want to submit good pull requests, you need start with our [contribution checklist](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/). Today, that page talks about what to fork, how to style your code, how to write unit tests and where to push your code. Implicit in all of that is the need to write great code, of course!
+If you want to submit good pull requests, start with our [contribution checklist](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/). Today, that page talks about what to fork, how to style your code, how to write unit tests and where to push your code. Implicit in all of that is the need to write great code, of course!
 
 But this blog post isn't about writing great code, it's about making your pull request a great experience for you and your reviewers.
 
-I still remember my first pull request. I was a co-op student a few days into my first term with a company. This was before the days of GitHub, and for that matter we weren't even using git at the time. I staged my changes and notified my mentor. Without even looking at my code, he sat me down and said something like this, "Jesse, before you ask anyone else to review your code, I want you to review it yourself." He asked me to don the hat of a reviewer, read through my code, make comments just like a real reviewer, and then send those comments back to him.
+I still remember my first pull request a few days into my first software engineering internship. Without even looking at my code, my mentor sat me down and said something like this, "Jesse, before you ask anyone else to review your code, I want you to review it yourself." He asked me to read through my code and make comments just like a real reviewer, and then we would review the remainder together.
 
-I am forever grateful to my mentor for shaping my thinking about reviewing code. Having given more than a few reviews since then, let me share some advice, starting with what my mentor taught me:
+I am forever grateful to my mentor for shaping my thinking about reviewing code. Having given more than a few reviews since then, let me share some advice starting with what my mentor taught me:
 
 ### 1) Review your own code first.
 
 Be the one to catch styling issues. Be the one to ask, "does this variable name make any sense?" Be the one to identify problem areas and points of confusion. Be the first reviewer.
 
-Now, not everything deserves to be fixed in every pull request. I love to refactor code, but there's a time and a place and fixing a one-line bug isn't usually the time to fix a multi-file, variable naming issue. This leads to my second point:
+Now, not everything deserves to be fixed in every pull request. Fixing a one-line bug isn't usually the time to fix an unrelated variable naming issue that touches multiple files. This leads to my second point:
 
 ### 2) Give a great description.
 
@@ -35,21 +35,25 @@ and also:
 
 > I really wanted to fix the variable names in this file, but it's out of scope for this pull request.
 
-Of course, sometimes you have to fix something else before you can get to the issue at hand. Maybe you decide to bite the bullet and fix that variable name problem because it clarifies the feature you're adding. On to my third point:
+Of course, sometimes you have to fix something else before you can get to the issue at hand. Maybe you decide to fix that variable name problem because it clarifies the feature you're adding. On to my third point:
 
 ### 3) Clean up your history.
 
-Everyone has their own development style. Mine usually consists of mashing the keyboard, then typing:
+Everyone has their own development style. Mine usually consists of coding a small part of the overall problem, typing:
 
 ```sh
 git commit -m wip
 ```
 
-and repeating this process. Commit early and commit often! It's just easier to undo changes this way while you're actively developing.
+and repeating this process often. Commit early and commit often! It's just easier to undo changes this way while you're actively developing.
 
-But a reviewer doesn't need to see that commit history. As a reviewer myself, I'd want to see one of two things. Either a single squashed commit with all of your changes, or a history breaking up your changes into logical groupings. Put that variable name fix in its own commit, commit your feature change on top of it, and add a note to your PR's description. Your reviewers can then use the commits tab in GitHub to review those changes independently.
+But a reviewer doesn't need to see that commit history. As a reviewer myself, I'd want to see one of two things. Either:
+1. A single squashed commit with all of your changes
+2. Or a history breaking up your changes into logical groupings.
 
-Maybe you're the kind of developer that writes a pristine commit history the first time, but most of us rely on `git rebase`. If you aren't familiar with rebasing, it might seem terrifying or magical, but it doesn't need to be: play with it, master it, and use it often. Hands down, it's my favourite feature in git. If you need help getting started here, check out Atlassian's excellent [tutorial on git rebase](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase).
+Put that variable name fix in its own commit, commit your feature change on top of it, and add a note to your PR's description. Your reviewers can then use the commits tab in GitHub to review those changes independently.
+
+Maybe you're the kind of developer that writes a pristine commit history the first time, but most of us rely on `git rebase`. If you aren't familiar with rebasing, it might seem terrifying or magical, but it doesn't need to be: play with it, master it, and use it often. If you need help getting started here, check out Atlassian's excellent [tutorial on git rebase](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase).
 
 Keep in mind though that rebasing is something to do before you submit your pull request, not after, and this leads to my last point:
 
