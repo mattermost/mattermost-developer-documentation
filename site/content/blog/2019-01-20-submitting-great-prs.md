@@ -13,7 +13,7 @@ I am forever grateful to my mentor for shaping my thinking about reviewing code.
 
 ### 1) Review your own code first.
 
-Be the one to catch styling issues. Be the one to ask, "does this variable name make any sense?" Be the one to identify problem areas and points of confusion. Be the first reviewer.
+Be the one to catch styling issues. Be the one to ask, "Does this variable name make any sense?" Be the one to identify problem areas and points of confusion. Be the first reviewer.
 
 Now, not everything deserves to be fixed in every pull request. Fixing a one-line bug isn't usually the time to fix an unrelated variable naming issue that touches multiple files. This leads to my second point:
 
