@@ -27,7 +27,7 @@ Tell the reviewer why we need to do this:
 
 > With this new functionality, we can fix a longstanding customer issue that ...
 
-You don't need to outline everything your code is doing -- that's what the code is there for -- but this is also your opportunity to point the reviewer in the right direction:
+You don't need to outline everything your code is doing -- that's why the code is there -- but this is also your opportunity to point the reviewer in the right direction:
 
 > The trickiest part of this pull request was the `SqlStore` changes, because ...
 
