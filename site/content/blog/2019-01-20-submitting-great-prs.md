@@ -41,7 +41,9 @@ Of course, sometimes you have to fix something else before you can get to the is
 
 Everyone has their own development style. Mine usually consists of mashing the keyboard, then typing:
 
-    git commit -m wip
+```sh
+git commit -m wip
+```
 
 and repeating this process. Commit early and commit often! It's just easier to undo changes this way while you're actively developing.
 
