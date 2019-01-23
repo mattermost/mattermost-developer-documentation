@@ -49,9 +49,9 @@ and repeating this process often. Commit early and commit often! It's just easie
 
 But a reviewer doesn't need to see that commit history. As a reviewer myself, I'd want to see one of two things. Either:
 
-1. A single squashed commit with all of your changes
+1. A single squashed commit with all of your changes.
 
-2. Or a history breaking up your changes into logical groupings.
+2. Multiple commits breaking up your changes into logical groupings.
 
 Put that variable name fix in its own commit, commit your feature change on top of it, and add a note to your PR's description. Your reviewers can then use the commits tab in GitHub to review those changes independently.
 
