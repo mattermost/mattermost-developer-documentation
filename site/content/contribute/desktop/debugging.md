@@ -17,4 +17,4 @@ However, this view does not expose the contents of the webviews for inspection. 
 
 using `mattermostView0` for the first opened tab, `mattermostView1` for the second opened tab, etc. A new window will appear with the developer tools for that webview:
 
-![image](/contribute/desktop/webview-developer-tools.png)
+![Webview developer tools](/contribute/desktop/webview-developer-tools.png)
