@@ -61,7 +61,13 @@ Keep in mind though that rebasing is something to do before you submit your pull
 
 ### 4) Avoid Force Pushing
 
-Good git etiquette is avoid force pushing any branch someone else is actively using. A pull request is a branch just like any other, so once you've started that pull request, everything that you push upstream should just be a regular or merge commit. In particular, when merge conflicts arise with `master`, just `git fetch && git merge origin/master`, resolve those conflicts, and push up the resulting merge commit. Resist the urge to rebase anything you've already pushed.
+Good git etiquette is avoid force pushing any branch someone else is actively using. A pull request is a branch just like any other, so once you've started that pull request, everything that you push upstream should just be a regular or merge commit. In particular, when merge conflicts arise with `master`, just:
+
+```sh
+git fetch && git merge origin/master
+```
+
+Resolve the conflicts and push up the resulting merge commit. Resist the urge to rebase anything you've already pushed to the pull request.
 
 Why? When you rebase, you are effectively replaying a commit history on top of another commit. But in a pull request, a reviewer wants to see a linear history of your changes from when they started reviewing. Any merge conflicts resolved during the rebase operation are "hidden" inside the original commits instead of appearing as a new commit. A diligent reviewer must then start from the beginning instead of just examining the latest changes. Exacerbating all of this is that GitHub tends to lose or detach comment threads across a rebase, making it difficult to regain context from an earlier discussion.
 
