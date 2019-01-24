@@ -61,7 +61,7 @@ Keep in mind though that rebasing is something to do before you submit your pull
 
 ### 4) Avoid Force Pushing
 
-Good git etiquette is avoid force pushing any branch someone else is actively using. A pull request is a branch just like any other, so once you've started that pull request, everything that you push upstream should just be a regular or merge commit. In particular, when merge conflicts arise with `master`, just:
+Good git etiquette is to avoid force pushing any branch someone else is actively using. A pull request is a branch just like any other, so once you've started that pull request, everything that you push upstream should just be a regular or merge commit. In particular, when merge conflicts arise with `master`, just:
 
 ```sh
 git fetch && git merge origin/master
