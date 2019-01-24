@@ -61,7 +61,7 @@ Keep in mind though that rebasing is something to do before you submit your pull
 
 ### 4) Avoid Force Pushing
 
-Good git etiquette is to avoid force pushing any branch someone else is actively using. A pull request is a branch just like any other, so once you've started that pull request, everything that you push upstream should just be a regular or merge commit. In particular, when merge conflicts arise with `master`, just:
+Good git etiquette is to avoid force pushing any branch someone else is actively using or reviewing. A pull request is a branch just like any other, so once you've started that pull request, everything that you push upstream should just be a regular or merge commit. In particular, when merge conflicts arise with `master`, just:
 
 ```sh
 git fetch && git merge origin/master
@@ -71,6 +71,6 @@ Resolve the conflicts and push up the resulting merge commit. Resist the urge to
 
 Why? When you rebase, you are effectively replaying a commit history on top of another commit. But in a pull request, a reviewer wants to see a linear history of your changes from when they started reviewing. Any merge conflicts resolved during the rebase operation are "hidden" inside the original commits instead of appearing as a new commit. A diligent reviewer must then start from the beginning instead of just examining the latest changes. Exacerbating all of this is that GitHub tends to lose or detach comment threads across a rebase, making it difficult to regain context from an earlier discussion.
 
-Note that other open source projects may merge your commit history instead of squashing it as we do here at Mattermost. In that case, I'd recommend checking with the project maintainers and possibly rebasing just before merging to ensure a clean history afterwards.
+Note that other open source projects may merge your commit history instead of squashing it as we do here at Mattermost. Always check with the project maintainers for best practices regarding pull requests.
 
 I hope these four points are useful! Keep in mind, too, that you don't have to be a core committer with Mattermost to review someone else's code. If there's a pull request that interests you and you have some useful context to share, jump in and give a review, and I think you'll appreciate some of these points even better.
