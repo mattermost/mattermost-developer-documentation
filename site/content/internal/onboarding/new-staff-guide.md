@@ -1,8 +1,8 @@
 ---
-title: Onboarding
+title: New Staff Guide
 date: 2017-11-07T14:28:35-05:00
-section: internal
-weight: 30
+subsection: Onboarding
+weight: 10
 ---
 
 ### Helpful links
@@ -35,13 +35,17 @@ weight: 30
     - Confidential Bugs
 - Public channels to join in `Contributors`
     - Developers
+    - Developers Meeting
     - Bugs
     - Contributors
     - Release Discussion
+    - Developer Toolkit (optional)
+    - Redux (optional)
     - Installers and Images (optional)
     - Native Mobile Apps (optional)
     - Desktop App (optional)
-    - Server Performance (optional)
+    - Developers: Performance (optional)
+    - Peer-to-peer Help (optional)
 
 ### Meetings and Accounts
 - You manager should notify `people-ops` and have you added to all appropriate meetings
