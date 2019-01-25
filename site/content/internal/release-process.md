@@ -17,12 +17,12 @@ On code complete day, work with the PM on rotation to get all the pull requests 
 2. Trigger the matterbuild Jenkins job to update it https://build.mattermost.com/job/matterbuild.
 3. Submit a PR to uncomment the upgrade code for the release version and add it to the version array. Use these PRs as examples, [https://github.com/mattermost/mattermost-server/pull/6336/files](https://github.com/mattermost/mattermost-server/pull/6336/files) and [https://github.com/mattermost/mattermost-server/pull/6600/files](https://github.com/mattermost/mattermost-server/pull/6600/files).
 4. Once the above PR is merged, post `/mb cut X.X.X-rc1` into a private channel. Replace `X.X.X` with the release version, ex: `5.8.0`. This will begin cutting the build and make an automatic post to the Release Discussion channel.
-  - If you need to build an older release (older than 5.7.X) you will need to set the `legacy` and the `backport` flags in order to trigger the old job, ie. `/mb cut 5.7.1-rc1 --backport --legacy`.
-  - Also for the current job you can define using flags the Docker images to build/test server and webapp. ie `/mb cut 5.8.0-rc1 --server mattermost/mattermost-build-server:dec-7-2018 --webapp mattermost/mattermost-build-webapp:oct-2-2018`.
-5. Wait approximately 25 minutes for the build to finish. If the build fails please check the jenkins job to check what happened. Then simply repeat step 4. You can monitor build status from https://build.mattermost.com.
+  - If you need to build an older release (older than 5.7.X), you will need to set the `legacy` and the `backport` flags in order to trigger the old job, ie. `/mb cut 5.7.1-rc1 --backport --legacy`.
+  - Also, for the current job, you can define the Docker images using flags to build/test server and webapp. ie `/mb cut 5.8.0-rc1 --server mattermost/mattermost-build-server:dec-7-2018 --webapp mattermost/mattermost-build-webapp:oct-2-2018`.
+5. Wait approximately 25 minutes for the build to finish. If the build fails, please check the jenkins job to see what happened. Then simply repeat step 4. You can monitor build status from https://build.mattermost.com.
 6. Once the build finishes, submit a PR to `master` to add the upgrade code for the next release. For example, [https://github.com/mattermost/mattermost-server/pull/6337/files](https://github.com/mattermost/mattermost-server/pull/6337/files) and [https://github.com/mattermost/mattermost-server/pull/6616/files](https://github.com/mattermost/mattermost-server/pull/6616/files).
 
-The build automation will take care of updating all the CI and test servers, and it will make a post in the Release Discussion channel with all the download links. It will also create the release branch named `release-X.X`, with `X-X` replace by the major and minor version numbers.
+The build automation will take care of updating all the CI and test servers, and it will make a post in the Release Discussion channel with all the download links. It will also create the release branch named `release-X.X`, with `X-X` replaced by the major and minor version numbers.
 
 Between now and the final release being cut, work with the PM on rotation to get priority fixes merged into the release branch. Note that all PRs to the release branch:
 
@@ -32,7 +32,7 @@ Between now and the final release being cut, work with the PM on rotation to get
 Work with the PM on rotation to decide when to cut new release candidates. The general guideline is cut a new RC after 3-5 fixes have been merged or it's been a day or two since any more issues have come up. Each release usually has 3-4 release candidates. To cut a new release candidate:
 
 1. Post `/mb cut X.X.X-rcX` into a private channel, replacing `X.X.X-rcX` with the release version and the release candidate number we're on. For example, `5.8.0-rc2`.
-2. Wait for the build to finish or re-running if the build fails.
+2. Wait for the build to finish or re-run it if the build fails.
 
 Again, the build automation will update all the servers and post in the Release Discussion channel.
 
@@ -43,7 +43,7 @@ When it's time to cut the final build, confirm with the PM that no more changes 
 1. Post `/mb cut X.X.X` into a private channel, replacing `X.X.X` with the release version.
 2. Just like before, if the build fails you can delete the tags and re-run it.
 
-The links to download the final build will be posted in the Release Discussion channel. Congratulations you've cut a release!
+The links to download the final build will be posted in the Release Discussion channel. Congratulations, you've cut a release!
 
 After a couple days pass you will need to set the CI servers to point back to `master`. To do this:
 
