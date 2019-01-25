@@ -10,6 +10,7 @@ subsection: Server
 <div class="tab">
     <button class="tablinks active" onclick="openTab(event, 'mac')">Mac OS X</button>
     <button class="tablinks" onclick="openTab(event, 'ubuntu')">Ubuntu 16.04</button>
+    <button class="tablinks" onclick="openTab(event, 'ubuntu1804')">Ubuntu 18.04</button>
     <button class="tablinks" onclick="openTab(event, 'windows')">Windows</button>
     <button class="tablinks" onclick="openTab(event, 'windows_wsl')">Windows WSL</button>
     <button class="tablinks" onclick="openTab(event, 'archlinux')">Archlinux</button>
@@ -22,6 +23,10 @@ subsection: Server
 
 <div id="ubuntu" class="tabcontent">
     {{% content "contribute/server/developer-setup/ubuntu.md" %}}
+</div>
+
+<div id="ubuntu1804" class="tabcontent">
+    {{% content "contribute/server/developer-setup/ubuntu1804.md" %}}
 </div>
 
 <div id="windows" class="tabcontent">
