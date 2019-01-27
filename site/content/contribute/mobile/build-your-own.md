@@ -54,6 +54,7 @@ or
 | SYNC\_PROVISIONING\_PROFILES | Should we run **match** to sync the provisioning profiles. Valid values are: true, false | false | iOS |
 | MATCH\_USERNAME | Your Apple ID Username. |  | iOS |
 | MATCH\_PASSWORD | Your Apple ID Password. |  | iOS |
+| MATCH\_KEYCHAIN\_PASSWORD | Your Mac user password used to install the certificates in the build computer KeyChain. |  | iOS |
 | MATCH\_GIT\_URL | URL to the git repo containing all the certificates. <br> **Make sure this git repo is set to private. Remember this repo will be used to sync the provisioning profiles and other certificates**.|  | iOS |
 | MATCH\_APP\_IDENTIFIER | The Bundle Identifiers for the app (comma-separated). In our case refers to the identifiers of the app and the share extension | com.mattermost.rnbeta.MattermostShare,<br>com.mattermost.rnbeta | iOS |
 | MATCH\_TYPE | Define the provisioning profile type to sync. Valid values are: appstore, adhoc, development, enterprise <br> **Make sure you set this value to the same type as the IOS\_BUILD\_EXPORT\_METHOD as you want to have the same provisioning profiles installed in the machine so they are found when signing the app**. | adhoc | iOS |
