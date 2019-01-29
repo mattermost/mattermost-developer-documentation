@@ -117,15 +117,16 @@ Now, we'll need to define the required manifest describing your plugin's entry p
 ```json
 {
     "id": "com.mattermost.webapp-hello-world",
-    "name": "helloworld",
-    "description": "",
+    "name": "Hello World",
     "webapp": {
         "bundle_path": "main.js"
     }
 }
 ```
 
-This manifest gives the server the location of our web app  within our bundle. (Note that you may alternatively use `plugin.yaml`, as shown in [../../server/hello-world/](../../server/hello-world/).)
+This manifest gives the server the location of your components within your plugin bundle. Consult the [manifest reference]({{< ref "manifest-reference.md" >}}) for more details, including how to define a minimum required server version for your plugin.
+
+Note that you may also use `plugin.yaml` to define the manifest.
 
 Bundle the manifest and entry point into a tar file:
 
@@ -151,7 +152,7 @@ Install the plugin in one of the following ways:
 
 2) Or, manually:
 
-    - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.yaml``, in this case `com.mattermost.server-hello-world/`.
+    - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.json``, in this case `com.mattermost.server-hello-world/`.
     - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins` relative to your Mattermost installation directory. The resulting directory structure should look something like:
 
     ```
