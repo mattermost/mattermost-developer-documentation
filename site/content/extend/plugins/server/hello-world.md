@@ -57,21 +57,24 @@ GOOS=linux GOARCH=amd64 go build -o plugin.exe plugin.go
 
 Also note that the ".exe" extension is required if you'd like your plugin to run on Windows, but is otherwise optional. Consider referencing [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) for helpful build scripts.
 
-Now, we'll need to define the required manifest describing your plugin's entry point. Create a file named `plugin.yaml` with the following contents:
+Now, we'll need to define the required manifest describing your plugin's entry point. Create a file named `plugin.json` with the following contents:
 
-```yaml
-id: com.mattermost.server-hello-world
-name: Server "Hello, world!"
-server:
-    executable: plugin.exe
+```json
+{
+    "id": "com.mattermost.server-hello-world",
+    "name": "Hello World",
+    "server": {
+        "executable": "plugin.exe"
+    }
+}
 ```
 
-This manifest gives the server the location of our executable within our bundle. (Note that you may alternatively use `plugin.json`, as shown in [webapp/hello-world/](../../webapp/hello-world/).) Consult the [manifest reference](/extend/plugins/manifest-reference/) for more details, including how to define a cross-platform bundle by defining multiple executables.
+This manifest gives the server the location of our executable within our bundle. (Note that you may alternatively use `plugin.yaml`) Consult the [manifest reference]({{< ref "manifest-reference.md" >}}) for more details, including how to define a cross-platform bundle by defining multiple executables or how to define a minimum required server version for your plugin.
 
 Bundle the manifest and executable into a tar file:
 
 ```bash
-tar -czvf plugin.tar.gz plugin.exe plugin.yaml
+tar -czvf plugin.tar.gz plugin.exe plugin.json
 ```
 
 You should now have a file named `plugin.tar.gz` in your workspace. Congratulations! This is your first server plugin!
@@ -89,14 +92,14 @@ Install the plugin in one of the following ways:
 
 2) Or, manually:
 
-    - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.yaml``, in this case `com.mattermost.server-hello-world/`.
+    - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.json``, in this case `com.mattermost.server-hello-world/`.
     - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins` relative to your Mattermost installation directory. The resulting directory structure should look something like:
 
     ```
     mattermost/
         plugins/
             com.mattermost.server-hello-world/
-                plugin.yaml
+                plugin.json
                 plugin.exe
     ```
     - Restart the Mattermost server.
