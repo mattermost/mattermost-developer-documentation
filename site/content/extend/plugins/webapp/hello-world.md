@@ -124,7 +124,9 @@ Now, we'll need to define the required manifest describing your plugin's entry p
 }
 ```
 
-This manifest gives the server the location of our web app  within our bundle. (Note that you may alternatively use `plugin.yaml`) Consult the [manifest reference]({{< ref "manifest-reference.md" >}}) for more details, including how to define a minimum required server version for your plugin.
+This manifest gives the server the location of your componets within your plugin bundle. Consult the [manifest reference]({{< ref "manifest-reference.md" >}}) for more details, including how to define a minimum required server version for your plugin.
+
+Note that you may also use `plugin.yaml` to define the manifest.
 
 Bundle the manifest and entry point into a tar file:
 
