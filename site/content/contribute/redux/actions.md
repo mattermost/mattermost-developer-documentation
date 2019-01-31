@@ -157,7 +157,7 @@ To add a new Redux action, you must
     ```
 
 3. If you're adding a new action type, add or update existing reducers to handle the new action. More information about reducers is available [here](/contribute/redux/reducers).
-4. Add unit tests to make sure that the action has the intended effects on the store. These will be located in `test/actions`. More information on unit testing reducers is available below.
+4. Add unit tests to make sure that the action has the intended effects on the store. Test location is adjacent to the file being tested. Example, for `src/actions/admin.js`, test is located at `src/actions/admin.test.js`.  Add test file if necessary. More information on unit testing reducers is available below.
 
 ### Adding a new API Action
 
@@ -207,11 +207,11 @@ If your action is wrapping an API call, there's a few things that you will need 
         getUser
     });
     ```
-5. Add unit tests to make sure that the action has the intended effects on the store. These will be located in `test/actions`. More information on unit testing reducers is available below.
+5. Add unit tests to make sure that the action has the intended effects on the store. Test location is adjacent to the file being tested. Example, for `src/actions/admin.js`, test is located at `src/actions/admin.test.js`.  Add test file if necessary. More information on unit testing reducers is available below.
 
 ### Testing an Action
 
-Unit tests for actions are located in the `test/actions` directory in files corresponding to those in `src/actions`. These tests are written using the [mochajs framework](https://mochajs.org/). In that folder, there are many examples of how those tests should look. Most follow the same general pattern of:
+Unit tests for actions are located in the same directory, adjacent to the file being tested. These tests are written using [Jest Testing Framework](https://jestjs.io/). In that folder, there are many examples of how those tests should look. Most follow the same general pattern of:
 1. Construct the initial test state. Note that this doesn't need to be shared between tests as it is in many other cases.
 2. Mock any actions that would contact the server. This is done using the [nock server mocking framework](https://github.com/node-nock/nock) to mock the server.
 3. Dispatch the action and look for the results.

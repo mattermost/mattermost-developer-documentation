@@ -16,7 +16,7 @@ If you look at the [Mattermost Redux repository](https://github.com/mattermost/m
     - `src/selectors` contains the selectors used to compute data from the store or just access it more easily.
     - `src/store` contains the setup code for the Redux store that can be extended by applications that use this library.
     - `src/utils` contains utility functions and classes that are shared between the Mattermost web and mobile apps.
-- `test` contains unit tests and mocking for server calls.
+- `test` contains unit tests setup. Actual unit test is located on the same folder of the file being tested.
 
 ## Useful Commands
 
