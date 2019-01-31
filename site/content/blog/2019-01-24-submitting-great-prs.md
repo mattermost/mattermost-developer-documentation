@@ -1,5 +1,6 @@
 ---
 title: "Submitting Great PRs"
+slug: submitting-great-prs
 date: 2019-01-24T00:00:00-04:00
 categories:
     - "contributing"

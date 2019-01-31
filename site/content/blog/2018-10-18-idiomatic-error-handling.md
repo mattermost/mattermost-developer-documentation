@@ -1,5 +1,6 @@
 ---
 title: "Go: Idiomatic Error Handling"
+slug: idiomatic-error-handling
 date: 2018-10-18T00:00:00-04:00
 categories:
     - "Go"
