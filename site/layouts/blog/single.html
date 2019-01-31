@@ -43,11 +43,12 @@
             <!-- Sidebar -->
             <div class="col-md-3 doc-content tags-sidebar">
                 <div class="well well-sm">
-                    <!-- Post-specific stats -->
-                    <div>Categories</div>
+                    <div>Other Posts</div>
                     <ul class="list-unstyled">
-                        {{ range .Params.categories }}
-                        <li><a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}">{{ . }}</a></li>
+                        {{ range first 15 (where .Site.Pages ".Section" "blog" )}}
+                        {{ if and (.IsPage) (ne .Title $.Title)}}
+                        <li class="blog-item__sidebar">- <a href="{{ $.Site.BaseURL }}{{.URL}}">{{ .Title }}</a></li>
+                        {{ end }}
                         {{ end }}
                     </ul>
                 </div>

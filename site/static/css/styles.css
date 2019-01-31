@@ -3258,6 +3258,10 @@ h6:first-child {
 .blog-item__header {
 }
 
+.blog-item__sidebar{
+    margin: 4px 0 4px 0;
+}
+
 .blog-item__title {
     font-size: 1.5rem;
     margin-bottom: .6rem;
