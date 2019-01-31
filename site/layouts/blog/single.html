@@ -5,15 +5,17 @@
 <!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
 
 <html>
-    <head>
-        {{ partial "head.html" .}}
-    </head>
+
+<head>
+    {{ partial "head.html" .}}
+</head>
+
 <body class="blog-single">
     {{ partial "nav2.html" .}}
     <div class="container">
-    <div class="row">
-        <div class="col-md-9 doc-content">
-            <div class="well well-sm">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
                     <div class="blog-item__header">
                         <div class="blog-item__title">{{ .Title }}<br> <small>{{ .Description }}</small></div>
                         <div class="blog-item__info">
@@ -23,26 +25,35 @@
                     </div>
                     <hr>
                     {{ partial "hanchor.html" .Content }}
+                    <hr>
+                    Written by {{.Params.author}} -
+                    <a href="https://community.mattermost.com/core/messages/@{{.Params.community}}" target="_blank">@{{.Params.community}}</a>
+                    on
+                    <a href="https://community.mattermost.com/signup_user_complete/?id=f1924a8db44ff3bb41c96424cdc20676"
+                        target="_blank">community.mattermost.com</a>
+                    and <a href="https://github.com/{{.Params.github}}" target="_blank">@{{.Params.github}}</a> on
+                    GitHub
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete/?id=f1924a8db44ff3bb41c96424cdc20676"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
             </div>
-        </div>
 
-        <!-- Sidebar -->
-        <div class="col-md-3 doc-content tags-sidebar">
-            <div class="well well-sm"> <!-- Post-specific stats -->
-                <div>Categories</div>
-                <ul class="list-unstyled">
-                {{ range .Params.categories }}
-                    <li><a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}">{{ . }}</a></li>
-                {{ end }}
-                </ul>
-                <hr>
-                <div>Tags</div>
-                <div class="list-unstyled">
-                {{ range .Params.tags }}<a class="label label-default" href="{{ $.Site.BaseURL }}tags/{{ . | urlize }}">{{ . }}</a> {{ end }}
+            <!-- Sidebar -->
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+                    <!-- Post-specific stats -->
+                    <div>Categories</div>
+                    <ul class="list-unstyled">
+                        {{ range .Params.categories }}
+                        <li><a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}">{{ . }}</a></li>
+                        {{ end }}
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
+
 </html>
