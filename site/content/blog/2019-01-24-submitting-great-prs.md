@@ -1,6 +1,13 @@
 ---
 title: "Submitting Great PRs"
+slug: submitting-great-prs
+aliases: [/blog/2019-01-24-submitting-great-prs]
 date: 2019-01-24T00:00:00-04:00
+categories:
+    - "contributing"
+author: Jesse Hallam
+github: lieut-data
+community: jesse.hallam
 ---
 
 If you want to submit good pull requests, start with our [contribution checklist](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/). Today, that page talks about what to fork, how to style your code, how to write unit tests and where to push your code. Implicit in all of that is the need to write great code, of course!

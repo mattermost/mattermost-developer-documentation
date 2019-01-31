@@ -1,14 +1,15 @@
 ---
-draft: true
 title: "Platform Repository Splitting"
+slug: repo-split
 date: 2017-09-04T11:09:47-04:00
 categories:
     - "announcement"
-tags:
-    - "example"
+author: Joram Wilander
+github: jwilander
+community: joram
 ---
 
-A reminder that Mattermost will be separating the `/platform` repo into two repositories on September 6th:
+A reminder that Mattermost will be separating the `/platform` repo into two repositories on September 6th, 2017:
 
 * a new repository for webapp client code, hosted at github.com/mattermost/mattermost-webapp
 * existing repository (`/platform`) renamed to `/mattermost-server`, containing the server code.

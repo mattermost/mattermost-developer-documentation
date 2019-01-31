@@ -1,6 +1,7 @@
 <div class="well well-sm">
     <h5>
-        <a href="{{ .Permalink }}">{{ .Title }}</a> <small class="blog-item__date pull-right">Posted on {{ .Date.Format "Jan 2, 2006" }}</small>
+        <a href="{{ .Permalink }}">{{ .Title }}</a> <small class="blog-item__date pull-right">Posted
+            on {{ .Date.Format "Jan 2, 2006" }} by {{.Params.author}}</small>
     </h5>
     <small>{{ .Description }}</small>
     <hr>
