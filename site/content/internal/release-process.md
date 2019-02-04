@@ -20,6 +20,10 @@ On code complete day, work with the PM on rotation to get all the pull requests 
   - If you need to build an older release (older than 5.7.X), you will need to set the `legacy` and the `backport` flags in order to trigger the old job, ie. `/mb cut 5.7.1-rc1 --backport --legacy`.
   - Also, for the current job, you can define the Docker images using flags to build/test server and webapp. ie `/mb cut 5.8.0-rc1 --server mattermost/mattermost-build-server:dec-7-2018 --webapp mattermost/mattermost-build-webapp:oct-2-2018`.
 5. Wait approximately 25 minutes for the build to finish. If the build fails, please check the jenkins job to see what happened. Then simply repeat step 4. You can monitor build status from https://build.mattermost.com. If any issues or questions, please ask Carlos (`@cpanato` on `Community Server`).
+  - after you cut the RCX and it is published you need to come here:
+      - https://build.mattermost.com/job/mk/job/mattermost-enterprise-edition-release/ and build the docker image for the `RCX`, for example `5.8.0-rc2`
+  - and after the previous job is complete you can run:
+      - https://build.mattermost.com/job/build-pushes/job/comunity_update/ and set `5.8.0-rc2` (for example) to deploy the RC in the `community` server.
 6. Once the build finishes, submit a PR to `master` to add the upgrade code for the next release. For example, [https://github.com/mattermost/mattermost-server/pull/6337/files](https://github.com/mattermost/mattermost-server/pull/6337/files) and [https://github.com/mattermost/mattermost-server/pull/6616/files](https://github.com/mattermost/mattermost-server/pull/6616/files).
 
 The build automation will take care of updating all the CI and test servers, and it will make a post in the Release Discussion channel with all the download links. It will also create the release branch named `release-X.X`, with `X-X` replaced by the major and minor version numbers.
