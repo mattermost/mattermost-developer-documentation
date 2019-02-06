@@ -62,6 +62,9 @@ Below is the list of core committers working on Mattermost:
 - **Brad Coughlin**
     - @brad on [community.mattermost.com](https://community.mattermost.com/core/messages/@brad) and [@bradjcoughlin](https://github.com/bradjcoughlin) on GitHub
     - Dev areas: Web App, React, Redux
+- **William Gathoye**
+    - @wget on [community.mattermost.com](https://community.mattermost.com/core/messages/@wget) and [@wget](https://github.com/wget) on GitHub
+    - Dev areas: Desktop app, Plugins
 
 Below is the list of core developers working on individual Mattermost repositories:
 
