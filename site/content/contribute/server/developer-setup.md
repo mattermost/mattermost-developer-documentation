@@ -9,7 +9,7 @@ subsection: Server
 
 <div class="tab">
     <button class="tablinks active" onclick="openTab(event, 'mac')">Mac OS X</button>
-    <button class="tablinks" onclick="openTab(event, 'ubuntu')">Ubuntu 16.04</button>
+    <button class="tablinks" onclick="openTab(event, 'ubuntu')">Ubuntu 16.04/18.04</button>
     <button class="tablinks" onclick="openTab(event, 'windows')">Windows</button>
     <button class="tablinks" onclick="openTab(event, 'windows_wsl')">Windows WSL</button>
     <button class="tablinks" onclick="openTab(event, 'archlinux')">Archlinux</button>
