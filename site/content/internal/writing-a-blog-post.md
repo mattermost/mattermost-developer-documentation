@@ -5,7 +5,7 @@ section: internal
 weight: 105
 ---
 
-Went to a conference recently? Worked on something cool? Got something else Mattermost related you want to post about? Follow these steps to write a blog post:
+Went to a conference recently? Worked on something cool? Got something else Mattermost-related you want to post about? Follow these steps to write a blog post:
 
 1. Clone https://github.com/mattermost/mattermost-developer-documentation 
 2. Create a new .md file in the [/site/content/blog/](https://github.com/mattermost/mattermost-developer-documentation/tree/master/site/content/blog) folder
