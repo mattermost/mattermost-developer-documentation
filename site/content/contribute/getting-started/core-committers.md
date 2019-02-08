@@ -75,7 +75,7 @@ Below is the list of core developers working on individual Mattermost repositori
 - **Kyâne Pichou** - [mattermost-docker](https://github.com/mattermost/mattermost-docker)
     - @pichouk on [community.mattermost.com](https://community.mattermost.com/core/messages/@pichouk) and [@pichouk](https://github.com/pichouk) on GitHub
     
-Below is the list of community maintainers who share feedback and answers on Mattermost through Forum, Github issues and the [Mattermost community server](https://community.mattermost.com):
+Below is the list of community moderators who share feedback and answer questions on Mattermost through [forums](https://forum.mattermost.org), GitHub issues and the [Mattermost community server](https://community.mattermost.com):
 
 - **Arlindo Neto**
     - @prixone on [community.mattermost.com](https://community.mattermost.com/core/messages/@prixone) and [@prixone](https://github.com/prixone) on GitHub
