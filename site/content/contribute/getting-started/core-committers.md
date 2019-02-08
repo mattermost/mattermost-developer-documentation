@@ -74,6 +74,17 @@ Below is the list of core developers working on individual Mattermost repositori
     - @compass on [community.mattermost.com](https://community.mattermost.com/core/messages/@compass) and [@xcompass](https://github.com/xcompass) on GitHub
 - **Kyâne Pichou** - [mattermost-docker](https://github.com/mattermost/mattermost-docker)
     - @pichouk on [community.mattermost.com](https://community.mattermost.com/core/messages/@pichouk) and [@pichouk](https://github.com/pichouk) on GitHub
+    
+Below is the list of community maintainers who share feedback and answers on Mattermost through Forum, Github issues and the [Mattermost community server](https://community.mattermost.com):
+
+- **Arlindo Neto**
+    - @prixone on [community.mattermost.com](https://community.mattermost.com/core/messages/@prixone) and [@prixone](https://github.com/prixone) on GitHub
+- **Christopher Parker**
+    - @sousapro on [community.mattermost.com](https://community.mattermost.com/core/messages/@sousapro) and [@Sousapro](https://forum.mattermost.org/u/sousapro/summary) on Forum
+- **Ahmad Danial**
+    - @ahmaddanial on [community.mattermost.com](https://community.mattermost.com/core/messages/@ahmaddanial) and [@dannymohammad](https://github.com/dannymohammad) on GitHub
+- **@sadb**
+    - @sadb on [community.mattermost.com](https://community.mattermost.com/core/messages/@sadb) and [@SADB](https://github.com/sadb) on GitHub
 
 The core team also has product managers who do a lot of great work designing, prioritizing and coordinating. They are:
 
