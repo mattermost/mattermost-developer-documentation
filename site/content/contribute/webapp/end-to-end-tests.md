@@ -59,7 +59,7 @@ The folder structure is based on the [Cypress scaffold](https://docs.cypress.io/
    - If element ID is not present in the webapp, you may add it in `camelCase` form with human readable name (e.g. `<div id='sidebarTitle'>`). Watch out for potential breaking changes in the snapshot of the unit testing.  Run `make test` to see if all are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot testing.
 2. Add commands or shortcuts to `cypress/support/commands.js` (e.g. `toAccountSettingsModal`) that makes it easier to access a page, section, modal and etc. by simply using it as `cy.toAccountSettingsModal('user-1')`.
 3. Organize `cypress/integration` with a subfolder to group similar tests.
-4. Add test key and description in the spec file.  This is used to track test cases with our Release Testing spreadsheet, usually attached to our [Release Candidate Testing](https://community.mattermost.com/core/pl/deocy9tx9pfbbjka9prwie6u9e) announcement.
+4. Add test key and description in the spec file.  This is used to track test cases in our Release Testing spreadsheet, usually attached to our [Release Candidate Testing](https://community.mattermost.com/core/pl/deocy9tx9pfbbjka9prwie6u9e) announcement.
 In the spec file, it should be written as:
 
     ```javascript
@@ -70,7 +70,7 @@ In the spec file, it should be written as:
     }
     ```
 
-    Where `"M14014"` is the test key and `"Recently used emojis are shown 1st"` is the test description.  These information are stated in Github's [help-wanted ticket](https://github.com/mattermost/mattermost-server/issues/10246) and [Jira ticket](https://mattermost.atlassian.net/browse/MM-14014).
+    Where `"M14014"` is the test key and `"Recently used emojis are shown 1st"` is the test description.  This information is stated in Github's [help-wanted ticket](https://github.com/mattermost/mattermost-server/issues/10246) and [Jira ticket](https://mattermost.atlassian.net/browse/MM-14014).
 
     The naming convention used is the name of the tab on the release testing spreadsheet e.g. AS = Account Settings; M = Messaging, etc. and the numerical value is from Jira ticket identifier. So `"M14014"` means "Messaging" on release testing spreadsheet with `MM-14014` Jira ticket.
 
