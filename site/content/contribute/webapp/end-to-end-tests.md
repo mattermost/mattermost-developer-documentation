@@ -59,8 +59,9 @@ The folder structure is based on the [Cypress scaffold](https://docs.cypress.io/
    - If element ID is not present in the webapp, you may add it in `camelCase` form with human readable name (e.g. `<div id='sidebarTitle'>`). Watch out for potential breaking changes in the snapshot of the unit testing.  Run `make test` to see if all are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot testing.
 2. Add commands or shortcuts to `cypress/support/commands.js` (e.g. `toAccountSettingsModal`) that makes it easier to access a page, section, modal and etc. by simply using it as `cy.toAccountSettingsModal('user-1')`.
 3. Organize `cypress/integration` with a subfolder to group similar tests.
-4. Add test key and description in the spec file.  This is used to track test cases in our Release Testing spreadsheet, usually attached to our [Release Candidate Testing](https://community.mattermost.com/core/pl/deocy9tx9pfbbjka9prwie6u9e) announcement.
-In the spec file, it should be written as:
+4. This is used to track test cases in our core staff Release Testing spreadsheet, which is linked in the header of the [Release Discussion channel](https://community.mattermost.com/core/channels/release-discussion) during release testing.
+
+    In the spec file, it should be written as:
 
     ```javascript
     describe('Emoji reaction', () => {
