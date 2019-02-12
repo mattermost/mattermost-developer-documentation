@@ -1,6 +1,6 @@
 ---
 title: "Google Summer of Code"
-date: "2019-02-06T09:08:00-05:00"
+date: "2017-01-01T09:08:00-05:00"
 section: "contribute"
 ---
 
