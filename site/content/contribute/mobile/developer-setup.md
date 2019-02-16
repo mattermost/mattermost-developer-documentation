@@ -110,10 +110,7 @@ Make sure you have the following ENV VARS configured:
 In the SDK Manager using Android Studio or the [Android SDK command line tool](https://developer.android.com/studio/command-line/sdkmanager.html), ensure the following are installed
 - SDK Tools (you may have to click "Show Package Details" to expand packages)
     ![image](/img/mobile_SDK_Tools.png)
-    - Android SDK Build-Tools (multiple versions)
-        - 23.0.3
-        - 25.0.3
-        - 26.0.1
+    - Android SDK Build-Tools 28.0.3
     - Android Emulator
     - Android SDK Platform-Tools
     - Android SDK Tools
