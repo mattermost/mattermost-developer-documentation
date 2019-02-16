@@ -189,8 +189,8 @@ Now that the app can receive push notifications, we need to make sure that the P
 ![image](/img/firebase_settings.png)
 ![image](/img/firebase_cloud_messaging.png)
 
-- Look for the value of the **Legacy Server Key** and copy it.
-![image](/img/farebase_server_key.png)
+- Look for the value of the **Server Key** and copy it.
+![image](/img/firebase_server_key.png)
 
 - Open the **mattermost-push-proxy.json** file in the `mattermost-push-proxy/config` directory and paste the value for the "AndroidApiKey" setting
 ![image](/img/proxy-config.png)
