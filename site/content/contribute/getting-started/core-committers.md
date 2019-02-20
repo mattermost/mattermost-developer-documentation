@@ -65,6 +65,13 @@ Below is the list of core committers working on Mattermost:
 - **William Gathoye**
     - @wget on [community.mattermost.com](https://community.mattermost.com/core/messages/@wget) and [@wget](https://github.com/wget) on GitHub
     - Dev areas: Desktop app, Plugins
+- **Dean Whillier**
+    - @deanwhillier on [community.mattermost.com](https://community.mattermost.com/core/messages/@deanwhillier) and [@deanwhillier](https://github.com/deanwhillier) on GitHub
+    - Dev areas: Desktop app, Web App, React, Redux, UI, React Native
+- **Miguel Alatzar**
+    - @miguel.alatzar on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.alatzar) and [@migbot](https://github.com/migbot) on GitHub
+    - Dev areas: React Native, Desktop app, Web App, React, Redux
+
 
 Below is the list of core developers working on individual Mattermost repositories:
 
