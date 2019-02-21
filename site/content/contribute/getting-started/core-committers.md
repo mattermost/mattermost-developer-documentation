@@ -71,6 +71,9 @@ Below is the list of core committers working on Mattermost:
 - **Miguel Alatzar**
     - @miguel.alatzar on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.alatzar) and [@migbot](https://github.com/migbot) on GitHub
     - Dev areas: React Native, Desktop app, Web App, React, Redux
+- **Miguel de la Cruz**
+    - @miguel.delacruz on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.delacruz) and [@mgdelacroix](https://github.com/mgdelacroix) on GitHub
+    - Dev areas: Elasticsearch, Web App, Server
 
 
 Below is the list of core developers working on individual Mattermost repositories:
