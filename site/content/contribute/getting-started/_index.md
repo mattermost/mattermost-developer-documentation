@@ -8,7 +8,7 @@ Welcome to the Mattermost project!
 
 We're very glad you want to join hundreds of community members who have contributed code to Mattermost repositories in GitHub.
 
-Our goal is to make your experience as best as possible. Follow these simple steps to contribute:
+Our goal is to make your experience as great as possible. Follow these simple steps to contribute:
 
 {{< bignumber number="1" title="Sign up to our Mattermost site" content="Go to [community.mattermost.com](https://community.mattermost.com/signup_user_complete/?id=f1924a8db44ff3bb41c96424cdc20676) and join the [Developers](https://community.mattermost.com/core/channels/developers) and [Contributors](https://community.mattermost.com/core/channels/tickets) channels to ask questions." >}}
 
