@@ -42,6 +42,10 @@ text=asd&
 token=okwexkjpe7ygb8eq1ww58t483w&
 user_id=aoa1agao6t8fmx3ikt1j9w5ybw&
 user_name=somename
+root_id=be4yommjpprippfdm3bwj8moiw
+parent_id=syrsy8o84jbgdny5efb9hc4ezy
+trigger_id=3jt7dd34x3r9prj7e6eq7f7f4o
+command=test
 ```
 
 As evidenced by the `Content-Type`, this is a typical `form-urlencoded` payload similar to what you would receive from a `<form method="POST">` element on an HTML web page.
