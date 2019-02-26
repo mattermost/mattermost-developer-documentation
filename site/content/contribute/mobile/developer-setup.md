@@ -120,13 +120,13 @@ In the SDK Manager using Android Studio or the [Android SDK command line tool](h
         -   Android Support Repository
         -   Google Repository
 
-    - SDK Platforms (you may have to click "Show Package Details" to expand packages)
-        ![image](/img/mobile_SDK_Platforms.png)
-        - Android 6 (Marshmallow)
-            - Google APIs
-            - Android SDK Platform 23
-            - Intel x86 Atom\_64 System Image
-        - Any other API version that you want to test
+- SDK Platforms (you may have to click "Show Package Details" to expand packages)
+    ![image](/img/mobile_SDK_Platforms.png)
+    - Android 6 (Marshmallow)
+        - Google APIs
+        - Android SDK Platform 23
+        - Intel x86 Atom\_64 System Image
+    - Any other API version that you want to test
 
 
 ## Obtaining the Source Code
