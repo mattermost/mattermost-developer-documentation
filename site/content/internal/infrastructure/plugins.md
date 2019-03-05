@@ -12,7 +12,7 @@ To add a plugin to community.mattermost.com, you need to do the following:
 2. Add a line for your plugin here so it gets downloaded https://github.com/mattermost/platform-private/blob/master/kubernetes/community-kubernetes/configmap-plugins.yaml
   - Copy those changes to https://github.com/mattermost/platform-private/blob/master/kubernetes/community-daily-kubernetes/configmap-plugins.yaml for community-daily
 3. Upload your plugin to the `mattermost-public-plugins-kubernetes` S3 bucket on our main AWS account
-4. Run https://build.mattermost.com/job/build-pushes/job/comunity_update/ to update community.mattermost.com
+4. Run https://build.mattermost.com/job/build-pushes/job/comunity_update/ to update community.mattermost.com (you can check the ONLY_CONFIG option)
   - Run https://build.mattermost.com/job/build-pushes/job/community-daily-update/ to update community-daily.mattermost.com
 
 
