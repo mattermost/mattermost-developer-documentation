@@ -119,3 +119,16 @@ The core team also has product managers who do a lot of great work designing, pr
     - @amyblais on [community.mattermost.com](https://community.mattermost.com/core/messages/@amyblais) and [@amyblais](https://github.com/amyblais) on GitHub
 - **Katie Wiersgalla**
     - @katie.wiersgalla on [community.mattermost.com](https://community.mattermost.com/core/messages/@katie.wiersgalla) and [@wiersgallak](https://github.com/wiersgallak) on GitHub
+
+QA Resources
+------------
+
+The core team also has QA resources who verify the correct functionality of the product from release to release. They are:
+- **Linda Mitchell**
+    - @linda on [community.mattermost.com](https://community.mattermost.com/core/messages/@linda) and [@lindalumitchell](https://github.com/lindalumitchell) on GitHub
+- **Dylan Haussermann**
+    - @dylan.haussermann on [community.mattermost.com](https://community.mattermost.com/core/messages/@dylan.haussermann) and [@DHaussermann](https://github.com/DHaussermann) on GitHub
+- **Lindy Isherwood**
+    - @lindy.isherwood on [community.mattermost.com](https://community.mattermost.com/core/messages/@lindy.isherwood) and [@lindy65](https://github.com/lindy65) on GitHub
+- **Ogi Marušić**
+    - @ogi.marusic on [community.mattermost.com](https://community.mattermost.com/core/messages/@ogi.marusic)
