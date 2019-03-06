@@ -7,6 +7,9 @@ subsection: Getting Started
 
 A core committer is a maintainer on the Mattermost project that has merge access to the Mattermost repositories. They are responsible for reviewing pull requests, cultivating the Mattermost developer community and guiding the technical vision of Mattermost. If you have a question or need some help, these are the people to ask.
 
+Core Committers
+---------------
+
 Below is the list of core committers working on Mattermost:
 
 - **Corey Hulen**
@@ -75,6 +78,8 @@ Below is the list of core committers working on Mattermost:
     - @miguel.delacruz on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.delacruz) and [@mgdelacroix](https://github.com/mgdelacroix) on GitHub
     - Dev areas: Elasticsearch, Web App, Server
 
+Core Developers
+---------------
 
 Below is the list of core developers working on individual Mattermost repositories:
 
@@ -84,7 +89,10 @@ Below is the list of core developers working on individual Mattermost repositori
     - @compass on [community.mattermost.com](https://community.mattermost.com/core/messages/@compass) and [@xcompass](https://github.com/xcompass) on GitHub
 - **Kyâne Pichou** - [mattermost-docker](https://github.com/mattermost/mattermost-docker)
     - @pichouk on [community.mattermost.com](https://community.mattermost.com/core/messages/@pichouk) and [@pichouk](https://github.com/pichouk) on GitHub
-    
+
+Community Moderators
+--------------------
+
 Below is the list of community moderators who share feedback and answer questions on Mattermost through [forums](https://forum.mattermost.org), GitHub issues and the [Mattermost community server](https://community.mattermost.com):
 
 - **Arlindo Neto**
@@ -95,6 +103,9 @@ Below is the list of community moderators who share feedback and answer question
     - @ahmaddanial on [community.mattermost.com](https://community.mattermost.com/core/messages/@ahmaddanial) and [@dannymohammad](https://github.com/dannymohammad) on GitHub
 - **@sadb**
     - @sadb on [community.mattermost.com](https://community.mattermost.com/core/messages/@sadb) and [@SADB](https://github.com/sadb) on GitHub
+
+Product Managers
+----------------
 
 The core team also has product managers who do a lot of great work designing, prioritizing and coordinating. They are:
 
