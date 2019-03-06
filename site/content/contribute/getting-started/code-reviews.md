@@ -43,7 +43,7 @@ If you are a core committer seeking a review
     * If staff, try to take into account the timeoff calendar.
     * Try to avoid assigning the same person to all of your reviews unless they are related.
     * When in doubt, ask for recommendations on our community server.
-4. Optionally assign a [QA resource](/contribute/getting-started/core-committers/#qa-resource) and label your pull request with `QA Review`.
+4. Optionally assign a [QA tester](/contribute/getting-started/core-committers/#qa-testers) and label your pull request with `QA Review`.
     * Not every pull request requires QA Review. Prioritize large features or material changes to the product for QA review.
     * Pull requests labelled with `QA Review` automatically notify the QA team at large.
     * Reviews by QA may occur at the same time as review by core committers.
@@ -52,12 +52,12 @@ If you are a core committer seeking a review
 6. Wait for a review.
     * Expect some interaction with each of your reviewers within 2 business days.
     * There is no need to explicitly mention them on the pull request, or to explicitly reach out on our community server.
-    * Core committers and QA resources are expected to have the GitHub plugin installed to automate notifications, and to trigger a daily review of their outstanding requested reviews.
+    * Core committers and QA testers are expected to have the GitHub plugin installed to automate notifications, and to trigger a daily review of their outstanding requested reviews.
 7. Make any necessary changes.
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
     * Once you've addressed the concerns, assign them as a reviewer again to put your pull request back on their plate.
 8. Merge the pull request.
-    * Only merge once all concerns have been addressed, a product manager has approved the changes (as necessary), a QA resource has approved the changes (as necessary) and at least two core committers have approved.
+    * Only merge once all concerns have been addressed, a product manager has approved the changes (as necessary), a QA tester has approved the changes (as necessary) and at least two core committers have approved.
     * Remove the `1: PM Review`, `2: Dev Revew` and `QA Review` labels, and assign the `3: Ready to Merge` label.
     * Merge your pull request and delete the branch if not from a fork.
     * Note that the last core committer to approve your changes may do this on your behalf.

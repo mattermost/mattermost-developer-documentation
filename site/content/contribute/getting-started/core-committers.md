@@ -120,10 +120,11 @@ The core team also has product managers who do a lot of great work designing, pr
 - **Katie Wiersgalla**
     - @katie.wiersgalla on [community.mattermost.com](https://community.mattermost.com/core/messages/@katie.wiersgalla) and [@wiersgallak](https://github.com/wiersgallak) on GitHub
 
-QA Resources
+QA Testers
 ------------
 
-The core team also has QA resources who verify the correct functionality of the product from release to release. They are:
+The core team also has QA testers who verify the correct functionality of the product from release to release. They are:
+
 - **Linda Mitchell**
     - @linda on [community.mattermost.com](https://community.mattermost.com/core/messages/@linda) and [@lindalumitchell](https://github.com/lindalumitchell) on GitHub
 - **Dylan Haussermann**
