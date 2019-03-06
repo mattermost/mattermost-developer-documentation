@@ -40,7 +40,7 @@ If you are a core committer seeking a review
     * When picking your first core committer, consider someone with domain expertise relative to your changes. Sometimes GitHub will recommend a recent editor of the code, but often you must rely on your own intuition from past interactions.
     * When picking your second core committer, consider someone unrelated to your changes. A fresh and unbiased set of eyes can be invaluable, and exposing the team to new parts of the code helps spread out domain knowledge.
     * Don't be afraid to pick someone who gives "hard" reviews. Code review feedback is never a personal attack: it should "sharpen" the skills of both the author and the reviewers, not to mention improving the quality of the product.
-    * Take into account the timeoff calendar.
+    * If staff, try to take into account the timeoff calendar.
     * Try to avoid assigning the same person to all of your reviews unless they are related.
     * When in doubt, ask for recommendations on our community server.
 4. Optionally assign a [QA resource](/contribute/getting-started/core-committers/#qa-resource) and label your pull request with `QA Review`.
