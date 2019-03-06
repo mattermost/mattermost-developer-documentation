@@ -76,6 +76,7 @@ If you are a core committer asked to give a review
     * Try to interact with the author within 2 business days.
     * Configure the GitHub plugin to automate notifications.
     * Review your outstanding requested reviews daily to avoid blocking authors.
+    * Prioritize earlier milestones when reviewing to help with the release process.
     * Responding quickly doesn't necessarily mean reviewing quickly! Just don't leave the author hanging.
 2. Feel free to clarify expectations with the author.
     * If the code is experimental, they may need only a cursory glance and thumbs up to proceed with productizing their changes.
