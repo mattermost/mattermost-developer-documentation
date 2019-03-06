@@ -7,9 +7,9 @@ subsection: Getting Started
 
 All changes to the product must be reviewed.
 
-* User experience changes must be reviewed by a product manager.
-* Code changes must be reviewed by at least two [core committers](/contribute/getting-started/core-committers/).
-* Documentation changes should be reviewed by a product manager and at least one [core committer](/contribute/getting-started/core-committers/).
+* User experience changes must be reviewed by a [product manager](/contribute/getting-started/core-committers/#product-managers).
+* Code changes must be reviewed by at least two [core committers](http://localhost:1313/contribute/getting-started/core-committers/#core-committers).
+* Documentation changes should be reviewed by a [product manager](/contribute/getting-started/core-committers/#product-managers) and at least one [core committer](/contribute/getting-started/core-committers/#core-committers).
 
 If you are not a core committer
 -------------------------------
@@ -33,9 +33,8 @@ If you are a core committer seeking a review
 --------------------------------------------
 
 1. Submit your pull request.
-2. Assign a product manager to your review and label your pull request with `1: PM Review`.
+2. Assign a [product manager](/contribute/getting-started/core-committers/#product-managers) to your review and label your pull request with `1: PM Review`.
     * If your changes do not affect the user experience, you may skip this step.
-    * Product managers include [@jasonblais](https://github.com/jasonblais), [@esethna](https://github.com/esethna) and [@wiersgallak](https://github.com/wiersgallak).
     * Wait for their review before continuing, to avoid churn if changes are requested.
 3. Assign two [core committers](/contribute/getting-started/core-committers/) to your review and label your pull request with `2: Dev Review`.
     * When picking your first core committer, consider someone with domain expertise relative to your changes. Sometimes GitHub will recommend a recent editor of the code, but often you must rely on your own intuition from past interactions.
