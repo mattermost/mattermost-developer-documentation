@@ -43,18 +43,30 @@ If you are a core committer seeking a review
     * Take into account the timeoff calendar.
     * Try to avoid assigning the same person to all of your reviews unless they are related.
     * When in doubt, ask for recommendations on our community server.
-4. Wait for a review.
+4. Optionally assign a [QA resource](/contribute/getting-started/core-committers/#qa-resource) and label your pull request with `QA Review`.
+    * Not every pull request requires QA Review. Prioritize large features or material changes to the product for QA review.
+    * Pull requests labelled with `QA Review` automatically notify the QA team at large.
+    * Reviews by QA may occur at the same time as review by core committers.
+5. If this pull request is meant for a quality or patch release, apply the `CherryPickApproved` label.
+    * If there is uncertainty on the approval, apply the `CherryPickCandidate` label instead.
+6. Wait for a review.
     * Expect some interaction with each of your reviewers within 2 business days.
     * There is no need to explicitly mention them on the pull request, or to explicitly reach out on our community server.
-    * Core committers are expected to have the GitHub plugin installed to automate notifications, and to trigger a daily review of their outstanding requested reviews.
-5. Make any necessary changes.
+    * Core committers and QA resources are expected to have the GitHub plugin installed to automate notifications, and to trigger a daily review of their outstanding requested reviews.
+7. Make any necessary changes.
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
     * Once you've addressed the concerns, assign them as a reviewer again to put your pull request back on their plate.
-6. Once all concerns have been addressed, a product manager has approved the changes (as necessary), and at least two core committers have approved, the pull request is ready to be merged.
-    * Remove the `1: PM Review` and `2: Dev Revew` labels and assign the `3: Ready to Merge` label.
+8. Merge the pull request.
+    * Only merge once all concerns have been addressed, a product manager has approved the changes (as necessary), a QA resource has approved the changes (as necessary) and at least two core committers have approved.
+    * Remove the `1: PM Review`, `2: Dev Revew` and `QA Review` labels and assign the `3: Ready to Merge` label.
     * Merge your pull request, and delete the branch if not from a fork.
     * Note that the last core committer to approve your changes may do this on your behalf.
     * If your pull request depends on other pull requests, consider assigning the `Awaiting PR` label.
+9. Handle any cherry-picks.
+    * Cherry-pick the commit from `master` to the affected releases.
+    * Push your changes directly to the remote branch.
+    * No new pull request is required unless there are substantial merge conflicts.
+    * Remove the `CherryPickApprove` label and apply the `CherryPickDone` label.
 
 If you are a core committer asked to give a review
 --------------------------------------------------
@@ -77,3 +89,5 @@ If you are a core committer asked to give a review
     * Remove the `1: PM Review` and `2: Dev Revew` labels and assign the `3: Ready to Merge` label.
     * Merge the pull request, and delete the branch if not from a fork.
     * Some changes are spread out across multiple PRs that should be merged at the same time. Look out for the `Awaiting PR` label. When in doubt, leave the merging the pull request to the author.
+5. Handle any cherry-picks.
+    * Typically, the author of the pull request should handle cherry-picks. Assume this is the case unless you are explicitly asked to help cherry-pick.
