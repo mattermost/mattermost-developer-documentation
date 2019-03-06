@@ -58,8 +58,8 @@ If you are a core committer seeking a review
     * Once you've addressed the concerns, assign them as a reviewer again to put your pull request back on their plate.
 8. Merge the pull request.
     * Only merge once all concerns have been addressed, a product manager has approved the changes (as necessary), a QA resource has approved the changes (as necessary) and at least two core committers have approved.
-    * Remove the `1: PM Review`, `2: Dev Revew` and `QA Review` labels and assign the `3: Ready to Merge` label.
-    * Merge your pull request, and delete the branch if not from a fork.
+    * Remove the `1: PM Review`, `2: Dev Revew` and `QA Review` labels, and assign the `3: Ready to Merge` label.
+    * Merge your pull request and delete the branch if not from a fork.
     * Note that the last core committer to approve your changes may do this on your behalf.
     * If your pull request depends on other pull requests, consider assigning the `Awaiting PR` label.
 9. Handle any cherry-picks.
@@ -89,6 +89,6 @@ If you are a core committer asked to give a review
 4. Merge the pull request.
     * Remove the `1: PM Review` and `2: Dev Revew` labels and assign the `3: Ready to Merge` label.
     * Merge the pull request, and delete the branch if not from a fork.
-    * Some changes are spread out across multiple PRs that should be merged at the same time. Look out for the `Awaiting PR` label. When in doubt, leave the merging the pull request to the author.
+    * Some changes are spread out across multiple PRs that should be merged at the same time. Look out for the `Awaiting PR` label. When in doubt, leave the merging of the pull request to the author.
 5. Handle any cherry-picks.
     * Typically, the author of the pull request should handle cherry-picks. Assume this is the case unless you are explicitly asked to help cherry-pick.
