@@ -66,7 +66,7 @@ If you are a core committer seeking a review
     * Cherry-pick the commit from `master` to the affected releases.
     * Push your changes directly to the remote branch.
     * No new pull request is required unless there are substantial merge conflicts.
-    * Remove the `CherryPickApprove` label and apply the `CherryPickDone` label.
+    * Remove the `CherryPickApproved` label and apply the `CherryPickDone` label.
 
 If you are a core committer asked to give a review
 --------------------------------------------------
