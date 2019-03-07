@@ -1,7 +1,7 @@
 ---
 title: "Run on a Device"
 date: 2018-05-20T11:35:32-04:00
-weight: 5
+weight: 4
 subsection: Mobile Apps
 ---
 
@@ -59,7 +59,7 @@ Register for an [Apple developer account](https://developer.apple.com/) if you d
 
 Select the **Mattermost** project in the Xcode Project Navigator, then select the **Mattermost** target. Look for the "General" tab. Go to the "Signing" section and make sure your Apple developer account or team is selected under the Team dropdown. Then make sure to change the *Bundle Identifier* in the "Identity" section that will be used for your own custom build. XCode will then register your provisioning profiles in your account for the Bundle Identifier you've entered.
 
-![image](/img/code_signing.png)
+![image](/img/mobile/code_signing.png)
 
 Repeat the steps for the **MattermostTests** target in the project and the **MattermostShare** target.
 
@@ -72,7 +72,7 @@ Select the **Mattermost** project in the Xcode Project Navigator, then select th
 
 Repeat the process for the **MattermostShare** target and use the same app group defined in the **Mattermost** target. App Groups are used to share data between the main app and the app extension.
 
-![image](/img/app_groups.png)
+![image](/img/mobile/app_groups.png)
 
 Finally, you'll need to set the same app group in your config.json under the assets folder. Refer to Overriding Assets & White Labeling\_ section for further instructions.
 
@@ -80,13 +80,13 @@ Finally, you'll need to set the same app group in your config.json under the ass
 
 Select the **Mattermost** project in the Xcode Project Navigator, then select the **Mattermost** target. Look for the "Capabilities" tab. Expand the **iCloud** capability, select the option to *Specify custom containers* and then add and enable your own.
 
-![image](/img/ios_icloud.png)
+![image](/img/mobile/ios_icloud.png)
 
 #### Build and Run the App
 
 If everything is set up correctly, your device will be listed as the build target in the Xcode toolbar, and it will also appear in the Devices Pane (⇧⌘2). You can press the **Build and run** button (⌘R) or select the **Run** from the Product menu to run the app.
 
-![image](/img/running_ios.png)
+![image](/img/mobile/running_ios.png)
 
 If you run into any issues, please take a look at Apple's [Launching Your App on a
 Device](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/LaunchingYourApponDevices/LaunchingYourApponDevices.html#//apple_ref/doc/uid/TP40012582-CH27-SW4) documentation.
