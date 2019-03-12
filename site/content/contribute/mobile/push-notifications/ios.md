@@ -1,5 +1,5 @@
 ---
-title: "Setup Push Notifications for iOS"
+title: "iOS Push Notifications"
 date: 2015-05-20T11:35:32-04:00
 weight: 2
 subsection: "Setup Push Notifications"
