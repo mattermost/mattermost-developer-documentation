@@ -94,7 +94,7 @@ Below is the list of community moderators who share feedback and answer question
 - **Ahmad Danial**
     - @ahmaddanial on [community.mattermost.com](https://community.mattermost.com/core/messages/@ahmaddanial) and [@dannymohammad](https://github.com/dannymohammad) on GitHub
 - **@sadb**
-    - @sadb on [community.mattermost.com](https://community.mattermost.com/core/messages/@sadb) and [@SADB](https://github.com/sadb) on GitHub
+    - @sadb on [community.mattermost.com](https://community.mattermost.com/core/messages/@sadb)
 
 The core team also has product managers who do a lot of great work designing, prioritizing and coordinating. They are:
 
