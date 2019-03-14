@@ -1,6 +1,6 @@
 ---
 title: Mobile Build Cutting Process
-date: 2019-03-14T14:28:35-05:00
+date: 2019-03-14T09:05:00-05:00
 section: internal
 weight: 100
 ---
@@ -28,9 +28,9 @@ export INCREMENT_BUILD_NUMBER_MESSAGE="Bump app build number to"
    
    - ``$ cd fastlane`` in the mattermost-mobile directory.
    - run ``fastlane set_app_build_number``.
-   - submit a PR with the ``build-number`` branch.
+   - Submit a PR with the ``build-number`` branch.
    
-2. Merge the PR to master and cherry-pick.
+2. Merge the PR into master and cherry-pick to the release branch.
 
 3. Follow the steps below:
    - ssh to the build machine (MacStadium)
