@@ -97,7 +97,7 @@ Clear node options by initiating `unset NODE_OPTIONS` in the command line. Runni
 
 
 ##### Error message
-This error may raise in Ubuntu when running any cypress spec.
+This error may raise in Ubuntu when running any Cypress spec.
 
 ```
 code: 'ENOSPC',
