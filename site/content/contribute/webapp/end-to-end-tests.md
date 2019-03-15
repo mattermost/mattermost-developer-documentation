@@ -94,3 +94,16 @@ This is usually caused by a missing library or dependency.
 
 ##### Solution
 Clear node options by initiating `unset NODE_OPTIONS` in the command line. Running `npm run cypress:run` should proceed with Cypress testing.
+
+
+##### Error message
+This error may raise in Ubuntu when running any cypress spec.
+
+```code: 'ENOSPC',
+errno: 'ENOSPC',
+```
+##### Solution
+Run the following command
+
+```echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+```
