@@ -24,7 +24,7 @@ Follow this checklist for submitting a pull request (PR):
 6. PR is submitted against `master` branch.
 7. PR title begins with the JIRA or GitHub Ticket ID (e.g. `MM-394` or `GH-394`) and summary template is filled out.
 8. If your PR adds or changes a RESTful API endpoint, please update the [API documentation](https://github.com/mattermost/mattermost-api-reference).
-9. If you PR adds a new a new Plugin API method or hook, please add an example to the [Plugin Starter Template](https://github.com/mattermost/mattermost-plugin-sample).
+9. If you PR adds a new plugin API method or hook, please add an example to the [Plugin Starter Template](https://github.com/mattermost/mattermost-plugin-sample).
 10. Once submitted, the automated build process must pass for the PR.
 
 That's all! If you have any feedback about this checklist, let us know in the [Contributors channel](https://community.mattermost.com/core/channels/tickets).
