@@ -43,7 +43,7 @@ The development version of the Mattermost app cannot be installed alongside a re
 ```
 ##### Solution
 
-Your are most likely using the wrong version of node and npm. Recommended versions are node 10.11.0 and npm 6.4.1. 
+You are most likely using the wrong version of node and npm. Recommended versions are node 10.11.0 and npm 6.4.1. 
 
 #### Errors When Running 'make run-ios'
 
