@@ -11,7 +11,7 @@ In order to use the **make build**, **make build-android** and/or **make build-i
 
 or
 
-* Create an .sh file with your variables (for example `my_env.sh`), and execute `source my_env.sh` in the terminal session where you will later execute the **make** commands
+* Create an .sh file with your variables (for example `my_env.sh`), and execute `source my_env.sh` in the terminal session where you will later execute the **make** commands.
 
 | Variable            | Description                                | Default    | Platform  |
 |---------------------|--------------------------------------------|------------|-----------|

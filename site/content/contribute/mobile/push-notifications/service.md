@@ -22,58 +22,20 @@ Now that the app can receive push notifications, we need to make sure that the M
 For the sake of making this guide simple we located the files at `/home/ubuntu/mattermost-push-proxy`. We've also elected to run the Push Notification Service as the `ubuntu` account for simplicity. We **recommend** setting up
 and running the service under a `mattermost-push-proxy` user account with limited permissions.
 
-* Download the Mattermost Push Notification Service (any version):
+1. Download the Mattermost Push Notification Service (any version):
 `wget https://github.com/mattermost/mattermost-push-proxy/releases/download/vX.X.X/mattermost-push-proxy-X.X.X.tar.gz`
 
     in the previous command `vX.X.X` refers to the release version you want to download, see [Mattermost Push Notification Service releases](https://github.com/mattermost/mattermost-push-proxy/releases).
 
-* If you are upgrading a previous version of the Mattermost Push Notification Service make sure to backup your `mattermost-push-proxy.json` file before continuing.
+2. If you are upgrading a previous version of the Mattermost Push Notification Service make sure to backup your `mattermost-push-proxy.json` file before continuing.
 
-* Unzip the downloaded Mattermost Push Notification Service by typing:
+3. Unzip the downloaded Mattermost Push Notification Service by typing:
 `tar -xvzf mattermost-push-proxy-X.X.X.tar.gz` 
 
-* Configure the Mattermost Push Notification service by editing the `mattermost-push-proxy.json` file at `/home/ubuntu/mattermost-push-proxy/config`
-    * Change directories by typing `cd ~/mattermost-push-proxy/config`
-    * Edit the file (we'll use *vi* but you can use the editor of your choice) `vi mattermost-push-proxy.json` and fill the values by following the steps in [Android](#set-up-mattermost-push-notification-service-to-send-android-push-notifications)
-    and [iOS](#set-up-mattermost-push-notification-service-to-send-ios-push-notifications) sections.
+4. Configure the Mattermost Push Notification service by editing the `mattermost-push-proxy.json` file at `/home/ubuntu/mattermost-push-proxy/config`. Follow the steps in the [Android](#set-up-mattermost-push-notification-service-to-send-android-push-notifications)
+    and [iOS](#set-up-mattermost-push-notification-service-to-send-ios-push-notifications) sections to replace the values in the config file.
 
-Example config file:
-```json
-{
- "ListenAddress":":8066",
- "ThrottlePerSec":300,
- "ThrottleMemoryStoreSize":50000,
- "ThrottleVaryByHeader":"X-Forwarded-For",
- "ApplePushSettings":[
-   {
-       "Type":"apple",
-       "ApplePushUseDevelopment":false,
-       "ApplePushCertPrivate":"./config/aps_production_priv.pem",
-       "ApplePushCertPassword":"",
-       "ApplePushTopic":"com.mattermost.Mattermost"
-   },
-   {
-       "Type":"apple_rn",
-       "ApplePushUseDevelopment":false,
-       "ApplePushCertPrivate":"./config/aps_production_priv.pem",
-       "ApplePushCertPassword":"",
-       "ApplePushTopic":"com.mattermost.rn"
-   }
- ],
- "AndroidPushSettings":[
-   {
-       "Type":"android",
-       "AndroidApiKey":"Server Key goes here"
-   },
-   {
-       "Type":"android_rn",
-       "AndroidApiKey":"Server Key goes here"
-   }
- ]
-}
-```
-
-* Setup the Mattermost Push Notification Services to use the Upstart daemon which handles supervision of the Push Service process
+5. Setup the Mattermost Push Notification Services to use the Upstart daemon which handles supervision of the Push Service process
     * `sudo touch /etc/init/mattermost-push-proxy.conf`
     * `sudo vi /etc/init/mattermost-push-proxy.conf`
     * Copy the following lines into `/etc/init/mattermost-push-proxy.conf`
@@ -89,7 +51,7 @@ Example config file:
     exec bin/mattermost-push-proxy | logger
     ```
 
-    You can start the procecss with `sudo start mattermost-push-proxy` and stop it with `sudo stop mattermost-push-proxy`.
+6. Start the process with `sudo start mattermost-push-proxy` or if the process is already running with `sudo restart mattermost-push-proxy`.
 
 
 ### Set Up Mattermost Push Notification Service to Send Android Push Notifications
