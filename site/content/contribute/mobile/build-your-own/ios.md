@@ -5,7 +5,7 @@ weight: 5
 subsection: Build Your Own App
 ---
 
-Apple requires that all apps be digitally signed with a certificate before they can be installed, so to distribute your iOS application via Apple App Store, you'll need to generate a signed release IPA. The process is the same as any other native iOS app, but in our case we've created a set of scripts in conjunction with Fastlane to make this process easier than the standard manual process.
+Apple requires all apps to be digitally signed with a certificate before they can be installed, so to distribute your iOS application via Apple App Store, you'll need to generate a signed release IPA. The process is the same as any other native iOS app, but in our case we've created a set of scripts in conjunction with Fastlane to make this process easier than the standard manual process.
 
 We make use of [Match](https://docs.fastlane.tools/actions/match/) to sync your provisioning profiles (the profiles will be created for you if needed), then use [Gym](https://docs.fastlane.tools/actions/gym/) to build and sign the app, and then optionally use [Pilot](https://docs.fastlane.tools/actions/pilot/) to submit the app to TestFlight in order for you to promote the app to the App Store.
 

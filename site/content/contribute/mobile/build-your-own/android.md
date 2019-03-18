@@ -5,11 +5,11 @@ weight: 4
 subsection: Build Your Own App
 ---
 
-Android requires that all apps be digitally signed with a certificate before they can be installed, so to distribute your Android application via the Google Play Store, you'll need to generate a signed release APK.
+To distribute your Android application via the Google Play Store, you'll need to generate a signed release APK as Android requires all apps to be digitally signed with a certificate before they can be installed.
 
 #### Generating a Signing Key
 
-To generate the signed key, we'll be using **keytool** which comes with the JDK required to develop for Android.
+To generate the signed key, use **keytool** which comes with the JDK required to develop the Android app.
 
 ```sh
 $ keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
@@ -34,7 +34,9 @@ The keystore contains a single key, valid for 10000 days. The alias is a name th
 
 **Replace `/full/path/to/directory/containing/my-release-key.keystore` with the full path to the actual keystore file and `\********` with the actual keystore password.**
 
-**Once you publish the app on the Play Store, you will need to republish your app under a different package id (losing all downloads and ratings) if you change the signing key at any point, so backup your keystore and don't forget the password.**
+**Once you publish the app on the Play Store, you will need to republish your app under a different package id (losing all downloads and ratings) if you change the signing key at any point.**
+
+**Backup your keystore and don't forget the password.**
 
 
 #### Building the App

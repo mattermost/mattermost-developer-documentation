@@ -5,7 +5,7 @@ weight: 3
 subsection: Build Your Own App
 ---
 
-We've made it easy to white label the mobile app and to replace override the assets used, however, you have to Build Your Own App from Source\_.
+We've made it easy to white label the mobile app and to replace and override the assets used, however, you have to [Build Your Own App](/contribute/mobile/build-your-own) from Source\_.
 
 If you look at the [Project Directory Structure](/contribute/mobile/developer-workflow/#project-directory-structure), you'll see that there is an assets folder containing a base folder with assets provided by Mattermost. These include localization files, images and a release folder that optionally contains the icons and the splash screen of the app when building in release mode.
 
@@ -27,7 +27,7 @@ In the `assets` directory you will find a folder named `assets/base/release` whi
 
 Copy the full `release` directory under `assets/override/release` and then replace each image with the same name. Make sure you replace all the icon images for the platform you are building for the app - the same applies to the splash screen.
 
-The Splash Screen's background color is white by default and the image is centered. If you need to change the color or the layout to improve the experience of your new splash screen make sure that you also override the file `launch_screen.xml` for Android and `LaunchScreen.xib` for iOS. Both can found under`assets/base/release/splash\_screen/\<platform\>`.
+The Splash Screen's background color is white by default and the image is centered. If you need to change the color or the layout to improve the experience of your new splash screen make sure that you also override the file `launch_screen.xml` for Android and `LaunchScreen.xib` for iOS. Both can be found under`assets/base/release/splash\_screen/\<platform\>`.
 
 **Make sure the images have the same height, width and DPI as the images that you are overriding.**
 
@@ -43,4 +43,4 @@ For example, if you want the app to automatically provide a server URL and skip 
 }
 ```
 
-The above key/value pairs are taken from the original `config.json` file and since we don’t need to change anything else, we only included these two settings.
+The above key/value pairs are taken from the original `config.json` file. Since we don’t need to change anything else, we only included these two settings.

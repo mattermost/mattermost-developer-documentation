@@ -5,7 +5,7 @@ weight: 1
 subsection: Developer Setup
 ---
 
-### Errors When Running 'make run-android'
+#### Errors When Running 'make run-android'
 
 ##### Error message
 ```sh
@@ -15,13 +15,13 @@ React-native-vector-icons: cannot find dependencies
 ##### Solution
 Make sure the **Extras > Android Support Repository** package is installed with the Android SDK.
 
-#### Error message
+##### Error message
 ```sh
 Execution failed for task ':app:packageAllDebugClassesForMultiDex'.
 > java.util.zip.ZipException: duplicate entry: android/support/v7/appcompat/R$anim.class
 ```
 
-#### Solution
+##### Solution
 Clean the Android part of the mattermost-mobile project. Issue the following commands:
 
 1. ``cd android``
@@ -36,16 +36,16 @@ Execution failed for task ':app:installDebug'.
 ##### Solution
 The development version of the Mattermost app cannot be installed alongside a release version. Open ``android/app/build.gradle`` and change the applicationId from ``"com.mattermost.react.native"`` to a unique string for your app.
 
-#### Error Message
+##### Error Message
 ```
 [Error] Error: Compilation of µWebSockets has failed and there is no pre-compiled binary available for your system. Please install a supported C++11 compiler and reinstall the module 'uws'.
 ... looping infinitely ...
 ```
 ##### Solution
 
-Your most likely using the wrong version of npm. Recommended is 9.3.0.
+Your are most likely using the wrong version of npm. Recommended is 9.3.0.
 
-### Errors When Running 'make run-ios'
+#### Errors When Running 'make run-ios'
 
 ##### Error message
 ```sh
@@ -57,7 +57,7 @@ xcrun: error: unable to find utility "instruments", not a developer tool or in P
 - Launch XCode and agree to the terms first.
 - Go to **Preferences -> Locations** and you'll see an option to select a version of the Command Line Tools. Click the select box and choose any version to use.
 
-![](/img/mobile/xcode_preferences.png)
+![preferences](/img/mobile/xcode_preferences.png)
 
 - After this go back to the command line and run ``make run-ios`` again.
 
@@ -81,7 +81,7 @@ Unable to require openssl, install OpenSSL and rebuild ruby (preferred) or use n
 ```
 - Run `make run-ios` again
 
-### Errors When Running 'react-native packager'
+#### Errors When Running 'react-native packager'
 
 ##### Error message
 ```sh

@@ -15,5 +15,5 @@ variables.
 
 When building a custom version of the Mattermost mobile app, you will also need to host your own [Mattermost Push Notification Service](https://github.com/mattermost/mattermost-push-proxy) and make a few modifications to your Mattermost mobile app to be able to get push notifications.
 
-Follow [this steps](/contribute/mobile/push-notifications/) to receive push notifications in your custom app.
+Follow [these steps](/contribute/mobile/push-notifications/) to receive push notifications in your custom app.
 
