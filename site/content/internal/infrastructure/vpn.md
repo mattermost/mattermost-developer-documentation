@@ -7,7 +7,7 @@ weight: 20
 
 ## Setup VPN access
 
-VPN Server: https://vpn2.mattermost.com
+VPN Server: https://vpn.internal.mattermost.com
 
 * Access the Onelogin link sent in the invitation email
 

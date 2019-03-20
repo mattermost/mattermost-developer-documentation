@@ -82,7 +82,7 @@ touch src/index.jsx
 
 Then populate `src/index.jsx` with the following:
 ```js
-import React from 'react'
+import React from 'react';
 
 // Courtesy of https://feathericons.com/
 const Icon = () => <i className='icon fa fa-plug'/>;
