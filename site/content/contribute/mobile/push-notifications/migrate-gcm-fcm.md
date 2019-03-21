@@ -9,7 +9,7 @@ As of April 10, 2018, Google has deprecated the [Google Cloud Messaging (GCM) se
 
 The [Mattermost Push Notification Service](https://github.com/mattermost/mattermost-push-proxy/releases) version 5.8+ uses FCM to send Push notifications for Android.
 
-1. Upgrade your Mattermost Push Notification service to [version 5.8 or above](https://github.com/mattermost/mattermost-push-proxy/releases)
+1. [Upgrade your Mattermost Push Notification service](/contribute/mobile/push-notifications/service/#installing-upgrading)
 2. Go to the [Firebase Console](https://console.firebase.google.com) and select the project you've created. Once in the dashboard, go to the project settings and select **CLOUD MESSAGING**.
 ![image](/img/mobile/firebase_settings.png)
 ![image](/img/mobile/firebase_cloud_messaging.png)
