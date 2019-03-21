@@ -25,5 +25,5 @@ The server consists of several different Go packages:
 * `jobs` - Job server and scheduling
 * `model` - Definitions and helper functions for data models
 * `store` - Storage layer for interacting with caches and databases
-* `util` - Utility functions for various tasks
+* `utils` - Utility functions for various tasks
 * `web` - Serves static pages
