@@ -17,7 +17,7 @@ Now that the app can receive push notifications, we need to make sure that the M
 - Private and public keys obtained from the [Apple Developer Program](https://developer.apple.com/account/ios/certificate/).
 - A Firebase Cloud Messaging Server key obtained from the [Firebase Console](https://console.firebase.google.com).
 
-###### Installing & Upgrading
+###### Installing & Upgrading {#installing-upgrading}
 
 For the sake of making this guide simple we located the files at `/home/ubuntu/mattermost-push-proxy`. We've also elected to run the Push Notification Service as the `ubuntu` account for simplicity. We **recommend** setting up
 and running the service under a `mattermost-push-proxy` user account with limited permissions.
