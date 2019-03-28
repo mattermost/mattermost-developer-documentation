@@ -29,5 +29,5 @@ Homomorphic encryption is not ready for prime time. While there are [libraries](
 
 #### Conclusion
 
-For now, homomorphic encryption is in the realm of cryptographers. As concluded by Zhiniang Peng, using homomorphic encryption is extremely dangerous without a cryptography expert. While it would be really useful for a service such as Mattermost to provide better security guarantees, there is little point in implementing an experimental cryptosystem that can't reliably provide them. However, the field of homomorphic encryption is rapidly evolving and is certainly something we should keep our eye on at Mattermost.
+For now, homomorphic encryption is in the realm of cryptographers. As concluded by Zhiniang Peng, using homomorphic encryption is extremely dangerous without a cryptography expert. While it would be really useful for a service such as Mattermost to provide better security guarantees, there is little point in implementing an experimental cryptosystem that can't reliably provide them. However, the field of homomorphic encryption is rapidly evolving and is certainly something we will be keeping our eye on at Mattermost.
 
