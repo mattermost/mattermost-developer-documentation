@@ -38,6 +38,7 @@ weight: 110
 * Dylan Haussermann - QA
 
 ## Platform Team
+
 * George Goldberg - Eng Lead
 * Jesus Espino - Engineer
 * Martin Kraft - Engineer
@@ -47,17 +48,20 @@ weight: 110
 * Lindy Isherwood - QA
 
 ## Security Team
+
 * Christopher Speller - Engineer
 * George Goldberg - Eng Lead
 * Daniel Schalla - Engineer
 * Harrison Healey - Engineer
 
 ## UX Team
+
 * Michael Gamble - Designer
 * Asaad Mahmood - Designer
 * Andrew Brown - Designer
 * Eric Sethna - PM
 
 ## Other
+
 * Amy Blais - Release Manager/PM
 * Ogi Marusic - QA
