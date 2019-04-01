@@ -75,7 +75,7 @@ Below is the list of core committers working on Mattermost:
     - @miguel.delacruz on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.delacruz) and [@mgdelacroix](https://github.com/mgdelacroix) on GitHub
     - Dev areas: Elasticsearch, Web App, Server
 - **Gabe Jackson**
-    - @gabe.jackson on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.delacruz) and [@gabrieljackson](https://github.com/gabrieljackson) on GitHub
+    - @gabe.jackson on [community.mattermost.com](https://community.mattermost.com/core/messages/@gabe.jackson) and [@gabrieljackson](https://github.com/gabrieljackson) on GitHub
     - Dev areas: Server, Cloud, Kubernetes
 
 
