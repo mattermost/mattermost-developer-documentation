@@ -46,6 +46,12 @@ weight: 110
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
 
+## Security Team
+* Christopher Speller - Engineer
+* George Goldberg - Eng Lead
+* Daniel Schalla - Engineer
+* Harrison Healey - Engineer
+
 ## UX Team
 * Michael Gamble - Designer
 * Asaad Mahmood - Designer
