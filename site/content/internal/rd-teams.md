@@ -20,12 +20,13 @@ weight: 110
 * Miguel Alatzar - Engineer
 * Eric Sethna - PM
 * Linda - QA Lead
+* Andrew Brown - UX Designer
 
 ## Cloud Team
 
 * Joram Wilander - Eng Lead
 * Jesse Hallam - Engineer
-* Carlos Panato - Engineer/DevOps
+* Carlos Panato - Engineer/Infrastructure
 * Brad Coughlin - Engineer
 * Gabe Jackson - Engineer
 * Katie Wiersgalla - PM
@@ -36,6 +37,7 @@ weight: 110
 * Christopher Speller - Engineer
 * Jason Blais - PM
 * Dylan Haussermann - QA
+* Asaad Mahmood - UX Designer
 
 ## Platform Team
 
@@ -46,6 +48,7 @@ weight: 110
 * Miguel de la Cruz - Engineer
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
+* Michael Gamble - UX Designer
 
 ## Security Team
 
@@ -53,13 +56,7 @@ weight: 110
 * George Goldberg - Eng Lead
 * Daniel Schalla - Engineer
 * Harrison Healey - Engineer
-
-## UX Team
-
-* Michael Gamble - Designer
-* Asaad Mahmood - Designer
-* Andrew Brown - Designer
-* Eric Sethna - PM
+* Katie Wiersgalla - PM
 
 ## Other
 
