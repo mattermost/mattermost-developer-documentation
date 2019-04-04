@@ -19,7 +19,7 @@ weight: 110
 * Dean Whillier - Engineer
 * Miguel Alatzar - Engineer
 * Eric Sethna - PM
-* Linda - QA Lead
+* Linda Mitchell - QA Lead
 * Andrew Brown - UX Designer
 
 ## Cloud Team
