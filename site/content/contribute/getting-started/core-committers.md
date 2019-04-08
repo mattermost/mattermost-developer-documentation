@@ -58,7 +58,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Plugins, Integrations, Security
 - **Lev Brouk**
     - @lev.brouk on [community.mattermost.com](https://community.mattermost.com/core/messages/@lev.brouk) and [@levb](https://github.com/levb) on GitHub
-    - Dev areas: Developer toolkit, performance
+    - Dev areas: Extensions
 - **Brad Coughlin**
     - @brad on [community.mattermost.com](https://community.mattermost.com/core/messages/@brad) and [@bradjcoughlin](https://github.com/bradjcoughlin) on GitHub
     - Dev areas: Web App, React, Redux
@@ -77,6 +77,9 @@ Below is the list of core committers working on Mattermost:
 - **Gabe Jackson**
     - @gabe.jackson on [community.mattermost.com](https://community.mattermost.com/core/messages/@gabe.jackson) and [@gabrieljackson](https://github.com/gabrieljackson) on GitHub
     - Dev areas: Server, Cloud, Kubernetes
+- **Jason Frerich**
+    - @jason.frerich on [community.mattermost.com](https://community.mattermost.com/core/messages/@jason.frerich) and [@jfrerich](https://github.com/jfrerich) on GitHub
+    - Dev areas: Extensions
 
 
 Below is the list of core developers working on individual Mattermost repositories:
