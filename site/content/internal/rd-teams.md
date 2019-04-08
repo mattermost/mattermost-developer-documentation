@@ -34,6 +34,7 @@ weight: 110
 ## Extensibility Team
 
 * Lev Brouk - Eng Lead
+* Jason Frerich - Engineer
 * Christopher Speller - Engineer
 * Jason Blais - PM
 * Dylan Haussermann - QA
