@@ -1,5 +1,5 @@
 ---
-title: "Code Reviews"
+title: "Code Review"
 date: 2018-03-06T00:00:00-04:00
 weight: 5
 subsection: Getting Started
