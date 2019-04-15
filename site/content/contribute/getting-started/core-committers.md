@@ -133,3 +133,13 @@ The core team also has QA testers who verify the correct functionality of the pr
     - @lindy.isherwood on [community.mattermost.com](https://community.mattermost.com/core/messages/@lindy.isherwood) and [@lindy65](https://github.com/lindy65) on GitHub
 - **Ogi Marušić**
     - @ogi.marusic on [community.mattermost.com](https://community.mattermost.com/core/messages/@ogi.marusic)
+
+Community Managers
+------------------
+
+Community managers work with community members to move tickets and pull requests through our design and review process. They are:
+
+- **Jason Blais**
+    - @jason on [community.mattermost.com](https://community.mattermost.com/core/messages/@jason) and [@jasonblais](https://github.com/jasonblais) on GitHub
+- **Hanzei**
+    - @hanzei on [community.mattermost.com](https://community.mattermost.com/core/messages/@hanzei) and [@hanzei](https://github.com/hanzei) on GitHub
