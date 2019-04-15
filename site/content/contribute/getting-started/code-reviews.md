@@ -8,13 +8,16 @@ subsection: Getting Started
 All changes to the product must be reviewed.
 
 * User experience changes must be reviewed by a [product manager](/contribute/getting-started/core-committers/#product-managers).
-* Code changes must be reviewed by at least two [core committers](http://localhost:1313/contribute/getting-started/core-committers/#core-committers).
-* Documentation changes should be reviewed by a [product manager](/contribute/getting-started/core-committers/#product-managers) and at least one [core committer](/contribute/getting-started/core-committers/#core-committers).
+* Code changes must be reviewed by at least two [core committers](/contribute/getting-started/core-committers/#core-committers).
+* Documentation changes must be reviewed by a [product manager](/contribute/getting-started/core-committers/#product-managers).
+  * Product managers may ask for reviews from [core committers](/contribute/getting-started/core-committers/#core-committers) and [QA testers](/contribute/getting-started/core-committers/#qa-testers) as required.
+* All changes may optionally be verified by a [QA tester](/contribute/getting-started/core-committers/#qa-testers).
 
 If you are not a core committer
 -------------------------------
 
 1. Submit your pull request.
+    * Follow the [contribution checklist](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/)
 2. Reach out to the author of the ticket your PR resolves.
     * Typically this means [mentioning](https://help.github.com/en/articles/basic-writing-and-formatting-syntax#mentioning-people-and-teams) their username as a comment on the pull request.
     * Product managers and core committers are often on the lookout for new PRs, and may handle this for you automatically.
@@ -23,6 +26,7 @@ If you are not a core committer
     * The ticket author, another core committer or a product manager will assign reviewers and label your pull request appropriately.
     * Expect some interaction with at least one reviewer within 5 business days.
     * Keep in mind that Mattermost Core Committers are geographically distributed around the world and likely in a different time zone than your own.
+    * Please ping a [community manager](/contribute/getting-started/core-committers/#community-managers) after 5 business days if no interaction has occurred.
 4. Make any necessary changes.
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
     * Once you've addressed the concerns, reach out with another mention or via our community server.
@@ -33,9 +37,11 @@ If you are a core committer seeking a review
 --------------------------------------------
 
 1. Submit your pull request.
+    * Follow the [contribution checklist](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/)
 2. Assign a [product manager](/contribute/getting-started/core-committers/#product-managers) to your review and label your pull request with `1: PM Review`.
     * If your changes do not affect the user experience, you may skip this step.
     * Wait for their review before continuing, to avoid churn if changes are requested.
+    * Note that product managers may assign core committers after completing their own review.
 3. Assign two [core committers](/contribute/getting-started/core-committers/) to your review and label your pull request with `2: Dev Review`.
     * When picking your first core committer, consider someone with domain expertise relative to your changes. Sometimes GitHub will recommend a recent editor of the code, but often you must rely on your own intuition from past interactions.
     * When picking your second core committer, consider someone unrelated to your changes. A fresh and unbiased set of eyes can be invaluable, and exposing the team to new parts of the code helps spread out domain knowledge.
@@ -71,7 +77,7 @@ If you are a core committer seeking a review
 If you are a core committer asked to give a review
 --------------------------------------------------
 
-1. Respond quickly to requested reviews.
+1. Respond promptly to requested reviews.
     * Assume the requested review is urgent and blocking unless explicitly stated otherwise.
     * Try to interact with the author within 2 business days.
     * Configure the GitHub plugin to automate notifications.
