@@ -11,10 +11,10 @@ All changes to the product must be reviewed.
 * Code changes must be reviewed by at least two [core committers](/contribute/getting-started/core-committers/#core-committers).
 * Documentation changes must be reviewed by a [product manager](/contribute/getting-started/core-committers/#product-managers).
   * Product managers may ask for reviews from [core committers](/contribute/getting-started/core-committers/#core-committers) and [QA testers](/contribute/getting-started/core-committers/#qa-testers) as required.
-* All changes may optionally be verified by a [QA tester](/contribute/getting-started/core-committers/#qa-testers).
+* Any change may be verified by a [QA tester](/contribute/getting-started/core-committers/#qa-testers) as required.
 
-If you are not a core committer
--------------------------------
+If you are a community member seeking a review
+----------------------------------------------
 
 1. Submit your pull request.
     * Follow the [contribution checklist](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/)
@@ -31,6 +31,7 @@ If you are not a core committer
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
     * Once you've addressed the concerns, reach out with another mention or via our community server.
 5. Wait for your code to be merged.
+    * Larger pull requests may require more time to review.
     * Once all reviewers have approved your changes, they will handle merging your code.
 
 If you are a core committer seeking a review
@@ -40,6 +41,7 @@ If you are a core committer seeking a review
     * Follow the [contribution checklist](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/)
 2. Assign a [product manager](/contribute/getting-started/core-committers/#product-managers) to your review and label your pull request with `1: PM Review`.
     * If your changes do not affect the user experience, you may skip this step.
+    * Product managers ensure the changes meet [user experience guidelines](https://docs.mattermost.com/developer/fx-guidelines.html).
     * Wait for their review before continuing, to avoid churn if changes are requested.
     * Note that product managers may assign core committers after completing their own review.
 3. Assign two [core committers](/contribute/getting-started/core-committers/) to your review and label your pull request with `2: Dev Review`.
@@ -53,8 +55,12 @@ If you are a core committer seeking a review
     * Not every pull request requires QA Review. Prioritize large features or material changes to the product for QA review.
     * Pull requests labelled with `QA Review` automatically notify the QA team at large.
     * Reviews by QA may occur at the same time as review by core committers.
-5. If this pull request is meant for a quality or patch release, apply the `CherryPickApproved` label.
-    * If there is uncertainty on the approval, apply the `CherryPickCandidate` label instead.
+5. Apply additional labels as necessary:
+    * `CherryPickApproved`: Apply this if the pull request is meant for a quality or patch release.
+    * `CherryPickCandidate`: Apply this if there is uncertainty on the cherry-pick approval.
+    * `Awaiting PR`: Apply this if the pull requests depends on another (e.g. server changes)
+    * `Setup Test Server`: Apply this if the changes should be tested on a newly built test server.
+    * See [labels](/contribute/getting-started/labels) for more details.
 6. Wait for a review.
     * Expect some interaction with each of your reviewers within 2 business days.
     * There is no need to explicitly mention them on the pull request, or to explicitly reach out on our community server.
