@@ -5,7 +5,7 @@ weight: 4
 subsection: Getting Started
 ---
 
-A core committer is a maintainer on the Mattermost project that has merge access to the Mattermost repositories. They are responsible for reviewing pull requests, cultivating the Mattermost developer community and guiding the technical vision of Mattermost. If you have a question or need some help, these are the people to ask.
+A core committer is a maintainer on the Mattermost project that has merge access to Mattermost repositories. They are responsible for reviewing pull requests, cultivating the Mattermost developer community, and guiding the technical vision of Mattermost. If you have a question or need some help, these are the people to ask.
 
 Core Committers
 ---------------
@@ -107,7 +107,7 @@ Below is the list of community moderators who share feedback and answer question
     - @sousapro on [community.mattermost.com](https://community.mattermost.com/core/messages/@sousapro) and [@Sousapro](https://forum.mattermost.org/u/sousapro/summary) on Forum
 - **<a name="ahmad.danial">Ahmad Danial</a>**
     - @ahmaddanial on [community.mattermost.com](https://community.mattermost.com/core/messages/@ahmaddanial) and [@dannymohammad](https://github.com/dannymohammad) on GitHub
-- **<a name="@sadb">@sadb</a>**
+- **<a name="sadb">@sadb</a>**
     - @sadb on [community.mattermost.com](https://community.mattermost.com/core/messages/@sadb)
 
 Product Managers
