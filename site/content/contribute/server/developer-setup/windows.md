@@ -57,7 +57,7 @@
 8. Start the server and test your environment:
 
     ```sh
-    cd $(go env GOPATH)/mattermost/mattermost-server
+    cd $(go env GOPATH)/src/github.com/mattermost/mattermost-server
     make run-server
     curl http://localhost:8065/api/v4/system/ping
     make stop-server

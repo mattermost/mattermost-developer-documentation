@@ -16,7 +16,7 @@ subsection: "Desktop App"
 After installation, dependencies of `src/` directory are also installed.
 
 ```
-$ yarn
+$ npm install
 ```
 
 ## Building
