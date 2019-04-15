@@ -26,7 +26,7 @@ If you are a community member seeking a review
     * The ticket author, another core committer or a product manager will assign reviewers and label your pull request appropriately.
     * Expect some interaction with at least one reviewer within 5 business days.
     * Keep in mind that Mattermost Core Committers are geographically distributed around the world and likely in a different time zone than your own.
-    * Please ping a [community manager](/contribute/getting-started/core-committers/#community-managers) after 5 business days if no interaction has occurred.
+    * Please ping [Jason Blais](/contribute/getting-started/core-committers/#jason.blais) or [Hanzei](/contribute/getting-started/core-committers/#hanzei) after 5 business days if no interaction has occurred.
 4. Make any necessary changes.
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
     * Once you've addressed the concerns, reach out with another mention or via our community server.
