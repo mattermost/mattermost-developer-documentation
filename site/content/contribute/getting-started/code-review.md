@@ -56,9 +56,9 @@ If you are a core committer seeking a review
     * Pull requests labelled with `QA Review` automatically notify the QA team at large.
     * Reviews by QA may occur at the same time as review by core committers.
 5. Apply additional labels as necessary:
-    * `CherryPickApproved`: Apply this if the pull request is meant for a quality or patch release.
-    * `CherryPickCandidate`: Apply this if there is uncertainty on the cherry-pick approval.
-    * `Awaiting PR`: Apply this if the pull requests depends on another (e.g. server changes)
+    * `CherryPick/Approved`: Apply this if the pull request is meant for a quality or patch release.
+    * `CherryPick/Candidate`: Apply this if there is uncertainty on the cherry-pick approval.
+    * `Do Not Merge/Awaiting PR`: Apply this if the pull requests depends on another (e.g. server changes)
     * `Setup Test Server`: Apply this if the changes should be tested on a newly built test server.
     * See [labels](/contribute/getting-started/labels) for more details.
 6. Wait for a review.
@@ -73,7 +73,7 @@ If you are a core committer seeking a review
     * Remove the `1: PM Review`, `2: Dev Revew` and `QA Review` labels, and assign the `3: Ready to Merge` label.
     * Merge your pull request and delete the branch if not from a fork.
     * Note that the last core committer to approve your changes may do this on your behalf.
-    * If your pull request depends on other pull requests, consider assigning the `Awaiting PR` label.
+    * If your pull request depends on other pull requests, consider assigning the `Do Not Merge/Awaiting PR` label.
 9. Handle any cherry-picks.
     * Cherry-pick the commit from `master` to the affected releases.
     * Push your changes directly to the remote branch.
@@ -101,6 +101,6 @@ If you are a core committer asked to give a review
 4. Merge the pull request.
     * Remove the `1: PM Review` and `2: Dev Revew` labels and assign the `3: Ready to Merge` label.
     * Merge the pull request, and delete the branch if not from a fork.
-    * Some changes are spread out across multiple PRs that should be merged at the same time. Look out for the `Awaiting PR` label. When in doubt, leave the merging of the pull request to the author.
+    * Some changes are spread out across multiple PRs that should be merged at the same time. Look out for the `Do Not Merge/Awaiting PR` label. When in doubt, leave the merging of the pull request to the author.
 5. Handle any cherry-picks.
     * Typically, the author of the pull request should handle cherry-picks. Assume this is the case unless you are explicitly asked to help cherry-pick.
