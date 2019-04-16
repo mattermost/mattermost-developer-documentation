@@ -69,7 +69,7 @@ If you are a core committer seeking a review
     * Core committers and QA testers are expected to have the GitHub plugin installed to automate notifications and to trigger a daily review of their outstanding requested reviews.
 8. Make any necessary changes.
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
-    * Once you've addressed the concerns, assign them as a reviewer again to put your pull request back on their plate.
+    * Once you've addressed the concerns, assign them as a reviewer again to put your pull request back in their queue.
 9. Merge the pull request.
     * Only merge once all concerns have been addressed, any reviewing product manager has approved the changes, any reviewing QA tester has approved the changes, and at least two core committers have approved.
     * Remove the `1: PM Review`, `2: Dev Revew` and `QA Review` labels and assign the `3: Ready to Merge` label.
