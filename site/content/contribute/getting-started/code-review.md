@@ -18,9 +18,9 @@ If you are a community member seeking a review
 
 1. Submit your pull request.
     * Follow the [contribution checklist](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/).
-2. Reach out to the author of the ticket your PR resolves.
-    * Typically this means [mentioning](https://help.github.com/en/articles/basic-writing-and-formatting-syntax#mentioning-people-and-teams) their username as a comment on the pull request.
-    * Product managers and core committers are often on the lookout for new PRs, and may handle this for you automatically.
+2. Wait for a reviewer to be assigned.
+    * Product managers are on the lookout for new pull requests, and usually handle this for you automatically.
+    * If you have been working alongside a core committer, feel free to ping them directly.
     * When in doubt, ask for help in the [Developers](https://community.mattermost.com/core/channels/developers) channel on our community server.
 3. Wait for a review.
     * The ticket author, a core committer, or a product manager will assign reviewers and label your pull request appropriately.
@@ -103,6 +103,6 @@ If you are a core committer asked to give a review
 4. Merge the pull request.
     * Remove the `1: PM Review` and `2: Dev Revew` labels and assign the `3: Ready to Merge` label.
     * Merge the pull request, and delete the branch if not from a fork.
-    * Some changes are spread out across multiple PRs that should be merged at the same time. Look out for the `Do Not Merge/Awaiting PR` label. When in doubt, leave the merging of the pull request to the author.
+    * Some changes are spread out across multiple pull requests that should be merged at the same time. Look out for the `Do Not Merge/Awaiting PR` label. When in doubt, leave the merging of the pull request to the author.
 5. Handle any cherry-picks.
     * Typically, the author of the pull request should handle cherry-picks. Assume this is the case unless you are explicitly asked to help cherry-pick.
