@@ -183,3 +183,13 @@ Ensure you are emitting the `Content-Type: application/json` header, otherwise y
 #### Are slash commands Slack-compatible?
 
 See the [admin guide's notes on Slack compatibillity](https://docs.mattermost.com/developer/slash-commands.html#slack-compatibility).
+
+#### How do I use Bot Accounts to reply to slash commands?
+
+##### If you are developing a integration
+- Set up a [Personal Access Token](https://docs.mattermost.com/developer/personal-access-tokens.html) for the Bot Account you want to reply with.
+- Use the [REST API](https://api.mattermost.com/) to create a post with the Access Token.
+
+##### If you are developing a plugin
+
+Use [`CreatePost`](https://developers.mattermost.com/extend/plugins/server/reference/#API.CreatePost). Make sure to set the  `UserId` of the post to the `UserId` of the Bot Account. If you want to want to create an ephemeral post, use [`SendEphemeralPost`](https://developers.mattermost.com/extend/plugins/server/reference/#API.SendEphemeralPost) instead.
