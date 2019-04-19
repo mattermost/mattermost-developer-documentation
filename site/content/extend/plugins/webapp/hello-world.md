@@ -27,7 +27,7 @@ cd webapp
 Install the necessary NPM dependencies:
 
 ```bash
-npm install --save-dev webpack webpack-cli babel-loader babel-core babel-preset-env babel-preset-react
+npm install --save-dev @babel/core @babel/preset-env @babel/preset-react babel-loader webpack webpack-cli
 npm install --save react
 ```
 
@@ -55,7 +55,17 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['env', 'react'],
+                        presets: ['@babel/preset-react',
+                            [
+                                "@babel/preset-env",
+                                {
+                                    "modules": "commonjs",
+                                    "targets": {
+                                        "node": "current"
+                                    }
+                                }
+                            ]
+                        ],
                     },
                 },
             },
