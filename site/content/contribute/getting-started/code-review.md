@@ -29,7 +29,7 @@ If you are a community member seeking a review
     * Please ping [Jason Blais](/contribute/getting-started/core-committers/#jason.blais) or [Hanzei](/contribute/getting-started/core-committers/#hanzei) after 5 business days if no interaction has occurred.
 4. Make any necessary changes.
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
-    * Once you've addressed the concerns, reach out with another mention or via our community server.
+    * Once you've addressed the concerns, reach out with another mention.
 5. Wait for your code to be merged.
     * Larger pull requests may require more time to review.
     * Once all reviewers have approved your changes, they will handle merging your code.
