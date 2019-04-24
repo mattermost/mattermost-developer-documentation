@@ -186,10 +186,10 @@ See the [admin guide's notes on Slack compatibillity](https://docs.mattermost.co
 
 #### How do I use Bot Accounts to reply to slash commands?
 
-##### If you are developing a integration
+##### If you are developing an integration
 - Set up a [Personal Access Token](https://docs.mattermost.com/developer/personal-access-tokens.html) for the Bot Account you want to reply with.
-- Use the [REST API](https://api.mattermost.com/) to create a post with the Access Token.
+- Use the [REST API](https://api.mattermost.com/#tag/posts%2Fpaths%2F~1posts%2Fpost) to create a post with the Access Token.
 
 ##### If you are developing a plugin
 
-Use [`CreatePost`](https://developers.mattermost.com/extend/plugins/server/reference/#API.CreatePost). Make sure to set the  `UserId` of the post to the `UserId` of the Bot Account. If you want to want to create an ephemeral post, use [`SendEphemeralPost`](https://developers.mattermost.com/extend/plugins/server/reference/#API.SendEphemeralPost) instead.
+Use [`CreatePost`](https://developers.mattermost.com/extend/plugins/server/reference/#API.CreatePost) plugin API. Make sure to set the  `UserId` of the post to the `UserId` of the Bot Account. If you want to create an ephemeral post, use [`SendEphemeralPost`](https://developers.mattermost.com/extend/plugins/server/reference/#API.SendEphemeralPost) plugin API instead.
