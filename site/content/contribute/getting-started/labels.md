@@ -36,8 +36,8 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 * `CherryPick/Done`: Successfully cherry-picked to the quality or patch release tracked in the milestone.
 * `Do Not Merge`: Should not be merged until this label is removed.
 * `Do Not Merge/Awaiting PR`: Awaiting another pull request before merging (e.g. server changes).
-* `Do Not Merge/Awaiting loadtest`: Must be loadtested before it can be merged.
-* `Do Not Merge/Awaiting next release`: To be merged with the next release (e.g. API documentation updates).
+* `Do Not Merge/Awaiting Loadtest`: Must be loadtested before it can be merged.
+* `Do Not Merge/Awaiting Next Release`: To be merged with the next release (e.g. API documentation updates).
 * `Docs/Done`: Required documentation has been written.
 * `Docs/Needed`: Requires documentation.
 * `Docs/Not Needed`: Does not require documentation.
