@@ -8,7 +8,7 @@ subsection: Getting Started
 We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to track the details and lifecycle of issues and pull requests.
 
 # Issue Labels
-* `Area/<name>`: Involves changes to the named area (APIv4, Add E2E Tests, Plugins, etc.)
+* `Area/<name>`: Involves changes to the named area (APIv4, Add E2E Tests, Localization, Plugins, etc.)
 * `Difficulty/1:easy`: Easy ticket.
 * `Difficulty/2:medium`: Medium ticket.
 * `Difficulty/3:hard`: Hard ticket.
@@ -16,7 +16,6 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 * `Framework/<name>`: Requires using the named framework (ReactJS, Redux, etc.)
 * `Help Wanted`: Community help wanted.
 * `Language/<name>`: Requires writing in the named language (Go, JavaScript, etc.)
-* `Localization`: Relates to translating the user interface.
 * `Move to Feature Ideas forum`: Marked for relocation to the feature ideas forum.
 * `Move to Troubleshooting`: Marked for relocation to the troubleshooting section of the documentation.
 * `PR Submitted`: A pull request has been opened for this issue.
