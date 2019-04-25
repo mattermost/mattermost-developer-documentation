@@ -19,7 +19,6 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 * `Move to Feature Ideas forum`: Marked for relocation to the feature ideas forum.
 * `Move to Troubleshooting`: Marked for relocation to the troubleshooting section of the documentation.
 * `PR Submitted`: A pull request has been opened for this issue.
-* `Repository/<name>`: Requires changes in the named respository.
 * `Up for Grabs`: Ready for help from the community. Removed when someone volunteers.
 
 # Pull Request Labels
