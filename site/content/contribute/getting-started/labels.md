@@ -44,7 +44,6 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 * `Lifecycle/<state>`: An [inactive contribution](/contribute/getting-started/inactive-contributions/).
 * `Loadtest`: Triggers an automatic load test.
 * `Major Change`: The pull request is a major feature or affects large areas of the code base (e.g. [moving channel store and actions to Redux](https://github.com/mattermost/platform/pull/6235)).
-* `Need submitted action to join approved contributor list`
 * `QA Review`: Requires review by a [QA tester](/contribute/getting-started/core-committers/#qa-testers).
 * `Setup Test Server`: Triggers the creation of a test server.
 * `Setup Upgrade Test Server`: Triggers the creation a test server and performs an upgrade.
