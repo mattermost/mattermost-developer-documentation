@@ -41,10 +41,7 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 * `Docs/Not Needed`: Does not require documentation.
 * `Hackfest`: Related to a Mattermost hackathon.
 * `Hacktoberfest`: Related to [Hacktoberfest](https://hacktoberfest.digitalocean.com/).
-* `Lifecycle/1:stale`: Inactive for 14 days.
-* `Lifecycle/2:inactive`: Inactive for 28 days.
-* `Lifecycle/3:orphaned`: Inactive for 58 days, and may be closed.
-* `Lifecycle/frozen`: Ignores the normal lifecycle flow.
+* `Lifecycle/<state>`: An [inactive contribution](/contribute/getting-started/inactive-contributions/).
 * `Loadtest`: Triggers an automatic load test.
 * `Major Change`: The pull request is a major feature or affects large areas of the code base (e.g. [moving channel store and actions to Redux](https://github.com/mattermost/platform/pull/6235)).
 * `Need submitted action to join approved contributor list`
