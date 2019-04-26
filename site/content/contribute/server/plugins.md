@@ -11,7 +11,7 @@ This document covers the plugin infrastructure and how to contribute to it.
 
 ## Building Plugins
 
-Looking to build a plugin? [Then you want the plugin author documenation.](/extend/plugins)
+Looking to build a plugin? [Then you want the plugin author documentation.](/extend/plugins)
 
 ## Overview
 
@@ -19,9 +19,9 @@ Plugins are generally made of at least two parts: a manifest and a server binary
 
 The manifest tells Mattermost what the plugin is and provides a set of metadata used by the server to install and run the plugin. Please see the [manifest reference](/extend/plugins/manifest-reference) for more information. Manifests may be defined in JSON or YAML.
 
-The server binary is a compiled (generally Go) program that extends the [MattermostPlugin](https://godoc.org/github.com/mattermost/mattermost-server/plugin#MattermostPlugin) struct of the [plugin](https://godoc.org/github.com/mattermost/mattermost-server/plugin) package. When enabled, the plugin's server binary is started as a process by the Mattermost server. Plugin builders then have access to interact with the Mattermost over RPC through the plugin [API](https://godoc.org/github.com/mattermost/mattermost-server/plugin#API) and [Hooks](https://godoc.org/github.com/mattermost/mattermost-server/plugin#Hooks). The server-side of plugins is built using the [go-plugin](https://github.com/hashicorp/go-plugin) library from Hashicorp. More information is available on the [server-side of plugins in the author documentation](/extend/plugins/server).
+The server binary is a compiled (generally Go) program that extends the [MattermostPlugin](https://godoc.org/github.com/mattermost/mattermost-server/plugin#MattermostPlugin) struct of the [plugin](https://godoc.org/github.com/mattermost/mattermost-server/plugin) package. When enabled, the plugin's server binary is started as a process by the Mattermost server. Plugin builders then have access to interact with the Mattermost server over RPC through the plugin [API](https://godoc.org/github.com/mattermost/mattermost-server/plugin#API) and [Hooks](https://godoc.org/github.com/mattermost/mattermost-server/plugin#Hooks). The server-side of plugins is built using the [go-plugin](https://github.com/hashicorp/go-plugin) library from Hashicorp. More information is available in the [server side of the plugin author documentation](/extend/plugins/server).
 
-The JavaScript bundle is a webpack-built collection of JavaScript code that will be run on the Mattermost web/desktop apps. When a plugin is enabled, the client is notified and it makes a request to add the JS bundle to the document. The plugin's client code then registers itself and components with the Mattermost client through the client's [plugin registry](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/registry.js). The registry contains many methods for registering different components and callbacks. These are all stored as part of the app's [plugin reducer](https://github.com/mattermost/mattermost-webapp/blob/master/reducers/plugins/index.js). The [Pluggable](https://github.com/mattermost/mattermost-webapp/tree/master/plugins/pluggable) component is then inserted into various places in the app, allowing plugins to insert components into these locations in the UI. In some special cases, the Pluggable component is not used and we instead implement the plugs manually. More information is available on the [web app side of plugins in the author documenation](/extend/plugins/webapp).
+The JavaScript bundle is a webpack-built collection of JavaScript code that will be run on the Mattermost web/desktop apps. When a plugin is enabled, the client is notified and it makes a request to add the JS bundle to the document. The plugin's client code then registers itself and its components with the Mattermost client through the client's [plugin registry](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/registry.js). The registry contains many methods for registering different components and callbacks. These are all stored as part of the app's [plugin reducer](https://github.com/mattermost/mattermost-webapp/blob/master/reducers/plugins/index.js). The [Pluggable](https://github.com/mattermost/mattermost-webapp/tree/master/plugins/pluggable) component is then inserted into various places in the app, allowing plugins to insert components into these locations in the UI. In some special cases, the Pluggable component is not used and we instead implement the plugs manually. More information is available in the [webapp side of the plugin author documentation](/extend/plugins/webapp).
 
 In the future there will be another component of plugins for the mobile apps, likely a React Native bundle.
 
@@ -37,4 +37,4 @@ That's it! Submit your pull request.
 
 ## Questions?
 
-If you have any questions, feel free to ask in the [Developer Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) of our Mattermost community instance.
+If you have any questions, feel free to ask in the [Extensions channel](https://community.mattermost.com/core/channels/developer-toolkit) of our Mattermost community instance.
