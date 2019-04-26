@@ -12,7 +12,7 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 * `Difficulty/1:easy`: Easy ticket.
 * `Difficulty/2:medium`: Medium ticket.
 * `Difficulty/3:hard`: Hard ticket.
-* `First Good Issue`: Suitable for first-time contributors.
+* `Good First Issue`: Suitable for first-time contributors.
 * `Framework/<name>`: Requires using the named framework (ReactJS, Redux, etc.)
 * `Help Wanted`: Community help wanted.
 * `Language/<name>`: Requires writing in the named language (Go, JavaScript, etc.)
