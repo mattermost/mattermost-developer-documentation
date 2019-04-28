@@ -74,6 +74,18 @@ After that, you can generate random data to populate the Mattermost database usi
 mattermost sampledata
 ```
 
+You can create an account using the following command:
+
+```
+mattermost user create --email user@example.com --username test1 --password mypassword
+```
+
+Optionally, you can make that account a System Admin with the following command:
+
+```
+mattermost user create --email user@example.com --username test1 --password mypassword --system_admin
+```
+
 ### Testing email notifications
 
 When Docker starts, the SMTP server is available on port 2500. Username and password are not required.
