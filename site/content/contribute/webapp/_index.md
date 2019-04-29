@@ -14,7 +14,7 @@ https://github.com/mattermost/mattermost-webapp
 
 ## Help Wanted
 
-[Find help wanted tickets here.](https://github.com/mattermost/mattermost-server/issues?q=is%3Aopen+is%3Aissue+label%3AReactJS+label%3A%22Up+For+Grabs%22)
+[Find help wanted tickets here.](https://mattermost.com/pl/help-wanted-mattermost-webapp)
 
 ## Folder Structure
 
