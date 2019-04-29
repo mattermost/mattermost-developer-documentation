@@ -16,4 +16,4 @@ https://community.mattermost.com/core/channels/desktop-app
 
 ## Help Wanted
 
-[Find help wanted tickets here.](https://mattermost.com/pl/help-wanted-mattermost-server)
+[Find help wanted tickets here.](https://mattermost.com/pl/help-wanted-desktop)
