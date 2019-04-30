@@ -83,6 +83,9 @@ Below is the list of core committers working on Mattermost:
 - **<a name="jason.frerich">Jason Frerich</a>**
     - @jason.frerich on [community.mattermost.com](https://community.mattermost.com/core/messages/@jason.frerich) and [@jfrerich](https://github.com/jfrerich) on GitHub
     - Dev areas: Extensions
+- **<a name="stylianos.rigas">Stylianos Rigas</a>**
+    - @stylianos.rigas on [community.mattermost.com](https://community.mattermost.com/core/messages/@jason.frerich) and [@stylianosrigas](https://github.com/stylianosrigas) on GitHub
+    - Dev areas: Kubernetes, Helm, Infrastructure
 
 Core Developers
 ---------------
