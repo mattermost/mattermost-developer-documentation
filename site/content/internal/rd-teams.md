@@ -29,6 +29,7 @@ weight: 110
 * Carlos Panato - Engineer/Infrastructure
 * Brad Coughlin - Engineer
 * Gabe Jackson - Engineer
+* Stylianos Rigas - Engineer/Infrastructure
 * Katie Wiersgalla - PM
 
 ## Extensibility Team
