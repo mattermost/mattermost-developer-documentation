@@ -60,6 +60,12 @@ weight: 110
 * Harrison Healey - Engineer
 * Katie Wiersgalla - PM
 
+## Ops/Infra Team
+
+* Daniel Schalla - Engineer/Security
+* Stylianos Rigas - Engineer/Infrastructure
+* Carlos Panato - Engineer/Infrastructure
+
 ## Other
 
 * Amy Blais - Release Manager/PM
