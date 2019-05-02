@@ -34,13 +34,13 @@ weight: 110
 
 ## Extensibility Team
 
-* Jason Blais - PM
 * Lev Brouk - Eng Lead
+* Christopher Speller - Engineer
 * Jason Frerich - Engineer
+* Christopher Poile - Engineer
+* Jason Blais - PM
 * Dylan Haussermann - QA
 * Asaad Mahmood - UX Designer
-* Christopher Poile - Engineer
-* Christopher Speller - Engineer
 
 ## Platform Team
 
