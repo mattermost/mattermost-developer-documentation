@@ -37,7 +37,7 @@ Below is the list of core committers working on Mattermost:
     - @uberchris on [community.mattermost.com](https://community.mattermost.com/core/messages/@uberchris) and [@csduarte](https://github.com/csduarte) on GitHub
 - **<a name="carlos.panato">Carlos Panato</a>**
     - @cpanato on [community.mattermost.com](https://community.mattermost.com/core/messages/@cpanato) and [@cpanato](https://github.com/cpanato) on GitHub
-    - Dev areas: Web App, Redux, REST API, WebSocket Events, Kubernetes
+    - Dev areas: REST API, WebSocket Events, Kubernetes, Infrastructure, Build/Releases
 - **<a name="martin.kraft">Martin Kraft</a>**
     - @martin.kraft on [community.mattermost.com](https://community.mattermost.com/core/messages/@martin.kraft) and [@mkraft](https://github.com/mkraft) on GitHub
     - Dev areas: Permissions, Compliance, Redux, Web App, Emoji
