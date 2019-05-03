@@ -14,7 +14,7 @@ If you're on macOS and have Brew installed, you can just `brew install vault`. O
 Once installed, you'll need to configure it. Add the following to your .bash_profile or .zshrc:
 
 ```
-export VAULT_ADDR='https://vault.mattermost.com'
+export VAULT_ADDR='https://vault.internal.mattermost.com:8200'
 ```
 
 ## Authenticating
