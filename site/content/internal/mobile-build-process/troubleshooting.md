@@ -16,7 +16,7 @@ the *prepare* script used by `mattermost-redux` thus the library will not built 
 mobile build to fail.
 
    - ssh to the build machine (MacStadium)
-   - ``cd ~/workspace/mm/mattermost-mobile-prod-release``
+   - ``cd ~/workspace/mm/mattermost-mobile-prod-release/mattermost-mobile``
    - ``rm -rf node_modules``
    - ``npm cache clean --force``
    - ``npm i``
