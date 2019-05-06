@@ -16,7 +16,7 @@ https://community.mattermost.com/core/channels/redux
 
 ## Help Wanted
 
-[Find help wanted tickets here.](https://github.com/mattermost/mattermost-server/issues?q=is%3Aopen+is%3Aissue+label%3ARedux+label%3A%22Up+For+Grabs%22)
+[Find help wanted tickets here.](https://mattermost.com/pl/help-wanted-mattermost-redux)
 
 ## Background reading
 

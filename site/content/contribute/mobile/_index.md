@@ -18,4 +18,4 @@ https://community.mattermost.com/core/channels/native-mobile-apps
 
 ## Help Wanted
 
-[Find help wanted tickets here.](https://github.com/mattermost/mattermost-mobile/issues?q=is%3Aopen+is%3Aissue+label%3A%22Help+Wanted%22)
+[Find help wanted tickets here.](https://mattermost.com/pl/help-wanted-mattermost-mobile)
