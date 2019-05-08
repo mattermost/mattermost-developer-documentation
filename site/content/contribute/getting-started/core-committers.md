@@ -143,5 +143,7 @@ The core team also has QA testers who verify the correct functionality of the pr
     - @dylan.haussermann on [community.mattermost.com](https://community.mattermost.com/core/messages/@dylan.haussermann) and [@DHaussermann](https://github.com/DHaussermann) on GitHub
 - **<a name="lindy.isherwood">Lindy Isherwood</a>**
     - @lindy.isherwood on [community.mattermost.com](https://community.mattermost.com/core/messages/@lindy.isherwood) and [@lindy65](https://github.com/lindy65) on GitHub
+- **<a name="bob.lubecker">Bob Lubecker</a>**
+    - @bob.lubecker on [community.mattermost.com](https://community.mattermost.com/core/messages/@bob.lubecker) and [@thekiiingbob](https://github.com/thekiiingbob) on GitHub
 - **<a name="ogi.marušić">Ogi Marušić</a>**
     - @ogi.marusic on [community.mattermost.com](https://community.mattermost.com/core/messages/@ogi.marusic)
