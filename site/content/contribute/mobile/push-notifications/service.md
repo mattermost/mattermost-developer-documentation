@@ -123,7 +123,7 @@ and running the service under a `mattermost-push-proxy` user account with limite
 
 ### Test the Mattermost Push Notification Service
 * Verify that the server is functioning normally and test the push notification using curl:
- `curl http://127.0.0.1:8066/api/v1/send_push -X POST -H "Content-Type: application/json" -d '{"message": "test", "badge": 1, "platform": "PLATFORM", "server_id": "MATTERMOST_DIAG_ID", "device_id": "DEVICE_ID", "channel_id": "CHANNEL_ID"}'`
+ `curl http://127.0.0.1:8066/api/v1/send_push -X POST -H "Content-Type: application/json" -d '{"type": "message", "message": "test", "badge": 1, "platform": "PLATFORM", "server_id": "MATTERMOST_DIAG_ID", "device_id": "DEVICE_ID", "channel_id": "CHANNEL_ID"}'`
 
     * Replace `MATTERMOST_DIAG_ID` with the value found by running the SQL query:
     ```sql
