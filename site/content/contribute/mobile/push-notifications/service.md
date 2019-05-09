@@ -123,12 +123,13 @@ and running the service under a `mattermost-push-proxy` user account with limite
 
 ### Test the Mattermost Push Notification Service
 * Verify that the server is functioning normally and test the push notification using curl:
- `curl http://127.0.0.1:8066/api/v1/send_push -X POST -H "Content-Type: application/json" -d '{"message": "test", "badge": 1, "platform: "PLATFORM", "server_id": "MATTERMOST_DIAG_ID", "device_id": "DEVICE_ID}'`
+ `curl http://127.0.0.1:8066/api/v1/send_push -X POST -H "Content-Type: application/json" -d '{"message": "test", "badge": 1, "platform": "PLATFORM", "server_id": "MATTERMOST_DIAG_ID", "device_id": "DEVICE_ID", "channel_id": "CHANNEL_ID"}'`
 
     * Replace `MATTERMOST_DIAG_ID` with the value found by running the SQL query:
-    `SELECT * FROM Systems WHERE Name = 'DiagnosticId';`
-    * Replace `DEVICE_ID` with your device ID, which can be found using:
-
+    ```sql
+    SELECT * FROM Systems WHERE Name = 'DiagnosticId';
+    ```
+    * Replace `DEVICE_ID` with your device ID, which can be found using (where `your_email@example.com` is the email address of the user you are logged in as):
     ```sql
     SELECT
        Email, DeviceId
@@ -138,7 +139,11 @@ and running the service under a `mattermost-push-proxy` user account with limite
     WHERE
        Sessions.UserId = Users.Id
           AND DeviceId != ''
-          AND Email = 'test@example.com'
+          AND Email = 'your_email@example.com';
+    ```
+    * Replace `CHANNEL_ID` with the Town Square channel ID, which can be found using:
+    ```sql
+    SELECT Id FROM Channels WHERE DisplayName = 'Town Square';
     ```
     
     {{% note "Migration" %}}
