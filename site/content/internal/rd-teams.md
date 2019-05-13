@@ -20,6 +20,7 @@ weight: 110
 * Miguel Alatzar - Engineer
 * Eric Sethna - PM
 * Linda Mitchell - QA Lead
+* Bob Lubecker - QA
 * Andrew Brown - UX Designer
 
 ## Cloud Team
