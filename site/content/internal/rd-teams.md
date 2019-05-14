@@ -47,8 +47,9 @@ weight: 110
 * George Goldberg - Eng Lead
 * Jesus Espino - Engineer
 * Martin Kraft - Engineer
-* Daniel Schalla - Engineer
+* Daniel Schalla - Security Engineer
 * Miguel de la Cruz - Engineer
+* Eli Yukelzon - Engineer
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
 * Michael Gamble - UX Designer
