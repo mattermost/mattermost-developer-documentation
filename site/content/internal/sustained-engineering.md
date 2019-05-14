@@ -19,6 +19,8 @@ At any one time SET will have a lead engineer from one of the feature teams who 
 
 SET works in a continuous style using this [Kanban JIRA board](https://mattermost.atlassian.net/secure/RapidBoard.jspa?rapidView=33). Tickets in the TO DO column should be organized from highest priority to lowest priority, based on the [Priority of Work](#priority-of-work) section. The SET lead should make sure that the tickets are priority ordered but team members can move tickets around to meet the correct priorities as necessary.
 
+Team members on SET should pull tickets off the top of TO DO queue, work on them to completion and then pull another one off the TO DO queue.
+
 Discusson related to SET should occur in the [~Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel on https://community.mattermost.com.
 
 SET meets twice per week, after the Tuesday and Thursday triage meetings. During these meetings SET members should provide status updates and talk about any blockers that have been encountered.
