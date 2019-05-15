@@ -62,7 +62,8 @@ weight: 110
 
 ## Ops/Infra Team
 
-* Daniel Schalla - Engineer/Security
+* George Goldberg - Eng Lead
+* Daniel Schalla - Security Engineer
 * Stylianos Rigas - Engineer/Infrastructure
 * Carlos Panato - Engineer/Infrastructure
 
