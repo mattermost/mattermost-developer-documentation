@@ -77,3 +77,51 @@ SET attends all triage meetings. During triage, SET should:
 * Make sure reported bugs are in fact bugs and recommend turning non-bugs into stories or feature requests
 
 During non-release weeks, triage is held twice a week. Near the end of the release cycle, triage is held daily.
+
+## Support Responses
+
+Part of SET's responsibility is to interface with the customer support team. SET's primary goal in respect to support is to triage escalated support issues, work on any high priority customer bugs requiring code change, as well as provide training and knowledge share with the customer support team. To help us do this better, SET members should use the following responses when receiving issue escalations from the customer support team:
+
+##### Requests that are new features and not bugs
+
+```
+Hi [insert reporter name], thanks for the report. After looking into it a bit this is working as designed and any changes in behavior would be a new feature. Is this something we get a lot of requests from different customers for? If so, I’d suggest talking to [insert PM name] to see if it makes sense to put on the product roadmap. If you think this observation is incorrect, could you give us the following so we can look into it further:
+
+1. Information about the customer’s environment (MM version, DB type/version, cloud provider, etc.)
+2. Logs around the time of the issue
+3. Reproduction steps
+4. What you have tried to resolve the issue
+5. [insert other needs as necessary]
+```
+
+##### For configuration issues reported as bugs
+
+```
+Hi [insert reporter name], thanks for the report. This looks like a configuration issue that shouldn’t require any code change to resolve. Have you seen the docs for this [insert link]? If so, can you point to where the docs are deficient and we can work to get those updated.
+
+In the meantime, here’s some things I’d suggest trying: [insert list of troubleshooting steps]
+```
+
+##### For configurations we don’t support
+
+```
+Hi [insert reporter name], thanks for the report. This seems to be a configuration that we don’t support. I’d recommend steering the customer to use the supported configuration as documented here [insert link]. If you’re seeing lots of requests for this configuration, I’d suggest talking to [insert PM name] to see if we should add support for it.
+```
+
+##### We need more information
+
+```
+Hi [insert reporter name], to help best could we get some more information? Particularly looking for the following:
+
+1. Information about the customer’s environment (MM version, DB type/version, cloud provider, etc.)
+2. Logs around the time of the issue
+3. Reproduction steps
+4. What you have tried to resolve the issue
+5. [insert other needs as necessary]
+```
+
+##### Issues we are looking into
+
+```
+Hi [insert reporter name], thanks for the report. This looks like a bug, I’ve created [insert ticket link] to track and have put it into the queue to be worked on. Just a reminder that unless this is a hotfix worthy issue the fix won’t make it into the product until the next release. We’ll try to find a workaround that can be applied without code change but that isn’t always possible.
+```
