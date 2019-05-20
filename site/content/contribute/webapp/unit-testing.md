@@ -266,3 +266,12 @@ b. Use async test callback for async function instance
         expect(addUsersToTeam).toHaveBeenCalledTimes(1);
     }
     ```
+### 4. Getting Jest assertion failures at lines containing ``expect.toBeCalledWith()``, ``expect.toHaveBeenNthCalledWith()`` or ``expect.toHaveBeenCalledTimes()`` when running ``make test``
+
+<img src="/img/extend/jest-assertion-fails-nodeversion.png" width="445" />
+
+a. Firstly, ensure that your machine has all the [required prerequisites](/contribute/webapp/developer-setup/) installed for the mattermost-webapp project.
+
+b. If not already, ensure that your machine has Node v10.15.3+ running (preferably Node 10 Latest) with npm v6.4.1+
+
+c. Rerun ``make test`` once your machine has Node v10.15.3+ and npm v6.4.1+ installed. Double check that you've selected / are currently using Node v10.15.3+ in the mattermost-webapp directory if you're [using NVM]( https://github.com/nvm-sh/nvm) to manage different versions of Node on your machine (``nvm current``). The Jest tests should now pass.
