@@ -72,6 +72,7 @@ Below is how SET prioritizes what is worked on.
 ## Triage
 
 SET attends all triage meetings. During triage, SET should:
+
 * Help route tickets to the appropriate feature team
 * Assign bugs to SET when there is no clear feature team owner
 * Make sure reported bugs are in fact bugs and recommend turning non-bugs into stories or feature requests
