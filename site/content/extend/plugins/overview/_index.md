@@ -5,7 +5,11 @@ subsection: Plugins (Beta)
 weight: 1
 ---
 
-Plugins are defined by a manifest file and contain at least a server or web app component, or both. The [sample plugin](https://github.com/mattermost/mattermost-plugin-sample) is a starting point and illustrates the different components of a Mattermost plugin. A more detailed example is the [demo plugin](https://github.com/mattermost/mattermost-plugin-demo), which showcases many of the features of plugins.
+Plugins are defined by a manifest file and contain at least a server or web app component, or both.
+
+The [Sample Plugin](https://github.com/mattermost/mattermost-plugin-sample) is a starting point and illustrates the different components of a Mattermost plugin.
+
+A more detailed example is the [Demo Plugin](https://github.com/mattermost/mattermost-plugin-demo), which showcases many of the features of plugins.
 
 ### Manifest
 The plugin manifest provides required metadata about the plugin, such as name and ID. It is defined in JSON or YAML. This is `plugin.json` in both the [sample](https://github.com/mattermost/mattermost-plugin-sample/blob/master/plugin.json) and [demo](https://github.com/mattermost/mattermost-plugin-demo/blob/master/plugin.json) plugins.
