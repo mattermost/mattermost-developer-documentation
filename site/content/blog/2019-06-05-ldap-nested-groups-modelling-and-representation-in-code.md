@@ -99,7 +99,7 @@ adjacencyList := map[string][]string{
 }
 ```
 
-Normally an adjacency list representing a graph would include all vertices as keys in the array or map. However, in our LDAP case people will never have groups or other people nested under them, so I was able to remove those keys without losing any relavent data.
+Normally an adjacency list representing a graph would include all vertices as keys in the array or map. However, in our LDAP case people will never have groups or other people nested under them, so I was able to remove those keys without losing any relevant data.
 
 Our reversed graph from *figure 2* is represented as an adjacency list like this:
 
