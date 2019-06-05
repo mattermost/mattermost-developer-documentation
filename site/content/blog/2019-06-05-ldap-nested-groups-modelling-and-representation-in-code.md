@@ -45,7 +45,7 @@ For our example, these are the correct answers we would end with:
 
 ## Native Solution
 
-There's an "extensible match operator" called `LDAP_MATCHING_RULE_IN_CHAIN` that, if installed, traveses nested groups. It's used by adding the string `:1.2.840.113556.1.4.1941:` to your query filter.
+There's an "extensible match operator" called `LDAP_MATCHING_RULE_IN_CHAIN` that, if installed, traverses nested groups. It's used by adding the string `:1.2.840.113556.1.4.1941:` to your query filter.
 
 For example, this filter retrieves all of the recursive members of `developers`:
 
