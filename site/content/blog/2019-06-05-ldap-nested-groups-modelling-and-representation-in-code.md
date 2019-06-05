@@ -114,6 +114,6 @@ transposedAdjacencyList := map[string][]string{
 
 One can input the adjacency list into a breadth-first (or depth-first) search — avoiding cycles — to get the reachable vertices. It performs well at scale and is easy to serialize and debug.
 
-That pretty much sums up the interesting parts of modelling and representing LDAP nested groups. If you have any questions feel free to reach out. Thanks for reading!
+That pretty much summarizes the interesting parts of modelling and representing LDAP nested groups. If you have any questions feel free to reach out. Thanks for reading!
 
 [cross-posted from [Martin's personal blog](http://martin.upspin.org/2019/06/03/ldap-nested-groups-modelling-and-representation-in-code.html)]
