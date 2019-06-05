@@ -6,6 +6,12 @@ github: mkraft
 community: martin.kraft
 ---
 
+## LDAP Group Sync in Mattermost
+
+In [Mattermost](https://mattermost.com) v5.8 we deployed the [LDAP group sync feature](https://docs.mattermost.com/deployment/ldap-group-sync.html) to allow Enterprise Edition customers to create and synchronize groups in Mattermost matching their LDAP groups. The goal was to ease onboarding by automatically adding group members to configured teams and channels. 
+
+With the upcoming Mattermost v5.12 we're adding the ability to create teams and channels that are only accessible to those synced groups. This post describes what LDAP "nested groups" are and how we ended up modelling and representing them in code.
+
 ## Defining Nested Groups
 
 The two main types of groups in LDAP are `groupOfNames` and `groupOfUniqueNames`. At minimum they have a `cn` (common name) attribute and can have membership attributes `member` or `uniqueMember`, respectively. 
@@ -62,7 +68,7 @@ And this filter retrieves all of the recursive groups that `suzanne` belongs to:
 (member:1.2.840.113556.1.4.1941:=uid=suzanne,ou=users,dc=www,dc=test,dc=com)
 ```
 
-However, not all LDAP implementations natively support `LDAP_MATCHING_RULE_IN_CHAIN`, so when we set out to support LDAP nested groups in [Mattermost](https://mattermost.com/) I realized we would need to do the group traversal in our application code.
+However, not all LDAP implementations natively support `LDAP_MATCHING_RULE_IN_CHAIN`, so when we set out to support LDAP nested groups in Mattermost I realized we would need to do the group traversal in our application code.
 
 ## Modelling the Problem
 
