@@ -71,7 +71,7 @@ We can represent our example arrangement with a directed graph (aka digraph) as 
 ![nested group](/img/nested-group.png)
 *figure 1*
 
-The digraph makes the structure easy to reason about and, moreover, because cycles are possible in LDAP nested groups — group A can have group B as a member which in turn has group A as a member — the digraph is critical to avoiding needless code complexity and errors. Here's how it works...
+The digraph makes the structure easy to reason about and, moreover, because cycles are possible in LDAP nested groups — group A can have group B as a member which in turn has group A as a member — the digraph is critical to avoiding needless code complexity and errors. Here's how it works:
 
 ### From a Group's Perspective
 
