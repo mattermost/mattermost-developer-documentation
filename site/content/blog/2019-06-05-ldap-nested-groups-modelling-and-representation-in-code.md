@@ -42,7 +42,7 @@ There are two main query operations one wants to perform when dealing with neste
 1. List all of the members of group X.
 2. List all of the groups that person Y belongs to. 
 
-For our example, these are the correct answers we would end with:
+For our example, these propositions are all valid:
 
 * `developers` has members `[miranda, suzanne]`
 * `senior-developers` has members `[suzanne]`
