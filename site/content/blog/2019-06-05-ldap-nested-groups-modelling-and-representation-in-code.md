@@ -8,7 +8,7 @@ community: martin.kraft
 
 ## LDAP Group Sync in Mattermost
 
-In [Mattermost](https://mattermost.com) v5.8 we deployed the [LDAP group sync feature](https://docs.mattermost.com/deployment/ldap-group-sync.html) to allow Enterprise Edition customers to create and synchronize groups in Mattermost matching their LDAP groups. The goal was to ease onboarding by automatically adding group members to configured teams and channels. 
+In [Mattermost](https://mattermost.com) v5.8 we deployed [LDAP group sync feature](https://mattermost.com/pl/default-ldap-group-sync) to enable Enterprise Edition customers to create and synchronize groups in Mattermost matching their LDAP groups. The goal was to ease onboarding by automatically adding group members to configured teams and channels. 
 
 With the upcoming Mattermost v5.12 we're adding the ability to create teams and channels that are only accessible to those synced groups. This post describes what LDAP "nested groups" are and how we ended up modelling and representing them in code.
 
