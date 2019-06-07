@@ -3410,7 +3410,7 @@ table>tbody>tr:nth-of-type(odd) {
 
 .doc-content img {
     margin: 1em 0;
-    max-width: 800px;
+    max-width: 100%;
 }
 
 .doc-content pre {
