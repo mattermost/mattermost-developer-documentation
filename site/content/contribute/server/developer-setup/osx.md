@@ -1,13 +1,18 @@
 1. Install and configure Docker CE: https://docs.docker.com/docker-for-mac/.
 
-2. Add `dockerhost` as an alias for `127.0.0.1` for use by various Mattermost build scripts:
+    **Note:** If upgrading from existing from an existing installation to the new [docker-compose](https://docs.docker.com/compose/) method of managing containers, to remove the old containers use `make clean-old-docker`.
+    
+    Alternatively, migration of database container data requires some manual steps
+    ```
+    #mysql
+    mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test > mm_mysql_backup.sql
+    mysql -u mmuser -p -h 127.0.0.1 mattermost_test < mm_mysql_backup.sql
 
-   * Edit `/etc/hosts` file as an administrator (e.g. `sudo`) and add the following line:
-
-        ```sh
-        127.0.0.1    dockerhost
-        ```
-
+    #postgres
+    pg_dump -U mmuser -W -d mattermost_test -h 127.0.0.1 > mm_psql.bak
+    psql -U mmuser -W -h 127.0.0.1 -f mm_psql.bak mattermost_test
+    ```
+    
 2. Download and install homebrew: https://brew.sh/.
 
 3. Install Go:
