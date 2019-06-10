@@ -12,7 +12,7 @@
     * https://docs.docker.com/install/linux/linux-postinstall/
 
 
-    **Note:** If upgrading from an existing installation to the [docker-compose](https://docs.docker.com/compose/) method of managing containers, remove the old containers using `make clean-old-docker`.
+    **Note:** [MM-9791](https://github.com/mattermost/mattermost-server/pull/10872) introduced using [docker-compose](https://docs.docker.com/compose/)  to manage containers.  When upgrading from an existing installation, to remove the old containers use `make clean-old-docker`.
     
     Alternatively, migration of database container data requires some manual steps
     ```
@@ -24,7 +24,7 @@
     pg_dump -U mmuser -W -d mattermost_test -h 127.0.0.1 > mm_psql.bak
     psql -U mmuser -W -h 127.0.0.1 -f mm_psql.bak mattermost_test
     ```
-    
+     
 
 3. Install Go:
 

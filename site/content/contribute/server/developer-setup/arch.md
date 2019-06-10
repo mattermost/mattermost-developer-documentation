@@ -7,7 +7,7 @@
      newgrp docker
      ```
 
-    **Note:** If upgrading from an existing installation to the [docker-compose](https://docs.docker.com/compose/) method of managing containers, remove the old containers using `make clean-old-docker`.
+    **Note:** [MM-9791](https://github.com/mattermost/mattermost-server/pull/10872) introduced using [docker-compose](https://docs.docker.com/compose/)  to manage containers.  When upgrading from an existing installation, to remove the old containers use `make clean-old-docker`.
     
     Alternatively, migration of database container data requires some manual steps
     ```
