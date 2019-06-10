@@ -8,13 +8,20 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     * Link Windows Subsystem for Linux to Docker for Windows: https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4.
         * You should end up with the Docker client running on Linux (WSL) sending commands to your Docker Engine daemon installed on Windows.
 
-3. Add `dockerhost` as an alias for `127.0.0.1` for use by various Mattermost build scripts:
 
-    * Edit `C:\Windows\System32\drivers\etc\hosts` file as an administrator and add the following line:
+    **Note:** If upgrading from an existing installation to the [docker-compose](https://docs.docker.com/compose/) method of managing containers, remove the old containers using `make clean-old-docker`.
+    
+    Alternatively, migration of database container data requires some manual steps
+    ```
+    #mysql
+    mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test > mm_mysql_backup.sql
+    mysql -u mmuser -p -h 127.0.0.1 mattermost_test < mm_mysql_backup.sql
 
-        ```sh
-        127.0.0.1     dockerhost
-        ```
+    #postgres
+    pg_dump -U mmuser -W -d mattermost_test -h 127.0.0.1 > mm_psql.bak
+    psql -U mmuser -W -h 127.0.0.1 -f mm_psql.bak mattermost_test
+    ```
+    
 
 4. Install Go (using bash):
 

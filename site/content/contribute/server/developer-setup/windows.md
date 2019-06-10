@@ -3,26 +3,20 @@
     * If you are using Windows 10 Pro or Enterprise, you can use Docker for Windows: https://docs.docker.com/docker-for-windows/
     * For other Windows versions, or if you prefer to use VirtualBox, use Docker Toolbox: https://docs.docker.com/toolbox/toolbox_install_windows/
 
-2. Add `dockerhost` as an alias for `127.0.0.1` for use by various Mattermost build scripts:
 
-    * If using Docker for Windows, edit `C:\Windows\System32\drivers\etc\hosts` file as an administrator and add the following line:
+    **Note:** If upgrading from an existing installation to the [docker-compose](https://docs.docker.com/compose/) method of managing containers, remove the old containers using `make clean-old-docker`.
+    
+    Alternatively, migration of database container data requires some manual steps
+    ```
+    #mysql
+    mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test > mm_mysql_backup.sql
+    mysql -u mmuser -p -h 127.0.0.1 mattermost_test < mm_mysql_backup.sql
 
-        ```sh
-        127.0.0.1     dockerhost
-        ```
-
-    * If using Docker Toolbox, use the `Docker Quickstart Terminal` to run:
-
-        ```txt
-        docker-machine ip default
-        ```
-
-        Then edit `C:\Windows\System32\drivers\etc\hosts` file as an administrator and add the following line, replacing `{Docker-IP}` with the IP address above:
-
-        ```txt
-        {Docker-IP} dockerhost
-        ```
-
+    #postgres
+    pg_dump -U mmuser -W -d mattermost_test -h 127.0.0.1 > mm_psql.bak
+    psql -U mmuser -W -h 127.0.0.1 -f mm_psql.bak mattermost_test
+    ```
+    
 3. Download and install Go from https://golang.org/dl/
 
 4. Fork https://github.com/mattermost/mattermost-server
