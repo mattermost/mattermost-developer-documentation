@@ -89,6 +89,9 @@ Below is the list of core committers working on Mattermost:
 - **<a name="christopher.poile">Christopher Poile</a>**
     - @christopher.poile on [community.mattermost.com](https://community.mattermost.com/core/messages/@christopher.poile) and [@cpoile](https://github.com/cpoile) on GitHub
     - Dev areas: Extensions
+- **<a name="michael.kochell">Michael Kochell</a>**
+    - @michael.kochell on [community.mattermost.com](https://community.mattermost.com/core/messages/@michael.kochell) and [@mickmister](https://github.com/mickmister) on GitHub
+    - Dev areas: Extensions
 
 Core Developers
 ---------------

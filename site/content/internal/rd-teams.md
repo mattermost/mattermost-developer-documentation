@@ -33,12 +33,13 @@ weight: 110
 * Stylianos Rigas - Engineer/Infrastructure
 * Katie Wiersgalla - PM
 
-## Extensibility Team
+## Extensions Team
 
 * Lev Brouk - Eng Lead
 * Christopher Speller - Engineer
 * Jason Frerich - Engineer
 * Christopher Poile - Engineer
+* Michael Kochell - Engineer
 * Jason Blais - PM
 * Dylan Haussermann - QA
 * Asaad Mahmood - UX Designer
