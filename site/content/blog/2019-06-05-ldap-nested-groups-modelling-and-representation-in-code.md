@@ -3,7 +3,7 @@ title: "LDAP Nested Groups: Modelling and Representation in Code"
 slug: ldap-nested-groups-modelling-and-representation-in-code
 author: Martin Kraft
 date: 2019-06-05T12:00:00-04:00
-github: skiplist
+github: mkraft
 community: martin.kraft
 ---
 
