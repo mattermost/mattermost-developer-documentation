@@ -11,9 +11,25 @@ For webapp-specific best practices for plugins, see:
 
 Carry out the following steps:
 
-1. `git checkout --orphan dummy-branch`
-2. commit the basic files that aren't going to be code reviewed
-3. push to upstream/dummy-branch
-4. commit everything we want to review to a new dummy-master branch
-5. make a PR for dummy-master -> dummy-branch
-6. comment on that PR
+1. Take a backup of project directory
+2. Create a dummy-master branch with no code:
+
+   ```
+   git checkout --orphan dummy-master #create the dummy master branch
+   git rm -rf . #remove everything from this branch
+   git push origin dummy-master
+   ```
+   
+3. Create a dummy-feature branch from dummy-master:
+
+   ```
+   git checkout -b dummy-feature
+   # copy. everything from backup except the .git dir
+   git add .
+   git commit -m "Full checkin"
+   git push origin dummy-feature
+   ```
+   
+4. Create a PR from dummy-feature -> dummy-master
+
+5. Code review on the resulting PR
