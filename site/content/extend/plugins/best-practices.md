@@ -4,8 +4,7 @@ subsection: Plugins (Beta)
 weight: 50
 ---
 
-For server-specific best practices for plugins, see:
-For webapp-specific best practices for plugins, see:
+See here for [server-specific best practices for plugins](/extend/plugins/server/best-practices/). Webapp-specific best practices are incoming.
 
 ## How can I review the entire code base of a plugin?
 
