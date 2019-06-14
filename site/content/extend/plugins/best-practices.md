@@ -14,21 +14,20 @@ Carry out the following steps:
 2. Create a dummy-master branch with no code:
 
    ```
-   git checkout --orphan dummy-master #create the dummy master branch
-   git rm -rf . #remove everything from this branch
+   git checkout --orphan dummy-master
+   git rm -rf
    git push origin dummy-master
    ```
    
-3. Create a dummy-feature branch from dummy-master:
+3. Create a dummy-review branch from dummy-master:
 
    ```
-   git checkout -b dummy-feature
-   # copy. everything from backup except the .git dir
-   git add .
+   git checkout -b dummy-review
+   git add
    git commit -m "Full checkin"
-   git push origin dummy-feature
+   git push origin dummy-review
    ```
    
-4. Create a PR from dummy-feature -> dummy-master
+4. Create a PR from dummy-review -> dummy-master
 
 5. Code review on the resulting PR
