@@ -19,7 +19,7 @@
     pg_dump -U mmuser -W -d mattermost_test -h 127.0.0.1 > mm_psql.bak
     psql -U mmuser -W -h 127.0.0.1 -f mm_psql.bak mattermost_test
     ```
-    
+If you don't migrate your data, the new, docker-compose-managed containers will start out empty. To remove the old containers -- destroying any existing data -- use `make clean-old-docker`.
     
 3. Install Go:
 
