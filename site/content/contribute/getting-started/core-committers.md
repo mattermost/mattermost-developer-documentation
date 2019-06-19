@@ -40,7 +40,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: REST API, WebSocket Events, Kubernetes, Infrastructure, Build/Releases
 - **<a name="martin.kraft">Martin Kraft</a>**
     - @martin.kraft on [community.mattermost.com](https://community.mattermost.com/core/messages/@martin.kraft) and [@mkraft](https://github.com/mkraft) on GitHub
-    - Dev areas: Permissions, Compliance, Redux, Web App, Emoji
+    - Dev areas: Permissions, Compliance, LDAP
 - **<a name="jesús.espino">Jesús Espino</a>**
     - @jesus.espino on [community.mattermost.com](https://community.mattermost.com/core/messages/@jesus.espino) and [@jespino](https://github.com/jespino) on GitHub
     - Dev areas: Web App, Permissions, Compliance, Redux, CLI, System Console, Sample Data
@@ -88,6 +88,9 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Kubernetes, Helm, Infrastructure
 - **<a name="christopher.poile">Christopher Poile</a>**
     - @christopher.poile on [community.mattermost.com](https://community.mattermost.com/core/messages/@christopher.poile) and [@cpoile](https://github.com/cpoile) on GitHub
+    - Dev areas: Extensions
+- **<a name="michael.kochell">Michael Kochell</a>**
+    - @michael.kochell on [community.mattermost.com](https://community.mattermost.com/core/messages/@michael.kochell) and [@mickmister](https://github.com/mickmister) on GitHub
     - Dev areas: Extensions
 
 Core Developers
