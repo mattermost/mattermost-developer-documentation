@@ -65,7 +65,7 @@ weight: 110
 
 ## Toolkit Team
 
-* Jesse Hallam - End Lead
+* Jesse Hallam - Eng Lead
 * Ali Farooq - Engineer
 * Maria Nuñez - Engineer
 
