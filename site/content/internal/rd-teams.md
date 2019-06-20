@@ -26,7 +26,6 @@ weight: 110
 ## Cloud Team
 
 * Joram Wilander - Eng Lead
-* Jesse Hallam - Engineer
 * Carlos Panato - Engineer/Infrastructure
 * Brad Coughlin - Engineer
 * Gabe Jackson - Engineer
@@ -63,6 +62,12 @@ weight: 110
 * Daniel Schalla - Engineer
 * Harrison Healey - Engineer
 * Katie Wiersgalla - PM
+
+## Toolkit Team
+
+* Jesse Hallam - End Lead
+* Ali Farooq - Engineer
+* Maria Nuñez - Engineer
 
 ## Ops/Infra Team
 
