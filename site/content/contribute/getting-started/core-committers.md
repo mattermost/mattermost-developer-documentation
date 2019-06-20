@@ -92,6 +92,12 @@ Below is the list of core committers working on Mattermost:
 - **<a name="michael.kochell">Michael Kochell</a>**
     - @michael.kochell on [community.mattermost.com](https://community.mattermost.com/core/messages/@michael.kochell) and [@mickmister](https://github.com/mickmister) on GitHub
     - Dev areas: Extensions
+- **<a name="ali.farooq">Ali Farooq</a>**
+    - @ali.farooq on [community.mattermost.com](https://community.mattermost.com/core/messages/@ali.farooq) and [@ali-farooq0](https://github.com/ali-farooq0) on GitHub
+    - Dev areas: Developer Toolkit
+- **<a name="maria.nunez">Maria Nuñez</a>**
+    - @maria.nunez on [community.mattermost.com](https://community.mattermost.com/core/messages/@maria.nunez) and [@marianunez](https://github.com/marianunez) on GitHub
+    - Dev areas: Developer Toolkit
 
 Core Developers
 ---------------
