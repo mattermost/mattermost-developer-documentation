@@ -4,7 +4,7 @@ date: 2019-06-18T00:00:00-04:00
 subsection: Getting Started
 ---
 
-Mattermost uses a tick-tock release strategy where every other release is a "quality release" that only has bug fixes and no new features. 
+Mattermost uses a [tick-tock release strategy](https://docs.mattermost.com/process/release-faq.html#release-overview) where every other release is a "quality release" that only has bug fixes and no new features.
 
 The following diagram provides an overview of the branching strategy used to accomplish this. release-5.4 is a feature release and release-5.5 is a quality release. Note the "quality release" branch is based on the previous release branch.
 
@@ -19,7 +19,7 @@ When your PR is required on a release branch, you will follow the cherry picking
 1. Add the appropriate milestone and the `CherryPick/Approved` label.
 1. When your PR is approved it will be assigned back to you to perform the merge and any cherry picking necessary.
 1. Merge the PR
-1. Cherry pick the master commit back to the appropriate releases.
+1. Cherry pick the master commit back to the appropriate releases. If the release branches have not been cut yet, leave the labels as-is and cherry-pick once the branch has been cut. The release manager will remind you to finish your cherry-pick.
 1. Set the `CherryPick/Done` label when completed.
 
 
