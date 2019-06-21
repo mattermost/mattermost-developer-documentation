@@ -43,3 +43,7 @@ Set up your development environment for building, running, and testing the Matte
     cd $(go env GOPATH)/src/github.com/mattermost/mattermost-webapp
     make test
     ```
+    
+8. If you want to enable live-reload functionality in the webapp:
+   * ```export MM_LIVE_RELOAD=true```
+   * Install and enable https://chrome.google.com/webstore/detail/remotelivereload/jlppknnillhjgiengoigajegdpieppei/related?hl=en
