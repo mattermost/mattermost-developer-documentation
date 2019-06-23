@@ -1,18 +1,19 @@
 1. Install and configure Docker CE: https://docs.docker.com/docker-for-mac/.
 
-    **Note:** [MM-9791](https://github.com/mattermost/mattermost-server/pull/10872) introduced using [docker-compose](https://docs.docker.com/compose/)  to manage containers.  When upgrading from an existing installation, to remove the old containers use `make clean-old-docker`.
+    **Note:** [MM-9791](https://github.com/mattermost/mattermost-server/pull/10872) introduced using [docker-compose](https://docs.docker.com/compose/) to manage containers. To preserve your data on upgrade, execute the following steps.
     
-    Alternatively, migration of database container data requires some manual steps
-    ```
-    #mysql
+    First, backup from any existing containers:
+    ```sh
     mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test > mm_mysql_backup.sql
-    mysql -u mmuser -p -h 127.0.0.1 mattermost_test < mm_mysql_backup.sql
-
-    #postgres
-    pg_dump -U mmuser -W -d mattermost_test -h 127.0.0.1 > mm_psql.bak
-    psql -U mmuser -W -h 127.0.0.1 -f mm_psql.bak mattermost_test
+    pg_dump -U mmuser -W -d mattermost_test -h 127.0.0.1 > mm_postgres_backup.bak
     ```
-    
+    Then after upgrading and starting the new docker-compose managed containers, restore the data:
+    ```sh
+    mysql -u mmuser -p -h 127.0.0.1 mattermost_test < mm_mysql_backup.sql
+    psql -U mmuser -W -h 127.0.0.1 -f mm_postgres_backup.bak mattermost_test
+    ```
+    If you don't migrate your data, the new, docker-compose-managed containers will start out empty. To remove the old containers -- destroying any existing data -- use `make clean-old-docker`.
+     
     
 2. Download and install homebrew: https://brew.sh/.
 
