@@ -43,3 +43,8 @@ Set up your development environment for building, running, and testing the Matte
     cd $(go env GOPATH)/src/github.com/mattermost/mattermost-webapp
     make test
     ```
+8. (Optional) Enable live reload functionality to refresh the webapp as you edit the source code. First, install and enable live reload script injection extension for your web browser ([Chrome](https://chrome.google.com/webstore/detail/remotelivereload/jlppknnillhjgiengoigajegdpieppei/related?hl=en) | [Firefox](https://addons.mozilla.org/en-US/firefox/addon/livereload-web-extension/)), then run (before running webpack):
+
+    ```sh
+    export MM_LIVE_RELOAD=true
+    ```    
