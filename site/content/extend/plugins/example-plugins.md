@@ -19,7 +19,7 @@ To see a demonstration of all server-side hooks and webapp components, take a lo
 
 ## Sample Plugin
 
-To see a stripped down version of the demo plugin with just the build scripts and templates to get started, take a look at our [sample plugin](https://github.com/mattermost/mattermost-plugin-sample).
+To see a stripped down version of the demo plugin with just the build scripts and templates to get started, take a look at our [plugin starter template](https://github.com/mattermost/mattermost-plugin-starter-template).
 
 ## Zoom
 

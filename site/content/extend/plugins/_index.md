@@ -20,7 +20,7 @@ Launch and manage server plugins as services from your Mattermost server over RP
 Extend the Mattermost REST API with custom endpoints for use by web app plugins or third-party services. Custom endpoints have access to all the features of the standard Mattermost REST API, including personal access tokens and OAuth 2.0.
 
 ### Simple Development and Installation
-Using the [server](/extend/plugins/server/hello-world) and [web app](/extend/plugins/webapp/hello-world) quick start guides, it's simple to set up a plugin development environment. You can also base your implementation off of [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample), complete with build scripts and templates. Once bundled as a gzipped tar file, upload your plugin to a Mattermost server through the [System Console](https://about.mattermost.com/default-plugin-uploads) or via the [API](https://api.mattermost.com/#tag/plugins).
+Using the [server](/extend/plugins/server/hello-world) and [web app](/extend/plugins/webapp/hello-world) quick start guides, it's simple to set up a plugin development environment. You can also base your implementation off of [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template), complete with build scripts and templates. Once bundled as a gzipped tar file, upload your plugin to a Mattermost server through the [System Console](https://about.mattermost.com/default-plugin-uploads) or via the [API](https://api.mattermost.com/#tag/plugins).
 
 ----
 Read the plugins [overview](/extend/plugins/overview) to learn more.
