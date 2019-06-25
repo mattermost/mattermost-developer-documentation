@@ -7,7 +7,7 @@ weight: -10
 
 This tutorial will walk you through the basics of writing a Mattermost plugin with a server component.
 
-Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration](/extend/plugins/migration) document to upgrade older plugins.
+Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration](/extend/plugins/migration) document to upgrade older plugins.
 
 ## Prerequisites
 
@@ -55,7 +55,7 @@ go build -o plugin.exe plugin.go
 GOOS=linux GOARCH=amd64 go build -o plugin.exe plugin.go
 ```
 
-Also note that the ".exe" extension is required if you'd like your plugin to run on Windows, but is otherwise optional. Consider referencing [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) for helpful build scripts.
+Also note that the ".exe" extension is required if you'd like your plugin to run on Windows, but is otherwise optional. Consider referencing [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) for helpful build scripts.
 
 Now, we'll need to define the required manifest describing your plugin's entry point. Create a file named `plugin.json` with the following contents:
 

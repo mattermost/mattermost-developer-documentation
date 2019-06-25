@@ -32,7 +32,7 @@ func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Req
 }
 ```
 
-Writing to `Greeting` while the plugin may be concurrently reading from same could result in a corrupted read or write. The [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) and [mattermost-plugin-demo](https://github.com/mattermost/mattermost-plugin-demo) have both been updated with more complete examples, but the general idea is to manually handle the `OnConfigurationChange` hook and synchronize access to these variables. One such way is with a [sync.RWMutex](https://golang.org/pkg/sync/#RWMutex):
+Writing to `Greeting` while the plugin may be concurrently reading from same could result in a corrupted read or write. The [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) and [mattermost-plugin-demo](https://github.com/mattermost/mattermost-plugin-demo) have both been updated with more complete examples, but the general idea is to manually handle the `OnConfigurationChange` hook and synchronize access to these variables. One such way is with a [sync.RWMutex](https://golang.org/pkg/sync/#RWMutex):
 
 ```go
 type Plugin struct {
@@ -67,7 +67,7 @@ func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Req
 }
 ```
 
-Unfortunately, this adds a fair bit of extra complexity. You may wish to base your updated implementation off of [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample) or [mattermost-plugin-demo](https://github.com/mattermost/mattermost-plugin-demo) to simplify your code.
+Unfortunately, this adds a fair bit of extra complexity. You may wish to base your updated implementation off of [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) or [mattermost-plugin-demo](https://github.com/mattermost/mattermost-plugin-demo) to simplify your code.
 
 ## Migrating Plugins from Mattermost 5.1 and earlier
 
