@@ -41,6 +41,7 @@ The entry point `index.js` of your application might contain:
 ```javascript
 import UserPopularity from './components/profile_popover/user_popularity';
 import SomePost from './components/some_post';
+import SomeEphemeralPost from './components/some_ephemeral_post';
 import MenuIcon from './components/menu_icon';
 import {openExampleModal} from './actions';
 
@@ -52,6 +53,10 @@ class PluginClass {
         registry.registerPostTypeComponent(
             'custom_somepost',
             SomePost,
+        );
+        registry.registerPostTypeComponent(
+            'custom_ephemeralpost',
+            SomeEphemeralPost,
         );
         registry.registerMainMenuAction(
             'Plugin Menu Item',
