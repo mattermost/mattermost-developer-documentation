@@ -11,7 +11,7 @@ Here we'll show how to use Redux actions with a plugin. To learn more about thes
 
 ## Prerequisites
 
-This guide assumes you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-sample](https://github.com/mattermost/mattermost-plugin-sample). If not, follow the README instructions of that repository first, or [see the Hello, World! guide](/extend/plugins/webapp/hello-world).
+This guide assumes you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide](/extend/plugins/webapp/hello-world).
 
 ## Import mattermost-redux
 

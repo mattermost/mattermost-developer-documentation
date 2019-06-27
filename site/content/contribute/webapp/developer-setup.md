@@ -13,9 +13,9 @@ Set up your development environment for building, running, and testing the Matte
 
  - On Mac, use [Homebrew](https://brew.sh/) to install Node.js v10 and libpng:
 
-        ```sh
-        brew install node@10 libpng
-        ```
+    ```sh
+    brew install node@10 libpng
+    ```
 
  - For other platforms, install Node.js v10 from https://www.npmjs.com/get-npm.
 
@@ -23,7 +23,7 @@ Set up your development environment for building, running, and testing the Matte
 
 3. Fork https://github.com/mattermost/mattermost-webapp
 
-5. Clone the Mattermost source code from your fork next to your mattermost-server directory:
+4. Clone the Mattermost source code from your fork next to your mattermost-server directory:
 
     ```sh
     export GITHUB_USERNAME=my_username
@@ -31,19 +31,20 @@ Set up your development environment for building, running, and testing the Matte
     git clone https://github.com/$GITHUB_USERNAME/mattermost-webapp.git $(go env GOPATH)/src/github.com/mattermost/mattermost-webapp
     ```
 
-6. Link the `client` directory in your server with the `dist` directory in your webapp:
+5. Link the `client` directory in your server with the `dist` directory in your webapp:
 
     ```sh
     ln -nfs $(go env GOPATH)/src/github.com/mattermost/mattermost-webapp/dist $(go env GOPATH)/src/github.com/mattermost/mattermost-server/client
     ```
 
-7. Test your environment:
+6. Test your environment:
 
     ```sh
     cd $(go env GOPATH)/src/github.com/mattermost/mattermost-webapp
     make test
     ```
-8. (Optional) Enable live reload functionality to refresh the webapp as you edit the source code. First, install and enable live reload script injection extension for your web browser ([Chrome](https://chrome.google.com/webstore/detail/remotelivereload/jlppknnillhjgiengoigajegdpieppei/related?hl=en) | [Firefox](https://addons.mozilla.org/en-US/firefox/addon/livereload-web-extension/)), then run (before running webpack):
+
+7. (Optional) Enable live reload functionality to refresh the webapp as you edit the source code. First, install and enable live reload script injection extension for your web browser ([Chrome](https://chrome.google.com/webstore/detail/remotelivereload/jlppknnillhjgiengoigajegdpieppei/related?hl=en) | [Firefox](https://addons.mozilla.org/en-US/firefox/addon/livereload-web-extension/)), then run (before running webpack):
 
     ```sh
     export MM_LIVE_RELOAD=true
