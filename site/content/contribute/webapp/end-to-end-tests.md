@@ -17,28 +17,42 @@ Not familiar with Cypress? Here is some documentation that will help you get sta
 1.  Run a local server instance by initiating `make run` to the mattermost-server folder. Confirm that the instance has started successfully.
    - Run `make test-data` to preload your server instance with initial seed data.  Generated data such as users are typically used for logging, etc.
    - Each test case should handle the required system or account settings, but in case you encountered some unexpected error while testing, you may want to run the server with default config based on `mattermost-server/config/default.json`).
-2.  Change directory to mattermost-webapp and initiate `npm run cypress:run` in the command line. This will start full E2E testing. To run partial testing, you may initiate `npm run cypress:open` in the command line which will open its desktop app.  From there, you may select particular tests you would like to run.
+2.  Change directory to `mattermost-webapp/e2e`, install npm dependencies by `npm i` and initiate `npm run cypress:run` in the command line. This will start full E2E testing. To run partial testing, you may initiate `npm run cypress:open` in the command line which will open its desktop app.  From there, you may select particular tests you would like to run.
 3.  Tests are executed according to your selection and will display whether the tests passed or failed.
 
-## Folder Structures
+## Folder and File Structures
 
-The folder structure is based on the [Cypress scaffold](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Folder-Structure) which was created on initial run.  Folders are:
+The folder structure is mostly based on the [Cypress scaffold](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Folder-Structure) which was created on initial run.  Folders and files are:
 ```
-|-- cypress
-  |-- fixtures
-  |-- integration
-  |-- support
+|-- e2e
+  |-- cypress
+    |-- fixtures
+    |-- integration
+    |-- plugins
+    |-- support
+    |-- utils
+  |-- cypress.json
+  |-- package-lock.json
+  |-- package.json
 ```
 
-- `/cypress/fixtures` or [Fixture Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Fixture-Files):
-    1.  Fixtures are used as external pieces of static data that can be used by tests.
-    2.  Typically used with the `cy.fixture()` command and most often when stubbing Network Requests.
-- `/cypress/integration` or [Test Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Test-files)
-    1.  To start writing tests,
-        - simply create a new file (e.g. `login_spec.js`) within `cypress/integration` folder and;
+- `/e2e/cypress/fixtures` or [Fixture Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Fixture-Files):
+    - Fixtures are used as external pieces of static data that can be used by tests.
+    - Typically used with the `cy.fixture()` command and most often when stubbing Network Requests.
+- `/e2e/cypress/integration` or [Test Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Test-files)
+    - To start writing tests,
+        - simply create a new file (e.g. `login_spec.js`) within `/e2e/cypress/integration` folder and;
         - refresh tests list in the Cypress Test Runner and a new file should have appeared in the list.
-- `/cypress/support` or [Support Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Support-file)
-    1.  The support file is a place to put reusable behaviour such as Custom Commands or global overrides that are wished to be applied and available to all of spec files.
+- `/e2e/cypress/plugins` or [Plugin Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Plugin-files)
+    - A convenience mechanism that automatically include the plugins before running every single spec file.
+- `/e2e/cypress/support` or [Support Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Support-file)
+    - The support file is a place to put reusable behaviour such as Custom Commands or global overrides that are wished to be applied and available to all of spec files.
+- `/e2e/cypress/utils`
+    - A place for common utility functions
+- `/e2e/cypress.json`
+    - Use to store Cypress [configuration](https://docs.cypress.io/guides/references/configuration.html#Options)
+- `/e2e/package.json`
+    - Use to store all dependencies related to Cypress end-to-end testing
 
 ## What requires an E2E Test?
 
@@ -57,8 +71,8 @@ The folder structure is based on the [Cypress scaffold](https://docs.cypress.io/
 
 1. The [recommended practice](https://docs.cypress.io/guides/references/best-practices.html#Selecting-Elements) of Cypress is to use `data-*` attribute to provide context to selectors, but we prefer to use element ID instead.
    - If element ID is not present in the webapp, you may add it in `camelCase` form with human readable name (e.g. `<div id='sidebarTitle'>`). Watch out for potential breaking changes in the snapshot of the unit testing.  Run `make test` to see if all are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot testing.
-2. Add commands or shortcuts to `cypress/support/commands.js` (e.g. `toAccountSettingsModal`) that makes it easier to access a page, section, modal and etc. by simply using it as `cy.toAccountSettingsModal('user-1')`.
-3. Organize `cypress/integration` with a subfolder to group similar tests.
+2. Add commands or shortcuts to `/e2e/cypress/support/commands.js` (e.g. `toAccountSettingsModal`) that makes it easier to access a page, section, modal and etc. by simply using it as `cy.toAccountSettingsModal('user-1')`.
+3. Organize `/e2e/cypress/integration` with a subfolder to group similar tests.
 4. This is used to track test cases in our core staff Release Testing spreadsheet, which is linked in the header of the [Release Discussion channel](https://community.mattermost.com/core/channels/release-discussion) during release testing.
 
     In the spec file, it should be written as:
