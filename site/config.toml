@@ -81,6 +81,12 @@ pygmentsStyle = "manni"
       name = "Blog"
       weight = 4
 
+    [[menu.postpend]]
+      url = "https://docs.mattermost.com/"
+      name = "Admin Docs"
+      weight = 5
+      
+
     # Workaround to add draft status to menu items
     [[params.navigation.drafts]]
       Contribute = false
