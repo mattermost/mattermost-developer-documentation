@@ -18,6 +18,7 @@ weight: 110
 * Sudheer Timmaraju - Engineer
 * Dean Whillier - Engineer
 * Miguel Alatzar - Engineer
+* Devin Binnie - Engineer
 * Eric Sethna - PM
 * Linda Mitchell - QA Lead
 * Bob Lubecker - QA
