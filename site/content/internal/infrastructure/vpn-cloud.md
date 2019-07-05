@@ -26,6 +26,6 @@ brew cask install viscosity
     <span style="display:block;text-align:center">![Viscosity Profile Add](/img/vpn_cloud_2.png)</span>
 
 * After your profile is imported, go to Networking and update the DNS settings. The Server IP is the VPN server IP.
-    <span style="display:block;text-align:center">![Viscosity Profile Add](/img/vpn_cloud_3.png)</span>
+    <span style="display:block;text-align:center">![Viscosity VPN CIDR](/img/vpn_cloud_3.png)</span>
 
 * After following these steps you should be able to resolve private DNS entries.
