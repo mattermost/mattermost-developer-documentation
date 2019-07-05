@@ -59,3 +59,9 @@ QA pass involves getting a memeber of our QA team to take a look and verify the 
 ### PM/UX Review
 
 A PM/UX pass involves getting PM support in ironing out any user experience or UI issues with the plugin.
+- Create a one paragraph summary of the integration
+- Document the main use cases into bullet form
+- Review the primary use cases and run through them to ensure they are complete, clear and functional.
+- Ensure there is documentation to support the plugin (may include having sufficient helper text in the plugin)
+- Consider if there are any communication to other teams or users required as part of the rollout to our community server
+
