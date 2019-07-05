@@ -30,3 +30,6 @@ weight: 30
 ### GitHub Group Set-up
 - Login to GitHub and go to https://github.com/orgs/mattermost/teams/core-developers 
 - Add new staff to the group
+
+### Core Committer Mug
+- Message @lindy and ask her to send the new hire their core committer mug
