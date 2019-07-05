@@ -22,6 +22,7 @@ weight: 110
 * Linda Mitchell - QA Lead
 * Bob Lubecker - QA
 * Andrew Brown - UX Designer
+* Devin Binnie - Engineer
 
 ## Cloud Team
 
