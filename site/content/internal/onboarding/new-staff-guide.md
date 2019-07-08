@@ -6,7 +6,6 @@ weight: 10
 ---
 
 ### Helpful links
-- https://docs.mattermost.com/guides/developer.html
 - https://docs.mattermost.com/developer/developer-flow.html
 - Security: Read through the security channel / issues spreadsheet and look at past exploits
 - Developer Reading List - top of public Developer channel
