@@ -94,6 +94,7 @@ pygmentsStyle = "manni"
       Extend = false
       Blog = false
       Internal = false
+      'Admin Docs' = false
 
   # Hero section
   [params.hero]
