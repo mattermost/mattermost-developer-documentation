@@ -64,10 +64,10 @@ Incoming webhooks support more than just the `text` field. Here is a full list o
 | channel | Overrides the channel the message posts in. Use the channel's name and not the display name, e.g. use `town-square`, not `Town Square`.<br> Use an "@" followed by a username to send to a direct message.<br> Defaults to the channel set during webhook creation.<br> The webhook can post to any public channel and private channel the webhook creator is in.<br> Posts to direct messages will appear in the DM between the targeted user and the webhook creator. | No |
 | username | Overrides the username the message posts as.<br> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-usernames). | No |
 | icon\_url | Overrides the profile picture the message posts with.<br> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons). | No |
-| icon\_emoji | Overrides the profile picture and `icon_url` parameter. Defaults to none and is not set during webhook creation. Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons). | No |
+| icon\_emoji | Overrides the profile picture and `icon_url` parameter. Defaults to none and is not set during webhook creation. Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons). The expected content is an emoji name, as typed in a message but without `:`. | No |
 | attachments | [Message attachments](https://docs.mattermost.com/developer/message-attachments.html) used for richer formatting options. | If `text` is not set, yes |
 | type | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with "custom\_". | No |
-| props | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br> Mainly used by other integrations accessing posts through the REST API.<br> The following keys are reserved: "from\_webhook", "override\_username", "override\_icon\_url", "webhook\_display\_name" and "attachments". | No |
+| props | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br> Mainly used by other integrations accessing posts through the REST API.<br> The following keys are reserved: "from\_webhook", "override\_username", "override\_icon\_url", "override\_icon\_emoji", "webhook\_display\_name" and "attachments". | No |
 
 An example request using some more parameters would look like this:
 
@@ -84,8 +84,6 @@ Content-Length: 630
   "text": "#### Test results for July 27th, 2017\n@channel please review failed tests.\n\n| Component  | Tests Run   | Tests Failed                                   |\n|:-----------|:-----------:|:-----------------------------------------------|\n| Server     | 948         | :white_check_mark: 0                           |\n| Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |\n| iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |"
 }
 ```
-
-Optionally, `icon_url` could be replaced by `icon_emoji: "trophy"`.
 
 ### Slack Compatibility
 
