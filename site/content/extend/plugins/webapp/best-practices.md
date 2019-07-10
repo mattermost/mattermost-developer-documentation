@@ -12,11 +12,11 @@ This page provides best practices for web app plugins.
 ### Plugin placement in the user interface
 
 1. Actions that apply to specific channels
-- Recommendation: Have your plugin register the actions to [the channel header](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerChannelHeaderButtonAction). This makes it quickly accessible by users and actions apply to the channel they're viewing. You can additionally [register a slash command](https://developers.mattermost.com/extend/plugins/server/reference/#API.RegisterCommand) on the server-side to take channel-specific actions.
+- Recommendation: Have your plugin register the actions to [the channel header](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerChannelHeaderButtonAction). This makes it quickly accessible by users and the actions apply to the channel they're viewing. You can additionally [register a slash command](https://developers.mattermost.com/extend/plugins/server/reference/#API.RegisterCommand) on the server-side to take channel-specific actions.
 - Examples: Jira project subscriptions to a channel; Zoom meeting posts to a channel
 
 2. Actions that apply to specific messages
-- Recommendation: Have your plugin register a [post dropdown menu component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPostDropdownMenuComponent) with some text, icon and an action function. This adds your action to the "More Actions" post menu dropdown.
+- Recommendation: Have your plugin register a [post dropdown menu component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPostDropdownMenuComponent) with some text, an icon and an action function. This adds your action to the "More Actions" post menu dropdown and gives easy access to your app.
 - Examples: Create or attach to Jira issue from a message; Copy a message to another channel; report an inappropriate message
 
 3. Actions related to files or images
