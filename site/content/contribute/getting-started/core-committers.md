@@ -98,6 +98,9 @@ Below is the list of core committers working on Mattermost:
 - **<a name="maria.nunez">Maria Nuñez</a>**
     - @maria.nunez on [community.mattermost.com](https://community.mattermost.com/core/messages/@maria.nunez) and [@marianunez](https://github.com/marianunez) on GitHub
     - Dev areas: Developer Toolkit
+- **<a name="devin.binnie">Devin Binnie</a>**
+    - @devin.binnie on [community.mattermost.com](https://community.mattermost.com/core/messages/@devin.binnie) and [@devinbinnie](https://github.com/devinbinnie) on GitHub
+    - Dev areas: React Native, Desktop app, Web App, React, Redux
 
 Core Developers
 ---------------

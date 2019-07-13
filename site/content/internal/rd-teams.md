@@ -18,6 +18,7 @@ weight: 110
 * Sudheer Timmaraju - Engineer
 * Dean Whillier - Engineer
 * Miguel Alatzar - Engineer
+* Devin Binnie - Engineer
 * Eric Sethna - PM
 * Linda Mitchell - QA Lead
 * Bob Lubecker - QA
@@ -40,6 +41,7 @@ weight: 110
 * Christopher Poile - Engineer
 * Michael Kochell - Engineer
 * Jason Blais - PM
+* Aaron Rothschild - PM
 * Dylan Haussermann - QA
 * Asaad Mahmood - UX Designer
 
@@ -68,6 +70,7 @@ weight: 110
 * Jesse Hallam - Eng Lead
 * Ali Farooq - Engineer
 * Maria Nuñez - Engineer
+* Aaron Rothschild - PM
 
 ## Ops/Infra Team
 
