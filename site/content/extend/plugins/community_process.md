@@ -6,7 +6,7 @@ weight: 50
 ---
 
 
-Getting your plugin onto community.mattermost.com is a valuable source of feedback. However we must ensure that our community server remains stable for everyone. This document outlines the process of getting your plugin onto the community server. In the future, some of these steps will be required to get your plugin into the integrations marketplace (TBD). When you are ready to have your plugin start this process, ask in the ~Toolkit channel on the community server.
+Getting your plugin onto our community server https://community.mattermost.com is a valuable source of feedback. Weather you are a Core Commiter or anyone from the community, we want you to get feedback to improve your plugin. However we must ensure that our community server remains stable for everyone. This document outlines the process of getting your plugin onto the community server. In the future, some of these steps will be required to get your plugin into the integrations marketplace (TBD). When you are ready to have your plugin start this process, ask in the ~Toolkit channel on the community server. The PM, or somone else from the integrations team will help you start the process.
 
 ## Checklist
 
@@ -56,9 +56,16 @@ A more through code review is performed before allowing a plugin on ci-extension
 
 QA pass involves getting a memeber of our QA team to take a look and verify the functionality advertised by your plugin.
 
+Steps involved:
+- Ensure all setup documentation needed is clear and can be successfully followed 
+- Functional testing has been done to ensure the integration works as expected
+- For Plugins owned by Mattermost - Release testing is added to cover the main functionality of the plugin 
+
 ### PM/UX Review
 
 A PM/UX pass involves getting PM support in ironing out any user experience or UI issues with the plugin.
+
+Steps involved:
 - Create a one paragraph summary of the integration
 - Document the main use cases into bullet form
 - Review the primary use cases and run through them to ensure they are complete, clear and functional.
