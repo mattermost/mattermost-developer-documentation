@@ -23,7 +23,7 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 # Pull Request Labels
 
 * `1: PM Review`: Requires review by a [product manager](/contribute/getting-started/core-committers/#product-managers).
-* `2: Dev Review`: Requires review by a [core commiter](/contribute/getting-started/core-committers/#core-committers).
+* `2: Dev Review`: Requires review by a [core committer](/contribute/getting-started/core-committers/#core-committers).
 * `3: Reviews Complete`: All reviewers have approved the pull request.
 * `Awaiting Submitter Action`: Blocked on the author.
 * `Changelog/Done`: Required changelog entry has been written.
