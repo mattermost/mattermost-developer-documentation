@@ -17,7 +17,7 @@ In order to code sign releases on behalf of Mattermost Inc., you'll need a `.pfx
 This file has been shared in LastPass. Talk to Joram Wilander, Corey Hulen, or Jonathan Fritz to get access to it.
 
 #### Regenerating the .pfx File
-Signing certicates occasionally expire. When renewed, the registrar will provide you with  a `.spc` (Software Publishing Certificate) and a `.pem` (Public Key) file. These must be combined with a corresponding `.key` (Private Key) file to create the `.pfx` (Personal Information Exchange) file that is used to sign builds.
+Signing certificates occasionally expire. When renewed, the registrar will provide you with  a `.spc` (Software Publishing Certificate) and a `.pem` (Public Key) file. These must be combined with a corresponding `.key` (Private Key) file to create the `.pfx` (Personal Information Exchange) file that is used to sign builds.
 
 First, verify that the `.pem` and `.key` files match:
 ```bash
@@ -74,7 +74,7 @@ Where
     <li>**PATH_TO_UNSIGNED_EXE** is the absolute path of the unsigned executable that you want to sign. It is typically in the `release/win` or `release/win-ia32` subdirectory of the repository</li>
     <li>**PATH_TO_WRITE_SIGNED_EXE_TO** is the absolute path to write the signed executable to
 </ul>
-Note that on some Linux systems, attempting to overwite PATH_TO_UNSIGNED_EXE with PATH_TO_WRITE_SIGNED_EXE_TO can result in a crash. It's best to write the signed exe to a different path, and then use a `mv` command to overwrite the unsigned exe with the signed exe.
+Note that on some Linux systems, attempting to overwrite PATH_TO_UNSIGNED_EXE with PATH_TO_WRITE_SIGNED_EXE_TO can result in a crash. It's best to write the signed exe to a different path, and then use a `mv` command to overwrite the unsigned exe with the signed exe.
 
 #### Verifying the Signature:
 Once you have successfully signed the release, you can use the `verify` flag of the `osslsigncode` utility to ensure that the signature was applied correctly.

@@ -21,7 +21,7 @@ SET works in a continuous style using this [Kanban JIRA board](https://mattermos
 
 Team members on SET should pull tickets off the top of TO DO queue, work on them to completion and then pull another one off the TO DO queue.
 
-Discusson related to SET should occur in the [~Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel on https://community.mattermost.com.
+Discussion related to SET should occur in the [~Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel on https://community.mattermost.com.
 
 SET meets twice per week, after the Tuesday and Thursday triage meetings. During these meetings SET members should provide status updates and talk about any blockers that have been encountered.
 

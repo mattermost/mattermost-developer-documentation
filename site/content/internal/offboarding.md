@@ -68,7 +68,7 @@ The following is a list of things to do. It should be kept as complete and up-to
 
 * **Delete WordPress account for about.mattermost.com**
 
-* **Check for any "sysadmin" Mattermost accounts** – Some of us have accounts that we use only occassionally for system admin purposes.
+* **Check for any "sysadmin" Mattermost accounts** – Some of us have accounts that we use only occasionally for system admin purposes.
 
 * **Remove the user from the Docker Hub organization**
 
