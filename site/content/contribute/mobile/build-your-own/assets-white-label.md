@@ -29,7 +29,7 @@ Copy the full `release` directory under `assets/override/release` and then repla
 
 The splash screen's background color is white by default and the image is centered. If you need to change the color or the layout to improve the experience of your new splash screen make sure that you also override the file `launch_screen.xml` for Android and `LaunchScreen.xib` for iOS. Both can be found under`assets/base/release/splash\_screen/\<platform\>`.
 
-In order to use the new assets, you need to change up the [Environment Variables](contribute/mobile/build-your-own/environment-vars/)  REPLACE_ASSETS to True (default is false).
+Splash screen and launch icons assets are replaced at build time when the [Environment Variable](/contribute/mobile/build-your-own/environment-vars/) `REPLACE_ASSETS` is set to true (default is false).
 
 **Make sure the images have the same height, width and DPI as the images that you are overriding.**
 
