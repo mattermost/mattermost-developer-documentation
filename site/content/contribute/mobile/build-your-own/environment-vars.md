@@ -9,6 +9,8 @@ In order to use the **make build**, **make build-android** and/or **make build-i
 
 * Copy the file with your variables to `./mattermost-mobile/fastlane/.env` where `.env` is the file name.
 
+Additionaly a sample file `env_vars_example` can be found on `./mattermost-mobile/fastlane/`
+
 or
 
 * Create an .sh file with your variables (for example `my_env.sh`), and execute `source my_env.sh` in the terminal session where you will later execute the **make** commands.
