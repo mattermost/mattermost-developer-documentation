@@ -11,6 +11,9 @@ If you look at the [Project Directory Structure](/contribute/mobile/developer-wo
 
 To replace these with your own assets, create a sub-directory called `override` in the `assets` folder. Using the same directory structure and file names as in the `base` directory, you can add assets to the override folder to be used instead.
 
+In order to use the news assets, you need to change up the [Environment Variables](contribute/mobile/build-your-own/environment-vars/)  REPLACE_ASSETS to True (default is false)
+
+
 ### Localization Strings
 
 To replace some or all of the strings in the app in any supported language, create a new json file for each locale you wish to support in `assets/override/i18n`. Any strings that you provide will be used instead of the ones located in `assets/base/i18n`, but any that you don't provide will fall back to the base ones.
