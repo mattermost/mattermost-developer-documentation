@@ -24,7 +24,7 @@ The keystore contains a single key, valid for 10000 days. The alias is a name th
 #### Setting up Gradle Variables
 
 - Place the *my-release-key.keystore* file under a directory that you can access. It can be in your home directory or even under *android/app* in the project folder so long as it is not checked in.
-- Edit the file \~/.gradle/gradle.properties, or create it if one does not exist, and add the following:
+- Edit the file \~/android/gradle.properties, or create it if one does not exist, and add the following:
 
     ```sh
     MATTERMOST_RELEASE_STORE_FILE=/full/path/to/directory/containing/my-release-key.keystore
