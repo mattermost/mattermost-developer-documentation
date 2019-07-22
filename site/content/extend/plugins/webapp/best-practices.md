@@ -8,23 +8,27 @@ weight: 0
 
 ### Actions that apply to specific Channels
 - Recommendation: Have your plugin register the actions to [the channel header](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerChannelHeaderButtonAction). This makes it quickly accessible by users and actions apply to the channel they're viewing. 
+- Example:  Zoom meeting posts to a channel
+
+![Custom Channel Header Button](/img/extend/bp-channel-header.png)
 
 You can additionally [register a slash command](https://developers.mattermost.com/extend/plugins/server/reference/#API.RegisterCommand) on the server-side to take channel-specific actions.
-- Examples: Jira project subscriptions to a channel; Zoom meeting posts to a channel
+- Example: Jira project subscriptions to a channel
 
-![Custom Channel header Button](/img/extend/bp-channel-header.png)
+![Slash Command](/img/extend/bp-slash-command.gif)
+
 
 ### Actions that apply to specific messages
 - Recommendation: Have your plugin register a [post dropdown menu component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPostDropdownMenuComponent) with some text, icon and an action function. This adds your action to the "More Actions" post menu dropdown for easy discovery.
 - Examples: Create or attach to Jira issue from a message; copy a message to another channel; report an inappropriate message
 
-![post dropdown menu](/img/extend/bp-post-dropdown-menu.png)
+![Post Dropdown Menu](/img/extend/bp-post-dropdown-menu.png)
 
 ### Actions related to files or images
 - Recommendation: Have your plugin register a [file upload method](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerFileUploadMethod) with some text, icon and an action function. This adds your new action to the file upload menu.
 - Examples: File sharing from OneDrive or GDrive; Draw plugin for sketches
 
-![file upload action](/img/extend/bp-file-upload.png)
+![File Upload Action](/img/extend/bp-file-upload.png)
 
 
 ### Actions that apply to specific teams
