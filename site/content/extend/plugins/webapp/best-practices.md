@@ -13,7 +13,7 @@ weight: 0
 ![Custom Channel Header Button](/img/extend/bp-channel-header.png)
 
 You can additionally [register a slash command](https://developers.mattermost.com/extend/plugins/server/reference/#API.RegisterCommand) on the server-side to take channel-specific actions.
-- Example: Jira project subscriptions to a channel
+- Example: Jira project actions
 
 ![Slash Command](/img/extend/bp-slash-command.gif)
 
