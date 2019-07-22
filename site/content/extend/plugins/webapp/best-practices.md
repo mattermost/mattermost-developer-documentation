@@ -47,7 +47,7 @@ You can additionally [register a slash command](https://developers.mattermost.co
 - Recommendation: Have your plugin register [main menu action](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerMainMenuAction) with some text, icon for mobile, and an action function. This adds your action to the Main Menu. You can additionally [register a slash command](https://developers.mattermost.com/extend/plugins/server/reference/#API.RegisterCommand) on the server-side.
 - Examples: Share feedback plugin in Main Menu; /jira slash commands for quick actions
 
-![post dropdown menu](/img/extend/bp-main-menu-action.png)
+![main menu action](/img/extend/bp-main-menu-action.png)
 
 ### Actions that apply to specific users
 - Recommendation: Have your plugin register a [popover user actions component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserActionsComponent). This adds your action button to the user profile popover.   
