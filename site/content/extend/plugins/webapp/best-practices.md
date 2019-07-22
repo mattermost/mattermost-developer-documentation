@@ -41,7 +41,7 @@ You can additionally [register a slash command](https://developers.mattermost.co
 - Recommendation: Have your plugin register a [bottom team sidebar component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerBottomTeamSidebarComponent). This adds icons to the lower left corner of the UI.
 - Examples: GitHub sidebar links with summary of outstanding reviews or unread messages; ServiceNow incident status summary
 
-![post dropdown menu](/img/extend/bp-bottom-team-sidebar.png)
+![bottom team sidebar](/img/extend/bp-bottom-team-sidebar.png)
 
 ### Global actions that can be taken anywhere in the server and not directly related to teams, channels or users
 - Recommendation: Have your plugin register [main menu action](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerMainMenuAction) with some text, icon for mobile, and an action function. This adds your action to the Main Menu. You can additionally [register a slash command](https://developers.mattermost.com/extend/plugins/server/reference/#API.RegisterCommand) on the server-side.
