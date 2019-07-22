@@ -55,7 +55,7 @@ You can additionally [register a slash command](https://developers.mattermost.co
 
 ![popover user actions component](/img/extend/bp-user-popover.png)
 
-### Display custom information on a user profile
+### Present extra information on a user profile
 - Recommendation: Have your plugin register a [popover user attribute component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserAttributesComponent). This adds your custom attributes to the user profile popover. 
 - Examples: Custom User Attributes plugin
 
