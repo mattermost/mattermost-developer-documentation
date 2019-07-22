@@ -47,13 +47,13 @@ weight: 0
 - Recommendation: Have your plugin register a [popover user actions component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserActionsComponent). This adds your action to the user profile popover. 
 - Examples: ..
 
-![popover user actions component](/img/extend/bp-.png)
+![popover user actions component](/img/extend/bp-user-popover.png)
 
 ### Attributes added for a user
 - Recommendation: Have your plugin register a [popover user attribute component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserAttributesComponent). This adds your attributes to the user profile popover. 
 - Examples: Custom User Attributes plugin
 
-![popover user attribute component](/img/extend/bp-.png)
+![popover user attribute component](/img/extend/bp-user-attributes.png)
 
 ### Actions related to emoji and GIFs
 - Recommendation: Have your plugin add a component to the emoji picker. This is not yet supported, but some [work had previously started](https://github.com/mattermost/mattermost-server/issues/10412#issuecomment-481776595) with the issue currently opeend as Help Wanted
