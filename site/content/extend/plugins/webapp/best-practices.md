@@ -7,19 +7,21 @@ weight: 0
 
 
 ### Actions that apply to specific Channels
-- Recommendation: Have your plugin register the actions to [the channel header](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerChannelHeaderButtonAction). This makes it quickly accessible by users and actions apply to the channel they're viewing. You can additionally [register a slash command](https://developers.mattermost.com/extend/plugins/server/reference/#API.RegisterCommand) on the server-side to take channel-specific actions.
+- Recommendation: Have your plugin register the actions to [the channel header](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerChannelHeaderButtonAction). This makes it quickly accessible by users and actions apply to the channel they're viewing. 
+
+You can additionally [register a slash command](https://developers.mattermost.com/extend/plugins/server/reference/#API.RegisterCommand) on the server-side to take channel-specific actions.
 - Examples: Jira project subscriptions to a channel; Zoom meeting posts to a channel
 
 ![Custom Channel header Button](/img/extend/bp-channel-header.png)
 
 ### Actions that apply to specific messages
-- Recommendation: Have your plugin register a [post dropdown menu component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPostDropdownMenuComponent) with some text, icon and an action function. This adds your action to the "More Actions" post menu dropdown.
-- Examples: Create or attach to Jira issue from a message; Copy a message to another channel; report an inappropriate message
+- Recommendation: Have your plugin register a [post dropdown menu component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPostDropdownMenuComponent) with some text, icon and an action function. This adds your action to the "More Actions" post menu dropdown for easy discovery.
+- Examples: Create or attach to Jira issue from a message; copy a message to another channel; report an inappropriate message
 
 ![post dropdown menu](/img/extend/bp-post-dropdown-menu.png)
 
 ### Actions related to files or images
-- Recommendation: Have your plugin register a [file upload method](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerFileUploadMethod) with some text, icon and an action function. This adds your action to the file upload menu.
+- Recommendation: Have your plugin register a [file upload method](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerFileUploadMethod) with some text, icon and an action function. This adds your new action to the file upload menu.
 - Examples: File sharing from OneDrive or GDrive; Draw plugin for sketches
 
 ![file upload action](/img/extend/bp-file-upload.png)
@@ -31,7 +33,7 @@ weight: 0
 
 ![post dropdown menu](/img/extend/bp-left-sidebar-header.png)
 
-### Quick links or status summaries of workflows ..??
+### Quick links or status summaries of workflows
 - Recommendation: Have your plugin register a [bottom team sidebar component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerBottomTeamSidebarComponent). This adds icons to the lower left corner of the UI.
 - Examples: GitHub sidebar links with summary of outstanding reviews or unread messages; ServiceNow incident status summary
 
@@ -44,18 +46,18 @@ weight: 0
 ![post dropdown menu](/img/extend/bp-main-menu-action.png)
 
 ### Actions that apply to specific users
-- Recommendation: Have your plugin register a [popover user actions component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserActionsComponent). This adds your action to the user profile popover. 
+- Recommendation: Have your plugin register a [popover user actions component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserActionsComponent). This adds your action button to the user profile popover.   
 - Examples: ..
 
 ![popover user actions component](/img/extend/bp-user-popover.png)
 
-### Attributes added for a user
-- Recommendation: Have your plugin register a [popover user attribute component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserAttributesComponent). This adds your attributes to the user profile popover. 
+### Display custom information on a user profile
+- Recommendation: Have your plugin register a [popover user attribute component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserAttributesComponent). This adds your custom attributes to the user profile popover. 
 - Examples: Custom User Attributes plugin
 
 ![popover user attribute component](/img/extend/bp-user-attributes.png)
 
 ### Actions related to emoji and GIFs
-- Recommendation: Have your plugin add a component to the emoji picker. This is not yet supported, but some [work had previously started](https://github.com/mattermost/mattermost-server/issues/10412#issuecomment-481776595) with the issue currently opeend as Help Wanted
+- Recommendation: Have your plugin add a component to the emoji picker. This is not yet supported, but some [work had previously started](https://github.com/mattermost/mattermost-server/issues/10412#issuecomment-481776595) with the issue currently opened as Help Wanted.
 - Examples: Bitmoji plugin; GIFs via Giphy or Gfycat
 
