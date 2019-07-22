@@ -9,6 +9,8 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 
 # Issue Labels
 * `Area/<name>`: Involves changes to the named area (APIv4, Add E2E Tests, Localization, Plugins, etc.)
+* `Bug Report/Open`: Bug report unresolved, awaiting for more information or in development backlog.
+* `Bug Report/Scheduled for Release`: Bug report resolved and scheduled for an upcoming release. Milestone indicates scheduled release version.
 * `Difficulty/1:easy`: Easy ticket.
 * `Difficulty/2:medium`: Medium ticket.
 * `Difficulty/3:hard`: Hard ticket.
