@@ -1,6 +1,5 @@
 ---
 title: Design Best Practices
-date: 2019-06-02T00:00:00-00:00
 subsection: Web App Plugins
 weight: 0
 ---
