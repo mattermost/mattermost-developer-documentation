@@ -33,7 +33,7 @@ You can additionally [register a slash command](https://developers.mattermost.co
 
 ### Actions that apply to specific teams
 - Recommendation: Have your plugin register [left sidebar header component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerLeftSidebarHeaderComponent) with some text, icon and an action function. This adds your action above your team's channels in the sidebar.
-- Examples: Trello kanban board plugin, Github Plugin
+- Examples: Trello kanban board plugin, GitHub Plugin
 
 ![post dropdown menu](/img/extend/bp-left-sidebar-header.png)
 
