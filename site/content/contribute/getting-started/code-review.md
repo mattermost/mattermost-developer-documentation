@@ -8,10 +8,9 @@ subsection: Getting Started
 All changes to the product must be reviewed.
 
 * User experience changes must be reviewed by a [product manager](/contribute/getting-started/core-committers/#product-managers).
-* Code changes must be reviewed by at least two [core committers](/contribute/getting-started/core-committers/#core-committers).
+* Code changes must be reviewed by at least two [core committers](/contribute/getting-started/core-committers/#core-committers) and a [QA tester](/contribute/getting-started/core-committers/#qa-testers).
 * Documentation changes must be reviewed by a [product manager](/contribute/getting-started/core-committers/#product-managers).
   * Product managers may ask for reviews from [core committers](/contribute/getting-started/core-committers/#core-committers) and [QA testers](/contribute/getting-started/core-committers/#qa-testers) as required.
-* Any change may be verified by a [QA tester](/contribute/getting-started/core-committers/#qa-testers) as required.
 
 If you are a community member seeking a review
 ----------------------------------------------
@@ -44,6 +43,7 @@ If you are a core committer seeking a review
     * Product managers ensure the changes meet [user experience guidelines](https://docs.mattermost.com/developer/fx-guidelines.html).
     * Wait for their review before continuing so as to avoid churn if changes are requested.
     * Note that product managers may assign core committers after completing their own review.
+    * The PM should remove `1: PM Review` when their review is done.
 3. Assign two [core committers](/contribute/getting-started/core-committers/) to your review and label your pull request with `2: Dev Review`.
     * When picking your first core committer, consider someone with domain expertise relative to your changes. Sometimes GitHub will recommend a recent editor of the code, but often you must rely on your own intuition from past interactions.
     * When picking your second core committer, consider someone unrelated to your changes. A fresh and unbiased set of eyes can be invaluable, and exposing the team to new parts of the code helps spread out domain knowledge.
@@ -51,10 +51,10 @@ If you are a core committer seeking a review
     * If you are Mattermost staff, try to take into account the timeoff calendar.
     * Try to avoid assigning the same person to all of your reviews unless they are related.
     * When in doubt, ask for recommendations on our community server.
-4. Optionally assign a [QA tester](/contribute/getting-started/core-committers/#qa-testers) and label your pull request with `QA Review`.
-    * Not every pull request requires QA Review. Prioritize large features or material changes to the product for QA review.
-    * Pull requests labelled with `QA Review` automatically notify the QA team at large.
-    * Reviews by QA may occur at the same time as review by core committers.
+4. Assign a [QA tester](/contribute/getting-started/core-committers/#qa-testers) and label your pull request with `2: QA Review`.
+    * Not every pull request requires an exhaustive QA review, but it is the PM or QA assignee's responsibility to determine this.
+    * Reviews by QA may occur at the same time as review by core committers. Be sure to ask for a second review as needed when changes are made.
+    * The QA assignee should remove `2: QA Review` when their review is done, or if a review is deemed not necessary.
 5. Apply additional labels as necessary:
     * `CherryPick/Approved`: Apply this if the pull request is meant for a quality or patch release.
     * `Do Not Merge/Awaiting PR`: Apply this if the pull request depends on another (e.g. server changes)
@@ -71,8 +71,10 @@ If you are a core committer seeking a review
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
     * Once you've addressed the concerns, assign them as a reviewer again to put your pull request back in their queue.
 9. Merge the pull request.
-    * Only merge once all concerns have been addressed, any reviewing product manager has approved the changes, any reviewing QA tester has approved the changes, and at least two core committers have approved.
-    * Remove the `1: PM Review`, `2: Dev Revew` and `QA Review` labels and assign the `3: Reviews Complete` label.
+    * Do not merge until the reviewing product manager has approved the changes and removed the `1: PM Review` label.
+    * Do not merge until the reviewing QA tester has approved the changes and removed the `2: QA Review` label.
+    * Do not merge until at least two core committers have approved and all concerns have been addressed.
+    * Remove any remaining `2: Dev Review` label and assign the `3: Reviews Complete` label.
     * Merge your pull request and delete the branch if not from a fork.
     * Note that the last core committer to approve your changes may do this on your behalf.
     * If your pull request depends on other pull requests, consider assigning the `Do Not Merge/Awaiting PR` label.
@@ -101,7 +103,10 @@ If you are a core committer asked to give a review
     * Don't be afraid to ask for changes repeatedly until all concerns are addressed.
     * Feel free to challenge assumptions and timelines. Rushing a change into a patch release may cause more harm than good.
 4. Merge the pull request.
-    * Remove the `1: PM Review` and `2: Dev Revew` labels and assign the `3: Reviews Complete` label.
+    * Do not merge until the reviewing product manager has approved the changes and removed the `1: PM Review` label.
+    * Do not merge until the reviewing QA tester has approved the changes and removed the `2: QA Review` label.
+    * Do not merge until at least two core committers have approved and all concerns have been addressed.
+    * Remove any remaining `2: Dev Review` label and assign the `3: Reviews Complete` label.
     * Merge the pull request, and delete the branch if not from a fork.
     * Some changes are spread out across multiple pull requests that should be merged at the same time. Look out for the `Do Not Merge/Awaiting PR` label. When in doubt, leave the merging of the pull request to the author.
 5. Handle any cherry-picks.
