@@ -52,7 +52,7 @@ If you are a core committer seeking a review
     * Try to avoid assigning the same person to all of your reviews unless they are related.
     * When in doubt, ask for recommendations on our community server.
 4. Assign a [QA tester](/contribute/getting-started/core-committers/#qa-testers) and label your pull request with `2: QA Review`.
-    * Not every pull request requires an exhaustive QA review, but it is the PM or QA tester's responsibility to determine this.
+    * It is the PM or QA tester's responsibility to determine the scope of required testing, if any.
     * Reviews by QA may occur at the same time as review by core committers. Be sure to ask for a second review as needed when changes are made.
     * The QA tester should remove `2: QA Review` when their review is done, or if a review is deemed not necessary.
 5. Apply additional labels as necessary:
