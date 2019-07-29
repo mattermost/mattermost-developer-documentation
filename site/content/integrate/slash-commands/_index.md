@@ -182,7 +182,7 @@ Ensure you are emitting the `Content-Type: application/json` header, otherwise y
 
 #### Are slash commands Slack-compatible?
 
-See the [admin guide's notes on Slack compatibillity](https://docs.mattermost.com/developer/slash-commands.html#slack-compatibility).
+See the [admin guide's notes on Slack compatibility](https://docs.mattermost.com/developer/slash-commands.html#slack-compatibility).
 
 #### How do I use Bot Accounts to reply to slash commands?
 

@@ -111,7 +111,7 @@ The most important part of this process is to make sure your endpoint works corr
     - Etags for your endpoint, if applicable
     - Incorrect URL or body parameters return a **400 Bad Request** status code
     - Requests without a token return a **401 Unauthorized** status code (for endpoints requiring a session)
-    - Requests with insufficent permissions return a **403 Forbidden** status code (for endpoints requiring a permission)
+    - Requests with insufficient permissions return a **403 Forbidden** status code (for endpoints requiring a permission)
     - Requests to non-existent resources or URLs return a **404 Not Found** status code
 
 Returning the correct error code might require investigation in the [app](https://github.com/mattermost/mattermost-server/tree/master/app) or [store](https://github.com/mattermost/mattermost-server/tree/master/store) packages to find the source of errors. Status codes on errors should be set at the creation of the error.

@@ -19,7 +19,7 @@ VPN Server: https://vpn.internal.mattermost.com
 
 * Configure your two-factor
 
-* Access the vpn server to download the client (if you dont have) and the config file (Used Locked profile)
+* Access the vpn server to download the client (if you don't have) and the config file (Used Locked profile)
     - Select `Login` and type your email and password (the same you used in the Onelogin)
     <span style="display:block;text-align:center">![VPN HomePage](/img/vpn_1.png)</span>
     - Download the client for your OS
