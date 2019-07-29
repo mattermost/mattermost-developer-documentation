@@ -80,7 +80,7 @@ and we make a request to get the profile for a user that we don't have, the foll
     - **getUser**
     - getChannel
 
-To do this, we it is important to always return new objects from a reducer if any of its contents change. This is trivial for reducers for state that is a primitive string or number, but it can be more complicated for other types of data. You should also make sure to return the same object if nothing needs to change. As long as you do that, `combineReducers` will make sure to update the rest of the state tree accordingly.
+To do this, it is important to always return new objects from a reducer if any of its contents change. This is trivial for reducers for state that is a primitive string or number, but it can be more complicated for other types of data. You should also make sure to return the same object if nothing needs to change. As long as you do that, `combineReducers` will make sure to update the rest of the state tree accordingly.
 
 ```javascript
 function myOtherValue(state = {color: 'red', weather: 'rain'}, action) {
