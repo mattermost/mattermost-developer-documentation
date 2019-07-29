@@ -58,6 +58,7 @@ QA pass involves getting a memeber of our QA team to take a look and verify the 
 
 Steps involved:
 - Ensure all setup documentation needed is clear and can be successfully followed 
+- Dedicated instance or test account to access and test the third-party service, if applicable
 - Functional testing has been done to ensure the integration works as expected
 - For Plugins owned by Mattermost - Release testing is added to cover the main functionality of the plugin 
 
