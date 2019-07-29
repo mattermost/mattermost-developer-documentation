@@ -104,6 +104,7 @@ Below is the list of core committers working on Mattermost:
 - **<a name="guillermo.vaya">Guillermo Vayá</a>**
     - @guillermo.vaya on [community.mattermost.com](https://community.mattermost.com/core/messages/@guillermo.vaya) and [@Willyfrog](https://github.com/Willyfrog) on GitHub
     - Dev areas: Web / Desktop apps
+
 Core Developers
 ---------------
 
