@@ -23,10 +23,10 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Performance, Security, Build, LDAP, Load Tests, Webpack, Permissions, Kubernetes
 - **<a name="harrison.healey">Harrison Healey</a>**
     - @harrison on [community.mattermost.com](https://community.mattermost.com/core/messages/@harrison) and [@hmhealey](https://github.com/hmhealey) on GitHub
-    - Dev areas: Markdown, React Native, Autocomplete, UI, Emojis, Reactions, Files
+    - Dev areas: Mobile / Desktop and Web apps
 - **<a name="elias.nahum">Elias Nahum</a>**
     - @elias on [community.mattermost.com](https://community.mattermost.com/core/messages/@elias) and [@enahum](https://github.com/enahum) on GitHub
-    - Dev areas: React Native, Redux, Localization, SAML, OAuth, WebRTC
+    - Dev areas: Mobile / Desktop and Web apps
 - **<a name="george.goldberg">George Goldberg</a>**
     - @george on [community.mattermost.com](https://community.mattermost.com/core/messages/@george) and [@grundleborg](https://github.com/grundleborg) on GitHub
     - Dev areas: Import/Export (Slack, Bulk Loading, etc.), Diagnostics/Telemetry, Search, Permissions
@@ -49,7 +49,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Performance, Web App, Database, Developer Toolkit
 - **<a name="sudheer.timmaraju">Sudheer Timmaraju</a>**
     - @sudheerdev on [community.mattermost.com](https://community.mattermost.com/core/messages/@sudheerdev) and [@sudheerDev](https://github.com/sudheerDev) on GitHub
-    - Dev areas: Web App, React, Redux, Performance
+    - Dev areas: Web / Desktop and Mobile apps
 - **<a name="daniel.schalla">Daniel Schalla</a>**
     - @dschalla on [community.mattermost.com](https://community.mattermost.com/core/messages/@dschalla) and [@dschalla](https://github.com/dschalla) on GitHub
     - Dev areas: Security, Plugins, Integrations, Performance
@@ -70,10 +70,10 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Desktop app, Plugins
 - **<a name="dean.whillier">Dean Whillier</a>**
     - @deanwhillier on [community.mattermost.com](https://community.mattermost.com/core/messages/@deanwhillier) and [@deanwhillier](https://github.com/deanwhillier) on GitHub
-    - Dev areas: Desktop app, Web App, React, Redux, UI, React Native
+    - Dev areas: Desktop / Web and Mobile apps
 - **<a name="miguel.alatzar">Miguel Alatzar</a>**
     - @miguel.alatzar on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.alatzar) and [@migbot](https://github.com/migbot) on GitHub
-    - Dev areas: React Native, Desktop app, Web App, React, Redux
+    - Dev areas: Mobile / Desktop and Web apps
 - **<a name="Miguel de la Cruz">Miguel de la Cruz</a>**
     - @miguel.delacruz on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.delacruz) and [@mgdelacroix](https://github.com/mgdelacroix) on GitHub
     - Dev areas: Elasticsearch, Web App, Server
@@ -100,8 +100,10 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Developer Toolkit
 - **<a name="devin.binnie">Devin Binnie</a>**
     - @devin.binnie on [community.mattermost.com](https://community.mattermost.com/core/messages/@devin.binnie) and [@devinbinnie](https://github.com/devinbinnie) on GitHub
-    - Dev areas: React Native, Desktop app, Web App, React, Redux
-
+    - Dev areas: Desktop / Web and Mobile apps
+- **<a name="guillermo.vaya">Guillermo Vayá</a>**
+    - @guillermo.vaya on [community.mattermost.com](https://community.mattermost.com/core/messages/@guillermo.vaya) and [@Willyfrog](https://github.com/Willyfrog) on GitHub
+    - Dev areas: Web / Desktop apps
 Core Developers
 ---------------
 
