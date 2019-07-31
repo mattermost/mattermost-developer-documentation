@@ -104,6 +104,7 @@ Below is the list of core committers working on Mattermost:
 - **<a name="guillermo.vaya">Guillermo Vayá</a>**
     - @guillermo.vaya on [community.mattermost.com](https://community.mattermost.com/core/messages/@guillermo.vaya) and [@Willyfrog](https://github.com/Willyfrog) on GitHub
     - Dev areas: Web / Desktop apps
+
 Core Developers
 ---------------
 
@@ -155,11 +156,19 @@ The core team also has QA testers who verify the correct functionality of the pr
 
 - **<a name="linda.mitchell">Linda Mitchell</a>**
     - @linda on [community.mattermost.com](https://community.mattermost.com/core/messages/@linda) and [@lindalumitchell](https://github.com/lindalumitchell) on GitHub
-- **<a name="dylan.haussermann">Dylan Haussermann</a>**
-    - @dylan.haussermann on [community.mattermost.com](https://community.mattermost.com/core/messages/@dylan.haussermann) and [@DHaussermann](https://github.com/DHaussermann) on GitHub
 - **<a name="lindy.isherwood">Lindy Isherwood</a>**
     - @lindy.isherwood on [community.mattermost.com](https://community.mattermost.com/core/messages/@lindy.isherwood) and [@lindy65](https://github.com/lindy65) on GitHub
+- **<a name="dylan.haussermann">Dylan Haussermann</a>**
+    - @dylan.haussermann on [community.mattermost.com](https://community.mattermost.com/core/messages/@dylan.haussermann) and [@DHaussermann](https://github.com/DHaussermann) on GitHub
+- **<a name="ogi.marušić">Ogi Marušić</a>**
+    - @ogi.marusic on [community.mattermost.com](https://community.mattermost.com/core/messages/@ogi.marusic) and [@ogi-m](https://github.com/ogi-m) on GitHub
 - **<a name="bob.lubecker">Bob Lubecker</a>**
     - @bob.lubecker on [community.mattermost.com](https://community.mattermost.com/core/messages/@bob.lubecker) and [@thekiiingbob](https://github.com/thekiiingbob) on GitHub
-- **<a name="ogi.marušić">Ogi Marušić</a>**
-    - @ogi.marusic on [community.mattermost.com](https://community.mattermost.com/core/messages/@ogi.marusic)
+- **<a name="prapti.shrestha">Prapti Shrestha</a>**
+    - @prapti.shrestha on [community.mattermost.com](https://community.mattermost.com/core/messages/@prapti.shrestha) and [@prapti](https://github.com/prapti) on GitHub
+- **<a name="rohitesh.gupta">Rohitesh Gupta</a>**
+    - @rohitesh.gupta on [community.mattermost.com](https://community.mattermost.com/core/messages/@rohitesh.gupta) and [@srkgupta](https://github.com/srkgupta) on GitHub
+- **<a name="jelena.gilliam">Jelena Gilliam</a>**
+    - @jelena.gilliam on [community.mattermost.com](https://community.mattermost.com/core/messages/@jelena.gilliam) and [@jgilliam17](https://github.com/jgilliam17) on GitHub
+- **<a name="steve.mudie">Steve Mudie</a>**
+    - @steve.mudie on [community.mattermost.com](https://community.mattermost.com/core/messages/@steve.mudie) and [@stevemudie](https://github.com/stevemudie) on GitHub
