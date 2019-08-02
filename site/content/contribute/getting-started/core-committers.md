@@ -23,10 +23,10 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Performance, Security, Build, LDAP, Load Tests, Webpack, Permissions, Kubernetes
 - **<a name="harrison.healey">Harrison Healey</a>**
     - @harrison on [community.mattermost.com](https://community.mattermost.com/core/messages/@harrison) and [@hmhealey](https://github.com/hmhealey) on GitHub
-    - Dev areas: Markdown, React Native, Autocomplete, UI, Emojis, Reactions, Files
+    - Dev areas: Mobile / Desktop and Web apps
 - **<a name="elias.nahum">Elias Nahum</a>**
     - @elias on [community.mattermost.com](https://community.mattermost.com/core/messages/@elias) and [@enahum](https://github.com/enahum) on GitHub
-    - Dev areas: React Native, Redux, Localization, SAML, OAuth, WebRTC
+    - Dev areas: Mobile / Desktop and Web apps
 - **<a name="george.goldberg">George Goldberg</a>**
     - @george on [community.mattermost.com](https://community.mattermost.com/core/messages/@george) and [@grundleborg](https://github.com/grundleborg) on GitHub
     - Dev areas: Import/Export (Slack, Bulk Loading, etc.), Diagnostics/Telemetry, Search, Permissions
@@ -49,7 +49,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Performance, Web App, Database, Developer Toolkit
 - **<a name="sudheer.timmaraju">Sudheer Timmaraju</a>**
     - @sudheerdev on [community.mattermost.com](https://community.mattermost.com/core/messages/@sudheerdev) and [@sudheerDev](https://github.com/sudheerDev) on GitHub
-    - Dev areas: Web App, React, Redux, Performance
+    - Dev areas: Web / Desktop and Mobile apps
 - **<a name="daniel.schalla">Daniel Schalla</a>**
     - @dschalla on [community.mattermost.com](https://community.mattermost.com/core/messages/@dschalla) and [@dschalla](https://github.com/dschalla) on GitHub
     - Dev areas: Security, Plugins, Integrations, Performance
@@ -70,10 +70,10 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Desktop app, Plugins
 - **<a name="dean.whillier">Dean Whillier</a>**
     - @deanwhillier on [community.mattermost.com](https://community.mattermost.com/core/messages/@deanwhillier) and [@deanwhillier](https://github.com/deanwhillier) on GitHub
-    - Dev areas: Desktop app, Web App, React, Redux, UI, React Native
+    - Dev areas: Desktop / Web and Mobile apps
 - **<a name="miguel.alatzar">Miguel Alatzar</a>**
     - @miguel.alatzar on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.alatzar) and [@migbot](https://github.com/migbot) on GitHub
-    - Dev areas: React Native, Desktop app, Web App, React, Redux
+    - Dev areas: Mobile / Desktop and Web apps
 - **<a name="Miguel de la Cruz">Miguel de la Cruz</a>**
     - @miguel.delacruz on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.delacruz) and [@mgdelacroix](https://github.com/mgdelacroix) on GitHub
     - Dev areas: Elasticsearch, Web App, Server
@@ -100,7 +100,10 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Developer Toolkit
 - **<a name="devin.binnie">Devin Binnie</a>**
     - @devin.binnie on [community.mattermost.com](https://community.mattermost.com/core/messages/@devin.binnie) and [@devinbinnie](https://github.com/devinbinnie) on GitHub
-    - Dev areas: React Native, Desktop app, Web App, React, Redux
+    - Dev areas: Desktop / Web and Mobile apps
+- **<a name="guillermo.vaya">Guillermo Vayá</a>**
+    - @guillermo.vaya on [community.mattermost.com](https://community.mattermost.com/core/messages/@guillermo.vaya) and [@Willyfrog](https://github.com/Willyfrog) on GitHub
+    - Dev areas: Web / Desktop apps
 
 Core Developers
 ---------------
@@ -143,6 +146,8 @@ The core team also has product managers who do a lot of great work designing, pr
     - @amyblais on [community.mattermost.com](https://community.mattermost.com/core/messages/@amyblais) and [@amyblais](https://github.com/amyblais) on GitHub
 - **<a name="katie.wiersgalla">Katie Wiersgalla</a>**
     - @katie.wiersgalla on [community.mattermost.com](https://community.mattermost.com/core/messages/@katie.wiersgalla) and [@wiersgallak](https://github.com/wiersgallak) on GitHub
+- **<a name="aaron.rothschild">Aaron Rothschild</a>**
+    - @aaron.rothschild on [community.mattermost.com](https://community.mattermost.com/core/messages/@aaron.rothschild) and [@aaronrothschild](https://github.com/aaronrothschild) on GitHub
 
 QA Testers
 ------------
@@ -151,11 +156,19 @@ The core team also has QA testers who verify the correct functionality of the pr
 
 - **<a name="linda.mitchell">Linda Mitchell</a>**
     - @linda on [community.mattermost.com](https://community.mattermost.com/core/messages/@linda) and [@lindalumitchell](https://github.com/lindalumitchell) on GitHub
-- **<a name="dylan.haussermann">Dylan Haussermann</a>**
-    - @dylan.haussermann on [community.mattermost.com](https://community.mattermost.com/core/messages/@dylan.haussermann) and [@DHaussermann](https://github.com/DHaussermann) on GitHub
 - **<a name="lindy.isherwood">Lindy Isherwood</a>**
     - @lindy.isherwood on [community.mattermost.com](https://community.mattermost.com/core/messages/@lindy.isherwood) and [@lindy65](https://github.com/lindy65) on GitHub
+- **<a name="dylan.haussermann">Dylan Haussermann</a>**
+    - @dylan.haussermann on [community.mattermost.com](https://community.mattermost.com/core/messages/@dylan.haussermann) and [@DHaussermann](https://github.com/DHaussermann) on GitHub
+- **<a name="ogi.marušić">Ogi Marušić</a>**
+    - @ogi.marusic on [community.mattermost.com](https://community.mattermost.com/core/messages/@ogi.marusic) and [@ogi-m](https://github.com/ogi-m) on GitHub
 - **<a name="bob.lubecker">Bob Lubecker</a>**
     - @bob.lubecker on [community.mattermost.com](https://community.mattermost.com/core/messages/@bob.lubecker) and [@thekiiingbob](https://github.com/thekiiingbob) on GitHub
-- **<a name="ogi.marušić">Ogi Marušić</a>**
-    - @ogi.marusic on [community.mattermost.com](https://community.mattermost.com/core/messages/@ogi.marusic)
+- **<a name="prapti.shrestha">Prapti Shrestha</a>**
+    - @prapti.shrestha on [community.mattermost.com](https://community.mattermost.com/core/messages/@prapti.shrestha) and [@prapti](https://github.com/prapti) on GitHub
+- **<a name="rohitesh.gupta">Rohitesh Gupta</a>**
+    - @rohitesh.gupta on [community.mattermost.com](https://community.mattermost.com/core/messages/@rohitesh.gupta) and [@srkgupta](https://github.com/srkgupta) on GitHub
+- **<a name="jelena.gilliam">Jelena Gilliam</a>**
+    - @jelena.gilliam on [community.mattermost.com](https://community.mattermost.com/core/messages/@jelena.gilliam) and [@jgilliam17](https://github.com/jgilliam17) on GitHub
+- **<a name="steve.mudie">Steve Mudie</a>**
+    - @steve.mudie on [community.mattermost.com](https://community.mattermost.com/core/messages/@steve.mudie) and [@stevemudie](https://github.com/stevemudie) on GitHub

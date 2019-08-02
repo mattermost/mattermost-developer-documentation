@@ -50,10 +50,10 @@ Since running every single unit test takes a lot of time while making changes, y
 go test -v -run='<test name or regex>' ./<package containing test>
 ```
 
-For example, if you wanted to run `TestPostUpdate` in `api/post_test.go`, you would run the following:
+For example, if you wanted to run `TestUpdatePost` in `app/post_test.go`, you would run the following:
 
 ```
-go test -v -run='TestPostUpdate' ./api
+go test -v -run='TestUpdatePost' ./app
 ```
 
 ### Useful mattermost commands

@@ -32,6 +32,7 @@
     ```sh
     sudo yum group install "Development Tools"
     sudo yum install -y wget libpng12
+    sudo rm -rf /usr/local/go
     wget https://storage.googleapis.com/golang/go1.12.linux-amd64.tar.gz
     sudo tar -C /usr/local -xzf go1.12.linux-amd64.tar.gz
     ```

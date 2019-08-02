@@ -1,5 +1,5 @@
 ---
-title: High Availabilty
+title: High Availability
 date: 2018-07-10T00:00:00-05:00
 subsection: Server Plugins
 weight: 60
@@ -7,7 +7,7 @@ weight: 60
 
 Mattermost Enterprise Edition servers with an E20 license have the ability to run in [High Availability (HA)](https://docs.mattermost.com/deployment/cluster.html) mode, meaning a cluster of Mattermost app servers running together as a single Mattermost deployment.
 
-It is imporant that all plugins consider HA environments when being built.
+It is important that all plugins consider HA environments when being built.
 
 Plugins are started as subprocesses of the main Mattermost process on each app server. This means a Mattermost deployment that has three app servers will have three separate copies of the same plugin running. Each running copy of the plugin will be isolated from one another on different servers. Therefore, to run properly in HA the plugin's server-side code must be stateless.
 
@@ -25,4 +25,4 @@ In this scenario, the trigger word is now only set for the plugin process runnin
 
 The proper way to deal with this case would be for the plugin to store the trigger word in a global store, such as the KV store. Then any time a user posts the plugin can pull the trigger word from the store and properly alert the user, regardless of which app server handles the request.
 
-In the future the plugin API will introduce capabilites for coordinating across multiple plugin instances.
+In the future the plugin API will introduce capabilities for coordinating across multiple plugin instances.

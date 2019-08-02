@@ -31,6 +31,7 @@
     ```sh
     sudo apt-get install -y build-essential
     wget https://storage.googleapis.com/golang/go1.12.linux-amd64.tar.gz
+    sudo rm -rf /usr/local/go
     sudo tar -C /usr/local -xzf go1.12.linux-amd64.tar.gz
     ```
 

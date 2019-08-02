@@ -6,7 +6,7 @@ weight: 50
 ---
 
 
-Getting your plugin onto our community server https://community.mattermost.com is a valuable source of feedback. Whether you are a [Core Committer](https://github.com/mattermost/mattermost-developer-documentation/blob/dae9ecb3b445111479acbaba9f382e9eb263bc52/contribute/getting-started/core-committers) or anyone from the community, we want you to get feedback to improve your plugin. However we must ensure that our community server remains stable for everyone. This document outlines the process of getting your plugin onto the community server. In the future, some of these steps will be required to get your plugin into the integrations marketplace (TBD). When you are ready to have your plugin start this process, ask in the ~Toolkit channel on the community server. The PM, or somone else from the integrations team will help you start the process.
+Getting your plugin onto our community server https://community.mattermost.com is a valuable source of feedback. Whether you are a [Core Committer](https://github.com/mattermost/mattermost-developer-documentation/blob/dae9ecb3b445111479acbaba9f382e9eb263bc52/contribute/getting-started/core-committers) or anyone from the community, we want you to get feedback to improve your plugin. However we must ensure that our community server remains stable for everyone. This document outlines the process of getting your plugin onto the community server. In the future, some of these steps will be required to get your plugin into the integrations marketplace (TBD). When you are ready to have your plugin start this process, ask in the ~Toolkit channel on the community server. The PM, or someone else from the integrations team will help you start the process.
 
 ## Checklist
 
@@ -54,10 +54,11 @@ A more through code review is performed before allowing a plugin on ci-extension
 
 ### QA pass
 
-QA pass involves getting a memeber of our QA team to take a look and verify the functionality advertised by your plugin.
+QA pass involves getting a member of our QA team to take a look and verify the functionality advertised by your plugin.
 
 Steps involved:
 - Ensure all setup documentation needed is clear and can be successfully followed 
+- Dedicated instance or test account to access and test the third-party service, if applicable
 - Functional testing has been done to ensure the integration works as expected
 - For Plugins owned by Mattermost - Release testing is added to cover the main functionality of the plugin 
 

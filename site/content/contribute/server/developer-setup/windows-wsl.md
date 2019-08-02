@@ -27,6 +27,7 @@ This is an unofficial guide. Community testing, feedback and improvements are we
 
     ```sh
     sudo apt-get install -y build-essential
+    sudo rm -rf /usr/local/go
     wget https://storage.googleapis.com/golang/go1.12.linux-amd64.tar.gz
     sudo tar -C /usr/local -xzf go1.12.linux-amd64.tar.gz
     ```
