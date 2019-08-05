@@ -47,7 +47,7 @@
                     <ul class="list-unstyled">
                         {{ range first 15 (where .Site.Pages ".Section" "blog" )}}
                         {{ if and (.IsPage) (ne .Title $.Title)}}
-                        <li class="blog-item__sidebar">- <a href="{{ $.Site.BaseURL }}{{.URL}}">{{ .Title }}</a></li>
+                        <li class="blog-item__sidebar">- <a href="{{ .Permalink }}">{{ .Title }}</a></li>
                         {{ end }}
                         {{ end }}
                     </ul>
