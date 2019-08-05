@@ -1,5 +1,5 @@
 .note {
-    border-left-width: 4px;
+    border-left-width: 3px;
     border-left-style: solid;
     position: relative;
     border-color: #0594CB;
@@ -18,11 +18,11 @@
 
 .note-content {
     display: block;
-    margin: 0px;
+    margin: 2px;
     padding: .125em 1em;
     /*margin-left: 1em;*/
-    margin-top: 2em;
-    margin-bottom: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
     overflow-x: auto;
     /*font-size: .9375em;*/
     background-color: rgba(0, 0, 0, .05);
