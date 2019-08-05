@@ -46,11 +46,18 @@
     git clone https://github.com/$GITHUB_USERNAME/mattermost-server.git $(go env GOPATH)/src/github.com/mattermost/mattermost-server
     ```
 
-8. Start the server and test your environment:
+8. Start the server:
 
     ```sh
     cd $(go env GOPATH)/src/github.com/mattermost/mattermost-server
     make run-server
+    ```
+
+    **Note:** If you see a bunch of `nc: bad address 'elasticsearch'` messages, eventually exiting with the message `Service elasticsearch:9200 did not start within 300 seconds. Aborting...` try increasing the memory available for the Docker Engine by going to [Docker's preferences -> Advanced](https://docs.docker.com/docker-for-mac/#advanced).
+
+9. Test your environment:
+
+    ```sh
     curl http://localhost:8065/api/v4/system/ping
     make stop-server
     ```
