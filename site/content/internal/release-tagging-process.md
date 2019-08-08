@@ -5,7 +5,7 @@ section: internal
 weight: 32
 ---
 
-1. Head to the [Github releases][https://github.com/mattermost/mattermost-mobile/releases] page.
+1. Head to the [Github releases](https://github.com/mattermost/mattermost-mobile/releases) page.
 2. Copy the description of the previous release to your clipboard then click on the `Draft a new release` button.
 3. On the new release page:
     1. Paste the copied description into the description text area.
