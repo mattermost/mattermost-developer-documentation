@@ -21,4 +21,6 @@ Steps to cut the mobile build:
 5. Execute the task for ``Build with Parameters`` in ``mattermost-mobile-beta-release`` and set the ``BRANCH_NAME`` to 
 ``release-X.X`` (replace the X's with the release version).
 
-{{% note "Build queue" %}}**Execute one build at a time**. Do **not** execute builds in parallel as we currently have only one build machine.{{%/note%}}
+{{% note "Build queue" %}}
+**Execute one build at a time**. Do **not** execute builds in parallel as we currently have only one build machine.
+{{%/note%}}

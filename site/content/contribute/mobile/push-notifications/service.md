@@ -124,32 +124,29 @@ and running the service under a `mattermost-push-proxy` user account with limite
 ### Test the Mattermost Push Notification Service
 * Verify that the server is functioning normally and test the push notification using curl:
  `curl http://127.0.0.1:8066/api/v1/send_push -X POST -H "Content-Type: application/json" -d '{"type": "message", "message": "test", "badge": 1, "platform": "PLATFORM", "server_id": "MATTERMOST_DIAG_ID", "device_id": "DEVICE_ID", "channel_id": "CHANNEL_ID"}'`
-
-    * Replace `MATTERMOST_DIAG_ID` with the value found by running the SQL query:
-    ```sql
-    SELECT * FROM Systems WHERE Name = 'DiagnosticId';
-    ```
-    * Replace `DEVICE_ID` with your device ID, which can be found using (where `your_email@example.com` is the email address of the user you are logged in as):
-    ```sql
-    SELECT
-       Email, DeviceId
-    FROM
-       Sessions,
-       Users
-    WHERE
-       Sessions.UserId = Users.Id
-          AND DeviceId != ''
-          AND Email = 'your_email@example.com';
-    ```
-    * Replace `CHANNEL_ID` with the Town Square channel ID, which can be found using:
-    ```sql
-    SELECT Id FROM Channels WHERE DisplayName = 'Town Square';
-    ```
-    
-    {{% note "Migration" %}}
-    Remove the `apple:`, `apple_rn`, `android:` or `android_rn:` prefix from your device ID before replacing `DEVICE_ID`. Use that prefix as the `PLATFORM` (make sure to remove the ":").
-    {{% /note %}}
-
+  * Replace `MATTERMOST_DIAG_ID` with the value found by running the SQL query:
+  ```sql
+  SELECT * FROM Systems WHERE Name = 'DiagnosticId';
+  ```
+  * Replace `DEVICE_ID` with your device ID, which can be found using (where `your_email@example.com` is the email address of the user you are logged in as):
+  ```sql
+  SELECT
+     Email, DeviceId
+  FROM
+     Sessions,
+     Users
+  WHERE
+     Sessions.UserId = Users.Id
+        AND DeviceId != ''
+        AND Email = 'your_email@example.com';
+  ```
+  * Replace `CHANNEL_ID` with the Town Square channel ID, which can be found using:
+  ```sql
+  SELECT Id FROM Channels WHERE DisplayName = 'Town Square';
+  ```
+  {{% note "Migration" %}}
+  Remove the `apple:`, `apple_rn`, `android:` or `android_rn:` prefix from your device ID before replacing `DEVICE_ID`. Use that prefix as the `PLATFORM` (make sure to remove the ":").
+  {{% /note %}}
 * You can also verify push notifications are working by opening your Mattermost site and mentioning a user who has push notifications enabled in **Account Settings > Notifications > Mobile Push Notifications**.
 
 To view the log file, use:

@@ -23,7 +23,7 @@
         {{ if eq $.Title .Title }}
         <span class="item active"><i class="sub-menu__toggle fa {{$.Scratch.Get "icon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a class="active" href="#"> {{ .Title }}</a></span>
         {{ else }}
-        <span class="item"><i class="sub-menu__toggle fa {{$.Scratch.Get "icon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a href="{{ .URL }}"> {{ .Title }}</a></span>
+        <span class="item"><i class="sub-menu__toggle fa {{$.Scratch.Get "icon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a href="{{ .Permalink }}"> {{ .Title }}</a></span>
         {{ end }}
         {{ if $expanded }}
         <ul class="sub-menu" style="display: block">
@@ -45,9 +45,9 @@
                 {{ end }}
 
                 {{ if eq $.Title .Title }}
-                <span class="item active"><i class="sub-menu__toggle fa {{$.Scratch.Get "subicon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a class="active" href="{{ .URL }}"> {{ .Title }}</a></span>
+                <span class="item active"><i class="sub-menu__toggle fa {{$.Scratch.Get "subicon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a class="active" href="{{ .Permalink }}"> {{ .Title }}</a></span>
                 {{ else }}
-                <span class="item"><i class="sub-menu__toggle fa {{$.Scratch.Get "subicon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a href="{{ .URL }}"> {{ .Title }}</a></span>
+                <span class="item"><i class="sub-menu__toggle fa {{$.Scratch.Get "subicon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a href="{{ .Permalink }}"> {{ .Title }}</a></span>
                 {{ end }}
                 {{ if $subexpanded }}
                 <ul class="sub-menu" style="display: block">
@@ -56,18 +56,18 @@
                 {{ end }}
                 {{ range .Pages.ByWeight }}
                     {{ if eq $.Title .Title }}
-                    <a class="item active" href="{{ .URL }}">{{ .Title }}</a>
+                    <a class="item active" href="{{ .Permalink }}">{{ .Title }}</a>
                     {{ else }}
-                    <a class="item" href="{{ .URL }}">{{ .Title }}</a>
+                    <a class="item" href="{{ .Permalink }}">{{ .Title }}</a>
                     {{ end }}
                 {{ end }}
                 </ul>
             {{ end }}
             {{ range .Pages.ByWeight }}
                 {{ if and (eq $.Title .Title) (eq $.Params.subsection .Params.subsection) }}
-                <a class="item active" href="{{ .URL }}">{{ .Title }}</a>
+                <a class="item active" href="{{ .Permalink }}">{{ .Title }}</a>
                 {{ else }}
-                <a class="item" href="{{ .URL }}">{{ .Title }}</a>
+                <a class="item" href="{{ .Permalink }}">{{ .Title }}</a>
                 {{ end }}
             {{ end }}
         </ul>

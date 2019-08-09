@@ -1,6 +1,6 @@
 <aside class="note">
-    <div class="note-icon">
-        {{partial "svg/exclamation.svg" (dict "size" "20px" ) }}
+    <div class="note-content">
+        <strong>{{ .Get 0 }}</strong><br>
+        {{ .Inner | markdownify }}
     </div>
-    <div class="note-content">{{- .Inner -}}</div>
 </aside>
