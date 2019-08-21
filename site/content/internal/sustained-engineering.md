@@ -39,6 +39,8 @@ In progress fixes:
 Next in the queue:
 * <list of 3-5 tickets next in the queue>
 
+Total bugs in backlog: <X>
+
 Notes:
 * <any notes or qualifiers for the week>
 ```
