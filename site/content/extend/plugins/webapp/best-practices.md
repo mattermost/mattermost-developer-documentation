@@ -6,8 +6,8 @@ weight: 0
 
 
 ### Actions that apply to specific Channels
-- Recommendation: Have your plugin register the actions to [the channel header](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerChannelHeaderButtonAction). This makes it quickly accessible by users and actions apply to the channel they're viewing. 
-- Example:  Zoom meeting posts to a channel
+- Recommendation: Have your plugin register the actions to [the channel header](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerChannelHeaderButtonAction). This makes it quickly accessible for users and the actions apply to the channel they're viewing. 
+- Example: Zoom meeting posts to a channel
 
 ![Custom Channel Header Button](/img/extend/bp-channel-header.png)
 
