@@ -16,7 +16,6 @@ You can additionally [register a slash command](https://developers.mattermost.co
 
 ![Slash Command](/img/extend/bp-slash-command.gif)
 
-
 ### Actions that apply to specific messages
 - Recommendation: Have your plugin register a [post dropdown menu component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPostDropdownMenuComponent) with some text, icon and an action function. This adds your action to the "More Actions" post menu dropdown for easy discovery.
 - Examples: Create or attach to Jira issue from a message; copy a message to another channel; report an inappropriate message
@@ -28,7 +27,6 @@ You can additionally [register a slash command](https://developers.mattermost.co
 - Examples: File sharing from OneDrive or GDrive; Draw plugin for sketches
 
 ![File Upload Action](/img/extend/bp-file-upload.png)
-
 
 ### Actions that apply to specific teams
 - Recommendation: Have your plugin register [left sidebar header component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerLeftSidebarHeaderComponent) with some text, icon and an action function. This adds your action above your team's channels in the sidebar.
@@ -50,11 +48,11 @@ You can additionally [register a slash command](https://developers.mattermost.co
 
 ### Actions that apply to specific users
 - Recommendation: Have your plugin register a [popover user actions component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserActionsComponent). This adds your action button to the user profile popover.   
-- Examples: ..
+- Examples: Report User plugin; Display extra information about the user from an LDAP server
 
 ![popover user actions component](/img/extend/bp-user-popover.png)
 
-### Present extra information on a user profile
+### Extra information on a user profile
 - Recommendation: Have your plugin register a [popover user attribute component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserAttributesComponent). This adds your custom attributes to the user profile popover. 
 - Examples: Custom User Attributes plugin
 
