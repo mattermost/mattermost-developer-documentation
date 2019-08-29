@@ -122,9 +122,11 @@ In the SDK Manager using Android Studio or the [Android SDK command line tool](h
 
 - SDK Platforms (you may have to click "Show Package Details" to expand packages)
     ![image](/img/mobile/sdk_platforms.png)
-    - Android 6 (Marshmallow)
+    - Android 7 (Nougat) or above ([We've dropped Android 5/6 Support since December 2018, you may still continue to use 1.14 for Android 5/6 devices](https://github.com/mattermost/mattermost-mobile/issues/2480))
         - Google APIs
-        - Android SDK Platform 26 and 27
+        - SDK Platform
+            - For Android 7 or above -> Android SDK Platform 24 or above
+            - For Android 5/6 -> Android SDK Platform 23 or below
         - Intel x86 Atom\_64 System Image
     - Any other API version that you want to test
 
