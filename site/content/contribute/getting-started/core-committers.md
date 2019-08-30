@@ -56,9 +56,9 @@ Below is the list of core committers working on Mattermost:
 - **<a name="hyeseong.kim">Hyeseong Kim</a>**
     - @cometkim on [community.mattermost.com](https://community.mattermost.com/core/messages/@cometkim) and [@cometkim](https://github.com/cometkim) on GitHub
     - Dev areas: Web App, React, Redux, REST API
-- **<a name="hanzei">Hanzei</a>**
+- **<a name="ben.schumacher">Ben Schumacher</a>**
     - @hanzei on [community.mattermost.com](https://community.mattermost.com/core/messages/@hanzei) and [@hanzei](https://github.com/hanzei) on GitHub
-    - Dev areas: Plugins, Integrations, Security
+    - Dev areas: Developer Toolkit, Plugins, Community
 - **<a name="lev.brouk">Lev Brouk</a>**
     - @lev.brouk on [community.mattermost.com](https://community.mattermost.com/core/messages/@lev.brouk) and [@levb](https://github.com/levb) on GitHub
     - Dev areas: Extensions
@@ -104,6 +104,9 @@ Below is the list of core committers working on Mattermost:
 - **<a name="guillermo.vaya">Guillermo Vayá</a>**
     - @guillermo.vaya on [community.mattermost.com](https://community.mattermost.com/core/messages/@guillermo.vaya) and [@Willyfrog](https://github.com/Willyfrog) on GitHub
     - Dev areas: Web / Desktop apps
+- **<a name="shota.gvinepadze">Shota Gvinepadze</a>**
+    - @shota.gvinepadze on [community.mattermost.com](https://community.mattermost.com/core/messages/@shota.gvinepadze) and [@iomodo](https://github.com/iomodo) on GitHub
+    - Dev areas: Developer Toolkit, Plugins, AI, Machine Learning
 
 Core Developers
 ---------------

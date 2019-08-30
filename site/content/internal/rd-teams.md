@@ -70,6 +70,8 @@ weight: 110
 * Jesse Hallam - Eng Lead
 * Ali Farooq - Engineer
 * Maria Nuñez - Engineer
+* Shota Gvinepadze - Engineer
+* Ben Schumacher - Engineer
 * Aaron Rothschild - PM
 
 ## Ops/Infra Team
