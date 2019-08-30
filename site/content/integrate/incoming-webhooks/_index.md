@@ -68,6 +68,7 @@ Incoming webhooks support more than just the `text` field. Here is a full list o
 | attachments | [Message attachments](https://docs.mattermost.com/developer/message-attachments.html) used for richer formatting options. | If `text` is not set, yes |
 | type | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with "custom\_". | No |
 | props | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br> Mainly used by other integrations accessing posts through the REST API.<br> The following keys are reserved: "from\_webhook", "override\_username", "override\_icon\_url", "override\_icon\_emoji", "webhook\_display\_name" and "attachments". | No |
+| - | Props `card` allows for extra information (markdown formatted text) to be sent to Mattermost that will only be displayed in the RHS panel after a user clicks on an 'info' icon displayed alongside the post.  The info icon cannot be customized and is only rendered visible to the user if there is `card` data passed into the message. This is only available in v5.14+.
 
 An example request using some more parameters would look like this:
 
@@ -84,6 +85,26 @@ Content-Length: 630
   "text": "#### Test results for July 27th, 2017\n@channel please review failed tests.\n\n| Component  | Tests Run   | Tests Failed                                   |\n|:-----------|:-----------:|:-----------------------------------------------|\n| Server     | 948         | :white_check_mark: 0                           |\n| Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |\n| iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |"
 }
 ```
+
+An example request that would display additional info in the RHS panel, by passing markdown text into `props` as a `card` object would look like this:
+
+```http
+POST /hooks/xxx-generatedkey-xxx HTTP/1.1
+Host: your-mattermost-server
+Content-Type: application/json
+
+
+{
+  "channel": "town-square",
+  "username": "Winning-bot",
+  "text": "#### We won a new deal!"
+  "props": "{"card": "Salesforce Opportunity Information:\n\n [Opportunity Name](http://salesforce.com/OPPORTUNITY_ID)\n\n-Salesperson: **Bob McKnight** \n\n Amount: **$300,020.00**"}
+}
+```
+
+When there is `props:card` data passed in via the webhook, the rendered message will display a small icon that expands the RHS panel to display the markdown that was passed in with the webhook:
+
+![image](https://user-images.githubusercontent.com/915956/64055959-ec0cfe80-cb44-11e9-8ee3-b64d47c86032.png)
 
 ### Slack Compatibility
 
