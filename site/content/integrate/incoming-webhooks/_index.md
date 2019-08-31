@@ -98,7 +98,7 @@ Content-Type: application/json
   "channel": "town-square",
   "username": "Winning-bot",
   "text": "#### We won a new deal!"
-  "props": "{"card": "Salesforce Opportunity Information:\n\n [Opportunity Name](http://salesforce.com/OPPORTUNITY_ID)\n\n-Salesperson: **Bob McKnight** \n\n Amount: **$300,020.00**"}
+  "props": "{"card": "Salesforce Opportunity Information:\n\n [Opportunity Name](http://salesforce.com/OPPORTUNITY_ID)\n\n-Salesperson: **Bob McKnight** \n\n Amount: **$300,020.00**"}"
 }
 ```
 
