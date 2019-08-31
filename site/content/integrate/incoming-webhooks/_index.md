@@ -86,7 +86,7 @@ Content-Length: 630
 }
 ```
 
-An example request that would display additional info in the RHS panel, by passing markdown text into `props` as a `card` object would look like this:
+An example request displaying additional data in the right-hand side panel, by passing Markdown text into `props` as a `card` object would look like this:
 
 ```http
 POST /hooks/xxx-generatedkey-xxx HTTP/1.1
