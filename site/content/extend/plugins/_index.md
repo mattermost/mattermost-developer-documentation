@@ -6,7 +6,7 @@ section: extend
 
 Mattermost supports plugins that offer powerful features for extending and deeply integrating with both the server and web/desktop apps.
 
-Plugins are still in beta and we're looking for your feedback! Share constructive feedback [on our forum post](https://forum.mattermost.org/t/plugin-system-upgrade-in-mattermost-5-2/5498) or join the [Developer Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) on our Mattermost community instance.
+Plugins are still in beta and we're looking for your feedback! Share constructive feedback [on our forum post](https://forum.mattermost.org/t/plugin-system-upgrade-in-mattermost-5-2/5498) or join the [Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) on our Mattermost community instance.
 
 ## Features
 

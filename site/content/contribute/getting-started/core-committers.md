@@ -17,7 +17,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: High Availability, Orchestration/Kubernetes, Push Proxy, Classic Mobile Apps
 - **<a name="joram.wilander">Joram Wilander</a>**
     - @joram on [community.mattermost.com](https://community.mattermost.com/core/messages/@joram) and [@jwilander](https://github.com/jwilander) on GitHub
-    - Dev areas: Web App, Redux, REST API, Developer Toolkit, OAuth SSO, Statuses, WebSocket, Licensing, Kubernetes, Performance
+    - Dev areas: Web App, Redux, REST API, Toolkit, OAuth SSO, Statuses, WebSocket, Licensing, Kubernetes, Performance
 - **<a name="christopher.speller">Christopher Speller</a>**
     - @christopher on [community.mattermost.com](https://community.mattermost.com/core/messages/@christopher) and [@crspeller](https://github.com/crspeller) on GitHub
     - Dev areas: Performance, Security, Build, LDAP, Load Tests, Webpack, Permissions, Kubernetes
@@ -46,7 +46,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Web App, Permissions, Compliance, Redux, CLI, System Console, Sample Data
 - **<a name="jesse.hallam">Jesse Hallam</a>**
     - @jesse.hallam on [community.mattermost.com](https://community.mattermost.com/core/messages/@jesse.hallam) and [@lieut-data](https://github.com/lieut-data) on GitHub
-    - Dev areas: Performance, Web App, Database, Developer Toolkit
+    - Dev areas: Performance, Web App, Database, Toolkit
 - **<a name="sudheer.timmaraju">Sudheer Timmaraju</a>**
     - @sudheerdev on [community.mattermost.com](https://community.mattermost.com/core/messages/@sudheerdev) and [@sudheerDev](https://github.com/sudheerDev) on GitHub
     - Dev areas: Web / Desktop and Mobile apps
@@ -56,9 +56,9 @@ Below is the list of core committers working on Mattermost:
 - **<a name="hyeseong.kim">Hyeseong Kim</a>**
     - @cometkim on [community.mattermost.com](https://community.mattermost.com/core/messages/@cometkim) and [@cometkim](https://github.com/cometkim) on GitHub
     - Dev areas: Web App, React, Redux, REST API
-- **<a name="hanzei">Hanzei</a>**
+- **<a name="ben.schumacher">Ben Schumacher</a>**
     - @hanzei on [community.mattermost.com](https://community.mattermost.com/core/messages/@hanzei) and [@hanzei](https://github.com/hanzei) on GitHub
-    - Dev areas: Plugins, Integrations, Security
+    - Dev areas: Toolkit, Plugins, Community
 - **<a name="lev.brouk">Lev Brouk</a>**
     - @lev.brouk on [community.mattermost.com](https://community.mattermost.com/core/messages/@lev.brouk) and [@levb](https://github.com/levb) on GitHub
     - Dev areas: Extensions
@@ -94,16 +94,19 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Extensions
 - **<a name="ali.farooq">Ali Farooq</a>**
     - @ali.farooq on [community.mattermost.com](https://community.mattermost.com/core/messages/@ali.farooq) and [@ali-farooq0](https://github.com/ali-farooq0) on GitHub
-    - Dev areas: Developer Toolkit
+    - Dev areas: Toolkit, Plugins, Server, Clustering
 - **<a name="maria.nunez">Maria Nuñez</a>**
     - @maria.nunez on [community.mattermost.com](https://community.mattermost.com/core/messages/@maria.nunez) and [@marianunez](https://github.com/marianunez) on GitHub
-    - Dev areas: Developer Toolkit
+    - Dev areas: Toolkit, Plugins, Web App
 - **<a name="devin.binnie">Devin Binnie</a>**
     - @devin.binnie on [community.mattermost.com](https://community.mattermost.com/core/messages/@devin.binnie) and [@devinbinnie](https://github.com/devinbinnie) on GitHub
     - Dev areas: Desktop / Web and Mobile apps
 - **<a name="guillermo.vaya">Guillermo Vayá</a>**
     - @guillermo.vaya on [community.mattermost.com](https://community.mattermost.com/core/messages/@guillermo.vaya) and [@Willyfrog](https://github.com/Willyfrog) on GitHub
     - Dev areas: Web / Desktop apps
+- **<a name="shota.gvinepadze">Shota Gvinepadze</a>**
+    - @shota.gvinepadze on [community.mattermost.com](https://community.mattermost.com/core/messages/@shota.gvinepadze) and [@iomodo](https://github.com/iomodo) on GitHub
+    - Dev areas: Toolkit, Plugins, AI, Machine Learning
 
 Core Developers
 ---------------

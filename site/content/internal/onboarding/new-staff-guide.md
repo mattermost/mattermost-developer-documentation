@@ -38,7 +38,7 @@ weight: 10
     - Bugs
     - Contributors
     - Release Discussion
-    - Developer Toolkit (optional)
+    - Toolkit (optional)
     - Redux (optional)
     - Installers and Images (optional)
     - Native Mobile Apps (optional)
@@ -48,7 +48,7 @@ weight: 10
 
 ### Meetings and Accounts
 - You manager should notify `people-ops` and have you added to all appropriate meetings
-    - `people-ops` will also set up your `@mattermost.com` email 
+    - `people-ops` will also set up your `@mattermost.com` email
 - DevOps to setup various accounts as needed
     - Add to email groups
         - dev-ops
