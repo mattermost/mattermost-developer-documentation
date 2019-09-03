@@ -38,4 +38,4 @@ weight: 30
 - Message @lindy.isherwood and ask her to add the new hire to the Mattermost Release Dates google calendar
 
 ### Jira Access
-- Message @amy.blais and ask her to add the new hire to ``jira-developers`` and ``internal`` groups in Jira.
+- Message @amy.blais and ask her to add the new hire to ``jira-developers`` and ``internal`` groups in Jira
