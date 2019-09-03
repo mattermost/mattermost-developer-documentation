@@ -21,10 +21,11 @@ Here's a general workflow a Mattermost developer working on the [mattermost-weba
 2. On your fork, create a branch `MM-####` where #### is the ticket number if it is a [Jira](https://mattermost.atlassian.net) ticket, or `GH-####` if it is a GitHub Issue without a Jira ticket.
 3. Make the code changes required to complete your ticket, making sure to write or modify unit tests where appropriate. Use `make test` to run the unit tests.
 4. To test your changes, run `make run` from the root directory of the server repository. This will start up the server and a watcher process that will build any changes to the client as you make them. To get changes to the server it must be restarted with `make restart-server`. Your server will be running at `http://localhost:8065`.
-5. Once everything works to meet the ticket requirements, stop Mattermost by running `make stop` in the server repository, then run `make check-style` to check your syntax and `make test` to run the tests.
-6. Commit your changes, push your branch and [create a pull request](https://docs.mattermost.com/developer/contribution-guide.html#preparing-a-pull-request).
-7. Respond to feedback on your pull request and make changes as necessary by committing to your branch and pushing it. You might need to [rebase your changes](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) if another pull request creates conflicts.
-8. That's it! Rejoice that you've helped make Mattermost better.
+5. If you added or changed any strings you will need to run `make i18n-extract`to generate the new/updated strings.
+6. Once everything works to meet the ticket requirements, stop Mattermost by running `make stop` in the server repository, then run `make check-style` to check your syntax and `make test` to run the tests.
+7. Commit your changes, push your branch and [create a pull request](https://developers.mattermost.com/blog/submitting-great-prs/).
+8. Respond to feedback on your pull request and make changes as necessary by committing to your branch and pushing it. You might need to [rebase your changes](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) if another pull request creates conflicts.
+9. That's it! Rejoice that you've helped make Mattermost better.
 
 ### Useful mattermost commands ###
 
