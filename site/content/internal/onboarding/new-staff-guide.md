@@ -7,6 +7,12 @@ weight: 10
 
 ### Helpful links
 - https://docs.mattermost.com/developer/developer-flow.html
+- [Jira bug ticket process](https://docs.mattermost.com/process/new-bug-tickets.html)
+- [PR cherry-picking process](https://developers.mattermost.com/contribute/getting-started/branching/)
+- [RN build process](https://developers.mattermost.com/internal/mobile-build-process/) if you are joining Apps team
+- Glance through the release processes
+    - https://docs.mattermost.com/process/feature-release.html
+    - https://docs.mattermost.com/process/bug-fix-release.html
 - Security: Read through the security channel / issues spreadsheet and look at past exploits
 - Developer Reading List - top of public Developer channel
 
@@ -38,6 +44,7 @@ weight: 10
     - Bugs
     - Contributors
     - Release Discussion
+    - Release Checklist (optional)
     - Toolkit (optional)
     - Redux (optional)
     - Installers and Images (optional)
