@@ -21,6 +21,8 @@ Follow this checklist for submitting a pull request (PR):
     - [../mattermost-server../en.json](https://github.com/mattermost/mattermost-server/blob/master/i18n/en.json)
     - [../mattermost-webapp../en.json](https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json)
     - [../mattermost-mobile../en.json](https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json)
+
+    5.1 In the webapp repository run `make i18n-extract` to generate the new/updated strings.
 6. PR is submitted against `master` branch.
 7. PR title begins with the JIRA or GitHub Ticket ID (e.g. `MM-394` or `GH-394`) and summary template is filled out.
 8. Once submitted, the automated build process must pass for the PR.
