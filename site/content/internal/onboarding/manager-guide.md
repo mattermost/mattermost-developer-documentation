@@ -32,7 +32,7 @@ weight: 30
 - Add new staff to the group
 
 ### Core Committer Mug
-- Message @lindy.isherwood and ask her to send the new hire their core committer mug
+- Message @hanna.park and ask her to send the new hire their core committer mug
 
 ### Release Dates Google Calendar
 - Message @lindy.isherwood and ask her to add the new hire to the Mattermost Release Dates google calendar
