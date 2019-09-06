@@ -68,7 +68,7 @@ Incoming webhooks support more than just the `text` field. Here is a full list o
 | attachments | [Message attachments](https://docs.mattermost.com/developer/message-attachments.html) used for richer formatting options. | If `text` is not set, yes |
 | type | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with "custom\_". | No |
 | props | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br> Mainly used by other integrations accessing posts through the REST API.<br> The following keys are reserved: "from\_webhook", "override\_username", "override\_icon\_url", "override\_icon\_emoji", "webhook\_display\_name", "card" and "attachments". | No |
-| props | Props `card` allows for extra information (markdown formatted text) to be sent to Mattermost that will only be displayed in the RHS panel after a user clicks on an 'info' icon displayed alongside the post.  The info icon cannot be customized and is only rendered visible to the user if there is `card` data passed into the message. This is only available in v5.14+. | No |
+| props | Props `card` allows for extra information (markdown formatted text) to be sent to Mattermost that will only be displayed in the RHS panel after a user clicks on an 'info' icon displayed alongside the post.  The info icon cannot be customized and is only rendered visible to the user if there is `card` data passed into the message. This is only available in v5.14+. There is currently no Mobile support for `card` functionality. | No |
 
 An example request using some more parameters would look like this:
 
