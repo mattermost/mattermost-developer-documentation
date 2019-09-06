@@ -63,7 +63,7 @@ The folder structure is mostly based on the [Cypress scaffold](https://docs.cypr
 
 ## Interested in Contributing to E2E Testing through Help Wanted Tickets
 
-1. All help wanted tickets are under [server repository's GitHub issues](https://mattermost.com/pl/help-wanted-mattermost-server). Look for issues with `Add E2E Tests` and `Up For Grabs` labels, and comment to let everyone know you're working on it.
+1. All help wanted tickets are under [server repository's GitHub issues](https://mattermost.com/pl/help-wanted-mattermost-server). Look for issues with `Area/E2E Tests` and `Up For Grabs` labels, and comment to let everyone know you're working on it.
 2. Each ticket is filled up with specific test steps and verifications that need to be accomplished as a minimum requirement.  Additional steps and assertions for robust test implementation are much welcome.
 3. Join our channel at [UI Test Automation](https://community.mattermost.com/core/channels/ui-test-automation) and talk to us as fellow contributors, and collaborate and learn with one another.
 
@@ -81,23 +81,27 @@ Inside of the `integration` directory, there are additional directories that bre
    - If element ID is not present in the webapp, you may add it in `camelCase` form with human readable name (e.g. `<div id='sidebarTitle'>`). Watch out for potential breaking changes in the snapshot of the unit testing.  Run `make test` to see if all are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot testing.
 2. Add commands or shortcuts to `/e2e/cypress/support/commands.js` (e.g. `toAccountSettingsModal`) that makes it easier to access a page, section, modal and etc. by simply using it as `cy.toAccountSettingsModal('user-1')`.
 3. Organize `/e2e/cypress/integration` with a subfolder to group similar tests.
-4. This is used to track test cases in our core staff Release Testing spreadsheet, which is linked in the header of the [Release Discussion channel](https://community.mattermost.com/core/channels/release-discussion) during release testing.
-
-    In the spec file, it should be written as:
+4. Add a `Test Key` when describing a test.  In the spec file, it should be written as:
 
     ```javascript
-    describe('Emoji reaction', () => {
-        it('M14014 Recently used emojis are shown 1st', () => {
+    describe('Messaging', () => {
+        it('M15011 - Emojis show as jumbo in reply thread', () => {
             // Test steps and assertion here
         }
     }
     ```
 
-    Where `"M14014"` is the test key and `"Recently used emojis are shown 1st"` is the test description.  This information is stated in Github's [help-wanted ticket](https://github.com/mattermost/mattermost-server/issues/10246) and [Jira ticket](https://mattermost.atlassian.net/browse/MM-14014).
+    Where `"M15011"` is the key and `"Emojis show as jumbo in reply thread"` is the test description.
 
-    The naming convention used is the name of the tab on the release testing spreadsheet e.g. AS = Account Settings; M = Messaging, etc. and the numerical value is from Jira ticket identifier. So `"M14014"` means "Messaging" on release testing spreadsheet with `MM-14014` Jira ticket.
+    The naming convention used is the name of the tab on the release testing spreadsheet e.g. AS = Account Settings; M = Messaging, etc. and the numerical value is from Jira ticket identifier. So `"M15011"` means "Messaging" on release testing spreadsheet with `MM-15011` Jira ticket.
 
-1. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/2058/files#diff-c42a18e742b351c0ade058ed0c4b5c5eR10) as a guide on how to write and submit an end-to-end testing PR.
+    For those writing E2E from help-wanted tickets with `Area/E2E Tests` label, the `Test Key` is available in the [GitHub issue itself](https://github.com/mattermost/mattermost-server/issues/10574).
+
+    `Test Key` is used to track test cases in our core staff Release Testing spreadsheet, which is linked in the header of the [Release Discussion channel](https://community.mattermost.com/core/channels/release-discussion) during release testing.
+
+    In cases where `Test Key` is not given, feel free to add a concise description of a test.
+
+5. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/3020/files) as a guide on how to write and submit an end-to-end testing PR.
 
 ## Troubleshooting
 
