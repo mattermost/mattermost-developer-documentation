@@ -102,7 +102,7 @@ Content-Type: application/json
 }
 ```
 
-When there is `props:card` property attached to the webhook payload, the posted message displays a small info icon next to the timestamp. Clicking this icon expands the right-hand side panel to display the Markdown included in `props:card`:
+When there is `props` object with a `card` property attached to the webhook payload, the posted message displays a small info icon next to the timestamp. Clicking this icon expands the right-hand side panel to display the Markdown included in the `card` property:
 
 ![image](https://user-images.githubusercontent.com/915956/64055959-ec0cfe80-cb44-11e9-8ee3-b64d47c86032.png)
 
