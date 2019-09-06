@@ -63,7 +63,7 @@ The folder structure is mostly based on the [Cypress scaffold](https://docs.cypr
 
 ## Interested in Contributing to E2E Testing through Help Wanted Tickets
 
-1. All help wanted tickets are under [server repository's GitHub issues](https://mattermost.com/pl/help-wanted-mattermost-server). Look for issues with `Add E2E Tests` and `Up For Grabs` labels, and comment to let everyone know you're working on it.
+1. All help wanted tickets are under [server repository's GitHub issues](https://mattermost.com/pl/help-wanted-mattermost-server). Look for issues with `Area/E2E Tests` and `Up For Grabs` labels, and comment to let everyone know you're working on it.
 2. Each ticket is filled up with specific test steps and verifications that need to be accomplished as a minimum requirement.  Additional steps and assertions for robust test implementation are much welcome.
 3. Join our channel at [UI Test Automation](https://community.mattermost.com/core/channels/ui-test-automation) and talk to us as fellow contributors, and collaborate and learn with one another.
 
@@ -95,7 +95,7 @@ Inside of the `integration` directory, there are additional directories that bre
 
     The naming convention used is the name of the tab on the release testing spreadsheet e.g. AS = Account Settings; M = Messaging, etc. and the numerical value is from Jira ticket identifier. So `"M15011"` means "Messaging" on release testing spreadsheet with `MM-15011` Jira ticket.
 
-    For those writing E2E from help-wanted tickets with `Add E2E Tests` label, the `Test Key` is available in the [GitHub issue itself](https://github.com/mattermost/mattermost-server/issues/10574).
+    For those writing E2E from help-wanted tickets with `Area/E2E Tests` label, the `Test Key` is available in the [GitHub issue itself](https://github.com/mattermost/mattermost-server/issues/10574).
 
     `Test Key` is used to track test cases in our core staff Release Testing spreadsheet, which is linked in the header of the [Release Discussion channel](https://community.mattermost.com/core/channels/release-discussion) during release testing.
 

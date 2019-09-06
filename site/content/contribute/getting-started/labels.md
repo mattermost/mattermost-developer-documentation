@@ -8,7 +8,7 @@ subsection: Getting Started
 We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to track the details and lifecycle of issues and pull requests.
 
 # Issue Labels
-* `Area/<name>`: Involves changes to the named area (APIv4, Add E2E Tests, Localization, Plugins, etc.)
+* `Area/<name>`: Involves changes to the named area (APIv4, E2E Tests, Localization, Plugins, etc.)
 * `Bug Report/Open`: Bug report unresolved, awaiting for more information or in development backlog.
 * `Bug Report/Scheduled for Release`: Bug report resolved and scheduled for an upcoming release. Milestone indicates scheduled release version.
 * `Difficulty/1:easy`: Easy ticket.
