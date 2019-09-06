@@ -95,7 +95,7 @@ Inside of the `integration` directory, there are additional directories that bre
 
     The naming convention used is the name of the tab on the release testing spreadsheet e.g. AS = Account Settings; M = Messaging, etc. and the numerical value is from Jira ticket identifier. So `"M15011"` means "Messaging" on release testing spreadsheet with `MM-15011` Jira ticket.
 
-    For those writing E2E from help-wanted tickets with `Add E2E Tests` label, the `Test Key` is available in Github [issue itself](https://github.com/mattermost/mattermost-server/issues/10574).
+    For those writing E2E from help-wanted tickets with `Add E2E Tests` label, the `Test Key` is available in the [GitHub issue itself](https://github.com/mattermost/mattermost-server/issues/10574).
 
     `Test Key` is used to track test cases in our core staff Release Testing spreadsheet, which is linked in the header of the [Release Discussion channel](https://community.mattermost.com/core/channels/release-discussion) during release testing.
 
