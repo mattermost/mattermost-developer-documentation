@@ -19,6 +19,8 @@ weight: 110
 * Dean Whillier - Engineer
 * Miguel Alatzar - Engineer
 * Devin Binnie - Engineer
+* Guillermo Vayá - Engineer
+* Claude Wild - Engineer
 * Eric Sethna - PM
 * Linda Mitchell - QA Lead
 * Bob Lubecker - QA
@@ -52,6 +54,7 @@ weight: 110
 * Daniel Schalla - Security Engineer
 * Miguel de la Cruz - Engineer
 * Eli Yukelzon - Engineer
+* Claudio Costa - Engineer
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
 * Michael Gamble - UX Designer
