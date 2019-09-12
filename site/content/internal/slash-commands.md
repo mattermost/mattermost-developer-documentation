@@ -9,4 +9,4 @@ There are a couple of slash-commands avaible on GitHub. They are implemented via
 The commands are:
 - `/cherry-pick $BRANCH_NAME`, e.g. `/cherry-pick release-5.10`: Opens a PR to cherry pick a change into the branch `$BRANCH_NAME`.
 - `/check-cla`: Checks if the PR contributor has signed the cla.
-- `/autoassign`: Automaticaly assigns reviewers to a PR.
+- `/autoassign`: Automatically assigns reviewers to a PR.
