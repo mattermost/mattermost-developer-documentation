@@ -7,9 +7,7 @@ subsection: Build Your Own App
 
 In order to use the **make build**, **make build-android** and/or **make build-ios** commands, you'll need to set a few environment variables. In order to make fastlane work with these environment variables you have two options:
 
-* Copy the file with your variables to `./mattermost-mobile/fastlane/.env` where `.env` is the file name.
-
-Additionaly a sample file `env_vars_example` can be found on `./mattermost-mobile/fastlane/`
+* Copy the file with your variables to `./mattermost-mobile/fastlane/.env` where `.env` is the file name (additionally, a sample file `env_vars_example` can be found on `./mattermost-mobile/fastlane/`).
 
 or
 
