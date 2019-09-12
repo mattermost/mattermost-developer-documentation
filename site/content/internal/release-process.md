@@ -2,7 +2,7 @@
 title: Release Cutting Process
 date: 2017-11-07T14:28:35-05:00
 section: internal
-weight: 100
+weight: 80
 ---
 
 **Note: To cut a build you need access to matterbuild. Please ask Christopher/Carlos for access if you don't have it.**
