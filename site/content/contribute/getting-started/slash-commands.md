@@ -4,7 +4,7 @@ weight: 30
 subsection: Getting Started
 ---
 
-There are a couple of slash-commands available on GitHub. They are implemented via [Mattermod](https://github.com/mattermost/mattermost-mattermod). They only work on PRs.
+There are a couple of slash-commands available on GitHub which are implemented via [Mattermod](https://github.com/mattermost/mattermost-mattermod). They only work on PRs.
 
 The commands are:
 
