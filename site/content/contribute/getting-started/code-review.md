@@ -79,7 +79,7 @@ If you are a core committer seeking a review
     * Note that the last core committer to approve your changes may do this on your behalf.
     * If your pull request depends on other pull requests, consider assigning the `Do Not Merge/Awaiting PR` label.
 10. Handle any cherry-picks.
-    * If the PR have the `CherryPick/Approved` label and a milestone set, when the PR gets merged it will try to cherry pick the the appropriate release branch automatically.
+    * If the PR has the `CherryPick/Approved` label and a milestone set, it will try to get cherry-picked to the the appropriate release branch automatically when the PR gets merged.
     * If the automated cherry pick pass, it will create a new PR with the cherry pick and will point the PR to the correct release branch.
     * If the PR need to go to other release branches you can run the command in the PR comments: `/cherry-pick release-x.yz` and it will try to cherry pick to the branch you specified.
     * If fails the developer need to apply the cherry pick manually.
