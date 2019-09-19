@@ -85,7 +85,7 @@ If you are a core committer seeking a review
     * If the cherry-pick fails, the developer needs to apply the cherry-pick manually.
     * Cherry-pick the commit from `master` to the affected releases. See the steps below:
     1. Run the check styles and tests.
-    1. Push your changes directly to the remote branch if check style and tests passed.
+    1. Push your changes directly to the remote branch if the check style and tests passed.
     1. No new pull request is required unless there are substantial merge conflicts.
     1. Remove the `CherryPick/Approved` label and apply the `CherryPick/Done` label.
 
