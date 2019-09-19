@@ -21,7 +21,7 @@ When your PR is required on a release branch, you will follow the cherry picking
 1. When your PR is approved, it will be assigned back to you to perform the merge and any cherry picking if necessary.
 1. Merge the PR.
 1. An automated cherry-pick process will try to cherry-pick the PR and if it succeeds, a new PR pointing to the correct release branch will open with all the appropriate labels.
-1. If the automated cherry pick fails the developer will need to cherry pick manually. Cherry pick the master commit back to the appropriate releases. If the release branches have not been cut yet, leave the labels as-is and cherry-pick once the branch has been cut. The release manager will remind you to finish your cherry-pick.
+1. If the automated cherry-pick fails, the developer will need to cherry-pick the PR manually. Cherry-pick the master commit back to the appropriate releases. If the release branches have not been cut yet, leave the labels as-is and cherry-pick once the branch has been cut. The release manager will remind you to finish your cherry-pick.
 1. Set the `CherryPick/Done` label when completed.
 
 Note:
