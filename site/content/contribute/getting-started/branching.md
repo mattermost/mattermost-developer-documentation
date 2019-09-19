@@ -1,6 +1,7 @@
 ---
 title: "Mattermost tick-tock Branching Strategy"
 date: 2019-06-18T00:00:00-04:00
+weight: 20
 subsection: Getting Started
 ---
 
