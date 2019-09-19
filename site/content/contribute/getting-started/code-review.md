@@ -82,7 +82,7 @@ If you are a core committer seeking a review
     * If the PR has the `CherryPick/Approved` label and a milestone set, it will try to get cherry-picked to the the appropriate release branch automatically when the PR gets merged.
     * If the automated cherry-pick passes, it will create a new PR with the cherry-pick and will point the PR to the correct release branch.
     * If the PR need to go to other release branches, you can run the command `/cherry-pick release-x.yz` in the PR comments and it will try to cherry-pick it to the branch you specified.
-    * If fails the developer need to apply the cherry pick manually.
+    * If the cherry-pick fails, the developer needs to apply the cherry-pick manually.
     * Cherry-pick the commit from `master` to the affected releases. See the steps below:
     1. Run the check styles and tests.
     1. Push your changes directly to the remote branch if check style and tests passed.
