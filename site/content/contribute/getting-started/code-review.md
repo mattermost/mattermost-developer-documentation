@@ -79,10 +79,15 @@ If you are a core committer seeking a review
     * Note that the last core committer to approve your changes may do this on your behalf.
     * If your pull request depends on other pull requests, consider assigning the `Do Not Merge/Awaiting PR` label.
 10. Handle any cherry-picks.
-    * Cherry-pick the commit from `master` to the affected releases.
-    * Push your changes directly to the remote branch.
-    * No new pull request is required unless there are substantial merge conflicts.
-    * Remove the `CherryPick/Approved` label and apply the `CherryPick/Done` label.
+    * If the PR have the `CherryPick/Approved` label and a milestone set, when the PR gets merged it will try to cherry pick the the appropriate release branch automatically.
+    * If the automated cherry pick pass, it will create a new PR with the cherry pick and will point the PR to the correct release branch.
+    * If the PR need to go to other release branches you can run the command in the PR comments: `/cherry-pick release-x.yz` and it will try to cherry pick to the branch you specified.
+    * If fails the developer need to apply the cherry pick manually.
+    * Cherry-pick the commit from `master` to the affected releases. See the steps below:
+    1. Run the check styles and tests.
+    1. Push your changes directly to the remote branch if check style and tests passed.
+    1. No new pull request is required unless there are substantial merge conflicts.
+    1. Remove the `CherryPick/Approved` label and apply the `CherryPick/Done` label.
 
 If you are a core committer asked to give a review
 --------------------------------------------------
@@ -110,4 +115,4 @@ If you are a core committer asked to give a review
     * Merge the pull request, and delete the branch if not from a fork.
     * Some changes are spread out across multiple pull requests that should be merged at the same time. Look out for the `Do Not Merge/Awaiting PR` label. When in doubt, leave the merging of the pull request to the author.
 5. Handle any cherry-picks.
-    * Typically, the author of the pull request should handle cherry-picks. Assume this is the case unless you are explicitly asked to help cherry-pick.
+    * There is an automated cherry pick process or the author of the pull request should handle cherry-picks. Assume this is the case unless you are explicitly asked to help cherry-pick.
