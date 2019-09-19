@@ -115,4 +115,4 @@ If you are a core committer asked to give a review
     * Merge the pull request, and delete the branch if not from a fork.
     * Some changes are spread out across multiple pull requests that should be merged at the same time. Look out for the `Do Not Merge/Awaiting PR` label. When in doubt, leave the merging of the pull request to the author.
 5. Handle any cherry-picks.
-    * There is an automated cherry pick process or the author of the pull request should handle cherry-picks. Assume this is the case unless you are explicitly asked to help cherry-pick.
+    * There is an automated cherry-pick process or the author of the pull request should handle cherry-picks. Assume this is the case unless you are explicitly asked to help cherry-pick.
