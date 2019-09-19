@@ -25,7 +25,7 @@ When your PR is required on a release branch, you will follow the cherry picking
 1. Set the `CherryPick/Done` label when completed.
 
 Note:
-  - If your PR need to go to more release branches you can type the following command in the PR comments: `/cherry-pick release-x.yz` and it will try to cherry pick to the branch you specified.
+  - If the PR need to go to other release branches, you can run the command `/cherry-pick release-x.yz` in the PR comments and it will try to cherry-pick it to the branch you specified.
 
 ## Cherry Pick Process - Reviewer
 
