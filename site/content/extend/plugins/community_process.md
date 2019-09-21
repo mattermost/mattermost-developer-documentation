@@ -30,7 +30,8 @@ Getting your plugin onto our community server https://community.mattermost.com i
 ### Basic Code Review
 
 Basic code review of an experimental plugin involves a quick review by a [core committer](/contribute/getting-started/core-committers/) to verify that the plugin does what it says it does and to provide any guidance and feedback. To make it easier to provide feedback, a PR can be made that contains all the code of the plugin that isn't the boilerplate from mattermost-plugin-starter-template.
-[ ] When you are ready to have your plugin start this process, ask in the ~Toolkit channel on the community server. E.g., "Hi, I have a plugin that I would like to get reviewed. It is called ...."
+
+- When you are ready for your plugin to start this process, post an introduction in the ~Toolkit channel on the community server. E.g., "Hi, I have a plugin that I would like to get reviewed. It is called ... It is designed to ... Thanks for reviewing it!"
 
 ### CI System Setup
 
