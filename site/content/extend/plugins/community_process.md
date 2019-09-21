@@ -1,5 +1,5 @@
 ---
-title: Plugin Inclusion Process
+title: Plugins on Community Server
 date: 2018-10-01T00:00:00-05:00
 subsection: Plugins (Beta)
 weight: 50
@@ -31,8 +31,6 @@ Getting your plugin onto our community server https://community.mattermost.com i
 
 Basic code review of an experimental plugin involves a quick review by a [core committer](/contribute/getting-started/core-committers/) to verify that the plugin does what it says it does and to provide any guidance and feedback. To make it easier to provide feedback, a PR can be made that contains all the code of the plugin that isn't the boilerplate from mattermost-plugin-starter-template.
 
-[ ] When you are ready for your plugin to start this process, post an introduction in the ~Toolkit channel on the community server. E.g., "Hi, I have a plugin that I would like to get reviewed. It is called ... It is designed to ... Thanks for taking a look at it!"
-
 ### CI System Setup
 
 Setting up the CI system for your plugin will allow continuous testing of your master branch and releases on our testing servers. Master branch testing is done on https://ci-extensions.azure.k8s.mattermost.com/ and release testing is done on https://ci-extensions-release.azure.k8s.mattermost.com/
@@ -59,7 +57,6 @@ A more through code review is performed before allowing a plugin on ci-extension
 QA pass involves getting a member of our QA team to take a look and verify the functionality advertised by your plugin.
 
 Steps involved:
-
 - Ensure all setup documentation needed is clear and can be successfully followed 
 - Dedicated instance or test account to access and test the third-party service, if applicable
 - Functional testing has been done to ensure the integration works as expected
