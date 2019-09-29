@@ -18,11 +18,11 @@
     If you don't migrate your data, the new, docker-compose-managed containers will start out empty. To remove the old containers -- destroying any existing data -- use `make clean-old-docker`.
      
     
-3. Download and install Go from https://golang.org/dl/
+3. Download and install Go from https://golang.org/dl/ . Follow the getting started steps to define your workspace directory and %GOPATH%.
 
 4. Fork https://github.com/mattermost/mattermost-server
 
-5. Clone the Mattermost source code from your fork:
+5. Clone the Mattermost source code from your fork using Git Bash into your %GOPATH%.
 
     ```sh
     cd ~/go
