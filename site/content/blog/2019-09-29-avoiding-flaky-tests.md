@@ -185,7 +185,15 @@ The [fix](https://github.com/mattermost/mattermost-server/pull/11705) was simple
 	require.Nil(t, err)
 ```
 
-### 6) Don't assume the test is actually flaky!
+### 6) Avoid remote dependencies.
+
+We [vendor](https://golang.org/cmd/go/#hdr-Vendor_Directories) all Go dependencies to ensure a reliable build. This strategy also greatly speeds up [git bisect](https://git-scm.com/docs/git-bisect) when your Go cache doesn't already have dependencies from an older branch.
+
+Unfortunately, for some plugin tests, our compilation strategy involved using a temporary directory outside of our `vendor` scope. This went undiscovered until some upstream resource couldn't be fetched and the CI build failed accordingly. This became especially problematic when [git.apache.org](https://blogs.apache.org/infra/entry/subversion-to-git-service-git) went down and took many Go build pipelines along with it.
+
+We've since fixed the compilation issue for plugin tests, and even applied this strategy to [other flaky tests](https://github.com/mattermost/mattermost-server/pull/12365) to avoid connecting to remote dependencies outside of our control.
+
+### 7) Don't assume the test is actually flaky!
 
 One danger of having flaky tests is conditioning developers to believe that **any** unexpected test failure is likely to be flaky. As an example, we had received [multiple reports](https://mattermost.atlassian.net/browse/MM-16479) of a flaky unit test concerning the `FileWillBeUploaded` plugin hook.  Much effort was spent statically analyzing the code and attempting to reproduce locally. Even with the test repeated 100x, it always succeeded locally. Given the ongoing impact to developers with unrelated changes, we were contemplating disabling the test altogether.
 
@@ -199,4 +207,5 @@ To summarize from our own observations:
 * Don't use `time.Sleep`? Do use `time.Sleep`? Know when to use `time.Sleep` responsibly.
 * Know your database semantics.
 * Expect anything from the unexpected and plan accordingly.
+* Assume anything outside of your control will eventually fail.
 * Every flaky test is a bug. Don't assume it's always a bug in the test.
