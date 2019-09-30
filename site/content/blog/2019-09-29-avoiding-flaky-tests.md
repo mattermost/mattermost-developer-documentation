@@ -49,7 +49,7 @@ func TestHTTPTimeout(t *testing.T) {
 
 By waiting for 101 milliseconds -- 1 millisecond longer than the configured timeout -- the test hoped to verify the timeout handling behaviour of the http service.
 
-Unfortunately, the underlying service implementation effectively deferred to `http.Client`, itself relying on a `time.Timer`. The [corresponding documentation](https://golang.org/pkg/time/#NewTimer) for `time.Timer` makes it clear -- with added emphasis:
+Unfortunately, the underlying service implementation effectively deferred to `http.Client`, which was itself relying on a `time.Timer`. The [corresponding documentation](https://golang.org/pkg/time/#NewTimer) for `time.Timer` makes it clear -- with added emphasis:
 
 > NewTimer creates a new Timer that will send the current time on its channel after **at least** duration d.
 
