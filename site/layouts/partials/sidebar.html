@@ -5,36 +5,13 @@
     </div>
     <div class="row sidebar__links">
         {{ range where .Site.Params.sidebar.item "name" $.Section }}
-        {{ range where $.Site.Pages ".Params.section" .name }}
-        {{ $expanded := or (eq $.Params.subsection .Title) (eq $.Title .Title) (eq $.Parent.Params.subsection .Title) }}
+            {{ range where $.Site.Pages ".Params.section" .name }}
+                {{ $active := (eq $.Title .Title) }}
+                {{ $expanded := or (eq $.Params.subsection .Title) $active (eq $.Parent.Params.subsection .Title) }}
 
-        {{ $.Scratch.Set "icon" "fa-plus-square-o" }}
-        {{ if $expanded }}
-            {{ $.Scratch.Set "icon" "fa-minus-square-o" }}
-        {{ end }}
-
-        {{if eq (len (.Pages)) 0}}
-            {{ $.Scratch.Set "iconstyle" "display: none" }}
-        {{ else }}
-            {{ $.Scratch.Set "iconstyle" "" }}
-        {{ end }}
-
-        {{ if eq $.Title .Title }}
-        <span class="item active"><i class="sub-menu__toggle fa {{$.Scratch.Get "icon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a class="active" href="#"> {{ .Title }}</a></span>
-        {{ else }}
-        <span class="item"><i class="sub-menu__toggle fa {{$.Scratch.Get "icon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a href="{{ .Permalink }}"> {{ .Title }}</a></span>
-        {{ end }}
-        {{ if $expanded }}
-        <ul class="sub-menu" style="display: block">
-        {{ else }}
-        <ul class="sub-menu">
-        {{ end }}
-            {{ range .Sections }}
-                {{ $subexpanded := or (eq .Title $.Params.subsection) (eq $.Title .Title) }}
-
-                {{ $.Scratch.Set "subicon" "fa-plus-square-o" }}
-                {{ if $subexpanded }}
-                    {{ $.Scratch.Set "subicon" "fa-minus-square-o" }}
+                {{ $.Scratch.Set "icon" "fa-plus-square-o" }}
+                {{ if $expanded }}
+                    {{ $.Scratch.Set "icon" "fa-minus-square-o" }}
                 {{ end }}
 
                 {{if eq (len (.Pages)) 0}}
@@ -43,34 +20,50 @@
                     {{ $.Scratch.Set "iconstyle" "" }}
                 {{ end }}
 
-                {{ if eq $.Title .Title }}
-                <span class="item active"><i class="sub-menu__toggle fa {{$.Scratch.Get "subicon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a class="active" href="{{ .Permalink }}"> {{ .Title }}</a></span>
-                {{ else }}
-                <span class="item"><i class="sub-menu__toggle fa {{$.Scratch.Get "subicon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i><a href="{{ .Permalink }}"> {{ .Title }}</a></span>
-                {{ end }}
-                {{ if $subexpanded }}
-                <ul class="sub-menu" style="display: block">
-                {{ else }}
-                <ul class="sub-menu">
-                {{ end }}
-                {{ range .Pages.ByWeight }}
-                    {{ if eq $.Title .Title }}
-                    <a class="item active" href="{{ .Permalink }}">{{ .Title }}</a>
+                <span class="item {{ if $active }}active{{ end }}">
+                    <i class="sub-menu__toggle fa {{$.Scratch.Get "icon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i>
+                    {{ if $active }}
+                        <a class="active" href="#"> {{ .Title }}</a>
                     {{ else }}
-                    <a class="item" href="{{ .Permalink }}">{{ .Title }}</a>
+                        <a href="{{ .Permalink }}"> {{ .Title }}</a>
                     {{ end }}
-                {{ end }}
+                </span>
+                <ul class="sub-menu" {{ if $expanded }}style="display: block"{{ end }}>
+                    {{ range .Sections }}
+                        {{ $subactive := (eq $.Title .Title) }}
+                        {{ $subexpanded := or (eq .Title $.Params.subsection) $subactive }}
+
+                        {{ $.Scratch.Set "subicon" "fa-plus-square-o" }}
+                        {{ if $subexpanded }}
+                            {{ $.Scratch.Set "subicon" "fa-minus-square-o" }}
+                        {{ end }}
+
+                        {{if eq (len (.Pages)) 0}}
+                            {{ $.Scratch.Set "iconstyle" "display: none" }}
+                        {{ else }}
+                            {{ $.Scratch.Set "iconstyle" "" }}
+                        {{ end }}
+
+                        <span class="item {{ if $subactive }}active{{ end }}">
+                            <i class="sub-menu__toggle fa {{$.Scratch.Get "subicon"}}" aria-hidden="true" style="{{$.Scratch.Get "iconstyle"}}"></i>
+                            {{ if $subactive }}
+                                <a class="active" href="{{ .Permalink }}"> {{ .Title }}</a></span>
+                            {{ else }}
+                                <a href="{{ .Permalink }}"> {{ .Title }}</a></span>
+                            {{ end }}
+                        </span>
+                        <ul class="sub-menu" {{ if $subexpanded }}style="display: block"{{ end }}>
+                            {{ range .Pages.ByWeight }}
+                                <a class="item {{ if eq $.Title .Title }}active{{ end }}" href="{{ .Permalink }}">{{ .Title }}</a>
+                            {{ end }}
+                        </ul>
+                    {{ end }}
+                    {{ range .Pages.ByWeight }}
+                        {{ $subactive := and (eq $.Title .Title) (eq $.Params.subsection .Params.subsection) }}
+                        <a class="item {{ if $subactive }}active{{ end }}" href="{{ .Permalink }}">{{ .Title }}</a>
+                    {{ end }}
                 </ul>
             {{ end }}
-            {{ range .Pages.ByWeight }}
-                {{ if and (eq $.Title .Title) (eq $.Params.subsection .Params.subsection) }}
-                <a class="item active" href="{{ .Permalink }}">{{ .Title }}</a>
-                {{ else }}
-                <a class="item" href="{{ .Permalink }}">{{ .Title }}</a>
-                {{ end }}
-            {{ end }}
-        </ul>
-        {{ end }}
         {{ end }}
     </div>
 </div>
