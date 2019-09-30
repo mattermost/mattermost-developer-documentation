@@ -19,7 +19,7 @@ You run the unit tests locally. PASS. You check out `origin/master` and run the 
 
 Flipping back to your CI server, your eye is drawn to the "Rebuild" icon on your CI pipeline. You think to yourself, "Maybe it's just a flaky test..."
 
-Flaky tests are no stranger to the Mattermost code base. With 6000+ server-side tests, 3500+ client-side tests, and a growing number of Cypress integration tests: we've seen our fair share of flaky tests. A few sprints back, we decided to focus some effort on squashing several of the server-side flaky tests. What follows are some practical observations to anyone reading, writing or running similar unit tests.
+Flaky tests are no stranger to the Mattermost code base. With 6000+ server-side tests, 3500+ client-side tests, and a growing number of Cypress integration tests, we've seen our fair share of flaky tests. A few sprints back, we decided to focus some efforts on squashing several of the server-side flaky tests. What follows are some practical observations to anyone reading, writing or running similar unit tests.
 
 ## Strategies to avoid flaky tests
 
