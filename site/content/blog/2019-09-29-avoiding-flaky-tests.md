@@ -55,7 +55,7 @@ Unfortunately, the underlying service implementation effectively deferred to `ht
 
 That is, this particular timeout is guaranteed to wait at least 100 milliseconds, but makes no promise how soon thereafter it will fire. Simply put, waiting just 101 milliseconds sometimes isn't enough.
 
-The best solution is to avoid using `time.Sleep` altogether in this case. For example, in this case [we rewrote](https://github.com/mattermost/mattermost-server/pull/11712) the flaky test as something like:
+The best solution is to avoid using `time.Sleep` altogether in this case. We ended up [rewriting](https://github.com/mattermost/mattermost-server/pull/11712) the flaky test as something like:
 
 ```go
 func TestHTTPTimeout(t *testing.T) {
@@ -189,7 +189,7 @@ The [fix](https://github.com/mattermost/mattermost-server/pull/11705) was simple
 
 One danger of having flaky tests is conditioning developers to believe that **any** unexpected test failure is likely to be flaky. As an example, we had received [multiple reports](https://mattermost.atlassian.net/browse/MM-16479) of a flaky unit test concerning the `FileWillBeUploaded` plugin hook.  Much effort was spent statically analyzing the code and attempting to reproduce locally. Even with the test repeated 100x, it always succeeded locally. Given the ongoing impact to developers with unrelated changes, we were contemplating disabling the test altogether.
 
-Fastforward a few weeks, and a community member [reported](https://community-daily.mattermost.com/core/pl/oficg6nb9bb6igzz87fpumgxuo) a mysterious issue: sometimes files processed by a plugin using `FileWillBeUploaded` wouldn't successfully update. One of our newest staff members took a look, and immediately [spotted](https://community-daily.mattermost.com/core/pl/5p9fjcqk3tdw7brjpfm1f3poza) a race condition in the related code. The [resulting fix](https://github.com/mattermost/mattermost-server/pull/12249) adressed both the community member's issue and our longstanding "flaky" test.
+Fastforward a few weeks, and a community member [reported](https://community.mattermost.com/core/pl/oficg6nb9bb6igzz87fpumgxuo) a mysterious issue: sometimes files processed by a plugin using `FileWillBeUploaded` wouldn't successfully update. One of our newest staff members took a look, and immediately [spotted](https://community.mattermost.com/core/pl/5p9fjcqk3tdw7brjpfm1f3poza) a race condition in the related code. The [resulting fix](https://github.com/mattermost/mattermost-server/pull/12249) addressed both the community member's issue and our longstanding "flaky" test.
 
 ## Conclusion
 
