@@ -123,7 +123,7 @@ func TestTimeDelta(t *testing.T) {
 }
 ```
 
-### 4) MySQL is surprising.
+### 4) MySQL is surprising
 
 So much could be written about oddities within MySQL. One [issue](https://mattermost.atlassian.net/browse/MM-16838) we encountered turned out to have the same underlying cause as above, but manifested in a new way:
 
