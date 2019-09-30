@@ -71,7 +71,7 @@ Old servers won't do anything with new, unrecognized fields, but also won't brea
 
 To add a helper to the official [github.com/mattermost/mattermost-server/plugin](https://godoc.org/github.com/mattermost/mattermost-server/plugin#Helpers) package:
 
-* Extend the [`Helpers` interface](https://github.com/mattermost/mattermost-server/blob/master/plugin/helpers.go) with the new method
+* Extend the [`Helpers` interface](https://github.com/mattermost/mattermost-server/blob/master/plugin/helpers.go) with the new method.
 * Add a new method to the concrete `HelpersImpl` struct in a new or existing `helpers_*` file:
 
 ```go
