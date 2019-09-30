@@ -155,7 +155,7 @@ As the [fix discovered](https://github.com/mattermost/mattermost-server/pull/117
 
 This actually deserved a more holistic fix at the store layer to avoid tripping over MySQL's unique `rowsChanged` semantics, but in practice this kind of event was considered unlikely in a production environment.
 
-### 5) Keep in mind that random sometimes doesn't seem like it.
+### 5) Keep in mind that random sometimes doesn't seem like it
 
 In addition to a number of [length and character checks](https://github.com/mattermost/mattermost-server/blob/e5ba0a0a1808660d4885ef04888da437c2a5b6a0/model/team.go#L137-L196), the Mattermost server [rejects certain prefixes](https://github.com/mattermost/mattermost-server/blob/969c032a1e9cb2ce0ef2c59143c071dbf78cdcb1/model/utils.go#L360) to avoid team names like `signup` or `LOGIN21`.
 
