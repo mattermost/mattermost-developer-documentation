@@ -5,8 +5,10 @@ This is an unofficial guide. Community testing, feedback and improvements are we
 2. Install and setup Docker:
 
     * Install Docker for Windows: https://docs.docker.com/docker-for-windows/
-    * Link Windows Subsystem for Linux to Docker for Windows: https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4.
-        * You should end up with the Docker client running on Linux (WSL) sending commands to your Docker Engine daemon installed on Windows.
+    * Link Windows Subsystem for Linux to Docker for Windows: 
+            TCP option: https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4.
+            More secure option: https://devblogs.microsoft.com/commandline/cross-post-wsl-interoperability-with-docker/
+        * With wither option you should end up with the Docker client running on Linux (WSL) sending commands to your Docker Engine daemon installed on Windows.
 
     **Note:** [MM-9791](https://github.com/mattermost/mattermost-server/pull/10872) introduced using [docker-compose](https://docs.docker.com/compose/) to manage containers. To preserve your data on upgrade, execute the following steps.
     
