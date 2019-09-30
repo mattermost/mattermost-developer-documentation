@@ -5,7 +5,7 @@ subsection: Plugins (Beta)
 weight: 100
 ---
 
-The plugin architecture consists of an [API](API), [hooks](http://localhost:1313/extend/plugins/server/reference/#Hooks), and plugin helpers.
+The plugin architecture consists of an [API](/extend/plugins/server/reference/#API), [hooks](/extend/plugins/server/reference/#Hooks), and plugin helpers.
 
 When a plugin invokes an API method, it makes an RPC call to the Mattermost server and waits for a response. When the Mattermost server invokes a hook method, it makes an RPC call to the plugin and waits for a response:
 
