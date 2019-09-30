@@ -29,7 +29,7 @@
                     {{ end }}
                 </span>
                 <ul class="sub-menu" {{ if $expanded }}style="display: block"{{ end }}>
-                    {{ range .Sections }}
+                    {{ range .Pages.ByWeight }}
                         {{ $subactive := (eq $.Title .Title) }}
                         {{ $subexpanded := or (eq .Title $.Params.subsection) $subactive }}
 
@@ -57,10 +57,6 @@
                                 <a class="item {{ if eq $.Title .Title }}active{{ end }}" href="{{ .Permalink }}">{{ .Title }}</a>
                             {{ end }}
                         </ul>
-                    {{ end }}
-                    {{ range .Pages.ByWeight }}
-                        {{ $subactive := and (eq $.Title .Title) (eq $.Params.subsection .Params.subsection) }}
-                        <a class="item {{ if $subactive }}active{{ end }}" href="{{ .Permalink }}">{{ .Title }}</a>
                     {{ end }}
                 </ul>
             {{ end }}
