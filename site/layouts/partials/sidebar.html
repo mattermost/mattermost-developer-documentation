@@ -4,8 +4,7 @@
         <i class="fa fa-bars pull-right"></i>
     </div>
     <div class="row sidebar__links">
-        {{ range .Site.Params.sidebar.item }}
-        {{ if eq $.Section .name }}
+        {{ range where .Site.Params.sidebar.item "name" $.Section }}
         {{ range where $.Site.Pages ".Params.section" .name }}
         {{ $expanded := or (eq $.Params.subsection .Title) (eq $.Title .Title) (eq $.Parent.Params.subsection .Title) }}
 
@@ -71,7 +70,6 @@
                 {{ end }}
             {{ end }}
         </ul>
-        {{ end }}
         {{ end }}
         {{ end }}
     </div>
