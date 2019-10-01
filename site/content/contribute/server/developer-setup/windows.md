@@ -18,11 +18,11 @@
     If you don't migrate your data, the new, docker-compose-managed containers will start out empty. To remove the old containers -- destroying any existing data -- use `make clean-old-docker`.
      
     
-3. Download and install Go from https://golang.org/dl/
+4. Download and install Go from https://golang.org/dl/
 
-4. Fork https://github.com/mattermost/mattermost-server
+5. Fork https://github.com/mattermost/mattermost-server
 
-5. Clone the Mattermost source code from your fork:
+6. Clone the Mattermost source code from your fork:
 
     ```sh
     cd ~/go
@@ -35,9 +35,9 @@
     git reset --hard HEAD
     ```
 
-6. Install and setup babun from http://babun.github.io/
+7. Install and setup babun from http://babun.github.io/
 
-7. Setup the following environment variables (change the paths accordingly):
+8. Setup the following environment variables (change the paths accordingly):
 
     ```sh
     export PATH="/c/Program Files/go/bin":$PATH
@@ -49,7 +49,7 @@
     eval $(docker-machine env default) # skip this line if you are using Docker for Windows
     ```
 
-8. Start the server and test your environment:
+9. Start the server and test your environment:
 
     ```sh
     cd $(go env GOPATH)/src/github.com/mattermost/mattermost-server

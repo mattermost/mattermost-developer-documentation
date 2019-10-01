@@ -25,8 +25,14 @@
     ```
     If you don't migrate your data, the new, docker-compose-managed containers will start out empty. To remove the old containers -- destroying any existing data -- use `make clean-old-docker`.
     
+2. Install docker-compose
 
-3. Install Go:
+    ```sh
+    sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    ```
+
+4. Install Go:
 
     ```sh
     sudo apt-get install -y build-essential
@@ -35,7 +41,7 @@
     sudo tar -C /usr/local -xzf go1.12.linux-amd64.tar.gz
     ```
 
-4. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`) and add the following:
+5. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`) and add the following:
 
     ```sh
     export GOPATH=$HOME/go
@@ -43,18 +49,18 @@
     export PATH=$PATH:/usr/local/go/bin
     ```
 
-5. Edit `/etc/security/limits.conf` as an administrator (e.g. `sudo`) and add the following lines, replacing `{username}` with your username:
+6. Edit `/etc/security/limits.conf` as an administrator (e.g. `sudo`) and add the following lines, replacing `{username}` with your username:
 
     ```sh
     {username}  soft  nofile  8096
     {username}  hard  nofile  8096
     ```
 
-6. Logout and login to effect the changes above.
+7. Logout and login to effect the changes above.
 
-7. Fork https://github.com/mattermost/mattermost-server
+8. Fork https://github.com/mattermost/mattermost-server
 
-8. Clone the Mattermost source code from your fork:
+9. Clone the Mattermost source code from your fork:
 
     ```sh
     export GITHUB_USERNAME=my_username
@@ -62,7 +68,7 @@
     git clone https://github.com/$GITHUB_USERNAME/mattermost-server.git $(go env GOPATH)/src/github.com/mattermost/mattermost-server
     ```
 
-9. Start the server and test your environment:
+10.  Start the server and test your environment:
 
     ```sh
     cd $(go env GOPATH)/src/github.com/mattermost/mattermost-server
