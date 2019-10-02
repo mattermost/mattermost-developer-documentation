@@ -15,14 +15,14 @@
     If you don't migrate your data, the new, docker-compose-managed containers will start out empty. To remove the old containers -- destroying any existing data -- use `make clean-old-docker`.
      
     
-3. Download and install homebrew: https://brew.sh/.
+2. Download and install homebrew: https://brew.sh/.
 
-4. Install Go:
+3. Install Go:
     ```sh
     brew install go
     ```
 
-5. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`) and add the following:
+4. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`) and add the following:
 
     ```sh
     export GOPATH=$HOME/go
@@ -30,15 +30,15 @@
     ulimit -n 8096
     ```
 
-6. Re-source your shell's initialization script to update `GOPATH` and `PATH` in your current shell:
+5. Re-source your shell's initialization script to update `GOPATH` and `PATH` in your current shell:
 
     ```sh
     source $HOME/.bashrc
     ```
 
-7. Fork https://github.com/mattermost/mattermost-server
+6. Fork https://github.com/mattermost/mattermost-server
 
-8. Clone the Mattermost source code from your fork:
+7. Clone the Mattermost source code from your fork:
 
     ```sh
     export GITHUB_USERNAME=my_username
@@ -46,7 +46,7 @@
     git clone https://github.com/$GITHUB_USERNAME/mattermost-server.git $(go env GOPATH)/src/github.com/mattermost/mattermost-server
     ```
 
-9. Start the server:
+8. Start the server:
 
     ```sh
     cd $(go env GOPATH)/src/github.com/mattermost/mattermost-server
@@ -55,7 +55,7 @@
 
     **Note:** If you see lot of `nc: bad address 'elasticsearch'` messages, eventually exiting with the message `Service elasticsearch:9200 did not start within 300 seconds. Aborting...`,  increase the memory available for the Docker Engine by going to [Docker's preferences -> Advanced](https://docs.docker.com/docker-for-mac/#advanced).
 
-10. Test your environment:
+9. Test your environment:
 
     ```sh
     curl http://localhost:8065/api/v4/system/ping
