@@ -109,6 +109,11 @@
         {{ template "InterfaceTOC" dict "Name" "Hooks" "Interface" $docs.Hooks }}
     </div>
     <div>
+        <h2 id="Helpers">Helpers</h2>
+        <p>{{ safeHTML $docs.Helpers.HTML }}</p>
+        {{ template "InterfaceTOC" dict "Name" "Helpers" "Interface" $docs.Helpers }}
+    </div>
+    <div>
         <h2>Examples</h2>
         {{ template "ExamplesTOC" $docs.Examples }}
     </div>
@@ -116,6 +121,8 @@
     {{ template "InterfaceMethodDocs" dict "Name" "API" "Interface" $docs.API }}
     <hr />
     {{ template "InterfaceMethodDocs" dict "Name" "Hooks" "Interface" $docs.Hooks }}
+    <hr />
+    {{ template "InterfaceMethodDocs" dict "Name" "Helpers" "Interface" $docs.Helpers }}
     <hr />
     {{ template "ExampleDocs" $docs.Examples }}
 {{ else }}
