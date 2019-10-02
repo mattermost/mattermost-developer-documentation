@@ -22,16 +22,12 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     ```
     If you don't migrate your data, the new, docker-compose-managed containers will start out empty. To remove the old containers -- destroying any existing data -- use `make clean-old-docker`.
     
-2. Install docker-compose (using bash)
+3. Install docker-compose (using bash)
 
     ```sh
     sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
     ```
-
-4. Install docker-compose
-   
-   You should install docker-compose
 
 5. Install Go (using bash):
 
