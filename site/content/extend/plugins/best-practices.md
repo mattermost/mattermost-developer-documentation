@@ -1,5 +1,5 @@
 ---
-title: "Example Plugins"
+title: "Best Practices"
 subsection: Plugins (Beta)
 weight: 50
 ---
@@ -18,7 +18,7 @@ Carry out the following steps:
    git rm -rf
    git push origin dummy-master
    ```
-   
+
 3. Create a dummy-review branch from dummy-master:
 
    ```
@@ -27,7 +27,7 @@ Carry out the following steps:
    git commit -m "Full checkin"
    git push origin dummy-review
    ```
-   
+
 4. Create a PR from dummy-review -> dummy-master
 
 5. Code review on the resulting PR
