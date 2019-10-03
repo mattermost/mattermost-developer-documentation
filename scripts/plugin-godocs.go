@@ -16,6 +16,8 @@ import (
 	"go/types"
 	"log"
 	"os"
+	"regexp"
+	"sort"
 )
 
 type Field struct {
@@ -25,6 +27,7 @@ type Field struct {
 
 type MethodDocs struct {
 	Name       string
+	Tags       []string `json:"Tags,omitempty"`
 	HTML       string
 	Parameters []*Field `json:"Parameters,omitempty"`
 	Results    []*Field `json:"Results,omitempty"`
@@ -32,6 +35,7 @@ type MethodDocs struct {
 
 type InterfaceDocs struct {
 	HTML    string
+	Tags    []string `json:"Tags,omitempty"`
 	Methods []*MethodDocs
 }
 
@@ -51,6 +55,31 @@ func docHTML(text string) string {
 	buf := &bytes.Buffer{}
 	doc.ToHTML(buf, text, nil)
 	return buf.String()
+}
+
+func removeDuplicates(array []string) []string {
+	keys := make(map[string]struct{})
+	set := []string{}
+	for _, element := range array {
+		if _, value := keys[element]; !value {
+			keys[element] = struct{}{}
+			set = append(set, element)
+		}
+	}
+	return set
+}
+
+func tags(doc string) []string {
+	tagRegexp := regexp.MustCompile(`@tag\s+(\w+)\s*`)
+	submatches := tagRegexp.FindAllStringSubmatch(doc, -1)
+	if (submatches == nil) {
+		return nil
+	}
+	tags := make([]string, len(submatches))
+	for i, submatch := range submatches {
+		tags[i] = submatch[1]
+	}
+	return removeDuplicates(tags)
 }
 
 func fields(list *ast.FieldList, info *types.Info) (fields []*Field) {
@@ -163,16 +192,22 @@ func generateDocs() (*Docs, error) {
 				if !ok {
 					continue
 				}
+				allTags := make([]string, 0)
 				for _, method := range iface.Methods.List {
 					f := method.Type.(*ast.FuncType)
 					methodDocs := &MethodDocs{
 						Name:       method.Names[0].Name,
+						Tags:       tags(method.Doc.Text()),
 						HTML:       docHTML(method.Doc.Text()),
 						Parameters: fields(f.Params, info),
 						Results:    fields(f.Results, info),
 					}
 					interfaceDocs.Methods = append(interfaceDocs.Methods, methodDocs)
+					allTags = append(allTags, methodDocs.Tags...)
 				}
+				allTags = removeDuplicates(allTags)
+				sort.Strings(allTags)
+				interfaceDocs.Tags = allTags
 			}
 		}
 	}

@@ -57,9 +57,30 @@
 {{ end }}
 
 {{ define "InterfaceTOC" }}
+<ul>
+    {{ range .Interface.Methods }}
+        {{ if not (isset . "Tags") }}
+            <li><a href="#{{ $.Name }}.{{ .Name }}">{{ .Name }}({{ template "FieldsString" .Parameters }}) {{ template "ResultsString" .Results }}</a></li>
+        {{ end }}
+    {{ end }}
+</ul>
+{{ end }}
+
+{{ define "InterfaceTOCByTags" }}
     <ul>
-        {{ range .Interface.Methods }}
-        <li><a href="#{{ $.Name }}.{{ .Name }}">{{ .Name }}({{ template "FieldsString" .Parameters }}) {{ template "ResultsString" .Results }}</a></li>
+        {{ $interface := .Interface }}
+        {{ range .Interface.Tags }}
+            {{ $tag := . }}
+            <li>
+                {{ $tag }}
+                <ul>
+                {{ range $interface.Methods }}
+                    {{ if in .Tags $tag }}
+                        <li><a href="#{{ $.Name }}.{{ .Name }}">{{ .Name }}({{ template "FieldsString" .Parameters }}) {{ template "ResultsString" .Results }}</a></li>
+                    {{ end }}
+                {{ end }}
+                </ul>
+            </li>
         {{ end }}
     </ul>
 {{ end }}
@@ -73,7 +94,7 @@
 {{ end }}
 
 {{ define "InterfaceMethodDocs" }}
-    <h2>{{ .Name }}</h3>
+    <h2>{{ .Name }}</h2>
     {{ range .Interface.Methods }}
         <div>
             <h3 id="{{ $.Name }}.{{ .Name }}">({{ $.Name }}) {{ .Name }}</h3>
@@ -102,6 +123,7 @@
         <h2 id="API">API</h2>
         <p>{{ safeHTML $docs.API.HTML }}</p>
         {{ template "InterfaceTOC" dict "Name" "API" "Interface" $docs.API }}
+        {{ template "InterfaceTOCByTags" dict "Name" "API" "Interface" $docs.API }}
     </div>
     <div>
         <h2 id="Hooks">Hooks</h2>
