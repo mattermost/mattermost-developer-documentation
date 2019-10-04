@@ -44,6 +44,7 @@ type Docs struct {
 	HTML     string
 	API      InterfaceDocs
 	Hooks    InterfaceDocs
+	Helpers  InterfaceDocs
 	Examples map[string]*ExampleDocs
 }
 
@@ -150,6 +151,8 @@ func generateDocs() (*Docs, error) {
 				interfaceDocs = &docs.API
 			case "Hooks":
 				interfaceDocs = &docs.Hooks
+			case "Helpers":
+				interfaceDocs = &docs.Helpers
 			default:
 				continue
 			}
