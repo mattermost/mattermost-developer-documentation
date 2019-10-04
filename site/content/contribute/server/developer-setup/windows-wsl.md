@@ -22,8 +22,14 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     ```
     If you don't migrate your data, the new, docker-compose-managed containers will start out empty. To remove the old containers -- destroying any existing data -- use `make clean-old-docker`.
     
+3. Install docker-compose (using bash)
 
-4. Install Go (using bash):
+    ```sh
+    sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    ```
+
+5. Install Go (using bash):
 
     ```sh
     sudo apt-get install -y build-essential
@@ -32,11 +38,11 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     sudo tar -C /usr/local -xzf go1.12.linux-amd64.tar.gz
     ```
 
-5. Set up your Go workspace:
+6. Set up your Go workspace:
     1. In PowerShell ``mkdir d:\Projects\go``
     2. In bash ``ln -s "/mnt/d/Projects/go" /home/<Linux User>/go``
 
-6. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`) and add the following:
+7. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`) and add the following:
 
     ```sh
     export GOPATH=$HOME/go
@@ -45,15 +51,15 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     ulimit -n 8096
     ```
 
-7. Reload your bash configuration to effect the changes above:
+8. Reload your bash configuration to effect the changes above:
 
     ```sh
     source ~/.bashrc
     ```
 
-8. Fork Mattermost server on GitHub from https://github.com/mattermost/mattermost-server.
+9. Fork Mattermost server on GitHub from https://github.com/mattermost/mattermost-server.
 
-9. Clone the Mattermost source code from your fork:
+10. Clone the Mattermost source code from your fork:
 
     ```sh
     export GITHUB_USERNAME=my_username
@@ -61,7 +67,7 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     git clone https://github.com/$GITHUB_USERNAME/mattermost-server.git $(go env GOPATH)/src/github.com/mattermost/mattermost-server
     ```
 
-10. Start the server and test your environment:
+11. Start the server and test your environment:
 
     ```sh
     cd $(go env GOPATH)/src/github.com/mattermost/mattermost-server
