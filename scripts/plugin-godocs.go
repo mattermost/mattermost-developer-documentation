@@ -58,11 +58,11 @@ func docHTML(text string) string {
 }
 
 func removeDuplicates(array []string) []string {
-	keys := make(map[string]struct{})
+	keys := make(map[string]bool)
 	set := []string{}
 	for _, element := range array {
-		if _, value := keys[element]; !value {
-			keys[element] = struct{}{}
+		if _, ok := keys[element]; !ok {
+			keys[element] = true
 			set = append(set, element)
 		}
 	}
@@ -72,9 +72,6 @@ func removeDuplicates(array []string) []string {
 func tags(doc string) []string {
 	tagRegexp := regexp.MustCompile(`@tag\s+(\w+)\s*`)
 	submatches := tagRegexp.FindAllStringSubmatch(doc, -1)
-	if (submatches == nil) {
-		return nil
-	}
 	tags := make([]string, len(submatches))
 	for i, submatch := range submatches {
 		tags[i] = submatch[1]
