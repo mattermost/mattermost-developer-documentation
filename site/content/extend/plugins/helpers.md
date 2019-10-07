@@ -40,7 +40,7 @@ func (p *Plugin) OnActivate() error {
 }
 ```
 
-Although plugin helpers are defined in the [github.com/mattermost/mattermost-server/plugin](https://godoc.org/github.com/mattermost/mattermost-server/plugin#Helpers) package, they aren't part of the RPC exchange with the Mattermost server. This distinction has a number of adantages:
+Although plugin helpers are defined in the [github.com/mattermost/mattermost-server/plugin](https://godoc.org/github.com/mattermost/mattermost-server/plugin#Helpers) package, they aren't part of the RPC exchange with the Mattermost server. This distinction has a number of advantages:
 
 * Compatibility with older Mattermost servers (so long as they support the underlying API and hooks).
 * Flexibility in adding new helpers without cluttering the RPC protocol and corresponding API documentation.
