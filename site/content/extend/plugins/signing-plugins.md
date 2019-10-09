@@ -143,7 +143,7 @@ When a plugin is installed, Mattermost server will store plugin signatures in it
 ```
 
 ### Mattermost Plugin Assets Naming Convention
-In order to keep plugin signatures close to their bundle tar, Mattermost will generate plugin signatures and upload them directly to github releases using the following naming convention. This is purely a convention which makes it easier for a human to parse signature and public key pairs at a quick glance.
+In order to keep plugin signatures close to their bundle tar, Mattermost will generate plugin signatures and upload them directly to GitHub releases using the following naming convention. This is purely a convention which makes it easier for a human to parse signature and public key pairs at a quick glance.
 ```console
 # Mattermost plugin naming convention
 <plugin_id>-<plugin_version>.tar.gz
