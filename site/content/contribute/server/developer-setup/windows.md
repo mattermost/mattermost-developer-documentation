@@ -4,7 +4,7 @@
     * For other Windows versions, or if you prefer to use VirtualBox, use Docker Toolbox: https://docs.docker.com/toolbox/toolbox_install_windows/
 
     **Note:** [MM-9791](https://github.com/mattermost/mattermost-server/pull/10872) introduced using [docker-compose](https://docs.docker.com/compose/) to manage containers. To preserve your data on upgrade, execute the following steps.
-    
+
     First, backup from any existing containers:
     ```sh
     mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test > mm_mysql_backup.sql
@@ -16,13 +16,13 @@
     psql -U mmuser -W -h 127.0.0.1 -f mm_postgres_backup.bak mattermost_test
     ```
     If you don't migrate your data, the new, docker-compose-managed containers will start out empty. To remove the old containers -- destroying any existing data -- use `make clean-old-docker`.
-     
-    
-3. Download and install Go from https://golang.org/dl/
 
-4. Install and setup babun from http://babun.github.io/
 
-5. Setup the following environment variables (change the paths accordingly):
+2. Download and install Go from https://golang.org/dl/
+
+3. Install and setup babun from http://babun.github.io/
+
+4. Setup the following environment variables (change the paths accordingly):
 
     ```sh
     export PATH="/c/Program Files/go/bin":$PATH
@@ -34,14 +34,11 @@
     eval $(docker-machine env default) # skip this line if you are using Docker for Windows
     ```
 
-6. Fork https://github.com/mattermost/mattermost-server
+5. Fork https://github.com/mattermost/mattermost-server
 
-7. Clone the Mattermost source code from your fork:
+6. Clone the Mattermost source code from your fork:
 
     ```sh
-    cd ~/go
-    mkdir -p src/github.com/mattermost
-    cd src/github.com/mattermost
     git clone https://github.com/{yourgithubusername}/mattermost-server.git
     cd mattermost-server
     git config core.eol lf
@@ -49,10 +46,10 @@
     git reset --hard HEAD
     ```
 
-8. Start the server and test your environment:
+7. Start the server and test your environment:
 
     ```sh
-    cd $(go env GOPATH)/src/github.com/mattermost/mattermost-server
+    cd mattermost-server
     make run-server
     curl http://localhost:8065/api/v4/system/ping
     make stop-server

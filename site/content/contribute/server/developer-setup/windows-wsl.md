@@ -9,7 +9,7 @@ This is an unofficial guide. Community testing, feedback and improvements are we
         * You should end up with the Docker client running on Linux (WSL) sending commands to your Docker Engine daemon installed on Windows.
 
     **Note:** [MM-9791](https://github.com/mattermost/mattermost-server/pull/10872) introduced using [docker-compose](https://docs.docker.com/compose/) to manage containers. To preserve your data on upgrade, execute the following steps.
-    
+
     First, backup from any existing containers:
     ```sh
     mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test > mm_mysql_backup.sql
@@ -21,7 +21,7 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     psql -U mmuser -W -h 127.0.0.1 -f mm_postgres_backup.bak mattermost_test
     ```
     If you don't migrate your data, the new, docker-compose-managed containers will start out empty. To remove the old containers -- destroying any existing data -- use `make clean-old-docker`.
-    
+
 3. Install docker-compose (using bash)
 
     ```sh
@@ -29,7 +29,7 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     sudo chmod +x /usr/local/bin/docker-compose
     ```
 
-5. Install Go (using bash):
+4. Install Go (using bash):
 
     ```sh
     sudo apt-get install -y build-essential
@@ -38,11 +38,11 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     sudo tar -C /usr/local -xzf go1.12.linux-amd64.tar.gz
     ```
 
-6. Set up your Go workspace:
+5. Set up your Go workspace:
     1. In PowerShell ``mkdir d:\Projects\go``
     2. In bash ``ln -s "/mnt/d/Projects/go" /home/<Linux User>/go``
 
-7. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`) and add the following:
+6. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`) and add the following:
 
     ```sh
     export GOPATH=$HOME/go
@@ -51,26 +51,29 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     ulimit -n 8096
     ```
 
-8. Reload your bash configuration to effect the changes above:
+7. Reload your bash configuration to effect the changes above:
 
     ```sh
     source ~/.bashrc
     ```
 
-9. Fork Mattermost server on GitHub from https://github.com/mattermost/mattermost-server.
+8. Fork Mattermost server on GitHub from https://github.com/mattermost/mattermost-server.
 
-10. Clone the Mattermost source code from your fork:
+9. Clone the Mattermost source code from your fork:
 
     ```sh
     export GITHUB_USERNAME=my_username
-    mkdir -p $(go env GOPATH)/src/github.com/mattermost
-    git clone https://github.com/$GITHUB_USERNAME/mattermost-server.git $(go env GOPATH)/src/github.com/mattermost/mattermost-server
+    git clone https://github.com/$GITHUB_USERNAME/mattermost-server.git
+    cd mattermost-server
+    git config core.eol lf
+    git config core.autocrlf input
+    git reset --hard HEAD
     ```
 
-11. Start the server and test your environment:
+10. Start the server and test your environment:
 
     ```sh
-    cd $(go env GOPATH)/src/github.com/mattermost/mattermost-server
+    cd mattermost-server
     make run-server
     curl http://localhost:8065/api/v4/system/ping
     make stop-server
