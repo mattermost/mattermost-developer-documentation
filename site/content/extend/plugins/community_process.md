@@ -1,5 +1,5 @@
 ---
-title: Plugin Inclusion Process
+title: Process to Include Plugin on Community
 date: 2018-10-01T00:00:00-05:00
 subsection: Plugins (Beta)
 weight: 50
