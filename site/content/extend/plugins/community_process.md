@@ -31,13 +31,13 @@ Getting your plugin onto our community server https://community.mattermost.com i
 
 Basic code review of an experimental plugin involves a quick review by a [core committer](/contribute/getting-started/core-committers/) to verify that the plugin does what it says it does and to provide any guidance and feedback. To make it easier to provide feedback, a PR can be made that contains all the code of the plugin that isn't the boilerplate from mattermost-plugin-starter-template.
 
-- When you are ready for your plugin to start this process, post an introduction in the ~Toolkit channel on the community server. E.g., "Hi, I have a plugin that I would like to get reviewed. It is called ... It is designed to ... Thanks for reviewing it!"
+- When you are ready for your plugin to start this process, post an introduction in the [Integrations and Apps channel](https://community.mattermost.com/core/channels/integrations) on the community server. E.g., "Hi, I have a plugin that I would like to get reviewed. It is called ... It is designed to ... Thanks for reviewing it!" Here is an example: https://community.mattermost.com/core/pl/6dci1ssexjrh9rmdzt4pdpb9zy
 
 ### CI System Setup
 
 Setting up the CI system for your plugin will allow continuous testing of your master branch and releases on our testing servers. Master branch testing is done on https://ci-extensions.azure.k8s.mattermost.com/ and release testing is done on https://ci-extensions-release.azure.k8s.mattermost.com/
 
-In order to set this up, we will need a URL where we can on a nightly basis, pull the latest master build. Once that exists you can make a request in the [Toolkit](https://community.mattermost.com/core/channels/developer-toolkit) channel.
+In order to set this up, we will need a URL where we can on a nightly basis, pull the latest master build. Once that exists you can make a request in the [Integrations and Apps](https://community.mattermost.com/core/channels/integrations) channel.
 
 ### Compatible Licence
 
