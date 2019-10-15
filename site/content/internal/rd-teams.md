@@ -83,6 +83,13 @@ weight: 110
 * Stylianos Rigas - Engineer/Infrastructure
 * Carlos Panato - Engineer/Infrastructure
 
+## Enterprise Team
+* Scott Bishel - Eng Lead
+* Martin Kraft - Engineeer
+* Catalin Tomai - Engineer
+* Hossein Ahmadian - Engineer Intern
+* Dennis Kittrell - PM 
+
 ## Other
 
 * Amy Blais - Release Manager/PM
