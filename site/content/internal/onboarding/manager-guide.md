@@ -28,8 +28,8 @@ weight: 30
 - If the user is marked as unlicensed, ask Carlos or Corey to increase OneLogin seat count
 
 ### GitHub Group Set-up
-- Login to GitHub and go to https://github.com/orgs/mattermost/teams/core-developers 
-- Add new staff to the group
+- The membership to the Mattermost Github organization is handle by Onelogin / Lamdba function that adds the user in the correct Github Team.
+- To that work we need to add the user's Github handle in the user's Onelogin setup. Please message @dschalla or @cpanato to add the data in Onelogin.
 
 ### Core Committer Mug
 - Message @hanna.park and ask her to send the new hire their core committer mug
