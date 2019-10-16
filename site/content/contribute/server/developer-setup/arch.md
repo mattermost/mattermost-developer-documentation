@@ -57,8 +57,7 @@
 8. Clone the Mattermost source code from your fork:
 
     ```sh
-    export GITHUB_USERNAME=my_username
-    git clone https://github.com/$GITHUB_USERNAME/mattermost-server.git
+    git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost-server.git
     cd mattermost-server
     git config core.eol lf
     git config core.autocrlf input
