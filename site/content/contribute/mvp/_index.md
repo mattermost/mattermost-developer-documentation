@@ -1,6 +1,5 @@
 ---
 title: "MVP"
-date: 2019-10-16T15:55:01+02:00
 section: "contribute"
 ---
 
