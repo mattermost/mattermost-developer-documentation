@@ -1,5 +1,5 @@
 ---
-title: "Mattermost Team Contributors"
+title: "Mattermost Contributors"
 section: "contribute"
 ---
 
