@@ -63,10 +63,6 @@ This is an unofficial guide. Community testing, feedback and improvements are we
 
     ```sh
     git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost-server.git
-    cd mattermost-server
-    git config core.eol lf
-    git config core.autocrlf input
-    git reset --hard HEAD
     ```
 
 10. Start the server and test your environment:

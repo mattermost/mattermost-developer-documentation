@@ -42,10 +42,6 @@
 
     ```sh
     git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost-server.git
-    cd mattermost-server
-    git config core.eol lf
-    git config core.autocrlf input
-    git reset --hard HEAD
     ```
 
 8. Start the server:
