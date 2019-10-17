@@ -83,7 +83,7 @@ To start your debugging session, first make sure your local Mattermost server is
 
 There are a shortcomings with this configuration:
 
-* There appears to be no way in Charles to map just `/` to `localhost:8065` without also mapping `/*`, breaking the programmatic endpoints. I've reached out to Charles support for help, but for now, it means that the `/login` flow will be interrupted as described above. Similarly, logging out triggers a blank page and requiring manually heading back to `/login`.
+* There appears to be no way in Charles to map just `/` to `localhost:8065` without also mapping `/*`, breaking the programmatic endpoints. I've reached out to Charles support for help, but for now, it means that the `/login` flow will be interrupted as described above. Similarly, logging out triggers a blank page and requires manually heading back to `/login`.
 * Requests for plugin assets are correctly proxied, but unless you have the exact same versions installed locally, the client-side portion of these plugins fail to load. If you have a different version of the plugin installed, the plugins still won't load since we embed the hash of the file into the request to avoid unexpected caching.
 
 ## Conclusion
