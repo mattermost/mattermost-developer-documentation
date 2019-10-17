@@ -29,13 +29,13 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     sudo chmod +x /usr/local/bin/docker-compose
     ```
 
-4. Install Go (using bash):
+3. Install Go using bash (modify installation to latest Go version from https://golang.org/dl/):
 
     ```sh
     sudo apt-get install -y build-essential
     sudo rm -rf /usr/local/go
-    wget https://storage.googleapis.com/golang/go1.12.linux-amd64.tar.gz
-    sudo tar -C /usr/local -xzf go1.12.linux-amd64.tar.gz
+    wget https://dl.google.com/go/go1.13.2.src.tar.gz
+    sudo tar -C /usr/local -xzf go1.13.2.linux-amd64.tar.gz
     ```
 
 5. Set up your Go workspace:
