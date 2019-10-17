@@ -47,7 +47,7 @@ Note that the server doesn't actually expect a request for `/index.html`, but se
 * `/<team>/pl/<post>` a permalink to a post
 * (endless other combinations, including unrecognized paths)
 
-Once the bootstrapping code is served, the application examines the current path and renders the appropriate part of application.
+Once the bootstrapping code is served, the application examines the current path and renders the appropriate part of the application.
 
 In addition to the static assets, the server expects a number of programmatic interactions:
 
