@@ -10,61 +10,47 @@ weight: 50
 ## Key Generation
 Public and private key pairs are needed to sign and verify plugins. Private key is used for signing and should be kept in the Vault. Public key is used for verification and can be distributed freely. To generate a key pair, run the following command:
 
-```console
-> gpg --expert --full-gen-key
 
-Please select what kind of key you want:
-   (1) RSA and RSA (default)
-   (2) DSA and Elgamal
-   (3) DSA (sign only)
-   (4) RSA (sign only)
-   (7) DSA (set your own capabilities)
-   (8) RSA (set your own capabilities)
-   (9) ECC and ECC
-  (10) ECC (sign only)
-  (11) ECC (set your own capabilities)
-  (13) Existing key
+ ```console
+ > gpg --full-generate-key
 
-Your selection? 9
+ Please select what kind of key you want:
+    (1) RSA and RSA (default)
+    (2) DSA and Elgamal
+    (3) DSA (sign only)
+    (4) RSA (sign only)
+ Your selection? 1
 
-Please select which elliptic curve you want:
-   (1) Curve 25519
-   (3) NIST P-256
-   (4) NIST P-384
-   (5) NIST P-521
-   (6) Brainpool P-256
-   (7) Brainpool P-384
-   (8) Brainpool P-512
-   (9) secp256k1
+ RSA keys may be between 1024 and 4096 bits long.
+ What keysize do you want? (2048) 3072
 
-Your selection? 1
+ Requested keysize is 3072 bits
 
-Please specify how long the key should be valid.
-         0 = key does not expire
-      <n>  = key expires in n days
-      <n>w = key expires in n weeks
-      <n>m = key expires in n months
-      <n>y = key expires in n years
+ Please specify how long the key should be valid.
+          0 = key does not expire
+       <n>  = key expires in n days
+       <n>w = key expires in n weeks
+       <n>m = key expires in n months
+       <n>y = key expires in n years
+ Key is valid for? (0) 0
 
-Key is valid for? (0) 0
+ Key expires at ...
 
-Key expires at ...
+ Is this correct? (y/N) y
 
-Is this correct? (y/N) y
+ GnuPG needs to construct a user ID to identify your key.
+ Real name: Mattermost Inc
 
-GnuPG needs to construct a user ID to identify your key.
+ Email address: info@mattermost.com
 
-Real name: Mattermost Inc
+ Comment:
 
-Email address: info@mattermost.com
+ You selected this USER-ID:
+     "Mattermost Inc <info@mattermost.com>"
+ Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
 
-Comment:
-You selected this USER-ID:
-    "Mattermost Inc <info@mattermost.com>"
-
-Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
-```
-
+ ```
+ Note: key size should be at least 3072 bits.
 
 ### Exporting the Private Key
 Find the ID of your private key first. The ID is a hexadecimal number.
