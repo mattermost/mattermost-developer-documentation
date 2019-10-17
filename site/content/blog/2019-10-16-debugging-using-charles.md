@@ -36,7 +36,7 @@ Debugging community using a local webapp involves redirecting requests for stati
 There are effectively two kinds of static assets served by the Mattermost application:
 
 * `index.html` is the bootstrapping page that references various favicons alongside the root JavaScript bundle containing the rest of the single page application
-* `static/*` are the JavaScript bundles, CSS, images, and plugin resources used the single page application
+* `static/*` are the JavaScript bundles, CSS, images, and plugin resources used in the single page application
 
 Note that the server doesn't actually expect a request for `/index.html`, but serves up this file on any number of paths:
 
