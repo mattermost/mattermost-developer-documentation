@@ -77,7 +77,7 @@ The rules above yield the following results:
 * `/private-core/*` is sent to `localhost:8065/core/*`, serving up `index.html` for any link on the private core team
 * all other paths continue to route directly to the community server
 
-To start your debugging session, first make sure your local Mattermost server is running by following the [Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) instructions. Then, browse to `/login` against the community server of your choice. If you're not already logged in, this will allow you to complete any necessary login flow (even through SAML!), but you'll get sent back to `/` and what appears to just be a blank page with console errors. Manually head back to `/login` and you'll find yourself successfully logged in and on community with all static assets being served up by your local development server instance:
+To start your debugging session, first make sure your local Mattermost server is running by following the [Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) instructions. Then, browse to `/login` against the community server of your choice. If you're not already logged in, this will allow you to complete any necessary login flow (even through SAML!), but you'll get sent back to `/` and what appears to just be a blank page with console errors. Manually head back to `/login` and you'll find yourself successfully logged in on community with all static assets being served up by your local development server instance:
 
 ![image](/blog/2019-10-16-debugging-using-charles/debugging-community.png)
 
