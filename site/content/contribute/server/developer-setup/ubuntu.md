@@ -36,9 +36,9 @@
 
     ```sh
     sudo apt-get install -y build-essential
-    wget https://dl.google.com/go/go1.13.2.src.tar.gz
+    wget https://dl.google.com/go/go1.13.3.src.tar.gz
     sudo rm -rf /usr/local/go
-    sudo tar -C /usr/local -xzf go1.13.2.linux-amd64.tar.gz
+    sudo tar -C /usr/local -xzf go1.13.3.linux-amd64.tar.gz
     ```
 
 4. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`) and add the following:
