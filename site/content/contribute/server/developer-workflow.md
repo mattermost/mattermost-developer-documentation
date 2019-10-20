@@ -28,7 +28,7 @@ Here's a general workflow a Mattermost developer working on the [mattermost-serv
      * Run individual tests by name executing `go test -run "TestName"`.
      * Run all the tests in a package where changes were made executing `go test app`.
      * Create a draft PR with your changes and let our CI servers run the tests for you.
-7. Commit your changes, push your branch and [create a pull request](https://docs.mattermost.com/developer/contribution-guide.html#preparing-a-pull-request).
+7. Commit your changes, push your branch and [create a pull request](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/).
 8. Respond to feedback on your pull request and make changes as necessary by commiting to your branch and pushing it. You might need to [rebase your changes](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) if another pull request creates conflicts.
 9. That's it! Rejoice that you've helped make Mattermost better.
 
