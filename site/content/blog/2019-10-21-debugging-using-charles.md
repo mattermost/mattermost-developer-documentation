@@ -1,7 +1,7 @@
 ---
 title: "Debugging Using Charles"
 slug: debugging-using-charles
-date: 2019-10-16T00:00:00-04:00
+date: 2019-10-21T00:00:00-04:00
 author: Jesse Hallam
 github: lieut-data
 community: jesse.hallam
@@ -15,17 +15,17 @@ What follows is a brief how-to guide for replicating this setup on macOS. Charle
 
 Start by [downloading Charles](https://www.charlesproxy.com/download/). After you copy the tool to your Applications directory and run it, Charles will automatically start proxying:
 
-![image](/blog/2019-10-16-debugging-using-charles/proxying.png)
+![image](/blog/2019-10-21-debugging-using-charles/proxying.png)
 
 Notice, however, that the contents of any SSL connections are initially opaque. The real power of Charles comes from being able to install root certificates and effectively man-in-the-middle your SSL connections.
 
 Follow the help documentation to configure [SSL Certificates](https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/), then open the `Proxy` menu and choose `SSL Proxying Settings...`. Select `Enable SSL Proxying` and configure a wildcard to match our three community servers. Charles even proxies websocket connections!
 
-![image](/blog/2019-10-16-debugging-using-charles/configure-ssl-proxying.png)
+![image](/blog/2019-10-21-debugging-using-charles/configure-ssl-proxying.png)
 
 After saving these settings and restarting your browser, you should be able to inspect all the traffic to and from [community.mattermost.com](https://community.mattermost.com) (running our last stable release), [community-release.mattermost.com](https://community-release.mattermost.com) (running our upcoming stable release), and [community-daily.mattermost.com](https://community-daily.mattermost.com) (running master):
 
-![image](/blog/2019-10-16-debugging-using-charles/proxying-community.png)
+![image](/blog/2019-10-21-debugging-using-charles/proxying-community.png)
 
 Note that all three of our community server endpoints share the same database, allowing you to switch between the various branches using the same Mattermost account.
 
@@ -65,9 +65,9 @@ Unfortunately, the overlap here between static assets and programmatic interacti
 
 To configure Charles to redirect requests for static frontend assets, open the `Tools` menu and choose `Map Remote...`:
 
-![image](/blog/2019-10-16-debugging-using-charles/map-remote.png)
+![image](/blog/2019-10-21-debugging-using-charles/map-remote.png)
 
-(To avoid having to configure these manually, you can also just download and import [map-remote.xml](/blog/2019-10-16-debugging-using-charles/map-remote.xml).)
+(To avoid having to configure these manually, you can also just download and import [map-remote.xml](/blog/2019-10-21-debugging-using-charles/map-remote.xml).)
 
 The rules above yield the following results:
 
@@ -79,7 +79,7 @@ The rules above yield the following results:
 
 To start your debugging session, first make sure your local Mattermost server is running by following the [Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) instructions. Then, browse to `/login` against the community server of your choice. If you're not already logged in, this will allow you to complete any necessary login flow (even through SAML!), but you'll get sent back to `/` and what appears to just be a blank page with console errors. Manually head back to `/login` and you'll find yourself successfully logged in on community with all static assets being served up by your local development server instance:
 
-![image](/blog/2019-10-16-debugging-using-charles/debugging-community.png)
+![image](/blog/2019-10-21-debugging-using-charles/debugging-community.png)
 
 There are a shortcomings with this configuration:
 
