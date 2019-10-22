@@ -33,6 +33,7 @@ weight: 110
 * Brad Coughlin - Engineer
 * Gabe Jackson - Engineer
 * Stylianos Rigas - Engineer/Infrastructure
+* Ian Whitlock - Engineer
 * Katie Wiersgalla - PM
 
 ## Integrations Team
