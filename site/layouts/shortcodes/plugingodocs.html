@@ -57,11 +57,27 @@
 {{ end }}
 
 {{ define "InterfaceTOC" }}
-    <ul>
-        {{ range .Interface.Methods }}
-        <li><a href="#{{ $.Name }}.{{ .Name }}">{{ .Name }}({{ template "FieldsString" .Parameters }}) {{ template "ResultsString" .Results }}</a></li>
+<ul>
+    {{ range .Interface.Methods }}
+        {{ if not (isset . "Tags") }}
+            <li><a href="#{{ $.Name }}.{{ .Name }}">{{ .Name }}({{ template "FieldsString" .Parameters }}) {{ template "ResultsString" .Results }}</a></li>
         {{ end }}
-    </ul>
+    {{ end }}
+    {{ $interface := .Interface }}
+    {{ range .Interface.Tags }}
+    {{ $tag := . }}
+    <li>
+        {{ $tag }}
+        <ul>
+            {{ range $interface.Methods }}
+                {{ if in .Tags $tag }}
+                    <li><a href="#{{ $.Name }}.{{ .Name }}">{{ .Name }}({{ template "FieldsString" .Parameters }}) {{ template "ResultsString" .Results }}</a></li>
+                {{ end }}
+            {{ end }}
+        </ul>
+    </li>
+    {{ end }}
+</ul>
 {{ end }}
 
 {{ define "ExamplesTOC" }}
@@ -73,7 +89,7 @@
 {{ end }}
 
 {{ define "InterfaceMethodDocs" }}
-    <h2>{{ .Name }}</h3>
+    <h2>{{ .Name }}</h2>
     {{ range .Interface.Methods }}
         <div>
             <h3 id="{{ $.Name }}.{{ .Name }}">({{ $.Name }}) {{ .Name }}</h3>
@@ -84,11 +100,11 @@
 {{ end }}
 
 {{ define "ExampleDocs" }}
-    <h2>Examples</h3>
+    <h2>Examples</h2>
     {{ range $name, $example := . }}
         {{ if hasPrefix $name "_" }}
             <div>
-                <h3 id="Examples.{{ $name }}">(Example) {{ substr $name 1 1 | upper }}{{ substr (strings.TrimPrefix "_" $name) 1 }}</h2>
+                <h3 id="Examples.{{ $name }}">(Example) {{ substr $name 1 1 | upper }}{{ substr (strings.TrimPrefix "_" $name) 1 }}</h3>
                 <p>{{ safeHTML $example.HTML }}</p>
                 <p>{{ highlight $example.Code "go" "" }}</p>
             </div>
