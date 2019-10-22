@@ -32,13 +32,13 @@
     sudo chmod +x /usr/local/bin/docker-compose
     ```
 
-3. Install Go:
+3. Install Go (modify installation to latest Go version from https://golang.org/dl/):
 
     ```sh
     sudo apt-get install -y build-essential
-    wget https://storage.googleapis.com/golang/go1.12.linux-amd64.tar.gz
+    wget https://dl.google.com/go/go1.13.3.src.tar.gz
     sudo rm -rf /usr/local/go
-    sudo tar -C /usr/local -xzf go1.12.linux-amd64.tar.gz
+    sudo tar -C /usr/local -xzf go1.13.3.linux-amd64.tar.gz
     ```
 
 4. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`) and add the following:
