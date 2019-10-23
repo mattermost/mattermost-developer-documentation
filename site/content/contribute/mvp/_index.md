@@ -13,8 +13,9 @@ Hundreds of developers around the world contribute to Mattermost open source pro
 The title of “Most Valued Professional” is awarded to an outstanding contributor for a key Mattermost release.
 
 
-Version |	   Release date     | MVP
+Version |	   Release date   | MVP
 ------- | ------------------- | ---
+5.16    | October 16, 2019    | [Paulo Bittencourt](https://github.com/pbitty)
 5.15    | September 16, 2019  | [Siyuan Liu](https://github.com/liusy182)
 5.14    | August 16, 2019     | [Rodrigo Villablanca Vásquez](https://github.com/rvillablanca)
 5.13    | July 16, 2019       | [Adrian Mönnich](https://github.com/thiefmaster)
