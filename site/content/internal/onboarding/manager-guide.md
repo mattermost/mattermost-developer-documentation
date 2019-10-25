@@ -29,7 +29,7 @@ weight: 30
 
 ### GitHub Group Set-up
 - The membership to the Mattermost Github organization is handle by Onelogin / Lamdba function that adds the user in the correct Github Team.
-- To that work we need to add the user's Github handle in the user's Onelogin setup. Please message @dschalla or @cpanato to add the data in Onelogin.
+- For that work we need to add the user's GitHub handle in the user's OneLogin account. Please message @dschalla or @cpanato to add the data in OneLogin.
 
 ### Core Committer Mug
 - Message @hanna.park and ask her to send the new hire their core committer mug
