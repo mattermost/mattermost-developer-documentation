@@ -21,10 +21,11 @@ import (
 	opentracing "github.com/opentracing/opentracing-go"
 	"github.com/uber/jaeger-lib/metrics"
 
+    "context"
+
 	"github.com/uber/jaeger-client-go"
 	jaegercfg "github.com/uber/jaeger-client-go/config"
-	jaegerlog "github.com/uber/jaeger-client-go/log"
-	"context"
+	jaegerlog "github.com/uber/jaeger-client-go/log"	
 )
 
 var initialized = false
@@ -90,7 +91,7 @@ The problem is that we have a rather large API surface (around 300+ handlers) an
 
 ## Go AST
 
-So what is an AST really? Well, to quote Wikipedia:
+So what is an AST really? Well, to quote [Wikipedia](https://www.wikiwand.com/en/Abstract_syntax_tree):
 
 > In computer science, an abstract syntax tree (AST), or just syntax tree, is a tree representation of the abstract syntactic structure of source code written in a programming language. Each node of the tree denotes a construct occurring in the source code.
 
