@@ -1,5 +1,5 @@
 ---
-title: "Instrumenting Go via AST"
+title: "Instrumenting Go code via AST"
 slug: instrumenting-go-code-via-ast
 date: 2019-10-25T00:00:00-04:00
 author: Eli Yukelzon
@@ -8,9 +8,10 @@ community: eli.yukelzon
 ---
 
 We've been working on integrating call tracing in the server to provide exact measurements of all API and DB calls.
-We've picked [OpenTracing](https://github.com/opentracing/opentracing-go) - a lovely open source project that allows you to setup trace reporting and enables you to support [Distributed tracing](https://opentracing.io/docs/overview/what-is-tracing/)
+We've picked [OpenTracing](https://github.com/opentracing/opentracing-go) - a lovely open source project that allows you to setup trace reporting and enables you to support [Distributed tracing](https://opentracing.io/docs/overview/what-is-tracing/).
 
-Instrumenting your API handler in Go is very straightforward - setup connection to a collection server supporting OpenTracing (we've decided to use [Jaeger](https://www.jaegertracing.io/)) spec and wrap you code in spans.
+Instrumenting your API handler in Go is very straightforward - setup a connection to a collection server supporting the OpenTracing spec (we've decided to use [Jaeger](https://www.jaegertracing.io/)) and wrap your code in spans.
+``
 
 To simplify this, we've added a simple tracing module:
 ```go
@@ -84,22 +85,22 @@ func apiCall(c *Context, w http.ResponseWriter, r *http.Request) {
 
 Now, each time the `apiCall` handler is invoked, it will be measured and traced on Jaeger.
 
-The problem is - we have a rather large API surface (around 300+ handlers) and it would be a really tough task to instrument all the handlers by hand. That's where our story begins.
+The problem is that we have a rather large API surface (around 300+ handlers) and it would be a really tough task to instrument all the handlers by hand. That's where our story begins.
 
 
 ## Go AST
 
-So what is AST really? Well, to quote Wikipedia:
+So what is an AST really? Well, to quote Wikipedia:
 
 > In computer science, an abstract syntax tree (AST), or just syntax tree, is a tree representation of the abstract syntactic structure of source code written in a programming language. Each node of the tree denotes a construct occurring in the source code.
 
 ![ast example](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Abstract_syntax_tree_for_Euclidean_algorithm.svg/1024px-Abstract_syntax_tree_for_Euclidean_algorithm.svg.png?1572188936106)
 
-Basically, AST is a tree like representation of your source code.
+Basically, an AST is a tree-like representation of your source code.
 
 Why do we need it?
 
-Parsing AST allows us to refactor code on a statement level, meaning, instead of finding methods and fields using string search, we can find them by their actual structure. This gives us incredible flexibility in writing custom go refactoring tools.
+Parsing the code into an AST allows us to refactor code on a statement level, meaning, instead of finding methods and fields using string search, we can find them by their actual structure. This gives us incredible flexibility in writing custom go refactoring tools.
 
 Let's see a small example for a 'Hello World' program:
 
@@ -116,19 +117,19 @@ func main() {
 
 ```
 
-After passing it through `go/parser` we get the following structure (image generated using: http://goast.yuroyoro.net/)
+After passing it through `go/parser`, we get the following structure (image generated using: http://goast.yuroyoro.net/):
 
 ![hello ast](/blog/2019-10-25-instrumenting-go-code-via-ast/hello_ast.png)
 
-So given this structure, we can easily find for example the `Printf` statement by looking at `File.Decls[1].Body.List[0]`
+So given this structure, we can easily find, for example, the `Printf` statement by looking at `File.Decls[1].Body.List[0]`.
 
-Now that we understand the basic idea behind AST, let's go ahead and try to solve the issue at hand - instrumenting our handlers with tracing code.
+Now that we understand the basic idea behind ASTs, let's go ahead and try to solve the issue at hand - instrumenting our handlers with tracing code.
 
 ## Analyzing existing code
 
 ### Finding the pattern
 
-First thing we need is to identify the methods that we want to instrument. In our code base, all of the API handlers sit in `api4` folder and each method that handles a certain API has the same signature:
+The first thing we need is to identify the methods that we want to instrument. In our code base, all of the API handlers sit in the `api4` folder and each method that handles a certain API has the same signature:
 
 ```go
 func apiCall(c *Context, w http.ResponseWriter, r *http.Request) {
@@ -138,7 +139,7 @@ func apiCall(c *Context, w http.ResponseWriter, r *http.Request) {
 
 So we are looking at a function that has **exactly** 3 arguments, with specific names and types.
 
-Let's write AST walker boilerplate that will go through all the files in `api4` folder and parse them:
+Let's write some AST walker boilerplate that will go through all the files in the `api4` folder and parse them:
 
 ```go
 package main
@@ -184,8 +185,8 @@ func main() {
 }
 ```
 
-`ast.Inspect` will visit all AST nodes in each file and provides us with a parsed tokens.
-To only operate on specific nodes in the AST, we try to cast to the type we are interested in and only the proceed:
+`ast.Inspect` visits all AST nodes in each file and provides us with a parsed token.
+To only operate on specific nodes in the AST, we try to cast to the type we are interested in and only then proceed:
 
 ```go
 fn, ok  := n.(*ast.FuncDecl)
@@ -194,7 +195,7 @@ if ok {
 }
 ```
 
-Next we need to extract and analyze the parameters to the function (we'll also add a small helper function to get node as string):
+Next we need to extract and analyze the parameters to the function (we'll also add a small helper function to get a node as a string):
 ```go
 func FormatNode(node ast.Node) string {
 	buf := new(bytes.Buffer)
@@ -214,11 +215,11 @@ if  len(params) ==  3 {
 }
 ```
 
-Now that we've found our function, the fun begins! We want to add a couple of statements as described in the introduction and a relevant import
+Now that we've found our function, the fun begins! We want to add a couple of statements as described in the introduction and a relevant import.
 
 ## Instrumenting the code
 
-As a reminder, this is the piece of code we want to inject in the begining of every API handler to instrument the code:
+As a reminder, this is the piece of code we want to inject at the beginning of every API handler to instrument the code:
 ```go
 	span, ctx := tracing.StartSpanWithParentByContext(c.App.Context, "api4:apiCall")
 	c.App.Context = ctx
@@ -229,7 +230,7 @@ First of all - we need to take care of imports. We are using the 'tracing' modul
 ```go
 astutil.AddImport(fset, file, "github.com/mattermost/mattermost-server/services/tracing")
 ```
-Now we are ready to inject the code. To do that, we need to convert it from it's textual representation into a set of AST nodes.
+Now we are ready to inject the code. To do that, we need to convert it from its textual representation into a set of AST nodes.
 To help us do that, we can feed that code to [http://goast.yuroyoro.net/](http://goast.yuroyoro.net/) to receive the parsed tree. With that in hand, we are ready to write our instrumentation code:
 
 ```go
@@ -306,10 +307,10 @@ And that's it! We have our custom refactoring/instrumentation tool that we can t
 
 Since the process of writing AST code by hand based on `go/printer` or [http://goast.yuroyoro.net/](http://goast.yuroyoro.net/) is rather tedious, I've taken the code of `go/printer` and converted it into a reusable CLI command that does all the work for you! Just feed it some Go code and it'll spit out a ready-to-paste AST tree. 
 
-Take a look [https://github.com/reflog/go2ast](https://github.com/reflog/go2ast)
+Take a look here: [https://github.com/reflog/go2ast](https://github.com/reflog/go2ast).
 
 ## Conclusion
 
-Writing refactoring tools is fun and possibilities are endless. Go standard library contains everything you need to create your own little tools for every repeatable task.
-Seeing code's AST at the first time can be a little daunting, but once you get this knowledge in your tool-belt, you'll look for other places to apply it immediately! 
+Writing refactoring tools is fun and the possibilities are endless. The Go standard library contains everything you need to create your own little tools for every repeatable task.
+Seeing code as an AST for the first time can be a little daunting, but once you get this knowledge in your tool-belt, you'll look for other places to apply it immediately! 
 
