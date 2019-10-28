@@ -18,14 +18,13 @@ To simplify this, we've added a simple tracing module:
 package tracing
 
 import (
-        opentracing "github.com/opentracing/opentracing-go"
-        "github.com/uber/jaeger-lib/metrics"
+    "context"
 
-        "context"
-
-        "github.com/uber/jaeger-client-go"
-        jaegercfg "github.com/uber/jaeger-client-go/config"
-        jaegerlog "github.com/uber/jaeger-client-go/log"
+    opentracing "github.com/opentracing/opentracing-go"
+    "github.com/uber/jaeger-client-go"
+    jaegercfg "github.com/uber/jaeger-client-go/config"
+    jaegerlog "github.com/uber/jaeger-client-go/log"
+    "github.com/uber/jaeger-lib/metrics"
 )
 
 var initialized = false
