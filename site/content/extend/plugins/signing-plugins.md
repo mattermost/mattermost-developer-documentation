@@ -7,14 +7,14 @@ weight: 50
 
 The Plugin Marketplace allows system administrators to download and install plugins from a central repository. Plugins installed via the Plugin Marketplace must be signed by a public key certificate trusted by the local Mattermost server.
 
-While the server ships with a default certificate used to sign plugins from the default Mattermost plugin marketplace, the server can be configured to trust different certificates and point at a different plugin marketplace. This document outlines the steps for generating a public key certificate and signing plugins for use with a custom plugin marketplace. It assumes access to the [GNU Privacy Guard (GPG)](https://gnupg.org) tool.
+While the server ships with a default certificate used to verify plugins from the default Mattermost plugin marketplace, the server can be configured to trust different certificates and point at a different plugin marketplace. This document outlines the steps for generating a public key certificate and signing plugins for use with a custom plugin marketplace. It assumes access to the [GNU Privacy Guard (GPG)](https://gnupg.org) tool.
 
 ## Configuration
 Configuring plugin signatures allows finer control over the verification process:
 ```console
 PluginSettings.RequirePluginSignature = true
 ```
-Is used to enforce plugin signature verification.
+is used to enforce plugin signature verification. With flag on, only marketplace plugins will be installed and verified. With flag off, customers will be able to install plugins manually without signature verification. Note, that marketplace plugins will still be verified even if flag is off.
 
 ## Key Generation
 Public and private key pairs are needed to sign and verify plugins. Private key is used for signing and should be kept in a secure location. Public key is used for verification and can be distributed freely. To generate a key pair, run the following command:
@@ -65,7 +65,7 @@ Find the ID of your private key first. The ID is a hexadecimal number.
 ```console
 > gpg --list-secret-keys
 ```
-This is your private key and you should keep it secret. Your hexadecimal key ID will, of course, be different.
+This is your private key and should be kept secret. Your hexadecimal key ID will, of course, be different.
 ```console
 > gpg --export-secret-keys F3FACE45E0DE642C8BD6A8E64C7C6562C192CC1F > ./my-priv-key
 ```
@@ -94,7 +94,7 @@ For plugin signing you have to know the hexadecimal ID of the private key. Let's
 This command will generate `com.mattermost.demo-plugin-0.1.0.tar.gz.sig`, which is the signature of your plugin.
 
 ## Plugin Verification
-Mattermost server will verify plugin signatures downloaded from plugin marketplace. To add custom public keys, start the Mattermost server and run the following command:
+Mattermost server will verify plugin signatures downloaded from plugin marketplace. To add custom public keys, run the following command on the Mattermost server:
 ```console
 > mattermost plugin add key my-pub-key
 ```
@@ -111,21 +111,5 @@ To delete public key(s) from your Mattermost server, use:
 > mattermost plugin delete key my-pk-file1 my-pk-file2
 ```
 
-### Storing Plugin Signatures
-When a plugin is installed, Mattermost server will store plugin signatures in its internal filestore (not to be confused with the public keys). This is to allow the server to verify signatures during the plugin-synchronization process that happens during server startup. To avoid name collisions and overwriting existing files, Mattermost will store plugin signatures alongside plugin bundles using the naming convention mentioned below:
-```console
-# Filestore plugin structure
-/plugins/<plugin_id>.tar.gz            # plugin bundle tar
-/plugins/<plugin_id>.<counter-1>.sig   # multiple plugin signatures
-/plugins/<plugin_id>.<counter-2>.sig     
-
-# Examples
-/plugins/com.mattermost.demo.tar.gz    # plugin bundle tar
-/plugins/com.mattermost.demo.1.sig     # multiple plugin signatures
-/plugins/com.mattermost.demo.2.sig
-/plugins/com.mattermost.demo.3.sig
-/plugins/com.github.matterpoll.tar.gz
-/plugins/com.github.matterpoll.1.sig
-/plugins/com.github.matterpoll.2.sig
-/plugins/com.github.matterpoll.3.sig
-```
+## Implementation
+See this [document](https://docs.google.com/document/d/1qABE7VEx4k_ZAeh6Ydn4pGbu6BQfZt65x68i2s65MOQ/) for the implementation details.
