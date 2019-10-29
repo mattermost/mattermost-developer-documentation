@@ -11,7 +11,6 @@ We've been working on integrating call tracing in the server to provide exact me
 We've picked [OpenTracing](https://github.com/opentracing/opentracing-go) - a lovely open source project that allows you to setup trace reporting and enables you to support [Distributed tracing](https://opentracing.io/docs/overview/what-is-tracing/).
 
 Instrumenting your API handler in Go is very straightforward - setup a connection to a collection server supporting the OpenTracing spec (we've decided to use [Jaeger](https://www.jaegertracing.io/)) and wrap your code in spans.
-``
 
 To simplify this, we've added a simple tracing module:
 ```go
