@@ -30,14 +30,16 @@ weight: 10
     - Customer Success
     - Customer Support
     - Confidential Bugs
-    - New CLA Entries
     - Private Off-Topic (optional)
+    - R&D Meeting
     - Social: * (optional)
     - Stand-up
     - Welcome
 - Private channels to join in `Contributors`
     - Security
+    - Confidential Bugs
     - Developers: Private     
+    - MVP Discussion
 - Public channels to join in `Contributors`
     - Developers
     - Developers Meeting
