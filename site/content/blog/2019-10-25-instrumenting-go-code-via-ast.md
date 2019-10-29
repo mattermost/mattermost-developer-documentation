@@ -75,8 +75,8 @@ Now, wrapping an API call in a span is very easy:
 ```go
 
 func apiCall(c *Context, w http.ResponseWriter, r *http.Request) {
-	span, ctx := tracing.StartSpanWithParentByContext(c.App.Context, "api4:apiCall")
-	c.App.Context = ctx
+    span, ctx := tracing.StartSpanWithParentByContext(c.App.Context, "api4:apiCall")
+    c.App.Context = ctx
     defer span.Finish()
 
     // perform actual request handling
@@ -94,7 +94,7 @@ So what is an AST really? Well, to quote [Wikipedia](https://www.wikiwand.com/en
 
 > In computer science, an abstract syntax tree (AST), or just syntax tree, is a tree representation of the abstract syntactic structure of source code written in a programming language. Each node of the tree denotes a construct occurring in the source code.
 
-![ast example](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Abstract_syntax_tree_for_Euclidean_algorithm.svg/1024px-Abstract_syntax_tree_for_Euclidean_algorithm.svg.png?1572188936106)
+![ast example](/blog/2019-10-25-instrumenting-go-code-via-ast/Abstract_syntax_tree_for_Euclidean_algorithm.png)
 
 Basically, an AST is a tree-like representation of your source code.
 
