@@ -107,6 +107,12 @@ Below is the list of core committers working on Mattermost:
 - **<a name="shota.gvinepadze">Shota Gvinepadze</a>**
     - @shota.gvinepadze on [community.mattermost.com](https://community.mattermost.com/core/messages/@shota.gvinepadze) and [@iomodo](https://github.com/iomodo) on GitHub
     - Dev areas: Toolkit, Plugins, AI, Machine Learning
+- **<a name="eli.yukelzon">Eli Yukelzon</a>**
+    - @eli.yukelzon on [community.mattermost.com](https://community.mattermost.com/core/messages/@eli.yukelzon) and [@reflog](https://github.com/reflog) on GitHub
+    - Dev areas: Load Tests, Performance, Guest Accounts, Typescript
+- **<a name="claudio.costa">Claudio Costa</a>**
+    - @claudio.costa on [community.mattermost.com](https://community.mattermost.com/core/messages/@claudio.costa) and [@streamer45](https://github.com/streamer45) on GitHub
+    - Dev areas: Server, Load Tests, Performance, Race Conditions, Multimedia
 
 Core Developers
 ---------------
