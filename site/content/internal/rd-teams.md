@@ -51,14 +51,13 @@ weight: 110
 
 * George Goldberg - Eng Lead
 * Jesus Espino - Engineer
-* Martin Kraft - Engineer
 * Daniel Schalla - Security Engineer
 * Miguel de la Cruz - Engineer
 * Eli Yukelzon - Engineer
 * Claudio Costa - Engineer
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
-* Michael Gamble - UX Designer
+* Rohitesh Gupta - QA
 
 ## Security Team
 
@@ -90,6 +89,7 @@ weight: 110
 * Catalin Tomai - Engineer
 * Hossein Ahmadian - Engineer Intern
 * Dennis Kittrell - PM 
+* Michael Gamble - UX Designer
 
 ## Other
 
