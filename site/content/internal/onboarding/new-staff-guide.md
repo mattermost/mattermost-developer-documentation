@@ -24,20 +24,22 @@ weight: 10
 - List to be sent by manager in channel
 
 ### Channels and Teams
-- You should be added to the private team `Private Core` and join the following channels
+- You should be added to the private team `Staff` and join the following channels
     - Alerts
     - Announcements
-    - Community/Customers
-    - New CLA Entries
-    - Platform Meeting
+    - Customer Success
+    - Customer Support
+    - Confidential Bugs
     - Private Off-Topic (optional)
+    - R&D Meeting
     - Social: * (optional)
-    - Standup
+    - Stand-up
     - Welcome
 - Private channels to join in `Contributors`
     - Security
-    - Developer: Private
     - Confidential Bugs
+    - Developers: Private     
+    - MVP Discussion
 - Public channels to join in `Contributors`
     - Developers
     - Developers Meeting
@@ -68,23 +70,23 @@ weight: 10
     - Add to Azure
 
 ### Potential topics to chat with a daily mentor about
-- Github workflow
+- GitHub workflow
 - Jira workflow
 - Sprint planning
 - Mattermod
-- Internal jenkins build server
-- External jenkins build server
-- APIs docs
+- Internal Jenkins build server
+- External Jenkins build server
+- API docs
 - Webapp structure
 - Server structure
-- React Native Apps
-- Desktop App
+- React Native apps
+- Desktop app
 - Enterprise repo
 - Platform-private repo
 - Release process
 - Org chart and roles
 - Operation Gaming
-- Redshift Analytics stuff
+- Redshift Analytics
 
 ## GitHub Mattermost Organization Membership
 
@@ -96,4 +98,4 @@ Once you're added to the `mattermost` organization on GitHub, you'll show up wit
 
 ![member](/internal/member.png)
 
-By default, however, this tag only appear to other members within the organization: anyone outside will continue to see only the `Contributor` tag. If you want your membership in the `mattermost` organization to be public, follow the steps on https://help.github.com/articles/publicizing-or-hiding-organization-membership/ to find your username on https://github.com/orgs/mattermost/people and change your `Organization visibility` to `Public`.
+By default, however, this tag only appears to other members within the organization: anyone outside will continue to see only the `Contributor` tag. If you want your membership in the `mattermost` organization to be public, follow the steps on https://help.github.com/articles/publicizing-or-hiding-organization-membership/ to find your username on https://github.com/orgs/mattermost/people and change your `Organization visibility` to `Public`.
