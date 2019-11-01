@@ -78,6 +78,7 @@ weight: 110
 
 ## Ops/Infra Team
 
+* Joram Wilander - Eng Lead
 * George Goldberg - Eng Lead
 * Daniel Schalla - Security Engineer
 * Stylianos Rigas - Engineer/Infrastructure
