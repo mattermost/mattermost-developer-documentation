@@ -83,6 +83,7 @@ weight: 110
 * Daniel Schalla - Security Engineer
 * Stylianos Rigas - Engineer/Infrastructure
 * Carlos Panato - Engineer/Infrastructure
+* Elisabeth Kulzer - Build Engineer
 
 ## Enterprise Team
 * Scott Bishel - Eng Lead
