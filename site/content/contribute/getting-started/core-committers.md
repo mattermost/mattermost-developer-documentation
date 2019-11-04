@@ -113,6 +113,15 @@ Below is the list of core committers working on Mattermost:
 - **<a name="claudio.costa">Claudio Costa</a>**
     - @claudio.costa on [community.mattermost.com](https://community.mattermost.com/core/messages/@claudio.costa) and [@streamer45](https://github.com/streamer45) on GitHub
     - Dev areas: Server, Load Tests, Performance, Race Conditions, Multimedia
+- **<a name="scott.bishel">Scott Bishel</a>**
+    - @scott.bishel on [community.mattermost.com](https://community.mattermost.com/core/messages/@scott.bishel) and [@sbishel](https://github.com/sbishel) on GitHub
+    - Dev areas: Permissions, Compliance, LDAP
+- **<a name="hossein.ahmadian">Hossein Ahmadian</a>**
+    - @hossein.ahmadian on [community.mattermost.com](https://community.mattermost.com/core/messages/@hossein.ahmadian) and [@hahmadia](https://github.com/hahmadia) on GitHub
+    - Dev areas: Permissions, Compliance, LDAP
+- **<a name="catalin.tomai">Catalin Tomai</a>**
+    - @catalin.tomai on [community.mattermost.com](https://community.mattermost.com/core/messages/@catalin.tomai) and [@catalintomai](https://github.com/catalintomai) on GitHub
+    - Dev areas: Permissions, Compliance, LDAP
 
 Core Developers
 ---------------
@@ -155,6 +164,8 @@ The core team also has product managers who do a lot of great work designing, pr
     - @katie.wiersgalla on [community.mattermost.com](https://community.mattermost.com/core/messages/@katie.wiersgalla) and [@wiersgallak](https://github.com/wiersgallak) on GitHub
 - **<a name="aaron.rothschild">Aaron Rothschild</a>**
     - @aaron.rothschild on [community.mattermost.com](https://community.mattermost.com/core/messages/@aaron.rothschild) and [@aaronrothschild](https://github.com/aaronrothschild) on GitHub
+- **<a name="dennis.kittrell">Dennis Kittrell</a>**
+    - @dennis.kittrell on [community.mattermost.com](https://community.mattermost.com/core/messages/@dennis.kittrell) and [@thefactremains](https://github.com/thefactremains) on GitHub
 
 QA Testers
 ------------
