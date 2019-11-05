@@ -14,7 +14,7 @@ Configuring plugin signatures allows finer control over the verification process
 ```console
 PluginSettings.RequirePluginSignature = true
 ```
-is used to enforce plugin signature verification. With flag on, only marketplace plugins will be installed and verified. With flag off, customers will be able to install plugins manually without signature verification. Note, that marketplace plugins will still be verified even if flag is off.
+is used to enforce plugin signature verification. With flag on, only marketplace plugins will be installed and verified. With flag off, customers will be able to install plugins manually without signature verification. Note that the marketplace plugins will still be verified even if flag is off.
 
 ## Key Generation
 Public and private key pairs are needed to sign and verify plugins. Private key is used for signing and should be kept in a secure location. Public key is used for verification and can be distributed freely. To generate a key pair, run the following command:
@@ -87,7 +87,7 @@ If you already have a public and private key pair, you can import them to the GP
 ```
 
 ## Plugin Signing
-For plugin signing you have to know the hexadecimal ID of the private key. Let's assume you want to sign `com.mattermost.demo-plugin-0.1.0.tar.gz` file, run:
+For plugin signing, you have to know the hexadecimal ID of the private key. Let's assume you want to sign `com.mattermost.demo-plugin-0.1.0.tar.gz` file, run:
 ```console
 > gpg -u F3FACE45E0DE642C8BD6A8E64C7C6562C192CC1F --verbose --personal-digest-preferences SHA256 --detach-sign com.mattermost.demo-plugin-0.1.0.tar.gz
 ```
