@@ -83,3 +83,9 @@
     ```
 
     **Note:** Browsing directly to http://localhost:8065/ will display a `404 Not Found` until the web app is configured. See [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for additional setup.
+
+    The `stop-server` make target does not stop all the docker containers started by `run-server`. To stop and clean up running docker containers:
+
+    ```sh
+    make stop-docker
+    ```
