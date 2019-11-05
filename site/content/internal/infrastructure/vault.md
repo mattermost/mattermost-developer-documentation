@@ -73,3 +73,31 @@ When the Vault instance starts up, it needs to be "unsealed" in order to decrypt
 ```
 VAULT_ADDR='https://vault-sealed.mattermost.com' vault unseal
 ```
+
+## Accessing AWS Credentials via Vault
+
+To use `ltops` for creating clusters on AWS, you'll need to get credentials via Vault:
+`vault read loadtest-aws/creds/developer`
+
+If you have proper permissions, you will get the following output:
+
+```
+Key                Value
+---                -----
+lease_id           loadtest-aws/creds/developer/______
+lease_duration     768h
+lease_renewable    true
+access_key         ________
+secret_key         ________
+security_token     <nil>
+```
+
+Copy `access_key` and `security_key` into your `~/.aws/credentials` under `ltops` section:
+
+```
+[ltops]
+aws_access_key_id = _________
+aws_secret_access_key = _____________
+```
+
+Now you can use `ltops create`
