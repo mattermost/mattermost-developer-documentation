@@ -34,6 +34,8 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 * `CherryPick/Approved`: Meant for the quality or patch release tracked in the milestone.
 * `CherryPick/Candidate`: A candidate for a quality or patch release, but not yet approved.
 * `CherryPick/Done`: Successfully cherry-picked to the quality or patch release tracked in the milestone.
+* `Demo Plugin Changes/Needed`: Requires changes to the demo plugin.
+* `Demo Plugin Changes/Done`: Required changes to the demo plugin have been submitted.
 * `Do Not Merge/Awaiting Loadtest`: Must be loadtested before it can be merged.
 * `Do Not Merge/Awaiting Next Release`: To be merged with the next release (e.g. API documentation updates).
 * `Do Not Merge/Awaiting PR`: Awaiting another pull request before merging (e.g. server changes).
