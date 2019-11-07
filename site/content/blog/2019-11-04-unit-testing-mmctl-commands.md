@@ -13,7 +13,7 @@ The `mmctl` tool is a CLI application that mimics the commands and features of t
 
 The goal of the campaign is to create unit tests for the different `mmctl` commands. These tests should be centered around how the tool reacts to different inputs and server responses. We'll be using [the `gomock` mocking framework](https://github.com/golang/mock) to simulate whatever response we want from the server, and to ensure that the command is performing the requests we expect quickly and accurately.
 
-# The Client interface
+# The Client Interface
 
 First, let's take a look at the signature of a typical `mmctl` command:
 
