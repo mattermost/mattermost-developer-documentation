@@ -71,7 +71,7 @@ This way, we will have an `s` instance inside our test function that will contai
 
 So now that we have our test function defined, the next step is to think about our test case: what inputs is the command going to receive? What interactions with the server are those inputs going to cause? And what responses do I want to mock for them?
 
-For our given test case, we are going to receive an email address as the input, and we want to mock a valid response for it. The client method that our command is going to use to send the request to the server is the `GetUserByEmail` method, and for the case of an existing user, it will return the found user instance:
+For our given test case, we are going to receive an email address as the input and we want to mock a valid response for it. The client method that our command is going to use to send the request to the server is the `GetUserByEmail` method, and for the case of an existing user, it will return the found user instance:
 
 ```go
 emailArg := "example@example.com"
