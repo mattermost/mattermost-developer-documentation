@@ -90,7 +90,7 @@ Then we have to state the expectations of the mock. We expect our command to use
 
 During our test run, if the client's method is called with the arguments that we expect, it will respond accordingly. At the end of the test, `gomock` will check that our assertions were correct, and it will mark the test as failed if they were not.
 
-# Asserting the command's behavior
+# Asserting the Command's Behavior
 
 After mocking the server interactions, all that is left to do is running the command and checking the outputs. There are two things that we can use to check that the command behaved as we expected: the command's return value, and whatever was printed during its execution.
 
