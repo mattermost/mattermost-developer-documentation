@@ -21,7 +21,7 @@ First, let's take a look at the signature of a typical `mmctl` command:
 func userSearchCmdF(c client.Client, cmd *cobra.Command, args []string) error { }
 ```
 
-We use [the awesome Cobra library](https://github.com/spf13/cobra) to create our commands, and on top of the required cobra arguments (`cmd` and `args`), every command that needs to interact with the server will receive a `client.Client` instance. This client represents our connection with the server, and at the time we call the command function, is already logged in with a server and ready to run requests. During testing, this is the interface that we will be mocking, and where we will make sure that the command is performing the requests we expect.
+We use [the awesome Cobra library](https://github.com/spf13/cobra) to create our commands, and on top of the required cobra arguments (`cmd` and `args`), every command that needs to interact with the server will receive [a `Client` instance](https://github.com/mattermost/mmctl/blob/master/client/client.go). This client represents our connection with the server, and at the time we call the command function, is already logged in with a server and ready to run requests. During testing, this is the interface that we will be mocking, and where we will make sure that the command is performing the requests we expect.
 
 # Testing a use case
 
