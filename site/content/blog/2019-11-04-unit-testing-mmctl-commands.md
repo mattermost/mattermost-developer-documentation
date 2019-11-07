@@ -92,7 +92,7 @@ During our test run, if the client's method is called with the arguments that we
 
 # Asserting the Command's Behavior
 
-After mocking the server interactions, all that is left to do is running the command and checking the outputs. There are two things that we can use to check that the command behaved as we expected: the command's return value, and whatever was printed during its execution.
+After mocking the server interactions, all that's left to do is run the command and check the outputs. There are two things that we can use to check that the command behaved as we expected: the command's return value and whatever was printed during its execution.
 
 To perform this assertions we can use the suite itself for [assertions](https://godoc.org/github.com/stretchr/testify/assert) or `s.Require()` for [requires](https://godoc.org/github.com/stretchr/testify/require). Both implement the same helpers to check that our values meet our expectations, the difference is that a failed check with `require` will mark the test as failed and will stop it right after, and a failed check with `assert` will mark the test as failed too, but it will continue running it.
 
