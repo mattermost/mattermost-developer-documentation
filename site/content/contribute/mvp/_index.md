@@ -15,6 +15,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+5.17    | November 16, 2019   | Hanna 
 5.16    | October 16, 2019    | [Paulo Bittencourt](https://github.com/pbitty)
 5.15    | September 16, 2019  | [Siyuan Liu](https://github.com/liusy182)
 5.14    | August 16, 2019     | [Rodrigo Villablanca Vásquez](https://github.com/rvillablanca)
