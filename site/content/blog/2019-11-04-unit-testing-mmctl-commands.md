@@ -135,7 +135,7 @@ func (s *MmctlUnitTestSuite) TestMyCommandCmd() {
 }
 ```
 
-# Participate on the campaign!
+# Participate in The Campaign!
 
 And that's it! That's how you write a unit test for a `mmctl` command. If you are interested on contributing to this Open Source campaign, please check the [Up for Grabs tickets](https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+label%3A%22Up+For+Grabs%22) on our Github repository and search for those referring to `mmctl` (or for any other!). If you see a ticket that you would like to work on, just leave a comment asking for it to be assigned to you.
 
