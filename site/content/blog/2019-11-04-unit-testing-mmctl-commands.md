@@ -55,7 +55,7 @@ Let's split the test and go through each one of its parts.
 
 So first things first, we need to create the test function for our command. We use one function per command and then we separate the different test cases with `s.Run` blocks.
 
-Our tests are part of a [`testify` suite](https://godoc.org/github.com/stretchr/testify/suite), that prepares the environment for us, and generates the mocked client so we can easily use it inside our tests. To add a new test function to the suite, we just need to define it on the suite struct:
+Our tests are part of a [`testify` suite](https://godoc.org/github.com/stretchr/testify/suite) that prepares the environment for us and generates the mocked client so we can easily use it inside our tests. To add a new test function to the suite, we just need to define it on the suite struct:
 
 ```go
 func (s *MmctlUnitTestSuite) TestSearchUserCmd() {
