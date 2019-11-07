@@ -67,7 +67,7 @@ func (s *MmctlUnitTestSuite) TestSearchUserCmd() {
 
 This way, we will have an `s` instance inside our test function that will contain a mocked instance of the client ready for us to use, and we will be able to use the suite to run our assertions.
 
-# Mocking an interaction with the server
+# Mocking an Interaction With the Server
 
 So we have our test function defined, next step is to think about our test case: what inputs is the command going to receive? What interactions with the server are those inputs going to cause? And what responses do I want to mock for them?
 
