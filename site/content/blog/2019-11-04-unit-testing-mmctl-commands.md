@@ -51,7 +51,7 @@ func (s *MmctlUnitTestSuite) TestSearchUserCmd() {
 
 Let's split the test and go through each one of its parts.
 
-# Adding a new test to the suite
+# Adding a New Test to The Suite
 
 So first things first, we need to create the test function for our command. We use one function per command, and then we separate the different test cases with `s.Run` blocks.
 
