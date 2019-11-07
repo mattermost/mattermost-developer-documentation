@@ -65,7 +65,7 @@ func (s *MmctlUnitTestSuite) TestSearchUserCmd() {
 }
 ```
 
-This way, we will have a `s` instance inside our test function that will contain a mocked instance of the client ready for us to use, and we will be able to use the suite to run our assertions.
+This way, we will have an `s` instance inside our test function that will contain a mocked instance of the client ready for us to use, and we will be able to use the suite to run our assertions.
 
 # Mocking an interaction with the server
 
