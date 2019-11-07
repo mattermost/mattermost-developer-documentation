@@ -115,7 +115,7 @@ We have two kinds of output: the lines for `stdout` and the error lines for `std
 
 # Printer Cleanup
 
-One thing we need to remember is that the `printer` struct gets cleaned for us between test functions courtesy of `MmctlUnitTestSuite`, but we will need to clean it manually between test cases. Therefore, if we have more than one use case in the same test function, we need to run `printer.Clean()` at the beginning of all the `s.Run` blocks but the first one:
+One thing we need to remember is that although the `printer` struct gets cleaned for us between test functions courtesy of `MmctlUnitTestSuite`, we will need to clean it manually between test cases. Therefore, if we have more than one use case in the same test function, we need to run `printer.Clean()` at the beginning of all the `s.Run` blocks but the first one:
 
 ```go
 func (s *MmctlUnitTestSuite) TestMyCommandCmd() {
