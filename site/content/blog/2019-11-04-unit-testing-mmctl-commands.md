@@ -98,7 +98,7 @@ To perform this assertions we can use the suite itself for [assertions](https://
 
 The rule of thumb here is to use `assert` when you can still get valuable information from the following assertions of your test, and use `require` if, after an error, the following checks won't make sense. For example, if we get an error opening a file, it doesn't make sense to check the file contents.
 
-This is how the command execution and its assertions look like:
+This is what the command execution and its assertions look like:
 
 ```go
 err := searchUserCmdF(s.client, &cobra.Command{}, []string{emailArg})
