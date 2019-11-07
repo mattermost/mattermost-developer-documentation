@@ -94,7 +94,7 @@ During our test run, if the client's method is called with the arguments that we
 
 After mocking the server interactions, all that's left to do is run the command and check the outputs. There are two things that we can use to check that the command behaved as we expected: the command's return value and whatever was printed during its execution.
 
-To perform this assertions we can use the suite itself for [assertions](https://godoc.org/github.com/stretchr/testify/assert) or `s.Require()` for [requires](https://godoc.org/github.com/stretchr/testify/require). Both implement the same helpers to check that our values meet our expectations, the difference is that a failed check with `require` will mark the test as failed and will stop it right after, and a failed check with `assert` will mark the test as failed too, but it will continue running it.
+To perform this assertions we can use the suite itself for [assertions](https://godoc.org/github.com/stretchr/testify/assert) or `s.Require()` for [requires](https://godoc.org/github.com/stretchr/testify/require). Both implement the same helpers to check that our values meet our expectations. The difference between the two is that a failed check with `require` will mark the test as failed and will stop it right after, and a failed check with `assert` will mark the test as failed too, but it will continue running it.
 
 The rule of thumb here is to use `assert` when you can still get valuable information from the following assertions of your test, and use `require` if, after an error, the following checks won't make sense. For example, if we get an error opening a file, it doesn't make sense to check the file contents.
 
