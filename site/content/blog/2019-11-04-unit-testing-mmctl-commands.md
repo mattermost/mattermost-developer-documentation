@@ -113,7 +113,7 @@ To check the output of the commands, we use the `printer` struct. Every signific
 
 We have two kinds of output: the lines for `stdout` and the error lines for `stderr`. In our case, as the user should have been found and printed through `stdout`, we can use the `printer.GetLines` method to get a slice with the printed messages, and the `Equal` helper to perform the assertion. Then, as we are expecting no errors, we can check that the `printer` struct printed none during the command execution asserting that `printer.GetErrorLines` is empty.
 
-# Printer cleanup
+# Printer Cleanup
 
 One thing we need to remember is that the `printer` struct gets cleaned for us between test functions courtesy of `MmctlUnitTestSuite`, but we will need to clean it manually between test cases. Therefore, if we have more than one use case in the same test function, we need to run `printer.Clean()` at the beginning of all the `s.Run` blocks but the first one:
 
