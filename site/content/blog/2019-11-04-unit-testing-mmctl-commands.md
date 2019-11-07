@@ -86,7 +86,7 @@ s.client.
 
 First we define our input, the `emailArg` that the command is going to receive, and the `mockUser` we are going to mock as the server's response for the user search request. As the response is valid, we will create a simple response that contains no error.
 
-Then we have to state the expectations of the mock. We expect our command to use the `GetUserByEmail` function, calling it with the `emailArg` we mocked and a second argument that will always be an empty string, and we want the server to return our mocked user as a response for that call. Last, we state that this call should happen once.
+Then we have to state the expectations of the mock. We expect our command to use the `GetUserByEmail` function, calling it with the `emailArg` we mocked and a second argument that will always be an empty string. We also want the server to return our mocked user as a response for that call. Last, we state that this call should happen once.
 
 During our test run, if the client's method is called with the arguments that we expect, it will respond accordingly. At the end of the test, `gomock` will check that our assertions were correct, and it will mark the test as failed if they were not.
 
