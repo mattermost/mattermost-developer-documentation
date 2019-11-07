@@ -11,7 +11,7 @@ Mattermost is starting a new Open Source campaign, this time around increasing t
 
 The `mmctl` tool is a CLI application that mimics the commands and features of the current Mattermost CLI tool and uses the Mattermost REST API to communicate with the server. Using the tool, you can control and manage several Mattermost servers without having to access the specific machine on which the server is running. If you can reach a Mattermost instance over the network, you can use `mmctl` to run commands on it.
 
-The goal of the campaign is to create unit test for the different `mmctl` commands. These tests should be centered around how the tool reacts to different inputs and server responses, and to achieve this in a fast and flexible way, we will be using [the `gomock` mocking framework](https://github.com/golang/mock) to simulate whatever response we want from the server and to ensure that the command is performing the requests we expect.
+The goal of the campaign is to create unit tests for the different `mmctl` commands. These tests should be centered around how the tool reacts to different inputs and server responses. We'll be using [the `gomock` mocking framework](https://github.com/golang/mock) to simulate whatever response we want from the server, and to ensure that the command is performing the requests we expect quickly and accurately.
 
 # The Client interface
 
