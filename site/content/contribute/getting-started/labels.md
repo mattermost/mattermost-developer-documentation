@@ -25,6 +25,7 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 # Pull Request Labels
 
 * `1: PM Review`: Requires review by a [product manager](/contribute/getting-started/core-committers/#product-managers).
+* `1: UX Review`: Requires review by a UX Designer.
 * `2: Dev Review`: Requires review by a [core committer](/contribute/getting-started/core-committers/#core-committers).
 * `2: QA Review`: Requires review by a [QA tester](/contribute/getting-started/core-committers/#qa-testers). May occur at the same time as Dev Review.
 * `3: Reviews Complete`: All reviewers have approved the pull request.
