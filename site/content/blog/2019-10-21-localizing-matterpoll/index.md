@@ -17,7 +17,7 @@ The [Mattermost Server](https://github.com/mattermost/mattermost-server) uses th
 
 #### Choosing a version
 
-When [Translations where added to Mattermost](https://github.com/mattermost/mattermost-server/commit/8e404c1dcf820cf767e9d6899e8c1efc7bb5ca96#diff-db85c0ea4d2e69c8abaefa875ba77c51) back in 2016 the latest version of go-i18 available was [`v1.4.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v1.4.0). Since then the development has continued and [`v2.0.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v2.0.0) was released may this year. V2 has a completely different API and also the CLI tool [`goi18n`](https://github.com/nicksnyder/go-i18n#command-goi18n-) has changed a lot. Hence, we had to make a choice: Stick with the well established V1 or use the newer V2? 
+When [Translations where added to Mattermost](https://github.com/mattermost/mattermost-server/commit/8e404c1dcf820cf767e9d6899e8c1efc7bb5ca96#diff-db85c0ea4d2e69c8abaefa875ba77c51) back in 2016 the latest version of go-i18 available was [`v1.4.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v1.4.0). Since then the development has continued and [`v2.0.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v2.0.0) was released may this year. v2 has a completely different API and also the CLI tool [`goi18n`](https://github.com/nicksnyder/go-i18n#command-goi18n-) has changed a lot. Hence, we had to make a choice: Stick with the well established v1 or use the newer v2? 
 
 Let's dive into the difference between the two versions. In v1 translation strings are defined in the translation files, e.g. `en-US.all.json` would contain:
 ```json
@@ -40,7 +40,7 @@ For further information please take a look at the [Changelog](https://github.com
 
 Also, it's a good idea to stay up to date with the major version of the libraries that you are using. This way you get the latest bug fixes because open libraries don't backport fixes.
 
-With all this in mind it was not a hard decision for us to go with V2 of go-i18n.
+With all this in mind it was not a hard decision for us to go with v2 of go-i18n.
 
 
 #### Choosing a file format
@@ -52,7 +52,7 @@ Yet again we were faced with a decision: Which format should we use? The Matterm
 
 ### Integrating go-i18n into Matterpoll
 
-With these decision made we started working on integration go-i18n into Matterpoll. But first we have to introduce three concepts that go-i18n uses (technical speaking they are just structs):
+With these decisions made we started working on integrating go-i18n into Matterpoll. But first we have to introduce three concepts that go-i18n uses (technically speaking they are just structs):
 
 - [`Bundle`](https://godoc.org/github.com/nicksnyder/go-i18n/v2/i18n#Bundle): A `Bundle` contains the translations
 - [`Message`](https://godoc.org/github.com/nicksnyder/go-i18n/v2/i18n#Message): A `Message` is a translation string and can contain plural rules
