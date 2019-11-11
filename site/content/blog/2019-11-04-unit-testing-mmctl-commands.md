@@ -115,11 +115,12 @@ We have two kinds of output: the lines for `stdout` and the error lines for `std
 
 # Printer Cleanup
 
-One thing we need to remember is that although the `printer` struct gets cleaned for us between test functions courtesy of `MmctlUnitTestSuite`, we will need to clean it manually between test cases. Therefore, if we have more than one use case in the same test function, we need to run `printer.Clean()` at the beginning of all the `s.Run` blocks but the first one:
+One thing we need to remember is that although the `printer` struct gets cleaned for us between test functions courtesy of `MmctlUnitTestSuite`, we will need to clean it manually between test cases. Therefore, and to ensure that the output data is clean when we start each test case, we need to run `printer.Clean()` at the beginning of all the `s.Run` blocks of our test files:
 
 ```go
 func (s *MmctlUnitTestSuite) TestMyCommandCmd() {
     s.Run("First test case", func() {
+        printer.Clean()
         // ...
     })
 
@@ -137,7 +138,7 @@ func (s *MmctlUnitTestSuite) TestMyCommandCmd() {
 
 # Participate in The Campaign!
 
-And that's it! That's how you write a unit test for a `mmctl` command.
+And that's it! That's how you write a unit test for an `mmctl` command.
 
 If you are interested in contributing to this Open Source campaign, take a look at the [Up for Grabs tickets for `mmctl`](https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+label%3A%22Up+For+Grabs%22+label%3AArea%2Fmmtcl) on the `mattermost-server` repository, or just check [all the Up for Grabs tickets](https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+label%3A%22Up+For+Grabs%22) of the project to find tickets related to the Mattermost fronted, the documentation, the Plugin system and any other Open Source campaign we might be running. If you see a ticket that you would like to work on, just leave a comment asking for it to be assigned to you.
 
