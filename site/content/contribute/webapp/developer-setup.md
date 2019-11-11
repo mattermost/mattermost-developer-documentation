@@ -14,7 +14,7 @@ Set up your development environment for building, running, and testing the Matte
  - On Mac, use [Homebrew](https://brew.sh/) to install Node.js v10 and libpng:
 
     ```sh
-    brew install node@10 libpng
+    brew install node@10 libpng npm
     ```
 
  - For other platforms, install Node.js v10 from https://www.npmjs.com/get-npm.
