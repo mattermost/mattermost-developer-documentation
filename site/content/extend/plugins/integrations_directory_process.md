@@ -30,9 +30,11 @@ When you are ready to have your plugin/integration start this process, please su
 
 ### What will happen after submission:
 
+A Jira ticket will be created in mattermost.atlassian.net to track the progress of the listing review.  You will be sent a link to the Jira ticket within 1-2 days of submitting the form. 
+
 #### PM/UX Review
 
-A PM/UX pass involves a Product Manager reviewing and helping to smooth out any user experience issues with the plugin.
+A PM/UX pass involves a Product Manager reviewing and helping to smooth out any user experience issues with the plugin.  Generally happens within 0-2 weeks of submission.
 
 Steps involved:
 - Review or Create a one paragraph summary of the integration
@@ -43,7 +45,7 @@ Steps involved:
 
 #### Development: Basic Code Review
 
-Basic code review of an experimental plugin involves a quick review by a [core committer](/contribute/getting-started/core-committers/) to verify that the plugin does what it says it does and to provide any guidance and feedback. To make it easier to provide feedback, a PR can be made that contains all the code of the plugin that isn't the boilerplate from mattermost-plugin-starter-template. We will be in contact with you if we cannot list your integration for some reason.
+This part of the process begins after the PM/UX pass.  Basic code review of an experimental plugin involves a quick review by a [core committer](/contribute/getting-started/core-committers/) to verify that the plugin does what it says it does and to provide any guidance and feedback.  We will be in contact with you if we cannot list your integration for some reason.
 
 #### Development: Second Review
 
