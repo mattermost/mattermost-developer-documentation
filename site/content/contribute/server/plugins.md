@@ -23,11 +23,21 @@ The server binary is a compiled (generally Go) program that extends the [Matterm
 
 The JavaScript bundle is a webpack-built collection of JavaScript code that will be run on the Mattermost web/desktop apps. When a plugin is enabled, the client is notified and it makes a request to add the JS bundle to the document. The plugin's client code then registers itself and its components with the Mattermost client through the client's [plugin registry](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/registry.js). The registry contains many methods for registering different components and callbacks. These are all stored as part of the app's [plugin reducer](https://github.com/mattermost/mattermost-webapp/blob/master/reducers/plugins/index.js). The [Pluggable](https://github.com/mattermost/mattermost-webapp/tree/master/plugins/pluggable) component is then inserted into various places in the app, allowing plugins to insert components into these locations in the UI. In some special cases, the Pluggable component is not used and we instead implement the plugs manually. More information is available in the [webapp side of the plugin author documentation](/extend/plugins/webapp).
 
-In the future there will be another component of plugins for the mobile apps, likely a React Native bundle.
-
 All these different components of a plugin are compressed into a .tar.gz bundle. Installing a plugin is the process of uploading this bundle to the Mattermost server (via the UI, REST API or CLI). The server then unpacks the bundle, performs some validation and extracts it into the configured directory for storing installed plugins. Installed plugins are not yet running. To start a plugin it must be enabled (again via the UI, REST API or CLI). Once it is enabled, the server will then start the server process and prepare the web app bundle for serving to the client. Plugin settings, configuration and enabled/disabled status are managed by the Mattermost `config.json` using a [PluginSettings](https://godoc.org/github.com/mattermost/mattermost-server/model#PluginSettings) struct.
 
 Check out the [`plugin` package](https://github.com/mattermost/mattermost-server/tree/master/plugin) and the [plugin_* files in the `app` package](https://github.com/mattermost/mattermost-server/tree/master/app) for the code, and [mattermost-plugin-demo](https://github.com/mattermost/mattermost-plugin-demo) for an example plugin.
+
+## Plugin Marketplace
+
+The Plugin Marketplace is designed as a catalog of plugins from Mattermost and the community at large. Mattermost runs a server with a curated catalog of plugins which can then be displayed directly within the Mattermost interface ( Main Menu > Plugin Marketplace ).  You can learn more about the [Marketplace here](/administration/plugins.html#plugin-marketplace), including how to run your own Marketplace server.
+
+The Plugin Marketplace launched with v5.16 and makes it easier for Mattermost administrators to discover and install plugins. We currently curate the listed plugins tightly but are planning to include community plugins alongside Mattermost-developed plugins in the future. 
+
+
+### Integrations.mattermost.com 
+
+A good way to share your plugin or integration instructions with the Mattermost community is by submitting your plugin to the [integrations directory](https://spinpunch.wufoo.com/forms/mattermost-integrations-and-installers/) for review prior to listing. 
+
 
 ## Adding an API
 
