@@ -30,6 +30,7 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 * `2: QA Review`: Requires review by a [QA tester](/contribute/getting-started/core-committers/#qa-testers). May occur at the same time as Dev Review.
 * `3: Reviews Complete`: All reviewers have approved the pull request.
 * `Awaiting Submitter Action`: Blocked on the author.
+* `AutoMerge`: If all checks and approvals pass and the user adds this label, it will be in the queue to get merge automatically without a human intervention.
 * `Changelog/Done`: Required changelog entry has been written.
 * `Changelog/Not Needed`: Does not require a changelog entry.
 * `CherryPick/Approved`: Meant for the quality or patch release tracked in the milestone.
