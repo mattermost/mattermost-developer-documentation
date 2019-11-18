@@ -83,7 +83,7 @@ Note that when we make a selector that takes arguments, we typically wrap it in 
 
 This may sound unnecessary if you're writing a one-off selector, but if you think of something like a `getPost` selector in the Mattermost app, we will frequently be rendering 100+ post components each with their own copy of the `getPost` selector. With only a single copy of that selector, it would be constantly recalculating, but with 100+ copies, each only recalculates and rerenders when their specific post changes.
 
-### Testing an Action
+### Testing a Selector
 
 Unit tests for selectors are located in the same directory, adjacent to the file being tested. Example, for `src/selectors/admin.js`, test is located at `src/selectors/admin.test.js`. These tests are written using [Jest Testing Framework](https://jestjs.io/). In that folder, there are many examples of how those tests should look. Most follow the same general pattern of:
 1. Construct the initial test state. Note that this doesn't need to be shared between tests as it is in many other cases.
