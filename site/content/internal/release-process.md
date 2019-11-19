@@ -58,15 +58,15 @@ That's it!
 
 ## Using Matterbuild to release and sign a plugin
 
-Developers and PMs decide when to release a particular plugin. When they want to release they can use Matterbuild to tag a plugin to release and sign the plugin package.
-To do that please follow the steps:
+Developers and PMs decide when to release a particular plugin. When they want to prepare a release for a plugin, they can use Matterbuild to tag a plugin to release and to sign the plugin package.
+To do this, please follow these steps:
 
-1. Open a PR to bump the plugin version
-1. Ask for review and when approved merge that PR.
-1. Use `Matterbuild` to tag/release/sign the plugin with the command `/mb cutPlugin --tag vX.Y.Z --repo mattermost/mattermost-plugin-<PLUGIN>`
-1. If successul you will see the github release with all artifacts, including the signed files.
+1. Open a PR to bump the plugin version.
+1. Request reviews. When approved, merge the PR.
+1. Use `Matterbuild` to tag, release and sign the plugin with the command `/mb cutPlugin --tag vX.Y.Z --repo mattermost/mattermost-plugin-<PLUGIN>`.
+1. If successful, you will see the GitHub release with all artifacts, including the signed files.
 
 
 Notes:
-1. Improvement: make `Matterbuild` able to bump the plugin version as well
-2. Only available for plugin repositories under the Mattermost Github org.
+1. Improvement to be added: make `Matterbuild` able to bump the plugin version as well.
+2. Only available for plugin repositories under the Mattermost GitHub org.
