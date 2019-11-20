@@ -14,7 +14,6 @@ weight: 110
 
 * Elias Nahum - Eng Lead
 * Harrison Healey - Engineer
-* Saturnino Abril - Engineer
 * Sudheer Timmaraju - Engineer
 * Dean Whillier - Engineer
 * Miguel Alatzar - Engineer
@@ -22,8 +21,6 @@ weight: 110
 * Guillermo Vayá - Engineer
 * Claude Wild - Engineer
 * Eric Sethna - PM
-* Linda Mitchell - QA Lead
-* Bob Lubecker - QA
 * Andrew Brown - UX Designer
 
 ## Cloud Team
@@ -57,7 +54,6 @@ weight: 110
 * Claudio Costa - Engineer
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
-* Rohitesh Gupta - QA
 
 ## Security Team
 
@@ -75,6 +71,7 @@ weight: 110
 * Shota Gvinepadze - Engineer
 * Ben Schumacher - Engineer
 * Aaron Rothschild - PM
+* Prapti Shrestha - QA SDET
 
 ## Ops/Infra Team
 
@@ -92,8 +89,13 @@ weight: 110
 * Hossein Ahmadian - Engineer Intern
 * Dennis Kittrell - PM 
 * Michael Gamble - UX Designer
+* Rohitesh Gupta - QA SDET
 
 ## Other
 
 * Amy Blais - Release Manager/PM
+* Linda Mitchell - QA Lead
+* Saturnino Abril - QA SDET
+* Jelena Gilliam - QA
 * Ogi Marusic - QA
+* Steve Mudie - QA
