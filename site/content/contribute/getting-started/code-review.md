@@ -25,7 +25,7 @@ If you are a community member seeking a review
     * The ticket author, a core committer, or a product manager will assign reviewers and label your pull request appropriately.
     * Expect some interaction with at least one reviewer within 5 business days.
     * Keep in mind that core committers are geographically distributed around the world and likely in a different time zone than your own.
-    * Please ping [Jason Blais](/contribute/getting-started/core-committers/#jason.blais) or [Hanzei](/contribute/getting-started/core-committers/#hanzei) after 5 business days if no interaction has occurred.
+    * If no interaction has occurred after 5 business days, please ping a core team member who is participating in the PR. If there are no participating members yet, please ping [Jason Blais](/contribute/getting-started/core-committers/#jason.blais) or [Ben Schumacher (Hanzei)](/contribute/getting-started/core-committers/#hanzei).
 4. Make any necessary changes.
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
     * Once you've addressed the concerns, reach out with another mention.
