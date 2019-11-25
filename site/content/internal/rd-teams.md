@@ -10,16 +10,21 @@ weight: 110
 * Corey Hulen - CTO
 * Lindsay Brock - Head of Product
 
-## Apps Team
+## Mobile Team
 
 * Elias Nahum - Eng Lead
+* Miguel Alatzar - Engineer
+* Claude Wild - Engineer
+* Eric Sethna - PM
+* Andrew Brown - UX Designer
+
+## Apps Team
+* Dean Whillier - Eng Lead
 * Harrison Healey - Engineer
 * Sudheer Timmaraju - Engineer
-* Dean Whillier - Engineer
-* Miguel Alatzar - Engineer
+* Brad Coughlin - Engineer
 * Devin Binnie - Engineer
 * Guillermo Vayá - Engineer
-* Claude Wild - Engineer
 * Eric Sethna - PM
 * Andrew Brown - UX Designer
 
@@ -27,7 +32,6 @@ weight: 110
 
 * Joram Wilander - Eng Lead
 * Carlos Panato - Engineer/Infrastructure
-* Brad Coughlin - Engineer
 * Gabe Jackson - Engineer
 * Stylianos Rigas - Engineer/Infrastructure
 * Ian Whitlock - Engineer
