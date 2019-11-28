@@ -41,13 +41,13 @@
 7. Clone the Mattermost source code from your fork:
 
     ```sh
-    git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost-server.git
+    git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost-server.git $(go env GOPATH)/src/github.com/mattermost/mattermost-server
     ```
 
 8. Start the server:
 
     ```sh
-    cd mattermost-server
+    cd $(go env GOPATH)/src/github.com/mattermost/mattermost-server
     make run-server
     ```
 
