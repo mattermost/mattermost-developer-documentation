@@ -62,13 +62,13 @@ This is an unofficial guide. Community testing, feedback and improvements are we
 9. Clone the Mattermost source code from your fork:
 
     ```sh
-    git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost-server.git
+    git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost-server.git $(go env GOPATH)/src/github.com/mattermost/mattermost-server
     ```
 
 10. Start the server and test your environment:
 
     ```sh
-    cd mattermost-server
+    cd $(go env GOPATH)/src/github.com/mattermost/mattermost-server
     make run-server
     curl http://localhost:8065/api/v4/system/ping
     make stop-server
