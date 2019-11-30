@@ -166,6 +166,8 @@ The core team also has product managers who do a lot of great work designing, pr
     - @aaron.rothschild on [community.mattermost.com](https://community.mattermost.com/core/messages/@aaron.rothschild) and [@aaronrothschild](https://github.com/aaronrothschild) on GitHub
 - **<a name="dennis.kittrell">Dennis Kittrell</a>**
     - @dennis.kittrell on [community.mattermost.com](https://community.mattermost.com/core/messages/@dennis.kittrell) and [@thefactremains](https://github.com/thefactremains) on GitHub
+- **<a name="eric.sadur">Eric Sadur</a>**
+    - @eric.sadur on [community.mattermost.com](https://community.mattermost.com/core/messages/@eric.sadur) and [@etoaster](https://github.com/etoaster) on GitHub
 - **<a name="adam.clarkson">Adam Clarkson</a>**
     - @adam.clarkson on [community.mattermost.com](https://community.mattermost.com/core/messages/@adam.clarkson) and [@adamjclarkson](https://github.com/adamjclarkson) on GitHub
 
