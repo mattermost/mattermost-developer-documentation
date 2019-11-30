@@ -103,3 +103,6 @@ weight: 110
 * Jelena Gilliam - QA
 * Ogi Marusic - QA
 * Steve Mudie - QA
+* Justine Geffen - Technical Writer
+* Adam Clarkson - PM
+* Eric Sadur - PM
