@@ -1,4 +1,4 @@
-dist: bionic
+dist: trusty
 sudo: false
 language: go
 go: "1.13"
