@@ -66,7 +66,7 @@ While Reselect doesn't encourage the use of selectors with parameters, these can
 export function makeGetUser() {
     return createSelector(
         getProfiles,
-        (userId) => userId,
+        (state, userId) => userId,
         (profiles, userId) => {
             if (!profiles.hasOwnProperty(userId)) {
                 // User not found
