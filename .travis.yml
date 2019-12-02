@@ -1,7 +1,7 @@
 dist: trusty
 sudo: false
 language: go
-go: "1.11"
+go: "1.13"
 env:
   - HUGO_VERSION="0.58.3"
 before_install:
