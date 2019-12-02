@@ -100,7 +100,7 @@ func typesTypeDocs(t types.Type, typesByName map[string]*doc.Type, info *types.I
 			}
 		}
 	case *types.Named:
-		if obj := x.Obj(); obj.Pkg().Path() == "github.com/mattermost/mattermost-server/model" {
+		if obj := x.Obj(); obj.Pkg().Path() == "github.com/mattermost/mattermost-server/v5/model" {
 			if t, ok := typesByName[obj.Name()]; ok {
 				return docTypeDocs(t, typesByName, info)
 			}
@@ -165,7 +165,7 @@ func astTypeDocs(expr ast.Expr, typesByName map[string]*doc.Type, info *types.In
 }
 
 func generateDocs() (*Docs, error) {
-	imp, err := build.Import("github.com/mattermost/mattermost-server/model", "", 0)
+	imp, err := build.Import("github.com/mattermost/mattermost-server/v5/model", "", 0)
 	if err != nil {
 		return nil, err
 	}
@@ -177,7 +177,7 @@ func generateDocs() (*Docs, error) {
 	}
 
 	pkg := pkgs["model"]
-	info, err := typeCheck(pkg, "github.com/mattermost/mattermost-server/model", fset)
+	info, err := typeCheck(pkg, "github.com/mattermost/mattermost-server/v5/model", fset)
 	if err != nil {
 		return nil, err
 	}
