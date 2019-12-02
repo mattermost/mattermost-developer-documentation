@@ -130,7 +130,7 @@ func typeCheck(pkg *ast.Package, path string, fset *token.FileSet) (*types.Info,
 }
 
 func generateDocs() (*Docs, error) {
-	imp, err := build.Import("github.com/mattermost/mattermost-server/v5/plugin", "", 0)
+	imp, err := build.Import("github.com/mattermost/mattermost-server/plugin", "", 0)
 	if err != nil {
 		return nil, err
 	}
@@ -146,7 +146,7 @@ func generateDocs() (*Docs, error) {
 	}
 
 	for path, pkg := range pkgs {
-		info, err := typeCheck(pkg, "github.com/mattermost/mattermost-server/v5/"+path, fset)
+		info, err := typeCheck(pkg, "github.com/mattermost/mattermost-server/"+path, fset)
 		if err != nil {
 			return nil, err
 		}
