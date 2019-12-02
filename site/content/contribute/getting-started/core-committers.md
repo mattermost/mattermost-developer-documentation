@@ -158,14 +158,20 @@ The core team also has product managers who do a lot of great work designing, pr
     - @jason on [community.mattermost.com](https://community.mattermost.com/core/messages/@jason) and [@jasonblais](https://github.com/jasonblais) on GitHub
 - **<a name="eric.sethna">Eric Sethna</a>**
     - @eric on [community.mattermost.com](https://community.mattermost.com/core/messages/@eric) and [@esethna](https://github.com/esethna) on GitHub
-- **<a name="amy.blais">Amy Blais</a>**
-    - @amyblais on [community.mattermost.com](https://community.mattermost.com/core/messages/@amyblais) and [@amyblais](https://github.com/amyblais) on GitHub
 - **<a name="katie.wiersgalla">Katie Wiersgalla</a>**
     - @katie.wiersgalla on [community.mattermost.com](https://community.mattermost.com/core/messages/@katie.wiersgalla) and [@wiersgallak](https://github.com/wiersgallak) on GitHub
 - **<a name="aaron.rothschild">Aaron Rothschild</a>**
     - @aaron.rothschild on [community.mattermost.com](https://community.mattermost.com/core/messages/@aaron.rothschild) and [@aaronrothschild](https://github.com/aaronrothschild) on GitHub
 - **<a name="dennis.kittrell">Dennis Kittrell</a>**
     - @dennis.kittrell on [community.mattermost.com](https://community.mattermost.com/core/messages/@dennis.kittrell) and [@thefactremains](https://github.com/thefactremains) on GitHub
+
+Release Managers
+----------------
+
+The core team also has release managers who help with prioritization and coordination. They are:
+
+- **<a name="amy.blais">Amy Blais</a>**
+    - @amyblais on [community.mattermost.com](https://community.mattermost.com/core/messages/@amyblais) and [@amyblais](https://github.com/amyblais) on GitHub
 
 QA Testers
 ------------
