@@ -7,10 +7,9 @@ dist: plugin-data
 plugin-data: backend-plugin-data frontend-plugin-data devtalks-data
 
 backend-plugin-data:
-	go get -u -v github.com/mattermost/mattermost-server/plugin@v5.17.0
 	mkdir -p site/data
-	go run scripts/plugin-godocs.go > site/data/PluginGoDocs.json
-	go run scripts/plugin-manifest-docs.go > site/data/PluginManifestDocs.json
+	go run ./cmd/plugin-godocs > site/data/PluginGoDocs.json
+	go run ./cmd/plugin-manifest-docs > site/data/PluginManifestDocs.json
 
 frontend-plugin-data:
 	rm -rf scripts/mattermost-webapp
@@ -22,7 +21,7 @@ frontend-plugin-data:
 devtalks-data:
 	mkdir -p site/data
 ifdef YOUTUBE_API_KEY
-	go run scripts/devtalks.go > site/data/DevTalks.json
+	go run ./cmd/devtalks > site/data/DevTalks.json
 endif
 
 dev:
