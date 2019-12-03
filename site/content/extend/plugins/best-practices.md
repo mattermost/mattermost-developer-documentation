@@ -65,7 +65,7 @@ handleChange = () => {
 
 5. Once the user clicks Save, any handler that was registered with `registerSaveAction` will be executed to perform any additional custom actions the plugin may require like calling an additional endpoint the plugin. 
 
-See Demo Plugin (`CustomSetting`)[https://github.com/mattermost/mattermost-plugin-demo/blob/master/webapp/src/components/admin_settings/custom_setting.jsx] for a complete example.
+See Demo Plugin `[CustomSetting](https://github.com/mattermost/mattermost-plugin-demo/blob/master/webapp/src/components/admin_settings/custom_setting.jsx)` for a complete example.
 
 ## How can I review the entire code base of a plugin?
 
