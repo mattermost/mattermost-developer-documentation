@@ -27,7 +27,7 @@ Update `plugin.json` with the new version:
 
 Apply the updated manifest into the server and webapp:
 ```
-make manifest
+make apply
 ```
 
 Submit a pull request referencing the updated `plugin.json`, `server/manifest.go` and `webapp/src/manifest.js`. Note that server-only or webapp-only will only have one of the generated files.
