@@ -22,7 +22,7 @@ Additionally, a plugin could define their own type of setting with a correspondi
        }]
 ```
 
-2. In the plugin Web App code, define a custom component to manage the plugin's specific setting and register in the Web App with `(registerAdminConsoleCustomSetting)[https://developers.mattermost.com/extend/plugins/webapp/reference/#registerAdminConsoleCustomSetting]`. This component will be instantiated in the System Console with the following `props` passed in:
+2. In the plugin Web App code, define a custom component to manage the plugin's specific setting and register in the Web App with `[registerAdminConsoleCustomSetting](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerAdminConsoleCustomSetting)`. This component will be instantiated in the System Console with the following `props` passed in:
 
     - `id`: The setting `key` as defined in the plugin manifest within `settings_schema.settings`.
     - `label`: The text for the component label based on the setting's `displayName` defined in the manifest. 
