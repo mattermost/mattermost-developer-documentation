@@ -6,6 +6,66 @@ weight: 50
 
 See here for [server-specific best practices for plugins](/extend/plugins/server/best-practices/). Webapp-specific best practices are incoming.
 
+## How can I create my own plugin setting?
+
+Plugins can define their admin settings in the plugin's manifest [setting schema](https://developers.mattermost.com/extend/plugins/manifest-reference/#settings_schema) which include a pre-defined types that the System Console UI currently supports. 
+
+Additionally, a plugin could define their own type of setting with a corresponding custom user interface that will be displayed in the system console following the process below. 
+
+1. Define a setting in the plugins manifest setting scheme with a type of `custom`
+
+```
+    "settings_schema": {
+        "settings": [{
+            "key": "CustomSetting",
+            "type": "custom"
+       }]
+```
+
+2. In the plugin Web App code, define a custom component to manage the plugin's specific setting and register in the Web App with `(registerAdminConsoleCustomSetting)[https://developers.mattermost.com/extend/plugins/webapp/reference/#registerAdminConsoleCustomSetting]`. This component will be instantiated in the System Console with the following `props` passed in:
+
+    - `id`: The setting `key` as defined in the plugin manifest within `settings_schema.settings`.
+    - `label`: The text for the component label based on the setting's `displayName` defined in the manifest. 
+    - `helpText`: The help text based on the setting's `helpText` defined in the manifest. 
+    - `value`: The setting's current json value in the config at the time the component is loaded.
+    - `disabled`: Boolean indicating if the setting is disabled by a parent component within the System Console.
+    - `config`: The server configuration loaded by the webApp.
+    - `license`: The license information for the related Mattermost server.
+    - `setByEnv`: Boolean that indicates if the setting is based on a server environment variable. 
+    
+    - `onChange`: Function that receives the setting id and current json value of the setting when it has been changed within the custom component. 
+    - `setSaveNeeded`: Function that will prompt the System Console to enable the Save button in the plugin settings screen. 
+
+    - `registerSaveAction`: Registers the given function to be executed when the setting is being saved. This should be register when the custom component is mounted.
+    - `unRegisterSaveAction`: On unmount of the custom component, unRegisterSaveAction will remove the registered function executed on save of the custom component.
+
+3. On initialization of the custom component, the current value of the custom setting is passed in the `props.value` as a json read from the config. This value can be processed as necessary to display in your custom UI and ready to be modified by the end user. In the example below, it processes the initial `props.value` and sets it in a local state for the component to use as needed:
+
+```
+constructor(props) {
+        super(props);
+
+        this.state = {
+            attributes: this.initAttributes(props.value),
+        }
+    }
+```
+
+
+4. Once the user makes any change in the UI, execute the `OnChange` handler to send back the current value of the setting as a json. Additionally, `setSaveNeeded` should be called to enable the `Save` button in order for the changes can be saved.
+
+```
+handleChange = () => {
+    ...
+
+    this.props.onChange(this.props.id,  Array.from(this.state.attributes.values()));
+    this.props.setSaveNeeded()
+};
+```
+
+5. Once the user clicks Save, any handler that was registered with `registerSaveAction` will be executed to perform any additional custom actions the plugin may require like calling an additional endpoint the plugin. 
+
+
 ## How can I review the entire code base of a plugin?
 
 Carry out the following steps:
