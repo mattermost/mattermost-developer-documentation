@@ -47,7 +47,13 @@ Note that only authorized users have access to matterbuild.
 
 ### Update the release description
 
-This step is not yet documented, but typically involves using [goreleaser](https://github.com/goreleaser/goreleaser) to update the release description.
+Install [goreleaser](https://goreleaser.com/install/), export the appropriate `GITHUB_TOKEN`, and then run:
+
+```
+goreleaser release --skip-validate --rm-dist
+```
+
+the tool will fail with an error about a missing main function, but successfully generates `dist/CHANGELOG.md`. Copy the contents of that file and update the corresponding release on GitHub.
 
 Automating this is scheduled as [MM-19848](https://mattermost.atlassian.net/browse/MM-19848).
 
