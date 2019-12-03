@@ -59,6 +59,6 @@ Automating this is scheduled as [MM-19848](https://mattermost.atlassian.net/brow
 
 ### Update the Plugin Marketplace
 
-Submit a ticket to the [Toolkit Team](/internal/rd-teams/#toolkit-team) to list the plugin in the marketplace.
+Submit a Jira ticket to the [Toolkit Team](/internal/rd-teams/#toolkit-team) to list the updated plugin in the marketplace.
 
 Automating this is scheduled as [MM-20841](https://mattermost.atlassian.net/browse/MM-20841).
