@@ -35,6 +35,7 @@ weight: 110
 * Gabe Jackson - Engineer
 * Stylianos Rigas - Engineer/Infrastructure
 * Ian Whitlock - Engineer
+* Gabriel Sagula - Engineer
 * Katie Wiersgalla - PM
 
 ## Integrations Team
@@ -79,10 +80,10 @@ weight: 110
 
 ## Ops/Infra Team
 
+* Jason Deland - Eng Lead
 * Joram Wilander - Eng Lead
 * George Goldberg - Eng Lead
 * Daniel Schalla - Security Engineer
-* Stylianos Rigas - Engineer/Infrastructure
 * Carlos Panato - Engineer/Infrastructure
 * Elisabeth Kulzer - Build Engineer
 
