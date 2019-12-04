@@ -1,4 +1,4 @@
-module developer-documentation
+module mattermost-developer-documentation
 
 go 1.13
 
