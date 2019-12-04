@@ -41,7 +41,7 @@ Additionally, a plugin could define their own type of setting with a correspondi
     - `registerSaveAction`: Registers the given function to be executed when the setting is saved. This is registered when the custom component is mounted.
     - `unRegisterSaveAction`: On unmount of the custom component, unRegisterSaveAction will remove the registered function executed on save of the custom component.
 
-3. On initialization of the custom component, the current value of the custom setting is passed in the `props.value` as a json read from the config. This value can be processed as necessary to display in your custom UI and ready to be modified by the end user. In the example below, it processes the initial `props.value` and sets it in a local state for the component to use as needed:
+3. On initialization of the custom component, the current value of the custom setting is passed in the `props.value` in a json format as read from the config. This value can be processed as necessary to display in your custom UI and ready to be modified by the end user. In the example below, it processes the initial `props.value` and sets it in a local state for the component to use as needed:
 
 ```
 constructor(props) {
