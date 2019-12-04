@@ -13,10 +13,10 @@ import (
 	"regexp"
 	"sort"
 
+	"github.com/pkg/errors"
 	"golang.org/x/tools/go/packages"
 
 	_ "github.com/mattermost/mattermost-server/v5/plugin"
-	"github.com/pkg/errors"
 )
 
 type Field struct {
