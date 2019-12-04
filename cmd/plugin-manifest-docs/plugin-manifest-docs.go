@@ -156,7 +156,6 @@ func astTypeDocs(expr ast.Expr, typesByName map[string]*doc.Type, info *types.In
 	case *ast.InterfaceType:
 		return &TypeDocs{
 			Type: Interface,
-			// ValueSchema: astTypeDocs(x.Value, typesByName, info),
 		}
 	}
 
