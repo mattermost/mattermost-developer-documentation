@@ -178,7 +178,7 @@ If your action is wrapping an API call, there's a few things that you will need 
         USER_RECEIVED: null
     });
     ```
-3. When adding the action creator, if it simply calls the client, you can use the `bindClientFunc` helper function to create it for you. More complicated calls will need to dispatch the different request actions as necessary.
+3. When adding the action creator, if it simply calls the client, you can use the `bindClientFunc` helper function to create it for you. More complicated calls will need to dispatch different request actions as necessary.
 
     ```javascript
     export function getUser(userId) {

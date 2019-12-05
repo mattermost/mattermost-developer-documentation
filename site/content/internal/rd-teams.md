@@ -10,30 +10,32 @@ weight: 110
 * Corey Hulen - CTO
 * Lindsay Brock - Head of Product
 
-## Apps Team
+## Mobile Team
 
 * Elias Nahum - Eng Lead
-* Harrison Healey - Engineer
-* Saturnino Abril - Engineer
-* Sudheer Timmaraju - Engineer
-* Dean Whillier - Engineer
 * Miguel Alatzar - Engineer
-* Devin Binnie - Engineer
-* Guillermo Vayá - Engineer
 * Claude Wild - Engineer
 * Eric Sethna - PM
-* Linda Mitchell - QA Lead
-* Bob Lubecker - QA
+* Andrew Brown - UX Designer
+
+## Apps Team
+* Dean Whillier - Eng Lead
+* Harrison Healey - Engineer
+* Sudheer Timmaraju - Engineer
+* Brad Coughlin - Engineer
+* Devin Binnie - Engineer
+* Guillermo Vayá - Engineer
+* Eric Sethna - PM
 * Andrew Brown - UX Designer
 
 ## Cloud Team
 
 * Joram Wilander - Eng Lead
 * Carlos Panato - Engineer/Infrastructure
-* Brad Coughlin - Engineer
 * Gabe Jackson - Engineer
 * Stylianos Rigas - Engineer/Infrastructure
 * Ian Whitlock - Engineer
+* Gabriel Sagula - Engineer
 * Katie Wiersgalla - PM
 
 ## Integrations Team
@@ -51,14 +53,12 @@ weight: 110
 
 * George Goldberg - Eng Lead
 * Jesus Espino - Engineer
-* Martin Kraft - Engineer
 * Daniel Schalla - Security Engineer
 * Miguel de la Cruz - Engineer
 * Eli Yukelzon - Engineer
 * Claudio Costa - Engineer
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
-* Michael Gamble - UX Designer
 
 ## Security Team
 
@@ -76,13 +76,16 @@ weight: 110
 * Shota Gvinepadze - Engineer
 * Ben Schumacher - Engineer
 * Aaron Rothschild - PM
+* Prapti Shrestha - QA SDET
 
 ## Ops/Infra Team
 
+* Jason Deland - Eng Lead
+* Joram Wilander - Eng Lead
 * George Goldberg - Eng Lead
 * Daniel Schalla - Security Engineer
-* Stylianos Rigas - Engineer/Infrastructure
 * Carlos Panato - Engineer/Infrastructure
+* Elisabeth Kulzer - Build Engineer
 
 ## Enterprise Team
 * Scott Bishel - Eng Lead
@@ -90,8 +93,17 @@ weight: 110
 * Catalin Tomai - Engineer
 * Hossein Ahmadian - Engineer Intern
 * Dennis Kittrell - PM 
+* Michael Gamble - UX Designer
+* Rohitesh Gupta - QA SDET
 
 ## Other
 
 * Amy Blais - Release Manager/PM
+* Linda Mitchell - QA Lead
+* Saturnino Abril - QA SDET
+* Jelena Gilliam - QA
 * Ogi Marusic - QA
+* Steve Mudie - QA
+* Justine Geffen - Technical Writer
+* Adam Clarkson - PM
+* Eric Sadur - PM

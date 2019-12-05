@@ -25,15 +25,19 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 # Pull Request Labels
 
 * `1: PM Review`: Requires review by a [product manager](/contribute/getting-started/core-committers/#product-managers).
+* `1: UX Review`: Requires review by a UX Designer.
 * `2: Dev Review`: Requires review by a [core committer](/contribute/getting-started/core-committers/#core-committers).
 * `2: QA Review`: Requires review by a [QA tester](/contribute/getting-started/core-committers/#qa-testers). May occur at the same time as Dev Review.
 * `3: Reviews Complete`: All reviewers have approved the pull request.
 * `Awaiting Submitter Action`: Blocked on the author.
+* `AutoMerge`: If all checks and approvals pass and the user adds this label, it will be in the queue to get merge automatically without a human intervention.
 * `Changelog/Done`: Required changelog entry has been written.
 * `Changelog/Not Needed`: Does not require a changelog entry.
 * `CherryPick/Approved`: Meant for the quality or patch release tracked in the milestone.
 * `CherryPick/Candidate`: A candidate for a quality or patch release, but not yet approved.
 * `CherryPick/Done`: Successfully cherry-picked to the quality or patch release tracked in the milestone.
+* `Demo Plugin Changes/Needed`: Requires changes to the demo plugin.
+* `Demo Plugin Changes/Done`: Required changes to the demo plugin have been submitted.
 * `Do Not Merge/Awaiting Loadtest`: Must be loadtested before it can be merged.
 * `Do Not Merge/Awaiting Next Release`: To be merged with the next release (e.g. API documentation updates).
 * `Do Not Merge/Awaiting PR`: Awaiting another pull request before merging (e.g. server changes).

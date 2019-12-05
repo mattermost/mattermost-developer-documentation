@@ -53,7 +53,7 @@ If you're looking for examples, see [users.yaml](https://github.com/mattermost/m
 
 ### Implementing the API Handler
 
-To implement the API handler you'll first need to [setup your developer environment](https://docs.mattermost.com/developer/dev-setup.html), then follow these steps:
+To implement the API handler you'll first need to [setup your developer environment](https://developers.mattermost.com/contribute/server/developer-setup/), then follow these steps:
 
 1.  Add the declaration for your endpoint.
     - For an example, see [/api4/user.go](https://github.com/mattermost/mattermost-server/tree/master/api4/user.go)
@@ -79,7 +79,7 @@ To implement the API handler you'll first need to [setup your developer environm
     - For examples, see the [updateUser()](https://github.com/mattermost/mattermost-server/tree/master/api4/user.go#L86) and the [getUser()](https://github.com/mattermost/mattermost-server/tree/master/api4/user.go#L58) handlers.
 
 3.  Run the server using `make run-server` to check for syntax errors.
-4.  (Optional) Use `curl` or [Postman](https://www.getpostman.com/) to test the basics of your endpoint. The endpoint will also be tested [through a unit test](https://docs.mattermost.com/developer/api4.html#writing-a-unit-test), so this step is optional.
+4.  (Optional) Use `curl` or [Postman](https://www.getpostman.com/) to test the basics of your endpoint. The endpoint will also be tested [through a unit test](https://developers.mattermost.com/contribute/server/rest-api/#writing-a-unit-test), so this step is optional.
 
 ### Updating the Go Driver
 
