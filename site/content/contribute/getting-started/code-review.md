@@ -25,7 +25,7 @@ If you are a community member seeking a review
     * The ticket author, a core committer, or a product manager will assign reviewers and label your pull request appropriately.
     * Expect some interaction with at least one reviewer within 5 business days.
     * Keep in mind that core committers are geographically distributed around the world and likely in a different time zone than your own.
-    * Please ping [Jason Blais](/contribute/getting-started/core-committers/#jason.blais) or [Hanzei](/contribute/getting-started/core-committers/#hanzei) after 5 business days if no interaction has occurred.
+    * If no interaction has occurred after 5 business days, please ping a core team member who is participating in the PR. If there are no participating members yet, please ping [Jason Blais](/contribute/getting-started/core-committers/#jason.blais) or [Ben Schumacher (Hanzei)](/contribute/getting-started/core-committers/#hanzei).
 4. Make any necessary changes.
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
     * Once you've addressed the concerns, reach out with another mention.
@@ -54,7 +54,7 @@ If you are a core committer seeking a review
 4. Assign a [QA tester](/contribute/getting-started/core-committers/#qa-testers) and label your pull request with `2: QA Review`.
     * It is the PM or QA tester's responsibility to determine the scope of required testing, if any.
     * Reviews by QA may occur at the same time as review by core committers. Be sure to ask for a second review as needed when changes are made.
-    * The QA tester should remove `2: QA Review` when their review is done, or if a review is deemed not necessary.
+    * The QA tester should remove the `2: QA Review` label and add the `QA Review Done` label when their review is done, or if a review is deemed not necessary.
 5. Apply additional labels as necessary:
     * `CherryPick/Approved`: Apply this if the pull request is meant for a quality or patch release.
     * `Do Not Merge/Awaiting PR`: Apply this if the pull request depends on another (e.g. server changes)
@@ -72,7 +72,7 @@ If you are a core committer seeking a review
     * Once you've addressed the concerns, assign them as a reviewer again to put your pull request back in their queue.
 9. Merge the pull request.
     * Do not merge until the reviewing product manager has approved the changes and removed the `1: PM Review` label.
-    * Do not merge until the reviewing QA tester has approved the changes and removed the `2: QA Review` label.
+    * Do not merge until the reviewing QA tester has approved the changes and added the `QA Review Done` label.
     * Do not merge until at least two core committers have approved and all concerns have been addressed.
     * Remove any remaining `2: Dev Review` label and assign the `3: Reviews Complete` label.
     * Merge your pull request and delete the branch if not from a fork.
@@ -100,7 +100,7 @@ If you are a core committer asked to give a review
     * Feel free to challenge assumptions and timelines. Rushing a change into a patch release may cause more harm than good.
 4. Merge the pull request.
     * Do not merge until the reviewing product manager has approved the changes and removed the `1: PM Review` label.
-    * Do not merge until the reviewing QA tester has approved the changes and removed the `2: QA Review` label.
+    * Do not merge until the reviewing QA tester has approved the changes and added the `QA Review Done` label.
     * Do not merge until at least two core committers have approved and all concerns have been addressed.
     * Remove any remaining `2: Dev Review` label and assign the `3: Reviews Complete` label.
     * Merge the pull request, and delete the branch if not from a fork.

@@ -17,6 +17,6 @@ Our goal is to make your experience as great as possible. Follow these simple st
 
 {{< bignumber number="3" title="Set up your developer machine" content="Each project has its own developer setup instructions. Find them in the sidebar on the left." >}}
 
-{{< bignumber number="4" title="Select a ticket" content="All help wanted tickets are under the [server repository's GitHub issues](https://mattermost.com/pl/help-wanted-mattermost-server). Comment to let everyone know you’re working on it. If there’s no ticket for what you want to work on see [contributions without a ticket.](/contribute/getting-started/contributions-without-ticket)" >}}
+{{< bignumber number="4" title="Select a ticket" content="Find [help wanted tickets in GitHub](https://mattermost.com/pl/help-wanted). Comment to let everyone know you’re working on it. If there’s no ticket for what you want to work on see [contributions without a ticket.](/contribute/getting-started/contributions-without-ticket)" >}}
 
 {{< bignumber number="5" title="Start developing" content="Each project has its own developer flow for tips on working with the Mattermost codebase. When your changes are ready, run through our [checklist for pull requests](/contribute/getting-started/contribution-checklist). Note that if it’s your first contribution, there is a standard [CLA](https://www.mattermost.org/mattermost-contributor-agreement/) to sign." >}}
