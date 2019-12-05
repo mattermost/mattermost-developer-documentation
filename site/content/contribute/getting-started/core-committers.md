@@ -204,7 +204,6 @@ Build Engineers
 
 - **<a name="elisabeth.kulzer">Elisabeth Kulzer</a>**
     - @elisabeth.kulzer on [community.mattermost.com](https://community.mattermost.com/core/messages/@elisabeth.kulzer) and [@metanerd](https://github.com/metanerd) on GitHub
-
 - **<a name="jason.deland">Jason Deland</a>**
     - @jason.deland on [community.mattermost.com](https://community.mattermost.com/core/messages/@jason.deland) and [@jaydeland](https://github.com/jaydeland) on GitHub
 
