@@ -47,6 +47,3 @@ workflows:
           context: mattermost-dev-docs-s3
           requires:
             - build
-          filters:
-            branches:
-              only: master
