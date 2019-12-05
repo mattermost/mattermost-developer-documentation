@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  aws-s3: circleci/aws-s3@1.0.12
+
 jobs:
   build:
     docker:
@@ -15,9 +18,35 @@ jobs:
             tar -xvf /tmp/hugo.tar.gz hugo
             sudo mv hugo /usr/bin/
       - run: make dist
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist/html
+
+  deploy:
+    docker:
+      - image: circleci/python:3.6
+    steps:
+      - attach_workspace:
+          at: .
+      - aws-s3/sync:
+          from: dist/html
+          to: s3://mattermost-developer-documentation/branches/$CIRCLE_BRANCH
+          arguments: '--acl public-read'
+      - aws-s3/sync:
+          from: dist/html
+          to: s3://mattermost-developer-documentation/commits/$CIRCLE_SHA1
+          arguments: '--acl public-read'
 
 workflows:
   version: 2
   ci:
     jobs:
       - build
+      - deploy:
+          context: mattermost-dev-docs-s3
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
