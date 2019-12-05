@@ -8,6 +8,7 @@ weight: 110
 ## Leadership
 
 * Corey Hulen - CTO
+* Chris Overton - VP Engineering
 * Lindsay Brock - Head of Product
 
 ## Mobile Team
@@ -19,6 +20,7 @@ weight: 110
 * Andrew Brown - UX Designer
 
 ## Apps Team
+
 * Dean Whillier - Eng Lead
 * Harrison Healey - Engineer
 * Sudheer Timmaraju - Engineer
@@ -57,6 +59,8 @@ weight: 110
 * Miguel de la Cruz - Engineer
 * Eli Yukelzon - Engineer
 * Claudio Costa - Engineer
+* Agniva De Sarker - Engineer
+* Mario de Frutos - Engineer
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
 
