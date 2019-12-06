@@ -1,21 +1,21 @@
-// +build ignore
-
 package main
 
 import (
 	"bytes"
 	"encoding/json"
 	"go/ast"
-	"go/build"
 	"go/doc"
 	"go/importer"
-	"go/parser"
 	"go/token"
 	"go/types"
 	"log"
 	"os"
 	"reflect"
 	"strings"
+
+	_ "github.com/mattermost/mattermost-server/v5/plugin"
+	"github.com/pkg/errors"
+	"golang.org/x/tools/go/packages"
 )
 
 type Type string
@@ -100,7 +100,7 @@ func typesTypeDocs(t types.Type, typesByName map[string]*doc.Type, info *types.I
 			}
 		}
 	case *types.Named:
-		if obj := x.Obj(); obj.Pkg().Path() == "github.com/mattermost/mattermost-server/model" {
+		if obj := x.Obj(); obj.Pkg().Path() == "github.com/mattermost/mattermost-server/v5/model" {
 			if t, ok := typesByName[obj.Name()]; ok {
 				return docTypeDocs(t, typesByName, info)
 			}
@@ -156,7 +156,6 @@ func astTypeDocs(expr ast.Expr, typesByName map[string]*doc.Type, info *types.In
 	case *ast.InterfaceType:
 		return &TypeDocs{
 			Type: Interface,
-			// ValueSchema: astTypeDocs(x.Value, typesByName, info),
 		}
 	}
 
@@ -165,24 +164,30 @@ func astTypeDocs(expr ast.Expr, typesByName map[string]*doc.Type, info *types.In
 }
 
 func generateDocs() (*Docs, error) {
-	imp, err := build.Import("github.com/mattermost/mattermost-server/model", "", 0)
+	packageName := "github.com/mattermost/mattermost-server/v5/model"
+	config := &packages.Config{
+		Mode: packages.LoadSyntax,
+	}
+	pkgs, err := packages.Load(config, packageName)
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrapf(err, "Error loading package %s", packageName)
+	}
+	if len(pkgs) != 1 {
+		return nil, errors.Errorf("Found %d packages when loading %s", len(pkgs), packageName)
+	}
+	pkg := pkgs[0]
+
+	fileMap := map[string]*ast.File{}
+	for i, file := range pkg.Syntax {
+		fileMap[pkg.CompiledGoFiles[i]] = file
 	}
 
-	fset := token.NewFileSet()
-	pkgs, err := parser.ParseDir(fset, imp.Dir, nil, parser.ParseComments)
-	if err != nil {
-		return nil, err
+	astPkg := &ast.Package{
+		Name:  pkg.Name,
+		Files: fileMap,
 	}
 
-	pkg := pkgs["model"]
-	info, err := typeCheck(pkg, "github.com/mattermost/mattermost-server/model", fset)
-	if err != nil {
-		return nil, err
-	}
-
-	godocs := doc.New(pkg, "model", 0)
+	godocs := doc.New(astPkg, "model", 0)
 
 	typesByName := make(map[string]*doc.Type)
 	for _, t := range godocs.Types {
@@ -190,7 +195,7 @@ func generateDocs() (*Docs, error) {
 	}
 
 	return &Docs{
-		Schema: docTypeDocs(typesByName["Manifest"], typesByName, info),
+		Schema: docTypeDocs(typesByName["Manifest"], typesByName, pkg.TypesInfo),
 	}, nil
 }
 
