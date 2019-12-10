@@ -21,7 +21,7 @@ This blog provides an outline for developers of how plugins can use the existing
 
 #### Choosing a Version
 
-When [Translations where added to Mattermost](https://github.com/mattermost/mattermost-server/commit/8e404c1dcf820cf767e9d6899e8c1efc7bb5ca96#diff-db85c0ea4d2e69c8abaefa875ba77c51) in 2016, the latest version of go-i18 available was [`v1.4.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v1.4.0). In May of this year [`v2.0.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v2.0.0) was released. V2 has a completely different API and the CLI tool [`goi18n`](https://github.com/nicksnyder/go-i18n#command-goi18n-) has changed significantly. Hence, we had to decide whether to stick with the proven v1 or use the newer v2. 
+When [Translations where added to Mattermost](https://github.com/mattermost/mattermost-server/commit/8e404c1dcf820cf767e9d6899e8c1efc7bb5ca96#diff-db85c0ea4d2e69c8abaefa875ba77c51) in 2016, the latest version of go-i18 available was [`v1.4.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v1.4.0). In May of this year [`v2.0.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v2.0.0) was released and has a completely different API. The CLI tool [`goi18n`](https://github.com/nicksnyder/go-i18n#command-goi18n-) has also changed significantly. Hence, we had to decide whether to stick with the proven v1 or use the newer v2. 
 
 Let's examine the difference between the two versions. In v1, translation strings are defined in the translation files; for example, `en-US.all.json` would contain:
 ```json
@@ -30,7 +30,7 @@ Let's examine the difference between the two versions. In v1, translation string
     "translation": "Settings"
   }
 ```
-These translations would then be accessible in the Go code with a translation function (`T("settings_title")`). This leads to a loose coupling between the translations string in the translation file and in the code. Unfortunately developers tend to forget to add a translation string or misspell the id.
+These translations would then be accessible in the Go code with a translation function (`T("settings_title")`). This leads to a loose coupling between the translations string in the translation file and in the code. Unfortunately developers tend to forget to add a translation string, or they misspell the ID.
 
 V2 fixed this by defining the translations string in the code and automatically extracting it into the translation file. This greatly improves the developer experience. In addition, there are now **two** translation files for every language. For example, German has `active.de.json`, which contains already translated strings, and `translate.de.json`, which contains strings that have to be translated. They are either newly-added strings or strings where the text changed. `goi18n` helps with auto-populating these files.
 
@@ -49,9 +49,9 @@ These improvements are why we decided to go with v2 of go-i18n.
 
 #### Choosing a File Format
 
-Go-i18n supports multiple file formats for the translation file. In fact, you can use any file format as long as you implement an [unmarshal function](https://godoc.org/github.com/nicksnyder/go-i18n/v2/i18n#UnmarshalFunc) yourself. The most common formats are `JSON`, `TOML` and `YAML`.
+Go-i18n supports multiple file formats for the translation file. In fact, you can use any file format as long as you implement an [unmarshal function](https://godoc.org/github.com/nicksnyder/go-i18n/v2/i18n#UnmarshalFunc) yourself. The most common formats are `JSON`, `TOML` and, `YAML`.
 
-What is the preferred format for us? `goi18n` uses `TOML` by default, but since the Mattermost server uses `JSON` we decided to stay with that format. We could just as easily have stuck with the default format 'TOML' of 'goi18n' for consistency with the library default with no adverse effect.
+What is the preferred format for us? `goi18n` uses `TOML` by default, but since the Mattermost server uses `JSON` we decided to stay with that format. We could just as easily have stuck with the default format `TOML` of `goi18n` for consistency with the library default with no adverse effect.
 
 
 ### Integrating go-i18n into Matterpoll
@@ -159,7 +159,7 @@ Most but not all translation strings can be translated without any context infor
 
 ### Extracting the Translation Strings
 
-As already mentioned [`goi18n`](https://github.com/nicksnyder/go-i18n#command-goi18n-), allow the extraction of the translation string from the code into the translation file. This can be done by running
+As already mentioned [`goi18n`](https://github.com/nicksnyder/go-i18n#command-goi18n-), allows the extraction of the translation string from the code into the translation file. This can be done by running
 `goi18n extract -format json -outdir assets/i18n/ server/`, which creates `assets/i18n/active.en.json` containing all translation strings.
 
 #### Adding a New Language
