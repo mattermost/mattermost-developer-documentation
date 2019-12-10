@@ -39,7 +39,7 @@
     sudo yum group install "Development Tools"
     sudo yum install -y wget libpng12
     sudo rm -rf /usr/local/go
-    wget https://dl.google.com/go/go1.13.3.src.tar.gz
+    wget https://dl.google.com/go/go1.13.3.linux-amd64.tar.gz
     sudo tar -C /usr/local -xzf go1.13.3.linux-amd64.tar.gz
     ```
 
@@ -83,3 +83,9 @@
     ```
 
     **Note:** Browsing directly to http://localhost:8065/ will display a `404 Not Found` until the web app is configured. See [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for additional setup.
+
+    The `stop-server` make target does not stop all the docker containers started by `run-server`. To stop the running docker containers:
+
+    ```sh
+    make stop-docker
+    ```

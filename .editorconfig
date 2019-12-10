@@ -18,4 +18,9 @@ indent_size = 2
 
 [*.go]
 indent_style = tab
-indent_size = 2
+
+[Makefile,*.mk]
+indent_style = tab
+
+[*.md]
+trim_trailing_whitespace = false

@@ -13,7 +13,7 @@ subsection: Server
     <button class="tablinks" onclick="openTab(event, 'windows')">Windows</button>
     <button class="tablinks" onclick="openTab(event, 'windows_wsl')">Windows WSL</button>
     <button class="tablinks" onclick="openTab(event, 'archlinux')">Archlinux</button>
-    <button class="tablinks" onclick="openTab(event, 'centos')">CentOS 7</button>
+    <button class="tablinks" onclick="openTab(event, 'centos')">CentOS 7/Fedora 31</button>
 </div>
 
 <div id="mac" class="tabcontent" style="display: block;">

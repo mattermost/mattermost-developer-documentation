@@ -8,32 +8,36 @@ weight: 110
 ## Leadership
 
 * Corey Hulen - CTO
+* Chris Overton - VP Engineering
 * Lindsay Brock - Head of Product
+
+## Mobile Team
+
+* Elias Nahum - Eng Lead
+* Miguel Alatzar - Engineer
+* Claude Wild - Engineer
+* Eric Sethna - PM
+* Andrew Brown - UX Designer
 
 ## Apps Team
 
-* Elias Nahum - Eng Lead
+* Dean Whillier - Eng Lead
 * Harrison Healey - Engineer
-* Saturnino Abril - Engineer
 * Sudheer Timmaraju - Engineer
-* Dean Whillier - Engineer
-* Miguel Alatzar - Engineer
+* Brad Coughlin - Engineer
 * Devin Binnie - Engineer
 * Guillermo Vayá - Engineer
-* Claude Wild - Engineer
 * Eric Sethna - PM
-* Linda Mitchell - QA Lead
-* Bob Lubecker - QA
 * Andrew Brown - UX Designer
 
 ## Cloud Team
 
 * Joram Wilander - Eng Lead
 * Carlos Panato - Engineer/Infrastructure
-* Brad Coughlin - Engineer
 * Gabe Jackson - Engineer
 * Stylianos Rigas - Engineer/Infrastructure
 * Ian Whitlock - Engineer
+* Gabriel Sagula - Engineer
 * Katie Wiersgalla - PM
 
 ## Integrations Team
@@ -55,9 +59,10 @@ weight: 110
 * Miguel de la Cruz - Engineer
 * Eli Yukelzon - Engineer
 * Claudio Costa - Engineer
+* Agniva De Sarker - Engineer
+* Mario de Frutos - Engineer
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
-* Rohitesh Gupta - QA
 
 ## Security Team
 
@@ -75,13 +80,14 @@ weight: 110
 * Shota Gvinepadze - Engineer
 * Ben Schumacher - Engineer
 * Aaron Rothschild - PM
+* Prapti Shrestha - QA SDET
 
 ## Ops/Infra Team
 
+* Jason Deland - Eng Lead
 * Joram Wilander - Eng Lead
 * George Goldberg - Eng Lead
 * Daniel Schalla - Security Engineer
-* Stylianos Rigas - Engineer/Infrastructure
 * Carlos Panato - Engineer/Infrastructure
 * Elisabeth Kulzer - Build Engineer
 
@@ -92,8 +98,16 @@ weight: 110
 * Hossein Ahmadian - Engineer Intern
 * Dennis Kittrell - PM 
 * Michael Gamble - UX Designer
+* Rohitesh Gupta - QA SDET
 
 ## Other
 
 * Amy Blais - Release Manager/PM
+* Linda Mitchell - QA Lead
+* Saturnino Abril - QA SDET
+* Jelena Gilliam - QA
 * Ogi Marusic - QA
+* Steve Mudie - QA
+* Justine Geffen - Technical Writer
+* Adam Clarkson - PM
+* Eric Sadur - PM
