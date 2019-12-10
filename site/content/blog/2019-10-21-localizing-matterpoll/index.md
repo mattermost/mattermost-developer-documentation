@@ -12,7 +12,7 @@ community: hanzei
 
 [Matterpoll](https://github.com/matterpoll/matterpoll) is a plugin that allows users to create polls in Mattermost. Since Mattermost is [localized in 16 different languages](https://docs.mattermost.com/developer/localization.html), it’s optimal that Matterpoll is similarly localized.
 
-Because we rely on contributors to do the translations, we want to make it easy for them to translate new strings and determine if already translated strings needs to be updated because the "source" text changed. On the other hand, Matterpoll only has two maintainer ([@kaakaa](https://github.com/kaakaa) and [me](https://github.com/hanzei)) and no infrastructure of its own to work with. Using a translation server like [Transifex](https://en.wikipedia.org/wiki/Transifex) or [Weblate](https://en.wikipedia.org/wiki/Weblate) is not an option.
+Because we rely on contributors to do the translations, we want to make it easy for them to translate new strings and determine whether already translated strings need to be updated because the "source" text changed. On the other hand, Matterpoll only has two maintainers ([@kaakaa](https://github.com/kaakaa) and [me](https://github.com/hanzei)) and no infrastructure of its own to work with. Using a translation server like [Transifex](https://en.wikipedia.org/wiki/Transifex) or [Weblate](https://en.wikipedia.org/wiki/Weblate) is not an option.
 
 The [Mattermost Server](https://github.com/mattermost/mattermost-server) uses the [go-i18n package](https://github.com/nicksnyder/go-i18n). The library is well maintained and very popular, which makes it an attractive tool for this purpose.
 
