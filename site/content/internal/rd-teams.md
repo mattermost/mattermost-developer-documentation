@@ -79,7 +79,7 @@ weight: 110
 * Maria Nuñez - Engineer
 * Shota Gvinepadze - Engineer
 * Ben Schumacher - Engineer
-* Aaron Rothschild - PM
+* Ian Tao - PM
 * Prapti Shrestha - QA SDET
 
 ## Ops/Infra Team
