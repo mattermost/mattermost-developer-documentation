@@ -168,6 +168,8 @@ The core team also has product managers who do a lot of great work designing, pr
     - @eric.sadur on [community.mattermost.com](https://community.mattermost.com/core/messages/@eric.sadur) and [@etoaster](https://github.com/etoaster) on GitHub
 - **<a name="adam.clarkson">Adam Clarkson</a>**
     - @adam.clarkson on [community.mattermost.com](https://community.mattermost.com/core/messages/@adam.clarkson) and [@adamjclarkson](https://github.com/adamjclarkson) on GitHub
+- **<a name="ian.tao">Ian Tao</a>**
+    - @ian.tao on [community.mattermost.com](https://community.mattermost.com/core/messages/@ian.tao) and [@itao](https://github.com/itao) on GitHub
 
 Release Managers
 ----------------
