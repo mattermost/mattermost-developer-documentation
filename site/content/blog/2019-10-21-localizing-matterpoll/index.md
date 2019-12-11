@@ -1,7 +1,7 @@
 ---
 title: "Localizing Matterpoll"
 slug: localizing-matterpoll
-date: 2019-11-05T10:49:35+02:00
+date: 2019-12-11T10:49:35+02:00
 categories:
     - "plugins"
     - "go"
