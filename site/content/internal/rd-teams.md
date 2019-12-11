@@ -40,6 +40,11 @@ weight: 110
 * Gabriel Sagula - Engineer
 * Katie Wiersgalla - PM
 
+## Build & Infrastructure Team
+
+* Jason Deland - Engineer Lead
+* Elisabeth Kulzer - Build Engineer
+
 ## Integrations Team
 
 * Lev Brouk - Eng Lead
