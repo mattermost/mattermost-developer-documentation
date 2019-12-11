@@ -21,7 +21,7 @@ This blog provides an outline for developers of how plugins can use the existing
 
 #### Choosing a Version
 
-When [Translations where added to Mattermost](https://github.com/mattermost/mattermost-server/commit/8e404c1dcf820cf767e9d6899e8c1efc7bb5ca96#diff-db85c0ea4d2e69c8abaefa875ba77c51) in 2016, the latest version of go-i18 available was [`v1.4.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v1.4.0). In May of this year [`v2.0.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v2.0.0) was released and has a completely different API. The CLI tool [`goi18n`](https://github.com/nicksnyder/go-i18n#command-goi18n-) has also changed significantly. Hence, we had to decide whether to stick with the proven v1 or use the newer v2. 
+When [Translations where added to Mattermost](https://github.com/mattermost/mattermost-server/commit/8e404c1dcf820cf767e9d6899e8c1efc7bb5ca96#diff-db85c0ea4d2e69c8abaefa875ba77c51) in 2016, the latest version of go-i18n available was [`v1.4.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v1.4.0). In May of this year [`v2.0.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v2.0.0) was released and has a completely different API. The CLI tool [`goi18n`](https://github.com/nicksnyder/go-i18n#command-goi18n-) has also changed significantly. Hence, we had to decide whether to stick with the proven v1 or use the newer v2. 
 
 Let's examine the difference between the two versions. In v1, translation strings are defined in the translation files; for example, `en-US.all.json` would contain:
 ```json
@@ -130,7 +130,7 @@ func (p *MatterpollPlugin) getServerLocalizer() *i18n.Localizer {
 }
 ```
 
-With this preparation we were finally ready to do the actual task: Defining and translating actual strings. Putting the pieces together is quite simple and comes down to:
+With this preparation we were finally ready to do the actual task: defining and translating actual strings. Putting the pieces together is quite simple and comes down to:
 
 ```go
 	l := p.getUserLocalizer(userID)
