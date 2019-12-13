@@ -91,6 +91,8 @@ Part of SET's responsibility is to interface with the customer support team. SET
 
 This process helps increase accountability and tracibility for both teams.
 
+### Support Response Templates
+
 SET members should use the following responses when receiving issue escalations from the customer or pre-sales support teams:
 
 ##### Requests that are new features and not bugs
