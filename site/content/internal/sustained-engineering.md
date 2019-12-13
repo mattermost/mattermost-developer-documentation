@@ -81,17 +81,17 @@ SET attends all triage meetings. During triage, SET should:
 
 During non-release weeks, triage is held twice a week. Near the end of the release cycle, triage is held daily.
 
-## Support Responses
+## Customer and Pre-Sales Support Escalation Process
 
-Part of SET's responsibility is to interface with the customer support team. SET's primary goal in respect to support is to triage escalated support issues, work on any high priority customer bugs requiring code change, as well as provide training and knowledge share with the customer support team. When customer support team requires enginerring support, they should:
+Part of SET's responsibility is to interface with the customer support team. SET's primary goal in respect to support is to triage escalated support issues, work on any high priority customer bugs requiring code change, as well as provide training and knowledge share with the customer support team. When the pre-sales and customer support teams require engineering support, they should:
 
-1. Posts the issue on [Customer Support](https://community.mattermost.com/private-core/channels/community) / [SET](https://community.mattermost.com/core/channels/sustained-engineering) channel
-2. Engage someone from SET to provide an initial assement
-3. If no prompt solution is presented, a ticket should be created by customer support and assigned to SET for further investigation
+1. Post the issue in [Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel. If the message contains confidential information about a customer, then post in [Customer Support](https://community.mattermost.com/private-core/channels/community) channel in private Staff team.
+2. At-mention SET team lead, identified as the first person in the [Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel header.
+3. If no prompt solution is presented, create a ticket in [Mattermost Jira project](https://mattermost.atlassian.net/) and assign "Sustained Engineering" as the **Mattermost Team**. The ticket will be reviewed by a SET team member during Tuesday or Thursday triage.
 
 This process helps increase accountability and tracibility for both teams.
 
-SET members should use the following responses when receiving issue escalations from the customer support team:
+SET members should use the following responses when receiving issue escalations from the customer or pre-sales support teams:
 
 ##### Requests that are new features and not bugs
 
