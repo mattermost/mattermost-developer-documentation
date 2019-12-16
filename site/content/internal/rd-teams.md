@@ -87,15 +87,6 @@ weight: 110
 * Ian Tao - PM
 * Prapti Shrestha - QA SDET
 
-## Ops/Infra Team
-
-* Jason Deland - Eng Lead
-* Joram Wilander - Eng Lead
-* George Goldberg - Eng Lead
-* Daniel Schalla - Security Engineer
-* Carlos Panato - Engineer/Infrastructure
-* Elisabeth Kulzer - Build Engineer
-
 ## Enterprise Team
 * Scott Bishel - Eng Lead
 * Martin Kraft - Engineeer
