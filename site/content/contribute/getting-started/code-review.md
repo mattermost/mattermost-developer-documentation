@@ -78,11 +78,7 @@ If you are a core committer seeking a review
     * Merge your pull request and delete the branch if not from a fork.
     * Note that the last core committer to approve your changes may do this on your behalf.
     * If your pull request depends on other pull requests, consider assigning the `Do Not Merge/Awaiting PR` label.
-10. Handle any cherry-picks.
-    * Cherry-pick the commit from `master` to the affected releases.
-    * Push your changes directly to the remote branch.
-    * No new pull request is required unless there are substantial merge conflicts.
-    * Remove the `CherryPick/Approved` label and apply the `CherryPick/Done` label.
+10. For handling cherry-picks, please check [here](https://developers.mattermost.com/contribute/getting-started/branching/).
 
 If you are a core committer asked to give a review
 --------------------------------------------------
@@ -110,4 +106,4 @@ If you are a core committer asked to give a review
     * Merge the pull request, and delete the branch if not from a fork.
     * Some changes are spread out across multiple pull requests that should be merged at the same time. Look out for the `Do Not Merge/Awaiting PR` label. When in doubt, leave the merging of the pull request to the author.
 5. Handle any cherry-picks.
-    * Typically, the author of the pull request should handle cherry-picks. Assume this is the case unless you are explicitly asked to help cherry-pick.
+    * There is an automated cherry-pick process and the author of the pull request should make sure the cherry-pick succeeds. Assume this is the case unless you are explicitly asked to help cherry-pick.

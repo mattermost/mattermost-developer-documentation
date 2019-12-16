@@ -1,4 +1,4 @@
-# Mattermost Developer Documentation [![Build Status](https://travis-ci.org/mattermost/mattermost-developer-documentation.svg?branch=master)](https://travis-ci.org/mattermost/mattermost-developer-documentation)
+# Mattermost Developer Documentation [![Mattermost dev docs status badge](https://circleci.com/gh/mattermost/mattermost-developer-documentation.svg?style=svg)](https://circleci.com/gh/mattermost/mattermost-developer-documentation/tree/master)
 
 Website for Mattermost developer documentation, built using [Hugo](https://gohugo.io/). Master is continuously deployed to [developers.mattermost.com](https://developers.mattermost.com/).
 
