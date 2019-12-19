@@ -8,6 +8,7 @@ weight: 110
 ## Leadership
 
 * Corey Hulen - CTO
+* Chris Overton - VP Engineering
 * Lindsay Brock - Head of Product
 
 ## Mobile Team
@@ -19,6 +20,7 @@ weight: 110
 * Andrew Brown - UX Designer
 
 ## Apps Team
+
 * Dean Whillier - Eng Lead
 * Harrison Healey - Engineer
 * Sudheer Timmaraju - Engineer
@@ -37,6 +39,11 @@ weight: 110
 * Ian Whitlock - Engineer
 * Gabriel Sagula - Engineer
 * Katie Wiersgalla - PM
+
+## Build & Infrastructure Team
+
+* Jason Deland - Engineer Lead
+* Elisabeth Kulzer - Build Engineer
 
 ## Integrations Team
 
@@ -57,6 +64,8 @@ weight: 110
 * Miguel de la Cruz - Engineer
 * Eli Yukelzon - Engineer
 * Claudio Costa - Engineer
+* Agniva De Sarker - Engineer
+* Mario de Frutos - Engineer
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
 
@@ -75,17 +84,8 @@ weight: 110
 * Maria Nuñez - Engineer
 * Shota Gvinepadze - Engineer
 * Ben Schumacher - Engineer
-* Aaron Rothschild - PM
+* Ian Tao - PM
 * Prapti Shrestha - QA SDET
-
-## Ops/Infra Team
-
-* Jason Deland - Eng Lead
-* Joram Wilander - Eng Lead
-* George Goldberg - Eng Lead
-* Daniel Schalla - Security Engineer
-* Carlos Panato - Engineer/Infrastructure
-* Elisabeth Kulzer - Build Engineer
 
 ## Enterprise Team
 * Scott Bishel - Eng Lead
