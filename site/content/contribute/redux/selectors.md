@@ -67,7 +67,7 @@ export function makeGetUser() {
     return createSelector(
         getProfiles,
         (state, userId) => userId,
-        (userId, profiles) => {
+        (profiles, userId) => {
             if (!profiles.hasOwnProperty(userId)) {
                 // User not found
                 return {};

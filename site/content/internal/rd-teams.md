@@ -8,18 +8,25 @@ weight: 110
 ## Leadership
 
 * Corey Hulen - CTO
+* Chris Overton - VP Engineering
 * Lindsay Brock - Head of Product
+
+## Mobile Team
+
+* Elias Nahum - Eng Lead
+* Miguel Alatzar - Engineer
+* Claude Wild - Engineer
+* Eric Sethna - PM
+* Andrew Brown - UX Designer
 
 ## Apps Team
 
-* Elias Nahum - Eng Lead
+* Dean Whillier - Eng Lead
 * Harrison Healey - Engineer
 * Sudheer Timmaraju - Engineer
-* Dean Whillier - Engineer
-* Miguel Alatzar - Engineer
+* Brad Coughlin - Engineer
 * Devin Binnie - Engineer
 * Guillermo Vayá - Engineer
-* Claude Wild - Engineer
 * Eric Sethna - PM
 * Andrew Brown - UX Designer
 
@@ -27,11 +34,16 @@ weight: 110
 
 * Joram Wilander - Eng Lead
 * Carlos Panato - Engineer/Infrastructure
-* Brad Coughlin - Engineer
 * Gabe Jackson - Engineer
 * Stylianos Rigas - Engineer/Infrastructure
 * Ian Whitlock - Engineer
+* Gabriel Sagula - Engineer
 * Katie Wiersgalla - PM
+
+## Build & Infrastructure Team
+
+* Jason Deland - Engineer Lead
+* Elisabeth Kulzer - Build Engineer
 
 ## Integrations Team
 
@@ -52,6 +64,8 @@ weight: 110
 * Miguel de la Cruz - Engineer
 * Eli Yukelzon - Engineer
 * Claudio Costa - Engineer
+* Agniva De Sarker - Engineer
+* Mario de Frutos - Engineer
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
 
@@ -70,17 +84,8 @@ weight: 110
 * Maria Nuñez - Engineer
 * Shota Gvinepadze - Engineer
 * Ben Schumacher - Engineer
-* Aaron Rothschild - PM
+* Ian Tao - PM
 * Prapti Shrestha - QA SDET
-
-## Ops/Infra Team
-
-* Joram Wilander - Eng Lead
-* George Goldberg - Eng Lead
-* Daniel Schalla - Security Engineer
-* Stylianos Rigas - Engineer/Infrastructure
-* Carlos Panato - Engineer/Infrastructure
-* Elisabeth Kulzer - Build Engineer
 
 ## Enterprise Team
 * Scott Bishel - Eng Lead
@@ -99,3 +104,6 @@ weight: 110
 * Jelena Gilliam - QA
 * Ogi Marusic - QA
 * Steve Mudie - QA
+* Justine Geffen - Technical Writer
+* Adam Clarkson - PM
+* Eric Sadur - PM

@@ -158,14 +158,26 @@ The core team also has product managers who do a lot of great work designing, pr
     - @jason on [community.mattermost.com](https://community.mattermost.com/core/messages/@jason) and [@jasonblais](https://github.com/jasonblais) on GitHub
 - **<a name="eric.sethna">Eric Sethna</a>**
     - @eric on [community.mattermost.com](https://community.mattermost.com/core/messages/@eric) and [@esethna](https://github.com/esethna) on GitHub
-- **<a name="amy.blais">Amy Blais</a>**
-    - @amyblais on [community.mattermost.com](https://community.mattermost.com/core/messages/@amyblais) and [@amyblais](https://github.com/amyblais) on GitHub
 - **<a name="katie.wiersgalla">Katie Wiersgalla</a>**
     - @katie.wiersgalla on [community.mattermost.com](https://community.mattermost.com/core/messages/@katie.wiersgalla) and [@wiersgallak](https://github.com/wiersgallak) on GitHub
 - **<a name="aaron.rothschild">Aaron Rothschild</a>**
     - @aaron.rothschild on [community.mattermost.com](https://community.mattermost.com/core/messages/@aaron.rothschild) and [@aaronrothschild](https://github.com/aaronrothschild) on GitHub
 - **<a name="dennis.kittrell">Dennis Kittrell</a>**
     - @dennis.kittrell on [community.mattermost.com](https://community.mattermost.com/core/messages/@dennis.kittrell) and [@thefactremains](https://github.com/thefactremains) on GitHub
+- **<a name="eric.sadur">Eric Sadur</a>**
+    - @eric.sadur on [community.mattermost.com](https://community.mattermost.com/core/messages/@eric.sadur) and [@etoaster](https://github.com/etoaster) on GitHub
+- **<a name="adam.clarkson">Adam Clarkson</a>**
+    - @adam.clarkson on [community.mattermost.com](https://community.mattermost.com/core/messages/@adam.clarkson) and [@adamjclarkson](https://github.com/adamjclarkson) on GitHub
+- **<a name="ian.tao">Ian Tao</a>**
+    - @ian.tao on [community.mattermost.com](https://community.mattermost.com/core/messages/@ian.tao) and [@itao](https://github.com/itao) on GitHub
+
+Release Managers
+----------------
+
+The core team also has release managers who help with prioritization and coordination. They are:
+
+- **<a name="amy.blais">Amy Blais</a>**
+    - @amyblais on [community.mattermost.com](https://community.mattermost.com/core/messages/@amyblais) and [@amyblais](https://github.com/amyblais) on GitHub
 
 QA Testers
 ------------
@@ -180,8 +192,6 @@ The core team also has QA testers who verify the correct functionality of the pr
     - @dylan.haussermann on [community.mattermost.com](https://community.mattermost.com/core/messages/@dylan.haussermann) and [@DHaussermann](https://github.com/DHaussermann) on GitHub
 - **<a name="ogi.marušić">Ogi Marušić</a>**
     - @ogi.marusic on [community.mattermost.com](https://community.mattermost.com/core/messages/@ogi.marusic) and [@ogi-m](https://github.com/ogi-m) on GitHub
-- **<a name="bob.lubecker">Bob Lubecker</a>**
-    - @bob.lubecker on [community.mattermost.com](https://community.mattermost.com/core/messages/@bob.lubecker) and [@thekiiingbob](https://github.com/thekiiingbob) on GitHub
 - **<a name="prapti.shrestha">Prapti Shrestha</a>**
     - @prapti.shrestha on [community.mattermost.com](https://community.mattermost.com/core/messages/@prapti.shrestha) and [@prapti](https://github.com/prapti) on GitHub
 - **<a name="rohitesh.gupta">Rohitesh Gupta</a>**
@@ -190,3 +200,19 @@ The core team also has QA testers who verify the correct functionality of the pr
     - @jelena.gilliam on [community.mattermost.com](https://community.mattermost.com/core/messages/@jelena.gilliam) and [@jgilliam17](https://github.com/jgilliam17) on GitHub
 - **<a name="steve.mudie">Steve Mudie</a>**
     - @steve.mudie on [community.mattermost.com](https://community.mattermost.com/core/messages/@steve.mudie) and [@stevemudie](https://github.com/stevemudie) on GitHub
+
+Build Engineers
+--------------------
+
+- **<a name="elisabeth.kulzer">Elisabeth Kulzer</a>**
+    - @elisabeth.kulzer on [community.mattermost.com](https://community.mattermost.com/core/messages/@elisabeth.kulzer) and [@metanerd](https://github.com/metanerd) on GitHub
+- **<a name="jason.deland">Jason Deland</a>**
+    - @jason.deland on [community.mattermost.com](https://community.mattermost.com/core/messages/@jason.deland) and [@jaydeland](https://github.com/jaydeland) on GitHub
+
+Technical Writers
+--------------------
+
+The core team also has technical writers who document product features and functionality from release to release, along with product managers. They are:
+
+- **<a name="justine.geffen">Justine Geffen</a>**
+    - @justine.geffen on [community.mattermost.com](https://community.mattermost.com/core/messages/@justine.geffen) and [@justinegeffen](https://github.com/justinegeffen) on GitHub
