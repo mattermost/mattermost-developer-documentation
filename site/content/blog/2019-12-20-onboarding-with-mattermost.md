@@ -25,7 +25,7 @@ There is a vast wealth of documentation available through Confluence. Everything
 ### Mentorship
 During my first few weeks I had daily mentors from different teams who were available for discussions and helped answer any questions that I had. This was a great way to build a bond with my peers and to learn more about the other teams. The Mattermost application extends across web, mobile, server side, Redux, and design; in meeting with the mentors from each team I was able to better understand how all the parts of the application come together. 
 
-Beyond the daily mentorships, I also had my main mentor to always follow up with and to help me through my daily tasks. One of the mindsets that was repeatedly conveyed was ‘Learn, Master, Teach’, where you learn a topic, master it, and then teach it to others; allowing the cycle to continue. 
+Beyond the daily mentorships, I also had my main mentor to always follow up with and help me through my daily tasks. One of the mindsets that was repeatedly conveyed was ‘Learn, Master, Teach’, where you learn a topic, master it, and then teach it to others, allowing the cycle to continue. 
 
 ### Remote Environment
 One of the biggest draws of joining Mattermost is that everyone is remote, and the company has really built a culture around this. Every week there are multiple meetings that help create rapport among the team and instill the passion behind innovation and customer obsession. Unlike previous remote environments, the environment that Mattermost has created makes you feel part of the team and not siloed off. There are even video meetings for hanging around the water cooler to just chat and also a video game hour.
