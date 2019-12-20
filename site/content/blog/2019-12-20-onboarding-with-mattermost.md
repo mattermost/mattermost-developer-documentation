@@ -23,7 +23,7 @@ One of the first things that occurred was that my mentor and a member of Human R
 There is a vast wealth of documentation available through Confluence. Everything from setting up your development environment and the Tick-Tock branching process to the setup and customization of the servers, apps and plugins. Many of these are part of the onboarding checklist, but it will take weeks to ingest all the knowledge!
 
 ### Mentorship
-During my first few weeks I would get daily mentors, from different teams, who would be available for discussion and to help answer questions that I would have. This was a great way to build a bond with my peers and to learn more about the other teams. The Mattermost application extends across web, mobile, server side, Redux, and design; in meeting with the mentors from each team I was able to better understand how each part of the application came together. 
+During my first few weeks I had daily mentors from different teams who were available for discussions and helped answer any questions that I had. This was a great way to build a bond with my peers and to learn more about the other teams. The Mattermost application extends across web, mobile, server side, Redux, and design; in meeting with the mentors from each team I was able to better understand how all the parts of the application come together. 
 
 Beyond the daily mentorships, I also had my main mentor to always follow up with and to help me through my daily tasks. One of the mindsets that was repeatedly conveyed was ‘Learn, Master, Teach’, where you learn a topic, master it, and then teach it to others; allowing the cycle to continue. 
 
