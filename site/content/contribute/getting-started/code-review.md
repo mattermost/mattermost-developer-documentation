@@ -23,7 +23,7 @@ If you are a community member seeking a review
     * When in doubt, ask for help in the [Developers](https://community.mattermost.com/core/channels/developers) channel on our community server.
 3. Wait for a review.
     * The ticket author, a core committer, or a product manager will assign reviewers and label your pull request appropriately.
-    * Expect some interaction with at least one reviewer within 5 business days.
+    * Expect some interaction with at least one reviewer within 5 business days (weekdays, Monday through Friday, excluding [statutory holidays](https://docs.mattermost.com/process/working-at-mattermost.html#holidays)).
     * Keep in mind that core committers are geographically distributed around the world and likely in a different time zone than your own.
     * If no interaction has occurred after 5 business days, please ping a core team member who is participating in the PR. If there are no participating members yet, please ping [Jason Blais](/contribute/getting-started/core-committers/#jason.blais) or [Ben Schumacher (Hanzei)](/contribute/getting-started/core-committers/#hanzei).
 4. Make any necessary changes.
