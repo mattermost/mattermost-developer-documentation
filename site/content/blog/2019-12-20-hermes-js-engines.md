@@ -7,7 +7,9 @@ github: migbot
 community: miguel.alatzar
 ---
 
-With the upgrade to [React Native 61](https://facebook.github.io/react-native/blog/2019/09/18/version-0.61) came the prospect of substantially improving performance of our Android app. How? Through the use of [Hermes](https://github.com/facebook/hermes), Facebook’s new JavaScript engine. To say that we were excited is an understatement. And with that excitement came curiosity: how is this new JavaScript engine achieving performance boosts? Let’s first chat a bit about JS engines in general. 
+With the upgrade to [React Native 61](https://facebook.github.io/react-native/blog/2019/09/18/version-0.61) came the prospect of substantially improving performance of our Android app. How? Through the use of [Hermes](https://github.com/facebook/hermes), Facebook’s new JavaScript engine. To say that we were excited is an understatement. And with that excitement came curiosity: how is this new JavaScript engine achieving performance boosts? 
+
+Let’s first chat a bit about JS engines in general. 
 
 How does your JavaScript code eventually get executed by the CPU on the machine? Through a JavaScript engine. Initially JS engines interpreted JS code, that is, as each line came in during run-time the JS engine would translate it to machine code that the host machine then executed. Later, with the use of Just-In-Time (JIT) compilation, optimizations could be made as “hot code” can be compiled and stored so that it, instead of the source code, could be executed the next time it’s needed. Another optimization that can be made is type specialization. Because of JavaScript’s dynamic type system, when the compiler encounters say, a for-loop on an array, it needs to check the types of each element each time it’s accessed during execution. To avoid this the compiler can move the type checks before the loop so that it’s done only once. You can read more about JIT compilers [here](https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/).
 
