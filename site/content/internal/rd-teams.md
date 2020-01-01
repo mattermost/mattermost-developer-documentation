@@ -16,6 +16,7 @@ weight: 110
 * Elias Nahum - Eng Lead
 * Miguel Alatzar - Engineer
 * Claude Wild - Engineer
+* Amit Uttam - Engineer
 * Eric Sethna - PM
 * Andrew Brown - UX Designer
 
