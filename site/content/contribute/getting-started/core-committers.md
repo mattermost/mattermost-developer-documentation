@@ -142,7 +142,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Cloud, Elasticsearch, REST API, Kubernetes
  - **<a name="gabriel.sagula">Gabriel Sagula</a>**
     - @gabriel.sagula on [community.mattermost.com](https://community.mattermost.com/core/messages/@gabriel.sagula) and [@gsagula](https://github.com/gsagula) on GitHub
-    - Dev areas: TBA
+    - Dev areas: Kubernetes, Cloud
 - **<a name="amit.uttam">Amit Uttam</a>**
     - @amit.uttam on [community.mattermost.com](https://community.mattermost.com/core/messages/@amit.uttam) and [@chuttam](https://github.com/chuttam) on GitHub
     - Dev areas: Mobile
