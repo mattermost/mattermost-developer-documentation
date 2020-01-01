@@ -122,6 +122,31 @@ Below is the list of core committers working on Mattermost:
 - **<a name="catalin.tomai">Catalin Tomai</a>**
     - @catalin.tomai on [community.mattermost.com](https://community.mattermost.com/core/messages/@catalin.tomai) and [@catalintomai](https://github.com/catalintomai) on GitHub
     - Dev areas: Permissions, Compliance, LDAP
+- **<a name="claude.wild">Claude Wild</a>**
+    - @claude.wild on [community.mattermost.com](https://community.mattermost.com/core/messages/@claude.wild) and [@Imisshtml](https://github.com/Imisshtml) on GitHub
+    - Dev areas: Mobile
+- **<a name="ian.whitlock">Ian Whitlock</a>**
+     - @ian.whitlock on [community.mattermost.com](https://community.mattermost.com/core/messages/@ian.whitlock) and [@gigawhitlocks](https://github.com/gigawhitlocks) on GitHub
+    - Dev areas: Cloud
+- **<a name="juho.nurminen">Juho Nurminen</a>**
+    - @juho.nurminen on [community.mattermost.com](https://community.mattermost.com/core/messages/@juho.nurminen) and [@jupenur](https://github.com/jupenur) on GitHub
+    - Dev areas: Security
+- **<a name="mario.de.frutos">Mario de Frutos</a>**
+    - @mario.de.frutos on [community.mattermost.com](https://community.mattermost.com/core/messages/@mario.de.frutos) and [@ethervoid](https://github.com/ethervoid) on GitHub
+    - Dev areas: Server, Load Tests
+- **<a name="agniva.de.sarker">Agniva De Sarker</a>**
+    - @agniva.de.sarker on [community.mattermost.com](https://community.mattermost.com/core/messages/@agniva.de.sarker) and [@agnivade](https://github.com/agnivade) on GitHub
+    - Dev areas: Performance, Load Tests, Go internals
+- **<a name="chris.overton">Chris Overton</a>**
+    - @chris.overton on [community.mattermost.com](https://community.mattermost.com/core/messages/@chris.overton) and [@chris-overton](https://github.com/chris-overton) on GitHub
+    - Dev areas: Cloud, Elasticsearch, REST API, Kubernetes
+ - **<a name="gabriel.sagula">Gabriel Sagula</a>**
+    - @gabriel.sagula on [community.mattermost.com](https://community.mattermost.com/core/messages/@gabriel.sagula) and [@gsagula](https://github.com/gsagula) on GitHub
+    - Dev areas: Kubernetes, Cloud
+- **<a name="amit.uttam">Amit Uttam</a>**
+    - @amit.uttam on [community.mattermost.com](https://community.mattermost.com/core/messages/@amit.uttam) and [@chuttam](https://github.com/chuttam) on GitHub
+    - Dev areas: Mobile
+    
 
 Core Developers
 ---------------
