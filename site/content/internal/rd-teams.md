@@ -67,6 +67,7 @@ weight: 110
 * Claudio Costa - Engineer
 * Agniva De Sarker - Engineer
 * Mario de Frutos - Engineer
+* Doug Lauder - Engineer
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
 
@@ -76,6 +77,7 @@ weight: 110
 * George Goldberg - Eng Lead
 * Daniel Schalla - Engineer
 * Harrison Healey - Engineer
+* Juho Nurminen - Engineer
 * Katie Wiersgalla - PM
 
 ## Toolkit Team
@@ -92,7 +94,7 @@ weight: 110
 * Scott Bishel - Eng Lead
 * Martin Kraft - Engineeer
 * Catalin Tomai - Engineer
-* Hossein Ahmadian - Engineer Intern
+* Hossein Ahmadian - Engineer
 * Dennis Kittrell - PM 
 * Michael Gamble - UX Designer
 * Rohitesh Gupta - QA SDET
@@ -102,6 +104,7 @@ weight: 110
 * Amy Blais - Release Manager/PM
 * Linda Mitchell - QA Lead
 * Saturnino Abril - QA SDET
+* Joseph Baylon - QA SDET
 * Jelena Gilliam - QA
 * Ogi Marusic - QA
 * Steve Mudie - QA
