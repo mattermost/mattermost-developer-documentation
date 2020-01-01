@@ -133,7 +133,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Security
 - **<a name="mario.de.frutos">Mario de Frutos</a>**
     - @mario.de.frutos on [community.mattermost.com](https://community.mattermost.com/core/messages/@mario.de.frutos) and [@ethervoid](https://github.com/ethervoid) on GitHub
-    - Dev areas: TBA
+    - Dev areas: Server, Load Tests
 - **<a name="agniva.de.sarker">Agniva De Sarker</a>**
     - @agniva.de.sarker on [community.mattermost.com](https://community.mattermost.com/core/messages/@agniva.de.sarker) and [@agnivade](https://github.com/agnivade) on GitHub
     - Dev areas: Performance, Load Tests, Go internals
