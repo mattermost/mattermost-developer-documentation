@@ -39,11 +39,11 @@ These are some ideas of the parts of a blog post. They’re not mandatory and no
 - **Conclusion:** Whether the exercise or process has long-term potential, whether it’s still in place, or whether it was a failure. 
 
 Some popular blogs that are worth reading include:
-https://blog.golang.org/
-https://dave.cheney.net/
-https://technology.riotgames.com/
-https://www.freecodecamp.org/news/
-https://alistapart.com/
+- https://blog.golang.org/
+- https://dave.cheney.net/
+- https://technology.riotgames.com/
+- https://www.freecodecamp.org/news/
+- https://alistapart.com/
 
 The [/site/content/blog/](https://github.com/mattermost/mattermost-developer-documentation/tree/master/site/content/blog) folder also has some good examples.
 
