@@ -11,7 +11,7 @@ With the upgrade to [React Native 61](https://facebook.github.io/react-native/bl
 
 Let’s first chat a bit about JS engines in general. 
 
-How does your JavaScript code eventually get executed by the CPU on the machine? Through a JavaScript engine. Initially JS engines interpreted JS code, that is, as each line came in during run-time the JS engine would translate it to machine code that the host machine then executed. Later, with the use of Just-In-Time (JIT) compilation, optimizations could be made as “hot code” can be compiled and stored so that it, instead of the source code, could be executed the next time it’s needed. 
+How does your JavaScript code eventually get executed by the CPU on the machine? Through a JavaScript engine. Initially JS engines interpreted JS code, that is, as each line came in during run-time the JS engine would translate it to machine code that the host machine then executed. Later, with the use of Just-In-Time (JIT) compilation, optimizations could be made since “hot code” can be compiled and stored so that it, instead of the source code, could be executed the next time it’s needed. 
 
 Another optimization that can be made is type specialization. Because of JavaScript’s dynamic type system, the compiler needs to check the types of each element every time it’s accessed during execution when it encounters, for instance, a for-loop on an array. To avoid this, the compiler can move the type checks before the loop so that it’s done only once. You can read more about JIT compilers [here](https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/).
 
