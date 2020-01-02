@@ -20,7 +20,7 @@ Blog posts can cover a wide range of topics, such as:
 - A breakdown of a new process or technology you’re using
 
 
-Once you've got the topic in mind - what it's about, what you want to achieve with the post, what the next steps are etc. it’s sometimes helpful to start writing the conclusion and expand to your jumping off point to introduce your topic/idea/discovery draws 
+Once you've got the topic in mind - what it's about, what you want to achieve with the post, and what the next steps are - it’s sometimes helpful to start writing the conclusion and expand to your jumping off point to introduce your topic/idea/discovery draws.
 
 Make a note of your intended audience, so you can decide whether to use very technical terms/jargon, or spend time unpacking terminology.
 
