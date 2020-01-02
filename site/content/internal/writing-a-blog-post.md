@@ -35,7 +35,7 @@ These are some ideas of the parts of a blog post. They’re not mandatory and no
 - **Environment:** Plugins, software, specific configurations/services used. 
 - **Steps:** The process followed to get from conception to implementation, for example, how the monitoring was configured initially, and the new configuration. Include code samples and/or screenshots. How long it took to build a database/history. What steps were taken to create a good alert system. 
 - **Samples:** Code samples are often useful, as are screenshots/animated GIFs if a complex process is being demonstrated. 
-- **Benefits:** The benefits of the exercise or process of the blog post - man-hours saved, budget target achieved, lower overheads etc. 
+- **Benefits:** The benefits of the exercise or process of the blog post - man-hours saved, budget target achieved, lower overheads, etc. 
 - **Conclusion:** Whether the exercise or process has long-term potential, whether it’s still in place, or whether it was a failure. 
 
 Some popular blogs that are worth reading include:
