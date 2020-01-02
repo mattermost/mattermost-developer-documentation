@@ -19,7 +19,7 @@ How does this all play in with React Native? In RN, the JS engine used is the on
 
 But what if that optimization could be done during build time? That’s where Hermes comes in. 
 
-With Hermes, there is no JIT compiler. Instead, the compilation and optimization of the JS code happens when the APK is built and instead of minified JS code, optimized bytecode is included as a resource in your APK. This has various benefits including decreasing launch time since the bytecode is ready to be executed and allowing for considerations of more complex and time-consuming optimizations since the compilation process no longer affects the end-user.
+With Hermes, there is no JIT compiler. Instead, the compilation and optimization of the JS code happens when the APK is built and an optimized bytecode is included as a resource in your APK instead of a minified JS code. This has various benefits including decreasing launch time since the bytecode is ready to be executed. It also allows for considerations of more complex and time-consuming optimizations since the compilation process no longer affects the end-user.
 
 So, once we upgraded to RN 61 and enabled Hermes, we were ecstatic to see the Mattermost Android app launch within 3 seconds as opposed to about 7 without Hermes. You can see a demo of this presented during the Chain React 2019 [here](https://www.youtube.com/watch?v=zEjqDWqeDdg&feature=youtu.be&t=156). Unfortunately, after further use of our app we experience very noticeable lag when scrolling the channel list, opening/closing the sidebars, and switching channels. Sadly, the app was unusable so we shipped Mattermost v1.26 without Hermes enabled.
 
