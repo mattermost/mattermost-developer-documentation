@@ -7,33 +7,23 @@ weight: 105
 
 Been to a conference recently? Worked on something cool? Got something else Mattermost-related you want to post about? Writing a blog post is a great way to share your experience with the community. 
 
-If you're finding it daunting to get started, consult the following section for some guidelines and tips. 
-
-Getting Started
----------------
-
-Who
-^^^^
-It’s good to have an idea of who you’re writing the post for, so you can decide whether to use very technical terms/jargon, or spend time unpacking terminology.
- 
-Why 
-^^^^
-There doesn’t have to be a life-changing reason for the blog post, but it’s good to have a jumping off point to introduce your topic/idea/discovery. Some “whys” include:
+Blog posts can cover a wide range of topics, such as:
 
 - Addressing a customer-facing problem
 - Describing an experience with Mattermost/your Mattermost implementation 
 - Sharing information about cool tech 
 - Sharing feedback on an interesting talk or conference 
-
-What 
-^^^
-If you're writing a blog post, you've probably already got the "what" in mind - what it's about, what you want to achieve with the post, what the next steps are etc. It’s sometimes helpful to start writing the conclusion and expand from there. Some examples of “whats” include:
-
 - Part of a Hackathon project
 - A Help Wanted ticket
 - A knowledge-share and call for feedback/community engagement
 - A discussion of a specific problem or improvement that you worked on
 - A breakdown of a new process or technology you’re using
+
+
+Once you've got the topic in mind - what it's about, what you want to achieve with the post, what the next steps are etc. it’s sometimes helpful to start writing the conclusion and expand to your jumping off point to introduce your topic/idea/discovery draws 
+
+Make a note of your intended audience, so you can decide whether to use very technical terms/jargon, or spend time unpacking terminology.
+
 
 Structuring Your Blog Post
 --------------------------
