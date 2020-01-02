@@ -31,7 +31,7 @@ Structuring Your Blog Post
 These are some ideas of the parts of a blog post. They’re not mandatory and not all blog posts will include every aspect. What works for some posts won’t work for others. 
 
 - **Introduction/Overview:** An opening paragraph detailing the goal of the post and the technologies/processes that were used. For example: “Monitoring is an essential part of our organization. When we started, we were using “x” which gave us insight into “y”. With our growth as a company, we need more insights into areas that “x” can’t handle, so we decided to switch to “a” and “b””.  
-- **Problem/Solution/Situation:** Detail the problem or scenario that sparked the blog post. For example, “our monitoring tools weren’t giving us the insight we needed, and were costing a lot of money. We decided to try solve this by using multiple tools that could be used or on standby as needed. This saves money.” 
+- **Problem/Solution/Situation:** Detail the problem or scenario that sparked the blog post. For example, “Our monitoring tools weren’t giving us the insight we needed, and were costing a lot of money. We decided to try solve this by using multiple tools that could be used or on standby as needed. This saves money.” 
 - **Environment:** Plugins, software, specific configurations/services used. 
 - **Steps:** The process followed to get from conception to implementation, for example, how the monitoring was configured initially, and the new configuration. Include code samples and/or screenshots. How long it took to build a database/history. What steps were taken to create a good alert system. 
 - **Samples:** Code samples are often useful, as are screenshots/animated GIFs if a complex process is being demonstrated. 
