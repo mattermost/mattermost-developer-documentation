@@ -78,5 +78,5 @@ The steps below outline the process involved in creating the blog post file from
     ```
 
 4. Write your blog post. 
-5. Submit a pull request to https://github.com/mattermost/mattermost-developer-documentation and assign two dev reviews and an editor review from @amyblais.
+5. Submit a pull request to https://github.com/mattermost/mattermost-developer-documentation and assign two dev reviews and an editor review from @amyblais or @justinegeffen.
 6. Once merged it should show up on [developers.mattermost.com/blog](https://developers.mattermost.com/blog) within 10-15 minutes. When it shows up, post about it in the Developers channel on community.mattermost.com.
