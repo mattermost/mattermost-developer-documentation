@@ -86,4 +86,4 @@ Having the ability to add and remove targets, when a new Prometheus server is re
 
 Data transferring cost can be significant and using AWS internal traffic reduces cost and improves security. Private Load Balancers, as well as private Hosted Zones and Transit Gateways are used to keep all traffic internal and support DNS resolution and cluster communication.
 
-One of the obstacles we have faced had to do with the DNS resolution of Prometheus servers running in clusters in separate VPCs. Due to the traffic being internal Bind9 servers are used for the resolution of the private hosted zone records. In addition, custom AMIs that  include the DNS configuration are created and used for the cluster deployment.
+One of the obstacles we have faced had to do with the DNS resolution of Prometheus servers running in clusters in separate VPCs. Due to the traffic being internal Bind9 servers are used for the resolution of the private hosted zone records. In addition, custom AMIs that include the DNS configuration are created and used for the cluster deployment.
