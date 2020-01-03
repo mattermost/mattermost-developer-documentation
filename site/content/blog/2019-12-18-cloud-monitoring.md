@@ -21,7 +21,7 @@ The aim of this blog is to go through each one of the challenges we faced and tr
 
 #### Monitoring Tooling
 
-For the monitoring tooling a combination of the open source Prometheus and Grafana tools was selected. Prometheus acts at the storage and query engine while Grafana acts as the interface for visualization of the monitoring data via dashboards and panels.
+For the monitoring tooling a combination of the open source Prometheus and Grafana tools was selected. Prometheus acts as the storage and query engine while Grafana acts as the interface for visualization of the monitoring data via dashboards and panels.
 
 Grafana offers an easy to read interface that can be easily deployed and managed in a k8s cluster. By supporting multiple datasources (Prometheus, MySQL, AWS CloudWatch, etc.), it can be used to monitor the whole infrastructure.
 
