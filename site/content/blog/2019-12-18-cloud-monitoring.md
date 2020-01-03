@@ -14,7 +14,7 @@ Better monitoring can help identify single points of failure and being able to g
 At Mattermost we run multiple Kubernetes clusters in AWS, deployed with our own Mattermost provisioning tool. The clusters are deployed across multiple AWS VPCs and this cluster distribution led to some challenges which are highlighted below:
 
 - Choosing the correct tooling for monitoring
-- Data transfer cost
+- Potential data transfer costs
 - DNS resolution
 
 The aim of this blog is to go through each one of the challenges we faced and try to explain the path we followed to reach the end solution.
