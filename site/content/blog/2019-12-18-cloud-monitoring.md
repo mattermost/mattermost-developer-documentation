@@ -23,7 +23,7 @@ The aim of this blog is to go through each one of the challenges we faced and tr
 
 For the monitoring tooling a combination of the open source Prometheus and Grafana tools was selected. Prometheus acts as the storage and query engine while Grafana acts as the interface for visualization of the monitoring data via dashboards and panels.
 
-Grafana offers an easy to read interface that can be easily deployed and managed in a k8s cluster. By supporting multiple datasources (Prometheus, MySQL, AWS CloudWatch, etc.), it can be used to monitor the whole infrastructure.
+Grafana offers an easy to read interface that can be easily deployed and managed in a Kubernetes cluster. By supporting multiple datasources (Prometheus, MySQL, AWS CloudWatch, etc.), it can be used to monitor the whole infrastructure.
 
 Prometheus collects metrics by scraping data from the clusters and was selected for its simplicity and support, as well as its Prometheus Federation service, which can be used to scale to hundreds of clusters. [Prometheus federation](https://prometheus.io/docs/prometheus/latest/federation/) is a Prometheus server that can scrape data from other Prometheus servers. It supports hierarchical federation, which in our case resembles a tree.
 
