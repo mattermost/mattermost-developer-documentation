@@ -11,7 +11,7 @@ Monitoring the state of your clusters is an effective way to discover bottleneck
 
 Better monitoring can help identify single points of failure and being able to get information about things like the number of applications running on each node or the CPU and memory performance can help to get closer to zero downtime deployments.
 
-At Mattermost Cloud we run multiple Kubernetes clusters in AWS, deployed with our own Mattermost provisioning tool. The clusters are deployed across multiple AWS VPCs and this cluster distribution led to some challenges which are highlighted below:
+At Mattermost we run multiple Kubernetes clusters in AWS, deployed with our own Mattermost provisioning tool. The clusters are deployed across multiple AWS VPCs and this cluster distribution led to some challenges which are highlighted below:
 
 - Monitoring tooling
 - Data transfer cost
