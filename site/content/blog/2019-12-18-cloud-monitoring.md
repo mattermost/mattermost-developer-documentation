@@ -78,7 +78,7 @@ static_configs:
           clusterID: cluster2
 ```
 
-Using labels, makes the identification of the clusters easier in the Grafana dashboards and panels.
+The use of labels makes the identification of the clusters easier in the Grafana dashboards and panels.
 
 Having the ability to add and remove targets, when a new Prometheus server is registered or deregistered with Route53 in an automated way is really important, which is why we developed a [Lambda function](https://github.com/mattermost/mattermost-cloud-monitoring/tree/master/prometheus-dns-registration-service) that handles the updates of the Prometheus server configmap, when a new Route53 record is created/deleted.
 
