@@ -62,7 +62,7 @@ prometheus.yml:
             - 'prometheus-server:80'
 ```
 
-In this case we assume that the Prometheus federate config will be used only for data scraping from other Prometheus targets but another scrape config can be added in order to use the same Prometheus server for local cluster data scraping. We decided to not move forward with local data scraping as we would like to keep the Prometheus federation server dedicated to only one task and use another server for that.
+In this case we assume that the Prometheus federate config will be used only for data scraping from other Prometheus targets. However, another scrape config can be added in order to use the same Prometheus server for local cluster data scraping. We decided to not move forward with local data scraping as we would like to keep the Prometheus federation server dedicated to only one task and use another server for that.
 
 The next step in the setup is to specify the Prometheus server targets that the Prometheus federate server will use to scrape the data. For the targets, each server is registered with Route 53 and the static config looks like this:
 
