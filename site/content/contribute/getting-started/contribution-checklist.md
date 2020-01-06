@@ -28,8 +28,6 @@ Follow this checklist for submitting a pull request (PR):
 8. If your PR adds or changes a RESTful API endpoint, please update the [API documentation](https://github.com/mattermost/mattermost-api-reference).
 10. If your PR adds a new plugin API method or hook, please add an example to the [Plugin Starter Template](https://github.com/mattermost/mattermost-plugin-starter-template).
 
- Once submitted, the automated build process must pass in order for the PR to be accepted.
- 
-That's all! If you have any feedback about this checklist, let us know in the [Contributors channel](https://community.mattermost.com/core/channels/tickets).
+Once submitted, the automated build process must pass in order for the PR to be accepted. Any errors or failures need to be addressed in order for the PR to be accepted. Next, the PR goes through [code review](https://developers.mattermost.com/contribute/getting-started/code-review/). To learn about the review process for each project, read the `CONTRIBUTING.md` file of that GitHub repository.
 
-To learn about the review process for each project, read the `CONTRIBUTING.md` file of that GitHub repository.
+That's all! If you have any feedback about this checklist, let us know in the [Contributors channel](https://community.mattermost.com/core/channels/tickets).
