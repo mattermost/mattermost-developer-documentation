@@ -17,7 +17,7 @@ At Mattermost we run multiple Kubernetes clusters in AWS, deployed with our own 
 - Potential data transfer costs
 - DNS resolution with dynamically created VPCs
 
-The aim of this blog is to go through each one of the challenges we faced and try to explain the path we followed to reach the end solution.
+The aim of this blog is to go through each one of the challenges we faced and to try to explain the path we followed to reach the end solution.
 
 #### Monitoring Tooling
 
