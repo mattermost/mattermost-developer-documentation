@@ -87,6 +87,6 @@ Having the ability to add and remove targets in an automated way is really impor
 We were able to solve the final two challenges, minimizing data transfer costs and DNS resolution, together.
 A major factor of monitoring is that data transferring cost can be significant and in our case using AWS internal traffic reduced cost and improves security. Private Load Balancers, as well as private Hosted Zones and Transit Gateways are used to keep all traffic internal and support DNS resolution and cluster communication.
 
-One of the obstacles we have faced by using private hosted zones, had to do with the DNS resolution of Prometheus servers running in clusters in separate VPCs. Due to the traffic being internal Bind9 servers are used for the resolution of the private hosted zone records. In addition, custom AMIs with preconfigured DNS setup are created and used for the cluster deployment.
+One of the obstacles we have faced by using private hosted zones had to do with the DNS resolution of Prometheus servers running in clusters in separate VPCs. Due to the traffic being internal, Bind9 servers are used for the resolution of the private hosted zone records. In addition, custom AMIs with preconfigured DNS setup are created and used for the cluster deployment.
 
 With this setup all services can communicate using custom internal DNS records and traffic cost was reduced to a couple of dollars per month.
