@@ -9,7 +9,7 @@ community: stylianos.rigas
 
 Monitoring the state of your clusters is an effective way to discover bottlenecks in your multi-cluster production environment. It is one of the key challenges that development teams are facing and factors such as the team experience as well as the number and distribution of the applications can make things even more complex.
 
-Better monitoring can help identify single points of failure and being able to get information about things like the number of applications running on each node or the CPU and memory performance can help to get closer to zero downtime deployments.
+Better monitoring can help identify single points of failure. Being able to get information about things like the number of applications running on each node or the CPU and memory performance can help to get closer to zero downtime deployments.
 
 At Mattermost we run multiple Kubernetes clusters in AWS, deployed with our own Mattermost provisioning tool. The clusters are deployed across multiple AWS VPCs and this cluster distribution led to some challenges which are highlighted below:
 
