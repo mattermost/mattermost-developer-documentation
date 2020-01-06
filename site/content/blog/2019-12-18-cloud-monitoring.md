@@ -25,7 +25,7 @@ For the monitoring tooling, we selected a combination of the open source Prometh
 
 Grafana offers an easy to read interface that can be easily deployed and managed in a Kubernetes cluster. By supporting multiple datasources (Prometheus, MySQL, AWS CloudWatch, etc.), it can be used to monitor the whole infrastructure.
 
-Prometheus collects metrics by scraping data from the clusters and was selected for its simplicity and support, as well as its Prometheus Federation service, which can be used to scale to hundreds of clusters. [Prometheus federation](https://prometheus.io/docs/prometheus/latest/federation/) is a Prometheus server that can scrape data from other Prometheus servers. It supports hierarchical federation, which in our case resembles a tree.
+Prometheus collects metrics by scraping data from the clusters and we selected it for its simplicity and support, as well as its Prometheus Federation service, which can be used to scale to hundreds of clusters. [Prometheus federation](https://prometheus.io/docs/prometheus/latest/federation/) is a Prometheus server that can scrape data from other Prometheus servers. It supports hierarchical federation, which in our case resembles a tree.
 
 At Mattermost, a default version of the Prometheus server is installed in each one of our clusters and a Prometheus federation server is deployed together with Grafana in a central monitoring cluster. Prometheus federation scrapes data from all the other Prometheus servers that run in our clusters. For future expansion a central Prometheus federation can be used to scrape data from multiple Prometheus federation servers that scrape data from groups of tens of clusters. 
 
