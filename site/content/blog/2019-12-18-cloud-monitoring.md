@@ -37,7 +37,7 @@ Both of the tools are deployed in a central command and control cluster using [H
 helm install stable/prometheus
 ```
 
-In order to install the Prometheus federation server, changes are required in the Helm values.yaml file and especially in the prometheus.yml section. The scrape_configs need to be replaced by a federate job name. For more information have a look in the code snippet below.
+In order to install the Prometheus federation server, changes are required in the Helm values.yaml file and especially in the prometheus.yml section. The `scrape_configs` needs to be replaced by a federate job name. For more information, take a look at the code snippet below.
 
 ```yaml
 prometheus.yml:
