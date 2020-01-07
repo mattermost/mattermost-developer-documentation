@@ -26,13 +26,22 @@
                     <hr>
                     {{ partial "hanchor.html" .Content }}
                     <hr>
-                    Written by {{.Params.author}} -
-                    <a href="https://community.mattermost.com/core/messages/@{{.Params.community}}" target="_blank">@{{.Params.community}}</a>
-                    on
-                    <a href="https://community.mattermost.com/signup_user_complete/?id=f1924a8db44ff3bb41c96424cdc20676"
-                        target="_blank">community.mattermost.com</a>
-                    and <a href="https://github.com/{{.Params.github}}" target="_blank">@{{.Params.github}}</a> on
-                    GitHub
+                    {{ if and (and .Params.author .Params.github) .Params.community }}
+                    Written by
+                    {{ if and (and .Params.author_2 .Params.github_2) .Params.community_2 }}
+                    :
+                    <ul>
+                        <li>
+                            {{ partial "blogauthor" (dict "name" .Params.author "community" .Params.community "github" .Params.github) }}
+                        </li>
+                        <li>
+                            {{ partial "blogauthor" (dict "name" .Params.author_2 "community" .Params.community_2 "github" .Params.github_2) }}
+                        </li>
+                    </ul>
+                    {{ else }}
+                    {{ partial "blogauthor" (dict "name" .Params.author "community" .Params.community "github" .Params.github) }}
+                    {{ end }}
+                    {{ end }}
                     <br />
                     <br />
                     Join us on <a href="https://community.mattermost.com/signup_user_complete/?id=f1924a8db44ff3bb41c96424cdc20676"
