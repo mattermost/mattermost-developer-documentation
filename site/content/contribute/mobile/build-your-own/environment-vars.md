@@ -7,7 +7,7 @@ subsection: Build Your Own App
 
 In order to use the **make build**, **make build-android** and/or **make build-ios** commands, you'll need to set a few environment variables. In order to make fastlane work with these environment variables you have two options:
 
-* Copy the file with your variables to `./mattermost-mobile/fastlane/.env` where `.env` is the file name (additionally, a sample file `env_vars_example` can be found on `./mattermost-mobile/fastlane/`).
+* Copy the file with your variables to `./mattermost-mobile/fastlane/.env` where `.env` is the file name (additionally, a sample file `env_vars_example` can be found in `./mattermost-mobile/fastlane/`).
 
 or
 
@@ -25,6 +25,7 @@ or
 | BUILD\_NUMBER | Set the build number of the app on build time if you want to use another than the next number. |  | Android, iOS |
 | INCREMENT\_BUILD\_<br>NUMBER\_MESSAGE | Set the commit message when changing the app build number. | Bump app build number to | Android, iOS |
 | APP\_NAME | The name of the app as it is going to be shown in the device home screen. | Mattermost Beta | Android, iOS |
+| APP\_SCHEME | The URL naming scheme for the app as used in direct deep links to app content from outside the app. | mattermost-beta | Android, iOS |
 | REPLACE\_ASSETS | Replaces the icons of the app with the ones found under the folder *dist/assets/release/icons/* and the splash screen with the one found under the folder *dist/assets/release/splash\_screen/*. Valid values are: true, false | false | Android, iOS |
 | MAIN\_APP\_IDENTIFIER | The bundle / package identifier for the app. | com.mattermost.rnbeta | Android, iOS |
 | BUILD\_FOR\_RELEASE | Defines if the app should be built in release mode. Valid values are: true, false <br> **Make sure you set this value to true if you plan to submit this app to TestFlight, Google Play or distribute it in any other way**. | false | Android, iOS |
