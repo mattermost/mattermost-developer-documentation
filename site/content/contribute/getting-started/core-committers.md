@@ -140,12 +140,15 @@ Below is the list of core committers working on Mattermost:
 - **<a name="chris.overton">Chris Overton</a>**
     - @chris.overton on [community.mattermost.com](https://community.mattermost.com/core/messages/@chris.overton) and [@chris-overton](https://github.com/chris-overton) on GitHub
     - Dev areas: Cloud, Elasticsearch, REST API, Kubernetes
- - **<a name="gabriel.sagula">Gabriel Sagula</a>**
+- **<a name="gabriel.sagula">Gabriel Sagula</a>**
     - @gabriel.sagula on [community.mattermost.com](https://community.mattermost.com/core/messages/@gabriel.sagula) and [@gsagula](https://github.com/gsagula) on GitHub
     - Dev areas: Kubernetes, Cloud
 - **<a name="amit.uttam">Amit Uttam</a>**
     - @amit.uttam on [community.mattermost.com](https://community.mattermost.com/core/messages/@amit.uttam) and [@chuttam](https://github.com/chuttam) on GitHub
     - Dev areas: Mobile
+- **<a name="doug.lauder">Doug Lauder</a>**
+    - @dlauder on [community.mattermost.com](https://community.mattermost.com/core/messages/@dlauder) and [@wiggin77](https://github.com/wiggin77) on GitHub
+    - Dev areas: TBA
     
 
 Core Developers
@@ -195,6 +198,8 @@ The core team also has product managers who do a lot of great work designing, pr
     - @adam.clarkson on [community.mattermost.com](https://community.mattermost.com/core/messages/@adam.clarkson) and [@adamjclarkson](https://github.com/adamjclarkson) on GitHub
 - **<a name="ian.tao">Ian Tao</a>**
     - @ian.tao on [community.mattermost.com](https://community.mattermost.com/core/messages/@ian.tao) and [@itao](https://github.com/itao) on GitHub
+- **<a name="matt.birtch">Matt Birtch</a>**
+    - @matthew.birtch on [community.mattermost.com](https://community.mattermost.com/core/messages/@matthew.birtch) and [@matthewbirtch](https://github.com/matthewbirtch) on GitHub
 
 Release Managers
 ----------------
@@ -225,6 +230,9 @@ The core team also has QA testers who verify the correct functionality of the pr
     - @jelena.gilliam on [community.mattermost.com](https://community.mattermost.com/core/messages/@jelena.gilliam) and [@jgilliam17](https://github.com/jgilliam17) on GitHub
 - **<a name="steve.mudie">Steve Mudie</a>**
     - @steve.mudie on [community.mattermost.com](https://community.mattermost.com/core/messages/@steve.mudie) and [@stevemudie](https://github.com/stevemudie) on GitHub
+- **<a name="joseph.baylon">Joseph Baylon</a>**
+    - @joseph.baylon on [community.mattermost.com](https://community.mattermost.com/core/messages/@joseph.baylon) and [@josephbaylon](https://github.com/josephbaylon) on GitHub
+    
 
 Build Engineers
 --------------------
