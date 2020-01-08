@@ -53,38 +53,38 @@ The more interesting issues were found by `ineffassign` and `govet`.
 
 The most interesting issue where found by `govet`. Take a look at this code piece:
 ```go
-	obj, err := us.GetReplica().Get(model.Compliance{}, id)
-	if err != nil {
-		return nil, model.NewAppError("SqlComplianceStore.Get", "store.sql_compliance.get.finding.app_error", nil, err.Error(), http.StatusInternalServerError)
-	}
-	if obj == nil {
-		return nil, model.NewAppError("SqlComplianceStore.Get", "store.sql_compliance.get.finding.app_error", nil, err.Error(), http.StatusNotFound)
-	}
+obj, err := us.GetReplica().Get(model.Compliance{}, id)
+if err != nil {
+	return nil, model.NewAppError("SqlComplianceStore.Get", "store.sql_compliance.get.finding.app_error", nil, err.Error(), http.StatusInternalServerError)
+}
+if obj == nil {
+	return nil, model.NewAppError("SqlComplianceStore.Get", "store.sql_compliance.get.finding.app_error", nil, err.Error(), http.StatusNotFound)
+}
 ```
-Looks fine, doesn’t it? Except it contains a null pointer exception. At the second `return` we know that `err == nil` and hence `err.Error()` will panic. `govet` found this issue and [we fixed it](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-c5a8591c69e26808c8171db5d5dddef7L78-R78). There were [actually](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-92d8335ab3456e9fd16cb67c739c52e0R163-R165), [a](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-2c6106afe8477623894c02707bffe06dL622-R622)  [couple](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-0425a0737e8b051835b0978d034d22fcL139-R139), [of](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-32736de6a4585a5384f7606e57b2792fR269-R290) [issues](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-2c6106afe8477623894c02707bffe06dL589-R589) like this one. Finding these issues alone has been a huge success and proven that linter can help fix bugs before they occur in a production environment.
+Looks fine, doesn’t it? Except it contains a null pointer exception. At the second `return` we know that `err == nil` and hence `err.Error()` will panic. `govet` found this issue and [we fixed it](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-c5a8591c69e26808c8171db5d5dddef7L78-R78). There were [actually](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-92d8335ab3456e9fd16cb67c739c52e0R163-R165), [a](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-2c6106afe8477623894c02707bffe06dL622-R622) [couple](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-0425a0737e8b051835b0978d034d22fcL139-R139), [of](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-32736de6a4585a5384f7606e57b2792fR269-R290) [issues](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-2c6106afe8477623894c02707bffe06dL589-R589) like this one. Finding these issues alone has been a huge success and proven that linter can help fix bugs before they occur in a production environment.
 
 Another issue found by `govet` lies in this piece of code:
 ```go
-		newSecret := &model.SystemPostActionCookieSecret{
-			Secret: make([]byte, 32),
-		}
-		_, err := rand.Reader.Read(newSecret.Secret)
-		if err != nil {
-			return err
-		}
+newSecret := &model.SystemPostActionCookieSecret{
+	Secret: make([]byte, 32),
+}
+_, err := rand.Reader.Read(newSecret.Secret)
+if err != nil {
+	return err
+}
 
-		system := &model.System{
-			Name: model.SYSTEM_POST_ACTION_COOKIE_SECRET,
-		}
-		v, err := json.Marshal(newSecret)
-		if err != nil {
-			return err
-		}
-		system.Value = string(v)
-		// If we were able to save the key, use it, otherwise log the error.
-		if err = a.Srv.Store.System().Save(system); err == nil {
-			secret = newSecret
-		}
+system := &model.System{
+	Name: model.SYSTEM_POST_ACTION_COOKIE_SECRET,
+}
+v, err := json.Marshal(newSecret)
+if err != nil {
+	return err
+}
+system.Value = string(v)
+// If we were able to save the key, use it, otherwise log the error.
+if err = a.Srv.Store.System().Save(system); err == nil {
+	secret = newSecret
+}
 ```
 
 `a.Srv.Store.System().Save` returns a custom error type `model.AppError`, that is commonly used in the Mattermost code base. But assigning this custom error to the variable `err` of type `error` results in variable that will never be `nil`. Hence, the line `secret = newSecret` will never be reached. This is [a common gotcha in Go](https://golang.org/doc/faq#nil_error). Using a dedicated variable for the custom error is the right way to fix this.
@@ -128,10 +128,10 @@ While running golangci-lint with the enterprise layer included, we observed that
 #### Future Work
 
 Now that we have a base in place, our plan is to add more linters. Here is a short wish-list for the near term, roughly in the order of priority:
-__errcheck__: This got missed out in our initial cut because the work involved was too big. It is one of the most common mistakes in Go code, and extremely important that these get caught.
-__bodyclose__: A common slip is to forget to close the body while reading HTTP responses. This is our next linter to integrate.
-__misspell__: Spelling mistakes are sometimes hard to detect, and they invariably creep in the codebase. This is a great linter to check that.
-__nakedret__: This flags usages of naked returns in functions greater than a specified length. It is a recommended point in the [Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments#named-result-parameters) guide. There are not too many instances of this in our codebase. So we would like them removed to be more idiomatic.
+* __errcheck__: This got missed out in our initial cut because the work involved was too big. It is one of the most common mistakes in Go code, and extremely important that these get caught.
+* __bodyclose__: A common slip is to forget to close the body while reading HTTP responses. This is our next linter to integrate.
+* __misspell__: Spelling mistakes are sometimes hard to detect, and they invariably creep in the codebase. This is a great linter to check that.
+* __nakedret__: This flags usages of naked returns in functions greater than a specified length. It is a recommended point in the [Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments#named-result-parameters) guide. There are not too many instances of this in our codebase. So we would like them removed to be more idiomatic.
 That’s the plan for now. We may want to integrate `staticcheck` also in the long-term future.
 
 Lastly, we would like to mention that any community contributions to help out with adding these linters are highly appreciated !
