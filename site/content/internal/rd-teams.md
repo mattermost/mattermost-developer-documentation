@@ -111,3 +111,4 @@ weight: 110
 * Justine Geffen - Technical Writer
 * Adam Clarkson - PM
 * Eric Sadur - PM
+* Matt Birtch - UX Designer
