@@ -9,7 +9,7 @@ github: imisshtml
 community: claude.wild
 ---
 
-I recently joined Mattermost as a Remote Software Engineer and while I’ve worked in remote environments before, I was really surprised at how amazing this company is to work with. During my onboarding I discovered they have really developed a culture built around being remote; one that allowed for me to feel as part of a larger team and always engaged, rather than separated from my peers and working alone. 
+I recently joined Mattermost as a Remote Software Engineer and while I’ve worked in remote environments before, I was really surprised at how amazing this company is to work with. During my onboarding I discovered that they have really developed a culture built around being remote; one that allowed for me to feel as part of a larger team and always engaged, rather than separated from my peers and working alone. 
 
 ### [Sponsored Simulation](https://docs.mattermost.com/process/developer.html#audition)
 The onboarding process at Mattermost was as unique as the company itself. As the company is fully remote, they took a great deal of care in making sure that not only was I a good fit, but that I would enjoy the environment and process that they instill. The first step was through a sponsored simulation, where I was given the opportunity to go beyond the normal open-source contributions and work directly with a mentor. 
@@ -27,7 +27,7 @@ During my first few weeks I had daily mentors from different teams who were avai
 
 Beyond the daily mentorships, I also had my main mentor to always follow up with and help me through my daily tasks. One of the mindsets that was repeatedly conveyed was ‘Learn, Master, Teach’, where you learn a topic, master it, and then teach it to others, allowing the cycle to continue.  
 
-### [Remote Environment](https://docs.mattermost.com/process/handbook.html?highlight=remote#company)
+### [Remote Environment](https://docs.mattermost.com/process/handbook.html)
 One of the biggest draws of joining Mattermost is that everyone is remote, and the company has really built a culture around this. Every week there are multiple meetings that help create rapport among the team and instill the passion behind innovation and customer obsession. Unlike my previous remote environments, the environment that Mattermost has created makes you feel part of the team and not siloed off. There are even video meetings for hanging around the water cooler to just chat as well as a video game hour.
 
 ### Summary
