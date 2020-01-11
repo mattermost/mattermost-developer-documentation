@@ -40,6 +40,7 @@ weight: 110
 * Ian Whitlock - Engineer
 * Gabriel Sagula - Engineer
 * Katie Wiersgalla - PM
+* Justine Geffen - Technical Writer
 
 ## Build & Infrastructure Team
 
@@ -70,6 +71,7 @@ weight: 110
 * Doug Lauder - Engineer
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
+* Justine Geffen - Technical Writer
 
 ## Security Team
 
@@ -98,6 +100,7 @@ weight: 110
 * Dennis Kittrell - PM 
 * Michael Gamble - UX Designer
 * Rohitesh Gupta - QA SDET
+* Justine Geffen - Technical Writer
 
 ## Other
 
@@ -108,7 +111,6 @@ weight: 110
 * Jelena Gilliam - QA
 * Ogi Marusic - QA
 * Steve Mudie - QA
-* Justine Geffen - Technical Writer
 * Adam Clarkson - PM
 * Eric Sadur - PM
 * Matt Birtch - UX Designer
