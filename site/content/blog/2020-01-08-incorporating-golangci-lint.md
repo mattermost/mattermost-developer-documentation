@@ -14,7 +14,7 @@ community_2: hanzei
 ---
 
 
-At Mattermost, we have traditionally relied on the trusty `go vet` and `gofmt` checks for our CI runs. While that is great, there were a lot of other powerful linters out there which we were missing out on.
+At Mattermost, we have traditionally relied on the trusty `go vet` and `gofmt` checks for our CI runs. Although it works well, there are a lot of other powerful linters out there which we're potentially missing out on.
 
 Speaking of linters, the first name that inevitably comes up is [staticcheck](https://staticcheck.io/). It is a powerful metalinter with a whole slew of checks. But simply running staticcheck was not sufficient, because it missed out on other linters which did one little thing, but nevertheless were very powerful. A few popular ones are [ineffassign](https://github.com/gordonklaus/ineffassign), [errcheck](https://github.com/kisielk/errcheck), [unconvert](https://github.com/mdempsky/unconvert), [deadcode](https://github.com/remyoudompheng/go-misc/tree/master/deadcode), [structcheck](https://gitlab.com/opennota/check/tree/master/cmd/structcheck) amongst others.
 
@@ -137,4 +137,3 @@ That’s the plan for now. We may want to integrate `staticcheck` also in the lo
 Lastly, we would like to mention that any community contributions to help out with adding these linters are highly appreciated !
 
 Feel free to check out the [getting started](https://developers.mattermost.com/contribute/getting-started) page to find out how to set up the project on your machine. You can also join the `~Developers` channel on our Mattermost [community server](https://community.mattermost.com/) if you have any questions. We would be happy to help out.
-
