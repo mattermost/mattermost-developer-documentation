@@ -1,7 +1,7 @@
 ---
 title: Incorporating GolangCI-Lint at Mattermost
 slug: incorporating-golangci-lint
-date: 2020-01-08
+date: 2020-01-13
 categories:
     - "go"
     - “linting”
@@ -37,7 +37,7 @@ We also decided to start off with the GitHub [check](https://golangci.com/) whic
 
 #### Selecting the Initial Set of Linters
 
-So with that taken care of, our next task was to decide on a set of linters to start off with. We couldn't begin with a huge set because first of all, it would take longer to run. Additionally, it would further delay our target of fixing all the  existing issues in our codebase. We needed a small but powerful set of linters that would catch effective issues, but wouldn’t take too long to fix.
+So with that taken care of, our next task was to decide on a set of linters to start off with. We couldn't begin with a huge set because first of all, it would take longer to run. Additionally, it would further delay our target of fixing all the existing issues in our codebase. We needed a small but powerful set of linters that would catch effective issues, but wouldn’t take too long to fix.
 
 After some trial and error, we settled down on [these](https://github.com/mattermost/mattermost-server/blob/e2a2a1a5bce69f153e6e095e07dadf92b64df699/.golangci.yml#L18-L26).
 
