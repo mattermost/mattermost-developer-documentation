@@ -22,36 +22,36 @@ We needed a way to run all of these linters together and efficiently too. Gometa
 
 But the introduction of the `golang.org/x/tools/go/analysis` package during the 1.12 cycle was a game-changer. It introduced a standard API for writing Go static analyzers, which allowed them to be easily shared with the rest of the ecosystem in a plug-and-play model. Finally the One Ring to rule them all!
 
-Unsurprisingly, not before too long, GolangCI-Lint came up on the horizon. It used the go/analysis API to load all the linters and ran them concurrently, leading to a drastic reduction in memory and improvement in speed; becoming the successor to Gometalinter which is deprecated now.
+Unsurprisingly, before too long, GolangCI-Lint came up on the horizon. It used the go/analysis API to load all the linters and ran them concurrently, leading to a drastic reduction in memory and improvement in speed; becoming the successor to Gometalinter which is deprecated now.
 
 The writing was on the wall. GolangCI-Lint was the right choice. Following is an account of how we integrated it into our codebase.
 
 
 #### Integrating GolangCI-Lint into our CI
 
-Right off the bat, there was a big question mark hanging over our heads. It would be very, _very_ painful to have to fix _all_ the issues in our codebase before enforcing it as a CI check, by which time, new issues would have creeped in. It would be a never-ending chase.
+Right off the bat, there was a big question mark hanging over our heads. It would be very, _very_ painful to have to fix _all_ the issues in our codebase before enforcing it as a CI check, by which time, new issues would have crept in. It would be a never-ending chase.
 
-Fortunately, GolangCI-Lint provides us with a `--new-from-rev=HEAD~1` option which allowed it to check only code added in the latest commit. This gives us breathing room to enable the check in our CI and retroactively fix all the old issues. Granted, that it won’t catch issues for PRs with more than one commit, but it’s a start and we planned to lift this restriction anyways.
+Fortunately, GolangCI-Lint provides us with a `--new-from-rev=HEAD~1` option which allows it to check only code added in the latest commit. This gives us breathing room to enable the check in our CI and retroactively fix all the old issues. Granted, it won’t catch issues for PRs with more than one commit, but it’s a start and we planned to lift this restriction anyways.
 
-We also decided to start off with the Github [check](https://golangci.com/) which relieves any CI setup burden on our side. This check helps community members spot linter issues at first glance.
+We also decided to start off with the GitHub [check](https://golangci.com/) which relieves any CI setup burden on our side. This check helps community members spot linter issues at first glance.
 
-#### Deciding the initial set of linters
+#### Selecting the Initial Set of Linters
 
-So with that taken care of, our next task was to decide on a set of linters to start off with. We could not begin with a huge set because first of all, it will take longer to run. And secondly, it would further delay our target of fixing all the issues already existing in our codebase. We needed a small but good enough set of linters that would catch effective issues, but wouldn’t take too long to fix.
+So with that taken care of, our next task was to decide on a set of linters to start off with. We couldn't begin with a huge set because first of all, it would take longer to run. Additionally, it would further delay our target of fixing all the  existing issues in our codebase. We needed a small but powerful set of linters that would catch effective issues, but wouldn’t take too long to fix.
 
 After some trial and error, we settled down on [these](https://github.com/mattermost/mattermost-server/blob/e2a2a1a5bce69f153e6e095e07dadf92b64df699/.golangci.yml#L18-L26).
 
 We chose not to include `staticcheck` for the first cut because a lot of the functionality was already provided by the other linters. We also did not include `errcheck` because it uncovered _too_ many issues which did not look likely to be fixed within a reasonable time frame.
 
-#### What issues did it uncover?
+#### What Issues were Uncovered?
 
-Most issues fixed in the process where stylistic nature. We fixed [formatting issues](https://github.com/mattermost/mattermost-server/pull/12943), [removed unnecessary](https://github.com/mattermost/mattermost-server/pull/12928) [code](https://github.com/mattermost/mattermost-server/pull/12927), [removed](https://github.com/mattermost/mattermost-server/pull/12924) [a lot of](https://github.com/mattermost/mattermost-server/pull/12968), [unused](https://github.com/mattermost/mattermost-server/pull/12929) [code](https://github.com/mattermost/mattermost-server/pull/12926). These fixes are great to keep the code base clean and consistent but have no impact on the behaviour of the software and did not reveal any bugs.
+Most of the issues fixed in the process were stylistic. We fixed [formatting issues](https://github.com/mattermost/mattermost-server/pull/12943), [removed unnecessary](https://github.com/mattermost/mattermost-server/pull/12928) [code](https://github.com/mattermost/mattermost-server/pull/12927), and [removed](https://github.com/mattermost/mattermost-server/pull/12924) [a lot of](https://github.com/mattermost/mattermost-server/pull/12968), [unused](https://github.com/mattermost/mattermost-server/pull/12929) [code](https://github.com/mattermost/mattermost-server/pull/12926). These fixes are great to keep the code base clean and consistent but have no impact on the behavior of the software and did not reveal any bugs.
 
 The more interesting issues were found by `ineffassign` and `govet`.
 
-`ineffassign` reports instances where a value was assigned to a variable but the value never used. We found two instances in test files where we didn’t not check a returned valued. Although it’s a minor improvement, it’s still great to fix these issues.
+`ineffassign` reports instances where a value was assigned to a variable but not used. We found two instances in test files where we didn’t validate a returned valued. Although it’s a minor improvement, it’s still great to fix these issues.
 
-The most interesting issue where found by `govet`. Take a look at this code piece:
+The most interesting issue where found by `govet`. Take a look at this code sample:
 ```go
 obj, err := us.GetReplica().Get(model.Compliance{}, id)
 if err != nil {
@@ -61,7 +61,9 @@ if obj == nil {
 	return nil, model.NewAppError("SqlComplianceStore.Get", "store.sql_compliance.get.finding.app_error", nil, err.Error(), http.StatusNotFound)
 }
 ```
-Looks fine, doesn’t it? Except it contains a null pointer exception. At the second `return` we know that `err == nil` and hence `err.Error()` will panic. `govet` found this issue and [we fixed it](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-c5a8591c69e26808c8171db5d5dddef7L78-R78). There were [actually](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-92d8335ab3456e9fd16cb67c739c52e0R163-R165), [a](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-2c6106afe8477623894c02707bffe06dL622-R622) [couple](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-0425a0737e8b051835b0978d034d22fcL139-R139), [of](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-32736de6a4585a5384f7606e57b2792fR269-R290) [issues](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-2c6106afe8477623894c02707bffe06dL589-R589) like this one. Finding these issues alone has been a huge success and proven that linter can help fix bugs before they occur in a production environment.
+Looks fine, doesn’t it? Except it contains a null pointer exception. At the second `return` we know that `err == nil` and hence `err.Error()` will panic. `govet` found this issue and [we fixed it](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-c5a8591c69e26808c8171db5d5dddef7L78-R78). 
+
+There were [actually](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-92d8335ab3456e9fd16cb67c739c52e0R163-R165), [a](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-2c6106afe8477623894c02707bffe06dL622-R622) [couple](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-0425a0737e8b051835b0978d034d22fcL139-R139), [of](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-32736de6a4585a5384f7606e57b2792fR269-R290) [issues](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-2c6106afe8477623894c02707bffe06dL589-R589) like this one. Finding these issues alone has been a huge success and proved that linters can help fix bugs before they occur in a production environment.
 
 Another issue found by `govet` lies in this piece of code:
 ```go
@@ -91,7 +93,7 @@ if err = a.Srv.Store.System().Save(system); err == nil {
 We found and fixed [two](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-76e64b305c25e308c6b9f4c2fa572c51R204-R207) of these [issues](https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-76e64b305c25e308c6b9f4c2fa572c51R142-R144).
 
 
-#### What issues did we encounter while integrating GolangCI-Lint?
+#### What Issues were Encountered During the GolangCI-Lint Integration?
 
 The first issue we observed was there was a warning that always showed up in CI, but we could never reproduce it locally.
 
@@ -123,7 +125,7 @@ The warnings which should have been an error already had an [issue](https://gith
 
 Lastly, we just wanted to touch upon something that might be surprising to new Gophers out there. Mattermost has a very thin enterprise layer which gets built by including the directory as a symlink from inside the open-source repo.
 
-While running golangci-lint with the enterprise layer included, we observed that it was failing to run the checks inside the symlink. This is due to the fact that the Go toolchain does not work very well with symlinks. As a simple fix, we added another [command](https://github.com/mattermost/mattermost-server/blob/f672eb729103ef0c8512a3facb48d44c386cd00a/Makefile#L163) to run that directory specifically.
+While running GolangCI-Lint with the enterprise layer included, we observed that it was failing to run the checks inside the symlink. This is due to the fact that the Go toolchain does not work very well with symlinks. As a simple fix, we added another [command](https://github.com/mattermost/mattermost-server/blob/f672eb729103ef0c8512a3facb48d44c386cd00a/Makefile#L163) to run that directory specifically.
 
 #### Future Work
 
