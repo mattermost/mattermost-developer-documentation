@@ -22,6 +22,7 @@ jobs:
           if [ -z "$FILEADDED" ]
           then
             echo "nothing added in the .md"
+            echo "{}" > mattermost.json
             exit 0
           fi
           FILENAME=$(cat $FILEADDED | grep slug: | cut -d':' -f 2 | sed 's/^ *//g')
