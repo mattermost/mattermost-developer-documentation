@@ -40,6 +40,7 @@ weight: 110
 * Ian Whitlock - Engineer
 * Gabriel Sagula - Engineer
 * Katie Wiersgalla - PM
+* Justine Geffen - Technical Writer
 
 ## Build & Infrastructure Team
 
@@ -61,7 +62,6 @@ weight: 110
 
 * George Goldberg - Eng Lead
 * Jesus Espino - Engineer
-* Daniel Schalla - Security Engineer
 * Miguel de la Cruz - Engineer
 * Eli Yukelzon - Engineer
 * Claudio Costa - Engineer
@@ -70,14 +70,12 @@ weight: 110
 * Doug Lauder - Engineer
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
+* Justine Geffen - Technical Writer
 
 ## Security Team
 
-* Christopher Speller - Engineer
-* George Goldberg - Eng Lead
-* Daniel Schalla - Engineer
-* Harrison Healey - Engineer
-* Juho Nurminen - Engineer
+* Daniel Schalla - Eng Lead
+* Juho Nurminen - Product Sec. Engineer
 * Katie Wiersgalla - PM
 
 ## Toolkit Team
@@ -98,6 +96,7 @@ weight: 110
 * Dennis Kittrell - PM 
 * Michael Gamble - UX Designer
 * Rohitesh Gupta - QA SDET
+* Justine Geffen - Technical Writer
 
 ## Other
 
@@ -108,7 +107,6 @@ weight: 110
 * Jelena Gilliam - QA
 * Ogi Marusic - QA
 * Steve Mudie - QA
-* Justine Geffen - Technical Writer
 * Adam Clarkson - PM
 * Eric Sadur - PM
 * Matt Birtch - UX Designer
