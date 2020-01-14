@@ -130,6 +130,7 @@ While running GolangCI-Lint with the enterprise layer included, we observed that
 #### Future Work
 
 Now that we have a base in place, our plan is to add more linters. Here is a short wish-list for the near term, roughly in the order of priority:
+
 * __errcheck__: This got missed out in our initial cut because the work involved was too big. It is one of the most common mistakes in Go code, and extremely important that these get caught.
 * __bodyclose__: A common slip is to forget to close the body while reading HTTP responses. This is our next linter to integrate.
 * __misspell__: Spelling mistakes are sometimes hard to detect, and they invariably creep in the codebase. This is a great linter to check that.
