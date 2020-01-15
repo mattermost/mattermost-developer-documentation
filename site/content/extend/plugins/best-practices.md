@@ -1,7 +1,7 @@
 ---
 title: "Best Practices"
 subsection: Plugins (Beta)
-weight: 50
+weight: 90
 ---
 
 See here for [server-specific best practices for plugins](/extend/plugins/server/best-practices/). Webapp-specific best practices are incoming.

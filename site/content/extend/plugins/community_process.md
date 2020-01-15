@@ -6,7 +6,7 @@ weight: 50
 ---
 
 
-Getting your plugin onto our community server https://community.mattermost.com is a valuable source of feedback. Whether you are a [Core Committer](https://github.com/mattermost/mattermost-developer-documentation/blob/dae9ecb3b445111479acbaba9f382e9eb263bc52/contribute/getting-started/core-committers) or anyone from the community, we want you to get feedback to improve your plugin. However we must ensure that our community server remains stable for everyone. This document outlines the process of getting your plugin onto the community server. In the future, some of these steps will be required to get your plugin into the integrations marketplace (TBD). When you are ready to have your plugin start this process, ask in the ~Toolkit channel on the community server. The PM, or someone else from the integrations team will help you start the process.
+Getting your plugin onto our community server https://community.mattermost.com is a valuable source of feedback. Whether you are a [Core Committer](https://github.com/mattermost/mattermost-developer-documentation/blob/dae9ecb3b445111479acbaba9f382e9eb263bc52/contribute/getting-started/core-committers) or anyone from the community, we want you to get feedback to improve your plugin. However we must ensure that our community server remains stable for everyone. This document outlines the process of getting your plugin onto the community server. Some of these steps are  required to get your plugin into the [Plugin Marketplace](/extend/plugins/community-plugin-marketplace/). When you are ready to have your plugin start this process, ask in the ~Toolkit channel on the community server. The PM, or someone else from the integrations team will help you start the process.
 
 ## Checklist
 
@@ -70,6 +70,7 @@ Steps involved:
 A PM/UX pass involves getting PM support in ironing out any user experience or UI issues with the plugin.
 
 Steps involved:
+
 - Create a one paragraph summary of the integration
 - Document the main use cases into bullet form
 - Review the primary use cases and run through them to ensure they are complete, clear and functional.
