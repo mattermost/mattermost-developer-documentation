@@ -93,6 +93,7 @@ weight: 110
 * Martin Kraft - Engineeer
 * Catalin Tomai - Engineer
 * Hossein Ahmadian - Engineer
+* Farhan Munshi - Engineer
 * Dennis Kittrell - PM 
 * Michael Gamble - UX Designer
 * Rohitesh Gupta - QA SDET
