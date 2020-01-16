@@ -146,6 +146,12 @@ Below is the list of core committers working on Mattermost:
 - **<a name="amit.uttam">Amit Uttam</a>**
     - @amit.uttam on [community.mattermost.com](https://community.mattermost.com/core/messages/@amit.uttam) and [@chuttam](https://github.com/chuttam) on GitHub
     - Dev areas: Mobile
+- **<a name="doug.lauder">Doug Lauder</a>**
+    - @doug.lauder on [community.mattermost.com](https://community.mattermost.com/core/messages/@doug.lauder) and [@wiggin77](https://github.com/wiggin77) on GitHub
+    - Dev areas: TBA
+- **<a name="farhan.munshi">Farhan Munshi</a>**
+    - @farhan.munshi on [community.mattermost.com](https://community.mattermost.com/core/messages/@farhan.munshi) and [@fm2munsh](https://github.com/fm2munsh) on GitHub
+    - Dev areas: Permissions, Compliance, LDAP
     
 
 Core Developers
@@ -225,6 +231,8 @@ The core team also has QA testers who verify the correct functionality of the pr
     - @jelena.gilliam on [community.mattermost.com](https://community.mattermost.com/core/messages/@jelena.gilliam) and [@jgilliam17](https://github.com/jgilliam17) on GitHub
 - **<a name="steve.mudie">Steve Mudie</a>**
     - @steve.mudie on [community.mattermost.com](https://community.mattermost.com/core/messages/@steve.mudie) and [@stevemudie](https://github.com/stevemudie) on GitHub
+- **<a name="joseph.baylon">Joseph Baylon</a>**
+    - @joseph.baylon on [community.mattermost.com](https://community.mattermost.com/core/messages/@joseph.baylon) and [@josephbaylon](https://github.com/josephbaylon) on GitHub
 
 Build Engineers
 --------------------
