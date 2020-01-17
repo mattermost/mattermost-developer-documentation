@@ -9,7 +9,7 @@ subsection: "Desktop App"
 - C++ environment which supports C++11 (e.g. VS 2015, Xcode, GCC)
 - Python 2.7
 - Node.js 8 or later
-- Yarn
+- NPM
 - Git
 
 ## Installing dependencies
