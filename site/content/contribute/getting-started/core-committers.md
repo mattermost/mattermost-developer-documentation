@@ -225,6 +225,8 @@ The core team also has QA testers who verify the correct functionality of the pr
     - @jelena.gilliam on [community.mattermost.com](https://community.mattermost.com/core/messages/@jelena.gilliam) and [@jgilliam17](https://github.com/jgilliam17) on GitHub
 - **<a name="steve.mudie">Steve Mudie</a>**
     - @steve.mudie on [community.mattermost.com](https://community.mattermost.com/core/messages/@steve.mudie) and [@stevemudie](https://github.com/stevemudie) on GitHub
+- **<a name="joseph.baylon">Joseph Baylon</a>**
+    - @joseph.baylon on [community.mattermost.com](https://community.mattermost.com/core/messages/@joseph.baylon) and [@josephbaylon](https://github.com/josephbaylon) on GitHub    
 
 Build Engineers
 --------------------
