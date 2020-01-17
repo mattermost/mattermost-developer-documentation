@@ -12,7 +12,7 @@ jobs:
       - run:
           name: build Hugo
           environment:
-            HUGO_VERSION: 0.58.3
+            HUGO_VERSION: 0.62.2
           command: |
             wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -O /tmp/hugo.tar.gz
             tar -xvf /tmp/hugo.tar.gz hugo
