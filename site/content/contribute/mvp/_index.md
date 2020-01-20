@@ -15,6 +15,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+5.19    | January 16, 2020    | [Allen Lai](https://github.com/allenlai18)
 5.18    | December 16, 2019   | [larkox](https://github.com/larkox)
 5.17    | November 16, 2019   | [Andre Vasconcelos](https://github.com/avasconcelos114)
 5.16    | October 16, 2019    | [Paulo Bittencourt](https://github.com/pbitty)

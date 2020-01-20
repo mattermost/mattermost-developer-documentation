@@ -62,7 +62,6 @@ weight: 110
 
 * George Goldberg - Eng Lead
 * Jesus Espino - Engineer
-* Daniel Schalla - Security Engineer
 * Miguel de la Cruz - Engineer
 * Eli Yukelzon - Engineer
 * Claudio Costa - Engineer
@@ -75,11 +74,8 @@ weight: 110
 
 ## Security Team
 
-* Christopher Speller - Engineer
-* George Goldberg - Eng Lead
-* Daniel Schalla - Engineer
-* Harrison Healey - Engineer
-* Juho Nurminen - Engineer
+* Daniel Schalla - Eng Lead
+* Juho Nurminen - Product Sec. Engineer
 * Katie Wiersgalla - PM
 
 ## Toolkit Team
@@ -97,6 +93,7 @@ weight: 110
 * Martin Kraft - Engineeer
 * Catalin Tomai - Engineer
 * Hossein Ahmadian - Engineer
+* Farhan Munshi - Engineer
 * Dennis Kittrell - PM 
 * Michael Gamble - UX Designer
 * Rohitesh Gupta - QA SDET

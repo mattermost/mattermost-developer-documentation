@@ -140,7 +140,7 @@ Below is the list of core committers working on Mattermost:
 - **<a name="chris.overton">Chris Overton</a>**
     - @chris.overton on [community.mattermost.com](https://community.mattermost.com/core/messages/@chris.overton) and [@chris-overton](https://github.com/chris-overton) on GitHub
     - Dev areas: Cloud, Elasticsearch, REST API, Kubernetes
- - **<a name="gabriel.sagula">Gabriel Sagula</a>**
+- **<a name="gabriel.sagula">Gabriel Sagula</a>**
     - @gabriel.sagula on [community.mattermost.com](https://community.mattermost.com/core/messages/@gabriel.sagula) and [@gsagula](https://github.com/gsagula) on GitHub
     - Dev areas: Kubernetes, Cloud
 - **<a name="amit.uttam">Amit Uttam</a>**

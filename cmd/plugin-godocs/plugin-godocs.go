@@ -128,6 +128,10 @@ func generateDocs() (*Docs, error) {
 		Examples: make(map[string]*ExampleDocs),
 	}
 
+	// With Tests enabled in the config above, we see up to four duplicate packages. Keep
+	// track of the types seen to avoid rendering them more than once.
+	seenTypes := make(map[string]bool)
+
 	for _, pkg := range pkgs {
 		for _, example := range doc.Examples(pkg.Syntax...) {
 			buf := &bytes.Buffer{}
@@ -155,6 +159,11 @@ func generateDocs() (*Docs, error) {
 		}
 
 		for _, t := range godocs.Types {
+			if seenTypes[t.Name] {
+				continue
+			}
+			seenTypes[t.Name] = true
+
 			var interfaceDocs *InterfaceDocs
 			switch t.Name {
 			case "API":
