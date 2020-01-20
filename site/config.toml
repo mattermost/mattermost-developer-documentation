@@ -142,7 +142,7 @@ pygmentsStyle = "manni"
     youtube = 'https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA'
     copyright = '&copy; Mattermost, Inc. All Rights Reserved.'
 
-# Allows html Hugo >= v0.60.0
+# Allows html in Hugo >= v0.60.0
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
