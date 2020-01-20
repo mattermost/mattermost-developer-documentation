@@ -3,10 +3,6 @@ title: "Developer Setup"
 date: 2017-08-20T11:35:32-04:00
 weight: 2
 subsection: Server
-markup:
-  goldmark:
-    renderer:
-      unsafe: true
 ---
 
 <p>Set up your development environment for building, running, and testing the Mattermost server.</p>

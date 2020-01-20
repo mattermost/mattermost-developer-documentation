@@ -141,3 +141,9 @@ pygmentsStyle = "manni"
     facebook = 'https://www.facebook.com/Mattermost-2300985916642531/'
     youtube = 'https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA'
     copyright = '&copy; Mattermost, Inc. All Rights Reserved.'
+
+# Allows html Hugo >= v0.60.0
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
