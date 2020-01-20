@@ -35,23 +35,21 @@ and running the service under a `mattermost-push-proxy` user account with limite
 4. Configure the Mattermost Push Notification service by editing the `mattermost-push-proxy.json` file at `/home/ubuntu/mattermost-push-proxy/config`. Follow the steps in the [Android](#set-up-mattermost-push-notification-service-to-send-android-push-notifications)
     and [iOS](#set-up-mattermost-push-notification-service-to-send-ios-push-notifications) sections to replace the values in the config file.
 
-5. Setup the Mattermost Push Notification Services to use the Upstart daemon which handles supervision of the Push Service process
-    * `sudo touch /etc/init/mattermost-push-proxy.conf`
-    * `sudo vi /etc/init/mattermost-push-proxy.conf`
-    * Copy the following lines into `/etc/init/mattermost-push-proxy.conf`
-
-
+5. Create a systemd unit file to manage the Mattermost Push Notification Services with systemd and log all output of the service to `/var/log/syslog` by running this command as root.
     ```bash
-    start on runlevel [2345]
-    stop on runlevel [016]
-    respawn
-    chdir /home/ubuntu/mattermost-push-proxy
-    setuid ubuntu
-    console log
-    exec bin/mattermost-push-proxy | logger
+    echo "[Unit]
+    Description=Mattermost Push Notification Service
+
+    [Service]
+    Type=oneshot
+    ExecStart=/bin/sh -c '/home/ubuntu/mattermost-push-proxy/bin/mattermost-push-proxy | logger'
+    WorkingDirectory=/home/ubuntu/mattermost-push-proxy
+
+    [Install]
+    WantedBy=multi-user.target" >> /etc/systemd/system/mattermost-push-proxy.service
     ```
 
-6. Start the process with `sudo start mattermost-push-proxy` or if the process is already running with `sudo restart mattermost-push-proxy`.
+6. Start the service with `sudo systemctl start mattermost-push-proxy` or restart with `sudo systemctl restart mattermost-push-proxy`. Use `sudo systemctl enable mattermost-push-proxy` to have systemd start the service on boot. 
 
 
 ### Set Up Mattermost Push Notification Service to Send Android Push Notifications
