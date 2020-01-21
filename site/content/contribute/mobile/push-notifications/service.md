@@ -58,11 +58,14 @@ and running the service under a `mattermost-push-proxy` user account with limite
 ![image](/img/mobile/firebase_settings.png)
 ![image](/img/mobile/firebase_cloud_messaging.png)
 
-- Look for the value of the **Server Key** and copy it.
+- Look for the value of the **Server key** and copy it.
 ![image](/img/mobile/firebase_server_key.png)
 
-- Open the **mattermost-push-proxy.json** file in the `mattermost-push-proxy/config` directory and paste the value for the "AndroidApiKey" setting
-![image](/img/mobile/proxy-config.png)
+- Open the **mattermost-push-proxy.json** file in the `mattermost-push-proxy/config` directory and look for the  "AndroidApiKey" entry. Paste the **Server key** as its value.
+  ```
+  "AndroidApiKey": "your Server key"
+  ```
+
 
 
 ### Set up Mattermost Push Notification Service to Send iOS Push Notifications
