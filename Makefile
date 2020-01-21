@@ -2,7 +2,7 @@
 
 dist: plugin-data
 	rm -rf ./dist
-	cd site && hugo --destination ../dist/html
+	cd site && ./hugow --destination ../dist/html
 
 plugin-data: backend-plugin-data frontend-plugin-data devtalks-data
 
@@ -25,4 +25,4 @@ ifdef YOUTUBE_API_KEY
 endif
 
 dev:
-	cd site && hugo server -D
+	cd site && ./hugow server -D

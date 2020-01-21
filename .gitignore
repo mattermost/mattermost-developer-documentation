@@ -13,3 +13,7 @@
 
 # IDE artifacts
 .idea/
+
+# Hugo Wrapper
+site/.hugo/*
+!site/.hugo/version
