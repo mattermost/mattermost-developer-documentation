@@ -11,15 +11,17 @@ There's no need to directly install Hugo on your workstation, [Hugo Wrapper](htt
 Set up steps:
 
 1. Fork and clone the repo into your ~/Sites/ directory
-```
-git clone git@github.com:<yourgithubname>/mattermost-developer-documentation.git ~/Sites/
-```
+
+    ```bash
+    git clone git@github.com:<yourgithubname>/mattermost-developer-documentation.git ~/Sites/
+    ```
 
 2. Run the server
-```
-cd ~/Sites/mattermost-developer-documentation/site
-./hugow server -D
-```
+
+    ```bash
+    cd ~/Sites/mattermost-developer-documentation/site
+    ./hugow server -D
+    ```
 
 3. Go to http://localhost:1313 to see the running server
 
