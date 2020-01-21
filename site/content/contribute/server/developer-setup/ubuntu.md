@@ -32,7 +32,7 @@
     sudo chmod +x /usr/local/bin/docker-compose
     ```
 
-3. Install Go (modify installation to latest Go version from https://golang.org/dl/):
+3. Install Go (modify installation to latest Go version from <https://golang.org/dl/>):
 
     ```sh
     sudo apt-get install -y build-essential
