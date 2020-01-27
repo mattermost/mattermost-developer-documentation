@@ -152,6 +152,9 @@ Below is the list of core committers working on Mattermost:
 - **<a name="farhan.munshi">Farhan Munshi</a>**
     - @farhan.munshi on [community.mattermost.com](https://community.mattermost.com/core/messages/@farhan.munshi) and [@fm2munsh](https://github.com/fm2munsh) on GitHub
     - Dev areas: Permissions, Compliance, LDAP
+- **<a name="corey.robinson">Corey Robinson</a>**
+    - @corey.robinson on [community.mattermost.com](https://community.mattermost.com/core/messages/@corey.robinson) and [@corey-robinson](https://github.com/corey-robinson) on GitHub
+    - Dev areas: Security
     
 
 Core Developers
