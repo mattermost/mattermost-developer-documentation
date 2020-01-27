@@ -76,6 +76,7 @@ weight: 110
 
 * Daniel Schalla - Eng Lead
 * Juho Nurminen - Product Sec. Engineer
+* Corey Robinson - Engineer
 * Katie Wiersgalla - PM
 
 ## Toolkit Team
