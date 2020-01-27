@@ -26,21 +26,21 @@ Set up your development environment for building, running, and testing the Matte
 4. Clone the Mattermost source code from your fork next to your mattermost-server directory:
 
     ```sh
-    export GITHUB_USERNAME=my_username
-    mkdir -p $(go env GOPATH)/src/github.com/mattermost
-    git clone https://github.com/$GITHUB_USERNAME/mattermost-webapp.git $(go env GOPATH)/src/github.com/mattermost/mattermost-webapp
+    git clone https://github.com/$GITHUB_USERNAME/mattermost-webapp.git
     ```
 
 5. Link the `client` directory in your server with the `dist` directory in your webapp:
 
     ```sh
-    ln -nfs $(go env GOPATH)/src/github.com/mattermost/mattermost-webapp/dist $(go env GOPATH)/src/github.com/mattermost/mattermost-server/client
+    cd mattermost-server
+    ln -nfs ../mattermost-webapp/dist client
+    cd ..
     ```
 
 6. Test your environment:
 
     ```sh
-    cd $(go env GOPATH)/src/github.com/mattermost/mattermost-webapp
+    cd mattermost-webapp
     make test
     ```
 
