@@ -76,6 +76,7 @@ weight: 110
 
 * Daniel Schalla - Eng Lead
 * Juho Nurminen - Product Sec. Engineer
+* Corey Robinson - Sec. Engineer, Infra & Ops
 * Katie Wiersgalla - PM
 
 ## Toolkit Team
