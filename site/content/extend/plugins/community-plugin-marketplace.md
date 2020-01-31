@@ -36,7 +36,7 @@ Every community plugin must fulfill the following checklist to be added to the M
 1. The plugin works as expected with the latest version of Mattermost.
 2. The plugin works as expected with the latest ESR version of Mattermost. This must not be checked if `min_server_version` is higher than the latest ESR version.
 
-Given that plugins are currently in Beta and rapid development is still happening, breaking changes especially for the webapp can happen. It is expected from plugin authors to keep up with these changes and fix bugs that may occur. Breaking changes will be mentioned in the Important Upgrades Notes section (CAN WE LINK THERE?) of the [Mattermost Changelog](https://docs.mattermost.com/administration/changelog.html).
+Given that plugins are currently in Beta and rapid development is still happening, breaking changes especially for the webapp can happen. It is expected from plugin authors to keep up with these changes and fix bugs that may occur. Breaking changes will be mentioned in the "Important Upgrades Notes" section of the [Mattermost Changelog](https://docs.mattermost.com/administration/changelog.html).
 
 ### Requirements for updating a community plugin to the Marketplace
 On every update of a community plugin must still fulfill the following checklist to be added to the Marketplace. This is checked by the four reviewers in the same way as when the plugin was added. The code review and security review should be performed against the `diff` of the last version in the Marketplace and the new version.
