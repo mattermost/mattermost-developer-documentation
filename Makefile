@@ -1,5 +1,5 @@
 .PHONY: dist 
-dist: #plugin-data
+dist: plugin-data
 	rm -rf ./dist
 	hugo -s site --destination ../dist/html
 
@@ -29,7 +29,7 @@ endif
 
 .PHONY: run
 run:
-	hugo server -s site
+	hugo server --buildDrafts -s site
 
 .PHONY: dev
 dev: run
