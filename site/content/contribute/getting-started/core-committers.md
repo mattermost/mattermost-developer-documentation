@@ -50,9 +50,6 @@ Below is the list of core committers working on Mattermost:
 - **<a name="sudheer.timmaraju">Sudheer Timmaraju</a>**
     - @sudheerdev on [community.mattermost.com](https://community.mattermost.com/core/messages/@sudheerdev) and [@sudheerDev](https://github.com/sudheerDev) on GitHub
     - Dev areas: Web / Desktop and Mobile apps
-- **<a name="daniel.schalla">Daniel Schalla</a>**
-    - @dschalla on [community.mattermost.com](https://community.mattermost.com/core/messages/@dschalla) and [@dschalla](https://github.com/dschalla) on GitHub
-    - Dev areas: Security, Plugins, Integrations, Performance
 - **<a name="hyeseong.kim">Hyeseong Kim</a>**
     - @cometkim on [community.mattermost.com](https://community.mattermost.com/core/messages/@cometkim) and [@cometkim](https://github.com/cometkim) on GitHub
     - Dev areas: Web App, React, Redux, REST API
@@ -128,9 +125,6 @@ Below is the list of core committers working on Mattermost:
 - **<a name="ian.whitlock">Ian Whitlock</a>**
      - @ian.whitlock on [community.mattermost.com](https://community.mattermost.com/core/messages/@ian.whitlock) and [@gigawhitlocks](https://github.com/gigawhitlocks) on GitHub
     - Dev areas: Cloud
-- **<a name="juho.nurminen">Juho Nurminen</a>**
-    - @juho.nurminen on [community.mattermost.com](https://community.mattermost.com/core/messages/@juho.nurminen) and [@jupenur](https://github.com/jupenur) on GitHub
-    - Dev areas: Security
 - **<a name="mario.de.frutos">Mario de Frutos</a>**
     - @mario.de.frutos on [community.mattermost.com](https://community.mattermost.com/core/messages/@mario.de.frutos) and [@ethervoid](https://github.com/ethervoid) on GitHub
     - Dev areas: Server, Load Tests
@@ -152,9 +146,7 @@ Below is the list of core committers working on Mattermost:
 - **<a name="farhan.munshi">Farhan Munshi</a>**
     - @farhan.munshi on [community.mattermost.com](https://community.mattermost.com/core/messages/@farhan.munshi) and [@fm2munsh](https://github.com/fm2munsh) on GitHub
     - Dev areas: Permissions, Compliance, LDAP
-- **<a name="corey.robinson">Corey Robinson</a>**
-    - @corey.robinson on [community.mattermost.com](https://community.mattermost.com/core/messages/@corey.robinson) and [@corey-robinson](https://github.com/corey-robinson) on GitHub
-    - Dev areas: Security
+
     
 
 Core Developers
@@ -244,6 +236,19 @@ Build Engineers
     - @elisabeth.kulzer on [community.mattermost.com](https://community.mattermost.com/core/messages/@elisabeth.kulzer) and [@metanerd](https://github.com/metanerd) on GitHub
 - **<a name="jason.deland">Jason Deland</a>**
     - @jason.deland on [community.mattermost.com](https://community.mattermost.com/core/messages/@jason.deland) and [@jaydeland](https://github.com/jaydeland) on GitHub
+    
+Security Engineers
+--------------------    
+
+- **<a name="daniel.schalla">Daniel Schalla</a>**
+    - @dschalla on [community.mattermost.com](https://community.mattermost.com/core/messages/@dschalla) and [@dschalla](https://github.com/dschalla) on GitHub
+    - Dev areas: Security, Plugins, Integrations, Performance
+- **<a name="juho.nurminen">Juho Nurminen</a>**
+    - @juho.nurminen on [community.mattermost.com](https://community.mattermost.com/core/messages/@juho.nurminen) and [@jupenur](https://github.com/jupenur) on GitHub
+    - Dev areas: Security
+- **<a name="corey.robinson">Corey Robinson</a>**
+    - @corey.robinson on [community.mattermost.com](https://community.mattermost.com/core/messages/@corey.robinson) and [@corey-robinson](https://github.com/corey-robinson) on GitHub
+    - Dev areas: Security
 
 Technical Writers
 --------------------
