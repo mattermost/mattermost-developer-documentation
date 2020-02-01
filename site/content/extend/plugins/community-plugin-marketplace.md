@@ -77,3 +77,6 @@ git --ff-only upstream/master
 If a community plugin doesn’t not make it through the review process, it may still be added to the Marketplace and market as “Beta” via a label. The reviewers make a case by case decision if the quality of a plugin is sophisticated enough to be added to the Marketplace. Security and functional review and Item 1, 2, 3 and 5 from the [Product Requirements Checklist](#requirements-for-adding-community-plugin-to-the-marketplace) must be fulfilled for beta plugin.
 
 Given that it must be made clear in the Marketplace UI that a plugin is in beta, all beta plugins must only be visible on Mattermost Servers that support labels, which is Mattermost v5.20.
+
+### Take down Policy
+If a S2 and above security issue or bug that prevents the usage of the plugin for many users is not fixed within 14 days, the plugin gets taken from the Marketplace. It may be resubmitted, once the issue is resolved. Mattermost reserved the right to take down plugins at any time if a fix for a security issue is not forthcoming or the issue is critical enough to justify an immediate takedown.
