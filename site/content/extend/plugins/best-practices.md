@@ -6,7 +6,7 @@ weight: 50
 
 See here for [server-specific best practices for plugins](/extend/plugins/server/best-practices/). Webapp-specific best practices are incoming.
 
-## How do I allow my plugin to be configured through the System Console?
+## How do I enable plugin configuration through the System Console?
 
 Once a plugin is installed, Administrators have access to the plugin's configuration page in the `System Console > Plugins` section. The settings that can be configured there must be defined in the plugin's manifest [setting schema](https://developers.mattermost.com/extend/plugins/manifest-reference/#settings_schema). The Web App supports several basic pre-defined settings type, i.e. `bool` and `dropwown`, for which it will provide the corresponding UI components to be able to properly configured in the System Console.
 
