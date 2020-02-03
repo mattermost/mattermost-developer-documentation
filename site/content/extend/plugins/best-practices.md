@@ -6,13 +6,13 @@ weight: 50
 
 See here for [server-specific best practices for plugins](/extend/plugins/server/best-practices/). Webapp-specific best practices are incoming.
 
-## How do I enable plugin configuration through the System Console?
+## How can a plugin enable its configuration through the System Console?
 
 Once a plugin is installed, Administrators have access to the plugin's configuration page in the __System Console > Plugins__ section. The configurable settings must first be defined in the plugin's manifest [setting schema](https://developers.mattermost.com/extend/plugins/manifest-reference/#settings_schema). The web app supports several basic pre-defined settings type, e.g. `bool` and `dropdown`, for which the corresponding UI components are provided in order to complete configuration in the System Console.
 
 These settings are stored within the server configuration under [`Plugins`] indexed by plugin ids. The plugin's server code can access their current configuration calling the [`getConfig`](https://developers.mattermost.com/extend/plugins/server/reference/#API.GetConfig) API call and can also make changes as needed with [`saveConfig`](https://developers.mattermost.com/extend/plugins/server/reference/#API.SaveConfig).
 
-## How can I define my own plugin setting type?
+## How can a plugin define its own setting type?
 
 A plugin could define its own type of setting with a corresponding custom user interface that will be displayed in the System Console following the process below.  
 
