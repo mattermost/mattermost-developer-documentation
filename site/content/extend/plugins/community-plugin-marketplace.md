@@ -53,7 +53,7 @@ The new release must not change the plugin id defined in the manifest as this wo
 ### Process for adding community plugin to the Marketplace
 There will be an owner for community plugins, that will guide you through the review process. Currently this is [hanzei](https://github.com/hanzei).
 
-1. You open an issue on [The Plugin Marketplace Repository](https://github.com/mattermost/mattermost-marketplace) using a pre defined template for new plugins. The template contains the checklist above, so you can check the items. Please also points out which commit should be used for the review. You may cut an release candidate (RC) and for it the reviews.
+1. You open an issue on [The Plugin Marketplace Repository](https://github.com/hanzei/plugin-test/issues/new/choose) using a pre defined template for new plugins. The template contains the checklist above, so you can check the items. Please also points out which commit should be used for the review. You may cut an release candidate (RC) and for it the reviews.
 2. The reviews are requested by the owner. This is done by cloning [this](TODO) JIRA ticket for every reviewer, assigning it and mentioning the ticket on GitHub. The reviewers point out found issues on the bug tracker of the community plugin. Once all issues are resolved, they comment on the issue stating the positive review and mark the JIRA ticket as resolved.
 3. Once all items are checked and reviews made, the community repository is forked under the Mattermost GitHub organization as a private repository. This allows using the existing build tools for releasing new plugin versions. The fork is maintained by the owner.
 4. `/mb cutPlugin --repo $REP --tag $TAG` is run to build, signs and uploads the approved commit of the plugin.
