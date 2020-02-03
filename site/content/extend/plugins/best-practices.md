@@ -8,13 +8,13 @@ See here for [server-specific best practices for plugins](/extend/plugins/server
 
 ## How do I enable plugin configuration through the System Console?
 
-Once a plugin is installed, Administrators have access to the plugin's configuration page in the `System Console > Plugins` section. The settings that can be configured there must be defined in the plugin's manifest [setting schema](https://developers.mattermost.com/extend/plugins/manifest-reference/#settings_schema). The Web App supports several basic pre-defined settings type, i.e. `bool` and `dropwown`, for which it will provide the corresponding UI components to be able to properly configured in the System Console.
+Once a plugin is installed, Administrators have access to the plugin's configuration page in the __System Console > Plugins__ section. The configurable settings must first be defined in the plugin's manifest [setting schema](https://developers.mattermost.com/extend/plugins/manifest-reference/#settings_schema). The web app supports several basic pre-defined settings type, e.g. `bool` and `dropdown`, for which the corresponding UI components are provided in order to complete configuration in the System Console.
 
-These settings are stored within the server configuration under [`Plugins`] indexed by plugin ids. The plugin's server code will be able to access their current configuration calling the [`getConfig`](https://developers.mattermost.com/extend/plugins/server/reference/#API.GetConfig) API call and can also make changes as needed with [`saveConfig`](https://developers.mattermost.com/extend/plugins/server/reference/#API.SaveConfig).
+These settings are stored within the server configuration under [`Plugins`] indexed by plugin ids. The plugin's server code can access their current configuration calling the [`getConfig`](https://developers.mattermost.com/extend/plugins/server/reference/#API.GetConfig) API call and can also make changes as needed with [`saveConfig`](https://developers.mattermost.com/extend/plugins/server/reference/#API.SaveConfig).
 
 ## How can I define my own plugin setting type?
 
-A plugin could define their own type of setting with a corresponding custom user interface that will be displayed in the system console following the process below. 
+A plugin could define its own type of setting with a corresponding custom user interface that will be displayed in the System Console following the process below.  
 
 1. Define a `type: custom` setting in the plugins manifest `settings_schema`
 
