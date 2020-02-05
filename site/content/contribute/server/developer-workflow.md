@@ -19,7 +19,7 @@ Here's a general workflow for a Mattermost developer working on the [mattermost-
     * [./store/](https://github.com/mattermost/mattermost-server/tree/master/store) holds all database querying code.
     * [./utils/](https://github.com/mattermost/mattermost-server/tree/master/utils) holds all utilities, such as the mail utility.
     * [./i18n/](https://github.com/mattermost/mattermost-server/tree/master/i18n) holds all localization files for the server.
-2. On your fork, create a branch `MM-####` where #### is the ticket number if it's a [Jira](https://mattermost.atlassian.net) ticket, or `GH-####` if it's a GitHub Issue without a Jira ticket.
+2. On your fork, create a feature branch for your changes. Name it `MM-$NUMBER_$DES` where `$NUMBER` is the [Jira](https://mattermost.atlassian.net) ticket number you are working on. `$DES` is be a short description of your changes. Example branch names are `MM-18150_plugin-panic-log` and `MM-22037_uppercase-email`.
 3. Make the code changes required to complete your ticket, ensuring that unit tests are written or modified  where appropriate. Please use [testify](https://github.com/stretchr/testify) for new tests.
 4. To test your changes, run `make run-server` from the root directory of the server respository. This will start up the server at `http://localhost:8065`. To get changes to the server it must be restarted with `make restart-server`. If you want to test with the web app, you may also run `make run` which will start the server and a watcher for changes to the web app.
 5. Once everything works to meet the ticket requirements, stop Mattermost by running `make stop` in the server repository, then run `make check-style` to check your syntax.
