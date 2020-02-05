@@ -15,7 +15,7 @@ Every community plugin must fulfill the following checklist to be added to the M
 2. The source code is available in a public git repository.
 3. There is a public issue or bug tracker for the plugin, which is linked in the plugin documentation and linked via `support_url` in the manifest.
 4. The plugin provides detailed usage documentation with at least one screenshot of the plugin in action, list of features and a development guide. This is typically a README file or a landing page on the web. The link to the documentation is set as `homepage_url` in the manifest. A great example is the [README of the GitHub plugin](https://github.com/mattermost/mattermost-plugin-github/blob/master/README.md).
-5. For every release a changelog has to be publish. The link to it is noted via `release_notes_url` in the manifest.
+5. For every release a changelog has to be published. The link to it is noted via `release_notes_url` in the manifest.
 6. The plugin has to be out of Beta and be released with at least v1.0.0.
 7. All configuration has to be possible using the UI of Mattermost.
 8. The plugin id defined in the manifest must not collide with the id of an existing plugin in the marketplace. It should follow [the naming convention](https://developers.mattermost.com/extend/plugins/manifest-reference/#id).
@@ -59,7 +59,7 @@ There will be an owner for community plugins, that will guide you through the re
     - [Dev](https://mattermost.atlassian.net/browse/MM-22221)
     - [Security](https://mattermost.atlassian.net/browse/MM-22225)
     - [QA](https://mattermost.atlassian.net/browse/MM-22223)
-3. Once all items are checked and reviews made, the community repository is forked under the Mattermost GitHub organization as a private repository. This allows using the existing build tools for releasing new plugin versions. The fork is maintained by the owner.
+3. Once all items are checked and reviews made, the community repository is forked under the Mattermost GitHub organization as a private repository. This allows using the existing build tools for releasing new plugin versions. The fork is maintained by the owner. Naming conflicts are resolved by appending your username to the repository name e.g. `jira-someusername`.
 4. `/mb cutPlugin --repo $REP --tag $TAG` is run to build, signs and uploads the approved commit of the plugin.
 5. The owner opens a PR, which adds the plugin to `plugins.json` using `generator add $REP $TAG --community`. Only a functional review by one dev and one QA member is needed for this PR.
 6. After the PR is merged, the plugin gets promoted across Mattermost social media and swag sent to the maintainer. If there are multiple maintainers, everyone gets swag.
