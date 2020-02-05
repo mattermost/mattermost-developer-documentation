@@ -31,7 +31,7 @@ Every community plugin must fulfill the following checklist to be added to the M
 2. The plugin does not include favor the author of the plugin or a third party excessively by e.g. including a bitcoin miner that mines on behalf of the author.
 3. The plugins provided an email address or a username on the [Community Server](https://community.mattermost) used to report vulnerabilities in the future.
 
-**Functional Requirements (Checked by a and be avaiable  QA tester)**
+**Functional Requirements (Checked by a QA tester)**
 
 1. The plugin works as expected with the latest version of Mattermost.
 2. The plugin works as expected with the latest ESR version of Mattermost. This must not be checked if `min_server_version` is higher than the latest ESR version.
