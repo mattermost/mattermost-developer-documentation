@@ -60,7 +60,7 @@ All community plugins are assigned an owner to guide you through the review proc
     - [Security](https://mattermost.atlassian.net/browse/MM-22225)
     - [QA](https://mattermost.atlassian.net/browse/MM-22223)
 3. Once all items are checked and reviews made, the community repository is forked under the Mattermost GitHub organization as a private repository. This allows using the existing build tools for releasing new plugin versions. The fork is maintained by the owner. Naming conflicts are resolved by appending your username to the repository name e.g. `jira-someusername`.
-4. `/mb cutPlugin --repo $REP --tag $TAG` is run to build, sign and uploads the approved commit of the plugin.
+4. `/mb cutPlugin --repo $REP --tag $TAG` is run to build, sign and upload the approved commit of the plugin.
 5. The owner opens a PR, which adds the plugin to `plugins.json` using `generator add $REP $TAG --community`. Only a functional review by one dev and one QA member is needed for this PR.
 6. After the PR is merged, the plugin gets promoted across Mattermost social media and swag sent to the maintainer. If there are multiple maintainers, everyone gets swag.
 
