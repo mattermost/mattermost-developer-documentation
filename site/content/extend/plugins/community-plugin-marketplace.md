@@ -28,8 +28,7 @@ Every community plugin must fulfill the following checklist to be added to the M
 **Security Requirements (Checked by a member of the security team)**
 
 1. The plugin does not expose a vulnerability.
-2. The plugin does not include favor the author of the plugin or a third party excessively by e.g. including a bitcoin miner that mines on behalf of the author.
-3. The plugins provided an email address or a username on the [Community Server](https://community.mattermost) used to report vulnerabilities in the future.
+2. The plugins provided an email address or a username on the [Community Server](https://community.mattermost) used to report vulnerabilities in the future.
 
 **Functional Requirements (Checked by a QA tester)**
 
@@ -55,7 +54,7 @@ The new release must not change the plugin id defined in the manifest as this wo
 ### Process for adding community plugin to the Marketplace
 All community plugins are assigned an owner to guide you through the review process. Connect with [hanzei](https://github.com/hanzei) for more details.
 
-1. Open an issue on [The Plugin Marketplace Repository](https://github.com/hanzei/plugin-test/issues/new/choose) using a pre-defined template for new plugins. The template contains the checklist above, so you can check the items. Please also point out which commit should be used for the review. You may cut a release candidate (RC) for the reviews.
+1. Open an issue on the Plugin Marketplace Repository using [a pre-defined template for new plugins](https://github.com/mattermost/mattermost-marketplace/issues/new?template=add_plugin.md). The template contains the checklist above, so you can check the items. Please also point out which commit should be used for the review. You may cut a release candidate (RC) for the reviews.
 2. The reviews are requested by the owner. This is done by cloning the following JIRA ticket for every reviewer, assigning it and mentioning the ticket on GitHub. The reviewers point out discovered issues on the bug tracker of the community plugin. Once all issues are resolved, they comment on the issue stating the positive review and mark the JIRA ticket as resolved.
     - [PM](https://mattermost.atlassian.net/browse/MM-22224)
     - [Dev](https://mattermost.atlassian.net/browse/MM-22221)
@@ -67,21 +66,21 @@ All community plugins are assigned an owner to guide you through the review proc
 6. After the PR is merged, the plugin gets promoted across Mattermost social media and swag sent to the maintainer. If there are multiple maintainers, everyone gets swag.
 
 ### Process for updating community plugin to the Marketplace
-The process is the same as adding a community plugin with a couple of differences:
-- The following JIRA ticket is used instead
+1. Open an issue on the Plugin Marketplace Repository using [a pre-defined template for new plugins](https://github.com/mattermost/mattermost-marketplace/issues/new?template=update_plugin.md). The template contains the checklist above, so you can check the items. Please also point out which commit should be used for the review. You may cut a release candidate (RC) for the reviews.
+2. The reviews are requested by the owner. This is done by cloning the following JIRA ticket for every reviewer, assigning it and mentioning the ticket on GitHub. The reviewers point out discovered issues on the bug tracker of the community plugin. Once all issues are resolved, they comment on the issue stating the positive review and mark the JIRA ticket as resolved.
     - [PM](https://mattermost.atlassian.net/browse/MM-22228)
     - [Dev](https://mattermost.atlassian.net/browse/MM-22222)
     - [Security](https://mattermost.atlassian.net/browse/MM-22226)
     - [QA](https://mattermost.atlassian.net/browse/MM-22227)
-- Swag is not sent again
-- Promotion via social media happens only on outstanding updates.
-- The master branch of the fork synced with the upstream community repository by running:
-
+3. Once all items are checked and reviews made, the fork under the Mattermost GitHub organization is updated to the commit used for review.
 ```sh
 git fetch upstream
 git checkout master
-git --ff-only upstream/master
+git merge --ff-only $COMMIT_HASH
 ```
+4. `/mb cutPlugin --repo $REP --tag $TAG` is run to build, sign and upload the approved commit of the plugin.
+5. The owner opens a PR, which adds the plugin to `plugins.json` using `generator add $REP $TAG --community`. Only a functional review by one dev and one QA member is needed for this PR.
+6. Promotion via social media might happen on outstanding updates.
 
 ### Beta plugins
 If a community plugin doesn’t make it through the review process, it may still be added to the Marketplace and marked as “Beta” via a label. The reviewers make a case by case decision if the quality of a plugin is sophisticated enough to be added to the Marketplace. Security and functional reviews and Items 1, 2, 3 and 5 from the [Product Requirements Checklist](#requirements-for-adding-community-plugin-to-the-marketplace) must be fulfilled for beta plugins.
