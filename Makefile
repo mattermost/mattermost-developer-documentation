@@ -1,3 +1,5 @@
+include legacy.mk
+
 .PHONY: dist 
 dist: plugin-data
 	rm -rf ./dist
@@ -30,8 +32,3 @@ endif
 .PHONY: run
 run:
 	hugo server --buildDrafts -s site
-
-.PHONY: dev
-dev:
-	@echo '****** make dev is DEPRECATED, use make run instead ******'
-	make run
