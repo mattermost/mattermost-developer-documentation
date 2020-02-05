@@ -15,7 +15,7 @@ Every community plugin must fulfill the following checklist to be added to the M
 2. The source code is available in a public git repository.
 3. There is a public issue or bug tracker for the plugin, which is linked in the plugin documentation and linked via `support_url` in the manifest.
 4. The plugin provides detailed usage documentation with at least one screenshot of the plugin in action, list of features and a development guide. This is typically a README file or a landing page on the web. The link to the documentation is set as `homepage_url` in the manifest. A great example is the [README of the GitHub plugin](https://github.com/mattermost/mattermost-plugin-github/blob/master/README.md).
-5. For every release a changelog has to be published. The link to it is noted via `release_notes_url` in the manifest.
+5. For every release a changelog has to be published, with a link recorded in the `release_notes_url` property of the `plugin.json` manifest.
 6. The plugin has to be out of Beta and be released with at least v1.0.0.
 7. All configuration is accessible via the UI of Mattermost.
 8. The plugin id defined in the manifest must not collide with the id of an existing plugin in the marketplace. It should follow [the naming convention](https://developers.mattermost.com/extend/plugins/manifest-reference/#id).
@@ -29,12 +29,14 @@ Every community plugin must fulfill the following checklist to be added to the M
 
 1. The plugin does not expose a vulnerability.
 2. The plugin does not include favor the author of the plugin or a third party excessively by e.g. including a bitcoin miner that mines on behalf of the author.
-3. The plugins author must notify Mattermost about any vulnerabilities in the future.
+3. The plugins provided an email address or a username on the [Community Server](https://community.mattermost) used to report vulnerabilities in the future.
 
 **Functional Requirements (Checked by a and be avaiable  QA tester)**
 
 1. The plugin works as expected with the latest version of Mattermost.
 2. The plugin works as expected with the latest ESR version of Mattermost. This must not be checked if `min_server_version` is higher than the latest ESR version.
+
+Please note, that Mattermost reserves the right to reject any plugin submission from the marketplace.
 
 Given that plugins are currently in Beta and rapid development is still happening, breaking changes especially for the webapp can happen. It is expected from plugin authors to keep up with these changes and fix bugs that may occur. Breaking changes will be mentioned in the "Important Upgrades Notes" section of the [Mattermost Changelog](https://docs.mattermost.com/administration/changelog.html).
 
