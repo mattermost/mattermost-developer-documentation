@@ -15,7 +15,6 @@ weight: 110
 
 * Elias Nahum - Eng Lead
 * Miguel Alatzar - Engineer
-* Claude Wild - Engineer
 * Amit Uttam - Engineer
 * Eric Sethna - PM
 * Andrew Brown - UX Designer
@@ -68,6 +67,7 @@ weight: 110
 * Agniva De Sarker - Engineer
 * Mario de Frutos - Engineer
 * Doug Lauder - Engineer
+* Ibrahim Acikgoz - Engineer
 * Katie Wiersgalla - PM
 * Lindy Isherwood - QA
 * Justine Geffen - Technical Writer
