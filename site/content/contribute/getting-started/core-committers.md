@@ -119,9 +119,6 @@ Below is the list of core committers working on Mattermost:
 - **<a name="catalin.tomai">Catalin Tomai</a>**
     - @catalin.tomai on [community.mattermost.com](https://community.mattermost.com/core/messages/@catalin.tomai) and [@catalintomai](https://github.com/catalintomai) on GitHub
     - Dev areas: Permissions, Compliance, LDAP
-- **<a name="claude.wild">Claude Wild</a>**
-    - @claude.wild on [community.mattermost.com](https://community.mattermost.com/core/messages/@claude.wild) and [@Imisshtml](https://github.com/Imisshtml) on GitHub
-    - Dev areas: Mobile
 - **<a name="ian.whitlock">Ian Whitlock</a>**
      - @ian.whitlock on [community.mattermost.com](https://community.mattermost.com/core/messages/@ian.whitlock) and [@gigawhitlocks](https://github.com/gigawhitlocks) on GitHub
     - Dev areas: Cloud
@@ -146,6 +143,9 @@ Below is the list of core committers working on Mattermost:
 - **<a name="farhan.munshi">Farhan Munshi</a>**
     - @farhan.munshi on [community.mattermost.com](https://community.mattermost.com/core/messages/@farhan.munshi) and [@fm2munsh](https://github.com/fm2munsh) on GitHub
     - Dev areas: Permissions, Compliance, LDAP
+- **<a name="ibrahim.acikgoz">Ibrahim Acikgoz</a>**
+    - @ibrahim.acikgoz on [community.mattermost.com](https://community.mattermost.com/core/messages/@ibrahim.acikgoz) and [@isacikgoz](https://github.com/isacikgoz) on GitHub
+    - Dev areas: TBA
 
     
 
