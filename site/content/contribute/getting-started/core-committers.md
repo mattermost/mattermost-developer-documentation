@@ -145,7 +145,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Permissions, Compliance, LDAP
 - **<a name="ibrahim.acikgoz">Ibrahim Acikgoz</a>**
     - @ibrahim.acikgoz on [community.mattermost.com](https://community.mattermost.com/core/messages/@ibrahim.acikgoz) and [@isacikgoz](https://github.com/isacikgoz) on GitHub
-    - Dev areas: TBA
+    - Dev areas: Backend, CLI, Performance
 
     
 
