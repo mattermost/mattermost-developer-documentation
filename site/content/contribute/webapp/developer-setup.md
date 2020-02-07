@@ -9,17 +9,17 @@ Set up your development environment for building, running, and testing the Matte
 
 1. Set up your [development environment for the Mattermost server](/contribute/server/developer-setup).
 
-2. Install dependencies
+2. Install dependencies:
 
- - On Mac, use [Homebrew](https://brew.sh/) to install Node.js v10 and libpng:
+    - On Mac, use [Homebrew](https://brew.sh/) to install Node.js v10 and libpng:
 
-    ```sh
-    brew install node@10 libpng
-    ```
+        ```sh
+        brew install node@10 libpng
+        ```
 
- - For other platforms, install Node.js v10 from https://www.npmjs.com/get-npm.
+    - For other platforms, install Node.js v10 from https://www.npmjs.com/get-npm.
 
- - Prefer to use [NVM](https://github.com/nvm-sh/nvm) to manage different versions of Node on a given machine? Ensure you're running Node v10.15.3+ and npm v6.4.1+ to [avoid compatibility-related Jest test failures](/contribute/webapp/unit-testing/#4-getting-jest-assertion-failures-at-lines-containing-expect-tobecalledwith-expect-tohavebeennthcalledwith-or-expect-tohavebeencalledtimes-when-running-make-test).
+    - Prefer to use [NVM](https://github.com/nvm-sh/nvm) to manage different versions of Node on a given machine? Ensure you're running Node v10.15.3+ and npm v6.4.1+ to [avoid compatibility-related Jest test failures](/contribute/webapp/unit-testing/#4-getting-jest-assertion-failures-at-lines-containing-expect-tobecalledwith-expect-tohavebeennthcalledwith-or-expect-tohavebeencalledtimes-when-running-make-test).
 
 3. Fork https://github.com/mattermost/mattermost-webapp
 
