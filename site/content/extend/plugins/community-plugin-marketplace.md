@@ -32,8 +32,8 @@ Every community plugin must fulfill the following checklist to be added to the M
 
 **Functional Requirements (Checked by a QA tester)**
 
-1. The plugin works as expected with the latest version of Mattermost.
-2. The plugin works as expected with the latest ESR version of Mattermost. This must not be checked if `min_server_version` is higher than the latest ESR version.
+1. The plugin must set a `min_server_version` in the manifest.
+2. The plugin must work on all Mattermost versions greater or equal then `min_server_version`.
 
 Please note, that Mattermost reserves the right to reject any plugin submission from the marketplace.
 
