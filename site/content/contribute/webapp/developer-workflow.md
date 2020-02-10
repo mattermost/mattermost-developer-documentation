@@ -18,7 +18,7 @@ Here's a general workflow a Mattermost developer working on the [mattermost-weba
     * [./i18n/](https://github.com/mattermost/mattermost-webapp/tree/master/i18n) holds the localization files for the client
     * [./utils/](https://github.com/mattermost/mattermost-webapp/tree/master/utils) holds all widely-used utilities
     * [./tests/](https://github.com/mattermost/mattermost-webapp/tree/master/tests) holds all the client unit tests
-2. On your fork, create a branch `MM-####` where #### is the ticket number if it is a [Jira](https://mattermost.atlassian.net) ticket, or `GH-####` if it is a GitHub Issue without a Jira ticket.
+2. On your fork, create a feature branch for your changes. Name it `MM-$NUMBER_$DESCRIPTION` where `$NUMBER` is the [Jira](https://mattermost.atlassian.net) ticket number you are working on and `$DESCRIPTION` is a short description of your changes. Example branch names are `MM-18150_plugin-panic-log` and `MM-22037_uppercase-email`.
 3. Make the code changes required to complete your ticket, making sure to write or modify unit tests where appropriate. Use `make test` to run the unit tests.
 4. To test your changes, run `make run` from the root directory of the server repository. This will start up the server and a watcher process that will build any changes to the client as you make them. To get changes to the server it must be restarted with `make restart-server`. Your server will be running at `http://localhost:8065`.
 5. If you added or changed any strings you will need to run `make i18n-extract`to generate the new/updated strings.
