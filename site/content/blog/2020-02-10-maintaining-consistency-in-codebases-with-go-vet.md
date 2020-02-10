@@ -160,7 +160,6 @@ func main() {
 ```
 
 and run our vet tool to check this with `go vet -vettool=./checkwords -checkWords example.go` and the resulting output is:
-and run our vet tool to check this with `go vet -vettool=./checkwords -checkWords example.go` and the resulting output is:
 
 ```
 # command-line-arguments
