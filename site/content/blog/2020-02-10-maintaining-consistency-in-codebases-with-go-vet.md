@@ -6,7 +6,7 @@ categories:
     - "go"
 author: Jesús Espino
 github: jespino
-community: jespino
+community: jesus.espino
 ---
 
 At Mattermost we are a bit obsessed with the quality of our code, and one of
