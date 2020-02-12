@@ -66,7 +66,7 @@ checking for the [consistency in the receiver variable name of the methods for t
 
 Extending go vet is a really easy task, you only need some knowledge about the
 go AST because almost anything else is already handled by the go vet tool. As
-an example, this is a sample of a go vet check to find forbidden words in the
+an example, let's implement a go vet check to find forbidden words in the
 strings of our code.
 
 The first thing that we need is an Analyzer. An Analyzer is the struct
