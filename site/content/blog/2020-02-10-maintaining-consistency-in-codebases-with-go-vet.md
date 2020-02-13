@@ -30,12 +30,12 @@ code.
 
 I think the best way to explain it is with an example.
 
-Some time ago we decided to migrate our logging approach to use structured
-logging everywhere, but the migration wasn't complete and the old pattern
-(logging without structured approach) was starting to appear again, in some
-cases mimicking code that wasn’t migrated to the new pattern yet, and in other
-cases by coincidence because the old pattern was one of the obvious approaches
-that you can follow to present data in the logs.
+Some time ago, we re-designed our logging implementation and I think it would
+be a great example to showcase our work about maintaining consistency. While
+migrating to the new approach it didn't happen with snapping a finger hence, we
+observed that the old way of logging was making its way to the new PRs. Also in
+such cases, the old pattern was one of the obvious approaches that you can
+follow to present data in the logs.
 
 Let's dive into the topic, I will try my best to explain how we extended the go
 vet tool by adding our own specific checks.
