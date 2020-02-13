@@ -17,13 +17,17 @@ and that is the reason behind the current layered approach using struct embeddin
 
 Our store is the responsible for storing and retrieving data, and sometimes we
 need to add functionality that is not strictly related to the database queries,
-for example, cache data, or add instrumentation. That are are transversal tasks
+for example, cache data or add instrumentation. That are transversal tasks
 and not necesarilly need to be in the same block of code.
 
 Our approach is based in idea of a core Store, the one accessing to the source
 of truth (the database), and a set of layers on top of that adding extra
 behavior. All of them, the core Store and all the layers must implement
-the same interface, in this case the Store interface.
+the same interface, in this case the Store interface. This way, from the
+outside, there is not difference between our core Store without layers, or our
+core Store with 1000 layers on top of it.
+
+TODO: Draw with a simple visualization of the layers.
 
 Each layer is going to embed another layer until the last layer embeds the core
 store. Each layer is going to override some methods (or all, depending on the
@@ -47,7 +51,7 @@ single line of code of the SqlStore implementation.
 
 How we do that?
 
-To solve this problem we used structure embedding what is the way that go
+To solve this problem we used structure embedding what is the way go
 provides to extend behavior of a struct based on other struct. I prefer to not
 use the term inheritance here becase is not correct, it is embedding, not
 inheritance. I you want to understand better this concept, plese take a look to
@@ -56,8 +60,8 @@ from [Sean Kelly](https://twitter.com/StabbyCutyou), he explains it better than
 I would can.
 
 As an example I'm going to create a small, simplified version of what we have,
-but storing the data in maps instead of a database (for simplification), giving
-some time sleep to simulate this "slow" layer:
+but storing the data in memory (with a small simulated delay) instead of a
+database (for simplification).
 
 ```go
 package main
@@ -149,7 +153,7 @@ func (s *CacheLayer) DeleteUser(username string) error {
 ...
 ```
 
-Here we are creating a new struct called CacheLayer, this structs embeds the
+Here we are creating a new struct called `CacheLayer`, this structs embeds the
 `MapStore` (but it could embed any structs that implements the Store interface),
 now we have a new struct that also implements the Store interface, but have a
 different behavior. It will override 2 methods, GetUser and DeleteUser, and
@@ -249,11 +253,13 @@ implementation is pretty similar to this one, but sending this data to a
 Prometheous instead of printing it.
 
 This code is super repetitive, and in Mattermost we have a lot of method in our
-real store, so we didn't wrote it by hand, we used generators to build the
-`TimerLayer` and the `OpenTracingLayer`, and there are a lot of other layers
-that can be build from this same approach, like a `KafkaLayer`, a
-`LoggerLayer`, a `RandomDelayLayer` to test weird behaviors on unconsistent
-response times.
+store, so we didn't wrote it by hand, we used generators to build the
+`TimerLayer` and the `OpenTracingLayer`.
+
+Having this kind of generators you can build all kind of transparent layers that add extra behavior
+like a `KafkaLayer` to send everything that happens to a kafka, a `LoggerLayer`
+to log everything, a `RandomDelayLayer` to test weird behaviors on unconsistent
+response times, or any other "middleware" that you can think about.
 
 After everything is implemented we can glue it together embeding the MapStore
 inside the layers, initialize with some data, and look how it works:
@@ -304,7 +310,7 @@ CountUsers time 0.150186 secons.
 ```
 
 You can see the first 2 calls to `GetUser` are from the MapStore (because have
-the time.Sleep there), the third one is faster because you are using the
+the `time.Sleep` there), the third one is faster because you are using the
 CacheLayer, and we can see all this thanks to the instrumentation layers that
 we built.
 
@@ -320,10 +326,10 @@ this can be error prone sometimes.
 Other problem with this approach is related to how the layers work, you are
 wrapping entire methods, so is all or nothing. You can't override part of the
 method, or reuse only certain parts of the underneath code easily and that can
-generate ton of duplicated code.
+generate ton of duplicated code depending on what you want to do.
 
-Anyway, for us has been a very good way to add our instrumentation and cache
-without mixing responsabilities in our source code. And we think we can add
-special layers to generate performance improvements relaying in other services,
-like key value stores, or graph databases. For sure, something that we will
-investigate.
+We have included this architecture change some months ago, and so far for us
+has been a very good way to add our instrumentation and cache without mixing
+responsabilities in our source code. And we think we can add special layers to
+generate performance improvements relaying in other services, like key value
+stores, or graph databases. For sure, something that we will investigate.
