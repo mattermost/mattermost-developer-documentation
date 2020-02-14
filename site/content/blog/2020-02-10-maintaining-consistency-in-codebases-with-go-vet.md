@@ -23,36 +23,36 @@ general.
 
 Although `go vet` has great use in common checks, having domain-specific or even
 company-specific checks is inevitable to maintain a project at our scale. In
-Mattermost we have a way of doing certain things like logging, test assertions
+Mattermost we have a way of doing certain things like logging, test assertions,
 and adding license headers to the source files. We try our best to keep code
-consistent therefore we work hard to avoid reintroducing old patterns in the
+consistent and work hard to avoid reintroducing old patterns in the
 code.
 
 I think the best way to explain it is with an example.
 
-Some time ago, we re-designed our logging implementation and I think it would
-be a great example to showcase our work about maintaining consistency. While
-migrating to the new approach it didn't happen with snapping a finger hence, we
+Some time ago, we redesigned our logging implementation and it's a
+great example to showcase our work around maintaining consistency. While
+migrating to the new approach didn't happen with the snap of a finger, we
 observed that the old way of logging was making its way to the new PRs. Also in
 such cases, the old pattern was one of the obvious approaches that you can
 follow to present data in the logs.
 
-Let's dive into the topic, I will try my best to explain how we extended the go
-vet tool by adding our own specific checks.
+Let's dive deeper into the topic, and I will try my best to explain how we extended the `go
+vet` tool by adding our own specific checks.
 
-A good starting point would be the [check](https://github.com/mattermost/mattermost-govet/blob/master/structuredLogging/structuredLogging.go)
+A good starting point is the [check](https://github.com/mattermost/mattermost-govet/blob/master/structuredLogging/structuredLogging.go)
 we added so that we could avoid any string building with `fmt.Sprintf` calls as
 part of the calls to our log library. With that check implemented we were able
 to detect all the cases in the code where we were doing not-structured logging
-and replace them with the properly structured logging approach. After that, we
-added that check to our CI pipeline to ensure that the pattern is not
+and replace them with the properly structured logging approach. We then
+added that check to our CI pipeline to ensure that the pattern was not
 reintroduced accidentally by us or by any contributor.
 
 Another interesting example is our approach to improve the consistency of the test
-assertions. We use the [Testify](https://github.com/stretchr/testify) library
+assertions. We used the [Testify](https://github.com/stretchr/testify) library
 to include more semantic assertions, but at the same time, we were using
 `t.Fatalf` calls in certain places. The `t.Fatalf` way to make fail tests was
-less semantic because the tests error itself is not necessarily related to the
+less semantic because the test's error itself is not necessarily related to the
 assertion. We created a [check to avoid the use of `t.Fatalf`](https://github.com/mattermost/mattermost-govet/blob/master/tFatal/tFatal.go) in our tests.
 
 Once we had that, we discovered that we have some incorrectly defined
@@ -70,12 +70,12 @@ Other checks have been made for other purposes, for example checking the
 checking for the [consistency in the receiver variable name of the methods for the same structure](https://github.com/mattermost/mattermost-govet/tree/master/inconsistentReceiverName).
 
 Extending `go vet` is a really easy task, you only need some knowledge about the
-go AST because almost anything else is already handled by the `go vet` tool. As
+Go AST because almost anything else is already handled by the `go vet` tool. As
 an example, let's implement a `go vet` check to find forbidden words in the
 strings of our code.
 
 The first thing that we need is an Analyzer. An Analyzer is the struct
-responsible for receiving the ast (and some other things), find the things that
+responsible for receiving the AST (and some other things), find the things that
 we consider errors, notify `go vet` of those errors, and alert the user.
 
 Let's build our Analyzer.
@@ -151,7 +151,7 @@ register multiple analyzers there).
 Now we only need to compile it with `go build ./checkwords.go` and use it with
 `go vet -vettool=./checkwords -checkWords ./file-or-module-path`.
 
-For example, we can create an example.go file like this:
+For example, we can create an `example.go` file like this:
 
 ```go
 package main
@@ -184,6 +184,6 @@ If you see yourself asking for the same changes in the PRs all the time, you
 can probably consider using `go vet` to detect the issue/s automatically.
 
 Once the patterns are created you can apply them whenever you want, maybe by
-hand from time to time, maybe as a git hook, maybe enforced by the CI, maybe
+hand from time to time, maybe as a Git hook, maybe enforced by the CI, maybe
 you can use it as a one time thing for changing something in your code - the
 option you decide on is up to you and your use case.
