@@ -141,7 +141,7 @@ Our Analyzer is inspecting all the files searching for `*ast.BasicLit` of `Kind`
 and checks whether any of them match the forbidden words (this is a completely
 basic approach, and doesn't catch a lot of cases, but for the sake of
 simplicity I'll leave it as is). If it finds any forbidden words, it reports to
-the user with an error message. Go vet handles printing the filename and
+the user with an error message; `go vet` handles printing the filename and
 location of the error.
 
 Once we have our Analyzer we only have to register the Analyzer in our main
