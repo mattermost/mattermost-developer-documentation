@@ -1,5 +1,5 @@
 ---
-title: Maintaining consistency in codebases with Go Vet
+title: Maintaining Consistency in Codebases with Go vet
 slug: maintaining-consistency-in-codebases-with-go-vet
 date: 2020-02-10
 categories:
