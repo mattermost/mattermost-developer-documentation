@@ -97,3 +97,18 @@ FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memo
     ```sh
     source ~/.bash_profile
     ```
+#### Errors When Running 'make pre-run'
+
+##### Error message
+```sh
+Installing gems
+make: bundle: No such file or directory
+make: *** [.podinstall] Error 1
+```
+
+##### Solution
+- Run the following command to install the missing bundle gem:
+
+    ```sh
+    sudo gem install bundler --version 2.0.2
+    ```
