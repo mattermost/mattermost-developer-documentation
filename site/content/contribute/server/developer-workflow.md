@@ -43,6 +43,7 @@ Some useful `make` commands:
 * `make stop-server` stops only the server.
 * `make clean-docker` stops and removes your Docker images and is a good way to wipe your database.
 * `make clean` cleans your local environment of temporary files.
+* `make config-reset` resets the `config/config.json` file to the default.
 * `make nuke` wipes your local environment back to a completely fresh start.
 * `make package` creates packages for distributing your builds and puts them in the `~/go/src/github.com/mattermost/mattermost-server/dist` directory. First you will need to run `make build` and `make build-client`.
 * `make megacheck` runs the tool [megacheck](https://github.com/dominikh/go-tools/tree/master/cmd/megacheck) against the code base to find potential issues in the code. Please note the results are guidelines, and not mandatory in all cases. If in doubt, ask in the [Developers community channel](https://community.mattermost.com/core/channels/developers).
