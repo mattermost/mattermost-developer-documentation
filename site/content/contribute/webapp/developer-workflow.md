@@ -9,7 +9,7 @@ If you haven't [set up your developer environment](https://developers.mattermost
 
 ### Workflow ###
 
-Here's a general workflow a Mattermost developer working on the [mattermost-webapp](https://github.com/mattermost/mattermost-webapp) repository:
+Here's a general workflow for a Mattermost developer working on the [mattermost-webapp](https://github.com/mattermost/mattermost-webapp) repository:
 
 1. Review the repository structure to familiarize yourself with the project
     * [./components/](https://github.com/mattermost/mattermost-webapp/tree/master/components) holds all the [React](https://facebook.github.io/react/) UI components and views
