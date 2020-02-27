@@ -17,4 +17,4 @@ You want to validate that your strings have been successfully extracted from you
 
 ![](.gitbook/assets/image_1.jpg)
 
-1. 
+3. 
