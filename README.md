@@ -17,16 +17,16 @@ You want to validate that your strings have been successfully extracted from you
 
 ![](.gitbook/assets/image_1.jpg)
 
-1.  However, if you have a string that was "not properly extracted" you will see output similar to the below.  If you executed the```make i18n-extract``` at this point nothing would change because the string `"new-text-id"` is not detected as a string that needs to be translated.
+3.  However, if you have a string that was "not properly extracted" you will see output similar to the below.  If you executed the```make i18n-extract``` at this point nothing would change because the string `"new-text-id"` is not detected as a string that needs to be translated.
 
 ![](.gitbook/assets/image_2.jpg)
 
-1. The solution is to "tag" the string.
-2.  We do this by using the `"t"` function, shown in the below example:
+4. The solution is to "tag" the string.
+5.  We do this by using the `"t"` function, shown in the below example:
 
 ![](.gitbook/assets/image_3.jpg)
 
-1.  At this point you will need to execute the```make i18n-extract``` once again and determine if the extraction was successful.  This will generate a message in the `i18n/en.json` file.  However this is not going to extract the "default message", you will have to add this yourself.  See example below: 
+6.  At this point you will need to execute the```make i18n-extract``` once again and determine if the extraction was successful.  This will generate a message in the `i18n/en.json` file.  However this is not going to extract the "default message", you will have to add this yourself.  See example below: 
 
 ![](.gitbook/assets/image_4.jpg)
 
