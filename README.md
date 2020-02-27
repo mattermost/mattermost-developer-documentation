@@ -15,6 +15,8 @@ You want to validate that your strings have been successfully extracted from you
 1.  After you execute\`make i18n-extract\` you will need to review the results and validate that the strings were either added or removed in the `i18n/en.json` file. 
 2.  Run  `git diff` and determine if your strings were added or removed in the `i18n/en.json` file correctly.   If this was a successful extraction you will have output similar to the below:
 
+![](.gitbook/assets/image_1.jpg)
+
 ```text
 diff --git a/components/get_link_modal.tsx b/components/get_link_modal.tsx
 index ab067a4a2..412db6289 100644
@@ -39,7 +41,7 @@ index 99223a690..cd08b432b 100644
    "navbar.toggle2": "Toggle sidebar",
    "navbar.viewInfo": "View Info",
    "navbar.viewPinnedPosts": "View Pinned Posts",
-+  <span style="color:blue">"new-text-id": "New Text" *blue* text</span>"new-text-id": "New Text",
++  "new-text-id": "New Text",
    "notification.dm": "Direct Message",
    "notify_all.confirm": "Confirm",
    "notify_all.question": "By using @all or @channel you are about to send notifications to {totalMembers} people. Are you sure you want to do this?",
