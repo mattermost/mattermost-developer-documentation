@@ -1,8 +1,4 @@
-# Initial page
-
-#### 
-
-
+# Recipe
 
 Mattermost recipes are technical posts that show how to use Mattermost alongside other services or demonstrate Mattermost features. The goal of these posts is to provide you with a solution to a specific problem, a discussion about the details of the solution and some tips about how to customize it to suit your needs perfectly.
 
@@ -43,9 +39,11 @@ index 99223a690..cd08b432b 100644
    "navbar.toggle2": "Toggle sidebar",
    "navbar.viewInfo": "View Info",
    "navbar.viewPinnedPosts": "View Pinned Posts",
-+  "new-text-id": "New Text",
++  <span style="color:blue">"new-text-id": "New Text" *blue* text</span>"new-text-id": "New Text",
    "notification.dm": "Direct Message",
    "notify_all.confirm": "Confirm",
    "notify_all.question": "By using @all or @channel you are about to send notifications to {totalMembers} people. Are you sure you want to do this?",
 ```
+
+
 
