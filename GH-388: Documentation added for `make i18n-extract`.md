@@ -19,7 +19,7 @@ You want to validate that your strings have been successfully extracted from you
 
 ![](.gitbook/assets/image_2.jpg)
 
-4.The  solution is to "tag" the string.  We do this by using the `"t"` function, shown in the below example:
+4. The  solution is to "tag" the string.  We do this by using the `"t"` function, shown in the below example:
 
 ![](.gitbook/assets/image_3.jpg)
 
