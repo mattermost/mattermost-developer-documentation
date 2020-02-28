@@ -12,11 +12,34 @@ subsection: "Desktop App"
 - NPM
 - Git
 
+### Windows
+Recommended way to install prerequisites on windows is to install chocolatey package manager.
+once installed run from an administrator poweshell console
+```
+choco install nvm
+```
+```
+choco install git
+```
+
 ## Installing dependencies
 After installation, dependencies of `src/` directory are also installed.
 
+### OsX & Linux
 ```
 $ npm install
+```
+### Windows
+on an administrator powershell run
+
+```
+> .\scripts\Makefile.ps1 Install-Deps
+```
+
+If the above command fails, it might be due to not having the right policy to install. In that case use this command to temporarily change the policy:
+
+```
+> Set-ExecutionPolicy Bypass -Scope Process -Force;
 ```
 
 ## Building
@@ -33,8 +56,13 @@ Package specific files of `src/` directory as distributable formats with [`elect
 Files are defined in `electron-builder.json`.
 Packages will be generated into `release/` directory.
 
+### OSX & Linux
 ```
-$ npm run package:<all | windows | mac | linux>
+$ npm run package:<all | mac | linux>
+```
+### Windows
+```
+> .\scripts\Windows.ps1
 ```
 
 ### Dependencies
