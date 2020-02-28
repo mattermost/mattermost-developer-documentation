@@ -14,18 +14,22 @@ subsection: "Desktop App"
 
 ### Windows
 Recommended way to install prerequisites on windows is to install chocolatey package manager.
-once installed run from an administrator poweshell console
+once installed run from an administrator powershell console
 ```
 choco install nvm
 ```
 ```
 choco install git
 ```
+from a non privileged powershell console:
+```
+nvm install 10.18.1
+```
 
 ## Installing dependencies
 After installation, dependencies of `src/` directory are also installed.
 
-### OsX & Linux
+### OSX & Linux
 ```
 $ npm install
 ```
