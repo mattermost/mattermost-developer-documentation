@@ -12,6 +12,7 @@ import (
 	"os"
 	"regexp"
 	"sort"
+	"strings"
 
 	"github.com/pkg/errors"
 	"golang.org/x/tools/go/packages"
@@ -85,29 +86,26 @@ func fields(list *ast.FieldList, info *types.Info) (fields []*Field) {
 	}
 	if list != nil {
 		for _, x := range list.List {
-			xType := info.TypeOf(x.Type)
-			if xType != nil {
-				field := &Field{
-					Type: xType.String(),
-				}
-				for _, name := range x.Names {
-					field.Names = append(field.Names, name.Name)
-				}
-				fields = append(fields, field)
-			} else if _, ok := x.Type.(*ast.Ellipsis); ok {
-				field := &Field{}
-				for _, name := range x.Names {
-					field.Names = append(field.Names, name.Name)
-				}
-				t := x.Type.(*ast.Ellipsis)
-				switch t.Elt.(type) {
-				case *ast.Ident:
-					field.Type = fmt.Sprintf("...%s", t.Elt.(*ast.Ident).String())
-				case *ast.InterfaceType:
-					field.Type = "...interface{}"
-				}
-				fields = append(fields, field)
+			field := &Field{}
+			for _, name := range x.Names {
+				field.Names = append(field.Names, name.Name)
 			}
+
+			xType := info.TypeOf(x.Type)
+			if xType == nil {
+				panic(fmt.Sprintf("type of %s is nil", field.Names))
+			}
+
+			t := xType.String()
+
+			// If type is "...", t will start with [] instead of ...
+			// Replace it manually
+			if _, ok := x.Type.(*ast.Ellipsis); ok {
+				t = strings.ReplaceAll(t, "[]", "...")
+			}
+			field.Type = t
+
+			fields = append(fields, field)
 		}
 	}
 	return

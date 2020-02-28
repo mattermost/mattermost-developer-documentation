@@ -12,6 +12,7 @@
     {{- if in $builtInTypes . }}<a href="https://pkg.go.dev/builtin#{{ . }}">{{ . }}</a>
     {{- else if hasPrefix . "[]" }}[]{{ template "TypeHTML" (strings.TrimPrefix "[]" .) }}
     {{- else if hasPrefix . "*" }}*{{ template "TypeHTML" (strings.TrimPrefix "*" .) }}
+    {{- else if hasPrefix . "..." }}...{{ template "TypeHTML" (strings.TrimPrefix "..." .) }}
     {{- else if in . "." -}}
         {{- $name := index (split . "." | last 1) 0 }}
         {{- $package := strings.TrimSuffix $name . | strings.TrimSuffix "." -}}
