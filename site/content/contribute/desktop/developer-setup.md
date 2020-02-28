@@ -40,11 +40,18 @@ on an administrator powershell run
 > .\scripts\Makefile.ps1 Install-Deps
 ```
 
+#### Known problems
+
+##### Policy
 If the above command fails, it might be due to not having the right policy to install. In that case use this command to temporarily change the policy:
 
 ```
 > Set-ExecutionPolicy Bypass -Scope Process -Force;
 ```
+
+##### pngquant-bin
+
+On windows there is no default libpng-dev available, so far the best option is to install visual studio community, which will provide dependencies to build the required package.
 
 ## Building
 Build JavaScript codes with `webpack`.
