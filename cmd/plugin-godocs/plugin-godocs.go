@@ -101,7 +101,7 @@ func fields(list *ast.FieldList, info *types.Info) (fields []*Field) {
 			// If type is "...", t will start with [] instead of ...
 			// Replace it manually
 			if _, ok := x.Type.(*ast.Ellipsis); ok {
-				t = strings.ReplaceAll(t, "[]", "...")
+				t = strings.Replace(t, "[]", "...", 1)
 			}
 			field.Type = t
 
