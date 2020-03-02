@@ -7,25 +7,27 @@ weight: 20
 
 ## Setup VPN access
 
-VPN Server: https://vpn.cloud.mattermost.com
 
-* Login to the VPN server using OneLogin credentials.
+1. Login to the [VPN server](https://vpn.cloud.mattermost.com) using your mattermost email and OneLogin password. Please select `connect` instead of `login` on the drop down menu. 
+   
+2. Please refresh the page if it says:  *Please click here to continue to download OpenVPN Connect.
+You will be automatically connected after the installation has finished.*
 
-* Download the user-locked profile.
+3. Download the user-locked profile.
     <span style="display:block;text-align:center">![VPN HomePage](/img/vpn_cloud_1.png)</span>
 
-* Install a VPN client that supports DNS settings such as Visocity.
+4. Install a VPN client that supports DNS settings such as Visocity.
 
 ```bash
 brew cask install viscosity
 ```
 
-* Open the Viscosity application or your preferred VPN client and go to settings.
-
-* Click + to import the profile you downloaded from the VPN server
+5. Open the Viscosity application or your preferred VPN client and go to settings/preferences.
+   
+6. Click + to import the profile you downloaded from the VPN server on the step 1
     <span style="display:block;text-align:center">![Viscosity Profile Add](/img/vpn_cloud_2.png)</span>
 
-* After your profile is imported, go to Networking and update the DNS settings. The Server IP is the VPN server IP.
+7. After your profile is imported, select to edit the entry, go to Networking tab and update the DNS settings. As a server IP put: `10.247.4.47` which is VPN's server IP.
     <span style="display:block;text-align:center">![Viscosity VPN CIDR](/img/vpn_cloud_3.png)</span>
 
-* After following these steps you should be able to resolve private DNS entries.
+8. After following these steps you should be able to connect to VPN and then to resolve private DNS entries.
