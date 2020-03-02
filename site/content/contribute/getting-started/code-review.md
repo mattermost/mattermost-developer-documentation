@@ -80,7 +80,7 @@ If you are a core committer seeking a review
     * If your pull request depends on other pull requests, consider assigning the `Do Not Merge/Awaiting PR` label.
 10. For handling cherry-picks, please check [here](https://developers.mattermost.com/contribute/getting-started/branching/).
 11. After a pull request is merged (and cherry-picked where needed), update the Jira ticket.
-    * Resolve the ticket for QA from "Ready for QA" button with QA test steps.
+    * Resolve the ticket for QA from "Ready for QA" button with QA test steps (or "No Testing Required" if no QA testing is needed).
     * Update the release fix version.
 
 If you are a core committer asked to give a review
@@ -111,5 +111,5 @@ If you are a core committer asked to give a review
 5. Handle any cherry-picks.
     * There is an automated cherry-pick process and the author of the pull request should make sure the cherry-pick succeeds. Assume this is the case unless you are explicitly asked to help cherry-pick.
 6. After a pull request is merged (and cherry-picked where needed), update the Jira ticket.
-    * Resolve the ticket for QA from "Ready for QA" button with QA test steps.
+    * Resolve the ticket for QA from "Ready for QA" button with QA test steps (or "No Testing Required" if no QA testing is needed).
     * Update the release fix version.
