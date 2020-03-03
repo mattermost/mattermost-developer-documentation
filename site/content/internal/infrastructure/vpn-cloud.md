@@ -9,6 +9,7 @@ weight: 20
 
 
 1. Login to the [VPN server](https://vpn.cloud.mattermost.com) using your mattermost email and OneLogin password. Please select `connect` instead of `login` on the drop down menu. 
+   * If login fails, ask Cloud team to check if your username is in the correct group
    
 2. Please refresh the page if it says:  *Please click here to continue to download OpenVPN Connect.
 You will be automatically connected after the installation has finished.*
