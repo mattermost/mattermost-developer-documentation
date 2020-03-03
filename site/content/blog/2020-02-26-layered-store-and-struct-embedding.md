@@ -1,7 +1,7 @@
 ---
 title: "Layered Store and struct embedding"
 slug: layered-store-and-struct-embedding
-date: 2020-02-10
+date: 2020-02-26
 categories:
     - "go"
 author: Jesús Espino
@@ -12,7 +12,7 @@ community: jesus.espino
 One of the most important parts of the mattermost source code is the one
 responsible to accessing the mattermost database, the store. Every
 single database access is handled by the store, so we needed to find a way to
-extend it in different ways introducing with as less complexity as possible,
+extend it in different ways introducing as less complexity as possible,
 and that is the reason behind the current layered approach using struct embedding.
 
 Our store is the responsible for storing and retrieving data, and sometimes we
@@ -27,7 +27,7 @@ the same interface, in this case the Store interface. This way, from the
 outside, there is not difference between our core Store without layers, or our
 core Store with 1000 layers on top of it.
 
-TODO: Draw with a simple visualization of the layers.
+![layers](/blog/2020-02-26-layered-store-and-struct-embedding/layers.png)
 
 Each layer is going to embed another layer until the last layer embeds the core
 store. Each layer is going to override some methods (or all, depending on the
