@@ -27,7 +27,10 @@ brew cask install viscosity
 6. Click + to import the profile you downloaded from the VPN server on the step 1
     <span style="display:block;text-align:center">![Viscosity Profile Add](/img/vpn_cloud_2.png)</span>
 
-7. After your profile is imported, select to edit the entry, go to Networking tab and update the DNS settings. As a server IP put: `10.247.4.47` which is VPN's server IP.
-    <span style="display:block;text-align:center">![Viscosity VPN CIDR](/img/vpn_cloud_3.png)</span>
+7. After your profile is imported, select to edit the entry, go to Networking tab and update the DNS settings. 
+   * Select for the Mode to be `Split DNS`.  
+   * As a Server IP put: `10.247.4.47` which is VPN's server IP.
+   * In Domains put: `cloud.mattermost.com`, this will split traffic for those domains
+    <span style="display:block;text-align:center">![Viscosity VPN CIDR](/img/vpn_cloud_3_new.png)</span>
 
 8. After following these steps you should be able to connect to VPN and then to resolve private DNS entries.
