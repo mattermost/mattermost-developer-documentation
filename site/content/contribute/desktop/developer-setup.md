@@ -13,7 +13,7 @@ subsection: "Desktop App"
 - Git
 
 ### Windows
-Recommended way to install prerequisites on windows is to install chocolatey package manager.
+The recommended way to install the required components on Windows is to install the Chocolatey package manager.
 once installed run from an administrator powershell console
 ```
 choco install nvm
