@@ -34,7 +34,7 @@ When installation is complete, dependencies of the `src/` directory are also ins
 $ npm install
 ```
 ### Windows
-on an administrator powershell run
+Run the following command in the PowerShell console as `administrator`. 
 
 ```
 > .\scripts\Makefile.ps1 Install-Deps
