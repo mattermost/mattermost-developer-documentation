@@ -26,7 +26,7 @@ If you're using PowerShell without privileged access, run:
 nvm install 10.18.1
 ```
 
-## Installing dependencies
+## Installing Dependencies
 When installation is complete, dependencies of the `src/` directory are also installed.
 
 ### OSX & Linux
