@@ -40,7 +40,7 @@ Run the following command in the PowerShell console as `administrator`.
 > .\scripts\Makefile.ps1 Install-Deps
 ```
 
-#### Known problems
+#### Known Problems
 
 ##### Policy
 If the above command fails, it might be due to not having the right policy to install. You can temporarily change the policy using:
