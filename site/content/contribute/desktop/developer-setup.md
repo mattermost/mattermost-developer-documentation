@@ -51,7 +51,7 @@ If the above command fails, it might be due to not having the right policy to in
 
 ##### pngquant-bin
 
-On windows there is no default libpng-dev available, so far the best option is to install visual studio community, which will provide dependencies to build the required package.
+On Windows there is no default `libpng-dev` available. Currently the best option is to install Visual Studio Community, which provides the dependencies required to build the package.
 
 ## Building
 Build JavaScript codes with `webpack`.
