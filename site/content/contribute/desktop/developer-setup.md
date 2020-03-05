@@ -14,7 +14,7 @@ subsection: "Desktop App"
 
 ### Windows
 The recommended way to install the required components on Windows is to install the Chocolatey package manager.
-once installed run from an administrator powershell console
+Once it's installed, run the following commands in the PowerShell console as `administrator`. 
 ```
 choco install nvm
 ```
