@@ -67,7 +67,7 @@ Package specific files of `src/` directory as distributable formats with [`elect
 Files are defined in `electron-builder.json`.
 Packages will be generated into `release/` directory.
 
-### OSX & Linux
+### macOS and Linux
 ```
 $ npm run package:<all | mac | linux>
 ```
