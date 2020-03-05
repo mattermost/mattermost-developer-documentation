@@ -27,7 +27,7 @@ nvm install 10.18.1
 ```
 
 ## Installing dependencies
-After installation, dependencies of `src/` directory are also installed.
+When installation is complete, dependencies of the `src/` directory are also installed.
 
 ### OSX & Linux
 ```
