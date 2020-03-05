@@ -43,7 +43,7 @@ on an administrator powershell run
 #### Known problems
 
 ##### Policy
-If the above command fails, it might be due to not having the right policy to install. In that case use this command to temporarily change the policy:
+If the above command fails, it might be due to not having the right policy to install. You can temporarily change the policy using:
 
 ```
 > Set-ExecutionPolicy Bypass -Scope Process -Force;
