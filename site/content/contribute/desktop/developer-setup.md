@@ -21,7 +21,7 @@ choco install nvm
 ```
 choco install git
 ```
-from a non privileged powershell console:
+If you're using PowerShell without privileged access, run:
 ```
 nvm install 10.18.1
 ```
