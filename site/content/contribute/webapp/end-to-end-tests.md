@@ -103,7 +103,20 @@ Inside of the `integration` directory, there are additional directories that bre
 
     In cases where `Test Key` is not given, feel free to add a concise description of a test.
 
-5. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/3020/files) as a guide on how to write and submit an end-to-end testing PR.
+5. Add check if a certain test requires server license.
+    ```javascript
+    describe('Test description', () => {
+       before(() => {
+           // Use "cy.hasLicenseForFeature" if the test requires a certain licensed feature
+           cy.hasLicenseForFeature('GuestAccounts');
+
+           // Otherwise use "cy.hasLicense" to check if server has license in general
+           cy.hasLicense();
+       }
+    }
+    ```
+
+6. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/3020/files) as a guide on how to write and submit an end-to-end testing PR.
 
 ## Troubleshooting
 
