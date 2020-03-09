@@ -34,11 +34,12 @@ weight: 110
 ## Cloud Team
 
 * Joram Wilander - Eng Lead
-* Carlos Panato - Engineer/Infrastructure
+* Carlos Panato - SRE
 * Gabe Jackson - Engineer
-* Stylianos Rigas - Engineer/Infrastructure
+* Stylianos Rigas - SRE
 * Ian Whitlock - Engineer
 * Gabriel Sagula - Engineer
+* Angelos Kyratzakos - SRE
 * Katie Wiersgalla - PM
 * Justine Geffen - Technical Writer
 
