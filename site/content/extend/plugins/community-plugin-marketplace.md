@@ -22,36 +22,36 @@ Every community plugin must fulfill the following checklist to be added to the M
 
 **Technical Requirements (Checked by developers of the Toolkit or the Integrations team)**
 
-1. The plugin works for 60k concurrent connections and in a high availability environment. (There are currently no tools available to verify this property. Hence, it is checked via code review by a developer)
+1. The plugin works for 60k concurrent connections and in a high-availability deployment. **Note:** There are currently no publicly-available tools to verify these properties. As such, they are checked during code review by a developer.
 2. The plugin logs important events on appropriate log levels to allow system admins to troubleshoot issues.
 
 **Security Requirements (Checked by a member of the security team)**
 
 1. The plugin does not expose a vulnerability.
-2. The plugins provided an email address or a username on the [Community Server](https://community.mattermost) used to report vulnerabilities in the future.
+2. The plugin provided an email address or a username on the [Community Server](https://community.mattermost.com) used to report vulnerabilities in the future.
 
 **Functional Requirements (Checked by a QA tester)**
 
 1. The plugin must set a `min_server_version` in the manifest.
 2. The plugin must work on all Mattermost versions greater or equal then `min_server_version`.
 
-Please note, that Mattermost reserves the right to reject any plugin submission from the marketplace.
+Please note that Mattermost reserves the right to reject any plugin submission from the marketplace.
 
-Given that plugins are currently in Beta and rapid development is still happening, breaking changes especially for the webapp can happen. It is expected from plugin authors to keep up with these changes and fix bugs that may occur. Breaking changes will be mentioned in the "Important Upgrades Notes" section of the [Mattermost Changelog](https://docs.mattermost.com/administration/changelog.html).
+Given that plugin framework is currently in Beta and rapid development is still happening, breaking changes especially for the webapp can happen. It is expected from plugin authors to keep up with these changes and fix bugs that may occur. Breaking changes will be mentioned in the "Important Upgrades Notes" section of the [Mattermost Changelog](https://docs.mattermost.com/administration/changelog.html).
 
-### Requirements for updating a community plugin to the Marketplace
-When a community plugin is updated, it must still fulfill the following checklist to be added to the Marketplace. This is checked by the four reviewers in the same way as when the plugin was added. The code review and security review should be performed against the `diff` of the last version in the Marketplace and the new version.
+### Requirements for updating a Community Plugin to the Marketplace
+When a community plugin is updated, it must still fulfill the following checklist to be added to the Marketplace. This is checked by the four reviewers in the same way as when the plugin was added. The code review and security review should be performed against the `diff` of the last version in the Marketplace and the new version to be updated in the Marketplace.
 
-The release also has to follow [semver](https://semver.org/). This specifically means for plugins:
+The release also has to follow [Semantic Versioning](https://semver.org/). This specifically means for plugins:
 
-* If the plugin exposes an API for inter plugin communication, breaking changes to the API require a major version bump.
+* If the plugin exposes a public API, breaking changes to the API require a major version bump.
 * If an update requires manual migration actions from the administrator, a major version bump is required.
 
 This is checked in dev review.
 
 The new release must not change the plugin id defined in the manifest as this would require a reconfiguration of the plugin by a system admin.
 
-### Process for adding community plugin to the Marketplace
+### Process for adding Community Plugin to the Marketplace
 All community plugins are assigned an _owner_ to guide you through the review process. Connect with [hanzei](https://github.com/hanzei) for more details. Ask non-confidential questions in the [Marketplace channel](https://community.mattermost.com/core/channels/plugins-marketplace).
 
 1. Open an issue on the Plugin Marketplace Repository using [a pre-defined template for new plugins](https://github.com/mattermost/mattermost-marketplace/issues/new?template=add_plugin.md). The template contains the checklist above, so you can check the items. Please also point out which commit should be used for the review. You may cut a release candidate (RC) for the reviews.
@@ -61,17 +61,17 @@ All community plugins are assigned an _owner_ to guide you through the review pr
 5. The _owner_ opens a PR, which adds the plugin to `plugins.json` using `generator add $REP $TAG --community`. Only a functional review by one dev and one QA member is needed for this PR.
 6. After the PR is merged, the plugin gets promoted across Mattermost social media and swag sent to the maintainer. If there are multiple maintainers, everyone gets swag.
 
-### Process for updating community plugin to the Marketplace
+### Process for updating Community Plugin to the Marketplace
 1. Open an issue on the Plugin Marketplace Repository using [a pre-defined template for new plugins](https://github.com/mattermost/mattermost-marketplace/issues/new?template=update_plugin.md). The template contains the checklist above, so you can check the items. Please also point out which commit should be used for the review. You may cut a release candidate (RC) for the reviews.
 2. The  _owner_ submits a pull request to merge the upstream changes. Reviews are requested by the _owner_. The reviewers point out general discovered issues in the pull request or on the bug tracker of the community plugin. After all blocking issues are resolved, they approve the pull request.
 3. The pull request gets merged and `/mb cutplugin --repo $REP --tag $TAG` is run to build, sign and upload the approved commit of the plugin.
 4. The _owner_ opens a PR, which adds the plugin to `plugins.json` using `generator add $REP $TAG --community`. Only a functional review by one dev and one QA member is needed for this PR.
 5. Promotion via social media might happen on outstanding updates.
 
-### Beta plugins
+### Beta Plugins
 If a community plugin doesn’t make it through the review process, it may still be added to the Marketplace and marked as “Beta” via a label. The reviewers make a case by case decision if the quality of a plugin is sophisticated enough to be added to the Marketplace. Security and functional reviews and Items 1, 2, 3 and 5 from the [Product Requirements Checklist](#requirements-for-adding-community-plugin-to-the-marketplace) must be fulfilled for beta plugins.
 
-It must be made clear in the Marketplace UI that a plugin is in beta. All beta plugins must only be visible on Mattermost Servers that support labels, which is Mattermost v5.20.
+It must be made clear in the Marketplace UI that a plugin is in beta. Beta plugins must only be visible on Mattermost servers that support labels (i.e. Mattermost v5.20 or later).
 
 ### Security Issues
 Any security issues found in the plugin have to be emailed to `responsibledisclosure@mattermost.com` or send to a member of the security team on the [Community Server](https://community.mattermost.com/).
