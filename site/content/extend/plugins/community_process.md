@@ -64,10 +64,10 @@ QA pass involves getting a member of our QA team to take a look and verify the f
 
 Steps involved:
 
-- Ensure all setup documentation needed is clear and can be successfully followed 
-- Dedicated instance or test account to access and test the third-party service, if applicable
-- Functional testing has been done to ensure the integration works as expected
-- For Plugins owned by Mattermost - Release testing is added to cover the main functionality of the plugin 
+- Ensure all setup documentation needed is clear and can be successfully followed.
+- Dedicated instance or test account to access and test the third-party service, if applicable.
+- Functional testing has been done to ensure the integration works as expected.
+- For Plugins owned by Mattermost - Release testing is added to cover the main functionality of the plugin.
 
 ### PM/UX Review
 
@@ -75,8 +75,8 @@ A PM/UX pass involves getting PM support in ironing out any user experience or U
 
 Steps involved:
 
-- Create a one paragraph summary of the integration
-- Document the main use cases into bullet form
+- Create a one paragraph summary of the integration.
+- Document the main use cases into bullet form.
 - Review the primary use cases and run through them to ensure they are complete, clear, and functional.
-- Ensure there is documentation to support the plugin (may include having sufficient helper text in the plugin)
-- Consider if there are any communication to other teams or users required as part of the rollout to our community server
+- Ensure there is documentation to support the plugin. (may include having sufficient helper text in the plugin)
+- Consider if there are any communication to other teams or users required as part of the rollout to our community server.
