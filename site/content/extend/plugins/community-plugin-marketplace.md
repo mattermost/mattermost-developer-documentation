@@ -74,7 +74,7 @@ If a community plugin doesn’t make it through the review process, it may still
 It must be made clear in the Marketplace UI that a plugin is in beta. Beta plugins must only be visible on Mattermost servers that support labels (i.e. Mattermost v5.20 or later).
 
 ### Security Issues
-Any security issues found in the plugin have to be emailed to `responsibledisclosure@mattermost.com` or send to a member of the security team on the [Community Server](https://community.mattermost.com/).
+Any security issues found in the plugin should be reported by email to `responsibledisclosure@mattermost.com` or sent directly to a member of the [security team](https://developers.mattermost.com/internal/rd-teams/#security-team) on the [Community Server](https://community.mattermost.com/).
 
 ### Take down Policy
 If an S2 and above security issue or bug that prevents the usage of the plugin for many users is not fixed within 14 days, the plugin will be removed from the Marketplace. It may be resubmitted once the issue is resolved. Mattermost reserves the right to take down plugins at any time if a fix for a security issue is not forthcoming or the issue is critical enough to justify an immediate takedown.
