@@ -44,7 +44,7 @@ As the plugin framework is currently in Beta, the rapid development cycle means 
 
 ### Requirements for updating a Community Plugin to the Marketplace
 
-When a community plugin is updated, it must still fulfill the following checklist to be added to the Marketplace. This is checked by the four reviewers in the same way as when the plugin was added. The code review and security review should be performed against the `diff` of the last version in the Marketplace and the new version to be updated in the Marketplace.
+When a community plugin is updated, the new version must fulfill the following checklist to remain on the Marketplace. The new version checked by the four reviewers in the same way as when the plugin was added. The code review and security review should be performed against the `diff` of the last version in the Marketplace and the new version to be updated in the Marketplace.
 
 The release also has to follow [Semantic Versioning](https://semver.org/). For plugins this means:
 
