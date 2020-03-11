@@ -14,42 +14,42 @@ Every community plugin must fulfill the following checklist to be added to the M
 1. The plugin is published under an Apache v2 compatible license (e.g. no GPL, APGL). A list of compatible licenses can be found [here](https://apache.org/legal/resolved.html#category-a).
 2. The source code is available in a public git repository.
 3. There is a public issue or bug tracker for the plugin, which is linked in the plugin documentation and linked via `support_url` in the manifest.
-4. The plugin provides detailed usage documentation with at least one screenshot of the plugin in action, list of features and a development guide. This is typically a README file or a landing page on the web. The link to the documentation is set as `homepage_url` in the manifest. A great example is the [README of the GitHub plugin](https://github.com/mattermost/mattermost-plugin-github/blob/master/README.md).
+4. The plugin provides detailed usage documentation with at least one screenshot of the plugin in action, list of features, and a development guide. This is typically a `README` file or a landing page on the web. The link to the documentation is set as `homepage_url` in the manifest. A great example is the [`README` of the GitHub plugin](https://github.com/mattermost/mattermost-plugin-github/blob/master/README.md).
 5. For the current release and upcoming ones a changelog has to be published, with a link recorded in the `release_notes_url` property of the `plugin.json` manifest.
 6. The plugin has to be out of Beta and be released with at least v1.0.0.
 7. All configuration is accessible via the UI of Mattermost.
-8. The plugin id defined in the manifest must not collide with the id of an existing plugin in the marketplace. It should follow [the documentation's suggested naming convention](https://developers.mattermost.com/extend/plugins/manifest-reference/#id).
+8. The plugin ID defined in the manifest must not collide with the ID of an existing plugin in the Marketplace. It should follow [the documentation's suggested naming convention](https://developers.mattermost.com/extend/plugins/manifest-reference/#id).
 
 **Technical Requirements (Checked by developers of the Toolkit or the Integrations team)**
 
 1. The plugin works for 60k concurrent connections and in a high-availability deployment. **Note:** There are currently no publicly-available tools to verify these properties. As such, they are checked during code review by a developer.
-2. The plugin logs important events on appropriate log levels to allow system admins to troubleshoot issues.
+2. The plugin logs important events on appropriate log levels to allow System Admins to troubleshoot issues.
 
-**Security Requirements (Checked by a member of the security team)**
+**Security Requirements (Checked by a member of the Security team)**
 
 1. Security reviews do not reveal any exploitable vulnerabilities in the plugin.
-2. The plugin provided an email address or a username on the [Community Server](https://community.mattermost.com) used to report vulnerabilities in the future.
+2. The plugin provides an email address or a username on the [Community Server](https://community.mattermost.com) used to report vulnerabilities in the future.
 
 **Functional Requirements (Checked by a QA tester)**
 
 1. The plugin must set a `min_server_version` in the manifest.
-2. The plugin must work on all Mattermost versions greater or equal then `min_server_version`.
+2. The plugin must work on all Mattermost versions greater than or equal to the `min_server_version`.
 
-Please note that Mattermost reserves the right to reject any plugin submission from the marketplace.
+Please note that Mattermost reserves the right to reject any plugin submission from the Marketplace.
 
-Given that plugin framework is currently in Beta and rapid development is still happening, breaking changes especially for the webapp can happen. It is expected from plugin authors to keep up with these changes and fix bugs that may occur. Breaking changes will be mentioned in the "Important Upgrades Notes" section of the [Mattermost Changelog](https://docs.mattermost.com/administration/changelog.html).
+As the plugin framework is currently in Beta, the rapid development cycle means that breaking changes (especially for the web app) can be expected. It's recommended that plugin authors keep up with these changes and fix bugs that may occur. Breaking changes will be mentioned in the "Important Upgrades Notes" section of the [Mattermost Changelog](https://docs.mattermost.com/administration/changelog.html).
 
 ### Requirements for updating a Community Plugin to the Marketplace
 When a community plugin is updated, it must still fulfill the following checklist to be added to the Marketplace. This is checked by the four reviewers in the same way as when the plugin was added. The code review and security review should be performed against the `diff` of the last version in the Marketplace and the new version to be updated in the Marketplace.
 
-The release also has to follow [Semantic Versioning](https://semver.org/). This specifically means for plugins:
+The release also has to follow [Semantic Versioning](https://semver.org/). For plugins this means:
 
 * If the plugin exposes a public API, breaking changes to the API require a major version bump.
 * If an update requires manual migration actions from the administrator, a major version bump is required.
 
 This is checked in dev review.
 
-The new release must not change the plugin id defined in the manifest as this would require a reconfiguration of the plugin by a system admin.
+The new release must not change the plugin ID defined in the manifest as this would require a reconfiguration of the plugin by a System Admin.
 
 ### Process for adding Community Plugin to the Marketplace
 All community plugins are assigned an _owner_ to guide you through the review process. Connect with [hanzei](https://github.com/hanzei) for more details. Ask non-confidential questions in the [Marketplace channel](https://community.mattermost.com/core/channels/plugins-marketplace).
