@@ -18,7 +18,7 @@ Every community plugin must fulfill the following checklist to be added to the M
 5. For the current release and upcoming ones a changelog has to be published, with a link recorded in the `release_notes_url` property of the `plugin.json` manifest.
 6. The plugin has to be out of Beta and be released with at least v1.0.0.
 7. All configuration is accessible via the UI of Mattermost.
-8. The plugin id defined in the manifest must not collide with the id of an existing plugin in the marketplace. It should follow [the naming convention](https://developers.mattermost.com/extend/plugins/manifest-reference/#id).
+8. The plugin id defined in the manifest must not collide with the id of an existing plugin in the marketplace. It should follow [the documentation's suggested naming convention](https://developers.mattermost.com/extend/plugins/manifest-reference/#id).
 
 **Technical Requirements (Checked by developers of the Toolkit or the Integrations team)**
 
