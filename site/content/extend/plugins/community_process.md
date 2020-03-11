@@ -6,7 +6,11 @@ weight: 50
 ---
 
 
-Getting your plugin onto our community server https://community.mattermost.com is a valuable source of feedback. Whether you are a [Core Committer](https://github.com/mattermost/mattermost-developer-documentation/blob/dae9ecb3b445111479acbaba9f382e9eb263bc52/contribute/getting-started/core-committers) or anyone from the community, we want you to get feedback to improve your plugin. However we must ensure that our community server remains stable for everyone. This document outlines the process of getting your plugin onto the community server. Some of these steps arerequired to get your plugin into the [Plugin Marketplace](/extend/plugins/community-plugin-marketplace/). When you are ready to have your plugin start this process, ask in the [Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) on the community server. The PM, or someone else from the integrations team will help you start the process.
+Getting your plugin onto our Community server https://community.mattermost.com is a valuable source of feedback. Whether you are a [Core Committer](https://github.com/mattermost/mattermost-developer-documentation/blob/dae9ecb3b445111479acbaba9f382e9eb263bc52/contribute/getting-started/core-committers) or anyone from the community, we want you to get feedback to improve your plugin. 
+
+However we must ensure that our Community server remains stable for everyone. This document outlines the process of getting your plugin onto the Community server and some of these steps are required to get your plugin into the [Plugin Marketplace](/extend/plugins/community-plugin-marketplace/). 
+
+When you are ready to begin this process for your plugin, ask in the [Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) on the Community server. The PM, or someone else from the integrations team will help you start the process.
 
 ## Checklist
 
@@ -73,7 +77,6 @@ Steps involved:
 
 - Create a one paragraph summary of the integration
 - Document the main use cases into bullet form
-- Review the primary use cases and run through them to ensure they are complete, clear and functional.
+- Review the primary use cases and run through them to ensure they are complete, clear, and functional.
 - Ensure there is documentation to support the plugin (may include having sufficient helper text in the plugin)
 - Consider if there are any communication to other teams or users required as part of the rollout to our community server
-
