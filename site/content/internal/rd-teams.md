@@ -27,6 +27,7 @@ weight: 110
 * Brad Coughlin - Engineer
 * Devin Binnie - Engineer
 * Guillermo Vayá - Engineer
+* Nevy Angelova - Engineer
 * Eric Sethna - PM
 * Andrew Brown - UX Designer
 

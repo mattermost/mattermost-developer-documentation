@@ -87,7 +87,7 @@ Part of SET's responsibility is to interface with the customer support team. SET
 
 1. Post the issue in [Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel. If the message contains confidential information about a customer, then post in [Customer Support](https://community.mattermost.com/private-core/channels/community) channel in private Staff team.
 2. At-mention SET team lead, identified as the first person in the [Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel header, and provide the relevant information listed in the [support handbook](https://docs.mattermost.com/process/support.html).
-If no solution or next steps (such as a Jira ticket) are presented within 24 hours, create a ticket in [Mattermost Jira project](https://mattermost.atlassian.net/) and assign "Sustained Engineering" as the **Mattermost Team**. The ticket will be reviewed by a SET team during Tuesday or Thursday triage. If you need a resolution sooner than triage time, escalate to @chris.overton on https://community.mattermost.com.
+3. If no solution or next steps (such as a Jira ticket) are presented within 24 hours, create a ticket in [Mattermost Jira project](https://mattermost.atlassian.net/) and assign "Sustained Engineering" as the **Mattermost Team**. The ticket will be reviewed by a SET team during Tuesday or Thursday triage. If you need a resolution sooner than triage time, escalate to @chris.overton on https://community.mattermost.com.
 
 This process helps increase accountability and traceability across teams.
 

@@ -1,11 +1,18 @@
 ---
 title: "Developer Setup"
-date: 2017-08-20T11:35:32-04:00
+date: 2020-02-01T19:50:32-04:00
 weight: 2
 subsection: Server
 ---
 
-<p>Set up your development environment for building, running, and testing the Mattermost server.</p>
+Set up your development environment for building, running, and testing the Mattermost server. <br>
+For minimum software requirements, see the following table:
+
+| Software       | Minimum Version  |
+|----------------|------------------|
+| Docker         | 17.12.0+         |
+| Docker Compose | 1.21.0+          |
+| Go             | 1.13.3+          |
 
 <div class="tab">
     <button class="tablinks active" onclick="openTab(event, 'mac')">Mac OS X</button>

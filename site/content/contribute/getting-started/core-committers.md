@@ -146,6 +146,9 @@ Below is the list of core committers working on Mattermost:
 - **<a name="ibrahim.acikgoz">Ibrahim Acikgoz</a>**
     - @ibrahim.acikgoz on [community.mattermost.com](https://community.mattermost.com/core/messages/@ibrahim.acikgoz) and [@isacikgoz](https://github.com/isacikgoz) on GitHub
     - Dev areas: Backend, CLI, Performance
+- **<a name="nevy.angelova">Nevy Angelova</a>**
+    - @nevyana on [community.mattermost.com](https://community.mattermost.com/core/messages/@nevyana) and [@nevyangelova](https://github.com/nevyangelova) on GitHub
+    - Dev areas: Web App, React, Redux
 
     
 

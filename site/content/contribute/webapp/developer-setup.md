@@ -9,17 +9,17 @@ Set up your development environment for building, running, and testing the Matte
 
 1. Set up your [development environment for the Mattermost server](/contribute/server/developer-setup).
 
-2. Install dependencies
+2. Install dependencies:
 
- - On Mac, use [Homebrew](https://brew.sh/) to install Node.js v10 and libpng:
+    - On Mac, use [Homebrew](https://brew.sh/) to install Node.js v10 and libpng:
 
-    ```sh
-    brew install node@10 libpng
-    ```
+        ```sh
+        brew install node@10 libpng
+        ```
 
- - For other platforms, install Node.js v10 from https://www.npmjs.com/get-npm.
+    - For other platforms, install Node.js v10 from https://www.npmjs.com/get-npm.
 
- - Prefer to use [NVM](https://github.com/nvm-sh/nvm) to manage different versions of Node on a given machine? Ensure you're running Node v10.15.3+ and npm v6.4.1+ to [avoid compatibility-related Jest test failures](/contribute/webapp/unit-testing/#4-getting-jest-assertion-failures-at-lines-containing-expect-tobecalledwith-expect-tohavebeennthcalledwith-or-expect-tohavebeencalledtimes-when-running-make-test).
+    - Prefer to use [NVM](https://github.com/nvm-sh/nvm) to manage different versions of Node on a given machine? Ensure you're running Node v10.15.3+ and npm v6.4.1+ to [avoid compatibility-related Jest test failures](/contribute/webapp/unit-testing/#4-getting-jest-assertion-failures-at-lines-containing-expect-tobecalledwith-expect-tohavebeennthcalledwith-or-expect-tohavebeencalledtimes-when-running-make-test).
 
 3. Fork https://github.com/mattermost/mattermost-webapp
 
@@ -43,8 +43,15 @@ Set up your development environment for building, running, and testing the Matte
     cd mattermost-webapp
     make test
     ```
+7. When tests pass, run the app: 
 
-7. (Optional) Enable live reload functionality to refresh the webapp as you edit the source code. First, install and enable live reload script injection extension for your web browser ([Chrome](https://chrome.google.com/webstore/detail/remotelivereload/jlppknnillhjgiengoigajegdpieppei/related?hl=en) | [Firefox](https://addons.mozilla.org/en-US/firefox/addon/livereload-web-extension/)), then run (before running webpack):
+     ```sh
+    make run
+    ```
+
+    Refreshing http://localhost:8065 should now load the UI.
+
+    If you would like the webapp to automatically refresh as you edit the source code you can install and enable the live reload script injection extension for your web browser ([Chrome](https://chrome.google.com/webstore/detail/remotelivereload/jlppknnillhjgiengoigajegdpieppei/related?hl=en) | [Firefox](https://addons.mozilla.org/en-US/firefox/addon/livereload-web-extension/)). Then, before running webpack run:
 
     ```sh
     export MM_LIVE_RELOAD=true
