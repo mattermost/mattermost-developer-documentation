@@ -60,12 +60,12 @@ The new release must not change the plugin ID defined in the manifest as this wo
 
 All community plugins are assigned an _owner_ to guide you through the review process. Connect with [hanzei](https://github.com/hanzei) for more details. Ask non-confidential questions in the [Marketplace channel](https://community.mattermost.com/core/channels/plugins-marketplace).
 
-1. Open an issue on the Plugin Marketplace Repository using [a pre-defined template for new plugins](https://github.com/mattermost/mattermost-marketplace/issues/new?template=add_plugin.md). The template contains the checklist above, so you can check the items. Please also point out which commit should be used for the review. You may cut a release candidate (RC) for the reviews.
-2. The _owner_ forks the community repository under the Mattermost GitHub organization as a private fork. This allows using the existing build tools for releasing new plugin versions. The fork is maintained by the _owner_. Naming conflicts are resolved by appending your username to the repository name e.g. `jira-someusername`. The community members is given read access to the private fork.
+1. Open an issue on the Plugin Marketplace repository using [a pre-defined template for new plugins](https://github.com/mattermost/mattermost-marketplace/issues/new?template=add_plugin.md). The template contains the checklist above, so you can check the items. Please also point out which commit should be used for the review. You may cut a release candidate (RC) for the reviews.
+2. The _owner_ forks the community repository under the Mattermost GitHub organization as a private fork so the existing build tools for releasing new plugin versions can be used. The fork is maintained by the _owner_. Naming conflicts are resolved by appending your username to the repository name e.g. `jira-someusername`. The community member is given read access to the private fork.
 3. The _owner_ submits a pull request to merge the latest version of the community plugin into `master`. Reviews are requested by the _owner_. The reviewers point out general discovered issues in the pull request or on the bug tracker of the community plugin. Once all blocking issues are resolved, they approve the pull request.
-4. The pull request gets merged and`/mb cutplugin --repo $REP --tag $TAG` is run to build, sign and upload the approved commit of the plugin.
-5. The _owner_ opens a PR, which adds the plugin to `plugins.json` using `generator add $REP $TAG --community`. Only a functional review by one dev and one QA member is needed for this PR.
-6. After the PR is merged, the plugin gets promoted across Mattermost social media and swag sent to the maintainer. If there are multiple maintainers, everyone gets swag.
+4. The pull request gets merged and`/mb cutplugin --repo $REP --tag $TAG` is run to build, sign, and upload the approved commit of the plugin.
+5. The _owner_ opens a pull request, which adds the plugin to `plugins.json` using `generator add $REP $TAG --community`. Only a functional review by one dev and one QA member is needed for this pull request.
+6. After the pull request is merged, the plugin gets promoted across Mattermost social media and swag is sent to the maintainer. If there are multiple maintainers, everyone gets swag.
 
 
 ### Process for updating Community Plugin to the Marketplace
