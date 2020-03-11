@@ -27,7 +27,7 @@ Every community plugin must fulfill the following checklist to be added to the M
 
 **Security Requirements (Checked by a member of the security team)**
 
-1. The plugin does not expose a vulnerability.
+1. Security reviews do not reveal any exploitable vulnerabilities in the plugin.
 2. The plugin provided an email address or a username on the [Community Server](https://community.mattermost.com) used to report vulnerabilities in the future.
 
 **Functional Requirements (Checked by a QA tester)**
