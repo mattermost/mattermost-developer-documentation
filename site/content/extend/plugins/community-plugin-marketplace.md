@@ -52,7 +52,7 @@ This is checked in dev review.
 The new release must not change the plugin id defined in the manifest as this would require a reconfiguration of the plugin by a system admin.
 
 ### Process for adding community plugin to the Marketplace
-All community plugins are assigned an _owner_ to guide you through the review process. Connect with [hanzei](https://github.com/hanzei) for more details.
+All community plugins are assigned an _owner_ to guide you through the review process. Connect with [hanzei](https://github.com/hanzei) for more details. Ask non-confidential questions in the [Marketplace channel](https://community.mattermost.com/core/channels/plugins-marketplace).
 
 1. Open an issue on the Plugin Marketplace Repository using [a pre-defined template for new plugins](https://github.com/mattermost/mattermost-marketplace/issues/new?template=add_plugin.md). The template contains the checklist above, so you can check the items. Please also point out which commit should be used for the review. You may cut a release candidate (RC) for the reviews.
 2. The reviews are requested by the _owner_. This is done by cloning the following JIRA ticket for every reviewer, assigning it and mentioning the ticket on GitHub. The reviewers point out discovered issues on the bug tracker of the community plugin. Once all issues are resolved, they comment on the issue stating the positive review and mark the JIRA ticket as resolved.
