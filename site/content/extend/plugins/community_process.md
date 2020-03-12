@@ -36,14 +36,14 @@ When you are ready to begin this process for your plugin, ask in the [Toolkit ch
 
 Basic code review of an experimental plugin involves a quick review by a [core committer](/contribute/getting-started/core-committers/) to verify that the plugin does what it says it does and to provide any guidance and feedback. To make it easier to provide feedback, a PR can be made that contains all the code of the plugin that isn't the boilerplate from mattermost-plugin-starter-template.
 
-- When you are ready for your plugin to start this process, post an introduction in the [Integrations and Apps channel](https://community.mattermost.com/core/channels/integrations) on the community server. E.g., "Hi, I have a plugin that I would like to get reviewed. It is called ... It is designed to ... Thanks for reviewing it!" Here is an example: https://community.mattermost.com/core/pl/6dci1ssexjrh9rmdzt4pdpb9zy
+- When you are ready for your plugin to start this process, post an introduction in the [Integrations and Apps channel](https://community.mattermost.com/core/channels/integrations) on the Community server. Here is [an example](https://community.mattermost.com/core/pl/6dci1ssexjrh9rmdzt4pdpb9zy).
 
 
 ### CI System Setup
 
 Setting up the CI system for your plugin will allow continuous testing of your master branch and releases on our testing servers. Master branch testing is done on https://ci-extensions.azure.k8s.mattermost.com/ and release testing is done on https://ci-extensions-release.azure.k8s.mattermost.com/
 
-In order to set this up, we will need a URL where we can on a nightly basis, pull the latest master build. Once that exists you can make a request in the [Integrations and Apps](https://community.mattermost.com/core/channels/integrations) channel.
+In order to set this up, the plugin creator needs to provide a URL that hosts latest master build, which we can pull on a nightly basis. Once that exists you can make a request in the [Integrations and Apps](https://community.mattermost.com/core/channels/integrations) channel.
 
 
 ### Compatible Licence
@@ -58,12 +58,12 @@ Recommended Licences:
 [More info](https://www.apache.org/legal/resolved.html#category-a)
 
 
-### Complete code review
+### Complete Code Review
 
-A more through code review is performed before allowing a plugin on ci-extensions-release. This review works the same as the basic code review, but the developers performing the review will be more through. If the developer that performed the first review is available, they should be one of the reviewers. One of the reviewers should focus their review on the any security implications of the plugin.
+A more thorough code review is performed before allowing a plugin on `ci-extensions-release`. This review works the same as the basic code review, but the developers performing the review will be more thorough. If the developer that performed the first review is available, they should be one of the reviewers. Another of the reviewers should focus their review on any security implications of the plugin.
 
 
-### QA pass
+### QA Pass
 
 QA pass involves getting a member of our QA team to take a look and verify the functionality advertised by your plugin.
 
@@ -72,7 +72,7 @@ Steps involved:
 - Ensure all setup documentation needed is clear and can be successfully followed.
 - Dedicated instance or test account to access and test the third-party service, if applicable.
 - Functional testing has been done to ensure the integration works as expected.
-- For Plugins owned by Mattermost - Release testing is added to cover the main functionality of the plugin.
+- For plugins owned by Mattermost, release testing is added to cover the main functionality of the plugin.
 
 
 ### PM/UX Review
@@ -82,7 +82,7 @@ A PM/UX pass involves getting PM support in ironing out any user experience or U
 Steps involved:
 
 - Create a one paragraph summary of the integration.
-- Document the main use cases into bullet form.
+- Document the main use cases in bullet form.
 - Review the primary use cases and run through them to ensure they are complete, clear, and functional.
-- Ensure there is documentation to support the plugin. (may include having sufficient helper text in the plugin)
-- Consider if there are any communication to other teams or users required as part of the rollout to our community server.
+- Ensure there is documentation to support the plugin. This may include having sufficient helper text in the plugin.
+- Consider if communication to other teams or users is required as part of the rollout to our Community server.

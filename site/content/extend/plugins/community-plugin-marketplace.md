@@ -7,7 +7,7 @@ weight: 60
 Once your plugin has reached a certain level of quality, you might consider submitting it to the Plugin Marketplace. The Plugin Marketplace is a platform that supports discovery, installation and updates of plugins directly within Mattermost. It's a great way to get feedback on your plugin and help make it more popular. Once your plugin is accepted to the Marketplace, Mattermost will also send you swag!
 
 
-### Requirements for adding community plugin to the Marketplace
+### Requirements for Adding A Community Plugin to the Marketplace
 
 Every community plugin must fulfill the following checklist to be added to the Marketplace:
 
@@ -42,7 +42,7 @@ Please note that Mattermost reserves the right to reject any plugin submission f
 As the plugin framework is currently in Beta, the rapid development cycle means that breaking changes (especially for the web app) can be expected. It's recommended that plugin authors keep up with these changes and fix bugs that may occur. Breaking changes will be mentioned in the "Important Upgrades Notes" section of the [Mattermost Changelog](https://docs.mattermost.com/administration/changelog.html).
 
 
-### Requirements for updating a Community Plugin to the Marketplace
+### Requirements for Updating a Community Plugin on the Marketplace
 
 When a community plugin is updated, the new version must fulfill the following checklist to remain on the Marketplace. The new version checked by the four reviewers in the same way as when the plugin was added. The code review and security review should be performed against the `diff` of the last version in the Marketplace and the new version to be updated in the Marketplace.
 
@@ -56,7 +56,7 @@ This is checked in dev review.
 The new release must not change the plugin ID defined in the manifest as this would require a reconfiguration of the plugin by a System Admin.
 
 
-### Process for adding Community Plugin to the Marketplace
+### Process for Adding a Community Plugin to the Marketplace
 
 All community plugins are assigned an _owner_ to guide you through the review process. Connect with [hanzei](https://github.com/hanzei) for more details. Ask non-confidential questions in the [Marketplace channel](https://community.mattermost.com/core/channels/plugins-marketplace).
 
@@ -89,6 +89,6 @@ It must be made clear in the Marketplace UI that a plugin is in Beta. Beta plugi
 Any security issues found in the plugin should be reported by email to `responsibledisclosure@mattermost.com` or sent directly to a member of the [Security team](https://developers.mattermost.com/internal/rd-teams/#security-team) on the [Community Server](https://community.mattermost.com/).
 
 
-### Take down Policy
+### Take Down Policy
 
 If an medium or greater security issue or bug that prevents the usage of the plugin for many users is not fixed within 14 days, the plugin will be removed from the Marketplace. It may be resubmitted once the issue is resolved. Mattermost reserves the right to take down plugins at any time if a fix for a security issue is not forthcoming or the issue is critical enough to justify an immediate takedown.
