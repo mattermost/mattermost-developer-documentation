@@ -63,7 +63,7 @@ fmt.Printf("Person: [%v] Animal: [%v]\n", list[0].Hello(), list[1].Hello())
 Awesome. Now let's say the `struct` you are extracting the interface from is a big one. A really big one. With lots and lots of methods spread out in different `.go` files. Creating such an interface manually would be very laborious.  
 This problem is itching to get an AST treatment. Let's get to it!
 
-## AST To The Rescue!
+## AST to the rescue!
 
 Let's break down the task at hand into smaller, digestable parts:
 
@@ -75,7 +75,7 @@ Let's break down the task at hand into smaller, digestable parts:
 
 ### Scanning the source code for all struct's methods
 
-Here's a short piece of code that scans a folder of go source code to first finds a package by it's name and then searches for all methods that are bound to the struct we are interested in.
+Here's a short piece of code that scans a folder of `go` source code to first find a package by name and then search for all methods that are bound to the `struct` we're interested in.
 
 ```go
 fset := token.NewFileSet()
@@ -117,8 +117,8 @@ for _, file := range appPkg.Files {
 
 Steps 1 and 2 are pretty straightforward, the interesting bits start at step 3: For each file in the package, we execute `ast.Inspect` to get all the AST nodes. For every node that is actually a function (checked by `n.(*ast.FuncDecl)`), we check if that function is:  
 * Exported (we are not interested in private methods)
-* Has a receiver (it's bound to a struct)
-* Receiver's type matches the struct we are interested in
+* Has a receiver (it's bound to a `struct`)
+* Receiver's type matches the `struct` we are interested in
 
 ### Collecting functions and their comments
 
@@ -126,8 +126,8 @@ Now that we can get a `*ast.FuncDecl` (let's call it `fun`) for each function, w
 
 1. Name: `fun.Name.Name`
 2. Comments: `fun.Doc.List`
-3. Parameters: fun.Type.Params.Lis
-4. Return values: fun.Type.Results.List
+3. Parameters: `fun.Type.Params.List`
+4. Return values: `fun.Type.Results.List`
 
 ### Generate the interface file
 
@@ -159,9 +159,9 @@ err = t.Execute(out, map[string]interface{}{
 })
 ```	
 
-We are almost done! Our interface file is ready, but it's missing a crucial part - imports. Luckily, there is a package for that™ - https://pkg.go.dev/golang.org/x/tools/imports
+We're almost done! Our `interface` file is ready, but it's missing a crucial part - `imports`. Luckily, there is a package for that™ - https://pkg.go.dev/golang.org/x/tools/imports.
 
-Let give it whirl:
+Let's give it whirl:
 ```go
 formatted, err := imports.Process(outputFile, out.Bytes(), &imports.Options{Comments: true})
 if err != nil {
@@ -174,9 +174,9 @@ Voila! You have an interface file that contains all the methods implemented on t
 
 ## struct2interface
 
-The process I've described is a rather generic one, so to make it fully repeatable, I've extracted it into a separate CLI utility called `struct2interface`. It can be found at https://github.com/reflog/struct2interface
+The process I've described is a rather generic one, so to make it fully repeatable, I've extracted it into a separate CLI utility called `struct2interface`. It can be found at https://github.com/reflog/struct2interface.
 
 
 ## Conclusion
 
-Once again, AST came to the rescue and saved us lots and lots of manual labor. Hurray! In the next post of these series, I'll describe how we combined our `layers` approach with AST to create a clean `opentracing` instrumentation we've started in the first part of these series.
+Once again, AST came to the rescue and saved us lots and lots of manual labor. Hurray! In the next post of this series, I'll describe how we combined our `layers` approach with AST to create a clean `opentracing` instrumentation we've started in the first part of these series.
