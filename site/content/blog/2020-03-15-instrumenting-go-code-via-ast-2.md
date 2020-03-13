@@ -14,9 +14,9 @@ This is the second part of our AST blog post series, expanding on the subject of
 
 In this post I'll discuss a rather common problem that comes up while working with Go code and the way we've solved it by sprinkling a little bit of AST magic dust. Let's dive in.
 
-## Problem: A struct with no interface
+## Problem: A `struct` with no `interface`
 
-Let's say you are working on a large code base that was not built with interfaces in mind, meaning, there are `structs` and methods attached to those `structs`, but there is no `interface` describing it. This is a perfectly valid approach when you don't need to mock/stub the method implementations provided by that `struct`, or when there isn't more than one implementation of the same 'contract'. When these things **are** needed - we need to provide an `interface`.
+Let's say you are working on a large code base that was not built with `interfaces` in mind, meaning, there are `structs` and methods attached to those `structs`, but there is no `interface` describing it. This is a perfectly valid approach when you don't need to mock/stub the method implementations provided by that `struct`, or when there isn't more than one implementation of the same 'contract'. When these things **are** needed - we need to provide an `interface`.
 
 Here's a small code snippet to demonstrate:
 
@@ -50,7 +50,7 @@ In this example both `Person` and `Animal` have the same `Hello()` method. If we
 list := []interface{}{p,a}
 ```
 But this way we lose the type information of the list elements.
-This is where interfaces come in. Since both `Person` and `Animal` _implement_ a method with the same signature, we can extract that signature into an `interface` and use it for storing items in a list:
+This is where `interfaces` come in. Since both `Person` and `Animal` _implement_ a method with the same signature, we can extract that signature into an `interface` and use it for storing items in a list:
 ```go
 type interface Hello {
 	Hello() string
@@ -60,7 +60,8 @@ list := []Hello{p,a}
 fmt.Printf("Person: [%v] Animal: [%v]\n", list[0].Hello(), list[1].Hello())
 ```
 
-Awesome. Now let's say the `struct` you are extracting the interface from is a big one. A really big one. With lots and lots of methods spread out in different `.go` files. Creating such an interface manually would be very laborious.  
+Awesome. Now let's say the `struct` you are extracting the `interface` from is a big one. A really big one. With lots and lots of methods spread out in different `.go` files. Creating such an `interface` manually would be very laborious.
+
 This problem is itching to get an AST treatment. Let's get to it!
 
 ## AST to the rescue!
@@ -69,11 +70,14 @@ Let's break down the task at hand into smaller, digestable parts:
 
 1. Scan the source code for all methods implemented on a specific `struct`
 1. Collect all those methods (and their comments, for clarity)
-1. Create a new file that will contain an interface with all the collected methods inside
+1. Create a new file that will contain an `interface` with all the collected methods inside
 1. ...
 1. Profit?
 
-### Scanning the source code for all struct's methods
+> Note: usually the `interface` doesn't contain **all** of the `struct` methods, but we'll leave the topics of abstraction and better code organization for another blog post
+
+
+### Scanning the source code for all `struct`'s methods
 
 Here's a short piece of code that scans a folder of `go` source code to first find a package by name and then search for all methods that are bound to the `struct` we're interested in.
 
@@ -129,9 +133,9 @@ Now that we can get a `*ast.FuncDecl` (let's call it `fun`) for each function, w
 3. Parameters: `fun.Type.Params.List`
 4. Return values: `fun.Type.Results.List`
 
-### Generate the interface file
+### Generate the `interface` file
 
-To generate the output interface, we'll use Go's `template` package. Let's define a simple template:
+To generate the output `interface`, we'll use Go's `template` package. Let's define a simple template:
 
 ```go
 const outputTemplate = `
@@ -170,7 +174,7 @@ if err != nil {
 err = ioutil.WriteFile(outputFile, formatted, 0644)
 ```	
 
-Voila! You have an interface file that contains all the methods implemented on the `struct`.
+Voila! You have an `interface` file that contains all the methods implemented on the `struct`.
 
 ## struct2interface
 
