@@ -1,40 +1,39 @@
 {{ if .Params.series }}
-    {{ $.Scratch.Add "cur_page_num" 1 }} 
-    {{ $.Scratch.Add "total_page_num" 0 }} 
-    {{ range where .Site.RegularPages.ByDate "Params.series" .Params.series }} 
-        {{ $.Scratch.Add "total_page_num" 1 }} 
-        {{ if gt $.Date.Unix .Date.Unix }} 
-            {{ $.Scratch.Add "cur_page_num" 1 }} 
-            {{ $.Scratch.Set "prev_link" .Permalink }}
-            {{ $.Scratch.Set "prev_title" .Title }}  
+    {{ $cur_page_num := 1 }}
+    {{ $total_page_num := 0 }}
+    {{ $prev_link := "" }}
+    {{ $prev_title := "" }}
+    {{ $next_link := "" }}
+    {{ $next_title := "" }}
+    {{ $first_link := "" }}
+
+    {{ range where .Site.RegularPages.ByDate "Params.series" .Params.series }}
+        {{ $total_page_num = add $total_page_num 1 }}
+        {{ if gt $.Date.Unix .Date.Unix }}
+            {{ $cur_page_num = add $cur_page_num 1 }}
+            {{ $prev_link = .Permalink }}
+            {{ $prev_title = .Title }}
         {{ end }}
     {{ end }}
-    {{ range where .Site.RegularPages.ByDate.Reverse "Params.series" .Params.series }} 
-        {{ $.Scratch.Set "first_link" .Permalink }}
+    {{ range where .Site.RegularPages.ByDate.Reverse "Params.series" .Params.series }}
+        {{ $first_link = .Permalink }}
         {{ if lt $.Date.Unix .Date.Unix }}
-            {{ $.Scratch.Set "next_link" .Permalink }}
-            {{ $.Scratch.Set "next_title" .Title }}
+            {{ $next_link = .Permalink }}
+            {{ $next_title = .Title }}
         {{ end }}
     {{ end }}
-    {{ if or ($.Scratch.Get "next_link") ($.Scratch.Get "prev_link") }} 
-        <hr/>
-        <p>Part {{ $.Scratch.Get "cur_page_num" }} of {{ $.Scratch.Get "total_page_num" }}
+    {{ if or $next_link $prev_link }}
+        <p>Part {{ $cur_page_num }} of {{ $total_page_num }}
             in the <b>{{ .Params.series }}</b> series.</p>
         <p>
-        {{ if $.Scratch.Get "prev_link" }}
-            {{ if ne ($.Scratch.Get "prev_link") ($.Scratch.Get "first_link") }}
-                <a href="{{ $.Scratch.Get "first_link" }}"><i class="fa fa-angle-left"></i>Series Start<i class="fa fa-angle-right"></i></a>
-                    |
-            {{ end }}
-            {{ if $.Scratch.Get "prev_link" }}
-                <a href="{{ $.Scratch.Get "prev_link" }}"><i class="fa fa-angle-double-left"></i>{{ $.Scratch.Get "prev_title" }}</a>
-            {{ end }}
+        {{ if $prev_link }}
+            <a href="{{ $prev_link }}"><i class="fa fa-angle-double-left"></i>&nbsp;Part {{ sub $cur_page_num 1 }}</a>
         {{ end }}
-        {{ if and ($.Scratch.Get "next_link") ($.Scratch.Get "prev_link") }}
+        {{ if and $next_link $prev_link }}
                 |
         {{ end }}
-        {{ if $.Scratch.Get "next_link" }}
-            <a href="{{ $.Scratch.Get "next_link" }}">{{ $.Scratch.Get "next_title" }}<i class="fa fa-angle-double-right"></i></a></p>
+        {{ if $next_link }}
+            <a href="{{ $next_link }}">Part {{ add $cur_page_num 1 }}&nbsp;<i class="fa fa-angle-double-right"></i></a></p>
         {{ end }}
     {{ end }}
 {{ end }}
