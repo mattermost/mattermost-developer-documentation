@@ -19,7 +19,7 @@ Ths **post-proxy relay** [can be configured using the Mattermost Push Proxy inst
 
 In place of a DMZ you can also host in a trusted cloud environment such as AWS or Azure depending on your internal approvals and policies. 
 
-.. image:: ../images/mobile-post-proxy-relay.png
+![image](/img/mobile/post-proxy-relay.png)
 
 ###### 2 - Whitelist Mattermost push notification proxy to bypass your corporate proxy server
 
