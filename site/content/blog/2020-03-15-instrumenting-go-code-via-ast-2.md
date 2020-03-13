@@ -10,13 +10,13 @@ community: eli.yukelzon
 
 ## Welcome!
 
-This is a second part of our AST blog post series, expanding on the subject of utilizing Go AST libraries libraries to automate and improve your workflow.
+This is the second part of our AST blog post series, expanding on the subject of utilizing Go AST libraries to automate and improve your workflow.
 
 In this post I'll discuss a rather common problem that comes up while working with Go code and the way we've solved it by sprinkling a little bit of AST magic dust. Let's dive in.
 
 ## Problem: A struct with no interface
 
-Let's say you are working on a large code base that was not built with interfaces in mind, meaning, there are `structs` and methods attached to that `struct`, but there is not `interface` describing it. This is a perfectly valid approach when no you don't need to mock/stub the method implementations provided by that struct, or when there isn't more than one implementation of the same 'contract'. When these things **are** needed - we need to provide an `interface`.
+Let's say you are working on a large code base that was not built with interfaces in mind, meaning, there are `structs` and methods attached to those `structs`, but there is no `interface` describing it. This is a perfectly valid approach when you don't need to mock/stub the method implementations provided by that `struct`, or when there isn't more than one implementation of the same 'contract'. When these things **are** needed - we need to provide an `interface`.
 
 Here's a small code snippet to demonstrate:
 
@@ -45,12 +45,12 @@ func main() {
 }
 ```
 
-In this example both `Person` and `Animal` have the same `Hello()` method. If we wanted to store a list of **both** `Person` and `Animal` structs, we would have to define it as:
+In this example both `Person` and `Animal` have the same `Hello()` method. If we wanted to store a list of **both** `Person` and `Animal` `structs`, we would have to define it as:
 ```go
 list := []interface{}{p,a}
 ```
-But this way we loose the type information of the list elements.
-This is where interfaces come in. Since both `Person` and `Animal` _implement_ a method with the same signature, we can extract that signature into an interface and use it for storing items in a list:
+But this way we lose the type information of the list elements.
+This is where interfaces come in. Since both `Person` and `Animal` _implement_ a method with the same signature, we can extract that signature into an `interface` and use it for storing items in a list:
 ```go
 type interface Hello {
 	Hello() string
@@ -60,7 +60,7 @@ list := []Hello{p,a}
 fmt.Printf("Person: [%v] Animal: [%v]\n", list[0].Hello(), list[1].Hello())
 ```
 
-Awesome. Now let's say the struct you are extracting the interface from is a big on. A really big one. With lots and lots of methods spread out in different `.go` files. Creating such interface manually would be very laborious.  
+Awesome. Now let's say the `struct` you are extracting the interface from is a big one. A really big one. With lots and lots of methods spread out in different `.go` files. Creating such an interface manually would be very laborious.  
 This problem is itching to get an AST treatment. Let's get to it!
 
 ## AST To The Rescue!
@@ -78,41 +78,41 @@ Let's break down the task at hand into smaller, digestable parts:
 Here's a short piece of code that scans a folder of go source code to first finds a package by it's name and then searches for all methods that are bound to the struct we are interested in.
 
 ```go
-	fset := token.NewFileSet()
-	// 1. scan source code folder
-	pkgs, err := parser.ParseDir(fset, folder, nil, parser.AllErrors|parser.ParseComments)
-	if err != nil {
-		log.Fatalf("Unable to parse %s folder", folder)
+fset := token.NewFileSet()
+// 1. scan source code folder
+pkgs, err := parser.ParseDir(fset, folder, nil, parser.AllErrors|parser.ParseComments)
+if err != nil {
+	log.Fatalf("Unable to parse %s folder", folder)
+}
+// 2. find the required package by name
+var appPkg *ast.Package
+for _, pkg := range pkgs {
+	if pkg.Name == pkgName {
+		appPkg = pkg
+		break
 	}
-	// 2. find the required package by name
-	var appPkg *ast.Package
-	for _, pkg := range pkgs {
-		if pkg.Name == pkgName {
-			appPkg = pkg
-			break
-		}
-	}
-	if appPkg == nil {
-		log.Fatalf("Unable to find package %s", pkgName)
-	}
+}
+if appPkg == nil {
+	log.Fatalf("Unable to find package %s", pkgName)
+}
 
-	// 3. find all methods that are bound to the specific struct
-	for _, file := range appPkg.Files {
-		ast.Inspect(file, func(n ast.Node) bool {
-			if fun, ok := n.(*ast.FuncDecl); ok {
-				// 4. Validate that method is exported and has a receiver
-				if fun.Name.IsExported() && fun.Recv != nil && len(fun.Recv.List) == 1 {
-						// 5. Check that the receiver is actually the struct we want
-						if r, rok := fun.Recv.List[0].Type.(*ast.StarExpr); rok && r.X.(*ast.Ident).Name == structName {
-							// we found it!
-						}
+// 3. find all methods that are bound to the specific struct
+for _, file := range appPkg.Files {
+	ast.Inspect(file, func(n ast.Node) bool {
+		if fun, ok := n.(*ast.FuncDecl); ok {
+			// 4. Validate that method is exported and has a receiver
+			if fun.Name.IsExported() && fun.Recv != nil && len(fun.Recv.List) == 1 {
+					// 5. Check that the receiver is actually the struct we want
+					if r, rok := fun.Recv.List[0].Type.(*ast.StarExpr); rok && r.X.(*ast.Ident).Name == structName {
+						// we found it!
 					}
 				}
-
 			}
-			return true
-		})
-	}
+
+		}
+		return true
+	})
+}
 ```
 
 Steps 1 and 2 are pretty straightforward, the interesting bits start at step 3: For each file in the package, we execute `ast.Inspect` to get all the AST nodes. For every node that is actually a function (checked by `n.(*ast.FuncDecl)`), we check if that function is:  
@@ -148,26 +148,26 @@ type {{.Name}} interface {
 And populate it:
 
 ```go
-	sort.Strings(funcs)
-	out := bytes.NewBufferString("")
+sort.Strings(funcs)
+out := bytes.NewBufferString("")
 
-	t := template.Must(template.New("").Parse(outputTemplate))
-	err = t.Execute(out, map[string]interface{}{
-		"Content": strings.Join(funcs, "\n"),
-		"Name":    ifName,
-		"Package": pkgName,
-	})
+t := template.Must(template.New("").Parse(outputTemplate))
+err = t.Execute(out, map[string]interface{}{
+	"Content": strings.Join(funcs, "\n"),
+	"Name":    ifName,
+	"Package": pkgName,
+})
 ```	
 
 We are almost done! Our interface file is ready, but it's missing a crucial part - imports. Luckily, there is a package for that™ - https://pkg.go.dev/golang.org/x/tools/imports
 
 Let give it whirl:
 ```go
-	formatted, err := imports.Process(outputFile, out.Bytes(), &imports.Options{Comments: true})
-	if err != nil {
-		log.Panic(err)
-	}
-	err = ioutil.WriteFile(outputFile, formatted, 0644)
+formatted, err := imports.Process(outputFile, out.Bytes(), &imports.Options{Comments: true})
+if err != nil {
+	log.Panic(err)
+}
+err = ioutil.WriteFile(outputFile, formatted, 0644)
 ```	
 
 Voila! You have an interface file that contains all the methods implemented on the `struct`.
