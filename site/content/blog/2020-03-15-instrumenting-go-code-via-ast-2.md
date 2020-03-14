@@ -16,7 +16,9 @@ In this post I'll discuss a rather common problem that comes up while working wi
 
 ## Problem: A `struct` with no `interface`
 
-Let's say you are working on a large code base that was not built with `interfaces` in mind, meaning, there are `structs` and methods attached to those `structs`, but there is no `interface` describing it. This is a perfectly valid approach when you don't need to mock/stub the method implementations provided by that `struct`, or when there isn't more than one implementation of the same 'contract'. When these things **are** needed - we need to provide an `interface`.
+Let's say you are working on a large code base that was not built with `interfaces` in mind, meaning, there are `structs` and methods attached to those `structs`, but there is no `interface` describing it. This is a perfectly valid approach when you don't need to mock/stub the method implementations provided by that `struct`, or there's only one implementation of the same 'contract'. 
+
+However, when these things are required we need to provide an `interface`.
 
 Here's a small code snippet to demonstrate:
 
@@ -45,7 +47,7 @@ func main() {
 }
 ```
 
-In this example both `Person` and `Animal` have the same `Hello()` method. If we wanted to store a list of **both** `Person` and `Animal` `structs`, we would have to define it as:
+In this example both `Person` and `Animal` have the same `Hello()` method. If we wanted to store a list of both the `Person` and `Animal` `structs`, we would have to define it as:
 ```go
 list := []interface{}{p,a}
 ```
@@ -74,12 +76,12 @@ Let's break down the task at hand into smaller, digestable parts:
 1. ...
 1. Profit?
 
-> Note: usually the `interface` doesn't contain **all** of the `struct` methods, but we'll leave the topics of abstraction and better code organization for another blog post
+**Note:** Usually the `interface` doesn't contain all of the `struct` methods, but we'll leave the topics of abstraction and better code organization for another blog post.
 
 
-### Scanning the source code for all `struct`'s methods
+### Scanning the source code for all `struct` methods
 
-Here's a short piece of code that scans a folder of `go` source code to first find a package by name and then search for all methods that are bound to the `struct` we're interested in.
+Here's a short piece of code that scans a folder of `.go` source code to first find a package by name and then search for all methods that are bound to the `struct` we're interested in.
 
 ```go
 fset := token.NewFileSet()
@@ -120,6 +122,7 @@ for _, file := range appPkg.Files {
 ```
 
 Steps 1 and 2 are pretty straightforward, the interesting bits start at step 3: For each file in the package, we execute `ast.Inspect` to get all the AST nodes. For every node that is actually a function (checked by `n.(*ast.FuncDecl)`), we check if that function is:  
+
 * Exported (we are not interested in private methods)
 * Has a receiver (it's bound to a `struct`)
 * Receiver's type matches the `struct` we are interested in
@@ -166,6 +169,7 @@ err = t.Execute(out, map[string]interface{}{
 We're almost done! Our `interface` file is ready, but it's missing a crucial part - `imports`. Luckily, there is a package for that™ - https://pkg.go.dev/golang.org/x/tools/imports.
 
 Let's give it whirl:
+
 ```go
 formatted, err := imports.Process(outputFile, out.Bytes(), &imports.Options{Comments: true})
 if err != nil {
@@ -176,7 +180,7 @@ err = ioutil.WriteFile(outputFile, formatted, 0644)
 
 Voila! You have an `interface` file that contains all the methods implemented on the `struct`.
 
-## struct2interface
+## `struct2interface`
 
 The process I've described is a rather generic one, so to make it fully repeatable, I've extracted it into a separate CLI utility called `struct2interface`. It can be found at https://github.com/reflog/struct2interface.
 
