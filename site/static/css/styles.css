@@ -3276,6 +3276,16 @@ h6:first-child {
     font-size: .9rem;
 }
 
+.blog-pagination a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+}
+.blog-pagination a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
 .tags-sidebar .list-unstyled {
     padding-top: .5rem;
 }
