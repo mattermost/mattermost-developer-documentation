@@ -49,7 +49,7 @@ When a community plugin is updated, the new version must fulfill the following c
 The release also has to follow [Semantic Versioning](https://semver.org/). For plugins this means:
 
 * If the plugin exposes a public API, breaking changes to the API require a major version bump.
-* If an update requires manual migration actions from the administrator, a major version bump is required.
+* If an update requires manual migration actions from the System Admin, a major version bump is required.
 
 This is checked in dev review.
 
