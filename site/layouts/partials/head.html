@@ -7,7 +7,11 @@
 <meta http-equiv="content-language" content="{{ . }}" />{{ end }}
 
 <!-- canonical link tag -->
-<link rel="canonical" href="{{ .Permalink }}" />
+{{ if .Params.canonicalUrl }}
+<link rel="canonical" href="{{ .Params.canonicalUrl }}">
+{{ else }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{ end }}
 
 <link rel="shortcut icon" type="image/png" href="{{ .Site.BaseURL }}/img/favicon-32x32.png" />
 
