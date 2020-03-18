@@ -23,6 +23,10 @@ This page lists all the Docker repositories currently in use.
 
 - [mattermost/mattermost-cloud](https://hub.docker.com/r/mattermost/mattermost-cloud) - Mattermost Private Cloud is a SaaS offering meant to smooth and accelerate the customer journey from trial to full adoption. For more information see https://github.com/mattermost/mattermost-cloud.
 
+- [mattermost/mattermost-preview](https://hub.docker.com/r/mattermost/mattermost-preview) - This is a Docker image to install Mattermost in Preview Mode for exploring product functionality on a single machine using Docker. [Documentation](http://bit.ly/1W76riY). [GitHub](https://github.com/mattermost/mattermost-docker-preview).
+
+- [mattermost/platform](https://hub.docker.com/r/mattermost/platform) - Mirror of **mattermost/mattermost-preview**. This is a Docker image to install Mattermost in Preview Mode for exploring product functionality on a single machine using Docker. Preview image (mirror). [Documentation](http://bit.ly/1W76riY). [GitHub](https://github.com/mattermost/mattermost-docker-preview).
+
 ## Community-Maintained Docker Images
 
 - [mattermost/mattermost-prod-app](https://hub.docker.com/r/mattermost/mattermost-prod-app) - Community driven image for Mattermost Server. **This Docker repository will be deprecated in Mattermost 6.0**. For more information and to check the Dockerfile please refer to https://github.com/mattermost/mattermost-docker.
@@ -30,10 +34,6 @@ This page lists all the Docker repositories currently in use.
 - [mattermost/mattermost-prod-db](https://hub.docker.com/r/mattermost/mattermost-prod-db) - Community driven image for Database to run together with **mattermost/mattermost-prod-app**. **This Docker repository will be deprecated in Mattermost 6.0**. For more information and to check the dockerfile please refer to https://github.com/mattermost/mattermost-docker
 
 - [mattermost/mattermost-prod-web](https://hub.docker.com/r/mattermost/mattermost-prod-web) - Community driven image for WebServer to run together with **mattermost/mattermost-prod-app**. **This Docker repository will be deprecated in Mattermost 6.0**. For more information and to check the dockerfile please refer to https://github.com/mattermost/mattermost-docker
-
-- [mattermost/mattermost-preview](https://hub.docker.com/r/mattermost/mattermost-preview) - This is a Docker image to install Mattermost in Preview Mode for exploring product functionality on a single machine using Docker. [Documentation](http://bit.ly/1W76riY). [GitHub](https://github.com/mattermost/mattermost-docker-preview).
-
-- [mattermost/platform](https://hub.docker.com/r/mattermost/platform) - Mirror of **mattermost/mattermost-preview**. This is a Docker image to install Mattermost in Preview Mode for exploring product functionality on a single machine using Docker. Preview image (mirror). [Documentation](http://bit.ly/1W76riY). [GitHub](https://github.com/mattermost/mattermost-docker-preview).
 
 ## Mattermost Internal Docker Images
 
