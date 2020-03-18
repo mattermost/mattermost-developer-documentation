@@ -1,7 +1,7 @@
 ---
 title: Maintaining Consistency in Codebases with Go vet
 slug: maintaining-consistency-in-codebases-with-go-vet
-date: 2020-02-10
+date: 2020-03-17
 categories:
     - "go"
 author: Jesús Espino
