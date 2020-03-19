@@ -19,10 +19,10 @@
                 {{ end }}
                 <div class="blog-pagination">
                     {{ if .Paginator.HasNext }}
-                        <a href="{{ .Paginator.Next.URL }}"> &laquo; Previous Posts</a>
+                        <a class="btn btn-primary btn-sm" href="{{ .Paginator.Next.URL }}"> &laquo; Previous Posts</a>
                     {{ end }}
                     {{ if .Paginator.HasPrev }}
-                        <a href="{{ .Paginator.Prev.URL }}"> Next Posts &raquo;</a>
+                        <a class="btn btn-primary btn-sm" href="{{ .Paginator.Prev.URL }}"> Next Posts &raquo;</a>
                     {{ end }}
                 </div>
             </div>
