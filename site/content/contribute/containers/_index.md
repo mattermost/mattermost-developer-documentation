@@ -33,7 +33,7 @@ This page lists all the Docker repositories currently in use.
 
 - [mattermost/mattermost-prod-db](https://hub.docker.com/r/mattermost/mattermost-prod-db) - Community driven image for Database to run together with **mattermost/mattermost-prod-app**. **This Docker repository will be deprecated in Mattermost 6.0**. For more information and to check the Dockerfile please refer to https://github.com/mattermost/mattermost-docker.
 
-- [mattermost/mattermost-prod-web](https://hub.docker.com/r/mattermost/mattermost-prod-web) - Community driven image for WebServer to run together with **mattermost/mattermost-prod-app**. **This Docker repository will be deprecated in Mattermost 6.0**. For more information and to check the dockerfile please refer to https://github.com/mattermost/mattermost-docker
+- [mattermost/mattermost-prod-web](https://hub.docker.com/r/mattermost/mattermost-prod-web) - Community driven image for WebServer to run together with **mattermost/mattermost-prod-app**. **This Docker repository will be deprecated in Mattermost 6.0**. For more information and to check the Dockerfile please refer to https://github.com/mattermost/mattermost-docker.
 
 ## Mattermost Internal Docker Images
 
