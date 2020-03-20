@@ -27,8 +27,7 @@ jobs:
           fi
           FILENAME=$(cat $FILEADDED | grep slug: | cut -d':' -f 2 | sed 's/^ *//g')
           TITLE=$(cat $FILEADDED | grep title: | cut -d':' -f 2 | sed 's/^ *//g')
-          TITLE="${TITLE%\"'}" # remove suffix quote
-          TITLE="${TITLE#\'"}" # remove prefix quote
+          TITLE=$(echo $TITLE | tr -d '"') # fix quoting
           AUTHOR=$(cat $FILEADDED | grep author: | cut -d':' -f 2 | sed 's/^ *//g')
           AUTHOR_GH=$(cat $FILEADDED | grep github: | cut -d':' -f 2 | sed 's/^ *//g')
           echo "{\"username\":\"GitHub Action Notify\",\"icon_url\":\"https://www.mattermost.org/wp-content/uploads/2016/04/icon.png\",\"attachments\":[{\"author_name\":\"$AUTHOR\",\"author_link\":\"https://github.com/$AUTHOR_GH\",\"fallback\":\"New Blog Post! Check out [here](https://developers.mattermost.com/blog/)\",\"color\":\"good\",\"title\":\"$TITLE\",\"text\":\"New Blog Post! Check out [here](https://developers.mattermost.com/blog/$FILENAME)\"}]}" > mattermost.json
