@@ -161,8 +161,8 @@ Converts HTML to React components.
 A short usage example of a `PostType` component using the post utility functions to format text.
 
 ```javascript
-const React = window.react;
-const PostUtils = window['post-utils']; // import the post utilities
+const React = window.React;
+const PostUtils = window.PostUtils; // import the post utilities
 import PropTypes from 'prop-types';
 import {makeStyleFromTheme} from 'mattermost-redux/utils/theme_utils';
 
