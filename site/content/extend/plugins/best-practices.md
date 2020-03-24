@@ -6,11 +6,15 @@ weight: 90
 
 See here for [server-specific best practices for plugins](/extend/plugins/server/best-practices/). Webapp-specific best practices are incoming.
 
-## How can I create my own plugin setting?
+## How can a plugin enable its configuration through the System Console?
 
-A plugin's admin settings are defined in the plugin's manifest [setting schema](https://developers.mattermost.com/extend/plugins/manifest-reference/#settings_schema). This includes any pre-defined types that the System Console UI currently supports. 
+Once a plugin is installed, Administrators have access to the plugin's configuration page in the __System Console > Plugins__ section. The configurable settings must first be defined in the plugin's manifest [setting schema](https://developers.mattermost.com/extend/plugins/manifest-reference/#settings_schema). The web app supports several basic pre-defined settings type, e.g. `bool` and `dropdown`, for which the corresponding UI components are provided in order to complete configuration in the System Console.
 
-Additionally, a plugin could define their own type of setting with a corresponding custom user interface that will be displayed in the system console following the process below. 
+These settings are stored within the server configuration under [`Plugins`] indexed by plugin ids. The plugin's server code can access their current configuration calling the [`getConfig`](https://developers.mattermost.com/extend/plugins/server/reference/#API.GetConfig) API call and can also make changes as needed with [`saveConfig`](https://developers.mattermost.com/extend/plugins/server/reference/#API.SaveConfig).
+
+## How can a plugin define its own setting type?
+
+A plugin could define its own type of setting with a corresponding custom user interface that will be displayed in the System Console following the process below.  
 
 1. Define a `type: custom` setting in the plugins manifest `settings_schema`
 
@@ -67,7 +71,7 @@ handleChange = () => {
 
 5. Once the user saves the changes, any handler that was registered with `registerSaveAction` will be executed to perform any additional custom actions the plugin may require, such as calling an additional endpoint within the plugin. 
 
-See Demo Plugin [`CustomSetting`](https://github.com/mattermost/mattermost-plugin-demo/blob/master/webapp/src/components/admin_settings/custom_setting.jsx) for a complete example.
+For examples of custom settings see: Demo Plugin [`CustomSetting`](https://github.com/mattermost/mattermost-plugin-demo/blob/master/webapp/src/components/admin_settings/custom_setting.jsx) and Custom Attributes Plugin [implementation](https://github.com/mattermost/mattermost-plugin-custom-attributes/pull/18).
 
 ## How can I review the entire code base of a plugin?
 
