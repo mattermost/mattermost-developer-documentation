@@ -337,7 +337,7 @@ squash … (Jesse Hallam) wip
 pick  … (Jesse Hallam) remove dead code
 ```
 
-When I save and exit this file, git will create a temporary ref at origin/master, and cherry-pick the changes in the order I requested. When I tell it to squash, commit amends to the previous commit, effectively squishing the three commits together. Save and exit, and you'll see I'm being prompted to write a new commit history for the squash commits. Finally, let's look at the diff:
+When I save and exit this file, Git will create a temporary ref at `origin/master`, and cherry-pick the changes in the order I requested. When I tell it to squash, commit amends to the previous commit, effectively squishing the three commits together. Save and exit, and you'll see I'm being prompted to write a new commit history for the squash commits. Finally, let's look at the diff:
 
 ```sh
 git log -p 
