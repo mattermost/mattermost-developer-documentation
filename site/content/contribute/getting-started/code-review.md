@@ -46,7 +46,7 @@ If you are a core committer seeking a review
     * The PM should remove `1: PM Review` when their review is done.
 3. Assign two [core committers](/contribute/getting-started/core-committers/) to your review and label your pull request with `2: Dev Review`.
     * When picking your first core committer, consider someone with domain expertise relative to your changes. Sometimes GitHub will recommend a recent editor of the code, but often you must rely on your own intuition from past interactions.
-    * When picking your second core committer, consider someone unrelated to your changes. A fresh and unbiased set of eyes can be invaluable, and exposing the team to new parts of the code helps spread out domain knowledge.
+    * When picking your second core committer, consider someone from another team who may have good or expert knowledge of the language and/or problem you're solving, even if they aren't intricately familiar with the codebase. This can provide a fresh set of eyes on the code to reveal blindspots that are not biased by hitting deadlines, and helps expose the team to new parts of the code to help spread out domain knowledge. This may not make sense for every pull request but is a practice to keep in mind.
     * Don't be afraid to pick someone who gives "hard" reviews. Code review feedback is never a personal attack: it should "sharpen" the skills of both the author and the reviewers, not to mention improving the quality of the product.
     * If you are Mattermost staff, try to take into account the timeoff calendar.
     * Try to avoid assigning the same person to all of your reviews unless they are related.
