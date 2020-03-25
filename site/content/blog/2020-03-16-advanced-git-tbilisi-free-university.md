@@ -117,7 +117,7 @@ Oh no, merge conflicts! Two of the files were cherry-picked without issue, but s
 	defer th.TearDown()
 ```
 
-I have a mergetool configured with git to show this same information using a three-way merge inside Vim:
+I have a mergetool configured with Git to show this same information using a three-way merge inside Vim:
 
 ```sh
 git mergetool
