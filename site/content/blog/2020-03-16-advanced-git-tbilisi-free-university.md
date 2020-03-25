@@ -166,7 +166,7 @@ Let's take a look at the coverage of `model/config.go`:
 
 ![image](/blog/2020-03-16-advanced-git-tbilisi-free-university/code-coverage-1.png)
 
-Ah, it appears we aren't explicitly adding a test to verify that the SiteURL is initialized differently when EnableDeveloper is true. Let's add that now.
+Ah, it appears we aren't explicitly adding a test to verify that the `SiteURL` is initialized differently when `EnableDeveloper` is `true`. Let's add that now.
 
 ```go
 func TestConfigEnableDeveloper(t *testing.T) {
