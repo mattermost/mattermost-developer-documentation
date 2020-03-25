@@ -20,7 +20,7 @@ Over the next hour, my hope is to demystify some of these advanced commands, and
 
 ### Advanced Git
 
-What do I mean by advanced git? I'm thinking of four different operations in particular:
+What do I mean by advanced Git? I'm thinking of four different operations in particular:
 * `git revert`
 * `git cherry-pick`
 * `git rebase`
