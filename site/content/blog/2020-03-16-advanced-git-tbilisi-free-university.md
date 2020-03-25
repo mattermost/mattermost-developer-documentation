@@ -322,7 +322,7 @@ Date:   Mon Mar 16 11:24:53 2020 -0300
     add TestConfigEnableDeveloper
 ```
 
-So the final diff is great, but the commits themselves are pretty disorganized. That's not how I want to present my work to my team. Imagine if these were dozens of commits over hundreds of changes. Imagine if I decided to rename a variable used all over the code half-way through my changes. It's pretty hard to review a set of disorganized changes. `git rebase` to the rescue! Let's run it interactively:
+So the final diff is great, but the commits themselves are pretty disorganized. That's not how I want to present my work to my team. Imagine if these were dozens of commits over hundreds of changes. Imagine if I decided to rename a variable used all over the code halfway through my changes. It's pretty hard to review a set of disorganized changes so, `git rebase` to the rescue! Let's run it interactively:
 
 ```sh
 git rebase -i origin/master
