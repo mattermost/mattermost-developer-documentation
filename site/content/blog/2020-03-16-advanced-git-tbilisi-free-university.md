@@ -148,7 +148,7 @@ git commit -m 'wip'
 ...
 ```
 
-This technique is known as "commit early and often." Every now and then, I'll also push my feature branch upstream (without opening a pull request) just to save my changes in case my computer dies. This is a perfectly fine way to develop, but I submit it makes for very poor pull requests. You can read my thoughts on [Submitting Great PRs](https://developers.mattermost.com/blog/submitting-great-prs/), but the short summary is that the best pull requests consist of a sequence of logically ordered commits that break up the changes into easy to follow chunks.
+This technique is known as "commit early and often". Every now and then, I'll also push my feature branch upstream (without opening a pull request) just to save my changes in case my computer dies. This is a perfectly fine way to develop, but it makes for very poor pull requests. You can read my thoughts on [Submitting Great PRs](https://developers.mattermost.com/blog/submitting-great-prs/), but the summary is that the best pull requests consist of a sequence of logically ordered commits that break up the changes into easy to follow chunks.
 
 Let me walk you through an example. We're going to see about improving some code coverage for the model package:
 
