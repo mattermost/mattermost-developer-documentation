@@ -354,7 +354,7 @@ reword … (Jesse Hallam) add TestConfigEnableDeveloper
 pick  … (Jesse Hallam) remove dead code
 ```
 
-Neat! Of course, I didn't have to do this in two passes, but I wanted to show you that you can run it as often as necessary. Sometimes, when you reorder your commits, you'll end up with merge conflicts. Just as with `git cherry-pick` and `git revert`, `git rebase` will stop and ask you to resolve the conflicts. Then you can --continue and it will pick up with the next commit.
+Neat! Of course, I didn't have to do this in two passes, but I wanted to show you that you can run it as often as necessary. Sometimes, when you reorder your commits, you'll end up with merge conflicts. Just as with `git cherry-pick` and `git revert`, `git rebase` will stop and ask you to resolve the conflicts. Then you can `--continue` and it will pick up with the next commit.
 
 There's a lot more that `git rebase` can do -- for example, if I delete a line during an interactive rebase, that commit is dropped altogether. Let's try that now:
 
