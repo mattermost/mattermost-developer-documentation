@@ -69,7 +69,7 @@ Remember, reverts are just new commits!
 
 ### git cherry-pick
 
-Next up: cherry picking! The general idea of cherry picking -- not specific to git -- is to pick and choose just what you want. You can imagine yourself standing in front of an actual cherry tree, and saying, "I'll take that one, and that one, and that one," and ignoring the rest.
+Next up: cherry picking! The general idea of cherry picking -- not specific to Git -- is to pick and choose just what you want. You can imagine yourself standing in front of an actual cherry tree, and saying, "I'll take that one, and that one, and that one" and ignoring the rest.
 
 In git, the idea is similar. Given one or more commits -- anywhere in the tree -- apply those same changes to my current ref. Why would you want to do that?
 
