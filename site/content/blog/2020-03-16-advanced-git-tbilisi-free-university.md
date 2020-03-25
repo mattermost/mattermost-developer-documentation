@@ -88,7 +88,7 @@ cd mattermost-server
 git log --graph --oneline release-5.20 master
 ```
 
-Observe that master has advanced in the weeks since we released v5.20. When we first released v5.20.0, a community member tried installing it and promptly [reported](https://community.mattermost.com/core/pl/877mkcc967ytjpgcgpbo6bi7ty) that his server was crashing! A bit of debugging on a Saturday, and I realized that we had introduced a regression into a code path we didn't often use ourselves. I filed [MM-21619](https://mattermost.atlassian.net/browse/MM-22619) and got to work on the fix. Let's find it in the master branch.
+Observe that `master` has advanced in the weeks since we released v5.20. When we first released v5.20.0, a community member tried installing it and promptly [reported](https://community.mattermost.com/core/pl/877mkcc967ytjpgcgpbo6bi7ty) that his server was crashing! A bit of debugging on a Saturday, and I realized that we had introduced a regression into a code path we didn't often use ourselves. I filed [MM-21619](https://mattermost.atlassian.net/browse/MM-22619) and got to work on the fix. Let's find it in the `master` branch.
 
 ```sh
 # Find the commit for MM-22619 in master and release 5.20
