@@ -131,7 +131,7 @@ With the conflicts resolved, I'm good to finish the cherry-pick!
 git cherry-pick --continue
 ```
 
-I've created a new commit that contains the changes from another branch, and would now be ready to push up this branch for review and CI testing before merging it into the release branch.
+I've created a new commit that contains the changes from another branch, and would now be ready to push up this branch for review and CI testing before merging it into the `release` branch.
 
 The conflict resolution I just performed might have just as easily happened when doing a `git revert`. The process would be the same, and the hard part shouldn't be the tool you are using, but knowing the context of the code you are changing so you can make the right decisions.
 
