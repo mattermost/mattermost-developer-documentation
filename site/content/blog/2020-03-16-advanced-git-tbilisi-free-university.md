@@ -36,7 +36,7 @@ Just over two years ago, I began working at Mattermost. As part of a team invest
 
 Just over a month later, one of larger customers upgraded to v4.9 and found their system grinding to a halt. We hopped on an emergency call to glean some information, and everything pointed to my changes making things much worse instead of much better. You can read the [details of my second investigation](https://community.mattermost.com/core/pl/n8bfq7wq77rkff8mgrrstqeuye) into what went wrong, but in the end, we decided to [revert my changes](https://github.com/mattermost/mattermost-server/pull/8659) and ship a patch release.
 
-When I undid these changes, I wanted to bring the code back to exactly the way it was before my changes. We already knew how that code behaved for this customer, and the goal was to restore stability by using the old code instead. I could, of course, make the changes manually: finding the old code and copying it over top of the new code. But one of git's built in commands is an operation to do this automatically. Let's see it in action!
+When I undid these changes, I wanted to bring the code back to exactly the way it was before my changes. We already knew how that code behaved for this customer, and the goal was to restore stability by using the old code instead. I could, of course, make the changes manually: finding the old code and copying it over top of the new code. But one of Git's built-in commands is an operation to do this automatically. Let's see it in action!
 
 ```sh
 # Checkout the mattermost-server repository
