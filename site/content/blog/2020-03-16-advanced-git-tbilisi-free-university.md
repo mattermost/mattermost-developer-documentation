@@ -430,7 +430,7 @@ da0d04f00 HEAD@{2020-03-16 17:53:19 -0300}: rebase -i (pick): add TestConfigEnab
 
 And there's my missing commit reference! I can `git show f1ef494d4` it to confirm, and then bring it back into my branch with a simple `git cherry-pick f1ef494d4`.
 
-I presented `git reflog` last, since I think it's one of the harder commands to fundamentally understand: but this is probably the one command you should learn first, because you recover from almost any mistake you make with git using the reflog.
+I presented `git reflog` last, since I think it's one of the harder commands to fundamentally understand: but this is probably the one command you should learn first, because you recover from almost any mistake you make with Git using the reflog.
 
 # Conclusion
 
