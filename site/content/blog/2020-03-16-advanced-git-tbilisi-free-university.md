@@ -241,7 +241,7 @@ git commit -m 'improve testing coe'
 go test ./... -coverprofile=coverage.out && go tool cover -html=coverage.out -o coverage.html && open coverage.html
 ```
 
-Same coverage, but the tests are better structured. Let's see what else we can fix! Hmm, something's not right with EnableIncomingWebhooks:
+Same coverage, but the tests are better structured. Let's see what else we can fix! Hmm, something's not right with `EnableIncomingWebhooks`:
 
 ![image](/blog/2020-03-16-advanced-git-tbilisi-free-university/code-coverage-3.png)
 
