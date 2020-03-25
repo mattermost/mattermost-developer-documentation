@@ -374,7 +374,7 @@ Great! But... wait, I just deleted the commit! Oh no, my work is gone ... not ex
 
 > Reference logs, or 'reflogs', record when the tips of branches and other references were updated in the local repository.
 
-In layman terms, think of this way. Git remembers every commit you make, even if they aren't reachable by your named branches. Let's take a look at the reflog for HEAD:
+In layman terms, think of this way: Git remembers every commit you make, even if they aren't reachable by your named branches. Let's take a look at the reflog for HEAD:
 
 ```sh
 git reflog
