@@ -14,7 +14,7 @@ This morning, I had the privilege to (virtually) join [Shota Gvinepadze](https:/
 The following are my speaking notes from the session, slightly modified for this format. Keep in mind that the command line examples are illustrative of my workflow, and not meant to be run in isolation.
 
 ### Introduction
-Today's session on open-source will focus on understanding Git better. I've interacted with a lot of people who are "scared of Git." They know the basics -- pulling, committing, pushing -- but anytime something goes wrong, they're stuck. Or they know about some of the advanced Git commands, but worry every time they have to do one.
+Today's session on open source will focus on understanding Git better. I've interacted with a lot of people who are "scared of Git." They know the basics -- pulling, committing, pushing -- but anytime something goes wrong, they're stuck. Or they know about some of the advanced Git commands, but worry every time they have to do one.
 
 Over the next hour, my hope is to demystify some of these advanced commands, and show you how I use these tools to solve day-to-day problems while working at Mattermost.
 
