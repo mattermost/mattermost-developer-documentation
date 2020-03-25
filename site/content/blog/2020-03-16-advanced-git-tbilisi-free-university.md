@@ -73,7 +73,7 @@ Next up: cherry picking! The general idea of cherry picking -- not specific to G
 
 In git, the idea is similar. Given one or more commits -- anywhere in the tree -- apply those same changes to my current ref. Why would you want to do that?
 
-At Mattermost, master is our development branch. Every two months we [release a new version](https://developers.mattermost.com/contribute/getting-started/branching/) of Mattermost that branches off master. Our release team begins to qualify this release, inevitably finding issues. We first fix the bugs in master, and then cherry-pick those changes back to the release branch. Of course, there are lots of different ways of using Git to handle releases, but this is the strategy we use at Mattermost.
+At Mattermost, `master` is our development branch. Every two months we [release a new version](https://developers.mattermost.com/contribute/getting-started/branching/) of Mattermost that branches off `master`. Our release team begins to qualify this release, inevitably finding issues. We first fix the bugs in `master`, and then cherry-pick those changes back to the `release` branch. Of course, there are lots of different ways of using Git to handle releases, but this is the strategy we use at Mattermost.
 
 ![image](/blog/2020-03-16-advanced-git-tbilisi-free-university/branching-overview.png)
 
