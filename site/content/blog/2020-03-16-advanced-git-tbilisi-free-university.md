@@ -137,7 +137,7 @@ The conflict resolution I just performed might have just as easily happened when
 
 ### git rebase
 
-My all time favourite git command is `git rebase`! Long before I learned git, I used a version control system called Perforce. It was undoubtedly powerful for its time, but I found it intensely frustrating to organize my code changes for review. Let me describe my typical workflow:
+My all time favorite Git command is `git rebase`! Long before I learned Git, I used a version control system called Perforce. It was undoubtedly powerful for its time, but I found it intensely frustrating to organize my code changes for review. Let me describe my typical workflow:
 
 ```sh
 git checkout feature-branch
