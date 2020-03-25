@@ -434,4 +434,4 @@ I presented `git reflog` last, since I think it's one of the harder commands to 
 
 # Conclusion
 
-There's a ton more one could say about these commands, and even other advanced git commands. My hope is that you won't give up if you find git intimidating, especially when you know you can rely on the reflog to experiment without fear.
+There's a ton more one could say about these commands, and even other advanced Git commands. My hope is that you won't give up if you find Git intimidating, especially when you know you can rely on the reflog to experiment without fear.
