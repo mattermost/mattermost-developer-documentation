@@ -163,7 +163,7 @@ A short usage example of a `PostType` component using the post utility functions
 ```javascript
 const React = window.React;
 const PostUtils = window.PostUtils; // import the post utilities
-import PropTypes from 'prop-types';
+const PropTypes = window.PropTypes;
 import {makeStyleFromTheme} from 'mattermost-redux/utils/theme_utils';
 
 export default class PostTypeFormatted extends React.PureComponent {
