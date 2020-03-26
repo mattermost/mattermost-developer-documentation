@@ -11,14 +11,14 @@ Set up steps for Mac OS X:
 brew install hugo
 ```
 
-2. Fork and clone the repo into your ~/Sites/ directory
+2. Fork and clone the repository
 ```
-git clone git@github.com:<yourgithubname>/mattermost-developer-documentation.git ~/Sites/
+git clone git@github.com:<yourgithubname>/mattermost-developer-documentation.git
 ```
 
-3. Run the server
+3. Move into `site` folder and run the server
 ```
-cd ~/Sites/mattermost-developer-documentation/site
+cd mattermost-developer-documentation/site
 hugo server -D
 ```
 
