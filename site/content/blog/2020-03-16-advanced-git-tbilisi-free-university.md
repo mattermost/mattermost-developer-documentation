@@ -154,7 +154,7 @@ Let me walk you through an example. We're going to see about improving some code
 
 ```sh
 # Checkout the mattermost-server repository (if not already done)
-git checkout https://github.com/mattermost/mattermost-server.git
+git clone https://github.com/mattermost/mattermost-server.git
 cd mattermost-server
 
 git checkout -b test-git-rebase
