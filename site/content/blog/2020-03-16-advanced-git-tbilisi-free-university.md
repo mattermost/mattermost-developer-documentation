@@ -71,7 +71,7 @@ Remember, reverts are just new commits!
 
 Next up: cherry picking! The general idea of cherry picking -- not specific to Git -- is to pick and choose just what you want. You can imagine yourself standing in front of an actual cherry tree, and saying, "I'll take that one, and that one, and that one" and ignoring the rest.
 
-In git, the idea is similar. Given one or more commits -- anywhere in the tree -- apply those same changes to my current ref. Why would you want to do that?
+In git, the idea is similar. Given one or more commits -- anywhere in the tree -- apply those same changes to my current branch. Why would you want to do that?
 
 At Mattermost, `master` is our development branch. Every two months we [release a new version](https://developers.mattermost.com/contribute/getting-started/branching/) of Mattermost that branches off `master`. Our release team begins to qualify this release, inevitably finding issues. We first fix the bugs in `master`, and then cherry-pick those changes back to the `release` branch. Of course, there are lots of different ways of using Git to handle releases, but this is the strategy we use at Mattermost.
 
