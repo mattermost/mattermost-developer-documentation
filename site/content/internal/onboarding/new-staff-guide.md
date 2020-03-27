@@ -86,7 +86,7 @@ weight: 10
 - Release process
 - Org chart and roles
 - Operation Gaming
-- Redshift Analytics
+- Product analytics
 
 ## GitHub Mattermost Organization Membership
 
