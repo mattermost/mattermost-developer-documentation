@@ -1,7 +1,7 @@
 ---
 title: Advanced Git with the Free University of Tbilisi
 slug: advanced-git-tbilisi-free-university
-date: 2020-03-16
+date: 2020-03-27
 categories:
     - "git"
 author: Jesse Hallam
@@ -9,9 +9,9 @@ github: lieut-data
 community: jesse.hallam
 ---
 
-This morning, I had the privilege to (virtually) join [Shota Gvinepadze](https://community.mattermost.com/core/messages/@shota.gvinepadze) and his students at the [Free University of Tbilisi](http://freeuni.edu.ge/en) and speak about "Advanced Git @ Mattermost" for a portion of their class time. The [slides](https://docs.google.com/presentation/d/1tVH2kw_WJ5_rCCOIGHPxVc8O07g1zHK0hQIloCwEYAk/edit) are available now, and a recording may be made available soon.
+On Monday, March 16, 2020, I had the privilege to (virtually) join [Shota Gvinepadze](https://community.mattermost.com/core/messages/@shota.gvinepadze) and his students at the [Free University of Tbilisi](http://freeuni.edu.ge/en) and speak about "Advanced Git @ Mattermost" for a portion of their class time.
 
-The following are my speaking notes from the session, slightly modified for this format. Keep in mind that the command line examples are illustrative of my workflow, and not meant to be run in isolation.
+The following are my speaking notes from the session, slightly modified from the [original slides](https://docs.google.com/presentation/d/1tVH2kw_WJ5_rCCOIGHPxVc8O07g1zHK0hQIloCwEYAk/edit) for this format. Keep in mind that the command line examples are illustrative of my workflow, and not meant to be run in isolation.
 
 ### Introduction
 Today's session on open source will focus on understanding Git better. I've interacted with a lot of people who are "scared of Git." They know the basics -- pulling, committing, pushing -- but anytime something goes wrong, they're stuck. Or they know about some of the advanced Git commands, but worry every time they have to do one.
@@ -75,7 +75,7 @@ In git, the idea is similar. Given one or more commits -- anywhere in the tree -
 
 At Mattermost, `master` is our development branch. Every two months we [release a new version](https://developers.mattermost.com/contribute/getting-started/branching/) of Mattermost that branches off `master`. Our release team begins to qualify this release, inevitably finding issues. We first fix the bugs in `master`, and then cherry-pick those changes back to the `release` branch. Of course, there are lots of different ways of using Git to handle releases, but this is the strategy we use at Mattermost.
 
-![image](/blog/2020-03-16-advanced-git-tbilisi-free-university/branching-overview.png)
+![image](/blog/2020-03-27-advanced-git-tbilisi-free-university/branching-overview.png)
 
 Let's look at the most recent such feature release: v5.20.
 
@@ -123,7 +123,7 @@ I have a mergetool configured with Git to show this same information using a thr
 git mergetool
 ```
 
-![image](/blog/2020-03-16-advanced-git-tbilisi-free-university/mergetool.png)
+![image](/blog/2020-03-27-advanced-git-tbilisi-free-university/mergetool.png)
 
 The middle pane shows the common ancestor. On its left is what's in the current branch, and on the right is what's incoming. The bottom pane is the current file, showing the conflict markers. In general with merge conflicts, you have to understand the context of the code you are changing in order to make the decision on what version to keep, or whether to blend the changes somehow. In this case, I happen to know that a colleague of mine removed a redundant call to `InitBasic` in the master branch as part of a cleanup effort, but those clean up changes aren't in this release branch. So I need to combine the two changes together and put the call to `InitBasic` on top of the my original code. Then I'll get rid of the other sections and the conflict markers.
 
@@ -166,7 +166,7 @@ go test ./... -coverprofile=coverage.out && go tool cover -html=coverage.out -o 
 
 Let's take a look at the coverage of `model/config.go`:
 
-![image](/blog/2020-03-16-advanced-git-tbilisi-free-university/code-coverage-1.png)
+![image](/blog/2020-03-27-advanced-git-tbilisi-free-university/code-coverage-1.png)
 
 Ah, it appears we aren't explicitly adding a test to verify that the `SiteURL` is initialized differently when `EnableDeveloper` is `true`. Let's add that now.
 
@@ -194,7 +194,7 @@ go test ./... -coverprofile=coverage.out && go tool cover -html=coverage.out -o 
 and examine the coverage:
 
 
-![image](/blog/2020-03-16-advanced-git-tbilisi-free-university/code-coverage-2.png)
+![image](/blog/2020-03-27-advanced-git-tbilisi-free-university/code-coverage-2.png)
 
 Looks better! But I'm not super happy with the way that test was written, since I'm only explicitly testing one case. Let's test all three cases with sub tests.
 
@@ -245,7 +245,7 @@ go test ./... -coverprofile=coverage.out && go tool cover -html=coverage.out -o 
 
 Same coverage, but the tests are better structured. Let's see what else we can fix! Hmm, something's not right with `EnableIncomingWebhooks`:
 
-![image](/blog/2020-03-16-advanced-git-tbilisi-free-university/code-coverage-3.png)
+![image](/blog/2020-03-27-advanced-git-tbilisi-free-university/code-coverage-3.png)
 
 Ah, it looks like we've duplicated the initialization code, so there's no way this second block can ever run! Let's remove those lines and save again.
 
@@ -255,7 +255,7 @@ git commit -m 'remove dead code'
 go test ./... -coverprofile=coverage.out && go tool cover -html=coverage.out -o coverage.html && open coverage.html
 ```
 
-![image](/blog/2020-03-16-advanced-git-tbilisi-free-university/code-coverage-4.png)
+![image](/blog/2020-03-27-advanced-git-tbilisi-free-university/code-coverage-4.png)
 
 Excellent! But, you know, I'm not really happy with the tests I wrote earlier. There's a lot of duplicate code, and it's really hard to understand what's going on. Let's rewrite those tests as cases instead.
 
