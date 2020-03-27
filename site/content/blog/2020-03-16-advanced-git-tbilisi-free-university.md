@@ -123,6 +123,8 @@ I have a mergetool configured with Git to show this same information using a thr
 git mergetool
 ```
 
+![image](/blog/2020-03-16-advanced-git-tbilisi-free-university/mergetool.png)
+
 The middle pane shows the common ancestor. On its left is what's in the current branch, and on the right is what's incoming. The bottom pane is the current file, showing the conflict markers. In general with merge conflicts, you have to understand the context of the code you are changing in order to make the decision on what version to keep, or whether to blend the changes somehow. In this case, I happen to know that a colleague of mine removed a redundant call to `InitBasic` in the master branch as part of a cleanup effort, but those clean up changes aren't in this release branch. So I need to combine the two changes together and put the call to `InitBasic` on top of the my original code. Then I'll get rid of the other sections and the conflict markers.
 
 With the conflicts resolved, I'm good to finish the cherry-pick!
