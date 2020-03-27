@@ -85,8 +85,8 @@ weight: 10
 - Platform-private repo
 - Release process
 - Org chart and roles
-- Operation Gaming
-- Redshift Analytics
+- Operation gaming
+- Product analytics
 
 ## GitHub Mattermost Organization Membership
 
