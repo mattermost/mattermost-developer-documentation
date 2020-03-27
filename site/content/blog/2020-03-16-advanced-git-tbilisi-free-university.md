@@ -40,7 +40,7 @@ When I undid these changes, I wanted to bring the code back to exactly the way i
 
 ```sh
 # Checkout the mattermost-server repository
-git checkout https://github.com/mattermost/mattermost-server.git
+git clone https://github.com/mattermost/mattermost-server.git
 cd mattermost-server
 
 # Go back in time to the v4.9.0 tag
