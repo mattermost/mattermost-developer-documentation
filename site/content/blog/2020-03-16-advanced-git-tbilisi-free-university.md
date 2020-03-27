@@ -81,7 +81,7 @@ Let's look at the most recent such feature release: v5.20.
 
 ```sh
 # Checkout the mattermost-server repository (if not already done)
-git checkout https://github.com/mattermost/mattermost-server.git
+git clone https://github.com/mattermost/mattermost-server.git
 cd mattermost-server
 
 # Examine the combined history of release-5.20 and master
