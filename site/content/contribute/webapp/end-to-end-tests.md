@@ -81,7 +81,7 @@ Inside of the `integration` directory, there are additional directories that bre
 
 1. The [recommended practice](https://docs.cypress.io/guides/references/best-practices.html#Selecting-Elements) of Cypress is to use `data-*` attribute to provide context to selectors, but we prefer to use element ID instead.
    - If element ID is not present in the webapp, you may add it in `camelCase` form with human readable name (e.g. `<div id='sidebarTitle'>`). Watch out for potential breaking changes in the snapshot of the unit testing.  Run `make test` to see if all are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot testing.
-2. Add commands or shortcuts to `/e2e/cypress/support/commands.js` (e.g. `toAccountSettingsModal`) that makes it easier to access a page, section, modal and etc. by simply using it as `cy.toAccountSettingsModal('user-1')`.
+2. Add commands or shortcuts to `/e2e/cypress/support/commands.js` (e.g. `toAccountSettingsModal`) that makes it easier to access a page, section, modal and etc. by simply using it as `cy.toAccountSettingsModal()`.
 3. Organize `/e2e/cypress/integration` with a subfolder to group similar tests.
 4. Add a `Test Key` when describing a test.  In the spec file, it should be written as:
 
@@ -107,16 +107,33 @@ Inside of the `integration` directory, there are additional directories that bre
     ```javascript
     describe('Test description', () => {
        before(() => {
-           // Use "cy.hasLicenseForFeature" if the test requires a certain licensed feature
-           cy.hasLicenseForFeature('GuestAccounts');
+           // Use "cy.requireLicenseForFeature" if the test requires a certain licensed feature
+           cy.requireLicenseForFeature('GuestAccounts');
 
-           // Otherwise use "cy.hasLicense" to check if server has license in general
-           cy.hasLicense();
+           // Otherwise use "cy.requireLicense" to check if server has license in general
+           cy.requireLicense();
        }
     }
     ```
 
 6. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/3020/files) as a guide on how to write and submit an end-to-end testing PR.
+
+### Adding test metadata on spec files
+Test metadata is used to identify each spec file ahead of time before it is forwarded for Cypress run. Currently, supported test metadata are the following:
+1. "Stage" - an environment for testing, e.g. `@prod`, `@smoke`, `@pull_request`. "Stage" metadata is owned and controlled by QA team who carefully analyze stability of test and promote/demote into a certain stage. This is not required when submitting a spec file.
+2. "Group" - means of grouping tests which are primarily based from tabs of Release testing spreadsheet, e.g. `@account_setting` for Account Setting, `@messaging` for Messaging, etc., or could have a different name depending on how the team decide to group a set of tests. This is required when submitting a spec file.
+3. "Skip" - is a way to skip a spec file depending on capability of test environment. This is required when submitting a spec file if a test has certain limitation or requirement. Capabilities could be as follows:
+   - Per platform, e.g. `@darwin` for Mac, `@linux` for Linux flavor like Ubuntu, `@win32` for Windows, etc.
+   - Per browser, e.g. `@electron`, `@chrome`, `@firefox`, `@edge`
+   - Per headless or headed, e.g. `@headless` or `@headed`
+
+A spec file can have zero or more metadata separated by space.
+```
+// Stage: @prod @smoke
+// Group: @enterprise @saml
+// Skip:  @headless @electron @firefox
+```
+
 
 ## Troubleshooting
 
