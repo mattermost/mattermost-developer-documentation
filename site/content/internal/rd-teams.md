@@ -55,6 +55,7 @@ weight: 110
 * Michael Kochell - Engineer
 * Shota Gvinepadze - Engineer
 * Ben Schumacher - Engineer
+* Daniel Espino Garcia - Engineer
 * Aaron Rothschild - PM
 * Dylan Haussermann - QA
 * Asaad Mahmood - UX Designer
