@@ -11,7 +11,7 @@ subsection: "Desktop App"
 - Node.js 8 or later
 - NPM
 - Git
-- Windows Build Tools or Visual Studio Community edition (see Known Problems section)
+- Windows Build Tools or Visual Studio Community edition (see Known Problems section).
 - Recomended: [Chocolatey](https://chocolatey.org/) which we will use to install other deps.
 
 ### Windows
@@ -54,10 +54,10 @@ If the above command fails, it might be due to not having the right policy to in
 ##### pngquant-bin
 
 On Windows there is no default `libpng-dev` available. There are two options for getting it to build:
-- Install windows build toosl: `npm install windows-build-tools`
+- Install Windows Build Tools: `npm install windows-build-tools`
 - Install Visual Studio Community
 
-Both of which provides the dependencies required to build the package. After one of the two options are installed, install manually: `npm install libpng-dev`
+Either option provides the dependencies required to build the package. After one of the two options are installed, install `npm install libpng-dev` manually. 
 
 ## Building
 Build JavaScript codes with `webpack`.
