@@ -34,11 +34,11 @@ Submit a pull request referencing the updated `plugin.json`, `server/manifest.go
 
 ### Tag, Build & Sign
 
-Tag, build and sign a plugin via [matterbuild](https://github.com/mattermost/matterbuild) by using a slash command on our [community](https://community.mattermost.com) servers.
+Tag, build and sign a plugin via [matterbuild](https://github.com/mattermost/matterbuild) by using a slash command on our [community](https://community.mattermost.com) servers. Note that the repository must belong to the `mattermost` organization.
 
 Simply invoke:
 ```
-/mb cutplugin --tag v0.13.0 --repo mattermost/mattermost-plugin-github
+/mb cutplugin --tag v0.13.0 --repo mattermost-plugin-github
 ```
 
 Matterbuild will create the given tag pointing at the current `master`, triggering CircleCI to [automatically create a GitHub release](https://github.com/mattermost/circleci-orbs/blob/3fb37c7920037c857a9ed9bc1a4e31be20092cdd/plugin-ci/orb.yml#L111-L120). Once the assets are built and uploaded to the release, matterbuild will download and sign using our production plugin signing key.
