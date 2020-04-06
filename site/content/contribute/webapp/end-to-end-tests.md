@@ -81,7 +81,7 @@ Inside of the `integration` directory, there are additional directories that bre
 
 1. The [recommended practice](https://docs.cypress.io/guides/references/best-practices.html#Selecting-Elements) of Cypress is to use `data-*` attribute to provide context to selectors, but we prefer to use element ID instead.
    - If element ID is not present in the webapp, you may add it in `camelCase` form with human readable name (e.g. `<div id='sidebarTitle'>`). Watch out for potential breaking changes in the snapshot of the unit testing.  Run `make test` to see if all are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot testing.
-2. Add commands or shortcuts to `/e2e/cypress/support/commands.js` (e.g. `toAccountSettingsModal`) that makes it easier to access a page, section, modal and etc. by simply using it as `cy.toAccountSettingsModal()`.
+2. Add commands or shortcuts to `/e2e/cypress/support/commands.js` (e.g. `toAccountSettingsModal`) that make it easier to access a page, section, modal and so on by using it as `cy.toAccountSettingsModal()`.
 3. Organize `/e2e/cypress/integration` with a subfolder to group similar tests.
 4. Add a `Test Key` when describing a test.  In the spec file, it should be written as:
 
