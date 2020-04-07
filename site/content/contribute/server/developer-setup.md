@@ -12,7 +12,7 @@ For minimum software requirements, see the following table:
 |----------------|------------------|
 | Docker         | 17.12.0+         |
 | Docker Compose | 1.21.0+          |
-| Go             | 1.13.3+          |
+| Go             | 1.14.0+          |
 
 <div class="tab">
     <button class="tablinks active" onclick="openTab(event, 'mac')">Mac OS X</button>
