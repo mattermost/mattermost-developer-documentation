@@ -1,6 +1,6 @@
 include legacy.mk
 
-.PHONY: dist 
+.PHONY: dist
 dist: plugin-data
 	rm -rf ./dist
 	hugo -s site --destination ../dist/html
