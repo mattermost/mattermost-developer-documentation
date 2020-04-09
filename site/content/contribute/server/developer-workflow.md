@@ -20,7 +20,7 @@ Here's a general workflow for a Mattermost developer working on the [mattermost-
     * [./utils/](https://github.com/mattermost/mattermost-server/tree/master/utils) holds all utilities, such as the mail utility.
     * [./i18n/](https://github.com/mattermost/mattermost-server/tree/master/i18n) holds all localization files for the server.
 2. On your fork, create a feature branch for your changes. Name it `MM-$NUMBER_$DESCRIPTION` where `$NUMBER` is the [Jira](https://mattermost.atlassian.net) ticket number you are working on and `$DESCRIPTION` is a short description of your changes. Example branch names are `MM-18150_plugin-panic-log` and `MM-22037_uppercase-email`.
-3. Make the code changes required to complete your ticket, ensuring that unit tests are written or modified  where appropriate. Please use [testify](https://github.com/stretchr/testify) for new tests.
+3. Make the code changes required to complete your ticket, ensuring that unit tests are written or modified where appropriate. Please use [testify](https://github.com/stretchr/testify) for new tests.
 4. To test your changes, run `make run-server` from the root directory of the server respository. This will start up the server at `http://localhost:8065`. To get changes to the server it must be restarted with `make restart-server`. If you want to test with the web app, you may also run `make run` which will start the server and a watcher for changes to the web app.
 5. Once everything works to meet the ticket requirements, stop Mattermost by running `make stop` in the server repository, then run `make check-style` to check your syntax.
 6. Run the tests using one or more of the following options:
@@ -28,9 +28,10 @@ Here's a general workflow for a Mattermost developer working on the [mattermost-
      * Run individual tests by name executing `go test -run "TestName"`.
      * Run all the tests in a package where changes were made executing `go test app`.
      * Create a draft PR with your changes and let our CI servers run the tests for you.
-7. Commit your changes, push your branch, and [create a pull request](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/).
-8. Respond to feedback on your pull request and make changes as necessary by commiting to your branch and pushing it. You might need to [rebase your changes](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) if another pull request creates conflicts.
-9. That's it! Rejoice that you've helped make Mattermost better.
+7. If you added or changed any localization strings you will need to run `make i18n-extract` to generate the new/updated strings.
+8. Commit your changes, push your branch, and [create a pull request](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/).
+9. Respond to feedback on your pull request and make changes as necessary by committing to your branch and pushing it. You might need to [rebase your changes](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) if another pull request creates conflicts.
+10. That's it! Rejoice that you've helped make Mattermost better.
 
 ### Useful Server Makefile Commands
 
@@ -43,6 +44,7 @@ Some useful `make` commands:
 * `make stop-server` stops only the server.
 * `make clean-docker` stops and removes your Docker images and is a good way to wipe your database.
 * `make clean` cleans your local environment of temporary files.
+* `make config-reset` resets the `config/config.json` file to the default.
 * `make nuke` wipes your local environment back to a completely fresh start.
 * `make package` creates packages for distributing your builds and puts them in the `~/go/src/github.com/mattermost/mattermost-server/dist` directory. First you will need to run `make build` and `make build-client`.
 * `make megacheck` runs the tool [megacheck](https://github.com/dominikh/go-tools/tree/master/cmd/megacheck) against the code base to find potential issues in the code. Please note the results are guidelines, and not mandatory in all cases. If in doubt, ask in the [Developers community channel](https://community.mattermost.com/core/channels/developers).

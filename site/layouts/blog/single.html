@@ -52,6 +52,8 @@
             <!-- Sidebar -->
             <div class="col-md-3 doc-content tags-sidebar">
                 <div class="well well-sm">
+                    {{ partial "series_link.html" . }}
+
                     <div>Other Posts</div>
                     <ul class="list-unstyled">
                         {{ range first 15 (where .Site.Pages ".Section" "blog" )}}

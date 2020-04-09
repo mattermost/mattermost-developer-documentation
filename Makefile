@@ -1,6 +1,6 @@
 include legacy.mk
 
-.PHONY: dist 
+.PHONY: dist
 dist: plugin-data
 	rm -rf ./dist
 	hugo -s site --destination ../dist/html
@@ -31,4 +31,4 @@ endif
 
 .PHONY: run
 run:
-	hugo server --buildDrafts -s site
+	hugo server --buildDrafts --disableFastRender -F -s site

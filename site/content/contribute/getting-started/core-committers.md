@@ -146,8 +146,18 @@ Below is the list of core committers working on Mattermost:
 - **<a name="ibrahim.acikgoz">Ibrahim Acikgoz</a>**
     - @ibrahim.acikgoz on [community.mattermost.com](https://community.mattermost.com/core/messages/@ibrahim.acikgoz) and [@isacikgoz](https://github.com/isacikgoz) on GitHub
     - Dev areas: Backend, CLI, Performance
-
-    
+- **<a name="nevy.angelova">Nevy Angelova</a>**
+    - @nevyana on [community.mattermost.com](https://community.mattermost.com/core/messages/@nevyana) and [@nevyangelova](https://github.com/nevyangelova) on GitHub
+    - Dev areas: Web App, React, Redux
+- **<a name="alejandro.garcia.montoro">Alejandro García Montoro</a>**
+    - @alejandro.garcia on [community.mattermost.com](https://community.mattermost.com/core/messages/@alejandro.garcia) and [@agarciamontoro](https://github.com/agarciamontoro) on GitHub
+    - Dev areas: Toolkit, Plugins, Server
+- **<a name="angelos.kyratzakos">Angelos Kyratzakos</a>**
+    - @angelos.kyratzakos on [community.mattermost.com](https://community.mattermost.com/core/messages/@angelos.kyratzakos) and [@angeloskyratzakos](https://github.com/angeloskyratzakos) on GitHub
+    - Dev areas: Kubernetes, Infrastructure
+- **<a name="daniel.espino.garcia">Daniel Espino García</a>**
+    - @daniel.espino.garcia on [community.mattermost.com](https://community.mattermost.com/core/messages/@daniel.espino.garcia) and [@larkox](https://github.com/larkox) on GitHub
+    - Dev areas: Extensions
 
 Core Developers
 ---------------
