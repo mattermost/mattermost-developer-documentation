@@ -15,6 +15,11 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+5.21    | March 16, 2020      | [Allan Guwatudde](https://github.com/AGMETEOR)
+5.20    | February 16, 2020   | [Md Zubair Ahmed](https://github.com/M-ZubairAhmed)
+5.19    | January 16, 2020    | [Allen Lai](https://github.com/allenlai18)
+5.18    | December 16, 2019   | [larkox](https://github.com/larkox)
+5.17    | November 16, 2019   | [Andre Vasconcelos](https://github.com/avasconcelos114)
 5.16    | October 16, 2019    | [Paulo Bittencourt](https://github.com/pbitty)
 5.15    | September 16, 2019  | [Siyuan Liu](https://github.com/liusy182)
 5.14    | August 16, 2019     | [Rodrigo Villablanca Vásquez](https://github.com/rvillablanca)

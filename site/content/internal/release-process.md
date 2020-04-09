@@ -5,7 +5,7 @@ section: internal
 weight: 100
 ---
 
-**Note: To cut a build you need access to matterbuild. Please ask Christopher/Carlos for access if you don't have it.**
+**Note: To cut a build you need access to matterbuild. Please ask Christopher/Jason/Elisabeth for access if you don't have it.**
 
 Developers and PMs decide when to create the release branch. The branch can be created from master or from an existing release branch, depending on which type of release we are planning. If it is a Quality Release, the new branch should be branched off the previous release, otherwise the branch should be off the master branch.
 
@@ -19,7 +19,7 @@ On code complete day, work with the PM on rotation to get all the pull requests 
 4. Once the above PR is merged, post `/mb cut X.X.X-rc1` into a private channel. Replace `X.X.X` with the release version, ex: `5.8.0`. This will begin cutting the build and make an automatic post to the Release Discussion channel.
   - If you need to build an older release (older than 5.7.X), you will need to set the `legacy` and the `backport` flags in order to trigger the old job, ie. `/mb cut 5.7.1-rc1 --backport --legacy`.
   - Also, for the current job, you can define the Docker images using flags to build/test server and webapp. ie `/mb cut 5.8.0-rc1 --server mattermost/mattermost-build-server:dec-7-2018 --webapp mattermost/mattermost-build-webapp:oct-2-2018`.
-5. Wait approximately 25 minutes for the build to finish. If the build fails, please check the jenkins job to see what happened. Then simply repeat step 4. You can monitor build status from https://build.mattermost.com. If any issues or questions, please ask Carlos (`@cpanato` on `Community Server`).
+5. Wait approximately 25 minutes for the build to finish. If the build fails, please check the jenkins job to see what happened. Then simply repeat step 4. You can monitor build status from https://build.mattermost.com. If any issues or questions, please ask Elisabeth (`@elisabeth.kulzer` on `Community Server`) or Jason Deland (`@jason.deland` on `Community Server`)
   - after you cut the RCX and it is published you need to come here:
       - https://build.mattermost.com/job/mk/job/mattermost-enterprise-edition-release/ and build the docker image for the `RCX`, for example `5.8.0-rc2`
   - and after the previous job is complete you can run:

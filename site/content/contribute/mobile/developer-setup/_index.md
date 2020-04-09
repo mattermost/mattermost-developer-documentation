@@ -54,6 +54,11 @@ Use *npm* to install [React Native CLI Tools](http://facebook.github.io/react-na
 $ npm -g install react-native-cli
 ```
 
+#### Install ```bundler --version 2.0.2``` gem
+```sh
+$ sudo gem install bundler --version 2.0.2
+```
+
 #### Obtaining the source code
 We use GitHub to host the source code so we recommend that you install [Git](https://git-scm.com/) to get the source code. Optionally, you can also contribute by submitting [pull requests](https://help.github.com/articles/creating-a-pull-request/). If you do not have git installed you can do so with Homebrew by opening a terminal and executing:
 

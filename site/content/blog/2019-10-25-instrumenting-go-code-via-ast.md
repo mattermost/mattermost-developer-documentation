@@ -1,6 +1,7 @@
 ---
 title: "Instrumenting Go code via AST"
 slug: instrumenting-go-code-via-ast
+series: "AST"
 date: 2019-10-31T00:00:00-04:00
 author: Eli Yukelzon
 github: reflog

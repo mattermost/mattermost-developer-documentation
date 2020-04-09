@@ -32,7 +32,7 @@
     sudo chmod +x /usr/local/bin/docker-compose
     ```
 
-3. Install Go (modify installation to latest Go version from https://golang.org/dl/):
+3. Install Go (modify installation to latest Go version from <https://golang.org/dl/>):
 
     ```sh
     sudo apt-get install -y build-essential
@@ -81,3 +81,9 @@
     ```
 
     **Note:** Browsing directly to http://localhost:8065/ will display a `404 Not Found` until the web app is configured. See [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for additional setup.
+
+    The `stop-server` make target does not stop all the docker containers started by `run-server`. To stop the running docker containers:
+
+    ```sh
+    make stop-docker
+    ```

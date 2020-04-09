@@ -9,13 +9,14 @@
 
 {{ define "TypeHTML" }}
     {{- $builtInTypes := slice "bool" "byte" "complex128" "complex64" "error" "float32" "float64" "int" "int16" "int32" "int64" "int8" "rune" "string" "uint" "uint16" "uint32" "uint64" "uint8" "uintptr" -}}
-    {{- if in $builtInTypes . }}<a href="https://godoc.org/builtin#{{ . }}">{{ . }}</a>
+    {{- if in $builtInTypes . }}<a href="https://pkg.go.dev/builtin#{{ . }}">{{ . }}</a>
     {{- else if hasPrefix . "[]" }}[]{{ template "TypeHTML" (strings.TrimPrefix "[]" .) }}
     {{- else if hasPrefix . "*" }}*{{ template "TypeHTML" (strings.TrimPrefix "*" .) }}
+    {{- else if hasPrefix . "..." }}...{{ template "TypeHTML" (strings.TrimPrefix "..." .) }}
     {{- else if in . "." -}}
         {{- $name := index (split . "." | last 1) 0 }}
         {{- $package := strings.TrimSuffix $name . | strings.TrimSuffix "." -}}
-        <a href="https://godoc.org/{{ $package }}">{{ index (split $package "/" | last 1) 0 }}</a>.<a href="https://godoc.org/{{ $package }}#{{ $name }}">{{ $name }}</a>
+        <a href="https://pkg.go.dev/{{ $package }}">{{ index (split $package "/" | last 1) 0 }}</a>.<a href="https://pkg.go.dev/{{ $package }}#{{ $name }}">{{ $name }}</a>
     {{- else }}{{ range split . "/" | last 1 }}{{ . }}{{ end }}
     {{- end -}}
 {{ end }}

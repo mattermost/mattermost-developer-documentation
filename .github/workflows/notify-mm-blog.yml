@@ -1,0 +1,24 @@
+name: notify-mm-blog
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'site/content/blog/**'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          .github/workflows/notify-mm-blog.sh
+
+      - uses: mattermost/action-mattermost-notify@master
+        env:
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
+
+

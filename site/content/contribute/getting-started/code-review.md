@@ -23,9 +23,9 @@ If you are a community member seeking a review
     * When in doubt, ask for help in the [Developers](https://community.mattermost.com/core/channels/developers) channel on our community server.
 3. Wait for a review.
     * The ticket author, a core committer, or a product manager will assign reviewers and label your pull request appropriately.
-    * Expect some interaction with at least one reviewer within 5 business days.
+    * Expect some interaction with at least one reviewer within 5 business days (weekdays, Monday through Friday, excluding [statutory holidays](https://docs.mattermost.com/process/working-at-mattermost.html#holidays)).
     * Keep in mind that core committers are geographically distributed around the world and likely in a different time zone than your own.
-    * Please ping [Jason Blais](/contribute/getting-started/core-committers/#jason.blais) or [Hanzei](/contribute/getting-started/core-committers/#hanzei) after 5 business days if no interaction has occurred.
+    * If no interaction has occurred after 5 business days, please ping a core team member who is participating in the PR. If there are no participating members yet, please ping [Jason Blais](/contribute/getting-started/core-committers/#jason.blais) or [Ben Schumacher (Hanzei)](/contribute/getting-started/core-committers/#hanzei).
 4. Make any necessary changes.
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
     * Once you've addressed the concerns, reach out with another mention.
@@ -46,7 +46,7 @@ If you are a core committer seeking a review
     * The PM should remove `1: PM Review` when their review is done.
 3. Assign two [core committers](/contribute/getting-started/core-committers/) to your review and label your pull request with `2: Dev Review`.
     * When picking your first core committer, consider someone with domain expertise relative to your changes. Sometimes GitHub will recommend a recent editor of the code, but often you must rely on your own intuition from past interactions.
-    * When picking your second core committer, consider someone unrelated to your changes. A fresh and unbiased set of eyes can be invaluable, and exposing the team to new parts of the code helps spread out domain knowledge.
+    * When picking your second core committer, consider someone from another team who may have good or expert knowledge of the language and/or problem you're solving, even if they aren't intricately familiar with the codebase. This can provide a fresh set of eyes on the code to reveal blindspots that are not biased by hitting deadlines, and helps expose the team to new parts of the code to help spread out domain knowledge. This may not make sense for every pull request but is a practice to keep in mind.
     * Don't be afraid to pick someone who gives "hard" reviews. Code review feedback is never a personal attack: it should "sharpen" the skills of both the author and the reviewers, not to mention improving the quality of the product.
     * If you are Mattermost staff, try to take into account the timeoff calendar.
     * Try to avoid assigning the same person to all of your reviews unless they are related.
@@ -78,11 +78,7 @@ If you are a core committer seeking a review
     * Merge your pull request and delete the branch if not from a fork.
     * Note that the last core committer to approve your changes may do this on your behalf.
     * If your pull request depends on other pull requests, consider assigning the `Do Not Merge/Awaiting PR` label.
-10. Handle any cherry-picks.
-    * Cherry-pick the commit from `master` to the affected releases.
-    * Push your changes directly to the remote branch.
-    * No new pull request is required unless there are substantial merge conflicts.
-    * Remove the `CherryPick/Approved` label and apply the `CherryPick/Done` label.
+10. For handling cherry-picks, please check [here](https://developers.mattermost.com/contribute/getting-started/branching/).
 
 If you are a core committer asked to give a review
 --------------------------------------------------
@@ -110,4 +106,4 @@ If you are a core committer asked to give a review
     * Merge the pull request, and delete the branch if not from a fork.
     * Some changes are spread out across multiple pull requests that should be merged at the same time. Look out for the `Do Not Merge/Awaiting PR` label. When in doubt, leave the merging of the pull request to the author.
 5. Handle any cherry-picks.
-    * Typically, the author of the pull request should handle cherry-picks. Assume this is the case unless you are explicitly asked to help cherry-pick.
+    * There is an automated cherry-pick process and the author of the pull request should make sure the cherry-pick succeeds. Assume this is the case unless you are explicitly asked to help cherry-pick.

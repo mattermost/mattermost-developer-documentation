@@ -1,5 +1,3 @@
-// +build ignore
-
 package main
 
 import (
@@ -7,17 +5,19 @@ import (
 	"encoding/json"
 	"fmt"
 	"go/ast"
-	"go/build"
 	"go/doc"
-	"go/importer"
-	"go/parser"
 	"go/printer"
-	"go/token"
 	"go/types"
 	"log"
 	"os"
 	"regexp"
 	"sort"
+	"strings"
+
+	"github.com/pkg/errors"
+	"golang.org/x/tools/go/packages"
+
+	_ "github.com/mattermost/mattermost-server/v5/plugin"
 )
 
 type Field struct {
@@ -86,91 +86,82 @@ func fields(list *ast.FieldList, info *types.Info) (fields []*Field) {
 	}
 	if list != nil {
 		for _, x := range list.List {
-			xType := info.TypeOf(x.Type)
-			if xType != nil {
-				field := &Field{
-					Type: xType.String(),
-				}
-				for _, name := range x.Names {
-					field.Names = append(field.Names, name.Name)
-				}
-				fields = append(fields, field)
-			} else if _, ok := x.Type.(*ast.Ellipsis); ok {
-				field := &Field{}
-				for _, name := range x.Names {
-					field.Names = append(field.Names, name.Name)
-				}
-				t := x.Type.(*ast.Ellipsis)
-				switch t.Elt.(type) {
-				case *ast.Ident:
-					field.Type = fmt.Sprintf("...%s", t.Elt.(*ast.Ident).String())
-				case *ast.InterfaceType:
-					field.Type = "...interface{}"
-				}
-				fields = append(fields, field)
+			field := &Field{}
+			for _, name := range x.Names {
+				field.Names = append(field.Names, name.Name)
 			}
+
+			xType := info.TypeOf(x.Type)
+			if xType == nil {
+				panic(fmt.Sprintf("type of %s is nil", field.Names))
+			}
+
+			t := xType.String()
+
+			// If type is "...", t will start with [] instead of ...
+			// Replace it manually
+			if _, ok := x.Type.(*ast.Ellipsis); ok {
+				t = strings.Replace(t, "[]", "...", 1)
+			}
+			field.Type = t
+
+			fields = append(fields, field)
 		}
 	}
 	return
 }
 
-func typeCheck(pkg *ast.Package, path string, fset *token.FileSet) (*types.Info, error) {
-	typeConfig := types.Config{Importer: importer.For("source", nil)}
-	info := &types.Info{
-		Types: make(map[ast.Expr]types.TypeAndValue),
-		Uses:  make(map[*ast.Ident]types.Object),
-		Defs:  make(map[*ast.Ident]types.Object),
-	}
-	var files []*ast.File
-	for _, file := range pkg.Files {
-		files = append(files, file)
-	}
-	_, err := typeConfig.Check(path, fset, files, info)
-	return info, err
-}
-
 func generateDocs() (*Docs, error) {
-	imp, err := build.Import("github.com/mattermost/mattermost-server/plugin", "", 0)
-	if err != nil {
-		return nil, err
+	packageName := "github.com/mattermost/mattermost-server/v5/plugin"
+	config := &packages.Config{
+		Mode:  packages.LoadSyntax,
+		Tests: true,
 	}
-
-	fset := token.NewFileSet()
-	pkgs, err := parser.ParseDir(fset, imp.Dir, nil, parser.ParseComments)
+	pkgs, err := packages.Load(config, packageName)
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrapf(err, "Error loading package %s", packageName)
 	}
 
 	docs := Docs{
 		Examples: make(map[string]*ExampleDocs),
 	}
 
-	for path, pkg := range pkgs {
-		info, err := typeCheck(pkg, "github.com/mattermost/mattermost-server/"+path, fset)
-		if err != nil {
-			return nil, err
-		}
+	// With Tests enabled in the config above, we see up to four duplicate packages. Keep
+	// track of the types seen to avoid rendering them more than once.
+	seenTypes := make(map[string]bool)
 
-		var files []*ast.File
-		for _, f := range pkg.Files {
-			files = append(files, f)
-		}
-		for _, example := range doc.Examples(files...) {
+	for _, pkg := range pkgs {
+		for _, example := range doc.Examples(pkg.Syntax...) {
 			buf := &bytes.Buffer{}
-			printer.Fprint(buf, fset, example.Play)
+			printer.Fprint(buf, pkg.Fset, example.Play)
 			docs.Examples[example.Name] = &ExampleDocs{
 				HTML: docHTML(example.Doc),
 				Code: buf.String(),
 			}
 		}
 
-		godocs := doc.New(pkg, path, 0)
+		fileMap := map[string]*ast.File{}
+		for i, file := range pkg.Syntax {
+			fileMap[pkg.CompiledGoFiles[i]] = file
+		}
 
-		if godocs.Name == "plugin" {
+		astPkg := &ast.Package{
+			Name:  pkg.Name,
+			Files: fileMap,
+		}
+
+		godocs := doc.New(astPkg, pkg.PkgPath, doc.Mode(0))
+
+		if godocs.Name == "plugin" && godocs.Doc != "" {
 			docs.HTML = docHTML(godocs.Doc)
 		}
 
 		for _, t := range godocs.Types {
+			if seenTypes[t.Name] {
+				continue
+			}
+			seenTypes[t.Name] = true
+
 			var interfaceDocs *InterfaceDocs
 			switch t.Name {
 			case "API":
@@ -182,7 +173,9 @@ func generateDocs() (*Docs, error) {
 			default:
 				continue
 			}
-			interfaceDocs.HTML = docHTML(t.Doc)
+			if t.Doc != "" {
+				interfaceDocs.HTML = docHTML(t.Doc)
+			}
 			for _, spec := range t.Decl.Specs {
 				typeSpec, ok := spec.(*ast.TypeSpec)
 				if !ok {
@@ -199,8 +192,8 @@ func generateDocs() (*Docs, error) {
 						Name:       method.Names[0].Name,
 						Tags:       tags(method.Doc.Text()),
 						HTML:       docHTML(method.Doc.Text()),
-						Parameters: fields(f.Params, info),
-						Results:    fields(f.Results, info),
+						Parameters: fields(f.Params, pkg.TypesInfo),
+						Results:    fields(f.Results, pkg.TypesInfo),
 					}
 					interfaceDocs.Methods = append(interfaceDocs.Methods, methodDocs)
 					allTags = append(allTags, methodDocs.Tags...)

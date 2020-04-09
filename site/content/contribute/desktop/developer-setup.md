@@ -9,15 +9,49 @@ subsection: "Desktop App"
 - C++ environment which supports C++11 (e.g. VS 2015, Xcode, GCC)
 - Python 2.7
 - Node.js 8 or later
-- Yarn
+- NPM
 - Git
 
-## Installing dependencies
-After installation, dependencies of `src/` directory are also installed.
+### Windows
+The recommended way to install the required components on Windows is to install the Chocolatey package manager.
+Once it's installed, run the following commands in the PowerShell console as `administrator`. 
+```
+choco install nvm
+```
+```
+choco install git
+```
+If you're using PowerShell without privileged access, run:
+```
+nvm install 10.18.1
+```
 
+## Installing Dependencies
+When installation is complete, dependencies of the `src/` directory are also installed.
+
+### OSX & Linux
 ```
 $ npm install
 ```
+### Windows
+Run the following command in the PowerShell console as `administrator`. 
+
+```
+> .\scripts\Makefile.ps1 Install-Deps
+```
+
+#### Known Problems
+
+##### Policy
+If the above command fails, it might be due to not having the right policy to install. You can temporarily change the policy using:
+
+```
+> Set-ExecutionPolicy Bypass -Scope Process -Force;
+```
+
+##### pngquant-bin
+
+On Windows there is no default `libpng-dev` available. Currently the best option is to install Visual Studio Community, which provides the dependencies required to build the package.
 
 ## Building
 Build JavaScript codes with `webpack`.
@@ -33,8 +67,13 @@ Package specific files of `src/` directory as distributable formats with [`elect
 Files are defined in `electron-builder.json`.
 Packages will be generated into `release/` directory.
 
+### macOS and Linux
 ```
-$ npm run package:<all | windows | mac | linux>
+$ npm run package:<all | mac | linux>
+```
+### Windows
+```
+> .\scripts\Windows.ps1
 ```
 
 ### Dependencies

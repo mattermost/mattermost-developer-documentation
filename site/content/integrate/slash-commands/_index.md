@@ -35,11 +35,11 @@ Accept-Encoding: gzip
 
 channel_id=i3bb9xfyqt8rtbyshmyhgsj16c&
 channel_name=town-square&
-command=%2Fexample&
+command=%2Ftest&
 response_url=http%3A%2F%2F10.0.0.5%3A8065%2Fhooks%2Fcommands%2Fzozc1xwxybdedeyz8djwjpngny&
 team_domain=rrrr&
 team_id=tsb8crrn5tgqtedpkt81b4tcya&
-text=&
+text=asd&
 token=nezum4kpu3faiec7r7c5zt6tfy&
 trigger_id=NG1kM3lyN2NqYmQxcGNyc2s0Nmo5em0xb2M6azF4NGFxZGp5MzgxM2M4NG03NzFlb2M5eG86MTU1MTIwODE5NTQyNzpNRVVDSUhSdWFrdmVGZ0RhTTd6UERoMWVEVndZK2NGbXlSYUxWQ054SVRLZGdxTWZBaUVBeGQvOU95NTFOeWxiTWVsRE1ZK0d4S2FzL2Z1TUU2Y0J1bW5JbFBCOXVEVT0%3D&
 user_id=k1x4aqdjy3813c84m771eoc9xo&
@@ -87,7 +87,9 @@ Slash command responses support more than just the `text` field. Here is a full 
 | attachments | [Message attachments](https://docs.mattermost.com/developer/message-attachments.html) used for richer formatting options. | If `text` is not set, yes |
 | type | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with `custom_`. Passing `attachments` will ignore this field and set the type to `slack_attachment`. | No |
 | extra\_responses | An array of responses used to send more than one post in your response. Each item in this array takes the shape of its own command response, so it can include any of the other parameters listed here, except `goto\_location` and `extra\_responses` itself. Available in Mattermost v5.6 and later. | No |
+| skip_slack_parsing | If set to `true` Mattermost will skip the Slack-compatibility handling. Useful if the post contains text or code which is incorrectly handled by the Slack-compatibility logic. Available in Mattermost v5.20 and later. | No |
 | props | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br> Mainly used by other integrations accessing posts through the REST API.<br> The following keys are reserved: `from_webhook`, `override_username`, `override_icon_url` and `attachments`. | No |
+
 An example request using some more parameters would look like this:
 
 ```http
