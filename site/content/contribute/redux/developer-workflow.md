@@ -32,7 +32,7 @@ If you're making changes to Mattermost Redux for use in the Mattermost web app, 
 
 1. Optionally, set your WEBAPP_DIR environment variable to the location of the web app on your machine, and reload it if necessary.
 
-        export WEBAPP_DIR=/path/to/mattermost-webapp/
+        export WEBAPP_DIR=/path/to/mattermost-webapp
 
 2. Run the following command to install Mattermost Redux from your local copy. While this is running, it will detect any changes you make and automatically copy them over to the web app.
 
