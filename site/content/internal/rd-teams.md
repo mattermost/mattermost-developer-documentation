@@ -34,11 +34,12 @@ weight: 110
 ## Cloud Team
 
 * Joram Wilander - Eng Lead
-* Carlos Panato - Engineer/Infrastructure
+* Carlos Panato - SRE
 * Gabe Jackson - Engineer
-* Stylianos Rigas - Engineer/Infrastructure
+* Stylianos Rigas - SRE
 * Ian Whitlock - Engineer
 * Gabriel Sagula - Engineer
+* Angelos Kyratzakos - SRE
 * Katie Wiersgalla - PM
 * Justine Geffen - Technical Writer
 
@@ -50,10 +51,11 @@ weight: 110
 ## Integrations Team
 
 * Lev Brouk - Eng Lead
-* Christopher Speller - Engineer
 * Jason Frerich - Engineer
-* Christopher Poile - Engineer
 * Michael Kochell - Engineer
+* Shota Gvinepadze - Engineer
+* Ben Schumacher - Engineer
+* Daniel Espino Garcia - Engineer
 * Aaron Rothschild - PM
 * Dylan Haussermann - QA
 * Asaad Mahmood - UX Designer
@@ -80,13 +82,14 @@ weight: 110
 * Corey Robinson - Sec. Engineer, Infra & Ops
 * Katie Wiersgalla - PM
 
-## Toolkit Team
+## Workflows Team
 
 * Jesse Hallam - Eng Lead
+* Christopher Speller - Engineer
+* Christopher Poile - Engineer
 * Ali Farooq - Engineer
 * Maria Nuñez - Engineer
-* Shota Gvinepadze - Engineer
-* Ben Schumacher - Engineer
+* Alejandro García Montoro - Engineer
 * Ian Tao - PM
 * Prapti Shrestha - QA SDET
 
