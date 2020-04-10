@@ -39,11 +39,18 @@ and running the service under a `mattermost-push-proxy` user account with limite
     ```bash
     echo "[Unit]
     Description=Mattermost Push Notification Service
+    After=syslog.target network.target
 
     [Service]
-    Type=oneshot
-    ExecStart=/bin/sh -c '/home/ubuntu/mattermost-push-proxy/bin/mattermost-push-proxy | logger'
+    Type=simple
+    User=ubuntu
+    Group=ubuntu
+    ExecStart=/home/ubuntu/mattermost-push-proxy/bin/mattermost-push-proxy
+    PrivateTmp=yes
     WorkingDirectory=/home/ubuntu/mattermost-push-proxy
+    Restart=always
+    RestartSec=30
+    LimitNOFILE=49152
 
     [Install]
     WantedBy=multi-user.target" >> /etc/systemd/system/mattermost-push-proxy.service
