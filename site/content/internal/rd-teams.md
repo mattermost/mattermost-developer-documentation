@@ -28,6 +28,7 @@ weight: 110
 * Devin Binnie - Engineer
 * Guillermo Vayá - Engineer
 * Nevy Angelova - Engineer
+* Caleb Roseland - Engineer
 * Eric Sethna - PM
 * Andrew Brown - UX Designer
 
