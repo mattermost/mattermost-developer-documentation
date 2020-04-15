@@ -2,11 +2,26 @@ This is an unofficial guide. Community testing, feedback and improvements are we
 
 1. Install the Windows Subsystem for Linux: https://docs.microsoft.com/en-us/windows/wsl/install-win10
 
+      **Note:** Docker for Windows expects path to have the format `/c/foo/bar`, but WSL uses `/mnt/c/foo/bar` instead.
+      
+      Run `winver` and check which version of Windows you have. If you are using `1803` or higher, then tou need to create a file `/etc/wsl.conf` with the following content to make sure your drives are mounted at the root rather than inside `/mnt`:
+      
+       [automount]
+       root = /
+       
+      If you are using an older version, you need to create custom bind points:
+      
+       sudo mkdir /c
+       sudo mount --bind /mnt/c /c
+
+      For more on how to properly set up Docker for Windows and WSL see [here](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly).
+
 2. Install and setup Docker:
 
     * Install Docker for Windows: https://docs.docker.com/docker-for-windows/
     * Link Windows Subsystem for Linux to Docker for Windows: https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4.
         * You should end up with the Docker client running on Linux (WSL) sending commands to your Docker Engine daemon installed on Windows.
+    * Go to Docker Desktop > Settings > Resources > File Sharing and make sure you check the drives where you are going to run `mattermost-server` from.
 
     **Note:** [MM-9791](https://github.com/mattermost/mattermost-server/pull/10872) introduced using [docker-compose](https://docs.docker.com/compose/) to manage containers. To preserve your data on upgrade, execute the following steps.
 
@@ -85,7 +100,9 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     ```
 
 ### Troubleshooting:
-1. If you see an error like `the input device is not a TTY.  If you are using mintty, try prefixing the command with 'winpty'`.  Reinstall git for windows and make sure you choose `Use Windows' default console window` instead of `Use MinTTY`
+
+1. If you see an error like `the input device is not a TTY.  If you are using mintty, try prefixing the command with 'winpty'`.  Reinstall git for windows and make sure you choose `Use Windows' default console window` instead of `Use MinTTY`.
+
 2. The LDAP docker container is sometimes slow to start. If you see the following message, either increase the wait time in the make file or run `make run` twice in a row.
 
     ```
@@ -99,3 +116,13 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)
     Makefile:102: recipe for target 'start-docker' failed
     ```
+3. If you see an error like `nc: bad address 'postgres'` when running `make run-server`and PostgreSQL's container just keeps restarting, check its logs in Docker Desktop. You should probably see something like:
+
+    ```
+    LOG: input in flex scanner failed at file "/etc/postgresql/postgresql.conf" line 1
+    FATAL: configuration file "/etc/postgresql/postgresql.conf" contains errors
+    ```
+    
+    If that's the case, `postgresql.conf` is probably a directory rather than a file, which means the volume wasn't mounted properly, so you are probably missing some of the changes in step 1.
+    
+4. If you see an error like `ERROR: for mattermost-postgres. Cannot create container for service postgres: status code not OK but 500: {"Message":"Unhandled exception: Drive has not been shared"}`, make sure you enabled File Sharing for the drive that contains the `mattermost-server` project (step 2). 
