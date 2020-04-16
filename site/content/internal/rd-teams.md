@@ -28,6 +28,7 @@ weight: 110
 * Devin Binnie - Engineer
 * Guillermo Vayá - Engineer
 * Nevy Angelova - Engineer
+* Caleb Roseland - Engineer
 * Eric Sethna - PM (Driving NPS) 
 * Adam Clarkson - PM (Driving Early Retention)
 * Andrew Brown - UX Designer
