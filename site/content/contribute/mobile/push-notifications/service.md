@@ -112,7 +112,7 @@ and running the service under a `mattermost-push-proxy` user account with limite
 
 ### Configure the Mattermost Server to use the Mattermost Push Notification Service
 
-- In you Mattermost instance, enable mobile push notifications.
+- In your Mattermost instance, enable mobile push notifications.
     * Go to **System Console > Notifications > Mobile Push**.
     * Under **Send Push Notifications**, select **Manually enter Push Notification Service location**.
     * Enter the location of your Mattermost Push Notification Service in the **Push Notification Server** field.
