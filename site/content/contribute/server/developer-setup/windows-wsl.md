@@ -4,12 +4,12 @@ This is an unofficial guide. Community testing, feedback and improvements are we
 
       **Note:** Docker for Windows expects path to have the format `/c/foo/bar`, but WSL uses `/mnt/c/foo/bar` instead.
       
-      Run `winver` and check which version of Windows you have. If you are using `1803` or higher, then tou need to create a file `/etc/wsl.conf` with the following content to make sure your drives are mounted at the root rather than inside `/mnt`:
+      Run `winver` and check which version of Windows you have. If you are using `1803` or higher, then you need to create a file `/etc/wsl.conf` with the following content to make sure your drives are mounted at the root rather than inside `/mnt`:
       
        [automount]
        root = /
        
-      If you are using an older version, you need to create custom bind points:
+      If you are using an older version than `1803`, you need to create custom bind points:
       
        sudo mkdir /c
        sudo mount --bind /mnt/c /c
@@ -123,6 +123,6 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     FATAL: configuration file "/etc/postgresql/postgresql.conf" contains errors
     ```
     
-    If that's the case, `postgresql.conf` is probably a directory rather than a file, which means the volume wasn't mounted properly, so you are most likely missing some of the configuration changes in step 1.
+    If that's the case, `postgresql.conf` is probably a directory rather than a file, which means the volume wasn't mounted properly, so you are most likely missing some of the configuration changes in step 1 (linux subsystem installation).
     
 4. If you see an error like `ERROR: for mattermost-postgres. Cannot create container for service postgres: status code not OK but 500: {"Message":"Unhandled exception: Drive has not been shared"}`, make sure you enabled File Sharing for the drive that contains the `mattermost-server` project (step 2). 
