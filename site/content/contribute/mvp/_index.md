@@ -15,6 +15,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+5.22    | April 16, 2020      | [Tim Estermann](https://github.com/der-test)
 5.21    | March 16, 2020      | [Allan Guwatudde](https://github.com/AGMETEOR)
 5.20    | February 16, 2020   | [Md Zubair Ahmed](https://github.com/M-ZubairAhmed)
 5.19    | January 16, 2020    | [Allen Lai](https://github.com/allenlai18)
