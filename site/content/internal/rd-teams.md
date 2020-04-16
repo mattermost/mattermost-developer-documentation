@@ -17,7 +17,7 @@ weight: 110
 * Miguel Alatzar - Engineer
 * Amit Uttam - Engineer
 * Eric Sethna - PM
-* Andrew Brown - UX Designer
+* Matt Birtch - UX Designer
 
 ## Apps Team
 
@@ -117,6 +117,3 @@ weight: 110
 * Jelena Gilliam - QA
 * Ogi Marusic - QA
 * Steve Mudie - QA
-* Adam Clarkson - PM
-* Eric Sadur - PM
-* Matt Birtch - UX Designer
