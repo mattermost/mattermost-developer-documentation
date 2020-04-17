@@ -205,7 +205,7 @@ func (s *CounterLayer) CountUsers() int {
 ...
 ```
 
-This layers intercepts all the calls made to the Store and print the number of
+This layers intercepts all the calls made to the store and prints the number of
 calls so far.
 
 Another more interesting layer would be a `TimerLayer`.
@@ -248,21 +248,21 @@ func (s *TimerLayer) CountUsers() int {
 ...
 ```
 
-This allow us to know how much time is invested in each call. Our Timer layer
-implementation is pretty similar to this one, but sending this data to a
+This allow us to know how much time is invested in each call. Our `TimerLayer`
+implementation is pretty similar to this one, but sends this data to
 Prometheous instead of printing it.
 
 This code is super repetitive, and in Mattermost we have a lot of method in our
-store, so we didn't wrote it by hand, we used generators to build the
+store, so we didn't write it by hand; we used generators to build the
 `TimerLayer` and the `OpenTracingLayer`.
 
-Having this kind of generators you can build all kind of transparent layers that add extra behavior
+Using this kind of generator you can build all kinds of transparent layers that add extra behavior
 like a `KafkaLayer` to send everything that happens to a kafka, a `LoggerLayer`
-to log everything, a `RandomDelayLayer` to test weird behaviors on unconsistent
+to log everything, a `RandomDelayLayer` to test weird behaviors on inconsistent
 response times, or any other "middleware" that you can think about.
 
-After everything is implemented we can glue it together embeding the MapStore
-inside the layers, initialize with some data, and look how it works:
+After everything is implemented we can glue it together by embedding the `MapStore`
+inside the layers, initializing with some data, and testing how it works:
 
 ```go
 ...
@@ -294,7 +294,7 @@ func main() {
 }
 ```
 
-If you executes the whole program you'll get a simular output to the following one:
+If you execute the whole program you'll get a similar output to this:
 
 ```
 GetUser calls: 1.
@@ -309,24 +309,24 @@ CountUsers calls: 1.
 CountUsers time 0.150186 secons.
 ```
 
-You can see the first 2 calls to `GetUser` are from the MapStore (because have
+You can see the first two calls to `GetUser` are from the `MapStore` (because we have
 the `time.Sleep` there), the third one is faster because you are using the
-CacheLayer, and we can see all this thanks to the instrumentation layers that
+`CacheLayer`, and we can see all this thanks to the instrumentation layers that
 we built.
 
-This approach is not perfect, and have some clear flaws, the main one is the
-struct embedding is not behaving as one comming from object oriented languages
-would expect from inheritance (because is not inheritance), when you call a
-method in a struct that embeds another sturct, and the method doesn't exist in
+This approach is not perfect, and does have some flaws. The main one is that the
+struct embedding doesn't behave as one coming from object oriented languages
+would expect from inheritance - because is not inheritance. When you call a
+method in a struct that embeds another struct, and the method doesn't exist in
 the parent struct, the embedded struct method is called, and at that point, you
-are in the embedded struct without any knowledge of the parent struct, so if
-you call there any other method of the struct, is not going to be overriden,
+are in the embedded struct without any knowledge of the parent struct. So, if
+you call any other method of the struct, it will not be overridden and
 this can be error prone sometimes.
 
-Other problem with this approach is related to how the layers work, you are
-wrapping entire methods, so is all or nothing. You can't override part of the
-method, or reuse only certain parts of the underneath code easily and that can
-generate ton of duplicated code depending on what you want to do.
+Another problem with this approach is related to how the layers work. You are
+wrapping entire methods, so it's all or nothing. You can't override part of the
+method, or reuse only certain parts of the underlying code easily and that can
+generate a ton of duplicated code depending on what you want to do.
 
 We have included this architecture change some months ago, and so far for us
 has been a very good way to add our instrumentation and cache without mixing
