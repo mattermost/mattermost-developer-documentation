@@ -24,7 +24,7 @@ Our approach is based in idea of a core store, the one accessing to the source
 of truth (the database), and a set of layers on top of that adding extra
 behavior. All of them, the core store and all the layers must implement
 the same interface, in this case the store interface. This way, from the
-outside, there is not difference between our core Store without layers, or our
+outside, there is no difference between our core store without layers, or our
 core Store with 1000 layers on top of it.
 
 ![layers](/blog/2020-02-26-layered-store-and-struct-embedding/layers.png)
