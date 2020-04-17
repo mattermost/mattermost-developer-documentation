@@ -15,7 +15,7 @@ single database access is handled by the store, so we needed to find a way to
 extend it in different ways introducing as less complexity as possible,
 and that is the reason behind the current layered approach using struct embedding.
 
-Our store is the responsible for storing and retrieving data, and sometimes we
+Our store is responsible for storing and retrieving data, and sometimes we
 need to add functionality that is not strictly related to the database queries,
 for example, cache data or add instrumentation. That are transversal tasks
 and not necesarilly need to be in the same block of code.
