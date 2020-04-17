@@ -117,7 +117,7 @@ func (s *MapStore) DeleteUser(username string) error {
 ...
 ```
 
-This would be an example base store, now on top of that I going to create an example cache layer:
+This would be an example base store, now on top of that I'm going to create an example Cache Layer:
 
 ```go
 ...
