@@ -41,7 +41,7 @@ queries execution. And the layers that we put on top of that are:
   - The Cache Layer: Responsible for maintaining a cache of the store calls.
   - The Search Layer: Responsible for speeding up the search methods using
     search engines.
-  - The Timer Layer: responsible for sending the duration of each request to an
+  - The Timer Layer: Responsible for sending the duration of each request to a
     histogram in Prometheus.
   - The OpenTracing Layer: responsible for of add the open tracing information
     related to the store to the open tracing context.
