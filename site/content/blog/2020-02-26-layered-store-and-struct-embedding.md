@@ -53,7 +53,7 @@ How do we do that?
 
 To solve this problem we used structure embedding what is the way go
 provides to extend the behavior of a struct based on another struct. I prefer to not
-use the term inheritance here becase is not correct, it is embedding, not
+use the term inheritance here because it is not correct; it is embedding, not
 inheritance. If you want to dive deeper into this concept, take a look at
 the video of the talk [Embedding in go](https://www.youtube.com/watch?v=-LzYjMzfGDQ)
 from [Sean Kelly](https://twitter.com/StabbyCutyou), he explains it better than
