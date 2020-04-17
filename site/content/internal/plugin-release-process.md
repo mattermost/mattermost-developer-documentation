@@ -41,6 +41,16 @@ Simply invoke:
 /mb cutplugin --tag v0.13.0 --repo mattermost-plugin-github
 ```
 
+To tag and release a specific commit, invoke:
+```
+/mb cutplugin --tag v0.13.0 --repo mattermost-plugin-github --commitSHA 4a5a48f862fb0d8d45e7d07c40c1638460668562
+```
+
+To rebuild & sign an existing tag invoke:
+```
+/mb cutplugin --tag v0.13.0 --repo mattermost-plugin-github --force
+```
+
 Matterbuild will create the given tag pointing at the current `master`, triggering CircleCI to [automatically create a GitHub release](https://github.com/mattermost/circleci-orbs/blob/3fb37c7920037c857a9ed9bc1a4e31be20092cdd/plugin-ci/orb.yml#L111-L120). Once the assets are built and uploaded to the release, matterbuild will download and sign using our production plugin signing key.
 
 Note that only authorized users have access to matterbuild.
