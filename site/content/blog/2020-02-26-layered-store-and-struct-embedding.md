@@ -328,8 +328,8 @@ wrapping entire methods, so it's all or nothing. You can't override part of the
 method, or reuse only certain parts of the underlying code easily and that can
 generate a ton of duplicated code depending on what you want to do.
 
-We have included this architecture change some months ago, and so far for us
-has been a very good way to add our instrumentation and cache without mixing
-responsabilities in our source code. And we think we can add special layers to
+We implemented this architecture change some months ago, and so far for us it's
+been a very good way to add our instrumentation and cache without mixing
+responsibilities in our source code. And we believe that going forward we can add special layers to
 generate performance improvements relaying in other services, like key value
-stores, or graph databases. For sure, something that we will investigate.
+stores, or graph databases and we're looking into that.
