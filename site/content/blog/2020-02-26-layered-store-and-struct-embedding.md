@@ -43,7 +43,7 @@ queries execution. And the layers that we put on top of that are:
     search engines.
   - The Timer Layer: Responsible for sending the duration of each request to a
     histogram in Prometheus.
-  - The OpenTracing Layer: responsible for of add the open tracing information
+  - The OpenTracing Layer: Responsible for adding the open tracing information
     related to the store to the open tracing context.
 
 This 4 layers are adding functionality to our store but without touching a
