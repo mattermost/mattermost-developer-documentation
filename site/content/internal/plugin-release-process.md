@@ -46,7 +46,7 @@ To tag and release a specific commit, invoke:
 /mb cutplugin --tag v0.13.0 --repo mattermost-plugin-github --commitSHA 4a5a48f862fb0d8d45e7d07c40c1638460668562
 ```
 
-To rebuild & sign an existing tag invoke:
+To rebuild & sign an existing tag, invoke:
 ```
 /mb cutplugin --tag v0.13.0 --repo mattermost-plugin-github --force
 ```
