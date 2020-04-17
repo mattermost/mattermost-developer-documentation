@@ -153,22 +153,22 @@ func (s *CacheLayer) DeleteUser(username string) error {
 ...
 ```
 
-Here we are creating a new struct called `CacheLayer`, this structs embeds the
+Here we are creating a new struct called `CacheLayer`, this struct embeds the
 `MapStore` (but it could embed any structs that implements the Store interface),
-now we have a new struct that also implements the Store interface, but have a
-different behavior. It will override 2 methods, GetUser and DeleteUser, and
-CountUsers is going to be handled directly by the embedded store. The GetUser
-try to gets the data from the cache, and if not, get the data from the
-underlaying store and store that in the cache. And for the DeleteUser we remove
+now we have a new struct that also implements the Store interface, but has a
+different behavior. It will override two methods, `GetUser` and `DeleteUser`, and
+`CountUsers` is going to be handled directly by the embedded store. The `GetUser`
+will try to get the data from the cache, and if it's unable to, it will get the data from the
+underlaying store and store that in the cache. And for `DeleteUser` we remove
 the entry from the cache if it exists.
 
 My `MapStore` doesn't know anything about the `CacheLayer`, and the `CacheLayer` only
-knows that it have an underneath `Store`, but don't know anything about it except
+knows that it have an underlying `Store`, but doesn't know anything about it except
 the interface.
 
-Now that we have this layers that intercepts things that passing through the
+Now that we have these layers that intercepts things passing through the
 store we can do things like instrumentation, for example building a layer that
-count the number os calls per method for example.
+counts the number of calls per method for example.
 
 ```go
 ...
