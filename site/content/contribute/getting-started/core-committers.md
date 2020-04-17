@@ -158,6 +158,9 @@ Below is the list of core committers working on Mattermost:
 - **<a name="daniel.espino.garcia">Daniel Espino García</a>**
     - @daniel.espino.garcia on [community.mattermost.com](https://community.mattermost.com/core/messages/@daniel.espino.garcia) and [@larkox](https://github.com/larkox) on GitHub
     - Dev areas: Extensions
+- **<a name="caleb.roseland">Caleb Roseland</a>**
+    - @caleb.roseland on [community.mattermost.com](https://community.mattermost.com/core/messages/@caleb.roseland) and [@calebroseland](https://github.com/calebroseland) on GitHub
+    - Dev areas: Desktop / Web apps
 
 Core Developers
 ---------------
