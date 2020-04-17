@@ -23,7 +23,7 @@ and don't necessarily need to be in the same block of code.
 Our approach is based in idea of a core store, the one accessing to the source
 of truth (the database), and a set of layers on top of that adding extra
 behavior. All of them, the core store and all the layers must implement
-the same interface, in this case the Store interface. This way, from the
+the same interface, in this case the store interface. This way, from the
 outside, there is not difference between our core Store without layers, or our
 core Store with 1000 layers on top of it.
 
