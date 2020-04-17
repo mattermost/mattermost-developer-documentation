@@ -52,7 +52,7 @@ single line of code of the SqlStore implementation.
 How do we do that?
 
 To solve this problem we used structure embedding what is the way go
-provides to extend behavior of a struct based on other struct. I prefer to not
+provides to extend the behavior of a struct based on another struct. I prefer to not
 use the term inheritance here becase is not correct, it is embedding, not
 inheritance. I you want to understand better this concept, plese take a look to
 the video of the talk [Embedding in go](https://www.youtube.com/watch?v=-LzYjMzfGDQ)
