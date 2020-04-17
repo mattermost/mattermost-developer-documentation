@@ -14,7 +14,7 @@ This is an unofficial guide. Community testing, feedback and improvements are we
        sudo mkdir /c
        sudo mount --bind /mnt/c /c
 
-      For more on how to properly set up Docker for Windows and WSL see [here](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly).
+      For more on how to properly set up Docker for Windows and WSL see [here](https://web.archive.org/web/20200402131133/https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly).
 
 2. Install and setup Docker:
 
