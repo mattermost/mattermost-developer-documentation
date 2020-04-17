@@ -168,7 +168,7 @@ the interface.
 
 Now that we have these layers that intercept things passing through the
 store we can do things like instrumentation, for example building a layer that
-counts the number of calls per method for example.
+counts the number of calls per method:
 
 ```go
 ...
