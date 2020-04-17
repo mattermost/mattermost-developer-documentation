@@ -166,7 +166,7 @@ My `MapStore` doesn't know anything about the `CacheLayer`, and the `CacheLayer`
 knows that it have an underlying `Store`, but doesn't know anything about it except
 the interface.
 
-Now that we have these layers that intercepts things passing through the
+Now that we have these layers that intercept things passing through the
 store we can do things like instrumentation, for example building a layer that
 counts the number of calls per method for example.
 
