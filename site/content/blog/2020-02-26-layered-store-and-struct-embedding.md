@@ -10,7 +10,7 @@ community: jesus.espino
 ---
 
 One of the most important parts of the Mattermost source code is the one
-responsible to accessing the mattermost database, the store. Every
+responsible for accessing the Mattermost database - the store. Every
 single database access is handled by the store, so we needed to find a way to
 extend it in different ways introducing as less complexity as possible,
 and that is the reason behind the current layered approach using struct embedding.
