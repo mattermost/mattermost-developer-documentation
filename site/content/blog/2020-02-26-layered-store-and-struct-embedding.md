@@ -248,7 +248,7 @@ func (s *TimerLayer) CountUsers() int {
 ...
 ```
 
-This allow us to know how much time is invested in each call. Our `TimerLayer`
+This allows us to know how much time is invested in each call. Our `TimerLayer`
 implementation is pretty similar to this one, but sends this data to
 Prometheous instead of printing it.
 
