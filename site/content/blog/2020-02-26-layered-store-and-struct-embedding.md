@@ -39,7 +39,7 @@ In our case, the core store is the SqlStore which encapsulates all the SQL
 queries execution. And the layers that we put on top of that are:
 
   - The Cache Layer: Responsible for maintaining a cache of the store calls.
-  - The Search Layer: responsible for speeding up the search methods using
+  - The Search Layer: Responsible for speeding up the search methods using
     search engines.
   - The Timer Layer: responsible for sending the duration of each request to an
     histogram in Prometheus.
