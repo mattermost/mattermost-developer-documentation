@@ -18,7 +18,7 @@ and that is the reason behind the current layered approach using struct embeddin
 Our store is responsible for storing and retrieving data, and sometimes we
 need to add functionality that is not strictly related to the database queries,
 for example, cache data or add instrumentation. Those are transversal tasks
-and not necesarilly need to be in the same block of code.
+and don't necessarily need to be in the same block of code.
 
 Our approach is based in idea of a core Store, the one accessing to the source
 of truth (the database), and a set of layers on top of that adding extra
