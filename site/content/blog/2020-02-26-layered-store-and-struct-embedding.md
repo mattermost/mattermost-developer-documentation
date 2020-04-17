@@ -31,7 +31,7 @@ core Store with 1000 layers on top of it.
 
 Each layer is going to embed another layer until the last layer embeds the core
 store. Each layer is going to override some methods (or all, depending on the
-layer). Each layer is responsible to decide what is handled entirely by the
+layer). Each layer is responsible for deciding what is handled entirely by the
 layer (for example a cache hit) or is delegated to the underneath layer (for
 example a cache miss).
 
