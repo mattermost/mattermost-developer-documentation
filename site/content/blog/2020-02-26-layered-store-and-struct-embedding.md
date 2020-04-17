@@ -46,7 +46,7 @@ queries execution. And the layers that we put on top of that are:
   - The OpenTracing Layer: Responsible for adding the open tracing information
     related to the store to the open tracing context.
 
-This 4 layers are adding functionality to our store but without touching a
+These four layers add functionality to our store without touching a
 single line of code of the SqlStore implementation.
 
 How we do that?
