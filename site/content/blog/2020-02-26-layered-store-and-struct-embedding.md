@@ -49,7 +49,7 @@ queries execution. And the layers that we put on top of that are:
 These four layers add functionality to our store without touching a
 single line of code of the SqlStore implementation.
 
-How we do that?
+How do we do that?
 
 To solve this problem we used structure embedding what is the way go
 provides to extend behavior of a struct based on other struct. I prefer to not
