@@ -25,7 +25,7 @@ of truth (the database), and a set of layers on top of that adding extra
 behavior. All of them, the core store and all the layers must implement
 the same interface, in this case the store interface. This way, from the
 outside, there is no difference between our core store without layers, or our
-core Store with 1000 layers on top of it.
+core store with 1000 layers on top of it.
 
 ![layers](/blog/2020-02-26-layered-store-and-struct-embedding/layers.png)
 
