@@ -28,7 +28,6 @@ NOTE: These steps apply for the `mattermost-webapp` repository only.
 
 ![image](../../../static/img/i18n-extract-4.jpg)
 
-NOTE: Be aware when you use the `"t"` function, only the translation id is extracted. You have to add the translation string in the  `i18n/en.json`  file manually.
+NOTE: Be aware that when you use the `"t"` function, only the translation id is extracted. You have to add the translation string in the  `i18n/en.json`  file manually.
 
 For further discussion about translations or to ask for help, refer to the following Mattermost channels: [Localization](https://community.mattermost.com/core/channels/localization) and [Contributors](https://community.mattermost.com/core/channels/tickets).
-
