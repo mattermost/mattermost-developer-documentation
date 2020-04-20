@@ -14,19 +14,19 @@ NOTE: These steps apply for the `mattermost-webapp` repository only.
 1. After you execute `make i18n-extract` you will need to review the results and validate that the strings were either added or removed in the `i18n/en.json` file. 
 2. Run  `git diff` and determine if your strings were added or removed in the `i18n/en.json` file correctly. If this was a successful extraction you will have output similar to below:
 
-<img src="/img/i18n-extract-1.jpg" width="445" />
+![image](../../../static/img/i18n-extract-1.jpg)
 
 3. However, if you have a string that was not properly extracted you will see an output similar to below. If you executed the `make i18n-extract` at this point nothing would change because the string `"new-text-id"` is not detected as a string that needs to be translated.
 
-<img src="/img/i18n-extract-2.jpg" width="445" />
+![image](../../../static/img/i18n-extract-2.jpg)
 
 4. The solution is to tag the string. Do this by using the `"t"` function, shown in the example below:
 
-<img src="/img/i18n-extract-3.jpg" width="445" />
+![image](../../../static/img/i18n-extract-3.jpg)
 
 5. At this point you will need to execute the `make i18n-extract` once again and determine if the extraction was successful.  This will generate a message in the `i18n/en.json` file. However, this is not going to extract the "default message", you will have to add this yourself. See example below: 
 
-<img src="/img/i18n-extract-4.jpg" width="445" />
+![image](../../../static/img/i18n-extract-4.jpg)
 
 NOTE: Be aware when you use the `"t"` function, only the translation id is extracted. You have to add the translation string in the  `i18n/en.json`  file manually.
 
