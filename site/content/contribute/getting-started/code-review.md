@@ -54,7 +54,7 @@ If you are a core committer seeking a review
         - If your change primarily touches another team's codebase, consider their product mananger.
         - If in doubt, assign any product mananger and comment about the uncertainty. The product mananger may reassign as appropriate.
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing so as to avoid churn if changes are requested.
-    * Remove the `1: PM Review` label only when their review is done.
+    * Remove the `1: PM Review` label only when their review is done and they accept the changes.
         - Product managers ensure the changes meet [user experience guidelines](https://docs.mattermost.com/developer/fx-guidelines.html).
     * If your changes do not affect the user experience, you may remove `1: PM Review` immediately.
 6. After PM review, request a review from two [core committers](/contribute/getting-started/core-committers/).
@@ -65,7 +65,7 @@ If you are a core committer seeking a review
         - Try to avoid assigning the same person to all of your reviews unless they are related.
         - When in doubt, ask for recommendations on our community server.
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing so as to avoid churn if changes are requested.
-    * Remove the `2: Dev Review` label only when these reviews are done.
+    * Remove the `2: Dev Review` label only when these reviews are done and they accept the changes.
 7. After Dev review, assign a [QA tester](/contribute/getting-started/core-committers/#qa-testers).
     * The choice of QA tester is up to you.
         - In most cases, choose the QA tester embedded with your team.
@@ -73,7 +73,7 @@ If you are a core committer seeking a review
         - If in doubt, assign any QA tester and comment about the uncertainty. The QA tester may reassign as appropriate.
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing.
         - It is the QA tester's responsibility to determine the scope of required testing, if any.
-    * Remove the `3: QA Review` label only when their review is done.
+    * Remove the `3: QA Review` label only when their review is done and they accept the changes.
     * In the rare event your changes do not require QA review, you may remove `3: QA Review` immediately.
         - Comment on the pull request clearly explaining the rationale.
 8. Merge the pull request.
