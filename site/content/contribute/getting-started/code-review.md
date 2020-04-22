@@ -39,7 +39,7 @@ If you are a core committer seeking a review
 1. Submit your pull request.
     * Follow the [contribution checklist](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/).
 2. Immediately add the `1: PM Review`, `2: Dev Review`, and `3: QA Review` labels.
-    * Your pull request should not be merged until these labels are later removed.
+    * Your pull request should not be merged until these labels are later removed in the review process.
 3. Apply additional labels as necessary:
     * `CherryPick/Approved`: Apply this if the pull request is meant for a quality or patch release.
     * `Do Not Merge/Awaiting PR`: Apply this if the pull request depends on another (e.g. server changes)
