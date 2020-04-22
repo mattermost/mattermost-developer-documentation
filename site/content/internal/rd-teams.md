@@ -17,7 +17,7 @@ weight: 110
 * Miguel Alatzar - Engineer
 * Amit Uttam - Engineer
 * Eric Sethna - PM
-* Andrew Brown - UX Designer
+* Matt Birtch - UX Designer
 
 ## Apps Team
 
@@ -28,7 +28,9 @@ weight: 110
 * Devin Binnie - Engineer
 * Guillermo Vayá - Engineer
 * Nevy Angelova - Engineer
-* Eric Sethna - PM
+* Caleb Roseland - Engineer
+* Eric Sethna - PM (Driving NPS) 
+* Adam Clarkson - PM (Driving Early Retention)
 * Andrew Brown - UX Designer
 
 ## Cloud Team
@@ -40,7 +42,9 @@ weight: 110
 * Ian Whitlock - Engineer
 * Gabriel Sagula - Engineer
 * Angelos Kyratzakos - SRE
-* Katie Wiersgalla - PM
+* Katie Wiersgalla - PM (Cloud) 
+* Eric Sadur - PM (Self-serve) 
+* Matt Birtch - UX Designer
 * Justine Geffen - Technical Writer
 
 ## Build & Infrastructure Team
@@ -107,12 +111,10 @@ weight: 110
 ## Other
 
 * Amy Blais - Release Manager/PM
+* Eric Sadur - Customer Journey PM
 * Linda Mitchell - QA Lead
 * Saturnino Abril - QA SDET
 * Joseph Baylon - QA SDET
 * Jelena Gilliam - QA
 * Ogi Marusic - QA
 * Steve Mudie - QA
-* Adam Clarkson - PM
-* Eric Sadur - PM
-* Matt Birtch - UX Designer
