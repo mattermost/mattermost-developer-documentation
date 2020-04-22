@@ -66,7 +66,6 @@ If you are a core committer seeking a review
         - When in doubt, ask for recommendations on our community server.
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing so as to avoid churn if changes are requested.
     * Remove the `2: Dev Review` label only when these reviews are done.
-        - The last developer to review may choose to help here and speed up the process.
 7. After Dev review, assign a [QA tester](/contribute/getting-started/core-committers/#qa-testers).
     * The choice of QA tester is up to you.
         - In most cases, choose the QA tester embedded with your team.
@@ -116,11 +115,14 @@ If you are a core committer asked to give a review
     * Take the time necessary to review the code thoroughly.
     * Don't be afraid to ask for changes repeatedly until all concerns are addressed.
     * Feel free to challenge assumptions and timelines. Rushing a change into a patch release may cause more harm than good.
-4. Merge the pull request.
+4. Avoid leaving a review hanging.
+    * Try to accept or reject the review instead of just leaving comments.
+    * If you are the last developer to approve the changes, consider requesting a review from the appropriate QA tester to speed up the process.
+5. Merge the pull request.
     * Do not merge until the `1: PM Review`, `2: Dev Review` and `3: QA Review` labels have been removed.
     * Do not merge if there are outstanding changes requested.
     * Do not merge if there are any `Do Not Merge` labels applied.
         - When in doubt, leave the merging of the pull request to the author.
     * Merge the pull request, and delete the branch if not from a fork.
-5. Handle any cherry-picks.
+6. Handle any cherry-picks.
     * There is an automated cherry-pick process and the author of the pull request should make sure the cherry-pick succeeds. Assume this is the case unless you are explicitly asked to help cherry-pick.
