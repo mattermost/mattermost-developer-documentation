@@ -53,4 +53,8 @@ This page lists all the Docker repositories currently in use.
 
 - [mattermost/podman](https://hub.docker.com/repository/docker/mattermost/podman) - For internal use. Contains Podman to build/tag/push container images.
 
+- [mattermost/chewbacca](https://hub.docker.com/repository/docker/mattermost/chewbacca-bot) - For internal use. It is a GitHub Bot to help in some administrative tasks for more information you can visit the [Github repo](https://github.com/mattermost/chewbacca).
+
+- [mattermost/matterwick](https://hub.docker.com/repository/docker/mattermost/matterwick) - For internal use. It is a GitHub Bot to spin test servers for Pull requests for more information you can visit the [Github repo](https://github.com/mattermost/matterwick).
+
 - [mattermost/webrtc](https://hub.docker.com/repository/docker/mattermost/webrtc) - DEPRECATED. Preview docker image of Mattermost WebRTC. Docs: http://bit.ly/2fVbWjU
