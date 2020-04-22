@@ -5,21 +5,21 @@ subsection: internal
 weight: 10
 ---
 
-## Server
+## Mattermost Server
 
-In the server repository we are using [docker](https://www.docker.com/) images and [docker compose](https://docs.docker.com/compose/) to set-up the development enviroment. We have mandatory images to be run:
+In the [mattermost-server repository](https://github.com/mattermost/mattermost-server) we are using [Docker](https://www.docker.com/) images and [Docker Compose](https://docs.docker.com/compose/) to set up the development enviroment. The following are required images:
 
-- [Mysql](https://www.mysql.com/)
-- [Postgresql](https://www.postgresql.org/)
-- [Minio](https://min.io/)
+- [MySQL](https://www.mysql.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [MinIO](https://min.io/)
 - [Inbucket](https://www.inbucket.org/)
 - [OpenLDAP](https://www.openldap.org/)
 - [Elasticsearch](https://www.elastic.co)
 
-But we have added optional tooling that could be useful for developers
+We also have added optional tools to help with your development:
 
-##### Dejavu
+### Dejavu
 
-[Dejavu](https://opensource.appbase.io/dejavu/) is a UI for Elasticsearch that fills the gap left by Elasticsearch when they decide not to provide a UI or tool to visualize or modify the data you're storing inside.
+[Dejavu](https://opensource.appbase.io/dejavu/) is a user interface for Elasticsearch when no UI is provided to visualize or modify the data you're storing inside Elasticsearch.
 
-In order to start using Dejavu you only have to execute `docker-compose up [-d] dejavu` and it will running at `http://localhost:1358`
+To use Dejavu, execute `docker-compose up [-d] dejavu`. It will run at `http://localhost:1358`.
