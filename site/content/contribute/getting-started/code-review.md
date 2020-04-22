@@ -74,9 +74,7 @@ If you are a core committer seeking a review
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing.
         - It is the QA tester's responsibility to determine the scope of required testing, if any.
     * Remove the `3: QA Review` label only when their review is done.
-        - This is typically the responsibility of the QA tester.
-        - The QA tester may add the `QA Review Done` label when their review is done, or if a review is deemed not necessary.
-    * In the rare event your changes do not require QA review, you may remove the `3: QA Review` label yourself.
+    * In the rare event your changes do not require QA review, you may remove `3: QA Review` immediately.
         - Comment on the pull request clearly explaining the rationale.
 8. Merge the pull request.
     * Do not merge until the `1: PM Review`, `2: Dev Review` and `3: QA Review` labels have been removed.
