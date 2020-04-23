@@ -29,7 +29,7 @@ weight: 110
 * Guillermo Vayá - Engineer
 * Nevy Angelova - Engineer
 * Caleb Roseland - Engineer
-* Eric Sethna - PM (Driving NPS) 
+* Eric Sethna - PM (Driving NPS)
 * Adam Clarkson - PM (Driving Early Retention)
 * Andrew Brown - UX Designer
 
@@ -42,8 +42,8 @@ weight: 110
 * Ian Whitlock - Engineer
 * Gabriel Sagula - Engineer
 * Angelos Kyratzakos - SRE
-* Katie Wiersgalla - PM (Cloud) 
-* Eric Sadur - PM (Self-serve) 
+* Katie Wiersgalla - PM (Cloud)
+* Eric Sadur - PM (Self-serve)
 * Matt Birtch - UX Designer
 * Justine Geffen - Technical Writer
 
@@ -96,6 +96,7 @@ weight: 110
 * Alejandro García Montoro - Engineer
 * Ian Tao - PM
 * Prapti Shrestha - QA SDET
+* Asaad Mahmood - UX Designer
 
 ## Enterprise Team
 * Scott Bishel - Eng Lead
@@ -103,7 +104,7 @@ weight: 110
 * Catalin Tomai - Engineer
 * Hossein Ahmadian - Engineer
 * Farhan Munshi - Engineer
-* Dennis Kittrell - PM 
+* Dennis Kittrell - PM
 * Michael Gamble - UX Designer
 * Rohitesh Gupta - QA SDET
 * Justine Geffen - Technical Writer
