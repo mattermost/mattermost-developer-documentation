@@ -22,4 +22,4 @@ We also have added optional tools to help with your development:
 
 [Dejavu](https://opensource.appbase.io/dejavu/) is a user interface for Elasticsearch when no UI is provided to visualize or modify the data you're storing inside Elasticsearch.
 
-To use Dejavu, execute `docker-compose up [-d] dejavu`. It will run at `http://localhost:1358`.
+To use Dejavu, execute `docker-compose up -d dejavu`. It will run at `http://localhost:1358`.
