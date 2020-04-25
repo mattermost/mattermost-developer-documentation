@@ -12,7 +12,7 @@ subsection: "Desktop App"
 - NPM
 - Git
 - Windows Build Tools or Visual Studio Community edition (see Known Problems section).
-- Recomended: [Chocolatey](https://chocolatey.org/) which we will use to install other deps.
+- Recommended: [Chocolatey](https://chocolatey.org/) which we will use to install other dependencies.
 
 ### Windows
 The recommended way to install the required components on Windows is to install the Chocolatey package manager.
