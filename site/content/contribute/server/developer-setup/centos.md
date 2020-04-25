@@ -23,7 +23,7 @@
     mysql -u mmuser -p -h 127.0.0.1 mattermost_test < mm_mysql_backup.sql
     psql -U mmuser -W -h 127.0.0.1 -f mm_postgres_backup.bak mattermost_test
     ```
-    If you don't migrate your data, the new, docker-compose-managed containers will start out empty. To remove the old containers -- destroying any existing data -- use `make clean-old-docker`.
+    If you don't migrate your data, the new, docker-compose-managed containers will start out empty. To remove the old containers and destroy any existing data use `make clean-old-docker`.
 
 
 2. Install docker-compose
@@ -51,16 +51,16 @@
     export PATH=$PATH:/usr/local/go/bin
     ```
 
-5. Edit `/etc/security/limits.conf` as an administrator (e.g. `sudo`) and add the following lines, replacing `{username}` with your username:
+5. Edit `/etc/security/limits.conf` as an administrator (e.g. *sudo*) and add the following lines, replacing `{username}` with your username:
 
     ```sh
     {username}  soft  nofile  8096
     {username}  hard  nofile  8096
     ```
 
-6. Logout and login to effect the changes above.
+6. Log out and log back in to effect the changes above.
 
-7. Fork https://github.com/mattermost/mattermost-server
+7. Fork https://github.com/mattermost/mattermost-server.
 
 8. Clone the Mattermost source code from your fork:
 
@@ -82,7 +82,7 @@
     {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
     ```
 
-    **Note:** Browsing directly to http://localhost:8065/ will display a `404 Not Found` until the web app is configured. See [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for additional setup.
+    **Note:** Browsing directly to http://localhost:8065/ will display `404 Not Found` until the web app is configured. See [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for additional setup.
 
     The `stop-server` make target does not stop all the docker containers started by `run-server`. To stop the running docker containers:
 
