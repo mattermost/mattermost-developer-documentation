@@ -101,7 +101,7 @@ This is an unofficial guide. Community testing, feedback and improvements are we
 
 ### Troubleshooting:
 
-1. If you see an error like `the input device is not a TTY.  If you are using mintty, try prefixing the command with 'winpty'`.  Reinstall git for windows and make sure you choose `Use Windows' default console window` instead of `Use MinTTY`.
+1. If you see an error like `the input device is not a TTY.  If you are using mintty, try prefixing the command with 'winpty'`, then reinstall Git for Windows and make sure you choose **Use Windows' default console window** instead of **Use MinTTY**.
 
 2. The LDAP docker container is sometimes slow to start. If you see the following message, either increase the wait time in the make file or run `make run` twice in a row.
 
