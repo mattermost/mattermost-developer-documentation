@@ -18,7 +18,7 @@ This is an unofficial guide. Community testing, feedback and improvements are we
 
 2. Install and setup Docker:
 
-    * Install Docker for Windows: https://docs.docker.com/docker-for-windows/
+    * Install Docker for Windows: https://docs.docker.com/docker-for-windows/.
     * Link Windows Subsystem for Linux to Docker for Windows: https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4.
         * You should end up with the Docker client running on Linux (WSL) sending commands to your Docker Engine daemon installed on Windows.
     * Go to Docker Desktop > Settings > Resources > File Sharing and make sure you check the drives where you are going to run `mattermost-server` from.
