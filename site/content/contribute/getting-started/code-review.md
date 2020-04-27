@@ -51,7 +51,7 @@ If you are a core committer seeking a review
 5. Request a review from a [product manager](/contribute/getting-started/core-committers/#product-managers).
     * The choice of Product Manager is up to you.
         - In most cases, choose the Product Manager embedded with your team.
-        - If your change primarily touches another team's codebase, consider their product mananger.
+        - If your change primarily touches another team's codebase, consider their Product Manager.
         - If in doubt, assign any product mananger and comment about the uncertainty. The product mananger may reassign as appropriate.
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing so as to avoid churn if changes are requested.
     * Remove the `1: PM Review` label only when their review is done and they accept the changes.
