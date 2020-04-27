@@ -116,7 +116,7 @@ This is an unofficial guide. Community testing, feedback and improvements are we
     ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)
     Makefile:102: recipe for target 'start-docker' failed
     ```
-3. If you see an error like `nc: bad address 'postgres'` when running `make run-server`and PostgreSQL's container just keeps restarting, check its logs in Docker Desktop. You should probably see something like:
+3. If you see an error like `nc: bad address 'postgres'` when running `make run-server`and PostgreSQL's container just keeps restarting, check its logs in Docker Desktop. You should see something like:
 
     ```
     LOG: input in flex scanner failed at file "/etc/postgresql/postgresql.conf" line 1
