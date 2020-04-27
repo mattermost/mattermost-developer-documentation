@@ -77,7 +77,8 @@ If you are a core committer seeking a review
     * In the rare event your changes do not require QA review, you may remove `3: QA Review` immediately.
         - Comment on the pull request clearly explaining the rationale.
 8. Merge the pull request.
-    * Do not merge until the `1: PM Review`, `2: Dev Review` and `3: QA Review` labels have been removed.
+    * Do not merge until the labels `1: PM Review`, `2: Dev Review` and `3: QA Review` labels have been removed.
+    * Add the `4: Reviews Complete` label if the last reviewer did not already add it.
     * Do not merge if there are outstanding changes requested.
     * Merge your pull request and delete the branch if not from a fork.
         - Note that any core committer is free to merge on your behalf.
@@ -117,7 +118,8 @@ If you are a core committer asked to give a review
     * Try to accept or reject the review instead of just leaving comments.
     * If you are the last developer to approve the changes, consider requesting a review from the appropriate QA tester to speed up the process.
 5. Merge the pull request.
-    * Do not merge until the `1: PM Review`, `2: Dev Review` and `3: QA Review` labels have been removed.
+    * Do not merge until the labels `1: PM Review`, `2: Dev Review` and `3: QA Review` labels have been removed.
+    * Add the `4: Reviews Complete` label if the last reviewer did not already add it.
     * Do not merge if there are outstanding changes requested.
     * Do not merge if there are any `Do Not Merge` labels applied.
         - When in doubt, leave the merging of the pull request to the author.
