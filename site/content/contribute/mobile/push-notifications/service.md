@@ -49,7 +49,7 @@ and running the service under a `mattermost-push-proxy` user account with limite
     WantedBy=multi-user.target" >> /etc/systemd/system/mattermost-push-proxy.service
     ```
 
-    If you would like to route the traffic through a separate proxy server, please add the line `Environment="HTTP_PROXY=<http://server>"` under the `[Service]` section of the file. If you have an HTTPS server, please change it to `HTTPS_PROXY`. Setting both will have `HTTPS_PROXY` take higher priority than `HTTP_PROXY`.
+   To route the traffic through a separate proxy server, add `Environment="HTTP_PROXY=<http://server>"` under the `[Service]` section of the file. If you have an HTTPS server, then use `HTTPS_PROXY`. If you set both then `HTTPS_PROXY` will take higher priority than `HTTP_PROXY`.
 
 6. Start the service with `sudo systemctl start mattermost-push-proxy` or restart with `sudo systemctl restart mattermost-push-proxy`. Use `sudo systemctl enable mattermost-push-proxy` to have systemd start the service on boot. 
 
