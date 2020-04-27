@@ -55,7 +55,7 @@ If you are a core committer seeking a review
         - If in doubt, assign any Product Manager and comment about the uncertainty. The Product Manager may reassign as appropriate.
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing so as to avoid churn if changes are requested.
     * Remove the `1: PM Review` label only when their review is done and they accept the changes.
-        - Product managers ensure the changes meet [user experience guidelines](https://docs.mattermost.com/developer/fx-guidelines.html).
+        - Product Managers ensure the changes meet [user experience guidelines](https://docs.mattermost.com/developer/fx-guidelines.html).
     * If your changes do not affect the user experience, you may remove `1: PM Review` immediately.
 6. After PM review, request a review from two [core committers](/contribute/getting-started/core-committers/).
     * The choice of core committers is up to you.
