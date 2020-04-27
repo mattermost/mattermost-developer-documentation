@@ -50,7 +50,7 @@ If you are a core committer seeking a review
     * The milestone is mandatory for bug fixes that must be cherry-picked.
 5. Request a review from a [product manager](/contribute/getting-started/core-committers/#product-managers).
     * The choice of Product Manager is up to you.
-        - In most cases, choose the product mananger embedded with your team.
+        - In most cases, choose the Product Manager embedded with your team.
         - If your change primarily touches another team's codebase, consider their product mananger.
         - If in doubt, assign any product mananger and comment about the uncertainty. The product mananger may reassign as appropriate.
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing so as to avoid churn if changes are requested.
