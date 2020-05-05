@@ -21,10 +21,10 @@ This must be done in your local copy of the [mattermost-mobile](https://github.c
     export INCREMENT_VERSION_NUMBER_MESSAGE="Bump app version number to"
     export VERSION_NUMBER=
     ```
-    
-    {{%note "Env vars"%}}Alternatively you can copy the environment variables to the `mattermost-mobile/fastlane/.env` file.{{%/note%}}
-    
-    {{%note "Specify version number"%}}Set the variable `VERSION_NUMBER` to X.X.X (eg: 1.17.0).{{%/note%}}
+        
+{{%note "Env vars"%}}Alternatively you can copy the environment variables to the `mattermost-mobile/fastlane/.env` file.{{%/note%}}
+
+{{%note "Specify version number"%}}Set the variable `VERSION_NUMBER` to X.X.X (eg: 1.17.0).{{%/note%}}
 
 2. Increase the version number of the app.
     - ``$ cd fastlane`` in the mattermost-mobile directory.
