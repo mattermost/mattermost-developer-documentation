@@ -79,7 +79,7 @@ Then connect with your OneLogin username and password and when prompt put the OT
 ## Gnome VPN Client
 1. Go to the [VPN server](https://pritunl.core.cloud.mattermost.com) and select **Sign in with OneLogin** 
 
-2. Connect with your OneLogin username and password and when prompt put the OTP (One Time Password).
+2. Connect with your OneLogin username and password and when prompted input the OTP (One Time Password).
 
 3. Click `Download Profiles` and save the `.tar` file to your filesystem.
 
