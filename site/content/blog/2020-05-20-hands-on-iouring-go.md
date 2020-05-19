@@ -1,7 +1,7 @@
 ---
 title: Getting Hands-on with io_uring and Go
 slug: hands-on-iouring-go
-date: 2020-05-10
+date: 2020-05-20
 categories:
     - "go"
 author: Agniva De Sarker
@@ -19,7 +19,7 @@ All that is changing slowly, because now we have a brand new interface to perfor
 
 Let's take a step back and think of how usual system calls work. We make a syscall, our application in user layer calls into the kernel, it makes a copy of the data in kernel space. After kernel is done with the execution, it copies the result back to user-space buffers. And then it returns. All this while, the syscall remains blocked.
 
-![image](/blog/2020-05-10-hands-on-iouring-go/syscall.png)
+![image](/blog/2020-05-20-hands-on-iouring-go/syscall.png)
 
 Right off the bat, we can see a lot of bottlenecks - there's lots of copying going around, and there's blocking. Go handles this problem by bringing another layer between the application and the kernel - the runtime. It uses a virtual entity (commonly referred to as P) which contains a queue of goroutines to run, which is then mapped to OS threads. This level of indirection allows it to do some interesting optimizations. Whenever we make a blocking syscall, the runtime is aware of it, and it detaches the thread from the P executing the goroutine, and acquires a new thread to execute other goroutines. This is known as a hand-off. And when the syscall returns, the runtime tries to re-attach it to a P. If it cannot get a free P, it just pushes the goroutine to a queue to be executed later, and stores the thread in a pool. This is how Go gives the appearance of "non-blocking"-ness when your code enters a system call.
 
@@ -49,7 +49,7 @@ On the completion side, we get a Completion Queue Event (CQE) from the CQ. This 
 
 There's just one important detail to note here: both the SQ and CQ are shared between the user and the kernel. But whereas the CQ actually contains the CQEs, for SQ it's a bit different. It is essentially a layer of indirection, wherein the value of an index in the SQ array actually contains the index of the real array holding the SQE items. This is useful for certain applications which have submission requests inside internal structures, and therefore allows them to submit multiple requests in one operation, essentially easing the adoption of the io_uring API. This means we actually have 3 things mapped in memory - the submission queue, completion queue and the submission queue array. The following diagram should make things clear.
 
-![image](/blog/2020-05-10-hands-on-iouring-go/queues.png)
+![image](/blog/2020-05-20-hands-on-iouring-go/queues.png)
 
 Now let's revisit the `flags` field that we skipped over earlier. As we discussed earlier, CQE entries can come completely out of order from what they were submitted in the queue. This brings up an interesting problem. What if we wanted to perform a sequence of I/O operations one after the other ? For example, a file copy. We would want to read from a file descriptor, and write to another. With the current state of things, we cannot even start to submit the write operation until we see the read event appear in the CQ. That's where the `flags` come in.
 
@@ -300,9 +300,9 @@ No blog post is complete without some performance numbers. However, proper bench
 
 We will use [fio](https://github.com/axboe/fio) which is a nifty tool written by Jens himself to benchmark several I/O engines with different workloads, supporting both `io_uring` and `libaio`. There are far too many knobs to change. But we will perform a very simple experiment using a workload of random read/writes with a ratio of 75/25, using a 1GiB file, and varying block sizes of 16KiB, 32KiB and 1MiB. And then we repeat the entire experiment with queue sizes of 8, 16 and 32.
 
-![image](/blog/2020-05-10-hands-on-iouring-go/depth_8.png)
-![image](/blog/2020-05-10-hands-on-iouring-go/depth_16.png)
-![image](/blog/2020-05-10-hands-on-iouring-go/depth_32.png)
+![image](/blog/2020-05-20-hands-on-iouring-go/depth_8.png)
+![image](/blog/2020-05-20-hands-on-iouring-go/depth_16.png)
+![image](/blog/2020-05-20-hands-on-iouring-go/depth_32.png)
 
 Note that this is io_uring in it's basic mode without polling, in which case, the results can be even higher.
 
