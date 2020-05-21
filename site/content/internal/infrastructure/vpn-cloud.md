@@ -99,7 +99,7 @@ Then connect with your OneLogin username and password and when prompt put the OT
 
 11. Choose **Add** to save the configuration. 
 
-12. From now on, enable the VPN through the taskbar picker in the upper right of Gnome.
+12. From now on, enable the VPN through the taskbar picker in the upper right corner of Gnome.
 
 ## Older Setup of VPN access on OpenVPN
 
