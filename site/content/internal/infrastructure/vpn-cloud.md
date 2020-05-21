@@ -95,7 +95,7 @@ Then connect with your OneLogin username and password and when prompt put the OT
 
 9. Open the **IPv6** tab and select **Use this connection only for resources on its network**.
 
-10. If desired, rename the VPN to something friendlier in the `Name` field under the `Identity` tab.
+10. If desired, rename the VPN to something friendlier in **Identity > Name**.
 
 11. Save the configuration by pressing `Add` at the top right of the window.
 
