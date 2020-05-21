@@ -77,7 +77,7 @@ Then connect with your OneLogin username and password and when prompt put the OT
 7. After following these steps you should be able to connect to VPN and then to resolve private DNS entries.
 
 ## Gnome VPN Client
-1. Go to the [VPN server](https://pritunl.core.cloud.mattermost.com) and select **Sign in with OneLogin** 
+1. Go to the [VPN server](https://pritunl.core.cloud.mattermost.com) and select **Sign in with OneLogin**.
 
 2. Connect with your OneLogin username and password and when prompted input the OTP (One Time Password).
 
