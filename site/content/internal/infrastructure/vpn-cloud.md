@@ -85,7 +85,7 @@ Then connect with your OneLogin username and password and when prompt put the OT
 
 4. Extract the `.tar` file (`tar xf yourusername.tar`) and note the location of the `.ovpn` file.
 
-5. Open the Network section in the Gnome Settings manager and there will be a VPN section. Click the `+` to create a new VPN connection.
+5. Open the Gnome Settings manager and navigate to **Network > VPN**. Click the `+` to create a new VPN connection.
 
 6. Choose **Import from file...**.
 
