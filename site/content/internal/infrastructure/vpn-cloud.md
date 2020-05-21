@@ -91,7 +91,7 @@ Then connect with your OneLogin username and password and when prompt put the OT
 
 7. Select the `.ovpn` file downloaded earlier through the file picker.
 
-8. Open the IPv4 tab and select `Use this connection only for resources on its network`
+8. Open the **IPv4** tab and select **Use this connection only for resources on its network**.
 
 9. Open the IPv6 tab and select `Use this connection only for resources on its network`
 
