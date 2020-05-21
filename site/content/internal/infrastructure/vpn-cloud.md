@@ -97,7 +97,7 @@ Then connect with your OneLogin username and password and when prompt put the OT
 
 10. If desired, rename the VPN to something friendlier in **Identity > Name**.
 
-11. Save the configuration by pressing `Add` at the top right of the window.
+11. Choose **Add** to save the configuration. 
 
 12. From now on, enable the VPN through the taskbar picker in the upper right of Gnome.
 
