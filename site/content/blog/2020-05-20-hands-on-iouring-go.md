@@ -9,11 +9,11 @@ github: agnivade
 community: agnivade
 ---
 
-In Linux, syscalls are at the heart of everything. They are the primary interface through which an application interacts with the kernel. Therefore, it is vital that they are fast. And especially in a post-Spectre/Meltdown world, this is all the more important.
+In Linux, system calls (syscalls) are at the heart of everything. They are the primary interface through which an application interacts with the kernel. Therefore, it is vital that they are fast. And especially in a post-Spectre/Meltdown world, this is all the more important.
 
 A major chunk of the syscalls deal with I/O, because that's what most applications do. For network I/O, we've had the `epoll` family of syscalls which have provided us with reasonably fast performance. But in the filesystem I/O department, things were a bit lacking. We've had `async_io` for a while now, but apart from a small niche set of applications, it isn't very beneficial. The major reason being that it only works if the file is opened with the `O_DIRECT` flag. This will make the kernel bypass any OS caches and try to read/write from/to the device directly. Not a very good way to do I/O when we are trying to make things go fast. And in buffered mode, it would behave synchronously.
 
-All that is changing slowly, because now we have a brand new interface to perform I/O with the kernel - io_uring. There's a lot of buzz happening around it. And rightly so, because it gives us an entirely new model to interact with the kernel. Let's dive into it and try to understand what it is and how it solves the problem. And then we will construct a small demo application with Go to play with it.
+All that is changing slowly, because now we have a brand new interface to perform I/O with the kernel - `io_uring`. There's a lot of buzz happening around it. And rightly so, because it gives us an entirely new model to interact with the kernel. Let's dive into it and try to understand what it is and how it solves the problem. And then we will construct a small demo application with Go to play with it.
 
 ### Background
 
@@ -21,17 +21,17 @@ Let's take a step back and think of how usual syscalls work. We make a syscall, 
 
 ![image](/blog/2020-05-20-hands-on-iouring-go/syscall.png)
 
-Right off the bat, we can see a lot of bottlenecks - there's lots of copying going around, and there's blocking. Go handles this problem by bringing another layer between the application and the kernel - the runtime. It uses a virtual entity (commonly referred to as *P*) which contains a queue of goroutines to run, which is then mapped to OS threads. 
+Right off the bat, we can see a lot of bottlenecks - there's lots of copying going around, and there's blocking. Go handles this problem by bringing another layer between the application and the kernel - the runtime. It uses a virtual entity (commonly referred to as *P*) which contains a queue of goroutines to run, which is then mapped to OS threads.
 
 This level of indirection allows it to do some interesting optimizations. Whenever we make a blocking syscall, the runtime is aware of it, and it detaches the thread from the *P* executing the goroutine, and acquires a new thread to execute other goroutines. This is known as a hand-off. And when the syscall returns, the runtime tries to re-attach it to a *P*. If it cannot get a free *P*, it just pushes the goroutine to a queue to be executed later, and stores the thread in a pool. This is how Go gives the appearance of "non-blocking"-ness when your code enters a system call.
 
 This is great, but it still does not solve the main problem - which is that copies still happen, and the actual syscall still blocks.
 
-Let's think of the first problem at hand - copies. How do we prevent copies happening from user-space to kernel-space? Well, obviously we need some sort of shared memory. Ok, that can be done using the `mmap` system call which can map a chunk of memory that is shared between the user and kernel. 
+Let's think of the first problem at hand - copies. How do we prevent copies happening from user-space to kernel-space? Well, obviously we need some sort of shared memory. Ok, that can be done using the `mmap` system call which can map a chunk of memory that is shared between the user and kernel.
 
 That takes care of copying, but what about synchronization? Even if we don't copy, we need some way to synchronize data access between us and the kernel. Otherwise we encounter the same problem - because the application would need to make a syscall again to perform the locking.
 
-If we look at the problem as the user and kernel being two separate components talking with each other - it is essentially a producer-consumer problem. The user creates syscall requests, the kernel accepts them. And once it's done, it signals the user that it's ready, and the user accepts them. 
+If we look at the problem as the user and kernel being two separate components talking with each other - it is essentially a producer-consumer problem. The user creates syscall requests, the kernel accepts them. And once it's done, it signals the user that it's ready, and the user accepts them.
 
 Fortunately, there's an age-old solution to this problem - ring buffers. A ring buffer allows efficient synchronization between producers and consumers with no locking at all. And as you might have already figured out, we need two ring buffers. A submission queue (SQ), where the user acts as the producer and pushes syscall requests, and the kernel consumes them. And a completion queue (CQ), where the kernel is the producer pushing completion results, and the user consumes them.
 
@@ -53,7 +53,7 @@ On the completion side, we get a Completion Queue Event (CQE) from the CQ. This 
 - **Result**: The return value from the `readv` syscall. If it succeeded, it will have the number of bytes read; otherwise it will have an error code.
 - **User data**: The identifier that we had passed in the SQE.
 
-There's just one important detail to note here: both the SQ and CQ are shared between the user and the kernel. But whereas the CQ actually contains the CQEs, for SQ it's a bit different. It is essentially a layer of indirection, wherein the value of an index in the SQ array actually contains the index of the real array holding the SQE items. This is useful for certain applications which have submission requests inside internal structures, and therefore allows them to submit multiple requests in one operation, essentially easing the adoption of the `io_uring` API. 
+There's just one important detail to note here: both the SQ and CQ are shared between the user and the kernel. But whereas the CQ actually contains the CQEs, for SQ it's a bit different. It is essentially a layer of indirection, wherein the value of an index in the SQ array actually contains the index of the real array holding the SQE items. This is useful for certain applications which have submission requests inside internal structures, and therefore allows them to submit multiple requests in one operation, essentially easing the adoption of the `io_uring` API.
 
 This means we actually have three things mapped in memory - the submission queue, completion queue, and the submission queue array. The following diagram should make things clear.
 
