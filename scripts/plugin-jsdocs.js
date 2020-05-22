@@ -4,7 +4,7 @@ const espree = require('espree');
 
 // Parse the registry and extract the class methods, parameters and leading comments.
 const registryContent = fsp.readFileSync(path.join(__dirname, 'mattermost-webapp/plugins/registry.js'), 'utf-8')
-const registryParsed = espree.parseModule(registryContent, { comment: true, attachComment: true });
+const registryParsed = espree.parse(registryContent, { comment: true, attachComment: true, sourceType: 'module', ecmaVersion: 10 });
 
 const pluginRegistryClassMethods = registryParsed.body.find(statement =>
     statement.type === "ExportDefaultDeclaration" &&
