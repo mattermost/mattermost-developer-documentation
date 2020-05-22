@@ -1,10 +1,10 @@
 const path = require('path');
 const fsp = require('fs-promise');
-const esprima = require('esprima');
+const espree = require('espree');
 
 // Parse the registry and extract the class methods, parameters and leading comments.
 const registryContent = fsp.readFileSync(path.join(__dirname, 'mattermost-webapp/plugins/registry.js'), 'utf-8')
-const registryParsed = esprima.parseModule(registryContent, { comment: true, attachComment: true });
+const registryParsed = espree.parseModule(registryContent, { comment: true, attachComment: true });
 
 const pluginRegistryClassMethods = registryParsed.body.find(statement =>
     statement.type === "ExportDefaultDeclaration" &&
