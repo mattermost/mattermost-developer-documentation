@@ -1,5 +1,5 @@
 ---
-title: "Mattermost Contributors"
+title: "Mattermost Contributor Wall of Fame"
 section: "contribute"
 ---
 
