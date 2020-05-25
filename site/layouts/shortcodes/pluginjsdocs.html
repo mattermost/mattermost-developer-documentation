@@ -29,7 +29,7 @@
 {{ define "JSFunctionSignatureHTML" }}
     <pre><code>/**
 {{- range .Comments }}
-    * {{ . }}
+    *{{ . }}
 {{- end }}
 */
 {{.Name }}({{ template "JSFieldsString" .Parameters }})</code></pre>
