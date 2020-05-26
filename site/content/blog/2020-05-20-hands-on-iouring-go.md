@@ -1,5 +1,5 @@
 ---
-title: Getting Hands-on with io_uring and Go
+title: Getting Hands-on with io_uring using Go
 slug: hands-on-iouring-go
 date: 2020-05-20
 categories:
