@@ -74,8 +74,32 @@ Then connect with your OneLogin username and password and when prompt put the OT
     **NOTE:** Do NOT change the port, it will be either 1194, 1195 or something else
    <span style="display:block;text-align:center;width:50%">![Pritunl Config remote](/img/vpn_cloud_11.jpg)</span>
 
-7. After following these steps you should be able to connect to VPN and then to resolve private DNS entries.
+7. After following these steps you should be able to connect to VPN and resolve private DNS entries.
 
+## Gnome VPN Client
+1. Go to the [VPN server](https://pritunl.core.cloud.mattermost.com) and select **Sign in with OneLogin**.
+
+2. Connect with your OneLogin username and password and when prompted input the OTP (One Time Password).
+
+3. Click `Download Profiles` and save the `.tar` file to your filesystem.
+
+4. Extract the `.tar` file (`tar xf yourusername.tar`) and note the location of the `.ovpn` file.
+
+5. Open the Gnome Settings manager and navigate to **Network > VPN**. Click the `+` to create a new VPN connection.
+
+6. Choose **Import from file...**.
+
+7. Select the `.ovpn` file downloaded earlier through the file picker.
+
+8. Open the **IPv4** tab and select **Use this connection only for resources on its network**.
+
+9. Open the **IPv6** tab and select **Use this connection only for resources on its network**.
+
+10. If desired, rename the VPN to something friendlier in **Identity > Name**.
+
+11. Choose **Add** to save the configuration. 
+
+12. From now on, enable the VPN through the taskbar picker in the upper right corner of Gnome.
 
 ## Older Setup of VPN access on OpenVPN
 
