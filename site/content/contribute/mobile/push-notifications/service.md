@@ -49,6 +49,8 @@ and running the service under a `mattermost-push-proxy` user account with limite
     WantedBy=multi-user.target" >> /etc/systemd/system/mattermost-push-proxy.service
     ```
 
+   To route the traffic through a separate proxy server, add `Environment="HTTP_PROXY=<http://server>"` under the `[Service]` section of the file. If you have an HTTPS server, then use `HTTPS_PROXY`. If you set both then `HTTPS_PROXY` will take higher priority than `HTTP_PROXY`.
+
 6. Start the service with `sudo systemctl start mattermost-push-proxy` or restart with `sudo systemctl restart mattermost-push-proxy`. Use `sudo systemctl enable mattermost-push-proxy` to have systemd start the service on boot. 
 
 
@@ -105,7 +107,7 @@ and running the service under a `mattermost-push-proxy` user account with limite
 
 ### Configure the Mattermost Server to use the Mattermost Push Notification Service
 
-- In you Mattermost instance, enable mobile push notifications.
+- In your Mattermost instance, enable mobile push notifications.
     * Go to **System Console > Notifications > Mobile Push**.
     * Under **Send Push Notifications**, select **Manually enter Push Notification Service location**.
     * Enter the location of your Mattermost Push Notification Service in the **Push Notification Server** field.
