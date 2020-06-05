@@ -58,6 +58,12 @@
     {username}  hard  nofile  8096
     ```
 
+6. Add your user to the `docker` group, replacing `{username}` with your username:
+
+    ```sh
+    sudo usermod -aG docker {username}
+    ```
+
 6. Log out and log back in to effect the changes above.
 
 7. Fork https://github.com/mattermost/mattermost-server.
