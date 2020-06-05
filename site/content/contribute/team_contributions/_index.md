@@ -21,7 +21,7 @@ If you notice an error or omission in the list, please email feedback@mattermost
 
 ## Translations Contributors
 
-Translation contributors by [Mattermost Translations Server](https://translate.mattermost.com) username and (language contribution) are alphabetically listed below.. The list is updated regularly (last updated April 11, 2020), and includes contributions to all official, beta, alpha, and unofficial languages in the [Mattermost Translations Server](https://translate.mattermost.com).
+Translation contributors by [Mattermost Translations Server](https://translate.mattermost.com) username and (language contribution) are alphabetically listed below. The list is updated regularly (last updated April 11, 2020), and includes contributions to all official, beta, alpha, and unofficial languages in the [Mattermost Translations Server](https://translate.mattermost.com).
 
 Translate Mattermost into a new language or help maintain an existing one by joining [our translations server](https://translate.mattermost.com).
 
