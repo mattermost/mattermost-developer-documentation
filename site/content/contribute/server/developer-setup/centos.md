@@ -64,17 +64,17 @@
     sudo usermod -aG docker {username}
     ```
 
-6. Log out and log back in to effect the changes above.
+7. Log out and log back in to effect the changes above.
 
-7. Fork https://github.com/mattermost/mattermost-server.
+8. Fork https://github.com/mattermost/mattermost-server.
 
-8. Clone the Mattermost source code from your fork:
+9. Clone the Mattermost source code from your fork:
 
     ```sh
     git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost-server.git
     ```
 
-9. Start the server and test your environment:
+10. Start the server and test your environment:
 
     ```sh
     cd mattermost-server
