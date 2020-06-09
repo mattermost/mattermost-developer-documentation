@@ -16,15 +16,15 @@ That's where [Distributed tracing](https://opentracing.io/docs/overview/what-is-
 
 1. Trace the execution path of a single request as it goes through a complicated path inside the distributed system
 2. Pinpoint bottlenecks and measure latency of specific parts of the execution path
-3. Record and analyze system behaviour
+3. Record and analyze system behavior
 
 [OpenTracing](https://opentracing.io) is an open standard describing how the way distributed tracing works.
 
 There are a few key terms used in tracing:
 
 1. **Trace** - a recording of the execution path of a request
-2. **Span** - a named, timed operation representing a contigous segment inside the trace
-3. **Root Span** - the first span in a trace, a common anscestor to all spans in a trace
+2. **Span** - a named, timed operation representing a contiguous segment inside the trace
+3. **Root Span** - the first span in a trace, a common ancestor to all spans in a trace
 4. **Context** - information identifying the request, required to connect spans in a distributed trace
 
 A trace recording usually looks something like this:
@@ -33,7 +33,7 @@ A trace recording usually looks something like this:
 
 To add distributed tracing capabilities to [mattermost-server](https://github.com/mattermost/mattermost-server) we've picked [OpenTracing Go](https://github.com/opentracing/opentracing-go). We've already dove a little bit into Open Tracing implementation in the [first post of these series]({{< relref "./2019-10-25-instrumenting-go-code-via-ast.md" >}}).
 
-In this article we'll discuss all the nitty-gritty details of implementing a tracing system in your Go application without littering your code with repetative, boilerplate tracing code.
+In this article we'll discuss all the nitty-gritty details of implementing a tracing system in your Go application without littering your code with repetitive, boilerplate tracing code.
 
 ## The Goal
 
@@ -112,7 +112,7 @@ func (a *App) SearchUsers(props *model.UserSearch, options *model.UserSearchOpti
 
 Rather straight forward, right? We marked our "entry-point" by creating a root span, populating it with useful context information, then passing the context down the stack and creating new span underneath it.
 
-We could stop right here, because this is all you need to have a working trace! **But**: for a large application like `mattermost-server` wrapping all of the 900+ API handlers in tracing code would be incredible labor intesive AND will create alot of noise in the source code.
+We could stop right here, because this is all you need to have a working trace! **But**: for a large application like `mattermost-server` wrapping all of the 900+ API handlers in tracing code would be incredible labor intensive AND will create a lot of noise in the source code.
 
 So, can we do better?
 
@@ -281,7 +281,7 @@ Speak(2) took 0s
 
 So we've basically implemented two decorators over original `Speak()` method, first we started timing the execution in `MeasureAnimal`, then passed it too `TraceAnimal` which in turn called the actual `Speak()` implementation.
 
-This works great and stays performant since we don't use any dynamic techniques here like `reflection`, however this is very verbose and requires us to write alot of wrapper code, and that's no fun at all. We can do better!
+This works great and stays performant since we don't use any dynamic techniques here like `reflection`, however this is very verbose and requires us to write a lot of wrapper code, and that's no fun at all. We can do better!
 
 ### Code parsing using AST
 
@@ -311,7 +311,7 @@ First of all, we kick of AST parser on our input file that contains the interfac
 	})
 ```
 
-To deferentiate interface methods from other AST nodes, we can do the following: 
+To differentiate interface methods from other AST nodes, we can do the following: 
 
 ```go
 	ast.Inspect(f, func(n ast.Node) bool {
@@ -514,7 +514,7 @@ func (a *AnimalTracer) Speak(x int) {
 
 Beautiful!
 
-Similarely, running the generator over the `timerTemplate` will yield:
+Similarly, running the generator over the `timerTemplate` will yield:
 
 ```go
 package animals
@@ -571,5 +571,6 @@ func (a *{{$.Name}}) {{$index}}({{$element.Params | joinParamsWithType}}) {{$ele
 {{end}}
 ```
 
-Phew, this was quite a trip, huh? I hope you found it interesting.
-> __Side note__: this is just one way of handling this problem. Some people are against using code-generation too much since it hides alot of implementation away and complicates the build process (you have to re-run the generators each time your interface changes). We've settled on this approach due to it's flexibility and performance. If you have any notes or ideas on how this could be implemented cleaner - please stop by the [Mattermost Community](https://community.mattermost.com) and I'll be **very** glad to discuss it further.
+Phew, this was quite a trip, huh? I hope you found it interesting. You can see the actual generator implementation inside `mattermost-server` in [/app/layer_generators/main.go](https://github.com/mattermost/mattermost-server/blob/master/app/layer_generators/main.go)
+
+> __Side note__: this is just one way of handling this problem. Some people are against using code-generation too much since it hides a lot of implementation away and complicates the build process (you have to re-run the generators each time your interface changes). We've settled on this approach due to it's flexibility and performance. If you have any notes or ideas on how this could be implemented cleaner - please stop by the [Mattermost Community](https://community.mattermost.com) and I'll be **very** glad to discuss it further.
