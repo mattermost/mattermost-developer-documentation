@@ -51,8 +51,8 @@ single line of code of the SqlStore implementation.
 
 How do we do that?
 
-To solve this problem we used structure embedding what is the way go
-provides to extend the behavior of a struct based on another struct. I prefer to not
+To solve this problem, we used structure embedding which is a tool provided by Go to extend 
+the behavior of a struct based on another struct. I prefer to not
 use the term inheritance here because it is not correct; it is embedding, not
 inheritance. If you want to dive deeper into this concept, take a look at
 the video of the talk [Embedding in go](https://www.youtube.com/watch?v=-LzYjMzfGDQ)
