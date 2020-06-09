@@ -13,7 +13,7 @@ One of the most important parts of the Mattermost source code is the one
 responsible for accessing the Mattermost database - the store. Every
 single database access is handled by the store, so we needed to find a way to
 extend its functionality while introducing as little complexity as possible,
-and that is the reason behind the current layered approach using struct embedding.
+This is the reason behind the current layered approach using struct embedding.
 
 Our store is responsible for storing and retrieving data, and sometimes we
 need to add functionality that is not strictly related to the database queries,
