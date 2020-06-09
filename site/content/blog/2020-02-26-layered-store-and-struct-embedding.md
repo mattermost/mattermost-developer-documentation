@@ -154,7 +154,7 @@ func (s *CacheLayer) DeleteUser(username string) error {
 ```
 
 Here we are creating a new struct called `CacheLayer`, this struct embeds the
-`MapStore` (but it could embed any structs that implements the Store interface),
+`MapStore` (but it could embed any structs that implement the Store interface),
 now we have a new struct that also implements the Store interface, but has a
 different behavior. It will override two methods, `GetUser` and `DeleteUser`, and
 `CountUsers` is going to be handled directly by the embedded store. The `GetUser`
