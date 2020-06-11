@@ -32,6 +32,7 @@ Set up your development environment for building, running, and testing the Matte
 5. Link the `client` directory in your server with the `dist` directory in your webapp:
 
     ```sh
+    mkdir -p mattermost-webapp/dist
     cd mattermost-server
     ln -nfs ../mattermost-webapp/dist client
     cd ..
