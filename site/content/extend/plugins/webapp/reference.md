@@ -27,7 +27,9 @@ class PluginClass {
 ```
 
 <a name="registerPlugin"/>
+
 Your plugin should implement this class and register it using the global `registerPlugin` method defined on the window by the webapp:
+
 ```javascript
 window.registerPlugin('myplugin', new PluginClass());
 ```
@@ -80,35 +82,37 @@ An instance of the plugin registry is passed to each plugin via the `initialize`
 
 In Mattermost, users are able to set custom themes that change the color scheme of the UI. It's important that plugins have access to a user's theme so that they can set their styling to match and not look out of place.
 
-Every pluggable component in the web app will have the theme object as a prop.
+Every pluggable component in the web app will have the theme object as a prop. 
+
+The colors are exposed via CSS variables as well.
 
 The theme object has the following properties:
 
-| Property | Description |
-| -------- | ----------- |
-| sidebarBg | Background color of the left-hand sidebar |
-| sidebarText | Color of text in the left-hand sidebar |
-| sidebarUnreadText | Color of text for unread channels in the left-hand sidebar |
-| sidebarTextHoverBg | Background color of channels when hovered in the left-hand sidebar |
-| sidebarTextActiveBorder | Color of the selected indicator channel indicator in the left-hand siebar|
-| sidebarTextActiveColor | Color of the text for the selected channel in the left-hand sidebar |
-| sidebarHeaderBg | Background color of the left-hand sidebar header |
-| sidebarHeaderTextColor | Color of text in the left-hand sidebar header |
-| onlineIndicator | Color of the online status indicator |
-| awayIndicator | Color of the away status indicator |
-| dndIndicator | Color of the do not disturb status indicator |
-| mentionBg | Background color for mention jewels in the left-hand sidebar |
-| mentionColor | Color of text for mention jewels in the left-hand sidebar |
-| centerChannelBg | Background color of channels, right-hand sidebar and modals/popovers |
-| centerChannelColor | Color of text in channels, right-hand sidebar and modals/popovers |
-| newMessageSeparator | Color of the new message separator in channels |
-| linkColor | Color of text for links |
-| buttonBg | Background color of buttons |
-| buttonColor | Color of text for buttons |
-| errorTextColor | Color of text for errors |
-| mentionHighlightBg | Background color of mention highlights in posts |
-| mentionHighlightLink | Color of text for mention links in posts |
-| codeTheme | Code block theme, either 'github', 'monokai', 'solarized-dark' or 'solarized-light' |
+| Property | CSS Variable | Description |
+| -------- | ----------- | ----------- |
+| sidebarBg | --sidebar-bg | Background color of the left-hand sidebar |
+| sidebarText | --sidebar-text | Color of text in the left-hand sidebar |
+| sidebarUnreadText | --sidebar-unread-text | Color of text for unread channels in the left-hand sidebar |
+| sidebarTextHoverBg | --sidebar-text-hover-bg | Background color of channels when hovered in the left-hand sidebar |
+| sidebarTextActiveBorder | --sidebar-text-active-border | Color of the selected indicator channel indicator in the left-hand siebar|
+| sidebarTextActiveColor | --sidebar-text-active-color | Color of the text for the selected channel in the left-hand sidebar |
+| sidebarHeaderBg | --sidebar-header-bg | Background color of the left-hand sidebar header |
+| sidebarHeaderTextColor | --sidebar-header-text-color | Color of text in the left-hand sidebar header |
+| onlineIndicator | --online-indicator | Color of the online status indicator |
+| awayIndicator | --away-indicator | Color of the away status indicator |
+| dndIndicator | --dnd-indicator | Color of the do not disturb status indicator |
+| mentionBg | --mention-bg | Background color for mention jewels in the left-hand sidebar |
+| mentionColor | --mention-color | Color of text for mention jewels in the left-hand sidebar |
+| centerChannelBg | --center-channel-bg | Background color of channels, right-hand sidebar and modals/popovers |
+| centerChannelColor | --center-channel-color | Color of text in channels, right-hand sidebar and modals/popovers |
+| newMessageSeparator | --new-message-separator | Color of the new message separator in channels |
+| linkColor | --link-color | Color of text for links |
+| buttonBg | --button-bg | Background color of buttons |
+| buttonColor | --button-color | Color of text for buttons |
+| errorTextColor | --error-text | Color of text for errors |
+| mentionHighlightBg | --mention-highlight-bg | Background color of mention highlights in posts |
+| mentionHighlightLink | --mention-highlight-link | Color of text for mention links in posts |
+| codeTheme |NA | Code block theme, either 'github', 'monokai', 'solarized-dark' or 'solarized-light' |
 
 ## Exported Libraries and Functions
 
