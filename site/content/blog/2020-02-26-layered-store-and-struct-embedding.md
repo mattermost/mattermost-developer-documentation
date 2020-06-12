@@ -1,5 +1,5 @@
 ---
-title: "Layered Store and struct embedding"
+title: "Layered Store and Struct Embedding in Go"
 slug: layered-store-and-struct-embedding
 date: 2020-02-26
 categories:
