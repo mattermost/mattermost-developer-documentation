@@ -47,6 +47,16 @@ The resulting system trace will look like this (using [Jaeger](https://www.jaege
 To add tracing to any API call, we can do the following in our `ServeHTTP` function:
 
 ```go
+
+package web
+
+import (
+	// ...
+	"github.com/opentracing/opentracing-go"
+	"github.com/opentracing/opentracing-go/ext"
+	spanlog "github.com/opentracing/opentracing-go/log"
+)
+
 func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	c := &Context{}
 	// Start root span
@@ -59,13 +69,15 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	ext.PeerAddress.Set(span, c.App.IpAddress())
 	span.SetTag("request_id", c.App.RequestId())
 	span.SetTag("user_agent", c.App.UserAgent())
-	// On handler exit: a) In case of an error, add it to the trace b) Finish the span
+	// On handler exit, do the following:
 	defer func() {
+		// In case of an error, add it to the trace
 		if c.Err != nil {
 			span.LogFields(spanlog.Error(c.Err))
 			ext.HTTPStatusCode.Set(span, uint16(c.Err.StatusCode))
 			ext.Error.Set(span, true)
 		}
+		// Finish the span
 		span.Finish()
 	}()
 	// Set current context to the one we got from root span - it will be passed down to actual API handlers
@@ -76,7 +88,7 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-Next, we'll modify the actual API handler to nest it inside the parent span (we'll use `SearchUsers` as an example):
+Next, we'll modify the actual business logic function that is called by the API handler to nest it inside the parent span (we'll use `SearchUsers` as an example):
 
 ```go
 func (a *App) SearchUsers(props *model.UserSearch, options *model.UserSearchOptions) ([]*model.User, *model.AppError) {
@@ -203,7 +215,8 @@ The implementation of the decorator pattern we chose involved three parts:
 
 ### Struct embedding
 
-Since Go is not object-oriented, it uses struct embedding as a type of inheritance. Here's a small example:
+Quoting [Go FAQ](https://golang.org/doc/faq#Is_Go_an_object-oriented_language)
+> Although Go has types and methods and allows an object-oriented style of programming, there is no type hierarchy. The concept of "interface" in Go provides a different approach that we believe is easy to use and in some ways more general. There are also ways to embed types in other types to provide something analogous **but not identical** to subclassing
 
 ```go
 type Animal struct{
@@ -229,7 +242,7 @@ How does struct embedding help us in the implementation of a decorator pattern?
 
 ```go
 
-type IAnimal interface {
+type Speaker interface {
 	Speak(x int)
 }
 
@@ -238,11 +251,11 @@ type Animal struct {
 }
 
 type TraceAnimal struct {
-	IAnimal
+	Speaker
 }
 
 type MeasureAnimal struct {
-	IAnimal
+	Speaker
 }
 
 func (c Animal ) Speak(x int) {
@@ -251,21 +264,21 @@ func (c Animal ) Speak(x int) {
 
 func (c TraceAnimal) Speak(x int) {
 	fmt.Printf("Running Speak(x) function with x=%d!\n",x)
-	c.IAnimal.Speak(x)
+	c.Speaker.Speak(x)
 }
 
 func (c MeasureAnimal) Speak(x int) {
 	fmt.Println("Timing Speak() function...")
 	t := time.Now()
-	c.IAnimal.Speak(x)
+	c.Speaker.Speak(x)
 	
 	fmt.Printf("Speak(%d) took %s\n", x, time.Since(t))
 }
 
 func main() {
 	a := Animal{Name: "Cow"}
-	c := TraceAnimal {IAnimal: a}
-	d := MeasureAnimal{IAnimal: c}
+	c := TraceAnimal {Speaker: a}
+	d := MeasureAnimal{Speaker: c}
 	d.Speak(2)
 }
 ```
@@ -281,7 +294,7 @@ Speak(2) took 0s
 
 So we've basically implemented two decorators over original `Speak()` method. First we started timing the execution in `MeasureAnimal`, then passed it to `TraceAnimal`, which in turn called the actual `Speak()` implementation.
 
-This works great and stays performant since we don't use any dynamic techniques here like `reflection`, however this is very verbose and requires us to write a lot of wrapper code, and that's no fun at all. We can do better!
+This works great and stays performant since we don't use any dynamic techniques here like reflection, however this is very verbose and requires us to write a lot of wrapper code, and that's no fun at all. We can do better!
 
 ### Code parsing using AST
 
@@ -290,17 +303,38 @@ Using the methods we've discussed in parts [1]({{< relref "./2019-10-25-instrume
 First of all, we kick off the AST parser on our input file that contains the interface and start walking through the found nodes:
 
 ```go
+package main
+
+import (
+	"bytes"
+	"flag"
+	"fmt"
+	"go/ast"
+	"go/parser"
+	"go/token"
+	"io/ioutil"
+	"log"
+	"os"
+	"path"
+	"strings"
+	"text/template"
+
+	"golang.org/x/tools/imports"
+)
+
+func main() {
 	fset := token.NewFileSet() // Positions are relative to fset
 
 	file, err := os.Open("animal.go")
 	if err != nil {
 		return nil, fmt.Errorf("Unable to open %s file: %w", inputFile, err)
 	}
+	defer file.Close()
+
 	src, err := ioutil.ReadAll(file)
 	if err != nil {
 		return nil, err
 	}
-	defer file.Close()
 	f, err := parser.ParseFile(fset, "animal.go", src, parser.AllErrors|parser.ParseComments)
 	if err != nil {
 		return nil, err
@@ -309,6 +343,7 @@ First of all, we kick off the AST parser on our input file that contains the int
 	ast.Inspect(f, func(n ast.Node) bool {
 		// ... Handle the found nodes
 	})
+}	
 ```
 
 To differentiate interface methods from other AST nodes, we can do the following: 
@@ -317,7 +352,7 @@ To differentiate interface methods from other AST nodes, we can do the following
 	ast.Inspect(f, func(n ast.Node) bool {
 		switch x := n.(type) {
 		case *ast.TypeSpec:
-			if x.Name.Name == "IAnimal" {
+			if x.Name.Name == "Speaker" {
 				for _, method := range x.Type.(*ast.InterfaceType).Methods.List {
 					methodName := method.Names[0].Name
 					// Here we can parse all the required information about the method
@@ -360,7 +395,7 @@ func extractMethodMetadata(method *ast.Field, src []byte) methodData {
 	if e.Params != nil {
 		for _, param := range e.Params.List {
 			for _, paramName := range param.Names {
-				paramType := (formatNode(src, param.Type))
+				paramType := formatNode(src, param.Type)
 				params = append(params, methodParam{Name: paramName.Name, Type: paramType})
 			}
 		}
@@ -383,7 +418,7 @@ func extractMethodMetadata(method *ast.Field, src []byte) methodData {
 ```
 
 Now we can run the parser on our interface and we'll get something like: `map[Speak:{Params:[{Name:x Type:int}] Results:[]}]`.
-As you can see, we collected all the information needed about interface methods and we can now move on to generating decorator with this data.
+As you can see, we collected all the information needed about interface methods and we can now move on to generating the decorator with this data.
 
 ### Code generation using templates
 
@@ -422,25 +457,26 @@ Next we'll create a [Go Template](https://golang.org/pkg/text/template/) for bot
 
 {{< highlight go "linenos=table" >}}
 	tracerTemplate := `
+	// Generated code; DO NOT EDIT.
 	package animals
 
 	type AnimalTracer struct {
-		IAnimal
+		Speaker
 	}
 	{{range $index, $element := .}}
 	func (a *AnimalTracer) {{$index}}({{$element.Params | joinParamsWithType}}) {{$element.Results | joinResultsForSignature}} {
 		fmt.Printf("Running {{$index}}({{$element.Params | joinParams}}) with {{range $paramIdx, $param := $element.Params}}'{{$param.Name}}'=%v {{end}}",{{$element.Params | joinParams}})
 		{{- if $element.Results | len | eq 0}}
-			a.IAnimal.{{$index}}({{$element.Params | joinParams}})
+			a.Speaker.{{$index}}({{$element.Params | joinParams}})
 		{{else}}
-			return a.IAnimal.{{$index}}({{$element.Params | joinParams}})
+			return a.Speaker.{{$index}}({{$element.Params | joinParams}})
 		{{end}}	
 	}
 	{{end}}
 	`
 {{< / highlight >}}
 
-I know it looks a little scary, but the premise is rather simple. Given the following metadata: `map[Speak:{Params:[{Name:x Type:int}] Results:[]}]` we want to generate a new struct that embeds our `Animal` and wraps it's calls in additional functionality.
+I know it looks a little scary, but the premise is rather simple. Given the following metadata: `map[Speak:{Params:[{Name:x Type:int}] Results:[]}]` we want to generate a new struct that embeds our `Animal` and wraps its calls in additional functionality.
 
 I'll go through the template line by line:
 
@@ -454,19 +490,20 @@ For the `Timer` decorator, we'll write the following template:
 
 {{< highlight go "linenos=table" >}}
 	timerTemplate := `
+	// Generated code; DO NOT EDIT.
 	package animals
 
 	type AnimalTimer struct {
-		IAnimal
+		Speaker
 	}
 	{{range $index, $element := .}}
 	func (a *AnimalTimer) {{$index}}({{$element.Params | joinParamsWithType}}) {{$element.Results | joinResultsForSignature}} {
 		fmt.Println("Timing {{$index}} function...")
 		__t := time.Now()
 		{{- if $element.Results | len | eq 0}}
-			a.IAnimal.{{$index}}({{$element.Params | joinParams}})
+			a.Speaker.{{$index}}({{$element.Params | joinParams}})
 		{{else}}
-			ret := a.IAnimal.{{$index}}({{$element.Params | joinParams}})
+			ret := a.Speaker.{{$index}}({{$element.Params | joinParams}})
 		{{end}}	
 		fmt.Printf("{{$index}} took %s\n", x, time.Since(__t))
 		{{- if not ($element.Results | len | eq 0)}}
@@ -490,7 +527,11 @@ With these templates in hand, we can now generate the decorators!
 	// Execute the template and pass it the metadata we collected before
 	t.Execute(out, metadata)
 	// Add needed imports and format the code before printing
-	formattedCode, _ := imports.Process("animal_tracer.go", out.Bytes(), &imports.Options{Comments: true})
+	formattedCode, err := imports.Process("animal_tracer.go", out.Bytes(), &imports.Options{Comments: true})
+	if err != nil {
+		fmt.Printf("cannot format source code, might be an error in template: %s\n", err)
+		return err
+	}
 	// print it out!
 	fmt.Println(string(formattedCode))
 ```
@@ -503,12 +544,12 @@ package animals
 import "fmt"
 
 type AnimalTracer struct {
-	IAnimal
+	Speaker
 }
 
 func (a *AnimalTracer) Speak(x int) {
 	fmt.Printf("Running Speak(x) with 'x'=%v ", x)
-	a.IAnimal.Speak(x)
+	a.Speaker.Speak(x)
 }
 ```
 
@@ -525,13 +566,13 @@ import (
 )
 
 type AnimalTimer struct {
-	IAnimal
+	Speaker
 }
 
 func (a *AnimalTimer) Speak(x int) {
 	fmt.Println("Timing Speak function...")
 	__t := time.Now()
-	a.IAnimal.Speak(x)
+	a.Speaker.Speak(x)
 	fmt.Printf("Speak took %s\n", x, time.Since(__t))
 }
 ```
