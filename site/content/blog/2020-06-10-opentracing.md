@@ -11,8 +11,8 @@ toc: true
 
 ## What is distributed tracing?
 
-Large scale, cloud applications are usually built using interconnected services that can be rather hard to troubleshoot. When a service is scaled, simple logging doesn't cut it anymore and a more in-depth view into system's flow is required.
-That's where [Distributed tracing](https://opentracing.io/docs/overview/what-is-tracing/) comes into play; it allows developers and SREs to get a detailed view of a request as it travels through the system of services. With distributed tracing you can:
+Large-scale cloud applications are usually built using interconnected services that can be rather hard to troubleshoot. When a service is scaled, simple logging doesn't cut it anymore and a more in-depth view into system's flow is required.
+That's where [distributed tracing](https://opentracing.io/docs/overview/what-is-tracing/) comes into play; it allows developers and SREs to get a detailed view of a request as it travels through the system of services. With distributed tracing you can:
 
 1. Trace the execution path of a single request as it goes through a complicated path inside the distributed system
 2. Pinpoint bottlenecks and measure latency of specific parts of the execution path
@@ -22,10 +22,10 @@ That's where [Distributed tracing](https://opentracing.io/docs/overview/what-is-
 
 There are a few key terms used in tracing:
 
-1. **Trace**: A recording of the execution path of a request
-2. **Span**: A named, timed operation representing a contiguous segment inside the trace
-3. **Root Span**: The first span in a trace - a common ancestor to all spans in a trace
-4. **Context**: Information identifying the request, required to connect spans in a distributed trace
+- **Trace**: A recording of the execution path of a request
+- **Span**: A named, timed operation representing a contiguous segment inside the trace
+- **Root Span**: The first span in a trace - a common ancestor to all spans in a trace
+- **Context**: Information identifying the request, required to connect spans in a distributed trace
 
 A trace recording usually looks something like this:
 
@@ -88,7 +88,7 @@ func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-Next, we'll modify the actual business logic function that is called by the API handler to nest it inside the parent span (we'll use `SearchUsers` as an example):
+Next, we'll modify the actual business logic function that's called by the API handler to nest it inside the parent span (we'll use `SearchUsers` as an example):
 
 ```go
 func (a *App) SearchUsers(props *model.UserSearch, options *model.UserSearchOptions) ([]*model.User, *model.AppError) {
@@ -216,7 +216,7 @@ The implementation of the decorator pattern we chose involved three parts:
 ### Struct embedding
 
 Quoting [Go FAQ](https://golang.org/doc/faq#Is_Go_an_object-oriented_language)
-> Although Go has types and methods and allows an object-oriented style of programming, there is no type hierarchy. The concept of "interface" in Go provides a different approach that we believe is easy to use and in some ways more general. There are also ways to embed types in other types to provide something analogous **but not identical** to subclassing
+> Although Go has types and methods and allows an object-oriented style of programming, there is no type hierarchy. The concept of "interface" in Go provides a different approach that we believe is easy to use and in some ways more general. There are also ways to embed types in other types to provide something analogous **but not identical** to subclassing.
 
 ```go
 type Animal struct{
@@ -292,9 +292,12 @@ I am a Cow I am a Cow
 Speak(2) took 0s
 ```
 
-So we've basically implemented two decorators over original `Speak()` method. First we started timing the execution in `MeasureAnimal`, then passed it to `TraceAnimal`, which in turn called the actual `Speak()` implementation.
+So we've basically implemented two decorators over the original `Speak()` method. First we started timing the execution in `MeasureAnimal`, then passed it to `TraceAnimal`, which in turn called the actual `Speak()` implementation.
+``
 
-This works great and stays performant since we don't use any dynamic techniques here like reflection, however this is very verbose and requires us to write a lot of wrapper code, and that's no fun at all. We can do better!
+This works great and stays performant since we don't use any dynamic techniques such as reflection. However this is very verbose and requires us to write a lot of wrapper code - and that's no fun at all. 
+
+We can do better!
 
 ### Code parsing using AST
 
@@ -480,11 +483,11 @@ I know it looks a little scary, but the premise is rather simple. Given the foll
 
 I'll go through the template line by line:
 
-- **2-6**: Define the new struct
+- **2 - 6**: Define the new struct
 - **7**: Iterate over methods in our metadata
 - **8**: Define a function on the new struct that has exactly the same signature as original one
 - **9**: Print all function parameters by iterating on `$element.Params` using the helper functions defined above
-- **10-14**: Run the actual code and either exit the function or return the results, depending on function signature
+- **10 - 14**: Run the actual code and either exit the function or return the results, depending on function signature
 
 For the `Timer` decorator, we'll write the following template:
 
@@ -614,6 +617,6 @@ func (a *{{$.Name}}) {{$index}}({{$element.Params | joinParamsWithType}}) {{$ele
 
 Phew, this was quite a trip, huh? I hope you found it interesting. You can see the actual generator implementation inside `mattermost-server` in [/app/layer_generators/main.go](https://github.com/mattermost/mattermost-server/blob/master/app/layer_generators/main.go).
 
-*Side note*: This is just one way of handling this problem. Some people are against using code-generation too much since it hides a lot of implementation and complicates the build process (you have to re-run the generators each time your interface changes). We've settled on this approach due to its flexibility and performance. 
+*Side note:* This is just one way of handling this problem. Not everyone wants to rely on using code-generation too much since it hides a lot of implementation and complicates the build process (you have to re-run the generators each time your interface changes). We've settled on this approach due to its flexibility and performance. 
 
 If you have any notes or ideas on how this could be implemented in a cleaner way - please stop by the [Mattermost Community](https://community.mattermost.com) server - I'll be **very** glad to discuss it further.
