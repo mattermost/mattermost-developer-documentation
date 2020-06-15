@@ -270,3 +270,33 @@ The core team also has technical writers who document product features and funct
 
 - **<a name="justine.geffen">Justine Geffen</a>**
     - @justine.geffen on [community.mattermost.com](https://community.mattermost.com/core/messages/@justine.geffen) and [@justinegeffen](https://github.com/justinegeffen) on GitHub
+
+How to promote a contributor to core committer
+-----------------------------------------------
+
+1. Identify a core committer
+ - A core committer is a maintainer on the Mattermost project that has merge access to Mattermost repositories. They are responsible for reviewing pull requests, cultivating the Mattermost developer community, and guiding the technical vision of Mattermost. If you have a question or need some help, these are the people to ask.
+ - If you feel someone in the community would be interested in such activities, then they may be a great candidate for being promoted to a core committer!
+
+2. Nominate a core committer
+ - If the nomination is for the Mattermost project, or for a core repository (e.g. mattermost-server, mattermost-webapp), raise the topic in weekly developers meeting
+ - If the nomination is for a repository managed by a specific team (e.g. mattermost-plugin-jira), raise the topic with that team
+
+3. Team discussed nomination
+ - During the meeting, the nomination is discussed. Meeting participants should feel empowered to raise concerns on the nomination if any (e.g. length of involvement in the community, skill sets)
+ 
+4. If the nomination is agreed on, the person who nominated the contributor reaches out to them
+ - The promotion should be opt-in, and the contributor should feel empowered to decline the promotion if they so choose to
+
+5. If the contributor accepts the nomination, they are 
+ - Given merge access in the respective GitHub repositories
+ - Added to the [Mattermost GitHub organization](https://github.com/orgs/mattermost/people), which shows up in their GitHub profile
+ - Added as reviewers to relevant pull requests, to offer technical guidance and reviews
+
+6. The promotion is announced (details TBD)
+ - Added to to the above list of core committers
+ - ...
+
+7. The new core committer is gifted with lot of :heart: and lot of swag :tada: (details TBD)
+ - Core Committer mug
+ - ...
