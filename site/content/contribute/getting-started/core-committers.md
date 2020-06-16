@@ -286,7 +286,7 @@ How to promote a contributor to core committer
  - During the meeting, the nomination is discussed. Meeting participants should feel empowered to raise concerns on the nomination if any (e.g. length of involvement in the community, skill sets)
  
 4. If the nomination is agreed on, the person who nominated the contributor reaches out to them
- - The promotion should be opt-in, and the contributor should feel empowered to decline the promotion if they so choose to
+ - The promotion should be opt-in, and the contributor should feel empowered to decline the promotion if they choose.
 
 5. If the contributor accepts the nomination, they are 
  - Given merge access in the respective GitHub repositories.
