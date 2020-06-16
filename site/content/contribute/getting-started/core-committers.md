@@ -280,7 +280,7 @@ How to promote a contributor to core committer
 
 2. Nominate a core committer
  - If the nomination is for the Mattermost project, or for a core repository (e.g. `mattermost-server`, `mattermost-webapp`), raise the topic in weekly developers meeting.
- - If the nomination is for a repository managed by a specific team (e.g. mattermost-plugin-jira), raise the topic with that team
+ - If the nomination is for a repository managed by a specific team (e.g. `mattermost-plugin-jira`), raise the topic with that team.
 
 3. Team discussed nomination
  - During the meeting, the nomination is discussed. Meeting participants should feel empowered to raise concerns on the nomination if any (e.g. length of involvement in the community, skill sets)
