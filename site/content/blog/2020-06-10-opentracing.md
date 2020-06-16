@@ -42,7 +42,7 @@ So what are we actually working on? We want to make sure that every API request 
 The resulting system trace will look like this (using [Jaeger](https://www.jaegertracing.io/) web-ui visualization):
 ![jaeger view](/blog/2020-06-10-opentracing/result.png) 
 
-## Naive approach
+## Straightforward tracing implementation
 
 To add tracing to any API call, we can do the following in our `ServeHTTP` function:
 
