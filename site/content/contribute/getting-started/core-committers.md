@@ -298,5 +298,5 @@ How to promote a contributor to core committer
  - ...
 
 7. The new core committer is gifted with lot of :heart: and lot of swag :tada: (details TBD)
- - Core Committer mug
+ - Core committer mug.
  - ...
