@@ -290,7 +290,7 @@ How to promote a contributor to core committer
 
 5. If the contributor accepts the nomination, they are 
  - Given merge access in the respective GitHub repositories
- - Added to the [Mattermost GitHub organization](https://github.com/orgs/mattermost/people), which shows up in their GitHub profile
+ - Added to the [Mattermost GitHub organization](https://github.com/orgs/mattermost/people), which is displayed in their GitHub profile.
  - Able to be added as reviewers to relevant pull requests, to offer technical guidance and reviews.
 
 6. The promotion is announced (details TBD)
