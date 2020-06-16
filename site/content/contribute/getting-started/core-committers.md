@@ -275,7 +275,7 @@ How to promote a contributor to core committer
 -----------------------------------------------
 
 1. Identify a core committer
- - A core committer is a maintainer on the Mattermost project that has merge access to Mattermost repositories. They are responsible for reviewing pull requests, cultivating the Mattermost developer community, and guiding the technical vision of Mattermost. If you have a question or need some help, these are the people to ask.
+ - A core committer is a maintainer on the Mattermost project and has merge access to Mattermost repositories. They are responsible for reviewing pull requests, cultivating the Mattermost developer community, and guiding the technical vision of Mattermost. If you have a question or need some help, these are the people to ask.
  - If you feel someone in the community would be interested in such activities, then they may be a great candidate for being promoted to a core committer!
 
 2. Nominate a core committer
