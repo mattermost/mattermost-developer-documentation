@@ -294,7 +294,7 @@ How to promote a contributor to core committer
  - Added as reviewers to relevant pull requests, to offer technical guidance and reviews
 
 6. The promotion is announced (details TBD)
- - Added to to the above list of core committers
+ - The new core committer is added to to the above list of core committers.
  - ...
 
 7. The new core committer is gifted with lot of :heart: and lot of swag :tada: (details TBD)
