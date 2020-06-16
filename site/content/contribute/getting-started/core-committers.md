@@ -283,7 +283,7 @@ How to promote a contributor to core committer
  - If the nomination is for a repository managed by a specific team (e.g. `mattermost-plugin-jira`), raise the topic with that team.
 
 3. Team discussed nomination
- - During the meeting, the nomination is discussed. Meeting participants should feel empowered to raise concerns on the nomination if any (e.g. length of involvement in the community, skill sets)
+ - During the meeting, the nomination is discussed. Meeting participants should feel empowered to raise concerns, if any, on the nomination (e.g. length of involvement in the community, skill sets).
  
 4. If the nomination is agreed on, the person who nominated the contributor reaches out to them
  - The promotion should be opt-in, and the contributor should feel empowered to decline the promotion if they choose.
