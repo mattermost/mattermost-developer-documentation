@@ -24,7 +24,6 @@ weight: 110
 * Dean Whillier - Eng Lead
 * Harrison Healey - Engineer
 * Sudheer Timmaraju - Engineer
-* Brad Coughlin - Engineer
 * Devin Binnie - Engineer
 * Guillermo Vayá - Engineer
 * Nevy Angelova - Engineer
