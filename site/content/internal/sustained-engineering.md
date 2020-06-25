@@ -83,14 +83,10 @@ During non-release weeks, triage is held twice a week. Near the end of the relea
 
 ## Customer and Pre-Sales Support Escalation Process
 
-Part of SET's responsibility is to interface with the customer support team. SET's primary goal in respect to support is to triage escalated support issues, work on any high priority customer bugs requiring code change, as well as provide training and knowledge share with the customer support team. When the pre-sales and customer support teams require engineering support, they should:
+Part of SET's responsibility is to interface with the customer support team. SET's primary goal in respect to support is to triage escalated support issues, work on any high priority customer bugs requiring code change, as well as provide training and knowledge share with the customer support team. 
 
-1. Post the issue in [Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel. If the message contains confidential information about a customer, then post in [Customer Support](https://community.mattermost.com/private-core/channels/community) channel in private Staff team.
-2. At-mention SET team lead, identified as the first person in the [Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel header, and provide the relevant information listed in the [support handbook](https://docs.mattermost.com/process/support.html).
-3. If no solution or next steps (such as a Jira ticket) are presented within 24 hours, create a ticket in [Mattermost Jira project](https://mattermost.atlassian.net/) and assign "Sustained Engineering" as the **Mattermost Team**. The ticket will be reviewed by a SET team during Tuesday or Thursday triage. If you need a resolution sooner than triage time, escalate to @chris.overton on https://community.mattermost.com.
-4. In order to track these requests, when an issue comes to SET from Solution Architects, Customer Support, or Sales, a Jira ticket should be created if it requires any more time than simply answering a question. The Jira ticket should be created with the Team assigned to “Sustained Engineering” and an appropriate tag; either “support-escalation”, "solution-escalation", "sales-escalation".  These issues will also appear on the Sustained Engineering Kanban board. The following weekly report will allow reporting on these issues. https://mattermost.atlassian.net/issues/?filter=15281
-
-This process helps increase accountability and traceability across teams.
+For details on the Customer/Pre-Sales Support Escalation Process, please refer to the following document. 
+https://docs.google.com/document/d/1eEnG0YA6G8_1futRlvBs2Vm88xkc0nTnZCynYXZNTBE/edit?usp=sharing
 
 ### Support Response Templates
 
