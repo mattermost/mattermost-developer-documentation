@@ -86,7 +86,6 @@ During non-release weeks, triage is held twice a week. Near the end of the relea
 Part of SET's responsibility is to interface with the customer support team. SET's primary goal in respect to support is to triage escalated support issues, work on any high priority customer bugs requiring code change, as well as provide training and knowledge share with the customer support team. 
 
 For details on the Customer/Pre-Sales Support Escalation Process, please refer to [this document](https://docs.google.com/document/d/1eEnG0YA6G8_1futRlvBs2Vm88xkc0nTnZCynYXZNTBE/edit?usp=sharing). 
-https://docs.google.com/document/d/1eEnG0YA6G8_1futRlvBs2Vm88xkc0nTnZCynYXZNTBE/edit?usp=sharing
 
 ### Support Response Templates
 
