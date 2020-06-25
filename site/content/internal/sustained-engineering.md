@@ -9,11 +9,13 @@ The Sustained Engineering Team (SET) is responsible for improving and maintainin
 
 ## Team Members
 
-SET is a rotating team that is comprised of engineers from the different feature teams. The rotation is from the 16th of one month to the 16th of the next month, lining up with Mattermost releases.
+SET is a rotating team that is comprised of engineers from the different feature teams. The rotation is on a two week cycle. Who is currently on SET can be seen in the header of the [~Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel.
 
-Each feature team will commit a single engineer to SET for each rotation. While on SET, that engineer should attend their feature team's sprint planning but should not be assigned any work from their feature team. For the month that engineer should primarily be working on issues for SET. If SET has no tickets to work on, then the engineer may pick up some work for their feature team.
+Feature teams will commit engineers to SET for each rotation. With there being 4 engineers plus one lead on SET at any given time. While on SET, that engineer should attend their feature team's sprint planning but should not be assigned any work from their feature team. For the month that engineer should primarily be working on issues for SET. If SET has no tickets to work on, then the engineer may pick up some work for their feature team.
 
-At any one time SET will have a lead engineer from one of the feature teams who will lead the team. This person should be identified as the SET Lead for each rotation in the channel header. The support team can contact this person when they are unsure who else to escalate to.
+SET has a lead engineer from one of the feature teams who leads the team for the duration of the rotation. This person should be identified as the SET Lead for each rotation in the channel header. The support team can contact this person when they are unsure who else to escalate to.
+
+Engineers on SET are also on an on-call rotation as defined by the [process here](https://docs.google.com/document/d/1-AWQJQelgKvGVSP6sOIi9EOSVjxXVlJlwNuJlkcXKGA/edit).
 
 ## Workflow Process
 
