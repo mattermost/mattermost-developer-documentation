@@ -11,7 +11,7 @@ The Sustained Engineering Team (SET) is responsible for improving and maintainin
 
 SET is a rotating team that is comprised of engineers from the different feature teams. The rotation is on a two week cycle. Who is currently on SET can be seen in the header of the [~Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel.
 
-Feature teams will commit engineers to SET for each rotation. With there being 4 engineers plus one lead on SET at any given time. While on SET, that engineer should attend their feature team's sprint planning but should not be assigned any work from their feature team. For the month that engineer should primarily be working on issues for SET. If SET has no tickets to work on, then the engineer may pick up some work for their feature team.
+Feature teams will commit engineers to SET for each rotation. With there being 4 engineers plus one lead on SET at any given time. While on SET, that engineer should attend their feature team's sprint planning but should not be assigned any work from their feature team. For the two weeks that engineer should primarily be working on issues for SET. If SET has no tickets to work on, then the engineer may pick up some work for their feature team.
 
 SET has a lead engineer from one of the feature teams who leads the team for the duration of the rotation. This person should be identified as the SET Lead for each rotation in the channel header. The support team can contact this person when they are unsure who else to escalate to.
 
