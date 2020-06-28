@@ -52,9 +52,13 @@
             <!-- Sidebar -->
             <div class="col-md-3 doc-content tags-sidebar">
                 <div class="well well-sm">
+{{ if .Params.toc }}
+                <h6>Table Of Contents</h6>
+                    {{ .TableOfContents }}
+{{ end }}                    
                     {{ partial "series_link.html" . }}
 
-                    <div>Other Posts</div>
+                    <h6>Other Posts</h6>
                     <ul class="list-unstyled">
                         {{ range first 15 (where .Site.Pages ".Section" "blog" )}}
                         {{ if and (.IsPage) (ne .Title $.Title)}}
