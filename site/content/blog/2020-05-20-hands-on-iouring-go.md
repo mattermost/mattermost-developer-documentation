@@ -333,3 +333,7 @@ Resources:
 - https://www.youtube.com/watch?v=-5T4Cjw46ys
 - https://lwn.net/Articles/776703/
 - https://github.com/axboe/liburing
+
+HN discussion is [here](https://news.ycombinator.com/item?id=23451468).
+
+This blog post is now available in Russian on Softdroid at [Начало работы с io_uring с помощью Go](https://softdroid.net/nachalo-raboty-s-iouring-s-pomoshchyu-go).
