@@ -27,7 +27,7 @@ Join others who have contributed code to Mattermost repositories in GitHub, and 
 
 ## Integration Contributors
 
-Integration contributors by full name and (first contribution date), or by username when no full name is disclosed, are alphabetically listed below. The list is updated regularly (last updated June 28, 2020), and includes integrations, installers or plugins contributed to the [Mattermost Integrations Directory](https://integrations.mattermost.com). 
+Integration contributors by full name and (first contribution date), or by username when no full name is disclosed, are alphabetically listed below. The list is updated regularly (last updated June 28, 2020), and includes integrations, installers, or plugins contributed to the [Mattermost Integrations Directory](https://integrations.mattermost.com). 
 
 Join others who have contributed an integration, and [get started today](https://developers.mattermost.com/integrate/getting-started/).
 
