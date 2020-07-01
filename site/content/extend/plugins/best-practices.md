@@ -75,26 +75,45 @@ For examples of custom settings see: Demo Plugin [`CustomSetting`](https://githu
 
 ## How can I review the entire code base of a plugin?
 
-Carry out the following steps:
+Sometimes, you have been working on a personal repository for a new plugin, most probably based on the [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template/) repo. As it was a personal project, you may have pushed all of your commits directly commits to `master`. And now that it's functional, you need a reviewer to take a look at the whole thing.
 
-1. Take a backup of project directory
-2. Create a dummy-master branch with no code:
+For this, it is useful to create a PR with only the commits you added. Follow these steps to do so:
+
+0. Make sure that you are in the `master` branch, and that the remote is updated.
 
    ```
-   git checkout --orphan dummy-master
-   git rm -rf
+   git checkout master
+   git push origin master
+   ```
+   
+1. Create a new branch (it will be an exact copy of `master`) and push it to the remote:
+
+   ```
+   git checkout -b my-changes
+   git push origin my-changes
+   ```
+   
+2. Create another new branch and move to it. We will remove the new commits from this one so we can later create our PR:
+
+   ```
+   git checkout -b dummy-master
+   ```
+   
+2. Now, you need to obtain the identifier of the oldest commit that should be reviewed. You can do so with `git log --oneline`. From the output, copy the SHA of that specific commit. Let's say that the SHA is `8f6aef3`.
+3. Reset the new branch to the parent of the commit you identified before (the `~1` suffix will do the trick). Don't forget to change the SHA to the one you copied!
+
+   ```
+   git reset --hard 8f6aef3~1
+   ```
+
+4. Push the new branch to the repository.
+
+   ```
    git push origin dummy-master
    ```
+   
+5. Create a new PR in your repository, setting the *base* branch to `dummy-master` and the *compare* branch to `my-changes`.
 
-3. Create a dummy-review branch from dummy-master:
+6.  Request a code review on the resulting PR.
 
-   ```
-   git checkout -b dummy-review
-   git add
-   git commit -m "Full checkin"
-   git push origin dummy-review
-   ```
-
-4. Create a PR from dummy-review -> dummy-master
-
-5. Code review on the resulting PR
+Keep in mind that this process is valuable only for this initial review. For future changes, make sure to work on a feature branch and open a PR  when you want to merge the changes into `master`.
