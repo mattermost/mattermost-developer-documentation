@@ -6,25 +6,29 @@ weight: 10
 ---
 
 ### Helpful links
+
 - https://docs.mattermost.com/developer/developer-flow.html
 - [Jira bug ticket process](https://docs.mattermost.com/process/new-bug-tickets.html)
 - [PR cherry-picking process](https://developers.mattermost.com/contribute/getting-started/branching/)
-- [RN build process](https://developers.mattermost.com/internal/mobile-build-process/) if you are joining Apps team
-- Glance through the release processes
+- [RN build process](https://developers.mattermost.com/internal/mobile-build-process/) if you are joining the Apps team
+- Glance through the release processes:
     - https://docs.mattermost.com/process/feature-release.html
     - https://docs.mattermost.com/process/bug-fix-release.html
-- Security: Read through the security channel / issues spreadsheet and look at past exploits
-- Developer Reading List - top of public Developer channel
+- Security: Read through the security channel/issues spreadsheet and look at past exploits
+- Developer Reading List: Located in the header of the public [Developer channel](https://community-release.mattermost.com/core/channels/developers)
 
 ### Mentor For The Day
-- Meet with a dev team member every day for about 30 mins.  Dev member will rotate daily to expose the new hire to everyone.  The process with run for approximately for 2 weeks. The goal is to get to know each other, feel free to talk about non-work related stuff.
+
+- Meet with a dev team member every day for about 30 mins. Dev member will rotate daily to expose the new hire to everyone. The process will run for approximately two weeks. The goal is to get to know each other, feel free to talk about non-work related stuff
 - Schedule to be sent by manager in channel
 
 ### Meet with a few PMs
+
 - List to be sent by manager in channel
 
 ### Channels and Teams
-- You should be added to the private team `Staff` and join the following channels
+
+- You should be added to the private team `Staff` and join the following channels:
     - Alerts
     - Announcements
     - Customer Success
@@ -56,6 +60,7 @@ weight: 10
     - Peer-to-peer Help (optional)
 
 ### Meetings and Accounts
+
 - You manager should notify `people-ops` and have you added to all appropriate meetings
     - `people-ops` will also set up your `@mattermost.com` email
 - DevOps to setup various accounts as needed
@@ -69,7 +74,8 @@ weight: 10
     - Add IAM user to master AWS account
     - Add to Azure
 
-### Potential topics to chat with a daily mentor about
+### Daily Mentor Meeting: Potential Discussion Topics
+
 - GitHub workflow
 - Jira workflow
 - Sprint planning
@@ -77,7 +83,7 @@ weight: 10
 - Internal Jenkins build server
 - External Jenkins build server
 - API docs
-- Webapp structure
+- Web app structure
 - Server structure
 - React Native apps
 - Desktop app
@@ -98,4 +104,4 @@ Once you're added to the `mattermost` organization on GitHub, you'll show up wit
 
 ![member](/internal/member.png)
 
-By default, however, this tag only appears to other members within the organization: anyone outside will continue to see only the `Contributor` tag. If you want your membership in the `mattermost` organization to be public, follow the steps on https://help.github.com/articles/publicizing-or-hiding-organization-membership/ to find your username on https://github.com/orgs/mattermost/people and change your `Organization visibility` to `Public`.
+By default, however, this tag only appears to other members within the organization. Anyone outside will continue to see only the `Contributor` tag. If you want your membership in the `mattermost` organization to be public, follow the steps on https://help.github.com/articles/publicizing-or-hiding-organization-membership/ to find your username on https://github.com/orgs/mattermost/people and change your `Organization visibility` to `Public`.
