@@ -116,4 +116,4 @@ For this, it is useful to create a PR with only the commits you added. Follow th
 
 6.  Request a code review on the resulting PR.
 
-Keep in mind that this process is valuable only for this initial review. For future changes, make sure to work on a feature branch and open a PR  when you want to merge the changes into `master`.
+Keep in mind that this process is valuable only for this initial review. For future changes, make sure to work on a feature branch and open a PR when you want to merge the changes into `master`.
