@@ -15,7 +15,7 @@ weight: 10
     - https://docs.mattermost.com/process/feature-release.html
     - https://docs.mattermost.com/process/bug-fix-release.html
 - Security: Read through the security channel/issues spreadsheet and look at past exploits
-- Developer Reading List: Located in the header of the public [Developer channel](https://community-release.mattermost.com/core/channels/developers)
+- Developer Reading List: Located in the header of the public [Developer channel](https://community.mattermost.com/core/channels/developers)
 
 ### Mentor For The Day
 
