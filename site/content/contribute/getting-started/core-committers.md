@@ -158,6 +158,8 @@ Below is the list of core committers working on Mattermost:
 - **<a name="caleb.roseland">Caleb Roseland</a>**
     - @caleb.roseland on [community.mattermost.com](https://community.mattermost.com/core/messages/@caleb.roseland) and [@calebroseland](https://github.com/calebroseland) on GitHub
     - Dev areas: Desktop / Web apps
+    - @avasconcelos114 on [community.mattermost.com](https://community.mattermost.com/core/messages/@avasconcelos114) and [@avasconcelos114](https://github.com/avasconcelos114) on GitHub
+    - Dev areas: Web App, Mobile Apps
 
 Core Developers
 ---------------
