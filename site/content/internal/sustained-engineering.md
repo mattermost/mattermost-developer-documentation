@@ -9,11 +9,13 @@ The Sustained Engineering Team (SET) is responsible for improving and maintainin
 
 ## Team Members
 
-SET is a rotating team that is comprised of engineers from the different feature teams. The rotation is from the 16th of one month to the 16th of the next month, lining up with Mattermost releases.
+SET is a rotating team that is comprised of engineers from the different feature teams. The rotation is on a two week cycle. Who is currently on SET can be seen in the header of the [~Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel.
 
-Each feature team will commit a single engineer to SET for each rotation. While on SET, that engineer should attend their feature team's sprint planning but should not be assigned any work from their feature team. For the month that engineer should primarily be working on issues for SET. If SET has no tickets to work on, then the engineer may pick up some work for their feature team.
+Feature teams will commit a total of 4 engineers plus a lead to SET for each rotation. While on SET, that engineer should attend their feature team's sprint planning but should not be assigned any work from their feature team. For the two weeks that engineer should primarily be working on issues for SET. If SET has no tickets to work on, then the engineer may pick up some work for their feature team.
 
-At any one time SET will have a lead engineer from one of the feature teams who will lead the team. This person should be identified as the SET Lead for each rotation in the channel header. The support team can contact this person when they are unsure who else to escalate to.
+SET has a lead engineer from one of the feature teams who leads the team for the duration of the rotation. This person should be identified as the SET Lead for each rotation in the channel header. The support team can contact this person when they are unsure who else to escalate to.
+
+Engineers on SET are also on an on-call rotation as defined by the [process here](https://docs.google.com/document/d/1-AWQJQelgKvGVSP6sOIi9EOSVjxXVlJlwNuJlkcXKGA/edit).
 
 ## Workflow Process
 
@@ -83,13 +85,9 @@ During non-release weeks, triage is held twice a week. Near the end of the relea
 
 ## Customer and Pre-Sales Support Escalation Process
 
-Part of SET's responsibility is to interface with the customer support team. SET's primary goal in respect to support is to triage escalated support issues, work on any high priority customer bugs requiring code change, as well as provide training and knowledge share with the customer support team. When the pre-sales and customer support teams require engineering support, they should:
+Part of SET's responsibility is to interface with the customer support team. SET's primary goal in respect to support is to triage escalated support issues, work on any high priority customer bugs requiring code change, as well as provide training and knowledge share with the customer support team. 
 
-1. Post the issue in [Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel. If the message contains confidential information about a customer, then post in [Customer Support](https://community.mattermost.com/private-core/channels/community) channel in private Staff team.
-2. At-mention SET team lead, identified as the first person in the [Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel header, and provide the relevant information listed in the [support handbook](https://docs.mattermost.com/process/support.html).
-3. If no solution or next steps (such as a Jira ticket) are presented within 24 hours, create a ticket in [Mattermost Jira project](https://mattermost.atlassian.net/) and assign "Sustained Engineering" as the **Mattermost Team**. The ticket will be reviewed by a SET team during Tuesday or Thursday triage. If you need a resolution sooner than triage time, escalate to @chris.overton on https://community.mattermost.com.
-
-This process helps increase accountability and traceability across teams.
+For details on the Customer/Pre-Sales Support Escalation Process, please refer to [this document](https://docs.google.com/document/d/1eEnG0YA6G8_1futRlvBs2Vm88xkc0nTnZCynYXZNTBE/edit?usp=sharing). 
 
 ### Support Response Templates
 
