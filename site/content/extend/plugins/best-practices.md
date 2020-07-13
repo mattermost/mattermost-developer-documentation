@@ -89,14 +89,14 @@ For this, it is useful to create a PR with only the commits you added. Follow th
 1. Create a new branch (it will be an exact copy of `master`) and push it to the remote:
 
    ```
-   git checkout -b my-changes
-   git push origin my-changes
+   git checkout -b review
+   git push origin review
    ```
    
 2. Create another new branch and move to it. We will remove the new commits from this one so we can later create our PR:
 
    ```
-   git checkout -b dummy-master
+   git checkout -b base
    ```
    
 2. Now, you need to obtain the identifier of the oldest commit that should be reviewed. You can do so with `git log --oneline`. From the output, copy the SHA of that specific commit. Let's say that the SHA is `8f6aef3`.
@@ -109,10 +109,10 @@ For this, it is useful to create a PR with only the commits you added. Follow th
 4. Push the new branch to the repository.
 
    ```
-   git push origin dummy-master
+   git push origin base
    ```
    
-5. Create a new PR in your repository, setting the *base* branch to `dummy-master` and the *compare* branch to `my-changes`.
+5. Create a new PR in your repository, setting the *base* branch to `base` and the *compare* branch to `review`.
 
 6.  Request a code review on the resulting PR.
 
