@@ -13,7 +13,7 @@ By completing this campaign, we're looking to:
 
 - Reduce the errors derived from changes.
 - Increase the consistency of the code.
-- ensure a more defensive programming in the code.
+- Ensure a more defensive programming in the code.
 
 ## Contributing
 
