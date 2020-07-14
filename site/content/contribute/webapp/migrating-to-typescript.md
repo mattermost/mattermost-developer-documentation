@@ -19,8 +19,6 @@ By completing this campaign, we're looking to:
 
 If you're interested in contributing, please join the [Typescript Migration channel on community.mattermost.com](https://community.mattermost.com/core/channels/typescript-migration). You can also check out the [Contributors](https://community.mattermost.com/core/channels/tickets) channel, where there are several posts mentioning tickets related to this campaign, each containing the hashtag `#typescriptmigration`. You can work on migrating an individual module to Typescript by claiming a ticket that matches [this GitHub issue search](https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22Area%2FTechnical+Debt%22+label%3A%22Up+For+Grabs%22+Migrate+to+Typescript).
 
-For guidance on migrating a file to Typescript, please read the next section.
-
 ## Component Migration Steps
 
 There are a few steps involved with migrating a file to use Typescript. Some of them may not apply to every file and they may change slightly based on the file you're working on. In general, you can follow these steps as a checklist for work that needs to be done on each file.
