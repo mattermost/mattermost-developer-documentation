@@ -12,7 +12,7 @@ This campaign will help with the migration by converting files written in Javasc
 By completing this campaign, we're looking to:
 
 - reduce the errors derived from changes.
-- increase the consistency of the code.
+- Increase the consistency of the code.
 - ensure a more defensive programming in the code.
 
 ## Contributing
