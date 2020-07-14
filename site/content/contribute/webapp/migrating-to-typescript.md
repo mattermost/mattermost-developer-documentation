@@ -9,7 +9,7 @@ The Mattermost team wants to improve the quality, security and stability of the 
 
 This campaign will help with the migration by converting files written in Javascript to type-safe files written in Typescript.
 
-By completing this campaign, we are looking to:
+By completing this campaign, we're looking to:
 
 - reduce the errors derived from changes.
 - increase the consistency of the code.
