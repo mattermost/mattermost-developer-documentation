@@ -7,6 +7,7 @@ categories:
 author: Jesús Espino
 github: jespino
 community: jesus.espino
+canonical_url: https://mattermost.com/blog/layered-store-struct-embedding-go/
 ---
 
 One of the most important parts of the Mattermost source code is the one
