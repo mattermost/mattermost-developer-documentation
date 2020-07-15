@@ -35,15 +35,16 @@ We are trying to follow certain rules about when is needed to create a new
 package or add functionality to the existing ones (Some of them can not fit
 with the current implementation because it is an ongoing effort).
 
-* Any integration with a third party tool should be implmented as an
+* Any integration with a third party tool should be implemented as an
   independent service (Examples: Bleve, Cache, File backends).
 * Any well isolated chunk of code that has a very small public API and a lot of
   code behind, should be separated into a service (Examples: Import/Export,
   Tracing, Telemetry)
 * If you are adding logic that interact with differnt services, put the
   information together, and give a result, probably you are adding logic to the
-  `app`.
-* If you are validating inputs or permissions from the user, you should do it
-  in the external layers (`api4`, `web`, `app/slashcommands`)
-* If you are initializing something that is going to be there for the whole
-  lifetime of the server running you should be adding it to the `app/server.go`
+  `app` package.
+* If you are validating inputs from the user or permissions, you should do it
+  in the external layers (`api4`, `web`, `app/slashcommands`).
+* If you are initializing something (for example a new service) that is going
+  to be there for the whole time the server is running, you should be adding it
+  to the `app.Server` data structure, probably in the `app/server.go` file.
