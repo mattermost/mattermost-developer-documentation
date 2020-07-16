@@ -5,7 +5,9 @@ weight: 9
 subsection: Web App
 ---
 
-The Mattermost team wants to improve the quality, security and stability of the code, and one way to do this is by introducing the usage of type checking. Thus, we have decided to introduce Typescript in our codebase. As a first step, we have migrated the [mattermost-redux](https://github.com/mattermost/mattermost-redux) library to use Typescript, and are now in the processs of migrating the [webapp](https://github.com/mattermost/mattermost-webapp) to use Typescript.
+The Mattermost team wants to proactively improve the quality, security, and stability of [the code](https://github.com/mattermost/mattermost-webapp), and one way to do this is by introducing the usage of type checking. Thus, we have decided to introduce Typescript in our codebase as it's a mature and feature-rich approach. 
+
+As a first step, we have migrated the [mattermost-redux](https://github.com/mattermost/mattermost-redux) library to use Typescript, and are now in the process of migrating the [webapp](https://github.com/mattermost/mattermost-webapp) to use Typescript.
 
 This campaign will help with the migration by converting files written in Javascript to type-safe files written in Typescript.
 
