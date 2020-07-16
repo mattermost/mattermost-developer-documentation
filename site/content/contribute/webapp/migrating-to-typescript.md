@@ -23,7 +23,7 @@ If you're interested in contributing, please join the [Typescript Migration chan
 
 There are a few steps involved with migrating a file to use Typescript. Some of them may not apply to every file and they may change slightly based on the file you're working on. In general, you can follow these steps as a checklist for work that needs to be done on each file.
 
-1. Every React component's set of `props` need to be converted to a new type. You can use the component's `propTypes` as a template for what `props` a given component can expect. This conversion to Typescript includes maintaining whether a given `prop` is required or not. An optional property is Typescript is noted by including a question mark at the end of the property's name.
+1. Every React component's set of `props` needs to be converted to a new type. You can use the component's `propTypes` as a template for what `props` a given component can expect. This conversion to Typescript includes maintaining whether a given `prop` is required or not. An optional property in Typescript is noted by including a question mark at the end of the property's name.
 2. A component's `state` also needs to be defined using a type. The initial `state` assignment and any call to `setState` will be indicators of what values are present in the component's state.
 3. Once a component's `props` and `state` (if any) have been converted, you can define the component as `class MyComponent extends React.PureComponent<Props, State>`. You can omit the `State` portion if the component does not have its own `state`.
 4. Check that the types are all correct using the `make check-types` command.
