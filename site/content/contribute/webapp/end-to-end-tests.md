@@ -65,10 +65,10 @@ The folder structure is mostly based on the [Cypress scaffold](https://docs.cypr
 
 ## What requires an E2E Test?
 
-1. Test cases defined in help-wanted E2E issues, which are drawn from the release testing list
-2. New features or stories
-3. Bug fixes
-4. Cases that are not covered by unit or integration tests
+1. Test cases defined in help-wanted E2E issues - see [link](https://github.com/mattermost/mattermost-webapp/pull/5857/files) which opens a private channel using keyboard navigation with Ctrl/Cmd+K, arrow and enter keys.
+2. New features or stories - see [link](https://github.com/mattermost/mattermost-webapp/pull/4243/files) for `Mark As Unread` feature.
+3. Bug fixes - see [link](https://github.com/mattermost/mattermost-webapp/pull/5908/files#diff-dcfea130d9ceb044f5959134a2d220d9R56-R84) that fixes mention highlight to self.
+4. Test cases from TM4J - see [link](https://github.com/mattermost/mattermost-webapp/pull/5850/files) which adds automated tests for `Guest Accounts`. 
 
 ## Interested in Contributing to E2E Testing through Help Wanted Tickets
 
