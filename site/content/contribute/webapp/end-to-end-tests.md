@@ -120,7 +120,7 @@ Inside of the `integration` directory, there are additional directories that bre
     }
     ```
 
-6. Run test in isolation using a convenient custom command of `cy.apiInitSetup()`. Such command creates a new team, channel and user which can be used by the spec file itself only.
+6. Run test in isolation using a convenient custom command of `cy.apiInitSetup()`. This command creates a new team, channel, and user which can be used by the spec file itself only.
 
 7. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/5891/files) as a guide on how to write and submit an end-to-end testing PR.
 
