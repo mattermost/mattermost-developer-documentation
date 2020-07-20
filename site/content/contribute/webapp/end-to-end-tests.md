@@ -14,7 +14,7 @@ Not familiar with Cypress? Here is some documentation that will help you get sta
 
 ## Quick Overview on How to Run E2E Testing
 
-### In Local Development Machine
+### On Your Local Development Machine
 1.  Run a local server instance by initiating `make run` to the mattermost-server folder. Confirm that the instance has started successfully.
     - Run `make test-data` to preload your server instance with initial seed data.
     - Each test case should handle the required system or user settings, but in case you encountered some unexpected error while testing, you may want to run the server with default config based on `mattermost-server/config/default.json`).
