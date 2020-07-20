@@ -18,7 +18,7 @@ Not familiar with Cypress? Here is some documentation that will help you get sta
 1.  Run a local server instance by initiating `make run` to the mattermost-server folder. Confirm that the instance has started successfully.
     - Run `make test-data` to preload your server instance with initial seed data.
     - Each test case should handle the required system or user settings, but in case you encounter an unexpected error while testing, you may want to run the server with default config based on `mattermost-server/config/default.json`.
-2.  Change directory to `mattermost-webapp/e2e`, install npm dependencies by `npm i`.
+2.  Change directory to `mattermost-webapp/e2e`, and install npm dependencies by running `npm i`.
     - Initiate `npm run cypress:run` in the command line to start full E2E testing except for those specs at `/cypress/integration/enterprise` folder which requires Enterprise license to run successfully.
     - Initiate `npm run cypress:open` in the command line to start partial testing depending on which spec is selected via Cypress' desktop app.
     - Initiate via node CLI to selectively run specs based on test metadata, e.g. `node run_tests.js --group='@accessibility'` which will run all specs with `@accessibility` metadata.
