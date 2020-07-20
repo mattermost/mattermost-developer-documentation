@@ -91,7 +91,7 @@ Inside of the `integration` directory, there are additional directories that bre
 2. Add custom commands to `/e2e/cypress/support`. See Cypress documentation for more details about custom commands [[link](https://docs.cypress.io/api/cypress-api/custom-commands.html)].
    - For ease of use, in-code documentation and discoverability, custom commands should have type definition added. See [declaration file](https://github.com/mattermost/mattermost-webapp/blob/master/e2e/cypress/support/api/user.d.ts) for reference on how to include.
 3. Organize `/e2e/cypress/integration` with a subfolder to group similar tests.
-4. Each test should have corresponding test case in Test Management for Jira (TM4J). Therefore, the `describe` block should correspond to folder name in TM4J (e.g. "Incoming webhook"), and `it` block should contain `TM4J number` as `Test Key` and test title (e.g. "MM-T623 Lock to this channel on webhook configuration works").  In the spec file, it should be written as:
+4. Each test should have a corresponding test case in Test Management for Jira (TM4J). Therefore, the `describe` block should correspond to folder name in TM4J (e.g. "Incoming webhook"), and `it` block should contain `TM4J number` as `Test Key` and test title (e.g. "MM-T623 Lock to this channel on webhook configuration works").  In the spec file, it should be written as:
 
     ```javascript
     describe('Incoming webhook', () => {
