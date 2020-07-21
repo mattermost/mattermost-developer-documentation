@@ -40,6 +40,8 @@ with the current implementation because it is an ongoing effort).
 * Any well isolated chunk of code that has a very small public API and a lot of
   code behind, should be separated into a service (Examples: Import/Export,
   Tracing, Telemetry)
+* Any package should expose the minimal API needed, trying to avoid any public
+  function or method that is not used from the outside.
 * If you are validating inputs from the user or permissions, you should do it
   in the external layers (e.g. `api4`, `web`, `app/slashcommands`).
 * If you are initializing something (for example a new service) that is going
