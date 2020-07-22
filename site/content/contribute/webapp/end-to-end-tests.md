@@ -53,7 +53,7 @@ The folder structure is mostly based on the [Cypress scaffold](https://docs.cypr
     - To start writing tests,
         - simply create a new file (e.g. `login_spec.js`) within `/e2e/cypress/integration` folder and;
         - refresh tests list in the Cypress Test Runner and a new file should have appeared in the list.
-    - Subfolder naming convention depends on test grouping, which is usually based on the name of tab in the Release Testing spreadsheet (e.g. `/e2e/cypress/integration/messaging/` for "Messaging" tab).
+    - Subfolder naming convention depends on test grouping, which is usually based on the general functional area (e.g. `/e2e/cypress/integration/messaging/` for "Messaging" tab).
     - Test cases that require an enterprise license should fall under `/e2e/cypress/integration/enterprise/`. This is to easily identify license requirements, both during local development and production testing for enterprise features.
 3. `/e2e/cypress/plugins` or [Plugin Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Plugin-files)
     - A convenience mechanism that automatically include the plugins before running every single spec file.
