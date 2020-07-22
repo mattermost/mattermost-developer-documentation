@@ -26,8 +26,8 @@ Not familiar with Cypress? Here is some documentation that will help you get sta
 
 ### In Continuous Integration Pipeline
 We run all tests in our Continuous Integration (CI) pipeline. However, they are grouped according to test stability.
-1. __Daily production tests against development branch (master)__ - Initiated on master branch by `node run_tests.js --stage='@prod'` in the command line. These are tests, known as production tests, which were selected and labeled with `@prod` [test metadata](/contribute/webapp/end-to-end-tests/#adding-test-metadata-on-spec-files). See <a target="_blank" href="https://community-release.mattermost.com/core/pl/i3kg97o1fir9pje7yi8wecd45r">link</a> for an example test run posted in our community channel.
-2. __Daily production tests against release branch__ - Same as above except the test is initiated against the release branch. See <a target="_blank" href="https://community-release.mattermost.com/core/pl/mhtepy6p33gi9fp33fsek161qr">link</a> for an example test run.
+1. __Daily production tests against development branch (master)__ - Initiated on master branch by `node run_tests.js --stage='@prod'` in the command line. These are tests, known as production tests, which were selected and labeled with `@prod` [test metadata](/contribute/webapp/end-to-end-tests/#adding-test-metadata-on-spec-files). See <a target="_blank" href="https://community.mattermost.com/core/pl/i3kg97o1fir9pje7yi8wecd45r">link</a> for an example test run posted in our community channel.
+2. __Daily production tests against release branch__ - Same as above except the test is initiated against the release branch. See <a target="_blank" href="https://community.mattermost.com/core/pl/mhtepy6p33gi9fp33fsek161qr">link</a> for an example test run.
 3. __Daily unstable tests against development branch (master)__ - Initiated on the master branch by `node run_tests.js --stage='@prod' --invert` in the command line to run all except production tests. We call these unstable tests as they either consistently or intermittently fail due to automation bugs and not product bugs.
 
 ## Folder and File Structures
@@ -72,7 +72,7 @@ The folder structure is mostly based on the [Cypress scaffold](https://docs.cypr
 
 ## Interested in Contributing to E2E Testing through Help Wanted Tickets
 
-1. All help wanted tickets are under [server repository's GitHub issues](https://mattermost.com/pl/help-wanted-mattermost-server). Look for issues with `Area/E2E Tests` and `Up For Grabs` labels, and comment to let everyone know you're working on it.
+1. All help wanted tickets are under [server repository's GitHub issues](https://github.com/mattermost/mattermost-server/issues?q=label%3A%22Area%2FE2E+Tests%22+label%3A%22Up+For+Grabs%22+is%3Aopen+is%3Aissue+). Look for issues with `Area/E2E Tests` and `Up For Grabs` labels, and comment to let everyone know you're working on it.
 2. Each ticket is filled up with specific test steps and verifications that need to be accomplished as a minimum requirement.  Additional steps and assertions for robust test implementation are much welcome.
 3. Join our channel at [UI Test Automation](https://community.mattermost.com/core/channels/ui-test-automation) and talk to us as fellow contributors, and collaborate and learn with one another.
 
