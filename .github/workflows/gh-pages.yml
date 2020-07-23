@@ -36,5 +36,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.number }}
           body: |
-            ${{ format('Published to [preview environment](https://mattermost.github.io/mattermost-developer-documentation/{0}, github.actor)') }}
+            Published to [preview environment](https://mattermost.github.io/mattermost-developer-documentation/${{ github.actor }}
 
