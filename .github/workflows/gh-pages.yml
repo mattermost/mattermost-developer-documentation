@@ -39,7 +39,7 @@ jobs:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
         branch-regex: 'foo-\d+'
         lowercase-branch: false
-        title-template: '[%branch%]'
+        title-template: 'GitHub Preview'
         replace-title: false
         title-prefix-space: true
         uppercase-title: true
