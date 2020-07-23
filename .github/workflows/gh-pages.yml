@@ -31,5 +31,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           destination_dir: ./${{ github.actor }}
           publish_dir: ./dist/html
-          publish_branch: gh-pages-${{ github.actor }}
+          publish_branch: gh-pages
           force_orphan: true
