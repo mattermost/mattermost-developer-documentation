@@ -28,5 +28,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           destination_dir: ./docs
-          publish_dir: ./dist/html
-          publish_branch: gh-pages
+          publish_dir: ./docs
+          publish_branch: ${GITHUB_REF##*/}
