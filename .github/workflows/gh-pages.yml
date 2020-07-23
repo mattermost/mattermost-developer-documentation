@@ -32,5 +32,4 @@ jobs:
           destination_dir: ./${{ github.actor }}
           publish_dir: ./dist/html
           publish_branch: gh-pages-${{ github.actor }}
-          keep_files: true
           force_orphan: true
