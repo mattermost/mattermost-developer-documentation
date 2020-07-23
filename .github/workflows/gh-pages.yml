@@ -3,7 +3,7 @@ name: github pages
 on:
   push:
     branches:
-      - hugo-gh-pages
+      - gh-pages
 
 jobs:
   deploy:
