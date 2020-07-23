@@ -28,7 +28,7 @@ pygmentsStyle = "manni"
   [params.sidebar]
   [[params.sidebar.item]]
     name = "contribute"
-    displayName = "Contribute - test"
+    displayName = "Contribute - final test"
     draft = true
 
   [[params.sidebar.item]]
@@ -63,7 +63,7 @@ pygmentsStyle = "manni"
     # postpended links
     [[menu.postpend]]
       url = "/contribute/getting-started"
-      name = "Contribute - test"
+      name = "Contribute - final test"
       weight = 1
 
     [[menu.postpend]]
