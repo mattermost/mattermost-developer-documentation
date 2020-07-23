@@ -63,7 +63,7 @@ pygmentsStyle = "manni"
     # postpended links
     [[menu.postpend]]
       url = "/contribute/getting-started"
-      name = "Contribute"
+      name = "Contribute - test"
       weight = 1
 
     [[menu.postpend]]
