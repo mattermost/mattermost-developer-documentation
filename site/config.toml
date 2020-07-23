@@ -105,10 +105,10 @@ pygmentsStyle = "manni"
   # Available icons: http://simplelineicons.com/
   [params.intro]
   [[params.intro.item]]
-    title = "Contribute"
+    title = "Contribute - test"
     description = "Join the hundreds of contributors and submit code directly to the Mattermost open-source project."
     url = "contribute/getting-started"
-    button = "Start Contributing"
+    button = "Start Contributing2"
     icon = "/img/contribute-icon.svg"
     draft = false
 
