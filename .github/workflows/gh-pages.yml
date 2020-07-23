@@ -34,7 +34,7 @@ jobs:
         uses: peter-evans/create-or-update-comment@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.client_payload.pull_request.number }}
+          issue-number: ${{ github.event.id }}
           body: |
             ${{ format('Published to [preview environment](https://mattermost.github.io/mattermost-developer-documentation/${{ github.actor }})') }}
 
