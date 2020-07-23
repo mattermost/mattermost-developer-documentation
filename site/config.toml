@@ -1,7 +1,7 @@
 # Page settings
 baseURL = ""
 relativeURLs = true
-title = "Mattermost Developers My Changes2"
+title = "Mattermost Developers"
 languageCode = "en-us"
 publishDir = "../docs"
 pygmentsCodeFences = true
@@ -28,7 +28,7 @@ pygmentsStyle = "manni"
   [params.sidebar]
   [[params.sidebar.item]]
     name = "contribute"
-    displayName = "Contribute - final test"
+    displayName = "Contribute"
     draft = true
 
   [[params.sidebar.item]]
@@ -63,7 +63,7 @@ pygmentsStyle = "manni"
     # postpended links
     [[menu.postpend]]
       url = "/contribute/getting-started"
-      name = "Contribute - final test"
+      name = "Contribute"
       weight = 1
 
     [[menu.postpend]]
@@ -105,10 +105,10 @@ pygmentsStyle = "manni"
   # Available icons: http://simplelineicons.com/
   [params.intro]
   [[params.intro.item]]
-    title = "Contribute - test"
+    title = "Contribute"
     description = "Join the hundreds of contributors and submit code directly to the Mattermost open-source project."
     url = "contribute/getting-started"
-    button = "Start Contributing2"
+    button = "Start Contributing"
     icon = "/img/contribute-icon.svg"
     draft = false
 
