@@ -29,4 +29,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           destination_dir: ./docs
           publish_dir: ./dist/html
-          publish_branch: gh-pages-preivew
+          publish_branch: gh-pages
