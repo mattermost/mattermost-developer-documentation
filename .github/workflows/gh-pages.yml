@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
@@ -33,3 +33,20 @@ jobs:
           publish_dir: ./dist/html
           publish_branch: gh-pages
           force_orphan: true
+  pr_update_text:
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: tzkhan/pr-update-action@v1.1.1
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        branch-regex: 'foo-\d+'
+        lowercase-branch: false
+        title-template: '[%branch%]'
+        replace-title: false
+        title-prefix-space: true
+        uppercase-title: true
+        body-template: '[Link to docs preview](https://mattermost.github.io/mattermost-developer-documentation/${{ github.actor }})'
+        replace-body: false
+        body-prefix-newline-count: 2
+        uppercase-body: true
