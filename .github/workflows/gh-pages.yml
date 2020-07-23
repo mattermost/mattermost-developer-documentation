@@ -2,7 +2,7 @@ name: github pages
 
 on:
   pull_request:
-    types: [assigned, opened, reopened, synchronized]
+    types: [assigned, opened, reopened, synchronize]
 
 jobs:
   deploy:
