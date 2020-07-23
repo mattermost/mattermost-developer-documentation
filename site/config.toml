@@ -28,7 +28,7 @@ pygmentsStyle = "manni"
   [params.sidebar]
   [[params.sidebar.item]]
     name = "contribute"
-    displayName = "Contribute"
+    displayName = "Contribute - test"
     draft = true
 
   [[params.sidebar.item]]
