@@ -3,9 +3,6 @@ name: github pages
 on:
   pull_request:
     types: [assigned, opened, reopened, synchronized]
-  push:
-    branches:
-      - gh-pages-action
 
 jobs:
   deploy:
