@@ -1,7 +1,7 @@
 # Page settings
 baseURL = ""
 relativeURLs = true
-title = "Mattermost Developers"
+title = "Mattermost Developers My Changes"
 languageCode = "en-us"
 publishDir = "../docs"
 pygmentsCodeFences = true
