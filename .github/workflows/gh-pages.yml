@@ -1,6 +1,8 @@
 name: github pages
 
 on:
+  pull_request:
+    types: [assigned, opened, reopened, synchronized]
   push:
     branches:
       - gh-pages-action
@@ -29,4 +31,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           destination_dir: ./${{ github.actor }}
           publish_dir: ./dist/html
-          publish_branch: gh-pages
+          publish_branch: gh-pages-${{ github.actor }}
