@@ -1,0 +1,40 @@
+name: github pages
+
+on:
+  pull_request:
+    types: [assigned, opened, reopened, synchronize]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.74.2'
+          # extended: true
+
+      - name: Build
+        run: make dist
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3.7.0-1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          destination_dir: ./${{ github.actor }}
+          publish_dir: ./dist/html
+          publish_branch: gh-pages
+          force_orphan: true
+      - name: Add comment to PR
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.number }}
+          body: |
+            Published to [preview environment](https://mattermost.github.io/mattermost-developer-documentation/${{ github.actor }})
+
