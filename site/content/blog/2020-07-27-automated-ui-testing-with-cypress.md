@@ -135,7 +135,7 @@ Then, simply initiating `node run_tests.js --stage='@prod' --group='@accessibili
 For sure, there are lots of best practices out there which are not mentioned here but I hope it helps anyone reading this, especially for those who want to get started with Cypress or set up an Automated UI Testing in general.
 
 ## Conclusion
-The setbacks and hurdles we experienced are not necessarily limitations in the Cypress test framework, but manageable through organization and best practices. We are glad to have it as part of our Automated UI testing and very much thankful to Cypress for creating a tool that helps make writing E2E enjoyable.
+The setbacks and hurdles we experienced are not necessarily limitations in the Cypress test framework, but manageable through organization and best practices. We are glad to have it as part of our automated UI testing and very much thankful to Cypress for creating a tool that helps make writing E2E enjoyable.
 
 ## Thanks to all contributors!
 Finally, I’d like to thank all the contributors who shaped and helped set up our E2E and put us where we are today.
