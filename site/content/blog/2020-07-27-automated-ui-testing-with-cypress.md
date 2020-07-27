@@ -23,7 +23,7 @@ Before we dive into the guidelines and best practices, first let’s take a look
 
 ![test environment image](/blog/2020-07-27-automated-ui-testing-with-cypress/test_environment_setup.png)
 
-Mattermost server and web application, which we'll refer to as "server", is spun up with all the required services such as PostgreSQL, Elasticsearch, SAML/Okta, OpenLDAP, Minio, Webhook server, Plugin Marketplace and Email server. Once the server is ready, Cypress will interact with it as a user and initiate actions and verify results. In some cases, it directly accesses the services to set up or verify information. There is also a separate static website generated from Storybook that is used to check the functionality of a component from the web application.
+Mattermost server and web application, which we'll refer to as "server", is spun up with all the required services such as PostgreSQL, Elasticsearch, SAML/Okta, OpenLDAP, MinIO, Webhook server, Plugin Marketplace, and email server. Once the server is ready, Cypress will interact with it as a user and initiate actions and verify results. In some cases, it directly accesses the services to set up or verify information. There is also a separate static website generated from Storybook that is used to check the functionality of a component from the web application.
 
 ## Typical Test Execution Life Cycle
 
