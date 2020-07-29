@@ -1,4 +1,8 @@
+{{ if .Site.Params.notification.enable }}
+<header class="with-notification-bar">
+{{ else }}
 <header>
+{{ end }}
     <a href="/"><img src="/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
     <div class="header__menu-toggle">
         <i class="fa fa-bars"></i>
