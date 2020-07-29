@@ -1,9 +1,6 @@
 name: github pages
 
 on:
-  push:
-    branches: 
-      - gh-pages-bug
   pull_request:
     types: [assigned, opened, reopened, synchronize]
 
