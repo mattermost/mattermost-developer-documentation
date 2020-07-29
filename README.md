@@ -2,7 +2,7 @@
 
 Website for Mattermost developer documentation, built using [Hugo](https://gohugo.io/). Master is continuously deployed to [developers.mattermost.com](https://developers.mattermost.com/).
 
-## Contributing
+## CHANGE Contributing
 
 1. Follow [Hugo documentation](https://gohugo.io/getting-started/installing/) to install Hugo
 
