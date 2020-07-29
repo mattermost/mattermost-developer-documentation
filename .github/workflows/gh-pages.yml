@@ -1,6 +1,9 @@
 name: github pages
 
 on:
+  push:
+    branches: 
+      - gh-pages-bug
   pull_request:
     types: [assigned, opened, reopened, synchronize]
 
@@ -29,7 +32,6 @@ jobs:
           destination_dir: ./${{ github.actor }}
           publish_dir: ./dist/html
           publish_branch: gh-pages
-          force_orphan: true
       - name: Add comment to PR
         uses: peter-evans/create-or-update-comment@v1
         with:
