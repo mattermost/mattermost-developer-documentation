@@ -18,9 +18,9 @@ pygmentsStyle = "manni"
     enable = false
 
   [params.notification]
-    enable = false
-    url = "blog/repo-split"
-    text = "On September 6th the platform repository will be split. Click through for more details."
+    enable = true
+    url = "https://mattermost.com/careers"
+    text = "We're hiring!"
 
   [params.search]
     enable = false
@@ -85,7 +85,7 @@ pygmentsStyle = "manni"
       url = "https://docs.mattermost.com/"
       name = "Admin Docs"
       weight = 5
-      
+
 
     # Workaround to add draft status to menu items
     [[params.navigation.drafts]]
