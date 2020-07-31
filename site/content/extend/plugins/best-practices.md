@@ -75,45 +75,42 @@ For examples of custom settings see: Demo Plugin [`CustomSetting`](https://githu
 
 ## How can I review the entire code base of a plugin?
 
-Sometimes, you have been working on a personal repository for a new plugin, most probably based on the [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template/) repo. As it was a personal project, you may have pushed all of your commits directly commits to `master`. And now that it's functional, you need a reviewer to take a look at the whole thing.
+Sometimes, you have been working on a personal repository for a new plugin, most probably based on the [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template/) repo. As it was a personal project, you may have pushed all of your commits directly to `master`. And now that it's functional, you need a reviewer to take a look at the whole thing.
 
 For this, it is useful to create a PR with only the commits you added. Follow these steps to do so:
 
-0. Make sure that you are in the `master` branch, and that the remote is updated.
+1. First of all, you need to obtain the identifier of the oldest commit that should be reviewed. You can review your history with `git log --oneline`, where you need to look for the very first commit that you added. Imagine that the output is something like the following:
 
-   ```
-   git checkout master
-   git push origin master
-   ```
-   
-1. Create a new branch (it will be an exact copy of `master`) and push it to the remote:
+```
+f7d89b8 (HEAD -> master, origin/master) Lint code
+fa99500 Fix bug
+0b3b5bd Add feature
+8f6aef3 My first commit to the plugin
+...
+... rest of commits from mattermost-plugin-starter-template
+...
+```
 
-   ```
-   git checkout -b review
-   git push origin review
-   ```
-   
-2. Create another new branch and move to it. We will remove the new commits from this one so we can later create our PR:
+In this case, the identifier that we need to copy is `8f6aef3`.
 
-   ```
-   git checkout -b base
-   ```
-   
-2. Now, you need to obtain the identifier of the oldest commit that should be reviewed. You can do so with `git log --oneline`. From the output, copy the SHA of that specific commit. Let's say that the SHA is `8f6aef3`.
-3. Reset the new branch to the parent of the commit you identified before (the `~1` suffix will do the trick). Don't forget to change the SHA to the one you copied!
+2. Create a new branch without the commits that you added. Using the SHA that you copied, create the branch `base` and push it:
 
-   ```
-   git reset --hard 8f6aef3~1
-   ```
+```
+git branch base 8f6aef3~1
+git push origin base
+```
 
-4. Push the new branch to the repository.
+Note that `8f6aef3~1` means _the parent commit of `8f6aef3`_, effectively selecting all the commits in the branch except the ones that you added.
 
-   ```
-   git push origin base
-   ```
-   
-5. Create a new PR in your repository, setting the *base* branch to `base` and the *compare* branch to `review`.
+3. Create a branch with all the commits, included the ones that you added, and push it. This branch, `compare`, will be an exact copy of `master`:
 
-6.  Request a code review on the resulting PR.
+```sh
+git branch compare master
+git push origin compare
+```
 
-Keep in mind that this process is valuable only for this initial review. For future changes, make sure to work on a feature branch and open a PR when you want to merge the changes into `master`.
+4. Now you have two new branches in the repository: `base` and `compare`. In Github, create a new PR in your repository, setting the _base_ branch to `base` and the _compare_ branch to `compare`.
+
+5. Request a code review on the resulting PR.
+
+For future changes, you can always repeat this process, making sure to identify the first commit you want to be reviewed. You can also consider the more common scenario of creating a feature branch (using something like `git checkout -b my.feature.branch`) and opening a PR whenever you want to merge the changes into `master`. It's up to you!
