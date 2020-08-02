@@ -17,6 +17,11 @@ A macOS computer is required to build the Mattermost iOS mobile app.
 
 Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using [Homebrew](https://brew.sh/) as a package manager.
 
+#### Install Cygwin (Only for Windows!!!)
+##### Windows10
+- Install Cygwin from [here](https://www.cygwin.com/)
+- Make sure to install 'make' and 'patch' while installing the Cygwin
+
 #### Install [NodeJS](https://nodejs.org/en/).
 This includes NPM which is also needed. Currently version 10.11.0 is recommended with npm 6.4.1. 11.x is **not** working.
 
@@ -33,7 +38,8 @@ This includes NPM which is also needed. Currently version 10.11.0 is recommended
     different node versions which might be lower than 10.11.0 and may cause problems)
 -   Install using NVM by following the instructions [here](https://github.com/creationix/nvm#install-script)
 -   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
-
+##### Windows10
+-   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
 #### Install [Watchman](https://facebook.github.io/watchman/). (minimum required version is 4.9.0)
 ##### MacOS
 - To install using Homebrew open a terminal and execute ..
@@ -45,7 +51,8 @@ This includes NPM which is also needed. Currently version 10.11.0 is recommended
     - Note that you need to increase your inotify limits for watchman to work properly
     - If you encounter a warning about a missing C++ compiler you need to install the c++
     extension from you distros package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++)
-
+##### Windows10
+- Download the latest package from [here](https://github.com/facebook/watchman/releases/tag/v2020.07.27.00). Note that it's currently beta.
 #### Install ```react-native-cli``` tools
 
 Use *npm* to install [React Native CLI Tools](http://facebook.github.io/react-native/docs/understanding-cli.html) globally (minimum required version is 2.0.1)
@@ -53,12 +60,16 @@ Use *npm* to install [React Native CLI Tools](http://facebook.github.io/react-na
 ```sh
 $ npm -g install react-native-cli
 ```
-
+#### Install Ruby
+##### Windows10
+- Install Ruby from [here](https://rubyinstaller.org/)
+#### Install git
+##### Windows10
+- Install git from [here](https://git-scm.com/download/win)
 #### Install ```bundler --version 2.0.2``` gem
 ```sh
 $ sudo gem install bundler --version 2.0.2
 ```
-
 #### Obtaining the source code
 We use GitHub to host the source code so we recommend that you install [Git](https://git-scm.com/) to get the source code. Optionally, you can also contribute by submitting [pull requests](https://help.github.com/articles/creating-a-pull-request/). If you do not have git installed you can do so with Homebrew by opening a terminal and executing:
 
@@ -155,3 +166,4 @@ In order to develop and build the Mattermost mobile apps you'll need to get a co
     ```
 
 4.  Run `make pre-run` in order to install all the dependencies.
+    For Windows10 run `npm install` first then `make pre-run`
