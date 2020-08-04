@@ -48,7 +48,7 @@ This includes NPM which is also needed. Currently version 10.11.0 is recommended
     ```
 ##### Linux
 - On Linux you have to build Watchman yourself. See the official [Watchman guide](https://facebook.github.io/watchman/docs/install.html#installing-from-source).
-    - Note that you need to increase your inotify limits for watchman to work properly
+    - Note that you need to increase your ``inotify`` limits for Watchman to work properly
     - If you encounter a warning about a missing C++ compiler you need to install the c++
     extension from your distro's package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++)
 ##### Windows10
