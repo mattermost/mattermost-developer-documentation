@@ -38,7 +38,7 @@ This includes NPM which is also needed. Currently version 10.11.0 is recommended
     different node versions which might be lower than 10.11.0 and may cause problems)
 -   Install using NVM by following the instructions [here](https://github.com/creationix/nvm#install-script)
 -   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
-##### Windows10
+##### Windows 10
 -   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
 #### Install [Watchman](https://facebook.github.io/watchman/). (minimum required version is 4.9.0)
 ##### MacOS
