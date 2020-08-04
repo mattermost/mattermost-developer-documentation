@@ -19,6 +19,7 @@ Install the following prerequisite software to develop and build the iOS or Andr
 
 #### Install Cygwin (Windows only)
 ##### Windows 10
+- [Which versions of Windows does Cygwin support](https://cygwin.com/faq/faq.html#faq.what.supported)?
 - Install Cygwin from [here](https://www.cygwin.com/)
 - Make sure to install ``make`` and ``patch`` while installing Cygwin
 
