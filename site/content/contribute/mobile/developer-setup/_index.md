@@ -23,7 +23,7 @@ Install the following prerequisite software to develop and build the iOS or Andr
 - Make sure to install ``make`` and ``patch`` while installing Cygwin
 
 #### Install [NodeJS](https://nodejs.org/en/)
-This includes NPM which is also needed. Currently version 10.11.0 is recommended with npm 6.4.1. 11.x is **not** working.
+This includes NPM which is also needed. Currently version 10.11.0 is recommended with NPM 6.4.1. 11.x is **not** working.
 
 ##### MacOS
 - To install using Homebrew open a terminal and execute ..
