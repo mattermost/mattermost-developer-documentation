@@ -18,7 +18,7 @@ A macOS computer is required to build the Mattermost iOS mobile app.
 Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using [Homebrew](https://brew.sh/) as a package manager.
 
 #### Install Cygwin (Windows only)
-##### Windows10
+##### Windows 10
 - Install Cygwin from [here](https://www.cygwin.com/)
 - Make sure to install ``make`` and ``patch`` while installing Cygwin
 
