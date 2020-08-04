@@ -71,7 +71,7 @@ $ npm -g install react-native-cli
 $ sudo gem install bundler --version 2.0.2
 ```
 #### Obtaining the source code
-We use GitHub to host the source code so we recommend that you install [Git](https://git-scm.com/) to get the source code. Optionally, you can also contribute by submitting [pull requests](https://help.github.com/articles/creating-a-pull-request/). If you do not have git installed you can do so with Homebrew by opening a terminal and executing:
+We use GitHub to host the source code so we recommend that you install [Git](https://git-scm.com/) to get the source code. Optionally, you can also contribute by submitting [pull requests](https://help.github.com/articles/creating-a-pull-request/). If you do not have Git installed you can do so with Homebrew by opening a terminal and executing:
 
 ##### MacOS
 
