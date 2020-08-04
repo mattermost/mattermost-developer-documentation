@@ -166,4 +166,4 @@ In order to develop and build the Mattermost mobile apps you'll need to get a co
     ```
 
 4.  Run `make pre-run` in order to install all the dependencies.
-    For Windows10 run `npm install` first then `make pre-run`
+    For Windows 10 run ``npm install`` first then ``make pre-run``
