@@ -55,7 +55,7 @@ This includes NPM which is also needed. Currently version 10.11.0 is recommended
 - Download the latest package from [here](https://github.com/facebook/watchman/releases/tag/v2020.07.27.00). Note that it's currently beta.
 #### Install ```react-native-cli``` tools
 
-Use *npm* to install [React Native CLI Tools](http://facebook.github.io/react-native/docs/understanding-cli.html) globally (minimum required version is 2.0.1)
+Use ``npm`` to install [React Native CLI Tools](https://github.com/react-native-community/cli#react-native-cli) globally (minimum required version is 2.0.1).
 
 ```sh
 $ npm -g install react-native-cli
