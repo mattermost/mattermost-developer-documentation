@@ -38,7 +38,7 @@ pygmentsStyle = "manni"
 
   [[params.sidebar.item]]
     name = "extend"
-    displayName = "Extend"
+    displayName = "Plugins"
     draft = false
 
   [[params.sidebar.item]]
@@ -73,7 +73,7 @@ pygmentsStyle = "manni"
 
     [[menu.postpend]]
       url = "/extend/getting-started"
-      name = "Extend"
+      name = "Plugins"
       weight = 3
 
     [[menu.postpend]]
@@ -114,15 +114,15 @@ pygmentsStyle = "manni"
 
   [[params.intro.item]]
     title = "Integrate"
-    description = "Integrate with Mattermost through incoming and outgoing webhooks, slash commands, OAuth 2.0 and the REST API."
+    description = "Integrate with Mattermost through incoming and outgoing webhooks, slash commands, OAuth 2.0, and the REST API."
     url = "integrate/getting-started"
     button = "Start Integrating"
     icon = "/img/integrate-icon.svg"
     draft = false
 
   [[params.intro.item]]
-    title = "Extend"
-    description = "Extend Mattermost to fit your purpose through powerful client and server plugins, embedding or forking."
+    title = "Plugins"
+    description = "Extend Mattermost to fit your purpose through powerful client and server plugins."
     url = "extend/getting-started"
     button = "Start Extending"
     icon = "/img/extend-icon.svg"
