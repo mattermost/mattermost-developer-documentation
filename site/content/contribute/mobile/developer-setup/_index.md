@@ -40,7 +40,9 @@ This includes NPM which is also needed. Currently version 10.11.0 is recommended
 -   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
 ##### Windows 10
 -   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
-#### Install [Watchman](https://facebook.github.io/watchman/). (minimum required version is 4.9.0)
+#### Install [Watchman](https://facebook.github.io/watchman/)
+
+The minimum required version is 4.9.0.
 ##### MacOS
 - To install using Homebrew open a terminal and execute ..
     ```sh
