@@ -64,7 +64,7 @@ $ npm -g install react-native-cli
 ##### Windows10
 - Install Ruby from [here](https://rubyinstaller.org/)
 #### Install Git
-##### Windows10
+##### Windows 10
 - Install git from [here](https://git-scm.com/download/win)
 #### Install ```bundler --version 2.0.2``` gem
 ```sh
