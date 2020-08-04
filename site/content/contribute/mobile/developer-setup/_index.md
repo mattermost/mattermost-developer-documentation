@@ -61,7 +61,7 @@ Use ``npm`` to install [React Native CLI Tools](https://github.com/react-native-
 $ npm -g install react-native-cli
 ```
 #### Install Ruby
-##### Windows10
+##### Windows 10
 - Install Ruby from [here](https://rubyinstaller.org/)
 #### Install Git
 ##### Windows 10
