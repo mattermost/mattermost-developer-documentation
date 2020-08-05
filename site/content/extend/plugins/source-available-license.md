@@ -8,7 +8,7 @@ Some plugins authored by Mattermost are licensed under the [Mattermost Source Av
 
 ## How do I apply the license to an enterprise-only plugin?
 
-An enterprise-only plugin is a plugin that requires a valid Mattermost Enterprise E20 license. It is not designed to be used with Team Edition or any other enterprise license.
+An Enterprise-only plugin is a plugin that requires a valid Mattermost Enterprise E20 license. It is not designed to be used with Team Edition or any other Enterprise license.
 
 1. Add the [LICENSE](LICENSE) file to the root of your plugin repository.
 2. Add the following section to your README.md directly below the opening paragraph:
