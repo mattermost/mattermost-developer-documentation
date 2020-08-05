@@ -21,7 +21,7 @@ This repository is licensed under the [Mattermost Source Available License](LICE
 
 ## How do I apply the license to a mixed-license plugin?
 
-An mixed-license plugin is a plugin some of whose components require a valid Mattermost Enterprise E20 license. Not all features are available when used with Team Edition or any other enterprise license.
+An mixed-license plugin includes components that require a valid Mattermost Enterprise E20 license. Not all features are available when used with Team Edition or any other enterprise license.
 
 1. Organize the enterprise-only, server-side parts of your plugin in a dedicated folder, typically `server/enterprise`.
 2. Add the [LICENSE](LICENSE) file to the `server/enterprise` folder.
