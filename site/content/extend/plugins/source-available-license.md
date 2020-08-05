@@ -6,7 +6,7 @@ weight: 91
 
 Some plugins authored by Mattermost are licensed under the [Mattermost Source Available License](https://docs.mattermost.com/overview/faq.html#mattermost-source-available-license). This document outlines how to apply the license in various situations.
 
-## How do I apply the license to an enterprise-only plugin?
+## How do I apply the license to an Enterprise-only plugin?
 
 An Enterprise-only plugin is a plugin that requires a valid Mattermost Enterprise E20 license. It is not designed to be used with Team Edition or any other Enterprise license.
 
