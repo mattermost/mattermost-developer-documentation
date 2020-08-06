@@ -3165,6 +3165,10 @@ header {
     z-index: 5;
 }
 
+header.with-notification-bar {
+    margin-top: 64px;
+}
+
 .header__links--right {
     float: right;
     list-style: none;

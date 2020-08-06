@@ -15,6 +15,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+5.25    | July 16, 2020       | [Rodrigo Villablanca](https://github.com/rvillablanca)
 5.24    | June 16, 2020       | [Rakesh Peela](https://github.com/rakhi2104)
 5.23    | May 16, 2020        | [Vladimir Lebedev](https://github.com/nadalfederer)
 5.22    | April 16, 2020      | [Tim Estermann](https://github.com/der-test)

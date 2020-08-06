@@ -10,5 +10,6 @@ $(document).ready(function(){
 
     $('.notification-bar__close').on('click', function(){
        $(".notification-bar").addClass("closed");
+       $("header").removeClass("with-notification-bar");
     });
 });
