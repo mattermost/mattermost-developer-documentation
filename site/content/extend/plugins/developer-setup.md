@@ -7,11 +7,13 @@ subsection: Plugins
 
 Once you have your [server](/contribute/server/developer-setup) and [webapp](/contribute/webapp/developer-setup) set up, you can start developing on plugins.
 
-For developing on Mattermost-managed plugins, each plugin's setup instructions can be found in the plugin's repository's README. Some plugins do not have external dependencies and require little to no setup, like the [Todo Plugin](https://github.com/mattermost/mattermost-plugin-todo) while others require an external service to be set up, like the [Jira Plugin](https://github.com/mattermost/mattermost-plugin-jira) and [GitHub Plugin](https://github.com/mattermost/mattermost-plugin-github).
+For developing on Mattermost-managed plugins, each plugin's setup instructions can be found in the plugin repository's README. Some plugins do not have external dependencies and require little to no setup, like the [Todo Plugin](https://github.com/mattermost/mattermost-plugin-todo) while others require an external service to be set up, like the [Jira Plugin](https://github.com/mattermost/mattermost-plugin-jira) and [GitHub Plugin](https://github.com/mattermost/mattermost-plugin-github).
 
 ## Set up your environment to deploy plugins
 
 ### Deploying with Local Mode
+
+Note: Deploying with Local Mode will only work for plugins that have been updated with the functionality from the [Plugin Starter Template](https://github.com/mattermost/mattermost-plugin-starter-template).
 
 If your Mattermost server is running locally, you can enable [local mode](https://docs.mattermost.com/administration/mmctl-cli-tool.html#local-mode) to streamline deploying your plugin. Edit your server configuration as follows:
 
