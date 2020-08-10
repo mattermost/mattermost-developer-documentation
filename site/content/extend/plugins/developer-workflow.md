@@ -5,7 +5,7 @@ weight: 3
 subsection: Plugins
 ---
 
-### Common `make` commands
+### Common `make` commands for working with plugins
 
 - `make dist` - Compile the plugin into a g-zipped file, ready to upload to a Mattermost server. The file is saved in the plugin repo's `dist` folder.
 - `make deploy` - Compiles the plugin using the `make dist` command, then automatically deploys the plugin to the Mattermost server
