@@ -2,9 +2,10 @@
 title: "Redux"
 date: "2018-01-19T12:01:23-04:00"
 section: "contribute"
+weight: 6
 ---
 
-The mattermost-redux library is the driver powering both the web app and React Native mobile apps. It does all the heavy lifting for logic, web utilities and application state. By separating out all of this logic in its own repository, we hope to minimize the amount of duplicated code between both of our apps, as well as any third party projects that wish to use similar functionality.
+The [mattermost-redux](https://github.com/mattermost/mattermost-redux) library is the driver powering both the web app and React Native mobile apps. It does all the heavy lifting for logic, web utilities, and application state. By separating out all of this logic in its own repository, we hope to minimize the amount of duplicated code between both of our apps, as well as any third-party projects that wish to use similar functionality.
 
 ## Repository
 
