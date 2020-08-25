@@ -27,7 +27,7 @@ Install the following prerequisite software to develop and build the iOS or Andr
 This includes NPM which is also needed. Currently version 10.11.0 is recommended with NPM 6.4.1. 11.x is **not** working.
 
 ##### MacOS
-- To install using Homebrew open a terminal and execute ..
+- To install using Homebrew open a terminal and execute:
 
 ```sh
     $ brew install node
