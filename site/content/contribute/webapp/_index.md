@@ -2,6 +2,7 @@
 title: "Web App"
 date: "2018-03-19T12:01:23-04:00"
 section: "contribute"
+weight: 3
 ---
 
 The Mattermost web app is written in JavaScript using [React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/).
