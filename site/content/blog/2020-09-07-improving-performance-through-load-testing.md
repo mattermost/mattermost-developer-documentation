@@ -1,5 +1,5 @@
 ---
-title: "Improving performance (and more) through load testing"
+title: "Improving performance (and more) through load testing "
 slug: improving-performance-through-load-testing
 date: 2020-09-07
 categories:
