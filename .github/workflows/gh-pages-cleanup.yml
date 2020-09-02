@@ -35,4 +35,4 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         issue-number: ${{ github.event.number }}
         body: |
-          Newest code from ${{ github.actor}} has been published to [preview environment](https://mattermost.github.io/mattermost-developer-documentation/${{ github.event.number }})
+          Removed preview code for ${{ github.event.number }}
