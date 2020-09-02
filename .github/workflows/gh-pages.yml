@@ -22,7 +22,7 @@ jobs:
       - name: Build Previews
         run: |
           rm -rf ./dist
-	        hugo -F -s site --destination ../dist/html
+	  hugo -F -s site --destination ../dist/html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3.7.0-1
