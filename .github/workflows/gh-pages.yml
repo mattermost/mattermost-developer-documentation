@@ -19,8 +19,10 @@ jobs:
           hugo-version: '0.74.2'
           # extended: true
 
-      - name: Build
-        run: make dist
+      - name: Build Previews
+        run: |
+          rm -rf ./dist
+	        hugo -F -s site --destination ../dist/html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3.7.0-1
