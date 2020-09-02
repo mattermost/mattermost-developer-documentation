@@ -26,7 +26,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3.7.0-1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          destination_dir: ./${{ github.actor }}
+          destination_dir: ./${{ github.event.number }}
           publish_dir: ./dist/html
           publish_branch: gh-pages
           keep_files: true
@@ -37,5 +37,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.number }}
           body: |
-            Published to [preview environment](https://mattermost.github.io/mattermost-developer-documentation/${{ github.actor }})
+            Newest coder from ${{ github.actor}} has been published to [preview environment](https://mattermost.github.io/mattermost-developer-documentation/${{ github.event.number }})
 
