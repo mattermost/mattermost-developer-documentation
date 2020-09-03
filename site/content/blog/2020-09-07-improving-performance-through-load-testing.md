@@ -40,7 +40,7 @@ As you can see, running load tests can guard your software against problems of d
 
 ## How are we doing it?
 
-There are plenty of extremely valid load testing frameworks available; some of the best are free and open source (JMeter, Gatling, k6 to name a few). In our case, after a thorough examination, we decided to develop a custom, in-house tool. We accepted trading implementation time and complexity for improved simulation and finer control over the entire process. We've recently released [version 1.0](https://github.com/mattermost/mattermost-load-test-ng/releases/tag/v1.0.0) and we are quite happy with the choice we made. While the tool itself is not designed for general purpose use, it can still serve as a good example of how we tackled the problem of designing and developing a custom load testing engine.
+There are plenty of extremely valid load testing frameworks available; some of the best are free and open source (JMeter, Gatling, k6 to name a few). In our case, after a thorough examination, we decided to develop a custom, in-house tool. We accepted trading implementation time and complexity for improved simulation and finer control over the entire process. We've recently released [version 1.0](https://github.com/mattermost/mattermost-load-test-ng/releases/tag/v1.0.0) and we're quite happy with the choice we made. While the tool itself is not designed for general purpose use, it can still serve as a good example of how we tackled the problem of designing and developing a custom load testing engine.
 
 ### Simulating the load
 
