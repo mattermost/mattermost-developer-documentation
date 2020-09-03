@@ -44,7 +44,7 @@ There are plenty of extremely valid load testing frameworks available; some of t
 
 ### Simulating the load
 
-As the definition says, the core of the process is load generation. However, in order for results to be meaningful, we need the software to mimic actual user behaviour. We achieve this by leveraging data coming from real users through the use of:
+As the definition says, the core of the process is load generation. However, in order for results to be meaningful, we need the software to mimic actual user behavior. We achieve this by leveraging data coming from real users through the use of:
 
 - Server-side metrics (e.g. frequency of a given API call)
 - User telemetry data (e.g. frequency of a user event/action)
