@@ -80,4 +80,4 @@ The success of a software system greatly depends on its performance. In today's 
 
 Load testing is a precious tool that can help your team to improve both the overall quality and stability of your system by preventing performance issues and application bugs while improving scalability and minimizing the risk of down times.
 
-If you'd like to know more about this particular topic or discuss performance in general, reach us in the [Developers: Performance](https://community.mattermost.com/core/channels/developers-performance) channel.
+If you'd like to know more about this particular topic or discuss performance in general, you can reach us in the [Developers: Performance](https://community.mattermost.com/core/channels/developers-performance) channel.
