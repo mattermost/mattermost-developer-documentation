@@ -72,7 +72,7 @@ The idea is quite simple: have the load testing engine react to what's happening
 ![graph](/blog/2020-09-07-improving-performance-through-load-testing/graph.png)
 
 The load testing software constantly increases the number of active users up until it detects signs of performance degradation. This happens when the metrics being monitored reach their configured thresholds (e.g. 100ms for average request duration).
-In response to such an event, the load testing engine starts to lower the number of users. This process continues for a while until an **equilibrium point** is reached. This value, over which performance starts to degrade, gives us a fairly good estimate on the users capacity of our target application.
+In response to such an event, the load testing engine starts to lower the number of users. This process continues for a while until an **equilibrium point** is reached. This value, over which performance starts to degrade, gives us a fairly good estimate on the user capacity our target application can comfortably support.
 
 ## Wrapping Up
 
