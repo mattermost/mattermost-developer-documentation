@@ -11,7 +11,7 @@ community: claudio.costa
 canonicalUrl: https://mattermost.com/blog/improving-performance-through-load-testing/
 ---
 
-Have you ever wondered how many active users your application can handle at the same time? If so, you are not alone. Here at Mattermost we are building a highly concurrent messaging platform for team collaboration that needs to potentially serve up to several thousands of users simultaneously. 
+Have you ever wondered how many active users your application can handle at the same time? If so, you're not alone. Here at Mattermost we're building a highly concurrent messaging platform for team collaboration that needs to potentially serve up to several thousands of users simultaneously. 
 
 While standard functional testing (e.g. unit tests) is critical to verify correct behaviour of your application, it's usually not sufficient to guarantee its performance at scale. This is where some form of performance testing can be particularly useful. Benchmarks do a good job at measuring the performance impact of single functions or limited portions of a codebase, but they cannot capture how an application is going to perform as a whole under real-world conditions. To achieve this you need **load testing**.
 
