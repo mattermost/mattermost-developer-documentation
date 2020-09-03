@@ -49,7 +49,7 @@ As the definition says, the core of the process is load generation. However, in 
 - Server-side metrics (e.g. frequency of a given API call)
 - User telemetry data (e.g. frequency of a user event/action)
 
-Fortunately, here at Mattermost we have a convenient advantage: we use our own application in our day to day work. This means we are able to continuously collect a considerable amount of realistic metrics from our community servers. We can then use such data to model user behaviour. To do this we create a table of user's actions with their respective frequencies. This action-frequency map will feed the simulation process: a simulated user will randomly pick and perform an action based on its frequency so that most common actions will be picked more often.
+Fortunately, here at Mattermost we have a convenient advantage: we use our own application in our day-to-day work. This means we're able to continuously collect a considerable amount of realistic metrics from our community servers. We can then use such data to model user behavior. To do this we create a table of a user's actions with their respective frequencies. This action-frequency map will feed the simulation process: a simulated user will randomly pick and perform an action based on its frequency so that the most common actions will be picked more often.
 
 ![actions-map](/blog/2020-09-07-improving-performance-through-load-testing/actions-map.png)
 
