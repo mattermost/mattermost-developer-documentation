@@ -74,7 +74,7 @@ The idea is quite simple: have the load testing engine react to what's happening
 The load testing software constantly increases the number of active users up until it detects signs of performance degradation. This happens when the metrics being monitored reach their configured thresholds (e.g. 100ms for average request duration).
 In response to such an event, the load testing engine starts to lower the number of users. This process continues for a while until an **equilibrium point** is reached. This value, over which performance starts to degrade, gives us a fairly good estimate on the user capacity our target application can comfortably support.
 
-## Wrapping Up
+## Wrapping up
 
 The success of a software system greatly depends on its performance. In today's cloud-oriented world this is increasily more true. A small outage can have a serious impact on your customers and eventually affect your company's revenue, especially when a [service level agreement](https://en.wikipedia.org/wiki/Service_level_agreement) is in place.
 
