@@ -40,11 +40,11 @@ As you can see, running load tests can guard your software against problems of d
 
 ## How are we doing it?
 
-There are plenty of extremely valid load testing frameworks available; some of the best are free and open source (JMeter, Gatling, k6 to name a few). In our case, after a thorough examination, we decided to develop a custom, in-house tool. We accepted trading implementation time and complexity for improved simulation and finer control over the entire process. We've recently released [version 1.0](https://github.com/mattermost/mattermost-load-test-ng/releases/tag/v1.0.0) and we're quite happy with the choice we made. While the tool itself is not designed for general purpose use, it can still serve as a good example of how we tackled the problem of designing and developing a custom load testing engine.
+There are plenty of high quality load testing frameworks available; some of the best are free and open source ([JMeter](https://jmeter.apache.org/), [Gatling](https://gatling.io/), [k6](https://k6.io/) to name a few). In our case, after a thorough examination, we decided to develop a custom, in-house tool. We accepted trading implementation time and complexity for improved simulation and finer control over the entire process. We've recently released [version 1.0](https://github.com/mattermost/mattermost-load-test-ng/releases/tag/v1.0.0) and we're quite happy with the choice we made. While the tool itself is not designed for general purpose use, it can still serve as a good example of how we tackled the problem of designing and developing a custom load testing engine.
 
 ### Simulating the load
 
-As the definition says, the core of the process is load generation. However, in order for results to be meaningful, we need the software to mimic actual user behavior. We achieve this by leveraging data coming from real users through the use of:
+As the definition says, the core of the process is load generation. It's important to note that, similarly to what happens in other tools of this kind, the load will be generated at the HTTP (and Websocket) level through a series of API calls. This means that, from a performance perspective, we're going to be testing everything in between the user (client) and the physical machine running our target application (server). Furthermore, in order for results to be meaningful, we need the software to mimic actual user behavior. We achieve this by leveraging data coming from real users through the use of:
 
 - Server-side metrics (e.g. frequency of a given API call)
 - User telemetry data (e.g. frequency of a user event/action)
@@ -76,8 +76,9 @@ In response to such an event, the load testing engine starts to lower the number
 
 ## Wrapping up
 
-The success of a software system greatly depends on its performance. In today's cloud-oriented world this is increasily more true. A small outage can have a serious impact on your customers and eventually affect your company's revenue, especially when a [service level agreement](https://en.wikipedia.org/wiki/Service_level_agreement) is in place.
+The success of a software system greatly depends on its performance, especially in today's cloud-oriented world. A small outage can have a serious impact on your customers and eventually affect your company's revenue, especially when a [service level agreement](https://en.wikipedia.org/wiki/Service_level_agreement) is in place.
 
 Load testing is a precious tool that can help your team to improve both the overall quality and stability of your system by preventing performance issues and application bugs while improving scalability and minimizing the risk of down times.
 
+Stay tuned for a follow-up article including an in depth technical discussion on the internals of our custom engine plus a full section on how to interpret and leverage load testing results.
 If you'd like to know more about this particular topic or discuss performance in general, you can reach us in the [Developers: Performance](https://community.mattermost.com/core/channels/developers-performance) channel.
