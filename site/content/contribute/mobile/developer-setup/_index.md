@@ -5,7 +5,9 @@ weight: 1
 subsection: Mobile Apps
 ---
 
-The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version [here](http://about.mattermost.com/mattermost-ios-app/) and the Android version [here](http://about.mattermost.com/mattermost-android-app/). Source code can be found at https://github.com/mattermost/mattermost-mobile.
+The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version <a href="http://about.mattermost.com/mattermost-ios-app/" target="_blank">here</a> and the Android version <a href="http://about.mattermost.com/mattermost-android-app/" target="_blank">here</a>. Source code can be found at the <a href="https://github.com/mattermost/mattermost-mobile" target="_blank">GitHub Mattermost Mobile app repository</a>.
+
+**Note: This guide describes how to set up the development environment on MacOS or Linux.**
 
 If you run into any issues getting your environment set up, check the [Troubleshooting](#troubleshooting) section at the bottom for common solutions.
 
@@ -15,10 +17,13 @@ A macOS computer is required to build the Mattermost iOS mobile app.
 
 ### iOS and Android
 
-Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using [Homebrew](https://brew.sh/) as a package manager.
+Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using <a href="https://brew.sh/" target="_blank">Homebrew</a> as a package manager.
 
-#### Install [NodeJS](https://nodejs.org/en/).
-This includes NPM which is also needed. Currently version 10.11.0 is recommended with npm 6.4.1. 11.x is **not** working.
+#### Install NodeJS
+.
+This includes NPM which is also needed.
+
+**Working node versions: 12.18.x & 14.9.x**
 
 ##### MacOS
 - To install using Homebrew open a terminal and execute ..
@@ -26,15 +31,16 @@ This includes NPM which is also needed. Currently version 10.11.0 is recommended
 ```sh
     $ brew install node
 ```
--   Install using NVM by following the instructions [here](https://github.com/creationix/nvm#install-script)
--   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
+
 ##### Linux
 -	Install using your distributions package manager (Note that different distros provide
-    different node versions which might be lower than 10.11.0 and may cause problems)
--   Install using NVM by following the instructions [here](https://github.com/creationix/nvm#install-script)
--   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
+    different node versions, check that is a supported [NodeJS version](#install-nodejs))
 
-#### Install [Watchman](https://facebook.github.io/watchman/). (minimum required version is 4.9.0)
+Other installation options:
+-   Using NVM by following the instructions <a href="https://github.com/creationix/nvm#install-script" target="_blank">here</a>
+-   Download and install the package from the <a href="https://nodejs.org/en/" target="_blank">NodeJS website</a>
+
+#### Install <a href="https://facebook.github.io/watchman/" target="_blankn">Watchman</a>. (minimum required version is 4.9.0)
 ##### MacOS
 - To install using Homebrew open a terminal and execute ..
     ```sh
@@ -46,21 +52,14 @@ This includes NPM which is also needed. Currently version 10.11.0 is recommended
     - If you encounter a warning about a missing C++ compiler you need to install the c++
     extension from you distros package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++)
 
-#### Install ```react-native-cli``` tools
-
-Use *npm* to install [React Native CLI Tools](http://facebook.github.io/react-native/docs/understanding-cli.html) globally (minimum required version is 2.0.1)
-
-```sh
-$ npm -g install react-native-cli
-```
 
 #### Install ```bundler --version 2.0.2``` gem
 ```sh
-$ sudo gem install bundler --version 2.0.2
+$ gem install bundler --version 2.0.2
 ```
 
 #### Obtaining the source code
-We use GitHub to host the source code so we recommend that you install [Git](https://git-scm.com/) to get the source code. Optionally, you can also contribute by submitting [pull requests](https://help.github.com/articles/creating-a-pull-request/). If you do not have git installed you can do so with Homebrew by opening a terminal and executing:
+We use GitHub to host the source code so we recommend that you install <a href="https://git-scm.com/" target="_blank">Git</a> to get the source code. Optionally, you can also contribute by submitting <a href="https://help.github.com/articles/creating-a-pull-request/" target="_blank">pull requests</a>. If you do not have git installed you can do so with Homebrew by opening a terminal and executing:
 
 ##### MacOS
 
@@ -73,12 +72,11 @@ Some distributions come with git preinstalled but you'll most likely have to ins
 
 ### Additional setup for iOS
 
-1.  Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12) to build and run the app on iOS. (minimum required version is 10.0)
-2.  Install [Cocoapods](https://cocoapods.org/) using the `gem` method. You'll need it to install the project's iOS dependencies. (required version is 1.7.5)
+*  Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12) to build and run the app on iOS. (minimum required version is **11.0**)
 
 ### Additional setup for Android
 
-#### Download and install [Android Studio or the Android SDK command line tools](https://developer.android.com/studio/index.html#downloads).
+##### Download and install <a href="https://developer.android.com/studio/index.html#downloads" target="_blank">Android Studio or the Android SDK command line tools</a>.
 
 #### Environment Variables
 Make sure you have the following ENV VARS configured:
@@ -115,7 +113,7 @@ Make sure you have the following ENV VARS configured:
 In the SDK Manager using Android Studio or the [Android SDK command line tool](https://developer.android.com/studio/command-line/sdkmanager.html), ensure the following are installed
 - SDK Tools (you may have to click "Show Package Details" to expand packages)
     ![image](/img/mobile/sdk_tools.png)
-    - Android SDK Build-Tools 28.0.3
+    - Android SDK Build-Tools 29.0.2
     - Android Emulator
     - Android SDK Platform-Tools
     - Android SDK Tools
@@ -130,9 +128,8 @@ In the SDK Manager using Android Studio or the [Android SDK command line tool](h
     - Android 7 (Nougat) or above ([We've dropped Android 5/6 Support since December 2018, you may still continue to use 1.14 for Android 5/6 devices](https://github.com/mattermost/mattermost-mobile/issues/2480))
         - Google APIs
         - SDK Platform
-            - For Android 7 or above -> Android SDK Platform 24 or above
-            - For Android 5/6 -> Android SDK Platform 23 or below
-        - Intel x86 Atom\_64 System Image
+            - For Android Q or above -> Android SDK Platform 29 or above
+        - Intel or Google Play Intel x86 Atom\_64 System Image
     - Any other API version that you want to test
 
 
@@ -154,4 +151,4 @@ In order to develop and build the Mattermost mobile apps you'll need to get a co
     cd mattermost-mobile
     ```
 
-4.  Run `make pre-run` in order to install all the dependencies.
+4.  Install the project dependencies with `npm install`
