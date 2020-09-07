@@ -1,19 +1,26 @@
 ---
 title: "Build Your Own App"
 date: 2018-05-20T11:35:32-04:00
-weight: 5
+weight: 2
 subsection: Mobile Apps
 ---
 
 You can build the app from source and distribute it within your team or company either using the App Stores, Enterprise App Stores or EMM providers, or another way of your choosing.
 
-We recommend using the [**make build**\* commands](/contribute/mobile/makefile) in conjunction with [Fastlane](https://docs.fastlane.tools/#choose-your-installation-method). With Fastlane, you can also configure the app using environment
-variables.
+Here at Mattermost, we build and deploy the Apps using a CI pipeline. The pipeline has different jobs and steps that run on specific contexts based on what we want to accomplish, you can check it out <a href="https://github.com/mattermost/mattermost-mobile/blob/master/.circleci/config.yml" target="_blank">here</a>.
+
+As an alternative we've also created a set of **make** commands to help automate build tasks. 
+
+{{<note "Note">}}
+By using the **make** commands, the <a href="https://docs.fastlane.tools/#choose-your-installation-method" target="_blank">Fastlane</a> dependencies will be installed in your system.
+{{</note>}}
+
+##### [Buid the Android app](android) or [Buid the iOS app](ios)
 
 
-### Push Notifications with Your Own Build
+### Push Notifications with Your Own App
 
-When building a custom version of the Mattermost mobile app, you will also need to host your own [Mattermost Push Notification Service](https://github.com/mattermost/mattermost-push-proxy) and make a few modifications to your Mattermost mobile app to be able to get push notifications.
+When building your own Mattermost mobile app, you will also need to host the [Mattermost Push Notification Service](https://github.com/mattermost/mattermost-push-proxy) in order to receive push notifications.
 
-Follow [these steps](/contribute/mobile/push-notifications/) to receive push notifications in your custom app.
+See [Setup Push Notifications](/contribute/mobile/push-notifications/) for more details.
 
