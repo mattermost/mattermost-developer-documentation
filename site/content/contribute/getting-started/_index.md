@@ -2,6 +2,7 @@
 title: "Getting Started"
 date: "2018-05-19T12:01:23-04:00"
 section: "contribute"
+weight: 1
 ---
 
 Welcome to the Mattermost project!
