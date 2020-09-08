@@ -1,12 +1,13 @@
 ---
-title: Design Best Practices
+title: Best Practices
 subsection: Web App Plugins
 weight: 0
 ---
 
+## Design Best Practices
 
 ### Actions that apply to specific Channels
-- Recommendation: Have your plugin register the actions to [the channel header](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerChannelHeaderButtonAction). This makes it quickly accessible for users and the actions apply on the channel they're viewing. 
+- Recommendation: Have your plugin register the actions to [the channel header](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerChannelHeaderButtonAction). This makes it quickly accessible for users and the actions apply on the channel they're viewing.
 - Example: Zoom meeting posts to a channel
 
 ![Custom Channel Header Button](/img/extend/bp-channel-header.png)
@@ -47,13 +48,13 @@ You can additionally [register a slash command](https://developers.mattermost.co
 ![main menu action](/img/extend/bp-main-menu-action.png)
 
 ### Actions that apply to specific users
-- Recommendation: Have your plugin register a [popover user actions component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserActionsComponent). This adds your action button to the user profile popover.   
+- Recommendation: Have your plugin register a [popover user actions component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserActionsComponent). This adds your action button to the user profile popover.
 - Examples: Report User plugin; Display extra information about the user from an LDAP server
 
 ![popover user actions component](/img/extend/bp-user-popover.png)
 
 ### Extra information on a user profile
-- Recommendation: Have your plugin register a [popover user attribute component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserAttributesComponent). This adds your custom attributes to the user profile popover. 
+- Recommendation: Have your plugin register a [popover user attribute component](https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserAttributesComponent). This adds your custom attributes to the user profile popover.
 - Examples: Custom User Attributes plugin
 
 ![popover user attribute component](/img/extend/bp-user-attributes.png)
@@ -62,3 +63,33 @@ You can additionally [register a slash command](https://developers.mattermost.co
 - Recommendation: Have your plugin add a component to the emoji picker. This is not yet supported, but some [work had previously started](https://github.com/mattermost/mattermost-server/issues/10412#issuecomment-481776595) with the issue currently opened as Help Wanted.
 - Examples: Bitmoji plugin; GIFs via Giphy or Gfycat
 
+## Setting up the plugin to properly communicate with the Mattermost server
+
+### Using the Mattermost server's SiteURL in your web app plugin
+
+In order to make sure your plugin has full compatibility with your Mattermost server, you should use the server's configured SiteURL in each API call you send to the server from the webapp. Here's an [example](https://github.com/mattermost/mattermost-plugin-jira/blob/19a9c2442817132b4eee5c77e259b80a40188a6a/webapp/src/selectors/index.js#L13-L26) of how to compute the SiteURL:
+
+```js
+export const getPluginServerRoute = (state) => {
+    const config = getConfig(state);
+
+    let basePath = '';
+    if (config && config.SiteURL) {
+        basePath = new URL(config.SiteURL).pathname;
+
+        if (basePath && basePath[basePath.length - 1] === '/') {
+            basePath = basePath.substr(0, basePath.length - 1);
+        }
+    }
+
+    return basePath + '/plugins/' + PluginId;
+};
+```
+
+### Including the server's CSRF token in your webapp plugin's requests
+
+The Mattermost server can be configured to require a CSRF token to be present in HTTP requests sent from the webapp. In order to include the token in each request, you can use the `mattermost-redux` library's `Client4.getOptions` function to add the token to your `fetch` request. Here's an [example](https://github.com/mattermost/mattermost-plugin-jira/blob/19a9c2442817132b4eee5c77e259b80a40188a6a/webapp/src/client/index.js#L14) of how to include the CSRF token.
+
+```js
+const response = await fetch(url, Client4.getOptions(options));
+```
