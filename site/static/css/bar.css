@@ -32,6 +32,7 @@
     font-size: 36px;
     font-weight: 300;
     position: absolute;
+    cursor: pointer;
     right: 0px;
     opacity: .3;
     top: 0;
