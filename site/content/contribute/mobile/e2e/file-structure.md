@@ -1,7 +1,7 @@
 ---
 title: "Folder and File Structure"
 date: 2020-09-02T09:00:00-00:00
-weight: 4
+weight: 2
 subsection: Mobile End-to-End Testing
 ---
 
