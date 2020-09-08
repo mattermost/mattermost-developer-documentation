@@ -11,7 +11,7 @@ subsection: Mobile End-to-End Testing
 sdkmanager "system-images;android-30;google_apis;x86"
 sdkmanager --licenses
 ```
-2. Create the emulator by `npm run e2e:android-create-emulator` at `/detox` folder
+2. Create the emulator by `npm run e2e:android-create-emulator` at `/detox` folder. Android test requires emulator with the name of `detox_emu_api_30` and the script helps on creating in automatically.
 
 #### Test run on debug mode
 This is the typical flow for local development and test writing.
