@@ -1,7 +1,7 @@
 ---
 title: "Setup and Run Android E2E"
 date: 2020-09-01T09:00:00-00:00
-weight: 4
+weight: 3
 subsection: Mobile End-to-End Testing
 ---
 
