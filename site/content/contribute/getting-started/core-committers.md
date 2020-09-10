@@ -161,6 +161,10 @@ Below is the list of core committers working on Mattermost:
 - **<a name="avasconcelos114">Andre Vasconcelos</a>**
     - @avasconcelos114 on [community.mattermost.com](https://community.mattermost.com/core/messages/@avasconcelos114) and [@avasconcelos114](https://github.com/avasconcelos114) on GitHub
     - Dev areas: Web App, Mobile Apps
+- **<a name="rvillablanca">Rodrigo Villablanca</a>**
+    - @rvillablanca on [community.mattermost.com](https://community.mattermost.com/core/messages/@rvillablanca) and [@rvillablanca](https://github.com/rvillablanca) on GitHub
+    - Dev areas: Server, Store Layer
+ 
 
 Core Developers
 ---------------
