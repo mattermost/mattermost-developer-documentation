@@ -19,7 +19,7 @@ brew install applesimutils
 
 #### Test run in debug mode
 This is the typical flow for local development and test writing:
-1. On first terminal, `make run` or `make run-ios` at the root folder.
+1. In one terminal window, run `make run` or `make run-ios` from within the root folder.
 2. On second terminal, `npm i` then `npm run e2e:ios-test` at `/detox` folder.
 
 #### Test run in release mode
