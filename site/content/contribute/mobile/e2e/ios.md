@@ -15,7 +15,7 @@ brew install applesimutils
 1. Open XCode, then go to **XCode > Preferences > Locations**.
 2. Under **Derived Data**, click **Advanced...**.
 3. Select **Custom > Relative to Workspace**, then set **Products** as **Build/Products**.
-- Click **Done** to save the changes.
+4. Click **Done** to save the changes.
 
 #### Test run in debug mode
 This is the typical flow for local development and test writing:
