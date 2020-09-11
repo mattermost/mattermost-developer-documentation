@@ -17,7 +17,7 @@ sdkmanager --licenses
 This is the typical flow for local development and test writing:
 1. Open a terminal window and run `make run-android` from the root folder.
 2. Open a second terminal window and:
-  - Run `npm i` from within the `root` folder.
+  - Run `npm i` from the root folder.
   - Build the app together with the androidTest using `npm run e2e:android-build` from within the `/detox` folder.
   - Run the test using `npm run e2e:android-test` from within the `/detox` folder.
 
