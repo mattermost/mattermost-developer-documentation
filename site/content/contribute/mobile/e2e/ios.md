@@ -24,5 +24,5 @@ This is the typical flow for local development and test writing.
 
 #### Test run in release mode
 This is the typical flow for CI test run.
-1. Build release app by `make ios-sim-x86_64` at the root folder or `npm run e2e:ios-build-release` at the `/detox` folder.
+1. Build the release app by running `make ios-sim-x86_64` from within the root folder or `npm run e2e:ios-build-release` from within the `/detox` folder.
 2. Run test by `npm run e2e:ios-test-release` at `/detox` folder.
