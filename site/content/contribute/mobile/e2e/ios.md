@@ -14,7 +14,7 @@ brew install applesimutils
 2. Set XCode's build location so that the built app, especially debug, is expected at the project's location instead of the Library's folder which is unique/hashed.
 1. Open XCode, then go to **XCode > Preferences > Locations**.
 2. Under **Derived Data**, click **Advanced...**.
-- Select **Custom > Relative to Workspace**, then set **Products** as **Build/Products**.
+3. Select **Custom > Relative to Workspace**, then set **Products** as **Build/Products**.
 - Click **Done** to save the changes.
 
 #### Test run in debug mode
