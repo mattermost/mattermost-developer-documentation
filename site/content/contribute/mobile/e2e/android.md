@@ -16,7 +16,7 @@ sdkmanager --licenses
 #### Test run in debug mode
 This is the typical flow for local development and test writing:
 1. Open a terminal window and run `make run-android` from the root folder.
-2. On second terminal,
+2. Open a second terminal window and run:
   - `npm i`
   - Build the app together with the androidTest by `npm run e2e:android-build` at `/detox` folder
   - Run the test by `npm run e2e:android-test` at `/detox` folder
