@@ -11,7 +11,7 @@ subsection: Mobile End-to-End Testing
 brew tap wix/brew
 brew install applesimutils
 ```
-2. Set XCode's build location so that the built app, especially debug, is expected at project's location instead at the Library's folder which is unique/hashed.
+2. Set XCode's build location so that the built app, especially debug, is expected at the project's location instead of the Library's folder which is unique/hashed.
 - Open XCode, then go to "XCode > Preferences > Locations"
 - Under "Derived Data", click "Advanced..."
 - Select "Custom" and set to "Relative to Workspace", then set Products as "Build/Products".
