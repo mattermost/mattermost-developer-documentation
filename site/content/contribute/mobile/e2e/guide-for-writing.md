@@ -17,7 +17,7 @@ Before writing a script, ensure that it has a corresponding test case in Test Ma
     }
     ```
 
-2. Target an element using available [matchers](https://github.com/wix/Detox/blob/master/docs/APIRef.Matchers.md#matchers) but for best results, it is recommended to match elements by unique identifiers using `testID`. Identifier should follow the following format to avoid duplication:
+2. Target an element using available [matchers](https://github.com/wix/Detox/blob/master/docs/APIRef.Matchers.md#matchers). For best results, it is recommended to match elements by unique identifiers using `testID`. The identifier should follow the following format to avoid duplication:
     ```javascript
     <component>.<child>.<action or identifier>
     ```
