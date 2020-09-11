@@ -18,7 +18,7 @@ This is the typical flow for local development and test writing:
 1. Open a terminal window and run `make run-android` from the root folder.
 2. Open a second terminal window and run:
   - `npm i`
-  - Build the app together with the androidTest by `npm run e2e:android-build` at `/detox` folder
+  - Build the app together with the androidTest using `npm run e2e:android-build` from within the `/detox` folder.
   - Run the test by `npm run e2e:android-test` at `/detox` folder
 
 #### Test run in release mode
