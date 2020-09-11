@@ -24,4 +24,4 @@ This is the typical flow for local development and test writing:
 #### Test run in release mode
 This is the typical flow for CI test run.
 1. Build release app by `npm run e2e:android-build-release` at the `/detox` folder.
-2. Run test by `npm run e2e:android-test-release` at `/detox` folder.
+2. Run a test using `npm run e2e:android-test-release` from within the `/detox` folder.
