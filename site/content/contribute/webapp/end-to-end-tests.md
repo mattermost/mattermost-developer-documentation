@@ -15,7 +15,7 @@ Not familiar with Cypress? Here is some documentation that will help you get sta
 ## Quick Overview on How to Run E2E Testing
 
 ### On Your Local Development Machine
-1.  Launch a local Mattermost instance by running `make run` in the mattermost-server directory. Confirm that the Mattermost instance has started successfully.
+1.  Launch a local Mattermost instance by running `make run` in the `mattermost-server` directory. Confirm that the Mattermost instance has started successfully.
     - Run `make test-data` to preload your server instance with initial seed data.
     - Each test case should handle the required system or user settings, but in case you encounter an unexpected error while testing, you may want to run the server with default config based on `mattermost-server/config/default.json`.
     - In another terminal, in the `mattermost-webapp` directory, run `npm run storybook`. This is required for the Cypress tests which run against the Storybook widgets to pass.
