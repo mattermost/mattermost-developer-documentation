@@ -5,7 +5,7 @@ weight: 2
 subsection: Mobile End-to-End Testing
 ---
 
-The folder structure is mostly based on the [Detox scaffold](https://github.com/wix/Detox/blob/master/docs/Guide.Jest.md) which was created on initial run.  Folders and files are:
+The folder structure is mostly based on the [Detox scaffold](https://github.com/wix/Detox/blob/master/docs/Guide.Jest.md) which was created on initial run. The folders and files are:
 ```
 |-- detox
   |-- e2e
