@@ -8,7 +8,7 @@ subsection: Mobile End-to-End Testing
 Before writing a script, ensure that it has a corresponding test case in Test Management for Jira (TM4J).
 
 1. Create a test file based on [folder and file structure](/contribute/mobile/e2e/file-structure).
-1. Include TM4J identification (ID) and title in the test description, following the format of `it('[tm4j_id] [title]')` or `it('[tm4j_id]_[step] [title]')` if test case has multiple steps.
+1. Include TM4J identification (ID) and title in the test description, following the format of `it('[tm4j_id] [title]')` or `it('[tm4j_id]_[step] [title]')` if the test case has multiple steps.
     ```javascript
     describe('Messaging', () => {
         it('MM-T109 User can\'t send the same message repeatedly', () => {
