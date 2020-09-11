@@ -19,7 +19,7 @@ This is the typical flow for local development and test writing:
 2. Open a second terminal window and run:
   - `npm i`
   - Build the app together with the androidTest using `npm run e2e:android-build` from within the `/detox` folder.
-  - Run the test by `npm run e2e:android-test` at `/detox` folder
+  - Run the test using `npm run e2e:android-test` from within the `/detox` folder.
 
 #### Test run in release mode
 This is the typical flow for CI test run.
