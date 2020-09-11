@@ -26,6 +26,6 @@ The folder structure is mostly based on the [Detox scaffold](https://github.com/
     - To start writing tests:
         - Create a new file (e.g. `login.e2e.js`) in the `/detox/e2e/test` folder.
     - The subfolder naming convention depends on the test grouping, which is usually based on the general functional area (e.g. `/detox/e2e/test/messaging/` for "Messaging").
-    - Test cases that require an enterprise license should fall under `/detox/e2e/test/enterprise/`. This is to easily identify license requirements, both during local development and production testing for enterprise features.
+    - Test cases that require an Enterprise license should fall under `/detox/e2e/test/enterprise/`. This is to easily identify license requirements, both during local development and production testing for Enterprise features.
 3. `/detox/.detoxrc.json` for Detox [configuration](https://github.com/wix/Detox/blob/master/docs/APIRef.Configuration.md).
 4. `/detox/package.json` for all dependencies related to Detox end-to-end testing.
