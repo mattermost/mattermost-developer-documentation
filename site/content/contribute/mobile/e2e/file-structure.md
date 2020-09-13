@@ -20,7 +20,7 @@ The folder structure is mostly based on the [Detox scaffold](https://github.com/
   |-- package.json
 ```
 
-1. `/detox/e2e/support` or [Support Files](https://github.com/wix/Detox/blob/master/docs/Guide.Jest.md#2-set-up-test-code-scaffolds-building_construction)
+1. `/detox/e2e/support` or [Support Files](https://github.com/wix/Detox/blob/master/docs/Guide.Jest.md#2-set-up-test-code-scaffolds-building_construction).
     - The support folder is a place to put reusable behavior such as Server API and UI commands, or global overrides that should be available to all test files.
 2. `/detox/e2e/test` or [Test Files](https://github.com/wix/Detox/blob/master/docs/APIRef.TestLifecycle.md)
     - To start writing tests:
