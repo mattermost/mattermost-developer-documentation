@@ -6,7 +6,9 @@ subsection: Mobile End-to-End Testing
 ---
 
 #### Local setup
-1. Install latest SDK
+
+1. Install the latest SDK.
+
 ```
 sdkmanager "system-images;android-30;google_apis;x86"
 sdkmanager --licenses
@@ -14,7 +16,9 @@ sdkmanager --licenses
 2. Create the emulator using `npm run e2e:android-create-emulator` from the `/detox` folder. Android testing requires an emulator named `detox_emu_api_30` and the script helps to create it automatically.
 
 #### Test run in debug mode
+
 This is the typical flow for local development and test writing:
+
 1. Open a terminal window and run `make run-android` from the root folder.
 2. Open a second terminal window and:
   - Run `npm i` from the root folder.
@@ -22,6 +26,8 @@ This is the typical flow for local development and test writing:
   - Run the test using `npm run e2e:android-test` from the `/detox` folder.
 
 #### Test run in release mode
+
 This is the typical flow for CI test run:
+
 1. Build a release app by running `npm run e2e:android-build-release` from the `/detox` folder.
 2. Run a test using `npm run e2e:android-test-release` from the `/detox` folder.
