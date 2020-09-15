@@ -7,7 +7,7 @@ subsection: Mobile End-to-End Testing
 
 #### Local setup
 
-1. Install the latest SDK.
+1. Install the latest Android SDK.
 
 ```
 sdkmanager "system-images;android-30;google_apis;x86"
