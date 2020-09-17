@@ -8,10 +8,10 @@ subsection: Mobile End-to-End Testing
 #### Local setup
 
 1. Install [applesimutils](https://github.com/wix/AppleSimulatorUtils):
-```
-brew tap wix/brew
-brew install applesimutils
-```
+   ```
+   brew tap wix/brew
+   brew install applesimutils
+   ```
 2. Set XCode's build location so that the built app, especially debug, is expected at the project's location instead of the Library's folder which is unique/hashed.
 3. Open XCode, then go to **XCode > Preferences > Locations**.
 4. Under **Derived Data**, click **Advanced...**.
