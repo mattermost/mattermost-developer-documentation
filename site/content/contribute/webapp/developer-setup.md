@@ -44,9 +44,11 @@ Set up your development environment for building, running, and testing the Matte
     cd mattermost-webapp
     make test
     ```
-7. When tests pass, run the app: 
+7. When tests pass, run the app:
 
      ```sh
+    cd ..
+    cd mattermost-server 
     make run
     ```
 
