@@ -21,7 +21,7 @@ If you are a community member seeking a review
     * Product managers are on the lookout for new pull requests and usually handle this for you automatically.
     * If you have been working alongside a core committer, feel free to message them for help.
     * When in doubt, ask for help in the [Developers](https://community.mattermost.com/core/channels/developers) channel on our community server.
-    * If you are still stuck, please message [Jason Blais](/contribute/getting-started/core-committers/#jason.blais) or [Ben Schumacher (Hanzei)](/contribute/getting-started/core-committers/#hanzei).
+    * If you are still stuck, please message Jason Blais (@jasonblais on GitHub) or Jason Frerich (@jfrerich on GitHub).
 3. [Wait for a review](#if-you-are-awaiting-a-review).
     * Expect some interaction with at least one reviewer within 5 business days (weekdays, Monday through Friday, excluding [statutory holidays](https://docs.mattermost.com/process/working-at-mattermost.html#holidays)).
     * Keep in mind that core committers are geographically distributed around the world and likely in a different time zone than your own.
