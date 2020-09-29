@@ -77,7 +77,7 @@ You can find the sample file `env_vars_example` <a href="https://github.com/matt
 Once all the previous steps are done, execute the following command from within the project's directory:
 
 ```sh
-$ make build-ipa
+$ npm run build:ios
 ```
 
 This will start the build process following the environment variables you've set. Once it finishes, it will create an *.ipa* file with the `APP_NAME` as the filename in the project's root directory. If you have not set Fastlane to submit the app to TestFlight, you can use this file to manually publish and distribute the app.

@@ -9,10 +9,10 @@ You can build the app from source and distribute it within your team or company 
 
 Here at Mattermost, we build and deploy the Apps using a CI pipeline. The pipeline has different jobs and steps that run on specific contexts based on what we want to accomplish, you can check it out <a href="https://github.com/mattermost/mattermost-mobile/blob/master/.circleci/config.yml" target="_blank">here</a>.
 
-As an alternative we've also created a set of **make** commands to help automate build tasks. 
+As an alternative we've also created a set of **scripts** to help automate build tasks. 
 
 {{<note "Note">}}
-By using the **make** commands, the <a href="https://docs.fastlane.tools/#choose-your-installation-method" target="_blank">Fastlane</a> dependencies will be installed in your system.
+By using the **scripts**, <a href="https://docs.fastlane.tools/#choose-your-installation-method" target="_blank">Fastlane</a> and other dependencies will be installed in your system.
 {{</note>}}
 
 ##### [Buid the Android app](android) or [Buid the iOS app](ios)

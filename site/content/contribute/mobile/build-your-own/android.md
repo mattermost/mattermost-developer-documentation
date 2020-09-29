@@ -103,7 +103,7 @@ Replace the `google-services.json` file as instructed in the [Android Push Notif
 Once all the previous steps are done, execute the following command from within the project's directory:
 
 ```sh
-$ make build-apk
+$ npm run build:android
 ```
 
 This will start the build process following the environment variables you've set. Once it finishes, it will create the *.apk* file(s) with the `APP_NAME` as the filename in the project's root directory. If you have not set Fastlane to submit the app to the Play Store, you can use this file to manually publish and distribute the app.
