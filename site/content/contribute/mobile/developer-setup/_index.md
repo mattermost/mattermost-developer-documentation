@@ -23,7 +23,7 @@ Install the following prerequisite software to develop and build the iOS or Andr
 .
 This includes NPM which is also needed.
 
-**Working node versions: 12.18.x & 14.9.x**
+**Known working node versions: 12.18.x & 14.9.x**
 
 ##### MacOS
 - To install using Homebrew open a terminal and execute ..
@@ -72,7 +72,7 @@ Some distributions come with git preinstalled but you'll most likely have to ins
 
 ### Additional setup for iOS
 
-*  Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12) to build and run the app on iOS. (minimum required version is **11.0**)
+*  Install <a href="https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12" target="_blank">Xcode</a> to build and run the app on iOS. (minimum required version is **11.0**)
 
 ### Additional setup for Android
 
@@ -106,8 +106,8 @@ Make sure you have the following ENV VARS configured:
     ```sh
     source ~/.bash_profile
     ```
-    - Note that depending on the shell your using this might need to be put into a different file such as ```~/.zshrc```. Adjust this accordingly.
-    - Also this documentation assumes you chose the default path for your Android SDK installation. If you chose a different path adjust accordingly.
+    - Note that depending on the shell you're using this might need to be put into a different file such as ```~/.zshrc```. Adjust this accordingly.
+    - Also this documentation assumes you chose the default path for your Android SDK installation. If you chose a different path, adjust accordingly.
 
 ### Installing the right SDKs and SDK Tools
 In the SDK Manager using Android Studio or the [Android SDK command line tool](https://developer.android.com/studio/command-line/sdkmanager.html), ensure the following are installed
@@ -135,7 +135,7 @@ In the SDK Manager using Android Studio or the [Android SDK command line tool](h
 
 ## Obtaining the Source Code
 
-In order to develop and build the Mattermost mobile apps you'll need to get a copy of the source code. Forking the `mattermost-mobile` repository will also make it easy to contribute your work back to the project in the future.
+In order to develop and build the Mattermost mobile apps, you'll need to get a copy of the source code. Forking the `mattermost-mobile` repository will also make it easy to contribute your work back to the project in the future.
 
 1.  Fork the [mattermost-mobile](https://github.com/mattermost/mattermost-mobile) repository on GitHub.
 

@@ -38,7 +38,11 @@ Remember to keep your keystore file private and never commit it to version contr
 <br />
 {{</note>}}
 
-##### 3. Setting up Gradle Variables
+##### 3. Create a new app in Google Play
+
+Create a new application using the <a href="https://play.google.com/console/developers" target="_blank">Google Play console</a>. If you already have an app registered in the Google Play console you can skip this step.
+
+##### 4. Setting up Gradle Variables {#gradle}
 
 Now that we have created the keystore file, is time to tell the build process to use that file.
 
@@ -60,7 +64,7 @@ Replace `/full/path/to/directory/containing/my-release-key.keystore` with the fu
 Once you publish the app on the Play Store, the app needs to be signed with the same key every time you want to distriibute a new build. If you lose this key, you will need to republish your app under a different package id (losing all downloads and ratings).
 {{</note>}}
 
-##### 4. Configure Environment Variables
+##### 5. Configure Environment Variables
 
 To make it easier to customize your build, we've defined a few environment variables that are going to be used by Fastlane during the build process.
 
@@ -78,7 +82,7 @@ To make it easier to customize your build, we've defined a few environment varia
 | APP\_NAME | The name of the app as it is going to be shown in the device home screen. | Mattermost Beta | Yes |
 | APP\_SCHEME | The URL naming scheme for the app as used in direct deep links to app content from outside the app. | mattermost | No |
 | REPLACE\_ASSETS | Override the assets as described in [White Labeling](contribute/mobile/build-your-own/white-label/). <br><br>Valid values are: true, false | false | No |
-| MAIN\_APP\_IDENTIFIER | The bundle identifier for the app. | | Yes |
+| MAIN\_APP\_IDENTIFIER | The package identifier for the app. | | Yes |
 | BUILD\_FOR\_RELEASE | Defines if the app should be built in release mode. <br><br>Valid values are: true, false <br><br>**Make sure you set this value to true if you plan to submit this app Google Play or distribute it in any other way**. | false | Yes |
 | SEPARATE\_APKS | Build one APK per achitecture (armeabi-v7a, x86, arm64-v8a and x86_64) as well as a universal APK. The advantage is the size of the APK is reduced by about 4MB. <br><br>People will download the correct APK from the Play Store based on the CPU architecture of their device. | false | Yes |
 | SUBMIT\_ANDROID\_TO\_<br>GOOGLE\_PLAY | Should the app be submitted to the Play Store once it finishes to build, use along with **SUPPLY\_TRACK**.<br><br>Valid values are: true, false | false | Yes |
@@ -93,7 +97,7 @@ You can find the sample file `env_vars_example` <a href="https://github.com/matt
 {{</note>}}
 
 
-##### 5. Google Services
+##### 6. Google Services
 
 Replace the `google-services.json` file as instructed in the [Android Push Notification Guide](/contribute/mobile/push-notifications/android/) before you build the app.
 

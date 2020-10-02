@@ -85,7 +85,7 @@ Select the **Mattermost** project in the Xcode Project Navigator, then select th
 * Go to the "Signing" section and make sure your Apple developer account or team is selected under the Team dropdown and change the *<a href="https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids" target="_blank">Bundle Identifier</a>*. Xcode will register your provisioning profiles in your account for the Bundle Identifier you've entered if it doesn't exist.
 * Go to the "App Groups" section and change the *<a href="https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups?language=objc" target="_blank">App Groups</a>*. Xcode will register your AppGroupId and update the provision profile.
 * Go to the "iCloud" section and change the *<a href="https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_icloud-container-identifiers?language=objc" target="_blank">Containers</a>*. Xcode will register your iCloud container and update the provision profile.
-* Go to the "Keychain Sharing" section and change the *<a href="https://developer.apple.com/documentation/bundleresources/entitlements/keychain-access-groups?language=objc" target="_blank">Keychain Groups</a>*. Xcode will register your iCloud container and update the provision profile.
+* Go to the "Keychain Sharing" section and change the *<a href="https://developer.apple.com/documentation/bundleresources/entitlements/keychain-access-groups?language=objc" target="_blank">Keychain Groups</a>*. Xcode will register your Keychain access groups and update the provision profile.
 
 {{<note "Important">}}
 **Repeat the steps for the `MattermostShare` and `NotificationService` targets.**
