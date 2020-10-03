@@ -25,8 +25,9 @@ Fastlane is the easiest way to automate beta deployments and releases for your i
 # Using RubyGems
 $ gem install fastlane -NV
 
-# Alternatively using Hombrew
-$ brew cask install fastlane 
+# Alternatively using Homebrew
+# (has been moved from cask to homebrew/core)
+$ brew install fastlane 
 ```
 
 For more information you can visit the Fastlane [docs](https://docs.fastlane.tools/).
