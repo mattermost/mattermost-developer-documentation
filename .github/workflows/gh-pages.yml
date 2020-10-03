@@ -24,6 +24,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     if: jobs.check-membership.steps.is_organization_member.outputs.result == true
+    needs: [check-membership]
     steps:
       - uses: actions/checkout@v2
         with:
