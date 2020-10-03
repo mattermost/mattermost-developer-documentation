@@ -8,8 +8,17 @@ $(document).ready(function(){
         $(this).toggleClass('fa-plus-square-o fa-minus-square-o');
     });
 
+    if(window.name){
+        $(".notification-bar").addClass("closed");
+        $("header").removeClass("with-notification-bar");
+    }
+
     $('.notification-bar__close').on('click', function(){
-       $(".notification-bar").addClass("closed");
-       $("header").removeClass("with-notification-bar");
+        if(!window.name){
+            $(".notification-bar").addClass("closed");
+            $("header").removeClass("with-notification-bar");
+        }
+        window.name = true;
+        
     });
 });
