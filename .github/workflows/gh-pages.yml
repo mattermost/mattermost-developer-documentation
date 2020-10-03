@@ -5,8 +5,7 @@ on:
     types: [assigned, opened, reopened, synchronize]
 
 jobs:
-  welcome:
-    name: Welcome
+  check-membership:
     runs-on: ubuntu-latest
     steps:
       - name: Check if organization member
@@ -24,8 +23,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    if: |
-      steps.is_organization_member.outputs.result == true
+    if: check-membership.steps.is_organization_member.outputs.result == true
     steps:
       - uses: actions/checkout@v2
         with:
