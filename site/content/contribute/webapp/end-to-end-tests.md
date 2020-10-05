@@ -25,6 +25,27 @@ Not familiar with Cypress? Here is some documentation that will help you get sta
     - Initiate via node CLI to selectively run specs based on test metadata, e.g. `node run_tests.js --group='@accessibility'` which will run all specs with `@accessibility` metadata.
 3.  Tests are executed according to your selection and will display whether the tests passed or failed.
 
+### Environment Variables
+There are several environment variables we're using for Cypress testing with the primary purpose:
+- to easily change when running in CI, and
+- to cater different values across developer machines.
+
+Environment variables are defined in "[cypress.json](https://github.com/mattermost/mattermost-webapp/blob/master/e2e/cypress.json)" under `env` key. In most cases, you don't need to change the values as it make use of the default local developer setup, but when you do, the easiest is to override by exporting `CYPRESS_*`, where `*` is the key of the variable like `CYPRESS_adminUsername`. See [Cypress documentation](https://docs.cypress.io/guides/guides/environment-variables.html#Setting) for details.
+
+| Variable            | Description                                |
+|---------------------|--------------------------------------------|
+| CYPRESS\_adminUsername | Admin's username the test server.<br><br>Default: `"sysadmin"` when server is seeded by `make test-data`. |
+| CYPRESS\_adminPassword | Admin's password the test server.<br><br>Default: `"Sys@dmin-sample1"` when server is seeded by `make test-data`. |
+| CYPRESS\_dbClient | The database of the test server. It should match with the server config `SqlSettings.DriverName`.<br><br>Default: `"postgres"` <br>Valid values: `"postgres"` or `"mysql"` |
+| CYPRESS\_dbConnection | The database connection string of the test server. It should match with the server config `SqlSettings.DataSource`.<br><br> Default: `"postgres://mmuser:mostest@localhost/mattermost_test?sslmode=disable\u0026connect_timeout=10"` |
+| CYPRESS\_enableVisualTest | Use for visual regression testing.<br><br>Default: `false` <br>Valid values: `true` or `false` |
+| CYPRESS\_ldapServer | Host of LDAP server.<br><br>Default: `"localhost"` |
+| CYPRESS\_ldapPort | Port of LDAP server.<br><br>Default: `389` |
+| CYPRESS\_runLDAPSync | Option to run LDAP sync.<br><br>Default: `true` |
+| CYPRESS\_resetBeforeTest | When set to `true`, it deletes all teams and its channels where `sysadmin` are member of except `eligendi` team and its channels.<br><br>Default: `false` |
+| CYPRESS\_storybookUrl | Host for common components or widget testing. <br><br> Default: `"http://localhost:6006/"` when initiated `npm run storybook` from the root folder. |
+| CYPRESS\_webhookBaseUrl | A server used for testing webhook integration.<br><br>Default: `"http://localhost:3000"` when initiated `npm run start:webhook`. |
+
 ### In Continuous Integration Pipeline
 We run all tests in our Continuous Integration (CI) pipeline. However, they are grouped according to test stability.
 1. __Daily production tests against development branch (master)__ - Initiated on master branch by `node run_tests.js --stage='@prod'` in the command line. These are tests, known as production tests, which were selected and labeled with `@prod` [test metadata](/contribute/webapp/end-to-end-tests/#adding-test-metadata-on-spec-files). See <a target="_blank" href="https://community.mattermost.com/core/pl/i3kg97o1fir9pje7yi8wecd45r">link</a> for an example test run posted in our community channel.
