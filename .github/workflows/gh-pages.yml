@@ -5,7 +5,7 @@ on:
     types: [assigned, opened, reopened, synchronize]
 
 jobs:
-  check-membership:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Check if organization member
@@ -19,13 +19,9 @@ jobs:
       - name: Create Comment
         if: |
           steps.is_organization_member.outputs.result == false
-        run: echo User Does Not Belong to Mattermost, preview will not be generated
-
-  deploy:
-    runs-on: ubuntu-latest
-    if: jobs.check-membership.steps.is_organization_member.outputs.result == true
-    needs: [check-membership]
-    steps:
+        run: |
+          echo User Does Not Belong to Mattermost, preview will not be generated
+          ::error and exit 1
       - uses: actions/checkout@v2
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
