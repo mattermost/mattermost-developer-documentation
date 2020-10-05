@@ -36,17 +36,17 @@ Environment variables are [defined in cypress.json](https://github.com/mattermos
 
 | Variable            | Description                                |
 |---------------------|--------------------------------------------|
-| CYPRESS\_adminUsername | Admin's username for the test server.<br><br>Default: `"sysadmin"` when server is seeded by `make test-data`. |
-| CYPRESS\_adminPassword | Admin's password for the test server.<br><br>Default: `"Sys@dmin-sample1"` when server is seeded by `make test-data`. |
-| CYPRESS\_dbClient | The database of the test server. It should match with the server config `SqlSettings.DriverName`.<br><br>Default: `"postgres"` <br>Valid values: `"postgres"` or `"mysql"` |
+| CYPRESS\_adminUsername | Admin's username for the test server.<br><br>Default: `sysadmin` when server is seeded by `make test-data`. |
+| CYPRESS\_adminPassword | Admin's password for the test server.<br><br>Default: `Sys@dmin-sample1` when server is seeded by `make test-data`. |
+| CYPRESS\_dbClient | The database of the test server. It should match with the server config `SqlSettings.DriverName`.<br><br>Default: `postgres` <br>Valid values: `postgres` or `mysql` |
 | CYPRESS\_dbConnection | The database connection string of the test server. It should match with the server config `SqlSettings.DataSource`.<br><br> Default: `"postgres://mmuser:mostest@localhost/mattermost_test?sslmode=disable\u0026connect_timeout=10"` |
-| CYPRESS\_enableVisualTest | Use for visual regression testing.<br><br>Default: `false` <br>Valid values: `true` or `false` |
-| CYPRESS\_ldapServer | Host of LDAP server.<br><br>Default: `"localhost"` |
+| CYPRESS\_enableVisualTest | Use for visual regression testing.<br><br>Default: `false`<br>Valid values: `true` or `false` |
+| CYPRESS\_ldapServer | Host of LDAP server.<br><br>Default: `localhost` |
 | CYPRESS\_ldapPort | Port of LDAP server.<br><br>Default: `389` |
-| CYPRESS\_runLDAPSync | Option to run LDAP sync.<br><br>Default: `true` |
-| CYPRESS\_resetBeforeTest | When set to `true`, it deletes all teams and its channels where `sysadmin` are member of except `eligendi` team and its channels.<br><br>Default: `false` |
-| CYPRESS\_storybookUrl | Host for common components or widget testing. <br><br> Default: `"http://localhost:6006/"` when initiated `npm run storybook` from the root folder. |
-| CYPRESS\_webhookBaseUrl | A server used for testing webhook integration.<br><br>Default: `"http://localhost:3000"` when initiated `npm run start:webhook`. |
+| CYPRESS\_runLDAPSync | Option to run LDAP sync.<br><br>Default: `true`<br>Valid values: `true` or `false` |
+| CYPRESS\_resetBeforeTest | When set to `true`, it deletes all teams and its channels where `sysadmin` are member of except `eligendi` team and its channels.<br><br>Default: `false`<br>Valid values: `true` or `false` |
+| CYPRESS\_storybookUrl | Host for common components or widget testing. <br><br> Default: `http://localhost:6006/` when initiated `npm run storybook` from the root folder. |
+| CYPRESS\_webhookBaseUrl | A server used for testing webhook integration.<br><br>Default: `http://localhost:3000` when initiated `npm run start:webhook`. |
 
 ### In Continuous Integration Pipeline
 
