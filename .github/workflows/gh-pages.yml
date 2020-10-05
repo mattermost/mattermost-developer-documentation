@@ -19,7 +19,7 @@ jobs:
           steps.is_organization_member.outputs.result == false
         run: |
           echo User Does Not Belong to Mattermost, preview will not be generated
-          ::error and exit 0
+          ::exit 0
       - uses: actions/checkout@v2
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
