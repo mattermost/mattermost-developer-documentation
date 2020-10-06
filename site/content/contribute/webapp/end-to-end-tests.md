@@ -32,19 +32,19 @@ We use several environment variables for Cypress testing in order to:
 - Easily change when running in CI.
 - Cater to different values across developer machines.
 
-Environment variables are [defined in cypress.json](https://github.com/mattermost/mattermost-webapp/blob/master/e2e/cypress.json) under the `env` key. In most cases, you don't need to change the values as it makes use of the default local developer setup. However, when you do the easiest method is to override by exporting `CYPRESS_*`, where `*` is the key of the variable, for example: `CYPRESS_adminUsername`. See [Cypress documentation](https://docs.cypress.io/guides/guides/environment-variables.html#Setting) for details.
+Environment variables are [defined in cypress.json](https://github.com/mattermost/mattermost-webapp/blob/master/e2e/cypress.json) under the `env` key. In most cases you don't need to change the values, because it makes use of the default local developer setup. If you do need to make changes, the easiest method is to override by exporting `CYPRESS_*`, where `*` is the key of the variable, for example: `CYPRESS_adminUsername`. See [Cypress documentation](https://docs.cypress.io/guides/guides/environment-variables.html#Setting) for details.
 
 | Variable            | Description                                |
 |---------------------|--------------------------------------------|
 | CYPRESS\_adminUsername | Admin's username for the test server.<br><br>Default: `sysadmin` when server is seeded by `make test-data`. |
 | CYPRESS\_adminPassword | Admin's password for the test server.<br><br>Default: `Sys@dmin-sample1` when server is seeded by `make test-data`. |
-| CYPRESS\_dbClient | The database of the test server. It should match with the server config `SqlSettings.DriverName`.<br><br>Default: `postgres` <br>Valid values: `postgres` or `mysql` |
-| CYPRESS\_dbConnection | The database connection string of the test server. It should match with the server config `SqlSettings.DataSource`.<br><br> Default: `"postgres://mmuser:mostest@localhost/mattermost_test?sslmode=disable\u0026connect_timeout=10"` |
+| CYPRESS\_dbClient | The database of the test server. It should match the server config `SqlSettings.DriverName`.<br><br>Default: `postgres` <br>Valid values: `postgres` or `mysql` |
+| CYPRESS\_dbConnection | The database connection string of the test server. It should match the server config `SqlSettings.DataSource`.<br><br> Default: `"postgres://mmuser:mostest@localhost/mattermost_test?sslmode=disable\u0026connect_timeout=10"` |
 | CYPRESS\_enableVisualTest | Use for visual regression testing.<br><br>Default: `false`<br>Valid values: `true` or `false` |
 | CYPRESS\_ldapServer | Host of LDAP server.<br><br>Default: `localhost` |
 | CYPRESS\_ldapPort | Port of LDAP server.<br><br>Default: `389` |
 | CYPRESS\_runLDAPSync | Option to run LDAP sync.<br><br>Default: `true`<br>Valid values: `true` or `false` |
-| CYPRESS\_resetBeforeTest | When set to `true`, it deletes all teams and its channels where `sysadmin` are member of except `eligendi` team and its channels.<br><br>Default: `false`<br>Valid values: `true` or `false` |
+| CYPRESS\_resetBeforeTest | When set to `true`, it deletes all teams and their channels where `sysadmin` is a member except `eligendi` team and its channels.<br><br>Default: `false`<br>Valid values: `true` or `false` |
 | CYPRESS\_storybookUrl | Host for common components or widget testing. <br><br> Default: `http://localhost:6006/` when initiated `npm run storybook` from the root folder. |
 | CYPRESS\_webhookBaseUrl | A server used for testing webhook integration.<br><br>Default: `http://localhost:3000` when initiated `npm run start:webhook`. |
 
