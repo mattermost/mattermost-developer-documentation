@@ -149,7 +149,7 @@ Inside of the `integration` directory, there are additional directories that bre
 
 7. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/5891/files) as a guide on how to write and submit an end-to-end testing PR.
 
-### Adding test metadata on spec files
+### Adding Test Metadata on Spec Files
 
 Test metadata is used to identify each spec file ahead of time before it is forwarded for Cypress run. Currently, supported test metadata are the following:
 1. "Stage" - indicates environment for testing, e.g. `@prod`, `@smoke`, `@pull_request`. "Stage" metadata is owned and controlled by QA team who carefully analyze stability of test and promote/demote into a certain stage. This is not required when submitting a spec file.
