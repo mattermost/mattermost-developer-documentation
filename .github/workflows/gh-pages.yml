@@ -11,8 +11,9 @@ jobs:
       - name: Check if organization member
         run: |
           env
-          echo ${{ github.event.organization.login }}
-          echo ${{ github.event.organization.login }}: User Does Not Belong to Mattermost, preview will not be generated
+          echo ${{ github.event.pull_request.user.login }}
+          https://api.github.com/users/${{ github.event.pull_request.user.login }}/orgs
+          echo ${{ github.event.pull_request.user.login }}: User Does Not Belong to Mattermost, preview will not be generated
       - uses: actions/checkout@v2
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
