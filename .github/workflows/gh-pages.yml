@@ -14,7 +14,7 @@ jobs:
         uses: jamessingleton/is-organization-member@1.0.0
         with:
           organization: mattermost
-          username: github.actor
+          username: ${{ env.GITHUB_ACTOR }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Comment
         if: |
