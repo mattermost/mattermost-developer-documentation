@@ -24,13 +24,13 @@ jobs:
             echo "Is not a member of the Mattermost Organization"
           fi
       - uses: actions/checkout@v2
-        if: env.IS_MEMBER
+        if: env.IS_MEMBER == true
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Setup Hugo
-        if: env.IS_MEMBER
+        if: env.IS_MEMBER == true
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.74.2'
@@ -42,7 +42,7 @@ jobs:
           hugo -F -s site --destination ../dist/html
 
       - name: Deploy
-        if: env.IS_MEMBER
+        if: env.IS_MEMBER == true
         uses: peaceiris/actions-gh-pages@v3.7.0-1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -52,7 +52,7 @@ jobs:
           keep_files: true
           
       - name: Add comment to PR
-        if: env.IS_MEMBER
+        if: env.IS_MEMBER == true
         uses: peter-evans/create-or-update-comment@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
