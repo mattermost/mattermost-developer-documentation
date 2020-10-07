@@ -44,7 +44,6 @@ jobs:
         run: |
           rm -rf ./dist
           hugo -F -s site --destination ../dist/html
-          echo $IS_MEMBER
 
       - name: Deploy
         if: |
