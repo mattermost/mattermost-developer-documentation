@@ -20,12 +20,21 @@ jobs:
               export IS_MEMBER=$value
             fi
           done
+          if [[ $IS_MEMBER ]]; then
+            echo "Is a member of the Mattermost Organization"
+          else
+            echo "Is not a member of the Mattermost Organization"
+          fi
       - uses: actions/checkout@v2
+        if: |
+          ${{ env.IS_MEMBER == true }}
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Setup Hugo
+        if: |
+          ${{ env.IS_MEMBER == true }}
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.74.2'
@@ -46,6 +55,8 @@ jobs:
           keep_files: true
           
       - name: Add comment to PR
+        if: |
+          ${{ env.IS_MEMBER == true }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
