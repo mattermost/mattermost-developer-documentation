@@ -18,9 +18,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Comment
         if: |
-          is_organization_member.outputs.result == false
+          steps.is_organization_member.outputs.result == false
         run: |
-          echo User Does Not Belong to Mattermost, preview will not be generated
+          echo ${{ steps.is_organization_member.outputs.result }}: User Does Not Belong to Mattermost, preview will not be generated
       - uses: actions/checkout@v2
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
@@ -37,7 +37,7 @@ jobs:
 
       - name: Deploy
         if: |
-          is_organization_member.outputs.result == true
+          steps.is_organization_member.outputs.result == true
         uses: peaceiris/actions-gh-pages@v3.7.0-1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
