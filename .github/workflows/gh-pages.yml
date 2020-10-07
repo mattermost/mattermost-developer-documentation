@@ -9,20 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check if organization member
-        id: is_organization_member
-        if: github.event.action == 'opened'
-        uses: jamessingleton/is-organization-member@1.0.0
-        with:
-          organization: mattermost
-          username: ${{ env.GITHUB_ACTOR }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create Comment
-        if: |
-          steps.is_organization_member.outputs.result == false
         run: |
           env
-          echo ${{ github.event }}
-          echo ${{ steps.is_organization_member.outputs.result }}: User Does Not Belong to Mattermost, preview will not be generated
+          echo ${{ github.event.organization.login }}
+          echo ${{ github.event.organization.login }}: User Does Not Belong to Mattermost, preview will not be generated
       - uses: actions/checkout@v2
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
