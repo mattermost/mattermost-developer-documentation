@@ -12,7 +12,7 @@ jobs:
         run: |
           env
           echo ${{ github.event.pull_request.user.login }}
-          https://api.github.com/users/${{ github.event.pull_request.user.login }}/orgs
+          curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/users/${{ github.event.pull_request.user.login }}/orgs
           echo ${{ github.event.pull_request.user.login }}: User Does Not Belong to Mattermost, preview will not be generated
       - uses: actions/checkout@v2
         with:
