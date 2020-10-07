@@ -36,11 +36,7 @@ workflows:
   ci:
     jobs:
       - build
-      - deploy:
-          context: mattermost-dev-docs-s3
-          requires:
-            - build
       - status:
           context: matterbuild-github-token
           requires:
-            - deploy
+            - build
