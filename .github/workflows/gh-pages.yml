@@ -37,6 +37,7 @@ jobs:
           # extended: true
 
       - name: Build Previews
+        if: env.IS_MEMBER == true
         run: |
           rm -rf ./dist
           hugo -F -s site --destination ../dist/html
