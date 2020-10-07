@@ -40,8 +40,10 @@ jobs:
           hugo-version: '0.74.2'
           # extended: true
 
-      - name: Build
-        run: make dist
+      - name: Build Previews
+        run: |
+          rm -rf ./dist
+          hugo -F -s site --destination ../dist/html
 
       - name: Deploy
         if: |
@@ -49,7 +51,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3.7.0-1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          destination_dir: ./${{ github.actor }}
+          destination_dir: ./${{ github.event.number }}
           publish_dir: ./dist/html
           publish_branch: gh-pages
           keep_files: true
@@ -62,5 +64,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.number }}
           body: |
-            Published to [preview environment](https://mattermost.github.io/mattermost-developer-documentation/${{ github.actor }})
+            Newest code from ${{ github.actor}} has been published to [preview environment](https://mattermost.github.io/mattermost-developer-documentation/${{ github.event.number }})
 
