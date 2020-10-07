@@ -23,21 +23,6 @@ jobs:
           paths:
             - dist/html
 
-  deploy:
-    docker:
-      - image: circleci/python:3.6
-    steps:
-      - attach_workspace:
-          at: .
-      - aws-s3/sync:
-          from: dist/html
-          to: s3://mattermost-developer-documentation/branches/$CIRCLE_BRANCH
-          arguments: '--acl public-read'
-      - aws-s3/sync:
-          from: dist/html
-          to: s3://mattermost-developer-documentation/commits/$CIRCLE_SHA1
-          arguments: '--acl public-read'
-
   status:
     docker:
       - image: circleci/python:3.6
