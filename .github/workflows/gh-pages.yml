@@ -19,7 +19,6 @@ jobs:
           steps.is_organization_member.outputs.result == false
         run: |
           echo User Does Not Belong to Mattermost, preview will not be generated
-          ::exit 0
       - uses: actions/checkout@v2
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
@@ -35,6 +34,8 @@ jobs:
         run: make dist
 
       - name: Deploy
+        if: |
+          steps.is_organization_member.outputs.result == true
         uses: peaceiris/actions-gh-pages@v3.7.0-1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
