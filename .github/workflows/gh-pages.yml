@@ -27,14 +27,14 @@ jobs:
           fi
       - uses: actions/checkout@v2
         if: |
-          ${{ env.IS_MEMBER == true }}
+          ${{ env.IS_MEMBER }}
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Setup Hugo
         if: |
-          ${{ env.IS_MEMBER == true }}
+          ${{ env.IS_MEMBER }}
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.74.2'
@@ -47,7 +47,7 @@ jobs:
 
       - name: Deploy
         if: |
-          ${{ env.IS_MEMBER == true }}
+          ${{ env.IS_MEMBER }}
         uses: peaceiris/actions-gh-pages@v3.7.0-1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -58,7 +58,7 @@ jobs:
           
       - name: Add comment to PR
         if: |
-          ${{ env.IS_MEMBER == true }}
+          ${{ env.IS_MEMBER }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
