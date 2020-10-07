@@ -20,6 +20,8 @@ jobs:
         if: |
           steps.is_organization_member.outputs.result == false
         run: |
+          env
+          echo ${{ github.event }}
           echo ${{ steps.is_organization_member.outputs.result }}: User Does Not Belong to Mattermost, preview will not be generated
       - uses: actions/checkout@v2
         with:
