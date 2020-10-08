@@ -7,7 +7,7 @@ subsection: Mobile Apps
 
 The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version [here](http://about.mattermost.com/mattermost-ios-app/) and the Android version [here](http://about.mattermost.com/mattermost-android-app/). Source code can be found at https://github.com/mattermost/mattermost-mobile.
 
-If you run into any issues getting your environment set up, check the [Troubleshooting](#troubleshooting) section at the bottom for common solutions.
+If you run into any issues getting your environment set up, check the [Troubleshooting](https://developers.mattermost.com/contribute/mobile/developer-setup/troubleshooting/) section in the left sidebar for common solutions.
 
 A macOS computer is required to build the Mattermost iOS mobile app.
 
@@ -18,7 +18,7 @@ A macOS computer is required to build the Mattermost iOS mobile app.
 Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using [Homebrew](https://brew.sh/) as a package manager.
 
 #### Install [NodeJS](https://nodejs.org/en/).
-This includes NPM which is also needed. Currently version 10.11.0 is recommended with npm 6.4.1. 11.x is **not** working.
+This includes NPM which is also needed. Currently, any version greater than or equal to 10.12.0 is **required** with npm 6.4.1 or higher. Please note that NodeJS version 11.x is **not** working.
 
 ##### MacOS
 - To install using Homebrew open a terminal and execute ..
@@ -30,7 +30,7 @@ This includes NPM which is also needed. Currently version 10.11.0 is recommended
 -   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
 ##### Linux
 -	Install using your distributions package manager (Note that different distros provide
-    different node versions which might be lower than 10.11.0 and may cause problems)
+    different node versions which might be lower than 10.12.0 and may cause problems)
 -   Install using NVM by following the instructions [here](https://github.com/creationix/nvm#install-script)
 -   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
 
@@ -108,8 +108,8 @@ Make sure you have the following ENV VARS configured:
     ```sh
     source ~/.bash_profile
     ```
-    - Note that depending on the shell your using this might need to be put into a different file such as ```~/.zshrc```. Adjust this accordingly.
-    - Also this documentation assumes you chose the default path for your Android SDK installation. If you chose a different path adjust accordingly.
+    - Note that depending on the shell you're using, this might need to be put into a different file such as ```~/.zshrc```. Adjust this accordingly.
+    - Also this documentation assumes you chose the default path for your Android SDK installation. If you chose a different path, adjust accordingly.
 
 ### Installing the right SDKs and SDK Tools
 In the SDK Manager using Android Studio or the [Android SDK command line tool](https://developer.android.com/studio/command-line/sdkmanager.html), ensure the following are installed
@@ -138,7 +138,7 @@ In the SDK Manager using Android Studio or the [Android SDK command line tool](h
 
 ## Obtaining the Source Code
 
-In order to develop and build the Mattermost mobile apps you'll need to get a copy of the source code. Forking the `mattermost-mobile` repository will also make it easy to contribute your work back to the project in the future.
+In order to develop and build the Mattermost mobile apps, you'll need to get a copy of the source code. Forking the `mattermost-mobile` repository will also make it easy to contribute your work back to the project in the future.
 
 1.  Fork the [mattermost-mobile](https://github.com/mattermost/mattermost-mobile) repository on GitHub.
 
