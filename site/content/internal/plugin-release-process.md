@@ -5,4 +5,4 @@ section: internal
 weight: 101
 ---
 
-This page has been moved to the [Handbook](https://handbook.mattermost.com/operations/research-and-development/engineering/integrations).
+This page has been moved to the [Handbook](https://handbook.mattermost.com/operations/research-and-development/engineering/plugin-release-process).
