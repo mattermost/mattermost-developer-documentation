@@ -8,17 +8,18 @@ $(document).ready(function(){
         $(this).toggleClass('fa-plus-square-o fa-minus-square-o');
     });
 
-    if(window.name){
+    let notifFlagExist = document.cookie.split(';').filter(item => { return item.indexOf('notifFlag=') >= 0}).length
+
+    if(notifFlagExist){
         $(".notification-bar").addClass("closed");
         $("header").removeClass("with-notification-bar");
     }
 
     $('.notification-bar__close').on('click', function(){
-        if(!window.name){
+        if(!notifFlagExist){
             $(".notification-bar").addClass("closed");
             $("header").removeClass("with-notification-bar");
         }
-        window.name = true;
-        
+        document.cookie = 'notifFlag=true'
     });
 });
