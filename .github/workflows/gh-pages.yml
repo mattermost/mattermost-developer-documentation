@@ -17,6 +17,7 @@ jobs:
               break
             fi
           done
+          value=false
           echo "IS_MEMBER=$value" >> $GITHUB_ENV
           if [[ $value ]]; then
             echo "Is a member of the Mattermost Organization"
