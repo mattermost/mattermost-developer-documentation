@@ -33,10 +33,7 @@ Before writing a script, ensure that it has a corresponding test case in Test Ma
     Example:
     - `send.button`
     - `post.<post-id>`
-3. Prefix each comment line with appropriate indicator. Each line in a multi-line comment should be prefixed accordingly. Separate and group test step comments and assertion comments for better readability.
-    - `#` indicates a test step (e.g. `// # Go to a screen`)
-    - `*` indicates an assertion (e.g. `// * Check the title`)
-4. Simulate user interaction using available [actions](https://github.com/wix/Detox/blob/master/docs/APIRef.ActionsOnElement.md).
-5. Verify user interface (UI) expectation using [expect](https://github.com/wix/Detox/blob/master/docs/APIRef.Expect.md).
-6. When using `action`, `match`, or another API specific to particular platform, verify that the equivalent logic is applied so that the API does not impact the other platform. Always run tests in both platforms.
-7. See Detox [documentation](https://github.com/wix/Detox/tree/master/docs) for reference.
+3. Simulate user interaction using available [actions](https://github.com/wix/Detox/blob/master/docs/APIRef.ActionsOnElement.md).
+4. Verify user interface (UI) expectation using [expect](https://github.com/wix/Detox/blob/master/docs/APIRef.Expect.md).
+5. When using `action`, `match`, or another API specific to particular platform, verify that the equivalent logic is applied so that the API does not impact the other platform. Always run tests in both platforms.
+6. See Detox [documentation](https://github.com/wix/Detox/tree/master/docs) for reference.
