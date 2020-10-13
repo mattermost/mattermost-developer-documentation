@@ -7,7 +7,7 @@ subsection: Build Your Own App
 
 At times, you may want to build your own Mattermost mobile app. The most common use cases are:
 * White label the Mattermost mobile app.
-* Use your own deployment of the Mattermost Push Notification Service. (always required if you are building your own version of the mobile app).
+* Use your own deployment of the Mattermost Push Notification Service (always required if you are building your own version of the mobile app).
 
 #### Build Preparations
 
