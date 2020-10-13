@@ -9,8 +9,6 @@ The following instructions apply to the mobile apps for iOS and Android built in
 
 **Note: This guide describes how to set up the development environment on MacOS or Linux.**
 
-If you run into any issues getting your environment set up, check the [Troubleshooting](#troubleshooting) section at the bottom for common solutions.
-
 A macOS computer is required to build the Mattermost iOS mobile app.
 
 ## Environment Setup
@@ -20,29 +18,29 @@ A macOS computer is required to build the Mattermost iOS mobile app.
 Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using <a href="https://brew.sh/" target="_blank">Homebrew</a> as a package manager.
 
 #### Install NodeJS
-.
+
 This includes NPM which is also needed.
 
 **Known working node versions: 12.18.x & 14.9.x**
 
 ##### MacOS
-- To install using Homebrew open a terminal and execute ..
+- To install using Homebrew open a terminal and execute:
 
 ```sh
     $ brew install node
 ```
 
 ##### Linux
--	Install using your distributions package manager (Note that different distros provide
-    different node versions, check that is a supported [NodeJS version](#install-nodejs))
+-	Install using your distribution's package manager (Note that different distros provide
+    different node versions, check that it is a supported [NodeJS version](#install-nodejs))
 
 Other installation options:
 -   Using NVM by following the instructions <a href="https://github.com/creationix/nvm#install-script" target="_blank">here</a>
 -   Download and install the package from the <a href="https://nodejs.org/en/" target="_blank">NodeJS website</a>
 
-#### Install <a href="https://facebook.github.io/watchman/" target="_blankn">Watchman</a>. (minimum required version is 4.9.0)
+#### Install <a href="https://facebook.github.io/watchman/" target="_blankn">Watchman</a>. (minimum required version is 4.9.0).
 ##### MacOS
-- To install using Homebrew open a terminal and execute ..
+- To install using Homebrew open a terminal and execute:
     ```sh
     $ brew install watchman
     ```
@@ -80,6 +78,7 @@ Some distributions come with git preinstalled but you'll most likely have to ins
 
 #### Environment Variables
 Make sure you have the following ENV VARS configured:
+
     - `ANDROID_HOME` to where Android SDK is located (likely `/Users/<username>/Library/Android/sdk` or `/home/<username>/Android/Sdk`)
     - Make sure your `PATH` includes `ANDROID_HOME/tools` and `ANDROID_HOME/platform-tools`
 ##### MacOS

@@ -5,7 +5,7 @@ weight: 1
 subsection: Build Your Own App
 ---
 
-At times, you may want to build the Mattermost mobile app, the most common use cases are:
+At times, you may want to build your own Mattermost mobile app. The most common use cases are:
 * White label the Mattermost mobile app.
 * Use your own deployment of the Mattermost Push Notification Service. (always required if you are building your own version of the mobile app).
 
@@ -17,9 +17,9 @@ At times, you may want to build the Mattermost mobile app, the most common use c
 
 ##### 2. Generating a Signing Key
 
-Building the Android app for distribution, requeries the app be asigned release APK as Android requires all apps to be digitally signed with a certificate before they can be installed.
+Building the Android app for distribution requeries the release APK to be signed as Android requires all apps to be digitally signed with a certificate before they can be installed.
 
-To generate the signed key, use **keytool** which comes with the JDK required to develop the Android app. (see [Developer Setup](/contribute/mobile/developer-setup/#additional-setup-for-android))
+To generate the signed key, use **keytool** which comes with the JDK required to develop the Android app. (see [Developer Setup](/contribute/mobile/developer-setup/#additional-setup-for-android)).
 
 ```sh
 $ keytool -genkey -v -keystore <my-release-key>.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
@@ -44,10 +44,10 @@ Create a new application using the <a href="https://play.google.com/console/deve
 
 ##### 4. Setting up Gradle Variables {#gradle}
 
-Now that we have created the keystore file, is time to tell the build process to use that file.
+Now that we have created the keystore file we can tell the build process to use that file:
 
-- Copy or move the *my-release-key.keystore* file under a directory that you can access. It can be in your home directory or anywhere in the file system..
-- Edit the file the gradle.properties file in your *$HOME* directory (ex. `$HOME/.gradle/gradle.properties`), or create it if one does not exist, and add the following:
+- Copy or move the *my-release-key.keystore* file under a directory that you can access. It can be in your home directory or anywhere in the file system.
+- Edit the gradle.properties file in your *$HOME* directory (ex. `$HOME/.gradle/gradle.properties`), or create it if one does not exist, and add the following:
 
     ```sh
     MATTERMOST_RELEASE_STORE_FILE=/full/path/to/directory/containing/my-release-key.keystore
@@ -71,13 +71,13 @@ To make it easier to customize your build, we've defined a few environment varia
 | Variable            | Description                                | Default    | Required      |
 |---------------------|--------------------------------------------|------------|---------------|
 | COMMIT\_CHANGES\_TO\_GIT | Should the fastlane script ensure that there are no changes to git before building the app and that every change made during the build is committed back to git. <br><br>Valid values are: true, false | false | No |
-| BRANCH\_TO\_BUILD | Defines the git branch that is going to be used for generating the build. <br><br>**Make sure you set this value is set if to an existing branch**.| $GIT_BRANCH | No |
+| BRANCH\_TO\_BUILD | Defines the git branch that is going to be used for generating the build. <br><br>**Make sure that, if this value is set, the branch it is set to exists**.| $GIT_BRANCH | No |
 | GIT\_LOCAL\_BRANCH | Defines the local branch to be created from BRANCH\_TO\_BUILD to ensure the base branch does not get any new commits on it. <br><br>**Make sure a branch with this name does not yet exist in your local git**. | build | No |
-| RESET\_GIT\_BRANCH | Defines if once the build is done the branch should reset to the initial state before building and delete the branch created to build the app. <br><br>Valid values are: true, false | false | No |
-| VERSION\_NUMBER | Set the version of the app on build time if you want to use another one than the one set in the project. |  | No |
+| RESET\_GIT\_BRANCH | Defines if, once the build is done, the branch should be reset to the initial state before building and whether to also delete the branch created to build the app. <br><br>Valid values are: true, false | false | No |
+| VERSION\_NUMBER | Set the version of the app at build time to a specific value, rather than using the one set in the project. |  | No |
 | INCREMENT\_VERSION\_<br>NUMBER\_MESSAGE | Set the commit message when changing the app version number. | Bump app version number to | No |
 | INCREMENT\_BUILD\_NUMBER | Defines if the app build number should be incremented. <br><br>Valid values are: true, false | false | No |
-| BUILD\_NUMBER | Set the build number of the app on build time if you want to use another than the next number. |  | No |
+| BUILD\_NUMBER | Set the build number of the app at build time to a specific value, rathen than incrementing the last build number. |  | No |
 | INCREMENT\_BUILD\_<br>NUMBER\_MESSAGE | Set the commit message when changing the app build number. | Bump app build number to | No |
 | APP\_NAME | The name of the app as it is going to be shown in the device home screen. | Mattermost Beta | Yes |
 | APP\_SCHEME | The URL naming scheme for the app as used in direct deep links to app content from outside the app. | mattermost | No |
@@ -86,7 +86,7 @@ To make it easier to customize your build, we've defined a few environment varia
 | BUILD\_FOR\_RELEASE | Defines if the app should be built in release mode. <br><br>Valid values are: true, false <br><br>**Make sure you set this value to true if you plan to submit this app Google Play or distribute it in any other way**. | false | Yes |
 | SEPARATE\_APKS | Build one APK per achitecture (armeabi-v7a, x86, arm64-v8a and x86_64) as well as a universal APK. The advantage is the size of the APK is reduced by about 4MB. <br><br>People will download the correct APK from the Play Store based on the CPU architecture of their device. | false | Yes |
 | SUBMIT\_ANDROID\_TO\_<br>GOOGLE\_PLAY | Should the app be submitted to the Play Store once it finishes to build, use along with **SUPPLY\_TRACK**.<br><br>Valid values are: true, false | false | Yes |
-| SUPPLY\_TRACK | The track of the application to use when submitting the app to Google Play Store. Valid values are: alpha, beta, production <br><br>**Recommended not submitting the app to to production, instead try any of the other tracks and then promote your app using the Google Play console**. | alpha | Yes |
+| SUPPLY\_TRACK | The track of the application to use when submitting the app to Google Play Store. Valid values are: alpha, beta, production <br><br>**Recommended not submitting the app to production, instead try any of the other tracks and then promote your app using the Google Play console**. | alpha | Yes |
 | SUPPLY\_PACKAGE\_NAME | The package Id of your application, make sure it matches **MAIN\_APP\_IDENTIFIER**. |  | Yes |
 | SUPPLY\_JSON\_KEY | The path to the service account json file used to authenticate with Google.<br><br>See the [Supply documentation]( https://docs.fastlane.tools/actions/supply/#setup) to learn more. |  | Yes |
 

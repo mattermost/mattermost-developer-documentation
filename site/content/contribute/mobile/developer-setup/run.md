@@ -17,16 +17,18 @@ To speed up development, only compile & run the apps in the following cases:
 - You have made changes in the native code.
 - You have added a new library that has native code.
 
-If none of the above cases apply, you could just simple start the React Native packager with `npm start` and 
+If none of the above cases apply, you could just simply start the React Native packager with `npm start` and 
 launch the app you have already deployed to the device or simulator.
 {{</note>}}
 
-The above commands are shortcuts for the `react-native` CLI.  You can append `-- --help` to the above commands to see available options.
+The above commands are shortcuts for the `react-native` CLI.  You can append `-- --help` to the above commands to see available options, for example:
 
 ```sh
 $ npm run android -- --help
 ```
-Make sure you are adding `--` before the options you want to include or run the `react-native` CLI directly.
+
+Make sure you are adding `--` before the options you want to include or run the `react-native` CLI directly:
+
 ```sh
 $ npx react-native run-android --help
 ```
@@ -66,15 +68,15 @@ $ npm run android
 ```
 
 {{<note "Note">}}
-If you don't see a green bar at the top loading the JavaScript code. See [Using adb reverse](http://reactnative.dev/docs/running-on-device.html#method-1-using-adb-reverse-recommended).
+If you don't see a green bar at the top loading the JavaScript code then it's possible that the device is not connected to the development server. See [Using adb reverse](http://reactnative.dev/docs/running-on-device.html#method-1-using-adb-reverse-recommended).
 {{</note>}}
 
 #### Run on iOS Devices
 
-To be able to run the app on an iOS device you'll need to have <a href="https://developer.apple.com/xcode/" target="_blank">Xcode</a> installed in Mac computer and follow this steps:
+To be able to run the app on an iOS device you'll need to have <a href="https://developer.apple.com/xcode/" target="_blank">Xcode</a> installed on a Mac computer and follow this steps:
 
 ##### 1. Get an Apple Developer Account
-The apps that run on an iOS must be signed, to sign it, you'll need a set of provisioning profiles. If you already have an Apple Developer account enrolled in the Apple Developer program you can skip this step. If you don't have an account yet need to <a href="https://appleid.apple.com/account?appId=632&returnUrl=https%3A%2F%2Fdeveloper.apple.com%2Faccount%2F#!&page=create" target="_blank">create one</a> and enroll in the <a href="https://developer.apple.com/programs/" target="_blank">Apple Developer Program</a>.
+The apps that run on an iOS device must be signed. To sign it, you'll need a set of provisioning profiles. If you already have an Apple Developer account enrolled in the Apple Developer program you can skip this step. If you don't have an account yet you'll need to <a href="https://appleid.apple.com/account?appId=632&returnUrl=https%3A%2F%2Fdeveloper.apple.com%2Faccount%2F#!&page=create" target="_blank">create one</a> and enroll in the <a href="https://developer.apple.com/programs/" target="_blank">Apple Developer Program</a>.
 
 ##### 2. Open the project in Xcode
 Navigate to the `ios` folder in your `mattermost-mobile` project, then open the file **Mattermost.xcworkspace** in Xcode.
@@ -107,7 +109,7 @@ As an alternative you can select the targeted device by opening the **Product** 
 If you run into any issues, please take a look at Apple's <a href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/LaunchingYourApponDevices/LaunchingYourApponDevices.html#//apple_ref/doc/uid/TP40012582-CH27-SW4" target="_blank">Launching Your App on a
 Device</a> documentation.
 
-If the app fails to build, you can try either of the following options before trying to build the app again:
+If the app fails to build, you can try the following before trying to build the app again:
 
 - Go to the **Product** menu and select **Clean Build Folder**
 {{</note>}}

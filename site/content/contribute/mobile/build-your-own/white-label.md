@@ -13,7 +13,9 @@ To replace these with your own assets, create a sub-directory called `override` 
 
 ### Localization Strings
 
-To replace some or all of the strings in the app in any supported language, create a new json file for each locale you wish to override in `assets/override/i18n`. Any strings that you provide will be used instead of the ones located in `assets/base/i18n`, but any that you don't provide will fall back to the original ones.
+To replace these with your own assets, create a sub-directory called `override` in the `assets` folder. Using the same directory structure and file names as in the `base` directory, you can add assets to the override folder to be used instead.
+
+For example, to override `assets/base/images/logo.png` you would replace your own `logo.png` file in `assets/override/images/logo.png`.
 
 ### Images
 
@@ -29,9 +31,9 @@ In the `assets` directory you will find a folder named `assets/base/release` whi
 
 Copy the full `release` directory under `assets/override/release` and then replace each image with the same name. Make sure you replace all the icon images for the platform you are building the app - the same applies to the splash screen.
 
-The splash screen's background color is white by default and the image is centered. If you need to change the color or the layout to improve the experience of your new splash screen make sure that you also override the file `launch_screen.xml` for Android and `LaunchScreen.storyboard` for iOS. Both can be found under`assets/base/release/splash\_screen/\<platform\>`.
+The splash screen's background color is white by default and the image is centered. If you need to change the color or the layout to improve the experience of your new splash screen make sure that you also override the file `launch_screen.xml` for Android and `LaunchScreen.storyboard` for iOS. Both can be found under`assets/base/release/splash_screen/\<platform>`.
 
-Splash screen and launch icons assets are replaced at build time when the [Environment Variable](/contribute/mobile/build-your-own/environment-vars/) `REPLACE_ASSETS` is set to true (default is false).
+Splash screen and launch icons assets are replaced at build time when the environment variable `REPLACE_ASSETS` is set to true (default is false).
 
 {{<note "Note">}}
 Make sure the images have the same height, width and DPI as the images that you are overriding.

@@ -5,7 +5,7 @@ weight: 2
 subsection: Build Your Own App
 ---
 
-At times, you may want to build the Mattermost mobile app, the most common use cases are:
+At times, you may want to build your own Mattermost mobile app. The most common use cases are:
 * White label the Mattermost mobile app.
 * Use your own deployment of the Mattermost Push Notification Service. (always required if you are building your own version of the mobile app).
 
@@ -13,7 +13,7 @@ At times, you may want to build the Mattermost mobile app, the most common use c
 
 ##### 1. Pre-requisites
 
-The Mattermost Mobile App for iOS, needs to be built on a MacOS computer with Xcode and the Xcode command line installed.
+The Mattermost Mobile App for iOS needs to be built on a MacOS computer with Xcode and the Xcode command line tools installed.
 
 ```sh
 $ xcode-select ---install
@@ -37,13 +37,13 @@ To make it easier to customize your build, we've defined a few environment varia
 | Variable            | Description                                | Default    | Required  |
 |---------------------|--------------------------------------------|------------|-----------|
 | COMMIT\_CHANGES\_TO\_GIT | Should the fastlane script ensure that there are no changes to git before building the app and that every change made during the build is committed back to git.<br><br>Valid values are: true, false | false | No |
-| BRANCH\_TO\_BUILD | Defines the git branch that is going to be used for generating the build. <br><br>**Make sure you set this value is set if to an existing branch**.| $GIT_BRANCH | No |
+| BRANCH\_TO\_BUILD | Defines the git branch that is going to be used for generating the build. <br><br>**Make sure that, if this value is set, the branch it is set to exists**.| $GIT_BRANCH | No |
 | GIT\_LOCAL\_BRANCH | Defines the local branch to be created from BRANCH\_TO\_BUILD to ensure the base branch does not get any new commits on it.<br><br>**Make sure a branch with this name does not yet exist in your local git**. | build | No |
-| RESET\_GIT\_BRANCH | Defines if once the build is done the branch should reset to the initial state before building and delete the branch created to build the app.<br><br>Valid values are: true, false | false | No |
-| VERSION\_NUMBER | Set the version of the app on build time if you want to use another one than the one set in the project. |  | No |
+| RESET\_GIT\_BRANCH | Defines if, once the build is done, the branch should be reset to the initial state before building and whether to also delete the branch created to build the app. <br><br>Valid values are: true, false | false | No |
+| VERSION\_NUMBER | Set the version of the app at build time to a specific value, rather than using the one set in the project. |  | No |
 | INCREMENT\_VERSION\_<br>NUMBER\_MESSAGE | Set the commit message when changing the app version number. | Bump app version number to | No |
 | INCREMENT\_BUILD\_NUMBER | Defines if the app build number should be incremented.<br><br>Valid values are: true, false | false | No |
-| BUILD\_NUMBER | Set the build number of the app on build time if you want to use another than the next number. |  | No |
+| BUILD\_NUMBER | Set the build number of the app at build time to a specific value, rathen than incrementing the last build number. |  | No |
 | INCREMENT\_BUILD\_<br>NUMBER\_MESSAGE | Set the commit message when changing the app build number. | Bump app build number to | No |
 | APP\_NAME | The name of the app as it is going to be shown in the device home screen. | Mattermost Beta | Yes |
 | APP\_SCHEME | The URL naming scheme for the app as used in direct deep links to app content from outside the app. | mattermost | No |
@@ -55,7 +55,7 @@ To make it easier to customize your build, we've defined a few environment varia
 | FASTLANE\_TEAM\_ID | The ID of your Apple Developer Portal Team. |  | Yes |
 | IOS\_ICLOUD\_CONTAINER | The iOS iCloud container identifier used to support iCloud storage. | | Yes |
 | IOS\_APP\_GROUP | The iOS App Group identifier used to share data between the app and the share extension. |  | Yes |
-| SYNC\_PROVISIONING\_PROFILES | Should we run **match** to sync the provisioning profiles. **Note**: Not synching the provisioning profiles, will cause the singing to fail. Valid values are: true, false | false | Yes |
+| SYNC\_PROVISIONING\_PROFILES | Should we run **match** to sync the provisioning profiles. **Note**: Not syncing the provisioning profiles, will cause the singing to fail. Valid values are: true, false | false | Yes |
 | MATCH\_USERNAME | Your Apple ID Username. |  | Yes |
 | MATCH\_PASSWORD | Your Apple ID Password. |  | Yes |
 | MATCH\_KEYCHAIN\_PASSWORD | Your Mac user password used to install the certificates in the build computer KeyChain. |  | No |

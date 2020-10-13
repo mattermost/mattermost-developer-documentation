@@ -30,4 +30,4 @@ If the library contains iOS native code, make sure to run:
 $ npm run pod-install
 ```
 
-Most of the time linkig the library to React Native is done automatically, but at times some libraries need to be manually linked. In this case follow the documentation on the library.
+Most of the time linking the library to React Native is done automatically, but at times some libraries need to be manually linked. In this case follow the library's documentation.
