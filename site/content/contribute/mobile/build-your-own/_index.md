@@ -11,7 +11,6 @@ Here at Mattermost, we build and deploy the Apps using a CI pipeline. The pipeli
 
 As an alternative we've also created a set of **scripts** to help automate build tasks. Learn more about the scripts by reviewing the [package.json](https://github.com/mattermost/mattermost-mobile/blob/master/package.json) file.
 
-{{<note "Note">}}
 By using the **scripts**, <a href="https://docs.fastlane.tools/#choose-your-installation-method" target="_blank">Fastlane</a> and other dependencies will be installed in your system.
 {{</note>}}
 
