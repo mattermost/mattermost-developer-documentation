@@ -1,5 +1,5 @@
 ---
-title: "Setup Push Notifications"
+subsection: "Set up Push Notifications"
 date: 2015-05-20T11:35:32-04:00
 weight: 3
 subsection: Mobile Apps
