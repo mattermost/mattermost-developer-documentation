@@ -7,7 +7,7 @@ subsection: Mobile Apps
 
 You can build the app from source and distribute it within your team or company either using the App Stores, Enterprise App Stores or EMM providers, or another way of your choosing.
 
-Here at Mattermost, we build and deploy the Apps using a CI pipeline. The pipeline has different jobs and steps that run on specific contexts based on what we want to accomplish. You can check it out <a href="https://github.com/mattermost/mattermost-mobile/blob/master/.circleci/config.yml" target="_blank">here</a>.
+At Mattermost, we build and deploy the Apps using a CI pipeline. The pipeline has different jobs and steps that run on specific contexts based on what we want to accomplish. You can check it out [here](https://github.com/mattermost/mattermost-mobile/blob/master/.circleci/config.yml).
 
 As an alternative we've also created a set of **scripts** to help automate build tasks. Learn more about the scripts by reviewing the [package.json](https://github.com/mattermost/mattermost-mobile/blob/master/package.json) file.
 
