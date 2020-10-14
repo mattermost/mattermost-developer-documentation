@@ -58,18 +58,18 @@ and you should be using your own `provisioning profiles`, `certificate`, also yo
 * Create a folder that will serve as your working directory to store all the needed files.
 
 * Download your **Apple Distribution certificate** from the
-<a href="https://developer.apple.com/account/resources/certificates/list" target="_blank">Apple Developers portal</a> and save it in your working directory.
+<a href="https://developer.apple.com/account/resources/certificates/list" target="_blank">Apple Developer portal</a> and save it in your working directory.
 
 * Install the previously downloaded certificate into your MacOS Keychain. <a href="https://developer.apple.com/support/certificates/" target="_blank">Learn more</a>.
 
 * Download your **Provisioning profiles** from the
-<a href="https://developer.apple.com/account/resources/profiles/list" target="_blank">Apple Developers portal</a> and save it in your working directory.
+<a href="https://developer.apple.com/account/resources/profiles/list" target="_blank">Apple Developer portal</a> and save it in your working directory.
 
 * Download the <a href="/scripts/sign-ios" download>sign-ios</a> script and save it in your working directory.
 
 * Download the <a href="https://github.com/mattermost/mattermost-mobile/releases" target="_blank">iOS unsigned build</a> and save it in your working directory.
 
-* Open a terminal to your working directory, make sure the `sign-ios` script it is executable.
+* Open a terminal to your working directory and make sure the `sign-ios` script it is executable.
 
 ```bash
 $ ls -la
@@ -89,10 +89,10 @@ drwxr-xr-x  8 user  staff       256 Oct 11 10:49 ..
 $ ./sign-ios Mattermost-unsigned.ipa -c "Apple Distribution: XXXXXX. (XXXXXXXXXX)" -a app.mobileprovision -n noti.mobileprovision -s share.mobileprovision -g group.com.mattermost -d "My App Display Name" MyApp-signed.ipa
 ```
 
-once the code sign is complete you should have a signed IPA in the working directory with the name **MyApp-signed.ipa**.
+Once the code sign is complete you should have a signed IPA in the working directory with the name **MyApp-signed.ipa**.
 
 {{<note "Note">}}
-The app name can be anything, use double quotes specially if the name has white spaces.
+The app name can be anything but be sure to use double quotes if the name includes white spaces.
 
 The name of the `certificate` should match the name in the MacOS Keychain.
 {{</note>}}

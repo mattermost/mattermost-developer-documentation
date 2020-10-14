@@ -10,8 +10,8 @@ With every Mattermost mobile app release, we publish the Android unsigned apk in
 #### Requisites
 
 1. <a href="https://ibotpeaches.github.io/Apktool/" target="_blank">Apktool</a> is a tool for reverse engineering Android apk files.
-2. <a href="http://xmlstar.sourceforge.net/doc/UG/xmlstarlet-ug.html" target="_blank">XMLStarlet</a> is a set of command line utilities (tools) which can be used to transform, query, validate, and edit XML documents and files using simple set of shell commands in similar way it is done for plain text files using UNIX grep, sed, awk, diff, patch, join, etc commands.
-3. <a href="https://stedolan.github.io/jq/" target="_blank">JQ</a> is like sed for JSON data - you can use it to slice and filter and map and transform structured data with the same ease that sed, awk, grep and friends let you play with text.
+2. <a href="http://xmlstar.sourceforge.net/doc/UG/xmlstarlet-ug.html" target="_blank">XMLStarlet</a> is a set of command line utilities (tools) which can be used to transform, query, validate, and edit XML documents and files using a simple set of shell commands in the same way it is done for plain text files using UNIX grep, sed, awk, diff, patch, join, etc., commands.
+3. <a href="https://stedolan.github.io/jq/" target="_blank">JQ</a> is like sed for JSON data - you can use it to slice, filter, map, and transform structured data with the same ease that sed, awk, and grep let you work with text.
 4. Android SDK as described in the [Developer Setup](/contribute/mobile/developer-setup/#additional-setup-for-android)
 5. Setup keys and Google Services as described
 in steps 2, 3, 4 & 6 of the [Build your own App guide](/contribute/mobile/build-your-own/android/#build-preparations).
@@ -54,7 +54,7 @@ but you should really be using your own `package identifier`, `google services s
 
 * Download the <a href="https://github.com/mattermost/mattermost-mobile/releases" target="_blank">Android unsigned build</a> and save it in your working directory.
 
-* Open a terminal to your working directory, make sure the `sign-android` script it is executable.
+* Open a terminal to your working directory and make sure the `sign-android` script it is executable.
 
 ```bash
 $ ls -la
@@ -72,12 +72,11 @@ drwx------@ 59 user  staff      1888 Oct  1 14:12 ..
 $ ./sign-android Mattermost-unsigned.apk -p com.example.test -g google-services.json -d "My App" MyApp-signed.apk
 ```
 
-once the code sign is complete you should have a signed APK in the working directory with the name **MyApp-signed.apk**.
+Once the code sign is complete you should have a signed APK in the working directory with the name **MyApp-signed.apk**.
 
 {{<note "Note">}}
-The app name can be anything, use double quotes specially if the name has white spaces.
+The app name can be anything but be sure to use double quotes if the name includes white spaces.
 
 If you are using a `Google Services` json file, you need to specify a `package identifier` that has a corresponding
 client in the json configuration file.
 {{</note>}}
-
