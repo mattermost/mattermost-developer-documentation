@@ -5,7 +5,7 @@ weight: 4
 subsection: Mobile Apps
 ---
 
-Mattermost publishes an unsigned build of the mobile app in the <a href="https://github.com/mattermost/mattermost-mobile/releases" target="_blank">GitHub Releases</a> page with every version that gets released.
+Mattermost publishes an unsigned build of the mobile app in the [GitHub Releases](https://github.com/mattermost/mattermost-mobile/releases) page with every version that gets released.
 
 These unsigned builds cannot be distributed and/or installed directly on devices until they are properly signed.
 
