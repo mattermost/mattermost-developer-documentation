@@ -44,7 +44,7 @@ To make it easier to customize your build, we've defined a few environment varia
 | `VERSION\_NUMBER` | Set the version of the app at build time to a specific value, rather than using the one set in the project. |  | No |
 | `INCREMENT\_VERSION\_<br>NUMBER\_MESSAGE` | Set the commit message when changing the app version number. | Bump app version number to | No |
 | `INCREMENT\_BUILD\_NUMBER` | Defines if the app build number should be incremented.<br><br>Valid values are: `true`, `false` | `false` | No |
-| `BUILD\_NUMBER` | Set the build number of the app at build time to a specific value, rathen than incrementing the last build number. |  | No |
+| `BUILD\_NUMBER` | Set the build number of the app at build time to a specific value, rather than incrementing the last build number. |  | No |
 | `INCREMENT\_BUILD\_<br>NUMBER\_MESSAGE` | Set the commit message when changing the app build number. | Bump app build number to | No |
 | `APP\_NAME` | The name of the app as it is going to be shown in the device home screen. | Mattermost Beta | Yes |
 | `APP\_SCHEME` | The URL naming scheme for the app as used in direct deep links to app content from outside the app. | mattermost | No |
