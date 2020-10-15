@@ -5,7 +5,7 @@ weight: 1
 subsection: Sign Unsigned Builds
 ---
 
-With every Mattermost mobile app release, we publish the Android unsigned apk in in the <a href="https://github.com/mattermost/mattermost-mobile/releases" target="_blank">GitHub Releases</a> page, this guide describes the steps needed to modify and sign the app, so it can be distributed and installed on Android devices.
+With every Mattermost mobile app release, we publish the Android unsigned apk in in the [GitHub Releases](https://github.com/mattermost/mattermost-mobile/releases) page. This guide describes the steps needed to modify and sign the app, so it can be distributed and installed on Android devices.
 
 #### Prerequisites
 
