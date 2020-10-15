@@ -5,15 +5,15 @@ weight: 2
 subsection: Sign Unsigned Builds
 ---
 
-With every Mattermost mobile app release, we publish the iOS unsigned ipa in in the <a href="https://github.com/mattermost/mattermost-mobile/releases" target="_blank">GitHub Releases</a> page, this guide describes the steps needed to modify and sign the app, so it can be distributed and installed on iOS devices.
+With every Mattermost mobile app release, we publish the iOS unsigned ipa in in the [GitHub Releases](https://github.com/mattermost/mattermost-mobile/releases) page, this guide describes the steps needed to modify and sign the app, so it can be distributed and installed on iOS devices.
 
 #### Requisites
 
-1. MacOS with <a href="https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12" target="_blank">Xcode</a> installed (Minimum required version is **11.0**)
-2. Install the Xcode command line tools
+1. macOS with [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12) installed. The minimum required version is **11.0**.
+2. Install the Xcode command line tools:
 	```bash
 	$ xcode-select --install
-3. Setup your Certificate and Provisioning profiles as described in steps 1 & 2 for [Run on iOS Devices](/contribute/mobile/developer-setup/run/#run-on-ios-devices) in the Developer Setup.
+3. Set up your Certificate and Provisioning profiles as described in steps 1 & 2 for [Run on iOS Devices](/contribute/mobile/developer-setup/run/#run-on-ios-devices) in the Developer Setup.
 4. `sign-ios` script to sign the iOS app.
 
 #### Signing Tool
@@ -57,18 +57,11 @@ and you should be using your own `provisioning profiles`, `certificate`, also yo
 
 * Create a folder that will serve as your working directory to store all the needed files.
 
-* Download your **Apple Distribution certificate** from the
-<a href="https://developer.apple.com/account/resources/certificates/list" target="_blank">Apple Developer portal</a> and save it in your working directory.
-
-* Install the previously downloaded certificate into your MacOS Keychain. <a href="https://developer.apple.com/support/certificates/" target="_blank">Learn more</a>.
-
-* Download your **Provisioning profiles** from the
-<a href="https://developer.apple.com/account/resources/profiles/list" target="_blank">Apple Developer portal</a> and save it in your working directory.
-
-* Download the <a href="/scripts/sign-ios" download>sign-ios</a> script and save it in your working directory.
-
-* Download the <a href="https://github.com/mattermost/mattermost-mobile/releases" target="_blank">iOS unsigned build</a> and save it in your working directory.
-
+* Download your **Apple Distribution certificate** from the [Apple Developer portal](https://developer.apple.com/account/resources/certificates/list) and save it in your working directory.
+* Install the previously downloaded certificate into your macOS Keychain. [Learn more](https://developer.apple.com/support/certificates).
+* Download your **Provisioning profiles** from the [Apple Developer portal](https://developer.apple.com/account/resources/profiles/list) and save it in your working directory.
+* Download the [sign-ios](/scripts/sign-ios) script and save it in your working directory.
+* Download the [iOS unsigned build](https://github.com/mattermost/mattermost-mobile/releases) and save it in your working directory.
 * Open a terminal to your working directory and make sure the `sign-ios` script it is executable.
 
 ```bash
@@ -91,8 +84,10 @@ $ ./sign-ios Mattermost-unsigned.ipa -c "Apple Distribution: XXXXXX. (XXXXXXXXXX
 
 Once the code sign is complete you should have a signed IPA in the working directory with the name **MyApp-signed.ipa**.
 
-{{<note "Note">}}
-The app name can be anything but be sure to use double quotes if the name includes white spaces.
+---
+**Note:**
 
-The name of the `certificate` should match the name in the MacOS Keychain.
-{{</note>}}
+The app name can be anything but be sure to use double quotes if the name includes white spaces. The name of the `certificate` should match the name in the macOS Keychain.
+
+---
+
