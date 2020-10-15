@@ -9,10 +9,13 @@ Mattermost publishes an unsigned build of the mobile app in the [GitHub Releases
 
 These unsigned builds cannot be distributed and/or installed directly on devices until they are properly signed.
 
-{{<note "Note">}}
+---
+**Note:**
+
 Android and Apple require all apps to be digitally signed with a certificate before they can be installed.
-{{</note>}}
 
-To avoid the need of rebuilding the apps from scratch, you could just **sign** the unsigned builds published by Mattermost with your certificates and keys.
+---
 
-[Sign Unsigned Android](android) or [Sign Unsigned iOS](ios)
+To avoid rebuilding the apps from scratch, you could just **sign** the unsigned builds published by Mattermost with your certificates and keys.
+
+[Sign Unsigned Android](android) or [Sign Unsigned iOS](ios).
