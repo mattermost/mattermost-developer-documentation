@@ -27,6 +27,8 @@ Feature flags allow us to be more confident in shipping features continuously to
 
 ## Deploying to split.io
 
+Deployments to the managment system are overseen by the cloud team. If you have any questions or need help with the process, please ask in the cloud channel.
+
 1. When ready to deploy. Create the feature flag in split.io. The name of the feature flag should match the name of the split. Everything else can be left at defaults.
 2. Once created, set the treatment values appropriately. The defaults of "on" an "off" can work for most feature flags.
 3. When ready to deploy to cloud, set the targeting rules appropriately to slowly roll out as required. 
