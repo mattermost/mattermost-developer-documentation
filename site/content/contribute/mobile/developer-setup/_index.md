@@ -64,7 +64,7 @@ The minimum required version is 4.9.0.
 
 - On Linux you have to build Watchman yourself. See the official [Watchman guide](https://facebook.github.io/watchman/docs/install.html#installing-from-source).
    - Note that you need to increase your `inotify` limits for Watchman to work properly.
-   - If you encounter a warning about a missing C++ compiler you need to install the c++ extension from your distro's package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++).
+   - If you encounter a warning about a missing C++ compiler you need to install the C++ extension from your distro's package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++).
 
 ##### Windows 10
 - Download the latest package from [here](https://github.com/facebook/watchman/releases/tag/v2020.07.27.00). Note that it's currently in Beta.
