@@ -5,9 +5,7 @@ section: "contribute"
 weight: 4
 ---
 
-The Mattermost mobile apps are written in [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) using [React Native](https://facebook.github.io/react-native/) and [Redux](http://redux.js.org/).
-
-It is powered by [mattermost-redux](/contribute/redux) which handles the majority of the logic, client-side storage and server communication.
+The Mattermost mobile apps are written in [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) using [React Native](https://facebook.github.io/react-native/).
 
 ## Repository
 
