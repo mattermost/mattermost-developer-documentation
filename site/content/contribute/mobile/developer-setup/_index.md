@@ -67,7 +67,7 @@ The minimum required version is 4.9.0.
    - If you encounter a warning about a missing C++ compiler you need to install the c++ extension from your distro's package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++).
 
 ##### Windows 10
-- Download the latest package from [here](https://github.com/facebook/watchman/releases/tag/v2020.07.27.00). Note that it's currently Beta.
+- Download the latest package from [here](https://github.com/facebook/watchman/releases/tag/v2020.07.27.00). Note that it's currently in Beta.
 #### Install `react-native-cli` tools
 
 Use `npm` to install [React Native CLI Tools](https://github.com/react-native-community/cli#react-native-cli) globally (minimum required version is 2.0.1).
