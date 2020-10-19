@@ -48,7 +48,7 @@ Other installation options:
 ##### Windows 10
 -   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
 
-#### Install [Watchman](https://facebook.github.io/watchman
+#### Install [Watchman](https://facebook.github.io/watchman)
 
 The minimum required version is 4.9.0.
 
