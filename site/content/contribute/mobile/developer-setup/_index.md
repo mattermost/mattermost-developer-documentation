@@ -68,7 +68,7 @@ The minimum required version is 4.9.0.
 
 ##### Windows 10
 - Download the latest package from [here](https://github.com/facebook/watchman/releases/tag/v2020.07.27.00). Note that it's currently Beta.
-#### Install ```react-native-cli``` tools
+#### Install `react-native-cli` tools
 
 Use `npm` to install [React Native CLI Tools](https://github.com/react-native-community/cli#react-native-cli) globally (minimum required version is 2.0.1).
 
