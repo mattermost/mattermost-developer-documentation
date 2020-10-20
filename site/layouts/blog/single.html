@@ -66,13 +66,12 @@
                         {{ end }}
                         {{ end }}
                     </ul>
-                     <h6>Categories</h6>
+                    <h6>Categories</h6>
                     <ul class="list-unstyled">
                         {{ range .Params.categories }}
-                        {{ range first 15 (where .Site.Pages ".Section" "blog" )}}
-                    <li><a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}">{{ . }}</a></li>
+                    <li class="blog-item__sidebar"><a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}">{{ . }}</a></li>>
                          {{ end }}
-                         {{ end }}
+                    </ul>
                 </div>
             </div>
         </div>
