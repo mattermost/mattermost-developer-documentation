@@ -68,7 +68,6 @@
                     </ul>
                      <h6>Categories</h6>
                     <ul class="list-unstyled">
-                    <ul class="list-unstyled">
                         {{ range .Params.categories }}
                         {{ range first 15 (where .Site.Pages ".Section" "blog" )}}
                     <li><a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}">{{ . }}</a></li>
