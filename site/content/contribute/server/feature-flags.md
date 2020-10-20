@@ -6,7 +6,7 @@ subsection: Server
 ---
 
 
-Feature flags allow us to be more confident in shipping features continuously to Mattermost Cloud. Feature flags allow us to control which features are enabled on a cluster level.
+Feature flags allow us to be more confident in shipping features continuously to Mattermost Cloud. Feature flags also allow us to control which features are enabled on a cluster level.
 
 # How to use
 
@@ -14,7 +14,7 @@ Feature flags allow us to be more confident in shipping features continuously to
 
 1. Add the new flag to the feature flag struct located in `model/feature_flags.go`.
 2. Set a default value in the `SetDefaults` function in the same file.
-3. Use the feature flag in code as you would use a regular configuration setting. In tests, manipulate the configuration value to test value changes, such as activation and deactivation, of the feature flag.
+3. Use the feature flag in code as you would use a regular configuration setting. In tests, manipulate the configuration value to test value changes, such as activation and deactivation of the feature flag.
 4. Code may be merged regardless of setup in the management system. In this case it will always take the default value supplied in the `SetDefaults` function.
 5. Create a removal ticket for the feature flag. All feature flags should be removed as soon as they have been verified by Cloud. The ticket should encompass removal of the supporting code and archiving in the management system.
 
@@ -57,4 +57,3 @@ There are no hard rules on when a feature flag should be used. It is left up to 
 ## Examples of feature flags
 
 < add some examples when we create them >
-
