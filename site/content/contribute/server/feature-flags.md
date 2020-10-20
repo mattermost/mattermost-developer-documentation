@@ -13,21 +13,21 @@ Feature flags allow us to be more confident in shipping features continuously to
 ## Adding the feature flag in code
 
 1. Add the new flag to the feature flag struct located in `model/feature_flags.go`.
-2. Set a default value in the SetDefaults function in the same file.
+2. Set a default value in the `SetDefaults` function in the same file.
 3. Use the feature flag in code as you would use a regular configuration setting. In tests, manipulate the configuration value to test value changes, such as activation and deactivation, of the feature flag.
-4. Code may be merged regardless of setup in the management system. In this case it will always take the default value supplied in the SetDefaults function.
+4. Code may be merged regardless of setup in the management system. In this case it will always take the default value supplied in the `SetDefaults` function.
 5. Create a removal ticket for the feature flag. All feature flags should be removed as soon as they have been verified by Cloud. The ticket should encompass removal of the supporting code and archiving in the management system.
 
 ### Feature flag code guidelines
 
-- A ticket should be created to remove when a feature flag is added to remove the feature flag as soon as it isn't required anymore.
+- A ticket should be created when a feature flag is added to remove the feature flag as soon as it isn't required anymore.
 - Tests should be written to verify the feature flag works as expected. Note that in cases where there may be a migration or new data, off to on and on to off should both be tested.
 - Log messaged by the feature should include the feature flag tag, with the feature flag name as a value, in order to ease debugging.
 
 
 ## Deploying to split.io
 
-Deployments to the managment system are overseen by the cloud team. If you have any questions or need help with the process, please ask in the cloud channel.
+Deployments to the managment system are overseen by the Cloud team. If you have any questions or need help with the process, please ask in the cloud channel.
 
 1. When ready to deploy. Create the feature flag in split.io. The name of the feature flag should match the name of the split. Everything else can be left at defaults.
 2. Once created, set the treatment values appropriately. The defaults of "on" an "off" can work for most feature flags.
@@ -57,5 +57,4 @@ There are no hard rules on when a feature flag should be used. It is left up to 
 ## Examples of feature flags
 
 < add some examples when we create them >
-
 
