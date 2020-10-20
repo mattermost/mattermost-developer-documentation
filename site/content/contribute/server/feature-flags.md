@@ -22,14 +22,14 @@ Feature flags allow us to be more confident in shipping features continuously to
 
 - A ticket should be created when a feature flag is added to remove the feature flag as soon as it isn't required anymore.
 - Tests should be written to verify the feature flag works as expected. Note that in cases where there may be a migration or new data, off to on and on to off should both be tested.
-- Log messaged by the feature should include the feature flag tag, with the feature flag name as a value, in order to ease debugging.
+- Log messages by the feature should include the feature flag tag, with the feature flag name as a value, in order to ease debugging.
 
 
 ## Deploying to split.io
 
 Deployments to the managment system are overseen by the Cloud team. If you have any questions or need help with the process, please ask in the cloud channel.
 
-1. When ready to deploy. Create the feature flag in split.io. The name of the feature flag should match the name of the split. Everything else can be left at defaults.
+1. When ready to deploy the feature, create the feature flag (called a split) in split.io. The name of the feature flag should match the name of the split. Everything else can be left at defaults.
 2. Once created, set the treatment values appropriately. The defaults of "on" an "off" can work for most feature flags.
 3. When ready to deploy to cloud, set the targeting rules appropriately to slowly roll out as required. 
 
