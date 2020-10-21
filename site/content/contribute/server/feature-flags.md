@@ -37,6 +37,12 @@ Deployments to the managment system are overseen by the Cloud team. If you have 
 
 < Guidelines coming soon > 
 
+## On-prem releases
+
+For a feature flagged feature to be included in an on-prem release, the feature flag should be removed. 
+
+Feature flags are generally off by default and on-prem releases do not contact the management system. Therefore feature flags that are not ready for an on-prem release will be automatically disabled for all on-prem releases. 
+
 ## Testing
 
 Tests should be written to verify all states of the feature flag. Tests should cover any migrations that may take place in both directions (ie. from off to on and from on to off). 
