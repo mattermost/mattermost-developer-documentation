@@ -15,10 +15,15 @@ A macOS computer is required to build the Mattermost iOS mobile app.
 
 ### iOS and Android
 
-Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using <a href="https://brew.sh/" target="_blank">Homebrew</a> as a package manager.
+Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using [Homebrew](https://brew.sh) as a package manager.
 
-#### Install NodeJS
+#### Install Cygwin (Windows only)
+##### Windows 10
+- [Which versions of Windows does Cygwin support](https://cygwin.com/faq/faq.html#faq.what.supported)?
+- Install Cygwin from [here](https://www.cygwin.com/).
+- Make sure to install `make` and `patch` while installing Cygwin.
 
+#### Install [NodeJS](https://nodejs.org/en/)
 This includes NPM which is also needed.
 
 **Known working node versions: 12.18.x & 14.9.x**
@@ -40,7 +45,10 @@ Other installation options:
 -   Using NVM by following the instructions [here](https://github.com/creationix/nvm#install-script).
 -   Download and install the package from the [NodeJS website](https://nodejs.org/en).
 
-#### Install [Watchman](https://facebook.github.io/watchman
+##### Windows 10
+-   Download and install the package from the [NodeJS website](https://nodejs.org/en/)
+
+#### Install [Watchman](https://facebook.github.io/watchman)
 
 The minimum required version is 4.9.0.
 
@@ -56,14 +64,27 @@ The minimum required version is 4.9.0.
 
 - On Linux you have to build Watchman yourself. See the official [Watchman guide](https://facebook.github.io/watchman/docs/install.html#installing-from-source).
    - Note that you need to increase your `inotify` limits for Watchman to work properly.
-   - If you encounter a warning about a missing C++ compiler you need to install the c++ extension from your distro's package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++).
+   - If you encounter a warning about a missing C++ compiler you need to install the C++ extension from your distro's package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++).
 
-#### Install ```bundler --version 2.0.2``` gem
+##### Windows 10
+- Download the latest package from [here](https://github.com/facebook/watchman/releases/tag/v2020.07.27.00). Note that it's currently in Beta.
+#### Install `react-native-cli` tools
+
+```sh
+$ npm -g install react-native-cli
+```
+#### Install Ruby
+##### Windows 10
+- Install Ruby from [here](https://rubyinstaller.org/)
+#### Install Git
+##### Windows 10
+- Install git from [here](https://git-scm.com/download/win)
+
+#### Install `bundler --version 2.0.2` gem
 
 ```sh
 $ gem install bundler --version 2.0.2
 ```
-
 #### Obtaining the source code
 
 We use GitHub to host the source code so we recommend that you install [Git](https://git-scm.com/). Optionally, you can also contribute by submitting [pull requests](https://help.github.com/articles/creating-a-pull-request). If you do not have Git installed you can do so with Homebrew by opening a terminal and executing:
