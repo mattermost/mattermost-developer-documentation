@@ -1,50 +1,112 @@
 ---
 title: "Build the Android App"
 date: 2018-05-20T11:35:32-04:00
-weight: 4
+weight: 1
 subsection: Build Your Own App
 ---
 
-To distribute your Android application via the Google Play Store, you'll need to generate a signed release APK as Android requires all apps to be digitally signed with a certificate before they can be installed.
+At times, you may want to build your own Mattermost mobile app. The most common use cases are:
 
-#### Generating a Signing Key
+* To white label the Mattermost mobile app.
+* To use your own deployment of the Mattermost Push Notification Service (always required if you are building your own version of the mobile app).
 
-To generate the signed key, use **keytool** which comes with the JDK required to develop the Android app.
+# Build Preparations
+
+### 1. Package name and source files
+
+* Ensure the package ID of the mobile app remains the same as the one in the original [mattermost-mobile GitHub repository](https://github.com/mattermost/mattermost-mobile) in `com.mattermost.rnbeta`.
+* Source files for the main package remain under the `android/app/src/main/java/com/mattermost/rnbeta` folder.
+
+### 2. Generating a signing key
+
+As Android requires all apps to be digitally signed with a certificate before they can be installed building the Android app for distribution requires the release APK to be signed.
+
+To generate the signed key, use **keytool** which comes with the JDK required to develop the Android app. (see [Developer Setup](/contribute/mobile/developer-setup/#additional-setup-for-android)).
 
 ```sh
-$ keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
+$ keytool -genkey -v -keystore <my-release-key>.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
 ```
 
-The above command prompts you for passwords for the keystore and key (make sure you use the same password for both), and asks you to provide the Distinguished Name fields for your key. It then generates the keystore as a file called my-release-key.keystore.
+The above command prompts you for passwords for the keystore and key (make sure you use the same password for both), and asks you to provide the Distinguished Name fields for your key. It then generates the keystore as a file called `<my-release-key>.keystore`.
 
 The keystore contains a single key, valid for 10000 days. The alias is a name that you will use later when signing your app, so remember to take a note of the alias.
 
-**Remember to keep your keystore file private and never commit it to version control.**
+---
+**Note:**
+* Replace `<my-release-key>` with the filename you want to specify.
+* Remember to keep your keystore file private and never commit it to version control.
+---
 
-#### Setting up Gradle Variables
+### 3. Create a new app in Google Play
 
-- Place the *my-release-key.keystore* file under a directory that you can access. It can be in your home directory or even under *android/app* in the project folder so long as it is not checked in.
-- Edit the file \~/.gradle/gradle.properties, or create it if one does not exist, and add the following:
+Create a new application using the [Google Play console](https://play.google.com/console/developers). If you already have an app registered in the Google Play console you can skip this step.
+
+### 4. Setting up Gradle Variables {#gradle}
+
+Now that we have created the keystore file we can tell the build process to use that file:
+
+- Copy or move the `my-release-key.keystore` file under a directory that you can access. It can be in your home directory or anywhere in the file system.
+- Edit the `gradle.properties` file in your `$HOME` directory (e.g. `$HOME/.gradle/gradle.properties`), or create it if one does not exist, and add the following:
 
     ```sh
     MATTERMOST_RELEASE_STORE_FILE=/full/path/to/directory/containing/my-release-key.keystore
     MATTERMOST_RELEASE_KEY_ALIAS=my-key-alias
     MATTERMOST_RELEASE_PASSWORD=*****
     ```
+---
+**Note:**
+* Replace `/full/path/to/directory/containing/my-release-key.keystore` with the full path to the actual keystore file and `********` with the actual keystore password.
+* Back up your keystore and don't forget the password.
+---
+---
+**Important:**
 
-**Replace `/full/path/to/directory/containing/my-release-key.keystore` with the full path to the actual keystore file and `\********` with the actual keystore password.**
+Once you publish the app on the Play Store, the app needs to be signed with the same key every time you want to distriibute a new build. If you lose this key, you will need to republish your app under a different package id (losing all downloads and ratings).
 
-**Once you publish the app on the Play Store, you will need to republish your app under a different package id (losing all downloads and ratings) if you change the signing key at any point.**
+---
 
-**Backup your keystore and don't forget the password.**
+### 5. Configure environment variables
 
+To make it easier to customize your build, we've defined a few environment variables that are going to be used by Fastlane during the build process.
 
-#### Building the App
+| Variable            | Description                                | Default    | Required      |
+|---------------------|--------------------------------------------|------------|---------------|
+| `COMMIT\_CHANGES\_TO\_GIT` | Should the Fastlane script ensure that there are no changes to Git before building the app and that every change made during the build is committed back to Git. <br><br>Valid values are: `true`, `false` | `false` | No |
+| `BRANCH\_TO\_BUILD` | Defines the Git branch that is going to be used for generating the build. <br><br>**Make sure that, if this value is set, the branch it is set to exists**.| `$GIT_BRANCH` | No |
+| `GIT\_LOCAL\_BRANCH` | Defines the local branch to be created from `BRANCH\_TO\_BUILD` to ensure the base branch does not get any new commits on it. <br><br>**Make sure a branch with this name does not yet exist in your local Git repository**. | build | No |
+| `RESET\_GIT\_BRANCH` | Defines if, once the build is done, the branch should be reset to the initial state before building and whether to also delete the branch created to build the app. <br><br>Valid values are: `true`, `false` | `false` | No |
+| `VERSION\_NUMBER `| Set the version of the app at build time to a specific value, rather than using the one set in the project. |  | No |
+| `INCREMENT\_VERSION\_<br>NUMBER\_MESSAGE` | Set the commit message when changing the app version number. | Bump app version number to | No |
+| `INCREMENT\_BUILD\_NUMBER` | Defines if the app build number should be incremented. <br><br>Valid values are: `true`, `false` | `false` | No |
+| `BUILD\_NUMBER` | Set the build number of the app at build time to a specific value, rather than incrementing the last build number. |  | No |
+| `INCREMENT\_BUILD\_<br>NUMBER\_MESSAGE` | Set the commit message when changing the app build number. | Bump app build number to | No |
+| `APP\_NAME` | The name of the app as it is going to be shown on the device home screen. | Mattermost Beta | Yes |
+| `APP\_SCHEME` | The URL naming scheme for the app as used in direct deep links to app content from outside the app. | mattermost | No |
+| `REPLACE\_ASSETS` | Override the assets as described in [White Labeling](contribute/mobile/build-your-own/white-label/). <br><br>Valid values are: `true`, `false` | `false` | No |
+| `MAIN\_APP\_IDENTIFIER` | The package identifier for the app. | | Yes |
+| `BUILD\_FOR\_RELEASE` | Defines if the app should be built in release mode. <br><br>Valid values are: `true`, `false` <br><br>**Make sure you set this value to true if you plan to submit this app Google Play or distribute it in any other way**. | `false` | Yes |
+| `SEPARATE\_APKS` | Build one APK per achitecture (armeabi-v7a, x86, arm64-v8a and x86_64) as well as a universal APK. The advantage is the size of the APK is reduced by about 4MB. <br><br>People will download the correct APK from the Play Store based on the CPU architecture of their device. | `false` | Yes |
+| `SUBMIT\_ANDROID\_TO\_<br>GOOGLE\_PLAY` | Should the app be submitted to the Play Store once it finishes building, use along with `SUPPLY\_TRACK`.<br><br>Valid values are: `true`, `false` | `false` | Yes |
+| `SUPPLY\_TRACK` | The track of the application to use when submitting the app to Google Play Store. Valid values are: `alpha`, `beta`, `production` <br><br>**RIt is not recommended to submit the app to production. First try any of the other tracks and then promote your app using the Google Play console**. | `alpha` | Yes |
+| `SUPPLY\_PACKAGE\_NAME` | The package Id of your application, make sure it matches `MAIN\_APP\_IDENTIFIER`. |  | Yes |
+| `SUPPLY\_JSON\_KEY` | The path to the service account `json` file used to authenticate with Google.<br><br>See the [Supply documentation]( https://docs.fastlane.tools/actions/supply/#setup) to learn more. |  | Yes |
+
+---
+**Note:**
+To configure your variables create the file `./mattermost-mobile/fastlane/.env` where `.env` is the filename. You can find the sample file `env_vars_example` [here](https://github.com/mattermost/mattermost-mobile/blob/master/fastlane/env_vars_example).
+
+---
+
+### 6. Google Services
+
+Replace the `google-services.json` file as instructed in the [Android Push Notification Guide](/contribute/mobile/push-notifications/android/) before you build the app.
+
+## Building the App
 
 Once all the previous steps are done, execute the following command from within the project's directory:
 
 ```sh
-$ make build-android
+$ npm run build:android
 ```
 
-This will start the build process following the environment variables you've set. Once it finishes, it will create an *.apk* file with the `APP_NAME` as the filename in the project's root directory. If you have not set Fastlane to submit the app to the Play Store, you can use this file to manually publish and distribute the app.
+This will start the build process following the environment variables you've set. Once it finishes, it will create the `.apk` file(s) with the `APP_NAME` as the filename in the project's root directory. If you have not set Fastlane to submit the app to the Play Store, you can use this file to manually publish and distribute the app.
