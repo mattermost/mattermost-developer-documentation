@@ -68,8 +68,8 @@
                     </ul>
                     <h6>Categories</h6>
                     <ul class="list-unstyled">
-                        {{ range .Site.Taxonomies.categories }}
-                        <li class="blog-item__sidebar"> - <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+                        {{ range .Params.categories }}
+                    <li>- <a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}">{{ . }}</a></li>
                         {{ end }}   
                     </ul>
                 </div>
