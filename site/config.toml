@@ -9,7 +9,6 @@ pygmentsStyle = "manni"
 
 [taxonomies]
   category = "categories"
-  tag = "tags"
 
 [params]
   # Meta
