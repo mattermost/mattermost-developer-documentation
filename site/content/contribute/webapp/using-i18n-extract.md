@@ -24,7 +24,7 @@ NOTE: These steps apply for the `mattermost-webapp` repository only.
 
 ![image](/img/i18n-extract-3.jpg)
 
-5. At this point you will need to execute the `make i18n-extract` once again and determine if the extraction was successful.  This will generate a message in the `i18n/en.json` file. However, this is not going to extract the "default message", you will have to add this yourself. See example below: 
+5. At this point you will need to execute the `make i18n-extract` once again and determine if the extraction was successful.  This will generate a message in the `i18n/en.json` file. However, this is not going to extract the "default message", you will have to add this yourself. See example below:
 
 ![image](/img/i18n-extract-4.jpg)
 
