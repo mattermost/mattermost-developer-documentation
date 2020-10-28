@@ -37,7 +37,7 @@ This command does two things when first run:
 ## Automation concept and quirks
 
 - Use the passphrase to decrypt the encrypted keys which are encrypted at rest
-- The `DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE` environment variable to decrypt the key for automation usage is not just for the repository key, it is also for the signer key and root key
+- The `DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE` environment variable to decrypt the key for automation usage is not just for the repository key, it's also for the signer key and root key
 - The keys can only be used one at a time (multiple keys cannot be loaded at the same time, as opposed to e.g. gpg keyring concept)
 - The keys should be located in `$HOME/.docker/trust/private/*` otherwise automated loading of keys fails
 - Should you use `$` or `!` in the passphrases and use them as GitLab CI/CD secret variables, be aware that these characters need to be [escaped](https://stackoverflow.com/questions/48870664/escape-char-in-gitlab-secret-variables)
