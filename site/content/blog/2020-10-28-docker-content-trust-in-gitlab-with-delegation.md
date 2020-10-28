@@ -20,8 +20,8 @@ The following is the boiled down version of what I learned and wished for starti
 
 - Docker version: 19.03.12
 - root `*.key` + `passphrase` for the Docker Content Trust
-- delegation/signer `private key *.key` + `public key *.pub`+ passphrase for the delegated person/bot, who should sign the `repository/image:tag`
-- Please make sure you have your keys backed up and versioned
+- delegation/signer `private key *.key` + `public key *.pub` + passphrase for the delegated person/bot, who should sign the `repository/image:tag`
+- Please make sure you have your keys backed up and versioned.
 
 ## Create a signed repository and add signer
 
