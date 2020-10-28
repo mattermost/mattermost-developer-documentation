@@ -42,7 +42,7 @@ This command does two things when first run:
 - The keys should be located in `$HOME/.docker/trust/private/*` otherwise automated loading of keys fails
 - Should you use `$` or `!` in the passphrases and use them as GitLab CI/CD secret variables, be aware that these characters need to be [escaped](https://stackoverflow.com/questions/48870664/escape-char-in-gitlab-secret-variables)
 
-## Automation of pushing signed image:tag in gitlab
+## Automation of pushing signed `image:tag` in GitLab
 
 ```yaml
 dockerhub-edge:
