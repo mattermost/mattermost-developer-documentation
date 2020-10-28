@@ -31,16 +31,16 @@ docker trust signer add --key public-key-of-signer.pub signer-name registry/comp
 ```
 This will ask you for the root key passphrase and needs the encrypted root key locally in `$HOME/.docker/trust/private/ROOT_KEY_HASH.key`.
 This command does two things when first run:
-1. Upgrades the Docker repository to use Docker Content Trust and therefore creates a new key. You need to input a newly-generated passphrase (please back up and version)
-1. Adds the signer named `signer-name` to be allowed to sign new tags pushed
+1. Upgrades the Docker repository to use Docker Content Trust and therefore creates a new key. You need to input a newly-generated passphrase (please back up and version).
+1. Adds the signer named `signer-name` to be allowed to sign new tags pushed.
 
 ## Automation concept and quirks
 
-- Use the passphrase to decrypt the encrypted keys which are encrypted at rest
-- The `DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE` environment variable to decrypt the key for automation usage is not just for the repository key, it's also for the signer key and root key
-- The keys can only be used one at a time (multiple keys cannot be loaded at the same time, as opposed to e.g. gpg keyring concept)
-- The keys should be located in `$HOME/.docker/trust/private/*` otherwise automated loading of keys fails
-- Should you use `$` or `!` in the passphrases and use them as GitLab CI/CD secret variables, be aware that these characters need to be [escaped](https://stackoverflow.com/questions/48870664/escape-char-in-gitlab-secret-variables)
+- Use the passphrase to decrypt the encrypted keys which are encrypted at rest.
+- The `DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE` environment variable to decrypt the key for automation usage is not just for the repository key, it's also for the signer key and root key.
+- The keys can only be used one at a time (multiple keys cannot be loaded at the same time, as opposed to e.g. gpg keyring concept).
+- The keys should be located in `$HOME/.docker/trust/private/*` otherwise automated loading of keys fails.
+- Should you use `$` or `!` in the passphrases and use them as GitLab CI/CD secret variables, be aware that these characters need to be [escaped](https://stackoverflow.com/questions/48870664/escape-char-in-gitlab-secret-variables).
 
 ## Automation of pushing signed `image:tag` in GitLab
 
@@ -81,8 +81,8 @@ dockerhub-edge:
 
 ## Advanced image signing features
 
-The CLI command `docker trust` is a wrapper for [notary](https://github.com/theupdateframework/notary).
-If you are looking for advanced features, you might consider looking at notary.
+If you are looking for advanced features, you might consider looking at [notary](https://github.com/theupdateframework/notary).
+The CLI command `docker trust` is a wrapper for notary.
 
 ## Sources
 
