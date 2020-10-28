@@ -31,7 +31,7 @@ docker trust signer add --key public-key-of-signer.pub signer-name registry/comp
 ```
 This will ask you for the root key passphrase and needs the encrypted root key locally in `$HOME/.docker/trust/private/ROOT_KEY_HASH.key`.
 This command does two things when first run:
-1. Upgrades the docker repository to use Docker Content Trust and therefore creates a new key, and you need to input a newly generated passphrase (Please back up and version)
+1. Upgrades the Docker repository to use Docker Content Trust and therefore creates a new key. You need to input a newly-generated passphrase (please back up and version)
 1. Adds the signer named `signer-name` to be allowed to sign new tags pushed
 
 ## Automation concept and quirks
