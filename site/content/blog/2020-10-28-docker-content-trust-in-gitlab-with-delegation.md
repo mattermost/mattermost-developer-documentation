@@ -63,7 +63,7 @@ dockerhub-edge:
     - chmod 600 $DCT_SIGNER_PRIV_KEY
     - cp $DCT_SIGNER_PRIV_KEY $PATH_KEYS/$SIGNER_KEY_NAME.key # GitLab CI variable type file
 
-    - export DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE=$DCT_SIGNER_PASS # gitlab ci variable type variable
+    - export DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE=$DCT_SIGNER_PASS # GitLab CI variable type variable
     - docker trust key load $PATH_KEYS/$SIGNER_KEY_NAME.key
     - docker trust sign ${IMAGE}:${TAG}
     - docker push ${IMAGE}:${TAG}
