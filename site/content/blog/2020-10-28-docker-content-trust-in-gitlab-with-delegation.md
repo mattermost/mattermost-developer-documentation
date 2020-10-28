@@ -48,7 +48,7 @@ This command does two things when first run:
 dockerhub-edge:
   variables:
     URL: docker.io
-    USERNAME: $DOCKER_HUB_USERNAME # gitlab ci variable type variable
+    USERNAME: $DOCKER_HUB_USERNAME # GitLab CI variable type variable
     TOKEN: $DOCKER_HUB_TOKEN # GitLab CI variable type variable
     IMAGE: $URL/mattermost/${CI_PROJECT_NAME}
     TAG: edge
