@@ -61,7 +61,7 @@ dockerhub-edge:
     - PATH_KEYS=$HOME/.docker/trust/private
     - mkdir -p $PATH_KEYS
     - chmod 600 $DCT_SIGNER_PRIV_KEY
-    - cp $DCT_SIGNER_PRIV_KEY $PATH_KEYS/$SIGNER_KEY_NAME.key # gitlab ci variable type file
+    - cp $DCT_SIGNER_PRIV_KEY $PATH_KEYS/$SIGNER_KEY_NAME.key # GitLab CI variable type file
 
     - export DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE=$DCT_SIGNER_PASS # gitlab ci variable type variable
     - docker trust key load $PATH_KEYS/$SIGNER_KEY_NAME.key
