@@ -192,7 +192,7 @@ If your action is wrapping an API call, there's a few things that you will need 
     }
     ```
 4. Make the necessary changes to the reducers to handle your action as well as adding a reducer to update the `requests` section of the store. In most cases, you can use the `handleRequest` and `initialRequestState` helper functions to construct the reducer for you. More information about reducers is available [here](/contribute/redux/reducers).
-    ```
+    ```javascript
     function getUser(state = initialRequestState(), action) {
         return handleRequest(
             UserTypes.USER_REQUEST,
