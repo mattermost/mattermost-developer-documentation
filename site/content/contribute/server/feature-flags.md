@@ -37,7 +37,7 @@ Deployments to the managment system are overseen by the Cloud team. If you have 
 
 The feature flag is initially “off” and will be rolled out slowly. Note: this is an initial guideline and can be further iterated on over time.
 
- - 1st week after feature is merged (T-30): 10% rollout to test servers; no rollout to customers.
+ - 1st week after feature is merged (T-30): 10% rollout; only to test servers, no rollout to customers.
  - 2nd week (T-22): 50% rollout; rollout to some customers (excluding big customers and newly signed-up customers); no major bugs in test servers.
  - 3rd week (T-15): 100% rollout; no major bugs from customers or test servers. 
  - End of 3rd week (T-8): Remove flag. Feature is production ready and not experimental.
