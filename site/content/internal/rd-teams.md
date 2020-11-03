@@ -68,40 +68,42 @@ Platform Teams are focused on an individual technical specialisation or layer of
 
 ### Mobile Platform Team
 
-* Elias Nahum - Eng Lead
+* Elias Nahum - Engineering Lead
 * Miguel Alatzar - Engineer
-* Amit Uttam - Engineer
-* Eric Sethna - PM
+* Avinash Lingaloo - Engineer
+* Shaz Amjad - Engineer
+* Eric Sethna - Product Manager
+* Joseph Baylon - QA SDET
 * Matt Birtch - UX Designer
 
 ### Web & Desktop Platform Team
 
-* Dean Whillier - Eng Lead
+* Dean Whillier - Engineering Lead
 * Harrison Healey - Engineer
 * Sudheer Timmaraju - Engineer
 * Devin Binnie - Engineer
 * Guillermo Vayá - Engineer
 * Nevy Angelova - Engineer
-* Caleb Roseland - Engineer
-* Eric Sethna - PM (Driving NPS)
-* Adam Clarkson - PM (Driving Early Retention)
+* Eric Sethna - Product Manager
+* Jelena Gilliam - QA
 * Andrew Brown - UX Designer
 
 ### Server Platform Team
 
-* George Goldberg - Eng Lead
+* George Goldberg - Engineering Lead
 * Miguel de la Cruz - Engineer
 * Claudio Costa - Engineer
 * Agniva De Sarker - Engineer
 * Doug Lauder - Engineer
 * Ibrahim Acikgoz - Engineer
-* Dennis Kitrell - PM
+* Dennis Kitrell - Product Manager
 
 ### Cloud Platform Team
 
-* Joram Wilander - Eng Lead
+* Joram Wilander - Engineering Lead
 * Gabe Jackson - Engineer
 * Ian Whitlock - Engineer
+* Szymon Gibała - Engineer
 * Adam Clarkson - Product Manager
 
 ### QA Platform Team
@@ -133,4 +135,4 @@ Platform Teams are focused on an individual technical specialisation or layer of
 
 ## Other
 
-* Amy Blais - Release Manager/PM
+* Amy Blais - Release Manager
