@@ -65,7 +65,7 @@ Feature teams are full-stack teams owning collections of features within the Mat
 * Nick Misasi - Engineer
 * Eric Sadur - Product Manager
 * Steve Mudie - QA 
-* Matt Birch - UX Designer
+* Matt Birtch - UX Designer
 
 ## Platform Teams
 
