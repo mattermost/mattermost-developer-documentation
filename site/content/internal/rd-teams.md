@@ -63,6 +63,9 @@ Feature teams are full-stack teams owning collections of features within the Mat
 * Maria Nuñez - Engineering Lead
 * Mario de Frutos - Engineer
 * Nick Misasi - Engineer
+* Eric Sadur - Product Manager
+* Steve Mudie - QA 
+* Matt Birch - UX Designer
 
 ## Platform Teams
 
