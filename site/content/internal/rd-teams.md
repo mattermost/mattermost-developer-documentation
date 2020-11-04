@@ -19,7 +19,9 @@ Feature teams are full-stack teams owning collections of features within the Mat
 * Scott Bishel - Engineering Lead
 * Martin Kraft - Engineeer
 * Hossein Ahmadian - Engineer
+* Anurag Shivarathri - Engineer
 * Dennis Kittrell - Product Manager
+* Furqan Malik - QA SDET
 * Michael Gamble - UX Designer
 * Justine Geffen - Technical Writer
 
