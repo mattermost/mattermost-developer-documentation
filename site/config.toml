@@ -7,6 +7,9 @@ publishDir = "../docs"
 pygmentsCodeFences = true
 pygmentsStyle = "manni"
 
+[taxonomies]
+  category = "categories"
+
 [params]
   # Meta
   author = ""

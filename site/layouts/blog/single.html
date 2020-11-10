@@ -66,6 +66,12 @@
                         {{ end }}
                         {{ end }}
                     </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        {{ range .Params.categories }}
+                    <li>- <a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}">{{ . }}</a></li>
+                        {{ end }}   
+                    </ul>
                 </div>
             </div>
         </div>
