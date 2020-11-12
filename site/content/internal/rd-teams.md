@@ -23,7 +23,6 @@ Feature teams are full-stack teams owning collections of features within the Mat
 * Dennis Kittrell - Product Manager
 * Furqan Malik - QA SDET
 * Michael Gamble - UX Designer
-* Justine Geffen - Technical Writer
 
 ### Core Features Team
 
@@ -35,7 +34,6 @@ Feature teams are full-stack teams owning collections of features within the Mat
 * Eric Sethna - Product Manager
 * Ogi Marusic - QA
 * Andrew Brown - UX Designer
-* Justine Geffen - Technical Writer
 
 ### Integrations Team
 
@@ -48,6 +46,7 @@ Feature teams are full-stack teams owning collections of features within the Mat
 * Daniel Espino Garcia - Engineer
 * Aaron Rothschild - Product Manager
 * Dylan Haussermann - QA
+* Justine Geffen - Technical Writer
 
 ### Workflows Team
 
@@ -57,6 +56,7 @@ Feature teams are full-stack teams owning collections of features within the Mat
 * Alejandro García Montoro - Engineer
 * Ian Tao - Product Manager
 * Prapti Shrestha - QA SDET
+* Justine Geffen - Technical Writer
 
 ### Cloud Features Team
 
