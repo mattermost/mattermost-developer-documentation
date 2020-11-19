@@ -9,112 +9,135 @@ weight: 110
 
 * Corey Hulen - CTO
 * Chris Overton - VP Engineering
-* Lindsay Brock - Head of Product
+* Chandar Venkataraman - CPO
 
-## Mobile Team
+## Feature Teams
+Feature teams are full-stack teams owning collections of features within the Mattermost product.
 
-* Elias Nahum - Eng Lead
-* Miguel Alatzar - Engineer
-* Amit Uttam - Engineer
-* Eric Sethna - PM
-* Matt Birtch - UX Designer
+### Enterprise Features Team
 
-## Apps Team
+* Scott Bishel - Engineering Lead
+* Martin Kraft - Engineeer
+* Hossein Ahmadian - Engineer
+* Anurag Shivarathri - Engineer
+* Dennis Kittrell - Product Manager
+* Furqan Malik - QA SDET
+* Michael Gamble - UX Designer
 
-* Dean Whillier - Eng Lead
-* Harrison Healey - Engineer
-* Sudheer Timmaraju - Engineer
-* Devin Binnie - Engineer
-* Guillermo Vayá - Engineer
-* Nevy Angelova - Engineer
+### Core Features Team
+
+* Scott Bishel - Engineering Lead
+* Jesus Espino - Engineer
+* Eli Yukelzon - Engineer
+* Ashish Bhate - Engineer
 * Caleb Roseland - Engineer
-* Eric Sethna - PM (Driving NPS)
-* Adam Clarkson - PM (Driving Early Retention)
+* Eric Sethna - Product Manager
+* Ogi Marusic - QA
 * Andrew Brown - UX Designer
 
-## Cloud Team
+### Integrations Team
 
-* Joram Wilander - Eng Lead
-* Carlos Panato - SRE
-* Gabe Jackson - Engineer
-* Stylianos Rigas - SRE
-* Ian Whitlock - Engineer
-* Gabriel Sagula - Engineer
-* Angelos Kyratzakos - SRE
-* Katie Wiersgalla - PM (Cloud)
-* Eric Sadur - PM (Self-serve)
-* Matt Birtch - UX Designer
-* Justine Geffen - Technical Writer
-
-## Build & Infrastructure Team
-
-* Jason Deland - Engineer Lead
-* Elisabeth Kulzer - Build Engineer
-
-## Integrations Team
-
-* Lev Brouk - Eng Lead
+* Catalin Tomai - Engineering Lead
+* Lev Brouk - Engineer
 * Jason Frerich - Engineer
 * Michael Kochell - Engineer
 * Shota Gvinepadze - Engineer
 * Ben Schumacher - Engineer
 * Daniel Espino Garcia - Engineer
-* Aaron Rothschild - PM
+* Aaron Rothschild - Product Manager
 * Dylan Haussermann - QA
-* Asaad Mahmood - UX Designer
+* Justine Geffen - Technical Writer
 
-## Platform Team
+### Workflows Team
 
-* George Goldberg - Eng Lead
-* Jesus Espino - Engineer
+* Jesse Hallam - Engineering Lead
+* Christopher Speller - Engineer
+* Christopher Poile - Engineer
+* Alejandro García Montoro - Engineer
+* Ian Tao - Product Manager
+* Prapti Shrestha - QA SDET
+* Justine Geffen - Technical Writer
+
+### Cloud Features Team
+
+* Maria Nuñez - Engineering Lead
+* Mario de Frutos - Engineer
+* Nick Misasi - Engineer
+* Adam Clarkson - Product Manager
+* Steve Mudie - QA 
+* Matt Birtch - UX Designer
+
+## Platform Teams
+
+Platform Teams are focused on an individual technical specialisation or layer of the Mattermost software stack.
+
+### Mobile Platform Team
+
+* Elias Nahum - Engineering Lead
+* Miguel Alatzar - Engineer
+* Avinash Lingaloo - Engineer
+* Shaz Amjad - Engineer
+* Eric Sethna - Product Manager
+* Joseph Baylon - QA SDET
+* Matt Birtch - UX Designer
+
+### Web & Desktop Platform Team
+
+* Dean Whillier - Engineering Lead
+* Harrison Healey - Engineer
+* Sudheer Timmaraju - Engineer
+* Devin Binnie - Engineer
+* Guillermo Vayá - Engineer
+* Nevy Angelova - Engineer
+* Eric Sethna - Product Manager
+* Jelena Gilliam - QA
+* Andrew Brown - UX Designer
+
+### Server Platform Team
+
+* George Goldberg - Engineering Lead
 * Miguel de la Cruz - Engineer
-* Eli Yukelzon - Engineer
 * Claudio Costa - Engineer
 * Agniva De Sarker - Engineer
-* Mario de Frutos - Engineer
 * Doug Lauder - Engineer
 * Ibrahim Acikgoz - Engineer
-* Katie Wiersgalla - PM
+* Dennis Kitrell - Product Manager
+
+### Cloud Platform Team
+
+* Joram Wilander - Engineering Lead
+* Gabe Jackson - Engineer
+* Ian Whitlock - Engineer
+* Szymon Gibała - Engineer
+* Adam Clarkson - Product Manager
+
+### QA Platform Team
+
+* Linda Mitchell - QA Lead
+* Saturnino Abril - QA SDET
 * Lindy Isherwood - QA
-* Justine Geffen - Technical Writer
+
+## Site Reliability Engineering Team
+
+* Joram Wilander - Engineering Lead
+* Carlos Panato - Engineer
+* Stylianos Rigas - Engineer
+* Angelos Kyratzakos - Engineer
+* Stavros Foteinopoulos - Engineer
+
+## Build & Infrastructure Team
+
+* Jason Deland - Engineering Lead
+* Elisabeth Kulzer - Build Engineer
+* Khosrow Moossavi - Build Engineer
 
 ## Security Team
 
-* Daniel Schalla - Eng Lead
-* Juho Nurminen - Product Sec. Engineer
-* Corey Robinson - Sec. Engineer, Infra & Ops
-* Katie Wiersgalla - PM
-
-## Workflows Team
-
-* Jesse Hallam - Eng Lead
-* Christopher Speller - Engineer
-* Christopher Poile - Engineer
-* Ali Farooq - Engineer
-* Maria Nuñez - Engineer
-* Alejandro García Montoro - Engineer
-* Ian Tao - PM
-* Prapti Shrestha - QA SDET
-* Asaad Mahmood - UX Designer
-
-## Enterprise Team
-* Scott Bishel - Eng Lead
-* Martin Kraft - Engineeer
-* Catalin Tomai - Engineer
-* Hossein Ahmadian - Engineer
-* Farhan Munshi - Engineer
-* Dennis Kittrell - PM
-* Michael Gamble - UX Designer
-* Rohitesh Gupta - QA SDET
-* Justine Geffen - Technical Writer
+* Daniel Schalla - Engineering Lead
+* Juho Nurminen - Product Security Engineer
+* Corey Robinson - Security Engineer, Infrastructure & Operations
+* Katie Wiersgalla - Product Manager
 
 ## Other
 
-* Amy Blais - Release Manager/PM
-* Eric Sadur - Customer Journey PM
-* Linda Mitchell - QA Lead
-* Saturnino Abril - QA SDET
-* Joseph Baylon - QA SDET
-* Jelena Gilliam - QA
-* Ogi Marusic - QA
-* Steve Mudie - QA
+* Amy Blais - Release Manager
