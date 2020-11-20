@@ -1,11 +1,16 @@
 # Page settings
-baseURL = ""
-relativeURLs = true
+baseURL = "https://developers.mattermost.com/"
+canonifyURLs = true
+#relativeURLs = true
+
 title = "Mattermost Developers"
 languageCode = "en-us"
 publishDir = "../docs"
 pygmentsCodeFences = true
 pygmentsStyle = "manni"
+
+[taxonomies]
+  category = "categories"
 
 [params]
   # Meta
