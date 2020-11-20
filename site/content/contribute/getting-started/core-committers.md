@@ -26,7 +26,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Mobile / Desktop and Web apps
 - **<a name="elias.nahum">Elias Nahum</a>**
     - @elias on [community.mattermost.com](https://community.mattermost.com/core/messages/@elias) and [@enahum](https://github.com/enahum) on GitHub
-    - Dev areas: Mobile / Desktop and Web apps
+    - Dev areas: Mobile apps
 - **<a name="george.goldberg">George Goldberg</a>**
     - @george on [community.mattermost.com](https://community.mattermost.com/core/messages/@george) and [@grundleborg](https://github.com/grundleborg) on GitHub
     - Dev areas: Import/Export (Slack, Bulk Loading, etc.), Diagnostics/Telemetry, Search, Permissions
@@ -67,7 +67,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Desktop / Web and Mobile apps
 - **<a name="miguel.alatzar">Miguel Alatzar</a>**
     - @miguel.alatzar on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.alatzar) and [@migbot](https://github.com/migbot) on GitHub
-    - Dev areas: Mobile / Desktop and Web apps
+    - Dev areas: Mobile apps
 - **<a name="Miguel de la Cruz">Miguel de la Cruz</a>**
     - @miguel.delacruz on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.delacruz) and [@mgdelacroix](https://github.com/mgdelacroix) on GitHub
     - Dev areas: Elasticsearch, Web App, Server
@@ -164,6 +164,12 @@ Below is the list of core committers working on Mattermost:
 - **<a name="rvillablanca">Rodrigo Villablanca</a>**
     - @rvillablanca on [community.mattermost.com](https://community.mattermost.com/core/messages/@rvillablanca) and [@rvillablanca](https://github.com/rvillablanca) on GitHub
     - Dev areas: Server, Store Layer
+- **<a name="shaz.amjad">Shaz Amjad</a>**
+    - @shaz.amjad on [community.mattermost.com](https://community.mattermost.com/core/messages/@shaz.amjad) and [@shazm](https://github.com/shazm) on GitHub
+    - Dev areas: Mobile apps
+- **<a name="avinash.lingaloo">Avinash Lingaloo</a>**
+    - @avinash.lingaloo on [community.mattermost.com](https://community.mattermost.com/core/messages/@avinash.lingaloo) and [@avinashlng1080](https://github.com/avinashlng1080) on GitHub
+    - Dev areas: Mobile apps
  
 
 Core Developers
