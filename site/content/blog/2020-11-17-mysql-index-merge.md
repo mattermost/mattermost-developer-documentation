@@ -9,13 +9,13 @@ github: agnivade
 community: agnivade
 ---
 
-Optimizing SQL queries are always fun, except when they aren't. If you are a MySQL veteran and have read the title, you already know where this is heading 😉. In that case, allow me to regale the uninitiated reader.
+Optimizing SQL queries is always fun, except when it isn't. If you're a MySQL veteran and have read the title, you already know where this is heading 😉. In that case, allow me to regale the uninitiated reader.
 
 This is the story of an (apparently) smart optimization to a SQL query that backfired spectacularly and how we finally fixed it.
 
 ### Act I: A slow query
 
-It started off with a customer complaining that a SQL query is running slowly in their environment. The query was:
+It started off with a customer noticing that a SQL query was running slowly in their environment. The query was:
 
 ```sql
 SELECT Id FROM Posts WHERE ChannelId = '9tne5g44z7f1zn4z1whebb7jna'
@@ -37,7 +37,7 @@ EXPLAIN SELECT Id FROM Posts WHERE ChannelId = '9tne5g44z7f1zn4z1whebb7jna' AND 
 1 row in set (0.06 sec)
 ```
 
-This was taking several minutes to run in their environment, and apparently, if they `USE INDEX (idx_posts_channel_id_delete_at_create_at)`, it runs in less than a second. From the above `EXPLAIN` output, we can see that it is choosing the `idx_posts_create_at` index, whereas choosing `idx_posts_channel_id_delete_at_create_at` is clearly the better one.
+This was taking several minutes to run in their environment, and apparently, if they `USE INDEX (idx_posts_channel_id_delete_at_create_at)`, it ran in less than a second. From the above `EXPLAIN` output, we can see that it is choosing the `idx_posts_create_at` index, whereas choosing `idx_posts_channel_id_delete_at_create_at` is clearly the better one.
 
 Before we dive any further, let us look at the table schema and layout.
 
@@ -67,7 +67,7 @@ CREATE TABLE `Posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 ```
 
-This is an abridged version of the `Posts` table for brevity. But it contains the essential elements for us to understand the problem. Our main columns of interest are `CreateAt`, `DeleteAt`, `UpdateAt`, and `ChannelId`. Each of them have their individual indices, and there are 2 additional multi-column indices. One having `ChannelId` and `UpdateAt`. Another involving `ChannelId`, `DeleteAt`, and `CreateAt`.
+This is an abridged version of the `Posts` table for brevity. But it contains the essential elements for us to understand the problem. Our main columns of interest are `CreateAt`, `DeleteAt`, `UpdateAt`, and `ChannelId`. Each of them have their individual indices, and there are two additional multi-column indices. One having `ChannelId` and `UpdateAt`. Another involving `ChannelId`, `DeleteAt`, and `CreateAt`.
 
 Now let's look into the query again.
 
@@ -77,13 +77,13 @@ SELECT Id FROM Posts WHERE ChannelId = 'x' AND DeleteAt = y AND CreateAt < z
 	LIMIT 1
 ```
 
-We are filtering the table with 3 columns- `ChannelId`, `DeleteAt`, and `CreateAt`. And then ordering by `CreateAt` and just getting the first row. It becomes clear why choosing the multi-column index is faster than choosing the one for `CreateAt`. Simply because the query filters with all 3 columns which leads to scanning a much smaller dataset. But then, why is MySQL choosing the wrong index in the first place? Using `USE INDEX` was the nuclear button which I didn't want to use unless there were no other options.
+We're filtering the table with three columns: `ChannelId`, `DeleteAt`, and `CreateAt`. And then ordering by `CreateAt` and just getting the first row. It becomes clear why choosing the multi-column index is faster than choosing the one for `CreateAt`. Simply because the query filters with all three columns which leads to scanning a much smaller dataset. But then, why is MySQL choosing the wrong index in the first place? Using `USE INDEX` was the nuclear button which I didn't want to use unless there were no other options.
 
-I wasn't able to reproduce the problem locally, so it was not possible to try different variations of the query. But after some googling, I had a pretty good theory of what was happening. It was the "ORDER BY" clause. MySQL tries to be smart and decides that although using the `CreateAt` index might have to scan through more rows, it avoids the sorting at the end. Whereas actually, using the multi-column index leads to scanning fewer rows, which gets sorted in practically no time at all.
+I wasn't able to reproduce the problem locally, so it wasn't possible to try different variations of the query. But after some googling, I had a pretty good theory of what was happening. It was the "ORDER BY" clause. MySQL tries to be smart and decides that although using the `CreateAt` index might have to scan through more rows, it avoids the sorting at the end. Whereas actually, using the multi-column index leads to scanning fewer rows, which gets sorted in practically no time at all.
 
 Now that we understand the problem, how can we coax MySQL into choosing the right index? Well, if MySQL is acting smart, we can outsmart it. What could possibly go wrong? Right?
 
-Since the choice of the index becomes dictated with the "ORDER BY" clause rather than the WHERE clause, what if we can include that decision in the "ORDER BY" clause itself? If we change `ORDER BY CreateAt` to `ORDER BY ChannelId, DeleteAt, CreateAt`, the query result remains exactly the same. Because `ChannelId` and `DeleteAt` are equality checks. But now MySQL goes- "Aha, now I have to sort by these 3 columns. So I better use the multi-column index". And that's exactly what we want!
+Since the choice of the index is dictated by the "ORDER BY" clause rather than the "WHERE" clause, what if we can include that decision in the "ORDER BY" clause itself? If we change `ORDER BY CreateAt` to `ORDER BY ChannelId, DeleteAt, CreateAt`, the query result remains exactly the same. Because `ChannelId` and `DeleteAt` are equality checks. But now MySQL goes- "Aha, now I have to sort by these three columns. So I'd better use the multi-column index". And that's exactly what we want!
 
 With much trepidation, I asked the customer to try out the result of:
 
@@ -128,7 +128,7 @@ This was strange. Instead of using an index, it was doing an `index_merge` of `i
 +----+-------------+-------+------------+-------+--------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------+-------+---------+----------+----------------------------------+
 ```
 
-As expected, the old query was selecting only `idx_posts_create_at`, but now the new query has decided to do something completely different. I wasn't too familiar with what was an index merge intersection, so I had to do some reading to understand what exactly was happening.
+As expected, the old query was selecting only `idx_posts_create_at`, but now the new query had decided to do something completely different. I wasn't too familiar with what an index merge intersection was, so I had to do some reading to understand what exactly was happening.
 
 Essentially, an index merge is an optimization, where multiple range scans are made with different indices, and the results are merged into one. There are different modes of merging the rows: intersection, union, and sort-union. From our `EXPLAIN` output, we see `Using intersect(idx_posts_channel_id,idx_posts_delete_at)`, which means it's doing an index merge intersection of the rows.
 
@@ -140,15 +140,15 @@ I immediately tried all the usual tricks of `ANALYZE TABLE` and `OPTIMIZE TABLE`
 SELECT Id FROM Posts WHERE ChannelId = 'x' AND DeleteAt = y AND CreateAt < z
 ```
 
-This was interesting. Because the `ORDER BY` doesn't come into play at all. Irrespective of the number of columns in `ORDER BY`, or even in the absence of it, MySQL chose an index merge. But as luck would have it, somehow in the customer's DB, only when the ORDER BY would have those 3 columns, it would go for the index merge. Otherwise, it would use the single `CreateAt` index.
+This was interesting. Because the "ORDER BY" doesn't come into play at all. Irrespective of the number of columns in "ORDER BY", or even in the absence of it, MySQL chose an index merge. But as luck would have it, somehow in the customer's DB, only when the "ORDER BY" would have those three columns, it would go for the index merge. Otherwise, it would use the single `CreateAt` index.
 
 On the bright side, the query was now simplified to a great extent. This is where things stood:
 
-- We are filtering the result by 3 columns; two of them are equality checks, and one is a range check.
-- We have individual indices for all 3 columns, and also a covering index including all 3 of them.
+- We're filtering the result by three columns; two of them are equality checks, and one is a range check.
+- We have individual indices for all three columns, and also a covering index including all three of them.
 - MySQL was choosing to do an index merge intersection of the `ChannelId` and `DeleteAt` indices rather than using the multi-column index.
 
-The general advice on the internet was to use a covering index for all the columns. But that's exactly what we already had, and MySQL was still hell bent on doing an index merge.
+The general advice on the internet was to use a covering index for all the columns. But that's exactly what we already had, and MySQL was still hell-bent on doing an index merge.
 
 That's when it hit me. It's the `DeleteAt = 0` condition. It wasn't about the particular column, but the condition `= 0`. Whenever we delete a post in our table, we set the `DeleteAt` column to the current timestamp. Of course a super-admin can permanently delete posts. But when a normal user deletes their post, the DB retains them. So then what is the search space of `DeleteAt = 0`? **All** undeleted posts. Which is basically the entire Posts table!
 
@@ -173,6 +173,5 @@ Alternatively, there's also this DB called Postgres which people keep talking ab
 - https://www.percona.com/blog/2012/12/14/the-optimization-that-often-isnt-index-merge-intersection/
 - https://code.openark.org/blog/mysql/7-ways-to-convince-mysql-to-use-the-right-index
 - https://dev.mysql.com/doc/refman/5.7/en/index-merge-optimization.html
-
 
 P.S. If you think I have missed something, or perhaps there is a cleaner way to solve this, please feel free to hop on to our [~Developers: Performance](https://community.mattermost.com/core/channels/developers-performance) channel on our community server and we can talk more!
