@@ -169,7 +169,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Mobile
 - **<a name="avinash.lingaloo">Avinash Lingaloo</a>**
     - @avinash.lingaloo on [community.mattermost.com](https://community.mattermost.com/core/messages/@avinash.lingaloo) and [@avinashlng1080](https://github.com/avinashlng1080) on GitHub
-    - Dev areas: Mobile apps
+    - Dev areas: Mobile
  
 
 Core Developers
