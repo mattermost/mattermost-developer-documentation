@@ -166,7 +166,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Server, Store Layer
 - **<a name="shaz.amjad">Shaz Amjad</a>**
     - @shaz.amjad on [community.mattermost.com](https://community.mattermost.com/core/messages/@shaz.amjad) and [@shazm](https://github.com/shazm) on GitHub
-    - Dev areas: Mobile apps
+    - Dev areas: Mobile
 - **<a name="avinash.lingaloo">Avinash Lingaloo</a>**
     - @avinash.lingaloo on [community.mattermost.com](https://community.mattermost.com/core/messages/@avinash.lingaloo) and [@avinashlng1080](https://github.com/avinashlng1080) on GitHub
     - Dev areas: Mobile apps
