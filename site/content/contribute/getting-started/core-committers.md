@@ -67,7 +67,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Desktop / Web and Mobile apps
 - **<a name="miguel.alatzar">Miguel Alatzar</a>**
     - @miguel.alatzar on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.alatzar) and [@migbot](https://github.com/migbot) on GitHub
-    - Dev areas: Mobile apps
+    - Dev areas: Mobile
 - **<a name="Miguel de la Cruz">Miguel de la Cruz</a>**
     - @miguel.delacruz on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.delacruz) and [@mgdelacroix](https://github.com/mgdelacroix) on GitHub
     - Dev areas: Elasticsearch, Web App, Server
