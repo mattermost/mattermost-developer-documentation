@@ -12,6 +12,7 @@ weight: 110
 * Chandar Venkataraman - CPO
 
 ## Feature Teams
+
 Feature teams are full-stack teams owning collections of features within the Mattermost product.
 
 ### Enterprise Features Team
@@ -20,7 +21,6 @@ Feature teams are full-stack teams owning collections of features within the Mat
 * Martin Kraft - Engineeer
 * Hossein Ahmadian - Engineer
 * Anurag Shivarathri - Engineer
-* Dennis Kittrell - Product Manager
 * Furqan Malik - QA SDET
 * Michael Gamble - UX Designer
 
@@ -81,7 +81,7 @@ Platform Teams are focused on an individual technical specialisation or layer of
 * Joseph Baylon - QA SDET
 * Matt Birtch - UX Designer
 
-### Web & Desktop Platform Team
+### Web and Desktop Platform Team
 
 * Dean Whillier - Engineering Lead
 * Harrison Healey - Engineer
@@ -101,7 +101,6 @@ Platform Teams are focused on an individual technical specialisation or layer of
 * Agniva De Sarker - Engineer
 * Doug Lauder - Engineer
 * Ibrahim Acikgoz - Engineer
-* Dennis Kitrell - Product Manager
 
 ### Cloud Platform Team
 
@@ -125,7 +124,7 @@ Platform Teams are focused on an individual technical specialisation or layer of
 * Angelos Kyratzakos - Engineer
 * Stavros Foteinopoulos - Engineer
 
-## Build & Infrastructure Team
+## Build and Infrastructure Team
 
 * Jason Deland - Engineering Lead
 * Elisabeth Kulzer - Build Engineer
