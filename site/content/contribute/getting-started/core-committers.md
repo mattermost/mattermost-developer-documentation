@@ -26,7 +26,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Mobile / Desktop and Web apps
 - **<a name="elias.nahum">Elias Nahum</a>**
     - @elias on [community.mattermost.com](https://community.mattermost.com/core/messages/@elias) and [@enahum](https://github.com/enahum) on GitHub
-    - Dev areas: Mobile apps
+    - Dev areas: Mobile
 - **<a name="george.goldberg">George Goldberg</a>**
     - @george on [community.mattermost.com](https://community.mattermost.com/core/messages/@george) and [@grundleborg](https://github.com/grundleborg) on GitHub
     - Dev areas: Import/Export (Slack, Bulk Loading, etc.), Diagnostics/Telemetry, Search, Permissions
