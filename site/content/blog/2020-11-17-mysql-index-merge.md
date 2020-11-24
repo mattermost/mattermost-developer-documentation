@@ -49,21 +49,18 @@ CREATE TABLE `Posts` (
   `UpdateAt` bigint(20) DEFAULT NULL,
   `EditAt` bigint(20) DEFAULT NULL,
   `DeleteAt` bigint(20) DEFAULT NULL,
-  `IsPinned` tinyint(1) DEFAULT NULL,
   `UserId` varchar(26) DEFAULT NULL,
   `ChannelId` varchar(26) DEFAULT NULL,
-  `RootId` varchar(26) DEFAULT NULL,
   `Message` text,
   PRIMARY KEY (`Id`),
   KEY `idx_posts_update_at` (`UpdateAt`),
   KEY `idx_posts_create_at` (`CreateAt`),
   KEY `idx_posts_delete_at` (`DeleteAt`),
   KEY `idx_posts_channel_id` (`ChannelId`),
-  KEY `idx_posts_root_id` (`RootId`),
   KEY `idx_posts_user_id` (`UserId`),
   KEY `idx_posts_channel_id_update_at` (`ChannelId`,`UpdateAt`),
   KEY `idx_posts_channel_id_delete_at_create_at` (`ChannelId`,`DeleteAt`,`CreateAt`),
-  FULLTEXT KEY `idx_posts_message_txt` (`Message`),
+  FULLTEXT KEY `idx_posts_message_txt` (`Message`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 ```
 
@@ -77,9 +74,9 @@ SELECT Id FROM Posts WHERE ChannelId = 'x' AND DeleteAt = y AND CreateAt < z
 	LIMIT 1
 ```
 
-We're filtering the table with three columns: `ChannelId`, `DeleteAt`, and `CreateAt`. And then ordering by `CreateAt` and just getting the first row. It becomes clear why choosing the multi-column index is faster than choosing the one for `CreateAt`. Simply because the query filters with all three columns which leads to scanning a much smaller dataset. But then, why is MySQL choosing the wrong index in the first place? Using `USE INDEX` was the nuclear button which I didn't want to use unless there were no other options.
+We're filtering the table by three columns: `ChannelId`, `DeleteAt`, and `CreateAt`. And then ordering by `CreateAt` and just getting the first row. It becomes clear why choosing the multi-column index is faster than choosing the one for `CreateAt`. Simply because the query filters by all three columns which leads to scanning a much smaller dataset. But then, why is MySQL choosing the wrong index in the first place? Using `USE INDEX` was the nuclear button which I didn't want to use unless there were no other options.
 
-I wasn't able to reproduce the problem locally, so it wasn't possible to try different variations of the query. But after some googling, I had a pretty good theory of what was happening. It was the "ORDER BY" clause. MySQL tries to be smart and decides that although using the `CreateAt` index might have to scan through more rows, it avoids the sorting at the end. Whereas actually, using the multi-column index leads to scanning fewer rows, which gets sorted in practically no time at all.
+I wasn't able to reproduce the problem locally, so it wasn't feasible to try different variations of the query. But after some googling, I had a pretty good theory of what was happening. It was the "ORDER BY" clause. MySQL tries to be smart and decides that although using the `CreateAt` index might have to scan through more rows, it avoids the sorting at the end. Whereas actually, using the multi-column index leads to scanning fewer rows, which gets sorted in practically no time at all.
 
 Now that we understand the problem, how can we coax MySQL into choosing the right index? Well, if MySQL is acting smart, we can outsmart it. What could possibly go wrong? Right?
 
@@ -101,7 +98,7 @@ I pat myself on the back for a job well done, send a [PR](https://github.com/mat
 
 ### Act II: The relapse
 
-Several months pass by. I have nearly forgot about this whole thing. And then the same customer comes back with saying that they just upgraded to the release containing the fix, and everything just became unbearably slow. We check the slow query logs, and surprise surprise, it was the exact query which I optimized. This was shocking and embarassing at the same time.
+Several months pass by. I have nearly forgotten about this whole thing. And then the same customer comes back with saying that they just upgraded to the release containing the fix, and everything just became unbearably slow. We check the slow query logs, and surprise surprise, it was the exact query which I optimized. This was shocking and embarassing at the same time.
 
 I did some quick mental back-tracking. Let's say hypothetically the optimization somehow failed to work again (perhaps because months have gone by and the table has more data now). It should fall back to using the `CreateAt` index which was already happening in their DB. So something crazy had happened, which didn't improve performance at all, but actually made it worse, far worse.
 
