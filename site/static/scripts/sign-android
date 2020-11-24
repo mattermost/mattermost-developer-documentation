@@ -162,7 +162,6 @@ if [ "$PACKAGE_ID" != "" ]; then
 
         xmlstarlet ed -L -u "/resources/string[@name='firebase_database_url']" -v "$FIREBASE_URL" "$STRINGS_VALUES_PATH"
         xmlstarlet ed -L -u "/resources/string[@name='gcm_defaultSenderId']" -v "$PROJECT_NUMBER" "$STRINGS_VALUES_PATH"
-        xmlstarlet ed -L -u "/manifest/application/meta-data[@android:name='com.wix.reactnativenotifications.gcmSenderId']/@android:value" -v "\ $PROJECT_NUMBER" "$EXTRACT_PATH/AndroidManifest.xml"
         xmlstarlet ed -L -u "/resources/string[@name='google_api_key']" -v "$FIREBASE_API_KEY" "$STRINGS_VALUES_PATH"
         xmlstarlet ed -L -u "/resources/string[@name='google_app_id']" -v "$FIREBASE_SDK_APP_ID" "$STRINGS_VALUES_PATH"
         xmlstarlet ed -L -u "/resources/string[@name='google_crash_reporting_api_key']" -v "$FIREBASE_API_KEY" "$STRINGS_VALUES_PATH"
