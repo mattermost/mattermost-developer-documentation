@@ -59,7 +59,7 @@ Abhisek Datta, Alex Garbutt, Alyssa Milburn, Andreas Lindh, Andrey Dyatlov, Arya
 
 ## Quality Assurance Contributors
 
-Quality Assurance contributors by GitHub username and (first contribution date) are alphabetically listed below. The list is updated regularly (last updated November 18, 2020), and includes testing assignments completed that are listed in the [quality-assurance](https://github.com/mattermost/quality-assurance/issues) repository.
+Quality Assurance contributors by GitHub username and (first contribution date) are alphabetically listed below. The list is updated regularly (last updated November 18, 2020). Contributions include completed testing assignments listed in the [quality-assurance](https://github.com/mattermost/quality-assurance/issues) repository.
 
 Join others who have helped test Mattermost's apps, and [get started today](https://github.com/mattermost/quality-assurance).
 
