@@ -56,3 +56,11 @@ Security research contributors by full name, or by username when no full name is
 Report security vulnerabilities following our [responsible disclosure policy](https://mattermost.com/security-vulnerability-report/).
 
 Abhisek Datta, Alex Garbutt, Alyssa Milburn, Andreas Lindh, Andrey Dyatlov, Aryan Rupala, Ashish Padelkar, Ashish Pathak, Ashley Hull, Bastian Ike, Ben Burke, Bernardo Maia Rodrigues, Boyd Ansems, Brad Berkemier, Bruno Bierbaumer, Carlos Tadeu Panato Junior, Christer Mjellem Strand, Christopher Brown, Christopher Speller, Csaba Fitzl, Đặng Minh Trí, Daniel Schalla, David Dworken, Đỗ Minh Tuấn, Doug Lauder, Elias Nahum, Eric Sethna, esosnov, Florian Orben, Francisco Correa, Frans Rosén, George Goldberg, Harrison Healey, James Hall, Jan Wissmann, Jeff Ziegener, Jelle Kroon, Jesse Hallam, Jesús Espino, Jim Hebert, Johannes Eichner, Jonas Arneberg, Jonathan (0xghostwriter), Joram Wilander, Jorge Ferreira, Juho Nurminen, Julien Ahrens, Julio Fort, Kolja Lampe, Leandro Chaves, Lev Brouk, Linda Mitchell, Lindsay Brock, Luca Carettoni, Luke Arntson, Martijn Korse, mga_bobo, Mikael Berthe, Mohammad Razavi, Nathan Lowe, Paddy Steed, Rohitesh Gupta, Roman Shchekin, Scott Payne, Sebastian Raff, severus, Soroush Dalili, Steve MacQuiddy, Thanh Nguyen Van Tien, Tobias Gruetzmacher, Uchida Taishi, vincentbab, Vishwaraj Bhattrai, Wilberto Filho, Yoni Ramon, Zonduu, Ömer Coskun
+
+## Quality Assurance Contributors
+
+Quality Assurance contributors by GitHub username and (first contribution date) are alphabetically listed below. The list is updated regularly (last updated November 18, 2020). Contributions include completed testing assignments listed in the [quality-assurance](https://github.com/mattermost/quality-assurance/issues) repository.
+
+Join others who have helped test Mattermost's apps, and [get started today](https://github.com/mattermost/quality-assurance).
+
+fagunbhavsar (2020.10.28), seongwon-kang (2020.10.29)
