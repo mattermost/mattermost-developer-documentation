@@ -9,7 +9,7 @@ categories:
 author: Elisabeth Kulzer
 github: metanerd
 community: elisabeth.kulzer
-canonicalUrl: https://mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/
+canonicalUrl: https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/
 ---
 
 At the start of implementing Docker Content Trust in our workflow, I thought it shouldn't take so long.
