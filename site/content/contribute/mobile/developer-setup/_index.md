@@ -75,7 +75,7 @@ The minimum required version is 4.9.0.
 #### Install `react-native-cli` tools
 
 ```sh
-$ npm -g install react-native-cli
+$ sudo npm -g install react-native-cli
 ```
 #### Install Ruby
 ##### Windows 10
