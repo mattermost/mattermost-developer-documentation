@@ -21,7 +21,7 @@ This one is definitely the easiest to avoid, but it can still catch people who a
 
 For example, suppose someone is adding a new button to the web app using React. If they forget to make it to use React Intl, they may write something like this:
 
-```jsx
+```typescript
 function MyButton() {
     return <button>{'Click me!'}</button>;
 }
@@ -29,7 +29,7 @@ function MyButton() {
 
 That's fine if only English-speaking people use your application, but that doesn't work for us. Instead, we can use React Intl's `FormattedMessage` component to do the translation for us.
 
-```jsx
+```typescript
 import {FormattedMessage} from 'react-intl';
 
 function MyButton() {
@@ -52,7 +52,7 @@ This mistake is less common since it requires mixing translated and non-translat
 
 When you reply to an older message in Mattermost, we display "Commented on Billy's message:" to tell everyone that you're responding to Billy. For a while after we had translation support added, the code for that looked like this:
 
-```jsx
+```typescript
 let username = '@' + rootPost.username;
 if (!username.endsWith('s')) {
     username += '\'s';
@@ -71,7 +71,7 @@ Here, we're using React Intl to add Billy's name into the text as a value, but w
 
 Instead, the "'s" should be part of the translation string. That required changing our grammar rules slightly since we previously avoided adding "'s" to the end of names that ended in the letter "s", but the new way is still correct according to other popular grammar guidelines. Isn't English great?
 
-```jsx
+```typescript
 return (
     <FormattedMessage
         id='post.commentedOn'
@@ -87,7 +87,7 @@ Another common mistake is to forget that pluralization exists when counting some
 
 Say you're adding a feature that sends out an email to a number of people, and you want it to report back on its progress in both the UI and in the server's logs. You might write something like this:
 
-```jsx
+```typescript
 return (
     <FormattedMessage
         id='email_sender.remaining'
@@ -117,7 +117,7 @@ Note that the React example uses a feature of React Intl to specify that `remain
 
 That is an example of how we can tell React Intl to behave slightly differently though. If we use the `plural` modifier, we can specify different text based on the value of `remaining`. go-i18n has a similar feature, but it takes two different versions of the translated string instead of constructing one that's more complicated.
 
-```jsx
+```typescript
 return (
     <FormattedMessage
         id='email_sender.remaining'
@@ -164,7 +164,7 @@ This last mistake is one we encounter more often, and it's one that's a bit hard
 
 Suppose you have a popup which contains some helpful information as well as a link to further documentation. It probably ends with the sentence "[Click here](https://mattermost.com) for more information." where "Click here" is a link. You might just write this as follows:
 
-```jsx
+```typescript
 return (
     <>
         <a
@@ -194,7 +194,7 @@ Generally, we shouldn't be concatenating translated strings since it's a sign th
 
 Similar to the example on pluralization, we can actually pass translated text into another block of translated text as a value to construct the sentence.
 
-```jsx
+```typescript
 return (
     <FormattedMessage
         id='popup.moreInformation'
@@ -225,7 +225,7 @@ It does, however, make it harder for translators to understand the meaning of th
 
 `FormattedHTMLMessage` was another way to solve this problem, but it was removed in more recent versions. It's a component provided by React Intl, similar to `FormattedMessage`, but allows us to include HTML in the translation string instead of nesting translated text. Since it's been removed, it can't be used any more, but it demonstrates another problem we ran into in the past.
 
-```jsx
+```typescript
 // import {FormattedHTMLMessage} from 'react-intl';
 
 return (
@@ -270,13 +270,13 @@ React Intl now supports custom HTML-like formatting within the translated text. 
 
 In our case, we still want the link to open in a new tab, but now we can do that without the translator having to know anything about that.
 
-```jsx
+```typescript
 return (
     <FormattedMessage
         id='popup.moreInformation'
         defaultMessage='<link>Click here</link> for more information.'
         values={{
-            link: (msg) => (
+            link: (msg: React.ReactNode) => (
                 <a
                     href='https://mattermost.com'
                     referrer='noreferrer'
@@ -294,13 +294,13 @@ The code itself looks similar to when we used nested translation strings, but th
 
 In addition to being able to render HTML in this way, we can even use it to format translated text with custom React components too. For example, if we had an `ExternalLink` component that encapsulated the extra parameters passed to the `a` tag, we could simplify this code even further.
 
-```jsx
+```typescript
 return (
     <FormattedMessage
         id='popup.moreInformation'
         defaultMessage='<link>Click here</link> for more information.'
         values={{
-            link: (msg) => <ExternalLink href='https://mattermost.com'>{msg}</ExternalLink>,
+            link: (msg: React.ReactNode) => <ExternalLink href='https://mattermost.com'>{msg}</ExternalLink>,
         }}
     />
 );
