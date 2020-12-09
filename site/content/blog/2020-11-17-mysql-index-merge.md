@@ -7,6 +7,7 @@ categories:
 author: Agniva De Sarker
 github: agnivade
 community: agnivade
+canonicalUrl: https://mattermost.com/blog/tuning-mysql-and-the-ghost-of-index-merge-intersection/
 ---
 
 Optimizing SQL queries is always fun, except when it isn't. If you're a MySQL veteran and have read the title, you already know where this is heading 😉. In that case, allow me to regale the uninitiated reader.
