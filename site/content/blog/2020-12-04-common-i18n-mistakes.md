@@ -11,9 +11,9 @@ community: harrison
 
 Languages are complicated, and every language is complicated in different ways that can be hard to understand without learning every single one of them. Some languages form words from multiple characters while others have symbols that represent entire concepts. Some feature words without pluralization or gender and rely on context for that while others have two or even more genders for words. Some are very phonetic while others pronounce words seemingly at random (*cough* English, though *cough*).
 
-Thanks to a tremendous contribution long ago from then community member Elias Nahum, we have full support for translation throughout Mattermost, and thanks to our community of translators, Mattermost is usable by many people speaking a variety of different languages.
+Thanks to a tremendous contribution long ago from then-community member Elias Nahum, we have full support for translation throughout Mattermost, and thanks to our community of translators, Mattermost is used in a variety of different languages.
 
-Because we support so many languages, we have to be aware of how to keep our applications properly translatable. There's many easy mistakes you can make when writing an application in one language that can make it difficult to translate into others. We use [react-intl](https://formatjs.io/docs/react-intl/) in our client-side applications and [go-i18n](https://github.com/nicksnyder/go-i18n) on the server which both offer a variety of features to help with this, but we can still cause problems if we're not careful when using translated text. Here's a few examples of common problems that we've run into and how to solve them.
+Because we support so many languages, we have to be aware of how to keep our applications properly translatable. There are many easy mistakes you can make when writing an application in one language that can make it difficult to translate into others. We use [react-intl](https://formatjs.io/docs/react-intl/) in our client-side applications and [go-i18n](https://github.com/nicksnyder/go-i18n) on the server which both offer a range of features to help with this, but we can still cause problems if we're not careful when using translated text. Here are a few examples of common problems that we've run into and how to solve them.
 
 ## Mistake 1: Not translating something
 
@@ -48,7 +48,7 @@ The code ends up being a bit longer, but that's more than worth it for making th
 
 ## Mistake 2: Hard coding translations
 
-This mistake is a bit rarer since it requires mixing translated and non-translated text, but it comes from a real-world example in Mattermost.
+This mistake is less common since it requires mixing translated and non-translated text, but it comes from a real-world example in Mattermost.
 
 When you reply to an older message in Mattermost, we display "Commented on Billy's message:" to tell everyone that you're responding to Billy. For a while after we had translation support added, the code for that looked like this:
 
@@ -67,9 +67,9 @@ return (
 )
 ```
 
-Here, we're using react-intl to add Billy's name into the text as a value, but we're making a mistake here by trying to make the username into a possessive adjective ourselves. By manually adding the "'s", we're applying English grammar regardless of the user's language setting, so this label won't make sense in other languages.
+Here, we're using react-intl to add Billy's name into the text as a value, but we're making a mistake by trying to make the username into a possessive adjective ourselves. By manually adding the "'s", we're applying English grammar regardless of the user's language setting, so this label won't make sense in other languages.
 
-Instead, the "'s" should be part of the translation string. That required changing our grammar rules slightly since we previously avoided adding "'s" to the end of names that ended in the letter S, but the new way is still correct by other popular grammar guidelines. Isn't English great?
+Instead, the "'s" should be part of the translation string. That required changing our grammar rules slightly since we previously avoided adding "'s" to the end of names that ended in the letter "s", but the new way is still correct according to other popular grammar guidelines. Isn't English great?
 
 ```jsx
 return (
@@ -115,7 +115,7 @@ func logEmailsRemaining(remaining int) {
 
 Note that the React example uses a feature of react-intl to specify that `remaining` is a number. Without it, "0 emails remaining" wouldn't be shown properly because it's a falsey value in JavaScript.
 
-That is an example of how we can tell react-intl to behave slightly differently though. If we use the `plural` modifier, we can specify different text based on the value of `remaining`. go-i18n has a similar feature, but it takes two different versions of the translated string instead of constructing a one that is more complicated.
+That is an example of how we can tell react-intl to behave slightly differently though. If we use the `plural` modifier, we can specify different text based on the value of `remaining`. go-i18n has a similar feature, but it takes two different versions of the translated string instead of constructing one that's more complicated.
 
 ```jsx
 return (
@@ -223,7 +223,7 @@ It does, however, make it harder for translators to understand the meaning of th
 
 ### Solution 2: FormattedHTMLMessage
 
-`FormattedHTMLMessage` was another way to solve this problem, but it was removed in more recent versions. It's a compoent provided by react-intl, similar to `FormattedMessage`, but it allows us to include HTML in the translation string instead of nesting translated text. Since it's been removed, it can't be used any more, but it demonstrates another problem with ran into in the past.
+`FormattedHTMLMessage` was another way to solve this problem, but it was removed in more recent versions. It's a component provided by react-intl, similar to `FormattedMessage`, but allows us to include HTML in the translation string instead of nesting translated text. Since it's been removed, it can't be used any more, but it demonstrates another problem we ran into in the past.
 
 ```jsx
 // import {FormattedHTMLMessage} from 'react-intl';
@@ -243,7 +243,7 @@ As with the previous solution, this allows translators to reconstruct the senten
 4. We lost the ability to wrap parts of the string in React elements which can have more functionality, such as encapsulating the additional parameters passed into `a` tag.
 5. Since it used HTML, `FormattedHTMLMessage` wasn't available in `react-native` for use in our mobile apps.
 
-But despite these issues, it helped point us in the right direction since it lead to a custom component that is much nicer to work with.
+But despite these issues, it helped point us in the right direction since it led to a custom component that's much nicer to work with.
 
 ### Solution 3: FormattedMarkdownMessage
 
@@ -310,6 +310,6 @@ return (
 
 Hopefully, we can do our best to make Mattermost easily translatable and available in many different languages, even as Mattermost grows and the amount of text that needs to be translated increases. By avoiding these mistakes and using some of these techniques, we can help to reduce the workload of our translators and make their jobs easier.
 
-Special thanks again to everyone who help translate Mattermost and who make it usable by so many more people around the world. We tremendously appreciate your efforts and all the work you put in to make sure the translations stay complete and up to date.
+Special thanks again to everyone who helps translate Mattermost and who make it usable by so many more people around the world. We tremendously appreciate your efforts and all the work you put in to make sure the translations stay complete and up to date.
 
 If you're interested in helping out with localization or if you have any suggestions for how to improve our process, feel free to join us in the `~localization` channel on the Mattermost community server at https://community.mattermost.com.
