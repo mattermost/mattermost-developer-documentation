@@ -13,13 +13,13 @@ Languages are complicated, and every language is complicated in different ways t
 
 Thanks to a tremendous contribution long ago from then-community member Elias Nahum, we have full support for translation throughout Mattermost, and thanks to our community of translators, Mattermost is used in a variety of different languages.
 
-Because we support so many languages, we have to be aware of how to keep our applications properly translatable. There are many easy mistakes you can make when writing an application in one language that can make it difficult to translate into others. We use [react-intl](https://formatjs.io/docs/react-intl/) in our client-side applications and [go-i18n](https://github.com/nicksnyder/go-i18n) on the server which both offer a range of features to help with this, but we can still cause problems if we're not careful when using translated text. Here are a few examples of common problems that we've run into and how to solve them.
+Because we support so many languages, we have to be aware of how to keep our applications properly translatable. There are many easy mistakes you can make when writing an application in one language that can make it difficult to translate into others. We use [React Intl](https://formatjs.io/docs/react-intl/) in our client-side applications and [go-i18n](https://github.com/nicksnyder/go-i18n) on the server which both offer a range of features to help with this, but we can still cause problems if we're not careful when using translated text. Here are a few examples of common problems that we've run into and how to solve them.
 
 ## Mistake 1: Not translating something
 
 This one is definitely the easiest to avoid, but it can still catch people who aren't used to writing applications outside their native language.
 
-For example, suppose someone is adding a new button to the web app using React. If they forget to make it to use react-intl, they may write something like this:
+For example, suppose someone is adding a new button to the web app using React. If they forget to make it to use React Intl, they may write something like this:
 
 ```jsx
 function MyButton() {
@@ -27,7 +27,7 @@ function MyButton() {
 }
 ```
 
-That's fine if only English-speaking people use your application, but that doesn't work for us. Instead, we can use react-intl's `FormattedMessage` component to do the translation for us.
+That's fine if only English-speaking people use your application, but that doesn't work for us. Instead, we can use React Intl's `FormattedMessage` component to do the translation for us.
 
 ```jsx
 import {FormattedMessage} from 'react-intl';
@@ -67,7 +67,7 @@ return (
 )
 ```
 
-Here, we're using react-intl to add Billy's name into the text as a value, but we're making a mistake by trying to make the username into a possessive adjective ourselves. By manually adding the "'s", we're applying English grammar regardless of the user's language setting, so this label won't make sense in other languages.
+Here, we're using React Intl to add Billy's name into the text as a value, but we're making a mistake by trying to make the username into a possessive adjective ourselves. By manually adding the "'s", we're applying English grammar regardless of the user's language setting, so this label won't make sense in other languages.
 
 Instead, the "'s" should be part of the translation string. That required changing our grammar rules slightly since we previously avoided adding "'s" to the end of names that ended in the letter "s", but the new way is still correct according to other popular grammar guidelines. Isn't English great?
 
@@ -113,9 +113,9 @@ func logEmailsRemaining(remaining int) {
 }
 ```
 
-Note that the React example uses a feature of react-intl to specify that `remaining` is a number. Without it, "0 emails remaining" wouldn't be shown properly because it's a falsey value in JavaScript.
+Note that the React example uses a feature of React Intl to specify that `remaining` is a number. Without it, "0 emails remaining" wouldn't be shown properly because it's a falsy value in JavaScript.
 
-That is an example of how we can tell react-intl to behave slightly differently though. If we use the `plural` modifier, we can specify different text based on the value of `remaining`. go-i18n has a similar feature, but it takes two different versions of the translated string instead of constructing one that's more complicated.
+That is an example of how we can tell React Intl to behave slightly differently though. If we use the `plural` modifier, we can specify different text based on the value of `remaining`. go-i18n has a similar feature, but it takes two different versions of the translated string instead of constructing one that's more complicated.
 
 ```jsx
 return (
@@ -146,7 +146,7 @@ func logEmailsRemaining(remaining int) {
 }
 ```
 
-In both of these, we're defining different translation strings based on the value of remaining. As mentioned before, react-intl lets you change how a single part of the string is translated as opposed to go-i18n which swaps out the entire string, but the result is the same either way.
+In both of these, we're defining different translation strings based on the value of remaining. As mentioned before, React Intl lets you change how a single part of the string is translated as opposed to go-i18n which swaps out the entire string, but the result is the same either way.
 
 In addition to just changing "email" to "emails", this also lets translators handle pluralization differently for their own language. For example, some languages don't pluralize their word for email while others, such as Spanish, may also change pluralize "remaining" as well. Here's how the web app's translation file would look for the React example above:
 
@@ -223,7 +223,7 @@ It does, however, make it harder for translators to understand the meaning of th
 
 ### Solution 2: FormattedHTMLMessage
 
-`FormattedHTMLMessage` was another way to solve this problem, but it was removed in more recent versions. It's a component provided by react-intl, similar to `FormattedMessage`, but allows us to include HTML in the translation string instead of nesting translated text. Since it's been removed, it can't be used any more, but it demonstrates another problem we ran into in the past.
+`FormattedHTMLMessage` was another way to solve this problem, but it was removed in more recent versions. It's a component provided by React Intl, similar to `FormattedMessage`, but allows us to include HTML in the translation string instead of nesting translated text. Since it's been removed, it can't be used any more, but it demonstrates another problem we ran into in the past.
 
 ```jsx
 // import {FormattedHTMLMessage} from 'react-intl';
@@ -241,7 +241,7 @@ As with the previous solution, this allows translators to reconstruct the senten
 2. It added the chance that an incorrect translation could break part of the application by accidentally including malformed HTML within a string.
 3. It also had potential performance impacts since we were going outside of React's DOM manipulation optimizations by using raw HTML.
 4. We lost the ability to wrap parts of the string in React elements which can have more functionality, such as encapsulating the additional parameters passed into `a` tag.
-5. Since it used HTML, `FormattedHTMLMessage` wasn't available in `react-native` for use in our mobile apps.
+5. Since it used HTML, `FormattedHTMLMessage` wasn't available in React Native for use in our mobile apps.
 
 But despite these issues, it helped point us in the right direction since it led to a custom component that's much nicer to work with.
 
@@ -262,11 +262,11 @@ return (
 
 Much better! It does require some additional knowledge that adding an exclamation mark to the link tells `FormattedMarkdownMessage` to open it in a new window, but there's a lot less learning required compared to HTML. That said, this formatting is even more limited than the previous options, and `FormattedMarkdownMessage` doesn't fix the potential for performance problems because it still has to parse Markdown.
 
-This technique is used frequently throughout our apps, and until recently, I would've considered it to be the best way of doing this, but now that we've upgraded react-intl, we have access to a new feature which I think is even nicer.
+This technique is used frequently throughout our apps, and until recently, I would've considered it to be the best way of doing this, but now that we've upgraded React Intl, we have access to a new feature which I think is even nicer.
 
-### Solution 4: Rich text formatting in react-intl
+### Solution 4: Rich text formatting in React Intl
 
-react-intl now supports custom HTML-like formatting within the translated text. To do this, you construct an HTML-like string such as `<link>Click here</link> for more information.` using any number of custom tags, and then you define what those tags mean without the translator having to worry about the defails.
+React Intl now supports custom HTML-like formatting within the translated text. To do this, you construct an HTML-like string such as `<link>Click here</link> for more information.` using any number of custom tags, and then you define what those tags mean without the translator having to worry about the defails.
 
 In our case, we still want the link to open in a new tab, but now we can do that without the translator having to know anything about that.
 
