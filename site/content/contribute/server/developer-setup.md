@@ -5,7 +5,10 @@ weight: 2
 subsection: Server
 ---
 
-Set up your development environment for building, running, and testing the Mattermost server. <br>
+Set up your development environment for building, running, and testing the Mattermost server.
+
+**Note:** If you're developing plugins, see the plugin [developer setup](https://developers.mattermost.com/extend/plugins/developer-setup/) documentation.
+
 For minimum software requirements, see the following table:
 
 | Software       | Minimum Version  |
