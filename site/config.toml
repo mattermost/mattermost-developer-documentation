@@ -67,22 +67,22 @@ pygmentsStyle = "manni"
 
     # postpended links
     [[menu.postpend]]
-      url = "/contribute/getting-started"
+      url = "/contribute/getting-started/"
       name = "Contribute"
       weight = 1
 
     [[menu.postpend]]
-      url = "/integrate/getting-started"
+      url = "/integrate/getting-started/"
       name = "Integrate"
       weight = 2
 
     [[menu.postpend]]
-      url = "/extend/getting-started"
+      url = "/extend/getting-started/"
       name = "Extend"
       weight = 3
 
     [[menu.postpend]]
-      url = "/blog"
+      url = "/blog/"
       name = "Blog"
       weight = 4
 
@@ -112,7 +112,7 @@ pygmentsStyle = "manni"
   [[params.intro.item]]
     title = "Contribute"
     description = "Join the hundreds of contributors and submit code directly to the Mattermost open-source project."
-    url = "contribute/getting-started"
+    url = "contribute/getting-started/"
     button = "Start Contributing"
     icon = "/img/contribute-icon.svg"
     draft = false
@@ -120,7 +120,7 @@ pygmentsStyle = "manni"
   [[params.intro.item]]
     title = "Integrate"
     description = "Integrate with Mattermost through incoming and outgoing webhooks, slash commands, OAuth 2.0 and the REST API."
-    url = "integrate/getting-started"
+    url = "integrate/getting-started/"
     button = "Start Integrating"
     icon = "/img/integrate-icon.svg"
     draft = false
@@ -128,7 +128,7 @@ pygmentsStyle = "manni"
   [[params.intro.item]]
     title = "Extend"
     description = "Extend Mattermost to fit your purpose through powerful client and server plugins, embedding or forking."
-    url = "extend/getting-started"
+    url = "extend/getting-started/"
     button = "Start Extending"
     icon = "/img/extend-icon.svg"
     draft = false

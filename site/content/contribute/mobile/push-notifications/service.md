@@ -13,7 +13,7 @@ Now that the app can receive push notifications, we need to make sure that the M
 
 - A linux box server with at least 1GB of memory.
 - A copy of the [Mattermost Push Notification Service](https://github.com/mattermost/mattermost-push-proxy/releases).
-- [Custom Android and/or iOS](/contribute/mobile/build-your-own) Mattermost mobile apps.
+- [Custom Android and/or iOS](/contribute/mobile/build-your-own/) Mattermost mobile apps.
 - Private and public keys obtained from the [Apple Developer Program](https://developer.apple.com/account/ios/certificate/).
 - A Firebase Cloud Messaging Server key obtained from the [Firebase Console](https://console.firebase.google.com).
 
@@ -72,7 +72,7 @@ and running the service under a `mattermost-push-proxy` user account with limite
 
 ### Set up Mattermost Push Notification Service to Send iOS Push Notifications
 
-- Double click the **Distribution Certificate** generated while [Setup Push Notifications for iOS](/contribute/mobile/push-notifications/ios) to add it to your Keychain Access. Go to **Keychain Access**, select the **login** keychain and **My Certificates** from the side menu.
+- Double click the **Distribution Certificate** generated while [Setup Push Notifications for iOS](/contribute/mobile/push-notifications/ios/) to add it to your Keychain Access. Go to **Keychain Access**, select the **login** keychain and **My Certificates** from the side menu.
 ![image](/img/mobile/ios_keychain_select.png)
 
 - Find the certificate you imported and then right click to **export** it as a **.p12** file

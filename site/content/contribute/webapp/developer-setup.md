@@ -7,7 +7,7 @@ subsection: Web App
 
 Set up your development environment for building, running, and testing the Mattermost web app.
 
-1. Set up your [development environment for the Mattermost server](/contribute/server/developer-setup).
+1. Set up your [development environment for the Mattermost server](/contribute/server/developer-setup/).
 
 2. Install dependencies:
 

@@ -13,7 +13,7 @@ weight: 30
 
 ### Channels and Teams
 - Make sure new staff is added to the private team `Private Core` and all relevant channels
-- See [here](/internal/onboarding/new-staff-guide#channels-and-teams) for basic list of channels
+- See [here](/internal/onboarding/new-staff-guide/#channels-and-teams) for basic list of channels
 
 ### Meetings and Accounts
 - Add new staff member to all appropriate meetings

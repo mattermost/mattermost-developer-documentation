@@ -39,11 +39,11 @@ All developers that access AWS are required to enable MFA on their account(s). T
 
 Most of the machines at the time of writing use an SSH key. If the description for the machine says it uses a key such as "mm-admin", "mm-ci", or "mm-dev", you'll need to get that key from someone else.
 
-If the machine does not have an SSH key associated with it, you'll need to generate an SSH key and have it signed by [Vault](../vault).
+If the machine does not have an SSH key associated with it, you'll need to generate an SSH key and have it signed by [Vault](../vault/).
 
 ## Creating Machines on AWS
 
-Unless the machine is for your personal use only, use [Vault](../vault) to control access to it: Create it *without* a key, then give it the following user data.
+Unless the machine is for your personal use only, use [Vault](../vault/) to control access to it: Create it *without* a key, then give it the following user data.
 
 ```yaml
 #cloud-config

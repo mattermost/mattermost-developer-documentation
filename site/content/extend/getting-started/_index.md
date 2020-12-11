@@ -12,13 +12,13 @@ Mattermost can be extended by building and installing plugins, by embedding Matt
 
 Plugins are easy to build, effortless to maintain, and offer powerful new options to add functionality and UI to the server and web/desktop apps in ways not available with any other integration method.
 
-[Read more about plugins.](/extend/plugins)
+[Read more about plugins.](/extend/plugins/)
 
 ### Embed
 
 Mattermost is a great communication platform but sometimes it's more convenient to send and receive messages from within a non-Mattermost application. With Mattermost's rich RESTful web service API and OAuth 2.0 support it's possible to build your own clients to embed Mattermost within any application of your choice.
 
-[Read more about embedding.](/extend/embed)
+[Read more about embedding.](/extend/embed/)
 
 ### Fork
 
