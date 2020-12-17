@@ -16,7 +16,7 @@ subsection: Plugins
 - `make disable` - Disables the plugin on the Mattermost server
 - `make reset` - Disables and re-enables the plugin on the Mattermost server
 - `make debug-plugin` - Starts a `delve` process and attaches it to your running plugin
-- `make clean` - Force deletes recursively the contents of `dist`, `server/coverage.txt`, `server/dist`, `webapp/junit.xml`, `webapp/dist`, `webapp/node_modules` and `build/bin/` folders
+- `make clean` - Force deletes the content of build related files. Use when running into build issues,
 
 You can run the development build of the plugin by setting the environment variable `MM_DEBUG=1`, or prefixing the variable at the beginning of the `make` command. For example, `MM_DEBUG=1 make deploy` will deploy the development build of the plugin to your server, allowing you to have a more fluid debugging experience. To use the production build of the plugin instead, unset the `MM_DEBUG` environment variable before running the `make` commands.
 
