@@ -9,7 +9,7 @@ weight: 10
 
 - https://docs.mattermost.com/developer/developer-flow.html
 - [Jira bug ticket process](https://docs.mattermost.com/process/new-bug-tickets.html)
-- [PR cherry-picking process](https://developers.mattermost.com/contribute/getting-started/branching/)
+- [Feature flag process](https://developers.mattermost.com/contribute/server/feature-flags/)
 - [RN build process](https://developers.mattermost.com/internal/mobile-build-process/) if you are joining the Mobile team
 - Glance through the release processes:
     - https://docs.mattermost.com/process/feature-release.html

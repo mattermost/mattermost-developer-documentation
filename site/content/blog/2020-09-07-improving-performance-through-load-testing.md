@@ -8,7 +8,7 @@ categories:
 author: Claudio Costa
 github: streamer45
 community: claudio.costa
-canonicalUrl: https://mattermost.com/blog/improving-performance-through-load-testing/
+canonicalUrl: https://developers.mattermost.com/blog/improving-performance-through-load-testing/
 ---
 
 Have you ever wondered how many active users your application can handle at the same time? If so, you're not alone. Here at Mattermost we're building a highly concurrent messaging platform for team collaboration that needs to potentially serve up to several thousands of users simultaneously. 
