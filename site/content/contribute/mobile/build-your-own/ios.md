@@ -17,7 +17,7 @@ At times, you may want to build your own Mattermost mobile app. The most common 
 The Mattermost mobile app for iOS needs to be built on a macOS computer with Xcode and the Xcode command line tools installed.
 
 ```sh
-$ xcode-select ---install
+$ xcode-select --install
 ```
 
 ### 2. Bundle ID and entitlements
