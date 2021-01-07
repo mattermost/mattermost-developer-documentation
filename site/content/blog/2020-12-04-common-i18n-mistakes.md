@@ -7,6 +7,7 @@ categories:
 author: Harrison Healey
 github: hmhealey
 community: harrison
+canonicalUrl: https://mattermost.com/blog/avoiding-common-internationalization-mistakes/
 ---
 
 Languages are complicated, and every language is complicated in different ways that can be hard to understand without learning every single one of them. Some languages form words from multiple characters while others have symbols that represent entire concepts. Some feature words without pluralization or gender and rely on context for that while others have two or even more genders for words. Some are very phonetic while others pronounce words seemingly at random (*cough* English, though *cough*).
