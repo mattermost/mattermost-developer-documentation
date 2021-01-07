@@ -30,7 +30,7 @@ and running the service under a `mattermost-push-proxy` user account with limite
 2. If you are upgrading a previous version of the Mattermost Push Notification Service make sure to backup your `mattermost-push-proxy.json` file before continuing.
 
 3. Unzip the downloaded Mattermost Push Notification Service by typing:
-`tar -xvzf mattermost-push-proxy-X.X.X.tar.gz` 
+`tar -xvzf mattermost-push-proxy-X.X.X.tar.gz`
 
 4. Configure the Mattermost Push Notification service by editing the `mattermost-push-proxy.json` file at `/home/ubuntu/mattermost-push-proxy/config`. Follow the steps in the [Android](#set-up-mattermost-push-notification-service-to-send-android-push-notifications)
     and [iOS](#set-up-mattermost-push-notification-service-to-send-ios-push-notifications) sections to replace the values in the config file.
@@ -51,7 +51,7 @@ and running the service under a `mattermost-push-proxy` user account with limite
 
    To route the traffic through a separate proxy server, add `Environment="HTTP_PROXY=<http://server>"` under the `[Service]` section of the file. If you have an HTTPS server, then use `HTTPS_PROXY`. If you set both then `HTTPS_PROXY` will take higher priority than `HTTP_PROXY`.
 
-6. Start the service with `sudo systemctl start mattermost-push-proxy` or restart with `sudo systemctl restart mattermost-push-proxy`. Use `sudo systemctl enable mattermost-push-proxy` to have systemd start the service on boot. 
+6. Start the service with `sudo systemctl start mattermost-push-proxy` or restart with `sudo systemctl restart mattermost-push-proxy`. Use `sudo systemctl enable mattermost-push-proxy` to have systemd start the service on boot.
 
 
 ### Set Up Mattermost Push Notification Service to Send Android Push Notifications
@@ -72,7 +72,9 @@ and running the service under a `mattermost-push-proxy` user account with limite
 
 ### Set up Mattermost Push Notification Service to Send iOS Push Notifications
 
-- Double click the **Distribution Certificate** generated while [Setup Push Notifications for iOS](/contribute/mobile/push-notifications/ios) to add it to your Keychain Access. Go to **Keychain Access**, select the **login** keychain and **My Certificates** from the side menu.
+- Double click the **Push Notifications Certificate** generated and downloading while [Setting up Push Notifications for iOS](/contribute/mobile/push-notifications/ios) to add it to your Keychain Access (downloads by default as aps.cer).
+
+- Open **Keychain Access**, select the **login** keychain and **My Certificates** from the side menu.
 ![image](/img/mobile/ios_keychain_select.png)
 
 - Find the certificate you imported and then right click to **export** it as a **.p12** file
@@ -158,6 +160,13 @@ To view the log file, use:
 $ sudo tail -n 1000 /var/log/upstart/mattermost-push-proxy.log
 ```
 
+{{% note "Device IDs" %}}
+Note that Device IDs can change somewhat frequently, as they are tied to a
+device session. If you're having trouble, double-check the latest device IDs
+by re-running the above queries.
+{{% /note %}}
+
+
 ### Troubleshooting
 
 ##### High Sierra Apple Developer Keys Steps - follow these instructions if you run into an error like below:
@@ -182,6 +191,13 @@ panic: Failed to load the apple pem cert err=failed to parse PKCS1 private key f
 6. Verifying the certificate works with apple:
   - `openssl s_client -connect gateway.push.apple.com:2195 -cert aps_production.pem -key aps_production_priv.pem`
 
-### Reporting issues 
+##### DeviceTokenNotForTopic
+
+**For iOS / Apple Push Notifications**: If the logs are reflecting DeviceTokenNotForTopic (error 400)
+this may be because you're using an older / previous Device ID. Re-run the queries you need to get device IDs and test.
+
+This could also be because you generated a certificate for the wrong bundle ID. The bundle ID used in mattermost-push-proxy.json should be the same one as the app and the same that you generated the certificate for.
+
+### Reporting issues
 
 For issues with repro steps, please report to https://github.com/mattermost/mattermost-server/issues
