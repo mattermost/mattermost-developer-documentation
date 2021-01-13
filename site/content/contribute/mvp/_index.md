@@ -15,6 +15,10 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+5.30    | December 16, 2020   | [XxLilBoPeepsxX](https://github.com/XxLilBoPeepsxX)
+5.29    | November 16, 2020   | [Tom De Moor](https://github.com/ctlaltdieliet)
+5.28    | October 16, 2020    | [Soo Hwan Kim](https://github.com/josephk96)
+5.27    | September 16, 2020  | [Mohan Prasath](https://github.com/openmohan)
 5.26    | August 16, 2020     | [Abdu Assabri](https://github.com/abdusabri)
 5.25    | July 16, 2020       | [Rodrigo Villablanca](https://github.com/rvillablanca)
 5.24    | June 16, 2020       | [Rakesh Peela](https://github.com/rakhi2104)

@@ -67,7 +67,7 @@ Both mapStateToProps and mapDispatchToProps are optional and can be omitted as n
 
 If you're using a selector that is produced through a factory, such as makeGetUser, you can instead generate an individual `mapStateToProps` function for each instance of the component.
 
-```
+```javascript
 // component/my_component/index.jsx
 
 ...

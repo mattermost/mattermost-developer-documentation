@@ -3228,6 +3228,7 @@ footer {
     line-height: 3.8rem;
     margin: 10px;
     width: 3.8rem;
+    transition: background-color .15s ease-in-out;
 }
 
 .footer__icons i {

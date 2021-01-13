@@ -5,7 +5,10 @@ weight: 2
 subsection: Server
 ---
 
-Set up your development environment for building, running, and testing the Mattermost server. <br>
+Set up your development environment for building, running, and testing the Mattermost server.
+
+**Note:** If you're developing plugins, see the plugin [developer setup](https://developers.mattermost.com/extend/plugins/developer-setup/) documentation.
+
 For minimum software requirements, see the following table:
 
 | Software       | Minimum Version  |
@@ -17,7 +20,6 @@ For minimum software requirements, see the following table:
 <div class="tab">
     <button class="tablinks active" onclick="openTab(event, 'mac')">Mac OS X</button>
     <button class="tablinks" onclick="openTab(event, 'ubuntu')">Ubuntu 16.04/18.04</button>
-    <button class="tablinks" onclick="openTab(event, 'windows')">Windows</button>
     <button class="tablinks" onclick="openTab(event, 'windows_wsl')">Windows WSL</button>
     <button class="tablinks" onclick="openTab(event, 'archlinux')">Archlinux</button>
     <button class="tablinks" onclick="openTab(event, 'centos')">CentOS 7/Fedora 31</button>
@@ -29,10 +31,6 @@ For minimum software requirements, see the following table:
 
 <div id="ubuntu" class="tabcontent">
     {{% content "contribute/server/developer-setup/ubuntu.md" %}}
-</div>
-
-<div id="windows" class="tabcontent">
-    {{% content "contribute/server/developer-setup/windows.md" %}}
 </div>
 
 <div id="windows_wsl" class="tabcontent">
