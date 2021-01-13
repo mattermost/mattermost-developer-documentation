@@ -13,9 +13,9 @@ subsection: Plugins
 - `make test` - Runs the plugin's server tests and webapp tests
 - `make check-style` - Runs linting checks on the plugin's server and webapp folders
 - `make enable` - Enables the plugin on the Mattermost server
-- `make disable` - Disables the plugin on the Mattermost server
-- `make reset` - Disables and re-enables the plugin on the Mattermost server
-- `make attach-headless` - Starts a `delve` process and attaches it to your running plugin
+- `make disable` - Disables the plugin on the Mattermost server.
+- `make reset` - Disables and re-enables the plugin on the Mattermost server.
+- `make attach-headless` - Starts a `delve` process and attaches it to your running plugin.
 
 You can run the development build of the plugin by setting the environment variable `MM_DEBUG=1`, or prefixing the variable at the beginning of the `make` command. For example, `MM_DEBUG=1 make deploy` will deploy the development build of the plugin to your server, allowing you to have a more fluid debugging experience. To use the production build of the plugin instead, unset the `MM_DEBUG` environment variable before running the `make` commands.
 
@@ -51,7 +51,7 @@ An `http` URL pointing to your server should show in the terminal. The `https` v
 
 ### Debugging server-side plugins using `delve`
 
-Using the `make attach-headless` command will allow you to use a debugger and step through the plugin's server code. A [delve](https://github.com/go-delve/delve) process will be created and attach to your plugin. You can then use an IDE or debug console to connect to the `delve` process. If you are using VSCode, you can use this `launch.json` configuration to connect.
+Using the `make attach-headless` command will allow you to use a debugger and step through the plugin's server code. A [delve](https://github.com/go-delve/delve) process will be created and attach to your plugin. You can then use an IDE or debug console to connect to the `delve` process. If you're using VSCode, you can use this `launch.json` configuration to connect.
 
 ```json
 {
