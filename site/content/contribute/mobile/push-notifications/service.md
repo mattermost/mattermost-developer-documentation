@@ -72,7 +72,7 @@ and running the service under a `mattermost-push-proxy` user account with limite
 
 ### Set up Mattermost Push Notification Service to Send iOS Push Notifications
 
-- Double click the **Push Notifications Certificate** generated and downloading while [Setting up Push Notifications for iOS](/contribute/mobile/push-notifications/ios) to add it to your Keychain Access (downloads by default as aps.cer).
+- Double click the **Push Notifications Certificate** generated and downloaded while [Setting up Push Notifications for iOS](/contribute/mobile/push-notifications/ios) to add it to your Keychain Access (downloads by default as aps.cer).
 
 - Open **Keychain Access**, select the **login** keychain and **My Certificates** from the side menu.
 ![image](/img/mobile/ios_keychain_select.png)
