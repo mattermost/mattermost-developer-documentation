@@ -9,9 +9,11 @@ The overarching guideline is to just follow [Effective Go](https://golang.org/do
 
 ### Model package
 
-The `model` package is our public API which is consumed by multiple plugins. Having a non-idiomatic public API should not prevent us from improving the rest of the codebase. More code keeps getting added, and it becomes practically impossible to fix all of the issues at once. Rather, we choose to have consistency in that package ONLY IF changing it makes it inconsistent from an API perspective. This includes both breaking changes and any inconsistencies that might appear in godocs. There are some rules which don’t need an API change and can be used everywhere. In all other packages, we should enforce correctness. Once we move to v6 of the mattermost-server, we can change the remaining places to match with the rest of the codebase.
+The `model` package is our public API which is consumed by multiple plugins. Having a non-idiomatic public API should not prevent us from improving the rest of the codebase. More code keeps getting added, and it becomes practically impossible to fix all of the issues at once. Instead, we choose to have consistency in that package only if changing it makes it inconsistent from an API perspective. This includes both breaking changes and any inconsistencies that might appear in godocs.
 
-This does NOT however mean that a developer has to fix any surrounding code to fix the style issues too. It’s encouraged to keep fixing things as we go, but it is NOT compulsory to do so and there is no need for a reviewer to ask for that change if it is not something that is added/edited in that PR.
+There are some rules which don’t need an API change and can be used everywhere. In all other packages, we should enforce correctness. Once we move to v6 of the `mattermost-server`, we can change the remaining places to match with the rest of the codebase.
+
+This does not, however, mean that a developer has to fix any surrounding code to fix the style issues too. It’s encouraged to keep fixing things as we go, but it's not compulsory to do so. There's also no need for a reviewer to ask for that change if it's not something that's added/edited in that PR.
 
 The following goes into some of the specific anti-patterns that have crept in our codebase and we should aim to correct. The rules which are exempt from being applied in the model package are specifically indicated.
 
@@ -20,15 +22,15 @@ The following goes into some of the specific anti-patterns that have crept in ou
 ### Default to sync instead of async
 
 Always prefer synchronous functions by default. Async calls are hard to get right. They have no control over goroutine lifetimes and introduce data races. If you think something needs to be asynchronous, measure it and prove it. Ask these questions:
-- Does it improve performance? How much?
-- What’s the tradeoff of the happy path vs slow path?
+- Does it improve performance? If so, by how much?
+- What’s the tradeoff of the happy path vs. slow path?
 - How do I propagate errors?
 - What about back-pressure?
 - What should be my concurrency model?
 
-Avoid creating one-off goroutines without knowing when/how they exit. They cause hard to debug problems and can often cause performance degradation rather than an improvement. Have a look at:
-- https://github.com/golang/go/wiki/CodeReviewComments#goroutine-lifetimes.
-- https://github.com/golang/go/wiki/CodeReviewComments#synchronous-functions.
+Avoid creating one-off goroutines without knowing when/how they exit. They cause problems that are hard to debug, and can often cause performance degradation rather than an improvement. Have a look at:
+- https://github.com/golang/go/wiki/CodeReviewComments#goroutine-lifetimes
+- https://github.com/golang/go/wiki/CodeReviewComments#synchronous-functions
 
 ### Pointers to slices (exempt from model)
 
@@ -46,10 +48,10 @@ Use == "" to check empty strings, not len(s) == 0. This will be enforced with a 
 
 If there are multiple return statements in an if-else statement, remove the else block and outdent it.
 
-This is a sample code from mlog/human/parser.go:
+This is a sample code from `mlog/human/parser.go`:
 
 ```go
-// look for an initial "{"
+// Look for an initial "{"
 if token, err := dec.Token(); err != nil {
 	return result, err
 } else {
@@ -63,7 +65,7 @@ if token, err := dec.Token(); err != nil {
 This can be simplified to:
 
 ```go
-// look for an initial "{"
+// Look for an initial "{"
 if token, err := dec.Token(); err != nil {
 	return result, err
 }
@@ -75,14 +77,13 @@ if !ok || d != '{' {
 
 ### Avoid creating more ToJSON methods
 
-We should avoid creating ToJSON methods for model structs. And just use json.Marshal at the call site. This has 2 main benefits:
+We should avoid creating ToJSON methods for model structs. And just use `json.Marshal` at the call site. This has two main benefits:
 - We’ve had to fix multiple bugs due to suppressing the JSON error which happens with ToJSON methods.
 - A lot of times, we pass the output to something (like a network call) which accepts a byte slice, leading to a double conversion from byte-slice to string to a byte-slice again.
 
 ### [Initialisms](https://github.com/golang/go/wiki/CodeReviewComments#initialisms) (exempt from model)
 
 We prefer to use userID rather than userId. Same for abbreviations; HTTP is preferred over Http or http. This will be enforced with the linter soon.
-
 
 ### [Interfaces](https://github.com/golang/go/wiki/CodeReviewComments#interfaces)
 
