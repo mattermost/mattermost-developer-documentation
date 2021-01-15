@@ -47,7 +47,7 @@ Options:
 Now that all requirements are met, it's time to sign the Mattermost app for Android. Most of the options of the signing tool are optional but you should really be using your own `package identifier`, `google services settings` and maybe change the `display name`.
 
 * Create a folder that will serve as your working directory to store all the needed files.
-* Download the [sign-android](/scripts/sign-android) script and save it in your working directory.
+* Download the [sign-android](/scripts/sign-android/) script and save it in your working directory.
 * Download the [Android unsigned build](https://github.com/mattermost/mattermost-mobile/releases) and save it in your working directory.
 * Open a terminal to your working directory and make sure the `sign-android` script it is executable.
 

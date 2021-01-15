@@ -7,10 +7,10 @@ weight: 31
 
 Steps to cut the mobile build:
 
-1. Set the proper [version number](/internal/mobile-build-process/bump-version-number) if needed.
+1. Set the proper [version number](/internal/mobile-build-process/bump-version-number/) if needed.
 {{%note "Version number" %}}Normally the version number will be set after a release, but sometimes is needed when cutting a dot release.{{%/note%}}
 
-2. Set the proper [build number](/internal/mobile-build-process/bump-build-number) if needed.
+2. Set the proper [build number](/internal/mobile-build-process/bump-build-number/) if needed.
 {{%note "Build number" %}}The build number has to be incremented each time for builds that are going to be published to the stores.{{%/note%}}
 
 3. Login to jenkins

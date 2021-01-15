@@ -13,7 +13,7 @@ As an alternative we've also created a set of **scripts** to help automate build
 
 **Note:** By using the **scripts**, [Fastlane](https://docs.fastlane.tools/#choose-your-installation-method) and other dependencies will be installed in your system.
 
-##### [Buid the Android app](android) or [Buid the iOS app](ios)
+##### [Buid the Android app](android/) or [Buid the iOS app](ios/)
 
 
 ### Push Notifications with Your Own App
