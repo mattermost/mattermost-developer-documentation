@@ -39,4 +39,4 @@ Push notifications on iOS are managed and dispatched using [Apple's Push Notific
 
 - Download the Certificate and click **Done** to finish the process
 
-At this point, you can build the Mattermost app for iOS and use the above downloaded certificate to setup the [Mattermost Push Notification Service](/contribute/mobile/push-notifications/service).
+At this point, you can build the Mattermost app for iOS and use the above downloaded certificate to setup the [Mattermost Push Notification Service](/contribute/mobile/push-notifications/service/).

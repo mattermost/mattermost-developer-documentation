@@ -7,11 +7,11 @@ weight: 11
 
 When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients.
 
-Here we'll show how to use Redux actions with a plugin. To learn more about these actions, see the [contributor documentation](/contribute/redux/actions).
+Here we'll show how to use Redux actions with a plugin. To learn more about these actions, see the [contributor documentation](/contribute/redux/actions/).
 
 ## Prerequisites
 
-This guide assumes you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide](/extend/plugins/webapp/hello-world).
+This guide assumes you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide](/extend/plugins/webapp/hello-world/).
 
 ## Import mattermost-redux
 
@@ -35,7 +35,7 @@ mkdir -p src/components/action_example
 cd src/components/action_example
 ```
 
-In there, create two files: `index.js` and `action_example.jsx`. If you're not familiar with why we're creating these directories and files, [read the contributor documentation on using React with Redux](/contribute/redux/react-redux).
+In there, create two files: `index.js` and `action_example.jsx`. If you're not familiar with why we're creating these directories and files, [read the contributor documentation on using React with Redux](/contribute/redux/react-redux/).
 
 Open up `action_example.jsx` and add the following:
 
@@ -107,7 +107,7 @@ The container is doing two things. First, it's grabbing the current (logged in) 
 
 Now we can use `this.props.patchUser()` to update a user. The example component we made uses it to patch the current user's first name.
 
-To use our component in our plugin we would then use the registry in the initialization function of the plugin to register the component somewhere in the Mattermost UI. That is beyond the scope of this guide, but you can [read more about that here](/extend/plugins/webapp/reference).
+To use our component in our plugin we would then use the registry in the initialization function of the plugin to register the component somewhere in the Mattermost UI. That is beyond the scope of this guide, but you can [read more about that here](/extend/plugins/webapp/reference/).
 
 ## Available Actions
 
