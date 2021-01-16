@@ -1,5 +1,6 @@
 ---
 title: "VPN"
+description: "Find out how to setup VPN access when you are onboarding with Mattermost."
 date: 2018-05-28T16:08:19+02:00
 subsection: internal
 weight: 20

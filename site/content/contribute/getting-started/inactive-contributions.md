@@ -1,5 +1,6 @@
 ---
 title: "Inactive Contributions"
+description: "This process describes how inactive contributions are managed at Mattermost, inspired by the Kubernetes project."
 date: 2017-08-20T12:33:36-04:00
 weight: 1.5
 subsection: Getting Started

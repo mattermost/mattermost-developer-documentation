@@ -1,5 +1,6 @@
 ---
 title: "Customizing Mattermost"
+description: "Learn more about customizing Mattermost to create a more personalized experience depending on the needs of your deployment."
 date: "2017-10-29T13:47:55+09:00"
 section: "extend"
 ---

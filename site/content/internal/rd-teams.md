@@ -1,5 +1,6 @@
 ---
 title: R&D Teams
+description: "Find out which engineers are working in different R&D departments at Mattermost."
 date: 2019-02-06T14:28:35-05:00
 section: internal
 weight: 110

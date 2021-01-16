@@ -1,5 +1,6 @@
 ---
 title: Release Tagging Process
+description: "Read about the Mattermost release tagging process under our mobile build process."
 date: 2019-05-23T16:02:00-05:00
 section: internal
 weight: 32

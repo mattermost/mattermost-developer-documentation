@@ -1,5 +1,6 @@
 ---
 title: "White Labeling"
+description: "Learn how to white label the Mattermost Mobile app, and how to replace and override the assets used for your Mattermost deployment."
 date: 2018-05-20T11:35:32-04:00
 weight: 3
 subsection: Build Your Own App

@@ -1,5 +1,6 @@
 ---
 title: "Migrating to Redux"
+description: "The Mattermost web app is going through a big restructuring effort to move from using Flux to Redux."
 date: 2017-08-20T11:35:32-04:00
 weight: 8
 subsection: Web App

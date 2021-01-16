@@ -1,3 +1,8 @@
+---
+title: "Windows with WSL Development Environment Setup"
+description: "Read about how to set up your developer environment in Mattermost using the Windows Subsystem for Linux."
+---
+
 This is an unofficial guide. Community testing, feedback, and improvements are welcome and greatly appreciated.
 
 1. Install the Windows Subsystem for Linux: https://docs.microsoft.com/en-us/windows/wsl/install-win10.
