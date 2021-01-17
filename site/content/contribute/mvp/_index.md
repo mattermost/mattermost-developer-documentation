@@ -15,6 +15,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+5.31    | January 16, 2021    | [Haardik Dharma](https://github.com/haardikdharma10)
 5.30    | December 16, 2020   | [XxLilBoPeepsxX](https://github.com/XxLilBoPeepsxX)
 5.29    | November 16, 2020   | [Tom De Moor](https://github.com/ctlaltdieliet)
 5.28    | October 16, 2020    | [Soo Hwan Kim](https://github.com/josephk96)
