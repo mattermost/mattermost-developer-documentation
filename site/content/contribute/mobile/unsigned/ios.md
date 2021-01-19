@@ -60,7 +60,7 @@ and you should be using your own `provisioning profiles`, `certificate`, also yo
 * Download your **Apple Distribution certificate** from the [Apple Developer portal](https://developer.apple.com/account/resources/certificates/list) and save it in your working directory.
 * Install the previously downloaded certificate into your macOS Keychain. [Learn more](https://developer.apple.com/support/certificates).
 * Download your **Provisioning profiles** from the [Apple Developer portal](https://developer.apple.com/account/resources/profiles/list) and save it in your working directory.
-* Download the [sign-ios](/scripts/sign-ios) script and save it in your working directory.
+* Download the [sign-ios](/scripts/sign-ios/) script and save it in your working directory.
 * Download the [iOS unsigned build](https://github.com/mattermost/mattermost-mobile/releases) and save it in your working directory.
 * Open a terminal to your working directory and make sure the `sign-ios` script it is executable.
 

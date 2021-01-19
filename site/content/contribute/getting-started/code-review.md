@@ -44,7 +44,7 @@ If you are a core committer seeking a review
     * `CherryPick/Approved`: Apply this if the pull request is meant for a quality or patch release.
     * `Do Not Merge/Awaiting PR`: Apply this if the pull request depends on another (e.g. server changes)
     * `Setup Test Server`: Apply this to create a test server with your changes for review.
-    * See [labels](/contribute/getting-started/labels) for additional labels.
+    * See [labels](/contribute/getting-started/labels/) for additional labels.
 4. Assign a milestone as necessary.
     * Most issues are targeted for an upcoming release, and should be assigned the corresponding milestone.
     * The milestone is mandatory for bug fixes that must be cherry-picked.
