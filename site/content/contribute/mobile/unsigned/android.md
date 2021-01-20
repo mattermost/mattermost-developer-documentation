@@ -14,7 +14,7 @@ With every Mattermost mobile app release, we publish the Android unsigned apk in
 3. [JQ](https://stedolan.github.io/jq/) is like sed for JSON data - you can use it to slice, filter, map, and transform structured data with the same ease that `sed`, `awk`, and `grep` let you work with text.
 4. Android SDK as described in the [Developer Setup](/contribute/mobile/developer-setup/#additional-setup-for-android).
 5. Setup keys and Google Services as described in steps 2, 3, 4 & 6 of the [Build your own App guide](/contribute/mobile/build-your-own/android/#build-preparations).
-6. `sign-android` script to sign the Android app.
+6. [sign-android](/scripts/sign-android) script to sign the Android app.
 
 #### Signing Tool
 
@@ -47,7 +47,7 @@ Options:
 Now that all requirements are met, it's time to sign the Mattermost app for Android. Most of the options of the signing tool are optional but you should really be using your own `package identifier`, `google services settings` and maybe change the `display name`.
 
 * Create a folder that will serve as your working directory to store all the needed files.
-* Download the [sign-android](/scripts/sign-android/) script and save it in your working directory.
+* Download the [sign-android](/scripts/sign-android) script and save it in your working directory.
 * Download the [Android unsigned build](https://github.com/mattermost/mattermost-mobile/releases) and save it in your working directory.
 * Open a terminal to your working directory and make sure the `sign-android` script it is executable.
 
