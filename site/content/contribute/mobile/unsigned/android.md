@@ -49,7 +49,7 @@ Now that all requirements are met, it's time to sign the Mattermost app for Andr
 * Create a folder that will serve as your working directory to store all the needed files.
 * Download the [sign-android](/scripts/sign-android) script and save it in your working directory.
 * Download the [Android unsigned build](https://github.com/mattermost/mattermost-mobile/releases) and save it in your working directory.
-* Open a terminal to your working directory and make sure the `sign-android` script it is executable.
+* Open a terminal to your working directory and make sure the `sign-android` script is executable.
 
 ```bash
 $ ls -la
