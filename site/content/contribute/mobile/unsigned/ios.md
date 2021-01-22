@@ -13,7 +13,7 @@ With every Mattermost mobile app release, we publish the iOS unsigned ipa in in 
 2. Install the Xcode command line tools:
 	```bash
 	$ xcode-select --install
-3. Set up your Certificate and Provisioning profiles as described in steps 1 & 2 for [Run on iOS Devices](/contribute/mobile/developer-setup/run/#run-on-ios-devices) in the Developer Setup.
+3. Set up your Certificate and Provisioning profiles as described in steps 1 and 2 for [Run on iOS Devices](/contribute/mobile/developer-setup/run/#run-on-ios-devices) in the Developer Setup.
 4. [sign-ios](/scripts/sign-ios) script to sign the iOS app.
 
 #### Signing Tool
