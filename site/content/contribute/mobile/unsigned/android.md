@@ -13,7 +13,7 @@ With every Mattermost mobile app release, we publish the Android unsigned apk in
 2. [XMLStarlet](http://xmlstar.sourceforge.net/doc/UG/xmlstarlet-ug.html) is a set of command line utilities (tools) which can be used to transform, query, validate, and edit XML documents and files using a simple set of shell commands in the same way it is done for plain text files using UNIX `grep`, `sed`, `awk`, `diff`, `patch`, `join`, etc., commands.
 3. [JQ](https://stedolan.github.io/jq/) is like `sed` for JSON data - you can use it to slice, filter, map, and transform structured data with the same ease that `sed`, `awk`, and `grep` let you work with text.
 4. Android SDK as described in the [Developer Setup](/contribute/mobile/developer-setup/#additional-setup-for-android).
-5. Setup keys and Google Services as described in steps 2, 3, 4 & 6 of the [Build your own App guide](/contribute/mobile/build-your-own/android/#build-preparations).
+5. Set up keys and Google Services as described in steps 2, 3, 4, and 6 of the [Build your own App guide](/contribute/mobile/build-your-own/android/#build-preparations).
 6. [sign-android](/scripts/sign-android) script to sign the Android app.
 
 #### Signing Tool
