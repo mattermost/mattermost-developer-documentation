@@ -52,6 +52,16 @@ Prometheus is also available at `http://localhost:9090`:
 
 ![Prometheus landing page](/blog/2021-01-21-streamlining-developer-access-to-prometheus-and-grafana/prometheus.png)
 
+### Enabling Metrics
+
+Although the tooling is all setup to scrape metrics and display the dashboards, you'll need to do some one-time work to enable metrics within the Mattermost server.
+
+First, be sure you have an Enterprise license installed. Staff members should have access to the shared developer license, but you can also request a trial license in-product. Browse to `/admin_console/about/license` on your local Mattermost instance to setup the license.
+
+Second, enable performance monitoring. You can do this manually via `config.json` and setting `MetricsSettings.Enable` to `true`, or by exporting `MM_METRICSSETTINGS_ENABLE=true` into your shell before starting the server, or by enabling this manually via the System Console at `/admin_console/environment/performance_monitoring`:
+
+![Performance monitoring configuration](/blog/2021-01-21-streamlining-developer-access-to-prometheus-and-grafana/performance-monitoring-config.png)
+
 ### What's next?
 
 These changes weren't just made in isolation -- in fact, this is all just infrastructure work for another recent project to improve Mattermost Performance Monitoring. Stay tuned for a follow-up blog post!
