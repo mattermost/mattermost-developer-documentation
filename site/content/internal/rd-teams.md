@@ -49,6 +49,7 @@ Feature teams are full-stack teams owning collections of features within the Mat
 * Daniel Espino Garcia - Engineer
 * Dylan Haussermann - QA
 * Aaron Rothschild - Product Manager
+* Abhijit Singh - UX Designer
 * Justine Geffen - Technical Writer
 
 ### Workflows Team
@@ -59,17 +60,20 @@ Feature teams are full-stack teams owning collections of features within the Mat
 * Alejandro García Montoro - Engineer
 * Prapti Shrestha - QA SDET
 * Ian Tao - Product Manager
+* Alex Siclari - UX Designer
 * Justine Geffen - Technical Writer
 
 ### Cloud Features Team
 
 * Maria Nuñez - Engineering Lead
+* Allan Guwatudde - Engineer
 * Mario de Frutos - Engineer
+* Pablo Vélez Vidal - Engineer
 * Nick Misasi - Engineer
 * Steve Mudie - QA
 * Adam Clarkson - Product Manager
-* Carrie Warner - Technical Writer
 * Matt Birtch - UX Designer
+* Carrie Warner - Technical Writer
 
 ## Platform Teams
 
@@ -124,7 +128,6 @@ Platform Teams are focused on an individual technical specialisation or layer of
 ## Site Reliability Engineering Team
 
 * Joram Wilander - Engineering Lead
-* Carlos Panato - Engineer
 * Stylianos Rigas - Engineer
 * Angelos Kyratzakos - Engineer
 * Stavros Foteinopoulos - Engineer
@@ -139,7 +142,9 @@ Platform Teams are focused on an individual technical specialisation or layer of
 
 * Daniel Schalla - Engineering Lead
 * Juho Nurminen - Product Security Engineer
+* Rohitesh Gupta - Product Security Engineer
 * Corey Robinson - Security Engineer, Infrastructure & Operations
+* Kennedy Torkura - Cloud Security Engineer
 * Katie Wiersgalla - Product Manager
 
 ## Other

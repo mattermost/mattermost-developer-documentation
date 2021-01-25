@@ -13,7 +13,7 @@ Now that the app can receive push notifications, we need to make sure that the M
 
 - A linux box server with at least 1GB of memory.
 - A copy of the [Mattermost Push Notification Service](https://github.com/mattermost/mattermost-push-proxy/releases).
-- [Custom Android and/or iOS](/contribute/mobile/build-your-own) Mattermost mobile apps.
+- [Custom Android and/or iOS](/contribute/mobile/build-your-own/) Mattermost mobile apps.
 - Private and public keys obtained from the [Apple Developer Program](https://developer.apple.com/account/ios/certificate/).
 - A Firebase Cloud Messaging Server key obtained from the [Firebase Console](https://console.firebase.google.com).
 
