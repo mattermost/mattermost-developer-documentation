@@ -27,9 +27,9 @@ This does not, however, mean that a developers is *required* to fix any surround
 
 ## Guidelines
 
-## Functional
+### Functional
 
-### Default to sync instead of async
+#### Default to sync instead of async
 
 Always prefer synchronous functions by default. Async calls are hard to get right. They have no control over goroutine lifetimes and introduce data races. If you think something needs to be asynchronous, measure it and prove it. Ask these questions:
 - Does it improve performance? If so, by how much?
@@ -42,19 +42,19 @@ Do not create one-off goroutines without knowing when/how they exit. They cause 
 - https://github.com/golang/go/wiki/CodeReviewComments#goroutine-lifetimes
 - https://github.com/golang/go/wiki/CodeReviewComments#synchronous-functions
 
-### Pointers to slices
+#### Pointers to slices
 
 Do not use pointers to slices. Slices are already reference types which point to an underlying array. If you want a function to modify a slice, then return that slice from the function, rather than passing a pointer.
 
 This rule is not yet fully applied to the `model` package due to backwards compatibility requirements.
 
-### Avoid creating more ToJSON methods
+#### Avoid creating more ToJSON methods
 
 Do not create new `ToJSON` methods for model structs. Instead, just use `json.Marshal` at the call site. This has two major benefits:
 - It avoids bugs due to the suppression of the JSON error which happens with `ToJSON` methods (we've had a number of bugs caused by this).
 - It is a common pattern to pass the output to something (like a network call) which accepts a byte-slice, leading to a double conversion from byte-slice to string to a byte-slice again if `ToJSON` methods are used.
 
-### [Interfaces](https://github.com/golang/go/wiki/CodeReviewComments#interfaces)
+#### [Interfaces](https://github.com/golang/go/wiki/CodeReviewComments#interfaces)
 
 - Return structs, accept interfaces.
 - Interface names should end with “-er”. This is not a strict rule. Just a guideline which indicates the fact that interface functionalities are designed around the concept of “doing” something.
@@ -66,19 +66,19 @@ Another common pattern is to preemptively declare the interface in the source pa
 
 These are just guidelines and not strict rules. Understand your use-case and apply them appropriately.
 
-## Stylistic
+### Stylistic
 
-### [CamelCase variables/constants](https://github.com/golang/go/wiki/CodeReviewComments#mixed-caps)
+#### [CamelCase variables/constants](https://github.com/golang/go/wiki/CodeReviewComments#mixed-caps)
 
 We use CamelCase names like WebsocketEventPostEdited, not WEBSOCKET_EVENT_POST_EDITED.
 
 This rule is not yet fully applied to the `model` package due to backwards compatibility requirements.
 
-### Empty string check
+#### Empty string check
 
 Use `foo == ""` to check for empty strings, not `len(foo) == 0`.
 
-### [Reduce indentation](https://github.com/golang/go/wiki/CodeReviewComments#indent-error-flow)
+#### [Reduce indentation](https://github.com/golang/go/wiki/CodeReviewComments#indent-error-flow)
 
 If there are multiple return statements in an if-else statement, remove the else block and outdent it.
 
@@ -109,13 +109,13 @@ if !ok || d != '{' {
 }
 ```
 
-### [Initialisms](https://github.com/golang/go/wiki/CodeReviewComments#initialisms)
+#### [Initialisms](https://github.com/golang/go/wiki/CodeReviewComments#initialisms)
 
 Use `userID` rather than `userId`. Same for abbreviations; `HTTP` is preferred over `Http` or `http`.
 
 This rule is not yet fully applied to the `model` package due to backwards compatibility requirements.
 
-### [Receiver Names](https://github.com/golang/go/wiki/CodeReviewComments#receiver-names)
+#### [Receiver Names](https://github.com/golang/go/wiki/CodeReviewComments#receiver-names)
 
 The name of a method's receiver should be a reflection of its identity; often a one or two letter abbreviation of its type suffices (such as "c" or "cl" for "Client"). Don't use generic names such as "me", "this" or "self", identifiers typical of object-oriented languages that give the method a special meaning.
 
