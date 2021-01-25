@@ -36,7 +36,7 @@ Since the corresponding Mattermost functionality is only available with access t
 export ENABLED_DOCKER_SERVICES="mysql postgres inbucket prometheus grafana"
 ```
 
-Alternatively, you can follow the instructions in [config.mk](https://github.com/mattermost/mattermost-server/blob/master/config.mk). (Note that it's not necessary to specify `minio`, `openldap` or `elasticsearch` -- these are added automatically as needed.)
+Alternatively, you can follow the instructions in [config.mk](https://github.com/mattermost/mattermost-server/blob/master/config.mk). (Note that it's not necessary to specify `minio`, `openldap` or `elasticsearch` -- these are added automatically when an enterprise-enabled repository is detected.)
 
 The build tooling does more than just spin up two new containers, however. [Various configuration files](https://github.com/mattermost/mattermost-server/tree/master/build/docker) also automate the following:
 * configuring Prometheus to scrape the Mattermost `:8067/metrics` endpoint (requires access to the enterprise source)
