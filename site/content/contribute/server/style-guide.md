@@ -117,7 +117,7 @@ This rule is not yet fully applied to the `model` package due to backwards compa
 
 #### [Receiver Names](https://github.com/golang/go/wiki/CodeReviewComments#receiver-names)
 
-The name of a method's receiver should be a reflection of its identity; often a one or two letter abbreviation of its type suffices (such as "c" or "cl" for "Client"). Don't use generic names such as "me", "this" or "self", identifiers typical of object-oriented languages that give the method a special meaning.
+The name of a method's receiver should be a reflection of its identity; often a one or two letter abbreviation of its type suffices (such as "c" or "cl" for "Client"). Don't use generic names such as "me", "this" or "self", identifiers typical of object-oriented languages that give the variable a special meaning.
 
 ## Proposing a new rule
 
