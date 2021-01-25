@@ -27,6 +27,8 @@ This does not, however, mean that a developers is *required* to fix any surround
 
 ## Guidelines
 
+## Functional
+
 ### Default to sync instead of async
 
 Always prefer synchronous functions by default. Async calls are hard to get right. They have no control over goroutine lifetimes and introduce data races. If you think something needs to be asynchronous, measure it and prove it. Ask these questions:
@@ -45,6 +47,26 @@ Do not create one-off goroutines without knowing when/how they exit. They cause 
 Do not use pointers to slices. Slices are already reference types which point to an underlying array. If you want a function to modify a slice, then return that slice from the function, rather than passing a pointer.
 
 <aside>This rule is not yet fully applied to the `model` package due to backwards compatibility requirements.</aside>
+
+### Avoid creating more ToJSON methods
+
+Do not create new `ToJSON` methods for model structs. Instead, just use `json.Marshal` at the call site. This has two major benefits:
+- It avoids bugs due to the suppression of the JSON error which happens with `ToJSON` methods (we've had a number of bugs caused by this).
+- It is a common pattern to pass the output to something (like a network call) which accepts a byte slice, leading to a double conversion from byte-slice to string to a byte-slice again if `ToJSON` methods are used.
+
+### [Interfaces](https://github.com/golang/go/wiki/CodeReviewComments#interfaces)
+
+- Return structs, accept interfaces.
+- Interface names should end with “-er”. This is not a strict rule. Just a guideline which indicates the fact that interface functionalities are designed around the concept of “doing” something.
+- Try not to define interfaces on the implementer side of an API "for mocking"; instead, design the API so that it can be tested using the public API of the real implementation.
+
+As an example, if you are trying to integrate with a third-party service, it is tempting to create an interface and use that in the code so that it can be easily mocked in the test. This is an anti-pattern and masks real bugs. Instead, you should try to use the real implementation via a docker container or if that's not feasible, mock the network response coming from the external process.
+
+Another common pattern is to preemptively declare the interface in the source package itself, so that the consumer can just directly import the interface. Instead, try to declare the interface in the package which is going to consume the functionality. Often, different packages have non-overlapping set of functionalities to consume. If you do find several consumers of the package, remember that interfaces can be composed. So define small chunks of functionalities in different interfaces, and let consumers compose them as needed. Take a look at the set of interfaces in the [io](https://golang.org/pkg/io/) package.
+
+These are just guidelines and not strict rules. Understand your use-case and apply them appropriately.
+
+## Stylistic
 
 ### [CamelCase variables/constants](https://github.com/golang/go/wiki/CodeReviewComments#mixed-caps)
 
@@ -87,31 +109,22 @@ if !ok || d != '{' {
 }
 ```
 
-### Avoid creating more ToJSON methods
-
-Do not create new `ToJSON` methods for model structs. Instead, just use `json.Marshal` at the call site. This has two major benefits:
-- It avoids bugs due to the suppression of the JSON error which happens with `ToJSON` methods (we've had a number of bugs caused by this).
-- It is a common pattern to pass the output to something (like a network call) which accepts a byte slice, leading to a double conversion from byte-slice to string to a byte-slice again if `ToJSON` methods are used.
-
 ### [Initialisms](https://github.com/golang/go/wiki/CodeReviewComments#initialisms)
 
 Use `userID` rather than `userId`. Same for abbreviations; `HTTP` is preferred over `Http` or `http`.
 
 <aside>This rule is not yet fully applied to the `model` package due to backwards compatibility requirements.</aside>
 
-### [Interfaces](https://github.com/golang/go/wiki/CodeReviewComments#interfaces)
-
-- Return structs, accept interfaces.
-- Interface names should end with “-er”. This is not a strict rule. Just a guideline which indicates the fact that interface functionalities are designed around the concept of “doing” something.
-- Try not to define interfaces on the implementer side of an API "for mocking"; instead, design the API so that it can be tested using the public API of the real implementation.
-
-As an example, if you are trying to integrate with a third-party service, it is tempting to create an interface and use that in the code so that it can be easily mocked in the test. This is an anti-pattern and masks real bugs. Instead, you should try to use the real implementation via a docker container or if that's not feasible, mock the network response coming from the external process.
-
-Another common pattern is to preemptively declare the interface in the source package itself, so that the consumer can just directly import the interface. This is also an anti-pattern. Try to declare the interface in the package which is going to consume the functionality. Often, different packages have non-overlapping set of functionalities to consume. If you do find several consumers of the package, remember that interfaces can be composed. So define small chunks of functionalities in different interfaces, and let consumers compose them as needed. Take a look at the set of interfaces in the [io](https://golang.org/pkg/io/) package.
-
-These are just guidelines and not strict rules. Understand your use-case and apply them appropriately.
-
 ### [Receiver Names](https://github.com/golang/go/wiki/CodeReviewComments#receiver-names)
 
 The name of a method's receiver should be a reflection of its identity; often a one or two letter abbreviation of its type suffices (such as "c" or "cl" for "Client"). Don't use generic names such as "me", "this" or "self", identifiers typical of object-oriented languages that give the method a special meaning.
+
+## Proposing a new rule
+
+To propose a new rule, follow the process below:
+
+- Add it to the agenda in the [Server](https://community.mattermost.com/core/channels/developers-server) Guild meeting, and propose it.
+- If it gets accepted, create a go-vet rule (if possible), or a golangci-lint rule to prevent new regressions from creeping in.
+- Fix all existing issues.
+- Add it to this guide.
 
