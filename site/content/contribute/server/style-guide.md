@@ -46,7 +46,7 @@ Do not create one-off goroutines without knowing when/how they exit. They cause 
 
 Do not use pointers to slices. Slices are already reference types which point to an underlying array. If you want a function to modify a slice, then return that slice from the function, rather than passing a pointer.
 
-<aside>This rule is not yet fully applied to the `model` package due to backwards compatibility requirements.</aside>
+This rule is not yet fully applied to the `model` package due to backwards compatibility requirements.
 
 ### Avoid creating more ToJSON methods
 
@@ -72,7 +72,7 @@ These are just guidelines and not strict rules. Understand your use-case and app
 
 We use CamelCase names like WebsocketEventPostEdited, not WEBSOCKET_EVENT_POST_EDITED.
 
-<aside>This rule is not yet fully applied to the `model` package due to backwards compatibility requirements.</aside>
+This rule is not yet fully applied to the `model` package due to backwards compatibility requirements.
 
 ### Empty string check
 
@@ -113,7 +113,7 @@ if !ok || d != '{' {
 
 Use `userID` rather than `userId`. Same for abbreviations; `HTTP` is preferred over `Http` or `http`.
 
-<aside>This rule is not yet fully applied to the `model` package due to backwards compatibility requirements.</aside>
+This rule is not yet fully applied to the `model` package due to backwards compatibility requirements.
 
 ### [Receiver Names](https://github.com/golang/go/wiki/CodeReviewComments#receiver-names)
 
