@@ -27,7 +27,7 @@ const selectedPost = getSelectedPost(state);
 const postsInSelectedThread = getPostsInThread(state, selectedPost.root_id);
 ```
 
-For an example of how a selector like `makeGetPostInThread` could be used with React, see [here](/contribute/redux/react-redux).
+For an example of how a selector like `makeGetPostInThread` could be used with React, see [here](/contribute/redux/react-redux/).
 
 ## Adding a Selector
 
@@ -89,4 +89,4 @@ Unit tests for selectors are located in the same directory, adjacent to the file
 1. Construct the initial test state. Note that this doesn't need to be shared between tests as it is in many other cases.
 2. Pass the state into the selector and check the results. The tests for some more complicated selectors do this multiple times while changing different parts of the store to ensure that the memoization is working correctly since it can be very important in certain areas of the app.
 
-For more information on running the unit tests, see the [Developer Workflow documentation](/contribute/redux/developer-workflow) or check out the [README](https://github.com/mattermost/mattermost-redux/blob/master/README.md) in the mattermost-redux repository.
+For more information on running the unit tests, see the [Developer Workflow documentation](/contribute/redux/developer-workflow/) or check out the [README](https://github.com/mattermost/mattermost-redux/blob/master/README.md) in the mattermost-redux repository.

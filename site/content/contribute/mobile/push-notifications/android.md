@@ -40,5 +40,5 @@ changes in the project.
 
 - Replace `android/app/google-services.json` with the one you downloaded earlier
 
-At this point, you can build the Mattermost app for Android and setup the [Mattermost Push Notification Service](/contribute/mobile/push-notifications/service).
+At this point, you can build the Mattermost app for Android and setup the [Mattermost Push Notification Service](/contribute/mobile/push-notifications/service/).
 

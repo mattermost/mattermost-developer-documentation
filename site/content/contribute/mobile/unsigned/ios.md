@@ -13,8 +13,8 @@ With every Mattermost mobile app release, we publish the iOS unsigned ipa in in 
 2. Install the Xcode command line tools:
 	```bash
 	$ xcode-select --install
-3. Set up your Certificate and Provisioning profiles as described in steps 1 & 2 for [Run on iOS Devices](/contribute/mobile/developer-setup/run/#run-on-ios-devices) in the Developer Setup.
-4. `sign-ios` script to sign the iOS app.
+3. Set up your Certificate and Provisioning profiles as described in steps 1 and 2 for [Run on iOS Devices](/contribute/mobile/developer-setup/run/#run-on-ios-devices) in the Developer Setup.
+4. [sign-ios](/scripts/sign-ios) script to sign the iOS app.
 
 #### Signing Tool
 
@@ -62,7 +62,7 @@ and you should be using your own `provisioning profiles`, `certificate`, also yo
 * Download your **Provisioning profiles** from the [Apple Developer portal](https://developer.apple.com/account/resources/profiles/list) and save it in your working directory.
 * Download the [sign-ios](/scripts/sign-ios) script and save it in your working directory.
 * Download the [iOS unsigned build](https://github.com/mattermost/mattermost-mobile/releases) and save it in your working directory.
-* Open a terminal to your working directory and make sure the `sign-ios` script it is executable.
+* Open a terminal to your working directory and make sure the `sign-ios` script is executable.
 
 ```bash
 $ ls -la
@@ -90,4 +90,3 @@ Once the code sign is complete you should have a signed IPA in the working direc
 The app name can be anything but be sure to use double quotes if the name includes white spaces. The name of the `certificate` should match the name in the macOS Keychain.
 
 ---
-
