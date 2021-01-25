@@ -99,7 +99,7 @@ The above was just a short list of existing issues in the repo which should be r
 
 ### Log levels
 
-The ultimate goal of logging is to provide observability. Hence, logs have a very important role for the application to communicate back to us in a healthy way. The most important features of effective communication is that it should be meaningful and concise. To achieve this, a log line should conform one of the definitions below.
+The purpose of logging is to provide observability - it enables the application communicate back to the administrator about what is happening. To communicate effectively logs should be meaningful and concise. To achieve this, log lines should conform to one of the definitions below:
 
 **Critical**: It represents the most urgent situations for the service to work properly and it is unable to meet even the minimum requirements. When a critical thing happens it is expected the service to stop.
 
