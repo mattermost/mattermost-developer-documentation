@@ -33,7 +33,7 @@ As of https://github.com/mattermost/mattermost-server/pull/16649, this build too
 
 Since the corresponding Mattermost functionality is only available with access to the enterprise source code, these containers aren't enabled by default. To turn them on, export the following environment variable into your shell:
 ```
-ENABLED_DOCKER_SERVICES = mysql postgres inbucket prometheus grafana
+export ENABLED_DOCKER_SERVICES="mysql postgres inbucket prometheus grafana"
 ```
 
 Alternatively, you can follow the instructions in [config.mk](https://github.com/mattermost/mattermost-server/blob/master/config.mk). (Note that it's not necessary to specify `minio`, `openldap` or `elasticsearch` -- these are added automatically as needed.)
