@@ -52,7 +52,7 @@ This rule is not yet fully applied to the `model` package due to backwards compa
 
 Do not create new `ToJSON` methods for model structs. Instead, just use `json.Marshal` at the call site. This has two major benefits:
 - It avoids bugs due to the suppression of the JSON error which happens with `ToJSON` methods (we've had a number of bugs caused by this).
-- It is a common pattern to pass the output to something (like a network call) which accepts a byte slice, leading to a double conversion from byte-slice to string to a byte-slice again if `ToJSON` methods are used.
+- It is a common pattern to pass the output to something (like a network call) which accepts a byte-slice, leading to a double conversion from byte-slice to string to a byte-slice again if `ToJSON` methods are used.
 
 ### [Interfaces](https://github.com/golang/go/wiki/CodeReviewComments#interfaces)
 
@@ -127,4 +127,3 @@ To propose a new rule, follow the process below:
 - If it gets accepted, create a go-vet rule (if possible), or a golangci-lint rule to prevent new regressions from creeping in.
 - Fix all existing issues.
 - Add it to this guide.
-
