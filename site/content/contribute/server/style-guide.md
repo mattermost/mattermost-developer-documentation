@@ -5,25 +5,25 @@ weight: 3
 subsection: Server
 ---
 
-Go is a more opinionated language than many others when it comes to coding style. The compiler enforces some basic stylistic elements, such as the removal of unused variables and imports. Many others are enforced by the `gofmt` tool, such as usage of white-space, semicolons, indentation and alignment. The `gofmt` tool is run over all code in the Mattermost Server CI pipeline, and code which is not consistent with the formatting enforced by `gofmt` will not be accepted into the repository.
+Go is a more opinionated language than many others when it comes to coding style. The compiler enforces some basic stylistic elements, such as the removal of unused variables and imports. Many others are enforced by the `gofmt` tool, such as usage of white-space, semicolons, indentation, and alignment. The `gofmt` tool is run over all code in the Mattermost Server CI pipeline. Any code which is not consistent with the formatting enforced by `gofmt` will not be accepted into the repository.
 
 Despite this, there are still many areas of coding style which are not dictated by these tools. Rather than reinventing the wheel, we are adopting [Effective Go](https://golang.org/doc/effective_go.html) as a basis for our style guide. On top of that, we also follow the guidelines laid out by the Go project at [CodeReviewComments](https://github.com/golang/go/wiki/CodeReviewComments).
 
-However, at present, some of the guidelines from these sources come into conflict with existing patterns that are present in our codebase which cannot immediately be corrected due to the need to maintain backwards compatibility.
+However, at present, some of the guidelines from these sources come into conflict with existing patterns that are present in our codebase which cannot immediately be corrected due to the need to maintain backward compatibility.
 
 This document, which should be read in conjunction with [Effective Go](https://golang.org/doc/effective_go.html) and [CodeReviewComments](https://github.com/golang/go/wiki/CodeReviewComments), outlines the small number of exceptions we make to maintain backwards compatibility, as well as a number of additional stylistic rules we have adopted on top of those external recommendations.
 
 ### Model package
 
-The `model` package is our public API which is consumed by many plugins and 3rd party integrations. The need to maintain backwards-compatibility for these external users of the `model` package prevents us from immediately bringing it into compliance with some of the rules outlined in this document.
+The `model` package is our public API which is consumed by many plugins and third-party integrations. The need to maintain backward compatibility for these external users of the `model` package prevents us from immediately bringing it into compliance with some of the rules outlined in this document.
 
 In order to avoid delaying the adoption of these rules in the wider codebase, we have chosen to temporarily exempt only the `model` package from certain rules (indicated below). However, outside of the `model` package, these rules should be followed in all new or modified code.
 
-### Application of Guidelines
+### Application of guidelines
 
-Aside from the specific exceptions made for backward compatibility in the `model` package, all new commits should follow the rules as outlined in this and the linked documents, for both new and modified code.
+In addition to the specific exceptions made for backward compatibility in the `model` package, all new commits should also follow the rules as outlined in this and the linked documents, for both new and modified code.
 
-This does not, however, mean that a developers is *required* to fix any surrounding code that contravenes the rules in the style guide. It is encouraged to keep fixing things as you go, but it is not compulsory to do so. Reviewers should refrain from asking for stylistic changes in surrounding code if the submitter has not included them in their pull request.
+This does not, however, mean that a developer is *required* to fix any surrounding code that contravenes the rules in the style guide. It's encouraged to keep fixing things as you go, but it is not compulsory to do so. Reviewers should refrain from asking for stylistic changes in surrounding code if the submitter has not included them in their pull request.
 
 ## Guidelines
 
@@ -32,6 +32,7 @@ This does not, however, mean that a developers is *required* to fix any surround
 #### Default to sync instead of async
 
 Always prefer synchronous functions by default. Async calls are hard to get right. They have no control over goroutine lifetimes and introduce data races. If you think something needs to be asynchronous, measure it and prove it. Ask these questions:
+
 - Does it improve performance? If so, by how much?
 - What’s the tradeoff of the happy path vs. slow path?
 - How do I propagate errors?
@@ -39,6 +40,7 @@ Always prefer synchronous functions by default. Async calls are hard to get righ
 - What should be my concurrency model?
 
 Do not create one-off goroutines without knowing when/how they exit. They cause problems that are hard to debug, and can often cause performance degradation rather than an improvement. Have a look at:
+
 - https://github.com/golang/go/wiki/CodeReviewComments#goroutine-lifetimes
 - https://github.com/golang/go/wiki/CodeReviewComments#synchronous-functions
 
@@ -46,13 +48,14 @@ Do not create one-off goroutines without knowing when/how they exit. They cause 
 
 Do not use pointers to slices. Slices are already reference types which point to an underlying array. If you want a function to modify a slice, then return that slice from the function, rather than passing a pointer.
 
-This rule is not yet fully applied to the `model` package due to backwards compatibility requirements.
+This rule is not yet fully applied to the `model` package due to backward compatibility requirements.
 
 #### Avoid creating more ToJSON methods
 
 Do not create new `ToJSON` methods for model structs. Instead, just use `json.Marshal` at the call site. This has two major benefits:
+
 - It avoids bugs due to the suppression of the JSON error which happens with `ToJSON` methods (we've had a number of bugs caused by this).
-- It is a common pattern to pass the output to something (like a network call) which accepts a byte-slice, leading to a double conversion from byte-slice to string to a byte-slice again if `ToJSON` methods are used.
+- It's a common pattern to pass the output to something (like a network call) which accepts a byte-slice, leading to a double conversion from byte-slice to string to a byte-slice again if `ToJSON` methods are used.
 
 #### [Interfaces](https://github.com/golang/go/wiki/CodeReviewComments#interfaces)
 
@@ -113,11 +116,11 @@ if !ok || d != '{' {
 
 Use `userID` rather than `userId`. Same for abbreviations; `HTTP` is preferred over `Http` or `http`.
 
-This rule is not yet fully applied to the `model` package due to backwards compatibility requirements.
+This rule is not yet fully applied to the `model` package due to backward compatibility requirements.
 
 #### [Receiver Names](https://github.com/golang/go/wiki/CodeReviewComments#receiver-names)
 
-The name of a method's receiver should be a reflection of its identity; often a one or two letter abbreviation of its type suffices (such as "c" or "cl" for "Client"). Don't use generic names such as "me", "this" or "self", identifiers typical of object-oriented languages that give the variable a special meaning.
+The name of a method's receiver should be a reflection of its identity; often a one or two letter abbreviation of its type suffices (such as "c" or "cl" for "Client"). Don't use generic names such as "me", "this", or "self" identifiers typical of object-oriented languages that give the variable a special meaning.
 
 ## Proposing a new rule
 
