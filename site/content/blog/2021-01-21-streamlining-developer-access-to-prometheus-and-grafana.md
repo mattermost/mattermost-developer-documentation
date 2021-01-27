@@ -19,7 +19,7 @@ For example, when invoking `make run-server`, this build tooling takes care of a
 * downloading and starting various Docker containers:
     - `mysql` and `postgres`, both for a backend to the server and also to automate tests
     - `inbucket` to simplify email testing without routing outside your machine
-    - `minio` to expose an S3-compatible interface to your local disk for for hosting uploaded files
+    - `minio` to expose an S3-compatible interface to your local disk for hosting uploaded files
     - `openldap` to simplify testing alternate modes of authentication (requires access to the enterprise source)
     - `elasticsearch` to expose an improved search backend for posts and channels (requires access to the enterprise source)
 * linking your server to an automatically detected `mattermost-webapp` directory
