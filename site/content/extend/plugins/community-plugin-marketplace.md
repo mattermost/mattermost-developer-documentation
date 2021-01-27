@@ -44,7 +44,7 @@ Every community plugin must fulfill the following checklist to be added to the M
     * Configuration steps
     * Usage
     * Link or email address for help/support
-2. The `plugin.json` file should include formatting consistent with the System Console UI. For assistance with this, you can visit the [Documentation channel](https://community.mattermost.com/core/channels/documentation) for assistance.
+2. The `plugin.json` file should include formatting consistent with the System Console UI. You can join the [Documentation channel](https://community.mattermost.com/core/channels/documentation) for assistance.
 
 Please note that Mattermost reserves the right to reject any plugin submission from the Marketplace.
 
