@@ -29,7 +29,7 @@ For example, when invoking `make run-server`, this build tooling takes care of a
 
 ### Adding Prometheus & Grafana
 
-As of https://github.com/mattermost/mattermost-server/pull/16649, this build tooling now supports automating the setup of Prometheus and Grafana Docker containers. Together, these tools form the backbone of our [Performance Monitoring (E20)](https://docs.mattermost.com/deployment/metrics.html) functionality, scraping metrics from Mattermost to help give enterprise customers insight into the performance of their clusters. Automating this setup makes it easier for developers to test in a production-like environment, and to help extend the monitoring available to customers.
+As of https://github.com/mattermost/mattermost-server/pull/16649, this build tooling now supports automating the setup of Prometheus and Grafana Docker containers. Together, these tools form the backbone of our [Performance Monitoring (E20)](https://docs.mattermost.com/deployment/metrics.html) functionality, scraping metrics from Mattermost to help give enterprise customers insight into the performance of their clusters. Automating this setup makes it easier for developers to test in a production-like environment, to help extend the monitoring available to customers, and even to run our certain kinds of loadtests using our [loadtesting framework](https://github.com/mattermost/mattermost-load-test-ng).
 
 Since the corresponding Mattermost functionality is only available with access to the enterprise source code, these containers aren't enabled by default. To turn them on, export the following environment variable into your shell:
 ```
