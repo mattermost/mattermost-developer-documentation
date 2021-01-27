@@ -101,12 +101,12 @@ The above was just a short list of existing issues in the repo which should be r
 
 The purpose of logging is to provide observability - it enables the application communicate back to the administrator about what is happening. To communicate effectively logs should be meaningful and concise. To achieve this, log lines should conform to one of the definitions below:
 
-**Critical**: It represents the most urgent situations for the service to work properly and it is unable to meet even the minimum requirements. When a critical thing happens it is expected the service to stop.
+**Critical:** This represents the most urgent situations for the service to work properly and it is unable to meet even the minimum requirements. When a critical thing happens it is expected that the service will stop.
 
-**Error**: Unlike “Critical”, in case of an error log, something important happened but it does not cause loss of the service. The administrator should investigate the incident. Hence it should provide enough information to start an investigation. An error can be a loss of service for a single user or something affecting a part of the application but does not break the service entirely.
+**Error:** This indicates that something important happened to the system, but it does not cause loss of service. The administrator should investigate the incident. Hence it should provide enough information to start an investigation. An error can be a loss of service for a single user or something affecting a part of the application but does not break the service entirely.
 
-**Warn**: Something unexpected has happened, but the server is able to continue operating and it has not suffered any loss of function. A possible investigation should be carried out at some point but is not urgent. This level of messages should be as less as possible since warnings are quite a gray area and we want to be more clear about logs.
+**Warn:** Something unexpected has happened, but the server is able to continue operating and it has not suffered any loss of function. A possible investigation should be carried out at some point but is not urgent. This level of messages should be as detailed as possible since warnings are quite a gray area and we want to be more clear about logs.
 
-**Info**: These logs correspond to normal application behavior even if it leads to an error to the end user. We don't care too much about these as they are normal operations, but they provide useful information about what is going on. Eg. It might interest the administrator as they probably want to see if a service like mailservice is started or stopped.
+**Info:** These logs correspond to normal application behavior even if it results in an error for the end user. These are not critical as they are normal operations, but they provide useful information about what is going on. For example, information about services stopping and starting may be relevant to administrators.
 
-**Debug**: These messages probably won’t interest the administrator. It should contain enough diagnostic information so that it could be used for an effective debugging.
+**Debug:** These messages contain enough diagnostic information to be used for an effective debugging.
