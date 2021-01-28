@@ -128,13 +128,75 @@ The purpose of logging is to provide observability - it enables the application 
 
 **Critical:** This represents the most urgent situations for the service to work properly and it is unable to meet even the minimum requirements. When a critical thing happens it is expected that the service will stop.
 
+As an example, the code block below demonstrates a critical situation where the server creation is failed. This error causes total failure of the service.
+
+```golang
+func runServer(..) {
+	..
+	server, err := app.NewServer(options...)
+	if err != nil {
+		mlog.Critical(err.Error())
+		return
+	}
+	..
+}
+```
+
 **Error:** This indicates that something important happened to the system, but it does not cause loss of service. The administrator should investigate the incident. Hence it should provide enough information to start an investigation. An error can be a loss of service for a single user or something affecting a part of the application but does not break the service entirely.
+
+In the following example we log as error level since it is affecting only a part of the application.
+
+```golang
+func (a *App) SyncPlugins(..) {
+	..
+	reader, appErr := a.FileReader(plugin.path)
+	if appErr != nil {
+		mlog.Error("Failed to open plugin bundle from file store.", mlog.String("bundle", plugin.path), mlog.Err(appErr))
+		return
+	}
+	..
+}
+```
 
 **Warn:** Something unexpected has happened, but the server is able to continue operating and it has not suffered any loss of function. A possible investigation should be carried out at some point but is not urgent. This level of messages should be as detailed as possible since warnings are quite a gray area and we want to be more clear about logs.
 
-**Info:** These logs correspond to normal application behavior even if it results in an error for the end user. These are not critical as they are normal operations, but they provide useful information about what is going on. For example, information about services stopping and starting may be relevant to administrators.
+One of the most prominent features of warning logs is that the operation can be continued in case of an error.
+
+```golang
+func (a *App) UpdateUserRoles(..) {
+	..
+	if result := <-schan; result.NErr != nil {
+		// soft error since the user roles were still updated
+		mlog.Warn("Error during updating user roles", mlog.Err(result.NErr))
+	}
+
+	a.InvalidateCacheForUser(userId)
+	..
+}
+```
+
+**Info:** These logs correspond to normal application behavior even if it results in an error for the end user. These are not critical as they are normal operations, but they provide useful information about what is going on.
+
+For example, information about services stopping and starting may be relevant to administrators.
+
+```golang
+func (s *Schedulers) Start(..) {
+	s.startOnce.Do(func() {
+		mlog.Info("Starting schedulers.")
+		..
+	})
+	..
+}
+```
 
 **Debug:** These messages contain enough diagnostic information to be used for effective debugging.
+
+```golang
+func (worker *Worker) Run() {
+	mlog.Debug("Worker started", mlog.String("worker", worker.name))
+	..
+}
+```
 
 ## Proposing a new rule
 
