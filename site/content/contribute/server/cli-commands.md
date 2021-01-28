@@ -99,4 +99,4 @@ Usually, you would then add several subcommands to perform various tasks.
 
 ## Submitting your Pull Request
 
-Please submit a pull request against the [mattermost/mattermost-server](https://github.com/mattermost/mattermost-server) repository by [following these instructions](/contribute/server/developer-workflow).
+Please submit a pull request against the [mattermost/mattermost-server](https://github.com/mattermost/mattermost-server) repository by [following these instructions](/contribute/server/developer-workflow/).

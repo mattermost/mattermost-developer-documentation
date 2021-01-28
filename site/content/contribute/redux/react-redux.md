@@ -94,4 +94,4 @@ export default connect(makeMapStateToProps, mapDispatchToProps)(MyComponent);
 
 ## Performance Considerations
 
-Something very important to note when using React with Redux is that every single `mapStateToProps` function within your application will be called whenever anything in the store changes. If any work being done in `mapStateToProps` performs any complicated calculations or returns rich objects, it should be moved into a [selector](/contribute/redux/selectors) so that it can be memoized whenever possible.
+Something very important to note when using React with Redux is that every single `mapStateToProps` function within your application will be called whenever anything in the store changes. If any work being done in `mapStateToProps` performs any complicated calculations or returns rich objects, it should be moved into a [selector](/contribute/redux/selectors/) so that it can be memoized whenever possible.
