@@ -11,7 +11,7 @@ Despite this, there are still many areas of coding style which are not dictated 
 
 However, at present, some of the guidelines from these sources come into conflict with existing patterns that are present in our codebase which cannot immediately be corrected due to the need to maintain backward compatibility.
 
-This document, which should be read in conjunction with [Effective Go](https://golang.org/doc/effective_go.html) and [CodeReviewComments](https://github.com/golang/go/wiki/CodeReviewComments), outlines the small number of exceptions we make to maintain backwards compatibility, as well as a number of additional stylistic rules we have adopted on top of those external recommendations.
+This document, which should be read in conjunction with [Effective Go](https://golang.org/doc/effective_go.html) and [CodeReviewComments](https://github.com/golang/go/wiki/CodeReviewComments), outlines the small number of exceptions we make to maintain backward compatibility, as well as a number of additional stylistic rules we have adopted on top of those external recommendations.
 
 ### Model package
 
@@ -63,11 +63,11 @@ Do not create new `ToJSON` methods for model structs. Instead, just use `json.Ma
 - Interface names should end with “-er”. This is not a strict rule. Just a guideline which indicates the fact that interface functionalities are designed around the concept of “doing” something.
 - Try not to define interfaces on the implementer side of an API "for mocking"; instead, design the API so that it can be tested using the public API of the real implementation.
 
-As an example, if you are trying to integrate with a third-party service, it is tempting to create an interface and use that in the code so that it can be easily mocked in the test. This is an anti-pattern and masks real bugs. Instead, you should try to use the real implementation via a docker container or if that's not feasible, mock the network response coming from the external process.
+As an example, if you're trying to integrate with a third-party service, it's tempting to create an interface and use that in the code so that it can be easily mocked in the test. This is an anti-pattern and masks real bugs. Instead, you should try to use the real implementation via a docker container or if that's not feasible, mock the network response coming from the external process.
 
 Another common pattern is to preemptively declare the interface in the source package itself, so that the consumer can just directly import the interface. Instead, try to declare the interface in the package which is going to consume the functionality. Often, different packages have non-overlapping set of functionalities to consume. If you do find several consumers of the package, remember that interfaces can be composed. So define small chunks of functionalities in different interfaces, and let consumers compose them as needed. Take a look at the set of interfaces in the [io](https://golang.org/pkg/io/) package.
 
-These are just guidelines and not strict rules. Understand your use-case and apply them appropriately.
+These are just guidelines and not strict rules. Understand your use case and apply them appropriately.
 
 ### Stylistic
 
@@ -75,7 +75,7 @@ These are just guidelines and not strict rules. Understand your use-case and app
 
 We use CamelCase names like WebsocketEventPostEdited, not WEBSOCKET_EVENT_POST_EDITED.
 
-This rule is not yet fully applied to the `model` package due to backwards compatibility requirements.
+This rule is not yet fully applied to the `model` package due to backward compatibility requirements.
 
 #### Empty string check
 
