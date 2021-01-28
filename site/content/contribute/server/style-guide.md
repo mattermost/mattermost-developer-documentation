@@ -109,4 +109,4 @@ The purpose of logging is to provide observability - it enables the application 
 
 **Info:** These logs correspond to normal application behavior even if it results in an error for the end user. These are not critical as they are normal operations, but they provide useful information about what is going on. For example, information about services stopping and starting may be relevant to administrators.
 
-**Debug:** These messages contain enough diagnostic information to be used for an effective debugging.
+**Debug:** These messages contain enough diagnostic information to be used for effective debugging.
