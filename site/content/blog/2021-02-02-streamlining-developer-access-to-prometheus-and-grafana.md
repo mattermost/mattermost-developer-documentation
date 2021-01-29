@@ -1,7 +1,7 @@
 ---
 title: "Streamlining Developer Access to Prometheus and Grafana"
 slug: streamlining-developer-access-to-prometheus-and-grafana
-date: 2021-01-21T00:00:00-04:00
+date: 2021-02-02T00:00:00-04:00
 categories:
     - "testing"
     - "performance"
@@ -46,11 +46,11 @@ The build tooling does more than just spin up two new containers, however. [Vari
 
 This means that simply running `make run-server` gets you immediate access to the Mattermost Performance dashboards at `http://localhost:3000`:
 
-![Grafana home dashboard](/blog/2021-01-21-streamlining-developer-access-to-prometheus-and-grafana/grafana.png)
+![Grafana home dashboard](/blog/2021-02-02-streamlining-developer-access-to-prometheus-and-grafana/grafana.png)
 
 Prometheus is also available at `http://localhost:9090`:
 
-![Prometheus landing page](/blog/2021-01-21-streamlining-developer-access-to-prometheus-and-grafana/prometheus.png)
+![Prometheus landing page](/blog/2021-02-02-streamlining-developer-access-to-prometheus-and-grafana/prometheus.png)
 
 ### Enabling Metrics
 
@@ -60,7 +60,7 @@ First, be sure you have an Enterprise license installed. Staff members should ha
 
 Second, enable performance monitoring. You can do this manually via `config.json` and setting `MetricsSettings.Enable` to `true`, or by exporting `MM_METRICSSETTINGS_ENABLE=true` into your shell before starting the server, or by enabling this manually via the System Console at `/admin_console/environment/performance_monitoring`:
 
-![Performance monitoring configuration](/blog/2021-01-21-streamlining-developer-access-to-prometheus-and-grafana/performance-monitoring-config.png)
+![Performance monitoring configuration](/blog/2021-02-02-streamlining-developer-access-to-prometheus-and-grafana/performance-monitoring-config.png)
 
 ### What's next?
 
