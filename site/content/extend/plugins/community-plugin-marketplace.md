@@ -4,8 +4,6 @@ subsection: Plugins (Beta)
 weight: 60
 ---
 
-# Community Plugins in the Marketplace
-
 When your plugin has reached a certain level of quality, you might consider submitting it to the Plugin Marketplace. The Plugin Marketplace is a platform that supports discovery, installation, and updates of plugins directly within Mattermost. It's a great way to get feedback on your plugin and help make it more popular. 
 
 Once your plugin is accepted to the Marketplace, Mattermost will also send you swag!
