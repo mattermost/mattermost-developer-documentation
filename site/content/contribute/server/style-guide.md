@@ -130,7 +130,7 @@ The purpose of logging is to provide observability - it enables the application 
 
 As an example, the code block below demonstrates a critical situation where the server creation is failed. This error causes total failure of the service.
 
-```golang
+```go
 func runServer(..) {
 	..
 	server, err := app.NewServer(options...)
@@ -146,7 +146,7 @@ func runServer(..) {
 
 In the following example we log as error level since it is affecting only a part of the application.
 
-```golang
+```go
 func (a *App) SyncPlugins(..) {
 	..
 	reader, appErr := a.FileReader(plugin.path)
@@ -162,7 +162,7 @@ func (a *App) SyncPlugins(..) {
 
 One of the most prominent features of warning logs is that the operation can be continued in case of an error.
 
-```golang
+```go
 func (a *App) UpdateUserRoles(..) {
 	..
 	if result := <-schan; result.NErr != nil {
@@ -179,7 +179,7 @@ func (a *App) UpdateUserRoles(..) {
 
 For example, information about services stopping and starting may be relevant to administrators.
 
-```golang
+```go
 func (s *Schedulers) Start(..) {
 	s.startOnce.Do(func() {
 		mlog.Info("Starting schedulers.")
@@ -191,7 +191,7 @@ func (s *Schedulers) Start(..) {
 
 **Debug:** These messages contain enough diagnostic information to be used for effective debugging.
 
-```golang
+```go
 func (worker *Worker) Run() {
 	mlog.Debug("Worker started", mlog.String("worker", worker.name))
 	..
