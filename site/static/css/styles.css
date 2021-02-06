@@ -3429,10 +3429,6 @@ table>tbody>tr:nth-of-type(odd) {
     padding: 14px;
 }
 
-.doc-content table {
-    .table-striped;
-}
-
 .homepage .homepage__bg {
     -moz-transform: skew(0deg, -5deg);
     -ms-transform: skew(0deg, -5deg);
