@@ -50,12 +50,21 @@ workflows:
   version: 2
   ci:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              ignore: gh-pages
       - deploy:
           context: mattermost-dev-docs-s3
           requires:
             - build
+          filters:
+            branches:
+              ignore: gh-pages
       - status:
           context: matterbuild-github-token
           requires:
             - deploy
+          filters:
+            branches:
+              ignore: gh-pages
