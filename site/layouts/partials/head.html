@@ -5,6 +5,9 @@
 <meta name="author" content="{{ . }}">{{ end }} {{ with .Site.LanguageCode }}
 <meta http-equiv="content-language" content="{{ . }}" />{{ end }}
 
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="{{ .Title }}">
+
 <!-- Meta Descriptions --> {{ if .Description }}
   {{ partial "head-meta.html" .Description }}
 {{ else }}
