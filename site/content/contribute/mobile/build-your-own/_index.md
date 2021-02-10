@@ -1,5 +1,6 @@
 ---
 title: "Build Your Own App"
+heading: "Build Your Own Mattermost App"
 description: "Learn how to build your own Mattermost mobile app and distribute it within your team."
 date: 2018-05-20T11:35:32-04:00
 weight: 2
