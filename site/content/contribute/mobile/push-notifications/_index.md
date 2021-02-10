@@ -1,5 +1,6 @@
 ---
 title: "Setup Push Notifications"
+description: "Learn how to set up push notifications in your Mattermost mobile application."
 date: 2015-05-20T11:35:32-04:00
 weight: 3
 subsection: Mobile Apps

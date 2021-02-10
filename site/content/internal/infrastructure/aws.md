@@ -1,5 +1,6 @@
 ---
 title: AWS
+description: "The majority of Mattermost's infrastructure is hosted in Amazon Web Services."
 date: 2017-11-06T19:30:07-05:00
 subsection: internal
 weight: 40

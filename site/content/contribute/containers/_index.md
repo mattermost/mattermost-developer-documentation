@@ -1,5 +1,6 @@
 ---
 title: "Containers"
+description: "Mattermost uses Docker to publish the official images for the Mattermost Server, and this page lists all Docker repositories in use."
 section: "contribute"
 ---
 

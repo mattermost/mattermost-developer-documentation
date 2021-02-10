@@ -1,5 +1,6 @@
 ---
 title: Vault
+description: "Vault is a high security secret store. At Mattermost, its primary purpose is to sign SSH keys."
 date: 2017-11-06T19:30:07-05:00
 subsection: internal
 weight: 30

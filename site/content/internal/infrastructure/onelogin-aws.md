@@ -1,5 +1,6 @@
 ---
 title: "OneLogin and AWS"
+description: "Find out how the Mattermost team generates AWS keys using OneLogin authentication."
 date: 2018-11-07T16:10:15+01:00
 weight: 45
 ---

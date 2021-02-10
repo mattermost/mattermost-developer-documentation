@@ -1,5 +1,6 @@
 ---
 title: Bump Version Number
+description: "Learn how to bump a version number in your local copy of mattermost-mobile."
 date: 2017-11-07T14:28:35-05:00
 subsection: Mobile Build Process
 weight: 1

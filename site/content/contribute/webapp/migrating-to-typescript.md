@@ -1,5 +1,6 @@
 ---
 title: "Migrating to Typescript"
+description: "We introduced Typescript to our codebase to proactively improve the quality, security, and stability of the code."
 date: 2020-07-11T23:00:00-04:00
 weight: 9
 subsection: Web App

@@ -1,5 +1,6 @@
 ---
 title: "Selectors"
+description: "Find out what selectors are and how to use, add, and test them in Mattermost."
 date: 2017-08-20T11:35:32-04:00
 weight: 6
 subsection: Redux

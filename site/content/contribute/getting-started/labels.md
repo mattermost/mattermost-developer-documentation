@@ -1,5 +1,6 @@
 ---
 title: "Labels"
+description: "We leverage GitHub labels to track the details and lifecycle of issues and pull requests. Learn what our labels mean."
 date: 2018-03-06T00:00:00-04:00
 weight: 5
 subsection: Getting Started

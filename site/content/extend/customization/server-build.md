@@ -1,5 +1,6 @@
 ---
 title: "Server Build (Team Edition)"
+description: "Find out how to customize and build your own version of the Mattermost open source project."
 date: 2018-05-20T11:35:32-04:00
 weight: 1
 subsection: Customizing Mattermost

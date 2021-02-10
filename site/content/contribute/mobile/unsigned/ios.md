@@ -1,5 +1,6 @@
 ---
 title: "Sign Unsigned iOS"
+description: "Learn about the steps needed to modify and sign the Mattermost app so it can be distributed and installed on iOS devices."
 date: 2018-05-20T11:35:32-04:00
 weight: 2
 subsection: Sign Unsigned Builds

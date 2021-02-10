@@ -1,5 +1,6 @@
 ---
 title: "Getting Started"
+description: "Ready to contribute to Mattermost? Learn how to get started building an integration."
 date: "2017-08-19T12:01:23-04:00"
 section: "integrate"
 ---
