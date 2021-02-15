@@ -1,5 +1,6 @@
 ---
 title: "Avoiding Flaky Tests"
+description: "Flaky tests are no stranger to the Mattermost code base. Find out what we've done to avoid flaky tests."
 slug: avoiding-flaky-tests
 date: 2019-09-29T00:00:00-04:00
 categories:

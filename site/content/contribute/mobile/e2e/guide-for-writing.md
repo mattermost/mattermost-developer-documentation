@@ -1,5 +1,6 @@
 ---
 title: "Guide for Writing E2E"
+description: "Interested in writing an end-to-end testing script? Follow this guide to learn what needs to be done."
 date: 2020-09-01T09:00:00-00:00
 weight: 5
 subsection: Mobile End-to-End Testing

@@ -1,5 +1,6 @@
 ---
 title: "System Console"
+description: "Find out how to add fields, expose settings, and make settings available for non-admins in the System Console."
 date: 2019-10-09T13:38:26-04:00
 weight: 5
 subsection: Server

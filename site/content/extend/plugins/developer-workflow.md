@@ -1,5 +1,6 @@
 ---
 title: "Developer Workflow"
+description: "Read about developer workflows and learn how work with plugins and debug them in Mattermost."
 date: 2020-07-11T23:00:00-04:00
 weight: 3
 subsection: Plugins

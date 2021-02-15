@@ -1,5 +1,6 @@
 ---
 title: "Instrumenting Go code via AST"
+description: "Learn about what Go AST is, why we need it, and instrumenting our handlers with tracing code."
 slug: instrumenting-go-code-via-ast
 series: "AST"
 date: 2019-10-31T00:00:00-04:00

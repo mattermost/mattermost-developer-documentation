@@ -1,5 +1,6 @@
 ---
 title: "Mattermost Dev Talks"
+description: "The Mattermost team releases a developer talk that discusses the architecture, design principles, and tools that the Mattermost project uses."
 date: "2017-01-05T09:51:35-05:00"
 section: "contribute"
 ---

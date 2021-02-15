@@ -1,5 +1,6 @@
 ---
 title: "Code Signing"
+description: "When releasing the Mattermost Desktop application for Windows and macOS, we have to sign the executable with a certificate."
 date: 2018-01-16T10:32:51-05:00
 subsection: "Desktop App"
 ---

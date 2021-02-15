@@ -1,5 +1,6 @@
 ---
 title: "Actions"
+description: "Similar to other frameworks like Flux, actions in Redux represent a single change to the Redux store as a plain JavaScript object."
 date: 2017-08-20T11:35:32-04:00
 weight: 4
 subsection: Redux

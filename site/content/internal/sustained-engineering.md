@@ -1,5 +1,6 @@
 ---
 title: Sustained Engineering Team
+description: "Learn more about the Sustained Engineering Team (SET), which is responsible for improving and maintaining quality."
 date: 2019-02-06T14:28:35-05:00
 section: internal
 weight: 120

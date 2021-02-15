@@ -1,5 +1,6 @@
 ---
 title: "Build the iOS App"
+description: "At times, you may want to build your own Mattermost mobile app. This page guides you through that process."
 date: 2018-05-20T11:35:32-04:00
 weight: 2
 subsection: Build Your Own App
