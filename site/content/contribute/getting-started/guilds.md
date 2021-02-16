@@ -48,3 +48,11 @@ The QA Guild covers all areas related to the Quality Assurance and Automated Tes
 - **Guild Lead:** Linda Mitchell
 - **Guild Channel:** [~QA: Weekly Meetings](https://community.mattermost.com/core/channels/qa-weekly-meetings)
 - **Guild Meeting:** *(see header of Guild Channel for meeting invite)*
+
+## Contributor Community Guild
+
+The Contributor Community Guild covers all areas related to the Mattermost Community like the Contributor Experience, Events and the health of the Community.
+
+- **Guild Lead:** Jason Blais
+- **Guild Channel:** [~guild-contributor-community ](https://community.mattermost.com/core/channels/guild-contributor-community)
+- **Guild Meeting:** *(see header of Guild Channel for meeting invite)*
