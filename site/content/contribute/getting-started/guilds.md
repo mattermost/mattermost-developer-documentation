@@ -5,7 +5,7 @@ weight: 50
 subsection: Getting Started
 ---
 
-Our Engineering Guilds are a forum for sharing knowledge, discussing and agreeing plans and disseminating information related to a particular subject or technical topic. Many (although not all) Engineering Guilds are affiliated to a particular "platform" that forms a part of Mattermost, and are therefore associated with a particular Platform Team. However, the participants in each Guild span across many engineering teams at Mattermost in order to get people together to share knowledge and disseminate decisions across the Engineering organisation.
+Our Engineering Guilds are a forum for sharing knowledge, discussing and agreeing on plans, and disseminating information related to a particular subject or technical topic. Many (although not all) Engineering Guilds are affiliated to a particular "platform" that forms a part of Mattermost, and are therefore associated with a particular Platform Team. However, the participants in each Guild span many engineering teams at Mattermost in order to get people together to share knowledge and disseminate decisions across the Engineering organization.
 
 The main activity of Guilds is a regular meeting. These meetings are public, and anyone within Mattermost Inc, or the wider community are welcome to attend. Details are provided below on each of the guilds, including how to participate.
 
