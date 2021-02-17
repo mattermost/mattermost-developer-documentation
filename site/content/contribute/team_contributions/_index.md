@@ -1,5 +1,6 @@
 ---
 title: "Contributor Wall of Fame"
+description: "Check out the Mattermost Contributor Hall of Fame to learn about the incredible people who've contributed to Mattermost over the years."
 section: "contribute"
 ---
 

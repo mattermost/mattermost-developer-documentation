@@ -1,5 +1,6 @@
 ---
 title: "Submitting Great PRs"
+description: "Learn how to submit optimal pull requests to increase the chances your contributions are added to open source projects."
 slug: submitting-great-prs
 aliases: [/blog/2019-01-24-submitting-great-prs]
 date: 2019-01-24T00:00:00-04:00

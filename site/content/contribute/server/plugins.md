@@ -1,5 +1,6 @@
 ---
 title: "Plugins"
+description: "Mattermost supports plugins to extend and integrate server and web/desktop apps. Learn about our plugin infrastructure and how to contribute."
 date: 2017-08-20T11:35:32-04:00
 weight: 5
 subsection: Server

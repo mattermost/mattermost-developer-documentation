@@ -2,12 +2,35 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title> {{ .Title }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1"> {{ with .Site.Params.author }}
-<meta name="author" content="{{ . }}">{{ end }} {{ with .Site.Params.description }}
-<meta name="description" content="{{ . }}">{{ end }} {{ with .Site.LanguageCode }}
+<meta name="author" content="{{ . }}">{{ end }} {{ with .Site.LanguageCode }}
 <meta http-equiv="content-language" content="{{ . }}" />{{ end }}
 
-<!-- canonical link tag -->
-{{ if .Params.canonicalUrl }}
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="{{ .Title }}">
+
+<!-- Meta Descriptions --> {{ if .Description }}
+  {{ partial "head-meta.html" .Description }}
+{{ else }}
+  {{ if .IsSection }}
+    {{ range where .Site.Params.indexes.item "relPermaLink" "==" $.RelPermalink }}
+      {{ partial "head-meta.html" .description }}
+    {{ else }}
+      {{ partial "head-meta.html" .Site.Params.Description }}
+    {{ end }}
+  {{ else }}
+    {{ if eq .Type "categories" }}
+      {{ range where .Site.Params.categories.item "term" "==" $.Data.Term }}
+        {{ partial "head-meta.html" .description }}
+      {{ else }}
+        {{ partial "head-meta.html" .Site.Params.categories.description }}
+      {{ end }}
+    {{ else }}
+      {{ partial "head-meta.html" .Site.Params.Description }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<!-- canonical link tag --> {{ if .Params.canonicalUrl }}
 <link rel="canonical" href="{{ .Params.canonicalUrl }}">
 {{ else }}
 <link rel="canonical" href="{{ .Permalink }}">

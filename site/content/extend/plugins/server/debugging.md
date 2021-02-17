@@ -1,3 +1,8 @@
+---
+title: "Debugging Server Plugins"
+description: "Plugins communicate with the main Mattermost server by RPC. Learn how to debug them."
+---
+
 Plugins communicate with the main Mattermost server by [RPC](https://github.com/hashicorp/go-plugin). In order to debug them with Delve, a few steps are necessary.
 ### MacOS
 1. After starting the main Mattermost application, run `ps aux | grep name.of.your.plugin`. This will print a list of running processes that match that name, as such: `username      78836   0.0  0.1  4397696  12492 s006  S     7:07AM   0:00.03 plugins/name.of.your.plugin/server/dist/plugin-darwin-amd64`.

@@ -1,5 +1,6 @@
 ---
 title: Getting Hands-on with io_uring using Go
+description: "In Linux, system calls (syscalls) are at the heart of everything. They are the primary interface through which an application interacts with the kernel."
 slug: hands-on-iouring-go
 date: 2020-05-20
 categories:
