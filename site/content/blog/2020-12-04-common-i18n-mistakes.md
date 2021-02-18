@@ -1,7 +1,7 @@
 ---
 title: "Avoiding Common Internationalization Mistakes"
 slug: common-i18n-mistakes
-date: 2020-03-26T12:00:00-05:00
+date: 2020-12-04T12:00:00-05:00
 categories:
     - "i18n"
 author: Harrison Healey
