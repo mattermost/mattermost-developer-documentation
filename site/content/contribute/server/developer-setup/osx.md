@@ -1,5 +1,6 @@
 ---
 title: "OSX Development Environment Setup"
+heading: "How to Set Up Mattermost in Mac OS X"
 description: "Read about how to set up your developer environment in Mattermost using a Mac OS X."
 ---
 

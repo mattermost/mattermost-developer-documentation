@@ -1,5 +1,6 @@
 ---
 title: Incorporating GolangCI-Lint at Mattermost
+heading: "Incorporating GolangCI-Lint at Mattermost"
 description: "Although go vet and gofmt work well, there are a lot of other powerful linters out there which we’re potentially missing out on."
 slug: incorporating-golangci-lint
 date: 2020-01-13

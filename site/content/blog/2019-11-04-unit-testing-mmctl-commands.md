@@ -1,5 +1,6 @@
 ---
 title: "Unit testing mmctl commands"
+heading: "Unit Testing mmctl Commands"
 description: "Mattermost is starting a new open source campaign, this time around increasing the unit test coverage for the mmctl tool."
 slug: unit-testing-mmctl-commands
 date: 2019-11-07T00:00:00-04:00
