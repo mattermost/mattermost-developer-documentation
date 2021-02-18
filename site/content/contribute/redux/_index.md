@@ -1,5 +1,7 @@
 ---
 title: "Redux"
+heading: "The Mattermost-Redux Library"
+description: "The mattermost-redux library is the driver powering both the Mattermost web app and React Native mobile apps."
 date: "2018-01-19T12:01:23-04:00"
 section: "contribute"
 weight: 6

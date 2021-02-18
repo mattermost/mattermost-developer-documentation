@@ -1,5 +1,7 @@
 ---
 title: "CLI Commands"
+heading: "CLI Commands in Mattermost"
+description: "Mattermost provides a CLI (command-line interface) to administer and handle specific administrative tasks."
 date: 2018-09-21T18:40:32-04:00
 weight: 5
 subsection: Server

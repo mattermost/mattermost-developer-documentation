@@ -1,5 +1,7 @@
 ---
 title: "Go: Idiomatic Error Handling"
+heading: "Go: Idiomatic Error Handling"
+description: "At Mattermost, we’re in the midst of an epic to make our error handling code more idiomatic and thus ultimately more accessible."
 slug: idiomatic-error-handling
 date: 2018-10-18T00:00:00-04:00
 categories:
