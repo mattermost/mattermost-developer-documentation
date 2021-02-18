@@ -50,7 +50,7 @@ Declaring the same data model in both sides of a web application is an old probl
 
 The main idea in this project is to investigate the existing solutions to this problem, try to find the best tool that suits the needs of the project, then implement it. A nice-to-have feature in this tool would be a way of not only defining the types, but of keeping them synchronized.
 
--   **Expected outcomes**: Build tool to generate Typescript types from Go structs.
+-   **Expected outcomes**: Implement a build tool to generate Typescript types from Go structs.
 -   **Skills required**: Typescript, Go
 -   **Difficulty**: Medium
 -   **Mentors**: Martin Kraft, Devin Binnie
