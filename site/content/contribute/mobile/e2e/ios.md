@@ -1,5 +1,6 @@
 ---
 title: "Setup and Run iOS E2E"
+heading: "Setting up and Running iOS End-to-End Tests"
 description: "Find out how to set up and run end-to-end testing with iOS and conduct a test run in debug mode and release mode."
 date: 2020-09-01T09:00:00-00:00
 weight: 4

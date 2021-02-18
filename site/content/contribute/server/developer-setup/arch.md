@@ -1,5 +1,6 @@
 ---
 title: "Arch Linux Development Environment Setup"
+heading: "Developer Setup - Arch Linux"
 description: "Read about how to set up your developer environment in Mattermost using Arch Linux."
 ---
 

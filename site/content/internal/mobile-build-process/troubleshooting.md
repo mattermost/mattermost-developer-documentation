@@ -1,5 +1,6 @@
 ---
 title: Troubleshooting
+heading: "Troubleshooting the Mobile Build Process"
 description: "Having problems with the mobile build process? Give these troubleshooting tips a try."
 date: 2017-11-07T14:28:35-05:00
 subsection: Mobile Build Process

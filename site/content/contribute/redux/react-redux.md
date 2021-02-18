@@ -1,5 +1,6 @@
 ---
 title: "Using Redux with React"
+heading: "Using Redux with React in Mattermost"
 description: "Find out how using Redux with React is fairly straightforward thanks to the React Redux library."
 date: 2017-08-20T11:35:32-04:00
 weight: 7
