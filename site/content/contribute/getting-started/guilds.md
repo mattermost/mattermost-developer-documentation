@@ -15,7 +15,7 @@ The Web Application & Desktop Guild covers all areas related to front-end web de
 
 - **Guild Lead:** Dean Whillier
 - **Guild Channel:** [~Developers: WebApp](https://community.mattermost.com/core/channels/webapp)
-- **Guild Meeting:** *(see header of Guild Channel for meeting invite)*
+- **Guild Meeting Time:** *(see header of Guild Channel for meeting invite)*
 
 ## Mobile Guild
 
