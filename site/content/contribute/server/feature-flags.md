@@ -83,3 +83,6 @@ There are no hard rules on when a feature flag should be used. It is left up to 
 
 3. How do feature flags work on Webapp?
  - To add a feature flag that affects frontend, the following is needed: 1. PR to server code to add the new feature flag. 2. PR to redux to update the types. 3. PR to webapp to actually use the feature flag.
+
+4. How do we enable a feature flag for testing on community daily?
+ - You can post in ~Developers: Cloud with the feature flag name and what you want the Cloud team to set it to.
