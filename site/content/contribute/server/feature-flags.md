@@ -86,3 +86,6 @@ There are no hard rules on when a feature flag should be used. It is left up to 
 
 4. How do we enable a feature flag for testing on community-daily and on Cloud test servers?
  - You can post in [~Developers: Cloud channel](https://community.mattermost.com/core/channels/cloud) with the feature flag name and what you want the Cloud team to set it to.
+
+5. What is the environment variable to set a feature flag?
+ - It is ``MM_FEATUREFLAGS_<myflag>``.
