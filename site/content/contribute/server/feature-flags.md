@@ -84,8 +84,17 @@ There are no hard rules on when a feature flag should be used. It is left up to 
 3. How do feature flags work on webapp?
  - To add a feature flag that affects frontend, the following is needed: 1. PR to server code to add the new feature flag. 2. PR to redux to update the types. 3. PR to webapp to actually use the feature flag.
 
-4. How do we enable a feature flag for testing on community-daily and on Cloud test servers?
+4. How do feature flags work on mobile?
+ - To add a feature flag that affects mobile, the following is needed: 1. PR to server code to add the new feature flag. 2. PR to mobile to update the types. 3. PR to webapp to actually use the feature flag.
+
+5. How do we enable a feature flag for testing on community-daily and on Cloud test servers?
  - You can post in [~Developers: Cloud channel](https://community.mattermost.com/core/channels/cloud) with the feature flag name and what you want the Cloud team to set it to.
 
-5. What is the environment variable to set a feature flag?
+6. What is the environment variable to set a feature flag?
  - It is ``MM_FEATUREFLAGS_<myflag>``.
+
+7. Can plugins use feature flags to enable small features aside of the version that is forcing the feature flag?
+ - Yes. You can create feature flags as if they were added for the core product, and they will get included in the plugin through the config.
+
+8. Does it make sense to use feature flags for A/B testing? Is it something we want to do? Or do we prefer other approach?
+ - This is something we're going to be evaluating using split.io. We have already implemented support for this in the server.
