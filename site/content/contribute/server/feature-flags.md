@@ -75,14 +75,14 @@ There are no hard rules on when a feature flag should be used. It is left up to 
 
 ## FAQ
 
-1. What is the expected default value for boolean feature flags? Is it "false"? In the sense of "the normal product is when the feature is not around, and therefore the default should be the normal product". Or should it be "true" as in "the product now has this, we only shut it down if something weird happens"?
- - Definitely off. The idea is to use them to slowly roll out a feature. So when the code is deployed, its not on yet. Then you roll out to a small portion, make sure everything is OK and gradually roll out from there.
+1. What is the expected default value for boolean feature flags? Is it ``true`` or ``false``?
+ - Definitely ``false``. The idea is to use them to slowly roll out a feature. So when the code is deployed, the feature flag is not enabled yet. Then you roll out to a small portion, make sure everything is OK and gradually roll out from there.
 
-2. Is it possible to use a plugin feature flag like ``PluginIncidentManagement`` to "prepackage" a plugin only on cloud by only setting a plugin version to that flag on cloud? Could on-prem customers manually set that flag to install such plugin?
- - Yes. If you leave the default "" then nothing will happen for on-prem installations. Then you can have cloud team set split.io/environment to set a specific version. On-prem can set environment variables to set feature flag values.
+2. Is it possible to use a plugin feature flag like ``PluginIncidentManagement`` to "prepackage" a plugin only on Cloud by only setting a plugin version to that flag on Cloud? Can Self-Managed customers manually set that flag to install such plugin?
+ - Yes. If you leave the default "" then nothing will happen for Self-Managed installations. You can ask the Cloud team to set split.io/environment to a specific version. Self-Managed can set environment variables to set feature flag values.
 
 3. How do feature flags work on Webapp?
  - To add a feature flag that affects frontend, the following is needed: 1. PR to server code to add the new feature flag. 2. PR to redux to update the types. 3. PR to webapp to actually use the feature flag.
 
-4. How do we enable a feature flag for testing on community daily?
- - You can post in ~Developers: Cloud with the feature flag name and what you want the Cloud team to set it to.
+4. How do we enable a feature flag for testing on community-daily?
+ - You can post in ~Developers: Cloud channel with the feature flag name and what you want the Cloud team to set it to.
