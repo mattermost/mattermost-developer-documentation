@@ -85,7 +85,7 @@ There are no hard rules on when a feature flag should be used. It is left up to 
  - To add a feature flag that affects frontend, the following is needed: 1. PR to server code to add the new feature flag. 2. PR to redux to update the types. 3. PR to webapp to actually use the feature flag.
 
 4. How do feature flags work on mobile?
- - To add a feature flag that affects mobile, the following is needed: 1. PR to server code to add the new feature flag. 2. PR to mobile to update the types. 3. PR to mobile to actually use the feature flag.
+ - To add a feature flag that affects mobile, the following is needed: 1. PR to server code to add the new feature flag. 2. PR to mobile to update the types and to actually use the feature flag.
 
 5. How do we enable a feature flag for testing on community-daily and on Cloud test servers?
  - You can post in [~Developers: Cloud channel](https://community.mattermost.com/core/channels/cloud) with the feature flag name and what you want the Cloud team to set it to.
