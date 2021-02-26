@@ -15,7 +15,7 @@ Storybook has been added to the `mobile` repository to help prototype components
 2. Run the usual `npm run android` (or `npm run ios`) and `npm start` commands.
 3. Storybook has been integrated into the react-native dev menu. 
 - On Mac OS, press CMD+D to open the dev menu when your app is running in an iOS Simulator, or press CMD+M when running in an Android emulator. 
-- On Windows and Linux, press CTRL+M to open the dev menu and select the "Storybook" option. 
+- On Windows and Linux, press CTRL+M to open the dev menu, then select the "Storybook" option. 
 - If running on a real device, shaking the device brings up the react-native dev menu. You can also press `d` in the terminal window where you ran `npm start`.
 4. The Storybook interface opens in the mobile app. The stories can be controlled either through the desktop browser Storybook UI or the mobile browser Storybook UI. Both will render the component on the device.
 
