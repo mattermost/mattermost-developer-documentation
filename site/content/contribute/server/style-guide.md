@@ -122,6 +122,38 @@ This rule is not yet fully applied to the `model` package due to backward compat
 
 The name of a method's receiver should be a reflection of its identity; often a one or two letter abbreviation of its type suffices (such as "c" or "cl" for "Client"). Don't use generic names such as "me", "this", or "self" identifiers typical of object-oriented languages that give the variable a special meaning.
 
+#### Error variable names
+
+The name of a any `error` variable must be `err` or prefixed with `err`. The name of any `*model.AppError` variable must be `appErr` or prefixed with `appErr`. This allows us to avoid confusion about how to handle the different kind of errors that we are handling inside Mattermost. If you are storing the error value from a function that returns an `error` type in its signature, it is considered an `error`, no matters if the function, internally is returning a `*model.AppError` instance.
+
+For example, when the function signature returns an `error` we use `err` variable name:
+
+```go
+func MyFunction() error {
+    return model.NewAppError(...)
+}
+
+func OtherFunction() {
+    ...
+    err := MyFunction()
+    ...
+}
+```
+
+When the function signature returns an `*model.AppError` we use `appErr` variable name:
+
+```go
+func MyFunction() *model.AppError {
+    return model.NewAppError(...)
+}
+
+func OtherFunction() {
+    ...
+    appErr := MyFunction()
+    ...
+}
+```
+
 ## Proposing a new rule
 
 To propose a new rule, follow the process below:
