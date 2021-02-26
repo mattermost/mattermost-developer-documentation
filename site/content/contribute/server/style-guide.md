@@ -124,9 +124,9 @@ The name of a method's receiver should be a reflection of its identity; often a 
 
 #### Error variable names
 
-The name of a any `error` variable must be `err` or prefixed with `err`. The name of any `*model.AppError` variable must be `appErr` or prefixed with `appErr`. This allows us to avoid confusion about how to handle the different kind of errors that we are handling inside Mattermost. If you are storing the error value from a function that returns an `error` type in its signature, it is considered an `error`, no matters if the function, internally is returning a `*model.AppError` instance.
+The name of any `error` variable must be `err` or prefixed with `err`. The name of any `*model.AppError` variable must be `appErr` or prefixed with `appErr`. This allows us to avoid confusion about how to handle  different kind of errors inside Mattermost. If you are storing the error value from a function that returns an `error` type in its signature, it's considered an `error`, regardless of whether the function, internally, is returning a `*model.AppError` instance.
 
-For example, when the function signature returns an `error` we use `err` variable name:
+For example, when the function signature returns an `error`, we use the `err` variable name:
 
 ```go
 func MyFunction() error {
@@ -140,7 +140,7 @@ func OtherFunction() {
 }
 ```
 
-When the function signature returns an `*model.AppError` we use `appErr` variable name:
+When the function signature returns an `*model.AppError`, we use the `appErr` variable name:
 
 ```go
 func MyFunction() *model.AppError {
