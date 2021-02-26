@@ -11,6 +11,7 @@ Storybook has been added to the `mobile` repository to help prototype components
 1. In the root of the repository, run `npm run storybook`. This step automatically scans and loads all stories, then opens a new browser tab with the Storybook interface. 
 
 **Note**: When using a real device, you may need to configure the Storybook *Host URL* by updating the `.env` file in the root of the repository. When running in an emulator, the code tries to use the default network values.
+
 2. Run the usual `npm run android` (or `npm run ios`) and `npm start` commands.
 3. Storybook has been integrated into the react-native dev menu. 
 - On Mac OS, press CMD+D to open the dev menu when your app is running in an iOS Simulator, or press CMD+M when running in an Android emulator. 
