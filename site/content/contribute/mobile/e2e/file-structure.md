@@ -1,5 +1,6 @@
 ---
 title: "Folder and File Structure"
+heading: "Mattermost Folder and File Structure"
 description: "Learn about the folder structure, which is mostly based on the Detox scaffold which was created on initial run."
 date: 2020-09-02T09:00:00-00:00
 weight: 2

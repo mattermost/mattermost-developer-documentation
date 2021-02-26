@@ -1,10 +1,9 @@
 ---
 title: "MVP"
+heading: "Mattermost Hall of Fame"
 description: "Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best."
 section: "contribute"
 ---
-
-# Mattermost Hall of Fame
 
 Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best.
 
@@ -16,6 +15,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+5.32    | February 16, 2021   | [Yusuke Nemoto](https://github.com/kaakaa)
 5.31    | January 16, 2021    | [Haardik Dharma](https://github.com/haardikdharma10)
 5.30    | December 16, 2020   | [XxLilBoPeepsxX](https://github.com/XxLilBoPeepsxX)
 5.29    | November 16, 2020   | [Tom De Moor](https://github.com/ctlaltdieliet)
