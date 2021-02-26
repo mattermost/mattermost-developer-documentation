@@ -9,12 +9,12 @@ Our Engineering Guilds are a forum for sharing knowledge, discussing and agreein
 
 The main activity of Guilds is a regular meeting. These meetings are public, and anyone within Mattermost and the wider community is welcome to attend. Details are provided below on each of the Guilds, including how to participate.
 
-## Web Application & Desktop Guild
+## Web Platform Guild
 
-The Web Application & Desktop Guild covers all areas related to front-end web development and Electron desktop app development at Mattermost.
+The Web Platform Guild covers all areas related to front-end web development and Electron desktop app development at Mattermost.
 
-- **Guild Lead:** Dean Whillier
-- **Guild Channel:** [~Developers: WebApp](https://community.mattermost.com/core/channels/webapp)
+- **Guild Lead:** Jesse Hallam
+- **Guild channel:** [~Developers: WebApp](https://community.mattermost.com/core/channels/webapp)
 - **Guild Meeting Time:** *(see header of Guild Channel for meeting invite)*
 
 ## Mobile Guild
