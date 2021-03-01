@@ -18,7 +18,17 @@
             <div class="col-md-9 doc-content">
                 <div class="well well-sm">
                     <div class="blog-item__header">
-                        <div class="blog-item__title">{{ .Title }}<br> <small>{{ .Description }}</small></div>
+                        <div class="blog-item__title">
+                            <h1>
+                            {{ if .Params.heading }}
+                                {{ .Params.heading }}
+                            {{ else }}
+                                {{ .Title }}
+                            {{ end }}
+                            </h1>
+                            <small>{{ .Description }}</small>
+                            
+                        </div>
                         <div class="blog-item__info">
                             {{ .Date.Format "January 2, 2006" }}
                             <small class="blog-item__count">{{ .WordCount }} words</small>

@@ -18,7 +18,11 @@
                 <div class="col-lg-9 doc-content">
                     {{ partial "page-edit.html" . }}
                     <h1 class="mt-0 doc-title">
-                        {{ .Title }}
+                        {{ if .Params.heading }}
+                            {{ .Params.heading }}
+                        {{ else }}
+                            {{ .Title }}
+                        {{ end }}
                     </h1>
                     {{ partial "hanchor.html" .Content }}
                 </div>

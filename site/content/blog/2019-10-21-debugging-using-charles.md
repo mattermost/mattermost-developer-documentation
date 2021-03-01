@@ -1,5 +1,6 @@
 ---
 title: "Debugging Using Charles"
+heading: "Debugging Using Charles"
 description: "Learn about using Charles to debug against community servers while running a local copy of the mattermost webapp."
 slug: debugging-using-charles
 date: 2019-10-21T00:00:00-04:00
