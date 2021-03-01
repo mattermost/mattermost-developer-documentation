@@ -1,5 +1,6 @@
 ---
 title: "Windows with WSL Development Environment Setup"
+heading: "Developer Setup for the Windows Subsystem for Linux"
 description: "Read about how to set up your developer environment in Mattermost using the Windows Subsystem for Linux."
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "Debugging Server Plugins"
+heading: "Debugging the Mattermost Server"
 description: "Plugins communicate with the main Mattermost server by RPC. Learn how to debug them."
 ---
 

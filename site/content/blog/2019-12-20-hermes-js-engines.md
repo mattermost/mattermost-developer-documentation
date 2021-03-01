@@ -1,5 +1,6 @@
 ---
 title: On Hermes and Mattermost
+heading: "On Hermes and Mattermost"
 description: "Read about how Mattermost uses Hermes, Facebook’s new JavaScript engine, to boost performance."
 slug: on-hermes-and-mattermost
 date: 2019-12-20T12:00:00-04:00

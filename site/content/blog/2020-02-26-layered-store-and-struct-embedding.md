@@ -1,5 +1,6 @@
 ---
 title: "Layered Store and Struct Embedding in Go"
+heading: "Layered Store and Struct Embedding"
 description: "One of the most important parts of the Mattermost source code is the one responsible for accessing the Mattermost database: the store."
 slug: layered-store-and-struct-embedding
 date: 2020-02-26

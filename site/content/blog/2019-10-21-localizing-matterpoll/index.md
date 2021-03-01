@@ -1,5 +1,6 @@
 ---
 title: "Localizing Matterpoll"
+heading: "Localizing Matterpoll"
 description: "Matterpoll is a plugin that allows users to create polls in Mattermost. Learn about how we localized it."
 slug: localizing-matterpoll
 date: 2019-12-11T10:49:35+02:00
