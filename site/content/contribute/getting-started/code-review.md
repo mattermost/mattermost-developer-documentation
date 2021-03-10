@@ -85,7 +85,8 @@ If you are a core committer seeking a review
     * Merge your pull request and delete the branch if not from a fork.
         - Note that any core committer is free to merge on your behalf.
         - If your pull request depends on other pull requests, consider assigning the `Do Not Merge/Awaiting PR` label.
-9. For handling cherry-picks, please check [here](https://developers.mattermost.com/contribute/getting-started/branching/).
+9. Handle any cherry-picks.
+    * There is an automated cherry-pick process. The author of the pull request should make sure the cherry-pick succeeds. Assume this is the case unless you are explicitly asked to help cherry-pick. Please [check here](https://developers.mattermost.com/contribute/getting-started/branching/#cherry-pick-process---developer) for details.
 10. After a pull request is merged (and cherry-picked where needed), update the Jira ticket.
     * Resolve the ticket for QA from "Ready for QA" button with QA test steps (or "No Testing Required" if no QA testing is needed).
     * Update the release fix version.
