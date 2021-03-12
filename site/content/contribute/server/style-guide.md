@@ -27,6 +27,33 @@ This does not, however, mean that a developer is *required* to fix any surroundi
 
 ## Guidelines
 
+### Project layout
+
+When starting with a new application, it is very tempting to declare a bunch of packages and interfaces right off the bat. Avoid that. Do not split your code into `model`, `store`, `app` along with a bunch of interfaces in the first commit itself. It is very hard to know how the project will grow or what the ideal package boundaries are when starting with a project. Prematurely separating them will lead to an incorrect package API that may be hard to correct later on.
+
+Instead, put everything inside an `internal` package as your starting point. For example, if the name of your project is `mattercool`, the following can be a good first initial structure:
+
+```
+|
+|- cmd/mattercool
+|- internal/server
+|- go.mod,go.sum
+```
+
+Putting everything under `internal` has the advantage that you are free to change whatever you want without any fallout. After some time, when the project grows, package boundaries will start to appear. At that point, start to separate into sub-packages.
+
+Following are some of the anti-patterns to keep in mind:
+
+- Don't use the `pkg` pattern. This is a common standard used by many projects. But it goes against the Go philosophy of naming packages that signify what they contain. From https://blog.golang.org/package-names:
+
+>  A package's name provides context for its contents, making it easier for clients to understand what the package is for and how to use it.
+
+The `pkg` directory was used long ago in the Go project when there wasn't any well-defined standards. But it was later removed to just have normal packages.
+
+- Same for `util` or `misc` packages. Don't use them. Instead break out related `util` functionalities into its own package or if it's not used by a lot of packages, make it part of the original package itself.
+
+- Don't have too many small packages with only one file. It's usually a sign of splitting packages without giving thought into them. Look at the API boundaries and group the packages into bigger chunks.
+
 ### Functional
 
 #### Default to sync instead of async
