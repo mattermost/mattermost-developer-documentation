@@ -36,7 +36,7 @@ Deployments to the managment system are overseen by the Cloud team. If you have 
 
 ## Timelines for rollouts
 
-The feature flag is initially “off” and will be rolled out slowly. Individual teams should decide how they want to roll out their features as they know the features best and are responsible for them. Once we have split.io access for 2-3 people per team, the feature teams can enable/disable feature flags at will without needing to ask Cloud team. Note: below is an initial guideline and can be further iterated on over time.
+The feature flag is initially “off” and will be rolled out slowly. Individual teams should decide how they want to roll out their features as they know the features best and are responsible for them. Once we have split.io access for 2-3 people per team, the feature teams can enable/disable feature flags at will without needing to ask Cloud team. Note: The steps below are an initial guideline and will be iterated on over time.
 
  - 1st week after feature is merged (T-30): 10% rollout; only to test servers, no rollout to customers.
  - 2nd week (T-22): 50% rollout; rollout to some customers (excluding big customers and newly signed-up customers); no major bugs in test servers.
@@ -50,11 +50,11 @@ When the feature is rolled out to customers, logs will show if there are crashes
 
 ## Self-Managed releases
 
-For a feature flagged feature to be included in a Self-Managed release, the feature flag should be removed. 
+For a feature-flagged feature to be included in a Self-Managed release, the feature flag should be removed.
 
-Feature flags are generally off by default and on-prem releases do not contact the management system. Therefore feature flags that are not ready for an on-prem release will be automatically disabled for all on-prem releases.
+Feature flags are generally off by default and self-managed releases do not contact the management system. Therefore feature flags that are not ready for a self-managed release will be automatically disabled for all self-managed releases.
 
-The downside of enabling feature flags by default for Self-Managed is that the feature flag would be less useful and we’d have more feature flags to keep track of. The correct process is to remove the flag and there should be some level of slow rollout. The long-term solution is to have weekly Cloud releases to be able to iterate on features faster.
+The downside of enabling feature flags by default for self-managed is that the feature flag would be less useful and we’d have more feature flags to keep track of. The correct process is to remove the flag and there should be some level of slow rollout. The long-term solution is to have weekly Cloud releases to be able to iterate on features faster.
 
 ## Testing
 
@@ -106,8 +106,8 @@ There are no hard rules on when a feature flag should be used. It is left up to 
 9. Do feature flags need to be restarted?
  - Feature flags don’t have to be restarted unless the feature requires that.
 
-10. For features that are requested by Self-Managed customers, why do we have to deploy to Cloud first, rather than having the customer who has the test case test it? 
- - Cloud is the way to validate the stability of the feature before it goes to Self-Managed customers. In exceptional cases we can let the Self-Managed customer know that they can use environment variables to enable the feature flag (but specify that the feature is experimental).
+10. For features that are requested by self-managed customers, why do we have to deploy to Cloud first, rather than having the customer who has the test case test it?
+ - Cloud is the way to validate the stability of the feature before it goes to self-managed customers. In exceptional cases we can let the self-managed customer know that they can use environment variables to enable the feature flag (but specify that the feature is experimental).
 
-11. How does the current process take into account bugs that may arise on Self-Managed specifically? 
- - Process hasn’t changed much from the old release process: features can still be tested on Self-Managed servers once they have been rolled out to Cloud. the main goal is that bugs are first caught on Cloud servers.
+11. How does the current process take into account bugs that may arise on self-managed specifically?
+ - The process hasn’t changed much from the old release process: Features can still be tested on self-managed servers once they have been rolled out to Cloud. The primary goal is that bugs are first identified on Cloud servers.
