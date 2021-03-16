@@ -44,17 +44,17 @@ These are the steps to update GitLab Omnibus with a new version of Mattermost:
     git push
     ```
        
-1. Create a branch for the new version of Mattermost.
+2. Create a branch for the new version of Mattermost.
 
     ```bash
     git checkout -b mattermost-X.Y
     ```
        
-1. Update the version of Mattermost downloaded at build time by modifying `config/software/mattermost.rb`. The `default_version` and `md5` fields need to be set to the match the latest release of Mattermost TE.
+3. Update the version of Mattermost downloaded at build time by modifying `config/software/mattermost.rb`. The `default_version` and `md5` fields need to be set to the match the latest release of Mattermost TE.
 
-1. Add an entry to the table in `doc/gitlab-mattermost/README.md` that maps GitLab versions to the corresponding Mattermost version. This step is not necessary for dot releases of Mattermost.
+4. Add an entry to the table in `doc/gitlab-mattermost/README.md` that maps GitLab versions to the corresponding Mattermost version. This step is not necessary for dot releases of Mattermost.
 
-1. Add a changelog entry by using `scripts/changelog`. This will create an entry in `changeslogs/unreleased` that needs to be checked in.
+5. Add a changelog entry by using `scripts/changelog`. This will create an entry in `changeslogs/unreleased` that needs to be checked in.
 
     ```bash
     scripts/changelog "Update Mattermost to X.Y"
@@ -62,7 +62,7 @@ These are the steps to update GitLab Omnibus with a new version of Mattermost:
        
     The type will usually be "8. Other". You can also go back afterwards and add the author and MR number if you'd like.
    
-1. Commit the changes to `config/software/mattermost.rb`, `doc/gitlab-mattermost/README.md`, and the newly created file in `changelogs/unreleased`. The commit message must also a second line containing the type of change made similar to the one listed in the changelog file.
+6. Commit the changes to `config/software/mattermost.rb`, `doc/gitlab-mattermost/README.md`, and the newly created file in `changelogs/unreleased`. The commit message must also a second line containing the type of change made similar to the one listed in the changelog file.
 
     ```
     Update Mattermost to X.Y
@@ -79,27 +79,27 @@ These steps differ slightly from the more detailed ones available from GitLab ([
 
 1. Get the current `BUILDER_IMAGE_REVISION` value from `.gitlab-ci.yml`.
 
-1. Run the builder in a Docker container. You may have to run these with `sudo` depending on permissions. This assumes you're using Ubuntu 18.04, but there are other Docker images available for different OSes.
+2. Run the builder in a Docker container. You may have to run these with `sudo` depending on permissions. This assumes you're using Ubuntu 18.04, but there are other Docker images available for different OSes.
 
     ```bash
     docker pull registry.gitlab.com/gitlab-org/gitlab-omnibus-builder/ubuntu_18.04:${BUILDER_IMAGE_REVISION}
     docker run -it registry.gitlab.com/gitlab-org/gitlab-omnibus-builder/ubuntu_18.04:${BUILDER_IMAGE_REVISION} bash
     ```
 
-1. Inside the container, clone the repo and change to the folder. Note that we're cloning our fork here.
+3. Inside the container, clone the repo and change to the folder. Note that we're cloning our fork here.
 
     ```bash
     git clone https://gitlab.com/mattermost/omnibus-gitlab.git ~/omnibus-gitlab
     cd ~/omnibus-gitlab
     ```
 
-1. Change to the correct branch.
+4. Change to the correct branch.
 
     ```bash
     git checkout mattermost-X.Y
     ```
 
-1. Specify where to grab GitLab dependencies and assets from.
+5. Specify where to grab GitLab dependencies and assets from.
 
     ```bash
     export ALTERNATIVE_SOURCES=true
@@ -107,20 +107,20 @@ These steps differ slightly from the more detailed ones available from GitLab ([
     export COMPILE_ASSETS=true
     ```
 
-1. Install Ruby dependencies.
+6. Install Ruby dependencies.
 
     ```bash
     bundle install
     bundle binstubs --all
     ```
 
-1. Build everything. This can take a couple hours, so go grab lunch.
+7. Build everything. This can take a couple hours, so go grab lunch.
 
     ```bash
     bin/omnibus build gitlab
     ```
 
-1. From the host machine, copy the compiled package out of the Docker container.
+8. From the host machine, copy the compiled package out of the Docker container.
 
     ```bash
     docker cp <container>:/root/omnibus-gitlab/pkg/<package>.deb .
@@ -142,25 +142,25 @@ After first installing GitLab Omnibus, the external URLs for GitLab need to be c
     sudo vi /etc/gitlab/gitlab.rb
     ```
 
-1. Set the `external_url` to set GitLab's external URL.
+2. Set the `external_url` to set GitLab's external URL.
 
     ```ruby
     external_url "http://gitlab.dev.mm"
     ```
 
-1. Find and uncomment the line which sets `mattermost_external_url` and set it to Mattermost's external URL.
+3. Find and uncomment the line which sets `mattermost_external_url` and set it to Mattermost's external URL.
 
     ```ruby
     mattermost_external_url "http://mattermost.dev.mm"
     ```
 
-1. Find and uncommonet the line which sets `mattermost['enable']` and set it to `true`.
+4. Find and uncomment the line which sets `mattermost['enable']` and set it to `true`.
 
     ```ruby
     mattermost['enable'] = true
     ```
 
-1. Leave your editor and use `gitlab-ctl` to reconfigure and restart its services.
+5. Leave your editor and use `gitlab-ctl` to reconfigure and restart its services.
 
     ```bash
     sudo gitlab-ctl reconfigure
@@ -178,57 +178,57 @@ To test a new version of Mattermost running in GitLab, you'll have to test the t
 
     1. Visit `http://mattermost.dev.mm` in a browser.
 
-    1. Click Sign in with GitLab. You should be directed to the GitLab login screen.
+    2. Click Sign in with GitLab. You should be directed to the GitLab login screen.
 
-    1. Log in as any user. You should be sent back to Mattermost and logged in.
+    3. Log in as any user. You should be sent back to Mattermost and logged in.
 
-    1. Log out and back in through the same process. You should skip the GitLab login screen since you were still logged into GitLab.
+    4. Log out and back in through the same process. You should skip the GitLab login screen since you were still logged into GitLab.
 
-1. Test creating a team in Mattermost for a new GitLab group.
+2. Test creating a team in Mattermost for a new GitLab group.
 
     1. Open `http://gitlab.dev.mm` in another window.
 
-    1. Click the plus button in the header bar and select "New group".
+    2. Click the plus button in the header bar and select "New group".
 
-    1. Enter a name for the group and check "Create a Mattermost team for this group".
+    3. Enter a name for the group and check "Create a Mattermost team for this group".
 
-    1. Go back to Mattermost. You should have been added to a new team matching the name of the group.
+    4. Go back to Mattermost. You should have been added to a new team matching the name of the group.
 
-1. Test adding the GitLab slash command.
+3. Test adding the GitLab slash command.
 
     1. Go to GitLab.
 
-    1. Click the plus button in the header bar and select "New project".
+    2. Click the plus button in the header bar and select "New project".
 
-    1. Select "Create blank project". Enter a name and click "Create project".
+    3. Select "Create blank project". Enter a name and click "Create project".
 
-    1. From the sidebar on the left, go to Settings > Integrations.
+    4. From the sidebar on the left, go to Settings > Integrations.
 
-    1. Scroll down and select "Mattermost slash commands".
+    5. Scroll down and select "Mattermost slash commands".
 
-    1. Click "Add to Mattermost".
+    6. Click "Add to Mattermost".
 
-    1. Select the team you created above from the dropdown and click "Install".
+    7. Select the team you created above from the dropdown and click "Install".
 
-    1. Go back to Mattermost and use `/<project>`.
+    8. Go back to Mattermost and use `/<project>`.
 
-    1. When prompted, click "connect your GitLab Account" and select "Authorize".
+    9. When prompted, click "connect your GitLab Account" and select "Authorize".
 
-    1. You should now be able to use the slash command to do things like creating and viewing issues.
+    10. You should now be able to use the slash command to do things like creating and viewing issues.
 
-1. Test adding GitLab notifications.
+4. Test adding GitLab notifications.
 
     1. In Mattermost, go to Integrations > Incoming Webhooks and add an incoming webhook.
     
-    1. Copy the URL of the webhook and return to Mattermost.
+    2. Copy the URL of the webhook and return to Mattermost.
 
-    1. Go to GitLab. From the sidebar on the left, go to Settings > Integrations.
+    3. Go to GitLab. From the sidebar on the left, go to Settings > Integrations.
 
-    1. Scroll down and select "Mattermost notifications".
+    4. Scroll down and select "Mattermost notifications".
 
-    1. Fill in the "Webhook" field with the webhool URL you previously copied and then click "Save changes"
+    5. Fill in the "Webhook" field with the webhook URL you previously copied and then click "Save changes"
 
-    1. Create an issue either from the GitLab UI or by using the previously configured slash command. A notification should be posted by the webhook in the channel you created.
+    6. Create an issue either from the GitLab UI or by using the previously configured slash command. A notification should be posted by the webhook in the channel you created.
 
 ### Useful Files and Commands
 
