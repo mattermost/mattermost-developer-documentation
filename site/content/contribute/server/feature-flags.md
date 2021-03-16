@@ -46,15 +46,15 @@ The feature flag is initially “off” and will be rolled out slowly. Individua
 For smaller, non-risky features, the above process can be more fast tracked as needed, such as starting with a 10% rollout to test servers, then 100%.
 Features have to soak on cloud for at least 2 weeks for testing. Focus is on severity and number of bugs found; if there are major bugs found at any stage, the feature flag can be turned off to roll back the feature.
 
-When the feature is rolled out to customers, logs will show if there are crashes, and normally users will report if a feature is broken and/or if the feature is useful.
+When the feature is rolled out to customers, logs will show if there are crashes, and normally users will report feedback on the feature (e.g. bugs).
 
-## On-prem releases
+## Self-Managed releases
 
-For a feature flagged feature to be included in an on-prem release, the feature flag should be removed. 
+For a feature flagged feature to be included in a Self-Managed release, the feature flag should be removed. 
 
 Feature flags are generally off by default and on-prem releases do not contact the management system. Therefore feature flags that are not ready for an on-prem release will be automatically disabled for all on-prem releases.
 
-The downside of enabling feature flags by default for on-prem is that the feature flag would be less useful and we’d have more feature flags to keep track of. The correct process is to remove the flag and there should be some level of slow rollout. The real solution is releasing to Cloud more often.
+The downside of enabling feature flags by default for Self-Managed is that the feature flag would be less useful and we’d have more feature flags to keep track of. The correct process is to remove the flag and there should be some level of slow rollout. The long-term solution is to have weekly Cloud releases to be able to iterate on features faster.
 
 ## Testing
 
@@ -104,10 +104,10 @@ There are no hard rules on when a feature flag should be used. It is left up to 
  - This is something we're going to be evaluating using split.io. We have already implemented support for this in the server.
 
 9. Do feature flags need to be restarted?
- - Feature flags don’t have to be restarted unless the feature requires that (the feature team would know this).
+ - Feature flags don’t have to be restarted unless the feature requires that.
 
 10. For features that are requested by Self-Managed customers, why do we have to deploy to Cloud first, rather than having the customer who has the test case test it? 
- - Cloud is the way to validate the stability of the feature before it goes to that customer. Or can say can use environment variables but it’s experimental.
+ - Cloud is the way to validate the stability of the feature before it goes to Self-Managed customers. In exceptional cases we can let the Self-Managed customer know that they can use environment variables to enable the feature flag (but specify that the feature is experimental).
 
 11. How does the current process take into account bugs that may arise on Self-Managed specifically? 
- - Process hasn’t changed much; hopefully bugs are first caught on Cloud.
+ - Process hasn’t changed much from the old release process: features can still be tested on Self-Managed servers once they have been rolled out to Cloud. the main goal is that bugs are first caught on Cloud servers.
