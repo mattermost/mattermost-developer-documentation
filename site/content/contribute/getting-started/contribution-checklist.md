@@ -28,6 +28,7 @@ Follow this checklist for submitting a pull request (PR):
 6. The PR title begins with the Jira or GitHub Ticket ID (e.g. `[MM-394]` or `[GH-394]`) and summary template is filled out.
 7. If your PR adds or changes a RESTful API endpoint, please update the [API documentation](https://github.com/mattermost/mattermost-api-reference).
 8. If your PR adds a new plugin API method or hook, please add an example to the [Plugin Starter Template](https://github.com/mattermost/mattermost-plugin-starter-template).
+8. If QA review is applicable, your PR includes test steps or expected results.
 9. Your PR includes basic documentation about the change/addition you're submitting. View our [guidelines](https://handbook.mattermost.com/operations/operations/publishing/publishing-guidelines/voice-tone-and-writing-style-guidelines/submitting-documentation-with-your-pr) for more information about submitting documentation and the review process.
 
 Once submitted, the automated build process must pass in order for the PR to be accepted. Any errors or failures need to be addressed in order for the PR to be accepted. Next, the PR goes through [code review](https://developers.mattermost.com/contribute/getting-started/code-review/). To learn about the review process for each project, read the `CONTRIBUTING.md` file of that GitHub repository. 
