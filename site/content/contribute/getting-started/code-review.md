@@ -69,6 +69,7 @@ If you are a core committer seeking a review
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing so as to avoid churn if changes are requested.
     * Remove the `2: Dev Review` label only when these reviews are done and they accept the changes.
 7. After Dev review, assign a [QA tester](/contribute/getting-started/core-committers/#qa-testers).
+    * Ensure that your PR includes test steps or expected results for QA reference if the QA Test Steps in the Jira ticket have not already been filled in.
     * The choice of QA tester is up to you.
         - In most cases, choose the QA tester embedded with your team.
         - If your change primarily touches another team's codebase, consider their QA tester.
