@@ -47,7 +47,7 @@ The QA Guild covers all areas related to the Quality Assurance and Automated Tes
 
 - **Guild Lead:** Linda Mitchell
 - **Guild Channel:** [~QA: Weekly Meetings](https://community.mattermost.com/core/channels/qa-weekly-meetings)
-- **Guild Meeting:** *(see header of Guild Channel for meeting invite)*
+- **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
 ## Contributor Community Guild
 
