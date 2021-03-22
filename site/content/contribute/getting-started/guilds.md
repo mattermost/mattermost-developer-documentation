@@ -23,7 +23,7 @@ The Mobile Guild covers all areas related to mobile application development and 
 
 - **Guild Lead:** Elias Nahum
 - **Guild channel:** [~]()
-- **Guild Meeting:** *(see header of Guild Channel for meeting invite)*
+- **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
 ## Server/Backend Guild
 
