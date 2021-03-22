@@ -15,7 +15,7 @@ The Web Platform Guild covers all areas related to front-end web development and
 
 - **Guild Lead:** Jesse Hallam
 - **Guild channel:** [~Developers: WebApp](https://community.mattermost.com/core/channels/webapp)
-- **Guild Meeting Time:** *(see header of Guild Channel for meeting invite)*
+- **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
 ## Mobile Guild
 
