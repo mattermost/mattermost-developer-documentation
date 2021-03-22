@@ -39,7 +39,7 @@ The Cloud Guild covers all areas related to our cloud infrastructure and Kuberne
 
 - **Guild Lead:** Gabe Jackson
 - **Guild Channel:** [~Developers: Cloud](https://community-daily.mattermost.com/core/channels/cloud)
-- **Guild Meeting:** *(see header of Guild Channel for meeting invite)*
+- **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
 ## QA Guild
 
