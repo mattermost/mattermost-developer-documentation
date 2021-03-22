@@ -30,7 +30,7 @@ The Mobile Guild covers all areas related to mobile application development and 
 The Server/Backend Guild covers all areas related to our server codebase and general Go development at Mattermost.
 
 - **Guild Lead:** Miguel de la Cruz
-- **Guild Channel:** [~Developers: Server](https://community.mattermost.com/core/channels/developers-server)
+- **Guild channel:** [~Developers: Server](https://community.mattermost.com/core/channels/developers-server)
 - **Guild Meeting:** *(see header of Guild Channel for meeting invite)*
 
 ## Cloud Guild
