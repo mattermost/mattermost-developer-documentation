@@ -1,14 +1,16 @@
 ---
-title: "Google Summer of Code 2021"
-description: "Ideas list for Google Summer of Code 2021"
+title: "Google Summer of Code"
+description: "Ideas list for Google Summer of Code"
 section: "contribute"
 ---
 
-We are happy to announce that Mattermost is applying to [Google Summer of Code 2021](https://summerofcode.withgoogle.com) as an organization!
+# 2021 ideas
+
+**Note**: Mattermost was **not** selected as an organization for Google Summer of Code 2021. All that follows is kept here for historical reasons. Hopefully, we will be able to use some of the ideas in 2022.
 
 For those of you who don’t know, Google Summer of Code is a program that connects students and open source organizations. Following a selection process, students spend ten weeks of their summer break contributing to an open source project. The students are mentored by experienced contributors from each organization, and students receive a stipend from Google as compensation for their time.
 
-To make this a successful experience, we've prepared a list of interesting ideas that have real-world application, require cross-functional collaboration, and that are flexible in terms of output. 
+To make this a successful experience, we've prepared a list of interesting ideas that have real-world application, require cross-functional collaboration, and that are flexible in terms of output.
 
 In order to achieve your Google Summer of Code goals this summer, we have an excellent team of people ready to support and guide you:
 
@@ -38,13 +40,13 @@ Here’s a sneak peek of what’s coming next:
 
 Make sure to take a look at [the full Google Summer of Code timeline](https://summerofcode.withgoogle.com/how-it-works/#timeline) for more details!
 
-# Ideas list
+## Ideas list
 
-## Core features
+### Core features
 
 All ideas in the _Core features_ category propose direct changes to the Mattermost product, either within the server, or within the web client.
 
-### TypeScript definitions from Go code
+#### TypeScript definitions from Go code
 
 Declaring the same data model in both sides of a web application is an old problem. In our case, the data structures in the server are declared in Go, while those same models are defined in the client side in Typescript. Although the relation is not always one to one, there are lots of places where we could leverage an automatic creation of Typescript types from a struct in Go. A tool for this would make the lives of all our contributors much easier.
 
@@ -55,7 +57,7 @@ The main idea in this project is to investigate the existing solutions to this p
 -   **Difficulty**: Medium
 -   **Mentors**: Martin Kraft, Devin Binnie
 
-### Custom keyboard shortcuts
+#### Custom keyboard shortcuts
 
 Mattermost is built for developers. And we developers _love_ to use keyboard shortcuts. While both the web and the desktop applications have support for a wide variety of shortcuts, they are currently hardcoded in the product. Have you ever tried to agree with another developer on the best shortcut for any action? We have tried, and had dozens of arguments along the way.
 
@@ -68,7 +70,7 @@ The design of the UI and UX to define the shortcuts will be done in conjunction 
 -   **Difficulty**: Easy
 -   **Mentors**: Alejandro García Montoro
 
-### Username aliases
+#### Username aliases
 
 Users in Mattermost have a single username. I can be `@joe` on my own local server, and if I want, I can change my username permanently to be `@jon.doe`. But what if I want to be both `@joe` and `@jon.doe` at the same time? Right now, that's not possible.
 
@@ -81,7 +83,7 @@ For this project, the student will be asked to implement a new entry in **Accoun
 -   **Difficulty**: Hard
 -   **Mentors**: Alejandro García Montoro
 
-### Do Not Disturb improvements
+#### Do Not Disturb improvements
 
 Mattermost has four different values for user status: Online, Away, Do Not Disturb, and Offline.
 
@@ -96,7 +98,7 @@ One of the most interesting in terms of functionality (or lack thereof!) is Do N
 -   **Difficulty**: Medium
 -   **Mentors**: Alejandro García Montoro, Eric Sethna
 
-### Control link previews in posts
+#### Control link previews in posts
 
 When a message contains a URL, a preview of the linked content is shown in the post. There are situations when a plugin or an app may post several messages, each of them with a different link. This causes the channel to fill quickly with link previews. This project tries to improve this poor user experience with two different tasks:
 
@@ -110,7 +112,7 @@ This project is open to ideas that should be reflected in the student proposal.
 -   **Difficulty**: Easy
 -   **Mentors**: Daniel Espino García, Alejandro García Montoro
 
-### Add the concept of _Importance_ to messages
+#### Add the concept of _Importance_ to messages
 
 The importance of a message is subjective and varies greatly, depending on the content, the sender, the receiver, or even the channel where it is being shared. However, there is no functional difference between such messages, and the application regards them as having equal importance today. This can be a problem in several situations. For example, imagine users in different time zones or users that are on vacation -- when these users are back online, they could be easily overwhelmed with the number of unread messages and notifications. There are also situations where you want to send a low priority message that does not need the immediate attention of the recipient. And others where you need a quick response or, at least, an acknowledgment.
 
@@ -123,13 +125,13 @@ This project is open to ideas that should be reflected in the student proposal.
 -   **Difficulty**: Hard
 -   **Mentors**: Daniel Espino García, Alejandro García Montoro
 
-## Plugins
+### Plugins
 
 Plugins are a standard way of extending Mattermost without modifying the product itself. Plugins are web applications whose server directly talks to the Mattermost server, and whose web component is injected into the Mattermost web application.
 
 While some of the proposed plugins will require a change within the plugin infrastructure, many of the plugin ideas are flexible, as they are not direct modifications to the product itself, but independent pieces of software that users can decide to install and enable.
 
-### Spotify plugin
+#### Spotify plugin
 
 There are tons of integrations that are potentially useful for our users. One that seems to be asked for quite a lot is an integration with Spotify. There are several features that we would like to see in such a plugin, but the development of this idea is open to the interests of the student:
 
@@ -145,7 +147,7 @@ This project is open to ideas that should be reflected in the student proposal.
 -   **Difficulty**: Medium
 -   **Mentors**: Alejandro García Montoro
 
-### Quote plugin
+#### Quote plugin
 
 When we are writing in a busy thread, and we want to answer a specific post, there's an unwritten rule that says that you should prepend your post with a quote of that message and format it as a quote with the usual Markdown syntax. This is a manual process, and as such, it gets skipped. But what if we could automate it?
 
@@ -158,7 +160,7 @@ Currently, plugins aren't able to modify the input box, so the first and most im
 -   **Difficulty**: Medium
 -   **Mentors**: Daniel Espino García, Alejandro García Montoro
 
-### Timed reminders on specific posts
+#### Timed reminders on specific posts
 
 Often we read an interesting message but don't have time to process it at that moment. Some of us use the "Mark as unread" feature or the TODO plugin for this, but it would be valuable to have a feature that reminds us of a specific message after an elapsed period of time, such as after 30 minutes, one hour, or the next day.
 
@@ -169,7 +171,7 @@ This project is focused around that specific feature, and the goal is to build a
 -   **Difficulty**: Easy
 -   **Mentors**: Alejandro García Montoro, Eric Sethna
 
-### Active call banner
+#### Active call banner
 
 There are several plugins in Mattermost that integrate the product with video conference software such as Jitsi or Zoom. When a user starts a meeting, a message is automatically posted to the channel inviting other users to join. This post is then edited when the meeting ends, displaying the length of the meeting. However, the plugin post can get buried in the channel as other messages are posted.
 
@@ -182,13 +184,13 @@ The banner should be displayed when there's an active video call, either in Jits
 -   **Difficulty**: Easy
 -   **Mentors**: Daniel Espino García, Alejandro García Montoro
 
-## Apps
+### Apps
 
 Mattermost was designed from the very beginning to be extensible. Up until now, plugins were the main way (along with incoming and outgoing webhooks and slash commands) of integrating third-party services into the product. While they have been extremely powerful and successful, we are investigating new ways of letting developers extend Mattermost functionality.
 
 The result of that investigation is the concept of Apps: a new way to integrate external services into Mattermost.
 
-### App Form Fields
+#### App Form Fields
 
 One of the interaction points with Apps are Apps Forms. Apps Forms allow the user to introduce information to send to the App. Right now, we support some basic fields in the forms, like text, bools, or select but we would like to add more complex types and interactions, like date picker, time picker, lists, or checkbox tables.
 
@@ -201,7 +203,7 @@ This project will be developed in close collaboration with the UX team to better
 -   **Difficulty**: Medium
 -   **Mentors**: Daniel Espino García, Alejandro García Montoro
 
-### Apps Locations
+#### Apps Locations
 
 One of the ways Mattermost can interact with the new Apps is through the App Locations: Specific locations in the UI (both in the web application and the mobile apps) that can be attached to an action handled by the App. Current locations include buttons in the channel header and the post menu.
 
@@ -216,7 +218,7 @@ This project will be developed in close collaboration with the UX team to better
 -   **Difficulty**: Medium
 -   **Mentors**: Daniel Espino García, Alejandro García Montoro
 
-## Bring your own idea
+### Bring your own idea
 
 If none of the ideas in this list speak to you, you can always propose your own idea!
 
