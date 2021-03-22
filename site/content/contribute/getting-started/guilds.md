@@ -53,6 +53,6 @@ The QA Guild covers all areas related to the Quality Assurance and Automated Tes
 
 The Contributor Community Guild covers all areas related to the Mattermost Contributor Community like the contributor experience, code contributions, recognition, and more.
 
-- **Guild Lead:** Jason Blais
+- **Guild Lead:** Emily Cook
 - **Guild Channel:** [~guild-contributor-community ](https://community.mattermost.com/core/channels/guild-contributor-community)
 - **Guild meeting time:** *(see header of Guild channel for meeting invite)*
