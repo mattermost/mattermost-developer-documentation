@@ -31,7 +31,7 @@ The Server/Backend Guild covers all areas related to our server codebase and gen
 
 - **Guild Lead:** Miguel de la Cruz
 - **Guild channel:** [~Developers: Server](https://community.mattermost.com/core/channels/developers-server)
-- **Guild Meeting:** *(see header of Guild Channel for meeting invite)*
+- **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
 ## Cloud Guild
 
