@@ -22,7 +22,7 @@ The Web Platform Guild covers all areas related to front-end web development and
 The Mobile Guild covers all areas related to mobile application development and React Native.
 
 - **Guild Lead:** Elias Nahum
-- **Guild Channel:** [~]()
+- **Guild channel:** [~]()
 - **Guild Meeting:** *(see header of Guild Channel for meeting invite)*
 
 ## Server/Backend Guild
