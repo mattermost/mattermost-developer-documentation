@@ -126,9 +126,9 @@ The name of a method's receiver should be a reflection of its identity; often a 
 
 The purpose of logging is to provide observability - it enables the application communicate back to the administrator about what is happening. To communicate effectively logs should be meaningful and concise. To achieve this, log lines should conform to one of the definitions below:
 
-**Critical:** This represents the most urgent situations for the service to work properly and it is unable to meet even the minimum requirements. When a critical thing happens it is expected that the service will stop.
+**Critical:** This log-level represents the most severe situations when the service is entirely unable to continue operating. After emitting a _critical_ log line, it is expected that the service will terminate.
 
-As an example, the code block below demonstrates a critical situation where the server creation is failed. This error causes total failure of the service.
+For example, the code block below demonstrates a _critical_ situation where the server startup routine fails, meaning the service is unable to start and must terminate.
 
 ```go
 func runServer(..) {
@@ -142,9 +142,9 @@ func runServer(..) {
 }
 ```
 
-**Error:** This indicates that something important happened to the system, but it does not cause loss of service. The administrator should investigate the incident. Hence it should provide enough information to start an investigation. An error can be a loss of service for a single user or something affecting a part of the application but does not break the service entirely.
+**Error:** This log-level is used when something unexpected has happened to the service, but it does not result in a total loss of service. Log lines using the _error_ level must be actionable, so that the system administrator can investigate and resolve the incident. The _error_ log level may indicate a loss of service for an individual user or request or it may indicate a total failure of a non-critical subsystem within the service.
 
-In the following example we log as error level since it is affecting only a part of the application.
+For example, the _error_ log level is used in the code snippet below as it represents a partial failure of one non-critical subsystem of the service. Administrator intervention is required to resolve this situation, but the rest of the service is able to continue operating in the meantime.
 
 ```go
 func (a *App) SyncPlugins(..) {
@@ -158,9 +158,9 @@ func (a *App) SyncPlugins(..) {
 }
 ```
 
-**Warn:** Something unexpected has happened, but the server is able to continue operating and it has not suffered any loss of function. A possible investigation should be carried out at some point but is not urgent. This level of messages should be as detailed as possible since warnings are quite a gray area and we want to be more clear about logs.
+**Warn:** This log level is used to indicate that something unexpected has happened, but the server is able to continue operating and it has not suffered any loss of functionality as a consequence of this failure. System administrators may wish to investigate the cause of log lines at this level, but the need is typically less pressing than for those at _error_ level. System administrators may also wish to monitor the rate of occurrence of individual log-lines at this level as this may be indicative of a wider problem. Log lines at the _warning_ level should be as detailed as possible, since these are often the least clear-cut category of message.
 
-One of the most prominent features of warning logs is that the operation can be continued in case of an error.
+For example, the _warning_ log level may be used to indicate that something went wrong but the overall operation was still able to complete successfully.
 
 ```go
 func (a *App) UpdateUserRoles(..) {
@@ -175,9 +175,9 @@ func (a *App) UpdateUserRoles(..) {
 }
 ```
 
-**Info:** These logs correspond to normal application behavior even if it results in an error for the end user. These are not critical as they are normal operations, but they provide useful information about what is going on.
+**Info:** This log level should be used to record normal, expected application behavior, even if it results in an error for the end user. They are not actionable individually, but the significant changes in the frequency of occurrence of individual log lines at this level may be indicative of a possible problem.
 
-For example, information about services stopping and starting may be relevant to administrators.
+For example, the _info_ log level may be used to communicate to administrators that certain subsystems within the service have been started or stopped.
 
 ```go
 func (s *Schedulers) Start(..) {
@@ -189,7 +189,7 @@ func (s *Schedulers) Start(..) {
 }
 ```
 
-**Debug:** These messages contain enough diagnostic information to be used for effective debugging.
+**Debug:** This log-level is used for diagnostic information which may be used to debug issues but is not necessary for normal production system logging, nor actionable by system administrators.
 
 ```go
 func (worker *Worker) Run() {
