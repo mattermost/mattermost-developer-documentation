@@ -239,14 +239,16 @@ The core team also has QA testers who verify the correct functionality of the pr
     - @linda on [community.mattermost.com](https://community.mattermost.com/core/messages/@linda) and [@lindalumitchell](https://github.com/lindalumitchell) on GitHub
 - **<a name="lindy.isherwood">Lindy Isherwood</a>**
     - @lindy.isherwood on [community.mattermost.com](https://community.mattermost.com/core/messages/@lindy.isherwood) and [@lindy65](https://github.com/lindy65) on GitHub
+- **<a name="saturnino.abril">Saturnino Abril</a>**
+    - @saturnino on [community.mattermost.com](https://community.mattermost.com/core/messages/@saturnino) and [@saturninoabril](https://github.com/saturninoabril) on GitHub
 - **<a name="dylan.haussermann">Dylan Haussermann</a>**
     - @dylan.haussermann on [community.mattermost.com](https://community.mattermost.com/core/messages/@dylan.haussermann) and [@DHaussermann](https://github.com/DHaussermann) on GitHub
 - **<a name="ogi.marušić">Ogi Marušić</a>**
     - @ogi.marusic on [community.mattermost.com](https://community.mattermost.com/core/messages/@ogi.marusic) and [@ogi-m](https://github.com/ogi-m) on GitHub
 - **<a name="prapti.shrestha">Prapti Shrestha</a>**
     - @prapti.shrestha on [community.mattermost.com](https://community.mattermost.com/core/messages/@prapti.shrestha) and [@prapti](https://github.com/prapti) on GitHub
-- **<a name="rohitesh.gupta">Rohitesh Gupta</a>**
-    - @rohitesh.gupta on [community.mattermost.com](https://community.mattermost.com/core/messages/@rohitesh.gupta) and [@srkgupta](https://github.com/srkgupta) on GitHub
+- **<a name="furqan.malik">Furqan Malik</a>**
+    - @furqan.malik on [community.mattermost.com](https://community.mattermost.com/core/messages/@furqan.malik) and [@furqanmlk](https://github.com/furqanmlk) on GitHub
 - **<a name="jelena.gilliam">Jelena Gilliam</a>**
     - @jelena.gilliam on [community.mattermost.com](https://community.mattermost.com/core/messages/@jelena.gilliam) and [@jgilliam17](https://github.com/jgilliam17) on GitHub
 - **<a name="steve.mudie">Steve Mudie</a>**
