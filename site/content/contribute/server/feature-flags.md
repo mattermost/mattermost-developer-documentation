@@ -52,7 +52,7 @@ When the feature is rolled out to customers, logs will show if there are crashes
 
 ## Self-Managed releases
 
-For a feature-flagged feature to be included in a Self-Managed release, the feature flag should be removed.
+For a feature-flagged feature to be included in a self-managed release, the feature flag should be removed.
 
 Feature flags are generally off by default and self-managed releases do not contact the management system. Therefore feature flags that are not ready for a self-managed release will be automatically disabled for all self-managed releases.
 
