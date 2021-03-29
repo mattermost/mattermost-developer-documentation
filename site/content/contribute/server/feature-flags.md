@@ -28,7 +28,7 @@ Feature flags allow us to be more confident in shipping features continuously to
 
 ## Deploying to split.io
 
-Deployments to the managment system are overseen by the Cloud team. If you have any questions or need help with the process, please ask in the cloud channel.
+Deployments to the management system are overseen by the Cloud team. If you have any questions or need help with the process, please ask in the Cloud channel.
 
 1. When ready to deploy the feature, create the feature flag (called a split) in split.io. The name of the feature flag should match the name of the split. Everything else can be left at defaults.
 2. Once created, set the treatment values appropriately. The defaults of "on" an "off" can work for most feature flags.
@@ -36,7 +36,7 @@ Deployments to the managment system are overseen by the Cloud team. If you have 
 
 ## Timelines for rollouts
 
-The feature flag is initially “off” and will be rolled out slowly. Individual teams should decide how they want to roll out their features as they are responsible for them and know them best. Once we have split.io access for 2-3 people per team, the feature teams can enable/disable feature flags at will without needing to ask Cloud team. 
+The feature flag is initially “off” and will be rolled out slowly. Individual teams should decide how they want to roll out their features as they are responsible for them and know them best. Once we have split.io access for 2-3 people per team, the feature teams can enable/disable feature flags at will without needing to ask the Cloud team. 
 
 **Note:** The steps below are an initial guideline and will be iterated on over time.
 
@@ -50,7 +50,7 @@ Features have to soak on Cloud for at least two weeks for testing. Focus is on s
 
 When the feature is rolled out to customers, logs will show if there are crashes, and normally users will report feedback on the feature (e.g. bugs).
 
-## Self-Managed releases
+## Self-managed releases
 
 For a feature-flagged feature to be included in a self-managed release, the feature flag should be removed.
 
@@ -58,7 +58,7 @@ Feature flags are generally off by default and self-managed releases do not cont
 
 ## Testing
 
-Tests should be written to verify all states of the feature flag. Tests should cover any migrations that may take place in both directions (ie. from off to on and from on to off). Ideally E2E tests should be written before the feature is merged, or at least before the feature flag is removed.
+Tests should be written to verify all states of the feature flag. Tests should cover any migrations that may take place in both directions (i.e., from "off" to "on" and from "on" to "off"). Ideally E2E tests should be written before the feature is merged, or at least before the feature flag is removed.
 
 # When to use
 
@@ -80,7 +80,7 @@ There are no hard rules on when a feature flag should be used. It is left up to 
 ## FAQ
 
 1. What is the expected default value for boolean feature flags? Is it `true` or `false`?
- - Definitely `false`. The idea is to use them to slowly roll out a feature. When the code is deployed, the feature flag is not enabled yet. See more details on feature flag rollout timelines here: https://developers.mattermost.com/contribute/server/feature-flags/#timelines-for-rollouts.
+ - Definitely `false`. The idea is to use them to slowly roll out a feature. When the code is deployed, the feature flag is not enabled yet. See more details on feature flag rollout timelines [here](https://developers.mattermost.com/contribute/server/feature-flags/#timelines-for-rollouts).
 
 2. Is it possible to use a plugin feature flag such as `PluginIncidentManagement` to "prepackage" a plugin only on Cloud by only setting a plugin version to that flag on Cloud? Can Self-Managed customers manually set that flag to install the said plugin?
  - Yes. If you leave the default "" then nothing will happen for Self-Managed installations. You can ask the Cloud team to set `split.io/environment` to a specific version.
@@ -103,10 +103,10 @@ There are no hard rules on when a feature flag should be used. It is left up to 
  - It is `MM_FEATUREFLAGS_<myflag>`.
 
 7. Can plugins use feature flags to enable small features aside of the version forcing feature flag?
- - Yes. You can create feature flags as if they were added for the core product, and they will get included in the plugin through the config.
+ - Yes. You can create feature flags as if they were added for the core product, and they'll get included in the plugin through the config.
 
 8. Does it make sense to use feature flags for A/B testing?
- - This is something we're going to be evaluating using split.io. We have already implemented support for this in the server.
+ - This is something we're going to be evaluating using split.io. We've already implemented support for this in the server.
 
 9. Do feature flag changes require the server to be restarted?
  - Feature flags don’t require a server restart unless the feature being flagged requires a restart itself.
