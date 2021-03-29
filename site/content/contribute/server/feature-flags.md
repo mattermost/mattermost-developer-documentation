@@ -36,7 +36,9 @@ Deployments to the managment system are overseen by the Cloud team. If you have 
 
 ## Timelines for rollouts
 
-The feature flag is initially “off” and will be rolled out slowly. Individual teams should decide how they want to roll out their features as they know the features best and are responsible for them. Once we have split.io access for 2-3 people per team, the feature teams can enable/disable feature flags at will without needing to ask Cloud team. Note: The steps below are an initial guideline and will be iterated on over time.
+The feature flag is initially “off” and will be rolled out slowly. Individual teams should decide how they want to roll out their features as they are responsible for them and know them best. Once we have split.io access for 2-3 people per team, the feature teams can enable/disable feature flags at will without needing to ask Cloud team. 
+
+**Note:** The steps below are an initial guideline and will be iterated on over time.
 
  - 1st week after feature is merged (T-30): 10% rollout; only to test servers, no rollout to customers.
  - 2nd week (T-22): 50% rollout; rollout to some customers (excluding big customers and newly signed-up customers); no major bugs in test servers.
