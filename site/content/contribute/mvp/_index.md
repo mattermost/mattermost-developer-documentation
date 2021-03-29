@@ -15,6 +15,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+5.33    | March 16, 2021      | [Mahmudul Haque](https://github.com/mahmud2011)
 5.32    | February 16, 2021   | [Yusuke Nemoto](https://github.com/kaakaa)
 5.31    | January 16, 2021    | [Haardik Dharma](https://github.com/haardikdharma10)
 5.30    | December 16, 2020   | [XxLilBoPeepsxX](https://github.com/XxLilBoPeepsxX)
