@@ -1,5 +1,6 @@
 ---
 title: "Example Plugins"
+heading: "Example Plugins in Mattermost"
 description: "To get started extending server-side functionality with plugins, take a look at our server “Hello, world!” tutorial."
 date: 2018-07-10T00:00:00-05:00
 subsection: Plugins (Beta)
@@ -32,7 +33,7 @@ Topics demonstrated:
 
 * Uses a custom HTTP handler to integrate with external systems.
 * Defines a settings schema, allowing system administrators to configure the plugin via system console UI.
-* Implements tests using the [plugin/plugintest](https://godoc.org/github.com/mattermost/mattermost-server/plugin/plugintest) package.
+* Implements tests using the [plugin/plugintest](https://godoc.org/github.com/mattermost/mattermost-server/v5/plugin/plugintest) package.
 * Creates rich posts using custom post types.
 * Extends existing webapp components to add elements to the UI.
 
@@ -46,7 +47,7 @@ Topics demonstrated:
 
 * Uses a custom HTTP handler to integrate with external systems.
 * Defines a settings schema, allowing system administrators to configure the plugin via system console UI.
-* Implements tests using the [plugin/plugintest](https://godoc.org/github.com/mattermost/mattermost-server/plugin/plugintest) package.
+* Implements tests using the [plugin/plugintest](https://godoc.org/github.com/mattermost/mattermost-server/v5/plugin/plugintest) package.
 * Compiles and publishes releases for multiple platforms using Travis-CI.
 
 ## Profanity Filter

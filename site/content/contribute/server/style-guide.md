@@ -27,6 +27,35 @@ This does not, however, mean that a developer is *required* to fix any surroundi
 
 ## Guidelines
 
+### Project layout
+
+When starting with a new application, it's very tempting to declare a bunch of packages and interfaces right off the bat. Avoid that.  
+
+It's very hard to know how the project will grow or what the ideal package boundaries are when starting with a project. Don't split your code into `model`, `store`, `app` along with a bunch of interfaces in the first commit itself. Prematurely separating them will lead to an incorrect package API that may be hard to correct later on.
+
+Instead, put everything inside an `internal` package as your starting point. For example, if the name of your project is `mattercool`, the following can be a good first initial structure:
+
+```
+|
+|- cmd/mattercool
+|- internal/server
+|- go.mod,go.sum
+```
+
+Putting everything under `internal` has the advantage that you're free to change whatever you want without any fallout. After some time, when the project grows, package boundaries will start to appear. At that point, start to separate into sub-packages.
+
+Following are some of the anti-patterns to keep in mind:
+
+- Don't use the `pkg` pattern. This is a common standard used by many projects. But it goes against the Go philosophy of naming packages that signify what they contain. From https://blog.golang.org/package-names:
+
+>  A package's name provides context for its contents, making it easier for clients to understand what the package is for and how to use it.
+
+The `pkg` directory was used long ago in the Go project when there weren't any well-defined standards. But it was later removed to just have normal packages.
+
+- Same for `util` or `misc` packages. Don't use them. Instead break out related `util` functionalities into its own package or if it's not used by a lot of packages, make it part of the original package itself.
+
+- Don't have too many small packages with only one file. It's usually a sign of splitting packages without giving thought into them. Look at the API boundaries and group the packages into bigger chunks.
+
 ### Functional
 
 #### Default to sync instead of async
@@ -122,6 +151,38 @@ This rule is not yet fully applied to the `model` package due to backward compat
 
 The name of a method's receiver should be a reflection of its identity; often a one or two letter abbreviation of its type suffices (such as "c" or "cl" for "Client"). Don't use generic names such as "me", "this", or "self" identifiers typical of object-oriented languages that give the variable a special meaning.
 
+#### Error variable names
+
+The name of any `error` variable must be `err` or prefixed with `err`. The name of any `*model.AppError` variable must be `appErr` or prefixed with `appErr`. This allows us to avoid confusion about how to handle different kind of errors inside Mattermost. If you are storing the error value from a function that returns an `error` type in its signature, it's considered an `error`, regardless of whether the function, internally, is returning a `*model.AppError` instance.
+
+For example, when the function signature returns an `error`, we use the `err` variable name:
+
+```go
+func MyFunction() error {
+    return model.NewAppError(...)
+}
+
+func OtherFunction() {
+    ...
+    err := MyFunction()
+    ...
+}
+```
+
+When the function signature returns an `*model.AppError`, we use the `appErr` variable name:
+
+```go
+func MyFunction() *model.AppError {
+    return model.NewAppError(...)
+}
+
+func OtherFunction() {
+    ...
+    appErr := MyFunction()
+    ...
+}
+```
+
 ### Log levels
 
 The purpose of logging is to provide observability - it enables the application communicate back to the administrator about what is happening. To communicate effectively logs should be meaningful and concise. To achieve this, log lines should conform to one of the definitions below:
@@ -195,7 +256,6 @@ func (s *Schedulers) Start(..) {
 func (worker *Worker) Run() {
 	mlog.Debug("Worker started", mlog.String("worker", worker.name))
 	..
-}
 ```
 
 ## Proposing a new rule

@@ -1,5 +1,6 @@
 ---
 title: "Platform Repository Splitting"
+heading: "Platform Repository Splitting at Mattermost"
 description: "Here is a reminder that Mattermost separated the /platform repo into two repositories on September 6, 2017."
 slug: repo-split
 date: 2017-09-04T11:09:47-04:00

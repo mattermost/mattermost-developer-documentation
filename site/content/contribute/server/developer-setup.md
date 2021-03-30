@@ -1,5 +1,6 @@
 ---
 title: "Developer Setup"
+heading: "Setting up Your Development Environment - Mattermost"
 description: "Find out how to set up your development environment for building, running, and testing the Mattermost server."
 date: 2020-02-01T19:50:32-04:00
 weight: 2
