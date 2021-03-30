@@ -183,6 +183,81 @@ func OtherFunction() {
 }
 ```
 
+### Log levels
+
+The purpose of logging is to provide observability - it enables the application communicate back to the administrator about what is happening. To communicate effectively logs should be meaningful and concise. To achieve this, log lines should conform to one of the definitions below:
+
+**Critical:** This log-level represents the most severe situations when the service is entirely unable to continue operating. After emitting a _critical_ log line, it is expected that the service will terminate.
+
+For example, the code block below demonstrates a _critical_ situation where the server startup routine fails, meaning the service is unable to start and must terminate.
+
+```go
+func runServer(..) {
+	..
+	server, err := app.NewServer(options...)
+	if err != nil {
+		mlog.Critical(err.Error())
+		return
+	}
+	..
+}
+```
+
+**Error:** This log-level is used when something unexpected has happened to the service, but it does not result in a total loss of service. Log lines using the _error_ level must be actionable, so that the system administrator can investigate and resolve the incident. The _error_ log level may indicate a loss of service for an individual user or request or it may indicate a total failure of a non-critical subsystem within the service.
+
+For example, the _error_ log level is used in the code snippet below as it represents a partial failure of one non-critical subsystem of the service. Administrator intervention is required to resolve this situation, but the rest of the service is able to continue operating in the meantime.
+
+```go
+func (a *App) SyncPlugins(..) {
+	..
+	reader, appErr := a.FileReader(plugin.path)
+	if appErr != nil {
+		mlog.Error("Failed to open plugin bundle from file store.", mlog.String("bundle", plugin.path), mlog.Err(appErr))
+		return
+	}
+	..
+}
+```
+
+**Warn:** This log level is used to indicate that something unexpected has happened, but the server is able to continue operating and it has not suffered any loss of functionality as a consequence of this failure. System administrators may wish to investigate the cause of log lines at this level, but the need is typically less pressing than for those at _error_ level. System administrators may also wish to monitor the rate of occurrence of individual log-lines at this level as this may be indicative of a wider problem. Log lines at the _warning_ level should be as detailed as possible, since these are often the least clear-cut category of message.
+
+For example, the _warning_ log level may be used to indicate that something went wrong but the overall operation was still able to complete successfully.
+
+```go
+func (a *App) UpdateUserRoles(..) {
+	..
+	if result := <-schan; result.NErr != nil {
+		// soft error since the user roles were still updated
+		mlog.Warn("Error during updating user roles", mlog.Err(result.NErr))
+	}
+
+	a.InvalidateCacheForUser(userId)
+	..
+}
+```
+
+**Info:** This log level should be used to record normal, expected application behavior, even if it results in an error for the end user. They are not actionable individually, but the significant changes in the frequency of occurrence of individual log lines at this level may be indicative of a possible problem.
+
+For example, the _info_ log level may be used to communicate to administrators that certain subsystems within the service have been started or stopped.
+
+```go
+func (s *Schedulers) Start(..) {
+	s.startOnce.Do(func() {
+		mlog.Info("Starting schedulers.")
+		..
+	})
+	..
+}
+```
+
+**Debug:** This log-level is used for diagnostic information which may be used to debug issues but is not necessary for normal production system logging, nor actionable by system administrators.
+
+```go
+func (worker *Worker) Run() {
+	mlog.Debug("Worker started", mlog.String("worker", worker.name))
+	..
+```
+
 ## Proposing a new rule
 
 To propose a new rule, follow the process below:
