@@ -7,7 +7,7 @@ section: internal
 weight: 130
 ---
 
-GitLab's Omnibus package bundles Mattermost TE as an optional feature that can be enabled during installation. While GitLab maintains most of this integration, we send them new versions of Mattermost and occasionally assist with support on issues that relate to Mattermost.
+GitLab's Omnibus package bundles Mattermost Team Edition (TE) as an optional feature that can be enabled during installation. While GitLab maintains most of this integration, we send them new versions of Mattermost and occasionally assist with support on issues that relate to Mattermost.
 
 For every monthly GitLab release, we submit a merge request (MR) to [GitLab's repository](https://gitlab.com/gitlab-org/omnibus-gitlab/) to update the embedded version of Mattermost. GitLab releases in the middle of the month, so we'll generally submit the newest version of Mattermost to them at the start of the month to give time for the review process to happen.
 
@@ -69,13 +69,13 @@ These are the steps to update GitLab Omnibus with a new version of Mattermost:
     Changelog: other
     ```
 
-You can now test the build and submit a MR upstream. For an example of how the branch should look after that, see [here](https://gitlab.com/gitlab-org/omnibus-gitlab/-/merge_requests/5068).
+You can now test the build and submit an MR upstream. For an example of how the branch should look after that, see [here](https://gitlab.com/gitlab-org/omnibus-gitlab/-/merge_requests/5068).
 
 ### Building GitLab Omnibus
 
-As mentioned above, GitLab Omnibus is built in a Docker container containing all of the needed dependencies. To test it, the generated .deb package needs to be copied off of the Docker container and installed locally on the test server. Details on how to do that follow.
+As mentioned above, GitLab Omnibus is built in a Docker container containing all of the needed dependencies. To test it, the generated `.deb` package needs to be copied off of the Docker container and installed locally on the test server. Details on how to do that follow.
 
-These steps differ slightly from the more detailed ones available from GitLab ([link](https://gitlab.com/gitlab-org/omnibus-gitlab/-/blob/master/doc/build/build_package.md)) since they were changed to keep the git repository outside of Docker container, but they still work as of March 4, 2021.
+These steps differ slightly from the more detailed ones available from GitLab ([link](https://gitlab.com/gitlab-org/omnibus-gitlab/-/blob/master/doc/build/build_package.md)) since they were changed to keep the Git repository outside of Docker container, but they still work as of March 4, 2021.
 
 1. Get the current `BUILDER_IMAGE_REVISION` value from `.gitlab-ci.yml`.
 
@@ -114,7 +114,7 @@ These steps differ slightly from the more detailed ones available from GitLab ([
     bundle binstubs --all
     ```
 
-7. Build everything. This can take a couple hours, so go grab lunch.
+7. Build everything. This can take a couple of hours, so go grab lunch.
 
     ```bash
     bin/omnibus build gitlab
@@ -178,7 +178,7 @@ To test a new version of Mattermost running in GitLab, you'll have to test the t
 
     1. Visit `http://mattermost.dev.mm` in a browser.
 
-    2. Click Sign in with GitLab. You should be directed to the GitLab login screen.
+    2. Select **Sign in with GitLab**. You should be directed to the GitLab login screen.
 
     3. Log in as any user. You should be sent back to Mattermost and logged in.
 
@@ -188,9 +188,9 @@ To test a new version of Mattermost running in GitLab, you'll have to test the t
 
     1. Open `http://gitlab.dev.mm` in another window.
 
-    2. Click the plus button in the header bar and select "New group".
+    2. Select the plus icon in the header bar and select **New group**.
 
-    3. Enter a name for the group and check "Create a Mattermost team for this group".
+    3. Enter a name for the group and check **Create a Mattermost team for this group**.
 
     4. Go back to Mattermost. You should have been added to a new team matching the name of the group.
 
@@ -198,35 +198,35 @@ To test a new version of Mattermost running in GitLab, you'll have to test the t
 
     1. Go to GitLab.
 
-    2. Click the plus button in the header bar and select "New project".
+    2. Select the plus icon in the header bar and select **New project**.
 
-    3. Select "Create blank project". Enter a name and click "Create project".
+    3. Select **Create blank project**. Enter a name and choose **Create project**.
 
-    4. From the sidebar on the left, go to Settings > Integrations.
+    4. From the sidebar on the left, go to **Settings > Integrations**.
 
-    5. Scroll down and select "Mattermost slash commands".
+    5. Scroll down and select **Mattermost slash commands**.
 
-    6. Click "Add to Mattermost".
+    6. Select **Add to Mattermost**.
 
-    7. Select the team you created above from the dropdown and click "Install".
+    7. Select the team you created above from the drop-down, then choose **Install**.
 
     8. Go back to Mattermost and use `/<project>`.
 
-    9. When prompted, click "connect your GitLab Account" and select "Authorize".
+    9. When prompted, select **Connect your GitLab Account**, then choose **Authorize**.
 
     10. You should now be able to use the slash command to do things like creating and viewing issues.
 
 4. Test adding GitLab notifications.
 
-    1. In Mattermost, go to Integrations > Incoming Webhooks and add an incoming webhook.
+    1. In Mattermost, go to **Integrations > Incoming Webhooks** and add an incoming webhook.
     
     2. Copy the URL of the webhook and return to Mattermost.
 
-    3. Go to GitLab. From the sidebar on the left, go to Settings > Integrations.
+    3. Go to GitLab. From the sidebar on the left, go to **Settings > Integrations**.
 
-    4. Scroll down and select "Mattermost notifications".
+    4. Scroll down and select **Mattermost notifications**.
 
-    5. Fill in the "Webhook" field with the webhook URL you previously copied and then click "Save changes"
+    5. Paste the previously copied webhook URL into the **Webhook** field, then select **Save changes**.
 
     6. Create an issue either from the GitLab UI or by using the previously configured slash command. A notification should be posted by the webhook in the channel you created.
 
@@ -241,7 +241,7 @@ When working on GitLab Omnibus, the following files might be useful:
 
 After installing GitLab Omnibus, the following files and folders might be useful:
 - `/etc/gitlab/gitlab.rb` - The configuration files for GitLab Omnibus itself. `gitlab reconfigure [<service>]` must be called to apply any changes made.
-- `/var/opt/gitlab/mattermost/config.json` - The location of Mattermost's config.json.
+- `/var/opt/gitlab/mattermost/config.json` - The location of Mattermost's `config.json`.
 - `/var/log/gitlab/mattermost/logs/current` - The logs for Mattermost.
 - `/var/opt/gitlab/mattermost/data` - The data directory for Mattermost.
 - `/opt/gitlab/embedded/service/mattermost` - The static files used by Mattermost (web app code, i18n strings, email templates, etc).
