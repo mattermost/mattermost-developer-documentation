@@ -30,7 +30,7 @@ Set up your development environment for building, running, and testing the Matte
         brew install libpng
         ```
 
-    - On Linux-based operating systems, use preferred package manager to install it.
+    - On Linux-based operating systems, use your preferred package manager to install it.
 
 4. Fork https://github.com/mattermost/mattermost-webapp
 
