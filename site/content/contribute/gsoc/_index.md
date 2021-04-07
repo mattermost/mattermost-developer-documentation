@@ -4,9 +4,9 @@ description: "Ideas list for Google Summer of Code"
 section: "contribute"
 ---
 
-# 2021 ideas
+# GSoC 2021 Ideas
 
-**Note**: Mattermost was **not** selected as an organization for Google Summer of Code 2021. All that follows is kept here for historical reasons. Hopefully, we will be able to use some of the ideas in 2022.
+**Note**: Mattermost was **not** selected as an organization for Google Summer of Code 2021. All that follows is kept here for historical reasons. Hopefully, we'll be able to use some of the ideas in 2022.
 
 For those of you who don’t know, Google Summer of Code is a program that connects students and open source organizations. Following a selection process, students spend ten weeks of their summer break contributing to an open source project. The students are mentored by experienced contributors from each organization, and students receive a stipend from Google as compensation for their time.
 
@@ -44,7 +44,7 @@ Make sure to take a look at [the full Google Summer of Code timeline](https://su
 
 ### Core features
 
-All ideas in the _Core features_ category propose direct changes to the Mattermost product, either within the server, or within the web client.
+All ideas in the *Core features* category propose direct changes to the Mattermost product, either within the server, or within the web client.
 
 #### TypeScript definitions from Go code
 
@@ -112,7 +112,7 @@ This project is open to ideas that should be reflected in the student proposal.
 -   **Difficulty**: Easy
 -   **Mentors**: Daniel Espino García, Alejandro García Montoro
 
-#### Add the concept of _Importance_ to messages
+#### Add the concept of *Importance* to messages
 
 The importance of a message is subjective and varies greatly, depending on the content, the sender, the receiver, or even the channel where it is being shared. However, there is no functional difference between such messages, and the application regards them as having equal importance today. This can be a problem in several situations. For example, imagine users in different time zones or users that are on vacation -- when these users are back online, they could be easily overwhelmed with the number of unread messages and notifications. There are also situations where you want to send a low priority message that does not need the immediate attention of the recipient. And others where you need a quick response or, at least, an acknowledgment.
 
