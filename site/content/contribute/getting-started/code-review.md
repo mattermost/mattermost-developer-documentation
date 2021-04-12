@@ -29,6 +29,7 @@ If you are a community member seeking a review
 4. Make any necessary changes.
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
     * Once you've addressed the concerns, please at-mention the reviewer with a comment on your PR.
+Note: Once a PR is submitted it's a best practice to avoid rebasing on the base branch or force-pushing. Jesse, a developer at Mattermost, mentions this in his blog article [Submitting Great PRs](https://mattermost.com/blog/submitting-great-prs/). When the PR is merged, all the PR's commits are automatically squashed into one commit, so you don't need to worry about having multiple commits on the PR.
 5. Wait for your code to be merged.
     * Larger pull requests may require more time to review.
     * Once all reviewers have approved your changes, they will handle merging your code.
