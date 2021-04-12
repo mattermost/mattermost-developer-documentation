@@ -22,7 +22,7 @@ The Web Platform Guild covers all areas related to front-end web development and
 The Mobile Guild covers all areas related to mobile application development and React Native.
 
 - **Guild Lead:** Elias Nahum
-- **Guild channel:** [~]()
+- **Guild channel:** [~Developers: Mobile](https://community.mattermost.com/core/channels/native-mobile-apps)
 - **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
 ## Server/Backend Guild
