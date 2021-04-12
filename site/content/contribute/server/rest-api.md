@@ -1,5 +1,7 @@
 ---
 title: "REST API"
+heading: "Information about the Mattermost REST API"
+description: "The REST API is a JSON web service that facilitates communication between Mattermost clients, as well as integrations, and the server."
 date: 2017-08-20T11:35:32-04:00
 weight: 4
 subsection: Server
@@ -62,24 +64,23 @@ To implement the API handler you'll first need to [setup your developer environm
     - The general pattern for handlers is
 
         ```Go
-        func handlerName(c *Context, w http.ResponseWriter, r *\ http.Request) {
+        func handlerName(c *Context, w http.ResponseWriter, r *http.Request) {
+            // 1. Parsing of request URL and body
 
-        // 1. Parsing of request URL and body
+            // 2. Permissions check if required
 
-        // 2. Permissions check if required
+            // 3. Invoke logic through the app package
 
-        // 3. Invoke logic through the app package
+            // 4. (Optional) Check the Etag
 
-        // 4. (Optional) Check the Etag
-
-        // 5. Format the response and write the response
+            // 5. Format the response and write the response
         }
         ```
 
     - For examples, see the [updateUser()](https://github.com/mattermost/mattermost-server/tree/master/api4/user.go#L86) and the [getUser()](https://github.com/mattermost/mattermost-server/tree/master/api4/user.go#L58) handlers.
 
 3.  Run the server using `make run-server` to check for syntax errors.
-4.  (Optional) Use `curl` or [Postman](https://www.getpostman.com/) to test the basics of your endpoint. The endpoint will also be tested [through a unit test](https://developers.mattermost.com/contribute/server/rest-api/#writing-a-unit-test), so this step is optional.
+4.  (Optional) Use `curl` or [Postman](https://www.getpostman.com/) to test the basics of your endpoint. The endpoint will also be tested [through a unit test](https://developers.mattermost.com/contribute/server/rest-api/#writing-a-unit-test/), so this step is optional.
 
 ### Updating the Go Driver
 
@@ -120,4 +121,4 @@ When completing this step, please make sure to use the new `model.NewAppError()`
 
 ### Submitting your Pull Request
 
-Please submit a pull request against the [mattermost/mattermost-server](https://github.com/mattermost/mattermost-server) repository by [following these instructions](/contribute/server/developer-workflow).
+Please submit a pull request against the [mattermost/mattermost-server](https://github.com/mattermost/mattermost-server) repository by [following these instructions](/contribute/server/developer-workflow/).

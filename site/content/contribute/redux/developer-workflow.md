@@ -1,5 +1,7 @@
 ---
 title: "Redux Workflow"
+heading: "Redux Workflow at Mattermost"
+description: "Learn about the Mattermost Redux repository, useful commands to know, how to submit a pull request, and more."
 date: 2017-08-20T11:35:32-04:00
 weight: 3
 subsection: Redux

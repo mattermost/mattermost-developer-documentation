@@ -1,5 +1,7 @@
 ---
 title: "Server Workflow"
+heading: "Mattermost Server Workflow"
+description: "See what a general workflow for a Mattermost developer working on the mattermost-server repository looks like."
 date: 2017-08-20T11:35:32-04:00
 weight: 3
 subsection: Server

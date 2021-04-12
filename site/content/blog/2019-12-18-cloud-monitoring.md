@@ -1,5 +1,7 @@
 ---
 title: "Monitoring a Multi-Cluster Environment Using Prometheus Federation and Grafana"
+heading: "Monitoring a Multi-Cluster Environment"
+description: "Monitoring the state of your clusters is an effective way to discover bottlenecks in your multi-cluster production environment."
 slug: cloud-monitoring
 date: 2019-12-18T00:00:00-04:00
 author: Stylianos Rigas

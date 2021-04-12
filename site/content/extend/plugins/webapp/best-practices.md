@@ -1,5 +1,7 @@
 ---
 title: Best Practices
+heading: "Best Practices for Plugins - Mattermost"
+description: "Thinking about adding a plugin to Mattermost? Check out these design best practices."
 subsection: Web App Plugins
 weight: 0
 ---

@@ -1,5 +1,7 @@
 ---
 title: Quick Start
+heading: "Quick Start: Extending the Mattermost Web App"
+description: "This quickstart tutorial will walk you through the basics of extending the Mattermost web app using plugins."
 date: 2018-07-10T00:00:00-05:00
 subsection: Web App Plugins
 weight: -10
@@ -7,7 +9,7 @@ weight: -10
 
 This tutorial will walk you through the basics of extending the Mattermost web app.
 
-Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration](/extend/plugins/migration) document to upgrade older plugins.
+Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration](/extend/plugins/migration/) document to upgrade older plugins.
 
 ## Prerequisites
 

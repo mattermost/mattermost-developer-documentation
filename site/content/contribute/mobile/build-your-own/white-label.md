@@ -1,11 +1,13 @@
 ---
 title: "White Labeling"
+heading: "White Labeling Mattermost"
+description: "Learn how to white label the Mattermost Mobile app, and how to replace and override the assets used for your Mattermost deployment."
 date: 2018-05-20T11:35:32-04:00
 weight: 3
 subsection: Build Your Own App
 ---
 
-We've made it easy to white label the mobile app and to replace and override the assets used, however, you have to [Build Your Own App](/contribute/mobile/build-your-own) from source.
+We've made it easy to white label the mobile app and to replace and override the assets used, however, you have to [Build Your Own App](/contribute/mobile/build-your-own/) from source.
 
 If you look at the [Project Folder Structure](/contribute/mobile/developer-setup/structure/), you'll see that there is an assets folder containing a base folder with assets provided by Mattermost. These include localization files and images as well as a release folder that optionally contains the icons and the splash screen of the app when building in release mode.
 

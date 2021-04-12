@@ -1,5 +1,7 @@
 ---
 title: "Build a Component"
+heading: "How to Build a Component in Mattermost"
+description: "This page describes how to build a new React component in the Mattermost webapp and the requirements it must meet."
 date: 2017-08-20T11:35:32-04:00
 weight: 4
 subsection: Web App
@@ -111,7 +113,7 @@ function mapDispatchToProps(dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(ItemList);
 ```
 
-If the selectors and/or actions you need don't yet exist in Redux then you should go add those first by following the [guide to adding actions and selectors](/contribute/redux/actions).
+If the selectors and/or actions you need don't yet exist in Redux then you should go add those first by following the [guide to adding actions and selectors](/contribute/redux/actions/).
 
 Your `index.js` and `item_list.js` files will live together in an `item_list/` directory.
 
@@ -171,4 +173,4 @@ export default class ItemList extends React.PureComponent {
 ```
 
 ---
-To test your component, [follow the guide here](/contribute/webapp/unit-testing).
+To test your component, [follow the guide here](/contribute/webapp/unit-testing/).

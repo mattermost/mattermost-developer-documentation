@@ -1,5 +1,7 @@
 ---
 title: Build
+heading: "Automated Builds at Mattermost"
+description: "Learn about our automated build processes, most of which currently take place on Jenkins at build.mattermost.com."
 date: 2017-11-20T20:52:46-05:00
 subsection: internal
 weight: 50

@@ -7,7 +7,7 @@ author: Eli Yukelzon
 github: reflog
 community: eli.yukelzon
 toc: true
-canonicalUrl: https://mattermost.com/blog/opentracing-for-go-projects/
+canonicalUrl: https://developers.mattermost.com/blog/open-tracing/
 ---
 
 ## What is distributed tracing?

@@ -1,18 +1,23 @@
 ---
 title: "Developer Setup"
+heading: "Setting up Your Development Environment - Mattermost"
+description: "Find out how to set up your development environment for building, running, and testing the Mattermost server."
 date: 2020-02-01T19:50:32-04:00
 weight: 2
 subsection: Server
 ---
 
-Set up your development environment for building, running, and testing the Mattermost server. <br>
+Set up your development environment for building, running, and testing the Mattermost server.
+
+**Note:** If you're developing plugins, see the plugin [developer setup](https://developers.mattermost.com/extend/plugins/developer-setup/) documentation.
+
 For minimum software requirements, see the following table:
 
 | Software       | Minimum Version  |
 |----------------|------------------|
 | Docker         | 17.12.0+         |
 | Docker Compose | 1.21.0+          |
-| Go             | 1.14.0+          |
+| Go             | 1.15.0+          |
 
 <div class="tab">
     <button class="tablinks active" onclick="openTab(event, 'mac')">Mac OS X</button>
