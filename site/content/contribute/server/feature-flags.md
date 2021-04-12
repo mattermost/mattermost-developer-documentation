@@ -28,7 +28,7 @@ Feature flags allow us to be more confident in shipping features continuously to
 
 ## Split
 
-[Split]() is the feature flag management service we use for internal testing and our production Cloud service. It enables us to create and control feature flags for multiple servers and environments as well as the ability to run A/B split tests.
+[Split](https://split.io) is the feature flag management service we use for internal testing and our production Cloud service. It enables us to create and control feature flags for multiple servers and environments as well as the ability to run A/B split tests.
 
 We've used their SDK to integrate with the Mattermost server. You can find the [Split documentation here](https://help.split.io/hc/en-us).
 
