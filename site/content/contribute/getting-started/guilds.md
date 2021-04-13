@@ -43,7 +43,7 @@ The Cloud Guild covers all areas related to our cloud infrastructure and Kuberne
 
 ## QA Guild
 
-The QA Guild covers all areas related to the Quality Assurance and Automated Testing infrastructure at Mattermost.
+The QA Guild covers all areas related to Quality Assurance and automated testing infrastructure at Mattermost.
 
 - **Guild Lead:** Linda Mitchell
 - **Guild channel:** [~QA: Weekly Meetings](https://community.mattermost.com/core/channels/qa-weekly-meetings)
