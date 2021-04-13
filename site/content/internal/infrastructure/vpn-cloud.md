@@ -1,5 +1,7 @@
 ---
 title: "VPN(CLOUD)"
+heading: "Setting up VPN Access on Pritunl"
+description: "Learn how to use a VPN service with Mattermost to enjoy additional layers of protection."
 date: 2018-06-05T16:08:19+02:00
 subsection: internal
 weight: 20
@@ -37,12 +39,15 @@ Select `Show More` and hit `Download Profile`
    <span style="display:block;text-align:center;width:50%">![General settings Viscosity](/img/vpn_cloud_5.jpg)</span>
 
 - Go to Networking tab and update the DNS settings. 
-   * Select for the Mode to be `Split DNS`.  
+   * Select for the Mode to be `Full DNS`.  
    * As `Servers` put: `pritunl.core.cloud.mattermost.com` which is VPN's server IP.
    * In `Domains` put: `cloud.mattermost.com`, this will split traffic for those domains
     <span style="display:block;text-align:center;width:50%">![Network settings Viscosity](/img/vpn_cloud_6.jpg)</span>
+    
+6. Add, if it is not there, in your `/etc/resolv.conf`:
+    `nameserver 10.247.0.2`
 
-6. After following these steps you should be able to connect to VPN and then to resolve private DNS entries.
+7. After following these steps you should be able to connect to VPN and then to resolve private DNS entries.
 
 
 ### Pritunl client   
@@ -67,14 +72,17 @@ Then connect with your OneLogin username and password and when prompt put the OT
 
 6. On the config change the line that says:
  
-    `remote X.XXX.XXX.XX 1194 UDP` to be:
+    `remote X.XXX.XXX.XX 1194 udp` to be:
 
-    `remote pritunl.core.cloud.mattermost.com 1194 UDP`
+    `remote pritunl.core.cloud.mattermost.com 1194 udp`
  
     **NOTE:** Do NOT change the port, it will be either 1194, 1195 or something else
    <span style="display:block;text-align:center;width:50%">![Pritunl Config remote](/img/vpn_cloud_11.jpg)</span>
 
-7. After following these steps you should be able to connect to VPN and resolve private DNS entries.
+7. Add, if it is not there, in your `/etc/resolv.conf`:
+    `nameserver 10.247.0.2`
+
+8. After following these steps you should be able to connect to VPN and resolve private DNS entries.
 
 ## Gnome VPN Client
 1. Go to the [VPN server](https://pritunl.core.cloud.mattermost.com) and select **Sign in with OneLogin**.

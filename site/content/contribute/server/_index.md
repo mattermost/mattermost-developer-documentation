@@ -1,10 +1,13 @@
 ---
 title: "Server"
+heading: "An Introduction to the Mattermost Server"
+description: "The server, which is written in Go and compiles on a single binary, is the highly scalable backbone of the Mattermost project."
 date: "2018-04-19T12:01:23-04:00"
 section: "contribute"
+weight: 2
 ---
 
-The server is the highly scalable backbone of the Mattermost project. Written in Go it compiles to a single, standalone binary. It is generally stateless except for the WebSocket connections and some in-memory caches.
+The server is the highly scalable backbone of the Mattermost project. Written in Go it compiles to a single, standalone binary. It's generally stateless except for the WebSocket connections and some in-memory caches.
 
 Communication with Mattermost clients and integrations mainly occurs through the RESTful JSON web API and WebSocket connections primarily used for event delivery.
 

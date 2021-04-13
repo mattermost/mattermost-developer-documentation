@@ -1,5 +1,7 @@
 ---
 title: Community Plugins in the Marketplace
+heading: "Community Plugins in the Plugin Marketplace"
+description: "Once your plugin has reached a certain level of quality, you might consider submitting it to the Plugin Marketplace."
 subsection: Plugins (Beta)
 weight: 60
 ---
@@ -14,7 +16,7 @@ Every community plugin must fulfill the following checklist to be added to the M
 
 ### Product Requirements (Checked by a Product Manager)
 
-1. The plugin is published under an Apache v2 compatible license (e.g. no GPL, APGL). A list of compatible licenses can be found [here](https://apache.org/legal/resolved.html#category-a).
+1. The plugin is published under an [Open Source license](https://opensource.org/licenses/alphabetical).
 2. The source code is available in a public Git repository.
 3. There is a public issue or bug tracker for the plugin, which is linked in the plugin documentation and linked via `support_url` in the manifest.
 4. The plugin provides detailed usage documentation with at least one screenshot of the plugin in action, list of features, and a development guide. This is typically a `README` file or a landing page on the web. The link to the documentation is set as `homepage_url` in the manifest. A great example is the [`README` of the GitHub plugin](https://github.com/mattermost/mattermost-plugin-github/blob/master/README.md).

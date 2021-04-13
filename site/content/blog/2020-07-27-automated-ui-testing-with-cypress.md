@@ -9,7 +9,7 @@ author: Saturnino Abril
 github: saturninoabril
 community: saturnino.abril
 toc: true
-canonicalUrl: https://mattermost.com/blog/automated-ui-testing-with-cypress/
+canonicalUrl: https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/
 ---
 
 It's been more than a year and a half since we started using Cypress for our automated functional testing and it has been worth the investment. It has now become an essential part of our process to automate regression testing to ship new releases faster, with increased quality.

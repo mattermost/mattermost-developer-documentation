@@ -1,5 +1,7 @@
 ---
 title: "Kubernetes Maintenance"
+heading: "Troubleshooting Kubernetes at Mattermost"
+description: "This page helps developers access and perform any type of maintenance in the Production Mattermost Kubernetes Cluster."
 date: 2018-11-07T15:24:42+01:00
 weight: 10
 ---
@@ -10,7 +12,7 @@ This page helps developers access and perform any type of maintenance in the Pro
 
 1. Make sure you have `kubectl` version 1.10 or later installed. If not, follow [these instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-2. Use your OneLogin account to retrieve AWS Keys for the main Mattermost AWS account following [these instructions](../../onelogin-aws) to install onelogin-aws command line application.
+2. Use your OneLogin account to retrieve AWS Keys for the main Mattermost AWS account following [these instructions](../../onelogin-aws/) to install onelogin-aws command line application.
 
 Steps:
 
@@ -58,8 +60,8 @@ $ kubectl logs pods ${POD_NAME} -n ${NAMESPACE}
 
 We are using two namespaces to deploy Mattermost
 
-    - `community` namespace holds the Mattermost deployment which uses the Release Branch or a stable release. The ingress is points to `https://community.mattermost.com` and `https://pre-release.mattermost.com`
-    - `community-daily` namespace holds the Mattermost deployment which uses the `master` branch. The ingress points to `https://community-daily.mattermost.com`
+    - `community` namespace holds the Mattermost deployment which uses the Release Branch or a stable release. The ingress is points to `https://community.mattermost.com/` and `https://pre-release.mattermost.com/`
+    - `community-daily` namespace holds the Mattermost deployment which uses the `master` branch. The ingress points to `https://community-daily.mattermost.com/`
 
 ## Troubleshooting
 

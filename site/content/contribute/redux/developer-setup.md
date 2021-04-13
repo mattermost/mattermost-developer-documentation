@@ -1,5 +1,7 @@
 ---
 title: "Developer Setup"
+heading: "Redux - Developer Setup - Mattermost"
+description: "Find out how to configure your developer environment using Redux, as well as the prerequisites you'll need."
 date: 2017-08-20T11:35:32-04:00
 weight: 2
 subsection: Redux
@@ -12,7 +14,7 @@ subsection: Redux
 
 1. Install [Node.js and npm](https://www.npmjs.com/get-npm).
 2. Fork the repository at https://github.com/mattermost/mattermost-redux.
-3. Clone your fork using the following command. If you have the [mattermost-webapp](/contribute/webapp) environment set up or are planning on setting it up, you would typically clone your copy to `$GOHOME/src/github.com/mattermost/mattermost-redux`.
+3. Clone your fork using the following command. If you have the [mattermost-webapp](/contribute/webapp/) environment set up or are planning on setting it up, you would typically clone your copy to `$GOHOME/src/github.com/mattermost/mattermost-redux`.
     ```
     git clone https://github.com/<yourgithubusername>mattermost-redux
     ```

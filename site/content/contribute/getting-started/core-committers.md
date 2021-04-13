@@ -1,5 +1,7 @@
 ---
 title: "Core Committers"
+heading: "Mattermost Core Committers"
+description: "A core committer is a maintainer on the Mattermost project that has merge access to Mattermost repositories. Learn more about the team here."
 date: 2017-08-20T12:33:36-04:00
 weight: 4
 subsection: Getting Started
@@ -26,7 +28,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Mobile / Desktop and Web apps
 - **<a name="elias.nahum">Elias Nahum</a>**
     - @elias on [community.mattermost.com](https://community.mattermost.com/core/messages/@elias) and [@enahum](https://github.com/enahum) on GitHub
-    - Dev areas: Mobile / Desktop and Web apps
+    - Dev areas: Mobile
 - **<a name="george.goldberg">George Goldberg</a>**
     - @george on [community.mattermost.com](https://community.mattermost.com/core/messages/@george) and [@grundleborg](https://github.com/grundleborg) on GitHub
     - Dev areas: Import/Export (Slack, Bulk Loading, etc.), Diagnostics/Telemetry, Search, Permissions
@@ -67,7 +69,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Desktop / Web and Mobile apps
 - **<a name="miguel.alatzar">Miguel Alatzar</a>**
     - @miguel.alatzar on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.alatzar) and [@migbot](https://github.com/migbot) on GitHub
-    - Dev areas: Mobile / Desktop and Web apps
+    - Dev areas: Mobile
 - **<a name="Miguel de la Cruz">Miguel de la Cruz</a>**
     - @miguel.delacruz on [community.mattermost.com](https://community.mattermost.com/core/messages/@miguel.delacruz) and [@mgdelacroix](https://github.com/mgdelacroix) on GitHub
     - Dev areas: Elasticsearch, Web App, Server
@@ -161,6 +163,16 @@ Below is the list of core committers working on Mattermost:
 - **<a name="avasconcelos114">Andre Vasconcelos</a>**
     - @avasconcelos114 on [community.mattermost.com](https://community.mattermost.com/core/messages/@avasconcelos114) and [@avasconcelos114](https://github.com/avasconcelos114) on GitHub
     - Dev areas: Web App, Mobile Apps
+- **<a name="rvillablanca">Rodrigo Villablanca</a>**
+    - @rvillablanca on [community.mattermost.com](https://community.mattermost.com/core/messages/@rvillablanca) and [@rvillablanca](https://github.com/rvillablanca) on GitHub
+    - Dev areas: Server, Store Layer
+- **<a name="shaz.amjad">Shaz Amjad</a>**
+    - @shaz.amjad on [community.mattermost.com](https://community.mattermost.com/core/messages/@shaz.amjad) and [@shazm](https://github.com/shazm) on GitHub
+    - Dev areas: Mobile
+- **<a name="avinash.lingaloo">Avinash Lingaloo</a>**
+    - @avinash.lingaloo on [community.mattermost.com](https://community.mattermost.com/core/messages/@avinash.lingaloo) and [@avinashlng1080](https://github.com/avinashlng1080) on GitHub
+    - Dev areas: Mobile
+ 
 
 Core Developers
 ---------------

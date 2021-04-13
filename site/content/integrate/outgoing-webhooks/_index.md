@@ -1,5 +1,7 @@
 ---
 title: "Outgoing Webhooks"
+heading: "Outgoing Webhooks at Mattermost"
+description: "Outgoing webhooks let you receive an event as an HTTP POST when messages get posted into a Mattermost channel."
 date: "2017-08-19T12:01:23-04:00"
 section: "integrate"
 ---
@@ -106,7 +108,7 @@ Content-Length: 755
   "response_type": "comment",
   "username": "test-automation",
   "icon_url": "https://www.mattermost.org/wp-content/uploads/2016/04/icon.png",
-    "text": "\n#### Test results for July 27th, 2017\n@channel here are the requested test results.\n\n| Component  | Tests Run   | Tests Failed                                   |\n| ---------- | ----------- | ---------------------------------------------- |\n| Server     | 948         | :white_check_mark: 0                           |\n| Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |\n| iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |\n\t\t      ",
+  "text": "\n#### Test results for July 27th, 2017\n@channel here are the requested test results.\n\n| Component  | Tests Run   | Tests Failed                                   |\n| ---------- | ----------- | ---------------------------------------------- |\n| Server     | 948         | :white_check_mark: 0                           |\n| Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |\n| iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |\n\t\t      ",
   "props": {
     "test_data": {
     "server": 948,
@@ -125,4 +127,4 @@ See the [admin guide's notes on Slack compatibility](https://docs.mattermost.com
 
 1. If the `text` is longer than the allowable character limit per post, the message is split into multiple consecutive posts, each within the character limit. Servers running Mattermost Server v5.0 or later [can support posts up to 16383 characters](https://docs.mattermost.com/administration/important-upgrade-notes.html).
 2. Your webhook integration may be written in any programming language as long as it supports handling HTTP POST requests.
-3. Outgoing webhooks are supported in public channels only. If you need a trigger that works in a private channel or a direct message, consider using a [slash command](/integrate/slash-commands) instead.
+3. Outgoing webhooks are supported in public channels only. If you need a trigger that works in a private channel or a direct message, consider using a [slash command](/integrate/slash-commands/) instead.

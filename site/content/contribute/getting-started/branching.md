@@ -1,13 +1,15 @@
 ---
 title: "Mattermost tick-tock Branching Strategy"
+heading: "Mattermost Tick-Tock Branching Strategy"
+description: "Mattermost recently moved away from a tick-tock release strategy with alternating feature and quality releases."
 date: 2019-06-18T00:00:00-04:00
 weight: 20
 subsection: Getting Started
 ---
 
-Mattermost uses a [tick-tock release strategy](https://docs.mattermost.com/process/release-faq.html#release-overview) where every other release is a "quality release" that only has bug fixes and no new features.
+Mattermost previously adopted a [tick-tock release strategy](https://docs.mattermost.com/process/release-faq.html#release-overview) where every other release was a "quality release" that only had bug fixes and no new features.
 
-The following diagram provides an overview of the branching strategy used to accomplish this. As an example, release-5.4 is a feature release and release-5.5 is a quality release. Note the "quality release" branch is based on the previous release branch.
+The following diagram provides an overview of the branching strategy that was used to accomplish this. As an example, release-5.4 is a feature release and release-5.5 is a quality release. Note the "quality release" branch is based on the previous release branch.
 
 ![Branching Overview](/contribute/getting-started/branching-overview.png)
 
