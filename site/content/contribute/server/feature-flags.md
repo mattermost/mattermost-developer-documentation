@@ -28,15 +28,15 @@ Feature flags allow us to be more confident in shipping features continuously to
 
 ## Split
 
-[Split](https://split.io) is the feature flag management service we use for internal testing and our production Cloud service. It enables us to create and control feature flags for multiple servers and environments as well as the ability to run A/B split tests.
+[Split](https://split.io) is the feature flag management service we use for internal testing and for our production Cloud service. It enables us to create and control feature flags for multiple servers and environments as well as gives us the ability to run A/B split tests.
 
-We've used their SDK to integrate with the Mattermost server. You can find the [Split documentation here](https://help.split.io/hc/en-us).
+We've used Split's SDK to integrate with the Mattermost server. You can find the [Split documentation here](https://help.split.io/hc/en-us).
 
 ### Who has access to Split?
 
-We currently have a limited number of seats for our Split account so not everyone gets access. Currently, 2 people per engineering team plus some PM/UX folk will have access. If you need to manage some feature flags, ask your team lead who has access and can help you out. It's up to each team to determine who has access.
+We currently have a limited number of seats for our Split account, so not everyone gets access. Currently, two people per each engineering team plus some PM/UX folk have access. If you need to manage some feature flags, ask your team lead who has access and can help you out. It's up to each team to determine who has access.
 
-### How to log in?
+### How do I log in?
 
 Login is controlled via OneLogin. If you have access you will be able to log in through there.
 ### Terminology
@@ -45,7 +45,7 @@ In Split, there's some terminology you will need to understand:
 
  - **Split** - A feature flag
  - **Treatment** - The values a split (e.g. feature flag) can have
- - **Environment** - Different environments that splits can target such as test, staging and production
+ - **Environment** - Different environments that splits can target such as test, staging, and production
  - **Server** - Single Mattermost workspace
  - **Segment** - A list of servers that can be targeted by a split
 
@@ -54,13 +54,13 @@ In Split, there's some terminology you will need to understand:
 After you've added the feature flag in code, you'll need to create a split for it.
 
  1. Log in to Split.
- 2. On left sidebar, click "Splits".
- 3. At the top click "Create split".
+ 2. On left sidebar, click **Splits**.
+ 3. At the top click **Create split**.
  4. Fill in the following:
-   1. Enter the name of your feature flag. It must match the name used in code in `model/feature_flags.go`.
-   2. Select "server" as the traffic type.
-   3. Optionally add tags and a description.
-   4. Click "Create".
+     1. Enter the name of your feature flag. It must match the name used in code in `model/feature_flags.go`.
+     2. Select ``server`` as the traffic type.
+     3. Optionally add tags and a description.
+     4. Click **Create**.
 
 The split is now created but not targeting anything. The next section covers adding basic targeting rules.
 
@@ -69,16 +69,16 @@ The split is now created but not targeting anything. The next section covers add
 To have the split have any effect, it needs targeting rules to know which environment and servers it should set the feature flag value to. To add basic targeting rules:
 
  1. Find your split and click on it.
- 2. At the top, under the name of the split select the "Environment" you want to target.
-   - See [Environments](#Environments) for a description of each.
- 3. In the center of the screen, select "Add Rules".
+ 2. Under the name of the split at the top, select the **Environment** that you want to target.
+     - See [Environments](#Environments) for a description of each.
+ 3. In the center of the screen, select **Add Rules**.
  4. Define your treatments:
-   - Recall that treatments are just the values your feature flag can have.
-   - Boolean flags should use the default "on" and "off" treatments.
-   - For non-boolean flags, change the treatments to be the possible values. E.g. for a split that specifies a plugin's version you could have three treatments of "1.0", "1.1" and "2.0".
+     - Recall that treatments are just the values your feature flag can have.
+     - Boolean flags should use the default "on" and "off" treatments.
+     - For non-boolean flags, change the treatments to be the possible values. E.g. for a split that specifies a plugin's version you could have three treatments of "1.0", "1.1" and "2.0".
  5. Down the page a bit, set the default rule to one of your treatments.
-   - This will set the flag for all servers in the environment while you don't have any other targeting rules configured.
- 6. At the top right, click "Save changes" and confirm them on the next screen.
+     - This will set the flag for all servers in the environment while you don't have any other targeting rules configured.
+ 6. At the top right, click **Save changes** and confirm them on the next screen.
 
 That covers targeting an environment with a split and adding a default rule for all servers in that environment. The next section covers targeting specific servers.
 
@@ -86,7 +86,7 @@ That covers targeting an environment with a split and adding a default rule for 
 
 The ID for a "server" as seen by Split is the Mattermost server's telemetry ID. To target a specific server you need that telemetry ID. The main way to get the telemetry ID from a server would be from the analytics but you can also manually grab the telemetry ID by one of the following methods:
 
-##### Get telemetry ID via inspecting browser traffic
+#### Get telemetry ID via inspecting browser traffic
 
  1. In Chrome (any browser with dev tools will work but instructions are specific to Chrome), open the developer console and switch to the Network tab.
  2. Type "config" into the filter for the network requests.
@@ -95,21 +95,21 @@ The ID for a "server" as seen by Split is the Mattermost server's telemetry ID. 
  5. Click on the "Response" tab and search for "TelemetryId".
  6. Copy the value of "TelemetryId".
 
-##### Get telemetry ID via curl and jq
+#### Get telemetry ID via curl and jq
 
 ```bash
 $ curl -s https://<your-workspace-url>/api/v4/config/client?format=old | jq ".TelemetryId"
 ```
 #### Target using the telemetry ID
 
-With the telemetry ID, go to your split in Split and do the following:
+With the telemetry ID, go to your split and do the following:
 
- 1. Find the section "Create whitelists" and click "Add whitelist".
+ 1. Find the section "Create whitelists" and click **Add whitelist**.
  2. Choose the treatment value you want the workspace to get.
  3. Under "Server" paste in your telemetry ID.
- 4. At the top right, click "Save changes" and confirm them on the next screen.
+ 4. At the top right, click **Save changes** and confirm them on the next screen.
 
-Now your workspace will have it's feature flag set according to this rule, regardless of what the default for the split is set to.
+Now your workspace will have its feature flag set according to this rule, regardless of what the default for the split is set to.
 
 ### Add or update a feature flag for community.mattermost.com
 
@@ -117,24 +117,24 @@ Note that this will set the flag for community.mattermost.com, community-release
 
  1. Open the split for your flag.
  2. At the top under the split name, select the "Cloud Staging" environment.
- 3. Find "Set targeting rules" and click "Add rule".
- 4. Leave the rule set to "is in segment" and click "Select Segment..." and choose "community".
+ 3. Find "Set targeting rules" and click **Add rule**.
+ 4. Leave the rule set to "is in segment" and click **Select Segment...** and choose "community".
  5. Select the treatment you want community.mattermost.com to get.
- 6. At the top right, click "Save changes" and confirm them on the next screen.
+ 6. At the top right, click **Save changes** and confirm them on the next screen.
 
 The feature flag is now set for community.mattermost.com.
 
-Syncing occurs once every 30 seconds so your feature flag will get changes at maximum 30 seconds after they're made.
-
 ### Environments
 
- - Cloud Test - All the Cloud test servers/workspaces, including those made on PRs and by the /cloud command.
+ - Cloud Test - All the Cloud test servers/workspaces, including those made on PRs and by the ``/cloud`` command.
  - Cloud Staging - Mainly community.mattermost.com, including community-release and community-daily. It's not possible to target those separately.
  - Cloud Production - All our production Cloud workspaces.
 
 ### Split FAQ
 
 >How long does it take for workspaces/servers to pick up on changes to feature flags in Split?
+
+Syncing occurs once every 30 seconds so your feature flag will get changes at maximum 30 seconds after they're made.
 
 ## Timelines for rollouts
 
