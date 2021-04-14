@@ -45,6 +45,11 @@ pygmentsStyle = "manni"
     name = "extend"
     displayName = "Extend"
     draft = false
+    
+  [[params.sidebar.item]]
+    name = "apps"
+    displayName = "Apps Marketplace"
+    draft = false
 
   [[params.sidebar.item]]
     name = "internal"
