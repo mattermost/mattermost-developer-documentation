@@ -39,6 +39,7 @@ We currently have a limited number of seats for our Split account, so not everyo
 ### How do I log in?
 
 Login is controlled via OneLogin. If you have access you will be able to log in through there.
+
 ### Terminology
 
 In Split, there's some terminology you will need to understand:
