@@ -114,11 +114,14 @@ Now your workspace will have its feature flag set according to this rule, regard
 
 ### Add or update a feature flag for community.mattermost.com
 
-Note that this will set the flag for community.mattermost.com, community-release.mattermost.com, and community-daily.mattermost.com. It is not possible to set a rule for only one.
+Note that this will set the flag for community.mattermost.com, community-release.mattermost.com, and community-daily.mattermost.com. It is not possible to set a rule for only one via Split. It is possible to set the flags only for one version of community via environment variables. This will require manual configuration by the SRE team. You can ask for support for this on community.mattermost.com via the `@sresupport` mention.
+
+To set a flag via Split for community:
 
  1. Open the split for your flag.
  2. At the top under the split name, select the "Cloud Staging" environment.
  3. Find "Set targeting rules" and click **Add rule**.
+   - The rule may already exist, in that case you can edit the existing one.
  4. Leave the rule set to "is in segment" and click **Select Segment...** and choose "community".
  5. Select the treatment you want community.mattermost.com to get.
  6. At the top right, click **Save changes** and confirm them on the next screen.
