@@ -121,7 +121,7 @@ To set a flag via Split for community:
  1. Open the split for your flag.
  2. At the top under the split name, select the "Cloud Staging" environment.
  3. Find "Set targeting rules" and click **Add rule**.
-   - The rule may already exist, in that case you can edit the existing one.
+   - The rule may already exist, and in that case you can edit the existing one.
  4. Leave the rule set to "is in segment" and click **Select Segment...** and choose "community".
  5. Select the treatment you want community.mattermost.com to get.
  6. At the top right, click **Save changes** and confirm them on the next screen.
