@@ -130,7 +130,7 @@ The feature flag is now set for community.mattermost.com.
 
 ### Environments
 
- - Cloud Test - All the Cloud test servers/workspaces, including those made on PRs and by the ``/cloud`` command.
+ - Cloud Test - All the Cloud test servers/workspaces, including those created on PRs and by the ``/cloud`` command.
  - Cloud Staging - Mainly community.mattermost.com, including community-release and community-daily. It's not possible to target those separately.
  - Cloud Production - All our production Cloud workspaces.
 
