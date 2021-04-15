@@ -136,9 +136,8 @@ The feature flag is now set for community.mattermost.com.
 
 ### Split FAQ
 
->How long does it take for workspaces/servers to pick up on changes to feature flags in Split?
-
-Syncing occurs once every 30 seconds so your feature flag will get changes at maximum 30 seconds after they're made.
+How long does it take for workspaces/servers to pick up on changes to feature flags in Split?
+ - Syncing occurs once every 30 seconds so your feature flag will get changes at maximum 30 seconds after they're made.
 
 ## Timelines for rollouts
 
