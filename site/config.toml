@@ -48,7 +48,7 @@ pygmentsStyle = "manni"
     
   [[params.sidebar.item]]
     name = "apps"
-    displayName = "Apps Marketplace"
+    displayName = "Apps"
     draft = false
 
   [[params.sidebar.item]]
@@ -87,7 +87,7 @@ pygmentsStyle = "manni"
       weight = 3
       
     [[menu.postpend]]
-      url = "/apps/readme/"
+      url = "/apps/getting-started/"
       name = "Apps Marketplace"
       weight = 4
 
@@ -145,10 +145,10 @@ pygmentsStyle = "manni"
     
   [[params.intro.item]]
     title = "Apps Marketplace"
-    description = "Join the hundreds of contributors and submit code directly to the Mattermost open-source project."
-    url = "apps/readme"
-    button = "Create and List Apps"
-    icon = "/img/contribute-icon.svg"
+    description = "Integrate with external tools and allow developers to create interactive Apps."
+    url = "apps/getting-started"
+    button = "Start Creating"
+    icon = "/img/integrate-icon.svg"
     draft = false
 
   #[params.intro.video]
