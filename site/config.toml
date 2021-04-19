@@ -149,7 +149,7 @@ pygmentsStyle = "manni"
     url = "apps/getting-started"
     button = "Start Creating"
     icon = "/img/integrate-icon.svg"
-    draft = false
+    draft = true
 
   #[params.intro.video]
   #  enable = true
