@@ -1,39 +1,41 @@
-# Using 3rd party APIs
+---
+title: "Third Party APIs"
+heading: "Using third-party APIs for Apps"
+description: "Mattermost Apps framework provides services for using remote (3rd party) OAuth2 HTTP APIs, and receiving authenticated webhook notifications from remote systems."
+date: "2017-01-19T12:01:23-04:00"
+section: "integrate"
+---
 
-Mattermost Apps framework provides services for using remote (3rd party) OAuth2
-HTTP APIs, and receiving authenticated webhook notifications from remote
-systems. There are 2 examples here to illustrate the [OAuth2](#hello-oauth2) and
-[webhook](#hello-webhooks) support.
+There are 2 examples here to illustrate the [OAuth2](#hello-oauth2) and [webhook](#hello-webhooks) support.
 
 ## Hello OAuth2!
 
 Here is an example of an HTTP App ([source](/examples/go/hello-oauth2)),
 written in Go and runnable on http://localhost:8080. 
 
-- It contains a `manifest.json`, declares itself an HTTP application, requests
-  permissions and binds itself to locations in the Mattermost UI.
-- In its `bindings` function it declares 3 commands: `configure`, `connect`, and
-  `send`.
-- Its `send` function mentions the user by their Google name, and lists their
-  Google Calendars.
+- It contains a `manifest.json`, declares itself an HTTP application, requests permissions and binds itself to locations in the Mattermost UI.
+- In its `bindings` function it declares 3 commands: `configure`, `connect`, and `send`.
+- Its `send` function mentions the user by their Google name, and lists their Google Calendars.
 
 To install "Hello, OAuth2" on a locally-running instance of Mattermost follow
 these steps (go 1.16 is required):
+
 ```sh
 cd .../mattermost-plugin-apps/examples/go/hello-oauth2
 go run . 
 ```
 
 In Mattermost desktop app run:
+
 ```
 /apps debug-add-manifest --url http://localhost:8080/manifest.json
 /apps install --app-id hello-oauth2
 ```
 
 You need to configure your [Google API
-Credentials](https://console.cloud.google.com/apis/credentials) for the App. Use
-`{MattermostSiteURL}/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete`
+Credentials](https://console.cloud.google.com/apis/credentials) for the App. Use `{MattermostSiteURL}/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete`
 for the `Authorized redirect URIs` field. After configuring the credentials, in Mattermost desktop app run:
+
 ```
 /hello-oauth2 configure --client-id {ClientID} --client-secret {ClientSecret}
 ```
@@ -41,6 +43,7 @@ for the `Authorized redirect URIs` field. After configuring the credentials, in 
 Now, you can connect your account to Google with `/hello-oauth2 connect` command, and then try `/hello-oauth2 send`.
 
 ### Manifest
+
 Hello OAuth2! is an HTTP App, it requests the *permissions* to act as an Admin to change the App's OAuth2 config, as a User to connect and send. It binds itself to /commands.
 
 ```json
@@ -63,6 +66,7 @@ Hello OAuth2! is an HTTP App, it requests the *permissions* to act as an Admin t
 ```
 
 ### Bindings and Locations
+
 The Hello OAuth2! creates 3 commands: `/helloworld configure|connect|send`.
 
 ```json
@@ -109,9 +113,7 @@ The Hello OAuth2! creates 3 commands: `/helloworld configure|connect|send`.
 
 ### Configuring OAuth2
 
-`/hello-oauth2 configure` sets up the Google OAuth2 credentials. It accepts 2
-string flags, `--client-id` and `--client-secret`. Submit will require an Admin
-token to affect the changes.
+`/hello-oauth2 configure` sets up the Google OAuth2 credentials. It accepts 2 string flags, `--client-id` and `--client-secret`. Submit will require an Admin token to affect the changes.
 
 ```json
 {
@@ -143,9 +145,7 @@ token to affect the changes.
 }
 ```
 
-The command handler uses an admin-only `StoreOAuth2App` API to store the
-credentials, and make them available to future Calls with
-`expand.oauth2_app="all"`.
+The command handler uses an admin-only `StoreOAuth2App` API to store the credentials, and make them available to future Calls with `expand.oauth2_app="all"`.
 
 ```go
 func configure(w http.ResponseWriter, req *http.Request) {
@@ -166,19 +166,17 @@ func configure(w http.ResponseWriter, req *http.Request) {
 ### Connecting as a User
 
 #### connect Command
-`/hello-oauth2 connect` formats and displays a link that starts the OAuth2 flow
-with the remote system. The URL (provided to the app in the `Context`) is
+
+`/hello-oauth2 connect` formats and displays a link that starts the OAuth2 flow with the remote system. The URL (provided to the app in the `Context`) is
 handled by the apps framework. It will:
+
 - create a 1-time secret ("state")
-- invoke
-oauth2Connect to generate the remote URL that starts the flow
+- invoke oauth2Connect to generate the remote URL that starts the flow
 - redirect the user's browser there
 
-Note expand.oauth2_app="all" in the form definition, it includes the App's
-OAuth2 Mattermost-hosted callback URL in the request Context.
+Note expand.oauth2_app="all" in the form definition, it includes the App's OAuth2 Mattermost-hosted callback URL in the request Context.
 
-This command should soon be provided by the framework, see
-[MM-34561](https://mattermost.atlassian.net/browse/MM-34561).
+This command should soon be provided by the framework, see [MM-34561](https://mattermost.atlassian.net/browse/MM-34561).
 
 ```json
 {
@@ -235,9 +233,7 @@ func oauth2Connect(w http.ResponseWriter, req *http.Request) {
 }
 ```
 
-**oauth2Complete** is called upon the successful completion (including the
-validation of the "state"). It is responsible for creating an OAuth2 token, and
-storing it in the Mattermost OAuth2 user store.
+**oauth2Complete** is called upon the successful completion (including the validation of the "state"). It is responsible for creating an OAuth2 token, and storing it in the Mattermost OAuth2 user store.
 
 ```go
 func oauth2Complete(w http.ResponseWriter, req *http.Request) {
@@ -256,10 +252,8 @@ func oauth2Complete(w http.ResponseWriter, req *http.Request) {
 
 #### Obtaining an OAuth2 "Config" for a Call
 
-The App is responsible for composing its own remote OAuth2 config, using the
-remote system-specific settings. The ClientID and ClientSecret are stored in
-Mattermost OAuth2App record, and are included in the request Context if
-specified with expand.oauth2_app="all".
+The App is responsible for composing its own remote OAuth2 config, using the remote system-specific settings. The ClientID and ClientSecret are stored in
+Mattermost OAuth2App record, and are included in the request Context if specified with expand.oauth2_app="all".
 
 ```go
 import (
@@ -284,11 +278,9 @@ func oauth2Config(creq *apps.CallRequest) *oauth2.Config {
 
 ### send Command
 
-`/hello-oauth2 send` sends the user a message that includes the Google user name
-on the account, and lists the Google Calendars.
+`/hello-oauth2 send` sends the user a message that includes the Google user name on the account, and lists the Google Calendars.
 
-The form requests that submit calls expand "oauth2_user" which is where the app
-stored the OAuth2 token upon a successful connect.
+The form requests that submit calls expand "oauth2_user" which is where the app stored the OAuth2 token upon a successful connect.
 
 ```json
 {
