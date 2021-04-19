@@ -2,7 +2,6 @@
 title: "Third Party APIs"
 heading: "Using third-party APIs for Apps"
 description: "Mattermost Apps framework provides services for using remote (3rd party) OAuth2 HTTP APIs, and receiving authenticated webhook notifications from remote systems."
-date: "2017-01-19T12:01:23-04:00"
 section: "integrate"
 ---
 
