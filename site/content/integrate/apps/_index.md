@@ -1,14 +1,9 @@
 ---
 title: "Apps"
-heading: "Mattermost Apps"
-description: "Mattermost Apps."
-date: "2017-01-19T12:01:23-04:00"
+heading: "Overview"
+description: "Apps are lightweight interactive add-ons to mattermost."
 section: "integrate"
 ---
-
-# Overview
-
-Apps are lightweight interactive add-ons to mattermost. Apps can:
 
 - Display interactive, dynamic Modal forms and Message Actions.
 - Attach themselves to locations in the Mattermost UI (e.g. channel bar buttons, post menu, channel menu, commands), and can add their custom /commands with full Autocomplete.
