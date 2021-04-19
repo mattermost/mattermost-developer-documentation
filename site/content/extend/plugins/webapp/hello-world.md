@@ -174,6 +174,15 @@ Install the plugin in one of the following ways:
                 plugin.json
                 main.js
     ```
+    - Enable the plugin in ``config.json``:
+      
+    ```
+    "PluginStates": {
+        "com.mattermost.webapp-hello-world": {
+          "Enable": true
+        }
+    },
+    ```
     - Restart the Mattermost server.
 
 Navigate to a regular Mattermost page and observe the new icon in the channel header. Click the icon and observe the alert dialog.
