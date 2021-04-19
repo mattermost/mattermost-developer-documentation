@@ -1,13 +1,9 @@
-
 ---
 title: "Hello World!"
 heading: "Anatomy of a Hello World! App"
 description: "Creating your first app."
 section: "integrate"
 ---
-
-
-# Hello World!
 
 Here is an example of an HTTP App ([source](/examples/go/helloworld)),
 written in Go and runnable on http://localhost:8080. 
