@@ -1,10 +1,16 @@
-# Using Mattermost APIs
+---
+title: "Mattermost APIs"
+heading: "Using Mattermost APIs with Apps"
+description: "An app can use the Mattermost server REST API, as well as new "App Services" APIs offered specifically to Mattermost Apps."
+date: "2017-08-19T12:01:23-04:00"
+section: "integrate"
+---
 
 ## Authentication and Permissions
 
 **OAuth2 is not yet implemented, for now session tokens are passed in as ActingUserAccessToken**
 
-An app can use the Mattermost server REST API, as well as new "App Services" APIs offered specifically to Mattermost Apps. An app authenticates its requests to Mattermost by providing access tokens, usually Bot Access token, or user's OAuth2 access token. Each call request sent to the app includes Mattermost site URL, and optionally one or more access tokens the app can use.
+An app authenticates its requests to Mattermost by providing access tokens, usually Bot Access token, or user's OAuth2 access token. Each call request sent to the app includes Mattermost site URL, and optionally one or more access tokens the app can use.
 
 What tokens the app gets, and what access the app may have with them depends on the combination of App granted permissions, the tokens requested in call.Expand, and their respective access rights.
 
