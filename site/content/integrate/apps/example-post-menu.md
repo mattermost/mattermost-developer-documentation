@@ -1,6 +1,10 @@
-# Post Menu Example
-
-In this example, the bindings specify to expand the post the user clicks on:
+---
+title: "Post Menu"
+heading: "Post Menu Example"
+description: "In this example, the bindings specify to expand the post the user clicks on."
+date: "2017-08-19T12:01:23-04:00"
+section: "integrate"
+---
 
 ![binding-form-diagram.png](https://user-images.githubusercontent.com/6913320/109165112-2e6ac800-7749-11eb-8d83-d495258f3f1e.png)
 
