@@ -2,7 +2,6 @@
 title: "Apps Overview"
 heading: "Overview"
 description: "Apps are lightweight interactive add-ons to mattermost."
-date: "2017-08-19T12:01:23-04:00"
 section: "integrate"
 ---
 
