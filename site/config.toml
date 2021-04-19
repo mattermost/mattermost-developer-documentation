@@ -143,13 +143,6 @@ pygmentsStyle = "manni"
     icon = "/img/extend-icon.svg"
     draft = false
     
-  [[params.intro.item]]
-    title = "Apps Marketplace"
-    description = "Integrate with external tools and allow developers to create interactive Apps."
-    url = "apps/getting-started"
-    button = "Start Creating"
-    icon = "/img/integrate-icon.svg"
-    draft = true
 
   #[params.intro.video]
   #  enable = true
