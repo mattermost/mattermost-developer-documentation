@@ -45,11 +45,6 @@ pygmentsStyle = "manni"
     name = "extend"
     displayName = "Extend"
     draft = false
-    
-  [[params.sidebar.item]]
-    name = "apps"
-    displayName = "Apps"
-    draft = false
 
   [[params.sidebar.item]]
     name = "internal"
@@ -87,19 +82,14 @@ pygmentsStyle = "manni"
       weight = 3
       
     [[menu.postpend]]
-      url = "/apps/getting-started/"
-      name = "Apps Marketplace"
-      weight = 4
-
-    [[menu.postpend]]
       url = "/blog/"
       name = "Blog"
-      weight = 5
+      weight = 4
 
     [[menu.postpend]]
       url = "https://docs.mattermost.com/"
       name = "Admin Docs"
-      weight = 6
+      weight = 5
 
 
     # Workaround to add draft status to menu items
