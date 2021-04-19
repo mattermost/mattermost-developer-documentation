@@ -1,4 +1,9 @@
-# App Lifecycle
+---
+title: "App Lifecycle"
+heading: "The App Lifecycle"
+description: "The app lifecycle."
+section: "integrate"
+---
 
 ## App Bundle
 
