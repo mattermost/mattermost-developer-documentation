@@ -2,7 +2,6 @@
 title: "Mattermost APIs"
 heading: "Using Mattermost APIs with Apps"
 description: "An app can use the Mattermost server REST API, as well as new "App Services" APIs offered specifically to Mattermost Apps."
-date: "2017-08-19T12:01:23-04:00"
 section: "integrate"
 ---
 
