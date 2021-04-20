@@ -6,43 +6,41 @@ section: "apps"
 weight: 20
 ---
 
-Here is an example of an HTTP App ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld)),
-written in Go and runnable on http://localhost:8080. 
+Here is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld)), written in Go and runnable on http://localhost:8080.
 
-- It contains a `manifest.json`, declares itself an HTTP application that acts
-  as a bot and attaches to locations in UI.
-- In its `bindings` function it attaches `send-modal` to a button in the channel
-  header, and `send` to a /helloworld command
-- It contains a `send` function that sends a parameterized message back to the
-  user. 
-- It contains a `send-modal` function that forces displaying the `send` form as
-  a Modal.
+- It contains a `manifest.json`, declares itself an HTTP application that acts as a bot and attaches to locations in the user interface.
+- In its `bindings` function it attaches `send-modal` to a button in the channel header, and `send` to a `/helloworld` command.
+- It contains a `send` function that sends a parameterized message back to the user. 
+- It contains a `send-modal` function that forces displaying the `send` form as a modal.
 
-To install "Hello, World" on a locally-running instance of Mattermost follow
-these steps (go 1.16 is required):
+To install "Hello, World" on a locally-running instance of Mattermost follow these steps (go 1.16 is required):
+
 ```sh
 git clone https://github.com/mattermost/mattermost-plugin-apps.git
 cd mattermost-plugin-apps/examples/go/helloworld
-go run . 
+go run 
 ```
 
-In Mattermost desktop app run:
+In the Mattermost Desktop App run:
+
 ```
 /apps debug-add-manifest --url http://localhost:8080/manifest.json
 /apps install --app-id helloworld
 ```
 
-Then you can try clicking the "Hello World" channel header button, which brings up a modal:
+Then select the "Hello World" channel header button, which brings up a modal:
+
 ![image](modal.png)
-type `testing` and click Submit, you should see:
+
+Type `testing` and select **Submit**, you should see:
+
 ![image](submit.png)
 
 You can also use `/helloworld send` command.
 
 ## Manifest
-The manifest declares App metadata, For HTTP apps like this no paths mappings
-are needed. The Hello World App requests the *permission* to act as a Bot, and
-to *bind* itself to the channel header, and to /commands.
+
+The manifest declares App metadata, For HTTP apps like this no path mappings are needed. The Hello World app requests the *permission* to act as a Bot, and to *bind* itself to the channel header, and to `/` commands.
 
 ```json
 {
@@ -60,11 +58,11 @@ to *bind* itself to the channel header, and to /commands.
 }
 ```
 
-## Bindings and Locations
-Locations are named elements in Mattermost UI. Bindings specify how App's calls
-should be displayed at, and invoked from these locations. 
+## Bindings and locations
 
-The Hello App creates a Channel Header button, and adds a `/helloworld send` command.
+Locations are named elements in the Mattermost user interface. Bindings specify how  an app's calls should be displayed at, and invoked from, these locations.
+
+The Hello, World! app creates a channel header button, and adds a `/helloworld send` command.
 
 ```json
 {
@@ -107,8 +105,10 @@ The Hello App creates a Channel Header button, and adds a `/helloworld send` com
 }
 ```
 
-## Functions and Form
-Functions handle user events and webhooks. The Hello World App exposes 2 functions:
+## Functions and form
+
+Functions handle user events and webhooks. The Hello World app exposes two functions:
+
 - `/send` that services the command and modal.
 - `/send-modal` that forces the modal to be displayed.
 
@@ -151,8 +151,7 @@ func send(w http.ResponseWriter, req *http.Request) {
 }
 ```
 
-The functions use a simple form with 1 text field named `"message"`, the form
-submits to `/send`.
+The functions use a simple form with one text field named `"message"`, the form submits to `/send`.
 
 ```json
 {
@@ -175,4 +174,5 @@ submits to `/send`.
 ```
 
 ## Icons 
+
 Apps may include static assets. At the moment, only icons are used.
