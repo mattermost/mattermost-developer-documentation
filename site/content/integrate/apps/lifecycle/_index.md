@@ -46,13 +46,13 @@ AWS Lambda functions have semantic names, which means that a function described 
 
 which stores all apps' static assets and manifest files.
 
-All files in the static folder of the bundle are considered to be the app's static assets and are stored in the above mentioned bucket. Stored assets also have semantic keys and are generated using the rule - `static/$appID_$appVersion/filename`. For example `servicenow` app's static file key can be `"static/com.mattermost.servicenow_0.1.0_app/photo.png"`. App developer does not need to worry about the static asset keys, Apps Plugin takes care of it.
+All files in the static folder of the bundle are considered to be the app's static assets and are stored in the above mentioned bucket. Stored assets also have semantic keys and are generated using the rule - `static/$appID_$appVersion/filename`. For example `servicenow` app's static file key can be `"static/com.mattermost.servicenow_0.1.0_app/photo.png"`. The app developer does not need to worry about the static asset keys, as the Apps Plugin takes care of it.
 
 The `manifest.json` file of an app is stored in the same S3 bucket as well with the key - `manifests/$appID_$appVersion.json`.
 
 ![](provisioning-in-3rd-party-aws.png)
 
-### Provisioning In Mattermost AWS Cloud
+### Provisioning in Mattermost AWS Cloud
 
 To be provisioned in AWS Mattermost Cloud an app bundle is uploaded to the specific S3 bucket. On a new app release, a bundle is created by the circleCI and uploaded to S3. [Mattermost apps cloud deployer](https://github.com/mattermost/mattermost-apps-cloud-deployer), running as a k8s cron job every hour, detects the S3 upload, creates appropriate lambda functions, assets, and manifest the same way the **appsclt** does for the third-party accounts.
 
@@ -64,9 +64,9 @@ The deployer needs lambda function names, asset keys, and manifest key to provis
 
 ## Publish
 
-Publishing or registering an app in a Mattermost installation means the app will be shown in the Marketplace of the installation and it can be later installed by the System Admin and used by the users. On a totally new app registration or on a registration of the new version of the already registered app, a new version of the Apps Plugin is cut. The `manifests.json` file is updated and a new app is added in the listing. Later, the plugin is installed in the appropriate installations (using feature flags if necessary). 
+Publishing or registering an app in a Mattermost installation means the app will be shown in the Marketplace of the installation and it can be later installed by the System Admin and used by the users. On a totally new app registration or on a registration of the new version of the already registered app, a new version of the Apps Plugin is cut. The `manifests.json` file is updated and a new app is added in the listing. Later, the plugin is installed in the appropriate installations (using feature flags if necessary).
 
-After the plugin update Apps Plugin synchronizes the list of the registered apps by downloading appropriate manifests from the S3 and storing them in memory. So the Marketplace shows renewed app listings and sysadmin can install a new app(or new version). It is worth mentioning here that Apps Plugin needs AWS credentials to download from S3 as well as to invoke lambda functions. Those credentials are read from the following environment variables:
+After the plugin update Apps Plugin synchronizes the list of the registered apps by downloading appropriate manifests from the S3 and storing them in memory. So the Marketplace shows renewed app listings and sysadmin can install a new app (or new version). It's worth mentioning here that Apps Plugin needs AWS credentials to download from S3 as well as to invoke lambda functions. Those credentials are read from the following environment variables:
 
 `APPS_INVOKE_AWS_ACCESS_KEY`
 
@@ -74,7 +74,7 @@ After the plugin update Apps Plugin synchronizes the list of the registered apps
 
 ## Install
 
-Installing is a process when sysadmin installs provisioned and already registered/published apps in their Mattermost installation. As mentioned above list of the registered apps are in the memory of the Apps Plugin. Whenever the System Admin executes an `/install` slash command or selects **Install** in the Marketplace appropriate permissions are requested and the app is installed. A bot and an OAuth app are created on installation, `OnInstall` call is sent to the app(relevant lambda function) as well.
+Installing is a process when a System Admin installs provisioned and already registered/published apps in their Mattermost installation. As mentioned above the list of the registered apps are in the memory of the Apps Plugin. Whenever the System Admin executes an `/install` slash command or selects **Install** in the Marketplace, appropriate permissions are requested and the app is installed. A bot and an OAuth app are created on installation, `OnInstall` call is sent to the app (relevant lambda function) as well.
 
 ![](install-mm-aws-app.png)
 
@@ -95,4 +95,3 @@ A System Admin can uninstall an app using the `/uninstall` slash command. On uni
 ## Upgrade/downgrade consideration
 
 ## appsctl
-
