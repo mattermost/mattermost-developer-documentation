@@ -175,5 +175,6 @@ Install the plugin in one of the following ways:
                 main.js
     ```
     - Restart the Mattermost server.
+    - Enable the plugin in **System Console > Plugins (Beta) > Plugin Management**.
 
 Navigate to a regular Mattermost page and observe the new icon in the channel header. Click the icon and observe the alert dialog.
