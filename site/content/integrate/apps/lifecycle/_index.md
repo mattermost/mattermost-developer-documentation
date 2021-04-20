@@ -3,7 +3,7 @@ title: "App Lifecycle"
 heading: "The App Lifecycle"
 description: "The app lifecycle."
 section: "apps"
-weight: 60
+weight: 100
 ---
 
 ## App Bundle
@@ -50,7 +50,7 @@ All files in the static folder of the bundle are considered to be the app's stat
 
 The `manifest.json` file of an app is stored in the same S3 bucket as well with the key - `manifests/$appID_$appVersion.json`.
 
-![](imgs/provisioning-in-3rd-party-aws.png)
+![](provisioning-in-3rd-party-aws.png)
 
 ### Provisioning In Mattermost AWS Cloud
 
@@ -60,7 +60,7 @@ The deployer needs lambda function names, asset keys, and manifest key to provis
 
 `go run ./cmd/appsctl/ generate-terraform-data /PATH/TO/YOUR/APP/BUNDLE` 
 
-![](imgs/provisioning-in-mm-aws.png)
+![](provisioning-in-mm-aws.png)
 
 ## Publish
 
@@ -76,7 +76,7 @@ After the plugin update Apps Plugin synchronizes the list of the registered apps
 
 Installing is a process when sysadmin installs provisioned and already registered/published apps in their Mattermost installation. As mentioned above list of the registered apps are in the memory of the Apps Plugin. Whenever the System Admin executes an `/install` slash command or selects **Install** in the Marketplace appropriate permissions are requested and the app is installed. A bot and an OAuth app are created on installation, `OnInstall` call is sent to the app(relevant lambda function) as well.
 
-![](imgs/install-mm-aws-app.png)
+![](install-mm-aws-app.png)
 
 Apps are installed with `apps install`:
 

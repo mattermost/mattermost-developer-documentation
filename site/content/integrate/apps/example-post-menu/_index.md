@@ -1,8 +1,9 @@
 ---
-title: "Post Menu"
+title: "Post Menu Example"
 heading: "Post Menu Example"
 description: "In this example, the bindings specify to expand the post the user clicks on."
-subsection: "examples"
+section: "apps"
+weight: 70
 ---
 
 ![binding-form-diagram.png](https://user-images.githubusercontent.com/6913320/109165112-2e6ac800-7749-11eb-8d83-d495258f3f1e.png)

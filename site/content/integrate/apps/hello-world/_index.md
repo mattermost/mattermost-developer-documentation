@@ -6,7 +6,7 @@ section: "apps"
 weight: 20
 ---
 
-Here is an example of an HTTP App ([source](/examples/go/helloworld)),
+Here is an example of an HTTP App ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld)),
 written in Go and runnable on http://localhost:8080. 
 
 - It contains a `manifest.json`, declares itself an HTTP application that acts
@@ -21,7 +21,8 @@ written in Go and runnable on http://localhost:8080.
 To install "Hello, World" on a locally-running instance of Mattermost follow
 these steps (go 1.16 is required):
 ```sh
-cd .../mattermost-plugin-apps/examples/go/helloworld
+git clone https://github.com/mattermost/mattermost-plugin-apps.git
+cd mattermost-plugin-apps/examples/go/helloworld
 go run . 
 ```
 
@@ -32,9 +33,9 @@ In Mattermost desktop app run:
 ```
 
 Then you can try clicking the "Hello World" channel header button, which brings up a modal:
-![image](https://user-images.githubusercontent.com/1187448/110829345-da81d800-824c-11eb-96e7-c62637242897.png)
+![image](modal.png)
 type `testing` and click Submit, you should see:
-![image](https://user-images.githubusercontent.com/1187448/110829449-fb4a2d80-824c-11eb-8ade-d20e0fbd1b94.png)
+![image](submit.png)
 
 You can also use `/helloworld send` command.
 

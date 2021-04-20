@@ -2,14 +2,15 @@
 title: "Third Party APIs"
 heading: "Using third-party APIs for Apps"
 description: "Mattermost Apps framework provides services for using remote (3rd party) OAuth2 HTTP APIs, and receiving authenticated webhook notifications from remote systems."
-subsection: "apps-api"
+subsection: "apps"
+weight: 90
 ---
 
 There are 2 examples here to illustrate the [OAuth2](#hello-oauth2) and [webhook](#hello-webhooks) support.
 
 ## Hello OAuth2!
 
-Here is an example of an HTTP App ([source](/examples/go/hello-oauth2)),
+Here is an example of an HTTP App ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-oauth2)),
 written in Go and runnable on http://localhost:8080. 
 
 - It contains a `manifest.json`, declares itself an HTTP application, requests permissions and binds itself to locations in the Mattermost UI.
@@ -330,3 +331,5 @@ func send(w http.ResponseWriter, req *http.Request) {
 ```
 
 ## Hello Webhooks!
+
+TODO

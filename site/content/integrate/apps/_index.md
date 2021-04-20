@@ -19,47 +19,43 @@ section: "apps"
 
 ## Hello, World
 
-- [Anatomy](01-anatomy-hello.md) of a simple app.
+- [Anatomy]({{< ref "hello-world" >}}) of a simple app.
 
 ## Functions, Calls
 
-- Example: [Hello, World](/server/examples/go/helloworld/hello.go#L45) `send` function.
-- [Post Menu Message Flow](02-example-post-menu.md) - message flow to define a Post Menu action, then have a user click it.
-- godoc: [Call](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Call) -
-  [local](http://localhost:6060/pkg/github.com/mattermost/mattermost-plugin-apps/apps#Call) - describes how to call a function.
-- godoc: [CallRequest](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallRequest) -
-  [local](http://localhost:6060/pkg/github.com/mattermost/mattermost-plugin-apps/apps#CallRequest) - structure of a request to a function.
-- godoc: [Context](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context) -
-  [local](http://localhost:6060/pkg/github.com/mattermost/mattermost-plugin-apps/apps#Context) - extra data passed to call requests.
-- godoc: [Expand](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Expand) -
-  [local](http://localhost:6060/pkg/github.com/mattermost/mattermost-plugin-apps/apps#Expand) - controls context expansion.
+- Example: [Hello, World](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld/hello.go#L45) `send` function.
+- [Post Menu Message Flow]({{< ref example-post-menu >}}) - message flow to define a Post Menu action, then have a user click it.
+- godoc: [Call](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Call) - describes how to call a function.
+- godoc: [CallRequest](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallRequest) - structure of a request to a function.
+- godoc: [Context](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context) - extra data passed to call requests.
+- godoc: [Expand](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Expand) - controls context expansion.
 
 ## Forms
 
-- Example: [Hello, World](/server/examples/go/helloworld/send_form.json) `send` form.
-- [Interactive Message Flows](03-example-interactivity.md) - message flow to define a Post Menu action, then have a user click it.
-- godoc [Form](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form) - [local](http://localhost:6060/pkg/github.com/mattermost/mattermost-plugin-apps/apps#Form)
-- godoc [Field](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field) - [local](http://localhost:6060/pkg/github.com/mattermost/mattermost-plugin-apps/apps#Field)
+- Example: [Hello, World](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld/send_form.json) `send` form.
+- [Interactive Message Flows]({{< ref example-interactivity >}}) - message flow to define a Post Menu action, then have a user click it.
+- godoc [Form](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form)
+- godoc [Field](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field)
 
 ## Bindings and Locations
 
-- Example: [Hello, World](/server/examples/go/helloworld/bindings.json) bindings.
-- godoc [Binding](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding) - [local](http://localhost:6060/pkg/github.com/mattermost/mattermost-plugin-apps/apps#Binding)
+- Example: [Hello, World](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld/bindings.json) bindings.
+- godoc [Binding](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding)
 
 ## Autocomplete
 
-- Example: [Hello, World](/server/examples/go/helloworld/bindings.json) bindings.
+- Example: [Hello, World](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld/bindings.json) bindings.
 
 ## Modals
 
-- Example: [Hello, World](/server/examples/go/helloworld/send_form.json) `send` form.
+- Example: [Hello, World](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld/send_form.json) `send` form.
 
 ## In-Post Interactivity
 
-## [Using Mattermost APIs](05-using-mattermost-api.md)
+## [Using Mattermost APIs]({{< ref "using-mattermost-api" >}})
 
-## [Using 3rd party APIs](06-using-3rdparty-api.md)
+## [Using 3rd party APIs]({{< ref "using-third-party-api" >}})
 
 ## App Lifecycle
-- [App Lifecycle](07-lifecycle.md)
+- [App Lifecycle]({{< ref "lifecycle" >}})
 - godoc: [appsctl](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/cmd/appsctl) - CLI tool used to provision Mattermost Apps in development and production.
