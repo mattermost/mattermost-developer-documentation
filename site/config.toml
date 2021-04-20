@@ -80,7 +80,7 @@ pygmentsStyle = "manni"
       url = "/extend/getting-started/"
       name = "Extend"
       weight = 3
-      
+
     [[menu.postpend]]
       url = "/blog/"
       name = "Blog"
@@ -132,7 +132,6 @@ pygmentsStyle = "manni"
     button = "Start Extending"
     icon = "/img/extend-icon.svg"
     draft = false
-    
 
   #[params.intro.video]
   #  enable = true
