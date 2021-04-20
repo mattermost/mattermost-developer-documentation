@@ -2,7 +2,8 @@
 title: "App Lifecycle"
 heading: "The App Lifecycle"
 description: "The app lifecycle."
-section: "integrate"
+section: "apps"
+weight: 60
 ---
 
 ## App Bundle

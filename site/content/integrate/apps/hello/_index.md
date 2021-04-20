@@ -2,7 +2,8 @@
 title: "Hello World!"
 heading: "Anatomy of a Hello World! App"
 description: "Creating your first app."
-section: "integrate"
+section: "apps"
+weight: 20
 ---
 
 Here is an example of an HTTP App ([source](/examples/go/helloworld)),

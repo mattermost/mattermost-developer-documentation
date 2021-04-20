@@ -2,7 +2,7 @@
 title: "Apps APIs"
 heading: "Using Mattermost APIs with Apps"
 description: "An app can use the Mattermost server REST API, as well as new App Services APIs offered specifically to Mattermost Apps."
-section: "integrate"
+subsection: "apps-api"
 ---
 
 Note: OAuth2 is not yet implemented, for now session tokens are passed in as ActingUserAccessToken
