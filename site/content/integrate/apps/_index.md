@@ -2,7 +2,7 @@
 title: "Apps"
 heading: "Overview"
 description: "Apps are lightweight interactive add-ons to mattermost."
-section: "integrate"
+section: "apps"
 ---
 
 - Display interactive, dynamic Modal forms and Message Actions.
