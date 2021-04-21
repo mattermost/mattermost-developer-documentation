@@ -3,6 +3,7 @@ title: "Apps (Developers Preview)"
 heading: "Overview"
 description: "Apps are lightweight interactive add-ons to Mattermost."
 section: "integrate"
+weight: 90
 ---
 
 Apps are lighweight interactive add-ons to Mattermost. Apps can:
