@@ -191,9 +191,9 @@ There are several types of responses:
 
 ### Install
 
-When the app is installed, a special call is made to inform the app that it has been installed on the instance. This call is used mainly to initialize any needed information. If the app asks for Permissions to act as an user, the call will include among the values, the OAuth2 client secret, under the value “oauth2_client_secret”. The context will include the acting user ID, the app ID, the team ID, and the app and Admin access token expanded by default.
+When the app is installed, a special call is made to inform the app that it has been installed on the instance. This call is used mainly to initialize any needed information. If the app asks for Permissions to act as an user, the call will include among the values, the OAuth2 client secret, under the value `oauth2_client_secret`. The context will include the acting user ID, the app ID, the team ID, and the app and Admin access token expanded by default.
 
-The expected responses are either OK or Error responses.
+The expected responses are either `OK` or `Error` responses.
 
 ## Bindings
 
@@ -201,23 +201,22 @@ Bindings are what establish the relationship between locations and calls. Whenev
 
 The expected response should include the following:
 
-|        |          |                      |
+|  Type  | Function | Description          |
 | :----- | :------- | :------------------- |
 | `data` | bindings | The list of bindings |
 
 Bindings are organized by top level locations. Top level bindings just need to define:
 
-|            |          |                                         |
+|  Name      | Type     |  Description                            |
 | :--------- | :------- | :-------------------------------------- |
 | `location` | string   | Top level location                      |
 | `bindings` | Bindings | A list of bindings under this location. |
 
-
-`/in_post ` bindings do not need to be defined in this call.
+`/in_post` bindings do not need to be defined in this call.
 
 ### `/post_menu` bindings
 
-|            |        |                                                                                 |
+|  Name      | Type   |  Description                                                                    |
 | :--------- | :----- | :------------------------------------------------------------------------------ |
 | `location` | string | Name of this location. The whole path of locations will be added in the context |
 | `icon`     | string | (Optional) Url to the icon                                                      |
@@ -225,9 +224,10 @@ Bindings are organized by top level locations. Top level bindings just need to d
 | `call`     | Call   | Call to perform                                                                 |
 
 The call for these bindings will include in the context the user ID, the post ID, the root post ID if any, the channel ID and the team ID.
-/channel_header bindings
 
-|            |        |                                                                                  |
+### `/channel_header` bindings
+
+|  Name      |  Type  | Description                                                                      |
 | :--------- | :----- | :------------------------------------------------------------------------------- |
 | `location` | string | Name of this location. The whole path of locations will be added in the context. |
 | `icon`     | string | (Optional) Url to the icon                                                       |
@@ -235,26 +235,25 @@ The call for these bindings will include in the context the user ID, the post ID
 | `hint`     | string | Text to show in tooltip                                                          |
 | `call`     | Call   | Call to perform.                                                                 |
 
-The call for these bindings will include in the context the user ID, the channel ID and the team ID.
-
+The call for these bindings will include in the context the user ID, the channel ID, and the team ID.
 
 ### `/command` bindings
+
 For commands we can distinguish between leaf commands (executable subcommand) and partial commands.
 
 A partial command must include:
 
-|               |          |                                                      |
+|  Name         | Type     |  Description                                         |
 | :------------ | :------- | :--------------------------------------------------- |
 | `location`    | string   | The label to use to define the command.              |
 | `hint`        | string   | (Optional) Hint line on command autocomplete.        |
 | `description` | string   | (Optional) Description line on command autocomplete. |
 | `bindings`    | Bindings | List of subcommands.                                 |
 
-
 A leaf command must include:
 
-|               |        |                                                                                                                                              |
-| :------------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------- |
+|  Name         | Type     |  Description                                         |
+| :------------ | :------- | :--------------------------------------------------- |
 | `location`    | string | The label to use to define the command.                                                                                                      |
 | `hint`        | string | (Optional) Hint line on command autocomplete.                                                                                                |
 | `description` | string | (Optional) Description line on command autocomplete.                                                                                         |
@@ -269,7 +268,7 @@ The call for these bindings will include in the context the user ID, the post ID
 
 Modal Forms open as a modal on the user interface as a result of a Form call response. They are defined by:
 
-|                  |        |                                                                                              |
+|  Name            | Type   |  Description                                                                                 |
 | :--------------- | :----- | :------------------------------------------------------------------------------------------- |
 | `title`          | string | Title of the form, shown in the modal.                                                       |
 | `header`         | string | (Optional) Text used as introduction in the form.                                            |
@@ -279,7 +278,7 @@ Modal Forms open as a modal on the user interface as a result of a Form call res
 
 The types of fields are:
 
-|                  |                                                        |
+|   Name           |  Description                                           |
 | :--------------- | :----------------------------------------------------- |
 | `text`           | Text field                                             |
 | `static_select`  | A dropdown select with static elements.                |
@@ -290,7 +289,7 @@ The types of fields are:
 
 All fields include:
 
-|               |           |                                                        |
+|  Name         |  Type     |  Description                                           |
 | :------------ | :-------- | :----------------------------------------------------- |
 | `name`        | string    | Key to use in the Values field of the call.            |
 | `type`        | FieldType | The type of the field.                                 |
@@ -301,7 +300,7 @@ All fields include:
 
 Text fields may include:
 
-|              |        |                                                                                                                                  |
+|  Name        | Type   |   Description                                                                                                                    |         
 | :----------- | :----- | :------------------------------------------------------------------------------------------------------------------------------- |
 | `subtype`    | string | (Optional) The type of text that will be shown. Available types are one of text, textarea, email, number, password, tel, or url. |
 | `min_length` | int    | (Optional) Validate the field length before performing the call.                                                                 |
@@ -309,20 +308,20 @@ Text fields may include:
 
 Static select fields include:
 
-|           |         |                           |
+|   Name    |  Type   |  Description              |
 | :-------- | :------ | :------------------------ |
 | `options` | Options | Options for the dropdown. |
 
 Each Option includes:
 
-|         |        |                       |
+|  Name   | Type   |  Description          |
 | :------ | :----- | :-------------------- |
 | `label` | string | User facing string.   |
 | `value` | string | Machine facing value. |
 
 All select also include:
 
-|           |      |                                                                                     |
+|   Name    | Type |  Description                                                                        |
 | :-------- | :--- | :---------------------------------------------------------------------------------- |
 | `refresh` | bool | (Optional) Allows the form to be refreshed when the value of a dropdown is changed. |
 
