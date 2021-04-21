@@ -3,6 +3,7 @@ title: "Apps (Developers Preview)"
 heading: "Introduction"
 description: "Apps are lightweight interactive add-ons to Mattermost."
 section: "integrate"
+weight: 90
 ---
 
 Apps are lightweight, interactive add-ons to Mattermost which use serverless hosting to run without any dedicated infrastructure. Apps can:
