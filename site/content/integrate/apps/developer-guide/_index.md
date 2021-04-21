@@ -114,126 +114,79 @@ The call request will include:
 | root_url | string | Base url to send all calls. Only needed for http apps. |
 | requested_permissions | Permissions | All the permissions needed by the app. |
 
-
 The call type can be:
 
 | type | CallType |  
 |:----------|:----------| 
 | | Submit. (Empty string)|
-| form | Context | Request for a form. |
-| lookup | Lookup for dynamic selects in forms.|
+| form | Request for a form. |
+| lookup | Lookup for dynamic selects in forms. |
 
 ### Call Context
 
 Depending on the location and expansions, calls will have different context. These are all the possible context values.
 
-app_id
-string
-The app id
-location
-Location
-The location from which the call was performed.
-subject
-Subject
-Event subject.
-bot_user_id
-string
-Bot user id
-acting_user_id
-string
-Id from the user performing the call
-team_id
-string
-Id from the team from within the call was performed.
-channel_id
-string
-Id from the channel from within the call was performed.
-post_id
-string
-Id from the channel from within the call was performed.
-root_post_id
-string
-If the call was performed from a post in a thread, the root post id of that thread.
-mattermost_site_url
-string
-Mattermost base URL
-bot_access_token
-string
-(Expansion)
-acting_user
-User
-(Expansion)
-acting_user_access_token
-string
-(Expansion)
-admin_access_token
-string
-(Expansion)
-app
-App
-(Expansion)
-channel
-Channel
-(Expansion)
-post
-Post
-(Expansion)
-root_post
-Post
-(Expansion)
-team
-Team
-(Expansion)
+| type | CallType | The type of call being made. |
+|:----------|:----------|:----------|
+| app_id | string | The app id |
+| location | Location | The location from which the call was performed. |
+| subject| Subject | Event subject. |
+| bot_user_id | string | Bot user id |
+| acting_user_id | string | Id from the user performing the call |
+| team_id | string | Id from the team from within the call was performed. |
+| channel_id | string | Id from the channel from within the call was performed. |
+| post_id | string | root_post_id |
+| root_post_id | string | If the call was performed from a post in a thread, the root post id of that thread. |
+| mattermost_site_url | string | Mattermost base URL |
+| bot_access_token | string | (Expansion)|
+| acting_user | User | (Expansion) |
+| acting_user_access_token | string | (Expansion) |
+| admin_access_token | string | (Expansion) |
+| app| App | (Expansion) |
+| channel | Channel | (Expansion) |
+| post | Post | (Expansion) |
+| root_post | Post | (Expansion) |
+| team | Team | (Expansion) |
 
 ### Call Response
 
 There are several types of responses:
 
-OK. (Empty string)
-error
-An error has occurred.
-form
-Should open a form.
-call
-Should perform another call.
-navigate
-Should navigate the user to a url.
+| type | CallType |  
+|:----------|:----------| 
+| | OK. (Empty string)|
+| error | An error has occurred. |
+| form | Should open a form. |
+| call | Should perform another call. |
+| navigate | Should navigate the user to a url.|
 
-OK response
-type
-(empty string)
+#### OK response
 
+| type | Response |  
+|:----------|:----------| 
+| type | (Empty string)| |
+| markdown | string | (Optional) Markdown text that will be sent to the user as an ephemeral post. |
 
-markdown
-string
-(Optional) Markdown text that will be sent to the user as an ephemeral post.
+#### Error response
 
-Error response
-type
-error
+| type | Error |  
+|:----------|:----------| 
+| type | error| |
+| error | string | Markdown text that will be sent to the user as an ephemeral post. |
 
+#### Form response
 
-error
-string
-Markdown text that will be sent to the user as an ephemeral post.
+| type | form |  
+|:----------|:----------| 
+| type | form | |
+| error | form | Form to open. |
 
-Form response
-type
-form
+#### Navigate response
 
-
-form
-Form
-Form to open.
-
-Navigate response
-type
-navigate
-
-
-navigate_to_url
-string
-URL to navigate to
+| type | navigate |  
+|:----------|:----------| 
+| type | navigate | |
+| navigate_to_url | string | URL to navigate to. |
 
 ## Special calls
 
@@ -242,26 +195,23 @@ URL to navigate to
 When the app is installed, a special call is made to inform the app that it has been installed on the instance. This call is used mainly to initialize any needed information. If the app asks for Permissions to act as an user, the call will include among the values, the OAuth2 client secret, under the value “oauth2_client_secret”. The context will include the acting user ID, the app ID, the team ID, and the app and Admin access token expanded by default.
 
 The expected responses are either OK or Error responses.
-Bindings
-Bindings are what establish the relationship between locations and calls. Whenever it is called, you have to provide the list of bindings available according to the context.
 
-The context for the bindings call includes the app id, bot access token, team id, channel id, acting user id and mattermost site url. By default it does not expand any value.
+#### Bindings
+
+Bindings are what establish the relationship between locations and calls. Whenever it is called, you have to provide the list of bindings available according to the context. The context for the bindings call includes the app id, bot access token, team id, channel id, acting user id and mattermost site url. By default it does not expand any value.
+
 The expected response should include the following:
 
-data
-
-## Bindings
-
-The list of bindings
+| |  |  
+|:----------|:----------| 
+| data | bindings |The list of bindings |
 
 Bindings are organized by top level locations. Top level bindings just need to define:
 
-location
-string
-Top level location
-bindings
-Bindings
-A list of bindings under this location
+|  | string | The type of call being made. |
+|:----------|:----------|:----------|
+| location | string | Top level location |
+| bindings | Bindings | A list of bindings under this location. |
 
 
 “/in_post” bindings do not need to be defined in this call.
