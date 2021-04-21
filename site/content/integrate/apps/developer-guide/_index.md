@@ -309,9 +309,9 @@ hint
 string
 Text to show in tooltip
 call
+
 Call
 Call to perform.
-
 
 The call for these bindings will include in the context the user ID, the channel ID and the team ID.
 /command bindings
@@ -351,11 +351,12 @@ form
 Form
 (Optional) Form representing the parameters the command can receive. If no form is provided, a form call will be made to the specified call.
 
-
 The call for these bindings will include in the context the user ID, the post ID, the root post ID if any, the channel ID and the team ID. It will also include the raw command.
 
-Interaction
-Modal Forms
+## Interaction
+
+### Modal Forms
+
 Modal Forms open as a modal on the user interface as a result of a Form call response. They are defined by:
 
 title
@@ -374,7 +375,6 @@ call
 Call
 Call to perform for this form.
 
-
 The types of fields are:
 
 text
@@ -389,7 +389,6 @@ user
 A dropdown with to select users.
 channel
 A dropdown to select channels.
-
 
 All fields include:
 
@@ -455,20 +454,18 @@ A modal form performs a lookup call to the call endpoint any time a dynamic drop
 data
 
 
-
-
-
-
 -
 items
 Options
 The list of options to show
 
 
-
 If any select has the refresh value set as true, a form call to the call endpoint any time the select changes value. The form call will include in the context the app id, the user id, the channel id, and the team id. The values will be populated with the current values of the form. The expected response is a form response. The whole form will be updated with the new form.
+
 On submit, the submit call to the call endpoint will be sent. The submit call will include in the context the app id, the user id, the channel id, and the team id. The values will be populated with the current values of the form.
-Commands as forms
+
+## Commands as forms
+
 Commands arguments are treated as forms. When a leaf command is typed, the arguments of the command are fetched. If the command binding has a Form attached, those will be used. If not, a form call will be made to the command call. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID. The call will expect a form response.
 
 A command form is defined as:
@@ -517,9 +514,10 @@ icon_data
 string
 URL to icon to show on autocomplete.
 
-
 When the command is executed, a submit call will be performed on the call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID.
-Embedded Bindings
+
+## Embedded Bindings
+
 Posts can be embedded with bindings. These are used for asynchronous interaction with the user. In order to add an embedded binding you need to add an “app_bindings” property with a list of EmbeddedBindings. An EmbeddedBinding includes:
 
 app_id
@@ -577,32 +575,4 @@ call
 Call
 (Optional) Call to perform when the option is selected. If none is defined, it will take the call from the select.
 
-
 Whenever a button is clicked or a select field is selected, a submit call is performed to the corresponding call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID.
-
-
-NOTES AND THINGS TO ADD
-Best practices
-Events (user joined channel, etc..)
-The KVStore service
-Terminology
-Error responses for forms
-Communication/interaction explanation
-AWS Lambda support
-From Shota at ~Mattermost Apps (https://community.mattermost.com/core/pl/1xiq6ycpbpydbdqa6rhwb19rba):
------------------
-Tips on AWS apps
-OnInstall is called one time, when admin installs the app.
-OnStartup is called on restart of the server if the app is enabled. It's a cluster-level event and is called from one node even if there is an HA environment.
-OnUninstall is called when we uninstall the app.
-
-
-Structure of the app bundle ~/my_app.zip |-- manifest.json |-- OnStartup.zip |-- index.js |-- node-modules
-
- |-- async |-- aws-sdk
-|-- my_python_function.zip |-- lambda_function.py |-- pycache |-- certifi/
-
-
-AWS Functions are stateless. A context is coming with the request. If additional state is needed to be stored using KV REST API.
-I would add these as well
------------------
