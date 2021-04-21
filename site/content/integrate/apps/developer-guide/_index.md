@@ -26,7 +26,7 @@ They both behave as HTTP servers, and Mattermost will reach several endpoints to
 ## Basics
 
 ### Manifest
-All apps should define a manifest as a JSON file. The manifest location must be “ROOTURL/manifest”. The fields of the manifest are:
+All apps should define a manifest as a JSON file. The manifest location must be `$ROOTURL/manifest`. The fields of the manifest are:
 
 | Field name              | Field type              | Function                                                                                    |
 | :---------------------- | :---------------------- | :------------------------------------------------------------------------------------------ |
@@ -71,7 +71,7 @@ A call is the definition of an action. The values are:
 
 | Field name | Field type | Function                                                                                                  |
 | :--------- | :--------- | :-------------------------------------------------------------------------------------------------------- |
-| `url`      | string     | The app endpoint to call. Mattermost will call ROOTURL/url.                                               |
+| `url`      | string     | The app endpoint to call. Mattermost will call `$ROOTURL/url`.                                               |
 | `values`   | Object     | A set of elements to be interpreted by the app. Forms and slash commands will also populate these values. |
 | `expand`   | Expand     | A definition of the information to expand to send to the app.                                             |
 
