@@ -66,7 +66,7 @@ or via Apt on Ubuntu:
 
 After successfully [building and packaging](/contribute/desktop/developer-setup/#building) the Mattermost Desktop application for Windows, you can run the signing command from the root of the repository:
 ```bash
-~$ osslsigncode -pkcs12 [PATH_TO_THE_PFX_FILE] -pass [PFX_FILE_PASSWORD] -n "Mattermost Desktop" -i https://mattermost.com -t http://timestamp.verisign.com/scripts/timstamp.dll -h sha2 -in [PATH_TO_UNSIGNED_EXE] -out [PATH_TO_WRITE_SIGNED_EXE_TO]
+~$ osslsigncode sign -pkcs12 [PATH_TO_THE_PFX_FILE] -passfile [PFX_FILE_PASSWORD] -n "Mattermost Desktop" -i https://mattermost.com -t http://timestamp.verisign.com/scripts/timstamp.dll -h sha2 -in [PATH_TO_UNSIGNED_EXE] -out [PATH_TO_WRITE_SIGNED_EXE_TO]
 Succeeded
 ```
 Where
