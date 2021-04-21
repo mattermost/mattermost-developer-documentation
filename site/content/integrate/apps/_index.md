@@ -1,15 +1,21 @@
 ---
-title: "Apps"
+title: "Apps (Developers Preview)"
 heading: "Overview"
 description: "Apps are lightweight interactive add-ons to Mattermost."
-section: "apps"
+section: "integrate"
 ---
 
-- Display interactive, dynamic modal forms and message Actions.
+Apps are lighweight interactive add-ons to Mattermost. Apps can:
+
+- Display interactive, dynamic Modal forms and Message Actions.
 - Attach themselves to locations in the Mattermost UI (e.g. channel bar buttons, post menu, channel menu, commands), and can add their custom /commands with full Autocomplete.
-- Receive webhooks from Mattermost and third-parties, and use the Mattermost REST APIs to post messages, etc.
-- Be hosted externally (HTTP), on Mattermost Cloud (AWS Lambda), and soon on-prem and in customers' own AWS environments.
+- Receive webhooks from Mattermost, and third-parties, and use the Mattermost REST APIs to post messages, etc.
+- Be hosted externally (HTTP), on Mattermost Cloud (AWS Lambda), and soon in self-managed as well as customers' own AWS environments.
 - Be developed in any language*.
+
+Apps are available as a Developers Preview and we're looking for your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost community instance.
+
+Read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to write your first app.
 
 # Contents
 
