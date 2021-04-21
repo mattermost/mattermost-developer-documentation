@@ -69,16 +69,11 @@ Locations are spaces in the UI where the app can add interactions.
 
 A call is the definition of an action. The values are:
 
-url
-string
-The app endpoint to call. Mattermost will call ROOTURL/url.
-values
-Object
-A set of elements to be interpreted by the app. Forms and slash commands will also populate these values.
-expand
-Expand
-A definition of the information to expand to send to the app.
-
+| Field name | Field type | Function |
+|:----------|:----------|:----------|
+| url | string | The app endpoint to call. Mattermost will call ROOTURL/url. |
+| values | Object | A set of elements to be interpreted by the app. Forms and slash commands will also populate these values. |
+| expand | Expand | A definition of the information to expand to send to the app. |
 
 ### Expand
 
@@ -87,22 +82,17 @@ To avoid extra communication between the app and Mattermost, you can include exp
 TODO: Define differences between all and summary
 
 The possible expansions are:
-app
-Expands the app information.
-acting_user
-Expands the Acting User information.
-acting_user_access_token
-Include OAuth2 access token in the call request. If the token is not available or is invalid, the user is directed to the OAuth2 flow, and the Call is executed upon completion.
-admin_access_token
-Include the admin access token.
-channel
-Expands the channel information.
-post
-Expands the post information.
-root_post
-Expands the root post information.
-team
-Expands the team information.
+
+| Field name | Field type | 
+|:----------|:----------|
+| app | Expands the app information.  |
+| acting_user | Expands the Acting User information. |
+| acting_user_access_token | A slash command |
+| admin_access_token | Include the admin access token. |
+| channel | Expands the channel information. |
+| post | Expands the post information. |
+| root_post | Expands the root post information. |
+| team | Expands the team information. |
 
 TODO: Manifest example
 
@@ -114,26 +104,24 @@ When a call is performed, a POST request will be made to the endpoint defined in
 
 The call request will include:
 
-type
-CallType
-The type of call being made.
-values
-Object
-The pairs of key values present in the call. Can be populated by forms and slash commands.
-context
-Context
-The context of the call.
-raw_command
-string
-The unparsed command for slash commands.
+| type | CallType | The type of call being made. |
+|:----------|:----------|:----------|
+| values | Object | The pairs of key values present in the call. Can be populated by forms and slash commands. |
+| context | Context | The context of the call. |
+| raw_command | string | The unparsed command for slash commands. |
+| description | string | The description for your app. Used in the marketplace. |
+| homepage_url | string | The app homepage. Used in the marketplace and for OAuth purposes. |
+| root_url | string | Base url to send all calls. Only needed for http apps. |
+| requested_permissions | Permissions | All the permissions needed by the app. |
+
 
 The call type can be:
 
-Submit. (Empty string)
-form
-Request for a form.
-lookup
-Lookup for dynamic selects in forms.
+| type | CallType |  
+|:----------|:----------| 
+| | Submit. (Empty string)|
+| form | Context | Request for a form. |
+| lookup | Lookup for dynamic selects in forms.|
 
 ### Call Context
 
