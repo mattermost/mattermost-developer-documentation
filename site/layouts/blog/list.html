@@ -9,11 +9,12 @@
         {{ partial "head.html" .}}
     </head>
 <body class="blog-list">
+    {{ partial "gtm-body-noscript.html" }}
     {{ partial "nav2.html" .}}
     <div class="container">
         <div class="row">
             <div class="col-md-9 doc-content">
-                <h3>Mattermost Developer Blog</h3>
+                <h1>The Mattermost Developer Blog</h1>
                 {{ range (.Paginate .Data.Pages).Pages.ByDate.Reverse }}
                     {{ .Render "summary" }}
                 {{ end }}

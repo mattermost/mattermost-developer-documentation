@@ -1,5 +1,7 @@
 ---
 title: "Onboarding with Mattermost"
+heading: "Onboarding with Mattermost"
+description: "Learn about what the remote onboarding process is like for new hires at Mattermost."
 slug: onboarding-with-mattermost
 date: 2019-12-20T00:00:00-04:00
 categories:

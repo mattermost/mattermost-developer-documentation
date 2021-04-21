@@ -1,5 +1,7 @@
 ---
 title: "Reducers"
+heading: "Reducers in Redux at Mattermost"
+description: "Reducers in Redux are pure functions that describe how the data in the store changes after any given action."
 date: 2017-08-20T11:35:32-04:00
 weight: 5
 subsection: Redux

@@ -1,5 +1,7 @@
 ---
 title: "Sign Unsigned Builds"
+heading: "Signing Unsigned Builds with Mattermost"
+description: "Mattermost publishes an unsigned build of the mobile app in the GitHub Releases page with every version that gets released."
 date: 2018-05-20T11:35:32-04:00
 weight: 4
 subsection: Mobile Apps

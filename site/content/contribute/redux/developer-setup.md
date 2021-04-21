@@ -1,5 +1,7 @@
 ---
 title: "Developer Setup"
+heading: "Redux - Developer Setup - Mattermost"
+description: "Find out how to configure your developer environment using Redux, as well as the prerequisites you'll need."
 date: 2017-08-20T11:35:32-04:00
 weight: 2
 subsection: Redux

@@ -27,6 +27,35 @@ This does not, however, mean that a developer is *required* to fix any surroundi
 
 ## Guidelines
 
+### Project layout
+
+When starting with a new application, it's very tempting to declare a bunch of packages and interfaces right off the bat. Avoid that.  
+
+It's very hard to know how the project will grow or what the ideal package boundaries are when starting with a project. Don't split your code into `model`, `store`, `app` along with a bunch of interfaces in the first commit itself. Prematurely separating them will lead to an incorrect package API that may be hard to correct later on.
+
+Instead, put everything inside an `internal` package as your starting point. For example, if the name of your project is `mattercool`, the following can be a good first initial structure:
+
+```
+|
+|- cmd/mattercool
+|- internal/server
+|- go.mod,go.sum
+```
+
+Putting everything under `internal` has the advantage that you're free to change whatever you want without any fallout. After some time, when the project grows, package boundaries will start to appear. At that point, start to separate into sub-packages.
+
+Following are some of the anti-patterns to keep in mind:
+
+- Don't use the `pkg` pattern. This is a common standard used by many projects. But it goes against the Go philosophy of naming packages that signify what they contain. From https://blog.golang.org/package-names:
+
+>  A package's name provides context for its contents, making it easier for clients to understand what the package is for and how to use it.
+
+The `pkg` directory was used long ago in the Go project when there weren't any well-defined standards. But it was later removed to just have normal packages.
+
+- Same for `util` or `misc` packages. Don't use them. Instead break out related `util` functionalities into its own package or if it's not used by a lot of packages, make it part of the original package itself.
+
+- Don't have too many small packages with only one file. It's usually a sign of splitting packages without giving thought into them. Look at the API boundaries and group the packages into bigger chunks.
+
 ### Functional
 
 #### Default to sync instead of async
@@ -121,6 +150,113 @@ This rule is not yet fully applied to the `model` package due to backward compat
 #### [Receiver Names](https://github.com/golang/go/wiki/CodeReviewComments#receiver-names)
 
 The name of a method's receiver should be a reflection of its identity; often a one or two letter abbreviation of its type suffices (such as "c" or "cl" for "Client"). Don't use generic names such as "me", "this", or "self" identifiers typical of object-oriented languages that give the variable a special meaning.
+
+#### Error variable names
+
+The name of any `error` variable must be `err` or prefixed with `err`. The name of any `*model.AppError` variable must be `appErr` or prefixed with `appErr`. This allows us to avoid confusion about how to handle different kind of errors inside Mattermost. If you are storing the error value from a function that returns an `error` type in its signature, it's considered an `error`, regardless of whether the function, internally, is returning a `*model.AppError` instance.
+
+For example, when the function signature returns an `error`, we use the `err` variable name:
+
+```go
+func MyFunction() error {
+    return model.NewAppError(...)
+}
+
+func OtherFunction() {
+    ...
+    err := MyFunction()
+    ...
+}
+```
+
+When the function signature returns an `*model.AppError`, we use the `appErr` variable name:
+
+```go
+func MyFunction() *model.AppError {
+    return model.NewAppError(...)
+}
+
+func OtherFunction() {
+    ...
+    appErr := MyFunction()
+    ...
+}
+```
+
+### Log levels
+
+The purpose of logging is to provide observability - it enables the application communicate back to the administrator about what is happening. To communicate effectively logs should be meaningful and concise. To achieve this, log lines should conform to one of the definitions below:
+
+**Critical:** This log-level represents the most severe situations when the service is entirely unable to continue operating. After emitting a _critical_ log line, it is expected that the service will terminate.
+
+For example, the code block below demonstrates a _critical_ situation where the server startup routine fails, meaning the service is unable to start and must terminate.
+
+```go
+func runServer(..) {
+	..
+	server, err := app.NewServer(options...)
+	if err != nil {
+		mlog.Critical(err.Error())
+		return
+	}
+	..
+}
+```
+
+**Error:** This log-level is used when something unexpected has happened to the service, but it does not result in a total loss of service. Log lines using the _error_ level must be actionable, so that the system administrator can investigate and resolve the incident. The _error_ log level may indicate a loss of service for an individual user or request or it may indicate a total failure of a non-critical subsystem within the service.
+
+For example, the _error_ log level is used in the code snippet below as it represents a partial failure of one non-critical subsystem of the service. Administrator intervention is required to resolve this situation, but the rest of the service is able to continue operating in the meantime.
+
+```go
+func (a *App) SyncPlugins(..) {
+	..
+	reader, appErr := a.FileReader(plugin.path)
+	if appErr != nil {
+		mlog.Error("Failed to open plugin bundle from file store.", mlog.String("bundle", plugin.path), mlog.Err(appErr))
+		return
+	}
+	..
+}
+```
+
+**Warn:** This log level is used to indicate that something unexpected has happened, but the server is able to continue operating and it has not suffered any loss of functionality as a consequence of this failure. System administrators may wish to investigate the cause of log lines at this level, but the need is typically less pressing than for those at _error_ level. System administrators may also wish to monitor the rate of occurrence of individual log-lines at this level as this may be indicative of a wider problem. Log lines at the _warning_ level should be as detailed as possible, since these are often the least clear-cut category of message.
+
+For example, the _warning_ log level may be used to indicate that something went wrong but the overall operation was still able to complete successfully.
+
+```go
+func (a *App) UpdateUserRoles(..) {
+	..
+	if result := <-schan; result.NErr != nil {
+		// soft error since the user roles were still updated
+		mlog.Warn("Error during updating user roles", mlog.Err(result.NErr))
+	}
+
+	a.InvalidateCacheForUser(userId)
+	..
+}
+```
+
+**Info:** This log level should be used to record normal, expected application behavior, even if it results in an error for the end user. They are not actionable individually, but the significant changes in the frequency of occurrence of individual log lines at this level may be indicative of a possible problem.
+
+For example, the _info_ log level may be used to communicate to administrators that certain subsystems within the service have been started or stopped.
+
+```go
+func (s *Schedulers) Start(..) {
+	s.startOnce.Do(func() {
+		mlog.Info("Starting schedulers.")
+		..
+	})
+	..
+}
+```
+
+**Debug:** This log-level is used for diagnostic information which may be used to debug issues but is not necessary for normal production system logging, nor actionable by system administrators.
+
+```go
+func (worker *Worker) Run() {
+	mlog.Debug("Worker started", mlog.String("worker", worker.name))
+	..
+```
 
 ## Proposing a new rule
 

@@ -1,5 +1,7 @@
 ---
 title: "Mattermost tick-tock Branching Strategy"
+heading: "Mattermost Tick-Tock Branching Strategy"
+description: "Mattermost recently moved away from a tick-tock release strategy with alternating feature and quality releases."
 date: 2019-06-18T00:00:00-04:00
 weight: 20
 subsection: Getting Started

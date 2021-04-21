@@ -1,5 +1,7 @@
 ---
 title: "Core Committers"
+heading: "Mattermost Core Committers"
+description: "A core committer is a maintainer on the Mattermost project that has merge access to Mattermost repositories. Learn more about the team here."
 date: 2017-08-20T12:33:36-04:00
 weight: 4
 subsection: Getting Started

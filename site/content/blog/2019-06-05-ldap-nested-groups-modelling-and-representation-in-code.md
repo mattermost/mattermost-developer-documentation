@@ -1,5 +1,7 @@
 ---
 title: "LDAP Nested Groups: Modelling and Representation in Code"
+heading: "LDAP Nested Groups: Modelling and Representation in Code"
+description: "This post describes what LDAP “nested groups” are and how we ended up modelling and representing them in code."
 slug: ldap-nested-groups-modelling-and-representation-in-code
 author: Martin Kraft
 date: 2019-06-05T12:00:00-04:00
