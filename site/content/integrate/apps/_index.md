@@ -6,10 +6,10 @@ section: "integrate"
 weight: 90
 ---
 
-Apps are lighweight interactive add-ons to Mattermost. Apps can:
+Apps are lightweight, interactive add-ons to Mattermost. Apps can:
 
 - Display interactive, dynamic Modal forms and Message Actions.
-- Attach themselves to locations in the Mattermost UI (e.g. channel bar buttons, post menu, channel menu, commands), and can add their custom /commands with full Autocomplete.
+- Attach themselves to locations in the Mattermost user interface (e.g. channel bar buttons, post menu, channel menu, commands), and can add their custom `/` commands with full Autocomplete.
 - Receive webhooks from Mattermost, and third-parties, and use the Mattermost REST APIs to post messages, etc.
 - Be hosted externally (HTTP), on Mattermost Cloud (AWS Lambda), and soon in self-managed as well as customers' own AWS environments.
 - Be developed in any language*.
@@ -18,11 +18,9 @@ Apps are available as a Developers Preview and we're looking for your feedback! 
 
 Read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to write your first app.
 
-# Contents
-
 ## Development environment
 
-[TODO]
+Visit the [Developer Setup Guide](https://developers.mattermost.com/contribute/server/developer-setup/) for information about setting up your development environment.
 
 ## Functions and calls
 
@@ -55,9 +53,15 @@ Read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to writ
 
 ## In-post interactivity
 
-## [Using Mattermost APIs]({{< ref "using-mattermost-api" >}})
+({{< ref "example-interactivity" >}})
 
-## [Using third-party APIs]({{< ref "using-third-party-api" >}})
+## Using Mattermost APIs
+
+{{< ref "using-mattermost-api" >}}
+
+## Using third-party APIs
+
+{{< ref "using-third-party-api" >}}
 
 ## App Lifecycle
 
