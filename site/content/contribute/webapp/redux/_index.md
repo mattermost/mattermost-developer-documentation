@@ -1,6 +1,6 @@
 ---
 title: "Redux"
-heading: "Redux"
+heading: "Mattermost-Redux"
 description: "mattermost-redux is a library that contains logic for loading and working with data from the Mattermost server."
 date: "2020-04-01T12:00:00-04:00"
 section: "contribute"
