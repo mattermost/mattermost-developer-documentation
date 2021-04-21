@@ -9,7 +9,7 @@ weight: 8
 
 [mattermost-redux](https://github.com/mattermost/mattermost-webapp/tree/master/packages/mattermost-redux) is a library that contains logic for loading and working with data from the Mattermost server. It's currently used primarily by the Mattermost web app and by some plugins, and it was previously used by the Mattermost mobile app.
 
-As part of our current effort to turn [the mattermost-webapp repository](https://github.com/mattermost/mattermost-webapp) into a monorepo, we are also re-evaluating the purpose of mattermost-redux and how we can better expose its functionality for use in third party integrations. The structure of the library and what it exposes for integrations may change over time because of this.
+**Note:** As part of our current effort to turn [the mattermost-webapp repository](https://github.com/mattermost/mattermost-webapp) into a monorepo, we are also re-evaluating the purpose of mattermost-redux and how we can better expose its functionality for use in third party integrations. The structure of the library and what it exposes for integrations may change over time because of this.
 
 ## Repository
 
