@@ -299,7 +299,6 @@ All fields include:
 | `description` | string    | (Optional) Text to show below the field describing it. |
 | `modal_label` | string    | (Optional) Label to name the field in the modal.       |
 
-
 Text fields may include:
 
 |              |        |                                                                                                                                  |
@@ -308,20 +307,18 @@ Text fields may include:
 | `min_length` | int    | (Optional) Validate the field length before performing the call.                                                                 |
 | `max_length` | int    | (Optional) Validate the field length before performing the call.                                                                 |
 
-
 Static select fields include:
 
 |           |         |                           |
 | :-------- | :------ | :------------------------ |
 | `options` | Options | Options for the dropdown. |
 
-
 Each Option includes:
+
 |         |        |                       |
 | :------ | :----- | :-------------------- |
 | `label` | string | User facing string.   |
 | `value` | string | Machine facing value. |
-
 
 All select also include:
 
@@ -329,10 +326,9 @@ All select also include:
 | :-------- | :--- | :---------------------------------------------------------------------------------- |
 | `refresh` | bool | (Optional) Allows the form to be refreshed when the value of a dropdown is changed. |
 
-
 A modal form performs a lookup call to the call endpoint any time a dynamic dropdown is selected. The lookup call will include in the context the app id, the user id, the channel id, and the team id. The values will be populated with the current values of the form. The expected response is error or the following:
 
-|      |         |         |                             |
+|  Name|  Type   | Item    | Description                 |
 | :--- | :------ | :------ | :-------------------------- |
 | data |         |         |                             |
 | -    | `items` | Options | The list of options to show |
@@ -346,7 +342,8 @@ On submit, the submit call to the call endpoint will be sent. The submit call wi
 Commands arguments are treated as forms. When a leaf command is typed, the arguments of the command are fetched. If the command binding has a Form attached, those will be used. If not, a form call will be made to the command call. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID. The call will expect a form response.
 
 A command form is defined as:
-|          |        |                                                                                                                                |
+
+|   Name   |  Type  | Description                                                                                                                    |
 | :------- | :----- | :----------------------------------------------------------------------------------------------------------------------------- |
 | `fields` | Fields | List of fields in the form.                                                                                                    |
 | `call`   | Call   | (Optional) Call to perform on all actions form related (including submit). If not provided, will use the command binding call. |
@@ -354,7 +351,8 @@ A command form is defined as:
 The type of fields is the same as for Modal forms.
 
 All fields include:
-|               |           |                                                                         |
+
+|   Name        | Type      |  Description                                                            |
 | :------------ | :-------- | :---------------------------------------------------------------------- |
 | `name`        | string    | Key to use in the Values field of the call, and as part of the command. |
 | `type`        | FieldType | The type of the field.                                                  |
@@ -365,7 +363,8 @@ All fields include:
 
 
 Options are defined as:
-|             |        |                                      |
+
+|  Name       | Type   |  Description                         |
 | :---------- | :----- | :----------------------------------- |
 | `label`     | string | User facing string.                  |
 | `value`     | string | Machine facing value.                |
@@ -376,7 +375,8 @@ When the command is executed, a submit call will be performed on the call endpoi
 ## Embedded Bindings
 
 Posts can be embedded with bindings. These are used for asynchronous interaction with the user. In order to add an embedded binding you need to add an “app_bindings” property with a list of EmbeddedBindings. An EmbeddedBinding includes:
-|            |         |                           |
+
+|   Name     | Type    |  Description              |
 | :--------- | :------ | :------------------------ |
 | `app_id`   | string  | The app ID                |
 | `title`    | string  | Title of the attachment   |
@@ -387,7 +387,7 @@ Posts can be embedded with bindings. These are used for asynchronous interaction
 Bindings are of two types, buttons or selects.
 Buttons include:
 
-|            |        |                                                                         |
+|  Name      |  Type  |  Description                                                            |
 | :--------- | :----- | :---------------------------------------------------------------------- |
 | `location` | string | Location name. The whole location path will be provided in the context. |
 | `label`    | string | Label that will show in the button.                                     |
@@ -395,7 +395,8 @@ Buttons include:
 
 
 Selects include:
-|            |         |                                                                                                              |
+
+|  Name      |   Type  |  Description                                                                                                 |
 | :--------- | :------ | :----------------------------------------------------------------------------------------------------------- |
 | `location` | string  | Location name. The whole location path will be provided in the context.                                      |
 | `label`    | string  | Label that will show in the button.                                                                          |
@@ -403,7 +404,8 @@ Selects include:
 | `bindings` | Binding | Options for the select.                                                                                      |
 
 Options bindings include:
-|            |        |                                                                                                                    |
+
+|  Name      | Type   |  Description                                                                                                       |
 | :--------- | :----- | :----------------------------------------------------------------------------------------------------------------- |
 | `location` | string | Option name. The whole location path will be provided in the context.                                              |
 | `label`    | string | User facing string.                                                                                                |
