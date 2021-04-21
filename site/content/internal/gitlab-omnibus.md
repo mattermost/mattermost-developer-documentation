@@ -54,20 +54,15 @@ These are the steps to update GitLab Omnibus with a new version of Mattermost:
 
 4. Add an entry to the table in `doc/gitlab-mattermost/README.md` that maps GitLab versions to the corresponding Mattermost version. This step is not necessary for dot releases of Mattermost.
 
-5. Add a changelog entry by using `scripts/changelog`. This will create an entry in `changeslogs/unreleased` that needs to be checked in.
-
-    ```bash
-    scripts/changelog "Update Mattermost to X.Y"
-    ```
-       
-    The type will usually be "8. Other". You can also go back afterwards and add the author and MR number if you'd like.
-   
-6. Commit the changes to `config/software/mattermost.rb`, `doc/gitlab-mattermost/README.md`, and the newly created file in `changelogs/unreleased`. The commit message must also a second line containing the type of change made similar to the one listed in the changelog file.
+5. Commit the changes made to `config/software/mattermost.rb` and `doc/gitlab-mattermost/README.md`. The commit message is used to generate a changelog entry, so it must include a second line containing the type of change made. For regular releases, it should be the following:
 
     ```
     Update Mattermost to X.Y
+
     Changelog: other
     ```
+
+For security backports, the type should be changed to "security".
 
 You can now test the build and submit an MR upstream. For an example of how the branch should look after that, see [here](https://gitlab.com/gitlab-org/omnibus-gitlab/-/merge_requests/5068).
 

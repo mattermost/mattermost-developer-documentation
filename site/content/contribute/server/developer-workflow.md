@@ -32,7 +32,7 @@ Here's a general workflow for a Mattermost developer working on the [mattermost-
      * Create a draft PR with your changes and let our CI servers run the tests for you.
 7. If you added or changed any localization strings you will need to run `make i18n-extract` to generate the new/updated strings.
 8. Commit your changes, push your branch, and [create a pull request](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/).
-9. Respond to feedback on your pull request and make changes as necessary by committing to your branch and pushing it. You might need to [rebase your changes](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) if another pull request creates conflicts.
+9. Once a PR is submitted it's best practice to avoid rebasing on the base branch or force-pushing. Jesse, a developer at Mattermost, mentions this in his blog article [Submitting Great PRs](https://mattermost.com/blog/submitting-great-prs/). When the PR is merged, all the PR's commits are automatically squashed into one commit, so you don't need to worry about having multiple commits on the PR.
 10. That's it! Rejoice that you've helped make Mattermost better.
 
 ### Useful Server Makefile Commands
