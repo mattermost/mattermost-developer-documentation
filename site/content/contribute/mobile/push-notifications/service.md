@@ -106,7 +106,7 @@ and running the service under a `mattermost-push-proxy` user account with limite
 
     ![image](/img/mobile/proxy-config.png)
 
-In the [mattermost-push-proxy project](https://github.com/mattermost/mattermost-push-proxy/tree/master/cmd/renew_apple_cert) exist some scripts to ease the process involved for updating the iOS notification certificates. Please check the README.md for further details.
+In the [mattermost-push-proxy project](https://github.com/mattermost/mattermost-push-proxy/tree/master/cmd/renew_apple_cert) there are some scripts to ease the process involved for updating the iOS notification certificates. Please check the README.md for further details.
 
 ### Configure the Mattermost Server to use the Mattermost Push Notification Service
 
