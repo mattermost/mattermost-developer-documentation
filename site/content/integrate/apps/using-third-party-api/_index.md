@@ -10,8 +10,7 @@ There are two examples here to illustrate the [OAuth2](#hello-oauth2) and [webho
 
 ## Hello OAuth2!
 
-This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-oauth2)),
-written in Go and runnable on http://localhost:8080.
+This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-oauth2)), written in Go and runnable on http://localhost:8080.
 
 - It contains a `manifest.json`, declares itself an HTTP application, requests permissions, and binds itself to locations in the Mattermost user interface.
 - In its `bindings` function it declares three commands: `configure`, `connect`, and `send`.
@@ -20,7 +19,8 @@ written in Go and runnable on http://localhost:8080.
 To install "Hello, OAuth2" on a locally-running instance of Mattermost follow these steps (go 1.16 is required):
 
 ```sh
-cd .../mattermost-plugin-apps/examples/go/hello-oauth2
+git clone https://github.com/mattermost/mattermost-plugin-apps.git
+cd mattermost-plugin-apps/examples/go/hello-oauth2
 go run . 
 ```
 
@@ -31,12 +31,11 @@ In the Mattermost Desktop App run:
 /apps install --app-id hello-oauth2
 ```
 
-You need to configure your [Google API
-Credentials](https://console.cloud.google.com/apis/credentials) for the App. Use `{MattermostSiteURL}/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete`
+You need to configure your [Google API Credentials](https://console.cloud.google.com/apis/credentials) for the App. Use `$MATTERMOST_SITE_URL$/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete`
 for the `Authorized redirect URIs` field. After configuring the credentials, in the Mattermost Desktop App run:
 
 ```
-/hello-oauth2 configure --client-id {ClientID} --client-secret {ClientSecret}
+/hello-oauth2 configure --client-id $CLIENT_ID --client-secret $CLIENT_SECRET
 ```
 
 Now, you can connect your account to Google with `/hello-oauth2 connect` command, and then try `/hello-oauth2 send`.
@@ -166,8 +165,7 @@ func configure(w http.ResponseWriter, req *http.Request) {
 
 #### `connect` command
 
-`/hello-oauth2 connect` formats and displays a link that starts the OAuth2 flow with the remote system. The URL (provided to the app in the `Context`) is
-handled by the apps framework. It will:
+`/hello-oauth2 connect` formats and displays a link that starts the OAuth2 flow with the remote system. The URL (provided to the app in the `Context`) is handled by the apps framework. It will:
 
 - Create a one-time secret ("state").
 - Invoke `oauth2Connect` to generate the remote URL that starts the flow.
@@ -249,8 +247,7 @@ func oauth2Complete(w http.ResponseWriter, req *http.Request) {
 
 #### Obtaining an OAuth2 "Config" for a call
 
-The App is responsible for composing its own remote OAuth2 config, using the remote system-specific settings. The ClientID and ClientSecret are stored in
-Mattermost OAuth2App record, and are included in the request context if specified with expand.oauth2_app="all".
+The App is responsible for composing its own remote OAuth2 config, using the remote system-specific settings. The ClientID and ClientSecret are stored in Mattermost OAuth2App record, and are included in the request context if specified with expand.oauth2_app="all".
 
 ```go
 import (
@@ -327,4 +324,4 @@ func send(w http.ResponseWriter, req *http.Request) {
 
 ## Hello Webhooks!
 
-TODO
+This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-webhooks)), written in Go and runnable on http://localhost:8080.

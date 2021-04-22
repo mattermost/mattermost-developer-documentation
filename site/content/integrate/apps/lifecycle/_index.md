@@ -6,6 +6,10 @@ section: "apps"
 weight: 100
 ---
 
+## Mattermost serverless app hosting
+
+Mattermost serverless hosting allows for easy app installation from the App Marketplace by a System Admin and uses AWS Lambda serverless technology instead of relying on a physical server. Developers who create apps using a serverless development approach can easily deploy apps securely, efficiently, and at scale in the Mattermost Cloud.
+
 ## App Bundle
 
 An app bundle is a convenient way to deliver an app to the Mattermost ecosystem. It provides a way to organize code and resources needed for an app to run. An app bundle is created by the developer of the app. Mattermost uses app bundles to provision and install/uninstall apps.

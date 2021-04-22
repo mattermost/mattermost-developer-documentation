@@ -28,46 +28,11 @@ Apps are available as a Developers Preview and we're looking for your feedback! 
 
 * Apps will soon be available for self-managed deployments as well as customers' own AWS environments.
 
-## Developing apps
-
 Read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to write your first app.
 
-### App lifecycle
 
-- [App Lifecycle]({{< ref "lifecycle" >}})
-- godoc: [appsctl](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/cmd/appsctl) - CLI tool used to provision Mattermost Apps in development and production.
+## FAQ
 
-### [Using Mattermost APIs]({{< ref "using-mattermost-api" >}})
+### What language should I use to write apps?
 
-### [Using third-party APIs]({{< ref "using-third-party-api" >}})
-
-### Functions and calls
-
-- Example: [Hello, World](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld/hello.go#L45) `send` function.
-- [Post Menu Message Flow]({{< ref example-post-menu >}}) - Message flow to define a Post Menu action, then have a user click it.
-- godoc: [Call](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Call) - Describes how to call a function.
-- godoc: [CallRequest](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallRequest) - Structure of a request to a function.
-- godoc: [Context](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context) - Extra data passed to call requests.
-- godoc: [Expand](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Expand) - Controls context expansion.
-
-### Forms
-
-- Example: [Hello, World](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld/send_form.json) `send` form.
-- [Interactive Message Flows]({{< ref example-interactivity >}}) - Message flow to define a Post Menu action, then have a user click it.
-- godoc [Form](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form)
-- godoc [Field](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field)
-
-### Bindings and locations
-
-- Example: [Hello, World](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld/bindings.json) bindings.
-- godoc [Binding](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding)
-
-### Autocomplete
-
-- Example: [Hello, World](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld/bindings.json) bindings.
-
-### Modals
-
-- Example: [Hello, World](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld/send_form.json) `send` form.
-
-### [In-post interactivity](({{< ref "example-interactivity" >}}))
+Any language you want. The only langue with an official driver is go right now.
