@@ -12,7 +12,6 @@ Apps are lightweight, interactive add-ons to Mattermost which can use any HTTP-c
 - Be written in any language.
 - Attach themselves to locations in the Mattermost user interface (e.g. channel bar buttons, post menu, channel menu, commands), and can add their custom `/` commands with full Autocomplete.
 - Receive webhooks from Mattermost, and third-parties, and use the Mattermost REST APIs to post messages, etc.
-- Be hosted externally (HTTP) and on Mattermost Cloud (AWS Lambda)*.
 - Work on both Mobile and Desktop apps so developers can focus on the functionality of their apps.
 - Be deployed using our Mattermost serverless hosting infrastructure keeping data secure and supporting scalability.
 
