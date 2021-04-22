@@ -71,7 +71,7 @@ Create a file called `manifest.json` containing:
 
 ### Bindings and locations
 
-Locations are named elements in the Mattermost user interface. Bindings specify how  an app's calls should be displayed at, and invoked from, these locations.
+Locations are named elements in the Mattermost user interface. Bindings specify how an app's calls should be displayed at, and invoked from, these locations.
 
 The app creates a channel header button, and adds a `/helloworld send` command.
 
