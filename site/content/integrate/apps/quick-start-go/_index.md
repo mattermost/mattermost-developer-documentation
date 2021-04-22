@@ -56,7 +56,7 @@ Create a file called `manifest.json` containing:
 ```json
 {
 	"app_id": "hello-world",
-    "display_name": "Hello, world!",
+	"display_name": "Hello, world!",
 	"app_type": "http",
 	"root_url": "http://localhost:8080",
 	"requested_permissions": [
@@ -100,7 +100,7 @@ Create a file called `bindings.json` containing:
 					"icon": "http://localhost:8080/static/icon.png",
 					"label": "helloworld",
 					"description": "Hello World app",
-					"hint":        "[send]",
+					"hint": "[send]",
 					"bindings": [
 						{
 							"location": "send",
