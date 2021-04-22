@@ -5,15 +5,16 @@ description: This quick start guide will walk you through the basics of writing 
 weight: 10
 ---
 
-This quick start guide explains the basics of writing a Mattermost App. In this guide you will build an App that:
-- Contains a `manifest.json`, declares itself an HTTP application that acts as a bot and attaches to locations in the user interface.
+This quick start guide explains the basics of writing a Mattermost app. In this guide you will build an app that:
+
+- Contains a `manifest.json`, declares itself an HTTP application that acts as a bot, and attaches to locations in the user interface.
 - Attaches `send-modal` in its `bindings` to a button in the channel header, and `send` to a `/helloworld` command.
-- Contains a `send` function that sends a parameterized message back to the user. 
+- Contains a `send` function that sends a parameterized message back to the user.
 - Contains a `send-modal` function that forces displaying the `send` form as a modal.
 
 ## Prerequisites
 
-Before you can start with your app, you first need to set up a local developer environment following the [server](/contribute/server/developer-setup/) and [webapp](/contribute/webapp/developer-setup/) setup guides. You must enable the apps feature flag before starting the Mattermost server by setting the enjoinment variable `MM_FEATUREFLAGS_AppsEnabled` to `true` by e.g. adding `export MM_FEATUREFLAGS_AppsEnabled=true` to your `.bashrc`. Please also ensure that `Bot Account Creation` and `OAuth 2.0 Service Provider` are enabled in the System console.
+Before you can start with your app, you first need to set up a local developer environment following the [server](/contribute/server/developer-setup/) and [webapp](/contribute/webapp/developer-setup/) setup guides. You must enable the apps feature flag before starting the Mattermost server by setting the enjoinment variable `MM_FEATUREFLAGS_AppsEnabled` to `true` by e.g. adding `export MM_FEATUREFLAGS_AppsEnabled=true` to your `.bashrc`. Please also ensure that `Bot Account Creation` and `OAuth 2.0 Service Provider` are enabled in the System Console.
 
 **Note:** Apps do not work with a production release of Mattermost right now. They can only be run in a development environment.
 
@@ -28,6 +29,7 @@ git clone https://github.com/mattermost/mattermost-plugin-apps.git
 ```
 
 Then build the plugin using:
+
 ```bash
 make dist
 ```
@@ -47,7 +49,7 @@ go get github.com/mattermost/mattermost-plugin-apps/apps@master
 
 ### Manifest
 
-Your app has to provide a so-called manifest. The manifest declares App metadata. In this example the *permission* to act as a Bot, and to *bind* itself to the channel header, and to `/` commands is requested.
+Your app has to provide a so-called manifest. The manifest declares App metadata. In this example the *permission* to act as a bot, and to *bind* itself to the channel header, and to `/` commands is requested.
 
 Create a file called `manifest.json` containing:
 
@@ -145,12 +147,12 @@ Create a file called `send_form.json` containing:
 }
 ```
 
-
 ## Icons 
 
 Apps may include static assets. One example that was already used above is the `icon` for the two bindings. Static assets must be served under the `static` path.
 
-Download an example icon using 
+Download an example icon using:
+
 ```
 wget https://github.com/mattermost/mattermost-plugin-apps/raw/master/examples/go/helloworld/icon.png
 ```
@@ -236,12 +238,14 @@ The apps is a simple HTTP server that serves the files you created above. The on
 
 ## Installing the App
 
-Run your app using
+Run your app using:
+
 ```
 go run .
 ```
 
 Then run the following slash commands in our Mattermost server:
+
 ```
 /apps debug-add-manifest --url http://localhost:8080/manifest.json
 /apps install --app-id hello-world
@@ -250,7 +254,6 @@ Then run the following slash commands in our Mattermost server:
 Confirm the installation in the modal that pops up. You can insert any secret into the **App secret** field for now.
 
 ## Using the App
-
 
 Select the "Hello World" channel header button, which brings up a modal:
 
