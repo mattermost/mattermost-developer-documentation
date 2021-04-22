@@ -26,11 +26,22 @@ Read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to writ
 
 Mattermost serverless hosting allows for easy app installation from the App Marketplace by a System Admin and uses AWS Lambda serverless technology instead of relying on a physical server. Developers who create apps using a serverless development approach can easily deploy apps securely, efficiently, and at scale in the Mattermost Cloud.
 
+Serverless technology allows for a "Function" to lay dormant until it is needed - for example processing an incoming message from an external system (e.g., a P1 incident in your tracking system) and sending a message to your Incident Response channel in Mattermost. This allows for reduced costs and less maintenance of persistent servers needed to host other applications.
+
 ## Developing serverless apps
+
+As a developer, what can my serverless apps do with the framework?
+
+- Create slash commands
+- Post messages to channels
+- Add buttons to channel headers, menus
+- Interactive modals
+- Dynamic fields
+- Code as an on-demand function
 
 ### Development environment
 
-Visit the [Developer Setup Guide](https://developers.mattermost.com/contribute/server/developer-setup/) for information about setting up your development environment.
+We recommend starting off with local development. Visit the [Developer Setup Guide](https://developers.mattermost.com/contribute/server/developer-setup/) for information about setting up your development environment.
 
 ### App lifecycle
 
