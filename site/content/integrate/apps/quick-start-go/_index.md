@@ -16,7 +16,7 @@ This quick start guide explains the basics of writing a Mattermost app. In this 
 
 Before you can start with your app, you first need to set up a local developer environment following the [server](/contribute/server/developer-setup/) and [webapp](/contribute/webapp/developer-setup/) setup guides. You must enable the apps feature flag before starting the Mattermost server by setting the enjoinment variable `MM_FEATUREFLAGS_AppsEnabled` to `true` by e.g. adding `export MM_FEATUREFLAGS_AppsEnabled=true` to your `.bashrc`. Please also ensure that `Bot Account Creation` and `OAuth 2.0 Service Provider` are enabled in the System Console.
 
-**Note:** Apps do not work with a production release of Mattermost right now. They can only be run in a development environment.
+**Note:** Apps do not work with a production release of Mattermost right now. They can only be run in a development environment. A future release will support production environments.
 
 You also need at least `go1.16` installed. Please follow the guide [here](https://golang.org/doc/install) to install the latest version.
 
