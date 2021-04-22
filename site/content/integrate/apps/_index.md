@@ -16,21 +16,7 @@ Apps are lightweight, interactive add-ons to Mattermost which use serverless hos
 - Work on both Mobile and Desktop apps so developers can focus on the functionality of their apps.
 - Be deployed using our Mattermost serverless hosting infrastructure keeping data secure and supporting scalability.
 
-Apps are available as a Developers Preview and we're looking for your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost community instance.
-
-* Apps will soon be available for self-managed deployments as well as customers' own AWS environments.
-
-Read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to write your first app.
-
-## Mattermost serverless app hosting
-
-Mattermost serverless hosting allows for easy app installation from the App Marketplace by a System Admin and uses AWS Lambda serverless technology instead of relying on a physical server. Developers who create apps using a serverless development approach can easily deploy apps securely, efficiently, and at scale in the Mattermost Cloud.
-
-Serverless technology allows for a "Function" to lay dormant until it is needed - for example processing an incoming message from an external system (e.g., a P1 incident in your tracking system) and sending a message to your Incident Response channel in Mattermost. This allows for reduced costs and less maintenance of persistent servers needed to host other applications.
-
-## Developing serverless apps
-
-As a developer, what can my serverless apps do with the framework?
+When you develop using the Apps Framework, your apps can:
 
 - Create slash commands
 - Post messages to channels
@@ -39,7 +25,13 @@ As a developer, what can my serverless apps do with the framework?
 - Dynamic fields
 - Code as an on-demand function
 
-### Development environment
+Apps are available as a Developers Preview and we're looking for your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost community instance.
+
+* Apps will soon be available for self-managed deployments as well as customers' own AWS environments.
+
+Read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to write your first app.
+
+## Developing apps
 
 We recommend starting off with local development. Visit the [Developer Setup Guide](https://developers.mattermost.com/contribute/server/developer-setup/) for information about setting up your development environment.
 
