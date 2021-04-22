@@ -1,5 +1,7 @@
 ---
 title: "Android Push Notifications"
+heading: "Android Push Notifications at Mattermost"
+description: "Learn how Android push notifications work using Mattermost and Firebase Cloud Messaging."
 date: 2015-05-20T11:35:32-04:00
 weight: 1
 subsection: "Setup Push Notifications"
@@ -39,10 +41,6 @@ downloaded the *google-services.json* file, you need to make some
 changes in the project.
 
 - Replace `android/app/google-services.json` with the one you downloaded earlier
-- Open `android/app/google-services.json`, find the project\_number and copy the value
-- Open `android/app/src/main/AndroidManifest.xml` file, look for the line `<meta-data android:name="com.wix.reactnativenotifications.gcmSenderId" android:value="184930218130\"/>` and replace the value with the one that you copied in the previous step
 
-**Leave the trailing \ intact**
-
-At this point, you can build the Mattermost app for Android and setup the [Mattermost Push Notification Service](/contribute/mobile/push-notifications/service).
+At this point, you can build the Mattermost app for Android and setup the [Mattermost Push Notification Service](/contribute/mobile/push-notifications/service/).
 

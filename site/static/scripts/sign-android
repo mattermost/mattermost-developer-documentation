@@ -58,7 +58,7 @@ fi
 
 ANDROID="${ANDROID_HOME:-$ANDROID_SDK_ROOT}"
 
-if [ -z $ANDROID ]; then 
+if [ -z $ANDROID ]; then
     echo ""
     echo "\$ANDROID_HOME or \$ANDROID_SDK_ROOT environment variable not set."
     echo "More info at https://developer.android.com/studio/command-line/variables#android_sdk_root"
@@ -143,12 +143,12 @@ if [ "$PACKAGE_ID" != "" ]; then
     echo "Replacing package ID"
     IFS='.' read -r -a DIRS <<< "$PACKAGE_ID"
     PACKAGE_DIR=$( IFS=$'/'; echo "${DIRS[*]}" )
-    mkdir -p "$EXTRACT_PATH/smali/$PACKAGE_DIR"
-    SRC="$EXTRACT_PATH/smali/com/mattermost/rnbeta/*.*"
-    DEST="$EXTRACT_PATH/smali/$PACKAGE_DIR"
-    mv $SRC $DEST
-    find "$EXTRACT_PATH/smali/com/mattermost" -type f -exec sed -i '' -e "s~Lcom/mattermost/rnbeta~L$PACKAGE_DIR~g" {} \;
+    mkdir -p "$EXTRACT_PATH/smali_classes2/$PACKAGE_DIR"
+    SRC="$EXTRACT_PATH/smali_classes2/com/mattermost/rnbeta/*.*"
+    DEST="$EXTRACT_PATH/smali_classes2/$PACKAGE_DIR"
+    find "$EXTRACT_PATH/smali_classes2/com/mattermost" -type f -exec sed -i '' -e "s~Lcom/mattermost/rnbeta~L$PACKAGE_DIR~g" {} \;
     sed -i '' -e "s/com.mattermost.rnbeta/$PACKAGE_ID/g" "$EXTRACT_PATH/AndroidManifest.xml"
+    mv $SRC $DEST
 
     if [ "$GOOGLE_SERVICES_PATH" != "" ]; then
         echo "Replacing Google Services values"
@@ -162,7 +162,6 @@ if [ "$PACKAGE_ID" != "" ]; then
 
         xmlstarlet ed -L -u "/resources/string[@name='firebase_database_url']" -v "$FIREBASE_URL" "$STRINGS_VALUES_PATH"
         xmlstarlet ed -L -u "/resources/string[@name='gcm_defaultSenderId']" -v "$PROJECT_NUMBER" "$STRINGS_VALUES_PATH"
-        xmlstarlet ed -L -u "/manifest/application/meta-data[@android:name='com.wix.reactnativenotifications.gcmSenderId']/@android:value" -v "\ $PROJECT_NUMBER" "$EXTRACT_PATH/AndroidManifest.xml"
         xmlstarlet ed -L -u "/resources/string[@name='google_api_key']" -v "$FIREBASE_API_KEY" "$STRINGS_VALUES_PATH"
         xmlstarlet ed -L -u "/resources/string[@name='google_app_id']" -v "$FIREBASE_SDK_APP_ID" "$STRINGS_VALUES_PATH"
         xmlstarlet ed -L -u "/resources/string[@name='google_crash_reporting_api_key']" -v "$FIREBASE_API_KEY" "$STRINGS_VALUES_PATH"

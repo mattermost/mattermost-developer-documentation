@@ -7,7 +7,7 @@ categories:
 author: Jesús Espino
 github: jespino
 community: jesus.espino
-canonicalUrl: https://mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/
+canonicalUrl: https://developers.mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/
 ---
 
 Maintaining success in a large open-source project is one of the key objectives

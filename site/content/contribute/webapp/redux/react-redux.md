@@ -1,5 +1,7 @@
 ---
 title: "Using Redux with React"
+heading: "Using Redux with React in Mattermost"
+description: "Find out how using Redux with React is fairly straightforward thanks to the React Redux library."
 date: 2017-08-20T11:35:32-04:00
 weight: 7
 subsection: Redux
@@ -67,7 +69,7 @@ Both mapStateToProps and mapDispatchToProps are optional and can be omitted as n
 
 If you're using a selector that is produced through a factory, such as makeGetUser, you can instead generate an individual `mapStateToProps` function for each instance of the component.
 
-```
+```javascript
 // component/my_component/index.jsx
 
 ...
@@ -94,4 +96,4 @@ export default connect(makeMapStateToProps, mapDispatchToProps)(MyComponent);
 
 ## Performance Considerations
 
-Something very important to note when using React with Redux is that every single `mapStateToProps` function within your application will be called whenever anything in the store changes. If any work being done in `mapStateToProps` performs any complicated calculations or returns rich objects, it should be moved into a [selector](/contribute/redux/selectors) so that it can be memoized whenever possible.
+Something very important to note when using React with Redux is that every single `mapStateToProps` function within your application will be called whenever anything in the store changes. If any work being done in `mapStateToProps` performs any complicated calculations or returns rich objects, it should be moved into a [selector](/contribute/redux/selectors/) so that it can be memoized whenever possible.

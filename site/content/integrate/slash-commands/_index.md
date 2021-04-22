@@ -1,7 +1,10 @@
 ---
 title: "Slash Commands"
+heading: "Slash Commands at Mattermost"
+description: "Slash commands trigger an HTTP request to a web service that can in turn post one or more messages in response."
 date: "2017-08-19T12:01:23-04:00"
 section: "integrate"
+weight: 40
 ---
 
 Slash commands are messages that begin with `/` and trigger an HTTP request to a web service that can in turn post one or more messages in response.
@@ -122,7 +125,7 @@ To debug slash commands in System Console > Logs, set System Console > Logging >
 
 You can send multiple responses with an `extra_responses` parameter as follows.
 
-```
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 696
@@ -130,7 +133,7 @@ Content-Length: 696
 {
     "response_type": "in_channel",
     "text": "\n#### Test results for July 27th, 2017\n@channel here are the requested test results.\n\n| Component  | Tests Run   | Tests Failed                                   |\n| ---------- | ----------- | ---------------------------------------------- |\n| Server     | 948         | :white_check_mark: 0                           |\n| Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |\n| iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |\n\t\t      ",
-    "username": "test-automation"
+    "username": "test-automation",
     "icon_url": "https://www.mattermost.org/wp-content/uploads/2016/04/icon.png",
     "props": {
         "test_data": {

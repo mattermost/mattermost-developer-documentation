@@ -1,5 +1,7 @@
 ---
 title: Web App Reference
+heading: "Mattermost Web App Reference"
+description: "Learn how to implement the PluginClass interface used by the Mattermost web app to initialize and uninitialize your plugin."
 date: 2018-07-10T00:00:00-05:00
 subsection: Web App Plugins
 weight: 10
@@ -167,7 +169,7 @@ A short usage example of a `PostType` component using the post utility functions
 ```javascript
 import React from 'react'; // accessed through webpack externals
 import PropTypes from 'prop-types';
-import {makeStyleFromTheme} from 'mattermost-redux/utils/theme_utils';
+
 const PostUtils = window.PostUtils; // must be accessed through `window`
 
 export default class PostTypeFormatted extends React.PureComponent {
@@ -175,15 +177,12 @@ export default class PostTypeFormatted extends React.PureComponent {
     // ...
 
     render() {
-        const style = getStyle(this.props.theme);
         const post = this.props.post;
 
         const formattedText = PostUtils.formatText(post.message); // format the text
 
         return (
-            <div
-                style={style.container}
-            >
+            <div>
                 {'Formatted text: '}
                 {PostUtils.messageHtmlToComponent(formattedText)} // convert the html to components
             </div>

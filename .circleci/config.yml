@@ -23,6 +23,21 @@ jobs:
           paths:
             - dist/html
 
+  deploy:
+    docker:
+      - image: circleci/python:3.6
+    steps:
+      - attach_workspace:
+          at: .
+      - aws-s3/sync:
+          from: dist/html
+          to: s3://mattermost-developer-documentation/branches/$CIRCLE_BRANCH
+          arguments: '--acl public-read'
+      - aws-s3/sync:
+          from: dist/html
+          to: s3://mattermost-developer-documentation/commits/$CIRCLE_SHA1
+          arguments: '--acl public-read'
+
   status:
     docker:
       - image: circleci/python:3.6
@@ -35,8 +50,21 @@ workflows:
   version: 2
   ci:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              ignore: gh-pages
+      - deploy:
+          context: mattermost-dev-docs-s3
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: gh-pages
       - status:
           context: matterbuild-github-token
           requires:
-            - build
+            - deploy
+          filters:
+            branches:
+              ignore: gh-pages

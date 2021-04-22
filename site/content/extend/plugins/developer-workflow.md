@@ -1,5 +1,7 @@
 ---
 title: "Developer Workflow"
+heading: "Developer Workflow at Mattermost"
+description: "Read about developer workflows and learn how work with plugins and debug them in Mattermost."
 date: 2020-07-11T23:00:00-04:00
 weight: 3
 subsection: Plugins
@@ -13,9 +15,10 @@ subsection: Plugins
 - `make test` - Runs the plugin's server tests and webapp tests
 - `make check-style` - Runs linting checks on the plugin's server and webapp folders
 - `make enable` - Enables the plugin on the Mattermost server
-- `make disable` - Disables the plugin on the Mattermost server
-- `make reset` - Disables and re-enables the plugin on the Mattermost server
-- `make debug-plugin` - Starts a `delve` process and attaches it to your running plugin
+- `make disable` - Disables the plugin on the Mattermost server.
+- `make reset` - Disables and re-enables the plugin on the Mattermost server.
+- `make attach-headless` - Starts a `delve` process and attaches it to your running plugin.
+- `make clean` - Force deletes the content of build-related files. Use when running into build issues.
 
 You can run the development build of the plugin by setting the environment variable `MM_DEBUG=1`, or prefixing the variable at the beginning of the `make` command. For example, `MM_DEBUG=1 make deploy` will deploy the development build of the plugin to your server, allowing you to have a more fluid debugging experience. To use the production build of the plugin instead, unset the `MM_DEBUG` environment variable before running the `make` commands.
 
@@ -51,7 +54,7 @@ An `http` URL pointing to your server should show in the terminal. The `https` v
 
 ### Debugging server-side plugins using `delve`
 
-Using the `make debug-plugin` command will allow you to use a debugger and step through the plugin's server code. A [delve](https://github.com/go-delve/delve) process will be created and attach to your plugin. You can then use an IDE or debug console to connect to the `delve` process. If you are using VSCode, you can use this `launch.json` configuration to connect.
+Using the `make attach-headless` command will allow you to use a debugger and step through the plugin's server code. A [delve](https://github.com/go-delve/delve) process will be created and attach to your plugin. You can then use an IDE or debug console to connect to the `delve` process. If you're using VSCode, you can use this `launch.json` configuration to connect.
 
 ```json
 {
@@ -69,7 +72,7 @@ If the debugger is paused for more than 5 seconds, the RPC connection with the s
 
 In order to be able to pause the debugger for more than 5 seconds, two modifications need to be done to the `mattermost-server` repository:
 
-1. The plugin health check job needs to be disabled. This can be done by setting the server config setting `PluginSettings.EnableHealthCheck` to `false`. Note that if your plugin crashes, you'll need to restart it, using `make reset` for example. This command will also kill any currently running `delve` process. If you want to continue debugging with `delve`, you'll need to run `make debug-plugin` again after restarting the plugin.
+1. The plugin health check job needs to be disabled. This can be done by setting the server config setting `PluginSettings.EnableHealthCheck` to `false`. Note that if your plugin crashes, you'll need to restart it, using `make reset` for example. This command will also kill any currently running `delve` process. If you want to continue debugging with `delve`, you'll need to run `make attach-headless` again after restarting the plugin.
 
 2. The `go-plugin`'s RPC client needs to be configured with a larger timeout duration. You can change the code at [mattermost-server/vendor/github.com/hashicorp/rpc_client.go](https://github.com/mattermost/mattermost-server/blob/bf03f391e635b0b9b129768cec5ea13c571744fa/vendor/github.com/hashicorp/go-plugin/rpc_client.go#L63) to increase the duration. Here's the change you can make to extend the timeout to 5 minutes:
 
