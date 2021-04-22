@@ -29,11 +29,11 @@ Apps are available as a Developers Preview and we're looking for your feedback! 
 
 * Apps will soon be available for self-managed deployments as well as customers' own AWS environments.
 
-Read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to write your first app.
-
 ## Developing apps
 
 We recommend starting off with local development. Visit the [Developer Setup Guide](https://developers.mattermost.com/contribute/server/developer-setup/) for information about setting up your development environment.
+
+Next, read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to write your first app.
 
 ### App lifecycle
 
