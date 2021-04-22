@@ -6,7 +6,7 @@ section: "integrate"
 weight: 90
 ---
 
-Apps are lightweight, interactive add-ons to Mattermost which use serverless hosting to run without any dedicated infrastructure. Apps can:
+Apps are lightweight, interactive add-ons to Mattermost which can use any HTTP-compatible hosting mechanism to run without dedicated infrastructure. Apps can:
 
 - Display interactive, dynamic Modal forms and Message Actions.
 - Be written in several different languages.
