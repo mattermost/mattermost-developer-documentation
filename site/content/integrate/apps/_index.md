@@ -37,13 +37,9 @@ Visit the [Developer Setup Guide](https://developers.mattermost.com/contribute/s
 - [App Lifecycle]({{< ref "lifecycle" >}})
 - godoc: [appsctl](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/cmd/appsctl) - CLI tool used to provision Mattermost Apps in development and production.
 
-### Using Mattermost APIs
+### [Using Mattermost APIs]({{< ref "using-mattermost-api" >}})
 
-{{< ref "using-mattermost-api" >}}
-
-### Using third-party APIs
-
-{{< ref "using-third-party-api" >}}
+### [Using third-party APIs]({{< ref "using-third-party-api" >}})
 
 ### Functions and calls
 
@@ -74,6 +70,4 @@ Visit the [Developer Setup Guide](https://developers.mattermost.com/contribute/s
 
 - Example: [Hello, World](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld/send_form.json) `send` form.
 
-### In-post interactivity
-
-({{< ref "example-interactivity" >}})
+### [In-post interactivity](({{< ref "example-interactivity" >}}))
