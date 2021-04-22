@@ -24,10 +24,6 @@ Read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to writ
 
 [TODO]
 
-## Hello, World
-
-- [Anatomy]({{< ref "hello-world" >}}) of a simple app.
-
 ## Functions and calls
 
 - Example: [Hello, World](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/helloworld/hello.go#L45) `send` function.
