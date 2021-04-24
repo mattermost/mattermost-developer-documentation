@@ -2,7 +2,7 @@
 title: "Bindings"
 heading: "Bindings"
 description: "TODO"
-section: "apps"
+subsection: "Apps (Developers Preview)"
 weight: 50
 ---
 

@@ -1,8 +1,8 @@
 ---
-title: "Interaction"
-heading: "Interaction"
+title: "Interactivity"
+heading: "Interactivity"
 description: "TODO"
-section: "apps"
+subsection: "Apps (Developers Preview)"
 weight: 50
 ---
 

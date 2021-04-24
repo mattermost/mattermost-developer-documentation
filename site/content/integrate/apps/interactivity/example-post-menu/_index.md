@@ -2,7 +2,7 @@
 title: "Post Menu Example"
 heading: "Post Menu Example"
 description: "In this example, the bindings specify to expand the post the user clicks on."
-subsection: "interactivity"
+subsection: "Interactivity"
 weight: 70
 ---
 

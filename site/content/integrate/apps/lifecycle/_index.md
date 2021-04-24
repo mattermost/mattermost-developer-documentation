@@ -2,7 +2,7 @@
 title: "App Lifecycle"
 heading: "The App Lifecycle"
 description: "The app lifecycle."
-section: "apps"
+subsection: "Apps (Developers Preview)"
 weight: 100
 ---
 
