@@ -9,11 +9,11 @@ weight: 40
 
 A call ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Call)) is the definition of an action. The values are:
 
-| Field name | Field type | Function                                                                                                  |
-| :--------- | :--------- | :-------------------------------------------------------------------------------------------------------- |
-| `url`      | string     | The app endpoint to call. Mattermost will call `$ROOTURL/url`.                                            |
-| `values`   | Object     | A set of elements to be interpreted by the app. Forms and slash commands will also populate these values. |
-| `expand`   | Expand     | A definition of the information to expand to send to the app.                                             |
+| Name     | Type   | Description                                                                                                          |
+| :------- | :----- | :------------------------------------------------------------------------------------------------------------------- |
+| `path`   | string | The path of the call. For HTTP apps, the path is appended to the app's                                     `RootURL` |
+| `expand` | Expand | A definition of the information to expand to send to the app.                                                        |
+| `state`  | Object | A set of elements to be interpreted by the app. Forms and slash commands will also populate these values.            |
 
 ### Expand
 
@@ -23,16 +23,19 @@ TODO: Define differences between all and summary
 
 The possible expansions are:
 
-| Field name                 | Field type                           |
-| :------------------------- | :----------------------------------- |
-| `app`                      | Expands the app information.         |
-| `acting_user`              | Expands the Acting User information. |
-| `acting_user_access_token` | A slash command                      |
-| `admin_access_token`       | Include the admin access token.      |
-| `channel`                  | Expands the channel information.     |
-| `post`                     | Expands the post information.        |
-| `root_post`                | Expands the root post information.   |
-| `team`                     | Expands the team information.        |
+| Name                       | Description                                   |
+| :------------------------- | :-------------------------------------------- |
+| `app`                      | Expands the app information.                  |
+| `acting_user`              | Expands the acting user information.          |
+| `acting_user_access_token` | Include the user-level access token.          |
+| `admin_access_token`       | Include the admin access token.               |
+| `channel`                  | Expands the channel information.              |
+| `post`                     | Expands the post information.                 |
+| `root_post`                | Expands the root post information.            |
+| `team`                     | Expands the team information.                 |
+| `user`                     | Expands the subject user information.         |
+| `oauth2_app`               | Expands the remote OAuth2 configuration data. |
+| `oauth2_user`              | Expands the remote OAuth2 user.               |
 
 
 ## Call handling
@@ -43,19 +46,18 @@ When a call is performed, a POST request will be made to the endpoint defined in
 
 The call request ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallRequest)) will include:
 
-| type                    | CallType    | The type of call being made.                                                               |
-| :---------------------- | :---------- | :----------------------------------------------------------------------------------------- |
-| `values`                | Object      | The pairs of key values present in the call. Can be populated by forms and slash commands. |
-| `context`               | Context     | The context of the call.                                                                   |
-| `raw_command`           | string      | The unparsed command for slash commands.                                                   |
-| `description`           | string      | The description for your app. Used in the marketplace.                                     |
-| `homepage_url`          | string      | The app homepage. Used in the marketplace and for OAuth purposes.                          |
-| `root_url`              | string      | Base url to send all calls. Only needed for http apps.                                     |
-| `requested_permissions` | Permissions | All the permissions needed by the app.                                                     |
+| Name             | Type    | Description                                                                                |
+| :--------------- | :------ | :----------------------------------------------------------------------------------------- |
+| `values`         | Object  | The pairs of key values present in the call. Can be populated by forms and slash commands. |
+| `context`        | Context | The context of the call.                                                                   |
+| `raw_command`    | string  | The unparsed command for slash commands.                                                   |
+| `selected_field` | string  | Used in lookups and form refresh to communicate what field                                 |
+| `query`          | string  | Used in lookups and form refresh what query strings is entered by the user.                |
+
 
 The call type ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallType)) can be:
 
-| type     | CallType                             |
+| Type     | Meaning                              |
 | :------- | :----------------------------------- |
 | `submit` | Submit.                              |
 | `form`   | Request for a form.                  |
@@ -66,67 +68,73 @@ The call type ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugi
 
 Depending on the location and expansions, calls will have different context. These are all the possible context ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context)) values.
 
-| type                       | CallType | The type of call being made.                                                        |
+| Name                       | Type     | Description                                                                         |
 | :------------------------- | :------- | :---------------------------------------------------------------------------------- |
-| `app_id`                   | string   | The app id                                                                          |
+| `app_id`                   | string   | The app id.                                                                         |
 | `location`                 | Location | The location from which the call was performed.                                     |
 | `subject`                  | Subject  | Event subject.                                                                      |
-| `bot_user_id`              | string   | Bot user id                                                                         |
-| `acting_user_id`           | string   | Id from the user performing the call                                                |
-| `team_id`                  | string   | Id from the team from within the call was performed.                                |
-| `channel_id`               | string   | Id from the channel from within the call was performed.                             |
-| `post_id`                  | string   | root_post_id                                                                        |
+| `bot_user_id`              | string   | Bot user ID.                                                                        |
+| `acting_user_id`           | string   | ID from the user performing the call.                                               |
+| `user_id`                  | string   | ID from the user which is the subject of the call.                                  |
+| `team_id`                  | string   | ID from the team from within the call was performed.                                |
+| `channel_id`               | string   | ID from the channel from within the call was performed.                             |
+| `post_id`                  | string   | Id from the post from within the call was performed.                                |
 | `root_post_id`             | string   | If the call was performed from a post in a thread, the root post id of that thread. |
-| `mattermost_site_url`      | string   | Mattermost base URL                                                                 |
+| `mattermost_site_url`      | string   | Mattermost base URL.                                                                |
+| `app_path`                 | string   | App's path on the Mattermost instance (appendable to `mattermost_site_url`).        |
+| `mattermost_site_url`      | string   | Mattermost base URL.                                                                |
+| `user_agent`               | string   | UserAgent used to perform the call. It can be either `webapp` or `mobile`.          |
 | `bot_access_token`         | string   | (Expansion)                                                                         |
 | `acting_user`              | User     | (Expansion)                                                                         |
 | `acting_user_access_token` | string   | (Expansion)                                                                         |
 | `admin_access_token`       | string   | (Expansion)                                                                         |
+| `oauth2`                   | App      | (Expansion)                                                                         |
 | `app`                      | App      | (Expansion)                                                                         |
 | `channel`                  | Channel  | (Expansion)                                                                         |
 | `post`                     | Post     | (Expansion)                                                                         |
 | `root_post`                | Post     | (Expansion)                                                                         |
 | `team`                     | Team     | (Expansion)                                                                         |
+| `user`                     | User     | (Expansion)                                                                         |
 
 ### Call Response
 
 There are several types ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallResponseType)) of responses:
 
-| type       | CallType                           |
+| Value      | Description                        |
 | :--------- | :--------------------------------- |
 | `ok`       | OK.                                |
 | `error`    | An error has occurred.             |
 | `form`     | Should open a form.                |
-| `call`     | Should perform another call.       |
 | `navigate` | Should navigate the user to a url. |
 
 #### OK response
 
-| type       | Response |
-| :--------- | :------- |
-| `type`     | ok       |                                                                              |
-| `markdown` | string   | (Optional) Markdown text that will be sent to the user as an ephemeral post. |
+| Name       | Type   | Description                                                                  |
+| :--------- | :----- | :--------------------------------------------------------------------------- |
+| `type`     | string | Use `ok`.                                                                    |
+| `markdown` | string | (Optional) Markdown text that will be sent to the user as an ephemeral post. |
 
 #### Error response
 
-| type    | Error  |
-| :------ | :----- |
-| `type`  | error  |                                                                   |
+| Name    | Type   | Description                                                       |
+| :------ | :----- | :---------------------------------------------------------------- |
+| `type`  | string | Use `error`.                                                      |
 | `error` | string | Markdown text that will be sent to the user as an ephemeral post. |
 
 #### Form response
 
-| type    | form |
-| :------ | :--- |
-| `type`  | form |               |
-| `error` | form | Form to open. |
+| Name   | Type   | Description   |
+| :----- | :----- | :------------ |
+| `type` | string | Use `form`.   |
+| `form` | form   | Form to open. |
 
 #### Navigate response
 
-| type              | navigate |
-| :---------------- | :------- |
-| `type`            | navigate |                     |
-| `navigate_to_url` | string   | URL to navigate to. |
+| Name              | Type   | Description         |
+| :---------------- | :----- | :------------------ |
+| `type`            | string | Use `navigate`.     |
+| `navigate_to_url` | string | URL to navigate to. |
+| `navigate_to_url` | string | URL to navigate to. |
 
 ## Special calls
 

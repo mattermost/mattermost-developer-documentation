@@ -8,7 +8,7 @@ weight: 50
 
 Bindings ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding)) are what establish the relationship between locations and calls. Whenever it is called, you have to provide the list of bindings available according to the context. The context for the bindings call includes the app id, bot access token, team id, channel id, acting user id and mattermost site url. By default it does not expand any value.
 
-One example bindings response is the one from the [Hello World!](https://github.com/mattermost/mattermost-plugin-apps/blog/master/examples/go/helloworld/bindings.json) app. 
+One example bindings response is the one from the [Hello World!](https://github.com/mattermost/mattermost-plugin-apps/blob/master/examples/go/helloworld/bindings.json) app. 
 
 The expected response should include the following:
 
@@ -30,7 +30,7 @@ Bindings are organized by top level locations. Top level bindings just need to d
 | Name       | Type   | Description                                                                     |
 | :--------- | :----- | :------------------------------------------------------------------------------ |
 | `location` | string | Name of this location. The whole path of locations will be added in the context |
-| `icon`     | string | (Optional) Url to the icon                                                      |
+| `icon`     | string | (Optional) URL to the icon                                                      |
 | `label`    | string | Text to show in the item                                                        |
 | `call`     | Call   | Call to perform                                                                 |
 
@@ -41,7 +41,7 @@ The call for these bindings will include in the context the user ID, the post ID
 | Name       | Type   | Description                                                                      |
 | :--------- | :----- | :------------------------------------------------------------------------------- |
 | `location` | string | Name of this location. The whole path of locations will be added in the context. |
-| `icon`     | string | (Optional) Url to the icon                                                       |
+| `icon`     | string | (Optional) URL to the icon                                                       |
 | `label`    | string | Text to show in the item on mobile and webapp collapsed view                     |
 | `hint`     | string | Text to show in tooltip                                                          |
 | `call`     | Call   | Call to perform.                                                                 |
