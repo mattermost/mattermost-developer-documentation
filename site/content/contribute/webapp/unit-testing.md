@@ -4,7 +4,6 @@ heading: "Unit Testing at Mattermost"
 description: "Review our guidelines for unit testing for your Mattermost webapp, including a guide on how to do component testing."
 date: 2018-11-20T11:35:32-04:00
 weight: 5
-subsection: Web App
 ---
 
 ## Component and Utility files
@@ -18,10 +17,8 @@ Below is a brief guide on how to do component testing:
 1. Match snapshot using default or expected props. Note that while the snapshot is convenient, we require not to rely solely on this for every test case as this is easily overlooked by initiating `jest -updateSnapshot` without carefully inspecting the change.
     ```javascript
     const baseProps = {
-        activeSection: 'email',
-        onSubmit: jest.fn(),
-        updateSection: jest.fn(),
-    };
+        active        onSubmit: jest.fn(),
+        update    };
 
     test('should match snapshot, not send email notifications', () => {
         const wrapper = shallow(<EmailNotificationSetting {...baseProps}/>);

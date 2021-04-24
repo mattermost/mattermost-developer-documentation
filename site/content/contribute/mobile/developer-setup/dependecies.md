@@ -4,7 +4,6 @@ heading: "Adding New Dependencies in Mattermost"
 description: "If you need to add a new dependency to the project, it is important to add them in the right way. Find out how."
 date: 2018-05-20T11:35:32-04:00
 weight: 4
-subsection: Developer Setup
 ---
 
 If you need to add a new dependency to the project, it is important to add them in the right way. Instructions for adding different types of dependencies are described below.

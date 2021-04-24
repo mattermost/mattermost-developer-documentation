@@ -3,7 +3,6 @@ title: Writing a Blog Post
 heading: "Writing a Blog Post at Mattermost"
 description: "Blog posts are a great way to share your experience with the community. Follow these guidelines when writing a blog post for Mattermost."
 date: 2019-02-06T14:28:35-05:00
-section: internal
 weight: 105
 ---
 

@@ -3,7 +3,6 @@ title: Offboarding
 heading: "Information about Offboarding at Mattermost"
 description: "Is someone leaving Mattermost? Here's a comprehensive list of what needs to be done to ensure successful offboarding."
 date: 2018-03-19T14:59:29-05:00
-section: internal
 weight: 30
 ---
 

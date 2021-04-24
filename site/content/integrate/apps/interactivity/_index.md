@@ -2,7 +2,6 @@
 title: "Interactivity"
 heading: "Interactivity"
 description: "TODO"
-subsection: "Apps (Developers Preview)"
 weight: 50
 ---
 

@@ -3,7 +3,6 @@ title: "Server"
 heading: "An Introduction to the Mattermost Server"
 description: "The server, which is written in Go and compiles on a single binary, is the highly scalable backbone of the Mattermost project."
 date: "2018-04-19T12:01:23-04:00"
-section: "contribute"
 weight: 2
 ---
 

@@ -3,7 +3,6 @@ title: Quick Start
 heading: "Quick Start: Extending the Mattermost Web App"
 description: "This quickstart tutorial will walk you through the basics of extending the Mattermost web app using plugins."
 date: 2018-07-10T00:00:00-05:00
-subsection: Web App Plugins
 weight: -10
 ---
 
