@@ -10,9 +10,9 @@ Apps are lightweight, interactive add-ons to Mattermost which can use any HTTP-c
 
 - Display interactive, dynamic Modal forms and Message Actions.
 - Be written in any language.
-- Attach themselves to locations in the Mattermost user interface (e.g. channel bar buttons, post menu, channel menu, commands), and can add their custom `/` commands with full Autocomplete.
+- Attach themselves to locations in the Mattermost user interface (e.g. channel bar buttons, post menu, channel menu, commands), and can add their custom slash commands with full Autocomplete.
 - Receive webhooks from Mattermost, and third-parties, and use the Mattermost REST APIs to post messages, etc.
-- Work on both Mobile and Desktop apps so developers can focus on the functionality of their apps.
+- Work on both Mobile and Desktop Apps so developers can focus on the functionality of their apps.
 - Be deployed using our Mattermost serverless hosting infrastructure keeping data secure and supporting scalability.
 
 When you develop using the Apps Framework, your apps can:
@@ -30,9 +30,8 @@ Apps are available as a Developers Preview and we're looking for your feedback! 
 
 Read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to write your first app.
 
-
 ## FAQ
 
 ### What language should I use to write apps?
 
-Any language you want. The only langue with an official driver is go right now.
+Any language you want. The only language with an official right now is Go.
