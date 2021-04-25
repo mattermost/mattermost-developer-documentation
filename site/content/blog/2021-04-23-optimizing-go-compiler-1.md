@@ -1,8 +1,8 @@
 ---
-title: "A newbie optimizing the Go compiler in three acts: Act I"
-heading: "A newbie optimizing the Go compiler in three acts: Act I"
-description: "desc 1"
-summary: "summary 1"
+title: "Fixing a bug in the Go compiler as a newbie: a deep dive (I)"
+heading: "Fixing a bug in the Go compiler as a newbie: a deep dive (I)"
+description: ""
+summary: "Contributing to the Go compiler is within everyone's reach. The first part of this series of posts defines the issue we are going to investigate, and introduces the parts of the Go compiler involved in its fix. We will learn about Static Single Assignment, rewrite rules and some specific incantations to hack on the Go compiler."
 slug: optimizing-go-compiler-1
 date: 2021-04-23T12:00:00-05:00
 categories:
@@ -12,11 +12,23 @@ github: agarciamontoro
 community: alejandro.garcia
 ---
 
-[bf48163e8f2b604f3b9e83951e331cd11edd8495](https://github.com/golang/go/commit/bf48163e8f2b604f3b9e83951e331cd11edd8495). That is the hash of one of the 47790 commits that, at the time of this writing, build the whole git history of the Go compiler. It is definitely not the most important commit there, and most of the other ones probably deserve way more attention. But I like bf48163. It is a good commit, I think. I may be a bit biased, of course, as it is my first contribution to Go. Not only that, it is my first contribution _ever_ to any compiler!
+[bf48163e8f2b604f3b9e83951e331cd11edd8495](https://github.com/golang/go/commit/bf48163e8f2b604f3b9e83951e331cd11edd8495). That is the hash of one of the 47791 commits that, at the time of this writing, build the whole git history of the Go compiler. It is definitely not the most important commit there, and most of the other ones probably deserve way more attention. But I like `bf48163`. It is a good commit, I think. I may be a bit biased, of course, as it is my first contribution to Go.
 
-What's really interesting here is that I am not an expert in Go, nor in compilers in general, at all. Sure, I know my way through the language to write software using it, but I had never thought I could be able to modify the compiler itself.
+Not only that, it is my first contribution _ever_ to any compiler!
 
-In this post I will try to explain the ins and outs of how I approached, as a newbie, my first contribution to a compiler. It is a long post, but I did not want to leave out any details. In the process, I will also try to demistify compilers, big projects as Go and the perceived difficulty of contributing to them.
+What's really interesting here is that I am not an expert in Go---nor in compilers in general---at all. Sure, I know my way through the language to write software using it, but I had never thought I could be able to modify the compiler itself.
+
+And that is why I wrote this, to let you know that fixing a bug in a compiler is not only meant for a few chosen ones, but within reach of anyone.
+
+Although this was conceived as a single post, it got a wee bit out of hand, so I decided to split it in three:
+
+-   Part 1: what the bug looks like, and an introduction to some parts of the Go compiler.
+-   [Part 2](/blog/optimizing-go-compiler-2): what the bug actually is.
+-   [Part 3](/blog/optimizing-go-compiler-3): how to fix the bug.
+
+Do not get discouraged for the length of the content: it does not correlate with the complexity of the issue, but with the level of detail I tried to use when explaining it. I wanted to make sure I explained the ins and outs of how I approached the fix, and I do not assume any knowledge about compilers from the reader, so I tried to discuss everything in chapter and verse.
+
+Enough with the intro, let's start!
 
 # I'd like to work on this one!
 
@@ -62,17 +74,17 @@ So what's the bug? This is where things start to get interesting. The compiler i
 
 # Understanding the compiler
 
-Let's pause for a bit to learn something more about how the Go compiler works.
+Before diving into the bug, let's pause for a bit to learn something more about how the Go compiler works.
 
-A compiler is a translator: it converts a piece of code in a language (in our case, Go) to an equivalent piece of code in another language (in our case, assembly code, whose specific instructions depend on the specific architecture we want to run the executable in). Hopefully, the meaning of what we wrote in Go (the behavior of our program), is maintained throughout the process of translation.
-
-## Static Single Assignment
+For anyone who does not know, a compiler is a translator: it converts a piece of code in a language (in our case, Go) to an equivalent piece of code in another language (in our case, assembly code, whose specific instructions depend on the specific architecture we want to run the executable in). Hopefully, the meaning of what we wrote in Go (the behavior of our program), is maintained throughout the process of translation.
 
 In the Go compiler, this complex process is divided into phases. There are _a lot_ of them, and we will not discuss the structure in this blog post---see [`cmd/compile/README.md`](https://github.com/golang/go/blob/0c93b16d015663a60ac77900ca0dcfab92310790/src/cmd/compile/README.md) for a high-level view of the phases, and take a look directly [at the code](https://github.com/golang/go/blob/0c93b16d015663a60ac77900ca0dcfab92310790/src/cmd/compile/internal/ssa/compile.go#L426-L481) to see the complete list---. We will instead focus on one of the last phases, which converts the so-called Static Single Assignment (SSA) form into the final assembly instructions, that depend on the architecture we are compiling for.
 
+## Static Single Assignment
+
 SSA is an intermediate generic representation of the code, which makes it easier to apply some optimizations before going too low-level into the architecture-specific instructions. SSA is a really interesting topic on its own, so make sure to read [the documentation](https://github.com/golang/go/blob/master/src/cmd/compile/internal/ssa/README.md) and, if you have time, go and see [this 30 minute talk](https://www.youtube.com/watch?v=uTMvKVma5ms), which is a great introduction to the topic.
 
-For the purpose of this post, we need to know that SSA is a representation of the original code with a simple rule: every value is assigned only once, although it can be used any number of times. The syntax of SSA is not particularly interesting, but we need to understand it for being able to follow the rest of the post.
+For the purpose of these posts, we need to know that SSA is a representation of the original code with a simple rule: every value is assigned only once, although it can be used any number of times. The syntax of SSA is not particularly interesting, but we need to understand it for being able to follow the rest of the post.
 
 Let's say we have the following piece of (very absurd) code:
 
@@ -168,9 +180,9 @@ For now, it's enough to understand that the rules match a specific pattern of in
 
 ## Connecting all together
 
-In order to investigate the issue and solve it, we will need to set up the development environment for the Go compiler. I encourage to read the official [documentation](https://golang.org/doc/contribute): it is comprehensive and easy to understand. There are some particularities to the process, as the need to use Gerrit instead of Github, but it is really straightforward.
+In order to investigate the issue and solve it, we will need to set up the development environment for the Go compiler. I encourage you to read the official [documentation](https://golang.org/doc/contribute): it is comprehensive and easy to understand. There are some particularities to the process, as the need to use Gerrit instead of Github, but it is really straightforward.
 
-For the specifics we will need to use through this post, we can summarize a couple of things. All the commands in this section assume that you are in the Go repository root directory.
+For the specifics we will need to use in these posts, we can summarize a couple of things. All the commands in this section assume that you have cloned the Go repository and have a shell open in its root directory.
 
 ### How to apply the changes done to the rewrite rules
 
@@ -209,3 +221,7 @@ And last, but not least, when you have applied your changes, you will want to kn
 cd src/
 ./all.bash
 ```
+
+# Next steps
+
+Ok, enough theory! We already know what the issue is and the very basics of how SSA and the rewrite rules work. Go and read [the second part of the series](/blog/optimizing-go-compiler-2) to deep dive into the bug itself, which will let us know what the issue actually is and give us some hints on how to fix it.
