@@ -31,7 +31,7 @@ Push notifications on iOS are managed and dispatched using [Apple's Push Notific
 - Choose the App ID you're generating a certificate for. Use the regular App ID for the Mattermost app, **not** for the `.NotificationService`, etc.
 ![image](/img/mobile/choose_app_id.png)
 
-- Choose the certificate request file created using the Keychain access in the previous section and click **Continue**
+- Choose the certificate request file created using the Keychain access in the previous section and select **Continue**.
 ![image](/img/mobile/ios_upload_csr.png)
 
 - Download the Certificate and click **Done** to finish the process
