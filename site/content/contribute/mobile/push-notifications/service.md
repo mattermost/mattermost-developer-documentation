@@ -29,9 +29,9 @@ For the sake of making this guide simple we located the files at `/home/ubuntu/m
 
 In this command, `vX.X.X` refers to the release version you want to download. See [Mattermost Push Notification Service releases](https://github.com/mattermost/mattermost-push-proxy/releases).
 
-2. If you are upgrading a previous version of the Mattermost Push Notification Service make sure to backup your `mattermost-push-proxy.json` file before continuing.
+2. If you're upgrading a previous version of the Mattermost Push Notification Service make sure to back up your `mattermost-push-proxy.json` file before continuing.
 
-3. Unzip the downloaded Mattermost Push Notification Service by typing:
+3. Unzip the downloaded Mattermost Push Notification Service using:
 `tar -xvzf mattermost-push-proxy-X.X.X.tar.gz`
 
 4. Configure the Mattermost Push Notification service by editing the `mattermost-push-proxy.json` file at `/home/ubuntu/mattermost-push-proxy/config`. Follow the steps in the [Android](#set-up-mattermost-push-notification-service-to-send-android-push-notifications)
@@ -71,7 +71,7 @@ In this command, `vX.X.X` refers to the release version you want to download. Se
 
 ### Set up Mattermost Push Notification Service to Send iOS Push Notifications
 
-- Double click the **Push Notifications Certificate** generated and downloaded while [Setting up Push Notifications for iOS](/contribute/mobile/push-notifications/ios) to add it to your Keychain Access (downloads by default as aps.cer).
+- Double click the **Push Notifications Certificate** which is generated and downloaded while [Setting up Push Notifications for iOS](/contribute/mobile/push-notifications/ios) to add it to your Keychain Access. It downloads by default as `aps.cer`.
 
 - Open **Keychain Access**, select the **login** keychain and **My Certificates** from the side menu.
 ![image](/img/mobile/ios_keychain_select.png)
@@ -186,7 +186,7 @@ panic: Failed to load the apple pem cert err=failed to parse PKCS1 private key f
 
 **For iOS / Apple Push Notifications**: If the logs are reflecting DeviceTokenNotForTopic (error 400) this may be because you're using an older / previous Device ID. Re-run the queries you need to get device IDs and test.
 
-This could also be because you generated a certificate for the wrong bundle ID. The bundle ID used in mattermost-push-proxy.json should be the same one as the app and the same that you generated the certificate for.
+This could also be because you generated a certificate for the wrong bundle ID. The bundle ID used in `mattermost-push-proxy.json` should be the same one as the app and the for the same app it was generated for.
 
 ### Reporting issues
 
