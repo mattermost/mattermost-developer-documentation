@@ -66,7 +66,7 @@ func copyArrayToSlice(dest []byte, src *[8]byte) {
 }
 ```
 
-It is now more clear what the function does. It stores the contents of the second argument, the `src` array, into the first argument, the slice `dest`. It uses the [encoding/binary](https://golang.org/pkg/encoding/binary/) package for reading and writing the 8 bytes as an unsigned integer of 64 bits. For doing the copy, we use a temporal variable, `temp`.
+It is now more clear what the function does. It stores the contents of the second argument, the `src` array, into the first argument, the slice `dest`. It uses the [encoding/binary](https://golang.org/pkg/encoding/binary/) package for reading and writing the 8 bytes as an unsigned integer of 64 bits. For doing the copy, we use a temporary variable, `temp`.
 
 The only weird line might be the first one, which is a bounds check. This forces the compiler to check that `dest[8]`, and, thus, all `dest[0]`, ..., `dest[7]`, are valid indices. We do that at the very beginning, so the compiler knows that all indices we are using in the copy are valid, for the whole scope of the function. We do not need to do such a check with `src`, because its length is known at compile time: 8 bytes.
 
@@ -76,7 +76,7 @@ So what's the bug? This is where things start to get interesting. The compiler i
 
 Before diving into the bug, let's pause for a bit to learn something more about how the Go compiler works.
 
-For anyone who does not know, a compiler is a translator: it converts a piece of code in a language (in our case, Go) to an equivalent piece of code in another language (in our case, assembly code, whose specific instructions depend on the specific architecture we want to run the executable in). Hopefully, the meaning of what we wrote in Go (the behavior of our program), is maintained throughout the process of translation.
+Essentially, a compiler is a translator: it converts a piece of code in a language (in our case, Go) to an equivalent piece of code in another language (in our case, assembly code, whose specific instructions depend on the specific architecture we want to run the executable in). Hopefully, the meaning of what we wrote in Go (the behavior of our program), is maintained throughout the process of translation.
 
 In the Go compiler, this complex process is divided into phases. There are _a lot_ of them, and we will not discuss the structure in this blog post---see [`cmd/compile/README.md`](https://github.com/golang/go/blob/0c93b16d015663a60ac77900ca0dcfab92310790/src/cmd/compile/README.md) for a high-level view of the phases, and take a look directly [at the code](https://github.com/golang/go/blob/0c93b16d015663a60ac77900ca0dcfab92310790/src/cmd/compile/internal/ssa/compile.go#L426-L481) to see the complete list---. We will instead focus on one of the last phases, which converts the so-called Static Single Assignment (SSA) form into the final assembly instructions, that depend on the architecture we are compiling for.
 
@@ -127,25 +127,7 @@ var a = five * 16
 
 We can compute the value of `a` by literally making the multiplication `5 times 16`. But it is known that multiplication instructions are quite CPU-expensive. What if we could optimize this line of code by avoiding the multiplication?
 
-It turns out we can, because `16` is a power of `2`. And multiplying by `2^n` is the same as shifting the number to the left `n` places. This is easy to see in binary, where 5 is:
-
-```
-00000101
-```
-
-If we multiply 5 by 2, we get 10, which in binary is:
-
-```
-00001010
-```
-
-And again by 2, we get 20:
-
-```
-00010100
-```
-
-See how we are shifting everything to the left each time we multiply by 2? Then, multiplying by 16 is the same as shifting to the left 4 times, as 16 is `2^4`:
+It turns out we can, because `16` is a power of `2`. And as doubling is the same as applying a single left shift, we can see that multiplying by `2^n` is the same as shifting the number to the left `n` places:
 
 ```
 00000101 // 5
@@ -180,7 +162,7 @@ For now, it's enough to understand that the rules match a specific pattern of in
 
 ## Connecting all together
 
-In order to investigate the issue and solve it, we will need to set up the development environment for the Go compiler. I encourage you to read the official [documentation](https://golang.org/doc/contribute): it is comprehensive and easy to understand. There are some particularities to the process, as the need to use Gerrit instead of Github, but it is really straightforward.
+In order to investigate the issue and solve it, we will need to set up the development environment for the Go compiler. I encourage you to read the official [documentation](https://golang.org/doc/contribute): it is comprehensive and easy to understand. There are some particularities to the process, but it is really straightforward.
 
 For the specifics we will need to use in these posts, we can summarize a couple of things. All the commands in this section assume that you have cloned the Go repository and have a shell open in its root directory.
 
