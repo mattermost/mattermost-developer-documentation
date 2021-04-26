@@ -64,17 +64,16 @@ To implement the API handler you'll first need to [setup your developer environm
     - The general pattern for handlers is
 
         ```Go
-        func handlerName(c *Context, w http.ResponseWriter, r *\ http.Request) {
+        func handlerName(c *Context, w http.ResponseWriter, r *http.Request) {
+            // 1. Parsing of request URL and body
 
-        // 1. Parsing of request URL and body
+            // 2. Permissions check if required
 
-        // 2. Permissions check if required
+            // 3. Invoke logic through the app package
 
-        // 3. Invoke logic through the app package
+            // 4. (Optional) Check the Etag
 
-        // 4. (Optional) Check the Etag
-
-        // 5. Format the response and write the response
+            // 5. Format the response and write the response
         }
         ```
 

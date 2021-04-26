@@ -31,6 +31,7 @@ If you are a community member seeking a review
 4. Make any necessary changes.
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
     * Once you've addressed the concerns, please at-mention the reviewer with a comment on your PR.
+**Note:** Once a PR is submitted it's best practice to avoid rebasing on the base branch or force-pushing. Jesse, a developer at Mattermost, mentions this in his blog article [Submitting Great PRs](https://mattermost.com/blog/submitting-great-prs/). When the PR is merged, all the PR's commits are automatically squashed into one commit, so you don't need to worry about having multiple commits on the PR.
 5. Wait for your code to be merged.
     * Larger pull requests may require more time to review.
     * Once all reviewers have approved your changes, they will handle merging your code.
@@ -69,6 +70,7 @@ If you are a core committer seeking a review
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing so as to avoid churn if changes are requested.
     * Remove the `2: Dev Review` label only when these reviews are done and they accept the changes.
 7. After Dev review, assign a [QA tester](/contribute/getting-started/core-committers/#qa-testers).
+    * Ensure that your PR includes test steps or expected results for QA reference if the QA Test Steps in the Jira ticket have not already been filled in.
     * The choice of QA tester is up to you.
         - In most cases, choose the QA tester embedded with your team.
         - If your change primarily touches another team's codebase, consider their QA tester.
@@ -85,7 +87,8 @@ If you are a core committer seeking a review
     * Merge your pull request and delete the branch if not from a fork.
         - Note that any core committer is free to merge on your behalf.
         - If your pull request depends on other pull requests, consider assigning the `Do Not Merge/Awaiting PR` label.
-9. For handling cherry-picks, please check [here](https://developers.mattermost.com/contribute/getting-started/branching/).
+9. Handle any cherry-picks.
+    * There is an automated cherry-pick process. The author of the pull request should make sure the cherry-pick succeeds. Assume this is the case unless you are explicitly asked to help cherry-pick. Please [check here](https://developers.mattermost.com/contribute/getting-started/branching/#cherry-pick-process---developer) for details.
 10. After a pull request is merged (and cherry-picked where needed), update the Jira ticket.
     * Resolve the ticket for QA from "Ready for QA" button with QA test steps (or "No Testing Required" if no QA testing is needed).
     * Update the release fix version.
