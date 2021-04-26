@@ -35,4 +35,4 @@ Read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to writ
 
 ### What language should I use to write apps?
 
-Any language you want. The only langue with an official driver is go right now.
+Any language you want. However, the only language with an official driver right now is Go.
