@@ -30,15 +30,15 @@ A language library is used to emulate an HTTP to your app. For go you might use 
 
 Finally you need to define the AWS function in the manifest of your app by adding a `aws_lambda` to it which has the following fields:
 
-
 | Name      | Description                                                                                                  |
 | :-------- | :----------------------------------------------------------------------------------------------------------- |
 | `path`    | The lambda function with its Path the longest-matching prefix of the call's Path will be invoked for a call. |
-| `name`    | A human readable name.                                                                                       |
+| `name`    | A human-readable name.                                                                                       |
 | `handler` | The name of the handler function.                                                                            |
-| `runtime` | The AWS lambda runtime to use.                                                                               |
+| `runtime` | The AWS Lambda runtime to use.                                                                               |
 
 For a go app the manifest snippet would look like this:
+
 ```json
 {
     "aws_lambda": [
@@ -73,7 +73,7 @@ We need an app bundle to provision an app. The bundle might be provisioned from 
 2. Storing static assets in the dedicated S3 bucket.
 3. Storing app’s manifest file in the same dedicated S3 bucket.
 
-AWS Lambda functions have semantic names, which means that a function described in the manifest.json file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. And **appsctl** provisions lambda functions using this name. For example a name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. App developer does not need to worry about the AWS lambda function names, Apps Plugin takes care of it. Dedicated S3 bucket name is stored in the environment variable:
+AWS Lambda functions have semantic names, which means that a function described in the manifest.json file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. And **appsctl** provisions lambda functions using this name. For example a name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. An App developer does not need to worry about the AWS Lambda function names, Apps Plugin takes care of it. Dedicated S3 bucket name is stored in the environment variable:
 
 `MM_APPS_S3_BUCKET`
 
@@ -85,7 +85,6 @@ The `manifest.json` file of an app is stored in the same S3 bucket as well with 
 
 ![Flow of provisioning third-party apps to AWS](provisioning-in-3rd-party-aws.png)
 
-
 ### Provisioning in Mattermost AWS Cloud
 
 To be provisioned in AWS Mattermost Cloud an app bundle is uploaded to the specific S3 bucket. On a new app release, a bundle is created by the circleCI and uploaded to S3. [Mattermost apps cloud deployer](https://github.com/mattermost/mattermost-apps-cloud-deployer), running as a k8s cron job every hour, detects the S3 upload, creates appropriate lambda functions, assets, and manifest the same way the **appsclt** does for the third-party accounts.
@@ -96,8 +95,7 @@ The deployer needs lambda function names, asset keys, and manifest key to provis
 
 ![Flow of provisioning in Mattermost AWS Cloud](provisioning-in-mm-aws.png)
 
-
-## HTTP Server 
+## HTTP server 
 
 While a serverless infrastructure is the recommenced way to host apps they can be hosted as a traditional HTTP server using e.g. `systemd`. It's important that your app is not reachable via the public internet and only by the Mattermost server. 
 
