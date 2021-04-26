@@ -28,7 +28,7 @@ Push notifications on iOS are managed and dispatched using [Apple's Push Notific
 - Select a new "Apple Push Notifications service SSL (Sandbox & Production)
 ![image](/img/mobile/apns.png)
 
-- Choose the App ID you are generating a certificate for. Use the regular App Id for the Mattermost app, **not** for the .NotificationService, etc.
+- Choose the App ID you're generating a certificate for. Use the regular App ID for the Mattermost app, **not** for the `.NotificationService`, etc.
 ![image](/img/mobile/choose_app_id.png)
 
 - Choose the certificate request file created using the Keychain access in the previous section and click **Continue**
