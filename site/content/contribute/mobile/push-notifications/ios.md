@@ -22,7 +22,7 @@ Push notifications on iOS are managed and dispatched using [Apple's Push Notific
 - Log in to [Apple developer account](https://developer.apple.com/account) and click **Certificates, Identifiers and Profiles**
 ![image](/img/mobile/ios_account.png)
 
-- Click the plus icon to create a new certificate
+- Select the plus icon to create a new certificate
 ![image](/img/mobile/ios_new_certificate.png)
 
 - Select a new "Apple Push Notifications service SSL (Sandbox & Production)
