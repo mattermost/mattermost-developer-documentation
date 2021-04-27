@@ -51,7 +51,7 @@ The call request ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-pl
 | `values`         | Object  | The pairs of key values present in the call. Can be populated by forms and slash commands. |
 | `context`        | Context | The context of the call.                                                                   |
 | `raw_command`    | string  | The unparsed command for slash commands.                                                   |
-| `selected_field` | string  | Used in lookups and form refresh to communicate what field                                 |
+| `selected_field` | string  | Used in lookups and form refresh to communicate what field.                                |
 | `query`          | string  | Used in lookups and form refresh what query strings is entered by the user.                |
 
 
@@ -70,15 +70,15 @@ Depending on the location and expansions, calls will have different context. The
 
 | Name                       | Type     | Description                                                                         |
 | :------------------------- | :------- | :---------------------------------------------------------------------------------- |
-| `app_id`                   | string   | The app id.                                                                         |
+| `app_id`                   | string   | The app ID.                                                                         |
 | `location`                 | Location | The location from which the call was performed.                                     |
 | `subject`                  | Subject  | Event subject.                                                                      |
 | `bot_user_id`              | string   | Bot user ID.                                                                        |
 | `acting_user_id`           | string   | ID from the user performing the call.                                               |
 | `user_id`                  | string   | ID from the user which is the subject of the call.                                  |
-| `team_id`                  | string   | ID from the team from within which the call was performed.                                |
-| `channel_id`               | string   | ID from the channel from within which the call was performed.                             |
-| `post_id`                  | string   | ID from the post from within which the call was performed.                                |
+| `team_id`                  | string   | ID from the team from within which the call was performed.                          |
+| `channel_id`               | string   | ID from the channel from within which the call was performed.                       |
+| `post_id`                  | string   | ID from the post from within which the call was performed.                          |
 | `root_post_id`             | string   | If the call was performed from a post in a thread, the root post ID of that thread. |
 | `mattermost_site_url`      | string   | Mattermost base URL.                                                                |
 | `app_path`                 | string   | App's path on the Mattermost instance (appendable to `mattermost_site_url`).        |

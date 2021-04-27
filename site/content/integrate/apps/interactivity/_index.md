@@ -19,7 +19,7 @@ They are defined by:
 | `footer`           | string | (Optional) Text used at the end of the modal.                                                  |
 | `call`             | Call   | Call to perform for this form.                                                                 |
 | `submit_buttons`   | string | (Optional) Key of the field to be used as the submit buttons. Must be of type `static_select`. |
-| `cancel_button`    | string | (Optional) Adds a default **Cancel** button in the modal view.                                   |
+| `cancel_button`    | string | (Optional) Adds a default **Cancel** button in the modal view.                                 |
 | `submit_on_cancel` | bool   | (Optional) If `true`, the modal gets submitted even if the user cancels it.                    |
 | `fields`           | Fields | List of fields in the form.                                                                    |
 
@@ -27,7 +27,7 @@ The types of fields are:
 
 | Name             | Description                                            |
 | :--------------- | :----------------------------------------------------- |
-| `text`           | Text field                                             |
+| `text`           | Text field.                                            |
 | `static_select`  | A dropdown select with static elements.                |
 | `dynamic_select` | A dropdown select that loads the elements dynamically. |
 | `bool`           | A boolean selector represented as a checkbox.          |
@@ -74,14 +74,14 @@ All select also include:
 
 A modal form performs a lookup call to the call endpoint any time a dynamic dropdown is selected. The lookup call includes in the context the app ID, the user ID, the channel ID, and the team ID. The values are populated with the current values of the form. The expected response is error or the following:
 
-| Name | Type    | Item    | Description                 |
-| :--- | :------ | :------ | :-------------------------- |
-| data |         |         |                             |
-| -    | `items` | Options | The list of options to show |
+| Name | Type    | Item    | Description                  |
+| :--- | :------ | :------ | :--------------------------- |
+| data |         |         |                              |
+| -    | `items` | Options | The list of options to show. |
 
-If any select has the refresh value set as true, a form call to the call endpoint any time the select changes value. The form call will include in the context the app id, the user id, the channel id, and the team id. The values will be populated with the current values of the form. The expected response is a form response. The whole form will be updated with the new form.
+If any select has the refresh value set as true, a form call to the call endpoint any time the select changes value. The form call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form. The expected response is a form response. The whole form will be updated with the new form.
 
-On submit, the submit call to the call endpoint will be sent. The submit call will include in the context the app id, the user id, the channel id, and the team id. The values will be populated with the current values of the form.
+On submit, the submit call to the call endpoint will be sent. The submit call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form.
 
 ## Commands as forms
 
@@ -122,12 +122,12 @@ When the command is executed, a submit call will be performed on the call endpoi
 
 Posts can be embedded with bindings. These are used for asynchronous interaction with the user. In order to add an embedded binding you need to add an `app_bindings` property with a list of `EmbeddedBindings`. An `EmbeddedBinding` includes:
 
-| Name       | Type    | Description               |
-| :--------- | :------ | :------------------------ |
-| `app_id`   | string  | The app ID                |
-| `title`    | string  | Title of the attachment   |
-| `text`     | string  | Text of the attachment    |
-| `bindings` | Binding | List of embedded bindings |
+| Name       | Type    | Description                |
+| :--------- | :------ | :------------------------- |
+| `app_id`   | string  | The app ID.                |
+| `title`    | string  | Title of the attachment.   |
+| `text`     | string  | Text of the attachment.    |
+| `bindings` | Binding | List of embedded bindings. |
 
 
 Bindings are of two types, buttons or selects.
