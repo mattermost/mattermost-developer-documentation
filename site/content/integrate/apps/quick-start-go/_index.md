@@ -22,7 +22,7 @@ You also need at least `go1.16` installed. Please follow the guide [here](https:
 
 ### Install the Apps plugin
 
-The [apps plugin](https://github.com/mattermost/mattermost-plugin-apps)) is a communication bridge between your app and the Mattermost server. To install it on your local server by cloning the code in a directory of your choice:
+The [apps plugin](https://github.com/mattermost/mattermost-plugin-apps) is a communication bridge between your app and the Mattermost server. To install it on your local server by cloning the code in a directory of your choice:
 
 ```bash
 git clone https://github.com/mattermost/mattermost-plugin-apps.git
