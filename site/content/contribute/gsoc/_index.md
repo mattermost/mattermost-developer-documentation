@@ -1,7 +1,6 @@
 ---
 title: "Google Summer of Code"
 description: "Ideas list for Google Summer of Code"
-section: "contribute"
 ---
 
 # GSoC 2021 Ideas

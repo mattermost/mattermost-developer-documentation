@@ -3,7 +3,6 @@ title: Adding a Plugin to Community
 heading: "Adding a Plugin - Mattermost Community"
 description: "Find out how to add a plugin to the Mattermost community server to share your work."
 date: 2017-11-06T19:30:07-05:00
-subsection: Infrastructure
 weight: 40
 ---
 

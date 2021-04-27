@@ -3,7 +3,6 @@ title: GitLab Omnibus
 heading: "GitLab Omnibus Release Process"
 description: "Information on updating and building GitLab Omnibus with new versions of Mattermost"
 date: 2021-03-12T14:59:29-05:00
-section: internal
 weight: 130
 ---
 

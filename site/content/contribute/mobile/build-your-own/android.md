@@ -4,7 +4,6 @@ heading: "How to Build a Mattermost Android app"
 description: "At times, you may want to build your own Mattermost mobile app. Learn how you can go about doing it."
 date: 2018-05-20T11:35:32-04:00
 weight: 1
-subsection: Build Your Own App
 ---
 
 At times, you may want to build your own Mattermost mobile app. The most common use cases are:

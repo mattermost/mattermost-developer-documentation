@@ -4,7 +4,6 @@ heading: "Installing the Mattermost Push Notification Service"
 description: "This guide focuses on installing and configuring the push notification service for Mattermost apps."
 date: 2015-05-20T11:35:32-04:00
 weight: 3
-subsection: "Setup Push Notifications"
 ---
 
 ## Install the Mattermost Push Notification Service
