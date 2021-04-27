@@ -12,19 +12,22 @@ Modal Forms ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-
 
 They are defined by:
 
-|  Name            | Type   |  Description                                                                                 |
-| :--------------- | :----- | :------------------------------------------------------------------------------------------- |
-| `title`          | string | Title of the form, shown in the modal.                                                       |
-| `header`         | string | (Optional) Text used as introduction in the form.                                            |
-| `submit_buttons` | string | (Optional) Key of the field to be used as the submit buttons. Must be of type static_select. |
-| `fields`         | Fields | List of fields in the form.                                                                  |
-| `call`           | Call   | Call to perform for this form.                                                               |
+| Name               | Type   | Description                                                                                    |
+| :----------------- | :----- | :--------------------------------------------------------------------------------------------- |
+| `title`            | string | Title of the form, shown in the modal.                                                         |
+| `header`           | string | (Optional) Text used as introduction in the form.                                              |
+| `footer`           | string | (Optional) Text used at the end of the modal.                                                  |
+| `call`             | Call   | Call to perform for this form.                                                                 |
+| `submit_buttons`   | string | (Optional) Key of the field to be used as the submit buttons. Must be of type `static_select`. |
+| `cancel_button`    | string | (Optional) Adds a default **Cancel** button in the modal view.                                 |
+| `submit_on_cancel` | bool   | (Optional) If `true`, the modal gets submitted even if the user cancels it.                    |
+| `fields`           | Fields | List of fields in the form.                                                                    |
 
 The types of fields are:
 
-|   Name           |  Description                                           |
+| Name             | Description                                            |
 | :--------------- | :----------------------------------------------------- |
-| `text`           | Text field                                             |
+| `text`           | Text field.                                            |
 | `static_select`  | A dropdown select with static elements.                |
 | `dynamic_select` | A dropdown select that loads the elements dynamically. |
 | `bool`           | A boolean selector represented as a checkbox.          |
@@ -33,9 +36,9 @@ The types of fields are:
 
 All fields include ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field)):
 
-|  Name         |  Type     |  Description                                           |
+| Name          | Type      | Description                                            |
 | :------------ | :-------- | :----------------------------------------------------- |
-| `name`        | string    | Key to use in the Values field of the call.            |
+| `name`        | string    | Key to use in the values field of the call.            |
 | `type`        | FieldType | The type of the field.                                 |
 | `is_required` | bool      | (Optional) Whether the field needs to be filled.       |
 | `value`       | value     | (Optional) Default value.                              |
@@ -44,49 +47,49 @@ All fields include ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-
 
 Text fields may include:
 
-|  Name        | Type   |   Description                                                                                                                    |         
+| Name         | Type   | Description                                                                                                                      |
 | :----------- | :----- | :------------------------------------------------------------------------------------------------------------------------------- |
-| `subtype`    | string | (Optional) The type of text that will be shown. Available types are one of text, textarea, email, number, password, tel, or url. |
+| `subtype`    | string | (Optional) The type of text that will be shown. Available types are one of input, textarea, email, number, password, tel, or URL. |
 | `min_length` | int    | (Optional) Validate the field length before performing the call.                                                                 |
 | `max_length` | int    | (Optional) Validate the field length before performing the call.                                                                 |
 
 Static select fields include:
 
-|   Name    |  Type   |  Description              |
+| Name      | Type    | Description               |
 | :-------- | :------ | :------------------------ |
 | `options` | Options | Options for the dropdown. |
 
 Each Option includes:
 
-|  Name   | Type   |  Description          |
+| Name    | Type   | Description           |
 | :------ | :----- | :-------------------- |
-| `label` | string | User facing string.   |
-| `value` | string | Machine facing value. |
+| `label` | string | User-facing string.   |
+| `value` | string | Machine-facing value. |
 
 All select also include:
 
-|   Name    | Type |  Description                                                                        |
+| Name      | Type | Description                                                                         |
 | :-------- | :--- | :---------------------------------------------------------------------------------- |
 | `refresh` | bool | (Optional) Allows the form to be refreshed when the value of a dropdown is changed. |
 
-A modal form performs a lookup call to the call endpoint any time a dynamic dropdown is selected. The lookup call will include in the context the app id, the user id, the channel id, and the team id. The values will be populated with the current values of the form. The expected response is error or the following:
+A modal form performs a lookup call to the call endpoint any time a dynamic dropdown is selected. The lookup call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form. The expected response is error or the following:
 
-|  Name|  Type   | Item    | Description                 |
-| :--- | :------ | :------ | :-------------------------- |
-| data |         |         |                             |
-| -    | `items` | Options | The list of options to show |
+| Name | Type    | Item    | Description                  |
+| :--- | :------ | :------ | :--------------------------- |
+| data |         |         |                              |
+| -    | `items` | Options | The list of options to show. |
 
-If any select has the refresh value set as true, a form call to the call endpoint any time the select changes value. The form call will include in the context the app id, the user id, the channel id, and the team id. The values will be populated with the current values of the form. The expected response is a form response. The whole form will be updated with the new form.
+If any select has the refresh value set as `true`, a form call to the call endpoint happens any time the select changes value. The form call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form. The expected response is a form response. The whole form will be updated with the new form.
 
-On submit, the submit call to the call endpoint will be sent. The submit call will include in the context the app id, the user id, the channel id, and the team id. The values will be populated with the current values of the form.
+On submit, the submit call to the call endpoint will be sent. The submit call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form.
 
 ## Commands as forms
 
-Commands arguments are treated as forms. When a leaf command is typed, the arguments of the command are fetched. If the command binding has a Form attached, those will be used. If not, a form call will be made to the command call. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID. The call will expect a form response.
+Commands arguments are treated as forms. When a leaf command is typed, the arguments of the command are fetched. If the command binding has a form attached, those will be used. If not, a form call will be made to the command call. The call will include in the context the app ID, user ID, the post ID, the root post ID (if any), the channel ID, and the team ID. The call will expect a form response.
 
 A command form is defined as:
 
-|   Name   |  Type  | Description                                                                                                                    |
+| Name     | Type   | Description                                                                                                                    |
 | :------- | :----- | :----------------------------------------------------------------------------------------------------------------------------- |
 | `fields` | Fields | List of fields in the form.                                                                                                    |
 | `call`   | Call   | (Optional) Call to perform on all actions form related (including submit). If not provided, will use the command binding call. |
@@ -95,9 +98,9 @@ The type of fields is the same as for Modal forms.
 
 All fields include:
 
-|   Name        | Type      |  Description                                                            |
+| Name          | Type      | Description                                                             |
 | :------------ | :-------- | :---------------------------------------------------------------------- |
-| `name`        | string    | Key to use in the Values field of the call, and as part of the command. |
+| `name`        | string    | Key to use in the values field of the call, and as part of the command. |
 | `type`        | FieldType | The type of the field.                                                  |
 | `is_required` | bool      | Whether the field needs to be filled.                                   |
 | `description` | string    | Text to show on the description line on autocomplete.                   |
@@ -107,30 +110,30 @@ All fields include:
 
 Options are defined as:
 
-|  Name       | Type   |  Description                         |
+| Name        | Type   | Description                          |
 | :---------- | :----- | :----------------------------------- |
-| `label`     | string | User facing string.                  |
-| `value`     | string | Machine facing value.                |
+| `label`     | string | User-facing string.                  |
+| `value`     | string | Machine-facing value.                |
 | `icon_data` | string | URL to icon to show on autocomplete. |
 
-When the command is executed, a submit call will be performed on the call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID.
+When the command is executed, a submit call will be performed on the call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID, and the team ID.
 
 ## Embedded Bindings
 
-Posts can be embedded with bindings. These are used for asynchronous interaction with the user. In order to add an embedded binding you need to add an “app_bindings” property with a list of EmbeddedBindings. An EmbeddedBinding includes:
+Posts can be embedded with bindings. These are used for asynchronous interaction with the user. In order to add an embedded binding you need to add an `app_bindings` property with a list of `EmbeddedBindings`. An `EmbeddedBinding` includes:
 
-|   Name     | Type    |  Description              |
-| :--------- | :------ | :------------------------ |
-| `app_id`   | string  | The app ID                |
-| `title`    | string  | Title of the attachment   |
-| `text`     | string  | Text of the attachment    |
-| `bindings` | Binding | List of embedded bindings |
+| Name       | Type    | Description                |
+| :--------- | :------ | :------------------------- |
+| `app_id`   | string  | The app ID.                |
+| `title`    | string  | Title of the attachment.   |
+| `text`     | string  | Text of the attachment.    |
+| `bindings` | Binding | List of embedded bindings. |
 
 
 Bindings are of two types, buttons or selects.
 Buttons include:
 
-|  Name      |  Type  |  Description                                                            |
+| Name       | Type   | Description                                                             |
 | :--------- | :----- | :---------------------------------------------------------------------- |
 | `location` | string | Location name. The whole location path will be provided in the context. |
 | `label`    | string | Label that will show in the button.                                     |
@@ -139,7 +142,7 @@ Buttons include:
 
 Selects include:
 
-|  Name      |   Type  |  Description                                                                                                 |
+| Name       | Type    | Description                                                                                                  |
 | :--------- | :------ | :----------------------------------------------------------------------------------------------------------- |
 | `location` | string  | Location name. The whole location path will be provided in the context.                                      |
 | `label`    | string  | Label that will show in the button.                                                                          |
@@ -148,10 +151,10 @@ Selects include:
 
 Options bindings include:
 
-|  Name      | Type   |  Description                                                                                                       |
+| Name       | Type   | Description                                                                                                        |
 | :--------- | :----- | :----------------------------------------------------------------------------------------------------------------- |
 | `location` | string | Option name. The whole location path will be provided in the context.                                              |
-| `label`    | string | User facing string.                                                                                                |
+| `label`    | string | User-facing string.                                                                                                |
 | `call`     | Call   | (Optional) Call to perform when the option is selected. If none is defined, it will take the call from the select. |
 
 Whenever a button is clicked or a select field is selected, a submit call is performed to the corresponding call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID.
@@ -554,5 +557,3 @@ Whenever a button is clicked or a select field is selected, a submit call is per
 ```
 ![modal-errors.png](error3.png)
 </details>
-
-
