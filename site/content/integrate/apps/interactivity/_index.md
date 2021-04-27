@@ -72,20 +72,20 @@ All select also include:
 | :-------- | :--- | :---------------------------------------------------------------------------------- |
 | `refresh` | bool | (Optional) Allows the form to be refreshed when the value of a dropdown is changed. |
 
-A modal form performs a lookup call to the call endpoint any time a dynamic dropdown is selected. The lookup call includes in the context the app ID, the user ID, the channel ID, and the team ID. The values are populated with the current values of the form. The expected response is error or the following:
+A modal form performs a lookup call to the call endpoint any time a dynamic dropdown is selected. The lookup call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form. The expected response is error or the following:
 
 | Name | Type    | Item    | Description                  |
 | :--- | :------ | :------ | :--------------------------- |
 | data |         |         |                              |
 | -    | `items` | Options | The list of options to show. |
 
-If any select has the refresh value set as true, a form call to the call endpoint any time the select changes value. The form call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form. The expected response is a form response. The whole form will be updated with the new form.
+If any select has the refresh value set as `true`, a form call to the call endpoint happens any time the select changes value. The form call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form. The expected response is a form response. The whole form will be updated with the new form.
 
 On submit, the submit call to the call endpoint will be sent. The submit call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form.
 
 ## Commands as forms
 
-Commands arguments are treated as forms. When a leaf command is typed, the arguments of the command are fetched. If the command binding has a Form attached, those will be used. If not, a form call will be made to the command call. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID. The call will expect a form response.
+Commands arguments are treated as forms. When a leaf command is typed, the arguments of the command are fetched. If the command binding has a form attached, those will be used. If not, a form call will be made to the command call. The call will include in the context the app ID, user ID, the post ID, the root post ID (if any), the channel ID, and the team ID. The call will expect a form response.
 
 A command form is defined as:
 
@@ -116,7 +116,7 @@ Options are defined as:
 | `value`     | string | Machine-facing value.                |
 | `icon_data` | string | URL to icon to show on autocomplete. |
 
-When the command is executed, a submit call will be performed on the call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID.
+When the command is executed, a submit call will be performed on the call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID, and the team ID.
 
 ## Embedded Bindings
 
@@ -154,7 +154,7 @@ Options bindings include:
 | Name       | Type   | Description                                                                                                        |
 | :--------- | :----- | :----------------------------------------------------------------------------------------------------------------- |
 | `location` | string | Option name. The whole location path will be provided in the context.                                              |
-| `label`    | string | User facing string.                                                                                                |
+| `label`    | string | User-facing string.                                                                                                |
 | `call`     | Call   | (Optional) Call to perform when the option is selected. If none is defined, it will take the call from the select. |
 
 Whenever a button is clicked or a select field is selected, a submit call is performed to the corresponding call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID.
@@ -557,4 +557,3 @@ Whenever a button is clicked or a select field is selected, a submit call is per
 ```
 ![modal-errors.png](error3.png)
 </details>
-
