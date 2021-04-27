@@ -9,11 +9,11 @@ weight: 40
 
 A call ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Call)) is the definition of an action. The values are:
 
-| Name     | Type   | Description                                                                                                          |
-| :------- | :----- | :------------------------------------------------------------------------------------------------------------------- |
-| `path`   | string | The path of the call. For HTTP apps, the path is appended to the app's                                     `RootURL` |
-| `expand` | Expand | A definition of the information to expand to send to the app.                                                        |
-| `state`  | Object | A set of elements to be interpreted by the app. Forms and slash commands will also populate these values.            |
+| Name     | Type   | Description                                                                                               |
+| :------- | :----- | :-------------------------------------------------------------------------------------------------------- |
+| `path`   | string | The path of the call. For HTTP apps, the path is appended to the app's `RootURL`.                         |
+| `expand` | Expand | A definition of the information to expand to send to the app.                                             |
+| `state`  | Object | A set of elements to be interpreted by the app. Forms and slash commands will also populate these values. |
 
 ### Expand
 
@@ -83,7 +83,7 @@ Depending on the location and expansions, calls will have different context. The
 | `mattermost_site_url`      | string   | Mattermost base URL.                                                                |
 | `app_path`                 | string   | App's path on the Mattermost instance (appendable to `mattermost_site_url`).        |
 | `mattermost_site_url`      | string   | Mattermost base URL.                                                                |
-| `user_agent`               | string   | UserAgent used to perform the call. It can be either `webapp` or `mobile`.          |
+| `user_agent`               | string   | User agent used to perform the call. It can be either `webapp` or `mobile`.         |
 | `bot_access_token`         | string   | (Expansion)                                                                         |
 | `acting_user`              | User     | (Expansion)                                                                         |
 | `acting_user_access_token` | string   | (Expansion)                                                                         |
