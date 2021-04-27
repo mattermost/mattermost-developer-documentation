@@ -41,7 +41,7 @@ weight: 10
     - Social: * (optional)
     - Stand-up
     - Welcome
-- Private channels to join in `Contributors`
+- Ask your manager to invite you to private channels in `Contributors`
     - Security
     - Confidential Bugs
     - Developers: Private     
