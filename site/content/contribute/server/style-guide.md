@@ -2,7 +2,6 @@
 title: "Go Style Guide"
 date: 2021-01-12T16:00:00+0530
 weight: 3
-subsection: Server
 ---
 
 Go is a more opinionated language than many others when it comes to coding style. The compiler enforces some basic stylistic elements, such as the removal of unused variables and imports. Many others are enforced by the `gofmt` tool, such as usage of white-space, semicolons, indentation, and alignment. The `gofmt` tool is run over all code in the Mattermost Server CI pipeline. Any code which is not consistent with the formatting enforced by `gofmt` will not be accepted into the repository.

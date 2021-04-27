@@ -3,7 +3,6 @@ title: "Outgoing Webhooks"
 heading: "Outgoing Webhooks at Mattermost"
 description: "Outgoing webhooks let you receive an event as an HTTP POST when messages get posted into a Mattermost channel."
 date: "2017-08-19T12:01:23-04:00"
-section: "integrate"
 weight: 30
 ---
 

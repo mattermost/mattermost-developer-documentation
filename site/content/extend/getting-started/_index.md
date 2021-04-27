@@ -3,7 +3,6 @@ title: "Getting Started"
 heading: "Getting Started with Mattermost"
 description: "Mattermost can be extended by building and installing plugins, embedding Mattermost in another app, or forking the codebase."
 date: "2018-04-19T12:01:23-04:00"
-section: "extend"
 ---
 
 Mattermost can be extended by building and installing plugins, by embedding Mattermost in another application, or by forking the codebase.

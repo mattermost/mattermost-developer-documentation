@@ -4,7 +4,6 @@ heading: "iOS Push Notifications on Mattermost"
 description: "Push notifications on iOS are managed and dispatched using Apple’s Push Notification Service. Learn how to use this service with Mattermost."
 date: 2015-05-20T11:35:32-04:00
 weight: 2
-subsection: "Setup Push Notifications"
 ---
 
 Push notifications on iOS are managed and dispatched using [Apple's Push Notification Service](https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html). You must have a **Paid Apple Developer account** to create certificates needed to send notifications using this service.
@@ -22,21 +21,16 @@ Push notifications on iOS are managed and dispatched using [Apple's Push Notific
 - Log in to [Apple developer account](https://developer.apple.com/account) and click **Certificates, Identifiers and Profiles**
 ![image](/img/mobile/ios_account.png)
 
-- Select iOS from the dropdown
-![image](/img/mobile/ios_type.png)
+- Select the plus icon to create a new certificate
+![image](/img/mobile/ios_new_certificate.png)
 
-- Select App IDs from the side menu and look for the Bundle Identifier you are using for the Mattermost app
-![image](/img/mobile/ios_appid.png)
+- Select a new "Apple Push Notifications service SSL (Sandbox & Production)"
+![image](/img/mobile/apns.png)
 
-- Select the App ID and click **Edit**
-![image](/img/mobile/ios_edit_appid.png)
+- Choose the App ID you're generating a certificate for. Use the regular App ID for the Mattermost app, **not** for the `.NotificationService`, etc.
+![image](/img/mobile/choose_app_id.png)
 
-- Scroll down to the **Push Notification** Section and click Create a **Production SSL Certificate**
-![image](/img/mobile/ios_create_push_certificate.png)
-
-- In the **About Creating a Certificate Signing Request (CSR)** screen click Continue /img/ios_csr.png)
-
-- Choose the certificate request file created using the Keychain access in the previous section and click **Continue**
+- Choose the certificate request file created using the Keychain access in the previous section and select **Continue**.
 ![image](/img/mobile/ios_upload_csr.png)
 
 - Download the Certificate and click **Done** to finish the process

@@ -3,7 +3,6 @@ title: Bump Build Number
 heading: "Bump Build Number at Mattermost"
 description: "Find out how to bump a build number in your local copy of mattermost-mobile."
 date: 2017-11-07T14:28:35-05:00
-subsection: Mobile Build Process
 weight: 2
 ---
 

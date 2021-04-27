@@ -3,7 +3,6 @@ title: "Developer Setup"
 description: "Find out how to configure your development environment to build, run, and test the Mattermost web app."
 date: 2017-08-20T11:35:32-04:00
 weight: 2
-subsection: Web App
 ---
 
 Set up your development environment for building, running, and testing the Mattermost web app.

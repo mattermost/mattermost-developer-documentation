@@ -4,7 +4,6 @@ heading: "Mattermost Server Workflow"
 description: "See what a general workflow for a Mattermost developer working on the mattermost-server repository looks like."
 date: 2017-08-20T11:35:32-04:00
 weight: 3
-subsection: Server
 ---
 
 If you haven't [set up your developer environment](https://developers.mattermost.com/contribute/server/developer-setup/), please do so before continuing with this section.

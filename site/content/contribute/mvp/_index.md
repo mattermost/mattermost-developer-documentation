@@ -2,7 +2,6 @@
 title: "MVP"
 heading: "Mattermost Hall of Fame"
 description: "Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best."
-section: "contribute"
 ---
 
 Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best.

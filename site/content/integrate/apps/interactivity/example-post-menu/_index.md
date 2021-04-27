@@ -2,11 +2,10 @@
 title: "Post Menu Example"
 heading: "Post Menu Example"
 description: "In this example, the bindings specify to expand the post the user clicks on."
-section: "apps"
 weight: 70
 ---
 
-![binding-form-diagram.png](https://user-images.githubusercontent.com/6913320/109165112-2e6ac800-7749-11eb-8d83-d495258f3f1e.png)
+![binding-form-diagram.png](flow.png)
 
 <details><summary>Diagram Source</summary>
 
@@ -28,20 +27,18 @@ App->3rd Party Integration:Do something useful
 App->MM:Return new modal form (App Form Response)
 MM->Client:Return modal form, open modal
 ```
-
 </details>
 
 ## Fetch bindings
 
 <details><summary>Client Bindings Request</summary>
 
-GET /plugins/com.mattermost.apps/api/v1/bindings?channel_id=ei748ohj3ig4ijofs5tr47wozh&scope=webapp
-
+`GET /plugins/com.mattermost.apps/api/v1/bindings?channel_id=ei748ohj3ig4ijofs5tr47wozh&scope=webapp`
 </details>
 
 <details><summary>MM Bindings Request</summary>
-POST /plugins/com.mattermost.apps/example/hello/bindings
 
+`POST /plugins/com.mattermost.apps/example/hello/bindings`
 ```json
 {
     "path": "/bindings",
@@ -58,7 +55,6 @@ POST /plugins/com.mattermost.apps/example/hello/bindings
     }
 }
 ```
-
 </details>
 
 <details><summary>App Bindings Response</summary>
@@ -92,7 +88,7 @@ POST /plugins/com.mattermost.apps/example/hello/bindings
 
 <details><summary>Client Submit Request</summary>
 
-POST /plugins/com.mattermost.apps/api/v1/call
+`POST /plugins/com.mattermost.apps/api/v1/call`
 ```json
 {
     "path": "/send-modal/submit",
@@ -110,12 +106,11 @@ POST /plugins/com.mattermost.apps/api/v1/call
     }
 }
 ```
-
 </details>
 
 <details><summary>MM Submit Request</summary>
 
-POST /plugins/com.mattermost.apps/example/hello/send/submit
+`POST /plugins/com.mattermost.apps/example/hello/send/submit`
 ```json
 {
     "path": "/send-modal/submit",
@@ -157,7 +152,6 @@ POST /plugins/com.mattermost.apps/example/hello/send/submit
     }
 }
 ```
-
 </details>
 
 <details><summary>App Form Response</summary>
@@ -192,5 +186,4 @@ POST /plugins/com.mattermost.apps/example/hello/send/submit
     }
 }
 ```
-
 </details>

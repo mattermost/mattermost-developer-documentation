@@ -4,7 +4,6 @@ heading: "Signing Unsigned iOS Builds in Mattermost"
 description: "Learn about the steps needed to modify and sign the Mattermost app so it can be distributed and installed on iOS devices."
 date: 2018-05-20T11:35:32-04:00
 weight: 2
-subsection: Sign Unsigned Builds
 ---
 
 With every Mattermost mobile app release, we publish the iOS unsigned ipa in in the [GitHub Releases](https://github.com/mattermost/mattermost-mobile/releases) page, this guide describes the steps needed to modify and sign the app, so it can be distributed and installed on iOS devices.

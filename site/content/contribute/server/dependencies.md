@@ -4,7 +4,6 @@ heading: "Managing Dependencies in Mattermost"
 description: "The Mattermost server uses go modules to manage dependencies. To manage dependencies you must have modules enabled."
 date: 2019-03-27T16:00:00-0700
 weight: 5
-subsection: Server
 ---
 
 
