@@ -19,7 +19,7 @@ They are defined by:
 | `footer`           | string | (Optional) Text used at the end of the modal.                                                  |
 | `call`             | Call   | Call to perform for this form.                                                                 |
 | `submit_buttons`   | string | (Optional) Key of the field to be used as the submit buttons. Must be of type `static_select`. |
-| `cancel_button`    | string | (Optional) Adds a default "Cancel" button in the modal view.                                   |
+| `cancel_button`    | string | (Optional) Adds a default **Cancel** button in the modal view.                                   |
 | `submit_on_cancel` | bool   | (Optional) If `true`, the modal gets submitted even if the user cancels it.                    |
 | `fields`           | Fields | List of fields in the form.                                                                    |
 
@@ -38,7 +38,7 @@ All fields include ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-
 
 | Name          | Type      | Description                                            |
 | :------------ | :-------- | :----------------------------------------------------- |
-| `name`        | string    | Key to use in the Values field of the call.            |
+| `name`        | string    | Key to use in the values field of the call.            |
 | `type`        | FieldType | The type of the field.                                 |
 | `is_required` | bool      | (Optional) Whether the field needs to be filled.       |
 | `value`       | value     | (Optional) Default value.                              |
@@ -49,7 +49,7 @@ Text fields may include:
 
 | Name         | Type   | Description                                                                                                                      |
 | :----------- | :----- | :------------------------------------------------------------------------------------------------------------------------------- |
-| `subtype`    | string | (Optional) The type of text that will be shown. Available types are one of text, textarea, email, number, password, tel, or url. |
+| `subtype`    | string | (Optional) The type of text that will be shown. Available types are one of text, textarea, email, number, password, tel, or URL. |
 | `min_length` | int    | (Optional) Validate the field length before performing the call.                                                                 |
 | `max_length` | int    | (Optional) Validate the field length before performing the call.                                                                 |
 
@@ -63,8 +63,8 @@ Each Option includes:
 
 | Name    | Type   | Description           |
 | :------ | :----- | :-------------------- |
-| `label` | string | User facing string.   |
-| `value` | string | Machine facing value. |
+| `label` | string | User-facing string.   |
+| `value` | string | Machine-facing value. |
 
 All select also include:
 
@@ -72,7 +72,7 @@ All select also include:
 | :-------- | :--- | :---------------------------------------------------------------------------------- |
 | `refresh` | bool | (Optional) Allows the form to be refreshed when the value of a dropdown is changed. |
 
-A modal form performs a lookup call to the call endpoint any time a dynamic dropdown is selected. The lookup call will include in the context the app id, the user id, the channel id, and the team id. The values will be populated with the current values of the form. The expected response is error or the following:
+A modal form performs a lookup call to the call endpoint any time a dynamic dropdown is selected. The lookup call includes in the context the app ID, the user ID, the channel ID, and the team ID. The values are populated with the current values of the form. The expected response is error or the following:
 
 | Name | Type    | Item    | Description                 |
 | :--- | :------ | :------ | :-------------------------- |
@@ -100,7 +100,7 @@ All fields include:
 
 | Name          | Type      | Description                                                             |
 | :------------ | :-------- | :---------------------------------------------------------------------- |
-| `name`        | string    | Key to use in the Values field of the call, and as part of the command. |
+| `name`        | string    | Key to use in the values field of the call, and as part of the command. |
 | `type`        | FieldType | The type of the field.                                                  |
 | `is_required` | bool      | Whether the field needs to be filled.                                   |
 | `description` | string    | Text to show on the description line on autocomplete.                   |
@@ -112,15 +112,15 @@ Options are defined as:
 
 | Name        | Type   | Description                          |
 | :---------- | :----- | :----------------------------------- |
-| `label`     | string | User facing string.                  |
-| `value`     | string | Machine facing value.                |
+| `label`     | string | User-facing string.                  |
+| `value`     | string | Machine-facing value.                |
 | `icon_data` | string | URL to icon to show on autocomplete. |
 
 When the command is executed, a submit call will be performed on the call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID.
 
 ## Embedded Bindings
 
-Posts can be embedded with bindings. These are used for asynchronous interaction with the user. In order to add an embedded binding you need to add an “app_bindings” property with a list of EmbeddedBindings. An EmbeddedBinding includes:
+Posts can be embedded with bindings. These are used for asynchronous interaction with the user. In order to add an embedded binding you need to add an `app_bindings` property with a list of `EmbeddedBindings`. An `EmbeddedBinding` includes:
 
 | Name       | Type    | Description               |
 | :--------- | :------ | :------------------------ |
@@ -557,5 +557,4 @@ Whenever a button is clicked or a select field is selected, a submit call is per
 ```
 ![modal-errors.png](error3.png)
 </details>
-
 
