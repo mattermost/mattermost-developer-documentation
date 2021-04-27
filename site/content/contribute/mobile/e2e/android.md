@@ -14,7 +14,7 @@ weight: 3
    sdkmanager "system-images;android-30;google_apis;x86"
    sdkmanager --licenses
    ```
-2. Create the emulator using `npm run e2e:android-create-emulator` from the `/detox` folder. Android testing requires an emulator named `detox_emu_api_30` and the script helps to create it automatically.
+2. Create the emulator using `npm run e2e:android-create-emulator` from the `/detox` folder. Android testing requires an emulator named `detox_pixel_4_xl_api_30` and the script helps to create it automatically.
 
 #### Test run in debug mode
 
