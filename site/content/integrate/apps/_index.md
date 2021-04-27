@@ -32,6 +32,18 @@ Read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to writ
 
 ## FAQ
 
+### When would you build an app vs a custom slash command vs a webhook vs a plugin?
+
+That depends on your use case, as they each have benefits. Apps can be advertised, shared, and installed by others via the Marketplace and users can get started with a slash command. Comparatively, a custom slash and webhooks command requires a lot of configuration, is very rigid - and is limited to your own server.
+
+### What's the difference between the apps framework and the plugin framework?
+
+The App framework provides a few differences from plugins.
+
+- We’ve made our interactive elements easier to use and develop.
+- Works on both desktop and mobile clients without any extra code.
+- You host the app code or build for Matterhost and distribute through the Marketplace.
+
 ### What language should I use to write apps?
 
 Any language you want. However, the only language with an official driver right now is Go.
