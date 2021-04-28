@@ -4,7 +4,6 @@ heading: "Information about the Mattermost REST API"
 description: "The REST API is a JSON web service that facilitates communication between Mattermost clients, as well as integrations, and the server."
 date: 2017-08-20T11:35:32-04:00
 weight: 4
-subsection: Server
 ---
 
 The REST API is a JSON web service that facilitates communication between Mattermost clients, as well as integrations, and the server.

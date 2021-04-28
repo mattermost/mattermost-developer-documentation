@@ -3,7 +3,6 @@ title: "Plugins"
 heading: "Mattermost Plugins: An Introduction"
 description: "Mattermost plugins are isolated pieces of code written in Go and/or React. They’re separate from the main repositories."
 date: "2018-03-19T12:01:23-04:00"
-section: "contribute"
 weight: 5
 ---
 

@@ -2,7 +2,6 @@
 title: "Call"
 heading: "Call"
 description: "TODO"
-subsection: "Apps (Developers Preview)"
 weight: 40
 ---
 

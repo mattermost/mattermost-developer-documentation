@@ -4,7 +4,6 @@ heading: "How to Integrate Mattermost"
 description: "Mattermost has various integration points. Learn about the various ways you can integrate Mattermost with other services."
 date: 2017-08-20T12:33:36-04:00
 weight: 1
-subsection: Getting Started
 ---
 
 Very good question! Mattermost has many different integration points and this page will help you pick the right one(s) for the job.

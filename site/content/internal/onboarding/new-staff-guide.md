@@ -3,7 +3,6 @@ title: New Staff Guide
 heading: "Onboarding at Mattermost: New Staff Guide"
 description: "Are you new to working at Mattermost? Check out this guide as you begin working here."
 date: 2017-11-07T14:28:35-05:00
-subsection: Onboarding
 weight: 10
 ---
 

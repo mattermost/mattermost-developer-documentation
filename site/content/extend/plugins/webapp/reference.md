@@ -3,7 +3,6 @@ title: Web App Reference
 heading: "Mattermost Web App Reference"
 description: "Learn how to implement the PluginClass interface used by the Mattermost web app to initialize and uninitialize your plugin."
 date: 2018-07-10T00:00:00-05:00
-subsection: Web App Plugins
 weight: 10
 ---
 

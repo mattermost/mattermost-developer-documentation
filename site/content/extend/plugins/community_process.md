@@ -3,7 +3,6 @@ title: Process to Include Plugin on Community
 heading: "Process to Include Plugins on Community"
 description: "Getting your project on the Community server is a great way to get valuable feedback from Mattermost users and staff."
 date: 2018-10-01T00:00:00-05:00
-subsection: Plugins (Beta)
 weight: 50
 ---
 

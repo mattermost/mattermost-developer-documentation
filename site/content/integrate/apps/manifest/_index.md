@@ -2,7 +2,6 @@
 title: "Manifest"
 heading: "Manifest"
 description: "TODO"
-subsection: "Apps (Developers Preview)"
 weight: 30
 ---
 

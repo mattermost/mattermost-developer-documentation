@@ -4,35 +4,34 @@ heading: "Installing the Mattermost Push Notification Service"
 description: "This guide focuses on installing and configuring the push notification service for Mattermost apps."
 date: 2015-05-20T11:35:32-04:00
 weight: 3
-subsection: "Setup Push Notifications"
 ---
 
-### Install the Mattermost Push Notification Service
+## Install the Mattermost Push Notification Service
 
 Now that the app can receive push notifications, we need to make sure that the Mattermost Push Notification Service is able to send the notification to the device. This guide will focus on installing and configuring the push notification service.
 
-###### Requirements
+### Requirements
 
-- A linux box server with at least 1GB of memory.
+- A Linux box server with at least 1GB of memory.
 - A copy of the [Mattermost Push Notification Service](https://github.com/mattermost/mattermost-push-proxy/releases).
 - [Custom Android and/or iOS](/contribute/mobile/build-your-own/) Mattermost mobile apps.
 - Private and public keys obtained from the [Apple Developer Program](https://developer.apple.com/account/ios/certificate/).
 - A Firebase Cloud Messaging Server key obtained from the [Firebase Console](https://console.firebase.google.com).
 
-###### Installing & Upgrading {#installing-upgrading}
+## Installing and Upgrading
 
-For the sake of making this guide simple we located the files at `/home/ubuntu/mattermost-push-proxy`. We've also elected to run the Push Notification Service as the `ubuntu` account for simplicity. We **recommend** setting up
-and running the service under a `mattermost-push-proxy` user account with limited permissions.
+For the sake of making this guide simple we located the files at `/home/ubuntu/mattermost-push-proxy`. We've also elected to run the Push Notification Service as the `ubuntu` account for simplicity. We **recommend** setting up and running the service under a `mattermost-push-proxy` user account with limited permissions.
 
 1. Download the Mattermost Push Notification Service (any version):
+
 `wget https://github.com/mattermost/mattermost-push-proxy/releases/download/vX.X.X/mattermost-push-proxy-X.X.X.tar.gz`
 
-    in the previous command `vX.X.X` refers to the release version you want to download, see [Mattermost Push Notification Service releases](https://github.com/mattermost/mattermost-push-proxy/releases).
+In this command, `vX.X.X` refers to the release version you want to download. See [Mattermost Push Notification Service releases](https://github.com/mattermost/mattermost-push-proxy/releases).
 
-2. If you are upgrading a previous version of the Mattermost Push Notification Service make sure to backup your `mattermost-push-proxy.json` file before continuing.
+2. If you're upgrading a previous version of the Mattermost Push Notification Service make sure to back up your `mattermost-push-proxy.json` file before continuing.
 
-3. Unzip the downloaded Mattermost Push Notification Service by typing:
-`tar -xvzf mattermost-push-proxy-X.X.X.tar.gz` 
+3. Unzip the downloaded Mattermost Push Notification Service using:
+`tar -xvzf mattermost-push-proxy-X.X.X.tar.gz`
 
 4. Configure the Mattermost Push Notification service by editing the `mattermost-push-proxy.json` file at `/home/ubuntu/mattermost-push-proxy/config`. Follow the steps in the [Android](#set-up-mattermost-push-notification-service-to-send-android-push-notifications)
     and [iOS](#set-up-mattermost-push-notification-service-to-send-ios-push-notifications) sections to replace the values in the config file.
@@ -53,8 +52,7 @@ and running the service under a `mattermost-push-proxy` user account with limite
 
    To route the traffic through a separate proxy server, add `Environment="HTTP_PROXY=<http://server>"` under the `[Service]` section of the file. If you have an HTTPS server, then use `HTTPS_PROXY`. If you set both then `HTTPS_PROXY` will take higher priority than `HTTP_PROXY`.
 
-6. Start the service with `sudo systemctl start mattermost-push-proxy` or restart with `sudo systemctl restart mattermost-push-proxy`. Use `sudo systemctl enable mattermost-push-proxy` to have systemd start the service on boot. 
-
+6. Start the service with `sudo systemctl start mattermost-push-proxy` or restart with `sudo systemctl restart mattermost-push-proxy`. Use `sudo systemctl enable mattermost-push-proxy` to have systemd start the service on boot.
 
 ### Set Up Mattermost Push Notification Service to Send Android Push Notifications
 
@@ -70,11 +68,11 @@ and running the service under a `mattermost-push-proxy` user account with limite
   "AndroidApiKey": "your Server key"
   ```
 
-
-
 ### Set up Mattermost Push Notification Service to Send iOS Push Notifications
 
-- Double click the **Distribution Certificate** generated while [Setup Push Notifications for iOS](/contribute/mobile/push-notifications/ios/) to add it to your Keychain Access. Go to **Keychain Access**, select the **login** keychain and **My Certificates** from the side menu.
+- Double click the **Push Notifications Certificate** which is generated and downloaded while [Setting up Push Notifications for iOS](/contribute/mobile/push-notifications/ios) to add it to your Keychain Access. It downloads by default as `aps.cer`.
+
+- Open **Keychain Access**, select the **login** keychain and **My Certificates** from the side menu.
 ![image](/img/mobile/ios_keychain_select.png)
 
 - Find the certificate you imported and then right click to **export** it as a **.p12** file
@@ -94,12 +92,10 @@ and running the service under a `mattermost-push-proxy` user account with limite
     ```sh
     \$ openssl pkcs12 -in Certificates.p12 -out aps_production_priv.pem -nodes -clcerts -passin pass:
     ```
-
 - Verify the certificate works with apple
     ```sh
     \$ openssl s_client -connect gateway.push.apple.com:2195 -cert aps_production.pem -key aps_production_priv.pem
     ```
-
 - Copy the private key file `aps_production_priv.pem` into your `mattermost-push-proxy/config` directory
 
 - Open the **mattermost-push-proxy.json** file under the `mattermost-push-proxy/config` directory and add the path to the private key file as the value for **"ApplePushCertPrivate"** and the value for **"ApplePushTopic"** with your *Bundle Identifier*
@@ -126,8 +122,8 @@ In the [mattermost-push-proxy project](https://github.com/mattermost/mattermost-
 
 - Finally, start your Mattermost Push Notification Service, and your app should start receiving push notifications.
 
-
 ### Test the Mattermost Push Notification Service
+
 * Verify that the server is functioning normally and test the push notification using curl:
  `curl http://127.0.0.1:8066/api/v1/send_push -X POST -H "Content-Type: application/json" -d '{"type": "message", "message": "test", "badge": 1, "platform": "PLATFORM", "server_id": "MATTERMOST_DIAG_ID", "device_id": "DEVICE_ID", "channel_id": "CHANNEL_ID"}'`
   * Replace `MATTERMOST_DIAG_ID` with the value found by running the SQL query:
@@ -160,6 +156,8 @@ To view the log file, use:
 ```bash
 $ sudo tail -n 1000 /var/log/upstart/mattermost-push-proxy.log
 ```
+**Note:**
+Note that device IDs can change somewhat frequently, as they are tied to a device session. If you're having trouble, double-check the latest device IDs by re-running the above queries.
 
 ### Troubleshooting
 
@@ -185,6 +183,12 @@ panic: Failed to load the apple pem cert err=failed to parse PKCS1 private key f
 6. Verifying the certificate works with apple:
   - `openssl s_client -connect gateway.push.apple.com:2195 -cert aps_production.pem -key aps_production_priv.pem`
 
-### Reporting issues 
+##### DeviceTokenNotForTopic
+
+**For iOS / Apple Push Notifications**: If the logs are reflecting DeviceTokenNotForTopic (error 400) this may be because you're using an older / previous Device ID. Re-run the queries you need to get device IDs and test.
+
+This could also be because you generated a certificate for the wrong bundle ID. The bundle ID used in `mattermost-push-proxy.json` should be the same one as the app and the for the same app it was generated for.
+
+### Reporting issues
 
 For issues with repro steps, please report to https://github.com/mattermost/mattermost-server/issues

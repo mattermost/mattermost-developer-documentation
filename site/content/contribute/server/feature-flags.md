@@ -4,7 +4,6 @@ heading: "Feature Flags and Mattermost Cloud"
 description: "Feature flags allow us to be more confident in shipping features continuously to Mattermost Cloud. Find out why."
 date: 2020-10-15T16:00:00-0700
 weight: 3
-subsection: Server
 ---
 
 

@@ -4,7 +4,6 @@ heading: "Migrating to Typescript - Mattermost"
 description: "We introduced Typescript to our codebase to proactively improve the quality, security, and stability of the code."
 date: 2020-07-11T23:00:00-04:00
 weight: 9
-subsection: Web App
 ---
 
 The Mattermost team wants to proactively improve the quality, security, and stability of [the code](https://github.com/mattermost/mattermost-webapp), and one way to do this is by introducing the usage of type checking. Thus, we have decided to introduce Typescript in our codebase as it's a mature and feature-rich approach. 

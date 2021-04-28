@@ -3,7 +3,6 @@ title: Server Plugins
 heading: "Mattermost Server Plugins"
 description: "Server plugins are subprocesses invoked by the server that communicate with Mattermost using remote procedure calls (RPC)."
 date: 2018-07-10T00:00:00-05:00
-subsection: Plugins (Beta)
 weight: 10
 ---
 

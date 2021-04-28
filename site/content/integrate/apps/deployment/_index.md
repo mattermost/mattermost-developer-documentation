@@ -2,7 +2,6 @@
 title: "Deployment"
 heading: "Deploying Apps"
 description: "TODO"
-subsection: "Apps (Developers Preview)"
 weight: 110
 ---
 
