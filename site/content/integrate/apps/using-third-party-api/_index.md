@@ -27,7 +27,7 @@ In the Mattermost Desktop App run:
 
 ```
 /apps debug-add-manifest --url http://localhost:8080/manifest.json
-/apps install --app-id hello-oauth2
+/apps install hello-oauth2
 ```
 
 You need to configure your [Google API Credentials](https://console.cloud.google.com/apis/credentials) for the App. Use `$MATTERMOST_SITE_URL$/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete`
