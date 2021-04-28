@@ -188,6 +188,7 @@ wget https://github.com/mattermost/mattermost-plugin-apps/raw/master/examples/go
 ```
 
 `fs` is used to load the file:
+
 ```js
 const fs = require("fs").promises;
 ```

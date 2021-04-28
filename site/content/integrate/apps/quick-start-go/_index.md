@@ -34,7 +34,7 @@ Then build the plugin using:
 make dist
 ```
 
-And upload it via the System Console to your local Mattermost server.
+Then upload it via the System Console to your local Mattermost server.
 
 ## Building the app
 
@@ -49,7 +49,7 @@ go get github.com/mattermost/mattermost-plugin-apps/apps@master
 
 ### Manifest
 
-Your app has to provide a so-called manifest. The manifest declares App metadata. In this example the *permission* to act as a bot, and to *bind* itself to the channel header, and to `/` commands is requested.
+Your app has to provide a so-called manifest. The manifest declares app metadata. In this example the *permission* to act as a bot, and to *bind* itself to the channel header, and to `/` commands is requested.
 
 Create a file called `manifest.json` containing:
 
@@ -76,6 +76,7 @@ Locations are named elements in the Mattermost user interface. Bindings specify 
 The app creates a channel header button, and adds a `/helloworld send` command.
 
 Create a file called `bindings.json` containing:
+
 ```json
 {
 	"type": "ok",
@@ -127,6 +128,7 @@ Functions handle user events and webhooks. The Hello World app exposes two funct
 The functions use a simple form with one text field named `"message"`, the form submits to `/send`.
 
 Create a file called `send_form.json` containing:
+
 ```json
 {
 	"type": "form",
@@ -153,7 +155,7 @@ Apps may include static assets. One example that was already used above is the `
 
 Download an example icon using:
 
-```
+```bash
 wget https://github.com/mattermost/mattermost-plugin-apps/raw/master/examples/go/helloworld/icon.png
 ```
 
@@ -190,7 +192,7 @@ func main() {
 	// Serve its own manifest as HTTP for convenience in dev. mode.
 	http.HandleFunc("/manifest.json", writeJSON(manifestData))
 
-	// Returns the Channel Header and Command bindings for the App.
+	// Returns the Channel Header and Command bindings for the app.
 	http.HandleFunc("/bindings", writeJSON(bindingsData))
 
 	// The form for sending a Hello message.
@@ -202,7 +204,7 @@ func main() {
 	// Forces the send form to be displayed as a modal.
 	http.HandleFunc("/send-modal/submit", writeJSON(formData))
 
-	// Serves the icon for the App.
+	// Serves the icon for the app.
 	http.HandleFunc("/static/icon.png", writeData("image/png", iconData))
 
 	http.ListenAndServe(":8080", nil)
@@ -236,7 +238,7 @@ func writeJSON(data []byte) func(w http.ResponseWriter, r *http.Request) {
 
 The apps is a simple HTTP server that serves the files you created above. The only application logic is in `send`, which takes the revived `"message"` field and sends a message back to the user as the bot.
 
-## Installing the App
+## Installing the app
 
 Run your app using:
 
@@ -244,7 +246,7 @@ Run your app using:
 go run .
 ```
 
-Then run the following slash commands in our Mattermost server:
+Then run the following slash commands on your Mattermost server:
 
 ```
 /apps debug-add-manifest --url http://localhost:8080/manifest.json
@@ -253,9 +255,9 @@ Then run the following slash commands in our Mattermost server:
 
 Confirm the installation in the modal that pops up. You can insert any secret into the **App secret** field for now.
 
-## Using the App
+## Using the app
 
-Select the "Hello World" channel header button, which brings up a modal:
+Select the "Hello World" channel header button in Mattermost, which brings up a modal:
 
 ![image](modal.png)
 
@@ -263,6 +265,6 @@ Type `testing` and select **Submit**, you should see:
 
 ![image](submit.png)
 
-You can also use the `/helloworld send` command by e.g. typing `/helloworld send --message Hi!`
+You can also use the `/helloworld send` command by typing `/helloworld send --message Hi!`. This posts the message to the Mattermost channel that you're currently in.
 
 ![image](command.png)
