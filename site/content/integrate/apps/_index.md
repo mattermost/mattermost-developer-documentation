@@ -33,7 +33,7 @@ Read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to writ
 
 ### When would you build an app vs a custom slash command vs a webhook vs a plugin?
 
-That depends on your use case, as they each have benefits. Apps can be advertised, shared, and installed by others via the Marketplace and users can get started with a slash command. Comparatively, a custom slash and webhooks command requires a lot of configuration, is very rigid - and is limited to your own server.
+That depends on your use case, as they each have benefits. Apps can be advertised, shared, and installed by others via the Marketplace and users can get started with a slash command. Comparatively, a custom slash and webhooks command requires a lot of configuration and is less interactive.
 
 ### What's the difference between the apps framework and the plugin framework?
 
