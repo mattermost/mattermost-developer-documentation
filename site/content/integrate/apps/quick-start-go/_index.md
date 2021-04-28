@@ -248,7 +248,7 @@ Then run the following slash commands in our Mattermost server:
 
 ```
 /apps debug-add-manifest --url http://localhost:8080/manifest.json
-/apps install --app-id hello-world
+/apps install hello-world
 ```
 
 Confirm the installation in the modal that pops up. You can insert any secret into the **App secret** field for now.
