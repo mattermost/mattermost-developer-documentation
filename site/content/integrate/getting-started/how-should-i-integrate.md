@@ -26,7 +26,7 @@ That's not enough? You can include <a target="_blank" href="https://docs.matterm
 
 To build a richer bot integration, you can make full use of the [Mattermost REST API](/integrate/rest-api/). Everything that you see a Mattermost client doing, your integration can do too with this API.
 
-### I want to develop a cloud-based app 
+### I want to build an interactive app
 
 That's no problem. Our apps framework supports apps written in any language that supports HTTP, and work on our Mobile and Desktop clients. Apps can be hosted anywhere, on a Digital Ocean droplet, AWS EC2, or a server in your data centre. Take a look at our [Quickstart Guide](https://developers.mattermost.com/integrate/apps/quick-start-go/).
 
