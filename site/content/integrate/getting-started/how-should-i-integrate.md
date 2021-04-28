@@ -28,7 +28,9 @@ To build a richer bot integration, you can make full use of the [Mattermost REST
 
 ### I want to build an interactive app
 
-That's no problem. Our apps framework supports apps written in any language that supports HTTP, and work on our Mobile and Desktop clients. Apps can be hosted anywhere, on a Digital Ocean droplet, AWS EC2, or a server in your data centre. Take a look at our [Quickstart Guide](https://developers.mattermost.com/integrate/apps/quick-start-go/).
+That's no problem. Our Apps provide a framework with utilities like a KV store, bot account creation, OAuth permission scopes, and rich UX entry points.
+
+Apps can be written in any language that supports HTTP, and work on our Mobile and Desktop clients. Apps can be hosted anywhere, on a Digital Ocean droplet, AWS EC2, or a server in your data centre. Take a look at our [Quickstart Guide](https://developers.mattermost.com/integrate/apps/quick-start-go/).
 
 ### One of these alone isn't enough
 
