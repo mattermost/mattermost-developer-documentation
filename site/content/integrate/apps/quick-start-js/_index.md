@@ -22,7 +22,7 @@ You also need to install `nodejs` installed. Please follow the guide [here](http
 
 ### Install the Apps plugin
 
-The [apps plugin](https://github.com/mattermost/mattermost-plugin-apps) is a communication bridge between your app and the Mattermost server. To install it on your local server by cloning the code in a directory of your choice:
+The [apps plugin](https://github.com/mattermost/mattermost-plugin-apps) is a communication bridge between your app and the Mattermost server. To install it on your local server by cloning the code in a directory of your choice run:
 
 ```bash
 git clone https://github.com/mattermost/mattermost-plugin-apps.git
@@ -34,7 +34,7 @@ Then build the plugin using:
 make dist
 ```
 
-And upload it via the System Console to your local Mattermost server.
+Then upload it via the System Console to your local Mattermost server.
 
 ## Building the app
 
@@ -46,6 +46,7 @@ cd my-app
 ```
 
 Then create create a file called `app.js` containing a simple HTTP server:
+
 ```js
 const http = require("http");
 
@@ -66,7 +67,7 @@ server.listen(port, host, () => {
 
 ### Manifest
 
-Your app has to provide a so-called manifest. The manifest declares App metadata. In this example the *permission* to act as a bot, and to *bind* itself to the channel header, and to `/` commands is requested.
+Your app has to provide a so-called manifest. The manifest declares app metadata. In this example the *permission* to act as a bot, and to *bind* itself to the channel header, and to `/` commands is requested.
 
 The apps needs to server the manifest via HTTP. Therefore you need to add a new `case` to `requestListener`:
 
@@ -202,7 +203,6 @@ case "/static/icon.png":
     break;
 ```
 
-
 ### Serving the data
 
 Finally, add the application logic that gets executed when either the slash command is run or the modal submitted:
@@ -266,9 +266,9 @@ case "/send/submit":
     break;
 ```
 
-The apps is a simple HTTP server that serves the files you created above. The only application logic is in `send`, which takes the revived `"message"` field and sends a message back to the user as the bot.
+The app is a simple HTTP server that serves the files you created above. The only application logic is in `send`, which takes the revived `"message"` field and sends a message back to the user as the bot.
 
-## Installing the App
+## Installing the app
 
 Run your app using:
 
@@ -276,7 +276,7 @@ Run your app using:
 node app.js
 ```
 
-Then run the following slash commands in our Mattermost server:
+Then run the following slash commands on your Mattermost server:
 
 ```
 /apps debug-add-manifest --url http://localhost:8080/manifest.json
@@ -285,9 +285,9 @@ Then run the following slash commands in our Mattermost server:
 
 Confirm the installation in the modal that pops up. You can insert any secret into the **App secret** field for now.
 
-## Using the App
+## Using the app
 
-Select the "Hello World" channel header button, which brings up a modal:
+Select the "Hello World" channel header button in Mattermost, which brings up a modal:
 
 ![image](modal.png)
 
@@ -295,6 +295,6 @@ Type `testing` and select **Submit**, you should see:
 
 ![image](submit.png)
 
-You can also use the `/helloworld send` command by e.g. typing `/helloworld send --message Hi!`
+You can also use the `/helloworld send` command by typing `/helloworld send --message Hi!`. This posts the message to the Mattermost channel that you're currently in.
 
 ![image](command.png)
