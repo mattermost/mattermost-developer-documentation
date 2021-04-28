@@ -27,7 +27,7 @@ Apps are available as a Developers Preview and we're looking for your feedback! 
 
 * Apps will soon be available for self-managed deployments as well as customers' own AWS environments.
 
-Read the [quick start guide]({{< ref  "quick-start-go" >}}) to learn how to write your first app.
+Read the [JavaScript start guide]({{< ref "quick-start-js" >}}) or [Go quick start guide]({{< ref "quick-start-go" >}}) to learn how to write your first app.
 
 ## FAQ
 
