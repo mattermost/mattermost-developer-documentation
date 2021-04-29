@@ -5,9 +5,16 @@ description: "TODO"
 weight: 50
 ---
 
-Bindings ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding)) are what establish the relationship between locations and calls. Whenever it's called, you have to provide the list of bindings available according to the context. The context for the bindings call includes the app ID, bot access token, team ID, channel ID, acting user ID, and Mattermost site URL. By default it doesn't expand any value.
+Bindings ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding)) are what establish the relationship between locations and calls. Whenever the bindings route is called, your app needs to provide the list of bindings available according to the context ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context)). Some fields included in the context:
 
-**Note:** When the available bindings for a given user are changed, the user must change the channel or refresh the page in order to see the updated bindings.
+- Your app's bot user access token
+- The Mattermost Site URL
+- The ID of the user requesting the bindings (acting user ID)
+- The ID of the team the user is currently focused on
+- The ID of the channel the user is currently focused on
+- The ID of the post the user is currently focused on (if applicable)
+
+**Note:** When an OAuth2 process is completed, the client's bindings are automatically refreshed. For any other case where bindings need to be refreshed, the user will need to switch channels (which always fetches new bindings), or refresh the page.
 
 One example bindings response is the one from the [Hello World!](https://github.com/mattermost/mattermost-plugin-apps/blob/master/examples/go/helloworld/bindings.json) app. 
 
