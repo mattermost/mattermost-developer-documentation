@@ -1,4 +1,14 @@
-# Migrating thousands of Mattermost installations to new Kubernetes Custom Resources
+---
+title: "Migrating thousands of Mattermost installations to new Kubernetes Custom Resources"
+slug: migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources
+date: 2021-04-16T00:00:00-04:00
+categories:
+    - "cloud"
+author: Szymon Gibała
+github: Szymongib
+community: szymon.gibala
+summary: Case study of migrating Mattermost installations to the new Custom Resource.
+---
 
 More than a year after the release of Mattermost Operator 1.0 with `ClusterInstallation` Custom Resources (CRs) in version `v1alpha1`, with many lessons learned in the process we decided it is time to migrate CRs to the new `v1beta1` version.
 
@@ -31,11 +41,11 @@ For a `v1beta1` specification we decided to change the whole CR to simply `Matte
 
 ### Changing resource Kind
 
-The usual way of migrating CRs to the new version is by using [Conversion Webhooks](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#webhook-conversion) which give the ability to convert the CR specification "on the fly" by creating a webhook used by the API Server. This mechanism allows users to operate on several versions of resource while only one version is stored in etcd database.
+The usual way of migrating CRs to the new version is by using [Conversion Webhooks](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#webhook-conversion) which give the ability to convert the CR specification "on the fly" by creating a webhook used by the Kubernetes API Server. This mechanism allows users to operate on several versions of resource while only one version is stored in etcd database.
 
 Conversion webhooks however are designed to handle the migration from one version to another but the Custom Resource name and group cannot change it this process as those are the identifying properties of Custom Resource Definition (CRD). 
 
-Unfortunately, this did not apply to our case as in addition to the change of version, we also changed both resource Group and Kind, effectively creating a whole new CR - `Mattermost`.
+Unfortunately, conversion webhooks did not apply to our case as in addition to the change of version, we also changed both resource Group and Kind, effectively creating a whole new CR - `Mattermost`.
 
 
 #### Migrating to the new resource
@@ -57,10 +67,10 @@ spec:
 ```
 
 This way we can perform the migration in the following way:
-- When the controller for `ClusterInstallation` sees that the `spec.migrate` is set to `true`, it stops regular reconciliation of the CR and starts the migration by converting the old resource to the new one.
+- When the controller for `ClusterInstallation` sees that the `spec.migrate` is set to `true`, it stops regular reconciliation of the CR and starts the migration by converting the old resource to the new one. 
 - Immediately after the `Mattermost` resource is created, the controller for `Mattermost` sees it and starts to adjust existing resources like Services and Deployments to the new CR, making small changes and overriding owner references.
 - When we are sure that the controller for `Mattermost` successfully finished its work and Mattermost Pods are ready to serve traffic, the old `ClusterInstallation` is deleted, and voila!
-- As in the second phase the controller was just checking new Pods health, it could just do it once and requeue the resource for latter reconciliation while starting the migration for the next one.
+- As in the second phase the controller is just checking new Pods health, it can just do it once and requeue the resource for latter reconciliation while starting the migration for the next one, which gives us ability to migrate multiple resources at a time.
 
 The migration process has another advantage, that is if anything goes wrong it can be easily reverted just by setting `spec.migrate` back to `false` and removing the newly created `Mattermost` CR. The controller for `ClusterInstallation` will then claim the resources back and continue to monitor them.
 
@@ -108,12 +118,12 @@ mm-abcd   2/2     2            2           22h
 
 ❯ kubectl get replicasets.apps
 NAME                 DESIRED   CURRENT   READY   AGE
-mm-abcd-6fccc4f76f   0         0         0       22h
+mm-abcd-6fccc4f76f   0         0         0       22h  <- Old Replica Set is scaled to 0
 mm-abcd-9df98d568    2         2         2       16m
 
 ❯ kubectl get pods
 NAME                      READY   STATUS    RESTARTS   AGE
-mm-abcd-9df98d568-q8z6g   1/1     Running   0          16m
+mm-abcd-9df98d568-q8z6g   1/1     Running   0          16m  <- Pods share part of the suffix with the RS they belong to
 mm-abcd-9df98d568-vdxjx   1/1     Running   0          16m
 ```
 
