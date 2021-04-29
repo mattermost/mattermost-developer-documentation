@@ -50,4 +50,4 @@ The App framework provides a few differences from plugins.
 
 ### What language should I use to write apps?
 
-Any language you want. However, the only language with an official driver right now is Go.
+Any language you want. However, the only language with an official driver right now is Go.  we are planning to release other drivers in the future in conjunction with our community.
