@@ -1,20 +1,20 @@
 ---
 title: "Quick start guide (Go)"
 heading: "Writing a Mattermost app in Go"
-description: This quick start guide will walk you through the basics of writing a Mattermost app in Go."
+description: "This quick start guide will walk you through the basics of writing a Mattermost app in Go."
 weight: 10
 ---
 
 This quick start guide explains the basics of writing a Mattermost app. In this guide you will build an app that:
 
 - Contains a `manifest.json`, declares itself an HTTP application that acts as a bot, and attaches to locations in the user interface.
-- Attaches `send-modal` in its `bindings` to a button in the channel header, and `send` to a `/helloworld` command.
+- Attaches the form `send-modal` in its `bindings` to a button in the channel header, and the form `send` to a `/helloworld` command.
 - Contains a `send` function that sends a parameterized message back to the user.
 - Contains a `send-modal` function that forces displaying the `send` form as a modal.
 
 ## Prerequisites
 
-Before you can start with your app, you first need to set up a local developer environment following the [server](/contribute/server/developer-setup/) and [webapp](/contribute/webapp/developer-setup/) setup guides. You must enable the apps feature flag before starting the Mattermost server by setting the enjoinment variable `MM_FEATUREFLAGS_AppsEnabled` to `true` by e.g. adding `export MM_FEATUREFLAGS_AppsEnabled=true` to your `.bashrc`. Please also ensure that `Bot Account Creation` and `OAuth 2.0 Service Provider` are enabled in the System Console.
+Before you can start with your app, you first need to set up a local developer environment following the [server](/contribute/server/developer-setup/) and [webapp](/contribute/webapp/developer-setup/) setup guides. You must enable the apps feature flag before starting the Mattermost server by setting the environment variable `MM_FEATUREFLAGS_AppsEnabled` to `true` by e.g. adding `export MM_FEATUREFLAGS_AppsEnabled=true` to your `.bashrc`. Please also ensure that `Bot Account Creation` and `OAuth 2.0 Service Provider` are enabled in the System Console.
 
 **Note:** Apps do not work with a production release of Mattermost right now. They can only be run in a development environment. A future release will support production environments.
 
@@ -22,7 +22,7 @@ You also need at least `go1.16` installed. Please follow the guide [here](https:
 
 ### Install the Apps plugin
 
-The [apps plugin](https://github.com/mattermost/mattermost-plugin-apps) is a communication bridge between your app and the Mattermost server. To install it on your local server by cloning the code in a directory of your choice run:
+The [apps plugin](https://github.com/mattermost/mattermost-plugin-apps) is a communication bridge between your app and the Mattermost server. To install it on your local server, start by cloning the code in a directory of your choice run:
 
 ```bash
 git clone https://github.com/mattermost/mattermost-plugin-apps.git
@@ -31,10 +31,11 @@ git clone https://github.com/mattermost/mattermost-plugin-apps.git
 Then build the plugin using:
 
 ```bash
+cd mattermost-plugin-apps
 make dist
 ```
 
-Then upload it via the System Console to your local Mattermost server.
+Then upload it to your local Mattermost server via the System Console.
 
 ## Building the app
 
@@ -49,7 +50,10 @@ go get github.com/mattermost/mattermost-plugin-apps/apps@master
 
 ### Manifest
 
-Your app has to provide a so-called manifest. The manifest declares app metadata. In this example the *permission* to act as a bot, and to *bind* itself to the channel header, and to `/` commands is requested.
+Your app has to provide a manifest, which declares app metadata. In this example, the following permissions are requested:
+- create posts as a bot
+- render icons in the channel header
+- create slash commands
 
 Create a file called `manifest.json` containing:
 
@@ -71,7 +75,7 @@ Create a file called `manifest.json` containing:
 
 ### Bindings and locations
 
-Locations are named elements in the Mattermost user interface. Bindings specify how an app's calls should be displayed at, and invoked from, these locations.
+Locations are named elements in the Mattermost user interface. Bindings specify how an app's calls should be displayed and invoked from these locations.
 
 The app creates a channel header button, and adds a `/helloworld send` command.
 
@@ -156,12 +160,12 @@ Apps may include static assets. One example that was already used above is the `
 Download an example icon using:
 
 ```bash
-wget https://github.com/mattermost/mattermost-plugin-apps/raw/master/examples/go/helloworld/icon.png
+curl https://github.com/mattermost/mattermost-plugin-apps/raw/master/examples/go/helloworld/icon.png -o icon.png
 ```
 
 ### Serving the data
 
-Lastly, create a file named `main.go` with the following contents:
+Finally, add the application logic that gets executed when either the slash command is run or the modal submitted by creating a file named `main.go` with the following content:
 
 ```go
 package main
@@ -236,7 +240,7 @@ func writeJSON(data []byte) func(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-The apps is a simple HTTP server that serves the files you created above. The only application logic is in `send`, which takes the revived `"message"` field and sends a message back to the user as the bot.
+The app is a simple HTTP server that serves the files you created above. The only application logic is in `send`, which takes the received `"message"` field and sends a message back to the user as the bot.
 
 ## Installing the app
 
