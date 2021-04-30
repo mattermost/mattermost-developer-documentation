@@ -64,9 +64,9 @@ app.listen(port,host,  () => {
 ### Manifest
 
 Your app has to provide a manifest, which declares app metadata. In this example, the following permissions are requested:
-- create posts as a bot
-- render icons in the channel header
-- create slash commands
+- Create posts as a bot.
+- Render icons in the channel header.
+- Create slash commands.
 
 The apps needs to server the manifest via HTTP. Therefore you need to attach a new HTTP handler to `/manifest.json`:
 
