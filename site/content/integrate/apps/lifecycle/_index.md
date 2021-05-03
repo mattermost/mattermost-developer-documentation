@@ -2,7 +2,7 @@
 title: "App Lifecycle"
 heading: "The App Lifecycle"
 description: "The app lifecycle."
-weight: 130
+weight: 100
 ---
 
 ## Install
