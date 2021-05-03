@@ -52,7 +52,7 @@ go get github.com/mattermost/mattermost-plugin-apps/apps@master
 
 Your app has to provide a manifest, which declares app metadata. In this example, the following permissions are requested:
 - Create posts as a bot.
-- Render icons in the channel header.
+- Render icons in the channel header that will communicate with your app when clicked.
 - Create slash commands.
 
 Create a file called `manifest.json` containing:
