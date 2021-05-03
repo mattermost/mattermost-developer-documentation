@@ -25,7 +25,7 @@ When you develop using the Apps Framework, your apps can:
 
 ![image](app-bot.png)
 
-- Add buttons to channel headers, menus
+- Add buttons to channel headers and post menus
 
 ![image](app-channel-header.png)
 
