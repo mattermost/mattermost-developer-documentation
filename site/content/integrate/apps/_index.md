@@ -13,8 +13,7 @@ Apps are lightweight, interactive add-ons to Mattermost which can use any HTTP-c
 - Receive webhooks from Mattermost, and third-parties, and use the Mattermost REST APIs to post messages, etc.
 - Work on both Mobile and Desktop clients so developers can focus on the functionality of their apps.
 - Be deployed using our serverless hosting infrastructure keeping data secure and supporting scalability by being stateless.
-- Create dynamic fields.
-- Include code as an on-demand function.
+- Include dynamic fields, code as an on-demand function, and interactive modals.
 
 When you develop using the Apps Framework, your apps can:
 
@@ -29,8 +28,6 @@ When you develop using the Apps Framework, your apps can:
 - Add buttons to channel headers, menus
 
 ![image](app-channel-header.png)
-
-- Interactive modals
 
 ![image](app-action.png)
 
