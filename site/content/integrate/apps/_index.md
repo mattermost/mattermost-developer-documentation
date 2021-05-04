@@ -7,9 +7,9 @@ weight: 90
 
 Apps are lightweight, interactive add-ons to Mattermost which can use any HTTP-compatible hosting mechanism to run without dedicated infrastructure. Apps can:
 
-- Display interactive, dynamic Modal forms and Message Actions.
+- Display interactive, dynamic modal forms and message actions.
 - Be written in any language.
-- Attach themselves to locations in the Mattermost user interface (e.g. channel bar buttons, post menu, channel menu, commands), and can add their custom slash commands with full Autocomplete.
+- Attach themselves to locations in the Mattermost user interface (e.g. channel bar buttons, post menu, channel menu, commands), and can add their custom slash commands with full autocomplete.
 - Receive webhooks from Mattermost, and third-parties, and use the Mattermost REST APIs to post messages, etc.
 - Work on both Mobile and Desktop clients so developers can focus on the functionality of their apps.
 - Be deployed using our serverless hosting infrastructure keeping data secure and supporting scalability by being stateless.
@@ -52,7 +52,7 @@ A plugin should be used when you need to [directly alter the UI]({{< ref "extend
 The App framework provides a few differences from plugins, including:
 
 - Interactive elements are easier to use and develop.
-- Compatible with both desktop and mobile clients without any extra code.
+- Compatible with both Mobile and Desktop clients without any extra code.
 
 ### What language should I use to write apps?
 
