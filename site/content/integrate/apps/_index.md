@@ -41,20 +41,19 @@ Read the [JavaScript start guide]({{< ref "quick-start-js" >}}) or [Go quick sta
 
 ### When would you build an app vs a custom slash command vs a webhook vs a plugin?
 
-That depends on your use case, as they each have benefits. Apps provide a wider scope for UX functionality, don't include any configuration on the users' side, and are language-agnostic. Comparatively, a custom slash command requires some configuration and is less interactive.
+That depends on your use case, as they each have benefits.
 
-The built-in incoming webhook is rigid and requires specific fields to be posted to its URL, but some external systems don't allow the customization of the fields included in the webhook payload. Compared to built-in webhooks, An app can be customized to receive an HTTP webhook posting from another system, and can process the incoming data then augment it or make an actionable message in a channel.
+The built-in [incoming webhook]({{< ref "incoming-webhooks" >}}) is great for simple use cases. It requires the incoming payload to contain a valid [Post](https://pkg.go.dev/github.com/nhannv/mattermost-server/model#Post) JSON object - but some external systems don't allow the customization of the fields included in the webhook payload. Compared to built-in webhooks, an App or plugin can be customized to receive an HTTP webhook posting from another system, and can process the incoming data then augment it or make an actionable message in a channel.
 
-A plugin should be used when you need to alter the UX in Mattermost or have an application that requires low-latency with the server (such as replacing characters in any message). Currently, plugins have several UX hooks that apps cannot access, however we plan to add/migrate more UX hooks into the Apps Framework over time.
+A plugin should be used when you need to [directly alter the UI]({{< ref "extend/plugins/webapp/best-practices" >}}) in Mattermost or you have a feature that requires low latency with the server (such as replacing characters in any message [before it is saved]({{< ref "extend/plugins/server/reference#Hooks.MessageWillBePosted" >}})). Currently, plugins have several [UX hooks]({{< ref "extend/plugins/server/reference#Hooks" >}}) that Apps cannot access, however we plan to add/migrate more UX hooks into the Apps Framework over time. Please see the [plugin documentation]({{< ref "extend/plugins" >}}) for more information.
 
 ### What's the difference between the apps framework and the plugin framework?
 
-The Apps Framework provides a few differences from plugins.
+The App framework provides a few differences from plugins, including:
 
-- We’ve made our interactive elements easier to use and develop.
-- Works on both Mobile and Desktop clients without any extra code.
-- You host the app code, or build for Mattermost, and distribute through the Marketplace.
+- Interactive elements are easier to use and develop.
+- Compatible with both Mobile and Desktop clients without any extra code.
 
 ### What language should I use to write apps?
 
-Any language you want. However, the only language with an official driver right now is Go. We're planning to release other drivers in the future in conjunction with our community.
+Any language you want. We currently have an official driver for Go, and we are planning to release other drivers in the future in conjunction with our community.
