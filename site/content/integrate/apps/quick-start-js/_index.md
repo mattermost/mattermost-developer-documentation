@@ -75,7 +75,7 @@ The apps needs to server the manifest via HTTP. Therefore you need to add a new 
 case "/manifest.json":
     res.setHeader("Content-Type", "application/json");
     res.end(JSON.stringify({
-        app_id: "hello-world",
+        app_id: "helloworld",
         display_name: "Hello, world!",
         app_type: "http",
         root_url: "http://localhost:8080",
@@ -281,7 +281,7 @@ Then run the following slash commands on your Mattermost server:
 
 ```
 /apps debug-add-manifest --url http://localhost:8080/manifest.json
-/apps install --app-id hello-world
+/apps install --app-id helloworld
 ```
 
 Confirm the installation in the modal that pops up. You can insert any secret into the **App secret** field for now.
@@ -299,3 +299,20 @@ Type `testing` and select **Submit**, you should see:
 You can also use the `/helloworld send` command by typing `/helloworld send --message Hi!`. This posts the message to the Mattermost channel that you're currently in.
 
 ![image](command.png)
+
+## Uninstalling the app
+
+Uninstall the app using:
+
+```
+/apps uninstall helloworld
+```
+
+Then run the following slash commands on your Mattermost server:
+
+```
+/apps debug-add-manifest --url http://localhost:8080/manifest.json
+/apps install --app-id hello-world
+```
+
+Confirm the installation in the modal that pops up. You can insert any secret into the **App secret** field for now.
