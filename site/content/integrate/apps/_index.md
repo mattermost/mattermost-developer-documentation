@@ -49,11 +49,10 @@ A plugin should be used when you need to [directly alter the UI]({{< ref "extend
 
 ### What's the difference between the apps framework and the plugin framework?
 
-The App framework provides a few differences from plugins.
+The App framework provides a few differences from plugins, including:
 
-- We’ve made our interactive elements easier to use and develop.
-- Works on both desktop and mobile clients without any extra code.
-- You host the app code or build for Mattermost and distribute through the Marketplace.
+- Interactive elements are easier to use and develop.
+- Compatible with both desktop and mobile clients without any extra code.
 
 ### What language should I use to write apps?
 
