@@ -49,7 +49,7 @@ A plugin should be used when you need to alter the UX in Mattermost or have an a
 
 ### What's the difference between the apps framework and the plugin framework?
 
-The app framework provides a few differences from plugins.
+The Apps Framework provides a few differences from plugins.
 
 - We’ve made our interactive elements easier to use and develop.
 - Works on both Mobile and Desktop clients without any extra code.
