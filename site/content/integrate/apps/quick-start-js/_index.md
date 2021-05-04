@@ -299,3 +299,11 @@ Type `testing` and select **Submit**, you should see:
 You can also use the `/helloworld send` command by typing `/helloworld send --message Hi!`. This posts the message to the Mattermost channel that you're currently in.
 
 ![image](command.png)
+
+## Uninstalling the app
+
+Uninstall the app using:
+
+```
+/apps uninstall hello-world
+```
