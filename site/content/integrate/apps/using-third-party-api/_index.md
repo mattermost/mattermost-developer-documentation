@@ -63,7 +63,7 @@ Hello OAuth2! is an HTTP app, it requests the *permissions* to act as a System A
 
 ### Bindings and locations
 
-The Hello OAuth2! creates three commands: `/helloworld configure | connect | send`.
+The Hello OAuth2 app creates three commands: `/helloworld configure | connect | send`.
 
 ```json
 {
