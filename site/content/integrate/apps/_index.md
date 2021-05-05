@@ -56,4 +56,4 @@ The App framework provides a few differences from plugins, including:
 
 ### What language should I use to write apps?
 
-Any language you want. We currently have an official driver for Go, and we are planning to release other drivers in the future in conjunction with our community.
+Any language you want. We currently have an [official driver for Go](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps), and we are planning to release other drivers in the future in conjunction with our community.
