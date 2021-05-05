@@ -48,9 +48,6 @@ Below is the list of core committers working on Mattermost:
 - **<a name="jesse.hallam">Jesse Hallam</a>**
     - @jesse.hallam on [community.mattermost.com](https://community.mattermost.com/core/messages/@jesse.hallam) and [@lieut-data](https://github.com/lieut-data) on GitHub
     - Dev areas: Performance, Web App, Database, Toolkit
-- **<a name="sudheer.timmaraju">Sudheer Timmaraju</a>**
-    - @sudheerdev on [community.mattermost.com](https://community.mattermost.com/core/messages/@sudheerdev) and [@sudheerDev](https://github.com/sudheerDev) on GitHub
-    - Dev areas: Web/Desktop and Mobile apps
 - **<a name="hyeseong.kim">Hyeseong Kim</a>**
     - @cometkim on [community.mattermost.com](https://community.mattermost.com/core/messages/@cometkim) and [@cometkim](https://github.com/cometkim) on GitHub
     - Dev areas: Web App, React, Redux, REST API
@@ -87,9 +84,6 @@ Below is the list of core committers working on Mattermost:
 - **<a name="michael.kochell">Michael Kochell</a>**
     - @michael.kochell on [community.mattermost.com](https://community.mattermost.com/core/messages/@michael.kochell) and [@mickmister](https://github.com/mickmister) on GitHub
     - Dev areas: Extensions
-- **<a name="ali.farooq">Ali Farooq</a>**
-    - @ali.farooq on [community.mattermost.com](https://community.mattermost.com/core/messages/@ali.farooq) and [@ali-farooq0](https://github.com/ali-farooq0) on GitHub
-    - Dev areas: Toolkit, Plugins, Server, Clustering
 - **<a name="maria.nunez">Maria Nuñez</a>**
     - @maria.nunez on [community.mattermost.com](https://community.mattermost.com/core/messages/@maria.nunez) and [@marianunez](https://github.com/marianunez) on GitHub
     - Dev areas: Toolkit, Plugins, Web App
@@ -102,9 +96,6 @@ Below is the list of core committers working on Mattermost:
 - **<a name="shota.gvinepadze">Shota Gvinepadze</a>**
     - @shota.gvinepadze on [community.mattermost.com](https://community.mattermost.com/core/messages/@shota.gvinepadze) and [@iomodo](https://github.com/iomodo) on GitHub
     - Dev areas: Toolkit, Plugins, AI, Machine Learning
-- **<a name="eli.yukelzon">Eli Yukelzon</a>**
-    - @eli.yukelzon on [community.mattermost.com](https://community.mattermost.com/core/messages/@eli.yukelzon) and [@reflog](https://github.com/reflog) on GitHub
-    - Dev areas: Load Tests, Performance, Guest Accounts, Typescript
 - **<a name="claudio.costa">Claudio Costa</a>**
     - @claudio.costa on [community.mattermost.com](https://community.mattermost.com/core/messages/@claudio.costa) and [@streamer45](https://github.com/streamer45) on GitHub
     - Dev areas: Server, Load Tests, Performance, Race Conditions, Multimedia
@@ -135,9 +126,6 @@ Below is the list of core committers working on Mattermost:
 - **<a name="doug.lauder">Doug Lauder</a>**
     - @doug.lauder on [community.mattermost.com](https://community.mattermost.com/core/messages/@doug.lauder) and [@wiggin77](https://github.com/wiggin77) on GitHub
     - Dev areas: TBA
-- **<a name="farhan.munshi">Farhan Munshi</a>**
-    - @farhan.munshi on [community.mattermost.com](https://community.mattermost.com/core/messages/@farhan.munshi) and [@fm2munsh](https://github.com/fm2munsh) on GitHub
-    - Dev areas: Permissions, Compliance, LDAP
 - **<a name="ibrahim.acikgoz">Ibrahim Acikgoz</a>**
     - @ibrahim.acikgoz on [community.mattermost.com](https://community.mattermost.com/core/messages/@ibrahim.acikgoz) and [@isacikgoz](https://github.com/isacikgoz) on GitHub
     - Dev areas: Backend, CLI, Performance

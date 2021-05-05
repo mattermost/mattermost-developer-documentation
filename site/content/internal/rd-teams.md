@@ -10,7 +10,6 @@ weight: 110
 
 * Corey Hulen - CTO
 * Chris Overton - VP Engineering
-* Chandar Venkataraman - CPO
 
 ## Feature Teams
 
@@ -31,9 +30,7 @@ Feature teams are full-stack teams owning collections of features within the Mat
 
 * Scott Bishel - Engineering Lead
 * Jesus Espino - Engineer
-* Eli Yukelzon - Engineer
 * Ashish Bhate - Engineer
-* Caleb Roseland - Engineer
 * Ogi Marusic - QA
 * Eric Sethna - Product Manager
 * Andrew Brown - UX Designer
@@ -45,12 +42,10 @@ Feature teams are full-stack teams owning collections of features within the Mat
 * Lev Brouk - Engineer
 * Jason Frerich - Engineer
 * Michael Kochell - Engineer
-* Shota Gvinepadze - Engineer
 * Ben Schumacher - Engineer
 * Daniel Espino Garcia - Engineer
 * Dylan Haussermann - QA
 * Aaron Rothschild - Product Manager
-* Abhijit Singh - UX Designer
 * Justine Geffen - Technical Writer
 
 ### Workflows Team
@@ -59,9 +54,11 @@ Feature teams are full-stack teams owning collections of features within the Mat
 * Christopher Speller - Engineer
 * Christopher Poile - Engineer
 * Alejandro García Montoro - Engineer
+* Caleb Roseland - Engineer
+* Shota Gvinepadze - Engineer
 * Prapti Shrestha - QA SDET
 * Ian Tao - Product Manager
-* Alex Siclari - UX Designer
+* Abhijit Singh - UX Designer
 * Justine Geffen - Technical Writer
 
 ### Cloud Features Team
@@ -94,7 +91,6 @@ Platform Teams are focused on an individual technical specialisation or layer of
 
 * Dean Whillier - Engineering Lead
 * Harrison Healey - Engineer
-* Sudheer Timmaraju - Engineer
 * Devin Binnie - Engineer
 * Guillermo Vayá - Engineer
 * Nevy Angelova - Engineer
@@ -137,7 +133,6 @@ Platform Teams are focused on an individual technical specialisation or layer of
 
 * Jason Deland - Engineering Lead
 * Elisabeth Kulzer - Build Engineer
-* Khosrow Moossavi - Build Engineer
 
 ## Security Team
 
