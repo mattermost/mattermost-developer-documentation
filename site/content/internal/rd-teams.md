@@ -16,14 +16,17 @@ weight: 110
 ### Messaging
 
 #### Leadership
+
 * Joram Wilander - Senior Engineering Lead
 * Katie Wiersgalla - Senior Product Manager Lead
 
 #### Product Managers
+
 * Eric Sethna - Product Manager
 * Aaron Rothschild - Product Manager
 
 #### Full Stack 1 (name TBD)
+
 * Catalin Tomai - Engineering Lead
 * Martin Kraft - Engineer
 * Claudio Costa - Engineer
@@ -32,6 +35,7 @@ weight: 110
 * Furqan Malik - SDET
 
 #### Full Stack 2 (name TBD)
+
 * Catalin Tomai - Engineering Lead
 * Lev Brouk - Engineer
 * Michael Kochell - Engineer
@@ -42,6 +46,7 @@ weight: 110
 * Matt Birtch - UX Designer
 
 #### Full Stack 3 (name TBD)
+
 * Joram Wilander - Engineering Lead
 * Ashish Bhate - Engineer
 * Anurag Shivarathri - Engineer
@@ -49,6 +54,7 @@ weight: 110
 * Jelena Gilliam - QA
 
 #### Web Platform
+
 * Joram Wilander - Engineering Lead
 * Harrison Healey - Engineer
 * Devin Binnie - Engineer
@@ -56,6 +62,7 @@ weight: 110
 * Jelena Gilliam - QA
 
 #### Suite Platform
+
 * Joram Wilander - Engineering Lead
 * Agniva De Sarker - Engineer
 * Ibrahim Acikgoz - Engineer
@@ -88,6 +95,7 @@ weight: 110
 ### Cloud
 
 #### Leadership
+
 * Jason Blais - Senior Product Manager Lead
 
 ### Cloud Features Team
@@ -106,7 +114,6 @@ weight: 110
 * Gabe Jackson - Engineering Lead
 * Ian Whitlock - Engineer
 * Szymon Gibała - Engineer
-* Adam Clarkson - Product Manager
 
 ## Site Reliability Engineering Team
 
@@ -125,6 +132,7 @@ weight: 110
 ### Platform Teams
 
 #### Leadership
+
 * Zef Hemel - Engineering Lead
 * Jason Blais - Senior Product Manager Lead
 
@@ -143,6 +151,7 @@ weight: 110
 * Lindy Isherwood - QA
 
 #### UI Team
+
 * Dean Whillier - Engineering Lead
 * Nevy Angelova - Engineer
 * Michel Engelen - Engineer
@@ -157,5 +166,6 @@ weight: 110
 * Katie Wiersgalla - Product Manager
 
 ## Docs
+
+* Carrie Warner - Senior Technical Writer
 * Justine Geffen - Technical Writer
-* Carrie Warner - Technical Writer
