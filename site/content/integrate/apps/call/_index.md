@@ -16,7 +16,7 @@ A call ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/
 
 ### Expand
 
-To avoid extra communication between the app and Mattermost, you can include expansions in the calls. Expansions ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Expand)) will send in the call request the whole information of the required fields. You can expand each value to the following leves: “none”, “all” or “summary”.
+To avoid extra communication between the app and Mattermost, you can include expansions in the calls. Expansions ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Expand)) will send in the call request the whole information of the required fields. You can expand each value to the following levels: “none”, “all” or “summary”.
 
 TODO: Define differences between all and summary
 
