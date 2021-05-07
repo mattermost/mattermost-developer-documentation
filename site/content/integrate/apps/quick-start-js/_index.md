@@ -37,7 +37,7 @@ Then upload it to your local Mattermost server via the System Console.
 
 ## Building the app
 
-Start building your app by creating a directory for the code, setup a new package and install  [`node-fetch`](https://www.npmjs.com/package/node-fetch) and [`express`](https://expressjs.com/), which will be used later:
+Start building your app by creating a directory for the code, setup a new package and install [`node-fetch`](https://www.npmjs.com/package/node-fetch) and [`express`](https://expressjs.com/), which will be used later:
 
 ```bash
 mkdir my-app
@@ -56,8 +56,8 @@ app.use(express.json());
 const host = 'localhost';
 const port = 8080;
 
-app.listen(port,host,  () => {
-    console.log(`hello-world app listening at http://${host}:${port}`)
+app.listen(port, host, () => {
+    console.log(`hello-world app listening at http://${host}:${port}`);
 });
 ```
 
@@ -194,13 +194,15 @@ app.get('/static/icon.png', (req, res) => {
 Finally, add the application logic that gets executed when either the slash command is run or the modal submitted:
 
 ```js
-app.post('/send/submit', (req, res) => {
+app.use(express.json());
+
+app.post('/send/submit', async (req, res) => {
     const call = req.body;
 
     let message = 'Hello, world!';
-    const user_message = call.values.message;
-    if (user_message) {
-        message += ' ...and ' + user_message + '!';
+    const submittedMessage = call.values.message;
+    if (submittedMessage) {
+        message += ' ...and ' + submittedMessage + '!';
     }
 
     const users = [
@@ -219,27 +221,30 @@ app.post('/send/submit', (req, res) => {
     };
 
     // Get the DM channel between the user and the bot
-    const mattermost_site_url = call.context.mattermost_site_url;
+    const mattermostSiteURL = call.context.mattermost_site_url;
 
-    fetch(mattermost_site_url + '/api/v4/channels/direct', options).
-        then((mm_res) => mm_res.json()).
-        then((channel) => {
-            const post = {
-                channel_id: channel.id,
-                message,
-            };
+    const channel = await fetch(mattermostSiteURL + '/api/v4/channels/direct', options).
+        then((res) => res.json())
 
-            // Create a post
-            options.body = JSON.stringify(post);
+    const post = {
+        channel_id: channel.id,
+        message,
+    };
 
-            fetch(mattermost_site_url + '/api/v4/posts', options);
-        });
+    // Create a post
+    options.body = JSON.stringify(post);
 
-    res.json({});
+    fetch(mattermostSiteURL + '/api/v4/posts', options);
+
+
+    res.json({
+        type: 'ok',
+        markdown: 'Created a post in your DM channel.'
+    });
 });
 ```
 
-The app is a simple HTTP server that serves the files you created above. The only application logic is in `send`, which takes the received `"message"` field and sends a message back to the user as the bot.
+The app is a simple HTTP server that serves the files you created above. The only application logic is in `send`, which takes the received `"message"` field and sends a message back to the user as the bot. Also, an ephemeral message is posted in the current channel.
 
 ## Installing the app
 

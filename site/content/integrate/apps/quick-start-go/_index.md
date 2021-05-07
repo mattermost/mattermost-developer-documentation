@@ -193,6 +193,11 @@ var bindingsData []byte
 //go:embed send_form.json
 var formData []byte
 
+const (
+	host = "localhost"
+	port = 8080
+)
+
 func main() {
 	// Serve its own manifest as HTTP for convenience in dev. mode.
 	http.HandleFunc("/manifest.json", writeJSON(manifestData))
@@ -212,7 +217,9 @@ func main() {
 	// Serves the icon for the app.
 	http.HandleFunc("/static/icon.png", writeData("image/png", iconData))
 
-	http.ListenAndServe(":8080", nil)
+	addr := fmt.Sprintf("%v:%v", host, port)
+	fmt.Printf(`hello-world app listening at http://%s`, addr)
+	http.ListenAndServe(addr, nil)
 }
 
 func send(w http.ResponseWriter, req *http.Request) {
@@ -226,7 +233,10 @@ func send(w http.ResponseWriter, req *http.Request) {
 	}
 	mmclient.AsBot(c.Context).DM(c.Context.ActingUserID, message)
 
-	json.NewEncoder(w).Encode(apps.CallResponse{})
+    json.NewEncoder(w).Encode(apps.CallResponse{
+		Type:     apps.CallResponseTypeOK,
+		Markdown: "Created a post in your DM channel.",
+	})
 }
 
 func writeData(ct string, data []byte) func(w http.ResponseWriter, r *http.Request) {
@@ -241,7 +251,7 @@ func writeJSON(data []byte) func(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-The app is a simple HTTP server that serves the files you created above. The only application logic is in `send`, which takes the received `"message"` field and sends a message back to the user as the bot.
+The app is a simple HTTP server that serves the files you created above. The only application logic is in `send`, which takes the received `"message"` field and sends a message back to the user as the bot. Also, an ephemeral message is posted in the current channel.
 
 ## Installing the app
 
