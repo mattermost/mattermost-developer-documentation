@@ -35,63 +35,40 @@ Let's use our first tool, SSA, to understand what the compiler is generating. If
 ```
 b1:
 
-	v1 (?) = InitMem <mem>
-	v7 (5) = Arg <*[8]byte> {src} (b.ptr[*byte], src[*[8]byte])
-	v8 (?) = MOVQconst <int> [8] (b.cap[int], b.len[int])
-	v9 (+6) = Arg <int> {dest} [8] (b.len[int], dest+8[int])
-	v248 (84) = Arg <*byte> {dest}
-	v153 (6) = CMPQconst <flags> [8] v9
+    v1 (?) = InitMem <mem>
+    v7 (5) = Arg <*[8]byte> {src} (b.ptr[*byte], src[*[8]byte])
+    v8 (?) = MOVQconst <int> [8] (b.cap[int], b.len[int])
+    v9 (+6) = Arg <int> {dest} [8] (b.len[int], dest+8[int])
+    v248 (84) = Arg <*byte> {dest}
+    v153 (6) = CMPQconst <flags> [8] v9
+
 UGT v153 → b43 b3 (likely) (6)
 
 b3: ← b1
 
-	v12 (6) = LoweredPanicBoundsC <mem> [0] v8 v9 v1
+    v12 (6) = LoweredPanicBoundsC <mem> [0] v8 v9 v1
+
 Exit v12 (6)
-
-b24:
-BlockInvalid (+83)
-
-b25:
-BlockInvalid (84)
-
-b27:
-BlockInvalid (85)
-
-b29:
-BlockInvalid (86)
-
-b31:
-BlockInvalid (87)
-
-b33:
-BlockInvalid (88)
-
-b35:
-BlockInvalid (89)
-
-b37:
-BlockInvalid (90)
-
-b39:
-BlockInvalid (91)
 
 b43: ← b1
 
-	v18 (+7) = LoweredNilCheck <void> v7 v1
-	v29 (7) = InlMark <void> [0] v1
-	v152 (+8) = InlMark <void> [1] v1
-	v34 (+79) = MOVQload <uint64> v7 v1
-	v171 (+84) = MOVBstore <mem> v248 v34 v1
-	v168 (+85) = SHRQconst <uint64> [8] v34
-	v216 (+89) = SHRQconst <uint64> [40] v34
-	v180 (+91) = SHRQconst <uint64> [56] v34
-	v219 (88) = MOVLstore <mem> [1] v248 v168 v171
-	v243 (90) = MOVWstore <mem> [5] v248 v216 v219
-	v255 (91) = MOVBstore <mem> [7] v248 v180 v243
+    v18 (+7) = LoweredNilCheck <void> v7 v1
+    v29 (7) = InlMark <void> [0] v1
+    v152 (+8) = InlMark <void> [1] v1
+    v34 (+79) = MOVQload <uint64> v7 v1
+    v171 (+84) = MOVBstore <mem> v248 v34 v1
+    v168 (+85) = SHRQconst <uint64> [8] v34
+    v216 (+89) = SHRQconst <uint64> [40] v34
+    v180 (+91) = SHRQconst <uint64> [56] v34
+    v219 (88) = MOVLstore <mem> [1] v248 v168 v171
+    v243 (90) = MOVWstore <mem> [5] v248 v216 v219
+    v255 (91) = MOVBstore <mem> [7] v248 v180 v243
+
 Ret v255 (+8)
+
 ```
 
-The interesting blocks are `b1`, which initialize the values with the arguments of the function, and `b43`, which makes the actual copy.
+The interesting blocks are `b1`, which initialize the values with the arguments of the function, and `b43`, which makes the actual copy. The `b3` block simply handles the situation where the bounds check in the first line of our functions fails, issuing a `panic` as expected.
 
 ## Definition block
 
