@@ -182,7 +182,7 @@ And we added a new AMD64 rule:
 
 With the addition of this rule, the test passes, so we solved the issue!
 
-...or didn't we? Sorry, there's just one more wee thing to do. In the issue comments, [@mundaym](https://github.com/mundaym) pointed out [an important thing](https://github.com/golang/go/issues/41663#issuecomment-699904531):
+...or did we? Sorry, there's just one more wee thing to do. In the issue comments, [@mundaym](https://github.com/mundaym) pointed out [an important thing](https://github.com/golang/go/issues/41663#issuecomment-699904531):
 
 > arm64, ppc64le and s390x all also do unaligned load/store merging.
 
