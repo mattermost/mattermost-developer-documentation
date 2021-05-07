@@ -4,7 +4,6 @@ heading: "Using Redux with React in Mattermost"
 description: "Find out how using Redux with React is fairly straightforward thanks to the React Redux library."
 date: 2017-08-20T11:35:32-04:00
 weight: 7
-subsection: Redux
 ---
 
 Using Redux with React is fairly straightforward thanks to the [React Redux](https://github.com/reactjs/react-redux) library. It provides the `connect` function to create higher order components that have access to the Redux store to set their props.

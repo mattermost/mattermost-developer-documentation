@@ -2,7 +2,6 @@
 title: Best Practices
 heading: "Best Practices for Plugins on Mattermost"
 description: "Read about some of the best practices for working with plugins in Mattermost."
-subsection: Server Plugins
 weight: 0
 ---
 

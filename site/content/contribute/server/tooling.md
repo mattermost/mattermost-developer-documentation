@@ -3,7 +3,6 @@ title: Tooling
 heading: "Mattermost Server - Tooling"
 description: "Learn more about the tooling that is required to set up the developer's environment."
 date: 2020-04-22T17:52:04-05:00
-subsection: internal
 weight: 10
 ---
 

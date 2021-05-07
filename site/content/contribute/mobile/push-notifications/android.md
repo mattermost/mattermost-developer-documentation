@@ -4,7 +4,6 @@ heading: "Android Push Notifications at Mattermost"
 description: "Learn how Android push notifications work using Mattermost and Firebase Cloud Messaging."
 date: 2015-05-20T11:35:32-04:00
 weight: 1
-subsection: "Setup Push Notifications"
 ---
 
 Push notifications on Android are managed and dispatched using [Firebase Cloud Messaging (FCM)](http://firebase.google.com/docs/cloud-messaging/)

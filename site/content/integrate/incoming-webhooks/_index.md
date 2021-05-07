@@ -3,7 +3,6 @@ title: "Incoming Webhooks"
 heading: "Incoming Webhooks at Mattermost"
 description: "Incoming webhooks let you post some data to a Mattermost endpoint to create a message in a channel."
 date: "2017-08-19T12:01:23-04:00"
-section: "integrate"
 weight: 20
 ---
 
