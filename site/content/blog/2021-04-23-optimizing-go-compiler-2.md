@@ -26,7 +26,7 @@ import "encoding/binary"
 func copyArrayToSlice(dest []byte, src *[8]byte) {
 	_ = dest[8]                                // 1. bounds check
 	temp := binary.LittleEndian.Uint64(src[:]) // 2. read the contents of the source array into temp
-	binary.LittleEndian.PutUint64(dest, temp)  // 3. write the contents into the destiny slice
+	binary.LittleEndian.PutUint64(dest, temp)  // 3. write the contents into the destination slice
 }
 ```
 
@@ -173,7 +173,7 @@ we now can understand that this loads the contents from the `src` argument (reme
 
 This first line of the block, then, seems perfectly fine: it loads the whole contents of the `src` array into memory (which is effectively the `temp` variable we defined in the code), and it does it with a single instruction. We can no longer optimize this.
 
-But remember that the original function did two things: first, it loaded the contents of the `src` array into a temporal variable, and then it stored those contents into the `dest` slice. We have already loaded the contents into memory with the line we discussed above, so the rest of the block should do the rest of the work: store those contents from memory into the `dest` slice (which was represented by value `v248`). Let's see the rest of the block again:
+But remember that the original function did two things: first, it loaded the contents of the `src` array into a temporary variable, and then it stored those contents into the `dest` slice. We have already loaded the contents into memory with the line we discussed above, so the rest of the block should do the rest of the work: store those contents from memory into the `dest` slice (which was represented by value `v248`). Let's see the rest of the block again:
 
 ```
 v171 (+84) = MOVBstore <mem> v248 v34 v1
