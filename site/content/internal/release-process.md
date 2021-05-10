@@ -3,7 +3,6 @@ title: Release Cutting Process
 heading: "The Mattermost Release Cutting Process"
 description: "This document outlines the Mattermost team's release cutting process for new Mattermost releases."
 date: 2017-11-07T14:28:35-05:00
-section: internal
 weight: 100
 ---
 

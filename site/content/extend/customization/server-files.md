@@ -4,7 +4,6 @@ heading: "Mattermost Server Files"
 description: "In Mattermost, you have the freedom to alter how content is displayed by being able to change the contents of localized files and email templates."
 date: 2018-05-20T11:35:32-04:00
 weight: 1
-subsection: Customizing Mattermost
 ---
 
 In both Mattermost Team and Enterprise editions, you have the freedom to alter how content is displayed by being able to change the contents of localized files and email templates.

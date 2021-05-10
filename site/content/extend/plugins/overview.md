@@ -3,7 +3,6 @@ title: Overview
 heading: "An Overview of Mattermost Plugins"
 description: "Plugins are defined by a manifest file and contain at least a server or web app component, or both. Learn more in our overview of plugins."
 date: 2018-07-10T00:00:00-05:00
-subsection: Plugins (Beta)
 weight: 1
 ---
 

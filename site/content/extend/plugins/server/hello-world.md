@@ -3,7 +3,6 @@ title: Quick Start
 heading: "Writing a Mattermost Plugin"
 description: "This tutorial will walk you through the basics of writing a Mattermost plugin with a server component."
 date: 2018-07-10T00:00:00-05:00
-subsection: Server Plugins
 weight: -10
 ---
 

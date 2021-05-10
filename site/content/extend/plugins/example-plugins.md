@@ -3,7 +3,6 @@ title: "Example Plugins"
 heading: "Example Plugins in Mattermost"
 description: "To get started extending server-side functionality with plugins, take a look at our server “Hello, world!” tutorial."
 date: 2018-07-10T00:00:00-05:00
-subsection: Plugins (Beta)
 weight: 40
 ---
 

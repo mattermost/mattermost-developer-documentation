@@ -4,7 +4,6 @@ heading: "Code Review at Mattermost"
 description: "All changes to the Mattermost product must be reviewed. Learn about how Mattermost reviews product updates."
 date: 2018-03-06T00:00:00-04:00
 weight: 5
-subsection: Getting Started
 ---
 
 All changes to the product must be reviewed.

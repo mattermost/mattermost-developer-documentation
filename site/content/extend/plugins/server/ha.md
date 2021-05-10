@@ -3,7 +3,6 @@ title: High Availability
 heading: "Mattermost Enterprise Edition E20: High Availability"
 description: "All Mattermost plugins should consider High Availability (HA) environments. Learn more about our standards for workign with HA mode servers."
 date: 2018-07-10T00:00:00-05:00
-subsection: Server Plugins
 weight: 60
 ---
 

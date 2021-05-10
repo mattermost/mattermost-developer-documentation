@@ -3,7 +3,6 @@ title: "Community Grafana"
 heading: "Community Grafana - Mattermost"
 description: "Grafana runs in the Mattermost Cloud infrastructure in the same cluster that community installations are hosted."
 date: 2020-03-31T20:52:46-05:00
-subsection: internal
 weight: 20
 ---
 

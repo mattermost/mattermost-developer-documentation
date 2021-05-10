@@ -4,7 +4,6 @@ heading: "Actions in Redux - Mattermost"
 description: "Similar to other frameworks like Flux, actions in Redux represent a single change to the Redux store as a plain JavaScript object."
 date: 2017-08-20T11:35:32-04:00
 weight: 4
-subsection: Redux
 ---
 
 Similar to other frameworks like Flux, actions in Redux represent a single change to the Redux store as a plain JavaScript object.
@@ -217,5 +216,3 @@ Unit tests for actions are located in the same directory, adjacent to the file b
 1. Construct the initial test state. Note that this doesn't need to be shared between tests as it is in many other cases.
 2. Mock any actions that would contact the server. This is done using the [nock server mocking framework](https://github.com/node-nock/nock) to mock the server.
 3. Dispatch the action and look for the results.
-
-For more information on running the unit tests, see the [Developer Workflow documentation](/contribute/redux/developer-workflow/) or check out the [README](https://github.com/mattermost/mattermost-redux/blob/master/README.md) in the mattermost-redux repository.

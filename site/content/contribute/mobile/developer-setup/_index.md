@@ -4,7 +4,6 @@ heading: "Developer Setup for Mattermost Mobile Apps"
 description: "The following instructions apply to the mobile apps for iOS and Android built in React Native."
 date: 2017-08-20T11:35:32-04:00
 weight: 1
-subsection: Mobile Apps
 ---
 
 The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version [here](http://about.mattermost.com/mattermost-ios-app) and the Android version [here](http://about.mattermost.com/mattermost-android-app). Source code can be found at the [GitHub Mattermost Mobile app repository](https://github.com/mattermost/mattermost-mobile).

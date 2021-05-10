@@ -3,7 +3,6 @@ title: "Getting Started"
 heading: "Getting Started with Mattermost"
 description: "Learn how you can join the Mattermost community and get started contributing code to Mattermost repositories in GitHub."
 date: "2018-05-19T12:01:23-04:00"
-section: "contribute"
 weight: 1
 ---
 

@@ -3,7 +3,6 @@ title: Manager Guide
 heading: "The Manager's Guide to Onboarding at Mattermost"
 description: "This guide helps managers learn what they need to do to help new hires onboard into Mattermost."
 date: 2017-11-07T14:28:35-05:00
-subsection: Onboarding
 weight: 30
 ---
 

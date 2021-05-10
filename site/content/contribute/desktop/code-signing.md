@@ -3,7 +3,6 @@ title: "Code Signing"
 heading: "Code Signing at Mattermost"
 description: "When releasing the Mattermost Desktop application for Windows and macOS, we have to sign the executable with a certificate."
 date: 2018-01-16T10:32:51-05:00
-subsection: "Desktop App"
 ---
 
 When releasing the Mattermost Desktop application for Windows and macOS, we have to sign the executable with a certificate that allows the end user's computer to verify our identity.
