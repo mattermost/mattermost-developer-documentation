@@ -24,7 +24,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Performance, Security, Build, LDAP, Load Tests, Webpack, Permissions, Kubernetes
 - **<a name="harrison.healey">Harrison Healey</a>**
     - @harrison on [community.mattermost.com](https://community.mattermost.com/core/messages/@harrison) and [@hmhealey](https://github.com/hmhealey) on GitHub
-    - Dev areas: Mobile / Desktop and Web apps
+    - Dev areas: Mobile/Desktop and Web apps
 - **<a name="elias.nahum">Elias Nahum</a>**
     - @elias on [community.mattermost.com](https://community.mattermost.com/core/messages/@elias) and [@enahum](https://github.com/enahum) on GitHub
     - Dev areas: Mobile
@@ -41,7 +41,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: REST API, WebSocket Events, Kubernetes, Infrastructure, Build/Releases
 - **<a name="martin.kraft">Martin Kraft</a>**
     - @martin.kraft on [community.mattermost.com](https://community.mattermost.com/core/messages/@martin.kraft) and [@mkraft](https://github.com/mkraft) on GitHub
-    - Dev areas: Permissions, Compliance, LDAP
+    - Dev areas: Permissions, Compliance, LDAP, Groups, Data Retention
 - **<a name="jesús.espino">Jesús Espino</a>**
     - @jesus.espino on [community.mattermost.com](https://community.mattermost.com/core/messages/@jesus.espino) and [@jespino](https://github.com/jespino) on GitHub
     - Dev areas: Web App, Permissions, Compliance, Redux, CLI, System Console, Sample Data
@@ -92,7 +92,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Desktop/Web and Mobile apps
 - **<a name="guillermo.vaya">Guillermo Vayá</a>**
     - @guillermo.vaya on [community.mattermost.com](https://community.mattermost.com/core/messages/@guillermo.vaya) and [@Willyfrog](https://github.com/Willyfrog) on GitHub
-    - Dev areas: Web / Desktop apps
+    - Dev areas: Web/Desktop apps
 - **<a name="shota.gvinepadze">Shota Gvinepadze</a>**
     - @shota.gvinepadze on [community.mattermost.com](https://community.mattermost.com/core/messages/@shota.gvinepadze) and [@iomodo](https://github.com/iomodo) on GitHub
     - Dev areas: Toolkit, Plugins, AI, Machine Learning
@@ -143,7 +143,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: Extensions
 - **<a name="caleb.roseland">Caleb Roseland</a>**
     - @caleb.roseland on [community.mattermost.com](https://community.mattermost.com/core/messages/@caleb.roseland) and [@calebroseland](https://github.com/calebroseland) on GitHub
-    - Dev areas: Desktop / Web apps
+    - Dev areas: Desktop/Web apps
 - **<a name="avasconcelos114">Andre Vasconcelos</a>**
     - @avasconcelos114 on [community.mattermost.com](https://community.mattermost.com/core/messages/@avasconcelos114) and [@avasconcelos114](https://github.com/avasconcelos114) on GitHub
     - Dev areas: Web App, Mobile Apps
@@ -156,7 +156,9 @@ Below is the list of core committers working on Mattermost:
 - **<a name="avinash.lingaloo">Avinash Lingaloo</a>**
     - @avinash.lingaloo on [community.mattermost.com](https://community.mattermost.com/core/messages/@avinash.lingaloo) and [@avinashlng1080](https://github.com/avinashlng1080) on GitHub
     - Dev areas: Mobile
- 
+- **<a name="collin.eng">Collin Eng</a>**
+    - @collin.eng on [community.mattermost.com](https://community.mattermost.com/core/messages/@collin.eng) and [@engineereng](https://github.com/engineereng) on GitHub
+    - Dev areas: TBD
 
 Core Developers
 ---------------
@@ -251,7 +253,7 @@ Security Engineers
     - Dev areas: Security
 
 Technical Writers
---------------------
+-----------------
 
 The core team also has technical writers who document product features and functionality from release to release, along with product managers. They are:
 
