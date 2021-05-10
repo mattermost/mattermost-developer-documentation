@@ -39,7 +39,7 @@ The possible expansions are:
 
 ## Call handling
 
-### Call Request
+### Call request
 
 When a call is performed, a POST request will be made to the endpoint defined in the call. The call will include a “Mattermost-App-Authorization” header, with a jwtToken. Along the default claims, it will also send the Acting User ID.
 
@@ -63,7 +63,7 @@ The call type ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugi
 | `cancel` | A form was canceled.                 |
 | `lookup` | Lookup for dynamic selects in forms. |
 
-### Call Context
+### Call context
 
 Depending on the location and expansions, calls will have different context. These are all the possible context ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context)) values.
 
@@ -95,7 +95,7 @@ Depending on the location and expansions, calls will have different context. The
 | `team`                     | Team     | (Expansion)                                                                         |
 | `user`                     | User     | (Expansion)                                                                         |
 
-### Call Response
+### Call response
 
 There are several types ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallResponseType)) of responses:
 
