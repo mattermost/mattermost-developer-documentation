@@ -1,189 +1,323 @@
 ---
-title: "Post Menu Example"
-heading: "Post Menu Example"
-description: "In this example, the bindings specify to expand the post the user clicks on."
-weight: 70
+title: "Hello Oauth2 Example"
+heading: "Hello Oauth2 Example"
+description: "In this example, the http will connect via oauth2"
+weight: 90
 ---
 
-![binding-form-diagram.png](flow.png)
+### Hello, Oauth2!
 
-<details><summary>Diagram Source</summary>
+This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-oauth2)), written in Go and runnable on http://localhost:8080.
 
-https://sequencediagram.org
+- It contains a `manifest.json`, declares itself an HTTP application, requests permissions, and binds itself to locations in the Mattermost user interface.
+- In its `bindings` function it declares three commands: `configure`, `connect`, and `send`.
+- Its `send` function mentions the user by their Google name, and lists their Google Calendars.
+
+To install "Hello, OAuth2" on a locally-running instance of Mattermost follow these steps (go 1.16 is required):
+
+```sh
+git clone https://github.com/mattermost/mattermost-plugin-apps.git
+cd mattermost-plugin-apps/examples/go/hello-oauth2
+go run . 
+```
+
+In the Mattermost Desktop client run:
 
 ```
-title Bindings + Form Example
-
-Client->MM: Visit ChannelA, fetch bindings (Client Bindings Request)
-MM->App:Fetch bindings with call (MM Bindings Request)
-App->3rd Party Integration:Check user status
-3rd Party Integration->App:Return user status
-App->MM:Return bindings (App Bindings Response)
-MM->Client:Return bindings, render App's post menu item
-Client->MM:Clicked post menu item. Perform submit call (Client Submit Request)
-MM->App:Perform submit call (MM Submit Request)
-App->3rd Party Integration:Do something useful
-3rd Party Integration->App:Return something useful
-App->MM:Return new modal form (App Form Response)
-MM->Client:Return modal form, open modal
+/apps debug-add-manifest --url http://localhost:8080/manifest.json
+/apps install hello-oauth2
 ```
-</details>
 
-## Fetch bindings
+You need to configure your [Google API Credentials](https://console.cloud.google.com/apis/credentials) for the app. Use `$MATTERMOST_SITE_URL$/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete` for the `Authorized redirect URIs` field. After configuring the credentials, in the Mattermost Desktop client run:
 
-<details><summary>Client Bindings Request</summary>
-
-`GET /plugins/com.mattermost.apps/api/v1/bindings?channel_id=ei748ohj3ig4ijofs5tr47wozh&scope=webapp`
-</details>
-
-<details><summary>MM Bindings Request</summary>
-
-`POST /plugins/com.mattermost.apps/example/hello/bindings`
-```json
-{
-    "path": "/bindings",
-    "context": {
-        "app_id": "helloworld",
-        "bot_user_id": "i4wzxbk1hbbufq8rnecso96oxr",
-        "acting_user_id": "81bqom3kjjbo7bcjcnzs6dc8uh",
-        "user_id": "81bqom3kjjbo7bcjcnzs6dc8uh",
-        "team_id": "",
-        "channel_id": "ytqokpzzcinszf7ywrbdfitusw",
-        "mattermost_site_url": "http://localhost:8065",
-        "user_agent": "webapp",
-        "bot_access_token": "gcn6r3ac178zbxwiw5pc38e8zc"
-    }
-}
 ```
-</details>
+/hello-oauth2 configure --client-id $CLIENT_ID --client-secret $CLIENT_SECRET
+```
 
-<details><summary>App Bindings Response</summary>
+Now, you can connect your account to Google with `/hello-oauth2 connect` command, and then try `/hello-oauth2 send`.
+
+### Manifest
+
+Hello OAuth2! is an HTTP app, it requests the *permissions* to act as a System Admin to change the app's OAuth2 config, as a user to connect and send. It binds itself to `/` commands.
 
 ```json
 {
-    "type": "ok",
-    "data": [
-        {
-            "location": "/post_menu",
-            "bindings": [
-                {
-                    "location": "send-button",
-                    "icon": "http://localhost:8080/static/icon.png",
-                    "label": "send hello message",
-                    "call": {
-                        "path": "/send-modal",
-                        "expand": {
-                            "post": "all"
-                        }
-                    }
-                }
-            ]
-        }
-    ]
+	"app_id": "hello-oauth2",
+	"version":"demo",
+	"display_name": "Hello, OAuth2!",
+	"app_type": "http",
+	"root_url": "http://localhost:8080",
+	"homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/examples/go/hello-oauth2",
+	"requested_permissions": [
+		"act_as_admin",
+		"act_as_user",
+		"remote_oauth2"
+	],
+	"requested_locations": [
+		"/command"
+	]
 }
 ```
-</details>
 
-## Clicked post menu item
+### Bindings and locations
 
-<details><summary>Client Submit Request</summary>
-
-`POST /plugins/com.mattermost.apps/api/v1/call`
-```json
-{
-    "path": "/send-modal/submit",
-    "expand": {
-        "post": "all"
-    },
-    "context": {
-        "app_id": "helloworld",
-        "location": "send-button",
-        "channel_id": "ytqokpzzcinszf7ywrbdfitusw",
-        "team_id": "t35b8k7hginoujwn76tfatue5e",
-        "post_id": "jysnx7byebf49yxx1uynefajiy",
-        "root_id": "",
-        "user_agent": "webapp"
-    }
-}
-```
-</details>
-
-<details><summary>MM Submit Request</summary>
-
-`POST /plugins/com.mattermost.apps/example/hello/send/submit`
-```json
-{
-    "path": "/send-modal/submit",
-    "expand": {
-        "post": "all"
-    },
-    "context": {
-        "app_id": "helloworld",
-        "location": "send-button",
-        "bot_user_id": "i4wzxbk1hbbufq8rnecso96oxr",
-        "acting_user_id": "81bqom3kjjbo7bcjcnzs6dc8uh",
-        "team_id": "t35b8k7hginoujwn76tfatue5e",
-        "channel_id": "ytqokpzzcinszf7ywrbdfitusw",
-        "post_id": "jysnx7byebf49yxx1uynefajiy",
-        "mattermost_site_url": "http://localhost:8065",
-        "user_agent": "webapp",
-        "bot_access_token": "sqo3nwt377ys3co78jzye3cwmw",
-        "post": {
-            "id": "jysnx7byebf49yxx1uynefajiy",
-            "create_at": 1616447014367,
-            "update_at": 1616447014367,
-            "edit_at": 0,
-            "delete_at": 0,
-            "is_pinned": false,
-            "user_id": "81bqom3kjjbo7bcjcnzs6dc8uh",
-            "channel_id": "ytqokpzzcinszf7ywrbdfitusw",
-            "root_id": "",
-            "parent_id": "",
-            "original_id": "",
-            "message": "Hey I have a question",
-            "type": "",
-            "props": {},
-            "hashtags": "",
-            "pending_post_id": "",
-            "reply_count": 0,
-            "last_reply_at": 0,
-            "participants": null
-        }
-    }
-}
-```
-</details>
-
-<details><summary>App Form Response</summary>
+The Hello OAuth2 app creates three commands: `/helloworld configure | connect | send`.
 
 ```json
 {
-    "type": "form",
-    "form": {
-        "title": "Hello, world!",
-        "icon": "http://localhost:8080/static/icon.png",
-        "fields": [
-            {
-                "type": "text",
-                "name": "message",
-                "label": "message"
-            },
-            {
-                "type": "user",
-                "name": "user",
-                "label": "user",
-                "refresh": true
-            },
-            {
-                "type": "dynamic_select",
-                "name": "lookup",
-                "label": "lookup"
-            }
-        ],
-        "call": {
-            "path": "/send"
-        }
-    }
+	"type": "ok",
+	"data": [
+		{
+			"location": "/command",
+			"bindings": [
+				{
+					"icon": "http://localhost:8080/static/icon.png",
+					"label": "helloworld",
+					"description": "Hello remote (3rd party) OAuth2 App",
+					"hint": "[configure | connect | send]",
+					"bindings": [
+						{
+							"location": "configure",
+							"label": "configure",
+							"call": {
+								"path": "/configure"
+							}
+						},
+						{
+							"location": "connect",
+							"label": "connect",
+							"call": {
+								"path": "/connect"
+							}
+						},
+						{
+							"location": "send",
+							"label": "send",
+							"call": {
+								"path": "/send"
+							}
+						}
+					]
+				}
+			]
+		}
+	]
 }
 ```
-</details>
+
+### Configuring OAuth2
+
+`/hello-oauth2 configure` sets up the Google OAuth2 credentials. It accepts two string flags, `--client-id` and `--client-secret`. Submit will require an Admin token to affect the changes.
+
+```json
+{
+	"type": "form",
+	"form": {
+		"title": "Configures Google OAuth2 App credentials",
+		"icon": "http://localhost:8080/static/icon.png",
+		"fields": [
+			{
+				"type": "text",
+				"name": "client_id",
+				"label": "client-id",
+				"is_required": true
+			},
+			{
+				"type": "text",
+				"name": "client_secret",
+				"label": "client-secret",
+				"is_required": true
+			}
+		],
+		"call": {
+			"path": "/configure",
+			"expand": {
+				"admin_access_token": "all"
+			}
+		}
+	}
+}
+```
+
+The command handler uses an admin-only `StoreOAuth2App` API to store the credentials, and make them available to future calls with `expand.oauth2_app="all"`.
+
+```go
+func configure(w http.ResponseWriter, req *http.Request) {
+	creq := apps.CallRequest{}
+	json.NewDecoder(req.Body).Decode(&creq)
+	clientID, _ := creq.Values["client_id"].(string)
+	clientSecret, _ := creq.Values["client_secret"].(string)
+
+	asAdmin := mmclient.AsAdmin(creq.Context)
+	asAdmin.StoreOAuth2App(creq.Context.AppID, clientID, clientSecret)
+
+	json.NewEncoder(w).Encode(apps.CallResponse{
+		Markdown: "updated OAuth client credentials",
+	})
+}
+```
+
+### Connecting as a user
+
+#### `connect` command
+
+`/hello-oauth2 connect` formats and displays a link that starts the OAuth2 flow with the remote system. The URL (provided to the app in the `Context`) is handled by the apps framework. It will:
+
+- Create a one-time secret ("state").
+- Invoke `oauth2Connect` to generate the remote URL that starts the flow.
+- Redirect the user's browser there.
+
+Note `expand.oauth2_app="all"` in the form definition, it includes the app's OAuth2 Mattermost-hosted callback URL in the request context. This command should soon be provided by the framework, see [MM-34561](https://mattermost.atlassian.net/browse/MM-34561).
+
+```json
+{
+	"type": "form",
+	"form": {
+		"title": "Connect to Google",
+		"icon": "http://localhost:8080/static/icon.png",
+		"call": {
+			"path": "/connect",
+			"expand": {
+				"oauth2_app": "all"
+			}
+		}
+	}
+}
+```
+
+```go
+func connect(w http.ResponseWriter, req *http.Request) {
+	creq := apps.CallRequest{}
+	json.NewDecoder(req.Body).Decode(&creq)
+
+	json.NewEncoder(w).Encode(apps.CallResponse{
+		Markdown: md.Markdownf("[Connect](%s) to Google.", creq.Context.OAuth2.ConnectURL),
+	})
+}
+```
+
+#### OAuth2 call handlers
+
+To handle the OAuth2 `connect` flow, the app provides two calls: `/oauth2/connect` that returns the URL to redirect the user to, and `/oauth2/complete` which gets invoked once the flow is finished, and the `state` parameter is verified.
+
+```go
+	// Handle an OAuth2 connect URL request.
+	http.HandleFunc("/oauth2/connect", oauth2Connect)
+
+	// Handle a successful OAuth2 connection.
+	http.HandleFunc("/oauth2/complete", oauth2Complete)
+```
+
+`oauth2Connect` extracts the necessary data from the request's context and values ("state"), and composes a Google OAuth2 initial URL.
+
+```go
+func oauth2Connect(w http.ResponseWriter, req *http.Request) {
+	creq := apps.CallRequest{}
+	json.NewDecoder(req.Body).Decode(&creq)
+	state, _ := creq.Values["state"].(string)
+
+	url := oauth2Config(&creq).AuthCodeURL(state, oauth2.AccessTypeOffline, oauth2.ApprovalForce)
+	json.NewEncoder(w).Encode(apps.CallResponse{
+		Type: apps.CallResponseTypeOK,
+		Data: url,
+	})
+}
+```
+
+`oauth2Complete` is called upon the successful completion (including the validation of the "state"). It is responsible for creating an OAuth2 token, and storing it in the Mattermost OAuth2 user store.
+
+```go
+func oauth2Complete(w http.ResponseWriter, req *http.Request) {
+	creq := apps.CallRequest{}
+	json.NewDecoder(req.Body).Decode(&creq)
+	code, _ := creq.Values["code"].(string)
+
+	token, _ := oauth2Config(&creq).Exchange(context.Background(), code)
+
+	asActingUser := mmclient.AsActingUser(creq.Context)
+	asActingUser.StoreOAuth2User(creq.Context.AppID, token)
+
+	json.NewEncoder(w).Encode(apps.CallResponse{})
+}
+```
+
+#### Obtaining an OAuth2 "Config" for a call
+
+The app is responsible for composing its own remote OAuth2 config, using the remote system-specific settings. The `ClientID` and `ClientSecret` are stored in Mattermost OAuth2App record, and are included in the request context if specified with `expand.oauth2_app="all"`.
+
+```go
+import (
+	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/google"
+)
+
+func oauth2Config(creq *apps.CallRequest) *oauth2.Config {
+	return &oauth2.Config{
+		ClientID:     creq.Context.OAuth2.ClientID,
+		ClientSecret: creq.Context.OAuth2.ClientSecret,
+		Endpoint:     google.Endpoint,
+		RedirectURL:  creq.Context.OAuth2.CompleteURL,
+		Scopes: []string{
+			"https://www.googleapis.com/auth/calendar",
+			"https://www.googleapis.com/auth/userinfo.profile",
+			"https://www.googleapis.com/auth/userinfo.email",
+		},
+	}
+}
+```
+
+### `send` command
+
+`/hello-oauth2 send` sends the user a message that includes the Google user name on the account, and lists the Google Calendars. The form requests that submit calls expand `oauth2_user` which is where the app stored the OAuth2 token upon a successful connect.
+
+```json
+{
+	"type": "form",
+	"form": {
+		"title": "Send a Google-connected 'hello, world!' message",
+		"icon": "http://localhost:8080/static/icon.png",
+		"call": {
+			"path": "/send",
+			"expand": {
+				"oauth2_user": "all"
+			}
+		}
+	}
+}
+```
+
+```go
+func send(w http.ResponseWriter, req *http.Request) {
+	creq := apps.CallRequest{}
+	json.NewDecoder(req.Body).Decode(&creq)
+
+	oauthConfig := oauth2Config(&creq)
+	token := oauth2.Token{}
+	remarshal(&token, creq.Context.OAuth2.User) // go JSON is quirky!
+	ctx := context.Background()
+	tokenSource := oauthConfig.TokenSource(ctx, &token)
+	oauth2Service, _ := oauth2api.NewService(ctx, option.WithTokenSource(tokenSource))
+	calService, _ := calendar.NewService(ctx, option.WithTokenSource(tokenSource))
+	uiService := oauth2api.NewUserinfoService(oauth2Service)
+
+	ui, _ := uiService.V2.Me.Get().Do()
+	message := fmt.Sprintf("Hello from Google, [%s](mailto:%s)!", ui.Name, ui.Email)
+	cl, _ := calService.CalendarList.List().Do()
+	if cl != nil && len(cl.Items) > 0 {
+		message += " You have the following calendars:\n"
+		for _, item := range cl.Items {
+			message += "- " + item.Summary + "\n"
+		}
+	} else {
+		message += " You have no calendars.\n"
+	}
+
+	json.NewEncoder(w).Encode(apps.CallResponse{
+		Markdown: md.MD(message),
+	})
+}
+```
+
+## Hello Webhooks!
+
+This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-webhooks)), written in Go and runnable on http://localhost:8080.
