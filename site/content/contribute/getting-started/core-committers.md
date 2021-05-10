@@ -41,7 +41,7 @@ Below is the list of core committers working on Mattermost:
     - Dev areas: REST API, WebSocket Events, Kubernetes, Infrastructure, Build/Releases
 - **<a name="martin.kraft">Martin Kraft</a>**
     - @martin.kraft on [community.mattermost.com](https://community.mattermost.com/core/messages/@martin.kraft) and [@mkraft](https://github.com/mkraft) on GitHub
-    - Dev areas: Permissions, Compliance, LDAP
+    - Dev areas: Permissions, Compliance, LDAP, Groups, Data Retention
 - **<a name="jesús.espino">Jesús Espino</a>**
     - @jesus.espino on [community.mattermost.com](https://community.mattermost.com/core/messages/@jesus.espino) and [@jespino](https://github.com/jespino) on GitHub
     - Dev areas: Web App, Permissions, Compliance, Redux, CLI, System Console, Sample Data
@@ -138,9 +138,6 @@ Below is the list of core committers working on Mattermost:
 - **<a name="doug.lauder">Doug Lauder</a>**
     - @doug.lauder on [community.mattermost.com](https://community.mattermost.com/core/messages/@doug.lauder) and [@wiggin77](https://github.com/wiggin77) on GitHub
     - Dev areas: TBA
-- **<a name="farhan.munshi">Farhan Munshi</a>**
-    - @farhan.munshi on [community.mattermost.com](https://community.mattermost.com/core/messages/@farhan.munshi) and [@fm2munsh](https://github.com/fm2munsh) on GitHub
-    - Dev areas: Permissions, Compliance, LDAP
 - **<a name="ibrahim.acikgoz">Ibrahim Acikgoz</a>**
     - @ibrahim.acikgoz on [community.mattermost.com](https://community.mattermost.com/core/messages/@ibrahim.acikgoz) and [@isacikgoz](https://github.com/isacikgoz) on GitHub
     - Dev areas: Backend, CLI, Performance
@@ -171,7 +168,9 @@ Below is the list of core committers working on Mattermost:
 - **<a name="avinash.lingaloo">Avinash Lingaloo</a>**
     - @avinash.lingaloo on [community.mattermost.com](https://community.mattermost.com/core/messages/@avinash.lingaloo) and [@avinashlng1080](https://github.com/avinashlng1080) on GitHub
     - Dev areas: Mobile
- 
+- **<a name="collin.eng">Collin Eng</a>**
+    - @collin.eng on [community.mattermost.com](https://community.mattermost.com/core/messages/@collin.eng) and [@engineereng](https://github.com/engineereng) on GitHub
+    - Dev areas: TBD
 
 Core Developers
 ---------------
@@ -202,8 +201,6 @@ Product Managers
 
 The core team also has product managers who do a lot of great work designing, prioritizing and coordinating. They are:
 
-- **<a name="lindsay.brock">Lindsay Brock</a>**
-    - @lindsay on [community.mattermost.com](https://community.mattermost.com/core/messages/@lindsay) and [@lfbrock](https://github.com/lfbrock) on GitHub
 - **<a name="jason.blais">Jason Blais</a>**
     - @jason on [community.mattermost.com](https://community.mattermost.com/core/messages/@jason) and [@jasonblais](https://github.com/jasonblais) on GitHub
 - **<a name="eric.sethna">Eric Sethna</a>**
@@ -212,12 +209,8 @@ The core team also has product managers who do a lot of great work designing, pr
     - @katie.wiersgalla on [community.mattermost.com](https://community.mattermost.com/core/messages/@katie.wiersgalla) and [@wiersgallak](https://github.com/wiersgallak) on GitHub
 - **<a name="aaron.rothschild">Aaron Rothschild</a>**
     - @aaron.rothschild on [community.mattermost.com](https://community.mattermost.com/core/messages/@aaron.rothschild) and [@aaronrothschild](https://github.com/aaronrothschild) on GitHub
-- **<a name="dennis.kittrell">Dennis Kittrell</a>**
-    - @dennis.kittrell on [community.mattermost.com](https://community.mattermost.com/core/messages/@dennis.kittrell) and [@thefactremains](https://github.com/thefactremains) on GitHub
 - **<a name="eric.sadur">Eric Sadur</a>**
     - @eric.sadur on [community.mattermost.com](https://community.mattermost.com/core/messages/@eric.sadur) and [@etoaster](https://github.com/etoaster) on GitHub
-- **<a name="adam.clarkson">Adam Clarkson</a>**
-    - @adam.clarkson on [community.mattermost.com](https://community.mattermost.com/core/messages/@adam.clarkson) and [@adamjclarkson](https://github.com/adamjclarkson) on GitHub
 - **<a name="ian.tao">Ian Tao</a>**
     - @tao on [community.mattermost.com](https://community.mattermost.com/core/messages/@tao) and [@itao](https://github.com/itao) on GitHub
 
@@ -258,8 +251,6 @@ Build Engineers
 
 - **<a name="elisabeth.kulzer">Elisabeth Kulzer</a>**
     - @elisabeth.kulzer on [community.mattermost.com](https://community.mattermost.com/core/messages/@elisabeth.kulzer) and [@metanerd](https://github.com/metanerd) on GitHub
-- **<a name="jason.deland">Jason Deland</a>**
-    - @jason.deland on [community.mattermost.com](https://community.mattermost.com/core/messages/@jason.deland) and [@jaydeland](https://github.com/jaydeland) on GitHub
     
 Security Engineers
 --------------------    
