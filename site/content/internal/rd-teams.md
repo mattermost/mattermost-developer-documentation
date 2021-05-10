@@ -25,6 +25,10 @@ weight: 110
 * Eric Sethna - Product Manager
 * Aaron Rothschild - Product Manager
 
+#### Technical Writers
+
+* Carrie Warner - Senior Technical Writer
+
 #### Full Stack 1 (name TBD)
 
 * Catalin Tomai - Engineering Lead
@@ -59,7 +63,6 @@ weight: 110
 * Harrison Healey - Engineer
 * Devin Binnie - Engineer
 * Guillermo Vaya - Engineer
-* Jelena Gilliam - QA
 
 #### Suite Platform
 
@@ -91,6 +94,7 @@ weight: 110
 * Ogi Marusic - QA
 * Chen-I Lim - Product Manager
 * Michael Gamble - UX Designer
+* Justine Geffen - Technical Writer
 
 ### Cloud
 
@@ -98,7 +102,7 @@ weight: 110
 
 * Jason Blais - Senior Product Manager Lead
 
-### Cloud Features Team
+### Growth Team
 
 * Maria Nuñez - Engineering Lead
 * Allan Guwatudde - Engineer
@@ -107,7 +111,7 @@ weight: 110
 * Nick Misasi - Engineer
 * Steve Mudie - QA
 * Anneliese Klein - UX Designer
-* Carrie Warner - Technical Writer
+* Justine Geffen - Technical Writer
 
 ### Cloud Platform Team
 
@@ -125,7 +129,8 @@ weight: 110
 
 ## Release/DevOps Team
 
-* Carlos Panato - Engineer, Tech Lead
+* Joram Wilander - Engineering Lead
+* Carlos Panato - Engineer
 * Elisabeth Kulzer - Engineer
 * Amy Blais - Release Manager
 
@@ -142,7 +147,6 @@ weight: 110
 * Miguel Alatzar - Engineer
 * Avinash Lingaloo - Engineer
 * Joseph Baylon - QA SDET
-* Eric Sethna - Product Manager
 
 #### QA Team
 
@@ -164,8 +168,3 @@ weight: 110
 * Corey Robinson - Security Engineer, Infrastructure & Operations
 * Kennedy Torkura - Cloud Security Engineer
 * Katie Wiersgalla - Product Manager
-
-## Docs
-
-* Carrie Warner - Senior Technical Writer
-* Justine Geffen - Technical Writer
