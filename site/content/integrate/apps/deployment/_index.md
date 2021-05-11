@@ -5,11 +5,14 @@ description: "TODO"
 weight: 110
 ---
 
-Serverless hosting allows for easy app installation from the App Marketplace by a System Admin and uses AWS Lambda serverless technology instead of relying on a physical server. Developers who create apps using a serverless development approach can easily deploy apps securely, efficiently, and at scale in the Mattermost Cloud.
+Serverless hosting allows for easy app installation from the App Marketplace by a System Admin and uses AWS Lambda serverless technology instead of relying on a physical server.
+
+- What is this
+- How do you add an app
 
 ## Deployment to AWS
 
-### App Bundle
+### App bundle
 
 An app bundle is a convenient way to deliver an app to the Mattermost ecosystem. It provides a way to organize code and resources needed for an app to run. An app bundle is created by the developer of the app. Mattermost uses app bundles to provision and install/uninstall apps.
 
@@ -83,6 +86,15 @@ All files in the static folder of the bundle are considered to be the app's stat
 The `manifest.json` file of an app is stored in the same S3 bucket as the key - `manifests/$appID_$appVersion.json`.
 
 ![Flow of provisioning third-party apps to AWS](provisioning-in-3rd-party-aws.png)
+
+## HTTP server 
+
+While a serverless infrastructure is the recommended way to host apps, they can be hosted as a traditional HTTP server (for example, using `systemd`). It's important that your app is only reachable by the Mattermost server, and not the public internet.
+
+## Mattermost developers
+
+The following section is for internal Mattermost developer reference and does not apply to external developers.
+
 ### Provisioning in Mattermost Cloud
 
 In order to be provisioned in Mattermost Cloud an app bundle is uploaded to the specific S3 bucket. On a new app release, a bundle is created by GitLab CI and uploaded to S3. The [Mattermost apps cloud deployer](https://github.com/mattermost/mattermost-apps-cloud-deployer), running as a k8s cron job every hour, detects the S3 upload, and creates appropriate lambda functions, assets, and manifest the same way the **appsclt** does for the third-party accounts.
@@ -92,10 +104,3 @@ The deployer needs lambda function names, asset keys, and the manifest key to pr
 `appsctl generate-terraform-data /PATH/TO/YOUR/APP/BUNDLE`
 
 ![Flow of provisioning in Mattermost Cloud](provisioning-in-mm-aws.png)
-## HTTP server 
-
-While a serverless infrastructure is the recommended way to host apps, they can be hosted as a traditional HTTP server (for example, using `systemd`). It's important that your app is only reachable by the Mattermost server, and not the public internet.
-
-## Submit to Marketplace
-
-TBD
