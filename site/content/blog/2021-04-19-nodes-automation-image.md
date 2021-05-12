@@ -2,7 +2,7 @@ title: "Automating Noodes Rotation Using Gitlab Pipelines"
 heading: "Automating Noodes Rotation"
 description: "This blog post describes our journey to automate our nodes rotation process when we have a new AMI release, and the open source tools we built on this."
 slug: cloud-monitoring
-date: 2019-12-18T00:00:00-04:00
+date: 2021-04-19T00:00:00-04:00
 author: Stavros Foteinopoulos
 github: stafot
 community: stavros.foteinopoulos
@@ -15,8 +15,8 @@ This blog post describes our journey to automate our nodes rotation process when
 #### Problems
 
 Apart from toil elimination we had specific problems that we needed to solve by building our tooling around:
-Our first problem is the limited way in which Kubernetes Operations (kops) rolls out node changes. It does it sequentially, one by one and in a specific window of time. We needed a much more flexible way of rotation, to avoid stretching our workloads or hitting any limits on our infrastructure. Each environment might need different handling to be more efficient and as reliable as possible during this process.
-The second problem is that AWS EKS clusters have no automated way rolling out new nodes after a new AMI is released. To build this ability is essential, especially when it comes to releases which are related to security patches and should be in place as soon as possible.
+- Our first problem is the limited way in which Kubernetes Operations (kops) rolls out node changes. It does it sequentially, one by one and in a specific window of time. We needed a much more flexible way of rotation, to avoid stretching our workloads or hitting any limits on our infrastructure. Each environment might need different handling to be more efficient and as reliable as possible during this process.
+- The second problem is that AWS EKS clusters have no automated way rolling out new nodes after a new AMI is released. To build this ability is essential, especially when it comes to releases which are related to security patches and should be in place as soon as possible.
 
 #### Solution
 
