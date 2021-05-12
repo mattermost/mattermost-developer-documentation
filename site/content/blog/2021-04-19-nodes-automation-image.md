@@ -35,8 +35,6 @@ The flow of node rotation for our kops clusters
 
 The flow of node rotation for our AWS EKS clusters
 
-
-
 #### Why is this important?
 
 As we stated initially, all this work helped our team to get rid of a significant amount of toil work. By automating and improving these processes saved a lot of valuable time for the SRE team, before putting them in place there were cases that 2 or 3 people needed to participate and closely monitor these tasks. 
