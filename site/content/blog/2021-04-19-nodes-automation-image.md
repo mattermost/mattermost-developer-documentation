@@ -14,8 +14,8 @@ This blog post describes our journey to automate our nodes rotation process when
 
 #### Problems
 
-Apart from toil elimination we had specific problems that we needed to solve by building our tooling around.
-Our first problem is the limited way in which kops rolls out node changes. It does it sequentially, one by one and in a specific window of time. We needed a much more flexible way of rotation, to avoid stretching our workloads or hitting any limits on our infrastructure. Each environment might need different handling to be more efficient and as reliable as possible during this process.
+Apart from toil elimination we had specific problems that we needed to solve by building our tooling around:
+Our first problem is the limited way in which Kubernetes Operations (kops) rolls out node changes. It does it sequentially, one by one and in a specific window of time. We needed a much more flexible way of rotation, to avoid stretching our workloads or hitting any limits on our infrastructure. Each environment might need different handling to be more efficient and as reliable as possible during this process.
 The second problem is that AWS EKS clusters have no automated way rolling out new nodes after a new AMI is released. To build this ability is essential, especially when it comes to releases which are related to security patches and should be in place as soon as possible.
 
 #### Solution
@@ -27,15 +27,13 @@ To solve the above-mentioned problems we combined existing tooling that we had i
 - Created GitLab  pipelines to release new AMIs for kops clusters using cloud provisioner with rotator module and its improved capabilities in-place.
 - Created GitLab pipelines for releasing new AMIs on EKS clusters using rotatorctl.
 
-
 {{< figure src="/blog/2021-04-19-nodes-automation-image/kops-flow.png" alt="Kops Pipeline Flow">}}
-
 
 The flow of node rotation for our kops clusters
 
 {{< figure src="/blog/2021-04-19-nodes-automation-image/eks-flow.png" alt="EKS Pipeline Flow">}}
 
-The flow of node rotation for our eks clusters
+The flow of node rotation for our AWS EKS clusters
 
 
 
