@@ -25,7 +25,7 @@ In the Mattermost Desktop client run:
 
 ```
 /apps debug-add-manifest --url http://localhost:8080/manifest.json
-/apps install hello-oauth2
+/apps install --app-id hello-oauth2
 ```
 
 You need to configure your [Google API Credentials](https://console.cloud.google.com/apis/credentials) for the app. Use `$MATTERMOST_SITE_URL$/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete` for the `Authorized redirect URIs` field. After configuring the credentials, in the Mattermost Desktop client run:
@@ -42,66 +42,66 @@ Hello OAuth2! is an HTTP app, it requests the *permissions* to act as a System A
 
 ```json
 {
-	"app_id": "hello-oauth2",
-	"version":"demo",
-	"display_name": "Hello, OAuth2!",
-	"app_type": "http",
-	"root_url": "http://localhost:8080",
-	"homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/examples/go/hello-oauth2",
-	"requested_permissions": [
-		"act_as_admin",
-		"act_as_user",
-		"remote_oauth2"
-	],
-	"requested_locations": [
-		"/command"
-	]
+    "app_id": "hello-oauth2",
+    "version":"demo",
+    "display_name": "Hello, OAuth2!",
+    "app_type": "http",
+    "root_url": "http://localhost:8080",
+    "homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/examples/go/hello-oauth2",
+    "requested_permissions": [
+        "act_as_admin",
+        "act_as_user",
+        "remote_oauth2"
+    ],
+    "requested_locations": [
+        "/command"
+    ]
 }
 ```
 
 ### Bindings and locations
 
-The Hello OAuth2 app creates three commands: `/helloworld configure | connect | send`.
+The Hello OAuth2 app creates three commands: `/hello-oauth2 configure | connect | send`.
 
 ```json
 {
-	"type": "ok",
-	"data": [
-		{
-			"location": "/command",
-			"bindings": [
-				{
-					"icon": "http://localhost:8080/static/icon.png",
-					"label": "helloworld",
-					"description": "Hello remote (3rd party) OAuth2 App",
-					"hint": "[configure | connect | send]",
-					"bindings": [
-						{
-							"location": "configure",
-							"label": "configure",
-							"call": {
-								"path": "/configure"
-							}
-						},
-						{
-							"location": "connect",
-							"label": "connect",
-							"call": {
-								"path": "/connect"
-							}
-						},
-						{
-							"location": "send",
-							"label": "send",
-							"call": {
-								"path": "/send"
-							}
-						}
-					]
-				}
-			]
-		}
-	]
+    "type": "ok",
+    "data": [
+        {
+            "location": "/command",
+            "bindings": [
+                {
+                    "icon": "http://localhost:8080/static/icon.png",
+                    "label": "helloworld",
+                    "description": "Hello remote (3rd party) OAuth2 App",
+                    "hint": "[configure | connect | send]",
+                    "bindings": [
+                        {
+                            "location": "configure",
+                            "label": "configure",
+                            "call": {
+                                "path": "/configure"
+                            }
+                        },
+                        {
+                            "location": "connect",
+                            "label": "connect",
+                            "call": {
+                                "path": "/connect"
+                            }
+                        },
+                        {
+                            "location": "send",
+                            "label": "send",
+                            "call": {
+                                "path": "/send"
+                            }
+                        }
+                        
+                        
+            ]
+        }
+    ]
 }
 ```
 
@@ -111,31 +111,31 @@ The Hello OAuth2 app creates three commands: `/helloworld configure | connect | 
 
 ```json
 {
-	"type": "form",
-	"form": {
-		"title": "Configures Google OAuth2 App credentials",
-		"icon": "http://localhost:8080/static/icon.png",
-		"fields": [
-			{
-				"type": "text",
-				"name": "client_id",
-				"label": "client-id",
-				"is_required": true
-			},
-			{
-				"type": "text",
-				"name": "client_secret",
-				"label": "client-secret",
-				"is_required": true
-			}
-		],
-		"call": {
-			"path": "/configure",
-			"expand": {
-				"admin_access_token": "all"
-			}
-		}
-	}
+    "type": "form",
+    "form": {
+        "title": "Configures Google OAuth2 App credentials",
+        "icon": "http://localhost:8080/static/icon.png",
+        "fields": [
+            {
+                "type": "text",
+                "name": "client_id",
+                "label": "client-id",
+                "is_required": true
+            },
+            {
+                "type": "text",
+                "name": "client_secret",
+                "label": "client-secret",
+                "is_required": true
+            }
+        ],
+        "call": {
+            "path": "/configure",
+            "expand": {
+                "admin_access_token": "all"
+            }
+        }
+    }
 }
 ```
 
@@ -143,17 +143,17 @@ The command handler uses an admin-only `StoreOAuth2App` API to store the credent
 
 ```go
 func configure(w http.ResponseWriter, req *http.Request) {
-	creq := apps.CallRequest{}
-	json.NewDecoder(req.Body).Decode(&creq)
-	clientID, _ := creq.Values["client_id"].(string)
-	clientSecret, _ := creq.Values["client_secret"].(string)
+    creq := apps.CallRequest{}
+    json.NewDecoder(req.Body).Decode(&creq)
+    clientID, _ := creq.Values["client_id"].(string)
+    clientSecret, _ := creq.Values["client_secret"].(string)
 
-	asAdmin := mmclient.AsAdmin(creq.Context)
-	asAdmin.StoreOAuth2App(creq.Context.AppID, clientID, clientSecret)
+    asAdmin := mmclient.AsAdmin(creq.Context)
+    asAdmin.StoreOAuth2App(creq.Context.AppID, clientID, clientSecret)
 
-	json.NewEncoder(w).Encode(apps.CallResponse{
-		Markdown: "updated OAuth client credentials",
-	})
+    json.NewEncoder(w).Encode(apps.CallResponse{
+        Markdown: "updated OAuth client credentials",
+    })
 }
 ```
 
@@ -171,28 +171,28 @@ Note `expand.oauth2_app="all"` in the form definition, it includes the app's OAu
 
 ```json
 {
-	"type": "form",
-	"form": {
-		"title": "Connect to Google",
-		"icon": "http://localhost:8080/static/icon.png",
-		"call": {
-			"path": "/connect",
-			"expand": {
-				"oauth2_app": "all"
-			}
-		}
-	}
+    "type": "form",
+    "form": {
+        "title": "Connect to Google",
+        "icon": "http://localhost:8080/static/icon.png",
+        "call": {
+            "path": "/connect",
+            "expand": {
+                "oauth2_app": "all"
+            }
+        }
+    }
 }
 ```
 
 ```go
 func connect(w http.ResponseWriter, req *http.Request) {
-	creq := apps.CallRequest{}
-	json.NewDecoder(req.Body).Decode(&creq)
+    creq := apps.CallRequest{}
+    json.NewDecoder(req.Body).Decode(&creq)
 
-	json.NewEncoder(w).Encode(apps.CallResponse{
-		Markdown: md.Markdownf("[Connect](%s) to Google.", creq.Context.OAuth2.ConnectURL),
-	})
+    json.NewEncoder(w).Encode(apps.CallResponse{
+        Markdown: md.Markdownf("[Connect](%s) to Google.", creq.Context.OAuth2.ConnectURL),
+    })
 }
 ```
 
@@ -201,26 +201,26 @@ func connect(w http.ResponseWriter, req *http.Request) {
 To handle the OAuth2 `connect` flow, the app provides two calls: `/oauth2/connect` that returns the URL to redirect the user to, and `/oauth2/complete` which gets invoked once the flow is finished, and the `state` parameter is verified.
 
 ```go
-	// Handle an OAuth2 connect URL request.
-	http.HandleFunc("/oauth2/connect", oauth2Connect)
+    // Handle an OAuth2 connect URL request.
+    http.HandleFunc("/oauth2/connect", oauth2Connect)
 
-	// Handle a successful OAuth2 connection.
-	http.HandleFunc("/oauth2/complete", oauth2Complete)
+    // Handle a successful OAuth2 connection.
+    http.HandleFunc("/oauth2/complete", oauth2Complete)
 ```
 
 `oauth2Connect` extracts the necessary data from the request's context and values ("state"), and composes a Google OAuth2 initial URL.
 
 ```go
 func oauth2Connect(w http.ResponseWriter, req *http.Request) {
-	creq := apps.CallRequest{}
-	json.NewDecoder(req.Body).Decode(&creq)
-	state, _ := creq.Values["state"].(string)
+    creq := apps.CallRequest{}
+    json.NewDecoder(req.Body).Decode(&creq)
+    state, _ := creq.Values["state"].(string)
 
-	url := oauth2Config(&creq).AuthCodeURL(state, oauth2.AccessTypeOffline, oauth2.ApprovalForce)
-	json.NewEncoder(w).Encode(apps.CallResponse{
-		Type: apps.CallResponseTypeOK,
-		Data: url,
-	})
+    url := oauth2Config(&creq).AuthCodeURL(state, oauth2.AccessTypeOffline, oauth2.ApprovalForce)
+    json.NewEncoder(w).Encode(apps.CallResponse{
+        Type: apps.CallResponseTypeOK,
+        Data: url,
+    })
 }
 ```
 
@@ -228,16 +228,16 @@ func oauth2Connect(w http.ResponseWriter, req *http.Request) {
 
 ```go
 func oauth2Complete(w http.ResponseWriter, req *http.Request) {
-	creq := apps.CallRequest{}
-	json.NewDecoder(req.Body).Decode(&creq)
-	code, _ := creq.Values["code"].(string)
+    creq := apps.CallRequest{}
+    json.NewDecoder(req.Body).Decode(&creq)
+    code, _ := creq.Values["code"].(string)
 
-	token, _ := oauth2Config(&creq).Exchange(context.Background(), code)
+    token, _ := oauth2Config(&creq).Exchange(context.Background(), code)
 
-	asActingUser := mmclient.AsActingUser(creq.Context)
-	asActingUser.StoreOAuth2User(creq.Context.AppID, token)
+    asActingUser := mmclient.AsActingUser(creq.Context)
+    asActingUser.StoreOAuth2User(creq.Context.AppID, token)
 
-	json.NewEncoder(w).Encode(apps.CallResponse{})
+    json.NewEncoder(w).Encode(apps.CallResponse{})
 }
 ```
 
@@ -247,22 +247,22 @@ The app is responsible for composing its own remote OAuth2 config, using the rem
 
 ```go
 import (
-	"golang.org/x/oauth2"
-	"golang.org/x/oauth2/google"
+    "golang.org/x/oauth2"
+    "golang.org/x/oauth2/google"
 )
 
 func oauth2Config(creq *apps.CallRequest) *oauth2.Config {
-	return &oauth2.Config{
-		ClientID:     creq.Context.OAuth2.ClientID,
-		ClientSecret: creq.Context.OAuth2.ClientSecret,
-		Endpoint:     google.Endpoint,
-		RedirectURL:  creq.Context.OAuth2.CompleteURL,
-		Scopes: []string{
-			"https://www.googleapis.com/auth/calendar",
-			"https://www.googleapis.com/auth/userinfo.profile",
-			"https://www.googleapis.com/auth/userinfo.email",
-		},
-	}
+    return &oauth2.Config{
+        ClientID:     creq.Context.OAuth2.ClientID,
+        ClientSecret: creq.Context.OAuth2.ClientSecret,
+        Endpoint:     google.Endpoint,
+        RedirectURL:  creq.Context.OAuth2.CompleteURL,
+        Scopes: []string{
+            "https://www.googleapis.com/auth/calendar",
+            "https://www.googleapis.com/auth/userinfo.profile",
+            "https://www.googleapis.com/auth/userinfo.email",
+        },
+    }
 }
 ```
 
@@ -272,49 +272,49 @@ func oauth2Config(creq *apps.CallRequest) *oauth2.Config {
 
 ```json
 {
-	"type": "form",
-	"form": {
-		"title": "Send a Google-connected 'hello, world!' message",
-		"icon": "http://localhost:8080/static/icon.png",
-		"call": {
-			"path": "/send",
-			"expand": {
-				"oauth2_user": "all"
-			}
-		}
-	}
+    "type": "form",
+    "form": {
+        "title": "Send a Google-connected 'hello, world!' message",
+        "icon": "http://localhost:8080/static/icon.png",
+        "call": {
+            "path": "/send",
+            "expand": {
+                "oauth2_user": "all"
+            }
+        }
+    }
 }
 ```
 
 ```go
 func send(w http.ResponseWriter, req *http.Request) {
-	creq := apps.CallRequest{}
-	json.NewDecoder(req.Body).Decode(&creq)
+    creq := apps.CallRequest{}
+    json.NewDecoder(req.Body).Decode(&creq)
 
-	oauthConfig := oauth2Config(&creq)
-	token := oauth2.Token{}
-	remarshal(&token, creq.Context.OAuth2.User) // go JSON is quirky!
-	ctx := context.Background()
-	tokenSource := oauthConfig.TokenSource(ctx, &token)
-	oauth2Service, _ := oauth2api.NewService(ctx, option.WithTokenSource(tokenSource))
-	calService, _ := calendar.NewService(ctx, option.WithTokenSource(tokenSource))
-	uiService := oauth2api.NewUserinfoService(oauth2Service)
+    oauthConfig := oauth2Config(&creq)
+    token := oauth2.Token{}
+    remarshal(&token, creq.Context.OAuth2.User) // go JSON is quirky!
+    ctx := context.Background()
+    tokenSource := oauthConfig.TokenSource(ctx, &token)
+    oauth2Service, _ := oauth2api.NewService(ctx, option.WithTokenSource(tokenSource))
+    calService, _ := calendar.NewService(ctx, option.WithTokenSource(tokenSource))
+    uiService := oauth2api.NewUserinfoService(oauth2Service)
 
-	ui, _ := uiService.V2.Me.Get().Do()
-	message := fmt.Sprintf("Hello from Google, [%s](mailto:%s)!", ui.Name, ui.Email)
-	cl, _ := calService.CalendarList.List().Do()
-	if cl != nil && len(cl.Items) > 0 {
-		message += " You have the following calendars:\n"
-		for _, item := range cl.Items {
-			message += "- " + item.Summary + "\n"
-		}
-	} else {
-		message += " You have no calendars.\n"
-	}
+    ui, _ := uiService.V2.Me.Get().Do()
+    message := fmt.Sprintf("Hello from Google, [%s](mailto:%s)!", ui.Name, ui.Email)
+    cl, _ := calService.CalendarList.List().Do()
+    if cl != nil && len(cl.Items) > 0 {
+        message += " You have the following calendars:\n"
+        for _, item := range cl.Items {
+            message += "- " + item.Summary + "\n"
+        }
+    } else {
+        message += " You have no calendars.\n"
+    }
 
-	json.NewEncoder(w).Encode(apps.CallResponse{
-		Markdown: md.MD(message),
-	})
+    json.NewEncoder(w).Encode(apps.CallResponse{
+        Markdown: md.MD(message),
+    })
 }
 ```
 
