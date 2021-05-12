@@ -39,7 +39,11 @@ The flow of node rotation for our AWS EKS clusters
 
 #### Why is this important?
 
-As we stated initially, all this work helped our team to get rid of a significant amount of toil work. By automating and improving these processes saved a lot of valuable time for the SRE team, before putting them in place there were cases that 2 or 3 people needed to participate and closely monitor these tasks. Especially for kops clusters which rotate their nodes  is a time-consuming task (2 to 8 hours depending on the cluster size, and the environment) investing on tooling over toil was a great choice. This choice gave to our team the ability to roll out more often AMI changes, something that has as a result a more secure and better performing underlying infrastructure.  This way we can focus on what really matters, which is to serve a reliable and more secure cloud offering for our customers.
+As we stated initially, all this work helped our team to get rid of a significant amount of toil work. By automating and improving these processes saved a lot of valuable time for the SRE team, before putting them in place there were cases that 2 or 3 people needed to participate and closely monitor these tasks. 
+
+Especially in the case of kops clusters, which rotate their nodes, this is a time-consuming task (2 to 8 hours depending on the cluster size and the environment) so investing on tooling over toil was a great choice. 
+
+This choice gave to our team the ability to roll out more regular AMI changes, which has resulted in a more secure and better performing underlying infrastructure. This way we can focus on what really matters, which is to serve a reliable and more secure cloud offering for our customers.
 These tools are not only useful for our team but for the wider community, as they solve a problem that many Operations and SRE teams are facing. Offering back tooling to the Open Source community for managing their infrastructure and their workloads is a core principle in our team.
 
 #### Resources
