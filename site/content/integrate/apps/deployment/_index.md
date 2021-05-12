@@ -53,47 +53,46 @@ For a go app the manifest snippet would look like this:
 
 ### Deploying third-party apps to third-party AWS cloud environment
 
-Note that third-party apps are not supported in the Mattermost Cloud - they're used only for developer testing convenience. Provisioning in the third-party AWS cloud environment is done by the **appsctl** tool after completing the environment setup
+Note that third-party apps are not supported in the Mattermost Cloud - they're used only for developer testing convenience. Provisioning in the third-party AWS cloud environment is done by the **appsctl** tool after completing the environment set up.
 
 We need an app bundle to provision an app. The bundle might be provisioned from the local disk, from S3 (not implemented yet), or from a URL (not implemented yet). Provisioning consists of three parts which will be completed via the **appsctl** tool:
 
-1. Creating the lambda functions with appropriate policies.  
+1. Creating the lambda functions with appropriate policies.
 2. Storing static assets in the dedicated S3 bucket.
 3. Storing the app’s manifest file in the same dedicated S3 bucket.
 
-#### Mattermost Setup
+#### Mattermost set up
 
-Follow the Prerequisites section of the [JS](../quick-start-js) or [GO](../quick-start-go) Quick Start Guides to setup your Mattermost instance.
+Follow the Prerequisites section of the [JS](../quick-start-js) or [GO](../quick-start-go) Quick Start Guides to set up your Mattermost instance.
 
-#### AWS Setup
+#### AWS set up
 
 ##### 1. Create an IAM user and access key and secret
 
 You will need to create IAM user and an access key and secret so that `appsctl` can provision the app. Please follow the instructions [provided by AWS](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/) to complete these steps and save the key and secret.
 
-AWS credentials are read from the following environment variables. Set the following variables to the values just created.
+AWS credentials are read from the following environment variables. Set the following variables to the values just created:
 
 `APPS_PROVISION_AWS_ACCESS_KEY`  
 `APPS_PROVISION_AWS_SECRET_KEY`
 
-##### 2. Create AWS S3 Bucket
+##### 2. Create AWS S3 bucket
 
-You will need to create an s3 bucket within AWS.
+You will need to create an S3 bucket within AWS.
 
-- Visit https://s3.console.aws.amazon.com
-- Create bucket
-- Bucket name - Give your bucket a name
-- AWS Region - us-east-1
-- Create Bucket
+1. Visit https://s3.console.aws.amazon.com.
+2. Create a bucket.
+3. **Bucket name**: Give your bucket a name.
+4. **AWS Region**: us-east-1.
+5. Select **Create Bucket**.
 
-After creating the bucket set the following environment variable to the name of your bucket.
+After creating the bucket set the following environment variable to the name of your bucket:
 
 `MM_APPS_S3_BUCKET`
 
-#### Provision the App
+#### Provision the app
 
-After setting up your Mattermost instance and AWS key and s3 bucket you can now
-provision your app using `appsctl`. Note that `appsctl` commands are run in the `mattermost-plugin-apps` repo.
+After setting up your Mattermost instance, AWS key, and S3 bucket you can now provision your app using `appsctl`. Note that `appsctl` commands are run in the `mattermost-plugin-apps` repo.
 
 ```bash
 ## Install appsctl
@@ -103,9 +102,9 @@ go install github.com/mattermost/mattermost-plugin-apps/cmd/appsctl@latest
 appsctl provision app /PATH/TO/YOUR/APP/BUNDLE.zip
 ```
 
-#### Provisioned App Details
+#### Provisioned app details
 
-AWS Lambda functions have semantic names, which means that a function described in the `manifest.json` file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. And **appsctl** provisions lambda functions using this name. For example the name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. You don't need to worry about the AWS Lambda function names, as the Apps Plugin takes care of it. The dedicated S3 bucket name is stored in the environment variable: `MM_APPS_S3_BUCKET`
+AWS Lambda functions have semantic names, which means that a function described in the `manifest.json` file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. And **appsctl** provisions lambda functions using this name. For example the name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. You don't need to worry about the AWS Lambda function names, as the Apps Plugin takes care of it. The dedicated S3 bucket name is stored in the environment variable: `MM_APPS_S3_BUCKET`.
 
 This also stores all apps' static assets and manifest files.
 
