@@ -12,6 +12,8 @@ This quick start guide explains the basics of writing a Mattermost app. In this 
 - Contains a `send` function that sends a parameterized message back to the user.
 - Contains a `send-modal` function that forces displaying the `send` form as a modal.
 
+You can view an example [here](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/js/aws_hello).
+
 ## Prerequisites
 
 Before you can start with your app, you first need to set up a local developer environment following the [server](/contribute/server/developer-setup/) and [webapp](/contribute/webapp/developer-setup/) setup guides. You must enable the apps feature flag before starting the Mattermost server by setting the environment variable `MM_FEATUREFLAGS_AppsEnabled` to `true` by e.g. adding `export MM_FEATUREFLAGS_AppsEnabled=true` to your `.bashrc` or using `make run-server MM_FEATUREFLAGS_AppsEnabled=true`. Please also ensure that `Bot Account Creation` and `OAuth 2.0 Service Provider` are enabled in the System Console.
