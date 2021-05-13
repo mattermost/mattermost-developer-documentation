@@ -63,7 +63,7 @@ We need an app bundle to provision an app. The bundle might be provisioned from 
 
 #### Mattermost set up
 
-Follow the Prerequisites section of the [JS](../quick-start-js) or [GO](../quick-start-go) Quick Start Guides to set up your Mattermost instance.
+Follow the Prerequisites section of the [JS](../quick-start-js) or [GO](../quick-start-go) Quick Start Guides to set up your Mattermost instance. Ensure that you install the [apps plugin](https://developers.mattermost.com/integrate/apps/quick-start-js/#install-the-apps-plugin) as part of this process.
 
 #### AWS set up
 
