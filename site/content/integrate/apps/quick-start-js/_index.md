@@ -48,7 +48,7 @@ npm init
 npm install node-fetch express
 ```
 
-Then create create a file called `app.js` containing a simple HTTP server:
+Then create a file called `app.js` containing a simple HTTP server:
 
 ```js
 const express = require('express');
@@ -66,11 +66,12 @@ app.listen(port, host, () => {
 ### Manifest
 
 Your app has to provide a manifest, which declares app metadata. In this example, the following permissions are requested:
+
 - Create posts as a bot.
 - Render icons in the channel header.
 - Create slash commands.
 
-The apps needs to server the manifest via HTTP. Therefore you need to attach a new HTTP handler to `/manifest.json`:
+The app needs to serve the manifest via HTTP. Therefore you need to attach a new HTTP handler to `/manifest.json`:
 
 ```js
 app.get('/manifest.json', (req, res) => {
