@@ -20,7 +20,7 @@ In the System Console, ensure that the following are set to true:
 
 - `Enable Bot Account Creation`
 - `Enable OAuth 2.0 Service Provider`
-- `Enable Developer Mode`
+- `Enable Developer Mode` (Will require a server restart)
 
 **Note:** Apps do not work with a production release of Mattermost right now. They can only be run in a development environment. A future release will support production environments.
 
