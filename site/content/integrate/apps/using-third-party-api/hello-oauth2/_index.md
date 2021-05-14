@@ -317,7 +317,3 @@ func send(w http.ResponseWriter, req *http.Request) {
     })
 }
 ```
-
-## Hello Webhooks!
-
-This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-webhooks)), written in Go and runnable on http://localhost:8080.
