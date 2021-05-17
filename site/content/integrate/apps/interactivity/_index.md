@@ -18,8 +18,6 @@ They are defined by:
 | `footer`           | string | (Optional) Text used at the end of the modal.                                                  |
 | `call`             | Call   | Call to perform for this form.                                                                 |
 | `submit_buttons`   | string | (Optional) Key of the field to be used as the submit buttons. Must be of type `static_select`. |
-| `cancel_button`    | string | (Optional) Adds a default **Cancel** button in the modal view.                                 |
-| `submit_on_cancel` | bool   | (Optional) If `true`, the modal gets submitted even if the user cancels it.                    |
 | `fields`           | Fields | List of fields in the form.                                                                    |
 
 The types of fields are:
