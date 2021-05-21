@@ -2,7 +2,7 @@
 title: "Automating Nodes Rotation Using Gitlab Pipelines"
 heading: "Automating Nodes Rotation"
 description: "This blog post describes our journey to automate our nodes rotation process when we have a new AMI release, and the open source tools we built on this."
-slug: cloud-monitoring
+slug: automating-nodes-rotation
 date: 2021-04-19T00:00:00-04:00
 author: Stavros Foteinopoulos
 github: stafot
