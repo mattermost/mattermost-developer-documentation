@@ -189,6 +189,10 @@ panic: Failed to load the apple pem cert err=failed to parse PKCS1 private key f
 
 This could also be because you generated a certificate for the wrong bundle ID. The bundle ID used in `mattermost-push-proxy.json` should be the same one as the app and the for the same app it was generated for.
 
+##### *TLS: Unknown Certificate Authority* error
+
+**For iOS / Apple Push Notifications**: If you see a message in the push proxy log that includes `tls: unknown certificate authority` for iOS devices, it is likely Apple has invalidated your client certificate or you are using a client certificate without [the correct certificate authority.](https://developer.apple.com/news/?id=7gx0a2lp) To resolve this, follow [these instructions to generate a new certificate](https://developers.mattermost.com/contribute/mobile/push-notifications/ios/), and then [upload it to your push proxy server](#set-up-mattermost-push-notification-service-to-send-ios-push-notifications).
+
 ### Reporting issues
 
 For issues with repro steps, please report to https://github.com/mattermost/mattermost-server/issues
