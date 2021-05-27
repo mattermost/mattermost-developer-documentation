@@ -12,7 +12,7 @@ github: agarciamontoro
 community: alejandro.garcia
 ---
 
-[bf48163e8f2b604f3b9e83951e331cd11edd8495](https://github.com/golang/go/commit/bf48163e8f2b604f3b9e83951e331cd11edd8495). That is the hash of one of the 47791 commits that, at the time of this writing, build the whole git history of the Go compiler. It is definitely not the most important commit there, and most of the other ones probably deserve way more attention. But I like `bf48163`. It is a good commit, I think. I may be a bit biased, of course, as it is my first contribution to Go.
+[bf48163e8f2b604f3b9e83951e331cd11edd8495](https://github.com/golang/go/commit/bf48163e8f2b604f3b9e83951e331cd11edd8495). That is the hash of one of the 47791 commits that, at the time of this writing, build the whole Git history of the Go compiler. It is definitely not the most important commit there, and most of the other ones probably deserve way more attention. But I like `bf48163`. It is a good commit, I think. I may be a bit biased, of course, as it is my first contribution to Go.
 
 Not only that, it is my first contribution _ever_ to any compiler!
 
@@ -20,13 +20,13 @@ What's really interesting here is that I am not an expert in Go---nor in compile
 
 And that is why I wrote this, to let you know that fixing a bug in a compiler is not only meant for a few chosen ones, but within reach of anyone.
 
-Although this was conceived as a single post, it got a wee bit out of hand, so I decided to split it in three:
+Although this was conceived as a single post, it got a little bit out of hand, so I decided to split it in three:
 
--   Part 1: what the bug looks like, and an introduction to some parts of the Go compiler.
+-   Part 1: What the bug looks like, and an introduction to some parts of the Go compiler.
 -   [Part 2](/blog/optimizing-go-compiler-2): what the bug actually is.
 -   [Part 3](/blog/optimizing-go-compiler-3): how to fix the bug.
 
-Do not get discouraged for the length of the content: it does not correlate with the complexity of the issue, but with the level of detail I tried to use when explaining it. I wanted to make sure I explained the ins and outs of how I approached the fix, and I do not assume any knowledge about compilers from the reader, so I tried to discuss everything in chapter and verse.
+Don't get discouraged by the length of the content: It doesn't correlate with the complexity of the issue, but with the level of detail I tried to use when explaining it. I wanted to make sure I explained the ins and outs of how I approached the fix, and I don't assume any knowledge about compilers from the reader, so I tried to discuss everything chapter and verse.
 
 Enough with the intro, let's start!
 
@@ -114,7 +114,7 @@ This outputs a `ssa.html` file, in the same directory where you ran the command,
 
 ![Screenshot of the SSA page](/blog/2021-04-23-optimizing-go-compiler-1/ssa.png)
 
-That's a whole lot of information. I agree. But we can focus on what's interesting for us. The page shows the output of every phase of the compilation, once SSA is generated, in collapsible columns. To make things easier, the page is interactive: try clicking on a value and see how the uses of that value are highlighted in the same color. This does not only happen within the same column: if you look at the previous or next columns, you can also quickly see how that value is being modified by the different phases of the compilation (or if it is left untouched). You can do the same thing with blocks (the labels starting with `b`), which are isolated series of values in the control flow graph of the function.
+That's a whole lot of information. I agree. But we can focus on what's interesting for us. The page shows the output of every phase of the compilation, once SSA is generated, in collapsible columns. To make things easier, the page is interactive: try clicking on a value and see how the uses of that value are highlighted in the same color. This does not only happen within the same column: If you look at the previous or next columns, you can also quickly see how that value is being modified by the different phases of the compilation (or if it's left untouched). You can do the same thing with blocks (the labels starting with `b`), which are isolated series of values in the control flow graph of the function.
 
 ## Rewrite rules
 
@@ -156,23 +156,23 @@ We can see all the parts of a normal rule here:
 -   The boolean condition, `isPowerOfTwo8(c)`, which restricts the pattern to those multiplications where the constant `c` is a power of two.
 -   The new instruction, `(Lsh8x64 <t> n (Const64 <typ.UInt64> [log8(c)]))`, which shifts `n` to the left `log(c)` places.
 
-It is ok if you do not understand every specific detail of the instructions, we will see them in detail a bit later in this post. Here, for example, we can note that the `8` suffixes make reference to the fact that this rule only matches multiplications of 8-bit variables. The other highlighted rules in the link to the `generic.rules` file cover the cases for variables of different bit widths.
+It's OK if you don't understand every specific detail of the instructions, we'll see them in detail a bit later in this post. Here, for example, we can note that the `8` suffixes make reference to the fact that this rule only matches multiplications of 8-bit variables. The other highlighted rules in the link to the `generic.rules` file cover the cases for variables of different bit widths.
 
-For now, it's enough to understand that the rules match a specific pattern of instructions, and rewrite those instructions with a new one that is hopefully more efficient. Also, it is important to know that there are generic rules, as the one we just studied, which are applied regardless of the specific architecture we are compiling for, and architecture-specific rules, such as the ones in the [AMD64.rules file](https://github.com/golang/go/blob/master/src/cmd/compile/internal/ssa/gen/AMD64.rules), which take advantage of the specifics of each architecture, further optimizing the code.
+For now, it's enough to understand that the rules match a specific pattern of instructions, and rewrite those instructions with a new one that's hopefully more efficient. Also, it is important to know that there are generic rules, as the one we just studied, which are applied regardless of the specific architecture we are compiling for, and architecture-specific rules, such as the ones in the [AMD64.rules file](https://github.com/golang/go/blob/master/src/cmd/compile/internal/ssa/gen/AMD64.rules), which take advantage of the specifics of each architecture, further optimizing the code.
 
-## Connecting all together
+## Connecting it all together
 
-In order to investigate the issue and solve it, we will need to set up the development environment for the Go compiler. I encourage you to read the official [documentation](https://golang.org/doc/contribute): it is comprehensive and easy to understand. There are some particularities to the process, but it is really straightforward.
+In order to investigate the issue and solve it, we'll need to set up the development environment for the Go compiler. I encourage you to read the official [documentation](https://golang.org/doc/contribute): it's comprehensive and easy to understand. There are some particularities to the process, but it's generally straightforward.
 
-For the specifics we will need to use in these posts, we can summarize a couple of things. All the commands in this section assume that you have cloned the Go repository and have a shell open in its root directory.
+For the specifics we'll need to use in these posts, we can summarize a couple of things. All the commands in this section assume that you've cloned the Go repository and have a shell open in its root directory.
 
 ### How to apply the changes done to the rewrite rules
 
-We already know what the rewrite rules are, but not how they are applied. Although the rules live in a series of `.rules` files, the actual code used to match and apply them is normal Go code. With one peculiarity: it is automatically generated from the `.rules` files.
+We already know what the rewrite rules are, but not how they're applied. Although the rules live in a series of `.rules` files, the actual code used to match and apply them is normal Go code. With one peculiarity: it's automatically generated from the `.rules` files.
 
 For example, the rules for AMD64 are declared in the file `src/cmd/compile/internal/ssa/gen/AMD64.rules `, but the automatically generated code that applies those rules live in `src/cmd/compile/internal/ssa/rewriteAMD64.go`.
 
-So: whenever we manually update a rewrite rule, we need to re-generate the corresponding Go code. Doing so it's trivial, and it comes down to this:
+So: whenever we manually update a rewrite rule, we need to re-generate the corresponding Go code. Doing so is trivial, and comes down to this:
 
 ```sh
 cd src/cmd/compile/internal/ssa/gen/
@@ -181,7 +181,7 @@ go run *.go
 
 ### How to compile the compiler and test it
 
-And now for the fun part: how to compile the compiler. Once we have generated the automatic code, we want to build the compiler from source with the new changes. Doing it is also as trivial as calling a script:
+And now for the fun part: how to compile the compiler. Once we've generated the automatic code, we want to build the compiler from source with the new changes. Doing it is as trivial as calling a script:
 
 ```sh
 cd src/
@@ -197,7 +197,7 @@ export PATH=`pwd`:$PATH
 
 If everything was correctly setup, you should see your local Go directory when doing `which go`.
 
-And last, but not least, when you have applied your changes, you will want to know that you did not break anything else, so you should run the whole test suite at least once before you push your changes! Doing so is again one script call away:
+And last, but not least, when you've applied your changes, you'll want to know that you didn't break anything else, so you should run the whole test suite at least once before you push your changes! Doing so is again one script call away:
 
 ```sh
 cd src/
