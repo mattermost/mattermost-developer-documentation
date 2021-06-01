@@ -35,12 +35,13 @@ Bindings are organized by top level locations. Top level bindings just need to d
 
 ### `/post_menu` bindings
 
-| Name       | Type   | Description                                                                     |
-| :--------- | :----- | :------------------------------------------------------------------------------ |
-| `location` | string | Name of this location. The whole path of locations will be added in the context |
-| `icon`     | string | (Optional) URL to the icon.                                                     |
-| `label`    | string | Text to show in the item.                                                       |
-| `call`     | Call   | Call to perform.                                                                |
+| Name       | Type     | Description                                                                     |
+| :--------- | :------- | :------------------------------------------------------------------------------ |
+| `location` | string   | Name of this location. The whole path of locations will be added in the context |
+| `icon`     | string   | (Optional) URL to the icon.                                                     |
+| `label`    | string   | Text to show in the item.                                                       |
+| `call`     | Call     | Call to perform.                                                                |
+| `bindings` | Bindings | A list of sub-bindings, in order to create a submenu.
 
 The call for these bindings will include in the context the user ID, the post ID, the root post ID if any, the channel ID and the team ID.
 
