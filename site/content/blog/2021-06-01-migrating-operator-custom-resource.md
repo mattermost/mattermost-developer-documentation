@@ -96,8 +96,7 @@ It's understandable that when we set out to migrate to version `v1beta` we wante
 
 Kubernetes Deployments have some awesome features like [rolling updates](https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/) that we use all the time when we change environment variables, versions, or other configurations of our installations. It allows for updating Pods sequentially keeping some of them running while others are being updated.
 
-Unfortunately, the `spec.selector` field is immutable so we couldn't just update the Deployment.
-We also can't have two Deployments of the same name in the same namespace and we didn't want to change the names of resources created by the Operator.
+Unfortunately, the `spec.selector` field is immutable so we couldn't just update the Deployment. We also can't have two Deployments of the same name in the same namespace and we didn't want to change the names of resources created by the Operator.
 
 Simply running the [Client Go](https://github.com/kubernetes/client-go) equivalent of `kubectl delete deployment...` and creating it from scratch wasn't an option either as it would cause the deletion of all Pods running Mattermost. This would result in a brief downtime of the Mattermost instance managed by the Mattermost Operator and it would violate one of our objectives.
 
