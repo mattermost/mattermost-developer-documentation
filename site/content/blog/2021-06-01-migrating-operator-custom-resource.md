@@ -1,7 +1,7 @@
 ---
 title: "Migrating thousands of Mattermost installations to new Kubernetes Custom Resources"
 slug: migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources
-date: 2021-04-16T00:00:00-04:00
+date: 2021-06-01T00:00:00-04:00
 categories:
     - "cloud"
 author: Szymon Gibała
@@ -50,7 +50,7 @@ When the `ClusterInstallation` CR is created, the Mattermost Operator spins up a
 
 This prevents us from simply running the script that would delete `ClusterInstallation` and create `Mattermost` in its place as it would cause the downtime of the Mattermost application (unless we chose to orphan all resources).
 
-To "exchange" the existing resources between different CRs,as well as support both resources for some time, we decided to run two [Controllers](https://kubernetes.io/docs/concepts/architecture/controller/) as part of Mattermost Operator and make them perform the desired migration. As we wanted to retain some control over Mattermost instances that are being migrated we decided to introduce a new field to the `ClusterInstallation` spec that would be a signal for the Operator to start the migration.
+To "exchange" the existing resources between different CRs, as well as support both resources for some time, we decided to run two [Controllers](https://kubernetes.io/docs/concepts/architecture/controller/) as part of Mattermost Operator and make them perform the desired migration. As we wanted to retain some control over Mattermost instances that are being migrated we decided to introduce a new field to the `ClusterInstallation` spec that would be a signal for the Operator to start the migration.
 
 ```yaml
 apiVersion: mattermost.com/v1alpha1
