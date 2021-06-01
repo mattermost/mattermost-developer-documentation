@@ -67,9 +67,10 @@ Each Option includes:
 
 All select also include:
 
-| Name      | Type | Description                                                                         |
-| :-------- | :--- | :---------------------------------------------------------------------------------- |
-| `refresh` | bool | (Optional) Allows the form to be refreshed when the value of a dropdown is changed. |
+| Name          | Type | Description                                                                         |
+| :------------ | :--- | :---------------------------------------------------------------------------------- |
+| `refresh`     | bool | (Optional) Allows the form to be refreshed when the value of a dropdown is changed. |
+| `multiselect` | bool | (Optional) You can select more than one element on this field.                      |
 
 A modal form performs a lookup call to the call endpoint any time a dynamic dropdown is selected. The lookup call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form. The expected response is error or the following:
 
@@ -114,6 +115,12 @@ Options are defined as:
 | `label`     | string | User-facing string.                  |
 | `value`     | string | Machine-facing value.                |
 | `icon_data` | string | URL to icon to show on autocomplete. |
+
+All select also include:
+
+| Name          | Type | Description                                                                         |
+| :------------ | :--- | :---------------------------------------------------------------------------------- |
+| `multiselect` | bool | (Optional) You can select more than one element on this field.                      |
 
 When the command is executed, a submit call will be performed on the call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID, and the team ID.
 
