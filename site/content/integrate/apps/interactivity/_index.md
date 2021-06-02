@@ -7,7 +7,7 @@ weight: 50
 
 ### Modal Forms
 
-Modal Forms ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form)) open as a modal on the user interface as a result of a Form call response. One example is the `send` form in the [Hello World!](https://github.com/mattermost/mattermost-plugin-apps/blob/master/examples/go/helloworld/send_form.json) app. 
+Modal Forms ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form)) open as a modal on the user interface as a result of a Form call response. One example is the `send` form in the [Hello World!](https://github.com/mattermost/mattermost-plugin-apps/blob/master/examples/go/helloworld/send_form.json) app.
 
 They are defined by:
 
@@ -30,7 +30,7 @@ The types of fields are:
 | `static_select`  | A dropdown select with static elements.                |
 | `dynamic_select` | A dropdown select that loads the elements dynamically. |
 | `bool`           | A boolean selector represented as a checkbox.          |
-| `user`           | A dropdown with to select users.                       |
+| `user`           | A dropdown to select users.                            |
 | `channel`        | A dropdown to select channels.                         |
 
 All fields include ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field)):
@@ -105,7 +105,7 @@ All fields include:
 | `description` | string    | Text to show on the description line on autocomplete.                                                                                                          |
 | `hint`        | string    | Text to show on the hint line on autocomplete.                                                                                                                 |
 | `label`       | string    | Label to name the field in autocomplete.                                                                                                                       |
-| `position`    | int       | (Optional) Positional argument (can be provided without a --flag). If >0, indicates the position this field is in. If =-1, it is considered the last argument. |
+| `position`    | int       | (Optional) Positional argument (can be provided without a --flag). `If >0`, indicates the position this field is in. `If =-1`, it is considered the last argument. |
 
 
 Options are defined as:
@@ -130,7 +130,8 @@ Posts can be embedded with bindings. These are used for asynchronous interaction
 | `bindings` | Binding | List of embedded bindings. |
 
 
-Bindings are of two types, buttons or selects.
+Bindings are of two types, buttons or selects. 
+
 Buttons include:
 
 | Name       | Type   | Description                                                             |
@@ -138,7 +139,6 @@ Buttons include:
 | `location` | string | Location name. The whole location path will be provided in the context. |
 | `label`    | string | Label that will show in the button.                                     |
 | `call`     | Call   | Call to be made when the button is clicked.                             |
-
 
 Selects include:
 
