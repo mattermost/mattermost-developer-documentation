@@ -199,6 +199,8 @@ The core team also has Product Managers who do a lot of great work designing, pr
     - @aaron.rothschild on [community.mattermost.com](https://community.mattermost.com/core/messages/@aaron.rothschild) and [@aaronrothschild](https://github.com/aaronrothschild) on GitHub
 - **<a name="ian.tao">Ian Tao</a>**
     - @tao on [community.mattermost.com](https://community.mattermost.com/core/messages/@tao) and [@itao](https://github.com/itao) on GitHub
+- **<a name="najla.dadmand">Najla Dadmand</a>**
+    - @najla.dadmand on [community.mattermost.com](https://community.mattermost.com/core/messages/@najla.dadmand) and [@ndadmand21](https://github.com/ndadmand21) on GitHub
 
 Release Managers
 ----------------
