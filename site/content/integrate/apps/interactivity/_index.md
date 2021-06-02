@@ -30,7 +30,7 @@ The types of fields are:
 | `static_select`  | A dropdown select with static elements.                  |
 | `dynamic_select` | A dropdown select that loads the elements dynamically.   |
 | `bool`           | A boolean selector represented as a checkbox.            |
-| `user`           | A dropdown to select users.                         |
+| `user`           | A dropdown to select users.                              |
 | `channel`        | A dropdown to select channels.                           |
 | `markdown`       | Only visible on modal forms. An arbitrary markdown text. |
 
@@ -51,7 +51,7 @@ Text fields may include:
 
 | Name         | Type   | Description                                                                                                                      |
 | :----------- | :----- | :------------------------------------------------------------------------------------------------------------------------------- |
-| `subtype`    | string | (Optional) The type of text that will be shown. Available types are one of input, textarea, email, number, password, tel, or URL. |
+| `subtype`    | string | (Optional) The type of text that will be shown. Available types are one of input, textarea, email, number, password, tel, or URL.|
 | `min_length` | int    | (Optional) Validate the field length before performing the call.                                                                 |
 | `max_length` | int    | (Optional) Validate the field length before performing the call.                                                                 |
 
