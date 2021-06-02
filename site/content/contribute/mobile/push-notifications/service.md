@@ -187,7 +187,7 @@ panic: Failed to load the apple pem cert err=failed to parse PKCS1 private key f
 
 **For iOS / Apple Push Notifications**: If the logs are reflecting DeviceTokenNotForTopic (error 400) this may be because you're using an older / previous Device ID. Re-run the queries you need to get device IDs and test.
 
-This could also be because you generated a certificate for the wrong bundle ID. The bundle ID used in `mattermost-push-proxy.json` should be the same one as the app and the for the same app it was generated for.
+This could also be because you generated a certificate for the wrong bundle ID. The bundle ID used in `mattermost-push-proxy.json` should be the same one as the app, and should be for the same app it was generated for.
 
 ##### *TLS: Unknown Certificate Authority* error
 
