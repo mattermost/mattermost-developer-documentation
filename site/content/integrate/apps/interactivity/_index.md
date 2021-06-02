@@ -30,7 +30,7 @@ The types of fields are:
 | `static_select`  | A dropdown select with static elements.                  |
 | `dynamic_select` | A dropdown select that loads the elements dynamically.   |
 | `bool`           | A boolean selector represented as a checkbox.            |
-| `user`           | A dropdown with to select users.                         |
+| `user`           | A dropdown to select users.                         |
 | `channel`        | A dropdown to select channels.                           |
 | `markdown`       | Only visible on modal forms. An arbitrary markdown text. |
 
