@@ -85,6 +85,7 @@ app.get('/manifest.json', (req, res) => {
         app_id: 'hello-world',
         display_name: 'Hello, world!',
         app_type: 'http',
+        icon: 'icon.png',
         root_url: 'http://localhost:8080',
         requested_permissions: [
             'act_as_bot',
