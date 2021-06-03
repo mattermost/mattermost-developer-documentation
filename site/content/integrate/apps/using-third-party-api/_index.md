@@ -26,8 +26,7 @@ go run .
 In the Mattermost Desktop client run:
 
 ```
-/apps debug-add-manifest --url http://localhost:8080/manifest.json
-/apps install hello-oauth2
+/apps install http http://localhost:8080/manifest.json
 ```
 
 You need to configure your [Google API Credentials](https://console.cloud.google.com/apis/credentials) for the app. Use `$MATTERMOST_SITE_URL$/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete` for the `Authorized redirect URIs` field. After configuring the credentials, in the Mattermost Desktop client run:
