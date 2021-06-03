@@ -70,7 +70,7 @@ All select also include:
 | Name          | Type | Description                                                                         |
 | :------------ | :--- | :---------------------------------------------------------------------------------- |
 | `refresh`     | bool | (Optional) Allows the form to be refreshed when the value of a dropdown is changed. |
-| `multiselect` | bool | (Optional) You can select more than one element on this field.                      |
+| `multiselect` | bool | (Optional) You can select more than one element in this field.                      |
 
 A modal form performs a lookup call to the call endpoint any time a dynamic dropdown is selected. The lookup call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form. The expected response is error or the following:
 
