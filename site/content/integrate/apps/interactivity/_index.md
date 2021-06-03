@@ -120,7 +120,7 @@ All select also include:
 
 | Name          | Type | Description                                                                         |
 | :------------ | :--- | :---------------------------------------------------------------------------------- |
-| `multiselect` | bool | (Optional) You can select more than one element on this field.                      |
+| `multiselect` | bool | (Optional) You can select more than one element in this field.                      |
 
 When the command is executed, a submit call will be performed on the call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID, and the team ID.
 
