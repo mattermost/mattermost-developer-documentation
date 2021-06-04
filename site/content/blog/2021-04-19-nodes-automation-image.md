@@ -1,12 +1,14 @@
-title: "Automating Noodes Rotation Using Gitlab Pipelines"
-heading: "Automating Noodes Rotation"
+---
+title: "Automating Nodes Rotation Using Gitlab Pipelines"
+heading: "Automating Nodes Rotation"
 description: "This blog post describes our journey to automate our nodes rotation process when we have a new AMI release, and the open source tools we built on this."
-slug: cloud-monitoring
+slug: automating-nodes-rotation
 date: 2021-04-19T00:00:00-04:00
 author: Stavros Foteinopoulos
 github: stafot
 community: stavros.foteinopoulos
 ---
+
 #### Overview
 
 In the daily life of a Site Reliability Engineer the main goal is to reduce all the work we call toil. But what is toil? Toil is the kind of work tied to running a production service that tends to be manual, repetitive, automatable, tactical, devoid of enduring value, and that scales linearly as a service grows.

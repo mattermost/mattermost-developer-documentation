@@ -20,9 +20,9 @@ One example bindings response is the one from the [Hello World!](https://github.
 
 The expected response should include the following:
 
-| Type   | Function | Description          |
-| :----- | :------- | :------------------- |
-| `data` | bindings | The list of bindings.|
+| Type   | Function | Description           |
+| :----- | :------- | :-------------------- |
+| `data` | bindings | The list of bindings. |
 
 Bindings are organized by top level locations. Top level bindings just need to define:
 
@@ -38,7 +38,7 @@ Bindings are organized by top level locations. Top level bindings just need to d
 | Name       | Type   | Description                                                                     |
 | :--------- | :----- | :------------------------------------------------------------------------------ |
 | `location` | string | Name of this location. The whole path of locations will be added in the context |
-| `icon`     | string | (Optional) URL to the icon.                                                     |
+| `icon`     | string | (Optional) Either a fully-qualified URL, or a path for an app's static asset.   |
 | `label`    | string | Text to show in the item.                                                       |
 | `call`     | Call   | Call to perform.                                                                |
 
@@ -49,7 +49,7 @@ The call for these bindings will include in the context the user ID, the post ID
 | Name       | Type   | Description                                                                      |
 | :--------- | :----- | :------------------------------------------------------------------------------- |
 | `location` | string | Name of this location. The whole path of locations will be added in the context. |
-| `icon`     | string | (Optional) URL to the icon.                                                      |
+| `icon`     | string | (Optional) Either a fully-qualified URL, or a path for an app's static asset.    |
 | `label`    | string | Text to show in the item on mobile and webapp collapsed view.                    |
 | `hint`     | string | Text to show in tooltip.                                                         |
 | `call`     | Call   | Call to perform.                                                                 |
@@ -76,7 +76,7 @@ A leaf command must include:
 | `location`    | string | The label to use to define the command.                                                                                                      |
 | `hint`        | string | (Optional) Hint line on command autocomplete.                                                                                                |
 | `description` | string | (Optional) Description line on command autocomplete.                                                                                         |
-| `call`        | Call   | Call to perform when executing the command.                                                                                                   |
+| `call`        | Call   | Call to perform when executing the command.                                                                                                  |
 | `form`        | Form   | (Optional) Form representing the parameters the command can receive. If no form is provided, a form call will be made to the specified call. |
 
 The context of the call for these bindings will include the user ID, the post ID, the root post ID (if any), the channel ID and the team ID. It will also include the raw command.
@@ -122,7 +122,7 @@ The context of the call for these bindings will include the user ID, the post ID
             "bindings": [
                 {
                     "location": "send-button",
-                    "icon": "http://localhost:8080/static/icon.png",
+                    "icon": "icon.png",
                     "label": "send hello message",
                     "call": {
                         "path": "/send-modal"
@@ -135,7 +135,7 @@ The context of the call for these bindings will include the user ID, the post ID
             "bindings": [
                 {
                     "location": "send-button",
-                    "icon": "http://localhost:8080/static/icon.png",
+                    "icon": "icon.png",
                     "label": "send hello message",
                     "call": {
                         "path": "/send",
@@ -150,7 +150,7 @@ The context of the call for these bindings will include the user ID, the post ID
             "location": "/command",
             "bindings": [
                 {
-                    "icon": "http://localhost:8080/static/icon.png",
+                    "icon": "icon.png",
                     "description": "Hello World app",
                     "hint": "[send]",
                     "bindings": [
