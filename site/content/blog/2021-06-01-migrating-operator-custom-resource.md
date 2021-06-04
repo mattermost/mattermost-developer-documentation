@@ -12,7 +12,7 @@ summary: Case study of migrating Mattermost installations to the new Custom Reso
 
 More than a year after the release of Mattermost Operator 1.0 with `ClusterInstallation` Custom Resources (CRs) in version `v1alpha1`, with many lessons learned in the process we decided it's time to migrate CRs to the new `v1beta1` version.
 
-This blog post mentions some challenges we encountered during the migration and describes how we solved them.
+This blog post covers some challenges we encountered during the migration and describes how we solved them.
 
 ## Objectives
 
@@ -92,7 +92,7 @@ spec:
 ...
 ```
 
-It's understandable that when we set out to migrate to version `v1beta` we wanted to get rid of `v1alpha1` from everywhere and change it as well.
+It's understandable that when we set out to migrate to version `v1beta` we wanted to get rid of references to `v1alpha1` and change it as well.
 
 Kubernetes Deployments have some awesome features like [rolling updates](https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/) that we use all the time when we change environment variables, versions, or other configurations of our installations. It allows for updating Pods sequentially keeping some of them running while others are being updated.
 
@@ -140,6 +140,6 @@ For customers using the Mattermost Operator directly in most cases, the migratio
 
 ## Conclusion
 
-The migration went fairly smooth with some minor bumps along the way but nothing that caused any downtime to customers or any headaches to us.
+The migration went fairly smooth with some minor bumps along the way, but nothing that caused any downtime to customers or any headaches to us.
 
 The `ClusterInstallation` CR will still be supported by the Operator until version `2.0` but new features are not added there. If you manage your Mattermost with Mattermost Operator and still use `ClusterInstallation` check out [this guide on how to migrate](https://github.com/mattermost/mattermost-operator/blob/master/docs/migration.md).
