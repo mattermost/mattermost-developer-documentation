@@ -11,7 +11,7 @@ Set up your development environment for building, running, and testing the Matte
 
 2. Install Node.js 14:
 
-    - If you use [NVM](https://github.com/nvm-sh/nvm), use that to install Node 14.
+    - If you use [NVM](https://github.com/nvm-sh/nvm), use that to install Node 14. You can upgrade `npm` to >= [version 7](https://docs.npmjs.com/cli/v7/configuring-npm/package-lock-json/#lockfileversion) with `nvm install-latest-npm` to avoid unintentional package-lock.json updates and [lockfile version warnings](https://support.glitch.com/t/npm-warn-read-shrinkwrap/42414).
 
     - On Mac, use [Homebrew](https://brew.sh/) to install it:
 
