@@ -72,7 +72,7 @@ The Hello OAuth2 app creates three commands: `/helloworld configure | connect | 
 			"location": "/command",
 			"bindings": [
 				{
-					"icon": "http://localhost:8080/static/icon.png",
+					"icon": "icon.png",
 					"label": "helloworld",
 					"description": "Hello remote (3rd party) OAuth2 App",
 					"hint": "[configure | connect | send]",
@@ -115,7 +115,7 @@ The Hello OAuth2 app creates three commands: `/helloworld configure | connect | 
 	"type": "form",
 	"form": {
 		"title": "Configures Google OAuth2 App credentials",
-		"icon": "http://localhost:8080/static/icon.png",
+		"icon": "icon.png",
 		"fields": [
 			{
 				"type": "text",
@@ -175,7 +175,7 @@ Note `expand.oauth2_app="all"` in the form definition, it includes the app's OAu
 	"type": "form",
 	"form": {
 		"title": "Connect to Google",
-		"icon": "http://localhost:8080/static/icon.png",
+		"icon": "icon.png",
 		"call": {
 			"path": "/connect",
 			"expand": {
@@ -276,7 +276,7 @@ func oauth2Config(creq *apps.CallRequest) *oauth2.Config {
 	"type": "form",
 	"form": {
 		"title": "Send a Google-connected 'hello, world!' message",
-		"icon": "http://localhost:8080/static/icon.png",
+		"icon": "icon.png",
 		"call": {
 			"path": "/send",
 			"expand": {

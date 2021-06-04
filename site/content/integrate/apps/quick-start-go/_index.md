@@ -96,7 +96,7 @@ Create a file called `bindings.json` containing:
 			"bindings": [
 				{
 					"location": "send-button",
-					"icon": "http://localhost:8080/static/icon.png",
+					"icon": "icon.png",
 					"label":"send hello message",
 					"call": {
 						"path": "/send-modal"
@@ -108,7 +108,7 @@ Create a file called `bindings.json` containing:
 			"location": "/command",
 			"bindings": [
 				{
-					"icon": "http://localhost:8080/static/icon.png",
+					"icon": "icon.png",
 					"label": "helloworld",
 					"description": "Hello World app",
 					"hint": "[send]",
@@ -144,7 +144,7 @@ Create a file called `send_form.json` containing:
 	"type": "form",
 	"form": {
 		"title": "Hello, world!",
-		"icon": "http://localhost:8080/static/icon.png",
+		"icon": "icon.png",
 		"fields": [
 			{
 				"type": "text",
