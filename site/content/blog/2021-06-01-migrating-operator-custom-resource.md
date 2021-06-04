@@ -92,7 +92,7 @@ spec:
 ...
 ```
 
-It's understandable that when we set out to migrate to version `v1beta` we wanted to get rid of references to `v1alpha1` and change it as well.
+It's understandable that when we set out to migrate to version `v1beta` we wanted to get rid of all references to `v1alpha1` and change it as well.
 
 Kubernetes Deployments have some awesome features like [rolling updates](https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/) that we use all the time when we change environment variables, versions, or other configurations of our installations. It allows for updating Pods sequentially keeping some of them running while others are being updated.
 
