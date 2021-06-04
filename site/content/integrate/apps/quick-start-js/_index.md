@@ -115,7 +115,7 @@ app.post('/bindings', (req, res) => {
                 bindings: [
                     {
                         location: 'send-button',
-                        icon: 'http://localhost:8080/static/icon.png',
+                        icon: 'icon.png',
                         label: 'send hello message',
                         call: {
                             path: '/send-modal',
@@ -127,7 +127,7 @@ app.post('/bindings', (req, res) => {
                 location: '/command',
                 bindings: [
                     {
-                        icon: 'http://localhost:8080/static/icon.png',
+                        icon: 'icon.png',
                         label: 'helloworld',
                         description: 'Hello World app',
                         hint: '[send]',
@@ -165,7 +165,7 @@ app.post(['/send/form', '/send-modal/submit'], (req, res) => {
         type: 'form',
         form: {
             title: 'Hello, world!',
-            icon: 'http://localhost:8080/static/icon.png',
+            icon: 'icon.png',
             fields: [
                 {
                     type: 'text',
