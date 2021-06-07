@@ -96,13 +96,13 @@ You will need to create an S3 bucket within AWS.
 
 Open a terminal where you installed the Apps plugin and set the following variables to the AWS credentials just created:
 
-`MM_APPS_PROVISION_AWS_ACCESS_KEY`  
-`MMMM_APPS_PROVISION_AWS_SECRET_KEY_APPS_PROVISION_AWS_SECRET_KEY`
+- `MM_APPS_PROVISION_AWS_ACCESS_KEY`  
+- `MM_APPS_PROVISION_AWS_SECRET_KEY`
 
 Set the following environment variables based on bucket name and region
 
-`MM_APPS_S3_BUCKET`  
-`MM_APPS_AWS_REGION`
+- `MM_APPS_S3_BUCKET`  
+- `MM_APPS_AWS_REGION`
 
 ##### 4. Initialize the AWS resources
 
@@ -127,7 +127,9 @@ Ensure you have the following environment variables set.
 
 Restart the Mattermost server to complete your Mattermost and AWS setup. You can now deploy an app to AWS.
 
-**Optional:** Test commands are available if you would like to validate your AWS configuration and permissions
+#### Optional
+
+Test commands are available if you would like to validate your AWS configuration and permissions with a hello world example
 
 Build hello-lambda bundle
 
