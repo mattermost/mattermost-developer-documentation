@@ -127,21 +127,23 @@ Ensure you have the following environment variables set.
 
 Restart the Mattermost server to complete your Mattermost and AWS setup. You can now deploy an app to AWS.
 
-#### Optional
+#### Test your AWS configuration and permissions
 
-Test commands are available if you would like to validate your AWS configuration and permissions with a hello world example
+Run the following commands to test and validate your AWS configuration and permissions.
 
-Build hello-lambda bundle
-
-`cd ./examples/go/hello-lambda && make dist`
-
-Test the environment
-
-```
-go run ./cmd/appsctl aws test provision ./examples/go/hello-lambda/dist/bundle.zip
+```bash
 go run ./cmd/appsctl aws test lambda
 go run ./cmd/appsctl aws test s3
 ```
+
+#### Optional: Provision the hello-lambda app
+
+A test command is also available if you would like to test provisioning the hello-lambda test app. This will add a manifest to the S3 bucket and add a corresponding lambda function to AWS.
+
+Build hello-lambda bundle
+
+- `cd ./examples/go/hello-lambda && make dist; cd -`
+- `go run ./cmd/appsctl aws test provision ./examples/go/hello-lambda/dist/bundle.zip`
 
 ### Deploying a third-party apps to AWS
 
@@ -155,7 +157,9 @@ Provision your app
 
 - `appsctl provision app /PATH/TO/YOUR/APP/BUNDLE.zip`
 
-#### Provisioned app details
+The provision command output will show the `/apps` installation to use in Mattermost.
+
+### Provisioned app details
 
 AWS Lambda functions have semantic names, which means that a function described in the `manifest.json` file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. And **appsctl** provisions lambda functions using this name. For example the name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. You don't need to worry about the AWS Lambda function names, as the Apps Plugin takes care of it. The dedicated S3 bucket name is stored in the environment variable: `MM_APPS_S3_BUCKET`.
 
