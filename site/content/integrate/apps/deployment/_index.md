@@ -145,7 +145,7 @@ Build hello-lambda bundle
 - `cd ./examples/go/hello-lambda && make dist; cd -`
 - `go run ./cmd/appsctl aws test provision ./examples/go/hello-lambda/dist/bundle.zip`
 
-### Deploying a third-party apps to AWS
+### Deploying a third-party app to AWS
 
 After setting up your Mattermost instance, AWS key, and S3 bucket you can now provision your app using `appsctl`. Note that `appsctl` commands are run in the `mattermost-plugin-apps` repo.
 
