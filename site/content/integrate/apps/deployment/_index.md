@@ -51,7 +51,7 @@ For a go app the manifest snippet would look like this:
 }
 ```
 
-### Deploying third-party apps to third-party AWS cloud environment
+### Deploying third-party apps AWS
 
 Note that third-party apps are not supported in the Mattermost Cloud - they're used only for developer testing convenience. Provisioning in the third-party AWS cloud environment is done by the **appsctl** tool after completing the environment set up.
 
@@ -61,11 +61,11 @@ We need an app bundle to provision an app. The bundle might be provisioned from 
 2. Storing static assets in the dedicated S3 bucket.
 3. Storing the app’s manifest file in the same dedicated S3 bucket.
 
-#### Mattermost set up
+#### Mattermost setup
 
 Follow the Prerequisites section of the [JS](../quick-start-js) or [GO](../quick-start-go) Quick Start Guides to set up your Mattermost instance. Ensure that you install the [apps plugin](https://developers.mattermost.com/integrate/apps/quick-start-js/#install-the-apps-plugin) as part of this process.
 
-#### AWS set up
+#### AWS setup
 
 ##### 1. Create an IAM user and access key and secret
 
@@ -80,27 +80,49 @@ AWS credentials are read from the following environment variables. Set the follo
 
 You will need to create an S3 bucket within AWS.
 
-1. Visit https://s3.console.aws.amazon.com.
-2. Create a bucket.
-3. **Bucket name**: Give your bucket a name.
-4. **AWS Region**: us-east-1.
-5. Select **Create Bucket**.
+1. Visit https://s3.console.aws.amazon.com
+1. Create a bucket.
+1. **Bucket name**: Give your bucket a name.
+1. **AWS Region**:
+    1. Select your region
+    1. You will need this value later
+    1. Corresponding Lambdas will be provisioned in the same region
+1. Select **Create Bucket**.
 
-After creating the bucket set the following environment variable to the name of your bucket:
+After creating the bucket set the following environment variables based on bucket name and region
 
-`MM_APPS_S3_BUCKET`
+`MM_APPS_S3_BUCKET`  
+`MM_APPS_AWS_REGION`
+
+##### 3. Initialize the AWS resources
+
+`go run ./cmd/appsctl aws init --create --create-access-key`
+
+The output of the command will contain two "Invoke" environment variables. Make sure you add them to the environment.
+
+#### Restart the Mattermost Server
+
+You shoud have the following environment variables set. If not, please revisit the AWS Setup steps above.
+
+- `MM_APPS_S3_BUCKET`
+- `APPS_PROVISION_AWS_ACCESS_KEY`
+- `APPS_PROVISION_AWS_SECRET_KEY`
+- `APPS_INVOKE_AWS_SECRET_KEY`
+- `APPS_INVOKE_AWS_ACCESS_KEY`
+
+You can now restart the Mattermost server with the variables set.
 
 #### Provision the app
 
 After setting up your Mattermost instance, AWS key, and S3 bucket you can now provision your app using `appsctl`. Note that `appsctl` commands are run in the `mattermost-plugin-apps` repo.
 
-```bash
-## Install appsctl
-go install github.com/mattermost/mattermost-plugin-apps/cmd/appsctl@latest
+Install appsctl  
 
-## Provision your app 
-appsctl provision app /PATH/TO/YOUR/APP/BUNDLE.zip
-```
+- `go install github.com/mattermost/mattermost-plugin-apps/cmd/appsctl@latest`
+
+Provision your app  
+
+- `appsctl provision app /PATH/TO/YOUR/APP/BUNDLE.zip`
 
 #### Provisioned app details
 
