@@ -54,9 +54,9 @@ For a go app the manifest snippet would look like this:
 }
 ```
 
-### Setting up your Mattermost instance and AWS for deploying third-party apps
+### Setting up your Mattermost instance and AWS for deploying custom apps
 
-Note that third-party apps are not supported in the Mattermost Cloud - they're used only for developer testing convenience. Provisioning in the third-party AWS cloud environment is done by the **appsctl** tool after completing the environment set up.
+Note that custom apps are not supported in the Mattermost Cloud - they're only used for developer testing convenience. Provisioning in the AWS cloud environment is done by the **appsctl** tool after completing the environment set up.
 
 We need an app bundle to provision an app. The bundle might be provisioned from the local disk, from S3 (not implemented yet), or from a URL (not implemented yet). Provisioning consists of three parts which will be completed via the **appsctl** tool:
 
@@ -145,7 +145,7 @@ Build hello-lambda bundle
 - `cd ./examples/go/hello-lambda && make dist; cd -`
 - `go run ./cmd/appsctl aws test provision ./examples/go/hello-lambda/dist/bundle.zip`
 
-### Deploying a third-party app to AWS
+### Deploying a custom app to AWS
 
 After setting up your Mattermost instance, AWS key, and S3 bucket you can now provision your app using `appsctl`. Note that `appsctl` commands are run in the `mattermost-plugin-apps` repo.
 
@@ -169,7 +169,7 @@ All files in the static folder of the bundle are considered to be the app's stat
 
 The `manifest.json` file of an app is stored in the same S3 bucket as the key - `manifests/$appID_$appVersion.json`.
 
-![Flow of provisioning third-party apps to AWS](provisioning-in-3rd-party-aws.png)
+![Flow of provisioning custom apps to AWS](provisioning-in-3rd-party-aws.png)
 
 ### Provisioning in Mattermost Cloud
 
