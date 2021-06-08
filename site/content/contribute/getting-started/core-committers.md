@@ -200,6 +200,24 @@ The core team also has Product Managers who do a lot of great work designing, pr
 - **<a name="ian.tao">Ian Tao</a>**
     - @tao on [community.mattermost.com](https://community.mattermost.com/core/messages/@tao) and [@itao](https://github.com/itao) on GitHub
 
+Product Designers
+-----------------
+
+The core team also has Product Designers who do a lot of great work designing features. They are:
+
+- **<a name="andrew.brown">Andrew Brown</a>**
+   - @andrew.brown on [community.mattermost.com](https://community.mattermost.com/core/messages/@andrew.brown) and [@andrewbrown00](https://github.com/andrewbrown00) on GitHub
+- **<a name="matthew.birtch">Matthew Birtch</a>**
+   - @matthew.birtch on [community.mattermost.com](https://community.mattermost.com/core/messages/@matthew.birtch) and [@matthewbirtch](https://github.com/matthewbirtch) on GitHub
+- **<a name="michael.gamble">Michael Gamble</a>**
+   - @michael.gamble on [community.mattermost.com](https://community.mattermost.com/core/messages/@michael.gamble) and [@michaelgamble](https://github.com/michaelgamble) on GitHub
+- **<a name="anneliese.klein">Anneleise Klein</a>**
+   - @anneliese.klein on [community.mattermost.com](https://community.mattermost.com/core/messages/@anneliese.klein) and [@annelieseklein](https://github.com/annelieseklein) on GitHub
+- **<a name="abhijit.singh">Abhijit Singh</a>**
+   - @abhijit.singh on [community.mattermost.com](https://community.mattermost.com/core/messages/@abhijit.singh) and [@abhijit-singh](https://github.com/abhijit-singh) on GitHub
+- **<a name="marina.karpenko">Marina Karpenko</a>**
+   - @marina.karpenko on [community.mattermost.com](https://community.mattermost.com/core/messages/@marina.karpenko) and [@Rina-dsg](https://github.com/Rina-dsg) on GitHub
+ 
 Release Managers
 ----------------
 
