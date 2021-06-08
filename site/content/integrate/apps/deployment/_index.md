@@ -70,11 +70,7 @@ Follow the Prerequisites section of the [JS](../quick-start-js) or [GO](../quick
 
 #### AWS setup
 
-##### 1. Create an IAM user and access key and secret
-
-You will need to create IAM user and an access key and secret so that `appsctl` can provision the app. Please follow the instructions [provided by AWS](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/) to complete these steps and save the `Access key ID` and `Secret access key`.
-
-##### 2. Create AWS S3 bucket
+##### 1. Create AWS S3 bucket
 
 You will need to create an S3 bucket within AWS or use an existing bucket.
 
@@ -92,9 +88,13 @@ You will need to create an S3 bucket within AWS or use an existing bucket.
     1. Check **I acknowledge that the current settings might result in this bucket and the objects within becoming public.**
 1. Select **Create Bucket**.
 
-##### 3. Set AWS environment variables
+##### 2. Create an IAM user access key and secret
 
-Open a terminal where you installed the Apps plugin and set the following variables to the AWS credentials just created:
+You will need an access key and secret so that `appsctl` can provision the app. These credentials can come from creating an IAM user, using a privileged IAM user, or even using the AWS account owners personal access key. Please follow the instructions [provided by AWS](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/) to complete these steps and save the `Access key ID` and `Secret access key` values.
+
+##### 3. Set AWS Provision environment variables
+
+Open a terminal where you installed the Apps plugin and set the following variables to the AWS credentials just created and saved:
 
 - `MM_APPS_PROVISION_AWS_ACCESS_KEY`  
 - `MM_APPS_PROVISION_AWS_SECRET_KEY`
@@ -110,8 +110,11 @@ The following command will create a Mattermost invoke user and security policy f
 
 `go run ./cmd/appsctl aws init --create --create-access-key`
 
-The output of the command will contain two "Invoke" environment variables. Set
-these variables in the location of your running Mattermost server repo.
+The output of the command will contain two "Invoke" environment variables.
+
+##### 5. Set AWS Invoke environment variables
+
+The second set of credentials created from the above initialization step will be used by Mattermost to invoke Apps.  Set these variables in the location of your running Mattermost server repo.
 
 - `MM_APPS_AWS_ACCESS_KEY`
 - `MM_APPS_AWS_SECRET_KEY`
