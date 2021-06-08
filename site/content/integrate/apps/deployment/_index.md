@@ -76,7 +76,7 @@ You will need to create IAM user and an access key and secret so that `appsctl` 
 
 ##### 2. Create AWS S3 bucket
 
-You will need to create an S3 bucket within AWS.
+You will need to create an S3 bucket within AWS or use an existing bucket.
 
 1. Visit https://s3.console.aws.amazon.com
 1. Create a bucket.
