@@ -51,9 +51,11 @@ For a go app the manifest snippet would look like this:
 }
 ```
 
-### Setting up your Mattermost instance and AWS for deploying custom apps
+### Setting up your Mattermost instance and AWS for deploying apps
 
-Note that custom apps are not supported in the Mattermost Cloud - they're only used for developer testing convenience. Provisioning in the AWS cloud environment is done by the **appsctl** tool after completing the environment set up.
+Note that apps are not supported in the Mattermost Cloud - they're only used for developer testing convenience. 
+
+Provisioning in the AWS cloud environment will be done by the **appsctl** tool described in the following AWS Setup section.
 
 We need an app bundle to provision an app. The bundle might be provisioned from the local disk, from S3 (not implemented yet), or from a URL (not implemented yet). Provisioning consists of three parts which will be completed via the **appsctl** tool:
 
@@ -145,7 +147,7 @@ Build hello-lambda bundle
 - `cd ./examples/go/hello-lambda && make dist; cd -`
 - `go run ./cmd/appsctl aws test provision ./examples/go/hello-lambda/dist/bundle.zip`
 
-### Deploying a custom app to AWS
+### Deploying an app to AWS
 
 After setting up your Mattermost instance, AWS key, and S3 bucket you can now provision your app using `appsctl`. Note that `appsctl` commands are run in the `mattermost-plugin-apps` repo.
 
@@ -161,11 +163,11 @@ The provision command output will show the `/apps` installation to use in Matter
 
 ### Provisioned app details
 
-AWS Lambda functions have semantic names, which means that a function described in the `manifest.json` file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. And **appsctl** provisions lambda functions using this name. For example the name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. You don't need to worry about the AWS Lambda function names, as the Apps Plugin takes care of it. The dedicated S3 bucket name is stored in the environment variable: `MM_APPS_S3_BUCKET`.
+AWS Lambda functions have semantic names, which means that a function described in the `manifest.json` file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. And **appsctl** provisions lambda functions using this name. For example the name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. You don't need to worry about the AWS Lambda function names, as **appsctl** takes care of it. The dedicated S3 bucket name is stored in the environment variable: `MM_APPS_S3_BUCKET`.
 
 This also stores all apps' static assets and manifest files.
 
-All files in the static folder of the bundle are considered to be the app's static assets and are stored in the above-mentioned bucket. Stored assets also have semantic keys and are generated using the rule - `static/$appID_$appVersion/filename`. For example the `servicenow` app's static file key can be `"static/com.mattermost.servicenow_0.1.0_app/photo.png"`. You don't need to worry about the static asset keys, as the Apps Plugin takes care of it.
+All files in the static folder of the bundle are considered to be the app's static assets and are stored in the above-mentioned bucket. Stored assets also have semantic keys and are generated using the rule - `static/$appID_$appVersion/filename`. For example the `servicenow` app's static file key can be `"static/com.mattermost.servicenow_0.1.0_app/photo.png"`. You don't need to worry about the static asset keys, as the **appsctl** takes care of it.
 
 The `manifest.json` file of an app is stored in the same S3 bucket as the key - `manifests/$appID_$appVersion.json`.
 
