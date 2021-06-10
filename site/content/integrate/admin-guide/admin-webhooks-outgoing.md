@@ -1,3 +1,10 @@
+---
+title: "Outgoing Webhooks"
+heading: "Introduction"
+description: "Outgoing webhooks for System Admins."
+weight: 80
+---
+
 # Outgoing Webhooks
 
   This is the admin documentation for outgoing webhooks. If you're a developer looking to build an integration, see `our developer documentation <https://developers.mattermost.com/integrate/getting-started/>`__.
