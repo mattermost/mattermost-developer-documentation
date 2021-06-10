@@ -7,7 +7,9 @@ weight: 110
 
 Serverless hosting allows for easy app installation from the App Marketplace by a System Admin and uses AWS Lambda serverless technology instead of relying on a physical server. Developers who create apps using a serverless development approach can easily deploy apps securely, efficiently, and at scale in the Mattermost Cloud.
 
-## Deployment to AWS
+## Preparing your app for AWS (For App Developers)
+
+Developers must prepare apps for deployment to AWS which includes creating an app bundle and making the app runnable as an AWS Lamda function.
 
 ### App Bundle
 
@@ -50,6 +52,12 @@ For a go app the manifest snippet would look like this:
     ]
 }
 ```
+
+## Deployment to AWS (For Admins)
+
+Admins of the on-prem Mattermost instance must prepare both AWS and Mattermost
+before provisioning and deploying an app. Follow the procedures below to
+complete this setup.
 
 ### Setting up your Mattermost instance and AWS for deploying apps
 
@@ -163,7 +171,7 @@ Build hello-lambda bundle
 `cd ./examples/go/hello-lambda && make dist; cd -`  
 `go run ./cmd/appsctl provision app ./examples/go/hello-lambda/dist/bundle.zip`
 
-### Provisioned app details
+## Provisioned app details
 
 AWS Lambda functions have semantic names, which means that a function described in the `manifest.json` file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. And **appsctl** provisions lambda functions using this name. For example the name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. You don't need to worry about the AWS Lambda function names, as **appsctl** takes care of it. The dedicated S3 bucket name is stored in the environment variable: `MM_APPS_S3_BUCKET`.
 
@@ -175,7 +183,7 @@ The `manifest.json` file of an app is stored in the same S3 bucket as the key - 
 
 ![Flow of provisioning custom apps to AWS](provisioning-in-3rd-party-aws.png)
 
-### Provisioning in Mattermost Cloud
+## Provisioning in Mattermost Cloud
 
 In order to be provisioned in Mattermost Cloud an app bundle is uploaded to the specific S3 bucket. On a new app release, a bundle is created by GitLab CI and uploaded to S3. The [Mattermost apps cloud deployer](https://github.com/mattermost/mattermost-apps-cloud-deployer), running as a k8s cron job every hour, detects the S3 upload, and creates appropriate lambda functions, assets, and manifest the same way the **appsclt** does for the third-party accounts.
 
