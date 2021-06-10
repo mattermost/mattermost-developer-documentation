@@ -55,9 +55,9 @@ For a go app the manifest snippet would look like this:
 
 Note that apps are not supported in the Mattermost Cloud - they're only used for developer testing convenience. 
 
-Provisioning in the AWS cloud environment will be done by the **appsctl** tool described in the following AWS Setup section.
+Provisioning in the AWS cloud environment will be done by the **appsctl** tool described in the AWS Setup section.
 
-We need an app bundle to provision an app. The bundle might be provisioned from the local disk, from S3 (not implemented yet), or from a URL (not implemented yet). Provisioning consists of three parts which will be completed via the **appsctl** tool:
+We need an app bundle to provision an app. The bundle will be provisioned from S3 and consists of three parts which will be completed via the **appsctl** tool:
 
 1. Creating the lambda functions with appropriate policies.
 2. Storing static assets in the dedicated S3 bucket.
