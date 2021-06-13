@@ -111,12 +111,12 @@ Mattermost automatically translates the data coming from Slack:
 
 1. JSON payloads written for Slack, that contain the following, are translated to Mattermost markdown and rendered equivalently to Slack:
    
-   - ``<>`` to denote a URL link, such as ``{"text": "<https://mattermost.com/>"}``
-   - ``|`` within a ``<>`` to define linked text, such as ``{"text": "Click <https://mattermost.com/|here> for a link."}``
-   - ``<userid>``  to trigger a mention to a user, such as ``{"text": "<5fb5f7iw8tfrfcwssd1xmx3j7y> this is a notification."}``
-   - ``<!channel>``, ``<!here>`` or ``<!all>`` to trigger a mention to a channel, such as ``{"text": "<!channel> this is a notification."}``
+   - `<>` to denote a URL link, such as `{"text": "<https://mattermost.com/>"}`
+   - `|` within a `<>` to define linked text, such as `{"text": "Click <https://mattermost.com/|here> for a link."}`
+   - `<userid>`  to trigger a mention to a user, such as `{"text": "<5fb5f7iw8tfrfcwssd1xmx3j7y> this is a notification."}`
+   - `<!channel>`, `<!here>`, or `<!all>` to trigger a mention to a channel, such as `{"text": "<!channel> this is a notification."}`
 
-2. You can override the channel name with a *@username*, such as ```payload={"text": "Hi", channel: "@jim"}`` to send a direct message like in Slack.
+2. You can override the channel name with a *@username*, such as `payload={"text": "Hi", channel: "@jim"}` to send a direct message like in Slack.
 3. You can prepend a channel name with *#* and the message will still be sent to the correct channel like in Slack.
 
 ### Mattermost webhooks in GitLab using Slack UI
@@ -130,10 +130,10 @@ GitLab is the leading open-source alternative to GitHub and offers built-in inte
 
 ### Known Slack compatibility issues
 
-1. Referencing  channels using ``<#CHANNEL_ID>`` does not link to the channel.
-2. ``<!everyone>`` and ``<!group>`` are not supported.
+1. Referencing  channels using `<#CHANNEL_ID>` does not link to the channel.
+2. `<!everyone>` and `<!group>` are not supported.
 3. Parameters "mrkdwn", "parse", and "link_names" are not supported. Mattermost converts Markdown by default and automatically links @mentions.
-4. Bold formatting as ``*bold*`` is not supported (must be done as ``**bold**``).
+4. Bold formatting as `*bold*` is not supported (must be done as ``**bold**``).
 5. Webhooks cannot direct message the user who created the webhook.
 
 ## Troubleshooting
@@ -142,16 +142,16 @@ To debug incoming webhooks in **System Console > Logs**, set **System Console > 
 
 Some common error messages include:
 
-1. ``Couldn't find the channel``: Indicates that the channel doesn't exist or is invalid. Please modify the ``channel`` parameter before sending another request.
-2. ``Couldn't find the user``: Indicates that the user doesn't exist or is invalid. Please modify the ``channel`` parameter before sending another request.
-3. ``Unable to parse incoming data``: Indicates that the request received is malformed. Try reviewing that the JSON payload is in a correct format and doesn't have typos such as extra `"`.
-4. ``curl: (3) [globbing] unmatched close brace/bracket in column N``: Typically an error when using cURL on Windows, when:
-  1. You have space around JSON separator colons, ``payload={"Hello" : "test"}`` or  
-  2. You are using single quotes to wrap the ``-d`` data, ``-d 'payload={"Hello":"test"}'``
+1. `Couldn't find the channel`: Indicates that the channel doesn't exist or is invalid. Please modify the ``channel`` parameter before sending another request.
+2. `Couldn't find the user`: Indicates that the user doesn't exist or is invalid. Please modify the ``channel`` parameter before sending another request.
+3. `Unable to parse incoming data`: Indicates that the request received is malformed. Try reviewing that the JSON payload is in a correct format and doesn't have typos such as extra `"`.
+4. `curl: (3) [globbing] unmatched close brace/bracket in column N`: Typically an error when using cURL on Windows, when:
+  1. You have space around JSON separator colons, `payload={"Hello" : "test"}` or  
+  2. You are using single quotes to wrap the `-d` data, `-d 'payload={"Hello":"test"}'`
 
-If your integration prints the JSON payload data instead of rendering the generated message, make sure your integration is returning the ``application/json`` content-type.
+If your integration prints the JSON payload data instead of rendering the generated message, make sure your integration is returning the `application/json` content-type.
 
-For further assistance, review the `Troubleshooting forum <https://forum.mattermost.org/c/trouble-shoot>`__ for previously reported errors, or `join the Mattermost user community for troubleshooting help <https://mattermost.com/pl/default-ask-mattermost-community/>`_.
+For further assistance, review the [Troubleshooting forum](https://forum.mattermost.org/c/trouble-shoot) for previously reported errors, or [join the Mattermost user community for troubleshooting help](https://mattermost.com/pl/default-ask-mattermost-community).
 
 ## Frequently Asked Questions
 
@@ -159,10 +159,10 @@ For further assistance, review the `Troubleshooting forum <https://forum.matterm
 
 To send a message to a Direct Message channel, add an "@" symbol followed by the username to the channel parameter. You can add your own username to send the webhook posts to a Direct Message channel with yourself.
 
-``payload={"channel": "@username", "text": "Hello, this is some text\nThis is more text. :tada:"}``
+`payload={"channel": "@username", "text": "Hello, this is some text\nThis is more text. :tada:"}`
 
-This will send a message from the account that has set up the incoming webhook to the username after the "@" symbol. For example, if you create a webhook with the user ``alice`` and send a Direct Message to ``bob`` using a webhook, it will show up as a direct message from ``alice`` to ``bob`` regardless of other settings such as username.
+This will send a message from the account that has set up the incoming webhook to the username after the "@" symbol. For example, if you create a webhook with the user `alice` and send a Direct Message to `bob` using a webhook, it will show up as a direct message from `alice` to `bob` regardless of other settings such as username.
 
-To send a message to a different Direct Mssage channel between two other users, you can specify the channel with the user IDs for the users separated with two underscore (_) symbols. To find the user ID you can `use the ``mattermost`` command - see details `here <https://docs.mattermost.com/administration/command-line-tools.html#mattermost-user-search>`__.
+To send a message to a different Direct Mssage channel between two other users, you can specify the channel with the user IDs for the users separated with two underscore symbols. To find the user ID you can [use the `mattermost` command](https://docs.mattermost.com/administration/command-line-tools.html#mattermost-user-search).
 
-``payload={"channel": "6w41z1q367dujfaxr1nrykr5oc__94dzjnkd8igafdraw66syi1cde", "text": "Hello, this is some text\nThis is more text. :tada:"}``
+`payload={"channel": "6w41z1q367dujfaxr1nrykr5oc__94dzjnkd8igafdraw66syi1cde", "text": "Hello, this is some text\nThis is more text. :tada:"}`
