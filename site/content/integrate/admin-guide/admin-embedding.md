@@ -5,7 +5,7 @@ description: "This guide discusses how to embed Mattermost into other applicatio
 weight: 80
 ---
 
-## Launching Mattermost From a Button Click
+## Launching Mattermost From a Button Selection
 
 The most common way of integrating Mattermost into another application is via a link or a button that brings up Mattermost in a new browser window or tab, with a link to a specific Mattermost channel to begin discussion.
 
