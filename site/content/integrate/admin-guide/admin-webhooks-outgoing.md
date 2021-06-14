@@ -13,12 +13,12 @@ Mattermost supports webhooks to easily integrate external applications into the 
 
 Use outgoing webhooks to post automated responses to posts made by your users. Outgoing webhooks will send an HTTP POST request to a web service and process a response back to Mattermost when a message matches one or both of the following conditions:
 
- - It is posted in a specified channel.
+ - It's posted in a specified channel.
  - The first word matches or starts with one of the defined trigger words, such as `gif`.
 
 Outgoing webhooks are supported in public channels only. If you need a trigger that works in a private channel or a direct message, consider using a [slash command](../admin-slash-commands) instead.
 
-**Note:** To prevent malicious users from trying to perform `phishing attacks <https://en.wikipedia.org/wiki/Phishing>`__ a *BOT* indicator appears next to posts coming from webhooks regardless of what username is specified.
+**Note:** To prevent malicious users from trying to perform [phishing attacks](https://en.wikipedia.org/wiki/Phishing) a **BOT** indicator appears next to posts coming from webhooks regardless of what username is specified.
 
 ## Create an Outgoing Webhook
 
@@ -27,12 +27,10 @@ Suppose you want to write an external application, which executes software tests
 You can follow these general guidelines to set up a Mattermost outgoing webhook for your application.
 
 1. First, go to **Main Menu > Integrations > Outgoing Webhook**. If you don't have the **Integrations** option in your Main Menu, outgoing webhooks may not be enabled on your Mattermost server or may be disabled for non-admins. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin to do so.
-2. Click **Add Outgoing Webhook** and add name and description for the webhook. The description can be up to 500 characters.
+2. Click **Add Outgoing Webhook** and add name and description for the webhook. The description can be up to 500 characters. 
 3. Choose the content type by which the request will be sent.
-
- - If ``application/x-www-form-urlencoded`` is chosen, the server will encode the parameters in a URL format in the request body.
- - If ``application/json`` is chosen, the server will format the request body as JSON.
-
+ - If `application/x-www-form-urlencoded` is chosen, the server will encode the parameters in a URL format in the request body.
+ - If `application/json` is chosen, the server will format the request body as JSON.
 4. Select the public channel to receive webhook responses, or specify one or more trigger words that send an HTTP POST request to your application. You may configure either the channel or the trigger words for the outgoing webhook, or both. If both are specified, then the message must match both values.
 
 In our example, we would set the channel to `town-square` and specify `#build` as the trigger word.
@@ -103,10 +101,10 @@ Similarly, [Enable integrations to override profile picture icons](https://docs.
 
 1. Webhooks are designed to easily allow you to post messages. For other actions such as channel creation, you must also use the [Mattermost APIs](https://api.mattermost.com).
 2. If the text in the JSON response is longer than the allowable character limit per post, the message is split into multiple consecutive posts, each within the character limit. Servers running Mattermost Server v5.0 or later [can support posts up to 16383 characters](https://docs.mattermost.com/administration/important-upgrade-notes.html).
-3. Outgoing webhooks are supported in public channels only. If you need a trigger that works in a private channel or a direct message, consider using a [slash command](../admin-slash-commands) instead.
+3. Outgoing webhooks are supported in public channels only. If you need a trigger that works in a Private Channel or a Direct Message, consider using a [slash command](../admin-slash-commands) instead.
 4. You can restrict who can create outgoing webhooks in [System Console > Integrations > Integration Management](https://docs.mattermost.com/administration/config-settings.html#restrict-managing-integrations-to-admins).
-6. Mattermost outgoing webhooks are Slack-compatible. You can copy-and-paste code used for a Slack outgoing webhook to create Mattermost integrations. Mattermost [automatically translates the Slack's proprietary JSON response format](https://docs.mattermost.com/developer/webhooks-outgoing.html?highlight=translate%20slack%20data%20format%20mattermost#translate-slack-s-data-format-to-mattermost).
-7. The external application may be written in any programming language. It needs to provide a URL which reacts to the request sent by your Mattermost server, and send an HTTP POST in the required JSON format as a response.
+5. Mattermost outgoing webhooks are Slack-compatible. You can copy-and-paste code used for a Slack outgoing webhook to create Mattermost integrations. Mattermost [automatically translates the Slack's proprietary JSON response format](https://docs.mattermost.com/developer/webhooks-outgoing.html?highlight=translate%20slack%20data%20format%20mattermost#translate-slack-s-data-format-to-mattermost).
+6. The external application may be written in any programming language. It needs to provide a URL which reacts to the request sent by your Mattermost server, and send an HTTP POST in the required JSON format as a response.
  
 ## Share Your Integration
 
@@ -126,8 +124,9 @@ Mattermost automatically translates the data coming from Slack:
    
    - `<>` to denote a URL link, such as `{"text": "<https://mattermost.com/>"}`.
    - `|` within a `<>` to define linked text, such as `{"text": "Click <https://mattermost.com/|here> for a link."}`.
-   - `<userid>` to trigger a mention to a user, such as `{"text": "<5fb5f7iw8tfrfcwssd1xmx3j7y> this is a notification."}`.
+   - `<userid>`  to trigger a mention to a user, such as `{"text": "<5fb5f7iw8tfrfcwssd1xmx3j7y> this is a notification."}`.
    - `<!channel>`, `<!here>`, or `<!all>` to trigger a mention to a channel, such as `{"text": "<!channel> this is a notification."}`.
+
 2. The HTTP POST request body sent to a web service is formatted the same as Slack's. This means your Slack integration's receiving function does not need change to be compatible with Mattermost.
 3. Slack attachments are supported with Slack-compatible outgoing webhooks. They also add support for mentions with `<@userid>` and announcement tokens (eg. `<!here>`) in the outgoing webhook responses.
   
@@ -137,10 +136,11 @@ Mattermost automatically translates the data coming from Slack:
 2. Referencing  channels using `<#CHANNEL_ID>` does not link to the channel.
 3. `<!everyone>` and `<!group>` are not supported.
 4. Parameters "mrkdwn", "parse", and "link_names" are not supported (Mattermost always converts markdown and automatically links @mentions).
-5. Bold formatting supplied as `*bold*` is not supported (must be done as `**bold**`).
+5. Bold formatting supplied as `*bold*` is not supported (must be done as ``**bold**``).
 6. Advanced formatting using [attachments](../admin-message-attachments) is not yet supported.
 
 ## Troubleshooting
+
 
 To debug outgoing webhooks in **System Console > Logs**, set **System Console > Logging > Enable Webhook Debugging** to `true` and set **System Console > Logging > Console Log Level** to `DEBUG`.
 
