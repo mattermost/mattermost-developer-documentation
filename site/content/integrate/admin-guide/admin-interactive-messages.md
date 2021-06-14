@@ -300,7 +300,7 @@ Tips and Best Practices
 
 ## Share Your Integration
 
-If you've built an integration for Mattermost, please consider [sharing your work](https://mattermost.org/share-your-mattermost-projects) in our [app directory](https://integrations.mattermost.com).
+If you've built an integration for Mattermost, please consider sharing your work in our [app directory](https://integrations.mattermost.com).
 
 The [app directory](https://integrations.mattermost.com) lists open source integrations developed by the Mattermost community and are available for download, customization, and deployment to your private cloud or self-managed infrastructure.
 
