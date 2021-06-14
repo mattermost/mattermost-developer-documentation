@@ -51,23 +51,11 @@ When self-hosting restrictions are less strict, AWS, Heroku, and other public cl
 
 ## How do I create a bot account with personal access tokens?
 
-See [bot accounts documentation](https://docs.mattermost.com/developer/bot-accounts.html) to learn more about how to create and manage bot accounts in Mattermost.
+See [bot accounts documentation](../admin-bot-accounts) to learn more about how to create and manage bot accounts in Mattermost.
 
-In version 5.11 and earlier, follow these steps to create a bot account with personal access tokens:
-
-1. Create a bot account using any authentication method, including email and password, AD/LDAP, or SAML.
-2. Create a personal access token for the account [using the steps here](https://docs.mattermost.com/developer/personal-access-tokens.html#creating-a-personal-access-token).
-   - The steps also outline how to give the account permissions to post to any channel in your Mattermost server, including direct messages, or to any public channel.
-3. Include the personal access token from step 2 as part of the `Authorization` header on API requests from your integration.
-   - To confirm the token works, you can have your bot make a simple `GET` request to `/api/v4/users/me` with the `Authorization: bearer <yourtokenhere>` in the header. If it returns a `200` with the bot's user object in the response, the API request was made successfully.
-     ```
-     GET /api/v4/users/me HTTP/1.1
-     Authorization: bearer <yourtokenhere>
-     Host: your-mattermost-url.com
-     ```
 ## How do I create a bot account without personal access tokens or webhooks?
 
-Deployments that cannot create bot accounts via webhooks due to security reasons and do not want to use [personal access tokens](https://docs.mattermost.com/developer/personal-access-tokens.html) with no expiry time, can use the following approach:
+Deployments that cannot create bot accounts via webhooks due to security reasons and do not want to use [personal access tokens](../admin-personal-access-tokens) with no expiry time, can use the following approach:
 
 1. Create a bot account using a secure email and strong password.
 2. Manually add the account to all teams and channels it needs access to. If your deployment has a lot of teams or channels, you may create a CLI script to automate the process.
@@ -104,16 +92,18 @@ Deployments that cannot create bot accounts via webhooks due to security reasons
      {{user object as json}}
      ```
      
-     The bot should retrieve the session token from the `Token` header and store it in memory for use with future requests.
+    The bot should retrieve the session token from the `Token` header and store it in memory for use with future requests.
    
-   **Note:** Each session token has an expiry time, set depending on the server's configuration. If the session token your bot is using expires, it will receive a `401 Unauthorized` response from requests using that token. When your bot receives this response, it should reapply the login logic (using the above steps) to get another session token. Then resend the request that received the `401` status code.
+**Note:** Each session token has an expiry time, set depending on the server's configuration. If the session token your bot is using expires, it will receive a `401 Unauthorized` response from requests using that token. When your bot receives this response, it should reapply the login logic (using the above steps) to get another session token. Then resend the request that received the `401` status code.
+
 5. Include the `Token` as part of the `Authorization` header on API requests from your integration.
    - To confirm the token works, you can have your bot make a simple `GET` request to `/api/v4/users/me` with the `Authorization: bearer <yourtokenhere>` in the header. If it returns a `200` with the bot's user object in the response, the API request was made successfully.
-     ```
+  
+  ```
      GET /api/v4/users/me HTTP/1.1
      Authorization: bearer <yourtokenhere>
      Host: your-mattermost-url.com
-     ```
+  ```
 
 **Note:** The Mattermost development team is also working on an [API developer token](https://docs.google.com/document/d/1ey4eNQmwK410pNTvlnmMWTa1fqtj8MV4d9XkCumI384), which allows you to authenticate the bot account via the API token rather than retrieving a session token from a user account.
 
