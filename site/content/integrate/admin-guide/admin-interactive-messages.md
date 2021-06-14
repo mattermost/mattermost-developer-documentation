@@ -202,10 +202,10 @@ Name
   Give your action a descriptive name.
 
 URL
-  The actions are backed by an integration that handles HTTP POST requests when users click the message button. The URL parameter determines where this action is sent. The request contains an `application/json` JSON string. As of 5.14, relative URLs are accepted, simplifying the workflow when a plugin handles the action.
+  The actions are backed by an integration that handles HTTP POST requests when users select the message button. The URL parameter determines where this action is sent. The request contains an `application/json` JSON string. As of 5.14, relative URLs are accepted, simplifying the workflow when a plugin handles the action.
 
 Context
-  The requests sent to the specified URL contain the user ID, post ID, channel ID, team ID, and any context that was provided in the action definition. If the post was of type `Message Menus`, then context also contains the `selected_option` field with the user-selected option value. The post ID can be used to, for example, delete or edit the post after clicking on a message button.
+  The requests sent to the specified URL contain the user ID, post ID, channel ID, team ID, and any context that was provided in the action definition. If the post was of type `Message Menus`, then context also contains the `selected_option` field with the user-selected option value. The post ID can be used to, for example, delete or edit the post after selecting a message button.
   
   A simple example of a request is given below:
 
@@ -239,7 +239,7 @@ In most cases, your integration will do one or both of these things:
       }
    ```   
 
-In the example above, when the message button is clicked, your integration sends a request to the specified URL with the intention to merge the pull request identified by the context.
+In the example above, when the message button is selected, your integration sends a request to the specified URL with the intention to merge the pull request identified by the context.
 
   2. **Authenticating the server**. An important property of the context parameter is that it's kept confidential. If your integration is not behind a firewall, you could add a token to your context without users ever being able to see it:
 
@@ -334,7 +334,7 @@ As an advanced feature, you can also use plugins to update the contents of an ep
 
 It is likely for one of three reasons:
 
-1. Mattermost wasn't able to connect to the integration. If the integration is on your internal infrastructure, it'll need to be whitelisted (see ["AllowedUntrustedInternalConnections" config.json setting](https://docs.mattermost.com/administration/config-settings.html#allow-untrusted-internal-connections-to)). The log will include the text `err=address forbidden` in the error message.
+1. Mattermost wasn't able to connect to the integration. If the integration is on your internal infrastructure, it'll need to be whitelisted (see ["AllowedUntrustedInternalConnections" config.json setting](https://docs.mattermost.com/administration/config-settings.html#allow-untrusted-internal-connections-to). The log will include the text `err=address forbidden` in the error message.
 2. The integration didn't return HTTP status 200. The log will include the text `status=XXX` in the error message.
 3. The integration didn't return a valid JSON response. The log will include the text `err=some json error message` in the error message.
 

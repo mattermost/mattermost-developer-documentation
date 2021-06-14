@@ -27,7 +27,7 @@ Suppose you want to write an external application, which executes software tests
 You can follow these general guidelines to set up a Mattermost outgoing webhook for your application.
 
 1. First, go to **Main Menu > Integrations > Outgoing Webhook**. If you don't have the **Integrations** option in your Main Menu, outgoing webhooks may not be enabled on your Mattermost server or may be disabled for non-admins. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin to do so.
-2. Click **Add Outgoing Webhook** and add name and description for the webhook. The description can be up to 500 characters. 
+2. Select **Add Outgoing Webhook** and add name and description for the webhook. The description can be up to 500 characters. 
 3. Choose the content type by which the request will be sent.
  - If `application/x-www-form-urlencoded` is chosen, the server will encode the parameters in a URL format in the request body.
  - If `application/json` is chosen, the server will format the request body as JSON.
@@ -42,7 +42,7 @@ In our example, we would set the channel to `town-square` and specify `#build` a
  - If the first word of a message matches one of the trigger words exactly, or
  - If the first word of a message starts with one of the trigger words.
 
-6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, and hit **Save**. If the URL is private, add it as a [trusted internal connection](https://about.mattermost.com/default-allow-internal-connections-settings-documentation).
+6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a [trusted internal connection](https://about.mattermost.com/default-allow-internal-connections-settings-documentation).
 7. On the next page, copy the **Token** value. This will be used in a later step.
 
 .. image:: ../images/outgoing_webhooks_token.png

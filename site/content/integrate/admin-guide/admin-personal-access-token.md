@@ -23,13 +23,13 @@ Personal access tokens function similar to session tokens and can be used by int
 
 You may optionally allow the account to post to any channel in your Mattermost server, including direct messages by choosing the **post:all** role. **post:channels** role allows the account to post to any public channel in the Mattermost server.
 
-Then hit **Save**.
+Then select **Save**.
 
 5. Sign in to the user account to create a personal access token.
 
-6. Go to **Account Settings > Security > Personal Access Tokens** and click **Create New Token**.
+6. Go to **Account Settings > Security > Personal Access Tokens**, then select **Create New Token**.
 
-7. Enter a description for the token, so you remember what it's used for. Then hit **Save**.
+7. Enter a description for the token, so you remember what it's used for. Then select **Save**.
 
 **Note:** If you create a personal access token for a System Admin account, be extra careful who you share it with. The token enables a user to have full access to the account, including System Admin privileges. It's recommended to create a personal access token for non-admin accounts.
   
@@ -48,12 +48,12 @@ Tokens can also be temporarily deactivated from the user's account settings. Onc
 ### Account Settings
 
 1. Sign in to the user account and go to **Account Settings > Security > Personal Access Tokens**.
-2. Identify the access token you want to revoke and hit **Delete**. Confirm the deletion.
+2. Identify the access token you want to revoke, then select **Delete** and confirm the deletion.
 
 ### System Console
 
 1. Go to **System Console > Users**, search for the user account which the token belongs to, then select **Manage Tokens** from the dropdown.
-2. Identify the access token you want to revoke and hit **Delete**. Confirm the deletion.
+2. Identify the access token you want to revoke, then select **Delete** and confirm the deletion.
 
 ## Frequently Asked Questions (FAQ)
 
