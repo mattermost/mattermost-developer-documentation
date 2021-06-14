@@ -5,9 +5,7 @@ description: "Incoming webhooks for System Admins."
 weight: 80
 ---
 
-# Incoming Webhooks
-
-**Note:** This is the admin documentation for incoming webhooks. If you're a developer looking to build an integration, see `our developer documentation <https://developers.mattermost.com/integrate/getting-started/>`__.
+**Note:** This is the admin documentation for incoming webhooks. If you're a developer looking to build an integration, see [our developer documentation](https://developers.mattermost.com/integrate/getting-started).
 
 Mattermost supports webhooks to easily integrate external applications into the server.
 
@@ -19,7 +17,7 @@ Use incoming webhooks to post messages to Mattermost public channels, private ch
 
 Use [curl](https://curl.haxx.se), a simple command line tool for sending HTTP requests in the examples that follow.
 
-To prevent malicious users from trying to perform `phishing attacks <https://en.wikipedia.org/wiki/Phishing>`__, a *BOT* indicator appears next to posts coming from webhooks regardless of what username is specified.
+To prevent malicious users from trying to perform [phishing attacks](https://en.wikipedia.org/wiki/Phishing), a *BOT* indicator appears next to posts coming from webhooks regardless of what username is specified.
 
 ## Simple Incoming Webhook
 
@@ -34,22 +32,21 @@ Let's learn how to create a simple incoming webhook that posts the following mes
 3. Select the channel to receive webhook payloads, then click **Add** to create the webhook.
 4. Use a curl command from your terminal or commandline to send the following JSON payload in a HTTP POST request:
 
-.. code-block:: text
-
+```
   curl -i -X POST -H 'Content-Type: application/json' -d '{"text": "Hello, this is some text\nThis is more text. :tada:"}' http://{your-mattermost-site}/hooks/xxx-generatedkey-xxx
   # or
   curl -i -X POST --data-urlencode 'payload={"text": "Hello, this is some text\nThis is more text. :tada:"}' http://{your-mattermost-site}/hooks/xxx-generatedkey-xxx
+```
 
-If you're running `cURL on Windows <https://curl.haxx.se/windows/>`__, ensure inner double quotes are escaped with a backslash. Here's an example payload on Windows:
+If you're running [cURL on Windows](https://curl.haxx.se/windows), ensure inner double quotes are escaped with a backslash. Here's an example payload on Windows:
 
-.. code-block:: text
-
+```
   curl -i -X POST -H "Content-Type: application/json" -d "{\"text\": \"Hello, this is some text\nThis is more text. :tada:\"}" http://{your-mattermost-site}/hooks/xxx-generatedkey-xxx
+```
 
-See `developer documentation <https://developers.mattermost.com/integrate/incoming-webhooks/>`__ for details on what parameters are supported by incoming webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by `plugins <https://about.mattermost.com/default-plugins>`__. The following payload gives an example webhook that uses additional parameters and formatting options:
+See [developer documentation](https://developers.mattermost.com/integrate/incoming-webhooks) for details on what parameters are supported by incoming webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins](https://about.mattermost.com/default-plugins). The following payload gives an example webhook that uses additional parameters and formatting options:
 
-.. code-block:: text
-
+```
   payload={
     "channel": "town-square",
     "username": "test-automation",
@@ -62,38 +59,31 @@ See `developer documentation <https://developers.mattermost.com/integrate/incomi
     | iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |
     "
     }
+```
 
 This content will be displayed in the Town Square channel.
 
 .. image:: ../images/incoming_webhooks_full_example.png
   :width: 500 px
 
-Messages with advanced formatting can be created by including an :doc:`attachment array <message-attachments>` and :doc:`interactive message buttons <interactive-messages>` in the JSON payload.
+Messages with advanced formatting can be created by including an [attachment array](../admin-message-attachments) and [interactive message buttons](../admin-interactive-messages) in the JSON payload.
 
-.. note::
-  `Enable integrations to override usernames <https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-usernames>`__ must be set to ``true`` in ``config.json`` to override usernames. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the username is set to ``webhook``.
-  
-  Similarly, `Enable integrations to override profile picture icons <https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons>`__ must be set to ``true`` in ``config.json`` to override profile picture icons. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the icon of the creator of the webhook URL is used to post messages.
+**Note:** [Enable integrations to override usernames](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the username is set to `webhook`.
+
+Similarly, [Enable integrations to override profile picture icons](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons) must be set to `true` in `config.json` to override profile picture icons. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the icon of the creator of the webhook URL is used to post messages.
 
 ## Tips and Best Practices
 
-1. Webhooks are designed to easily allow you to post messages. For other actions such as channel creation, you must also use the `Mattermost APIs <https://api.mattermost.com>`__.
-
-2. If the text is longer than the allowable character limit per post, the message is split into multiple consecutive posts, each within the character limit. Servers running Mattermost Server v5.0 or later `can support posts up to 16383 characters <https://docs.mattermost.com/administration/important-upgrade-notes.html>`__.
-
-3. You can restrict who can create incoming webhooks in `System Console > Integrations > Integration Management <https://docs.mattermost.com/administration/config-settings.html#restrict-managing-integrations-to-admins>`__.
-
-4. Mattermost incoming webhooks are Slack-compatible. You can copy-and-paste code used for a Slack incoming webhook to create Mattermost integrations. Mattermost `automatically translates the Slack's proprietary JSON payload format <https://docs.mattermost.com/developer/webhooks-incoming.html?highlight=translate%20slack%20data%20format%20mattermost#translate-slack-s-data-format-to-mattermost>`__.
-
+1. Webhooks are designed to easily allow you to post messages. For other actions such as channel creation, you must also use the [Mattermost APIs](https://api.mattermost.com).
+2. If the text is longer than the allowable character limit per post, the message is split into multiple consecutive posts, each within the character limit. Servers running Mattermost Server v5.0 or later [can support posts up to 16383 characters](https://docs.mattermost.com/administration/important-upgrade-notes.html).
+3. You can restrict who can create incoming webhooks in [System Console > Integrations > Integration Management](https://docs.mattermost.com/administration/config-settings.html#restrict-managing-integrations-to-admins).
+4. Mattermost incoming webhooks are Slack-compatible. You can copy-and-paste code used for a Slack incoming webhook to create Mattermost integrations. Mattermost [automatically translates the Slack's proprietary JSON payload format](https://docs.mattermost.com/developer/webhooks-incoming.html?highlight=translate%20slack%20data%20format%20mattermost#translate-slack-s-data-format-to-mattermost).
 5. The external application may be written in any programming language as long as it supports sending an HTTP POST request in the required JSON format to a specified Mattermost URL.
+6. For the HTTP request body, if `Content-Type` is specified as `application/json` in the header of the HTTP request, then the body can be direct JSON. For example,
 
-6. For the HTTP request body, if ``Content-Type`` is specified as ``application/json`` in the header of the HTTP request, then the body can be direct JSON. For example,
+`{"text": "Hello, this is some text."}`
 
-.. code-block:: text
-
-  {"text": "Hello, this is some text."}
-
-7. When using the ``icon_emoji`` parameter, the user profile image is replaced by the emoji provided. This will also override the ``icon_url`` parameter if both are provided.
+7. When using the `icon_emoji` parameter, the user profile image is replaced by the emoji provided. This will also override the `icon_url` parameter if both are provided.
 
 ## Share Your Integration
 
