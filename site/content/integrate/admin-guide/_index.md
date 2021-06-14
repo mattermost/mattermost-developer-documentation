@@ -121,7 +121,7 @@ Deployments that cannot create bot accounts via webhooks due to security reasons
 
 Automating Mattermost installation within another application:
 
-1. Review the [Mattermost installation guides](https://docs.mattermost.com/guides/administrator.html#installing-mattermost) to understand configuration steps of the production deployment.
+1. Review the [Mattermost installation documentation](https://docs.mattermost.com/guides/install-deploy-upgrade-scale.html#install-mattermost) to understand configuration steps of the production deployment.
 2. Install Mattermost files to a dedicated `/opt/mattermost` directory by decompressing the `tar.gz` file of the latest release for your target platform (for example `linux-amd64`).
 3. Review [Configuration Settings](https://docs.mattermost.com/administration/config-settings.html) in `config.json` and set your automation to customize your Mattermost deployment based on your requirements.
 4. For directory locations defined in `config.json`, such as the location of the local file storage directory (`./data/`) or logs directory (`./logs`), you can redefine those locations in your `config.json` settings and move the directories.
