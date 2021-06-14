@@ -97,13 +97,13 @@ Messages with advanced formatting can be created by including an :doc:`attachmen
 
 ## Share Your Integration
 
-If you've built an integration for Mattermost, please consider `sharing your work <https://mattermost.org/share-your-mattermost-projects/>`__ in our `app directory <https://integrations.mattermost.com/>`__.
+If you've built an integration for Mattermost, please consider [sharing your work](https://mattermost.org/share-your-mattermost-projects) in our [app directory](https://integrations.mattermost.com).
 
-The `app directory <https://integrations.mattermost.com/>`__ lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-managed infrastructure.
+The [app directory](https://integrations.mattermost.com) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-managed infrastructure.
 
 ## Slack Compatibility
 
-Mattermost makes it easy to migrate integrations written for Slack to Mattermost. Using the Slack ``icon_emoji`` parameter overrides the profile icon and the ``icon_url`` parameter and is supported from version 5.14.
+Mattermost makes it easy to migrate integrations written for Slack to Mattermost. Using the Slack `icon_emoji` parameter overrides the profile icon and the `icon_url` parameter and is supported from version 5.14.
 
 ### Translate Slack's data format to Mattermost
 
@@ -130,7 +130,7 @@ GitLab is the leading open-source alternative to GitHub and offers built-in inte
 
 ### Known Slack compatibility issues
 
-1. Referencing  channels using `<#CHANNEL_ID>` does not link to the channel.
+1. Referencing channels using `<#CHANNEL_ID>` does not link to the channel.
 2. `<!everyone>` and `<!group>` are not supported.
 3. Parameters "mrkdwn", "parse", and "link_names" are not supported. Mattermost converts Markdown by default and automatically links @mentions.
 4. Bold formatting as `*bold*` is not supported (must be done as ``**bold**``).
