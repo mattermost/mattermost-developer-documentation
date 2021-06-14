@@ -143,6 +143,6 @@ Possible solutions to common issues encountered during setup.
 
 ### Deauthorize the Zapier App
 
-If you'd like to deauthorize Zapier so it can no longer post through your connected account, go to **Account Settings > Security > OAuth 2.0 Applications**, then click **Deauthorize** on the Zapier app.
+If you'd like to deauthorize Zapier so it can no longer post through your connected account, go to **Account Settings > Security > OAuth 2.0 Applications**, then select **Deauthorize** on the Zapier app.
 
 .. image:: ../images/zapier-deauthorize.png
