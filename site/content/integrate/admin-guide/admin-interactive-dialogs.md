@@ -12,7 +12,7 @@ Moreover, [plugins](../admin-plugins-beta) can trigger a dialog based on user ac
 
 Here is an example of what a dialog looks like for creating a Jira issue within the Mattermost user interface:
 
-.. image:: ../../source/images/interactive-dialog-example.png
+![image](images/interactive-dialog-example.png)
 
 ## Opening a Dialog
 
@@ -66,13 +66,13 @@ Each dialog supports elements for users to enter information.
 
 Each element is required by default, otherwise the client will return an error as shown below. Note that the error message will appear below the help text, if one is specified. To make an element optional, set the field `"optional": "true"`.
 
-.. image:: ../../source/images/interactive-dialog-error.png
+.![image](images/interactive-dialog-error.png)
 
 ### Text elements
 
 Text elements are single-line plain text fields. Below is an example of a ``text`` element that asks for an email address.
 
-.. image:: ../../source/images/interactive-dialog-text.png
+![image](images/interactive-dialog-text.png)
 
 ```
   {
@@ -136,9 +136,9 @@ The list of supported fields is the same as for the ``textarea`` type element.
 
 Select elements are message menus that allow users to select one predefined option from a list. Below is an example of a `select` element that asks for one of three different options.
 
-.. image:: ../../source/images/interactive-dialog-select.png
+![image](images/interactive-dialog-select.png)
 
-.. image:: ../../source/images/interactive-dialog-select-menu.png
+![image](images/interactive-dialog-select-menu.png)
 
 ```
   {
@@ -236,7 +236,7 @@ The full list of supported fields is included below:
 
 From Mattermost v5.16 you can use `radio` elements. It looks like a plain text field with a radio button to be selected. Below is an example of a `radio` element that asks for a department.
 
-.. image:: ../../source/images/interactive-dialog-radio.png
+![image](images/interactive-dialog-radio.png)
 
 ```
   {
@@ -450,7 +450,7 @@ Below is a full example of a JSON payload that creates an interactive dialog in 
   }
 ```
 
-.. image:: ../../source/images/interactive-dialog-complete-example.png
+![image](images/interactive-dialog-complete-example.png)
 
 ## Share your integration
 
@@ -470,4 +470,4 @@ The schema for these objects is the same as Slack's, except for the following di
   - `hint` in Slack dialogs is `help_text` in Mattermost dialogs for a more consistent naming convention with other integration types.
   - `value` in Slack dialogs is `default` in Mattermost dialogs for a more consistent naming convention with other integration types.
 
-Moreover, the JSON payload for ``select`` type elements matches [interactive message menus](../admin-interactive-messages).
+Moreover, the JSON payload for `select` type elements matches [interactive message menus](../admin-interactive-messages).
