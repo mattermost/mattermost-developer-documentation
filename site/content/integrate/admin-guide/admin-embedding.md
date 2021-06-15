@@ -34,7 +34,6 @@ Save the below HTML code in a file called `mattermost-button-example.html` then 
 
   </script>
 
-
   <html>
       <br/>
       <br/>
@@ -51,7 +50,7 @@ Save the below HTML code in a file called `mattermost-button-example.html` then 
 
 Any web application embedded into another using an iframe is at risk of security exploits, since the outer application intercepts all user input into the embedded application, an exploit known as [Click-Jacking](https://en.wikipedia.org/wiki/Clickjacking). By default, Mattermost disables embedding. If you choose to embed Mattermost we highly recommend it is done only on a private network that you control.
 
-See [this recipe](https://forum.mattermost.org/t/recipe-embedding-mattermost-in-web-applications-using-an-iframe-unsupported-recipe/10233)for details.
+See [this recipe](https://forum.mattermost.org/t/recipe-embedding-mattermost-in-web-applications-using-an-iframe-unsupported-recipe/10233) for details.
 
 ## Embedding Mattermost in Mobile Applications
 
