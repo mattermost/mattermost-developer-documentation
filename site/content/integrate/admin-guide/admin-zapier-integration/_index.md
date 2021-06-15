@@ -40,7 +40,7 @@ To learn more about OAuth 2.0 applications, including what permissions they have
 
 You'll be provided with a **Client ID** and **Client Secret**. Save these values, or share them with your team to connect Zapier in the steps below.
 
-![image](images/zapier-oauth.png)
+![image](zapier-oauth.png)
 
 ### Create a Zap
 
@@ -66,7 +66,7 @@ You'll be provided with a **Client ID** and **Client Secret**. Save these values
       - **Channel:** Choose the channel where new messages will post. The dropdown contains all channels that you belong to. Zapier cannot post into Direct Message channels.
      - **Message Text:** Enter the message text that will post to Mattermost. This text can be formatted using [Markdown](https://docs.mattermost.com/help/messaging/formatting-text.html) and include the dynamic fields offered by your selected trigger app. Read our message formatting tips below.
 
-![image](images/zapier-dynamic-fields.png)
+![image](zapier-dynamic-fields.png)
 
  4. **Username:** This is the username that Zapier will post as. Zapier integrations will always appear with a `BOT` tag next to the username. In order for bots to override the username of the authorized user, your System Admin must set [Enable integrations to override usernames](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-usernames) to **True**.
 5. **Icon URL:** This is the profile picture of the bot that Zapier will post as. In order for bots to override the profile picture of the authorized user, your System Admin must set [Enable integrations to override profile picture icons](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons) to **True**.
@@ -105,7 +105,7 @@ The Mattermost team has over 50 zaps integrated on our [Community Contributors t
      #[searchable-hashtag] in [external service](link to service) by [author](link to author profile) on [time-stamp](link to specific forum post, media mention or tweet)
 ```
 
-![image](images/zapier-ch2.png)
+![image](zapier-ch2.png)
 
 ## Troubleshooting Guide
 
@@ -118,32 +118,32 @@ Possible solutions to common issues encountered during setup.
     - Correct: `https://community.mattermost.com`
     - Incorrect: `https://community.mattermost.com/`
 
-![image](images/zapier-error1.png)
+![image](zapier-error1.png)
 
 2. `"[Server URL] returned (404)"`
   a. Possible Solution: The **Mattermost URL** cannot have a team appended to the end of the server URL.
     - Correct: `https://community.mattermost.com`
     - Incorrect: `https://community.mattermost.com/core`
 
-![image](images/zapier-error2.png)
+![image](zapier-error2.png)
 
 3. `"[Server URL] returned (500) Internal Server Error"`
   a. Possible Solution: The **Client Secret** might be incorrect. Verify this value in **Main Menu > Integrations > OAuth 2.0 Applications**, or check with your System Admin.
 
- ![image](images/zapier-error4.png)
+ ![image](zapier-error4.png)
 
 4. `"Error Invalid client id"`
   a. Possible Solution: The **Client ID** and/or **Client Secret** might have trailing spaces in them when copied and pasted into the form. Verify there are no trailing spaces in the **Client ID** and **Client Secret** fields then try again.
 
-![image](images/zapier-trailing-space-error.png)
+![image](zapier-trailing-space-error.png)
 
 5. `"Mattermost needs your help: We couldn't find the requested app"`
   a. Possible Solution: The **Client ID** might be incorrect. Verify this value in **Main Menu > Integrations > OAuth 2.0 Applications**, or check with your System Admin.
 
-![image](images/zapier-error3.png)
+![image](zapier-error3.png)
 
 ### Deauthorize the Zapier App
 
 If you'd like to deauthorize Zapier so it can no longer post through your connected account, go to **Account Settings > Security > OAuth 2.0 Applications**, then select **Deauthorize** on the Zapier app.
 
-![image](images/zapier-deauthorize.png)
+![image](zapier-deauthorize.png)
