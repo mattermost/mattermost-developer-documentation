@@ -5,7 +5,7 @@ description: "Mattermost supports interactive message buttons and menus for inco
 weight: 80
 ---
 
-![image](images/interactive-messages.png)
+![image](interactive-messages.png)
 
 For information on interactive dialogs, [see here](../admin-interactive-dialogs).
 
@@ -17,7 +17,7 @@ Use interactive messages to simplify complex workflows by allowing users to take
 
 To try it out, you can use this [Matterpoll plugin](https://github.com/matterpoll/matterpoll) to add polling to Mattermost channels via a `/poll` slash command.
 
-![image](images/poll.png)
+![image](poll.png)
 
 ## Message Buttons
 
@@ -69,7 +69,7 @@ The integration can respond with an update to the original post, or with an ephe
   }
 ```
 
-![image](images/interactive_message.gif)
+![image](interactive_message.gif)
 
 ## Message Menus
 
