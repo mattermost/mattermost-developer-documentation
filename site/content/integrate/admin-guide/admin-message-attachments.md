@@ -19,15 +19,15 @@ When sending an attachment, you can use any of the following to format how you w
 
 `color`: A hex color code that will be used as the left border color for the attachment. If not specified, it will default to match the channel sidebar header background color.
 
-.. image:: ../images/attachments-color.png
+![image](images/attachments-color.png)
 
 `pretext`: An optional line of text that will be shown above the attachment.
 
-.. image:: ../images/attachments-pretext.png
+![image](images/attachments-pretext.png)
 
 `text`: The text to be included in the attachment. It can be formatted using [Markdown](https://docs.mattermost.com/help/messaging/formatting-text.html). For long texts, the message is collapsed and a “Show More” link is added to expand the message.
 
-.. image:: ../images/attachments-text.png
+![image](images/attachments-text.png)
 
 ### Author Details
 
@@ -37,7 +37,7 @@ When sending an attachment, you can use any of the following to format how you w
 
 `author_icon`: An optional URL used to display a 16x16 pixel icon beside the `author_name`.
 
-.. image:: ../images/attachments-author.png
+![image](images/attachments-author.png)
 
 ### Titles
 
@@ -45,7 +45,7 @@ When sending an attachment, you can use any of the following to format how you w
 
 `title_link`: An optional URL used to hyperlink the `title`. If no `title` is specified, this field does nothing.
 
-.. image:: ../images/attachments-titles.png
+![image](images/attachments-titles.png)
 
 ### Fields
 
@@ -57,7 +57,7 @@ Fields can be included as an optional array within `attachments`, and are used t
 
 `short`: Optionally set to true or false (boolean) to indicate whether the `value` is short enough to be displayed beside other values.
 
-.. image:: ../images/attachments-fields.png
+![image](images/attachments-fields.png)
 
 ### Images
 
@@ -65,11 +65,11 @@ Fields can be included as an optional array within `attachments`, and are used t
 
 Large images are resized to a maximum width of 400px or a maximum height of 300px, while still maintaining the original aspect ratio.
 
-.. image:: ../images/attachments-image.png
+![image](images/attachments-image.png)
 
 `thumb_url`: An optional URL to an image file (GIF, JPEG, PNG, BMP, or SVG)  that is displayed as a 75x75 pixel thumbnail on the right side of an attachment. We recommend using an image that is already 75x75 pixels, but larger images will be scaled down with the aspect ratio maintained.
 
-.. image:: ../images/attachments-thumb.png
+![image](images/attachments-thumb.png)
 
 ## Example Message Attachment
 
@@ -120,7 +120,7 @@ Here is an example message attachment:
 
 And here is how it renders in Mattermost:
 
-.. image:: ../images/attachments-example.png
+![image](images/attachments-example.png)
 
 ### Footer
 
@@ -128,7 +128,7 @@ And here is how it renders in Mattermost:
 
 `footer_icon`: An optional URL to an image file (GIF, JPEG, PNG, BMP, or SVG) that is displayed as a 16x16 pixel thumbnail before the footer text.
 
-.. image:: ../images/attachments-footer.png
+.![image](images/attachments-footer.png)
 
 ## Known Issues
 
