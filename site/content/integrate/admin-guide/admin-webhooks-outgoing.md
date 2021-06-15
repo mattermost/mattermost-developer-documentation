@@ -7,7 +7,7 @@ weight: 80
 
 # Outgoing Webhooks
 
-  This is the admin documentation for outgoing webhooks. If you're a developer looking to build an integration, see [our developer documentation](https://developers.mattermost.com/integrate/getting-started).
+This is the admin documentation for outgoing webhooks. If you're a developer looking to build an integration, see [our developer documentation](https://developers.mattermost.com/integrate/getting-started).
 
 Mattermost supports webhooks to easily integrate external applications into the server.
 
@@ -45,8 +45,7 @@ In our example, we would set the channel to `town-square` and specify `#build` a
 6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a [trusted internal connection](https://about.mattermost.com/default-allow-internal-connections-settings-documentation).
 7. On the next page, copy the **Token** value. This will be used in a later step.
 
-.. image:: ../images/outgoing_webhooks_token.png
-  :width: 500 px
+![image](images/outgoing_webhooks_token.png)
 
 8. Next, write your external application. Include a function, which receives HTTP POST requests from Mattermost. The function should look something like this:
 
@@ -87,7 +86,7 @@ If your integration sends back a JSON response, make sure it returns the `applic
 
 which would render in Mattermost as:
 
-.. image:: ../images/webhooksTable.png
+![image](images/webhooksTable.png)
 
 11. You're all set! See [developer documentation](https://developers.mattermost.com/integrate/outgoing-webhooks) for details on what parameters are supported by outgoing webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins](https://about.mattermost.com/default-plugins).
 
@@ -141,7 +140,6 @@ Mattermost automatically translates the data coming from Slack:
 
 ## Troubleshooting
 
-
 To debug outgoing webhooks in **System Console > Logs**, set **System Console > Logging > Enable Webhook Debugging** to `true` and set **System Console > Logging > Console Log Level** to `DEBUG`.
 
 When `TRUE`, as of v5.14 all outgoing webhooks are logged and include a `request_id` value in the log file. 
@@ -150,6 +148,4 @@ For further assistance, review the [Troubleshooting forum](https://forum.matterm
 
 ### My integration prints the JSON data in a Mattermost channel
 
-Mattermost handles multiple content types for integrations, including plain text content type. 
-
-If your integration prints the JSON data instead of rendering the generated message, make sure your integration is returning the `application/json` content-type.
+Mattermost handles multiple content types for integrations, including plain text content type. If your integration prints the JSON data instead of rendering the generated message, make sure your integration is returning the `application/json` content-type.
