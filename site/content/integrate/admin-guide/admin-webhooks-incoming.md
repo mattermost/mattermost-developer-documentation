@@ -11,8 +11,7 @@ Mattermost supports webhooks to easily integrate external applications into the 
 
 Use incoming webhooks to post messages to Mattermost public channels, private channels and direct messages. Messages are sent via an HTTP POST request to a Mattermost URL generated for each application and contain a specifically formatted JSON payload in the request body.
 
-.. image:: ../images/incoming_webhooks_sample.png
-  :width: 500 px
+![image](images/incoming_webhooks_sample.png)
 *An example of a GitHub integration that posts updates to a Developers channel*
 
 Use [curl](https://curl.haxx.se), a simple command line tool for sending HTTP requests in the examples that follow.
@@ -23,9 +22,8 @@ To prevent malicious users from trying to perform [phishing attacks](https://en.
 
 Let's learn how to create a simple incoming webhook that posts the following message to Mattermost.
 
-.. image:: ../images/incoming_webhooks_create_simple.png
-  :width: 400 px
-  
+![image](images/incoming_webhooks_create_simple.png)
+
 1. First, go to **Main Menu > Integrations > Incoming Webhook**. 
   - If you don't have the **Integrations** option in your Main Menu, incoming webhooks may not be enabled on your Mattermost server or may be disabled for non-admins. They can be enabled by a System Admin from **System Console > Integrations > Integration Management**. Then continue with the steps below.
 2. Select **Add Incoming Webhook** and add name and description for the webhook. The description can be up to 500 characters.
@@ -63,8 +61,7 @@ See [developer documentation](https://developers.mattermost.com/integrate/incomi
 
 This content will be displayed in the Town Square channel.
 
-.. image:: ../images/incoming_webhooks_full_example.png
-  :width: 500 px
+![image](images/incoming_webhooks_full_example.png)
 
 Messages with advanced formatting can be created by including an [attachment array](../admin-message-attachments) and [interactive message buttons](../admin-interactive-messages) in the JSON payload.
 
