@@ -5,7 +5,7 @@ description: "Mattermost supports interactive message buttons and menus for inco
 weight: 80
 ---
 
-.. image:: ../../source/images/interactive-messages.png
+![image](images/interactive-messages.png)
 
 For information on interactive dialogs, [see here](../admin-interactive-dialogs).
 
@@ -17,7 +17,7 @@ Use interactive messages to simplify complex workflows by allowing users to take
 
 To try it out, you can use this [Matterpoll plugin](https://github.com/matterpoll/matterpoll) to add polling to Mattermost channels via a `/poll` slash command.
 
-.. image:: ../../source/images/poll.png
+![image](images/poll.png)
 
 ## Message Buttons
 
@@ -69,13 +69,13 @@ The integration can respond with an update to the original post, or with an ephe
   }
 ```
 
-.. image:: ../../source/images/interactive_message.gif
+![image](images/interactive_message.gif)
 
 ## Message Menus
 
 Similar to buttons, add message menus as `actions` in your integration [message attachments](https://docs.mattermost.com/developer/message-attachments.html).
 
-.. image:: ../../source/images/message-menus.png
+![image](images/message-menus.png)
 
 The following payload gives an example that uses message menus.
 
@@ -328,7 +328,7 @@ If your `ephemeral_text` gets incorrectly handled by the Slack-compatibility log
 
 Yes, message buttons and menus are supported in ephemeral messages in Mattermost 5.10 and later. This applies to integrations using plugins, the RESTful API and webhooks, across the browser and desktop app.
 
-As an advanced feature, you can also use plugins to update the contents of an ephemeral message with message buttons or menus with the `UpdateEphemeralMessage plugin API <https://developers.mattermost.com/extend/plugins/server/reference/#API.UpdateEphemeralPost>`_.
+As an advanced feature, you can also use plugins to update the contents of an ephemeral message with message buttons or menus with the [UpdateEphemeralMessage plugin API](https://developers.mattermost.com/extend/plugins/server/reference/#API.UpdateEphemeralPost).
 
 ### Why does an interactive button or menu return a 400 error?
 
@@ -345,5 +345,3 @@ Use `update.Props` in the following ways to manage properties (`Props`) of an in
  - `update.Props == nil` - Do not update `Props` field.
  - `update.Props == {}` - Clear all properties, except the username and icon of the original message, as well as whether the message was pinned to channel or contained emoji reactions.
  - `update.Props == some_props` - Post will be updated to `some_props`. Username and icon of the original message, and whether the message was pinned to channel or contained emoji reactions will not be updated.
- 
-Note that in 5.10 and earlier, `Update.Props == nil` incorrectly cleared all properties of the interactive message.
