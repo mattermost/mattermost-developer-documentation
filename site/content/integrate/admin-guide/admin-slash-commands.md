@@ -50,13 +50,11 @@ Each Mattermost installation comes with some built-in slash commands that are re
     "/status *{emoji_name}* *{descriptive status_message}*", "Set a custom status that includes an optional emoji and a descriptive status message", "/status sick Feeling unwell and taking time off to recover"
     "/status clear", Clear the current status, "/status clear"
 
-**Note:**
-
-  `/status` and `/status clear` slash commands listed above will be available in the Mattermost Mobile App in a future release.
+**Note:** `/status` and `/status clear` slash commands listed above will be available in the Mattermost Mobile App in a future release.
 
 ## Custom Slash Command
 
-Suppose you want to write an external application that is able to check the weather for certain cities. By creating a custom slash command, and setting up the application to handle the HTTP POST or GET from the command, you can let your users check the weather in their city using your command, say ``/weather toronto week``.
+Suppose you want to write an external application that is able to check the weather for certain cities. By creating a custom slash command, and setting up the application to handle the HTTP POST or GET from the command, you can let your users check the weather in their city using your command, say `/weather toronto week`.
 
 You can follow these general guidelines to set up a custom Mattermost slash command for your application.
 
@@ -71,8 +69,7 @@ You can follow these general guidelines to set up a custom Mattermost slash comm
 6. (Optional) Include the slash command in the command autocomplete list, displayed when typing ``/`` in an empty input box. Use it to make your command easier to discover by your teammates. You can also provide a hint listing the arguments of your command and a short description displayed in the autocomplete list.
 7. Select **Save**. On the next page, copy the **Token** value. This will be used in a later step.
 
-.. image:: ../images/slash_commands_token.png
-  :width: 500 px
+![image](images/slash_commands_token.png)
 
 8. Next, write your external application. Include a function which receives HTTP POST or HTTP GET requests from Mattermost. The request will look something like this:
 
@@ -127,8 +124,7 @@ If your integration sends back a JSON response, make sure it returns the `applic
 
 which would render in Mattermost as:
 
-.. image:: ../images/weatherBot.png
-  :alt: Shows what the JSON response renders as in Mattermost
+![image](images/weatherBot.png)
 
 11. You're all set! See [developer documentation](../admin-slash-commands) for details on what parameters are supported by slash commands. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins](https://about.mattermost.com/default-plugins). Messages with advanced formatting can be created by including an [attachment array](../admin-message-attachments) and [interactive message buttons](../admin-interactive-messages) in the JSON payload.
 
@@ -176,7 +172,6 @@ Mattermost automatically translates the data coming from Slack:
 5. Bold formatting supplied as `*bold*` is not supported (must be done as `**bold**`).
 6. Slack assumes default values for some fields if they are not specified by the integration, while Mattermost does not.
 
-Troubleshooting
----------------
+## Troubleshooting
 
 See [developer documentation](../admin-slash-commands) for troubleshooting, or [join the Mattermost user community for help](https://mattermost.com/pl/default-ask-mattermost-community).
