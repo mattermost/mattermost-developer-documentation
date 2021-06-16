@@ -14,6 +14,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+5.36    | June 16, 2021       | [Ben Bodenmiller](https://github.com/bbodenmiller)
 5.35    | May 16, 2021        | [Alexander Brenchev](https://github.com/TheDarkestDay)
 5.34    | April 16, 2021      | [darkLord19](https://github.com/darkLord19)
 5.33    | March 16, 2021      | [Mahmudul Haque](https://github.com/mahmud2011)
