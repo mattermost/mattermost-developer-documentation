@@ -110,11 +110,11 @@ The provision command output will show the Mattermost `/apps install` installati
 
 # Provisioned app details
 
-AWS Lambda functions have semantic names, which means that a function described in the `manifest.json` file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. And **appsctl** provisions lambda functions using this name. For example the name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. You don't need to worry about the AWS Lambda function names, as **appsctl** takes care of it. The dedicated S3 bucket name is stored in the environment variable: `MM_APPS_S3_BUCKET`.
+AWS Lambda functions have semantic names, which means that a function described in the `manifest.json` file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. And **appsctl** provisions lambda functions using this name. For example the name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. **appsctl** handles naming the AWS Lambda functions. The dedicated S3 bucket name is stored in the environment variable: `MM_APPS_S3_BUCKET`.
 
 This also stores all apps' static assets and manifest files.
 
-All files in the static folder of the bundle are considered to be the app's static assets and are stored in the above-mentioned bucket. Stored assets also have semantic keys and are generated using the rule - `static/$appID_$appVersion/filename`. For example the `servicenow` app's static file key can be `"static/com.mattermost.servicenow_0.1.0_app/photo.png"`. You don't need to worry about the static asset keys, as the **appsctl** takes care of it.
+All files in the static folder of the bundle are considered to be the app's static assets and are stored in the above-mentioned bucket. Stored assets also have semantic keys and are generated using the rule - `static/$appID_$appVersion/filename`. For example the `servicenow` app's static file key can be accessed at `"static/com.mattermost.servicenow_0.1.0_app/photo.png"`.
 
 The `manifest.json` file of an app is stored in the same S3 bucket as the key - `manifests/$appID_$appVersion.json`.
 
