@@ -7,15 +7,15 @@ weight: 40
 
 Admins of the on-prem Mattermost instance must prepare both AWS and Mattermost before provisioning and deploying an app.
 
-Note that apps are not supported in the Mattermost Cloud - they are only used for developer testing convenience.
+Note that apps Mattermost Cloud only allows apps hosted by Mattermost, not ones that are self-hosted.
 
 Provisioning in the AWS cloud environment will be done by the **appsctl** tool described in the AWS Setup section.
 
 We need an app bundle to provision an app. The bundle will be provisioned from S3 and consists of three parts which will be completed via the **appsctl** tool:
 
 1. Creating the lambda functions with appropriate policies.
-1. Storing static assets in the dedicated S3 bucket.
-1. Storing the app’s manifest file in the same dedicated S3 bucket.
+2. Storing static assets in the dedicated S3 bucket.
+3. Storing the app’s manifest file in the same dedicated S3 bucket.
 
 ### Mattermost setup
 
