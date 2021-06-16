@@ -14,8 +14,8 @@ Provisioning in the AWS cloud environment will be done by the **appsctl** tool d
 We need an app bundle to provision an app. The bundle will be provisioned from S3 and consists of three parts which will be completed via the **appsctl** tool:
 
 1. Creating the lambda functions with appropriate policies.
-2. Storing static assets in the dedicated S3 bucket.
-3. Storing the app’s manifest file in the same dedicated S3 bucket.
+1. Storing static assets in the dedicated S3 bucket.
+1. Storing the app’s manifest file in the same dedicated S3 bucket.
 
 ### Mattermost setup
 
@@ -31,15 +31,12 @@ You will need to create an S3 bucket within AWS or use an existing bucket.
 1. Create a bucket.
 1. **Bucket name**: Give your bucket a name.
 1. **AWS Region**:
-    1. Select your region
-    1. Save the slug value for later (Example: `us-east-1`)
-    1. Corresponding Lambdas will be provisioned in the same region
-1. **Block Public Access settings for this bucket**
-    1. Uncheck **Block *all* public access**
-    1. Check **Block public access to buckets and objects granted through new public bucket or access point policies**
-    1. Check **Block public and cross-account access to buckets and objects through any public bucket or access point policies**
-    1. Check **I acknowledge that the current settings might result in this bucket and the objects within becoming public.**
-1. Select **Create Bucket**.
+   1. Select your region
+   1. Save the slug value for later (Example: `us-east-1`)
+   1. Corresponding Lambdas will be provisioned in the same region
+2. **Block Public Access settings for this bucket**
+   1. Check **Block *all* public access**
+3. Select **Create Bucket**.
 
 #### 2. Create an IAM user access key and secret
 
