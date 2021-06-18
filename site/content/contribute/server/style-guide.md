@@ -257,6 +257,22 @@ func (worker *Worker) Run() {
 	..
 ```
 
+### Performance sensitive areas
+
+Any PR that can potentially have a performance impact on the `mattermost-server` codebase is encouraged to have a performance review. For more information, please see this [link](https://docs.google.com/document/d/1Uzt3XHyKhDKipkuCmESkHoPio7vz7VYS4N_5_9ffgNU/edit). Following is a brief list of indicators that are good items to undergo a performance review:
+
+- New features that might require benchmarks and/or are missing load-test coverage.
+- PRs touching performance critical parts of the codebase (e.g. `Hub`/`WebConn`).
+- PRs adding/updating SQL queries.
+- Creating goroutines.
+- Doing possibly expensive allocations: `bytes.Buffer` and `[]byte`:
+	- Use of `Buffer.Grow`, `Buffer.ReadFrom`, `ioutil.ReadAll`.
+	- Creating big slices and maps without capacity when size is known in advance.
+- Recursion, unbounded and deeply nested `for` loops.
+- Use of locks and/or other synchronization primitives.
+- Regular expressions, especially creating `regexp.MustCompile` dynamically every time.
+- Use of the `reflect` package.
+
 ## Proposing a new rule
 
 To propose a new rule, follow the process below:
