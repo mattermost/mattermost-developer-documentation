@@ -7,7 +7,7 @@ weight: 40
 
 Admins of the on-prem Mattermost instance must prepare both AWS and Mattermost before provisioning and deploying an app.
 
-Note that apps Mattermost Cloud only allows apps hosted by Mattermost, not ones that are self-hosted.
+Note that Mattermost Cloud only allows apps hosted by Mattermost, not ones that are self-hosted.
 
 Provisioning in the AWS cloud environment will be done by the **appsctl** tool described in the AWS Setup section.
 
@@ -107,7 +107,7 @@ The provision command output will show the Mattermost `/apps install` installati
 
 # Provisioned app details
 
-AWS Lambda functions have semantic names, which means that a function described in the `manifest.json` file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. And **appsctl** provisions lambda functions using this name. For example the name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. **appsctl** handles naming the AWS Lambda functions. The dedicated S3 bucket name is stored in the environment variable: `MM_APPS_S3_BUCKET`.
+AWS Lambda functions have semantic names, which means that a function described in the `manifest.json` file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. **appsctl** provisions lambda functions using this name. For example the name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. **appsctl** handles naming the AWS Lambda functions. The dedicated S3 bucket name is stored in the environment variable: `MM_APPS_S3_BUCKET`.
 
 This also stores all apps' static assets and manifest files.
 
