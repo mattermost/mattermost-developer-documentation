@@ -57,6 +57,7 @@ Then create a file called `app.js` containing a simple HTTP server:
 
 ```js
 const express = require('express');
+const fetch = require('node-fetch'); // for later use
 
 const app = express();
 app.use(express.json());
@@ -203,8 +204,6 @@ app.get('/static/icon.png', (req, res) => {
 Finally, add the application logic that gets executed when either the slash command is run or the modal submitted:
 
 ```js
-app.use(express.json());
-
 app.post('/send/submit', async (req, res) => {
     const call = req.body;
 
