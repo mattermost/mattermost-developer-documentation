@@ -16,7 +16,7 @@ community: alejandro.garcia
 
 Not only that, it is my first contribution _ever_ to any compiler!
 
-What's really interesting here is that I am not an expert in Go---nor in compilers in general---at all. Sure, I know my way through the language to write software using it, but I had never thought I could be able to modify the compiler itself.
+What's really interesting here is that I am not an expert in Go---nor in compilers in general---at all. Sure, I know my way through the language to write software using it, but I had never thought I would be able to modify the compiler itself.
 
 And that is why I wrote this, to let you know that fixing a bug in a compiler is not only meant for a few chosen ones, but within reach of anyone.
 
