@@ -1,13 +1,11 @@
 ---
 title: "Bot Accounts"
-heading: "Introduction"
-description: "Bot Accounts for System Admins."
+heading: "Bot Accounts for System Admins"
+description: "Use Bot accounts to integrate with Mattermost through [plugins](https://developers.mattermost.com/extend/plugins) or the [Mattermost RESTful API](https://api.mattermost.com)."
 weight: 80
 ---
 
-Use Bot accounts to integrate with Mattermost through [plugins](https://developers.mattermost.com/extend/plugins) or the [Mattermost RESTful API](https://api.mattermost.com). Bot accounts access the RESTful API on behalf of a bot through the use of the [personal access tokens feature](../admin-personal-access-token.md).
-
-Bot accounts are just like user accounts, except they:
+Bot accounts access the RESTful API on behalf of a bot through the use of the [personal access tokens feature](../admin-personal-access-token.md). Bot accounts are just like user accounts, except they:
 
   - Can't be logged into.
   - Can't be used to create other bot accounts.
