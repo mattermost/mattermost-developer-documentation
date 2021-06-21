@@ -1,6 +1,6 @@
 ---
 title: "Interactive Dialogs"
-heading: "Introduction"
+heading: "Wrking with interactive dialogs"
 description: "Interactive dialogs are used by applications that integrate with the Mattermost server. They are a method for integrations to receive some form-styled input from users and have that input submitted back to the integration. Use them to gather structured information from the end user to perform an action or a request."
 weight: 80
 ---
