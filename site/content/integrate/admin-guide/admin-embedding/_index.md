@@ -1,6 +1,6 @@
 ---
-title: "Embedding Mattermost in Other Applications"
-heading: "Introduction"
+title: "Embedding Mattermost"
+heading: "Embedding Mattermost in Other Applications"
 description: "This guide discusses how to embed Mattermost into other applications in different ways."
 weight: 80
 ---
