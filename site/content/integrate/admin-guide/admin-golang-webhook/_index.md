@@ -1,11 +1,11 @@
 ---
 title: "Using Mattermost with Webhook"
-heading: "Using Mattermost with Webhook"
+heading: "Using Mattermost with Golang Webhook"
 description: "[Webhook](https://github.com/adnanh/webhook) is a Golang application for setting up webhooks on a server with minimal configuration. It provides a simple way to trigger events on a server while keeping it separate from your web server."
 weight: 80
 ---
 
-Mattermost's outgoing webhooks feature  can be used with this fairly easily as long as you take a few things into account.
+Mattermost's outgoing webhooks feature can be used with this fairly easily as long as you take a few things into account.
 
 ## Sending information from Mattermost
 
