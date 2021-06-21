@@ -61,7 +61,6 @@ The mobile applications also provide full source code for push notifications.
 ### Mobile Applications Offering Mattermost as a Web View 
 
 - https://github.com/mattermost/ios
-- https://github.com/mattermost/android
 
 ### Mobile Applications Offering Mattermost with React Native Components 
 
