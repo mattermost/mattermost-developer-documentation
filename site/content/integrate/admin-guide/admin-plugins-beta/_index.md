@@ -1,14 +1,11 @@
 ---
 title: "Plugins (Beta)"
-heading: "Introduction"
-description: "Plugins for System Admins."
+heading: "Using plugins with Mattermost"
+description: "Mattermost supports plugins to customize and extend the platform."
 weight: 80
 ---
 
-
-This is the admin documentation for plugins. If you're a developer looking to build an integration, see [our developer documentation](https://developers.mattermost.com/integrate/getting-started).
-
-Mattermost supports plugins to customize and extend the platform. See our [demo plugin](https://github.com/mattermost/mattermost-plugin-demo) that illustrates the potential for a Mattermost plugin. To start writing your own plugin, consult our [starter template](https://github.com/mattermost/mattermost-plugin-starter-template).
+See our [demo plugin](https://github.com/mattermost/mattermost-plugin-demo) that illustrates the potential for a Mattermost plugin. To start writing your own plugin, consult our [starter template](https://github.com/mattermost/mattermost-plugin-starter-template).
 
 Consider using a plugin in the following scenarios:
 
