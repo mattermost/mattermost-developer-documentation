@@ -1,13 +1,9 @@
 ---
-title: "Integrations Admin Guide"
-heading: "Introduction"
-description: "Integrations for System Admins."
+title: "Integrations FAQ"
+heading: "Integrations FAQs"
+description: "Frequently asked questions about Mattermost integrations."
 weight: 90
 ---
-
-# Integrations FAQ
-
-Come [join our Contributors community channel](https://community.mattermost.com/core/channels/tickets) on our daily build server, where you can discuss questions with community members and the Mattermost core team. Join our [Developers channel](https://community.mattermost.com/core/channels/developers) for technical discussions and our [Integrations channel](https://community.mattermost.com/core/channels/integrations) for all integrations and plugins discussions.
 
 ## What's the difference between incoming and outgoing webhooks?
 
@@ -130,3 +126,5 @@ Automating Mattermost upgrade within another application:
     - If you need to overwrite any `config.json` parameters use a [`sed` command](https://stackoverflow.com/questions/20568515/how-to-use-sed-to-replace-a-config-files-variable) or similar tool to update `config.json`
     - Starting the Mattermost server to upgrade the database, `config.json` file, and `./data` as necessary.
 3. Optionally the upgrade procedure can be chained so users can upgrade across an arbitrary number of Mattermost versions rather than to just the latest release.
+
+Come [join our Contributors community channel](https://community.mattermost.com/core/channels/tickets) on our daily build server, where you can discuss questions with community members and the Mattermost core team. Join our [Developers channel](https://community.mattermost.com/core/channels/developers) for technical discussions and our [Integrations channel](https://community.mattermost.com/core/channels/integrations) for all integrations and plugins discussions.
