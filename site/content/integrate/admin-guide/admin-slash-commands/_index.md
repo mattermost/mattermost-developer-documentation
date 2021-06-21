@@ -1,13 +1,9 @@
 ---
 title: "Slash Commands"
-heading: "Introduction"
-description: "Slash Commands for System Admins."
+heading: "Using slash commands"
+description: "Mattermost supports slash commands to easily integrate external applications into the server. They function similarly to outgoing webhooks, except they can be used in any channel - including Private channels and Direct Messages."
 weight: 80
 ---
-
-This is the admin documentation for slash commands. If you're a developer looking to build an integration, see [our developer documentation](https://developers.mattermost.com/integrate/getting-started).
-
-Mattermost supports slash commands to easily integrate external applications into the server. They function similarly to [outgoing webhooks](../admin-webhooks-outgoing), except they can be used in any channel - including Private channels and Direct Messages.
 
 Messages that begin with `/` are interpreted as slash commands. The commands will send an HTTP POST request to a web service, and process a response back to Mattermost. Mattermost supports both [built-in](https://docs.mattermost.com/developer/slash-commands.html#built-in-commands) and [custom slash commands](https://docs.mattermost.com/developer/slash-commands.html#custom-slash-command).
 
