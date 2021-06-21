@@ -189,7 +189,7 @@ Apps may include static assets. One example that was already used above is the `
 Download an example icon using:
 
 ```bash
-curl https://github.com/mattermost/mattermost-plugin-apps/raw/master/examples/go/hello-world/icon.png -o icon.png
+curl https://github.com/mattermost/mattermost-plugin-apps/raw/master/examples/js/hello-world/icon.png -o icon.png
 ```
 
 And then add another handler:
