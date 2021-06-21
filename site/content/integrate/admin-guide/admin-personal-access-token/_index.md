@@ -1,11 +1,10 @@
 ---
 title: "Personal Access Tokens"
-heading: "Introduction"
-description: "Personal Access Tokens for System Admins."
+heading: "Using personal access tokens"
+description: "Personal access tokens function similar to session tokens and can be used by integrations to [authenticate against the REST API](https://about.mattermost.com/default-api-authentication). It is the most commonly used type of token for integrations.
+"
 weight: 80
 ---
-
-Personal access tokens function similar to session tokens and can be used by integrations to [authenticate against the REST API](https://about.mattermost.com/default-api-authentication). It is the most commonly used type of token for integrations.
 
 ## Creating a Personal Access Token
 
