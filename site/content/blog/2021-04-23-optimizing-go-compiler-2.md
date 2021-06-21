@@ -12,7 +12,7 @@ github: agarciamontoro
 community: alejandro.garcia
 ---
 
-This is the second part of a series of posts on the compiler of Go. Make sure you have read [the first part](/blog/optimizing-go-compiler-1) before going on.
+This is the second part of a series of posts on the Go compiler. Make sure you've read [the first part](/blog/optimizing-go-compiler-1) before going on.
 
 In the first part of the series we learned what the issue is and the role of SSA and the rewrite rules in the Go compiler. Let's try and use what we know now to actually investigate the bug.
 
@@ -137,7 +137,7 @@ Cool, our first real instruction, `MOVQload`! Now, what does that cryptic name m
 }
 ```
 
-The data in this struct defines what the `MOVQload` instruction does; the corresponding code in assembly, `MOVQ`; its returning type, `UInt64`; or the number of arguments it receives, 2. The comment does a pretty good job explaining what the instruction does: it loads 8 bytes from the data pointed to by the first argument (plus some auxiliary arguments, if present, which we will see are constant numbers in square brackets) into the second, which should represent the memory. If we go back to our line,
+The data in this struct defines what the `MOVQload` instruction does; the corresponding code in assembly, `MOVQ`; its returning type, `UInt64`; or the number of arguments it receives, 2. The comment does a pretty good job explaining what the instruction does: it loads 8 bytes from the data pointed to by the first argument (plus some auxiliary arguments, if present, which we'll see are constant numbers in square brackets) into the second, which should represent the memory. If we go back to our line:
 
 ```
 v34 (+79) = MOVQload <uint64> v7 v1
@@ -146,11 +146,11 @@ v34 (+79) = MOVQload <uint64> v7 v1
     one as temp                ┗ src
 ```
 
-we now can understand that this loads the contents from the `src` argument (remember that `v7`represented`src`), into the memory we initialized at the very beginning (represented by `v1`). There are no auxiliary arguments, so we can safely forget about those! The result of this instruction is represented by the `v34` value, which we can understand as the `temp` variable.
+We now can understand that this loads the contents from the `src` argument (remember that `v7`represented`src`), into the memory we initialized at the very beginning (represented by `v1`). There are no auxiliary arguments, so we can safely forget about those! The result of this instruction is represented by the `v34` value, which we can understand as the `temp` variable.
 
 This first line of the block, then, seems perfectly fine: it loads the whole contents of the `src` array into memory (which is effectively the `temp` variable we defined in the code), and it does it with a single instruction. We can no longer optimize this.
 
-But remember that the original function did two things: first, it loaded the contents of the `src` array into a temporary variable, and then it stored those contents into the `dest` slice. We have already loaded the contents into memory with the line we discussed above, so the rest of the block should do the rest of the work: store those contents from memory into the `dest` slice (which was represented by value `v248`). Let's see the rest of the block again:
+But remember that the original function did two things: First, it loaded the contents of the `src` array into a temporary variable, and then it stored those contents into the `dest` slice. We've already loaded the contents into memory with the line we discussed above, so the rest of the block should do the rest of the work: Store those contents from memory into the `dest` slice (which was represented by value `v248`). Let's see the rest of the block again:
 
 ```
 v171 (+84) = MOVBstore <mem> v248 v34 v1
@@ -162,7 +162,7 @@ v243 (90) = MOVWstore <mem> [5] v248 v216 v219
 v255 (91) = MOVBstore <mem> [7] v248 v180 v243
 ```
 
-See that the values defined in the second, third and fourth lines are used in the three last lines. Let's rewrite the block, simply replacing the values where they are used:
+See that the values defined in the second, third, and fourth lines are used in the three last lines. Let's rewrite the block, simply replacing the values where they're used:
 
 ```
 v171 (+84) = MOVBstore <mem> v248 v34 v1
@@ -171,9 +171,9 @@ v243 (90) = MOVWstore <mem> [5] v248 (SHRQconst <uint64> [40] v34) v219
 v255 (91) = MOVBstore <mem> [7] v248 (SHRQconst <uint64> [56] v34) v243
 ```
 
-SPOILER: these are the lines that store to the slice what we just read into memory. As you can see, we are using four instructions instead of one, which is what we are going to optimize!
+SPOILER: These are the lines that store to the slice what we just read into memory. As you can see, we're using four instructions instead of one, which is what we're going to optimize!
 
-But let's not get ahead of ourselves! To better understand what is going on here, we need to understand what `MOVBstore`, `MOVLstore` and `MOVWstore` do, as well as `SHRQconst`. The first set of instructions look quite similar to the one we already understand, `MOVQload`.
+But let's not get ahead of ourselves! To better understand what's going on here, we need to understand what `MOVBstore`, `MOVLstore`, and `MOVWstore` do, as well as `SHRQconst`. The first set of instructions look quite similar to the one we already understand: `MOVQload`.
 
 We can study the first one, `MOVBstore`, as before, looking into [its definition](https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L703):
 
@@ -191,7 +191,7 @@ We can study the first one, `MOVBstore`, as before, looking into [its definition
 }
 ```
 
-Again, the comment does a good job explaining what is going on. The instruction receives three arguments, and it stores a single byte from the memory pointed to by the first argument (plus the auxiliary arguments) into the second argument. The state of the memory is represented by the third argument. The `typ` of the struct tells us that what this instruction returns is the new state of the memory after the operation. In short, this instruction gets a single byte from a place in memory and store it somewhere else.
+Again, the comment does a good job explaining what's going on. The instruction receives three arguments, and it stores a single byte from the memory pointed to by the first argument (plus the auxiliary arguments) into the second argument. The state of the memory is represented by the third argument. The `typ` of the struct tells us that what this instruction returns is the new state of the memory after the operation. In short, this instruction gets a single byte from a place in memory and stores it somewhere else.
 
 Ok, and what about `MOVWstore` and `MOVLstore`? We can take a look at [their](https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L704) [definitions](https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L705), but we can also see what those suffixes (`B`, `W`, `L` and `Q`) mean. This is explained at [the beginning of the file that contains the definition of the instructions](https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L26-L30):
 
@@ -226,12 +226,12 @@ That leaves us with the last instruction: `SHRQconst`. We can do the same as bef
 }
 ```
 
-It's a good ol' shift to the right! That is: an operation that takes a binary number, and shifts it to the right a specific amount of places, specified by the `auxint` argument (the constant integer we see in square brackets). If shifting to the left was the same as multiplying by a power of two, shifting a number to the right `n` places means halving it `n` times, which is equal to dividing it between `2^n`.
+It's a good ol' shift to the right! That is: An operation that takes a binary number, and shifts it to the right a specific number of places, specified by the `auxint` argument (the constant integer we see in square brackets). If shifting to the left was the same as multiplying by a power of two, shifting a number to the right `n` places means halving it `n` times, which is equal to dividing it between `2^n`.
 
 We have all the ingredients now:
 
--   `MOVXstore` stores the contents from the second argument into the first one, with the amount of bytes moved depending on the prefix `X`
--   `SHRQconst` shifts the number in its only argument a number of places specified by the auxiliary argument, the number in square brackets
+-   `MOVXstore` stores the contents from the second argument into the first one, with the number of bytes moved depending on the prefix `X`.
+-   `SHRQconst` shifts the number in its only argument a number of places specified by the auxiliary argument, the number in square brackets.
 
 Let's see the lines again, one by one. The first one was:
 
@@ -259,11 +259,11 @@ state of ━┫ v219 (88) = MOVLstore <mem> [1] v248 (SHRQconst <uint64> [8] v34
          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
-Now we're storing a **L**ong word (4 bytes) from the second argument, `(SHRQconst <uint64> [8] v34)`, into the memory pointed to by `v248`, which is `dest`. But we have the `[1]` auxiliary argument! So we don't write directly into the memory pointed to by `v248`, but one byte after that pointer: that is, the first byte of `dest` is left untouched, and we write contents from the second byte on. In terms of Go code, as we are storing 4 bytes, it means that we're writing to `dest[1]`, `dest[2]`, `dest[3]` and `dest[4]`.
+Now we're storing a **L**ong word (4 bytes) from the second argument, `(SHRQconst <uint64> [8] v34)`, into the memory pointed to by `v248`, which is `dest`. But we have the `[1]` auxiliary argument! So we don't write directly into the memory pointed to by `v248`, but one byte after that pointer: That is, the first byte of `dest` is left untouched, and we write contents from the second byte on. In terms of Go code, as we're storing 4 bytes, it means that we're writing to `dest[1]`, `dest[2]`, `dest[3]` and `dest[4]`.
 
-But what 4 bytes do we write? That's what `(SHRQconst <uint64> [8] v34)` is telling us: we already wrote `temp[0]` in `dest[0]`, so it would make sense to read now from `temp[1]` on. And that's exactly what we are doing with the shift: as the auxiliary argument is `[8]`, that means that we are shifting the content of `v34` (or `temp`) to the right 8 bits. Those 8 bits are already in `dest[0]`, so we can safely discard them and only read the next ones: from `temp[1]` on. As `MOVLstore` is writing 4 bytes, that means that we are getting 4 bytes worth of data; that is: `temp[1]`, `temp[2]`, `temp[3]` and `temp[4]`.
+But what 4 bytes do we write? That's what `(SHRQconst <uint64> [8] v34)` is telling us: We already wrote `temp[0]` in `dest[0]`, so it would make sense to read now from `temp[1]` on. And that's exactly what we're doing with the shift: As the auxiliary argument is `[8]`, that means that we're shifting the content of `v34` (or `temp`) to the right 8 bits. Those 8 bits are already in `dest[0]`, so we can safely discard them and only read the next ones: from `temp[1]` on. As `MOVLstore` is writing 4 bytes, that means that we're getting 4 bytes' worth of data; that is: `temp[1]`, `temp[2]`, `temp[3]`, and `temp[4]`.
 
-So that's it! That long, complex, full of arguments and auxiliary arguments instruction is simply doing this:
+So that's it! That long, complex, full of arguments and auxiliary arguments, instruction is simply doing this:
 
 ```go
 dest[1] = temp[1]
@@ -278,7 +278,7 @@ That was a bit hard, I agree. But we already have everything we need to know, be
 v243 (90) = MOVWstore <mem> [5] v248 (SHRQconst <uint64> [40] v34) v219
 ```
 
-This one stores 2 bytes (see the `W` prefix there?) into the memory pointed to by `v248` plus `[5]` bytes; that is, we write into `dest[5]` and `dest[6]`. And what we write is the content of `v34` (`temp`) shifted to the right `[40]` bits (or 5 bytes, as we have already copied from `temp[0]` to `temp[4]`). That's right, this line is doing the following:
+This one stores 2 bytes (see the `W` prefix there?) into the memory pointed to by `v248` plus `[5]` bytes; that is, we write into `dest[5]` and `dest[6]`. And what we write is the content of `v34` (`temp`) shifted to the right `[40]` bits (or 5 bytes, as we've already copied from `temp[0]` to `temp[4]`). That's right, this line is doing the following:
 
 ```go
 dest[5] = temp[5]
@@ -291,13 +291,13 @@ So this leaves us with the last line of the block! And you already know what wil
 v255 (91) = MOVBstore <mem> [7] v248 (SHRQconst <uint64> [56] v34) v243
 ```
 
-Yup, we're simply copying the last byte from `temp` (skipping the first `[56]` bits, or 7 bytes!), into the `dest` slice (starting to write after `[7]` bytes, or 56 bits!). That's it, in terms of Go code, we are simply doing this:
+Yup, we're simply copying the last byte from `temp` (skipping the first `[56]` bits, or 7 bytes!), into the `dest` slice (starting to write after `[7]` bytes, or 56 bits!). That's it, in terms of Go code, we're simply doing this:
 
 ```go
 dst[7] = temp[7]
 ```
 
-Wrapping up everything we've learned up until now, we are doing the following:
+Wrapping up everything we've learned up until now, we're doing the following:
 
 ```go
 dst[0] = temp[0]  // v171 (+84) = MOVBstore <mem> v248 v34 v1
