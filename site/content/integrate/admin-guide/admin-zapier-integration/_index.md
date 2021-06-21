@@ -78,7 +78,7 @@ Here are some useful tips we recommend to get the most out of Zapier integration
 
 - **Markdown:** Mattermost supports the use of [Markdown](https://docs.mattermost.com/help/messaging/formatting-text.html) in Zapier integrations. For example, use [heading markdown](https://docs.mattermost.com/help/messaging/formatting-text.html#headings) for Jira issue titles.
 - **Custom Icons:** Use different icons for different services and Zapier integrations.
-- **Hashtags:** Use hashtags to make your Zapier posts searchable. Use different hashtags for different services and Zapier integrations. For example, use the dynamic fields available in Zapier to include ticket a Jira ticket number in hashtags. This makes all conversation on a specific ticket instantly searchable by selecting the hashtag.```
+- **Hashtags:** Use hashtags to make your Zapier posts searchable. Use different hashtags for different services and Zapier integrations. For example, use the dynamic fields available in Zapier to include ticket a Jira ticket number in hashtags. This makes all conversation on a specific ticket instantly searchable by selecting the hashtag.
 - **Quick Links:** Link back to the service that fired the zap through the use of Markdown [embedded links](https://docs.mattermost.com/help/messaging/formatting-text.html#links). For example, in our zaps we embed a link back to the service within the timestamp so it’s easy to take action on any zap.
 
 ### Examples
