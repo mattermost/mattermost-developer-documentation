@@ -16,7 +16,7 @@ Bindings ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-app
 
 **Note:** When an OAuth2 process is completed, the client's bindings are automatically refreshed. For any other case where bindings need to be refreshed, the user will need to switch channels (which always fetches new bindings), or refresh the page.
 
-One example bindings response is the one from the [Hello World!](https://github.com/mattermost/mattermost-plugin-apps/blob/master/examples/go/helloworld/bindings.json) app. 
+One example bindings response is the one from the [Hello World!](https://github.com/mattermost/mattermost-plugin-apps/blob/master/examples/go/hello-world/bindings.json) app.
 
 The expected response should include the following:
 
