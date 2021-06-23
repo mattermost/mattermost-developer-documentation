@@ -2,7 +2,6 @@
 title: "Third-party APIs"
 heading: "Using third-party APIs for Apps"
 description: "Mattermost Apps framework provides services for using remote (third-party) OAuth2 HTTP APIs, and receiving authenticated webhook notifications from remote systems."
-subsection: "Apps (Developers Preview)"
 weight: 90
 ---
 
@@ -24,15 +23,13 @@ cd mattermost-plugin-apps/examples/go/hello-oauth2
 go run . 
 ```
 
-In the Mattermost Desktop App run:
+In the Mattermost Desktop client run:
 
 ```
-/apps debug-add-manifest --url http://localhost:8080/manifest.json
-/apps install --app-id hello-oauth2
+/apps install http http://localhost:8080/manifest.json
 ```
 
-You need to configure your [Google API Credentials](https://console.cloud.google.com/apis/credentials) for the App. Use `$MATTERMOST_SITE_URL$/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete`
-for the `Authorized redirect URIs` field. After configuring the credentials, in the Mattermost Desktop App run:
+You need to configure your [Google API Credentials](https://console.cloud.google.com/apis/credentials) for the app. Use `$MATTERMOST_SITE_URL$/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete` for the `Authorized redirect URIs` field. After configuring the credentials, in the Mattermost Desktop client run:
 
 ```
 /hello-oauth2 configure --client-id $CLIENT_ID --client-secret $CLIENT_SECRET
@@ -65,7 +62,7 @@ Hello OAuth2! is an HTTP app, it requests the *permissions* to act as a System A
 
 ### Bindings and locations
 
-The Hello OAuth2! creates three commands: `/helloworld configure|connect|send`.
+The Hello OAuth2 app creates three commands: `/helloworld configure | connect | send`.
 
 ```json
 {
@@ -75,7 +72,7 @@ The Hello OAuth2! creates three commands: `/helloworld configure|connect|send`.
 			"location": "/command",
 			"bindings": [
 				{
-					"icon": "http://localhost:8080/static/icon.png",
+					"icon": "icon.png",
 					"label": "helloworld",
 					"description": "Hello remote (3rd party) OAuth2 App",
 					"hint": "[configure | connect | send]",
@@ -118,7 +115,7 @@ The Hello OAuth2! creates three commands: `/helloworld configure|connect|send`.
 	"type": "form",
 	"form": {
 		"title": "Configures Google OAuth2 App credentials",
-		"icon": "http://localhost:8080/static/icon.png",
+		"icon": "icon.png",
 		"fields": [
 			{
 				"type": "text",
@@ -178,7 +175,7 @@ Note `expand.oauth2_app="all"` in the form definition, it includes the app's OAu
 	"type": "form",
 	"form": {
 		"title": "Connect to Google",
-		"icon": "http://localhost:8080/static/icon.png",
+		"icon": "icon.png",
 		"call": {
 			"path": "/connect",
 			"expand": {
@@ -202,7 +199,7 @@ func connect(w http.ResponseWriter, req *http.Request) {
 
 #### OAuth2 call handlers
 
-To handle the OAuth2 "connect" flow, the app provides two calls: `/oauth2/connect` that returns the URL to redirect the user to, and `/oauth2/complete` which gets invoked once the flow is finished, and the `state` parameter is verified.
+To handle the OAuth2 `connect` flow, the app provides two calls: `/oauth2/connect` that returns the URL to redirect the user to, and `/oauth2/complete` which gets invoked once the flow is finished, and the `state` parameter is verified.
 
 ```go
 	// Handle an OAuth2 connect URL request.
@@ -212,7 +209,7 @@ To handle the OAuth2 "connect" flow, the app provides two calls: `/oauth2/connec
 	http.HandleFunc("/oauth2/complete", oauth2Complete)
 ```
 
-**oauth2Connect** extracts the necessary data from the request's context and values ("state"), and composes a Google OAuth2 initial URL.
+`oauth2Connect` extracts the necessary data from the request's context and values ("state"), and composes a Google OAuth2 initial URL.
 
 ```go
 func oauth2Connect(w http.ResponseWriter, req *http.Request) {
@@ -228,7 +225,7 @@ func oauth2Connect(w http.ResponseWriter, req *http.Request) {
 }
 ```
 
-**oauth2Complete** is called upon the successful completion (including the validation of the "state"). It is responsible for creating an OAuth2 token, and storing it in the Mattermost OAuth2 user store.
+`oauth2Complete` is called upon the successful completion (including the validation of the "state"). It is responsible for creating an OAuth2 token, and storing it in the Mattermost OAuth2 user store.
 
 ```go
 func oauth2Complete(w http.ResponseWriter, req *http.Request) {
@@ -247,7 +244,7 @@ func oauth2Complete(w http.ResponseWriter, req *http.Request) {
 
 #### Obtaining an OAuth2 "Config" for a call
 
-The App is responsible for composing its own remote OAuth2 config, using the remote system-specific settings. The ClientID and ClientSecret are stored in Mattermost OAuth2App record, and are included in the request context if specified with expand.oauth2_app="all".
+The app is responsible for composing its own remote OAuth2 config, using the remote system-specific settings. The `ClientID` and `ClientSecret` are stored in Mattermost OAuth2App record, and are included in the request context if specified with `expand.oauth2_app="all"`.
 
 ```go
 import (
@@ -272,14 +269,14 @@ func oauth2Config(creq *apps.CallRequest) *oauth2.Config {
 
 ### `send` command
 
-`/hello-oauth2 send` sends the user a message that includes the Google user name on the account, and lists the Google Calendars. The form requests that submit calls expand "oauth2_user" which is where the app stored the OAuth2 token upon a successful connect.
+`/hello-oauth2 send` sends the user a message that includes the Google user name on the account, and lists the Google Calendars. The form requests that submit calls expand `oauth2_user` which is where the app stored the OAuth2 token upon a successful connect.
 
 ```json
 {
 	"type": "form",
 	"form": {
 		"title": "Send a Google-connected 'hello, world!' message",
-		"icon": "http://localhost:8080/static/icon.png",
+		"icon": "icon.png",
 		"call": {
 			"path": "/send",
 			"expand": {

@@ -4,7 +4,6 @@ heading: "How to Integrate Mattermost"
 description: "Mattermost has various integration points. Learn about the various ways you can integrate Mattermost with other services."
 date: 2017-08-20T12:33:36-04:00
 weight: 1
-subsection: Getting Started
 ---
 
 Very good question! Mattermost has many different integration points and this page will help you pick the right one(s) for the job.
@@ -26,6 +25,12 @@ That's not enough? You can include <a target="_blank" href="https://docs.matterm
 ### I want to build an advanced bot
 
 To build a richer bot integration, you can make full use of the [Mattermost REST API](/integrate/rest-api/). Everything that you see a Mattermost client doing, your integration can do too with this API.
+
+### I want to build an interactive app
+
+That's no problem. Our Apps provide a framework with utilities like a key-value store, bot account creation, OAuth permission scopes, and rich UX entry points.
+
+Apps can be written in any language that supports HTTP, and work on our Mobile and Desktop clients. Apps can be hosted anywhere, on a Digital Ocean droplet, AWS EC2, or a server in your data centre. Take a look at our [introduction](https://developers.mattermost.com/integrate/apps/).
 
 ### One of these alone isn't enough
 

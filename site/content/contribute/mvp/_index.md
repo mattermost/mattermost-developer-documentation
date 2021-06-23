@@ -2,7 +2,6 @@
 title: "MVP"
 heading: "Mattermost Hall of Fame"
 description: "Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best."
-section: "contribute"
 ---
 
 Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best.
@@ -15,6 +14,8 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+5.36    | June 16, 2021       | [Ben Bodenmiller](https://github.com/bbodenmiller)
+5.35    | May 16, 2021        | [Alexander Brenchev](https://github.com/TheDarkestDay)
 5.34    | April 16, 2021      | [darkLord19](https://github.com/darkLord19)
 5.33    | March 16, 2021      | [Mahmudul Haque](https://github.com/mahmud2011)
 5.32    | February 16, 2021   | [Yusuke Nemoto](https://github.com/kaakaa)

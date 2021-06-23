@@ -2,7 +2,6 @@
 title: "Containers"
 heading: "Mattermost Containers and Official Docker Images"
 description: "Mattermost uses Docker to publish the official images for the Mattermost Server, and this page lists all Docker repositories in use."
-section: "contribute"
 ---
 
 Mattermost uses the [Docker Registry](https://hub.docker.com/u/mattermost) to publish the official images for the Mattermost Server and also for other supporting images that are used for internal/public development and testing.

@@ -3,7 +3,6 @@ title: "VPN(CLOUD)"
 heading: "Setting up VPN Access on Pritunl"
 description: "Learn how to use a VPN service with Mattermost to enjoy additional layers of protection."
 date: 2018-06-05T16:08:19+02:00
-subsection: internal
 weight: 20
 ---
 

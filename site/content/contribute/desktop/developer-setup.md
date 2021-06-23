@@ -4,7 +4,6 @@ heading: "Developer Setup - Mattermost Desktop App"
 description: "Learn how to set up your developer environment to contribute to the Mattermost desktop app."
 date: 2018-01-02T10:44:11-05:00
 weight: 2
-subsection: "Desktop App"
 ---
 
 ## Prerequisites

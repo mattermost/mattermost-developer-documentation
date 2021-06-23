@@ -3,7 +3,6 @@ title: "Slash Commands"
 heading: "Slash Commands at Mattermost"
 description: "Slash commands trigger an HTTP request to a web service that can in turn post one or more messages in response."
 date: "2017-08-19T12:01:23-04:00"
-section: "integrate"
 weight: 40
 ---
 

@@ -3,7 +3,6 @@ title: Mobile Build Process
 heading: "The Mattermost Mobile Build Process"
 description: "Learn what there is to know about the mobile build process for Mattermost's applications."
 date: 2019-03-14T09:05:00-05:00
-section: internal
 weight: 31
 ---
 

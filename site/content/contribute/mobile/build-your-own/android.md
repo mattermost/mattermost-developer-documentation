@@ -4,7 +4,6 @@ heading: "How to Build a Mattermost Android app"
 description: "At times, you may want to build your own Mattermost mobile app. Learn how you can go about doing it."
 date: 2018-05-20T11:35:32-04:00
 weight: 1
-subsection: Build Your Own App
 ---
 
 At times, you may want to build your own Mattermost mobile app. The most common use cases are:
@@ -73,25 +72,25 @@ To make it easier to customize your build, we've defined a few environment varia
 
 | Variable            | Description                                | Default    | Required      |
 |---------------------|--------------------------------------------|------------|---------------|
-| `COMMIT\_CHANGES\_TO\_GIT` | Should the Fastlane script ensure that there are no changes to Git before building the app and that every change made during the build is committed back to Git. <br><br>Valid values are: `true`, `false` | `false` | No |
-| `BRANCH\_TO\_BUILD` | Defines the Git branch that is going to be used for generating the build. <br><br>**Make sure that, if this value is set, the branch it is set to exists**.| `$GIT_BRANCH` | No |
-| `GIT\_LOCAL\_BRANCH` | Defines the local branch to be created from `BRANCH\_TO\_BUILD` to ensure the base branch does not get any new commits on it. <br><br>**Make sure a branch with this name does not yet exist in your local Git repository**. | build | No |
-| `RESET\_GIT\_BRANCH` | Defines if, once the build is done, the branch should be reset to the initial state before building and whether to also delete the branch created to build the app. <br><br>Valid values are: `true`, `false` | `false` | No |
-| `VERSION\_NUMBER `| Set the version of the app at build time to a specific value, rather than using the one set in the project. |  | No |
-| `INCREMENT\_VERSION\_<br>NUMBER\_MESSAGE` | Set the commit message when changing the app version number. | Bump app version number to | No |
-| `INCREMENT\_BUILD\_NUMBER` | Defines if the app build number should be incremented. <br><br>Valid values are: `true`, `false` | `false` | No |
-| `BUILD\_NUMBER` | Set the build number of the app at build time to a specific value, rather than incrementing the last build number. |  | No |
-| `INCREMENT\_BUILD\_<br>NUMBER\_MESSAGE` | Set the commit message when changing the app build number. | Bump app build number to | No |
-| `APP\_NAME` | The name of the app as it is going to be shown on the device home screen. | Mattermost Beta | Yes |
-| `APP\_SCHEME` | The URL naming scheme for the app as used in direct deep links to app content from outside the app. | mattermost | No |
-| `REPLACE\_ASSETS` | Override the assets as described in [White Labeling](contribute/mobile/build-your-own/white-label/). <br><br>Valid values are: `true`, `false` | `false` | No |
-| `MAIN\_APP\_IDENTIFIER` | The package identifier for the app. | | Yes |
-| `BUILD\_FOR\_RELEASE` | Defines if the app should be built in release mode. <br><br>Valid values are: `true`, `false` <br><br>**Make sure you set this value to true if you plan to submit this app Google Play or distribute it in any other way**. | `false` | Yes |
-| `SEPARATE\_APKS` | Build one APK per achitecture (armeabi-v7a, x86, arm64-v8a and x86_64) as well as a universal APK. The advantage is the size of the APK is reduced by about 4MB. <br><br>People will download the correct APK from the Play Store based on the CPU architecture of their device. | `false` | Yes |
-| `SUBMIT\_ANDROID\_TO\_<br>GOOGLE\_PLAY` | Should the app be submitted to the Play Store once it finishes building, use along with `SUPPLY\_TRACK`.<br><br>Valid values are: `true`, `false` | `false` | Yes |
-| `SUPPLY\_TRACK` | The track of the application to use when submitting the app to Google Play Store. Valid values are: `alpha`, `beta`, `production` <br><br>**RIt is not recommended to submit the app to production. First try any of the other tracks and then promote your app using the Google Play console**. | `alpha` | Yes |
-| `SUPPLY\_PACKAGE\_NAME` | The package Id of your application, make sure it matches `MAIN\_APP\_IDENTIFIER`. |  | Yes |
-| `SUPPLY\_JSON\_KEY` | The path to the service account `json` file used to authenticate with Google.<br><br>See the [Supply documentation]( https://docs.fastlane.tools/actions/supply/#setup) to learn more. |  | Yes |
+| `COMMIT_CHANGES_TO_GIT` | Should the Fastlane script ensure that there are no changes to Git before building the app and that every change made during the build is committed back to Git. <br><br>Valid values are: `true`, `false` | `false` | No |
+| `BRANCH_TO_BUILD` | Defines the Git branch that is going to be used for generating the build. <br><br>**Make sure that, if this value is set, the branch it is set to exists**.| `$GIT_BRANCH` | No |
+| `GIT_LOCAL_BRANCH` | Defines the local branch to be created from `BRANCH_TO_BUILD` to ensure the base branch does not get any new commits on it. <br><br>**Make sure a branch with this name does not yet exist in your local Git repository**. | build | No |
+| `RESET_GIT_BRANCH` | Defines if, once the build is done, the branch should be reset to the initial state before building and whether to also delete the branch created to build the app. <br><br>Valid values are: `true`, `false` | `false` | No |
+| `VERSION_NUMBER `| Set the version of the app at build time to a specific value, rather than using the one set in the project. |  | No |
+| `INCREMENT_VERSION_<br>NUMBER_MESSAGE` | Set the commit message when changing the app version number. | Bump app version number to | No |
+| `INCREMENT_BUILD_NUMBER` | Defines if the app build number should be incremented. <br><br>Valid values are: `true`, `false` | `false` | No |
+| `BUILD_NUMBER` | Set the build number of the app at build time to a specific value, rather than incrementing the last build number. |  | No |
+| `INCREMENT_BUILD_<br>NUMBER_MESSAGE` | Set the commit message when changing the app build number. | Bump app build number to | No |
+| `APP_NAME` | The name of the app as it is going to be shown on the device home screen. | Mattermost Beta | Yes |
+| `APP_SCHEME` | The URL naming scheme for the app as used in direct deep links to app content from outside the app. | mattermost | No |
+| `REPLACE_ASSETS` | Override the assets as described in [White Labeling](contribute/mobile/build-your-own/white-label/). <br><br>Valid values are: `true`, `false` | `false` | No |
+| `MAIN_APP_IDENTIFIER` | The package identifier for the app. | | Yes |
+| `BUILD_FOR_RELEASE` | Defines if the app should be built in release mode. <br><br>Valid values are: `true`, `false` <br><br>**Make sure you set this value to true if you plan to submit this app Google Play or distribute it in any other way**. | `false` | Yes |
+| `SEPARATE_APKS` | Build one APK per achitecture (armeabi-v7a, x86, arm64-v8a and x86_64) as well as a universal APK. The advantage is the size of the APK is reduced by about 4MB. <br><br>People will download the correct APK from the Play Store based on the CPU architecture of their device. | `false` | Yes |
+| `SUBMIT_ANDROID_TO_<br>GOOGLE_PLAY` | Should the app be submitted to the Play Store once it finishes building, use along with `SUPPLY_TRACK`.<br><br>Valid values are: `true`, `false` | `false` | Yes |
+| `SUPPLY_TRACK` | The track of the application to use when submitting the app to Google Play Store. Valid values are: `alpha`, `beta`, `production` <br><br>**RIt is not recommended to submit the app to production. First try any of the other tracks and then promote your app using the Google Play console**. | `alpha` | Yes |
+| `SUPPLY_PACKAGE_NAME` | The package Id of your application, make sure it matches `MAIN_APP_IDENTIFIER`. |  | Yes |
+| `SUPPLY_JSON_KEY` | The path to the service account `json` file used to authenticate with Google.<br><br>See the [Supply documentation]( https://docs.fastlane.tools/actions/supply/#setup) to learn more. |  | Yes |
 
 ---
 **Note:**

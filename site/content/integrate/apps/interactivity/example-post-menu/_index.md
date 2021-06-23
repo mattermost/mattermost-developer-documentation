@@ -2,7 +2,6 @@
 title: "Post Menu Example"
 heading: "Post Menu Example"
 description: "In this example, the bindings specify to expand the post the user clicks on."
-subsection: "Interactivity"
 weight: 70
 ---
 
@@ -69,7 +68,7 @@ MM->Client:Return modal form, open modal
             "bindings": [
                 {
                     "location": "send-button",
-                    "icon": "http://localhost:8080/static/icon.png",
+                    "icon": "icon.png",
                     "label": "send hello message",
                     "call": {
                         "path": "/send-modal",
@@ -162,7 +161,7 @@ MM->Client:Return modal form, open modal
     "type": "form",
     "form": {
         "title": "Hello, world!",
-        "icon": "http://localhost:8080/static/icon.png",
+        "icon": "icon.png",
         "fields": [
             {
                 "type": "text",

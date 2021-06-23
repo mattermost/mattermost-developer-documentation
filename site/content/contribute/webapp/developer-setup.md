@@ -3,21 +3,20 @@ title: "Developer Setup"
 description: "Find out how to configure your development environment to build, run, and test the Mattermost web app."
 date: 2017-08-20T11:35:32-04:00
 weight: 2
-subsection: Web App
 ---
 
 Set up your development environment for building, running, and testing the Mattermost web app.
 
 1. Set up your [development environment for the Mattermost server](/contribute/server/developer-setup/).
 
-2. Install Node.js 14:
+2. Install Node.js 16:
 
-    - If you use [NVM](https://github.com/nvm-sh/nvm), use that to install Node 14.
+    - If you use [NVM](https://github.com/nvm-sh/nvm), use that to install Node 16.
 
     - On Mac, use [Homebrew](https://brew.sh/) to install it:
 
         ```sh
-        brew install node@14
+        brew install node@16
         ```
 
     - For other platforms, install it from https://www.npmjs.com/get-npm.
