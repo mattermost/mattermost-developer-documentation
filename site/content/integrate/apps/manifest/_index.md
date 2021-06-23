@@ -22,7 +22,7 @@ All apps should define a manifest ([godoc](https://pkg.go.dev/github.com/matterm
 | `requested_permissions` | Permissions            | All the permissions needed by the app.                                                                                                                                                |
 | `requested_locations`   | Locations              | The list of top-level locations that the application intends to bind to.                                                                                                              |
 | `root_url`              | string                 | Base URL to send all calls. Only needed for HTTP apps.                                                                                                                                |
-| `aws_lambda`            | []AWSLambdaDescription | A list of [AWS Lambda descriptions](https://aws.amazon.com/de/lambda/) to be used for hosting the app. Learn more about hosting your app in AWS [here]({{< ref "deployment#AWS" >}}). |
+| `aws_lambda`            | []AWSLambdaDescription | A list of [AWS Lambda descriptions](https://aws.amazon.com/de/lambda/) to be used for hosting the app. Learn more about hosting your app in AWS [here]({{< ref "deployment-aws" >}}). |
 
 An example manifest looks like this:
 ```json
