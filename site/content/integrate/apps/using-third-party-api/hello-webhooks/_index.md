@@ -24,8 +24,7 @@ go run .
 In the Mattermost Desktop client run:
 
 ```
-/apps debug-add-manifest --url http://localhost:8080/manifest.json
-/apps install hello-webhooks
+/apps install http http://localhost:8080/manifest.json
 ```
 
 ### Manifest
@@ -63,7 +62,7 @@ The Hello Webhooks app creates two commands: `/hello-webhooks info | send`.
             "location": "/command",
             "bindings": [
                 {
-                    "icon": "http://localhost:8080/static/icon.png",
+                    "icon": "icon.png",
                     "label": "hello-webhooks",
                     "description": "Hello Webhooks App",
                     "hint": "[ send ]",
