@@ -8,7 +8,7 @@ weight: 80
 Integrations open dialogs by sending an `HTTP POST`, containing some data in the request body, to an endpoint on the Mattermost server. Integrations can use this endpoint to open dialogs when users [click message buttons or select an option from a menu](../admin-interactive-messages), or use a 
 [custom slash command](../admin-slash-commands).
 
-Moreover, [plugins](../admin-plugins-beta) can trigger a dialog based on user actions. For instance, if a plugin adds a button in the channel header, clicking that button may open a dialog.
+Moreover, plugins {{< ref "admin-plugins-beta.md" >}} can trigger a dialog based on user actions. For instance, if a plugin adds a button in the channel header, clicking that button may open a dialog.
 
 Here is an example of what a dialog looks like for creating a Jira issue within the Mattermost user interface:
 
@@ -70,7 +70,7 @@ Each element is required by default, otherwise the client will return an error a
 
 ### Text elements
 
-Text elements are single-line plain text fields. Below is an example of a ``text`` element that asks for an email address.
+Text elements are single-line plain text fields. Below is an example of a `text` element that asks for an email address.
 
 ![image](interactive-dialog-text.png)
 
@@ -114,9 +114,9 @@ Textarea elements are multi-line plain text fields. A sample JSON is provided be
   }
 ```
 
-The maximum length for a ``textarea`` is 3,000 characters.
+The maximum length for a `textarea` is 3,000 characters.
 
-The list of supported fields is the same as for the ``textarea`` type element.
+The list of supported fields is the same as for the `textarea` type element.
 
 
 | Field | Type | Description |
@@ -162,7 +162,7 @@ Select elements are message menus that allow users to select one predefined opti
   }
 ```
 
-Note that the JSON payload for `select` type elements matches [interactive message menus](../admin-interactive-messages).
+Note that the JSON payload for `select` type elements matches interactive message menus {{< ref "admin-interactive-messages.md" >}}.
 
 The `select` element can also be generated dynamically from users and channels of the system.
 
@@ -470,4 +470,4 @@ The schema for these objects is the same as Slack's, except for the following di
   - `hint` in Slack dialogs is `help_text` in Mattermost dialogs for a more consistent naming convention with other integration types.
   - `value` in Slack dialogs is `default` in Mattermost dialogs for a more consistent naming convention with other integration types.
 
-Moreover, the JSON payload for `select` type elements matches [interactive message menus](../admin-interactive-messages).
+Moreover, the JSON payload for `select` type elements matches interactive message menus {{< ref "admin-interactive-messages.md" >}}.
