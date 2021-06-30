@@ -34,7 +34,7 @@ The types of fields are:
 | `channel`        | A dropdown to select channels.                           |
 | `markdown`       | Only visible on modal forms. An arbitrary markdown text. |
 
-Markdown fields are a special field that allows you to better format your form. They will not generate any value towards the app. The content is defined in the field description.
+Markdown fields are a special field that allows you to better format your form. They will not generate any value in the form submission sent to the app. The content is defined in the field description.
 
 All fields include ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field)):
 
