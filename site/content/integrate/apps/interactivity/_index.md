@@ -7,7 +7,7 @@ weight: 50
 
 ### Modal Forms
 
-Modal Forms ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form)) open as a modal on the user interface as a result of a Form call response. One example is the `send` form in the [Hello World!](https://github.com/mattermost/mattermost-plugin-apps/blob/master/examples/go/helloworld/send_form.json) app. 
+Modal Forms ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form)) open as a modal on the user interface as a result of a Form call response. One example is the `send` form in the [Hello World!](https://github.com/mattermost/mattermost-plugin-apps/blob/master/examples/go/hello-world/send_form.json) app.
 
 They are defined by:
 
@@ -16,10 +16,9 @@ They are defined by:
 | `title`            | string | Title of the form, shown in the modal.                                                         |
 | `header`           | string | (Optional) Text used as introduction in the form.                                              |
 | `footer`           | string | (Optional) Text used at the end of the modal.                                                  |
+| `icon`             | string | (Optional) Either a fully-qualified URL, or a path for an app's static asset.                  |
 | `call`             | Call   | Call to perform for this form.                                                                 |
 | `submit_buttons`   | string | (Optional) Key of the field to be used as the submit buttons. Must be of type `static_select`. |
-| `cancel_button`    | string | (Optional) Adds a default **Cancel** button in the modal view.                                 |
-| `submit_on_cancel` | bool   | (Optional) If `true`, the modal gets submitted even if the user cancels it.                    |
 | `fields`           | Fields | List of fields in the form.                                                                    |
 
 The types of fields are:
@@ -49,11 +48,11 @@ All fields include ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-
 
 Text fields may include:
 
-| Name         | Type   | Description                                                                                                                      |
-| :----------- | :----- | :------------------------------------------------------------------------------------------------------------------------------- |
-| `subtype`    | string | (Optional) The type of text that will be shown. Available types are one of input, textarea, email, number, password, tel, or URL.|
-| `min_length` | int    | (Optional) Validate the field length before performing the call.                                                                 |
-| `max_length` | int    | (Optional) Validate the field length before performing the call.                                                                 |
+| Name         | Type   | Description                                                                                                                       |
+| :----------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| `subtype`    | string | (Optional) The type of text that will be shown. Available types are one of input, textarea, email, number, password, tel, or URL. |
+| `min_length` | int    | (Optional) Validate the field length before performing the call.                                                                  |
+| `max_length` | int    | (Optional) Validate the field length before performing the call.                                                                  |
 
 Static select fields include:
 
@@ -214,7 +213,7 @@ Whenever a button is clicked or a select field is selected, a submit call is per
     "type": "form",
     "form": {
         "title": "Hello, world!",
-        "icon": "http://localhost:8080/static/icon.png",
+        "icon": "icon.png",
         "fields": [
             {
                 "type": "text",
@@ -316,7 +315,7 @@ Whenever a button is clicked or a select field is selected, a submit call is per
     "type": "form",
     "form": {
         "title": "Hello, world!",
-        "icon": "http://localhost:8080/static/icon.png",
+        "icon": "icon.png",
         "fields": [
             {
 				"type": "text",
