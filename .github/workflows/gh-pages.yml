@@ -51,7 +51,7 @@ jobs:
           publish_dir: ./dist/html
           publish_branch: gh-pages
           keep_files: true
-          
+
       - name: Add comment to PR
         if: env.IS_MEMBER == 'true'
         uses: peter-evans/create-or-update-comment@v1
