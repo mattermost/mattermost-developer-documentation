@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mobile End-to-End Testing on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/contribute/mobile/e2e/</link>
+    <description>Recent content in Mobile End-to-End Testing on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Sep 2020 09:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/contribute/mobile/e2e/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Folder and File Structure</title>
+      <link>https://developers.mattermost.com/contribute/mobile/e2e/file-structure/</link>
+      <pubDate>Wed, 02 Sep 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/e2e/file-structure/</guid>
+      <description>The folder structure is mostly based on the Detox scaffold which was created on initial run. The folders and files are:
+|-- detox |-- e2e |-- support |-- test |-- config.json |-- environment.js |-- init.js |-- .babelrc |-- .detoxrc.json |-- package-lock.json |-- package.json  /detox/e2e/support or Support Files.  The support folder is a place to put reusable behavior such as Server API and UI commands, or global overrides that should be available to all test files.</description>
+    </item>
+    
+    <item>
+      <title>Setup and Run Android E2E</title>
+      <link>https://developers.mattermost.com/contribute/mobile/e2e/android/</link>
+      <pubDate>Tue, 01 Sep 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/e2e/android/</guid>
+      <description>Local setup   Install the latest Android SDK.
+sdkmanager &amp;quot;system-images;android-30;google_apis;x86&amp;quot; sdkmanager --licenses   Create the emulator using npm run e2e:android-create-emulator from the /detox folder. Android testing requires an emulator named detox_pixel_4_xl_api_30 and the script helps to create it automatically.
+  Test run in debug mode This is the typical flow for local development and test writing:
+ Open a terminal window and run react-native packager by npm install &amp;amp;&amp;amp; npm start from the root folder.</description>
+    </item>
+    
+    <item>
+      <title>Setup and Run iOS E2E</title>
+      <link>https://developers.mattermost.com/contribute/mobile/e2e/ios/</link>
+      <pubDate>Tue, 01 Sep 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/e2e/ios/</guid>
+      <description>Local setup  Install applesimutils: brew tap wix/brew brew install applesimutils  Set XCode&amp;rsquo;s build location so that the built app, especially debug, is expected at the project&amp;rsquo;s location instead of the Library&amp;rsquo;s folder which is unique/hashed. Open XCode, then go to XCode &amp;gt; Preferences &amp;gt; Locations. Under Derived Data, click Advanced&amp;hellip;. Select Custom &amp;gt; Relative to Workspace, then set Products as Build/Products. Click Done to save the changes.  Test run in debug mode This is the typical flow for local development and test writing:</description>
+    </item>
+    
+    <item>
+      <title>Guide for Writing E2E</title>
+      <link>https://developers.mattermost.com/contribute/mobile/e2e/guide-for-writing/</link>
+      <pubDate>Tue, 01 Sep 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/e2e/guide-for-writing/</guid>
+      <description>Before writing a script, ensure that it has a corresponding test case in Test Management for Jira (TM4J). All test cases may be found in this link. If test case is not available, feel free to prompt the QA team who will either search from an existing TM4J entry or if it&amp;rsquo;s a new one, it will be created for you.
+  Create a test file based on folder and file structure.</description>
+    </item>
+    
+    <item>
+      <title>Environment Variables</title>
+      <link>https://developers.mattermost.com/contribute/mobile/e2e/environment-vars/</link>
+      <pubDate>Tue, 06 Oct 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/e2e/environment-vars/</guid>
+      <description>We use several environment variables for Detox testing in order to:
+ Easily change when running in CI. Cater to different values across developer machines.  Test configurations are defined at test_config.js and environment variables are used to override default values. In most cases you don&amp;rsquo;t need to change the values, because it makes use of the default local developer setup. If you do need to make changes, you may override by exporting, e.</description>
+    </item>
+    
+  </channel>
+</rss>

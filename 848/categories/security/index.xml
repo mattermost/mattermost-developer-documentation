@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>security on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/categories/security/</link>
+    <description>Recent content in security on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 28 Oct 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/categories/security/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</title>
+      <link>https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/</link>
+      <pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/</guid>
+      <description>At the start of implementing Docker Content Trust in our workflow, I thought it shouldn&amp;rsquo;t take so long. I thought and of course I was wrong. The following is the boiled down version of what I learned and wished for starting out.
+Prerequisites  Docker version: 19.03.12 root *.key + passphrase for the Docker Content Trust delegation/signer private key *.key + public key *.pub + passphrase for the delegated person/bot, who should sign the repository/image:tag Please make sure you have your keys backed up and versioned.</description>
+    </item>
+    
+  </channel>
+</rss>

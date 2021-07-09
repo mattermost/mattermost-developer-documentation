@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Desktop App on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/contribute/desktop/</link>
+    <description>Recent content in Desktop App on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 Jan 2018 10:36:34 -0500</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/contribute/desktop/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Developer Setup</title>
+      <link>https://developers.mattermost.com/contribute/desktop/developer-setup/</link>
+      <pubDate>Tue, 02 Jan 2018 10:44:11 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/desktop/developer-setup/</guid>
+      <description>Prerequisites  C++ environment which supports C++11 (e.g. VS 2015, Xcode, GCC) Python 2.7 Node.js 8 or later NPM Git Windows Build Tools or Visual Studio Community edition (see Known Problems section). Recommended: Chocolatey which we will use to install other dependencies.  Windows The recommended way to install the required components on Windows is to install the Chocolatey package manager. Once it&amp;rsquo;s installed, run the following commands in the PowerShell console as administrator.</description>
+    </item>
+    
+    <item>
+      <title>Debugging</title>
+      <link>https://developers.mattermost.com/contribute/desktop/debugging/</link>
+      <pubDate>Tue, 22 Jan 2019 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/desktop/debugging/</guid>
+      <description>The electron app itself can be inspected using the developer tools, available from the View menu:
+However, this view does not expose the contents of the webviews for inspection. To open the developer tools for a webview, first access the console for the electron shell as above, and then run
+document.getElementById(&amp;#34;mattermostView0&amp;#34;).openDevTools(); Use mattermostView0 to inspect the first opened tab, mattermostView1 to inspect the second opened tab, and so on. A new window will appear with the developer tools for that webview:</description>
+    </item>
+    
+    <item>
+      <title>Code Signing</title>
+      <link>https://developers.mattermost.com/contribute/desktop/code-signing/</link>
+      <pubDate>Tue, 16 Jan 2018 10:32:51 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/desktop/code-signing/</guid>
+      <description>When releasing the Mattermost Desktop application for Windows and macOS, we have to sign the executable with a certificate that allows the end user&amp;rsquo;s computer to verify our identity.
+The signing procedure varies depending on the platform that the release is destined for and the platform that the signing operation is performed on. This page attempts to document the procedure and some common pitfalls that developers may encounter along the way.</description>
+    </item>
+    
+  </channel>
+</rss>

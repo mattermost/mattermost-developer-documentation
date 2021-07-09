@@ -1,0 +1,1098 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/server/hello-world/</loc>
+    <lastmod>2018-07-10T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/webapp/hello-world/</loc>
+    <lastmod>2018-07-10T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/getting-started/contributions-without-ticket/</loc>
+    <lastmod>2019-10-11T15:44:36-02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/overview/</loc>
+    <lastmod>2018-07-10T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/build-your-own/android/</loc>
+    <lastmod>2018-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/developer-setup/structure/</loc>
+    <lastmod>2018-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/customization/server-build/</loc>
+    <lastmod>2018-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/customization/server-files/</loc>
+    <lastmod>2018-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/unsigned/android/</loc>
+    <lastmod>2018-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/customization/webapp/</loc>
+    <lastmod>2018-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/getting-started/</loc>
+    <lastmod>2018-05-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/mobile-build-process/bump-version-number/</loc>
+    <lastmod>2017-11-07T14:28:35-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/getting-started/contribution-checklist/</loc>
+    <lastmod>2017-08-20T12:33:36-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/getting-started/how-should-i-integrate/</loc>
+    <lastmod>2017-08-20T12:33:36-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/getting-started/inactive-contributions/</loc>
+    <lastmod>2017-08-20T12:33:36-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/developer-setup/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/push-notifications/android/</loc>
+    <lastmod>2015-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/e2e/file-structure/</loc>
+    <lastmod>2020-09-02T09:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/developer-setup/</loc>
+    <lastmod>2020-07-11T23:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/developer-setup/</loc>
+    <lastmod>2020-02-01T19:50:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/build-your-own/ios/</loc>
+    <lastmod>2018-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/build-your-own/</loc>
+    <lastmod>2018-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/developer-setup/run/</loc>
+    <lastmod>2018-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/unsigned/ios/</loc>
+    <lastmod>2018-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/</loc>
+    <lastmod>2018-04-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/desktop/developer-setup/</loc>
+    <lastmod>2018-01-02T10:44:11-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/mobile-build-process/bump-build-number/</loc>
+    <lastmod>2017-11-07T14:28:35-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/webapp/developer-setup/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/push-notifications/ios/</loc>
+    <lastmod>2015-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/style-guide/</loc>
+    <lastmod>2021-01-12T16:00:00+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/feature-flags/</loc>
+    <lastmod>2020-10-15T16:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/e2e/android/</loc>
+    <lastmod>2020-09-01T09:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/developer-workflow/</loc>
+    <lastmod>2020-07-11T23:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/desktop/debugging/</loc>
+    <lastmod>2019-01-22T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/build-your-own/white-label/</loc>
+    <lastmod>2018-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/webapp/</loc>
+    <lastmod>2018-03-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/mobile-build-process/troubleshooting/</loc>
+    <lastmod>2017-11-07T14:28:35-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/developer-workflow/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/webapp/developer-workflow/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/push-notifications/service/</loc>
+    <lastmod>2015-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/push-notifications/</loc>
+    <lastmod>2015-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/e2e/ios/</loc>
+    <lastmod>2020-09-01T09:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/push-notifications/corporate-proxy/</loc>
+    <lastmod>2020-03-09T11:35:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/developer-setup/dependecies/</loc>
+    <lastmod>2018-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/unsigned/</loc>
+    <lastmod>2018-05-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/</loc>
+    <lastmod>2018-02-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/getting-started/core-committers/</loc>
+    <lastmod>2017-08-20T12:33:36-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/webapp/redux/actions/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/webapp/build-component/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/rest-api/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/e2e/guide-for-writing/</loc>
+    <lastmod>2020-09-01T09:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/system_console/</loc>
+    <lastmod>2019-10-09T13:38:26-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/dependencies/</loc>
+    <lastmod>2019-03-27T16:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/webapp/unit-testing/</loc>
+    <lastmod>2018-11-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/cli-commands/</loc>
+    <lastmod>2018-09-21T18:40:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/plugins/</loc>
+    <lastmod>2018-03-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/getting-started/code-review/</loc>
+    <lastmod>2018-03-06T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/getting-started/labels/</loc>
+    <lastmod>2018-03-06T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/plugins/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/webapp/redux/reducers/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/quick-start-js/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/e2e/</loc>
+    <lastmod>2020-09-01T09:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/webapp/end-to-end-tests/</loc>
+    <lastmod>2018-12-04T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/webapp/redux/selectors/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/e2e/environment-vars/</loc>
+    <lastmod>2020-10-06T09:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/webapp/using-i18n-extract/</loc>
+    <lastmod>2020-04-20T08:31:17-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/desktop/</loc>
+    <lastmod>2018-01-02T10:36:34-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/webapp/redux/react-redux/</loc>
+    <lastmod>2017-08-20T11:35:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/webapp/redux/</loc>
+    <lastmod>2020-04-01T12:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/webapp/migrating-to-typescript/</loc>
+    <lastmod>2020-07-11T23:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/tooling/</loc>
+    <lastmod>2020-04-22T17:52:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/infrastructure/kubernetes/kubernetes-troubleshooting/</loc>
+    <lastmod>2018-11-07T15:24:42+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/infrastructure/kubernetes/</loc>
+    <lastmod>2018-11-06T12:36:58+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/server/</loc>
+    <lastmod>2018-07-10T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/server/reference/</loc>
+    <lastmod>2018-07-10T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/webapp/reference/</loc>
+    <lastmod>2018-07-10T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/onboarding/new-staff-guide/</loc>
+    <lastmod>2017-11-07T14:28:35-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/infrastructure/</loc>
+    <lastmod>2017-11-06T19:30:07-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/getting-started/</loc>
+    <lastmod>2017-08-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/quick-start-go/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/webapp/actions/</loc>
+    <lastmod>2018-07-10T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/infrastructure/grafana/</loc>
+    <lastmod>2020-03-31T20:52:46-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/getting-started/branching/</loc>
+    <lastmod>2019-06-18T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/webapp/</loc>
+    <lastmod>2018-07-10T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/qa/</loc>
+    <lastmod>2018-06-25T13:31:26+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/infrastructure/vpn-cloud/</loc>
+    <lastmod>2018-06-05T16:08:19+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/incoming-webhooks/</loc>
+    <lastmod>2017-08-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/manifest-reference/</loc>
+    <lastmod>2018-07-10T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/mobile/</loc>
+    <lastmod>2018-07-10T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/offboarding/</loc>
+    <lastmod>2018-03-19T14:59:29-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/onboarding/manager-guide/</loc>
+    <lastmod>2017-11-07T14:28:35-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/onboarding/</loc>
+    <lastmod>2017-11-07T14:28:35-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/outgoing-webhooks/</loc>
+    <lastmod>2017-08-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/manifest/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/deployment-aws/prepare-app/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/getting-started/slash-commands/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/mobile-build-process/</loc>
+    <lastmod>2019-03-14T09:05:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/release-tagging-process/</loc>
+    <lastmod>2019-05-23T16:02:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/example-plugins/</loc>
+    <lastmod>2018-07-10T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/infrastructure/plugins/</loc>
+    <lastmod>2017-11-06T19:30:07-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/infrastructure/aws/</loc>
+    <lastmod>2017-11-06T19:30:07-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/slash-commands/</loc>
+    <lastmod>2017-08-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/call/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/deployment-aws/deploy-to-aws/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/infrastructure/onelogin-aws/</loc>
+    <lastmod>2018-11-07T16:10:15+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/getting-started/guilds/</loc>
+    <lastmod>2021-01-25T16:50:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/migration/</loc>
+    <lastmod>2018-10-01T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/community_process/</loc>
+    <lastmod>2018-10-01T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/infrastructure/build/</loc>
+    <lastmod>2017-11-20T20:52:46-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/rest-api/</loc>
+    <lastmod>2017-01-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/bindings/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/deployment-aws/hello-lambda/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/interactivity/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/server/ha/</loc>
+    <lastmod>2018-07-10T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/community-plugin-marketplace/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/interactivity/example-post-menu/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/examples/</loc>
+    <lastmod>2017-01-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/using-mattermost-api/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/admin-bot-accounts/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/admin-embedding/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/admin-webhooks-incoming/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/admin-interactive-dialogs/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/admin-interactive-messages/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/admin-message-attachments/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/admin-oauth2/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/admin-webhooks-outgoing/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/admin-personal-access-token/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/admin-plugins-beta/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/admin-slash-commands/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/admin-golang-webhook/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/admin-zapier-integration/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/best-practices/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/using-third-party-api/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/source-available-license/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/helpers/</loc>
+    <lastmod>2019-09-30T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/release-process/</loc>
+    <lastmod>2017-11-07T14:28:35-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/infrastructure/guidelines/</loc>
+    <lastmod>2017-11-06T19:30:07-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/lifecycle/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/plugin-release-process/</loc>
+    <lastmod>2017-11-07T14:28:35-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/tips-and-best-practices/</loc>
+    <lastmod>2017-11-07T14:28:35-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/writing-a-blog-post/</loc>
+    <lastmod>2019-02-06T14:28:35-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/rd-teams/</loc>
+    <lastmod>2019-02-06T14:28:35-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/deployment-aws/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/apps/deployment-http/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/sustained-engineering/</loc>
+    <lastmod>2019-02-06T14:28:35-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/gitlab-omnibus/</loc>
+    <lastmod>2021-03-12T14:59:29-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/</loc>
+    <lastmod>2021-06-01T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/</loc>
+    <lastmod>2021-06-01T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/cloud/</loc>
+    <lastmod>2021-06-01T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/</loc>
+    <lastmod>2021-06-01T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/</loc>
+    <lastmod>2021-06-01T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/automating-nodes-rotation/</loc>
+    <lastmod>2021-04-19T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/</loc>
+    <lastmod>2021-02-25T11:17:44+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mobile/storybook/</loc>
+    <lastmod>2021-02-25T11:17:44+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/performance/</loc>
+    <lastmod>2021-02-02T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/</loc>
+    <lastmod>2021-02-02T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/testing/</loc>
+    <lastmod>2021-02-02T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/common-i18n-mistakes/</loc>
+    <lastmod>2020-12-04T12:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/i18n/</loc>
+    <lastmod>2020-12-04T12:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/go/</loc>
+    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/mysql-index-merge/</loc>
+    <lastmod>2020-11-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/devops/</loc>
+    <lastmod>2020-10-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/</loc>
+    <lastmod>2020-10-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/opensource/</loc>
+    <lastmod>2020-10-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/security/</loc>
+    <lastmod>2020-10-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/improving-performance-through-load-testing/</loc>
+    <lastmod>2020-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/</loc>
+    <lastmod>2020-07-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/ui-automation/</loc>
+    <lastmod>2020-07-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/</loc>
+    <lastmod>2020-07-11T23:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/pritunl/</loc>
+    <lastmod>2020-06-11T12:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/open-tracing/</loc>
+    <lastmod>2020-06-10T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/hands-on-iouring-go/</loc>
+    <lastmod>2020-05-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/advanced-git-tbilisi-free-university/</loc>
+    <lastmod>2020-03-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/git/</loc>
+    <lastmod>2020-03-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/all-about-emojis/</loc>
+    <lastmod>2020-03-26T12:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/markdown/</loc>
+    <lastmod>2020-03-26T12:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/</loc>
+    <lastmod>2020-03-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/instrumenting-go-code-via-ast-2/</loc>
+    <lastmod>2020-03-15T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/layered-store-and-struct-embedding/</loc>
+    <lastmod>2020-02-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/incorporating-golangci-lint/</loc>
+    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/linting/</loc>
+    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/on-hermes-and-mattermost/</loc>
+    <lastmod>2019-12-20T12:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/announcements/</loc>
+    <lastmod>2019-12-20T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/onboarding-with-mattermost/</loc>
+    <lastmod>2019-12-20T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/kubecon-na-2019/</loc>
+    <lastmod>2019-12-18T12:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/kubernetes/</loc>
+    <lastmod>2019-12-18T12:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/cloud-monitoring/</loc>
+    <lastmod>2019-12-18T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/localizing-matterpoll/</loc>
+    <lastmod>2019-12-11T10:49:35+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/plugins/</loc>
+    <lastmod>2019-12-11T10:49:35+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/unit-testing-mmctl-commands/</loc>
+    <lastmod>2019-11-07T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/instrumenting-go-code-via-ast/</loc>
+    <lastmod>2019-10-31T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/debugging-using-charles/</loc>
+    <lastmod>2019-10-21T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/avoiding-flaky-tests/</loc>
+    <lastmod>2019-09-29T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/chain-react-2019-higlights-hermes/</loc>
+    <lastmod>2019-07-18T12:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/ldap-nested-groups-modelling-and-representation-in-code/</loc>
+    <lastmod>2019-06-05T12:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/percona-live-2019-database-replication/</loc>
+    <lastmod>2019-06-04T12:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/cansecwest-2019-encryption/</loc>
+    <lastmod>2019-04-25T12:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/contributing/</loc>
+    <lastmod>2019-01-24T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/submitting-great-prs/</loc>
+    <lastmod>2019-01-24T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/idiomatic-error-handling/</loc>
+    <lastmod>2018-10-18T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/categories/announcement/</loc>
+    <lastmod>2018-07-18T15:35:09-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/plugins-v2/</loc>
+    <lastmod>2018-07-18T15:35:09-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/subpath/</loc>
+    <lastmod>2018-06-25T15:35:09-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/npm-v6/</loc>
+    <lastmod>2018-05-22T10:16:52-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/getting-started/</loc>
+    <lastmod>2018-04-19T12:01:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/desktop/code-signing/</loc>
+    <lastmod>2018-01-16T10:32:51-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/internal/</loc>
+    <lastmod>2017-11-06T19:30:07-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/customization/</loc>
+    <lastmod>2017-10-29T13:47:55+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/blog/repo-split/</loc>
+    <lastmod>2017-09-04T11:09:47-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/</loc>
+    <lastmod>2017-08-20T12:33:36-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/</loc>
+    <lastmod>2017-07-10T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/embed/</loc>
+    <lastmod>2017-05-10T00:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/devtalks/</loc>
+    <lastmod>2017-01-05T09:51:35-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/integrate/admin-guide/images/readme/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/developer-setup/arch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/server/best-practices/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/webapp/best-practices/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/developer-setup/centos/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/containers/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/team_contributions/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/extend/plugins/server/debugging/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/gsoc/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/developer-setup/ubuntu/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/mvp/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/developer-setup/osx/</loc>
+  </url>
+  
+  <url>
+    <loc>https://developers.mattermost.com/contribute/server/developer-setup/windows-wsl/</loc>
+  </url>
+  
+</urlset>

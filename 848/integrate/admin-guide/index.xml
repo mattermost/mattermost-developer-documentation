@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mattermost Integrations and Developer Toolkit on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/integrate/admin-guide/</link>
+    <description>Recent content in Mattermost Integrations and Developer Toolkit on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://developers.mattermost.com/integrate/admin-guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://developers.mattermost.com/integrate/admin-guide/images/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/integrate/admin-guide/images/readme/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

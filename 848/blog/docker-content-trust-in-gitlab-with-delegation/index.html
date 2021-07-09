@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation">
+
+ 
+  
+    
+      <meta name="description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="twitter:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="og:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+
+    
+  
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation
+                            
+                            </h1>
+                            <small></small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            October 28, 2020
+                            <small class="blog-item__count">377 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>At the start of implementing Docker Content Trust in our workflow, I thought it shouldn&rsquo;t take so long.
+I thought and of course I was wrong.
+The following is the boiled down version of what I learned and wished for starting out.</p>
+<h2 id="prerequisites">Prerequisites&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#prerequisites"></i></a> </h2>
+<ul>
+<li>Docker version: 19.03.12</li>
+<li>root <code>*.key</code> + <code>passphrase</code> for the Docker Content Trust</li>
+<li>delegation/signer <code>private key *.key</code> + <code>public key *.pub</code> + passphrase for the delegated person/bot, who should sign the <code>repository/image:tag</code></li>
+<li>Please make sure you have your keys backed up and versioned.</li>
+</ul>
+<h2 id="create-a-signed-repository-and-add-signer">Create a signed repository and add signer&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#create-a-signed-repository-and-add-signer"></i></a> </h2>
+<p>This is not part of the automation process, because it requires the root key:</p>
+<pre><code>docker trust signer add --key public-key-of-signer.pub signer-name registry/company/repository
+</code></pre><p>This will ask you for the root key passphrase and needs the encrypted root key locally in <code>$HOME/.docker/trust/private/ROOT_KEY_HASH.key</code>.
+This command does two things when first run:</p>
+<ol>
+<li>Upgrades the Docker repository to use Docker Content Trust and therefore creates a new key. You need to input a newly-generated passphrase (please back up and version).</li>
+<li>Adds the signer named <code>signer-name</code> to be allowed to sign new tags pushed.</li>
+</ol>
+<h2 id="automation-concept-and-quirks">Automation concept and quirks&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#automation-concept-and-quirks"></i></a> </h2>
+<ul>
+<li>Use the passphrase to decrypt the encrypted keys which are encrypted at rest.</li>
+<li>The <code>DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE</code> environment variable to decrypt the key for automation usage is not just for the repository key, it&rsquo;s also for the signer key and root key.</li>
+<li>The keys can only be used one at a time (multiple keys cannot be loaded at the same time, as opposed to e.g. gpg keyring concept).</li>
+<li>The keys should be located in <code>$HOME/.docker/trust/private/*</code> otherwise automated loading of keys fails.</li>
+<li>Should you use <code>$</code> or <code>!</code> in the passphrases and use them as GitLab CI/CD secret variables, be aware that these characters need to be <a href="https://stackoverflow.com/questions/48870664/escape-char-in-gitlab-secret-variables">escaped</a>.</li>
+</ul>
+<h2 id="automation-of-pushing-signed-imagetag-in-gitlab">Automation of pushing signed <code>image:tag</code> in GitLab&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#automation-of-pushing-signed-imagetag-in-gitlab"></i></a> </h2>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#069;font-weight:bold">dockerhub-edge</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#069;font-weight:bold">variables</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">URL</span>:<span style="color:#bbb"> </span>docker.io<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">USERNAME</span>:<span style="color:#bbb"> </span>$DOCKER_HUB_USERNAME<span style="color:#bbb"> </span><span style="color:#09f;font-style:italic"># GitLab CI variable type variable</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">TOKEN</span>:<span style="color:#bbb"> </span>$DOCKER_HUB_TOKEN<span style="color:#bbb"> </span><span style="color:#09f;font-style:italic"># GitLab CI variable type variable</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">IMAGE</span>:<span style="color:#bbb"> </span>$URL/mattermost/${CI_PROJECT_NAME}<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">TAG</span>:<span style="color:#bbb"> </span>edge<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#069;font-weight:bold">before_script</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- echo<span style="color:#bbb"> </span>$TOKEN<span style="color:#bbb"> </span>|<span style="color:#bbb"> </span>docker<span style="color:#bbb"> </span>login<span style="color:#bbb"> </span>--username<span style="color:#bbb"> </span>$USERNAME<span style="color:#bbb"> </span>$URL<span style="color:#bbb"> </span>--password-stdin<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#069;font-weight:bold">script</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- docker<span style="color:#bbb"> </span>build<span style="color:#bbb"> </span>--tag<span style="color:#bbb"> </span>${IMAGE}:${TAG}<span style="color:#bbb"> </span>.<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- export<span style="color:#bbb"> </span>DOCKER_CONTENT_TRUST=<span style="color:#f60">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- SIGNER_KEY_NAME=<span style="color:#c30">&#34;CHANGE_TO_SIGNER_KEY_HASH&#34;</span><span style="color:#bbb"> </span><span style="color:#09f;font-style:italic"># change this to your hash</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- PATH_KEYS=$HOME/.docker/trust/private<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- mkdir<span style="color:#bbb"> </span>-p<span style="color:#bbb"> </span>$PATH_KEYS<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- chmod<span style="color:#bbb"> </span><span style="color:#f60">600</span><span style="color:#bbb"> </span>$DCT_SIGNER_PRIV_KEY<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- cp<span style="color:#bbb"> </span>$DCT_SIGNER_PRIV_KEY<span style="color:#bbb"> </span>$PATH_KEYS/$SIGNER_KEY_NAME.key<span style="color:#bbb"> </span><span style="color:#09f;font-style:italic"># GitLab CI variable type file</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- export<span style="color:#bbb"> </span>DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE=$DCT_SIGNER_PASS<span style="color:#bbb"> </span><span style="color:#09f;font-style:italic"># GitLab CI variable type variable</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- docker<span style="color:#bbb"> </span>trust<span style="color:#bbb"> </span>key<span style="color:#bbb"> </span>load<span style="color:#bbb"> </span>$PATH_KEYS/$SIGNER_KEY_NAME.key<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- docker<span style="color:#bbb"> </span>trust<span style="color:#bbb"> </span>sign<span style="color:#bbb"> </span>${IMAGE}:${TAG}<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- docker<span style="color:#bbb"> </span>push<span style="color:#bbb"> </span>${IMAGE}:${TAG}<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- docker<span style="color:#bbb"> </span>trust<span style="color:#bbb"> </span>inspect<span style="color:#bbb"> </span>--pretty<span style="color:#bbb"> </span>${IMAGE}:${TAG}<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#069;font-weight:bold">after_script</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- docker<span style="color:#bbb"> </span>logout<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- SIGNER_KEY_NAME=<span style="color:#c30">&#34;CHANGE_TO_SIGNER_KEY_HASH&#34;</span><span style="color:#bbb"> </span><span style="color:#09f;font-style:italic"># change this to your hash</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- PATH_KEYS=$HOME/.docker/trust/private<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- rm<span style="color:#bbb"> </span>$PATH_KEYS/$SIGNER_KEY_NAME.key<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#069;font-weight:bold">tags</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- docker<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#069;font-weight:bold">only</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- master<span style="color:#bbb">
+</span></code></pre></div><h2 id="advanced-image-signing-features">Advanced image signing features&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#advanced-image-signing-features"></i></a> </h2>
+<p>If you are looking for advanced features, you might consider looking at <a href="https://github.com/theupdateframework/notary">notary</a>.
+The CLI command <code>docker trust</code> is a wrapper for notary.</p>
+<h2 id="sources">Sources&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#sources"></i></a> </h2>
+<ul>
+<li><a href="https://docs.docker.com/engine/security/trust/trust_automation/">https://docs.docker.com/engine/security/trust/trust_automation/</a></li>
+<li><a href="https://docs.docker.com/engine/security/trust/#signing-images-with-docker-content-trust">https://docs.docker.com/engine/security/trust/#signing-images-with-docker-content-trust</a></li>
+<li><a href="https://github.com/theupdateframework/notary">https://github.com/theupdateframework/notary</a></li>
+<li><a href="https://stackoverflow.com/questions/48870664/escape-char-in-gitlab-secret-variables">https://stackoverflow.com/questions/48870664/escape-char-in-gitlab-secret-variables</a></li>
+</ul>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Elisabeth Kulzer
+-
+<a href="https://community.mattermost.com/core/messages/@elisabeth.kulzer" target="_blank">
+    @elisabeth.kulzer
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/metanerd" target="_blank">
+    @metanerd
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/advanced-git-tbilisi-free-university/">Advanced Git with the Free University of Tbilisi</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/all-about-emojis/">All About Emojis</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/">Maintaining Consistency in Codebases with Go vet</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/devops">devops</a></li>
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/security">security</a></li>
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/opensource">opensource</a></li>
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

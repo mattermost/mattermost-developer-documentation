@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Developer Setup on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/contribute/mobile/developer-setup/</link>
+    <description>Recent content in Developer Setup on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Aug 2017 11:35:32 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/contribute/mobile/developer-setup/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Folder Structure</title>
+      <link>https://developers.mattermost.com/contribute/mobile/developer-setup/structure/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/developer-setup/structure/</guid>
+      <description>. ├── .circleci # Circle CI workflow to build the apps ├── android # Android specific code ├── app # React Native code │ ├── actions │ ├── client │ ├── components │ ├── constants │ ├── i18n │ ├── mattermost_bucket │ ├── mattermost_managed │ ├── mm-redux # Redux implementation ported from the mattermost-redux library │ ├── notification_preferences │ ├── push_notifications │ ├── reducers │ ├── screens │ ├── selectors │ ├── store │ ├── styles │ ├── telemetry │ └── utils │ └── mattermost.</description>
+    </item>
+    
+    <item>
+      <title>Run the app</title>
+      <link>https://developers.mattermost.com/contribute/mobile/developer-setup/run/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/developer-setup/run/</guid>
+      <description>We provide a set of scripts to help you run the app for the different platforms that are executed with npm:
+ npm start: Start the React Native packager. The packager has to be running in order to build the JavaScript code that powers the app. npm run android: Compile and run the mobile app on Android. npm run ios: Compile and run the mobile app on iOS.   Important:</description>
+    </item>
+    
+    <item>
+      <title>Add new dependencies</title>
+      <link>https://developers.mattermost.com/contribute/mobile/developer-setup/dependecies/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/developer-setup/dependecies/</guid>
+      <description>If you need to add a new dependency to the project, it is important to add them in the right way. Instructions for adding different types of dependencies are described below.
+JavaScript Only If you need to add a new JavaScript dependency that is not related to React Native, use npm, not yarn. Be sure to save the exact version number to avoid conflicts in the future.
+$ npm i --save-exact &amp;lt;package-name&amp;gt; If the dependency is only for development</description>
+    </item>
+    
+  </channel>
+</rss>

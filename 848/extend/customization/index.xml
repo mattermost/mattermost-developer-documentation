@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Customizing Mattermost on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/extend/customization/</link>
+    <description>Recent content in Customizing Mattermost on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 29 Oct 2017 13:47:55 +0900</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/extend/customization/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Server Build (Team Edition)</title>
+      <link>https://developers.mattermost.com/extend/customization/server-build/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/customization/server-build/</guid>
+      <description>If plugin functionalities don&amp;rsquo;t cover your use cases, you have the freedom to customize and build your own version of the mattermost-server project.
+Before proceeding with the steps below, make sure you have completed the mattermost-server setup process.
+  Customize the project according to your requirements.
+  Build binary files for Mattermost server.
+  make build Assemble essential files.  make package Transfer desired .tar.gz file to server for deployment.</description>
+    </item>
+    
+    <item>
+      <title>Server Files</title>
+      <link>https://developers.mattermost.com/extend/customization/server-files/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/customization/server-files/</guid>
+      <description>In both Mattermost Team and Enterprise editions, you have the freedom to alter how content is displayed by being able to change the contents of localized files and email templates.
+Before proceeding with the steps below, make sure you have completed the mattermost-server and mattermost-webapp setup process.
+i18n Files The i18n files define many of the contents seen in email notifications and responses from the server.
+  Edit contents of files in the mattermost-server/i18n directory according to your requirements.</description>
+    </item>
+    
+    <item>
+      <title>Web App</title>
+      <link>https://developers.mattermost.com/extend/customization/webapp/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/customization/webapp/</guid>
+      <description>Customizations to the Mattermost Web App can be performed in cases where you need to customize branding, alter localization strings, or fulfill security requirements that are not immediately offered out-of-the-box.
+Customization steps With that in mind, customizing and deploying your Mattermost Web App can be done in a few steps:
+ Fork the mattermost-webapp repository and then clone your fork in your local environment.  git clone https://github.com/&amp;lt;yourgithubusername&amp;gt;/mattermost-webapp Create a separate branch for your customized version, as it&amp;rsquo;s not recommended to perform them in the master branch (more details about that in the next section regarding rebasing).</description>
+    </item>
+    
+  </channel>
+</rss>

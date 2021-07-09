@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Plugins (Beta) on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/extend/plugins/</link>
+    <description>Recent content in Plugins (Beta) on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Jul 2017 00:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/extend/plugins/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Overview</title>
+      <link>https://developers.mattermost.com/extend/plugins/overview/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/overview/</guid>
+      <description>Plugins are defined by a manifest file and contain at least a server or web app component, or both.
+The Plugin Starter Template is a starting point and illustrates the different components of a Mattermost plugin.
+A more detailed example is the Demo Plugin, which showcases many of the features of plugins.
+Manifest The plugin manifest provides required metadata about the plugin, such as name and ID. It is defined in JSON or YAML.</description>
+    </item>
+    
+    <item>
+      <title>Developer Setup</title>
+      <link>https://developers.mattermost.com/extend/plugins/developer-setup/</link>
+      <pubDate>Sat, 11 Jul 2020 23:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/developer-setup/</guid>
+      <description>Once you have your server and webapp set up, you can start developing on plugins.
+Note: Plugin development doesn&amp;rsquo;t require a development build of Mattermost. Development builds of Mattermost are only required if you want to develop for Mattermost internally.
+For developing on Mattermost-managed plugins, each plugin&amp;rsquo;s setup instructions can be found in the plugin repository&amp;rsquo;s README. Some plugins do not have external dependencies and require little to no setup, like the Todo Plugin while others require an external service to be set up, like the Jira Plugin and GitHub Plugin.</description>
+    </item>
+    
+    <item>
+      <title>Developer Workflow</title>
+      <link>https://developers.mattermost.com/extend/plugins/developer-workflow/</link>
+      <pubDate>Sat, 11 Jul 2020 23:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/developer-workflow/</guid>
+      <description>Common make commands for working with plugins  make dist - Compile the plugin into a g-zipped file, ready to upload to a Mattermost server. The file is saved in the plugin repo&amp;rsquo;s dist folder. make deploy - Compiles the plugin using the make dist command, then automatically deploys the plugin to the Mattermost server make watch - Uses webpack&amp;rsquo;s watch feature to re-compile and deploy the webapp portion of your plugin on any change to the webapp/src folder make test - Runs the plugin&amp;rsquo;s server tests and webapp tests make check-style - Runs linting checks on the plugin&amp;rsquo;s server and webapp folders make enable - Enables the plugin on the Mattermost server make disable - Disables the plugin on the Mattermost server.</description>
+    </item>
+    
+    <item>
+      <title>Manifest Reference</title>
+      <link>https://developers.mattermost.com/extend/plugins/manifest-reference/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/manifest-reference/</guid>
+      <description> Run make plugin-data to generate this documentation. </description>
+    </item>
+    
+    <item>
+      <title>Example Plugins</title>
+      <link>https://developers.mattermost.com/extend/plugins/example-plugins/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/example-plugins/</guid>
+      <description>Server &amp;ldquo;Hello, world!&amp;rdquo; To get started extending server-side functionality with plugins, take a look at our server &amp;ldquo;Hello, world!&amp;rdquo; tutorial.
+Web App &amp;ldquo;Hello, world!&amp;rdquo; To get started extending browser-side functionality with plugins, take a look at our web app &amp;ldquo;Hello, world!&amp;rdquo; tutorial.
+Demo Plugin To see a demonstration of all server-side hooks and webapp components, take a look at our demo plugin.
+Sample Plugin To see a stripped down version of the demo plugin with just the build scripts and templates to get started, take a look at our plugin starter template.</description>
+    </item>
+    
+    <item>
+      <title>Migrating Plugins</title>
+      <link>https://developers.mattermost.com/extend/plugins/migration/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/migration/</guid>
+      <description>Migrating Plugins from Mattermost 5.5 and earlier The plugin package exposed by Mattermost 5.6 and later drops support for automatically unmarshalling a plugin&amp;rsquo;s configuration onto the struct embedding MattermostPlugin. As server plugins are inherently concurrent (hooks being called asynchronously) and the plugin configuration can change at any time, access to the configuration must be synchronized.
+Plugins compiled against 5.5 and earlier will continue to work without modification, automatically unmarshalling a plugin&amp;rsquo;s configuration but with the existing risk of a corrupted read or write.</description>
+    </item>
+    
+    <item>
+      <title>Process to Include Plugin on Community</title>
+      <link>https://developers.mattermost.com/extend/plugins/community_process/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/community_process/</guid>
+      <description>Getting your plugin onto our Community server https://community.mattermost.com is a valuable source of feedback. Whether you are a Core Committer or anyone from the community, we want you to get feedback to improve your plugin.
+However we must ensure that our Community server remains stable for everyone. This document outlines the process of getting your plugin onto the Community server and some of these steps are required to get your plugin into the Plugin Marketplace.</description>
+    </item>
+    
+    <item>
+      <title>Community Plugins in the Marketplace</title>
+      <link>https://developers.mattermost.com/extend/plugins/community-plugin-marketplace/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/community-plugin-marketplace/</guid>
+      <description>Once your plugin has reached a certain level of quality, you might consider submitting it to the Plugin Marketplace. The Plugin Marketplace is a platform that supports discovery, installation and updates of plugins directly within Mattermost. It&amp;rsquo;s a great way to get feedback on your plugin and help make it more popular. Once your plugin is accepted to the Marketplace, Mattermost will also send you swag!
+Requirements for Adding A Community Plugin to the Marketplace Every community plugin must fulfill the following checklist to be added to the Marketplace:</description>
+    </item>
+    
+    <item>
+      <title>Best Practices</title>
+      <link>https://developers.mattermost.com/extend/plugins/best-practices/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/best-practices/</guid>
+      <description>See here for server-specific best practices for plugins. Webapp-specific best practices are incoming.
+How can a plugin enable its configuration through the System Console? Once a plugin is installed, Administrators have access to the plugin&amp;rsquo;s configuration page in the System Console &amp;gt; Plugins section. The configurable settings must first be defined in the plugin&amp;rsquo;s manifest setting schema. The web app supports several basic pre-defined settings type, e.g. bool and dropdown, for which the corresponding UI components are provided in order to complete configuration in the System Console.</description>
+    </item>
+    
+    <item>
+      <title>Source Available License</title>
+      <link>https://developers.mattermost.com/extend/plugins/source-available-license/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/source-available-license/</guid>
+      <description>Some plugins authored by Mattermost are licensed under the Mattermost Source Available License. This document outlines how to apply the license in various situations.
+How do I apply the license to an Enterprise-only plugin? An Enterprise-only plugin is a plugin that requires a valid Mattermost Enterprise E20 license. It is not designed to be used with Team Edition or any other Enterprise license.
+ Add the LICENSE file to the root of your plugin repository.</description>
+    </item>
+    
+    <item>
+      <title>Plugin Helpers</title>
+      <link>https://developers.mattermost.com/extend/plugins/helpers/</link>
+      <pubDate>Mon, 30 Sep 2019 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/helpers/</guid>
+      <description>The plugin architecture consists of an API, hooks, and plugin helpers.
+When a plugin invokes an API method, it makes an RPC call to the Mattermost server and waits for a response. When the Mattermost server invokes a hook method, it makes an RPC call to the plugin and waits for a response:
+// OnActivate is a hook called by the server when the plugin is started. func (p *Plugin) OnActivate() error { // CreatePost is an API called by the plugin to create a post.</description>
+    </item>
+    
+  </channel>
+</rss>

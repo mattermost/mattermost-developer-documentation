@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Interactive Dialogs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Interactive Dialogs">
+
+ 
+  <meta name="description" content="Interactive dialogs are used by applications that integrate with the Mattermost server. They are a method for integrations to receive some form-styled input from users and have that input submitted back to the integration. Use them to gather structured information from the end user to perform an action or a request.">
+<meta name="twitter:description" content="Interactive dialogs are used by applications that integrate with the Mattermost server. They are a method for integrations to receive some form-styled input from users and have that input submitted back to the integration. Use them to gather structured information from the end user to perform an action or a request.">
+<meta name="og:description" content="Interactive dialogs are used by applications that integrate with the Mattermost server. They are a method for integrations to receive some form-styled input from users and have that input submitted back to the integration. Use them to gather structured information from the end user to perform an action or a request.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/integrate/admin-guide/admin-interactive-dialogs/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+    </head>
+<body>
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div id="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 sidebar">
+    <div class="sidebar__menu-toggle">
+        Interactive Dialogs
+        <i class="fa fa-bars pull-right"></i>
+    </div>
+    <div class="row sidebar__links">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+            
+                
+                
+
+                
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/getting-started/"> Getting Started</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/getting-started/how-should-i-integrate/"> How Should I Integrate?</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/incoming-webhooks/"> Incoming Webhooks</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/outgoing-webhooks/"> Outgoing Webhooks</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/slash-commands/"> Slash Commands</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/rest-api/"> API Reference</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/examples/"> Examples</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/apps/"> Apps (Developers Preview)</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/quick-start-js/"> Quick start guide (JS)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/quick-start-go/"> Quick start guide (Go)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/manifest/"> Manifest</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/call/"> Call</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/bindings/"> Bindings</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/interactivity/"> Interactivity</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/integrate/apps/interactivity/example-post-menu/"> Post Menu Example</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/using-mattermost-api/"> Apps APIs</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/using-third-party-api/"> Third-party APIs</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/lifecycle/"> App Lifecycle</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/deployment-aws/"> Deployment (AWS)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/integrate/apps/deployment-aws/prepare-app/"> Preparing App (Developers)</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/integrate/apps/deployment-aws/deploy-to-aws/"> Deployment (Admins)</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/integrate/apps/deployment-aws/hello-lambda/"> Hello, lambda!</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/deployment-http/"> Deployment (HTTP Server)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+                    
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-minus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/admin-guide/"> Mattermost Integrations and Developer Toolkit</a>
+                    
+                </span>
+
+                <ul class="sub-menu" style="display: block">
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-bot-accounts/"> Bot Accounts</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-embedding/"> Embedding Mattermost</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-webhooks-incoming/"> Incoming Webhooks</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item active">
+                            <i class="sub-menu__toggle fa fa-minus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a class="active" href="#"> Interactive Dialogs</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" style="display: block">
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-interactive-messages/"> Interactive Messages: Buttons and Menus</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-message-attachments/"> Message Attachments</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-oauth2/"> OAuth 2.0 Applications</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-webhooks-outgoing/"> Outgoing Webhooks</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-personal-access-token/"> Personal Access Tokens</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-plugins-beta/"> Plugins (Beta)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-slash-commands/"> Slash Commands</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-golang-webhook/"> Using Mattermost with Webhook</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-zapier-integration/"> Zapier Integration</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/images/readme/"> </a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+            
+        
+    </div>
+</div>
+
+                <div class="col-lg-9 doc-content">
+                    
+<a href="https://github.com/mattermost/mattermost-developer-documentation/edit/master/site/content/integrate/admin-guide/admin-interactive-dialogs/_index.md" class="float-right edit-github">
+    Edit on GitHub
+</a>
+
+
+                    <h1 class="mt-0 doc-title">
+                        
+                            Using interactive dialogs
+                        
+                    </h1>
+                    <p>Integrations open dialogs by sending an <code>HTTP POST</code>, containing some data in the request body, to an endpoint on the Mattermost server. Integrations can use this endpoint to open dialogs when users <a href="https://developers.mattermost.com/integrate/admin-guide/admin-interactive-messages/">click message buttons or select an option from a menu</a>, or use a
+<a href="https://developers.mattermost.com/integrate/admin-guide/admin-slash-commands/">custom slash command</a>.</p>
+<p>Moreover, <a href="https://developers.mattermost.com/integrate/admin-guide/admin-plugins-beta/">plugins</a> can trigger a dialog based on user actions. For instance, if a plugin adds a button in the channel header, clicking that button may open a dialog.</p>
+<p>Here is an example of what a dialog looks like for creating a Jira issue within the Mattermost user interface:</p>
+<p><img src="interactive-dialog-example.png" alt="image"></p>
+<h2 id="opening-a-dialog">Opening a Dialog&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#opening-a-dialog"></i></a> </h2>
+<p>To open a dialog, your integration must first receive an HTTP request from the Mattermost server. This request will be triggered by a slash command or an interactive message. It will include a trigger ID.</p>
+<p>Once you have the trigger ID you can use it to open the interactive dialog by sending an <code>HTTP POST</code> request to <code>https://&lt;your-mattermost-url&gt;/api/v4/actions/dialogs/open</code>. See the below section for what to include in the body of that HTTP request.</p>
+<h2 id="parameters">Parameters&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#parameters"></i></a> </h2>
+<p>Interactive dialogs support the following parameters:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>String</td>
+<td>Title of the dialog. Maximum 24 characters.</td>
+</tr>
+<tr>
+<td><code>introduction_text</code></td>
+<td>String</td>
+<td>Markdown-formatted introduction text which is displayed above the dialog <code>elements</code>.</td>
+</tr>
+<tr>
+<td><code>elements</code></td>
+<td>Array</td>
+<td>Up to 5 elements allowed per dialog. See below for more details on elements. If none are supplied the dialog box acts as a simple confirmation.</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>String</td>
+<td>The URL to send the submitted dialog payload to.</td>
+</tr>
+<tr>
+<td><code>icon_url</code></td>
+<td>String</td>
+<td>(Optional) The URL of the icon used for your dialog. If none specified, no icon is displayed.</td>
+</tr>
+<tr>
+<td><code>submit_label</code></td>
+<td>String</td>
+<td>(Optional) Label of the button to complete the dialog. Default is <code>Submit</code>.</td>
+</tr>
+<tr>
+<td><code>notify_on_cancel</code></td>
+<td>Boolean</td>
+<td>(Optional) When <code>true</code>, sends an event back to the integration whenever there&rsquo;s a user-induced dialog cancellation. No other data is sent back with the event. Default is <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td>String</td>
+<td>(Optional) String provided by the integration that will be echoed back with dialog submission. Default is the empty string.</td>
+</tr>
+</tbody>
+</table>
+<p>Sample JSON is given below. Form submissions are sent back to the URL defined by the integration. You must also include the trigger ID you received from the slash command or interactive message.</p>
+<pre><code>  {
+      &quot;trigger_id&quot;: &quot;&lt;unique ID generated by the server&gt;&quot;,
+      &quot;url&quot;: &quot;&lt;URL to send the submitted request to&gt;&quot;,
+      &quot;dialog&quot;: {
+          &quot;callback_id&quot;: &quot;&lt;ID specified by the integration to identify the request&gt;&quot;,
+          &quot;title&quot;: &quot;&lt;title of the dialog&gt;&quot;,
+          &quot;introduction_text&quot;: &quot;&lt;Text describing the dialog box content&gt;&quot;,
+          &quot;elements&quot;: [&quot;&lt;Array of UI elements to display in the dialog&gt;&quot;],
+          &quot;submit_label&quot;: &quot;&lt;label of the button to complete the dialog&gt;&quot;,
+          &quot;notify_on_cancel&quot;: false,
+          &quot;state&quot;: &quot;&lt;string provided by the integration that will be echoed back with dialog submission&gt;&quot;,
+      }
+  }
+
+</code></pre><h2 id="elements">Elements&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#elements"></i></a> </h2>
+<p>Each dialog supports elements for users to enter information.</p>
+<ul>
+<li><code>text</code>: Single-line plain text field. Use this for inputs such as names, email addresses, or phone numbers.</li>
+<li><code>textarea</code>: Multi-line plain text field. Use this field when the answer is expected to be longer than 150 characters.</li>
+<li><code>select</code>: Message menu. Use this for pre-selected choices. Can either be static menus or dynamic menus generated from users and Public channels of the system. For more information on message menus, see <a href="https://developers.mattermost.com/integrate/admin-guide/admin-interactive-messages/">the documentation</a>.</li>
+<li><code>boo</code>: Checkbox option. Use this for binary selection.</li>
+<li><code>radio</code>: Radio button option. Use this to quickly select an option from pre-selected choices.</li>
+</ul>
+<p>Each element is required by default, otherwise the client will return an error as shown below. Note that the error message will appear below the help text, if one is specified. To make an element optional, set the field <code>&quot;optional&quot;: &quot;true&quot;</code>.</p>
+<p>.<img src="interactive-dialog-error.png" alt="image"></p>
+<h3 id="text-elements">Text elements&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#text-elements"></i></a> </h3>
+<p>Text elements are single-line plain text fields. Below is an example of a <code>text</code> element that asks for an email address.</p>
+<p><img src="interactive-dialog-text.png" alt="image"></p>
+<pre><code>  {
+    &quot;display_name&quot;: &quot;Email&quot;,
+    &quot;name&quot;: &quot;email&quot;,
+    &quot;type&quot;: &quot;text&quot;,
+    &quot;subtype&quot;: &quot;email&quot;,
+    &quot;placeholder&quot;: &quot;placeholder@example.com&quot;
+  }
+</code></pre><p>There is an optional <code>&quot;subtype&quot;: &quot;email&quot;</code> field in the above example, which specifies the keyboard layout used on mobile. For this example, the email keypad is shown to the user given the subtype is set to <code>email</code>.</p>
+<p>The full list of supported fields is included below:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>display_name</code></td>
+<td>String</td>
+<td>Display name of the field shown to the user in the dialog. Maximum 24 characters.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>String</td>
+<td>Name of the field element used by the integration. Maximum 300 characters. You should use unique <code>name</code> fields in the same dialog.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>String</td>
+<td>Set this value to <code>text</code> for a text element.</td>
+</tr>
+<tr>
+<td><code>subtype</code></td>
+<td>String</td>
+<td>(Optional) One of <code>text</code>, <code>email</code>, <code>number</code>, <code>password</code> (as of v5.14), <code>tel</code>, or <code>url</code>. Default is <code>text</code>. Use this to set which keypad is presented to users on mobile when entering the field.</td>
+</tr>
+<tr>
+<td><code>min_length</code></td>
+<td>Integer</td>
+<td>(Optional) Minimum input length allowed for an element. Default is 0.</td>
+</tr>
+<tr>
+<td><code>max_length</code></td>
+<td>Integer</td>
+<td>(Optional) Maximum input length allowed for an element. Default is 150. If you expect the input to be greater 150 characters, consider using a <code>textarea</code> type element instead.</td>
+</tr>
+<tr>
+<td><code>optional</code></td>
+<td>Boolean</td>
+<td>(Optional) Set to <code>true</code> if this form element is not required. Default is <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>help_text</code></td>
+<td>String</td>
+<td>(Optional) Set help text for this form element. Maximum 150 characters.</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td>String</td>
+<td>(Optional) Set a default value for this form element. Maximum 150 characters.</td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td>String</td>
+<td>(Optional) A string displayed to help guide users in completing the element. Maximum 150 characters.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="textarea-elements">Textarea elements&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#textarea-elements"></i></a> </h3>
+<p>Textarea elements are multi-line plain text fields. A sample JSON is provided below:</p>
+<pre><code>  {
+    &quot;display_name&quot;: &quot;Ticket Description&quot;,
+    &quot;name&quot;: &quot;ticket_description&quot;,
+    &quot;type&quot;: &quot;textarea&quot;,
+    &quot;help_text&quot;: &quot;Provide description for your ticket.&quot;
+  }
+</code></pre><p>The maximum length for a <code>textarea</code> is 3,000 characters.</p>
+<p>The list of supported fields is the same as for the <code>textarea</code> type element.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>display_name</code></td>
+<td>String</td>
+<td>Display name of the field shown to the user in the dialog. Maximum 24 characters.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>String</td>
+<td>Name of the field element used by the integration. Maximum 300 characters. You should use unique <code>name</code> fields in the same dialog.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>String</td>
+<td>Set this value to <code>texareat</code> for a textarea element.</td>
+</tr>
+<tr>
+<td><code>subtype</code></td>
+<td>String</td>
+<td>(Optional) One of <code>text</code>, <code>email</code>, <code>number</code>, <code>password</code> (as of v5.14), <code>tel</code>, or <code>url</code>. Default is <code>text</code>. Use this to set which keypad is presented to users on mobile when entering the field.</td>
+</tr>
+<tr>
+<td><code>min_length</code></td>
+<td>Integer</td>
+<td>(Optional) Minimum input length allowed for an element. Default is 0.</td>
+</tr>
+<tr>
+<td><code>max_length</code></td>
+<td>Integer</td>
+<td>(Optional) Maximum input length allowed for an element. Default is 3000.</td>
+</tr>
+<tr>
+<td><code>optional</code></td>
+<td>Boolean</td>
+<td>(Optional) Set to <code>true</code> if this form element is not required. Default is <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>help_text</code></td>
+<td>String</td>
+<td>(Optional) Set help text for this form element. Maximum 150 characters.</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td>String</td>
+<td>(Optional) Set a default value for this form element. Maximum 3000 characters.</td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td>String</td>
+<td>(Optional) A string displayed to help guide users in completing the element. Maximum 3000 characters.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="select-elements">Select elements&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#select-elements"></i></a> </h3>
+<p>Select elements are message menus that allow users to select one predefined option from a list. Below is an example of a <code>select</code> element that asks for one of three different options.</p>
+<p><img src="interactive-dialog-select.png" alt="image"></p>
+<p><img src="interactive-dialog-select-menu.png" alt="image"></p>
+<pre><code>  {
+    &quot;display_name&quot;: &quot;Option Selector&quot;,
+    &quot;name&quot;: &quot;options&quot;,
+    &quot;type&quot;: &quot;select&quot;,
+    &quot;options&quot;: [
+       {
+         &quot;text&quot;: &quot;Option1&quot;,
+         &quot;value&quot;: &quot;opt1&quot;
+       },
+       {
+         &quot;text&quot;: &quot;Option2&quot;,
+         &quot;value&quot;: &quot;opt2&quot;
+       },
+       {
+         &quot;text&quot;: &quot;Option3&quot;,
+         &quot;value&quot;: &quot;opt3&quot;
+       }
+     ]
+  }
+</code></pre><p>Note that the JSON payload for <code>select</code> type elements matches <a href="https://developers.mattermost.com/integrate/admin-guide/admin-interactive-messages/">interactive message menus</a>.</p>
+<p>The <code>select</code> element can also be generated dynamically from users and channels of the system.</p>
+<p>For users, use:</p>
+<pre><code>.. code-block:: json
+
+  {
+    &quot;display_name&quot;: &quot;Assignee&quot;,
+    &quot;name&quot;: &quot;assignee&quot;,
+    &quot;type&quot;: &quot;select&quot;,
+    &quot;data_source&quot;: &quot;users&quot;
+  }
+</code></pre><p>and for Public channels, use:</p>
+<pre><code>  {
+    &quot;display_name&quot;: &quot;Post this message to&quot;,
+    &quot;name&quot;: &quot;channel&quot;,
+    &quot;type&quot;: &quot;select&quot;,
+    &quot;data_source&quot;: &quot;channels&quot;
+  }
+</code></pre><p>The list of supported fields for the <code>select</code> type element is included below:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>display_name</code></td>
+<td>String</td>
+<td>Display name of the field shown to the user in the dialog. Maximum 24 characters.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>String</td>
+<td>Name of the field element used by the integration. Maximum 300 characters. You should use unique <code>name</code> fields in the same dialog.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>String</td>
+<td>Set this value to <code>select</code> for a <code>select</code> element.</td>
+</tr>
+<tr>
+<td><code>data_source</code></td>
+<td>String</td>
+<td>(Optional) One of <code>users</code>, or <code>channels</code>. If none specified, assumes a manual list of options is provided by the integration.</td>
+</tr>
+<tr>
+<td><code>optional</code></td>
+<td>Boolean</td>
+<td>(Optional) Set to <code>true</code> if this form element is not required. Default is <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td>Boolean</td>
+<td>(Optional) Set to <code>true</code> if this form element is not required. Default is <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>help_text</code></td>
+<td>Array</td>
+<td>(Optional) An array of options for the select element. Not applicable for <code>users</code> or <code>channels</code> data sources.</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td>String</td>
+<td>(Optional) (Optional) Set a default value for this form element. Maximum 3,000 characters.</td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td>String</td>
+<td>(Optional) A string displayed to help guide users in completing the element. Maximum 3,000 characters.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="checkbox-element">Checkbox element&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#checkbox-element"></i></a> </h3>
+<p>From Mattermost v5.16 you can use <code>checkbox</code> elements. It looks like a plain text field with a checkbox to be selected. Below is an example of a <code>checkbox</code> element that asks for meeting feedback.</p>
+<p>.. image:: ../../source/images/interactive-dialog-bool.png</p>
+<pre><code>  {
+    &quot;display_name&quot;: &quot;Can you please select below&quot;,
+    &quot;placeholder&quot;: &quot;The meeting was helpful.&quot;,
+    &quot;name&quot;: &quot;meeting_input&quot;,
+    &quot;type&quot;: &quot;bool&quot;,
+  }
+</code></pre><p>The full list of supported fields is included below:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>display_name</code></td>
+<td>String</td>
+<td>Display name of the field shown to the user in the dialog. Maximum 24 characters.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>String</td>
+<td>Name of the field element used by the integration. Maximum 300 characters. You should use unique <code>name</code> fields in the same dialog.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>String</td>
+<td>Set this value to <code>bool</code> for a checkbox element.</td>
+</tr>
+<tr>
+<td><code>optional</code></td>
+<td>Boolean</td>
+<td>(Optional) Set to <code>true</code> if this form element is not required. Default is <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>help_text</code></td>
+<td>String</td>
+<td>(Optional) Set help text for this form element. Maximum 150 characters.</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td>String</td>
+<td>(Optional) Set a default value for this form element. <code>true</code> or <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td>String</td>
+<td>(Optional) A string displayed to include a label besides the checkbox. Maximum 150 characters.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="radio-element">Radio element&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#radio-element"></i></a> </h3>
+<p>From Mattermost v5.16 you can use <code>radio</code> elements. It looks like a plain text field with a radio button to be selected. Below is an example of a <code>radio</code> element that asks for a department.</p>
+<p><img src="interactive-dialog-radio.png" alt="image"></p>
+<pre><code>  {
+    &quot;display_name&quot;: &quot;Which department do you work in?&quot;,
+    &quot;name&quot;: &quot;department&quot;,
+    &quot;type&quot;: &quot;radio&quot;,
+    &quot;options&quot;: [
+      {
+        &quot;text&quot;: &quot;Engineering&quot;,
+        &quot;value&quot;: &quot;engineering&quot;
+      },
+      {
+        &quot;text&quot;: &quot;Sales&quot;,
+        &quot;value&quot;: &quot;sales&quot;
+      },
+      {
+        &quot;text&quot;: &quot;Administration&quot;,
+        &quot;value&quot;: &quot;administration&quot;
+      }
+    ],
+    &quot;help_text&quot;: &quot;Please indicate your department as of January 1.&quot;,
+    &quot;default&quot;: &quot;engineering&quot;
+  }
+</code></pre><p>The full list of supported fields are included below:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>display_name</code></td>
+<td>String</td>
+<td>Display name of the field shown to the user in the dialog. Maximum 24 characters.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>String</td>
+<td>Name of the field element used by the integration. Maximum 300 characters. You should use unique <code>name</code> fields in the same dialog.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>String</td>
+<td>Set this value to <code>radio</code> for a radio element.</td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td>Array</td>
+<td>(Optional) An array of options for the radio element.</td>
+</tr>
+<tr>
+<td><code>help_text</code></td>
+<td>String</td>
+<td>(Optional) Set help text for this form element. Maximum 150 characters.</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td>String</td>
+<td>(Optional) Set a default value for this form element.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dialog-submission">Dialog submission&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#dialog-submission"></i></a> </h2>
+<p>When a user submits a dialog, Mattermost will perform client-side input validation to make sure:</p>
+<ul>
+<li>All required fields are filled.</li>
+<li>All formats are correct (e.g. email, telephone number, etc.).</li>
+</ul>
+<p>The submission payload sent to the integration is:</p>
+<pre><code>  {
+      &quot;type&quot;: &quot;dialog_submission&quot;,
+      &quot;callback_id&quot;: &quot;&lt;callback ID provided by the integration&gt;&quot;,
+      &quot;state&quot;: &quot;&lt;state provided by the integration&gt;&quot;, 
+      &quot;user_id&quot;: &quot;&lt;user ID of the user who submitted the dialog&gt;&quot;,
+      &quot;channel_id&quot;: &quot;&lt;channel ID the user was in when submitting the dialog&gt;&quot;,
+      &quot;team_id&quot;: &quot;&lt;team ID the user was on when submitting the dialog&gt;&quot;,
+      &quot;submission&quot;: {
+          &quot;some_element_name&quot;: &quot;&lt;value of that element&gt;&quot;,
+          &quot;some_other_element&quot;: &quot;&lt;value of some other element&gt;&quot;
+      },
+      &quot;cancelled&quot;: false
+  }
+</code></pre><p>Optionally, the dialog can send an event back to the integration if <code>notify_on_cancel</code> parameter is set to <code>true</code>. If this happens, <code>cancelled</code> will be set to <code>true</code> on the above payload, and <code>submission</code> will be empty.</p>
+<p>Moreover, Mattermost also allows the integration itself to perform input validation. This can be done by responding to the dialog submission request with a JSON body containing an <code>errors</code> field. The <code>errors</code> field can contain a JSON object, mapping input field names to string error messages you would like to display to the user. For example, if you have a field named <code>num_between_0_and_10</code>, you can enforce the user to enter a number between 0 and 10 by returning the following response body if the condition isn&rsquo;t satisfied:</p>
+<pre><code>{&quot;errors&quot;: {&quot;num_between_0_and_10&quot;: &quot;Enter a number between 0 and 10.&quot;}}
+</code></pre><p>The integration may also return a generic error message to the user that is not attached to a specific field. This can be done by responding to the dialog submission request with a JSON body containing an <code>error</code> field. The <code>error</code> field should contain a string with the error message to display to the user. For example, if a server-side error occurs, you can return a message explaining it:</p>
+<pre><code>{&quot;error&quot;: &quot;Failed to fetch additional data. Please try again.&quot;}
+</code></pre><p>Support for generic error messages was added in Mattermost v5.18.</p>
+<p>Finally, once the request is submitted, we recommend that the integration responds with a system message or an ephemeral message confirming the submission. This should be a separate request back to Mattermost once the service has received and responded to a submission request from a dialog. This can be done either via <a href="https://api.mattermost.com/#tag/posts%2Fpaths%2F~1posts~1ephemeral%2Fpost">the REST API</a>, or via the <a href="https://developers.mattermost.com/extend/plugins/server/reference/#API.SendEphemeralPost">Plugin API</a> if you&rsquo;re developing a plugin.</p>
+<p><strong>Note:</strong> If the dialog is closed by clicking <strong>Cancel</strong> or <strong>X</strong>, no data will be submitted. If a user clicks away from the dialog, the dialog won’t close. This is to prevent accidentally losing any answers they&rsquo;ve made to an unsubmitted dialog.</p>
+<h2 id="example">Example&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#example"></i></a> </h2>
+<p>Below is a full example of a JSON payload that creates an interactive dialog in Mattermost:</p>
+<pre><code>  {
+     &quot;trigger_id&quot;:&quot;nbt1dxzqwpn6by14sfs66ganhc&quot;,
+     &quot;url&quot;:&quot;http://localhost:5000/dialog_submit&quot;,
+     &quot;dialog&quot;:{
+        &quot;callback_id&quot;:&quot;somecallbackid&quot;,
+        &quot;title&quot;:&quot;Test Title&quot;,
+        &quot;icon_url&quot;:&quot;https://mattermost.org/wp-content/uploads/2016/04/icon.png&quot;,
+        &quot;elements&quot;:[
+           {
+              &quot;display_name&quot;:&quot;Display Name&quot;,
+              &quot;name&quot;:&quot;realname&quot;,
+              &quot;type&quot;:&quot;text&quot;,
+              &quot;subtype&quot;:&quot;&quot;,
+              &quot;default&quot;:&quot;default text&quot;,
+              &quot;placeholder&quot;:&quot;placeholder&quot;,
+              &quot;help_text&quot;:&quot;This a regular input in an interactive dialog triggered by a test integration.&quot;,
+              &quot;optional&quot;:false,
+              &quot;min_length&quot;:0,
+              &quot;max_length&quot;:0,
+              &quot;data_source&quot;:&quot;&quot;,
+              &quot;options&quot;:null
+           },
+           {
+              &quot;display_name&quot;:&quot;Email&quot;,
+              &quot;name&quot;:&quot;someemail&quot;,
+              &quot;type&quot;:&quot;text&quot;,
+              &quot;subtype&quot;:&quot;email&quot;,
+              &quot;default&quot;:&quot;&quot;,
+              &quot;placeholder&quot;:&quot;placeholder@bladekick.com&quot;,
+              &quot;help_text&quot;:&quot;This a regular email input in an interactive dialog triggered by a test integration.&quot;,
+              &quot;optional&quot;:false,
+              &quot;min_length&quot;:0,
+              &quot;max_length&quot;:0,
+              &quot;data_source&quot;:&quot;&quot;,
+              &quot;options&quot;:null
+           },
+           {
+              &quot;display_name&quot;:&quot;Number&quot;,
+              &quot;name&quot;:&quot;somenumber&quot;,
+              &quot;type&quot;:&quot;text&quot;,
+              &quot;subtype&quot;:&quot;number&quot;,
+              &quot;default&quot;:&quot;&quot;,
+              &quot;placeholder&quot;:&quot;&quot;,
+              &quot;help_text&quot;:&quot;&quot;,
+              &quot;optional&quot;:false,
+              &quot;min_length&quot;:0,
+              &quot;max_length&quot;:0,
+              &quot;data_source&quot;:&quot;&quot;,
+              &quot;options&quot;:null
+           },
+           {
+              &quot;display_name&quot;:&quot;Display Name Long Text Area&quot;,
+              &quot;name&quot;:&quot;realnametextarea&quot;,
+              &quot;type&quot;:&quot;textarea&quot;,
+              &quot;subtype&quot;:&quot;&quot;,
+              &quot;default&quot;:&quot;&quot;,
+              &quot;placeholder&quot;:&quot;placeholder&quot;,
+              &quot;help_text&quot;:&quot;&quot;,
+              &quot;optional&quot;:true,
+              &quot;min_length&quot;:5,
+              &quot;max_length&quot;:100,
+              &quot;data_source&quot;:&quot;&quot;,
+              &quot;options&quot;:null
+           },
+           {
+              &quot;display_name&quot;:&quot;User Selector&quot;,
+              &quot;name&quot;:&quot;someuserselector&quot;,
+              &quot;type&quot;:&quot;select&quot;,
+              &quot;subtype&quot;:&quot;&quot;,
+              &quot;default&quot;:&quot;&quot;,
+              &quot;placeholder&quot;:&quot;Select a user...&quot;,
+              &quot;help_text&quot;:&quot;&quot;,
+              &quot;optional&quot;:false,
+              &quot;min_length&quot;:0,
+              &quot;max_length&quot;:0,
+              &quot;data_source&quot;:&quot;users&quot;,
+              &quot;options&quot;:null
+           },
+           {
+              &quot;display_name&quot;:&quot;Channel Selector&quot;,
+              &quot;name&quot;:&quot;somechannelselector&quot;,
+              &quot;type&quot;:&quot;select&quot;,
+              &quot;subtype&quot;:&quot;&quot;,
+              &quot;default&quot;:&quot;&quot;,
+              &quot;placeholder&quot;:&quot;Select a channel...&quot;,
+              &quot;help_text&quot;:&quot;Choose a channel from the list.&quot;,
+              &quot;optional&quot;:true,
+              &quot;min_length&quot;:0,
+              &quot;max_length&quot;:0,
+              &quot;data_source&quot;:&quot;channels&quot;,
+              &quot;options&quot;:null
+           },
+           {
+              &quot;display_name&quot;:&quot;Option Selector&quot;,
+              &quot;name&quot;:&quot;someoptionselector&quot;,
+              &quot;type&quot;:&quot;select&quot;,
+              &quot;subtype&quot;:&quot;&quot;,
+              &quot;default&quot;:&quot;&quot;,
+              &quot;placeholder&quot;:&quot;Select an option...&quot;,
+              &quot;help_text&quot;:&quot;&quot;,
+              &quot;optional&quot;:false,
+              &quot;min_length&quot;:0,
+              &quot;max_length&quot;:0,
+              &quot;data_source&quot;:&quot;&quot;,
+              &quot;options&quot;:[
+                 {
+                    &quot;text&quot;:&quot;Option1&quot;,
+                    &quot;value&quot;:&quot;opt1&quot;
+                 },
+                 {
+                    &quot;text&quot;:&quot;Option2&quot;,
+                    &quot;value&quot;:&quot;opt2&quot;
+                 },
+                 {
+                    &quot;text&quot;:&quot;Option3&quot;,
+                    &quot;value&quot;:&quot;opt3&quot;
+                 }
+              ]
+           }
+        ],
+        &quot;submit_label&quot;:&quot;Submit&quot;,
+        &quot;notify_on_cancel&quot;:true,
+        &quot;state&quot;:&quot;somestate&quot;
+     }
+  }
+</code></pre><p><img src="interactive-dialog-complete-example.png" alt="image"></p>
+<h2 id="share-your-integration">Share your integration&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#share-your-integration"></i></a> </h2>
+<p>If you&rsquo;ve built an integration for Mattermost, please consider <a href="https://mattermost.org/share-your-mattermost-projects">sharing your work</a> in our <a href="https://integrations.mattermost.com">app directory</a>.</p>
+<p>The <a href="https://integrations.mattermost.com">app directory</a> lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-managed infrastructure.</p>
+<h2 id="slack-compatibility">Slack compatibility&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#slack-compatibility"></i></a> </h2>
+<p>Like Slack, dialogs are triggered by an interactive message menu or button, or by a custom slash command. Additionally, Mattermost can trigger dialogs via plugins.</p>
+<p>The schema for these objects is the same as Slack&rsquo;s, except for the following differences:</p>
+<ul>
+<li><code>url</code> field must be specified for Mattermost dialogs, which specifies where the request is sent to. In Slack, this is handled by specifying the URL within the Slack app that uses the dialog.</li>
+<li><code>icon_url</code> is an optional field to set the icon for Mattermost dialogs. In Slack, the dialogs use the icon set for the app that uses the dialog.</li>
+<li><code>label</code> in Slack dialogs is <code>display_name</code> in Mattermost dialogs for a more consistent naming convention with other integration types.</li>
+<li><code>hint</code> in Slack dialogs is <code>help_text</code> in Mattermost dialogs for a more consistent naming convention with other integration types.</li>
+<li><code>value</code> in Slack dialogs is <code>default</code> in Mattermost dialogs for a more consistent naming convention with other integration types.</li>
+</ul>
+<p>Moreover, the JSON payload for <code>select</code> type elements matches <a href="https://developers.mattermost.com/integrate/admin-guide/admin-interactive-messages/">interactive message menus</a>.</p>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+</html>

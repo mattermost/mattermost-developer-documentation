@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>announcements on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/categories/announcements/</link>
+    <description>Recent content in announcements on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 Dec 2019 00:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/categories/announcements/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Onboarding with Mattermost</title>
+      <link>https://developers.mattermost.com/blog/onboarding-with-mattermost/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/onboarding-with-mattermost/</guid>
+      <description>I recently joined Mattermost as a Remote Software Engineer and while I’ve worked in remote environments before, I was really surprised at how amazing this company is to work with. During my onboarding I discovered that they have really developed a culture built around being remote; one that allowed for me to feel as part of a larger team and always engaged, rather than separated from my peers and working alone.</description>
+    </item>
+    
+  </channel>
+</rss>

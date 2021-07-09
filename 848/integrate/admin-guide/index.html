@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Mattermost Integrations and Developer Toolkit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Mattermost Integrations and Developer Toolkit">
+
+ 
+  <meta name="description" content="The Mattermost Developer Toolkit gives community and in-house customer developers the power to integrate deeply with, and extend, Mattermost servers and clients in order to meet their particular requirements - without “reinventing the wheel”.">
+<meta name="twitter:description" content="The Mattermost Developer Toolkit gives community and in-house customer developers the power to integrate deeply with, and extend, Mattermost servers and clients in order to meet their particular requirements - without “reinventing the wheel”.">
+<meta name="og:description" content="The Mattermost Developer Toolkit gives community and in-house customer developers the power to integrate deeply with, and extend, Mattermost servers and clients in order to meet their particular requirements - without “reinventing the wheel”.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/integrate/admin-guide/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+    </head>
+<body>
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div id="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 sidebar">
+    <div class="sidebar__menu-toggle">
+        Mattermost Integrations and Developer Toolkit
+        <i class="fa fa-bars pull-right"></i>
+    </div>
+    <div class="row sidebar__links">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+            
+                
+                
+
+                
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/getting-started/"> Getting Started</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/getting-started/how-should-i-integrate/"> How Should I Integrate?</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/incoming-webhooks/"> Incoming Webhooks</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/outgoing-webhooks/"> Outgoing Webhooks</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/slash-commands/"> Slash Commands</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/rest-api/"> API Reference</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/examples/"> Examples</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/apps/"> Apps (Developers Preview)</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/quick-start-js/"> Quick start guide (JS)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/quick-start-go/"> Quick start guide (Go)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/manifest/"> Manifest</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/call/"> Call</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/bindings/"> Bindings</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/interactivity/"> Interactivity</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/integrate/apps/interactivity/example-post-menu/"> Post Menu Example</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/using-mattermost-api/"> Apps APIs</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/using-third-party-api/"> Third-party APIs</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/lifecycle/"> App Lifecycle</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/deployment-aws/"> Deployment (AWS)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/integrate/apps/deployment-aws/prepare-app/"> Preparing App (Developers)</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/integrate/apps/deployment-aws/deploy-to-aws/"> Deployment (Admins)</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/integrate/apps/deployment-aws/hello-lambda/"> Hello, lambda!</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/deployment-http/"> Deployment (HTTP Server)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+                    
+                
+
+                
+                
+
+                <span class="item active">
+                    <i class="sub-menu__toggle fa fa-minus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a class="active" href="#"> Mattermost Integrations and Developer Toolkit</a>
+                    
+                </span>
+
+                <ul class="sub-menu" style="display: block">
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-bot-accounts/"> Bot Accounts</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-embedding/"> Embedding Mattermost</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-webhooks-incoming/"> Incoming Webhooks</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-interactive-dialogs/"> Interactive Dialogs</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-interactive-messages/"> Interactive Messages: Buttons and Menus</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-message-attachments/"> Message Attachments</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-oauth2/"> OAuth 2.0 Applications</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-webhooks-outgoing/"> Outgoing Webhooks</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-personal-access-token/"> Personal Access Tokens</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-plugins-beta/"> Plugins (Beta)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-slash-commands/"> Slash Commands</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-golang-webhook/"> Using Mattermost with Webhook</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/admin-zapier-integration/"> Zapier Integration</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/admin-guide/images/readme/"> </a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+            
+        
+    </div>
+</div>
+
+                <div class="col-lg-9 doc-content">
+                    
+<a href="https://github.com/mattermost/mattermost-developer-documentation/edit/master/site/content/integrate/admin-guide/_index.md" class="float-right edit-github">
+    Edit on GitHub
+</a>
+
+
+                    <h1 class="mt-0 doc-title">
+                        
+                            Integrations and Toolkit Overview
+                        
+                    </h1>
+                    <h2 id="better-control-for-system-admins">Better Control for System Admins&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#better-control-for-system-admins"></i></a> </h2>
+<p>The main benefits of the Mattermost Developer Toolkit from a system administration perspective are first, that it puts all of the resources and information that developers will need in one central location and second, it simplifies integrations with Mattermost.</p>
+<p>Consequently this will save time for system administrators as well as developers.</p>
+<h2 id="features-of-the-developer-toolkit">Features of the Developer Toolkit&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#features-of-the-developer-toolkit"></i></a> </h2>
+<p>Below is a list of planned features of the developer toolkit with estimated time of delivery.</p>
+<ol>
+<li>Completed:</li>
+</ol>
+<ul>
+<li>Webhooks and slash commands to allow easy, low-effort extension and integration.</li>
+<li>Mattermost HTTP REST APIv4 allowing for much more powerful server interaction.</li>
+<li>Mattermost webapp moved over to Redux infrustructure.</li>
+<li>API developer token to provide a simple method to authenticate to the Mattermost REST API.</li>
+<li>The ability to build webapp client plugins to override existing UI components (replace posts with your custom components, use your own video services etc.), modify/extend client drivers to interact with custom server API endpoints, and add whole new UI views in predetermined places.</li>
+<li>The ability to build server plugins to hook directly into server events (e.g., new post events, user update events, etc.), have some form of database access (possibly access to certain tables, and the ability to create new tables) and to add custom endpoints to extend the Mattermost REST API.</li>
+</ul>
+<ol start="2">
+<li>Upcoming:</li>
+</ol>
+<ul>
+<li>The ability to build plugins similar to the webapp but for React Native apps for iOS and Android.</li>
+<li>A system or architecture to combine the above plugins into one easy-to-share and easy-to-install package.</li>
+<li>A market or directory to find official and/or certified by Mattermost plugins and a process to get your plugin certified.</li>
+<li>A guide or system to enable the embedding of Mattermost into other apps as a chat service.</li>
+</ul>
+<p>All of the documentation required to support the use and building of the toolkit will be done as we work through the above systems.</p>
+<h3 id="example-uses">Example Uses&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#example-uses"></i></a> </h3>
+<p>Examples of uses for the plugin architecture include:</p>
+<ol>
+<li>Building common integrations such as Jira and GitHub, and including them as default integrations for Mattermost.</li>
+<li>Providing tools to interact with user posts.</li>
+<li>Redesigning the current video and audio calling to use the plugin architecture, and offering it as one of many video and audio calling solutions.</li>
+<li>Incorporating other third-party applications such as annual performance reviews right from the Mattermost interface.</li>
+</ol>
+<h2 id="whats-the-difference-between-incoming-and-outgoing-webhooks">What&rsquo;s the difference between incoming and outgoing webhooks?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#whats-the-difference-between-incoming-and-outgoing-webhooks"></i></a> </h2>
+<p>A webhook is a way for one app to send real-time data to another app.</p>
+<p>In Mattermost, incoming webhooks receive data from external applications and make a post in a specified channel. They&rsquo;re great for setting up notifications when something happens in an external application.</p>
+<p>Outgoing webhooks take data from Mattermost, and send it to an external application. Then the outgoing webhook can post a response back in Mattermost. They&rsquo;re great for listening in on channels, and then notifying external applications when a trigger word is used.</p>
+<h2 id="what-is-a-slash-command">What is a slash command?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#what-is-a-slash-command"></i></a> </h2>
+<p>A slash command is similar to an outgoing webhook, but instead of listening to a channel it is used as a command tool. This means if you type in a slash command it will not be posted to a channel, whereas an outgoing webhook is only triggered by posted messages.</p>
+<h2 id="what-does-slack-compatible-mean">What does Slack-compatible mean?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#what-does-slack-compatible-mean"></i></a> </h2>
+<p>Slack compatible means that Mattermost accepts integrations that have a payload in the same format as Slack.</p>
+<p>If you have a Slack integration, you should be able to set it up in Mattermost without changing the format.</p>
+<h2 id="what-if-i-have-a-webhook-from-somewhere-other-than-slack">What if I have a webhook from somewhere other than Slack?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#what-if-i-have-a-webhook-from-somewhere-other-than-slack"></i></a> </h2>
+<p>If you have an integration that outputs a payload in a different format you need to write an intermediate application to act as a translation layer to change it to the format Mattermost uses. Since there’s currently no general standard for webhook formatting, this is unavoidable and just a part of how webhooks work.</p>
+<p>If there&rsquo;s no translation layer, Mattermost won&rsquo;t understand the data you&rsquo;re sending.</p>
+<h2 id="what-are-attachments">What are attachments?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#what-are-attachments"></i></a> </h2>
+<p>When &ldquo;attachments&rdquo; are mentioned in the integrations documentation, it refers to Slack&rsquo;s Message Attachments. These &ldquo;attachments&rdquo; can be optionally added as an array in the data sent by an integration, and are used to customize the formatting of the message.</p>
+<p>We currently don&rsquo;t support the ability to attach files to a post made by an integration.</p>
+<h2 id="where-can-i-find-existing-integrations">Where can I find existing integrations?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#where-can-i-find-existing-integrations"></i></a> </h2>
+<p><a href="https://about.mattermost.com/default-app-directory/">Visit our app directory</a> for dozens of open source integrations to common tools like Jira, Jenkins, GitLab, Trac, Redmine, and Bitbucket, along with interactive bot applications (Hubot, mattermost-bot), and other communication tools (Email, IRC, XMPP, Threema) that are freely available for use and customization.</p>
+<h2 id="where-should-i-install-my-integrations">Where should I install my integrations?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#where-should-i-install-my-integrations"></i></a> </h2>
+<p>For self-hosted deployments in small setups you might host integrations on the same server on which Mattermost is installed. For larger deployments you can setup a separate server for integrations, or add them to the server on which the external application is hosted - for example, if you&rsquo;re self-hosting a Jira server you could deploy a Jira integration on the Jira server itself.</p>
+<p>When self-hosting restrictions are less strict, AWS, Heroku, and other public cloud options could also be used.</p>
+<h2 id="how-do-i-create-a-bot-account-with-personal-access-tokens">How do I create a bot account with personal access tokens?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#how-do-i-create-a-bot-account-with-personal-access-tokens"></i></a> </h2>
+<p>See <a href="../admin-bot-accounts">bot accounts documentation</a> to learn more about how to create and manage bot accounts in Mattermost.</p>
+<h2 id="how-do-i-create-a-bot-account-without-personal-access-tokens-or-webhooks">How do I create a bot account without personal access tokens or webhooks?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#how-do-i-create-a-bot-account-without-personal-access-tokens-or-webhooks"></i></a> </h2>
+<p>Deployments that cannot create bot accounts via webhooks due to security reasons and do not want to use <a href="../admin-personal-access-tokens">personal access tokens</a> with no expiry time, can use the following approach:</p>
+<ol>
+<li>
+<p>Create a bot account using a secure email and strong password.</p>
+</li>
+<li>
+<p>Manually add the account to all teams and channels it needs access to. If your deployment has a lot of teams or channels, you may create a CLI script to automate the process.</p>
+<ul>
+<li>In a testing environment, you may also make the bot account a System Admin, giving the bot permissions to post to any channel. Not recommended in production due to potential security vulnerabilities.</li>
+</ul>
+</li>
+<li>
+<p>Provide the email and password to your integration, and store it in a secure location with restricted access.</p>
+</li>
+<li>
+<p>Have your integration use the email and password with an <a href="https://api.mattermost.com/v4/#tag/authentication"><code>/api/v4/login</code></a> endpoint to retrieve a session token. The session token is used to authenticate to the Mattermost system.</p>
+<ul>
+<li>
+<p>Set up your bot to make an HTTP POST to <code>your-mattermost-url.com/api/v4/users/login</code> with a JSON body, including the bot account&rsquo;s email and password.</p>
+<pre><code>POST /api/v4/users/login HTTP/1.1
+Host: your-mattermost-url.com
+Content-Length: 66
+Content-Type: application/json
+     
+{&quot;login_id&quot;:&quot;someone@nowhere.com&quot;,&quot;password&quot;:&quot;thisisabadpassword&quot;}
+</code></pre><p>where we assume there is a Mattermost instance running at http://localhost:8065.</p>
+</li>
+<li>
+<p>If successful, the response will contain a <code>Token</code> header and a user object in the body:</p>
+<pre><code>HTTP/1.1 200 OK
+Set-Cookie: MMSID=hyr5dmb1mbb49c44qmx4whniso; Path=/; Max-Age=2592000; HttpOnly
+Token: hyr5dmb1mbb49c44qmx4whniso
+X-Ratelimit-Limit: 10
+X-Ratelimit-Remaining: 9
+X-Ratelimit-Reset: 1
+X-Request-Id: smda55ckcfy89b6tia58shk5fh
+X-Version-Id: developer
+Date: Fri, 11 Sep 2015 13:21:14 GMT
+Content-Length: 657
+Content-Type: application/json; charset=utf-8
+     
+{{user object as json}}
+</code></pre></li>
+</ul>
+<p>The bot should retrieve the session token from the <code>Token</code> header and store it in memory for use with future requests.</p>
+</li>
+</ol>
+<p><strong>Note:</strong> Each session token has an expiry time, set depending on the server&rsquo;s configuration. If the session token your bot is using expires, it will receive a <code>401 Unauthorized</code> response from requests using that token. When your bot receives this response, it should reapply the login logic (using the above steps) to get another session token. Then resend the request that received the <code>401</code> status code.</p>
+<ol start="5">
+<li>Include the <code>Token</code> as part of the <code>Authorization</code> header on API requests from your integration.
+<ul>
+<li>To confirm the token works, you can have your bot make a simple <code>GET</code> request to <code>/api/v4/users/me</code> with the <code>Authorization: bearer &lt;yourtokenhere&gt;</code> in the header. If it returns a <code>200</code> with the bot&rsquo;s user object in the response, the API request was made successfully.</li>
+</ul>
+</li>
+</ol>
+<pre><code>   GET /api/v4/users/me HTTP/1.1
+   Authorization: bearer &lt;yourtokenhere&gt;
+   Host: your-mattermost-url.com
+</code></pre><p><strong>Note:</strong> The Mattermost development team is also working on an <a href="https://docs.google.com/document/d/1ey4eNQmwK410pNTvlnmMWTa1fqtj8MV4d9XkCumI384">API developer token</a>, which allows you to authenticate the bot account via the API token rather than retrieving a session token from a user account.</p>
+<h2 id="how-should-i-automate-the-install-and-upgrade-of-mattermost-when-included-in-another-application">How should I automate the install and upgrade of Mattermost when included in another application?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#how-should-i-automate-the-install-and-upgrade-of-mattermost-when-included-in-another-application"></i></a> </h2>
+<p>Automating Mattermost installation within another application:</p>
+<ol>
+<li>Review the <a href="https://docs.mattermost.com/guides/install-deploy-upgrade-scale.html#install-mattermost">Mattermost installation documentation</a> to understand configuration steps of the production deployment.</li>
+<li>Install Mattermost files to a dedicated <code>/opt/mattermost</code> directory by decompressing the <code>tar.gz</code> file of the latest release for your target platform (for example <code>linux-amd64</code>).</li>
+<li>Review <a href="https://docs.mattermost.com/administration/config-settings.html">Configuration Settings</a> in <code>config.json</code> and set your automation to customize your Mattermost deployment based on your requirements.</li>
+<li>For directory locations defined in <code>config.json</code>, such as the location of the local file storage directory (<code>./data/</code>) or logs directory (<code>./logs</code>), you can redefine those locations in your <code>config.json</code> settings and move the directories.
+<ul>
+<li>All other directories should remain as they are in <code>/mattermost</code>.</li>
+</ul>
+</li>
+<li>Test that your Mattermost server is running with your new configuration.</li>
+<li>Also, from the command line run <code>./bin/mattermost -version</code> to test that the command line interface is functioning properly.</li>
+</ol>
+<p>Automating Mattermost upgrade within another application:</p>
+<ol>
+<li>Review the <a href="https://docs.mattermost.com/administration/upgrade.html">upgrade guide</a> for an overview of the upgrade procedure.</li>
+<li>Create automation to upgrade to the next Mattermost versions:
+<ul>
+<li>Back up the <code>config.json</code> file to preserve any settings a user may have made.</li>
+<li>Back up the <code>./data</code> directory if local storage is used for files.</li>
+<li>Replace the contents of <code>/mattermost</code> directory with the decompressed contents of the latest release.</li>
+<li>Restore <code>config.json</code> and <code>./data</code> to their previous locations (which may have been overwritten).</li>
+<li>If you need to overwrite any <code>config.json</code> parameters use a <a href="https://stackoverflow.com/questions/20568515/how-to-use-sed-to-replace-a-config-files-variable"><code>sed</code> command</a> or similar tool to update <code>config.json</code></li>
+<li>Starting the Mattermost server to upgrade the database, <code>config.json</code> file, and <code>./data</code> as necessary.</li>
+</ul>
+</li>
+<li>Optionally the upgrade procedure can be chained so users can upgrade across an arbitrary number of Mattermost versions rather than to just the latest release.</li>
+</ol>
+<p>Come <a href="https://community.mattermost.com/core/channels/tickets">join our Contributors community channel</a> on our daily build server, where you can discuss questions with community members and the Mattermost core team. Join our <a href="https://community.mattermost.com/core/channels/developers">Developers channel</a> for technical discussions and our <a href="https://community.mattermost.com/core/channels/integrations">Integrations channel</a> for all integrations and plugins discussions.</p>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+</html>
