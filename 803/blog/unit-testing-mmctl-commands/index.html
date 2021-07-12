@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Unit testing mmctl commands</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Unit testing mmctl commands">
+
+ 
+  <meta name="description" content="Mattermost is starting a new open source campaign, this time around increasing the unit test coverage for the mmctl tool.">
+<meta name="twitter:description" content="Mattermost is starting a new open source campaign, this time around increasing the unit test coverage for the mmctl tool.">
+<meta name="og:description" content="Mattermost is starting a new open source campaign, this time around increasing the unit test coverage for the mmctl tool.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/unit-testing-mmctl-commands/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Unit Testing mmctl Commands
+                            
+                            </h1>
+                            <small>Mattermost is starting a new open source campaign, this time around increasing the unit test coverage for the mmctl tool.</small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            November 7, 2019
+                            <small class="blog-item__count">1436 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>Mattermost is starting a new Open Source campaign, this time around increasing the unit test coverage for <a href="https://github.com/mattermost/mmctl">the <code>mmctl</code> tool</a>.</p>
+<p>The <code>mmctl</code> tool is a CLI application that mimics the commands and features of the current Mattermost CLI tool and uses the Mattermost REST API to communicate with the server. Using the tool, you can control and manage several Mattermost servers without having to access the specific machine on which the server is running. If you can reach a Mattermost instance over the network, you can use <code>mmctl</code> to run commands on it.</p>
+<p>The goal of the campaign is to create unit tests for the different <code>mmctl</code> commands. These tests should be centered around how the tool reacts to different inputs and server responses. We&rsquo;ll be using <a href="https://github.com/golang/mock">the <code>gomock</code> mocking framework</a> to simulate whatever response we want from the server, and to ensure that the command is performing the requests we expect quickly and accurately.</p>
+<h1 id="the-client-interface">The Client Interface&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#the-client-interface"></i></a> </h1>
+<p>First, let&rsquo;s take a look at the signature of a typical <code>mmctl</code> command:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">userSearchCmdF</span>(c client.Client, cmd <span style="color:#555">*</span>cobra.Command, args []<span style="color:#078;font-weight:bold">string</span>) <span style="color:#078;font-weight:bold">error</span> { }
+</code></pre></div><p>We use <a href="https://github.com/spf13/cobra">the awesome Cobra library</a> to create our commands, and on top of the required cobra arguments (<code>cmd</code> and <code>args</code>), every command that needs to interact with the server will receive <a href="https://github.com/mattermost/mmctl/blob/master/client/client.go">a <code>Client</code> instance</a>. This client represents our connection with the server, and at the time we call the command function, it is already logged in with a server and ready to run requests. During testing, this is the interface that we will be simulating and where we will make sure that the command is performing the requests we expect.</p>
+<h1 id="testing-a-use-case">Testing a Use Case&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#testing-a-use-case"></i></a> </h1>
+<p>For the purposes of this post, we are going to be following the test for an example case, the <code>mmctl user search</code> command. This command receives a user email argument and performs a search in the remote Mattermost instance. If a user with that email exists, it will print its information; if it doesn&rsquo;t, it will print an error message.</p>
+<p>This is the test function that checks the behavior when the user does exist in the remote instance:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> (s <span style="color:#555">*</span>MmctlUnitTestSuite) <span style="color:#c0f">TestSearchUserCmd</span>() {
+	s.<span style="color:#c0f">Run</span>(<span style="color:#c30">&#34;Search for an existing user&#34;</span>, <span style="color:#069;font-weight:bold">func</span>() {
+		emailArg <span style="color:#555">:=</span> <span style="color:#c30">&#34;example@example.com&#34;</span>
+		mockUser <span style="color:#555">:=</span> model.User{Username: <span style="color:#c30">&#34;ExampleUser&#34;</span>, Email: emailArg}
+
+		s.client.
+			<span style="color:#c0f">EXPECT</span>().
+			<span style="color:#c0f">GetUserByEmail</span>(emailArg, <span style="color:#c30">&#34;&#34;</span>).
+			<span style="color:#c0f">Return</span>(<span style="color:#555">&amp;</span>mockUser, <span style="color:#555">&amp;</span>model.Response{Error: <span style="color:#069;font-weight:bold">nil</span>}).
+			<span style="color:#c0f">Times</span>(<span style="color:#f60">1</span>)
+
+		err <span style="color:#555">:=</span> <span style="color:#c0f">searchUserCmdF</span>(s.client, <span style="color:#555">&amp;</span>cobra.Command{}, []<span style="color:#078;font-weight:bold">string</span>{emailArg})
+		s.<span style="color:#c0f">Require</span>().<span style="color:#c0f">Nil</span>(err)
+		s.<span style="color:#c0f">Require</span>().<span style="color:#c0f">Equal</span>(<span style="color:#555">&amp;</span>mockUser, printer.<span style="color:#c0f">GetLines</span>()[<span style="color:#f60">0</span>])
+		s.<span style="color:#c0f">Require</span>().<span style="color:#c0f">Len</span>(printer.<span style="color:#c0f">GetErrorLines</span>(), <span style="color:#f60">0</span>)
+	})
+}
+</code></pre></div><p>Let&rsquo;s split the test and go through each one of its parts.</p>
+<h1 id="adding-a-new-test-to-the-suite">Adding a New Test to The Suite&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#adding-a-new-test-to-the-suite"></i></a> </h1>
+<p>So first things first, we need to create the test function for our command. We use one function per command and then we separate the different test cases with <code>s.Run</code> blocks.</p>
+<p>Our tests are part of a <a href="https://godoc.org/github.com/stretchr/testify/suite"><code>testify</code> suite</a> that prepares the environment for us and generates the mocked client so we can easily use it inside our tests. To add a new test function to the suite, we just need to define it on the suite struct:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> (s <span style="color:#555">*</span>MmctlUnitTestSuite) <span style="color:#c0f">TestSearchUserCmd</span>() {
+    s.<span style="color:#c0f">Run</span>(<span style="color:#c30">&#34;Our test case&#34;</span>, <span style="color:#069;font-weight:bold">func</span>() {
+        <span style="color:#09f;font-style:italic">// ...
+</span><span style="color:#09f;font-style:italic"></span>    })
+}
+</code></pre></div><p>This way, we will have an <code>s</code> instance inside our test function that will contain a mocked instance of the client ready for us to use, and we will be able to use the suite to run our assertions.</p>
+<h1 id="mocking-an-interaction-with-the-server">Mocking an Interaction With the Server&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#mocking-an-interaction-with-the-server"></i></a> </h1>
+<p>So now that we have our test function defined, the next step is to think about our test case: what inputs is the command going to receive? What interactions with the server are those inputs going to cause? And what responses do I want to mock for them?</p>
+<p>For our given test case, we are going to receive an email address as the input and we want to mock a valid response for it. The client method that our command is going to use to send the request to the server is the <code>GetUserByEmail</code> method, and for the case of an existing user, it will return the found user instance:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">emailArg <span style="color:#555">:=</span> <span style="color:#c30">&#34;example@example.com&#34;</span>
+mockUser <span style="color:#555">:=</span> model.User{Username: <span style="color:#c30">&#34;ExampleUser&#34;</span>, Email: emailArg}
+
+s.client.
+	<span style="color:#c0f">EXPECT</span>().
+	<span style="color:#c0f">GetUserByEmail</span>(emailArg, <span style="color:#c30">&#34;&#34;</span>).
+	<span style="color:#c0f">Return</span>(<span style="color:#555">&amp;</span>mockUser, <span style="color:#555">&amp;</span>model.Response{Error: <span style="color:#069;font-weight:bold">nil</span>}).
+	<span style="color:#c0f">Times</span>(<span style="color:#f60">1</span>)
+</code></pre></div><p>First we define our input, the <code>emailArg</code> that the command is going to receive, and the <code>mockUser</code> we are going to mock as the server&rsquo;s response for the user search request. As the response is valid, we will create a simple response that contains no error.</p>
+<p>Then we have to state the expectations of the mock. We expect our command to use the <code>GetUserByEmail</code> function, calling it with the <code>emailArg</code> we mocked and a second argument that will always be an empty string. We also want the server to return our mocked user as a response for that call. Last, we state that this call should happen once.</p>
+<p>During our test run, if the client&rsquo;s method is called with the arguments that we expect, it will respond accordingly. At the end of the test, <code>gomock</code> will check that our assertions were correct, and it will mark the test as failed if they were not.</p>
+<h1 id="asserting-the-commands-behavior">Asserting the Command&rsquo;s Behavior&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#asserting-the-commands-behavior"></i></a> </h1>
+<p>After mocking the server interactions, all that&rsquo;s left to do is run the command and check the outputs. There are two things that we can use to check that the command behaved as we expected: the command&rsquo;s return value and whatever was printed during its execution.</p>
+<p>To perform these assertions we can use the suite itself for <a href="https://godoc.org/github.com/stretchr/testify/assert">assertions</a> or <code>s.Require()</code> for <a href="https://godoc.org/github.com/stretchr/testify/require">requires</a>. Both implement the same helpers to check that our values meet our expectations. The difference between the two is that a failed check with <code>require</code> will mark the test as failed and will stop it right after, and a failed check with <code>assert</code> will mark the test as failed too, but it will continue running it.</p>
+<p>The rule of thumb here is to use <code>assert</code> when you can still get valuable information from the following assertions of your test, and use <code>require</code> if, after an error, the following checks won&rsquo;t make sense. For example, if we get an error opening a file, it doesn&rsquo;t make sense to check the file contents.</p>
+<p>This is what the command execution and its assertions look like:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">err <span style="color:#555">:=</span> <span style="color:#c0f">searchUserCmdF</span>(s.client, <span style="color:#555">&amp;</span>cobra.Command{}, []<span style="color:#078;font-weight:bold">string</span>{emailArg})
+s.<span style="color:#c0f">Require</span>().<span style="color:#c0f">Nil</span>(err)
+s.<span style="color:#c0f">Require</span>().<span style="color:#c0f">Equal</span>(<span style="color:#555">&amp;</span>mockUser, printer.<span style="color:#c0f">GetLines</span>()[<span style="color:#f60">0</span>])
+s.<span style="color:#c0f">Require</span>().<span style="color:#c0f">Len</span>(printer.<span style="color:#c0f">GetErrorLines</span>(), <span style="color:#f60">0</span>)
+</code></pre></div><p>In the case of searching for an existing user, the first thing we expect is the error to come back as <code>nil</code>, so that&rsquo;s our first thing to assert.</p>
+<p>To check the output of the commands, we use the <code>printer</code> struct. Every significant message that a command prints goes through this struct, which accumulates the output during the execution. At testing time, we can use these accumulated lines to check that the output matches our expectations.</p>
+<p>We have two kinds of output: the lines for <code>stdout</code> and the error lines for <code>stderr</code>. In our case, as the user should have been found and printed through <code>stdout</code>, we can use the <code>printer.GetLines</code> method to get a slice with the printed messages, and the <code>Equal</code> helper to perform the assertion. Then, as we are expecting no errors, we can check that the <code>printer</code> struct printed none during the command execution asserting that <code>printer.GetErrorLines</code> is empty.</p>
+<h1 id="printer-cleanup">Printer Cleanup&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#printer-cleanup"></i></a> </h1>
+<p>One thing we need to remember is that although the <code>printer</code> struct gets cleaned for us between test functions courtesy of <code>MmctlUnitTestSuite</code>, we will need to clean it manually between test cases. Therefore, and to ensure that the output data is clean when we start each test case, we need to run <code>printer.Clean()</code> at the beginning of all the <code>s.Run</code> blocks of our test files:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> (s <span style="color:#555">*</span>MmctlUnitTestSuite) <span style="color:#c0f">TestMyCommandCmd</span>() {
+    s.<span style="color:#c0f">Run</span>(<span style="color:#c30">&#34;First test case&#34;</span>, <span style="color:#069;font-weight:bold">func</span>() {
+        printer.<span style="color:#c0f">Clean</span>()
+        <span style="color:#09f;font-style:italic">// ...
+</span><span style="color:#09f;font-style:italic"></span>    })
+
+    s.<span style="color:#c0f">Run</span>(<span style="color:#c30">&#34;First test case&#34;</span>, <span style="color:#069;font-weight:bold">func</span>() {
+        printer.<span style="color:#c0f">Clean</span>()
+        <span style="color:#09f;font-style:italic">// ...
+</span><span style="color:#09f;font-style:italic"></span>    })
+
+    s.<span style="color:#c0f">Run</span>(<span style="color:#c30">&#34;First test case&#34;</span>, <span style="color:#069;font-weight:bold">func</span>() {
+        printer.<span style="color:#c0f">Clean</span>()
+        <span style="color:#09f;font-style:italic">// ...
+</span><span style="color:#09f;font-style:italic"></span>    })
+}
+</code></pre></div><h1 id="participate-in-the-campaign">Participate in The Campaign!&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#participate-in-the-campaign"></i></a> </h1>
+<p>And that&rsquo;s it! That&rsquo;s how you write a unit test for an <code>mmctl</code> command.</p>
+<p>If you are interested in contributing to this Open Source campaign, take a look at the <a href="https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+label%3A%22Up+For+Grabs%22+label%3AArea%2Fmmctl">Up for Grabs tickets for <code>mmctl</code></a> on the <code>mattermost-server</code> repository, or just check <a href="https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+label%3A%22Up+For+Grabs%22">all the Up for Grabs tickets</a> of the project to find tickets related to the Mattermost fronted, the documentation, the Plugin system and any other Open Source campaign we might be running. If you see a ticket that you would like to work on, just leave a comment asking for it to be assigned to you.</p>
+<p>Check out the <a href="https://developers.mattermost.com/contribute/getting-started/">getting started documentation</a> to find out how to set up the project on your machine and read about <a href="https://developers.mattermost.com/contribute/server/developer-workflow/">the project&rsquo;s development workflow</a>. You can go to the <a href="https://community.mattermost.com/">Mattermost community server</a> and join the <code>Developers</code> channel to ask any question you may have. Hope to see you there!</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Miguel de la Cruz
+-
+<a href="https://community.mattermost.com/core/messages/@miguel.delacruz" target="_blank">
+    @miguel.delacruz
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/mgdelacroix" target="_blank">
+    @mgdelacroix
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-3/">Fixing a bug in the Go compiler as a newbie: a deep dive (III)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-2/">Fixing a bug in the Go compiler as a newbie: a deep dive (II)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-1/">Fixing a bug in the Go compiler as a newbie: a deep dive (I)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1485 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mattermost Developers</title>
+    <link>https://developers.mattermost.com/</link>
+    <description>Recent content on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Jun 2021 00:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Quick Start</title>
+      <link>https://developers.mattermost.com/extend/plugins/server/hello-world/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/server/hello-world/</guid>
+      <description>This tutorial will walk you through the basics of writing a Mattermost plugin with a server component.
+Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing mattermost-plugin-starter-template for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the migration document to upgrade older plugins.
+Prerequisites Mattermost plugins extend the server using a Go API. In the future, gRPC may be supported, allowing you to write plugins in any language.</description>
+    </item>
+    
+    <item>
+      <title>Quick Start</title>
+      <link>https://developers.mattermost.com/extend/plugins/webapp/hello-world/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/webapp/hello-world/</guid>
+      <description>This tutorial will walk you through the basics of extending the Mattermost web app.
+Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing mattermost-plugin-starter-template for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the migration document to upgrade older plugins.
+Prerequisites Plugins, just like the Mattermost web app itself, are built using ReactJS with Redux.</description>
+    </item>
+    
+    <item>
+      <title>Contributions Without Ticket</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/contributions-without-ticket/</link>
+      <pubDate>Fri, 11 Oct 2019 15:44:36 -0200</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/contributions-without-ticket/</guid>
+      <description>Contributions for minor corrections and improvements without a corresponding Help Wanted ticket are welcome. For example, a pull request for a bug or incremental improvement, with less than 20 lines of code change, is usually accepted if the change to existing behaviour is minor.
+All pull requests submitted without a corresponding ticket will first be reviewed by a core team product manager. Some examples of minor corrections and improvements include:</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>https://developers.mattermost.com/extend/plugins/overview/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/overview/</guid>
+      <description>Plugins are defined by a manifest file and contain at least a server or web app component, or both.
+The Plugin Starter Template is a starting point and illustrates the different components of a Mattermost plugin.
+A more detailed example is the Demo Plugin, which showcases many of the features of plugins.
+Manifest The plugin manifest provides required metadata about the plugin, such as name and ID. It is defined in JSON or YAML.</description>
+    </item>
+    
+    <item>
+      <title>Build the Android App</title>
+      <link>https://developers.mattermost.com/contribute/mobile/build-your-own/android/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/build-your-own/android/</guid>
+      <description>At times, you may want to build your own Mattermost mobile app. The most common use cases are:
+ To white label the Mattermost mobile app. To use your own deployment of the Mattermost Push Notification Service (always required if you are building your own version of the mobile app).  Build Preparations 1. Package name and source files  Ensure the package ID of the mobile app remains the same as the one in the original mattermost-mobile GitHub repository in com.</description>
+    </item>
+    
+    <item>
+      <title>Folder Structure</title>
+      <link>https://developers.mattermost.com/contribute/mobile/developer-setup/structure/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/developer-setup/structure/</guid>
+      <description>. ├── .circleci # Circle CI workflow to build the apps ├── android # Android specific code ├── app # React Native code │ ├── actions │ ├── client │ ├── components │ ├── constants │ ├── i18n │ ├── mattermost_bucket │ ├── mattermost_managed │ ├── mm-redux # Redux implementation ported from the mattermost-redux library │ ├── notification_preferences │ ├── push_notifications │ ├── reducers │ ├── screens │ ├── selectors │ ├── store │ ├── styles │ ├── telemetry │ └── utils │ └── mattermost.</description>
+    </item>
+    
+    <item>
+      <title>Server Build (Team Edition)</title>
+      <link>https://developers.mattermost.com/extend/customization/server-build/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/customization/server-build/</guid>
+      <description>If plugin functionalities don&amp;rsquo;t cover your use cases, you have the freedom to customize and build your own version of the mattermost-server project.
+Before proceeding with the steps below, make sure you have completed the mattermost-server setup process.
+  Customize the project according to your requirements.
+  Build binary files for Mattermost server.
+  make build Assemble essential files.  make package Transfer desired .tar.gz file to server for deployment.</description>
+    </item>
+    
+    <item>
+      <title>Server Files</title>
+      <link>https://developers.mattermost.com/extend/customization/server-files/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/customization/server-files/</guid>
+      <description>In both Mattermost Team and Enterprise editions, you have the freedom to alter how content is displayed by being able to change the contents of localized files and email templates.
+Before proceeding with the steps below, make sure you have completed the mattermost-server and mattermost-webapp setup process.
+i18n Files The i18n files define many of the contents seen in email notifications and responses from the server.
+  Edit contents of files in the mattermost-server/i18n directory according to your requirements.</description>
+    </item>
+    
+    <item>
+      <title>Sign Unsigned Android</title>
+      <link>https://developers.mattermost.com/contribute/mobile/unsigned/android/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/unsigned/android/</guid>
+      <description>With every Mattermost mobile app release, we publish the Android unsigned apk in in the GitHub Releases page. This guide describes the steps needed to modify and sign the app, so it can be distributed and installed on Android devices.
+Prerequisites  Apktool is a tool for reverse engineering Android apk files. XMLStarlet is a set of command line utilities (tools) which can be used to transform, query, validate, and edit XML documents and files using a simple set of shell commands in the same way it is done for plain text files using UNIX grep, sed, awk, diff, patch, join, etc.</description>
+    </item>
+    
+    <item>
+      <title>Web App</title>
+      <link>https://developers.mattermost.com/extend/customization/webapp/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/customization/webapp/</guid>
+      <description>Customizations to the Mattermost Web App can be performed in cases where you need to customize branding, alter localization strings, or fulfill security requirements that are not immediately offered out-of-the-box.
+Customization steps With that in mind, customizing and deploying your Mattermost Web App can be done in a few steps:
+ Fork the mattermost-webapp repository and then clone your fork in your local environment.  git clone https://github.com/&amp;lt;yourgithubusername&amp;gt;/mattermost-webapp Create a separate branch for your customized version, as it&amp;rsquo;s not recommended to perform them in the master branch (more details about that in the next section regarding rebasing).</description>
+    </item>
+    
+    <item>
+      <title>Bump Version Number</title>
+      <link>https://developers.mattermost.com/internal/mobile-build-process/bump-version-number/</link>
+      <pubDate>Tue, 07 Nov 2017 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/mobile-build-process/bump-version-number/</guid>
+      <description>This must be done in your local copy of the mattermost-mobile
+ Source the environment variables export LC_ALL=&amp;quot;en_US.UTF-8&amp;quot; ############ MATTERMOST BUILD ############ export COMMIT_CHANGES_TO_GIT=true export BRANCH_TO_BUILD=master export GIT_LOCAL_BRANCH=version-number export RESET_GIT_BRANCH=false export INCREMENT_VERSION_NUMBER_MESSAGE=&amp;quot;Bump app version number to&amp;quot; export VERSION_NUMBER=   Env vars
+Alternatively you can copy the environment variables to the mattermost-mobile/fastlane/.env file.   Specify version number
+Set the variable VERSION_NUMBER to X.X.X (eg: 1.17.0).    Increase the version number of the app.</description>
+    </item>
+    
+    <item>
+      <title>Contribution Checklist</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/contribution-checklist/</link>
+      <pubDate>Sun, 20 Aug 2017 12:33:36 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/contribution-checklist/</guid>
+      <description>Thanks for your interest in contributing to Mattermost! Come join our Contributors community channel on the community server, where you can discuss questions with community members and the Mattermost core team.
+To help with translations, see the localization process.
+Follow this checklist for submitting a pull request (PR):
+ You&amp;rsquo;ve signed the Contributor License Agreement, so you can be added to the Mattermost Approved Contributor List.   If you&amp;rsquo;ve included your mailing address in the signed Contributor License Agreement, you may receive a Limited Edition Mattermost Mug as a thank you gift after your first pull request is merged.</description>
+    </item>
+    
+    <item>
+      <title>How Should I Integrate?</title>
+      <link>https://developers.mattermost.com/integrate/getting-started/how-should-i-integrate/</link>
+      <pubDate>Sun, 20 Aug 2017 12:33:36 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/integrate/getting-started/how-should-i-integrate/</guid>
+      <description>Very good question! Mattermost has many different integration points and this page will help you pick the right one(s) for the job.
+I just want to post into Mattermost If you only want to post messages into a Mattermost channel, then all you need is an incoming webhook.
+I want to know when someone says something Tracking what gets posted into a channel and receiving real-time events about it can be done using outgoing webhooks.</description>
+    </item>
+    
+    <item>
+      <title>Inactive Contributions</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/inactive-contributions/</link>
+      <pubDate>Sun, 20 Aug 2017 12:33:36 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/inactive-contributions/</guid>
+      <description>This process describes how inactive contributions are managed at Mattermost, inspired by the Kubernetes project:
+ After 10 days of inactivity, a contribution becomes stale.   If action is required from submitter, Community Coordinator asks if the team can help clarify previous feedback or provide guidance on next steps, and adds lifecycle/1:stale label to the contribution. If action is required from reviewers, Community Coordinator asks reviewers to share feedback or help answer questions, and adds lifecycle/1:stale label to the contribution.</description>
+    </item>
+    
+    <item>
+      <title>Android Push Notifications</title>
+      <link>https://developers.mattermost.com/contribute/mobile/push-notifications/android/</link>
+      <pubDate>Wed, 20 May 2015 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/push-notifications/android/</guid>
+      <description>Push notifications on Android are managed and dispatched using Firebase Cloud Messaging (FCM)
+  Create a Firebase project within the Firebase Console.
+  Click Add Project   Enter the project name, project ID and Country
+  Click CREATE PROJECT
+  Once the project is created you&amp;rsquo;ll be redirected to the Firebase project dashboard
+  Click Add Firebase to your Android App
+  Enter the package ID of your custom Mattermost app as the Android package name.</description>
+    </item>
+    
+    <item>
+      <title>Folder and File Structure</title>
+      <link>https://developers.mattermost.com/contribute/mobile/e2e/file-structure/</link>
+      <pubDate>Wed, 02 Sep 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/e2e/file-structure/</guid>
+      <description>The folder structure is mostly based on the Detox scaffold which was created on initial run. The folders and files are:
+|-- detox |-- e2e |-- support |-- test |-- config.json |-- environment.js |-- init.js |-- .babelrc |-- .detoxrc.json |-- package-lock.json |-- package.json  /detox/e2e/support or Support Files.  The support folder is a place to put reusable behavior such as Server API and UI commands, or global overrides that should be available to all test files.</description>
+    </item>
+    
+    <item>
+      <title>Developer Setup</title>
+      <link>https://developers.mattermost.com/extend/plugins/developer-setup/</link>
+      <pubDate>Sat, 11 Jul 2020 23:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/developer-setup/</guid>
+      <description>Once you have your server and webapp set up, you can start developing on plugins.
+Note: Plugin development doesn&amp;rsquo;t require a development build of Mattermost. Development builds of Mattermost are only required if you want to develop for Mattermost internally.
+For developing on Mattermost-managed plugins, each plugin&amp;rsquo;s setup instructions can be found in the plugin repository&amp;rsquo;s README. Some plugins do not have external dependencies and require little to no setup, like the Todo Plugin while others require an external service to be set up, like the Jira Plugin and GitHub Plugin.</description>
+    </item>
+    
+    <item>
+      <title>Developer Setup</title>
+      <link>https://developers.mattermost.com/contribute/server/developer-setup/</link>
+      <pubDate>Sat, 01 Feb 2020 19:50:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/developer-setup/</guid>
+      <description>Set up your development environment for building, running, and testing the Mattermost server.
+Note: If you&amp;rsquo;re developing plugins, see the plugin developer setup documentation.
+For minimum software requirements, see the following table:
+   Software Minimum Version     Docker 17.12.0+   Docker Compose 1.21.0+   Go 1.15.0+    Mac OS X Ubuntu 16.04/18.04 Windows WSL Archlinux CentOS 7/Fedora 31   title: &amp;ldquo;OSX Development Environment Setup&amp;rdquo; heading: &amp;ldquo;How to Set Up Mattermost in Mac OS X&amp;rdquo; description: &amp;ldquo;Read about how to set up your developer environment in Mattermost using a Mac OS X.</description>
+    </item>
+    
+    <item>
+      <title>Build the iOS App</title>
+      <link>https://developers.mattermost.com/contribute/mobile/build-your-own/ios/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/build-your-own/ios/</guid>
+      <description>At times, you may want to build your own Mattermost mobile app. The most common use cases are:
+ To white label the Mattermost mobile app. To use your own deployment of the Mattermost Push Notification Service (always required if you are building your own version of the mobile app).  Build Preparations 1. Prerequisites The Mattermost mobile app for iOS needs to be built on a macOS computer with Xcode and the Xcode command line tools installed.</description>
+    </item>
+    
+    <item>
+      <title>Run the app</title>
+      <link>https://developers.mattermost.com/contribute/mobile/developer-setup/run/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/developer-setup/run/</guid>
+      <description>We provide a set of scripts to help you run the app for the different platforms that are executed with npm:
+ npm start: Start the React Native packager. The packager has to be running in order to build the JavaScript code that powers the app. npm run android: Compile and run the mobile app on Android. npm run ios: Compile and run the mobile app on iOS.   Important:</description>
+    </item>
+    
+    <item>
+      <title>Sign Unsigned iOS</title>
+      <link>https://developers.mattermost.com/contribute/mobile/unsigned/ios/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/unsigned/ios/</guid>
+      <description>With every Mattermost mobile app release, we publish the iOS unsigned ipa in in the GitHub Releases page, this guide describes the steps needed to modify and sign the app, so it can be distributed and installed on iOS devices.
+Requisites  macOS with Xcode installed. The minimum required version is 11.0. Install the Xcode command line tools: $ xcode-select --install  Set up your Certificate and Provisioning profiles as described in steps 1 and 2 for Run on iOS Devices in the Developer Setup.</description>
+    </item>
+    
+    <item>
+      <title>Developer Setup</title>
+      <link>https://developers.mattermost.com/contribute/desktop/developer-setup/</link>
+      <pubDate>Tue, 02 Jan 2018 10:44:11 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/desktop/developer-setup/</guid>
+      <description>Prerequisites  C++ environment which supports C++11 (e.g. VS 2015, Xcode, GCC) Python 2.7 Node.js 8 or later NPM Git Windows Build Tools or Visual Studio Community edition (see Known Problems section). Recommended: Chocolatey which we will use to install other dependencies.  Windows The recommended way to install the required components on Windows is to install the Chocolatey package manager. Once it&amp;rsquo;s installed, run the following commands in the PowerShell console as administrator.</description>
+    </item>
+    
+    <item>
+      <title>Bump Build Number</title>
+      <link>https://developers.mattermost.com/internal/mobile-build-process/bump-build-number/</link>
+      <pubDate>Tue, 07 Nov 2017 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/mobile-build-process/bump-build-number/</guid>
+      <description>This must be done in your local copy of the mattermost-mobile
+ Source the environment variables export LC_ALL=&amp;quot;en_US.UTF-8&amp;quot; ############ MATTERMOST BUILD ############ export COMMIT_CHANGES_TO_GIT=true export BRANCH_TO_BUILD=master export GIT_LOCAL_BRANCH=build-number export RESET_GIT_BRANCH=false export INCREMENT_BUILD_NUMBER=true export INCREMENT_BUILD_NUMBER_MESSAGE=&amp;quot;Bump app build number to&amp;quot;   Env vars
+Alternatively you can copy the environment variables to the mattermost-mobile/fastlane/.env file.   Specify build number
+Sometimes you need to specify the build number instead of just increasing it by one.</description>
+    </item>
+    
+    <item>
+      <title>Developer Setup</title>
+      <link>https://developers.mattermost.com/contribute/webapp/developer-setup/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/developer-setup/</guid>
+      <description>Set up your development environment for building, running, and testing the Mattermost web app.
+  Set up your development environment for the Mattermost server.
+  Install Node.js 16:
+  If you use NVM, use that to install Node 16.
+  On Mac, use Homebrew to install it:
+brew install node@16   For other platforms, install it from https://www.npmjs.com/get-npm.
+    If necessary, install libpng:</description>
+    </item>
+    
+    <item>
+      <title>iOS Push Notifications</title>
+      <link>https://developers.mattermost.com/contribute/mobile/push-notifications/ios/</link>
+      <pubDate>Wed, 20 May 2015 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/push-notifications/ios/</guid>
+      <description>Push notifications on iOS are managed and dispatched using Apple&amp;rsquo;s Push Notification Service. You must have a Paid Apple Developer account to create certificates needed to send notifications using this service.
+  Generate a Certificate from Keychain Access
+  Launch the Keychain Access application in your Mac and select KeyChain Access -\Certificate Assistant -\Request a Certificate From a Certificate Authority&amp;hellip;   Enter your email address in User Email Address and check the &amp;ldquo;Save to disk&amp;rdquo; option, then click Continue   Save the certificate request     Log in to Apple developer account and click Certificates, Identifiers and Profiles   Select the plus icon to create a new certificate   Select a new &amp;ldquo;Apple Push Notifications service SSL (Sandbox &amp;amp; Production)&amp;rdquo;   Choose the App ID you&amp;rsquo;re generating a certificate for.</description>
+    </item>
+    
+    <item>
+      <title>Go Style Guide</title>
+      <link>https://developers.mattermost.com/contribute/server/style-guide/</link>
+      <pubDate>Tue, 12 Jan 2021 16:00:00 +0530</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/style-guide/</guid>
+      <description>Go is a more opinionated language than many others when it comes to coding style. The compiler enforces some basic stylistic elements, such as the removal of unused variables and imports. Many others are enforced by the gofmt tool, such as usage of white-space, semicolons, indentation, and alignment. The gofmt tool is run over all code in the Mattermost Server CI pipeline. Any code which is not consistent with the formatting enforced by gofmt will not be accepted into the repository.</description>
+    </item>
+    
+    <item>
+      <title>Feature Flags</title>
+      <link>https://developers.mattermost.com/contribute/server/feature-flags/</link>
+      <pubDate>Thu, 15 Oct 2020 16:00:00 -0700</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/feature-flags/</guid>
+      <description>Feature flags allow us to be more confident in shipping features continuously to Mattermost Cloud. Feature flags also allow us to control which features are enabled on a cluster level.
+How to use Adding the feature flag in code  Add the new flag to the feature flag struct located in model/feature_flags.go. Set a default value in the SetDefaults function in the same file. Use the feature flag in code as you would use a regular configuration setting.</description>
+    </item>
+    
+    <item>
+      <title>Setup and Run Android E2E</title>
+      <link>https://developers.mattermost.com/contribute/mobile/e2e/android/</link>
+      <pubDate>Tue, 01 Sep 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/e2e/android/</guid>
+      <description>Local setup   Install the latest Android SDK.
+sdkmanager &amp;quot;system-images;android-30;google_apis;x86&amp;quot; sdkmanager --licenses   Create the emulator using npm run e2e:android-create-emulator from the /detox folder. Android testing requires an emulator named detox_pixel_4_xl_api_30 and the script helps to create it automatically.
+  Test run in debug mode This is the typical flow for local development and test writing:
+ Open a terminal window and run react-native packager by npm install &amp;amp;&amp;amp; npm start from the root folder.</description>
+    </item>
+    
+    <item>
+      <title>Developer Workflow</title>
+      <link>https://developers.mattermost.com/extend/plugins/developer-workflow/</link>
+      <pubDate>Sat, 11 Jul 2020 23:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/developer-workflow/</guid>
+      <description>Common make commands for working with plugins  make dist - Compile the plugin into a g-zipped file, ready to upload to a Mattermost server. The file is saved in the plugin repo&amp;rsquo;s dist folder. make deploy - Compiles the plugin using the make dist command, then automatically deploys the plugin to the Mattermost server make watch - Uses webpack&amp;rsquo;s watch feature to re-compile and deploy the webapp portion of your plugin on any change to the webapp/src folder make test - Runs the plugin&amp;rsquo;s server tests and webapp tests make check-style - Runs linting checks on the plugin&amp;rsquo;s server and webapp folders make enable - Enables the plugin on the Mattermost server make disable - Disables the plugin on the Mattermost server.</description>
+    </item>
+    
+    <item>
+      <title>Debugging</title>
+      <link>https://developers.mattermost.com/contribute/desktop/debugging/</link>
+      <pubDate>Tue, 22 Jan 2019 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/desktop/debugging/</guid>
+      <description>The electron app itself can be inspected using the developer tools, available from the View menu:
+However, this view does not expose the contents of the webviews for inspection. To open the developer tools for a webview, first access the console for the electron shell as above, and then run
+document.getElementById(&amp;#34;mattermostView0&amp;#34;).openDevTools(); Use mattermostView0 to inspect the first opened tab, mattermostView1 to inspect the second opened tab, and so on. A new window will appear with the developer tools for that webview:</description>
+    </item>
+    
+    <item>
+      <title>White Labeling</title>
+      <link>https://developers.mattermost.com/contribute/mobile/build-your-own/white-label/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/build-your-own/white-label/</guid>
+      <description>We&amp;rsquo;ve made it easy to white label the mobile app and to replace and override the assets used, however, you have to Build Your Own App from source.
+If you look at the Project Folder Structure, you&amp;rsquo;ll see that there is an assets folder containing a base folder with assets provided by Mattermost. These include localization files and images as well as a release folder that optionally contains the icons and the splash screen of the app when building in release mode.</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting</title>
+      <link>https://developers.mattermost.com/internal/mobile-build-process/troubleshooting/</link>
+      <pubDate>Tue, 07 Nov 2017 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/mobile-build-process/troubleshooting/</guid>
+      <description>Error message Unable to resolve module mattermost-redux/client from /Users/****/workspace/mm/mobile-build-app-pr/share_extension/android/index.js: Module mattermost-redux/client does not exist in the Haste module map.
+Solution Make sure the mattermost-redux package is build correctly.
+The make build set of commands uses npm ci, sometimes the npm ci command will not run the prepare script used by mattermost-redux thus the library will not built causing the mobile build to fail.
+ ssh to the build machine (MacStadium) cd ~/workspace/mm/mattermost-mobile-prod-release/mattermost-mobile rm -rf node_modules npm cache clean --force npm i Finally make sure ls node_modules/mattermost-redux/ shows that mattermost-redux was built.</description>
+    </item>
+    
+    <item>
+      <title>Server Workflow</title>
+      <link>https://developers.mattermost.com/contribute/server/developer-workflow/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/developer-workflow/</guid>
+      <description>If you haven&amp;rsquo;t set up your developer environment, please do so before continuing with this section.
+Join the Developers community channel to ask questions from community members and the Mattermost core team.
+Workflow Here&amp;rsquo;s a general workflow for a Mattermost developer working on the mattermost-server repository:
+ Review the repository structure to familiarize yourself with the project  ./api4/ holds all API and application related code. ./model/ holds all data model definitions and the Go driver.</description>
+    </item>
+    
+    <item>
+      <title>Web App Workflow</title>
+      <link>https://developers.mattermost.com/contribute/webapp/developer-workflow/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/developer-workflow/</guid>
+      <description>If you haven&amp;rsquo;t set up your developer environment, please do so before continuing with this section.
+Workflow Here&amp;rsquo;s a general workflow for a Mattermost developer working on the mattermost-webapp repository:
+ Review the repository structure to familiarize yourself with the project  ./components/ holds all the React UI components and views ./actions/ holds all Flux actions where the majority of the logic of the webapp takes place ./stores/ holds the stores responsible for storing and providing the views with data .</description>
+    </item>
+    
+    <item>
+      <title>Push Notification Service</title>
+      <link>https://developers.mattermost.com/contribute/mobile/push-notifications/service/</link>
+      <pubDate>Wed, 20 May 2015 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/push-notifications/service/</guid>
+      <description>Install the Mattermost Push Notification Service Now that the app can receive push notifications, we need to make sure that the Mattermost Push Notification Service is able to send the notification to the device. This guide will focus on installing and configuring the push notification service.
+Requirements  A Linux box server with at least 1GB of memory. A copy of the Mattermost Push Notification Service. Custom Android and/or iOS Mattermost mobile apps.</description>
+    </item>
+    
+    <item>
+      <title>Setup and Run iOS E2E</title>
+      <link>https://developers.mattermost.com/contribute/mobile/e2e/ios/</link>
+      <pubDate>Tue, 01 Sep 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/e2e/ios/</guid>
+      <description>Local setup  Install applesimutils: brew tap wix/brew brew install applesimutils  Set XCode&amp;rsquo;s build location so that the built app, especially debug, is expected at the project&amp;rsquo;s location instead of the Library&amp;rsquo;s folder which is unique/hashed. Open XCode, then go to XCode &amp;gt; Preferences &amp;gt; Locations. Under Derived Data, click Advanced&amp;hellip;. Select Custom &amp;gt; Relative to Workspace, then set Products as Build/Products. Click Done to save the changes.  Test run in debug mode This is the typical flow for local development and test writing:</description>
+    </item>
+    
+    <item>
+      <title>Push Notification Service with Corporate Proxy</title>
+      <link>https://developers.mattermost.com/contribute/mobile/push-notifications/corporate-proxy/</link>
+      <pubDate>Mon, 09 Mar 2020 11:35:32 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/push-notifications/corporate-proxy/</guid>
+      <description>Receiving mobile push notification if the use of a corporate proxy server is required by your IT policy When your IT policy requires a corporate proxy to scan and audit all outbound traffic the following options are available:
+1 - Deploy Mattermost with connection restricted post-proxy relay in DMZ or a trusted cloud environment Some legacy corporate proxy configurations may be incompatible with the requirements of modern mobile architectures, such as the requirement of HTTP/2 requests from Apple to send push notifications to iOS devices.</description>
+    </item>
+    
+    <item>
+      <title>Add new dependencies</title>
+      <link>https://developers.mattermost.com/contribute/mobile/developer-setup/dependecies/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/developer-setup/dependecies/</guid>
+      <description>If you need to add a new dependency to the project, it is important to add them in the right way. Instructions for adding different types of dependencies are described below.
+JavaScript Only If you need to add a new JavaScript dependency that is not related to React Native, use npm, not yarn. Be sure to save the exact version number to avoid conflicts in the future.
+$ npm i --save-exact &amp;lt;package-name&amp;gt; If the dependency is only for development</description>
+    </item>
+    
+    <item>
+      <title>Core Committers</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/core-committers/</link>
+      <pubDate>Sun, 20 Aug 2017 12:33:36 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/core-committers/</guid>
+      <description>A core committer is a maintainer on the Mattermost project that has merge access to Mattermost repositories. They are responsible for reviewing pull requests, cultivating the Mattermost developer community, and guiding the technical vision of Mattermost.
+If you have a question or need some help, please visit the Core Committers page in the Mattermost Handbook.</description>
+    </item>
+    
+    <item>
+      <title>Actions</title>
+      <link>https://developers.mattermost.com/contribute/webapp/redux/actions/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/redux/actions/</guid>
+      <description>Similar to other frameworks like Flux, actions in Redux represent a single change to the Redux store as a plain JavaScript object.
+{ type: &amp;#39;SELECT_CHANNEL&amp;#39;, data: channelId } They are created by functions called action creators. In regular Redux, this function will take some arguments and return an action representing how the store should be changed. Something to note with Mattermost Redux is that we typically refer to the action creators as the &amp;ldquo;actions&amp;rdquo; themselves since there&amp;rsquo;s often a single action creator for a given type of action.</description>
+    </item>
+    
+    <item>
+      <title>Build a Component</title>
+      <link>https://developers.mattermost.com/contribute/webapp/build-component/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/build-component/</guid>
+      <description>This page describes how to build a new React component in the Mattermost webapp. A new component must meet the following requirements:
+ Is pure, meaning that all information required to render is passed in by props. Has no direct store interaction. Use a container to wrap the component if needed. Has component tests. Is generic and re-usable when possible. Has documented props.  If none of those make any sense to you or you&amp;rsquo;re new to React and Redux, then check out these links:</description>
+    </item>
+    
+    <item>
+      <title>REST API</title>
+      <link>https://developers.mattermost.com/contribute/server/rest-api/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/rest-api/</guid>
+      <description>The REST API is a JSON web service that facilitates communication between Mattermost clients, as well as integrations, and the server.
+The server is currently on API version 4.
+Reference Looking for the API reference? That can be found here: https://api.mattermost.com.
+Adding an Endpoint To add an endpoint to API version 4, each item on the following checklist must be completed:
+ Document the endpoint Implement the API handler on the server Add a function to the Go driver Write a unit test Submit your implementation!</description>
+    </item>
+    
+    <item>
+      <title>Guide for Writing E2E</title>
+      <link>https://developers.mattermost.com/contribute/mobile/e2e/guide-for-writing/</link>
+      <pubDate>Tue, 01 Sep 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/e2e/guide-for-writing/</guid>
+      <description>Before writing a script, ensure that it has a corresponding test case in Test Management for Jira (TM4J). All test cases may be found in this link. If test case is not available, feel free to prompt the QA team who will either search from an existing TM4J entry or if it&amp;rsquo;s a new one, it will be created for you.
+  Create a test file based on folder and file structure.</description>
+    </item>
+    
+    <item>
+      <title>System Console</title>
+      <link>https://developers.mattermost.com/contribute/server/system_console/</link>
+      <pubDate>Wed, 09 Oct 2019 13:38:26 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/system_console/</guid>
+      <description>Adding fields to the configuration In order to add fields to the configuration, you need to modify model/config.go in the server by adding the desired field to one of the structs such as ServiceSettings and setting its default value in the corresponding SetDefaults method.
+Exposing settings in the System Console To expose the newly-added field in the System Console, you need to add that same setting to the AdminDefinition JS object in mattermost-webapp/components/admin_console/admin_definition.</description>
+    </item>
+    
+    <item>
+      <title>Dependencies</title>
+      <link>https://developers.mattermost.com/contribute/server/dependencies/</link>
+      <pubDate>Wed, 27 Mar 2019 16:00:00 -0700</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/dependencies/</guid>
+      <description>The Mattermost server uses go modules to manage dependencies. To manage dependencies you must have modules enabled.
+Enabling go modules support (Do this first!) While golang migrates to support go modules, you need to set the environment variable GO111MODULE to on if you are developing in the GOPATH. For example:
+export GO111MODULE=on Once this is done, all go commands issued will use the modules system.
+Adding or updating a new dependency Be sure you have enabled go modules support.</description>
+    </item>
+    
+    <item>
+      <title>Unit Testing</title>
+      <link>https://developers.mattermost.com/contribute/webapp/unit-testing/</link>
+      <pubDate>Tue, 20 Nov 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/unit-testing/</guid>
+      <description>Component and Utility files The last required piece of building a webapp component is to test it. That can be done using the component testing framework described in this blog post: https://grundleborg.github.io/posts/react-component-testing-in-mattermost/.
+Jest and Enzyme are the main framework and testing utilities used in testing components and utility files of mattermost-webapp. Please visit their respective documentation for detailed information on how to get started, best practices and updates.
+Below is a brief guide on how to do component testing:</description>
+    </item>
+    
+    <item>
+      <title>CLI Commands</title>
+      <link>https://developers.mattermost.com/contribute/server/cli-commands/</link>
+      <pubDate>Fri, 21 Sep 2018 18:40:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/cli-commands/</guid>
+      <description>Mattermost provides a CLI (command-line interface) to administer and handle specific administrative tasks.
+Understanding the CLI The CLI interface is written in Cobra, a powerful and modern CLI creation library. If you have never used Cobra before, it is well documented in its GitHub Repository.
+The source code used to build our CLI interface is written in the cmd/mattermost directory of the mattermost-server repository.
+Each &amp;ldquo;command&amp;rdquo; of the CLI is stored in a different file of the cmd/mattermost/commands directory.</description>
+    </item>
+    
+    <item>
+      <title>Code Review</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/code-review/</link>
+      <pubDate>Tue, 06 Mar 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/code-review/</guid>
+      <description>All changes to the product must be reviewed.
+ User experience changes must be reviewed by a product manager. Code changes must be reviewed by at least two core committers and a QA tester. Documentation changes must be reviewed by a product manager.  Product managers may ask for reviews from core committers and QA testers as required.    If you are a community member seeking a review  Submit your pull request.</description>
+    </item>
+    
+    <item>
+      <title>Labels</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/labels/</link>
+      <pubDate>Tue, 06 Mar 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/labels/</guid>
+      <description>We leverage GitHub labels to track the details and lifecycle of issues and pull requests.
+Issue Labels  Area/&amp;lt;name&amp;gt;: Involves changes to the named area (APIv4, E2E Tests, Localization, Plugins, etc.) Bug Report/Open: Bug report unresolved, awaiting for more information or in development backlog. Bug Report/Scheduled for Release: Bug report resolved and scheduled for an upcoming release. Milestone indicates scheduled release version. Difficulty/1:easy: Easy ticket. Difficulty/2:medium: Medium ticket. Difficulty/3:hard: Hard ticket.</description>
+    </item>
+    
+    <item>
+      <title>Plugins</title>
+      <link>https://developers.mattermost.com/contribute/server/plugins/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/plugins/</guid>
+      <description>Mattermost supports plugins that offer powerful features for extending and deeply integrating with both the server and web/desktop apps.
+This document covers the plugin infrastructure and how to contribute to it.
+Building Plugins Looking to build a plugin? Then you want the plugin author documentation.
+Overview Plugins are generally made of at least two parts: a manifest and a server binary and/or a JavaScript bundle.
+The manifest tells Mattermost what the plugin is and provides a set of metadata used by the server to install and run the plugin.</description>
+    </item>
+    
+    <item>
+      <title>Reducers</title>
+      <link>https://developers.mattermost.com/contribute/webapp/redux/reducers/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/redux/reducers/</guid>
+      <description>Reducers in Redux are pure functions that describe how the data in the store changes after any given action. A reducer receives the previous state of the store and an action as a JavaScript object (see here for more information on actions) and should output the resulting state without receiving any outside data. Because reducers are pure, they will always produce the same resulting state for a given state and action.</description>
+    </item>
+    
+    <item>
+      <title>End-to-End Testing</title>
+      <link>https://developers.mattermost.com/contribute/webapp/end-to-end-tests/</link>
+      <pubDate>Tue, 04 Dec 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/end-to-end-tests/</guid>
+      <description>This page describes how to run End-to-End (E2E) testing and to build tests for a section or page of the Mattermost web application. Under the hood, we are using Cypress which is &amp;ldquo;fast, easy and reliable testing for anything that runs in a browser.&amp;rdquo;
+Not familiar with Cypress? Here is some documentation that will help you get started:
+ Developer Guide API Reference  Quick Overview on How to Run E2E Testing On Your Local Development Machine  Launch a local Mattermost instance by running make run in the mattermost-server directory.</description>
+    </item>
+    
+    <item>
+      <title>Selectors</title>
+      <link>https://developers.mattermost.com/contribute/webapp/redux/selectors/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/redux/selectors/</guid>
+      <description>Selectors are functions used to compute data from the data in the Redux stores. This is done using Reselect, a library designed to do this efficiently by memoizing any results so that they are only recalculated if relevant parts of the store change. The code for this is in the src/selectors folder of the Mattermost Redux repository.
+For more information about reselect and how we use it at Mattermost, check out this developer talk given by core developer Harrison Healey.</description>
+    </item>
+    
+    <item>
+      <title>Environment Variables</title>
+      <link>https://developers.mattermost.com/contribute/mobile/e2e/environment-vars/</link>
+      <pubDate>Tue, 06 Oct 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/e2e/environment-vars/</guid>
+      <description>We use several environment variables for Detox testing in order to:
+ Easily change when running in CI. Cater to different values across developer machines.  Test configurations are defined at test_config.js and environment variables are used to override default values. In most cases you don&amp;rsquo;t need to change the values, because it makes use of the default local developer setup. If you do need to make changes, you may override by exporting, e.</description>
+    </item>
+    
+    <item>
+      <title>Using make i18n-extract</title>
+      <link>https://developers.mattermost.com/contribute/webapp/using-i18n-extract/</link>
+      <pubDate>Mon, 20 Apr 2020 08:31:17 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/using-i18n-extract/</guid>
+      <description>make i18n-extract is a command used for localization. It allows you to validate that your strings have been successfully extracted from your source code before you continue.
+This page demonstrates how to review your results and to verify if your extraction was successful or not. If the extraction was not successful this page also provides a workaround to correct for this.
+NOTE: These steps apply for the mattermost-webapp repository only.</description>
+    </item>
+    
+    <item>
+      <title>Using Redux with React</title>
+      <link>https://developers.mattermost.com/contribute/webapp/redux/react-redux/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/redux/react-redux/</guid>
+      <description>Using Redux with React is fairly straightforward thanks to the React Redux library. It provides the connect function to create higher order components that have access to the Redux store to set their props.
+A typical Redux-connected component will be in its own folder with two files: index.jsx containing the code to connect to the Redux store and the file where the component is actually implemented. This helps to keep the Redux logic separate from the rendering for the component which keeps it more easily readable and makes it easier to test since it can be done without the whole Redux store.</description>
+    </item>
+    
+    <item>
+      <title>Migrating to Typescript</title>
+      <link>https://developers.mattermost.com/contribute/webapp/migrating-to-typescript/</link>
+      <pubDate>Sat, 11 Jul 2020 23:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/migrating-to-typescript/</guid>
+      <description>The Mattermost team wants to proactively improve the quality, security, and stability of the code, and one way to do this is by introducing the usage of type checking. Thus, we have decided to introduce Typescript in our codebase as it&amp;rsquo;s a mature and feature-rich approach.
+As a first step, we have migrated the mattermost-redux library to use Typescript, and are now in the process of migrating the webapp to use Typescript.</description>
+    </item>
+    
+    <item>
+      <title>Tooling</title>
+      <link>https://developers.mattermost.com/contribute/server/tooling/</link>
+      <pubDate>Wed, 22 Apr 2020 17:52:04 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/tooling/</guid>
+      <description>Mattermost Server In the mattermost-server repository we are using Docker images and Docker Compose to set up the development enviroment. The following are required images:
+ MySQL PostgreSQL MinIO Inbucket OpenLDAP Elasticsearch  We also have added optional tools to help with your development:
+Dejavu Dejavu is a user interface for Elasticsearch when no UI is provided to visualize or modify the data you&amp;rsquo;re storing inside Elasticsearch.
+To use Dejavu, execute docker-compose up -d dejavu.</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes Maintenance</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/kubernetes/kubernetes-troubleshooting/</link>
+      <pubDate>Wed, 07 Nov 2018 15:24:42 +0100</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/kubernetes/kubernetes-troubleshooting/</guid>
+      <description>This page helps developers access and perform any type of maintenance in the Production Mattermost Kubernetes Cluster, which is running on AWS using EKS.
+Set up a local environment to access Kubernetes (K8s)   Make sure you have kubectl version 1.10 or later installed. If not, follow these instructions.
+  Use your OneLogin account to retrieve AWS Keys for the main Mattermost AWS account following these instructions to install onelogin-aws command line application.</description>
+    </item>
+    
+    <item>
+      <title>Server Reference</title>
+      <link>https://developers.mattermost.com/extend/plugins/server/reference/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/server/reference/</guid>
+      <description>This is the documentation for the Go github.com/mattermost/mattermost-server/plugin package. It can also be found on GoDoc.  Run make plugin-data to generate this documentation. </description>
+    </item>
+    
+    <item>
+      <title>Web App Reference</title>
+      <link>https://developers.mattermost.com/extend/plugins/webapp/reference/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/webapp/reference/</guid>
+      <description>PluginClass The PluginClass interface defines two methods used by the Mattermost web app to initialize and uninitialize your plugin:
+class PluginClass { /** * initialize is called by the webapp when the plugin is first loaded. * Receives the following: * - registry - an instance of the registry tied to your plugin id * - store - the Redux store of the web app. */ initialize(registry, store) /** * uninitialize is called by the webapp if your plugin is uninstalled */ uninitialize() } Your plugin should implement this class and register it using the global registerPlugin method defined on the window by the webapp:</description>
+    </item>
+    
+    <item>
+      <title>New Staff Guide</title>
+      <link>https://developers.mattermost.com/internal/onboarding/new-staff-guide/</link>
+      <pubDate>Tue, 07 Nov 2017 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/onboarding/new-staff-guide/</guid>
+      <description>Helpful links  https://docs.mattermost.com/developer/developer-flow.html Jira bug ticket process Feature flag process RN build process if you are joining the Mobile team Glance through the release processes:  https://docs.mattermost.com/process/feature-release.html https://docs.mattermost.com/process/bug-fix-release.html   Security: Read through the security channel/issues spreadsheet and look at past exploits Developer Reading List: Located in the header of the public Developer channel  Mentor For The Day  Meet with a dev team member every day for about 30 mins.</description>
+    </item>
+    
+    <item>
+      <title>Redux Actions</title>
+      <link>https://developers.mattermost.com/extend/plugins/webapp/actions/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/webapp/actions/</guid>
+      <description>When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in mattermost-redux, our library of shared code between Mattermost JavaScript clients.
+Here we&amp;rsquo;ll show how to use Redux actions with a plugin. To learn more about these actions, see the contributor documentation.
+Prerequisites This guide assumes you have already set up your plugin development environment for web app plugins to match mattermost-plugin-starter-template.</description>
+    </item>
+    
+    <item>
+      <title>Community Grafana</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/grafana/</link>
+      <pubDate>Tue, 31 Mar 2020 20:52:46 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/grafana/</guid>
+      <description>Community Grafana The Grafana application is used to visualise the performance metrics of the community installations. The application runs in the Mattermost Cloud infrastructure in the same cluster that community installations are hosted.
+Grafana URL: https://grafana.mattermost.com
+How to create and use the variable that enables selection between installations To get the different versions of installations in a simple variable, a variable of type query needs to be created with a query value of label_values(v1alpha1_mattermost_com_installation).</description>
+    </item>
+    
+    <item>
+      <title>Mattermost tick-tock Branching Strategy</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/branching/</link>
+      <pubDate>Tue, 18 Jun 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/branching/</guid>
+      <description>Mattermost previously adopted a tick-tock release strategy where every other release was a &amp;ldquo;quality release&amp;rdquo; that only had bug fixes and no new features.
+The following diagram provides an overview of the branching strategy that was used to accomplish this. As an example, release-5.4 is a feature release and release-5.5 is a quality release. Note the &amp;ldquo;quality release&amp;rdquo; branch is based on the previous release branch.
+Cherry Pick Process - Developer When your PR is required on a release branch, you will follow the cherry picking process.</description>
+    </item>
+    
+    <item>
+      <title>VPN(CLOUD)</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/vpn-cloud/</link>
+      <pubDate>Tue, 05 Jun 2018 16:08:19 +0200</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/vpn-cloud/</guid>
+      <description>Table of contents
+ Setup VPN access on Pritunl  Viscosity client Pritunl client   Older Setup of VPN access on OpenVPN  Setup VPN access on Pritunl Viscosity client  Install a VPN client that supports DNS settings such as Visocity.  brew cask install viscosity  Go to the VPN server and select Sign in with OneLogin. Then connect with your OneLogin username and password and when prompt put the OTP (One Time Password).</description>
+    </item>
+    
+    <item>
+      <title>Manifest Reference</title>
+      <link>https://developers.mattermost.com/extend/plugins/manifest-reference/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/manifest-reference/</guid>
+      <description> Run make plugin-data to generate this documentation. </description>
+    </item>
+    
+    <item>
+      <title>Offboarding</title>
+      <link>https://developers.mattermost.com/internal/offboarding/</link>
+      <pubDate>Mon, 19 Mar 2018 14:59:29 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/offboarding/</guid>
+      <description>When an employee leaves the company, any credentials they had should be revoked. The more things they had access to, the harder this is, so when onboarding, it&amp;rsquo;s important to give them only the necessary privileges. It&amp;rsquo;s also important to avoid shared secrets that cannot be revoked from one person.
+The following is a list of things to do. It should be kept as complete and up-to-date as possible, but treated as non-comprehensive when offboarding someone.</description>
+    </item>
+    
+    <item>
+      <title>Manager Guide</title>
+      <link>https://developers.mattermost.com/internal/onboarding/manager-guide/</link>
+      <pubDate>Tue, 07 Nov 2017 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/onboarding/manager-guide/</guid>
+      <description>Mentor For The Day  Schedule a 1-1 each day between new staff and team members (including QA and PM) and other devs who would be relevant to meet with for the first two weeks  These meetings should be about 30 minutes and do not need to be focused on work topics. They should spend some time getting to know each other The first 1-1 should be between you and the new staff member   In addition to the above 1-1s, you should meet personally with the new staff member for 5-10 minutes every day for the first week or so to make sure everything is going well  Channels and Teams  Make sure new staff is added to the private team Private Core and all relevant channels See here for basic list of channels  Meetings and Accounts  Add new staff member to all appropriate meetings  OneLogin Account Set-up  Login to OneLogin and go to https://mattermost.</description>
+    </item>
+    
+    <item>
+      <title>Slash Commands</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/slash-commands/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/slash-commands/</guid>
+      <description>There are a couple of slash-commands available on GitHub which are implemented via Mattermod. They only work on PRs.
+The commands are:
+ /cherry-pick $BRANCH_NAME, e.g. /cherry-pick release-5.10: Opens a PR to cherry pick a change into the branch $BRANCH_NAME. This command only works for the submitter of the PR and members of the Mattermost organization. /check-cla: Checks if the PR contributor has signed the CLA. /autoassign: Automatically assigns reviewers to a PR.</description>
+    </item>
+    
+    <item>
+      <title>Release Tagging Process</title>
+      <link>https://developers.mattermost.com/internal/release-tagging-process/</link>
+      <pubDate>Thu, 23 May 2019 16:02:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/release-tagging-process/</guid>
+      <description>Head to the Github releases page. Copy the description of the previous release to your clipboard then click on the Draft a new release button. On the new release page:  Paste the copied description into the description text area. Set the tag version to vX.Y.Z where X.Y.Z is the release version (i.e., v1.19.0 or v1.19.1). Click on the Target:master button and select the appropriate release branch (i.e., release-1.19 for v1.</description>
+    </item>
+    
+    <item>
+      <title>Example Plugins</title>
+      <link>https://developers.mattermost.com/extend/plugins/example-plugins/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/example-plugins/</guid>
+      <description>Server &amp;ldquo;Hello, world!&amp;rdquo; To get started extending server-side functionality with plugins, take a look at our server &amp;ldquo;Hello, world!&amp;rdquo; tutorial.
+Web App &amp;ldquo;Hello, world!&amp;rdquo; To get started extending browser-side functionality with plugins, take a look at our web app &amp;ldquo;Hello, world!&amp;rdquo; tutorial.
+Demo Plugin To see a demonstration of all server-side hooks and webapp components, take a look at our demo plugin.
+Sample Plugin To see a stripped down version of the demo plugin with just the build scripts and templates to get started, take a look at our plugin starter template.</description>
+    </item>
+    
+    <item>
+      <title>Adding a Plugin to Community</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/plugins/</link>
+      <pubDate>Mon, 06 Nov 2017 19:30:07 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/plugins/</guid>
+      <description>To add a plugin to https://community.mattermost.com, you need to do the following:
+ Add the configuration for your plugin and enable it by modifying PluginSettings and PluginState here: https://github.com/mattermost/platform-private/blob/master/kubernetes/community-kubernetes/configmap-config.yaml   community-daily is using the configuration in the Database, so to configure the plugin you need first deploy the plugin and then access the system console and configure the plugin and enable it.  Add a line for your plugin here so it gets downloaded https://github.</description>
+    </item>
+    
+    <item>
+      <title>AWS</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/aws/</link>
+      <pubDate>Mon, 06 Nov 2017 19:30:07 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/aws/</guid>
+      <description>Most of our infrastructure is hosted in AWS.
+Accessing AWS You can sign into the web console for the master AWS account at this URL:
+https://mattermost.signin.aws.amazon.com/console
+After signing into the master account, you can access other accounts within the organization through role switching. This can be done from the dropdown on the right side of the console&amp;rsquo;s menu bar, or you can use this link to switch to the developer account:</description>
+    </item>
+    
+    <item>
+      <title>OneLogin and AWS</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/onelogin-aws/</link>
+      <pubDate>Wed, 07 Nov 2018 16:10:15 +0100</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/onelogin-aws/</guid>
+      <description>Please refer to https://docs.google.com/document/d/1S4i1XFGn7a1VXbtFV28GtbAe56m7fOHDZDgRmm5FBkg/edit#heading=h.ortqmqq1zjyx for the latest instructions to generate AWS credentials for development environments.</description>
+    </item>
+    
+    <item>
+      <title>Engineering Guilds</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/guilds/</link>
+      <pubDate>Mon, 25 Jan 2021 16:50:35 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/guilds/</guid>
+      <description>Our Engineering Guilds are a forum for sharing knowledge, discussing and agreeing on plans, and disseminating information related to a particular subject or technical topic. Many (although not all) Engineering Guilds are affiliated to a particular &amp;ldquo;platform&amp;rdquo; that forms a part of Mattermost, and are therefore associated with a particular Platform Team. However, the participants in each Guild span many engineering teams at Mattermost in order to get people together to share knowledge and disseminate decisions across the Engineering organization.</description>
+    </item>
+    
+    <item>
+      <title>Migrating Plugins</title>
+      <link>https://developers.mattermost.com/extend/plugins/migration/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/migration/</guid>
+      <description>Migrating Plugins from Mattermost 5.5 and earlier The plugin package exposed by Mattermost 5.6 and later drops support for automatically unmarshalling a plugin&amp;rsquo;s configuration onto the struct embedding MattermostPlugin. As server plugins are inherently concurrent (hooks being called asynchronously) and the plugin configuration can change at any time, access to the configuration must be synchronized.
+Plugins compiled against 5.5 and earlier will continue to work without modification, automatically unmarshalling a plugin&amp;rsquo;s configuration but with the existing risk of a corrupted read or write.</description>
+    </item>
+    
+    <item>
+      <title>Process to Include Plugin on Community</title>
+      <link>https://developers.mattermost.com/extend/plugins/community_process/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/community_process/</guid>
+      <description>Getting your plugin onto our Community server https://community.mattermost.com is a valuable source of feedback. Whether you are a Core Committer or anyone from the community, we want you to get feedback to improve your plugin.
+However we must ensure that our Community server remains stable for everyone. This document outlines the process of getting your plugin onto the Community server and some of these steps are required to get your plugin into the Plugin Marketplace.</description>
+    </item>
+    
+    <item>
+      <title>Build</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/build/</link>
+      <pubDate>Mon, 20 Nov 2017 20:52:46 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/build/</guid>
+      <description>Jenkins build.mattermost.com Most of our automated builds currently take place on Jenkins at build.mattermost.com.
+Updating Go Builds on this Jenkins installation use a globally installed Golang distribution. To update it, you&amp;rsquo;ll need to access the master instance and all of its slaves. Make sure the machine isn&amp;rsquo;t in use, then run the following (replacing &amp;ldquo;1.9.2 &amp;rdquo; with the desired Go version):
+wget https://storage.googleapis.com/golang/go1.9.2 .linux-amd64.tar.gz sudo su rm -r /usr/local/go/ tar -C /usr/local -xzf go1.</description>
+    </item>
+    
+    <item>
+      <title>High Availability</title>
+      <link>https://developers.mattermost.com/extend/plugins/server/ha/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/server/ha/</guid>
+      <description>Mattermost Enterprise Edition servers with an E20 license have the ability to run in High Availability (HA) mode, meaning a cluster of Mattermost app servers running together as a single Mattermost deployment.
+It is important that all plugins consider HA environments when being built.
+Plugins are started as subprocesses of the main Mattermost process on each app server. This means a Mattermost deployment that has three app servers will have three separate copies of the same plugin running.</description>
+    </item>
+    
+    <item>
+      <title>Community Plugins in the Marketplace</title>
+      <link>https://developers.mattermost.com/extend/plugins/community-plugin-marketplace/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/community-plugin-marketplace/</guid>
+      <description>Once your plugin has reached a certain level of quality, you might consider submitting it to the Plugin Marketplace. The Plugin Marketplace is a platform that supports discovery, installation and updates of plugins directly within Mattermost. It&amp;rsquo;s a great way to get feedback on your plugin and help make it more popular. Once your plugin is accepted to the Marketplace, Mattermost will also send you swag!
+Requirements for Adding A Community Plugin to the Marketplace Every community plugin must fulfill the following checklist to be added to the Marketplace:</description>
+    </item>
+    
+    <item>
+      <title>Best Practices</title>
+      <link>https://developers.mattermost.com/extend/plugins/best-practices/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/best-practices/</guid>
+      <description>See here for server-specific best practices for plugins. Webapp-specific best practices are incoming.
+How can a plugin enable its configuration through the System Console? Once a plugin is installed, Administrators have access to the plugin&amp;rsquo;s configuration page in the System Console &amp;gt; Plugins section. The configurable settings must first be defined in the plugin&amp;rsquo;s manifest setting schema. The web app supports several basic pre-defined settings type, e.g. bool and dropdown, for which the corresponding UI components are provided in order to complete configuration in the System Console.</description>
+    </item>
+    
+    <item>
+      <title>Source Available License</title>
+      <link>https://developers.mattermost.com/extend/plugins/source-available-license/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/source-available-license/</guid>
+      <description>Some plugins authored by Mattermost are licensed under the Mattermost Source Available License. This document outlines how to apply the license in various situations.
+How do I apply the license to an Enterprise-only plugin? An Enterprise-only plugin is a plugin that requires a valid Mattermost Enterprise E20 license. It is not designed to be used with Team Edition or any other Enterprise license.
+ Add the LICENSE file to the root of your plugin repository.</description>
+    </item>
+    
+    <item>
+      <title>Plugin Helpers</title>
+      <link>https://developers.mattermost.com/extend/plugins/helpers/</link>
+      <pubDate>Mon, 30 Sep 2019 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/helpers/</guid>
+      <description>The plugin architecture consists of an API, hooks, and plugin helpers.
+When a plugin invokes an API method, it makes an RPC call to the Mattermost server and waits for a response. When the Mattermost server invokes a hook method, it makes an RPC call to the plugin and waits for a response:
+// OnActivate is a hook called by the server when the plugin is started. func (p *Plugin) OnActivate() error { // CreatePost is an API called by the plugin to create a post.</description>
+    </item>
+    
+    <item>
+      <title>Release Cutting Process</title>
+      <link>https://developers.mattermost.com/internal/release-process/</link>
+      <pubDate>Tue, 07 Nov 2017 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/release-process/</guid>
+      <description>Note: To cut a build you need access to matterbuild. Please ask Christopher/Jason/Elisabeth for access if you don&amp;rsquo;t have it.
+Developers and PMs decide when to create the release branch. The branch can be created from master or from an existing release branch, depending on which type of release we are planning. If it is a Quality Release, the new branch should be branched off the previous release, otherwise the branch should be off the master branch.</description>
+    </item>
+    
+    <item>
+      <title>Guidelines for New Infrastructure</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/guidelines/</link>
+      <pubDate>Mon, 06 Nov 2017 19:30:07 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/guidelines/</guid>
+      <description>All new infrastructure should meet these requirements. Authentication should be centralized. OneLogin, LDAP, IAM Groups, GitHub, or even Mattermost should define the level of access granted to a person. We want to minimize the number of steps required to onboard or offboard new team members and don&amp;rsquo;t want to have to grant or revoke access service-by-service.
+For example, new machines in AWS should be created without a keypair and use Vault+OneLogin to control SSH access.</description>
+    </item>
+    
+    <item>
+      <title>Plugin Release Process</title>
+      <link>https://developers.mattermost.com/internal/plugin-release-process/</link>
+      <pubDate>Tue, 07 Nov 2017 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/plugin-release-process/</guid>
+      <description>This page has been moved to the Handbook.</description>
+    </item>
+    
+    <item>
+      <title>Tips and Best Practices</title>
+      <link>https://developers.mattermost.com/internal/tips-and-best-practices/</link>
+      <pubDate>Tue, 07 Nov 2017 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/tips-and-best-practices/</guid>
+      <description>Engaging with Community Mattermost takes pride in working with the community and we encourage each Mattermost developer to find one or more community members to work with. Here is a basic three-step process for engaging with the community:
+ Welcoming - Be welcoming and warm to new members. Go out of your way to say hello, offer them help and overall make them feel like part of the Mattermost tribe. Shepherding - Find pull requests members are struggling with.</description>
+    </item>
+    
+    <item>
+      <title>Writing a Blog Post</title>
+      <link>https://developers.mattermost.com/internal/writing-a-blog-post/</link>
+      <pubDate>Wed, 06 Feb 2019 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/writing-a-blog-post/</guid>
+      <description>Been to a conference recently? Worked on something cool? Got something else Mattermost-related you want to post about? Writing a blog post is a great way to share your experience with the community.
+Blog posts can cover a wide range of topics, such as:
+ Addressing a customer-facing problem Describing an experience with Mattermost/your Mattermost implementation Sharing information about cool tech Sharing feedback on an interesting talk or conference Part of a Hackathon project A Help Wanted ticket A knowledge-share and call for feedback/community engagement A discussion of a specific problem or improvement that you worked on A breakdown of a new process or technology you’re using  Once you&amp;rsquo;ve got the topic in mind - what it&amp;rsquo;s about, what you want to achieve with the post, and what the next steps are - it’s sometimes helpful to start writing the conclusion and expand to your jumping off point to introduce your topic/idea/discovery draws.</description>
+    </item>
+    
+    <item>
+      <title>R&amp;D Teams</title>
+      <link>https://developers.mattermost.com/internal/rd-teams/</link>
+      <pubDate>Wed, 06 Feb 2019 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/rd-teams/</guid>
+      <description>This page has moved to the Mattermost Handbook.</description>
+    </item>
+    
+    <item>
+      <title>Sustained Engineering Team</title>
+      <link>https://developers.mattermost.com/internal/sustained-engineering/</link>
+      <pubDate>Wed, 06 Feb 2019 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/sustained-engineering/</guid>
+      <description>The Sustained Engineering Team (SET) is responsible for improving and maintaining quality.
+Team Members SET is a rotating team that is comprised of engineers from the different feature teams. The rotation is on a two week cycle. Who is currently on SET can be seen in the header of the ~Sustained Engineering channel.
+Feature teams will commit a total of 4 engineers plus a lead to SET for each rotation. While on SET, that engineer should attend their feature team&amp;rsquo;s sprint planning but should not be assigned any work from their feature team.</description>
+    </item>
+    
+    <item>
+      <title>GitLab Omnibus</title>
+      <link>https://developers.mattermost.com/internal/gitlab-omnibus/</link>
+      <pubDate>Fri, 12 Mar 2021 14:59:29 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/gitlab-omnibus/</guid>
+      <description>GitLab&amp;rsquo;s Omnibus package bundles Mattermost Team Edition (TE) as an optional feature that can be enabled during installation. While GitLab maintains most of this integration, we send them new versions of Mattermost and occasionally assist with support on issues that relate to Mattermost.
+For every monthly GitLab release, we submit a merge request (MR) to GitLab&amp;rsquo;s repository to update the embedded version of Mattermost. GitLab releases in the middle of the month, so we&amp;rsquo;ll generally submit the newest version of Mattermost to them at the start of the month to give time for the review process to happen.</description>
+    </item>
+    
+    <item>
+      <title>Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</title>
+      <link>https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/</link>
+      <pubDate>Tue, 01 Jun 2021 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/</guid>
+      <description>Case study of migrating Mattermost installations to the new Custom Resource.</description>
+    </item>
+    
+    <item>
+      <title>Fixing a bug in the Go compiler as a newbie: a deep dive (III)</title>
+      <link>https://developers.mattermost.com/blog/optimizing-go-compiler-3/</link>
+      <pubDate>Fri, 23 Apr 2021 12:02:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/optimizing-go-compiler-3/</guid>
+      <description>Finally, the last part of the series! We&amp;rsquo;ve learned how the compiler uses Static Single Assignment and the rewrite rules to write and optimize intermediate code, and we&amp;rsquo;ve dissected each and every line of the SSA generated by the compiler in the buggy function. Now it&amp;rsquo;s time to use all that knowledge to apply a fix, which will come in the form of the most simple rewrite rule.</description>
+    </item>
+    
+    <item>
+      <title>Fixing a bug in the Go compiler as a newbie: a deep dive (II)</title>
+      <link>https://developers.mattermost.com/blog/optimizing-go-compiler-2/</link>
+      <pubDate>Fri, 23 Apr 2021 12:01:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/optimizing-go-compiler-2/</guid>
+      <description>The second part of this series of posts details the issue we are trying to fix. We are using one of the tools we learned in the first part, Static Single Assignment, to understand each and every line of the intermediate code generated by the compiler. We will even learn a tiny bit of assembly in the way.</description>
+    </item>
+    
+    <item>
+      <title>Fixing a bug in the Go compiler as a newbie: a deep dive (I)</title>
+      <link>https://developers.mattermost.com/blog/optimizing-go-compiler-1/</link>
+      <pubDate>Fri, 23 Apr 2021 12:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/optimizing-go-compiler-1/</guid>
+      <description>Contributing to the Go compiler is within everyone&amp;rsquo;s reach. The first part of this series of posts defines the issue we are going to investigate, and introduces the parts of the Go compiler involved in its fix. We will learn about Static Single Assignment, rewrite rules and some specific incantations to hack on the Go compiler.</description>
+    </item>
+    
+    <item>
+      <title>Automating Nodes Rotation Using Gitlab Pipelines</title>
+      <link>https://developers.mattermost.com/blog/automating-nodes-rotation/</link>
+      <pubDate>Mon, 19 Apr 2021 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/automating-nodes-rotation/</guid>
+      <description>Overview In the daily life of a Site Reliability Engineer the main goal is to reduce all the work we call toil. But what is toil? Toil is the kind of work tied to running a production service that tends to be manual, repetitive, automatable, tactical, devoid of enduring value, and that scales linearly as a service grows. This blog post describes our journey to automate our nodes rotation process when we have a new AMI release, and the open source tools we built on this.</description>
+    </item>
+    
+    <item>
+      <title>Storybook</title>
+      <link>https://developers.mattermost.com/contribute/mobile/storybook/</link>
+      <pubDate>Thu, 25 Feb 2021 11:17:44 +0530</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/storybook/</guid>
+      <description>Storybook has been added to the mobile repository to help prototype components. To use Storybook:
+ In the root of the repository, run npm run storybook. This step automatically scans and loads all stories, then opens a new browser tab with the Storybook interface.  Note: When using a real device, you may need to configure the Storybook Host URL by updating the .env file in the root of the repository.</description>
+    </item>
+    
+    <item>
+      <title>Streamlining Developer Access to Prometheus and Grafana</title>
+      <link>https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/</link>
+      <pubDate>Tue, 02 Feb 2021 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/</guid>
+      <description>With access to the Enterprise source code, the developer build tooling now automates the setup of Prometheus and Grafana for performance monitoring. Even the canonical Grafana dashboards are setup without any manual configuration required!</description>
+    </item>
+    
+    <item>
+      <title>Avoiding Common Internationalization Mistakes</title>
+      <link>https://developers.mattermost.com/blog/common-i18n-mistakes/</link>
+      <pubDate>Fri, 04 Dec 2020 12:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/common-i18n-mistakes/</guid>
+      <description>Languages are complicated, and every language is complicated in different ways that can be hard to understand without learning every single one of them. Some languages form words from multiple characters while others have symbols that represent entire concepts. Some feature words without pluralization or gender and rely on context for that while others have two or even more genders for words. Some are very phonetic while others pronounce words seemingly at random (cough English, though cough).</description>
+    </item>
+    
+    <item>
+      <title>Tuning MySQL and the Ghost of Index Merge Intersection</title>
+      <link>https://developers.mattermost.com/blog/mysql-index-merge/</link>
+      <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/mysql-index-merge/</guid>
+      <description>Optimizing SQL queries is always fun, except when it isn&amp;rsquo;t. If you&amp;rsquo;re a MySQL veteran and have read the title, you already know where this is heading 😉. In that case, allow me to regale the uninitiated reader.
+This is the story of an (apparently) smart optimization to a SQL query that backfired spectacularly and how we finally fixed it.
+Act I: A slow query It started off with a customer noticing that a SQL query was running slowly in their environment.</description>
+    </item>
+    
+    <item>
+      <title>Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</title>
+      <link>https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/</link>
+      <pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/</guid>
+      <description>At the start of implementing Docker Content Trust in our workflow, I thought it shouldn&amp;rsquo;t take so long. I thought and of course I was wrong. The following is the boiled down version of what I learned and wished for starting out.
+Prerequisites  Docker version: 19.03.12 root *.key + passphrase for the Docker Content Trust delegation/signer private key *.key + public key *.pub + passphrase for the delegated person/bot, who should sign the repository/image:tag Please make sure you have your keys backed up and versioned.</description>
+    </item>
+    
+    <item>
+      <title>Improving performance (and more) through load testing</title>
+      <link>https://developers.mattermost.com/blog/improving-performance-through-load-testing/</link>
+      <pubDate>Mon, 07 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/improving-performance-through-load-testing/</guid>
+      <description>Have you ever wondered how many active users your application can handle at the same time? If so, you&amp;rsquo;re not alone. Here at Mattermost we&amp;rsquo;re building a highly concurrent messaging platform for team collaboration that needs to potentially serve up to several thousands of users simultaneously.
+While standard functional testing (e.g. unit tests) is critical to verify correct behavior of your application, it&amp;rsquo;s usually not sufficient to guarantee its performance at scale.</description>
+    </item>
+    
+    <item>
+      <title>Automated UI Testing With Cypress</title>
+      <link>https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/</link>
+      <pubDate>Mon, 27 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/</guid>
+      <description>It&amp;rsquo;s been more than a year and a half since we started using Cypress for our automated functional testing and it has been worth the investment. It has now become an essential part of our process to automate regression testing to ship new releases faster, with increased quality.
+It’s fun and easy to get started with Cypress but as we added more scripts with the varying requirements, we faced several setbacks and hurdles, such as flaky tests, which slow down our efforts in automating test cases.</description>
+    </item>
+    
+    <item>
+      <title>From OpenVPN to Pritunl VPN: The transition</title>
+      <link>https://developers.mattermost.com/blog/pritunl/</link>
+      <pubDate>Thu, 11 Jun 2020 12:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/pritunl/</guid>
+      <description>Usually organizations use an internal network to prevent unauthorized people from connecting to their private network and by using their own network infrastructure/connectivity they can maintain their desirable level of security for their data. But it would be convenient for users to connect to that private network while they are away from the office&amp;rsquo;s building, on their own internet connection. To solve that problem, VPN (Virtual Private Network) is used to allow authorized remote access to an organization&amp;rsquo;s private network.</description>
+    </item>
+    
+    <item>
+      <title>OpenTracing for Go Projects</title>
+      <link>https://developers.mattermost.com/blog/open-tracing/</link>
+      <pubDate>Wed, 10 Jun 2020 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/open-tracing/</guid>
+      <description>What is distributed tracing? Large-scale cloud applications are usually built using interconnected services that can be rather hard to troubleshoot. When a service is scaled, simple logging doesn&amp;rsquo;t cut it anymore and a more in-depth view into system&amp;rsquo;s flow is required. That&amp;rsquo;s where distributed tracing comes into play; it allows developers and SREs to get a detailed view of a request as it travels through the system of services. With distributed tracing you can:</description>
+    </item>
+    
+    <item>
+      <title>Getting Hands-on with io_uring using Go</title>
+      <link>https://developers.mattermost.com/blog/hands-on-iouring-go/</link>
+      <pubDate>Wed, 20 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/hands-on-iouring-go/</guid>
+      <description>In Linux, system calls (syscalls) are at the heart of everything. They are the primary interface through which an application interacts with the kernel. Therefore, it is vital that they are fast. And especially in a post-Spectre/Meltdown world, this is all the more important.
+A major chunk of the syscalls deal with I/O, because that&amp;rsquo;s what most applications do. For network I/O, we&amp;rsquo;ve had the epoll family of syscalls which have provided us with reasonably fast performance.</description>
+    </item>
+    
+    <item>
+      <title>Advanced Git with the Free University of Tbilisi</title>
+      <link>https://developers.mattermost.com/blog/advanced-git-tbilisi-free-university/</link>
+      <pubDate>Fri, 27 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/advanced-git-tbilisi-free-university/</guid>
+      <description>On Monday, March 16, 2020, I had the privilege to (virtually) join Shota Gvinepadze and his students at the Free University of Tbilisi and speak about &amp;ldquo;Advanced Git @ Mattermost&amp;rdquo; for a portion of their class time.
+The following are my speaking notes from the session, slightly modified from the original slides for this format. Keep in mind that the command line examples are illustrative of my workflow, and not meant to be run in isolation.</description>
+    </item>
+    
+    <item>
+      <title>All About Emojis</title>
+      <link>https://developers.mattermost.com/blog/all-about-emojis/</link>
+      <pubDate>Thu, 26 Mar 2020 12:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/all-about-emojis/</guid>
+      <description>In person, you can easily tell someone&amp;rsquo;s mood based on their body language and how they speak, but that&amp;rsquo;s much more difficult with text alone. Emojis are a great way to add tone to a piece of text and also help make text-based conversation feel more casual, relaxed, and fun. Thanks to emojis, we can chat with much more real emotion than you might get by being careful about your word choice or by including just the right number of exclamation marks and periods at the end of a sentence.</description>
+    </item>
+    
+    <item>
+      <title>Maintaining Consistency in Codebases with Go vet</title>
+      <link>https://developers.mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/</link>
+      <pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/</guid>
+      <description>Maintaining success in a large open-source project is one of the key objectives of Mattermost. We have hundreds of contributors and we want to create a project that could serve as a model in the Go community. Having said that, following idiomatic Go principles is the thing that we care most about while maintaining our code consistency. For this specific task, we utilized go vet and with this blog post, I would like to explain how we pushed the limits of this tool by extending it.</description>
+    </item>
+    
+    <item>
+      <title>Instrumenting Go code via AST, Part 2</title>
+      <link>https://developers.mattermost.com/blog/instrumenting-go-code-via-ast-2/</link>
+      <pubDate>Sun, 15 Mar 2020 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/instrumenting-go-code-via-ast-2/</guid>
+      <description>Welcome! This is the second part of our AST blog post series, expanding on the subject of utilizing Go AST libraries to automate and improve your workflow.
+In this post I&amp;rsquo;ll discuss a rather common problem that comes up while working with Go code and the way we&amp;rsquo;ve solved it by sprinkling a little bit of AST magic dust. Let&amp;rsquo;s dive in.
+Problem: A struct with no interface Let&amp;rsquo;s say you are working on a large code base that was not built with interfaces in mind, meaning, there are structs and methods attached to those structs, but there is no interface describing it.</description>
+    </item>
+    
+    <item>
+      <title>Layered Store and Struct Embedding in Go</title>
+      <link>https://developers.mattermost.com/blog/layered-store-and-struct-embedding/</link>
+      <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/layered-store-and-struct-embedding/</guid>
+      <description>One of the most important parts of the Mattermost source code is the one responsible for accessing the Mattermost database - the store. Every single database access is handled by the store, so we needed to find a way to extend its functionality while introducing as little complexity as possible. This is the reason behind the current layered approach using struct embedding.
+Our store is responsible for storing and retrieving data, and sometimes we need to add functionality that is not strictly related to the database queries, for example, cache data or add instrumentation.</description>
+    </item>
+    
+    <item>
+      <title>Incorporating GolangCI-Lint at Mattermost</title>
+      <link>https://developers.mattermost.com/blog/incorporating-golangci-lint/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/incorporating-golangci-lint/</guid>
+      <description>At Mattermost, we have traditionally relied on the trusty go vet and gofmt checks for our CI runs. Although it works well, there are a lot of other powerful linters out there which we&amp;rsquo;re potentially missing out on.
+Speaking of linters, the first name that inevitably comes up is staticcheck. It&amp;rsquo;s a powerful metalinter with a whole slew of checks. But simply running staticcheck is not sufficient, because it misses out on other linters which perform a single task, but nevertheless are very powerful.</description>
+    </item>
+    
+    <item>
+      <title>On Hermes and Mattermost</title>
+      <link>https://developers.mattermost.com/blog/on-hermes-and-mattermost/</link>
+      <pubDate>Fri, 20 Dec 2019 12:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/on-hermes-and-mattermost/</guid>
+      <description>With the upgrade to React Native 61 came the prospect of substantially improving performance of our Android app. How? Through the use of Hermes, Facebook’s new JavaScript engine. To say that we were excited is an understatement. And with that excitement came curiosity: how is this new JavaScript engine achieving performance boosts?
+Let’s first chat a bit about JS engines in general.
+How does your JavaScript code eventually get executed by the CPU on the machine?</description>
+    </item>
+    
+    <item>
+      <title>Onboarding with Mattermost</title>
+      <link>https://developers.mattermost.com/blog/onboarding-with-mattermost/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/onboarding-with-mattermost/</guid>
+      <description>I recently joined Mattermost as a Remote Software Engineer and while I’ve worked in remote environments before, I was really surprised at how amazing this company is to work with. During my onboarding I discovered that they have really developed a culture built around being remote; one that allowed for me to feel as part of a larger team and always engaged, rather than separated from my peers and working alone.</description>
+    </item>
+    
+    <item>
+      <title>KubeCon NA 2019</title>
+      <link>https://developers.mattermost.com/blog/kubecon-na-2019/</link>
+      <pubDate>Wed, 18 Dec 2019 12:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/kubecon-na-2019/</guid>
+      <description>It wasn’t my first time flying. It also wasn’t the first time I had arrived at the airport early enough to require multiple cups of coffee. As I sat at my gate, however, I did find myself wondering for the first time: had I ever heard the words “Lambda,” “stateful set&amp;rdquo;, and “yaml” while waiting to board?
+You see, a bunch of us were coming from all over to attend KubeCon + CloudNativeCon North America 2019.</description>
+    </item>
+    
+    <item>
+      <title>Monitoring a Multi-Cluster Environment Using Prometheus Federation and Grafana</title>
+      <link>https://developers.mattermost.com/blog/cloud-monitoring/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/cloud-monitoring/</guid>
+      <description>Monitoring the state of your clusters is an effective way to discover bottlenecks in your multi-cluster production environment. It is one of the key challenges that development teams are facing and factors such as the team experience as well as the number and distribution of the applications can make things even more complex.
+Better monitoring can help identify single points of failure. Being able to get information about things like the number of applications running on each node or the CPU and memory performance can help to get closer to zero downtime deployments.</description>
+    </item>
+    
+    <item>
+      <title>Localizing Matterpoll</title>
+      <link>https://developers.mattermost.com/blog/localizing-matterpoll/</link>
+      <pubDate>Wed, 11 Dec 2019 10:49:35 +0200</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/localizing-matterpoll/</guid>
+      <description>Matterpoll is a plugin that allows users to create polls in Mattermost. Since Mattermost is localized in 16 different languages, it’s optimal that Matterpoll is similarly localized.
+Because we rely on contributors to do the translations, we want to make it easy for them to translate new strings and determine whether already translated strings need to be updated because the &amp;ldquo;source&amp;rdquo; text changed. On the other hand, Matterpoll only has two maintainers (@kaakaa and me) and no infrastructure of its own to work with.</description>
+    </item>
+    
+    <item>
+      <title>Unit testing mmctl commands</title>
+      <link>https://developers.mattermost.com/blog/unit-testing-mmctl-commands/</link>
+      <pubDate>Thu, 07 Nov 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/unit-testing-mmctl-commands/</guid>
+      <description>Mattermost is starting a new Open Source campaign, this time around increasing the unit test coverage for the mmctl tool.
+The mmctl tool is a CLI application that mimics the commands and features of the current Mattermost CLI tool and uses the Mattermost REST API to communicate with the server. Using the tool, you can control and manage several Mattermost servers without having to access the specific machine on which the server is running.</description>
+    </item>
+    
+    <item>
+      <title>Instrumenting Go code via AST</title>
+      <link>https://developers.mattermost.com/blog/instrumenting-go-code-via-ast/</link>
+      <pubDate>Thu, 31 Oct 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/instrumenting-go-code-via-ast/</guid>
+      <description>We&amp;rsquo;ve been working on integrating call tracing in the server to provide exact measurements of all API and DB calls. We&amp;rsquo;ve picked OpenTracing - a lovely open source project that allows you to setup trace reporting and enables you to support Distributed tracing.
+Instrumenting your API handler in Go is very straightforward - setup a connection to a collection server supporting the OpenTracing spec (we&amp;rsquo;ve decided to use Jaeger) and wrap your code in spans.</description>
+    </item>
+    
+    <item>
+      <title>Debugging Using Charles</title>
+      <link>https://developers.mattermost.com/blog/debugging-using-charles/</link>
+      <pubDate>Mon, 21 Oct 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/debugging-using-charles/</guid>
+      <description>I recently acquired a copy of Charles, the well-known Web Debugging Proxy Application. I&amp;rsquo;ve actually stumbled across this product on multiple occasions, but never bothered to actually try it&amp;hellip; almost exclusively because I thought the website looked a little dated. In trying to suss out the root cause behind MM-19091, I needed a way to debug against our community servers but running with my local copy of the mattermost webapp. This would allow me to insert console.</description>
+    </item>
+    
+    <item>
+      <title>Avoiding Flaky Tests</title>
+      <link>https://developers.mattermost.com/blog/avoiding-flaky-tests/</link>
+      <pubDate>Sun, 29 Sep 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/avoiding-flaky-tests/</guid>
+      <description>&amp;ldquo;Your tests are failing.&amp;rdquo;
+ This comment on a pull request is crushing. After all the effort you&amp;rsquo;ve spent writing your code, adding new unit tests, and rebasing your changes to make each commit almost a work of art: how could your tests possibly be failing?
+Begrudgingly, you sign into your CI server only to realize the failing tests have nothing to do with your code. You think, &amp;ldquo;Hmm, maybe the code is more coupled than I expected.</description>
+    </item>
+    
+    <item>
+      <title>Hermes @ Chain React</title>
+      <link>https://developers.mattermost.com/blog/chain-react-2019-higlights-hermes/</link>
+      <pubDate>Thu, 18 Jul 2019 12:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/chain-react-2019-higlights-hermes/</guid>
+      <description>- Yes, yes... - for real? - Yes I come all the way from Taiwan... and you? - Oh I&#39;m from here.. and what about you - me? hmm I flew 18 hours to get here (me) In short, the above is how the whole thing started. It is really interesting how people from all over the globe attended the event. It was a fun learning experience and even the unexpected was waiting on us.</description>
+    </item>
+    
+    <item>
+      <title>LDAP Nested Groups: Modelling and Representation in Code</title>
+      <link>https://developers.mattermost.com/blog/ldap-nested-groups-modelling-and-representation-in-code/</link>
+      <pubDate>Wed, 05 Jun 2019 12:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/ldap-nested-groups-modelling-and-representation-in-code/</guid>
+      <description>LDAP Group Sync in Mattermost In Mattermost v5.8 we deployed LDAP group sync feature to enable Enterprise Edition customers to create and synchronize groups in Mattermost matching their LDAP groups. The goal was to ease onboarding by automatically adding group members to configured teams and channels.
+With the upcoming Mattermost v5.12 we&amp;rsquo;re adding the ability to create teams and channels that are only accessible to those synced groups. This post describes what LDAP &amp;ldquo;nested groups&amp;rdquo; are and how we ended up modelling and representing them in code.</description>
+    </item>
+    
+    <item>
+      <title>Percona Live 2019 &amp; Database Replication</title>
+      <link>https://developers.mattermost.com/blog/percona-live-2019-database-replication/</link>
+      <pubDate>Tue, 04 Jun 2019 12:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/percona-live-2019-database-replication/</guid>
+      <description>This past week, I was privileged to attend Percona Live 2019, an open-source database conference held this year in Austin, Texas. With the breadth of the sessions I attended being captured on a community.mattermost.com post, I wanted to use this blog post to dive into a recurring topic from the conference: database replication.
+What is replication? Replication is a means by which data on one database server is automatically copied &amp;ndash; or replicated &amp;ndash; to other database servers called replicas.</description>
+    </item>
+    
+    <item>
+      <title>CanSecWest and Encryption in Mattermost</title>
+      <link>https://developers.mattermost.com/blog/cansecwest-2019-encryption/</link>
+      <pubDate>Thu, 25 Apr 2019 12:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/cansecwest-2019-encryption/</guid>
+      <description>This year I had the opportunity to attend the security conference CanSecWest in Vancouver, BC. Like any security conference, it was full of exploits and interesting anecdotes. There were plenty of interesting talks, but this post focuses on a talk by Zhiniang Peng and Minrui Yang on the dangers of homomorphic encryption. This post gives a high level overview and avoids giving too much technical detail.
+What is Homomorphic Encryption? Homomorphic encryption is defined as an encryption scheme which allows computations to be performed on ciphertext that, when decrypted, match the result of the operation as if it was applied to the plain text.</description>
+    </item>
+    
+    <item>
+      <title>Submitting Great PRs</title>
+      <link>https://developers.mattermost.com/blog/submitting-great-prs/</link>
+      <pubDate>Thu, 24 Jan 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/submitting-great-prs/</guid>
+      <description>If you want to submit good pull requests, start with our contribution checklist. Today, that page talks about what to fork, how to style your code, how to write unit tests and where to push your code. Implicit in all of that is the need to write great code, of course!
+But this blog post isn&amp;rsquo;t about writing great code, it&amp;rsquo;s about making your pull request a great experience for you and your reviewers.</description>
+    </item>
+    
+    <item>
+      <title>Go: Idiomatic Error Handling</title>
+      <link>https://developers.mattermost.com/blog/idiomatic-error-handling/</link>
+      <pubDate>Thu, 18 Oct 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/idiomatic-error-handling/</guid>
+      <description>Go is an extremely opinionated programming language. import something in a file that&amp;rsquo;s not used? It won&amp;rsquo;t compile, and there&amp;rsquo;s no flag to override. While there are workarounds, the end result remains the same: Go files are never cluttered by unused imports. This is true for all Go code everywhere, making every Go project more accessible.
+Not all Go opinions are enforced by the compiler. Some are documented in Effective Go, and yet others are reflected only in the coding style of the Go standard library.</description>
+    </item>
+    
+    <item>
+      <title>Plugin System Overhaul</title>
+      <link>https://developers.mattermost.com/blog/plugins-v2/</link>
+      <pubDate>Wed, 18 Jul 2018 15:35:09 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/plugins-v2/</guid>
+      <description>Mattermost 5.2 will include major overhauls to the plugin system. Over the last six months of plugins being in beta, we&amp;rsquo;ve received a lot of great feedback from our community and customers building Mattermost plugins, as well as from our core team. We&amp;rsquo;ve taken this experience and feedback and used it to enhance our plugin system. This brings us a step closer to moving plugins out of beta and into a full stable release.</description>
+    </item>
+    
+    <item>
+      <title>Subpath Support</title>
+      <link>https://developers.mattermost.com/blog/subpath/</link>
+      <pubDate>Mon, 25 Jun 2018 15:35:09 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/subpath/</guid>
+      <description>Mattermost 5.1 will include support for serving Mattermost from subpaths. This allows Mattermost to be exposed at something like https://example.com/company/mattermost, with your proxy server exposing different services at other subpaths. Subpath support is configured via the Site URL.
+Using subpaths in production In production, after configuration and restart, the application server expects all HTTP requests to be anchored to the configured subpath. This includes static assets, API calls, and WebSockets. For convenience, the application server redirects any unexpected requests back into this subpath, e.</description>
+    </item>
+    
+    <item>
+      <title>npm@6</title>
+      <link>https://developers.mattermost.com/blog/npm-v6/</link>
+      <pubDate>Tue, 22 May 2018 10:16:52 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/npm-v6/</guid>
+      <description>Heads up that with PR#1239, we&amp;rsquo;re effectively switching to npm@6.
+Why the change? Previously, doing a fresh npm install would unexpectedly change package-lock.json. Upgrading to npm@6 should resolve this going forward.
+What do I need to do? Make sure you&amp;rsquo;re running npm@6:
+npm install -g npm@6 </description>
+    </item>
+    
+    <item>
+      <title>Code Signing</title>
+      <link>https://developers.mattermost.com/contribute/desktop/code-signing/</link>
+      <pubDate>Tue, 16 Jan 2018 10:32:51 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/desktop/code-signing/</guid>
+      <description>When releasing the Mattermost Desktop application for Windows and macOS, we have to sign the executable with a certificate that allows the end user&amp;rsquo;s computer to verify our identity.
+The signing procedure varies depending on the platform that the release is destined for and the platform that the signing operation is performed on. This page attempts to document the procedure and some common pitfalls that developers may encounter along the way.</description>
+    </item>
+    
+    <item>
+      <title>Platform Repository Splitting</title>
+      <link>https://developers.mattermost.com/blog/repo-split/</link>
+      <pubDate>Mon, 04 Sep 2017 11:09:47 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/repo-split/</guid>
+      <description>A reminder that Mattermost will be separating the /platform repo into two repositories on September 6th, 2017:
+ a new repository for webapp client code, hosted at github.com/mattermost/mattermost-webapp existing repository (/platform) renamed to /mattermost-server, containing the server code.  Why the change? Separates PRs for client and server with better naming conventions. This is similar to React Native and Redux repositories and helps us:
+ work on one part of the system (webapp/server) without worrying about the other.</description>
+    </item>
+    
+    <item>
+      <title>Arch Linux Development Environment Setup</title>
+      <link>https://developers.mattermost.com/contribute/server/developer-setup/arch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/developer-setup/arch/</guid>
+      <description>Install and configure Docker CE:
+sudo pacman -S docker sudo gpasswd -a $USER docker sudo systemctl enable docker.service sudo systemctl start docker.service newgrp docker Note: MM-9791 introduced using docker-compose to manage containers. To preserve your data on upgrade, execute the following steps.
+First, backup from any existing containers:
+mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test &amp;gt; mm_mysql_backup.sql pg_dump -U mmuser -W -d mattermost_test -h 127.0.0.1 &amp;gt; mm_postgres_backup.bak Then after upgrading and starting the new docker-compose managed containers, restore the data:</description>
+    </item>
+    
+    <item>
+      <title>Best Practices</title>
+      <link>https://developers.mattermost.com/extend/plugins/server/best-practices/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/server/best-practices/</guid>
+      <description>How should plugins serve publicly available static files? Add all static files under a file directory named public within the plugin directory, and include the files in the plugin bundle using the Makefile.
+How can plugins make sure http requests are authentic? Plugins can implement the ServeHTTP to listen to http requests. This can e.g. be used to receive post action requests when Interactive Messages Buttons and Menus are triggered by users.</description>
+    </item>
+    
+    <item>
+      <title>Best Practices</title>
+      <link>https://developers.mattermost.com/extend/plugins/webapp/best-practices/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/webapp/best-practices/</guid>
+      <description>Design Best Practices Actions that apply to specific Channels  Recommendation: Have your plugin register the actions to the channel header. This makes it quickly accessible for users and the actions apply on the channel they&amp;rsquo;re viewing. Example: Zoom meeting posts to a channel  You can additionally register a slash command on the server-side to take channel-specific actions.
+ Example: Jira project actions  Actions that apply to specific messages  Recommendation: Have your plugin register a post dropdown menu component with some text, icon and an action function.</description>
+    </item>
+    
+    <item>
+      <title>CentOS Development Environment Setup</title>
+      <link>https://developers.mattermost.com/contribute/server/developer-setup/centos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/developer-setup/centos/</guid>
+      <description>Install and configure Docker CE:
+curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh sudo usermod -aG docker $(whoami) docker login If you prefer to perform these steps manually:
+ https://docs.docker.com/install/linux/docker-ce/centos/ https://docs.docker.com/install/linux/linux-postinstall/  Note: MM-9791 introduced using docker-compose to manage containers. To preserve your data on upgrade, execute the following steps.
+First, backup from any existing containers:
+mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test &amp;gt; mm_mysql_backup.sql pg_dump -U mmuser -W -d mattermost_test -h 127.</description>
+    </item>
+    
+    <item>
+      <title>Debugging Server Plugins</title>
+      <link>https://developers.mattermost.com/extend/plugins/server/debugging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/server/debugging/</guid>
+      <description>Plugins communicate with the main Mattermost server by RPC. In order to debug them with Delve, a few steps are necessary.
+MacOS  After starting the main Mattermost application, run ps aux | grep name.of.your.plugin. This will print a list of running processes that match that name, as such: username 78836 0.0 0.1 4397696 12492 s006 S 7:07AM 0:00.03 plugins/name.of.your.plugin/server/dist/plugin-darwin-amd64. Grab the pid, which is the second number after your username in the output above.</description>
+    </item>
+    
+    <item>
+      <title>Mattermost Developer Setup: Ubuntu</title>
+      <link>https://developers.mattermost.com/contribute/server/developer-setup/ubuntu/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/developer-setup/ubuntu/</guid>
+      <description>Install and configure Docker CE:
+curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh sudo usermod -aG docker $(whoami) docker login If you prefer to perform these steps manually:
+ https://docs.docker.com/install/linux/docker-ce/ubuntu/ https://docs.docker.com/install/linux/linux-postinstall/  Note: MM-9791 introduced using docker-compose to manage containers. To preserve your data on upgrade, execute the following steps.
+First, backup from any existing containers:
+mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test &amp;gt; mm_mysql_backup.sql pg_dump -U mmuser -W -d mattermost_test -h 127.</description>
+    </item>
+    
+    <item>
+      <title>OSX Development Environment Setup</title>
+      <link>https://developers.mattermost.com/contribute/server/developer-setup/osx/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/developer-setup/osx/</guid>
+      <description>Install and configure Docker CE: https://docs.docker.com/docker-for-mac/.
+Note: MM-9791 introduced using docker-compose to manage containers. To preserve your data on upgrade, execute the following steps.
+First, backup from any existing containers:
+mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test &amp;gt; mm_mysql_backup.sql pg_dump -U mmuser -W -d mattermost_test -h 127.0.0.1 &amp;gt; mm_postgres_backup.bak Then after upgrading and starting the new docker-compose managed containers, restore the data:
+mysql -u mmuser -p -h 127.</description>
+    </item>
+    
+    <item>
+      <title>Windows with WSL Development Environment Setup</title>
+      <link>https://developers.mattermost.com/contribute/server/developer-setup/windows-wsl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/developer-setup/windows-wsl/</guid>
+      <description>This is an unofficial guide. Community testing, feedback, and improvements are welcome and greatly appreciated.
+  Install the Windows Subsystem for Linux: https://docs.microsoft.com/en-us/windows/wsl/install-win10.
+Note: Docker for Windows expects path to have the format /c/foo/bar, but WSL uses /mnt/c/foo/bar instead.
+Run winver and check which version of Windows you have. If you are using 1803 or higher, then you need to create a file /etc/wsl.conf with the following content to make sure your drives are mounted at the root rather than inside /mnt:</description>
+    </item>
+    
+  </channel>
+</rss>

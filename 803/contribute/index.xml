@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Contributes on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/contribute/</link>
+    <description>Recent content in Contributes on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 25 Feb 2021 11:17:44 +0530</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/contribute/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

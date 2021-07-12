@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Getting Hands-on with io_uring using Go</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Getting Hands-on with io_uring using Go">
+
+ 
+  <meta name="description" content="In Linux, system calls (syscalls) are at the heart of everything. They are the primary interface through which an application interacts with the kernel.">
+<meta name="twitter:description" content="In Linux, system calls (syscalls) are at the heart of everything. They are the primary interface through which an application interacts with the kernel.">
+<meta name="og:description" content="In Linux, system calls (syscalls) are at the heart of everything. They are the primary interface through which an application interacts with the kernel.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/hands-on-iouring-go/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Getting Hands on with io_uring using Go
+                            
+                            </h1>
+                            <small>In Linux, system calls (syscalls) are at the heart of everything. They are the primary interface through which an application interacts with the kernel.</small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            May 20, 2020
+                            <small class="blog-item__count">3352 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>In Linux, system calls (syscalls) are at the heart of everything. They are the primary interface through which an application interacts with the kernel. Therefore, it is vital that they are fast. And especially in a post-Spectre/Meltdown world, this is all the more important.</p>
+<p>A major chunk of the syscalls deal with I/O, because that&rsquo;s what most applications do. For network I/O, we&rsquo;ve had the <code>epoll</code> family of syscalls which have provided us with reasonably fast performance. But in the filesystem I/O department, things were a bit lacking. We&rsquo;ve had <code>async_io</code> for a while now, but apart from a small niche set of applications, it isn&rsquo;t very beneficial. The major reason being that it only works if the file is opened with the <code>O_DIRECT</code> flag. This will make the kernel bypass any OS caches and try to read/write from/to the device directly. Not a very good way to do I/O when we are trying to make things go fast. And in buffered mode, it would behave synchronously.</p>
+<p>All that is changing slowly, because now we have a brand new interface to perform I/O with the kernel - <code>io_uring</code>. There&rsquo;s a lot of buzz happening around it. And rightly so, because it gives us an entirely new model to interact with the kernel. Let&rsquo;s dive into it and try to understand what it is and how it solves the problem. And then we will construct a small demo application with Go to play with it.</p>
+<h3 id="background">Background&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#background"></i></a> </h3>
+<p>Let&rsquo;s take a step back and think of how usual syscalls work. We make a syscall, our application in user layer calls into the kernel, it makes a copy of the data in kernel space. After kernel is done with the execution, it copies the result back to user-space buffers. And then it returns. All this while, the syscall remains blocked.</p>
+<p><img src="https://developers.mattermost.com/blog/2020-05-20-hands-on-iouring-go/syscall.png" alt="image"></p>
+<p>Right off the bat, we can see a lot of bottlenecks - there&rsquo;s lots of copying going around, and there&rsquo;s blocking. Go handles this problem by bringing another layer between the application and the kernel - the runtime. It uses a virtual entity (commonly referred to as <em>P</em>) which contains a queue of goroutines to run, which is then mapped to OS threads.</p>
+<p>This level of indirection allows it to do some interesting optimizations. Whenever we make a blocking syscall, the runtime is aware of it, and it detaches the thread from the <em>P</em> executing the goroutine, and acquires a new thread to execute other goroutines. This is known as a hand-off. And when the syscall returns, the runtime tries to re-attach it to a <em>P</em>. If it cannot get a free <em>P</em>, it just pushes the goroutine to a queue to be executed later, and stores the thread in a pool. This is how Go gives the appearance of &ldquo;non-blocking&rdquo;-ness when your code enters a system call.</p>
+<p>This is great, but it still does not solve the main problem - which is that copies still happen, and the actual syscall still blocks.</p>
+<p>Let&rsquo;s think of the first problem at hand - copies. How do we prevent copies happening from user-space to kernel-space? Well, obviously we need some sort of shared memory. Ok, that can be done using the <code>mmap</code> system call which can map a chunk of memory that is shared between the user and kernel.</p>
+<p>That takes care of copying, but what about synchronization? Even if we don&rsquo;t copy, we need some way to synchronize data access between us and the kernel. Otherwise we encounter the same problem - because the application would need to make a syscall again to perform the locking.</p>
+<p>If we look at the problem as the user and kernel being two separate components talking with each other - it is essentially a producer-consumer problem. The user creates syscall requests, the kernel accepts them. And once it&rsquo;s done, it signals the user that it&rsquo;s ready, and the user accepts them.</p>
+<p>Fortunately, there&rsquo;s an age-old solution to this problem - ring buffers. A ring buffer allows efficient synchronization between producers and consumers with no locking at all. And as you might have already figured out, we need two ring buffers. A submission queue (SQ), where the user acts as the producer and pushes syscall requests, and the kernel consumes them. And a completion queue (CQ), where the kernel is the producer pushing completion results, and the user consumes them.</p>
+<p>With such a model, we have eliminated any memory copies and locks entirely. All communication from user to kernel can happen very efficiently. And this is essentially the core idea that <code>io_uring</code> implements. Let&rsquo;s briefly dive into its internals and see how it is actually implemented.</p>
+<h3 id="introduction-to-io_uring">Introduction to io_uring&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#introduction-to-io_uring"></i></a> </h3>
+<p>To push a request to the SQ, we need to create a Submission Queue Entry (SQE). Let&rsquo;s assume that we want to read a file. Skimming over a lot of details, an SQE will basically contain:</p>
+<ul>
+<li><strong>Opcode</strong>: An operation code which describes the syscall to be made. Since we are interested in reading a file, we will use the <code>readv</code> system call which maps to the opcode <code>IORING_OP_READV</code>.</li>
+<li><strong>Flags</strong>: These are modifiers which can be passed with any request. We will get to it in a moment.</li>
+<li><strong>Fd</strong>: The file descriptor of the file that we want to read.</li>
+<li><strong>Address</strong>: For our <code>readv</code> call, it creates an array of buffers (or vectors) to read the data into. Therefore, the address field contains the address of that array.</li>
+<li><strong>Length</strong>: The length of our vector array.</li>
+<li><strong>User data</strong>: An identifier to associate our request when it comes out of the completion queue. Keep in mind that there is no guarantee that the completion results will come out in the same order as SQEs. That would defeat the whole purpose of having an async API. Therefore, we need something to identify the request we made. This serves that purpose. Usually this is a pointer to some struct holding data that has metadata of the request.</li>
+</ul>
+<p>On the completion side, we get a Completion Queue Event (CQE) from the CQ. This is a very simple struct which contains:</p>
+<ul>
+<li><strong>Result</strong>: The return value from the <code>readv</code> syscall. If it succeeded, it will have the number of bytes read; otherwise it will have an error code.</li>
+<li><strong>User data</strong>: The identifier that we had passed in the SQE.</li>
+</ul>
+<p>There&rsquo;s just one important detail to note here: both the SQ and CQ are shared between the user and the kernel. But whereas the CQ actually contains the CQEs, for SQ it&rsquo;s a bit different. It is essentially a layer of indirection, wherein the value of an index in the SQ array actually contains the index of the real array holding the SQE items. This is useful for certain applications which have submission requests inside internal structures, and therefore allows them to submit multiple requests in one operation, essentially easing the adoption of the <code>io_uring</code> API.</p>
+<p>This means we actually have three things mapped in memory - the submission queue, completion queue, and the submission queue array. The following diagram should make things clear.</p>
+<p><img src="https://developers.mattermost.com/blog/2020-05-20-hands-on-iouring-go/queues.png" alt="image"></p>
+<p>Now let&rsquo;s revisit the <code>flags</code> field that we skipped over earlier. As we discussed, CQE entries can come completely out of order from what they were submitted in the queue. This brings up an interesting problem. What if we wanted to perform a sequence of I/O operations one after the other? For example, a file copy. We would want to read from a file descriptor, and write to another. With the current state of things, we cannot even start to submit the write operation until we see the read event appear in the CQ. That&rsquo;s where the <code>flags</code> come in.</p>
+<p>We can set <code>IOSQE_IO_LINK</code> in the <code>flags</code> field to achieve this. If this is set, the next SQE gets automatically linked to this one, and it won&rsquo;t start until the current SQE is completed. This allows us to enforce ordering on I/O events the way we want. File copying was just one example. In theory, we can link <em>any</em> syscall one after another, until we push an SQE where the field is not set, at which point, the chain is considered broken.</p>
+<h3 id="the-system-calls">The system calls&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#the-system-calls"></i></a> </h3>
+<p>With this brief overview of how <code>io_uring</code> operates, let&rsquo;s look into the actual system calls that make it happen. There are just two of them.</p>
+<ol>
+<li><code>int io_uring_setup(unsigned entries, struct io_uring_params *params);</code></li>
+</ol>
+<p>The <code>entries</code> denote the number of SQEs for this ring. <code>params</code> is a struct that contains various details regarding the CQ and the SQ that are to be used by the application. It returns a file descriptor to this <code>io_uring</code> instance.</p>
+<ol start="2">
+<li><code>int io_uring_enter(unsigned int fd, unsigned int to_submit, unsigned int min_complete, unsigned int flags, sigset_t sig);</code></li>
+</ol>
+<p>This call is used to submit requests to the kernel. Let&rsquo;s quickly go through the important ones:</p>
+<ul>
+<li><code>fd</code> is the file descriptor of the ring returned from the previous call.</li>
+<li><code>to_submit</code> tells the kernel how many entries to consume from the ring. Remember that the rings are in shared memory. So we are free to push as many entries we want before asking the kernel to process them.</li>
+<li><code>min_complete</code> indicates how many entries that the call should wait for to complete before returning.</li>
+</ul>
+<p>The astute reader would notice that having <code>to_submit</code> and <code>min_complete</code> in the same call means that we can use it to do either only submission, or only completion, or even both! This opens up the API to be used in various interesting ways depending on the application workload.</p>
+<h3 id="polled-mode">Polled mode&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#polled-mode"></i></a> </h3>
+<p>For latency-sensitive applications, or ones with extremely high IOPS, letting the device driver interrupt the kernel every time data is available to be read is not efficient enough. If we have a lot of data to be read, a high rate of interrupts would actually slow down the kernel throughput for processing the events. In those situations, we actually fall back to polling the device driver. To use polling with <code>io_uring</code>, we can set the <code>IORING_SETUP_IOPOLL</code> flag in the <code>io_uring_setup</code> call and keep polling events with the <code>IORING_ENTER_GETEVENTS</code> set in the <code>io_uring_enter</code> call.</p>
+<p>But this still requires &ldquo;us&rdquo;, the user, to make the calls. To take things up even a notch higher, <code>io_uring</code> also has a feature calling &ldquo;kernel-side polling&rdquo;, whereby if we set the <code>IORING_SETUP_SQPOLL</code> flag in <code>io_uring_params</code>, the kernel will poll the SQ automatically to check for new entries, and consume them. This essentially means that we can keep doing all the I/O we want without performing even a <em>single</em>. <em>system</em>. <em>call</em>. This changes everything.</p>
+<p>But all of this flexibility and raw power comes at a cost. Using this API directly is non-trivial and error-prone. Since our data structures are shared between user and kernel, we need to setup memory barriers (magical compiler incantations to enforce ordering of memory operations) and other nitty-gritties to get things done properly.</p>
+<p>Fortunately, Jens Axboe, the creator of <code>io_uring</code> has created a wrapper library called <code>liburing</code> to help simplify all of this. With <code>liburing</code>, we roughly have to do this set of steps:</p>
+<ul>
+<li>
+<p><code>io_uring_queue_(init|exit)</code> to set up and tear down the ring.</p>
+</li>
+<li>
+<p><code>io_uring_get_sqe</code> to get an SQE.</p>
+</li>
+<li>
+<p><code>io_uring_prep_(readv|writev|other)</code> to mark which syscall to use.</p>
+</li>
+<li>
+<p><code>io_uring_sqe_set_data</code> to mark the user data field.</p>
+</li>
+<li>
+<p><code>io_uring_(wait|peek)_cqe</code> to either wait for CQE or peek for it without waiting.</p>
+</li>
+<li>
+<p><code>io_uring_cqe_get_data</code> to get back the user data field.</p>
+</li>
+<li>
+<p><code>io_uring_cqe_seen</code> to mark the CQE as done.</p>
+</li>
+</ul>
+<h3 id="wrapping-io_uring-in-go">Wrapping io_uring in Go&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#wrapping-io_uring-in-go"></i></a> </h3>
+<p>This was a lot of theory to digest. There&rsquo;s even more of it which I have deliberately skipped for the sake of brevity. Now let&rsquo;s get back to writing some code in Go and take this for a spin. For simplicity and safety we will use the <code>liburing</code> library, which means we will need to use CGo. That&rsquo;s fine because this is just a toy, and the right way would be have <a href="https://github.com/golang/go/issues/31908">native support</a> in the Go runtime. As a result of that, we will unfortunately have to use callbacks. In native Go, the running goroutine would be put to sleep by the runtime, and then woken up when the data would be available in the completion queue.</p>
+<p>Let&rsquo;s name our package <code>frodo</code> (and just like that I have knocked out one of the two hardest problems in computer science). We will just have a very simple API to read and write files. And two more functions to setup and cleanup the ring when done.</p>
+<p>Our main workhorse will be a single goroutine which takes in submission requests and pushes them to the SQ. And from C we will make a callback to Go with the CQE entry. We will use the <code>fd</code> of the files to know which callback to execute once we get our data. However, we also need to decide when to actually submit the queue to the kernel. We maintain a queue threshold, where if we exceed a threshold  of pending requests, we submit. And also, we expose another function to the user to allow them to make the submission by themselves to allow them to have better control over application behavior.</p>
+<p>Note that, this again is an inefficient way of doing things. Since the CQ and SQ are completely separate they don&rsquo;t need any sort of locking at all, and therefore submission and completion can happen freely from different threads. Ideally, we would just push an entry to SQ, and have a separate goroutine listening for completion waiting, and whenever we see an entry we make a callback and go back to waiting. Remember that we can use <code>io_uring_enter</code> to do just completion? Here is one such example! This still makes one syscall per CQE entry, and we can even optimize it further by specifying number of CQE entries to wait for.</p>
+<p>Coming back to our simplistic model, here&rsquo;s the pseudo-code of what it looks like:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#09f;font-style:italic">// ReadFile reads a file from the given path and returns the result as a byte slice
+</span><span style="color:#09f;font-style:italic">// in the passed callback function.
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">ReadFile</span>(path <span style="color:#078;font-weight:bold">string</span>, cb <span style="color:#069;font-weight:bold">func</span>(buf []<span style="color:#078;font-weight:bold">byte</span>)) <span style="color:#078;font-weight:bold">error</span> {
+	f, err <span style="color:#555">:=</span> os.<span style="color:#c0f">Open</span>(path)
+	<span style="color:#09f;font-style:italic">// handle error
+</span><span style="color:#09f;font-style:italic"></span>
+	fi, err <span style="color:#555">:=</span> f.<span style="color:#c0f">Stat</span>()
+	<span style="color:#09f;font-style:italic">// handle error
+</span><span style="color:#09f;font-style:italic"></span>
+	submitChan <span style="color:#555">&lt;-</span> <span style="color:#555">&amp;</span>request{
+		code:   opCodeRead, <span style="color:#09f;font-style:italic">// a constant to identify which syscall we are going to make
+</span><span style="color:#09f;font-style:italic"></span>		f:      f, 			<span style="color:#09f;font-style:italic">// the file descriptor
+</span><span style="color:#09f;font-style:italic"></span>		size:   fi.<span style="color:#c0f">Size</span>(),	<span style="color:#09f;font-style:italic">// size of the file
+</span><span style="color:#09f;font-style:italic"></span>		readCb: cb,			<span style="color:#09f;font-style:italic">// the callback to call when the read is done
+</span><span style="color:#09f;font-style:italic"></span>	}
+	<span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">nil</span>
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#09f;font-style:italic">// WriteFile writes data to a file at the given path. After the file is written,
+</span><span style="color:#09f;font-style:italic">// it then calls the callback with the number of bytes written.
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">WriteFile</span>(path <span style="color:#078;font-weight:bold">string</span>, data []<span style="color:#078;font-weight:bold">byte</span>, perm os.FileMode, cb <span style="color:#069;font-weight:bold">func</span>(written <span style="color:#078;font-weight:bold">int</span>)) <span style="color:#078;font-weight:bold">error</span> {
+	f, err <span style="color:#555">:=</span> os.<span style="color:#c0f">OpenFile</span>(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, perm)
+	<span style="color:#09f;font-style:italic">// handle error
+</span><span style="color:#09f;font-style:italic"></span>
+	submitChan <span style="color:#555">&lt;-</span> <span style="color:#555">&amp;</span>request{
+		code:    opCodeWrite, <span style="color:#09f;font-style:italic">// same as above. This is for the writev syscall
+</span><span style="color:#09f;font-style:italic"></span>		buf:     data,		  <span style="color:#09f;font-style:italic">// the byte slice of data to be written
+</span><span style="color:#09f;font-style:italic"></span>		f:       f, 		  <span style="color:#09f;font-style:italic">// the file descriptor
+</span><span style="color:#09f;font-style:italic"></span>		writeCb: cb,		  <span style="color:#09f;font-style:italic">// the callback to call when the write is done
+</span><span style="color:#09f;font-style:italic"></span>	}
+	<span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">nil</span>
+}
+</code></pre></div><p><code>submitChan</code> sends the requests to our main workhorse which takes care of submitting them. Here is the pseudo-code for that:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">queueSize <span style="color:#555">:=</span> <span style="color:#f60">0</span>
+<span style="color:#069;font-weight:bold">for</span> {
+	<span style="color:#069;font-weight:bold">select</span> {
+	<span style="color:#069;font-weight:bold">case</span> sqe <span style="color:#555">:=</span> <span style="color:#555">&lt;-</span>submitChan:
+		<span style="color:#069;font-weight:bold">switch</span> sqe.code {
+		<span style="color:#069;font-weight:bold">case</span> opCodeRead:
+			<span style="color:#09f;font-style:italic">// We store the fd in our cbMap to be called later from the callback from C.
+</span><span style="color:#09f;font-style:italic"></span>			cbMap[sqe.f.<span style="color:#c0f">Fd</span>()] = cbInfo{
+				readCb: sqe.readCb,
+				close:  sqe.f.Close,
+			}
+
+			C.<span style="color:#c0f">push_read_request</span>(C.<span style="color:#366">int</span>(sqe.f.<span style="color:#c0f">Fd</span>()), C.<span style="color:#c0f">long</span>(sqe.size))
+		<span style="color:#069;font-weight:bold">case</span> opCodeWrite:
+			cbMap[sqe.f.<span style="color:#c0f">Fd</span>()] = cbInfo{
+				writeCb: sqe.writeCb,
+				close:   sqe.f.Close,
+			}
+
+			C.<span style="color:#c0f">push_write_request</span>(C.<span style="color:#366">int</span>(sqe.f.<span style="color:#c0f">Fd</span>()), ptr, C.<span style="color:#c0f">long</span>(<span style="color:#366">len</span>(sqe.buf)))
+		}
+
+		queueSize<span style="color:#555">++</span>
+		<span style="color:#069;font-weight:bold">if</span> queueSize &gt; queueThreshold { <span style="color:#09f;font-style:italic">// if queue_size &gt; threshold, then pop all.
+</span><span style="color:#09f;font-style:italic"></span>			<span style="color:#c0f">submitAndPop</span>(queueSize)
+			queueSize = <span style="color:#f60">0</span>
+		}
+	<span style="color:#069;font-weight:bold">case</span> <span style="color:#555">&lt;-</span>pollChan:
+		<span style="color:#069;font-weight:bold">if</span> queueSize &gt; <span style="color:#f60">0</span> {
+			<span style="color:#c0f">submitAndPop</span>(queueSize)
+			queueSize = <span style="color:#f60">0</span>
+		}
+	<span style="color:#069;font-weight:bold">case</span> <span style="color:#555">&lt;-</span>quitChan:
+		<span style="color:#09f;font-style:italic">// possibly drain channel.
+</span><span style="color:#09f;font-style:italic"></span>		<span style="color:#09f;font-style:italic">// pop_request till everything is done.
+</span><span style="color:#09f;font-style:italic"></span>		<span style="color:#069;font-weight:bold">return</span>
+	}
+}
+</code></pre></div><p><code>cbMap</code> maps the file descriptor to the actual callback function to be called. This is used when the CGo code calls into the Go code signalling an event completion. <code>submitAndPop</code> calls <code>io_uring_submit_and_wait</code> with the <code>queueSize</code>. And then pops off entries from CQ.</p>
+<p>Let&rsquo;s look into what <code>C.push_read_request</code> and <code>C.push_write_request</code> does. All they do essentially is push a read/write request to the SQ.</p>
+<p>They look like:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">push_read_request</span>(<span style="color:#078;font-weight:bold">int</span> file_fd, off_t file_sz) {
+    <span style="color:#09f;font-style:italic">// Create a file_info struct
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">struct</span> file_info <span style="color:#555">*</span>fi;
+
+    <span style="color:#09f;font-style:italic">// Populate the struct with the vectors and some metadata
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#09f;font-style:italic">// like the file size, fd and the opcode IORING_OP_READV.
+</span><span style="color:#09f;font-style:italic"></span>
+    <span style="color:#09f;font-style:italic">// Get an SQE.
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">struct</span> io_uring_sqe <span style="color:#555">*</span>sqe <span style="color:#555">=</span> io_uring_get_sqe(<span style="color:#555">&amp;</span>ring);
+    <span style="color:#09f;font-style:italic">// Mark the operation to be readv.
+</span><span style="color:#09f;font-style:italic"></span>    io_uring_prep_readv(sqe, file_fd, fi<span style="color:#555">-&gt;</span>iovecs, total_blocks, <span style="color:#f60">0</span>);
+    <span style="color:#09f;font-style:italic">// Set the user data section.
+</span><span style="color:#09f;font-style:italic"></span>    io_uring_sqe_set_data(sqe, fi);
+    <span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+}
+
+<span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">push_write_request</span>(<span style="color:#078;font-weight:bold">int</span> file_fd, <span style="color:#078;font-weight:bold">void</span> <span style="color:#555">*</span>data, off_t file_sz) {
+	<span style="color:#09f;font-style:italic">// Create a file_info struct
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">struct</span> file_info <span style="color:#555">*</span>fi;
+
+	<span style="color:#09f;font-style:italic">// Populate the struct with the vectors and some metadata
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#09f;font-style:italic">// like the file size, fd and the opcode IORING_OP_WRITEV.
+</span><span style="color:#09f;font-style:italic"></span>
+    <span style="color:#09f;font-style:italic">// Get an SQE.
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">struct</span> io_uring_sqe <span style="color:#555">*</span>sqe <span style="color:#555">=</span> io_uring_get_sqe(<span style="color:#555">&amp;</span>ring);
+    <span style="color:#09f;font-style:italic">// Mark the operation to be writev.
+</span><span style="color:#09f;font-style:italic"></span>    io_uring_prep_writev(sqe, file_fd, fi<span style="color:#555">-&gt;</span>iovecs, <span style="color:#f60">1</span>, <span style="color:#f60">0</span>);
+    <span style="color:#09f;font-style:italic">// Set the user data section.
+</span><span style="color:#09f;font-style:italic"></span>    io_uring_sqe_set_data(sqe, fi);
+    <span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+}
+</code></pre></div><p>And when <code>submitAndPop</code> tries to pop entries from CQ, this gets executed:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">pop_request</span>() {
+    <span style="color:#069;font-weight:bold">struct</span> io_uring_cqe <span style="color:#555">*</span>cqe;
+    <span style="color:#09f;font-style:italic">// Get an element from CQ without waiting.
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#078;font-weight:bold">int</span> ret <span style="color:#555">=</span> io_uring_peek_cqe(<span style="color:#555">&amp;</span>ring, <span style="color:#555">&amp;</span>cqe);
+    <span style="color:#09f;font-style:italic">// some error handling
+</span><span style="color:#09f;font-style:italic"></span>
+    <span style="color:#09f;font-style:italic">// Get the user data set in the set_data call.
+</span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">struct</span> file_info <span style="color:#555">*</span>fi <span style="color:#555">=</span> io_uring_cqe_get_data(cqe);
+    <span style="color:#069;font-weight:bold">if</span> (fi<span style="color:#555">-&gt;</span>opcode <span style="color:#555">==</span> IORING_OP_READV) {
+    	<span style="color:#09f;font-style:italic">// Calculate the number of blocks read.
+</span><span style="color:#09f;font-style:italic"></span>
+        <span style="color:#09f;font-style:italic">// Call read_callback to Go.
+</span><span style="color:#09f;font-style:italic"></span>        read_callback(fi<span style="color:#555">-&gt;</span>iovecs, total_blocks, fi<span style="color:#555">-&gt;</span>file_fd);
+    } <span style="color:#069;font-weight:bold">else</span> <span style="color:#069;font-weight:bold">if</span> (fi<span style="color:#555">-&gt;</span>opcode <span style="color:#555">==</span> IORING_OP_WRITEV) {
+        <span style="color:#09f;font-style:italic">// Call write_callback to Go.
+</span><span style="color:#09f;font-style:italic"></span>        write_callback(cqe<span style="color:#555">-&gt;</span>res, fi<span style="color:#555">-&gt;</span>file_fd);
+    }
+
+    <span style="color:#09f;font-style:italic">// Mark the queue item as seen.
+</span><span style="color:#09f;font-style:italic"></span>    io_uring_cqe_seen(<span style="color:#555">&amp;</span>ring, cqe);
+    <span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+}
+
+</code></pre></div><p>The <code>read_callback</code> and <code>write_callback</code> just get the entry from <code>cbMap</code> with the passed <code>fd</code> and call the required callbacks to the function that originally made the <code>ReadFile</code>/<code>WriteFile</code> call.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#09f;font-style:italic">//export read_callback
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">read_callback</span>(iovecs <span style="color:#555">*</span>C.struct_iovec, length C.<span style="color:#078;font-weight:bold">int</span>, fd C.<span style="color:#078;font-weight:bold">int</span>) {
+	<span style="color:#069;font-weight:bold">var</span> buf bytes.Buffer
+	<span style="color:#09f;font-style:italic">// Populate the buffer with the data passed.
+</span><span style="color:#09f;font-style:italic"></span>
+	cbMut.<span style="color:#c0f">Lock</span>()
+	cbMap[<span style="color:#366">uintptr</span>(fd)].<span style="color:#366">close</span>()
+	cbMap[<span style="color:#366">uintptr</span>(fd)].<span style="color:#c0f">readCb</span>(buf.<span style="color:#c0f">Bytes</span>())
+	cbMut.<span style="color:#c0f">Unlock</span>()
+}
+
+<span style="color:#09f;font-style:italic">//export write_callback
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">write_callback</span>(written C.<span style="color:#078;font-weight:bold">int</span>, fd C.<span style="color:#078;font-weight:bold">int</span>) {
+	cbMut.<span style="color:#c0f">Lock</span>()
+	cbMap[<span style="color:#366">uintptr</span>(fd)].<span style="color:#366">close</span>()
+	cbMap[<span style="color:#366">uintptr</span>(fd)].<span style="color:#c0f">writeCb</span>(<span style="color:#366">int</span>(written))
+	cbMut.<span style="color:#c0f">Unlock</span>()
+}
+</code></pre></div><p>And that&rsquo;s basically it! An example of how to use the library would be like:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">err <span style="color:#555">:=</span> frodo.<span style="color:#c0f">ReadFile</span>(<span style="color:#c30">&#34;shire.html&#34;</span>, <span style="color:#069;font-weight:bold">func</span>(buf []<span style="color:#078;font-weight:bold">byte</span>) {
+	<span style="color:#09f;font-style:italic">// handle buf
+</span><span style="color:#09f;font-style:italic"></span>})
+<span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+	<span style="color:#09f;font-style:italic">// handle err
+</span><span style="color:#09f;font-style:italic"></span>}
+</code></pre></div><p>Feel free to check out the <a href="https://github.com/agnivade/frodo">source</a> to get into the nitty-gritties of the implementation.</p>
+<h3 id="performance">Performance&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#performance"></i></a> </h3>
+<p>No blog post is complete without some performance numbers. However, proper benchmark comparison of I/O engines would probably require another blog post in itself. For the sake of completeness, I will just post results from a short and unscientific test on my laptop. Don&rsquo;t read too much into it because any manner of benchmarks are highly dependent on the workload, queue parameters, hardware, time of the day, and the color of your shirt.</p>
+<p>We will use <a href="https://github.com/axboe/fio">fio</a> which is a nifty tool written by Jens himself to benchmark several I/O engines with different workloads, supporting both <code>io_uring</code> and <code>libaio</code>. There are far too many knobs to change. But we will perform a very simple experiment using a workload of random read/writes with a ratio of 75/25, using a 1GiB file, and varying block sizes of 16KiB, 32KiB and 1MiB. And then we repeat the entire experiment with queue sizes of 8, 16, and 32.</p>
+<p><img src="https://developers.mattermost.com/blog/2020-05-20-hands-on-iouring-go/depth_8.png" alt="image">
+<img src="https://developers.mattermost.com/blog/2020-05-20-hands-on-iouring-go/depth_16.png" alt="image">
+<img src="https://developers.mattermost.com/blog/2020-05-20-hands-on-iouring-go/depth_32.png" alt="image"></p>
+<p>Note that this is <code>io_uring</code> in its basic mode without polling, in which case, the results can be even higher.</p>
+<h3 id="conclusion">Conclusion&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#conclusion"></i></a> </h3>
+<p>This was a pretty big post, and thank you for reading so far!</p>
+<p><code>io_uring</code> is still in its nascent stages, but it&rsquo;s quickly gaining a lot of traction. A lot of big names (libuv, RocksDB) already support it. There is even a patch to nginx that adds io_uring support. Hopefully native Go support is something that lands soon.</p>
+<p>Each new version of the kernel gets new features of the API, and more and more syscalls are starting to be supported. It is an exciting new frontier for Linux performance!</p>
+<p>Below are some of the resources that I have used to prepare for this post. Please do check them out if you want to know more.</p>
+<p>And lastly, I would like to thank my colleagues <a href="https://github.com/isacikgoz">Ibrahim</a> and <a href="https://github.com/streamer45">Claudio</a> for proof-reading and correcting my horrible C code.</p>
+<p>Resources:</p>
+<ul>
+<li><a href="https://kernel.dk/io_uring.pdf">https://kernel.dk/io_uring.pdf</a></li>
+<li><a href="https://kernel.dk/io_uring-whatsnew.pdf">https://kernel.dk/io_uring-whatsnew.pdf</a></li>
+<li><a href="https://www.youtube.com/watch?v=-5T4Cjw46ys">https://www.youtube.com/watch?v=-5T4Cjw46ys</a></li>
+<li><a href="https://lwn.net/Articles/776703/">https://lwn.net/Articles/776703/</a></li>
+<li><a href="https://github.com/axboe/liburing">https://github.com/axboe/liburing</a></li>
+</ul>
+<p>HN discussion is <a href="https://news.ycombinator.com/item?id=23451468">here</a>.</p>
+<p>This blog post is now available in Russian on Softdroid at <a href="https://softdroid.net/nachalo-raboty-s-iouring-s-pomoshchyu-go">Начало работы с io_uring с помощью Go</a>.</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Agniva De Sarker
+-
+<a href="https://community.mattermost.com/core/messages/@agnivade" target="_blank">
+    @agnivade
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/agnivade" target="_blank">
+    @agnivade
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-3/">Fixing a bug in the Go compiler as a newbie: a deep dive (III)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-2/">Fixing a bug in the Go compiler as a newbie: a deep dive (II)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-1/">Fixing a bug in the Go compiler as a newbie: a deep dive (I)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/go">go</a></li>
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

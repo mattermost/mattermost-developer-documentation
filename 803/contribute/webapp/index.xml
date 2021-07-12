@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web App on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/contribute/webapp/</link>
+    <description>Recent content in Web App on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 Mar 2018 12:01:23 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/contribute/webapp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Developer Setup</title>
+      <link>https://developers.mattermost.com/contribute/webapp/developer-setup/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/developer-setup/</guid>
+      <description>Set up your development environment for building, running, and testing the Mattermost web app.
+  Set up your development environment for the Mattermost server.
+  Install Node.js 16:
+  If you use NVM, use that to install Node 16.
+  On Mac, use Homebrew to install it:
+brew install node@16   For other platforms, install it from https://www.npmjs.com/get-npm.
+    If necessary, install libpng:</description>
+    </item>
+    
+    <item>
+      <title>Web App Workflow</title>
+      <link>https://developers.mattermost.com/contribute/webapp/developer-workflow/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/developer-workflow/</guid>
+      <description>If you haven&amp;rsquo;t set up your developer environment, please do so before continuing with this section.
+Workflow Here&amp;rsquo;s a general workflow for a Mattermost developer working on the mattermost-webapp repository:
+ Review the repository structure to familiarize yourself with the project  ./components/ holds all the React UI components and views ./actions/ holds all Flux actions where the majority of the logic of the webapp takes place ./stores/ holds the stores responsible for storing and providing the views with data .</description>
+    </item>
+    
+    <item>
+      <title>Build a Component</title>
+      <link>https://developers.mattermost.com/contribute/webapp/build-component/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/build-component/</guid>
+      <description>This page describes how to build a new React component in the Mattermost webapp. A new component must meet the following requirements:
+ Is pure, meaning that all information required to render is passed in by props. Has no direct store interaction. Use a container to wrap the component if needed. Has component tests. Is generic and re-usable when possible. Has documented props.  If none of those make any sense to you or you&amp;rsquo;re new to React and Redux, then check out these links:</description>
+    </item>
+    
+    <item>
+      <title>Unit Testing</title>
+      <link>https://developers.mattermost.com/contribute/webapp/unit-testing/</link>
+      <pubDate>Tue, 20 Nov 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/unit-testing/</guid>
+      <description>Component and Utility files The last required piece of building a webapp component is to test it. That can be done using the component testing framework described in this blog post: https://grundleborg.github.io/posts/react-component-testing-in-mattermost/.
+Jest and Enzyme are the main framework and testing utilities used in testing components and utility files of mattermost-webapp. Please visit their respective documentation for detailed information on how to get started, best practices and updates.
+Below is a brief guide on how to do component testing:</description>
+    </item>
+    
+    <item>
+      <title>End-to-End Testing</title>
+      <link>https://developers.mattermost.com/contribute/webapp/end-to-end-tests/</link>
+      <pubDate>Tue, 04 Dec 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/end-to-end-tests/</guid>
+      <description>This page describes how to run End-to-End (E2E) testing and to build tests for a section or page of the Mattermost web application. Under the hood, we are using Cypress which is &amp;ldquo;fast, easy and reliable testing for anything that runs in a browser.&amp;rdquo;
+Not familiar with Cypress? Here is some documentation that will help you get started:
+ Developer Guide API Reference  Quick Overview on How to Run E2E Testing On Your Local Development Machine  Launch a local Mattermost instance by running make run in the mattermost-server directory.</description>
+    </item>
+    
+    <item>
+      <title>Using make i18n-extract</title>
+      <link>https://developers.mattermost.com/contribute/webapp/using-i18n-extract/</link>
+      <pubDate>Mon, 20 Apr 2020 08:31:17 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/using-i18n-extract/</guid>
+      <description>make i18n-extract is a command used for localization. It allows you to validate that your strings have been successfully extracted from your source code before you continue.
+This page demonstrates how to review your results and to verify if your extraction was successful or not. If the extraction was not successful this page also provides a workaround to correct for this.
+NOTE: These steps apply for the mattermost-webapp repository only.</description>
+    </item>
+    
+    <item>
+      <title>Migrating to Typescript</title>
+      <link>https://developers.mattermost.com/contribute/webapp/migrating-to-typescript/</link>
+      <pubDate>Sat, 11 Jul 2020 23:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/webapp/migrating-to-typescript/</guid>
+      <description>The Mattermost team wants to proactively improve the quality, security, and stability of the code, and one way to do this is by introducing the usage of type checking. Thus, we have decided to introduce Typescript in our codebase as it&amp;rsquo;s a mature and feature-rich approach.
+As a first step, we have migrated the mattermost-redux library to use Typescript, and are now in the process of migrating the webapp to use Typescript.</description>
+    </item>
+    
+  </channel>
+</rss>

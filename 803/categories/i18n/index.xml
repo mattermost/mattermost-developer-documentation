@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>i18n on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/categories/i18n/</link>
+    <description>Recent content in i18n on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 04 Dec 2020 12:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/categories/i18n/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Avoiding Common Internationalization Mistakes</title>
+      <link>https://developers.mattermost.com/blog/common-i18n-mistakes/</link>
+      <pubDate>Fri, 04 Dec 2020 12:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/common-i18n-mistakes/</guid>
+      <description>Languages are complicated, and every language is complicated in different ways that can be hard to understand without learning every single one of them. Some languages form words from multiple characters while others have symbols that represent entire concepts. Some feature words without pluralization or gender and rely on context for that while others have two or even more genders for words. Some are very phonetic while others pronounce words seemingly at random (cough English, though cough).</description>
+    </item>
+    
+  </channel>
+</rss>

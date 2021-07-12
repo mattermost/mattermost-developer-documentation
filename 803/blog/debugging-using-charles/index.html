@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Debugging Using Charles</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Debugging Using Charles">
+
+ 
+  <meta name="description" content="Learn about using Charles to debug against community servers while running a local copy of the mattermost webapp.">
+<meta name="twitter:description" content="Learn about using Charles to debug against community servers while running a local copy of the mattermost webapp.">
+<meta name="og:description" content="Learn about using Charles to debug against community servers while running a local copy of the mattermost webapp.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/debugging-using-charles/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Debugging Using Charles
+                            
+                            </h1>
+                            <small>Learn about using Charles to debug against community servers while running a local copy of the mattermost webapp.</small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            October 21, 2019
+                            <small class="blog-item__count">1014 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>I recently acquired a copy of <a href="https://www.charlesproxy.com">Charles</a>, the well-known Web Debugging Proxy Application. I&rsquo;ve actually stumbled across this product on multiple occasions, but never bothered to actually try it&hellip; almost exclusively because I thought the website looked a little dated. In trying to suss out the root cause behind <a href="https://mattermost.atlassian.net/browse/MM-19091">MM-19091</a>, I needed a way to debug against our <a href="https://community.mattermost.com">community</a> servers but running with my local copy of the <a href="https://github.com/mattermost/mattermost-webapp">mattermost webapp</a>. This would allow me to insert <code>console.log</code> debugging statements and even use the <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en">React Developer Tools</a> without the minified component names.</p>
+<p>What follows is a brief how-to guide for replicating this setup on macOS. Charles is also available for Windows and Linux, but I imagine the configuration steps should be similar. Note too that unrestricted use of Charles requires a paid license, but if you want to experiment with these steps, the application will run for 30 minutes at a time for up to 30 days with all features enabled.</p>
+<h2 id="setting-up-charles">Setting up Charles&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#setting-up-charles"></i></a> </h2>
+<p>Start by <a href="https://www.charlesproxy.com/download/">downloading Charles</a>. After you copy the tool to your Applications directory and run it, Charles will automatically start proxying:</p>
+<p><img src="https://developers.mattermost.com/blog/2019-10-21-debugging-using-charles/proxying.png" alt="image"></p>
+<p>Notice, however, that the contents of any SSL connections are initially opaque. The real power of Charles comes from being able to install root certificates and effectively man-in-the-middle your SSL connections.</p>
+<p>Follow the help documentation to configure <a href="https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/">SSL Certificates</a>, then open the <code>Proxy</code> menu and choose <code>SSL Proxying Settings...</code>. Select <code>Enable SSL Proxying</code> and configure a wildcard to match our three community servers. Charles even proxies websocket connections!</p>
+<p><img src="https://developers.mattermost.com/blog/2019-10-21-debugging-using-charles/configure-ssl-proxying.png" alt="image"></p>
+<p>After saving these settings and restarting your browser, you should be able to inspect all the traffic to and from <a href="https://community.mattermost.com">community.mattermost.com</a> (running our last stable release), <a href="https://community-release.mattermost.com">community-release.mattermost.com</a> (running our upcoming stable release), and <a href="https://community-daily.mattermost.com">community-daily.mattermost.com</a> (running master):</p>
+<p><img src="https://developers.mattermost.com/blog/2019-10-21-debugging-using-charles/proxying-community.png" alt="image"></p>
+<p>Note that all three of our community server endpoints share the same database, allowing you to switch between the various branches using the same Mattermost account.</p>
+<h2 id="static-assets-vs-programmatic-interactions">Static Assets vs. Programmatic Interactions&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#static-assets-vs-programmatic-interactions"></i></a> </h2>
+<p>Debugging community using a local webapp involves redirecting requests for static frontend assets to a local directory (or a <code>localhost</code> server), while leaving untouched any API calls and other programmatic interactions against the server backend.</p>
+<p>There are effectively two kinds of static assets served by the Mattermost application:</p>
+<ul>
+<li><code>index.html</code> is the bootstrapping page that references various favicons alongside the root JavaScript bundle containing the rest of the single page application</li>
+<li><code>static/*</code> are the JavaScript bundles, CSS, images, and plugin resources used in the single page application</li>
+</ul>
+<p>Note that the server doesn&rsquo;t actually expect a request for <code>/index.html</code>, but serves up this file on any number of paths:</p>
+<ul>
+<li><code>/</code> landing on the site without any path</li>
+<li><code>/login</code> following a login link from an email, or just reloading the page</li>
+<li><code>/&lt;team&gt;/</code> any configured team, such as <code>core</code> or our internal <code>private-core</code> teams</li>
+<li><code>/&lt;team&gt;/&lt;channel&gt;</code> a channel on any configured team</li>
+<li><code>/&lt;team&gt;/pl/&lt;post&gt;</code> a permalink to a post</li>
+<li>(endless other combinations, including unrecognized paths)</li>
+</ul>
+<p>Once the bootstrapping code is served, the application examines the current path and renders the appropriate part of the application.</p>
+<p>In addition to the static assets, the server expects a number of programmatic interactions:</p>
+<ul>
+<li><code>/api/*</code> any REST API request</li>
+<li><code>/login/sso/saml</code> login flows via SAML</li>
+<li><code>/oauth/*</code> OAuth application flows</li>
+<li>(various similar endpoints)</li>
+</ul>
+<p>Unfortunately, the overlap here between static assets and programmatic interactions makes splitting the routing slightly tricky when redirecting requests locally. For example:</p>
+<ul>
+<li><code>/login</code> should be redirected so as to serve the local <code>index.html</code></li>
+<li><code>/login/sso/saml</code> should be sent to the server to avoid breaking SAML login</li>
+</ul>
+<h2 id="overriding-communitymattermostcom-static-assets">Overriding <code>community*.mattermost.com</code> static assets&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#overriding-communitymattermostcom-static-assets"></i></a> </h2>
+<p>To configure Charles to redirect requests for static frontend assets, open the <code>Tools</code> menu and choose <code>Map Remote...</code>:</p>
+<p><img src="https://developers.mattermost.com/blog/2019-10-21-debugging-using-charles/map-remote.png" alt="image"></p>
+<p>(To avoid having to configure these manually, you can also just download and import <a href="https://developers.mattermost.com/blog/2019-10-21-debugging-using-charles/map-remote.xml">map-remote.xml</a>.)</p>
+<p>The rules above yield the following results:</p>
+<ul>
+<li><code>/login</code> is sent to <code>localhost:8065/login</code>, serving up <code>index.html</code> during the login flow</li>
+<li><code>/static/*</code> is sent to <code>localhost:8065/static/*</code>, serving up all static assets</li>
+<li><code>/core/*</code> is sent to <code>localhost:8065/core/*</code>, serving up <code>index.html</code> for any link on the core team</li>
+<li><code>/private-core/*</code> is sent to <code>localhost:8065/core/*</code>, serving up <code>index.html</code> for any link on the private core team</li>
+<li>all other paths continue to route directly to the community server</li>
+</ul>
+<p>To start your debugging session, first make sure your local Mattermost server is running by following the <a href="https://developers.mattermost.com/contribute/webapp/developer-setup/">Developer Setup</a> instructions. Then, browse to <code>/login</code> against the community server of your choice. If you&rsquo;re not already logged in, this will allow you to complete any necessary login flow (even through SAML!), but you&rsquo;ll get sent back to <code>/</code> and what appears to just be a blank page with console errors. Manually head back to <code>/login</code> and you&rsquo;ll find yourself successfully logged in on community with all static assets being served up by your local development server instance:</p>
+<p><img src="https://developers.mattermost.com/blog/2019-10-21-debugging-using-charles/debugging-community.png" alt="image"></p>
+<p>There are a shortcomings with this configuration:</p>
+<ul>
+<li>There appears to be no way in Charles to map just <code>/</code> to <code>localhost:8065</code> without also mapping <code>/*</code>, breaking the programmatic endpoints. I&rsquo;ve reached out to Charles support for help, but for now, it means that the <code>/login</code> flow will be interrupted as described above. Similarly, logging out triggers a blank page and requires manually heading back to <code>/login</code>.</li>
+<li>Requests for plugin assets are correctly proxied, but unless you have the exact same versions installed locally, the client-side portion of these plugins fail to load. If you have a different version of the plugin installed, the plugins still won&rsquo;t load since we embed the hash of the file into the request to avoid unexpected caching.</li>
+</ul>
+<h2 id="conclusion">Conclusion&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#conclusion"></i></a> </h2>
+<p>The configuration above is only the tip of the iceberg when it comes to using Charles for debugging. Think of Charles like an external <code>Network</code> tab from the Chrome Developer Tools, but spanning all your tabs across all your applications. Should you run into any networking problems, or just want to stop using Charles altogether, it&rsquo;s easy to turn off the proxy altogether by selecting the <code>Proxy</code> menu and unchecking <code>macOS Proxy</code>.</p>
+<p>If anyone has suggestions on this topic, please feel free to continue the <a href="https://community.mattermost.com/core/pl/tmetoow5cpgmbg8ftok4tr6scy">conversation on this topic</a>. I&rsquo;d love to find a way to optimize the Charles configuration, and even find a way to enable proxying using open source tooling alone.</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Jesse Hallam
+-
+<a href="https://community.mattermost.com/core/messages/@jesse.hallam" target="_blank">
+    @jesse.hallam
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/lieut-data" target="_blank">
+    @lieut-data
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-3/">Fixing a bug in the Go compiler as a newbie: a deep dive (III)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-2/">Fixing a bug in the Go compiler as a newbie: a deep dive (II)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-1/">Fixing a bug in the Go compiler as a newbie: a deep dive (I)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

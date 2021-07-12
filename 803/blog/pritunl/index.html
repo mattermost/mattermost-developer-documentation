@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> From OpenVPN to Pritunl VPN: The transition</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="From OpenVPN to Pritunl VPN: The transition">
+
+ 
+  
+    
+      <meta name="description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="twitter:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="og:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+
+    
+  
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/pritunl/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                From OpenVPN to Pritunl VPN: The transition
+                            
+                            </h1>
+                            <small></small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            June 11, 2020
+                            <small class="blog-item__count">1217 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>Usually organizations use an internal network to prevent unauthorized people from connecting to their private network and by using their own network infrastructure/connectivity they can maintain their desirable level of security for their data. But it would be convenient for users to connect to that private network while they are away from the office&rsquo;s building, on their own internet connection. To solve that problem, VPN (Virtual Private Network)
+is used to allow authorized remote access to an organization&rsquo;s private network.</p>
+<p>Working in a <a href="https://docs.mattermost.com/process/working-at-mattermost.html#work-anywhere">fully remote company like Mattermost is</a>, creates the need for employees to use a VPN connection in order to be able to access internal private infrastructure and resources. A vast majority of companies use OpenVPN as a solution to host those VPN connections on their own servers. <a href="https://en.wikipedia.org/wiki/OpenVPN">OpenVPN</a> is a widely used software and protocol which was also our selection to be used as a quick and reliable solution to access our internal infrastructure. After using it a while we needed a better solution in terms of:</p>
+<ul>
+<li>High Availability (HA)</li>
+<li>Auditing</li>
+<li>Supporting better access control (e.g. only SREs can access production servers and only developers can access development accounts)</li>
+<li>Working with SSO, particularly OneLogin
+After some investigation, we ended up with <a href="https://pritunl.com/">Pritunl</a> because:</li>
+<li>It&rsquo;s built on the OpenVPN protocol</li>
+<li>It&rsquo;s <a href="https://github.com/pritunl/pritunl">open source</a></li>
+<li>The Pritunl client can be installed on any platform</li>
+<li>Its pricing is reasonable for our scale</li>
+<li>It hides the complete configuration (user and server management) overhead behind the scenes of the web interface</li>
+</ul>
+<h4 id="pritunl-infrastructure">Pritunl infrastructure&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#pritunl-infrastructure"></i></a> </h4>
+<p>To deploy Pritunl in our infrastructure, we used <a href="https://www.terraform.io/">Terraform</a>. The module we wrote can be found <a href="https://github.com/mattermost/mattermost-cloud-monitoring/tree/master/terraform/aws/modules/pritunl">here</a> as an example for how to deploy Pritunl. The infrastructure consists of:</p>
+<ul>
+<li>One Route53 record</li>
+<li>One network load balancer</li>
+<li>Two AutoScaling Groups (ASGs)</li>
+<li>One MongoDB Atlas</li>
+</ul>
+<figure>
+    <img src="https://developers.mattermost.com/blog/2020-05-04-pritunl/Pritunl_architecture.png"
+         alt="Pritunl Architecture"/> 
+</figure>
+
+<h5 id="why-two-autoscaling-groups">Why two AutoScaling Groups?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#why-two-autoscaling-groups"></i></a> </h5>
+<p>The selection of two ASGs with one instance has been done due to the necessity of having the same Elastic Network Interface (ENI), which results on having the same private and public IPs. This is useful when whitelisting those IPs into the Security Groups that Pritunl-VPN needs to access internally such as our internal GitLab.</p>
+<p>This can be achieved by attaching those ENIs as a secondary network interfaces on the instance, check appendix <a href="#attach-second-eni">Attach second ENI</a>.</p>
+<p>You can manually create two ENIs (we selected the sixth address of each subnet <code>10.0.0.6</code> and <code>10.0.16.6</code>) and attach public IPs to them. Then you can provide the list of the ENI IDs with the variable (list) <code>fixed_eni</code> on Terraform.</p>
+<h5 id="mongodb-atlas">MongoDB Atlas&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#mongodb-atlas"></i></a> </h5>
+<p>Initially, we checked the <a href="https://aws.amazon.com/documentdb">AWS DocumentDB</a> solution, but it was quite expensive, as it starts from $0.28/hr for one <code>db.r5.large</code> instance.
+Next, we deployed two instances and installed/configured a MongoDB cluster, but maintaining and making sure that HA worked effectively was a big overhead.</p>
+<p>Thus, we selected to use <a href="https://www.mongodb.com/cloud/atlas">MongoDB Atlas</a> as it is cheaper (starts also from free tier) and easier to set up.
+After the creation of the MongoDB Atlas, we added Pritunl&rsquo;s public IPs on the whitelist of the Atlas cluster and we connected to the Atlas cluster locally to create a new database in it called <code>pritunl</code> (<a href="https://docs.atlas.mongodb.com/getting-started/">guide on how-to-connect</a>). Also check <a href="https://docs.pritunl.com/docs/mongodb-atlas">Pritunl documentation for MongoDB Atlas</a>.</p>
+<p>To set up the MongoDB URI (<code>mongodb+srv://pritunl:password@pritunl-mongodb-xxxxx.mongodb.net/pritunl</code>) use the variable (string) <code>mongodb_uri</code> on Terraform.</p>
+<h5 id="network-load-balancer">Network Load Balancer&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#network-load-balancer"></i></a> </h5>
+<p>The Network Load Balancer (NLB) which is in front of the instances which has five listeners as shown below. There are three listeners for VPN (on ports <code>1194</code>, <code>1195</code>, <code>1196</code>) that can be used for the servers inside the Pritunl. Currently, we are using only port <code>1194</code>, so the rest are for future usage.</p>
+<figure>
+    <img src="https://developers.mattermost.com/blog/2020-05-04-pritunl/Pritunl_NetworkLB.png"
+         alt="Pritunl Network Load Balancer"/> 
+</figure>
+
+<h4 id="pritunl-configuration">Pritunl configuration&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#pritunl-configuration"></i></a> </h4>
+<p>Pritunl is installed via the <a href="https://github.com/mattermost/mattermost-cloud-monitoring/tree/master/terraform/aws/modules/pritunl/userdata.sh">userdata</a>. As the instances do not store any configuration items except the MongoDB URI, each instance needs to connect to the MongoDB to obtain the required configuration and then the instance joins the Pritunl cluster.</p>
+<h5 id="initial-setup">Initial setup&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#initial-setup"></i></a> </h5>
+<p>As per <a href="https://docs.pritunl.com/docs/configuration-5#initial-setup">Pritunl documentation</a>:</p>
+<ul>
+<li>SSH into one of the Pritunl instances by using <a href="https://console.aws.amazon.com/systems-manager/session-manager/sessions?region=us-east-1">Session-manager</a>.</li>
+<li>Run: <code>sudo pritunl default-password</code> to get the default username and password.</li>
+<li>Navigate to the Pritunl log in page and use the credentials from the previous step.</li>
+<li>Create a user <em>pritunl</em> and add a new password.</li>
+</ul>
+<h5 id="organization-and-server-setup">Organization and server setup&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#organization-and-server-setup"></i></a> </h5>
+<p>As per <a href="https://docs.pritunl.com/docs/connecting">Pritunl documentation</a>:</p>
+<ul>
+<li>
+<p>Navigate to <strong>Users</strong> and create a new organization, e.g. <code>devs_org</code></p>
+</li>
+<li>
+<p>Navigate to <strong>Servers</strong> and create a new server:</p>
+<ul>
+<li>Name: <code>devs_server</code></li>
+<li>Port: <code>1194</code> (or any other port that you have setup for VPN access, check <a href="#network-load-balancer">NLB</a>)</li>
+<li>DNS Server: <code>10.0.0.2, 8.8.8.8</code> where <code>10.0.0.2</code> is the DNS resolution of the subnet. The second IP of each subnet is used for DNS resolution and our VPC where Pritunl is running has peering with all the other VPCs, so it is able to resolve all the names inside our network.</li>
+<li>Save your changes.</li>
+</ul>
+</li>
+<li>
+<p>Remove the <code>0.0.0.0/0</code> route from the <code>devs_server</code>.</p>
+</li>
+<li>
+<p>Select <strong>Attach Organization</strong> to attach <code>devs_org</code> with <code>devs_server</code>.</p>
+</li>
+<li>
+<p>Select <strong>Attach host</strong> to attach the two hosts (instances).</p>
+</li>
+<li>
+<p>Select <strong>Add Route</strong> (ensure that the server points to <code>devs_server</code>).</p>
+<ul>
+<li>You&rsquo;ll need to add the DNS resolution as we have set it up above on the <code>DNS Server</code>:
+<ul>
+<li>10.0.0.2/32 DNS resolution</li>
+</ul>
+</li>
+<li>You&rsquo;ll need to add all the routes that this server will need to access (i.e. other VPCs)
+(add routes and each comment for clarity)
+e.g.:
+<ul>
+<li>10.8.0.0/16 prod VPC</li>
+<li>10.16.0.0/16 staging VPC</li>
+<li>Wherever else you want the Pritunl/VPN to have access.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Start the server with <code>Start Server</code> button</p>
+</li>
+</ul>
+<h4 id="enabling-onelogin">Enabling OneLogin&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#enabling-onelogin"></i></a> </h4>
+<p>To enable Onelogin, Pritunl Enterprise (with subscription) is needed, otherwise the configuration won&rsquo;t display in the <strong>Settings</strong>. Then, you will need to set up a new app inside OneLogin (<em>admin</em> access is needed) and you will need to paste that information inside Pritunl:</p>
+<ul>
+<li>Single Sign-On: <code>OneLogin</code></li>
+<li>OneLogin App ID: <code>1234567</code></li>
+<li>SAML Sign-On URL: <code>https://your-company.onelogin.com/trust/saml2/http-redirect/sso/xxxx-xxxx-xxxx-xxxx</code></li>
+<li>SAML Issuer URL: <code>https://app.onelogin.com/saml/metadata/xxxx-xxxx-xxxx-xxxx</code></li>
+<li>OneLogin API Client ID, OneLogin API Client Secret, and the SAML Certificate.</li>
+</ul>
+<h4 id="appendix">Appendix&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#appendix"></i></a> </h4>
+<h5 id="attach-second-eni">Attach second ENI&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#attach-second-eni"></i></a> </h5>
+<p>Below is the bash script to attach a second ENI for Ubuntu 18.04 as per <a href="https://aws.amazon.com/premiumsupport/knowledge-center/ec2-ubuntu-secondary-network-interface/">AWS documentation</a>.</p>
+<p>That script can be used widely for other purposes, as well.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#09f;font-style:italic"># -----  Add fixed Network Interface -----</span>
+<span style="color:#366">printf</span> <span style="color:#c30">&#34;\n### Installing AWS CLI ###\n&#34;</span>
+apt  install awscli -y
+
+<span style="color:#366">printf</span> <span style="color:#c30">&#34;\n### Attaching ENI to instance ###\n&#34;</span>
+<span style="color:#033">INSTANCEID</span><span style="color:#555">=</span><span style="color:#069;font-weight:bold">$(</span>curl http://169.254.169.254/latest/meta-data/instance-id<span style="color:#069;font-weight:bold">)</span>
+<span style="color:#033">MACS</span><span style="color:#555">=</span><span style="color:#069;font-weight:bold">$(</span>curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/ | head -n1<span style="color:#069;font-weight:bold">)</span>
+<span style="color:#033">SUBNETID</span><span style="color:#555">=</span><span style="color:#069;font-weight:bold">$(</span>curl <span style="color:#c30">&#34;http://169.254.169.254/latest/meta-data/network/interfaces/macs/</span><span style="color:#033">$MACS</span><span style="color:#c30">/subnet-id&#34;</span><span style="color:#069;font-weight:bold">)</span>
+<span style="color:#033">NETWORKINTERFACEID</span><span style="color:#555">=</span><span style="color:#069;font-weight:bold">$(</span>aws ec2 describe-network-interfaces --filters <span style="color:#033">Name</span><span style="color:#555">=</span>tag:OnlyFor,Values<span style="color:#555">=</span>pritunl <span style="color:#033">Name</span><span style="color:#555">=</span>status,Values<span style="color:#555">=</span>available <span style="color:#033">Name</span><span style="color:#555">=</span>subnet-id,Values<span style="color:#555">=</span><span style="color:#033">$SUBNETID</span> --query <span style="color:#c30">&#39;NetworkInterfaces[0].NetworkInterfaceId&#39;</span> --region us-east-1 --output text<span style="color:#069;font-weight:bold">)</span>
+<span style="color:#033">NETWORKINTERFACEIP</span><span style="color:#555">=</span><span style="color:#069;font-weight:bold">$(</span>aws ec2 describe-network-interfaces --network-interface-ids <span style="color:#033">$NETWORKINTERFACEID</span> --region us-east-1 --query <span style="color:#c30">&#39;NetworkInterfaces[].[PrivateIpAddress]&#39;</span> --output text<span style="color:#069;font-weight:bold">)</span>
+aws ec2 attach-network-interface --network-interface-id <span style="color:#033">$NETWORKINTERFACEID</span> --instance-id <span style="color:#033">$INSTANCEID</span> --device-index <span style="color:#f60">1</span> --region us-east-1
+
+<span style="color:#366">printf</span> <span style="color:#c30">&#34;\n### Configuring instance to use secondary ENI ###\n&#34;</span>
+<span style="color:#033">SUFFIXDEFAULTIP</span><span style="color:#555">=</span><span style="color:#069;font-weight:bold">$(</span><span style="color:#366">echo</span> <span style="color:#033">$NETWORKINTERFACEIP</span> | sed <span style="color:#c30">&#39;s/\.[^.]*$//&#39;</span><span style="color:#069;font-weight:bold">)</span>
+cat <span style="color:#c30">&lt;&lt;EOF &gt; /etc/netplan/51-eth1.yaml
+</span><span style="color:#c30">network:
+</span><span style="color:#c30">  version: 2
+</span><span style="color:#c30">  renderer: networkd
+</span><span style="color:#c30">  ethernets:
+</span><span style="color:#c30">    eth1:
+</span><span style="color:#c30">      addresses:
+</span><span style="color:#c30">       - $NETWORKINTERFACEIP/20
+</span><span style="color:#c30">      dhcp4: no
+</span><span style="color:#c30">      routes:
+</span><span style="color:#c30">       - to: 0.0.0.0/0
+</span><span style="color:#c30">         via: $SUFFIXDEFAULTIP.1 # Default gateway
+</span><span style="color:#c30">         table: 1000
+</span><span style="color:#c30">       - to: $NETWORKINTERFACEIP
+</span><span style="color:#c30">         via: 0.0.0.0
+</span><span style="color:#c30">         scope: link
+</span><span style="color:#c30">         table: 1000
+</span><span style="color:#c30">      routing-policy:
+</span><span style="color:#c30">        - from: $NETWORKINTERFACEIP
+</span><span style="color:#c30">          table: 1000
+</span><span style="color:#c30">EOF</span>
+netplan --debug apply
+</code></pre></div><h5 id="pritunl-api-sample">Pritunl API sample&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#pritunl-api-sample"></i></a> </h5>
+<p>In order to invoke the Pritunl API, we had to make some changes on the python code that exists <a href="https://pritunl.com/api.html">here</a> as below:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">requests</span><span style="color:#555">,</span> <span style="color:#0cf;font-weight:bold">time</span><span style="color:#555">,</span> <span style="color:#0cf;font-weight:bold">uuid</span><span style="color:#555">,</span> <span style="color:#0cf;font-weight:bold">hmac</span><span style="color:#555">,</span> <span style="color:#0cf;font-weight:bold">hashlib</span><span style="color:#555">,</span> <span style="color:#0cf;font-weight:bold">base64</span>
+BASE_URL <span style="color:#555">=</span> <span style="color:#c30">&#39;https://localhost&#39;</span>
+API_TOKEN <span style="color:#555">=</span> <span style="color:#c30">&#39;p7g444S3IZ5wmFvmzWmx14qACXdzQ25b&#39;</span>
+API_SECRET <span style="color:#555">=</span> <span style="color:#c30">&#39;OpS9fjxkPI3DclkdKDDr6mqYVd0DJh4i&#39;</span>
+
+
+<span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">auth_request</span>(method, path, headers<span style="color:#555">=</span>None, data<span style="color:#555">=</span>None):
+    auth_timestamp <span style="color:#555">=</span> <span style="color:#366">str</span>(<span style="color:#366">int</span>(time<span style="color:#555">.</span>time()))
+    auth_nonce <span style="color:#555">=</span> uuid<span style="color:#555">.</span>uuid4()<span style="color:#555">.</span>hex
+    auth_string <span style="color:#555">=</span> <span style="color:#c30">&#39;&amp;&#39;</span><span style="color:#555">.</span>join([API_TOKEN, auth_timestamp, auth_nonce,
+        method<span style="color:#555">.</span>upper(), path])
+    auth_string_bytes <span style="color:#555">=</span> <span style="color:#366">bytes</span>(auth_string, <span style="color:#c30">&#39;utf-8&#39;</span>)
+    api_secret_bytes <span style="color:#555">=</span> <span style="color:#366">bytes</span>(API_SECRET, <span style="color:#c30">&#39;utf-8&#39;</span>)
+
+    auth_signature <span style="color:#555">=</span> base64<span style="color:#555">.</span>b64encode(hmac<span style="color:#555">.</span>new(
+        api_secret_bytes, auth_string_bytes, hashlib<span style="color:#555">.</span>sha256)<span style="color:#555">.</span>digest())
+    auth_headers <span style="color:#555">=</span> {
+        <span style="color:#c30">&#39;Auth-Token&#39;</span>: API_TOKEN,
+        <span style="color:#c30">&#39;Auth-Timestamp&#39;</span>: auth_timestamp,
+        <span style="color:#c30">&#39;Auth-Nonce&#39;</span>: auth_nonce,
+        <span style="color:#c30">&#39;Auth-Signature&#39;</span>: auth_signature,
+    }
+    <span style="color:#069;font-weight:bold">if</span> headers:
+        auth_headers<span style="color:#555">.</span>update(headers)
+    <span style="color:#069;font-weight:bold">return</span> <span style="color:#366">getattr</span>(requests, method<span style="color:#555">.</span>lower())(
+        BASE_URL <span style="color:#555">+</span> path,
+        headers<span style="color:#555">=</span>auth_headers,
+        data<span style="color:#555">=</span>data,
+    )
+</code></pre></div>
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Angelos Kyratzakos
+-
+<a href="https://community.mattermost.com/core/messages/@angelos.kyratzakos" target="_blank">
+    @angelos.kyratzakos
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/angeloskyratzakos" target="_blank">
+    @angeloskyratzakos
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-3/">Fixing a bug in the Go compiler as a newbie: a deep dive (III)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-2/">Fixing a bug in the Go compiler as a newbie: a deep dive (II)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-1/">Fixing a bug in the Go compiler as a newbie: a deep dive (I)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

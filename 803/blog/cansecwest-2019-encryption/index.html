@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> CanSecWest and Encryption in Mattermost</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="CanSecWest and Encryption in Mattermost">
+
+ 
+  <meta name="description" content="Check out these takeaways from CanSecWest 2019, which was full of exploits and interesting anecdotes.">
+<meta name="twitter:description" content="Check out these takeaways from CanSecWest 2019, which was full of exploits and interesting anecdotes.">
+<meta name="og:description" content="Check out these takeaways from CanSecWest 2019, which was full of exploits and interesting anecdotes.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/cansecwest-2019-encryption/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                CanSecWest and Encryption in Mattermost
+                            
+                            </h1>
+                            <small>Check out these takeaways from CanSecWest 2019, which was full of exploits and interesting anecdotes.</small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            April 25, 2019
+                            <small class="blog-item__count">624 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>This year I had the opportunity to attend the security conference <a href="https://cansecwest.com/">CanSecWest</a> in Vancouver, BC. Like any security conference, it was full of exploits and interesting anecdotes. There were plenty of interesting talks, but this post focuses on a talk by Zhiniang Peng and Minrui Yang on the dangers of homomorphic encryption. This post gives a high level overview and avoids giving too much technical detail.</p>
+<h4 id="what-is-homomorphic-encryption">What is Homomorphic Encryption?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#what-is-homomorphic-encryption"></i></a> </h4>
+<p>Homomorphic encryption is defined as an encryption scheme which allows computations to be performed on ciphertext that, when decrypted, match the result of the operation as if it was applied to the plain text. For example, let&rsquo;s say we have plaintext &ldquo;5&rdquo; and &ldquo;7&rdquo; and we encrypted them to ciphertexts &ldquo;x&rdquo; and &ldquo;y&rdquo;. We then perform a multiplication operation on ciphertexts &ldquo;x&rdquo; and &ldquo;y&rdquo; to get ciphertext &ldquo;z&rdquo;. If we used a homomorphic encryption scheme and a multiplication operation, then the plaintext corresponding ciphertext &ldquo;z&rdquo; would be &ldquo;35&rdquo; after decryption.</p>
+<h4 id="why-is-this-useful">Why is this useful?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#why-is-this-useful"></i></a> </h4>
+<p>The use of homomorphic encryption allows a receiving party that does not have a decryption key to perform operation on the ciphertext. One interesting application of this is zero trust computation services. A user of such a service would not have to reveal the contents of the data to the service, as they will encrypt the contents before sending them to the service. The service could then perform whatever operations the user has requested on the data and return the data, still encrypted, to the user. In case the service is compromised, it could not see the contents of the user&rsquo;s data as the plaintext was never sent to it.</p>
+<p>Imagine an image storage service. If the service client used regular encryption, it would not be able to perform many useful operations you might want it to do like editing and searching. However, if the service client used homomorphic encryption, the service would be able to edit, search and even perform machine learning on the image data.</p>
+<h4 id="what-about-mattermost">What about Mattermost?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#what-about-mattermost"></i></a> </h4>
+<p>Implementing a homomorphic encryption scheme for Mattermost could theoretically allow for a zero trust Mattermost server without loss of features. Ignoring the problems with key exchange and channel join/leave (which deserve blog posts of their own), a user could encrypt their messages using a homomorphic scheme before passing them to the Mattermost server. Then the Mattermost server could perform whatever operations it needs to on the encrypted data. As part of a more full solution, a homomorphic encryption scheme would remove the Mattermost application server as a single point of failure in your communication system.</p>
+<h4 id="the-talk-was-called-dangers">The talk was called dangers&hellip;&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#the-talk-was-called-dangers"></i></a> </h4>
+<p>Homomorphic encryption is not ready for prime time. While there are <a href="https://github.com/Microsoft/SEAL">libraries</a> that implement homomorphic encryption and that have made great strides in recent years in terms of performance, they are not turnkey solutions to many problems the way a well-developed cryptography library might be. One of the issues that was pointed out in the talk is that homomorphic encryption does not currently have some of the security guarantees we are used to having from other encryption schemes. For example, it does not guarantee indistinguishability under a chosen ciphertext attack, which means if an attacker can force a decryption of a ciphertext of their choice, they can recover your private key.</p>
+<h4 id="conclusion">Conclusion&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#conclusion"></i></a> </h4>
+<p>For now, homomorphic encryption is in the realm of cryptographers. As concluded by Zhiniang Peng, using homomorphic encryption is extremely dangerous without a cryptography expert. While it would be really useful for a service such as Mattermost to provide better security guarantees, there is little point in implementing an experimental cryptosystem that can&rsquo;t reliably provide them. However, the field of homomorphic encryption is rapidly evolving and is certainly something we will be keeping our eye on at Mattermost.</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Christopher Speller
+-
+<a href="https://community.mattermost.com/core/messages/@christopher" target="_blank">
+    @christopher
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/crspeller" target="_blank">
+    @crspeller
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-3/">Fixing a bug in the Go compiler as a newbie: a deep dive (III)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-2/">Fixing a bug in the Go compiler as a newbie: a deep dive (II)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-1/">Fixing a bug in the Go compiler as a newbie: a deep dive (I)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

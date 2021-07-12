@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Streamlining Developer Access to Prometheus and Grafana</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Streamlining Developer Access to Prometheus and Grafana">
+
+ 
+  
+    
+      <meta name="description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="twitter:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="og:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+
+    
+  
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Streamlining Developer Access to Prometheus and Grafana
+                            
+                            </h1>
+                            <small></small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            February 2, 2021
+                            <small class="blog-item__count">581 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>Our <a href="https://github.com/mattermost/mattermost-server/blob/master/Makefile">Makefile</a> entrypoint for developing against the <a href="https://github.com/mattermost/mattermost-server">Mattermost Server</a> already tries to simplify things for developers as much as possible.</p>
+<p>For example, when invoking <code>make run-server</code>, this build tooling takes care of all of the following (among other things!):</p>
+<ul>
+<li>Downloading a suitable version of <code>mmctl</code> for API-driven command line interaction.</li>
+<li>Checking your installed Go version to avoid cryptic error messages.</li>
+<li>Downloading and starting various Docker containers:
+<ul>
+<li><code>mysql</code> and <code>postgres</code>, both for a backend to the server and also to automate tests.</li>
+<li><code>inbucket</code> to simplify email testing without routing outside your machine.</li>
+<li><code>minio</code> to expose an S3-compatible interface to your local disk for hosting uploaded files</li>
+<li><code>openldap</code> to simplify testing alternate modes of authentication (requires access to the enterprise source).</li>
+<li><code>elasticsearch</code> to expose an improved search backend for posts and channels (requires access to the Enterprise source code).</li>
+</ul>
+</li>
+<li>Linking your server to an automatically-detected <code>mattermost-webapp</code> directory.</li>
+<li>Optionally starting the server in the foreground if <code>RUN_SERVER_IN_BACKGROUND</code> is <code>false</code>.</li>
+<li>Piping the structured server logs through a <code>logrus</code> decorator for easier reading.</li>
+<li>Invoking the <code>go</code> compiler to run the server code in your local repository.</li>
+</ul>
+<h3 id="adding-prometheus-and-grafana">Adding Prometheus and Grafana&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#adding-prometheus-and-grafana"></i></a> </h3>
+<p>As of <a href="https://github.com/mattermost/mattermost-server/pull/16649,">https://github.com/mattermost/mattermost-server/pull/16649,</a> this build tooling now supports automating the setup of Prometheus and Grafana Docker containers. Together, these tools form the backbone of our <a href="https://docs.mattermost.com/deployment/metrics.html">Performance Monitoring (E20)</a> functionality, scraping metrics from Mattermost to help give enterprise customers insight into the performance of their clusters. Automating this setup makes it easier for developers to test in a production-like environment, to help extend the monitoring available to customers, and even to run our certain kinds of loadtests using our <a href="https://github.com/mattermost/mattermost-load-test-ng">loadtesting framework</a>.</p>
+<p>Since the corresponding Mattermost functionality is only available with access to the Enterprise source code, these containers aren&rsquo;t enabled by default. To turn them on, export the following environment variable into your shell:</p>
+<pre><code>export ENABLED_DOCKER_SERVICES=&quot;mysql postgres inbucket prometheus grafana&quot;
+</code></pre><p>Alternatively, you can follow the instructions in <a href="https://github.com/mattermost/mattermost-server/blob/master/config.mk">config.mk</a>. Note that it&rsquo;s not necessary to specify <code>minio</code>, <code>openldap</code>, or <code>elasticsearch</code> - these are added automatically when an Enterprise-enabled repository is detected.</p>
+<p>The build tooling does more than just spin up two new containers, however. <a href="https://github.com/mattermost/mattermost-server/tree/master/build/docker">Various configuration files</a> also automate the following:</p>
+<ul>
+<li>Configuring Prometheus to scrape the Mattermost <code>:8067/metrics</code> endpoint (requires access to the Enterprise source code).</li>
+<li>Enabling anonymous access to Grafana (you can still log in with the default <code>admin</code>/<code>admin</code> credentials if needed).</li>
+<li>Configuring Grafana with the containerized Prometheus as the default data source.</li>
+<li>Installing our canonical Grafana dashboards (<a href="https://grafana.com/grafana/dashboards/2539">Mattermost Performance KPI Metrics</a>, <a href="https://grafana.com/grafana/dashboards/2542">Mattermost Performance Monitoring</a>, <a href="https://grafana.com/grafana/dashboards/2545">Mattermost Performance Monitoring (Bonus Metrics)</a>).</li>
+</ul>
+<p>This means that simply running <code>make run-server</code> gets you immediate access to the Mattermost Performance dashboards at <code>http://localhost:3000</code>:</p>
+<p><img src="https://developers.mattermost.com/blog/2021-02-02-streamlining-developer-access-to-prometheus-and-grafana/grafana.png" alt="Grafana home dashboard"></p>
+<p>Prometheus is also available at <code>http://localhost:9090</code>:</p>
+<p><img src="https://developers.mattermost.com/blog/2021-02-02-streamlining-developer-access-to-prometheus-and-grafana/prometheus.png" alt="Prometheus landing page"></p>
+<h3 id="enabling-metrics">Enabling Metrics&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#enabling-metrics"></i></a> </h3>
+<p>Although the tooling is all set up to scrape metrics and display the dashboards, you&rsquo;ll need to do some one-time work to enable metrics within the Mattermost server.</p>
+<p>First, be sure you have an Enterprise license installed. Staff members should have access to the shared developer license, but you can also request a trial license in-product. Browse to <code>/admin_console/about/license</code> on your local Mattermost instance to set up the license.</p>
+<p>Second, enable performance monitoring. You can do this manually via <code>config.json</code> and setting <code>MetricsSettings.Enable</code> to <code>true</code>, or by exporting <code>MM_METRICSSETTINGS_ENABLE=true</code> into your shell before starting the server, or by enabling this manually via the System Console at <code>/admin_console/environment/performance_monitoring</code>:</p>
+<p><img src="https://developers.mattermost.com/blog/2021-02-02-streamlining-developer-access-to-prometheus-and-grafana/performance-monitoring-config.png" alt="Performance monitoring configuration"></p>
+<h3 id="whats-next">What&rsquo;s next?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#whats-next"></i></a> </h3>
+<p>These changes weren&rsquo;t just made in isolation - in fact, this is all just infrastructure work for another recent project to improve Mattermost performance monitoring. Stay tuned for a follow-up blog post!</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Jesse Hallam
+-
+<a href="https://community.mattermost.com/core/messages/@jesse.hallam" target="_blank">
+    @jesse.hallam
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/lieut-data" target="_blank">
+    @lieut-data
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-3/">Fixing a bug in the Go compiler as a newbie: a deep dive (III)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-2/">Fixing a bug in the Go compiler as a newbie: a deep dive (II)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-1/">Fixing a bug in the Go compiler as a newbie: a deep dive (I)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/testing">testing</a></li>
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/performance">performance</a></li>
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

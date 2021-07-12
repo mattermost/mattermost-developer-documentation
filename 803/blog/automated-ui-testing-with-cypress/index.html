@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Automated UI Testing With Cypress</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Automated UI Testing With Cypress">
+
+ 
+  
+    
+      <meta name="description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="twitter:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="og:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+
+    
+  
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Automated UI Testing With Cypress
+                            
+                            </h1>
+                            <small></small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            July 27, 2020
+                            <small class="blog-item__count">1926 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>It&rsquo;s been more than a year and a half since we started using Cypress for our automated functional testing and it has been worth the investment. It has now become an essential part of our process to automate regression testing to ship new releases faster, with increased quality.</p>
+<p>It’s fun and easy to get started with Cypress but as we added more scripts with the varying requirements, we faced several setbacks and hurdles, such as flaky tests, which slow down our efforts in automating test cases. This resulted in a shift in our focus and time maintaining the test scripts itself, so we decided to reevaluate the strategy and came up with the guidelines and best practices which are what I’m going to share with you in this blog.</p>
+<p>Here at Mattermost, we have many types and stages of testing such as unit, integration, load, performance, and end-to-end (E2E) for UI functional, REST API, and system. But for the purpose of this article, I will focus only on E2E, specifically User Interface (UI) and functional testing, which typically run the entire application, both server and web application, with the test script written in Cypress that interacts like a typical user would.</p>
+<h2 id="e2e-test-setup">E2E Test Setup&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#e2e-test-setup"></i></a> </h2>
+<p>Before we dive into the guidelines and best practices, first let’s take a look at our E2E Test setup. The illustration below shows the overall test setup.</p>
+<p><img src="https://developers.mattermost.com/blog/2020-07-27-automated-ui-testing-with-cypress/test_environment_setup.png" alt="test environment image"></p>
+<p>Mattermost server and web application, which we&rsquo;ll refer to as &ldquo;server&rdquo;, is spun up with all the required services such as PostgreSQL, Elasticsearch, SAML/Okta, OpenLDAP, MinIO, Webhook server, Plugin Marketplace, and email server. Once the server is ready, Cypress will interact with it as a user and initiate actions and verify results. In some cases, it directly accesses the services to set up or verify information. There is also a separate static website generated from Storybook that is used to check the functionality of a component from the web application.</p>
+<h2 id="typical-test-execution-life-cycle">Typical Test Execution Life Cycle&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#typical-test-execution-life-cycle"></i></a> </h2>
+<p><img src="https://developers.mattermost.com/blog/2020-07-27-automated-ui-testing-with-cypress/test_execution_life_cycle.png" alt="test execution life cycle image"></p>
+<p>The illustration above shows the test execution life cycle of our E2E tests. It starts with the initial setup where the test environment preparation happens such as spinning the test server. Then, testing each test file until all are completed. Finally, it consolidates each individual report and artifact, saves into AWS S3 and ReportPortal dashboard, and publishes a test summary to our community channel.</p>
+<h2 id="general-tips">General Tips&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#general-tips"></i></a> </h2>
+<p>Now that we have an idea on how we set up and execute E2E tests with Cypress, let me share some of the guidelines and best practices we learned and formulated towards a happy path for developers and contributors, including test scripts as they develop features and fix bugs, and for the quality assurance (QA) team to easily capture regressions during nightly build and release testing.</p>
+<h3 id="1-reset-before-test">1. Reset before test&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#1-reset-before-test"></i></a> </h3>
+<p>This is true both for server and user settings. In the past, we used to prepare test requirements in the test file only. During that time, changes in settings are easy to track and have minimal UI effect. However, it didn’t work well as we developed features and added more and more, and we were bitten many times by it. With that, we made sure in the global <code>before</code> hook (<a href="https://github.com/mattermost/mattermost-webapp/blob/277a5cafac5385b1e283952a0881f459cffcbe94/e2e/cypress/support/index.js#L94-L164">source</a>) that the server and user, specifically <em>sysadmin</em>, are in a predetermined state before testing.</p>
+<h3 id="2-isolate-test">2. Isolate test&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#2-isolate-test"></i></a> </h3>
+<p>When using known test data like users, teams, and channels, test cases are making changes to those test data and it is fine. However, it caused a lot of pain to prepare the state for the next test, so we decided to prevent sharing test data per test file by using a convenient custom command: <code>cy.apiInitSetup</code> (<a href="https://github.com/mattermost/mattermost-webapp/blob/277a5cafac5385b1e283952a0881f459cffcbe94/e2e/cypress/support/api/setup.js#L4-L30">source</a>). Such command automatically creates test data with the typical use of:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">cy.apiInitSetup({loginAfter<span style="color:#555">:</span> <span style="color:#069;font-weight:bold">true</span>}).then(({team}) =&gt; {
+    cy.visit(<span style="color:#c30">`/</span><span style="color:#a00">${</span>team.name<span style="color:#a00">}</span><span style="color:#c30">/channels/town-square`</span>);
+});
+</code></pre></div><h3 id="3-organize-custom-commands">3. Organize custom commands&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#3-organize-custom-commands"></i></a> </h3>
+<p><a href="https://docs.cypress.io/api/cypress-api/custom-commands.html#Syntax">Cypress custom commands</a> are beneficial for automating a workflow that is repeated in tests over and over again. You may use it to override or extend the behaviour of built-in commands or to create a new one and take advantage of Cypress internals it comes with. However, it can get easily out of control, hard to discover, and hard to avoid adding similar or duplicate commands. As of this writing, we have almost <a href="https://github.com/mattermost/mattermost-webapp/tree/master/e2e/cypress/support">200 commands</a> and the following guidelines helped us level up organizing properly:</p>
+<ul>
+<li>Do specific things as the name suggests.</li>
+<li>Organize by folder and file - especially with the bulk of <a href="https://github.com/mattermost/mattermost-webapp/tree/master/e2e/cypress/support/api">API commands</a> where we structured based on how the <a href="https://api.mattermost.com/">API reference</a> is set up.</li>
+<li>Standard naming convention - by adding prefix to denote something. Ex. <code>cy.apiLogin(user)</code> means user login is done directly via REST API, or <code>cy.uiChangeMessageDisplaySetting(display)</code> means changing message display setting is done via UI workflow.</li>
+<li>Make it discoverable through autocompletion and intellisense - by adding <a href="https://github.com/mattermost/mattermost-webapp/blob/277a5cafac5385b1e283952a0881f459cffcbe94/e2e/cypress/support/api/user.d.ts#L21-L31">type definitions</a> for each custom commands with comments for in-code documentation.
+<img src="https://developers.mattermost.com/blog/2020-07-27-automated-ui-testing-with-cypress/autocompletion_and_intellisense.gif" alt="autocompletion gif"></li>
+</ul>
+<h3 id="4-be-explicit-in-the-test-block">4. Be explicit in the test block&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#4-be-explicit-in-the-test-block"></i></a> </h3>
+<p>Classic examples are user login or URL redirection which were previously done in places like custom commands or helper functions located in a separate file. Instead, such actions should be done explicitly in the test block itself. This is to easily follow the workflow and to avoid surprises on why a page suddenly redirected into an unexpected URL or a client session has been removed or replaced by another user.</p>
+<h3 id="5-avoid-dependency-of-test-block-from-another-test-block">5. Avoid dependency of test block from another test block&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#5-avoid-dependency-of-test-block-from-another-test-block"></i></a> </h3>
+<p>In cases where a test file has several test blocks, each test block or <code>it()</code> should be independent from each other. Appending exclusivity (<code>.only()</code>) or inclusivity (<code>.skip</code>) should work normally and should not rely on state generated from other tests. It will make individual test verification faster and deterministic. Cypress has a <a href="https://docs.cypress.io/guides/references/best-practices.html#Having-tests-rely-on-the-state-of-previous-tests">section that explains</a> it in detail.</p>
+<h3 id="6-avoid-nested-blocks">6. Avoid nested blocks&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#6-avoid-nested-blocks"></i></a> </h3>
+<p>This is specifically about the <code>describe</code> block which is used for grouping tests. It’s good to arrange this way when your tests run in a happy path where all the tests are passing. Even with a failing test, it might still be good to arrange this way when all of the nested blocks don’t have any hook such as <code>before</code> or <code>beforeEach</code>, as it may run the tests and execute continuously from start to finish. On the other hand, the nightmare happens when some or all of the nested blocks have hooks and the assertion fails inside of it. The effect to succeeding tests is either automatically skipped or may fail due to an unexpected state.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">describe(<span style="color:#c30">&#39;Parent&#39;</span>, () =&gt; {
+    before(() =&gt; {<span style="color:#09f;font-style:italic">/** Do test preparation */</span>});
+
+    describe(<span style="color:#c30">&#39;Child&#39;</span>, () =&gt; {
+        beforeEach(() =&gt; {
+            <span style="color:#09f;font-style:italic">// Do test preparation for child
+</span><span style="color:#09f;font-style:italic"></span>            <span style="color:#09f;font-style:italic">// Note: if the test failed here,
+</span><span style="color:#09f;font-style:italic"></span>            <span style="color:#09f;font-style:italic">// succeeding tests are skipped or 
+</span><span style="color:#09f;font-style:italic"></span>            <span style="color:#09f;font-style:italic">// may fail too due to unexpected state.
+</span><span style="color:#09f;font-style:italic"></span>        });
+
+        it(<span style="color:#c30">&#39;test 1&#39;</span>, () =&gt; {...});
+        it(<span style="color:#c30">&#39;test 2&#39;</span>, () =&gt; {...});
+    });
+
+    describe(<span style="color:#c30">&#39;Another child&#39;</span>, () =&gt; {
+        before(() =&gt; {<span style="color:#09f;font-style:italic">/** Do test preparation for another child */</span>});
+
+        it(<span style="color:#c30">&#39;test 1&#39;</span>, () =&gt; {...});
+        it(<span style="color:#c30">&#39;test 2&#39;</span>, () =&gt; {...});
+
+        describe(<span style="color:#c30">&#39;Grandchild&#39;</span>, () =&gt; {
+            beforeEach(() =&gt; {<span style="color:#09f;font-style:italic">/** Do test preparation for grandchild */</span>});
+
+            it(<span style="color:#c30">&#39;test a&#39;</span>, () =&gt; {...});
+            it(<span style="color:#c30">&#39;test b&#39;</span>, () =&gt; {...});
+        });
+    });
+});
+</code></pre></div><p>One option to avoid this and still maintain test grouping is to break into several test files and organize in a folder. It’s a trade-off between readability and organization against maintainability and a chance to run each test as much as possible.</p>
+<h3 id="7-avoid-unnecessary-waiting">7. Avoid unnecessary waiting&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#7-avoid-unnecessary-waiting"></i></a> </h3>
+<p>Cypress has a <a href="https://docs.cypress.io/guides/references/best-practices.html#Unnecessary-Waiting">section that explains</a> it in detail and lists workarounds when you find yourself needing it. Explicit <code>wait</code> makes the test flaky or longer than usual. On top of what was explained, we’re using <a href="https://www.npmjs.com/package/cypress-wait-until">cypress-wait-until</a> under the hood that makes it easier to wait for a certain subject. You’ll find custom commands like <code>cy.uiWaitUntilMessagePostedIncludes</code> (<a href="https://github.com/mattermost/mattermost-webapp/blob/277a5cafac5385b1e283952a0881f459cffcbe94/e2e/cypress/support/ui_commands.js#L124-L140">source</a>) which is sometimes used to wait for a system message to get posted before making an assertion.</p>
+<h3 id="8-add-comments-for-each-action-and-verification">8. Add comments for each action and verification&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#8-add-comments-for-each-action-and-verification"></i></a> </h3>
+<p>During pull request (PR) review, test script is normally reviewed by technical (developer) and non-technical (QA analyst) staff. Though the code is readable and comprehensible, the convention for adding comments helps everyone align on what is going on in the test script. The non-technical staff could easily verify whether the written test script corresponds to the actual test case without trying to get around within the code itself.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#09f;font-style:italic">// # Post a message in a test channel by another user
+</span><span style="color:#09f;font-style:italic"></span>cy.postMessageAs({sender<span style="color:#555">:</span> anotherUser, message<span style="color:#555">:</span> <span style="color:#c30">&#39;from another user&#39;</span>, channelId<span style="color:#555">:</span> testChannel.id});
+
+<span style="color:#09f;font-style:italic">// # Go to off-topic channel via LHS and post a message
+</span><span style="color:#09f;font-style:italic"></span>cy.get(<span style="color:#c30">&#39;#sidebarItem_off-topic&#39;</span>).click();
+<span style="color:#069;font-weight:bold">const</span> message <span style="color:#555">=</span> <span style="color:#c30">&#39;Hello&#39;</span>;
+cy.postMessage(message);
+cy.uiWaitUntilMessagePostedIncludes(message);
+
+<span style="color:#09f;font-style:italic">// # Go to test channel where the first message is posted
+</span><span style="color:#09f;font-style:italic"></span>cy.get(<span style="color:#c30">`#sidebarItem_</span><span style="color:#a00">${</span>testChannel.name<span style="color:#a00">}</span><span style="color:#c30">`</span>).click();
+
+<span style="color:#09f;font-style:italic">// * Check that the new message separator is visible
+</span><span style="color:#09f;font-style:italic"></span>cy.findByTestId(<span style="color:#c30">&#39;NotificationSeparator&#39;</span>).should(<span style="color:#c30">&#39;be.visible&#39;</span>).within(() =&gt; {
+    cy.findByText(<span style="color:#c30">&#39;New Messages&#39;</span>).should(<span style="color:#c30">&#39;be.visible&#39;</span>);
+});
+</code></pre></div><h3 id="9-selectively-run-tests-based-on-metadata">9. Selectively run tests based on metadata&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#9-selectively-run-tests-based-on-metadata"></i></a> </h3>
+<p>There are cases where we don’t need to run the entire test suite. Test environment, browser or release version might not be supported by a certain test case. Or simply, written test is not stable enough for production. Unfortunately, Cypress doesn’t have this capability. With that, we implemented a node script so we can run tests selectively.</p>
+<p>Start by adding metadata, as we call it, in a test file.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#09f;font-style:italic">// Stage: @prod
+</span><span style="color:#09f;font-style:italic">// Group: @accessibility
+</span></code></pre></div><p>Then, simply initiating <code>node run_tests.js --stage='@prod' --group='@accessibility</code> will run production tests for accessibility groups.</p>
+<p>For sure, there are lots of best practices out there which are not mentioned here but I hope it helps anyone reading this, especially for those who want to get started with Cypress or set up an Automated UI Testing in general.</p>
+<h2 id="conclusion">Conclusion&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#conclusion"></i></a> </h2>
+<p>The setbacks and hurdles we experienced are not necessarily limitations in the Cypress test framework, but manageable through organization and best practices. We are glad to have it as part of our automated UI testing and very much thankful to Cypress for creating a tool that helps make writing E2E enjoyable.</p>
+<h2 id="thanks-to-all-contributors">Thanks to all contributors!&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#thanks-to-all-contributors"></i></a> </h2>
+<p>Finally, I’d like to thank all the contributors who shaped and helped set up our E2E and put us where we are today.</p>
+<p><strong>All E2E contributors and their number of contributions (as of this writing):</strong>
+Abdulrahman (Abdu) Assabri (5), Abraham Arias (6), Adzim Zul Fahmi (3), Agniva De Sarker (1), Alejandro García Montoro (5), Allen Lai (3), Andre Vasconcelos (1), Anindita Basu (2), Arjun Lather (3), Asaad Mahmood (2), Ben Schumacher (2), bnoggle (1), Bob Lubecker (32), Brad Angelcyk (1), Brad Coughlin (3), catalintomai (2), cdncat (1), Christopher Poile (1), Clare So (2), Claudio Costa (3), Clément Collin (1), composednitin (1), Cooper Trowbridge (2), Courtney Pattison (2), d28park (2), Daniel Espino García (24), David Janda (1), Devin Binnie (5), Donald Feury (1), Eli Yukelzon (5), Farhan Munshi (7), Guillermo Vayá (5), Harrison Healey (14), Hossein Ahmadian-Yazdi (10), Hyeseong Kim (1), Jesse Hallam (6), Jesús Espino (2), Jonathan Rigsby (2), Jorde G (1), Joseph Baylon (68), Kelvin Tan YB (1), kosgrz (2), lawikip (2), m3phistopheles (1), Marc Argent (3), Maria A Nunez (1), Mario de Frutos Dieguez (3), Martin Kraft (11), Matthew Shirley (1), Md Zubair Ahmed (11), Md_ZubairAhmed (1), metanerd (1), Miguel Alatzar (1), NiroshaV (1), oliverJurgen (2), Patrick Kang (1), Pradeep Murugesan (1), Prapti (4), Rob Stringer (1), Rohitesh Gupta (49), Romain Maneschi (3), Sam Wolfs (1), Sapna Sivakumar (3), Saturnino Abril (160), Scott Bishel (5), Shota Gvinepadze (1), sij507 (7), Soo Hwan Kim (2), sourabkumarkeshri (1), Sudheer (7), syuo7 (1), Takatoshi Iwasa (1), Tomas Hnat (1), Tsilavina Razafinirina (3), Valentijn Nieman (3), VishalSwarnkar (3), Vladimir Lebedev (11), VolatianaYuliana (2), Walmyr (1), 興怡 (1)</p>
+<h2 id="ready-to-get-started-with-cypress">Ready to get started with Cypress?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#ready-to-get-started-with-cypress"></i></a> </h2>
+<p>If Cypress sounds interesting to you, please join us for <a target="_blank" href="https://forum.mattermost.org/t/cypress-test-automation-hackfest-kickoff/10191">Cypress Test Automation Hackfest</a> which runs through August and win an exclusive Mattermost swag bag!</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Saturnino Abril
+-
+<a href="https://community.mattermost.com/core/messages/@saturnino.abril" target="_blank">
+    @saturnino.abril
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/saturninoabril" target="_blank">
+    @saturninoabril
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                <h6>Table Of Contents</h6>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#e2e-test-setup">E2E Test Setup</a></li>
+    <li><a href="#typical-test-execution-life-cycle">Typical Test Execution Life Cycle</a></li>
+    <li><a href="#general-tips">General Tips</a>
+      <ul>
+        <li><a href="#1-reset-before-test">1. Reset before test</a></li>
+        <li><a href="#2-isolate-test">2. Isolate test</a></li>
+        <li><a href="#3-organize-custom-commands">3. Organize custom commands</a></li>
+        <li><a href="#4-be-explicit-in-the-test-block">4. Be explicit in the test block</a></li>
+        <li><a href="#5-avoid-dependency-of-test-block-from-another-test-block">5. Avoid dependency of test block from another test block</a></li>
+        <li><a href="#6-avoid-nested-blocks">6. Avoid nested blocks</a></li>
+        <li><a href="#7-avoid-unnecessary-waiting">7. Avoid unnecessary waiting</a></li>
+        <li><a href="#8-add-comments-for-each-action-and-verification">8. Add comments for each action and verification</a></li>
+        <li><a href="#9-selectively-run-tests-based-on-metadata">9. Selectively run tests based on metadata</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#thanks-to-all-contributors">Thanks to all contributors!</a></li>
+    <li><a href="#ready-to-get-started-with-cypress">Ready to get started with Cypress?</a></li>
+  </ul>
+</nav>
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-3/">Fixing a bug in the Go compiler as a newbie: a deep dive (III)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-2/">Fixing a bug in the Go compiler as a newbie: a deep dive (II)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-1/">Fixing a bug in the Go compiler as a newbie: a deep dive (I)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/testing">testing</a></li>
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/ui-automation">ui automation</a></li>
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Fixing a bug in the Go compiler as a newbie: a deep dive (I)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Fixing a bug in the Go compiler as a newbie: a deep dive (I)">
+
+ 
+  
+    
+      <meta name="description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="twitter:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="og:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+
+    
+  
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/optimizing-go-compiler-1/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Fixing a bug in the Go compiler as a newbie: a deep dive (I)
+                            
+                            </h1>
+                            <small></small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            April 23, 2021
+                            <small class="blog-item__count">2326 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p><a href="https://github.com/golang/go/commit/bf48163e8f2b604f3b9e83951e331cd11edd8495">bf48163e8f2b604f3b9e83951e331cd11edd8495</a>. That is the hash of one of the 48371 commits that, at the time of this writing, build the whole Git history of the Go compiler. It is definitely not the most important commit there, and most of the other ones probably deserve way more attention. But I like <code>bf48163</code>. It is a good commit, I think. I may be a bit biased, of course, as it is my first contribution to Go.</p>
+<p>Not only that, it is my first contribution <em>ever</em> to any compiler!</p>
+<p>What&rsquo;s really interesting here is that I am not an expert in Go&mdash;nor in compilers in general&mdash;at all. Sure, I know my way through the language to write software using it, but I had never thought I would be able to modify the compiler itself.</p>
+<p>And that is why I wrote this, to let you know that fixing a bug in a compiler is not only meant for a few chosen ones, but within reach of anyone.</p>
+<p>Although this was conceived as a single post, it got a little bit out of hand, so I decided to split it in three:</p>
+<ul>
+<li>Part 1: What the bug looks like, and an introduction to some parts of the Go compiler.</li>
+<li><a href="https://developers.mattermost.com/blog/optimizing-go-compiler-2">Part 2</a>: what the bug actually is.</li>
+<li><a href="https://developers.mattermost.com/blog/optimizing-go-compiler-3">Part 3</a>: how to fix the bug.</li>
+</ul>
+<p>Don&rsquo;t get discouraged by the length of the content: It doesn&rsquo;t correlate with the complexity of the issue, but with the level of detail I tried to use when explaining it. I wanted to make sure I explained the ins and outs of how I approached the fix, and I don&rsquo;t assume any knowledge about compilers from the reader, so I tried to discuss everything chapter and verse.</p>
+<p>Enough with the intro, let&rsquo;s start!</p>
+<h1 id="id-like-to-work-on-this-one">I&rsquo;d like to work on this one!&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#id-like-to-work-on-this-one"></i></a> </h1>
+<p>Back in September 2020, my colleague <a href="https://github.com/agnivade">Agniva</a> posted <a href="https://community.mattermost.com/core/pl/pd74uyf1z7rr9d46jfrww581na">a message in the Go channel</a>, where the Mattermost community hangs out to discuss all things Go, inviting people to start contributing to the compiler. He posted links to three issues in the Go project, one of which was <a href="https://github.com/golang/go/issues/41663">issue #41663</a>.</p>
+<p>Agniva told that this issue was &ldquo;particularly suitable for newcomers looking to get started&rdquo;. That&rsquo;s me!, I said. I am a newcomer, and I am looking to get started. After double checking with him that &ldquo;newcomer&rdquo; meant someone that knew nothing about compilers, I picked it up, which was as easy as writing &ldquo;<a href="https://github.com/golang/go/issues/41663#issuecomment-699878893">I&rsquo;d like to work on this one!</a>&rdquo; on the issue itself.</p>
+<p>So that was it. I had then committed to fix an issue I knew nothing about. Of course, I started regretting that decision the very moment after I hit Send. I know now that it was a great decision, but at that time it looked quite daunting.</p>
+<h1 id="the-issue">The issue&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#the-issue"></i></a> </h1>
+<p>Ok, so let&rsquo;s dive into the issue itself. The bug in the compiler can be explained with the following function:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">import</span> <span style="color:#c30">&#34;encoding/binary&#34;</span>
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">f</span>(b []<span style="color:#078;font-weight:bold">byte</span>, x <span style="color:#555">*</span>[<span style="color:#f60">8</span>]<span style="color:#078;font-weight:bold">byte</span>) {
+	_ = b[<span style="color:#f60">8</span>]
+	t <span style="color:#555">:=</span> binary.LittleEndian.<span style="color:#c0f">Uint64</span>(x[:])
+	binary.LittleEndian.<span style="color:#c0f">PutUint64</span>(b, t)
+}
+</code></pre></div><p>The report said that this function compiled to a series of small <code>MOVx</code>, but that it could be optimized to use instead a couple of <code>MOVQ</code>: one for loading and one for storing.</p>
+<p>If this sounds as gibberish, that&rsquo;s ok. Bear with me and we will get to what that sentence means. First, let&rsquo;s see what the function is supposed to do. To make things a bit easier, let&rsquo;s simply rewrite the variable names and add a couple of comments:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">import</span> <span style="color:#c30">&#34;encoding/binary&#34;</span>
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">copyArrayToSlice</span>(dest []<span style="color:#078;font-weight:bold">byte</span>, src <span style="color:#555">*</span>[<span style="color:#f60">8</span>]<span style="color:#078;font-weight:bold">byte</span>) {
+	_ = dest[<span style="color:#f60">8</span>]                                <span style="color:#09f;font-style:italic">// 1. bounds check
+</span><span style="color:#09f;font-style:italic"></span>	temp <span style="color:#555">:=</span> binary.LittleEndian.<span style="color:#c0f">Uint64</span>(src[:]) <span style="color:#09f;font-style:italic">// 2. read the contents of the source array into temp
+</span><span style="color:#09f;font-style:italic"></span>	binary.LittleEndian.<span style="color:#c0f">PutUint64</span>(dest, temp)  <span style="color:#09f;font-style:italic">// 3. write the contents into the destiny slice
+</span><span style="color:#09f;font-style:italic"></span>}
+</code></pre></div><p>It is now more clear what the function does. It stores the contents of the second argument, the <code>src</code> array, into the first argument, the slice <code>dest</code>. It uses the <a href="https://golang.org/pkg/encoding/binary/">encoding/binary</a> package for reading and writing the 8 bytes as an unsigned integer of 64 bits. For doing the copy, we use a temporary variable, <code>temp</code>.</p>
+<p>The only weird line might be the first one, which is a bounds check. This forces the compiler to check that <code>dest[8]</code>, and, thus, all <code>dest[0]</code>, &hellip;, <code>dest[7]</code>, are valid indices. We do that at the very beginning, so the compiler knows that all indices we are using in the copy are valid, for the whole scope of the function. We do not need to do such a check with <code>src</code>, because its length is known at compile time: 8 bytes.</p>
+<p>So what&rsquo;s the bug? This is where things start to get interesting. The compiler is generating correct code, but it is not as optimized as it can be.</p>
+<h1 id="understanding-the-compiler">Understanding the compiler&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#understanding-the-compiler"></i></a> </h1>
+<p>Before diving into the bug, let&rsquo;s pause for a bit to learn something more about how the Go compiler works.</p>
+<p>Essentially, a compiler is a translator: it converts a piece of code in a language (in our case, Go) to an equivalent piece of code in another language (in our case, assembly code, whose specific instructions depend on the specific architecture we want to run the executable in). Hopefully, the meaning of what we wrote in Go (the behavior of our program), is maintained throughout the process of translation.</p>
+<p>In the Go compiler, this complex process is divided into phases. There are <em>a lot</em> of them, and we will not discuss the structure in this blog post&mdash;see <a href="https://github.com/golang/go/blob/0c93b16d015663a60ac77900ca0dcfab92310790/src/cmd/compile/README.md"><code>cmd/compile/README.md</code></a> for a high-level view of the phases, and take a look directly <a href="https://github.com/golang/go/blob/0c93b16d015663a60ac77900ca0dcfab92310790/src/cmd/compile/internal/ssa/compile.go#L426-L481">at the code</a> to see the complete list&mdash;. We will instead focus on one of the last phases, which converts the so-called Static Single Assignment (SSA) form into the final assembly instructions, that depend on the architecture we are compiling for.</p>
+<h2 id="static-single-assignment">Static Single Assignment&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#static-single-assignment"></i></a> </h2>
+<p>SSA is an intermediate generic representation of the code, which makes it easier to apply some optimizations before going too low-level into the architecture-specific instructions. SSA is a really interesting topic on its own, so make sure to read <a href="https://github.com/golang/go/blob/master/src/cmd/compile/internal/ssa/README.md">the documentation</a> and, if you have time, go and see <a href="https://www.youtube.com/watch?v=uTMvKVma5ms">this 30 minute talk</a>, which is a great introduction to the topic.</p>
+<p>For the purpose of these posts, we need to know that SSA is a representation of the original code with a simple rule: every value is assigned only once, although it can be used any number of times. The syntax of SSA is not particularly interesting, but we need to understand it for being able to follow the rest of the post.</p>
+<p>Let&rsquo;s say we have the following piece of (very absurd) code:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">var</span> c <span style="color:#078;font-weight:bold">uint8</span> = a <span style="color:#555">+</span> b
+c = c <span style="color:#555">-</span> b
+</code></pre></div><p>This can be represented in SSA as something like:</p>
+<pre><code>v4 = Add8 &lt;uint8&gt; v2 v3
+v5 = Sub8 &lt;uint8&gt; v4 v3
+</code></pre><p>In this case, <code>v2</code> is a <em>value</em> that represents the variable <code>a</code>, while <code>v3</code> is a value representing the variable <code>b</code>. We store its addition&mdash;represented by the operator <code>Add8</code> with type <code>uint8</code>&mdash; into the new value <code>v4</code>.</p>
+<p>Then, in the second line of the original code, we reassign <code>c</code>. But remember: every value in SSA is assigned <strong>only once</strong>. Thus, in SSA, we generate a new value <code>v5</code>, that will contain <code>c</code> (<code>v4</code>) minus <code>b</code> (<code>v3</code>).</p>
+<p>The best way to learn about SSA is generating it ourselves. Thankfully, this is one shell command away. Whenever you are building or running a piece of Go code, tell the compiler that you want to read the generated SSA by setting the env variable <code>GOSSAFUNC</code> to the name of the function you want to investigate. It looks something like:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#033">GOSSAFUNC</span><span style="color:#555">=</span>myFunction go build myfile.go
+</code></pre></div><p>This outputs a <code>ssa.html</code> file, in the same directory where you ran the command, that you can open with your browser. It looks like this:</p>
+<p><img src="https://developers.mattermost.com/blog/2021-04-23-optimizing-go-compiler-1/ssa.png" alt="Screenshot of the SSA page"></p>
+<p>That&rsquo;s a whole lot of information. I agree. But we can focus on what&rsquo;s interesting for us. The page shows the output of every phase of the compilation, once SSA is generated, in collapsible columns. To make things easier, the page is interactive: try clicking on a value and see how the uses of that value are highlighted in the same color. This does not only happen within the same column: If you look at the previous or next columns, you can also quickly see how that value is being modified by the different phases of the compilation (or if it&rsquo;s left untouched). You can do the same thing with blocks (the labels starting with <code>b</code>), which are isolated series of values in the control flow graph of the function.</p>
+<h2 id="rewrite-rules">Rewrite rules&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#rewrite-rules"></i></a> </h2>
+<p>One of the benefits of using SSA is that it is easy to match common patterns and rewrite them with optimized versions. For example, let&rsquo;s say that we have the following Go code:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">var</span> five = <span style="color:#f60">5</span>
+<span style="color:#069;font-weight:bold">var</span> a = five <span style="color:#555">*</span> <span style="color:#f60">16</span>
+</code></pre></div><p>We can compute the value of <code>a</code> by literally making the multiplication <code>5 times 16</code>. But it is known that multiplication instructions are quite CPU-expensive. What if we could optimize this line of code by avoiding the multiplication?</p>
+<p>It turns out we can, because <code>16</code> is a power of <code>2</code>. And as doubling is the same as applying a single left shift, we can see that multiplying by <code>2^n</code> is the same as shifting the number to the left <code>n</code> places:</p>
+<pre><code>00000101 // 5
+01010000 // 5*(2^4) = 80
+</code></pre><p>Knowing that multiplying by a power of two is the same as shifting to the left, and that the shifting instruction is way faster than the multiplication instruction, we simply need to make sure that the compiler converts every line of Go code with a multiplication by a power of two constant into a left shift.</p>
+<p>And that&rsquo;s exactly what the rewrite rules are for! You can take a look at <a href="https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/rulegen.go#L37-L60">the specific syntax of the rules</a> but, in short, they contain:</p>
+<ol>
+<li>A matching pattern, with an optional boolean condition preceded by <code>&amp;&amp;</code></li>
+<li>A right arrow <code>=&gt;</code></li>
+<li>A new instruction that will override the matched pattern</li>
+</ol>
+<p>There are several rules to cover the conversion of multiplications by powers of two into left shifts in the <a href="https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/generic.rules#L172-L180"><code>generic.rules</code> file</a>. Let&rsquo;s take a look only at the first one, as all the others are identical in structure:</p>
+<pre><code>(Mul8  &lt;t&gt; n (Const8  [c])) &amp;&amp; isPowerOfTwo8(c)
+=&gt;
+(Lsh8x64  &lt;t&gt; n (Const64 &lt;typ.UInt64&gt; [log8(c)]))
+</code></pre><p>We can see all the parts of a normal rule here:</p>
+<ul>
+<li>The matching pattern, <code>(Mul8 &lt;t&gt; n (Const8 [c]))</code>, which matches every multiplication instruction of a variable <code>n</code> by a constant <code>c</code>.</li>
+<li>The boolean condition, <code>isPowerOfTwo8(c)</code>, which restricts the pattern to those multiplications where the constant <code>c</code> is a power of two.</li>
+<li>The new instruction, <code>(Lsh8x64 &lt;t&gt; n (Const64 &lt;typ.UInt64&gt; [log8(c)]))</code>, which shifts <code>n</code> to the left <code>log(c)</code> places.</li>
+</ul>
+<p>It&rsquo;s OK if you don&rsquo;t understand every specific detail of the instructions, we&rsquo;ll see them in detail a bit later in this post. Here, for example, we can note that the <code>8</code> suffixes make reference to the fact that this rule only matches multiplications of 8-bit variables. The other highlighted rules in the link to the <code>generic.rules</code> file cover the cases for variables of different bit widths.</p>
+<p>For now, it&rsquo;s enough to understand that the rules match a specific pattern of instructions, and rewrite those instructions with a new one that&rsquo;s hopefully more efficient. Also, it is important to know that there are generic rules, as the one we just studied, which are applied regardless of the specific architecture we are compiling for, and architecture-specific rules, such as the ones in the <a href="https://github.com/golang/go/blob/master/src/cmd/compile/internal/ssa/gen/AMD64.rules">AMD64.rules file</a>, which take advantage of the specifics of each architecture, further optimizing the code.</p>
+<h2 id="connecting-it-all-together">Connecting it all together&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#connecting-it-all-together"></i></a> </h2>
+<p>In order to investigate the issue and solve it, we&rsquo;ll need to set up the development environment for the Go compiler. I encourage you to read the official <a href="https://golang.org/doc/contribute">documentation</a>: it&rsquo;s comprehensive and easy to understand. There are some particularities to the process, but it&rsquo;s generally straightforward.</p>
+<p>For the specifics we&rsquo;ll need to use in these posts, we can summarize a couple of things. All the commands in this section assume that you&rsquo;ve cloned the Go repository and have a shell open in its root directory.</p>
+<h3 id="how-to-apply-the-changes-done-to-the-rewrite-rules">How to apply the changes done to the rewrite rules&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#how-to-apply-the-changes-done-to-the-rewrite-rules"></i></a> </h3>
+<p>We already know what the rewrite rules are, but not how they&rsquo;re applied. Although the rules live in a series of <code>.rules</code> files, the actual code used to match and apply them is normal Go code. With one peculiarity: it&rsquo;s automatically generated from the <code>.rules</code> files.</p>
+<p>For example, the rules for AMD64 are declared in the file <code>src/cmd/compile/internal/ssa/gen/AMD64.rules </code>, but the automatically generated code that applies those rules live in <code>src/cmd/compile/internal/ssa/rewriteAMD64.go</code>.</p>
+<p>So: whenever we manually update a rewrite rule, we need to re-generate the corresponding Go code. Doing so is trivial, and comes down to this:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#366">cd</span> src/cmd/compile/internal/ssa/gen/
+go run *.go
+</code></pre></div><h3 id="how-to-compile-the-compiler-and-test-it">How to compile the compiler and test it&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#how-to-compile-the-compiler-and-test-it"></i></a> </h3>
+<p>And now for the fun part: how to compile the compiler. Once we&rsquo;ve generated the automatic code, we want to build the compiler from source with the new changes. Doing it is as trivial as calling a script:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#366">cd</span> src/
+./make.bash
+</code></pre></div><p>Once this finishes, make sure that the subsequent calls to the <code>go</code> command are using the recently created binary:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#366">cd</span> bin/
+<span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#c30">`</span><span style="color:#366">pwd</span><span style="color:#c30">`</span>:<span style="color:#033">$PATH</span>
+</code></pre></div><p>If everything was correctly setup, you should see your local Go directory when doing <code>which go</code>.</p>
+<p>And last, but not least, when you&rsquo;ve applied your changes, you&rsquo;ll want to know that you didn&rsquo;t break anything else, so you should run the whole test suite at least once before you push your changes! Doing so is again one script call away:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#366">cd</span> src/
+./all.bash
+</code></pre></div><h1 id="next-steps">Next steps&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#next-steps"></i></a> </h1>
+<p>Ok, enough theory! We already know what the issue is and the very basics of how SSA and the rewrite rules work. Go and read <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-2">the second part of the series</a> to deep dive into the bug itself, which will let us know what the issue actually is and give us some hints on how to fix it.</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Alejandro García Montoro
+-
+<a href="https://community.mattermost.com/core/messages/@alejandro.garcia" target="_blank">
+    @alejandro.garcia
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/agarciamontoro" target="_blank">
+    @agarciamontoro
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-3/">Fixing a bug in the Go compiler as a newbie: a deep dive (III)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-2/">Fixing a bug in the Go compiler as a newbie: a deep dive (II)</a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/go">go</a></li>
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

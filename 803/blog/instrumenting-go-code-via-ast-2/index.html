@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Instrumenting Go code via AST, Part 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Instrumenting Go code via AST, Part 2">
+
+ 
+  <meta name="description" content="This is the second part of our AST blog post series, expanding on the subject of utilizing Go AST libraries to automate and improve your workflow.">
+<meta name="twitter:description" content="This is the second part of our AST blog post series, expanding on the subject of utilizing Go AST libraries to automate and improve your workflow.">
+<meta name="og:description" content="This is the second part of our AST blog post series, expanding on the subject of utilizing Go AST libraries to automate and improve your workflow.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/instrumenting-go-code-via-ast-2/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Instrumenting Go Code via AST - Part 1
+                            
+                            </h1>
+                            <small>This is the second part of our AST blog post series, expanding on the subject of utilizing Go AST libraries to automate and improve your workflow.</small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            March 15, 2020
+                            <small class="blog-item__count">950 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <h2 id="welcome">Welcome!&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#welcome"></i></a> </h2>
+<p>This is the second part of our AST blog post series, expanding on the subject of utilizing Go AST libraries to automate and improve your workflow.</p>
+<p>In this post I&rsquo;ll discuss a rather common problem that comes up while working with Go code and the way we&rsquo;ve solved it by sprinkling a little bit of AST magic dust. Let&rsquo;s dive in.</p>
+<h2 id="problem-a-struct-with-no-interface">Problem: A <code>struct</code> with no <code>interface</code>&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#problem-a-struct-with-no-interface"></i></a> </h2>
+<p>Let&rsquo;s say you are working on a large code base that was not built with <code>interfaces</code> in mind, meaning, there are <code>structs</code> and methods attached to those <code>structs</code>, but there is no <code>interface</code> describing it. This is a perfectly valid approach when you don&rsquo;t need to mock/stub the method implementations provided by that <code>struct</code>, or there&rsquo;s only one implementation of the same &lsquo;contract&rsquo;.</p>
+<p>However, when these things are required we need to provide an <code>interface</code>.</p>
+<p>Here&rsquo;s a small code snippet to demonstrate:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+<span style="color:#069;font-weight:bold">type</span> Person <span style="color:#069;font-weight:bold">struct</span> {
+	Name <span style="color:#078;font-weight:bold">string</span>
+}
+
+<span style="color:#069;font-weight:bold">func</span> (p Person) <span style="color:#c0f">Hello</span>() <span style="color:#078;font-weight:bold">string</span> {
+	<span style="color:#069;font-weight:bold">return</span> <span style="color:#c30">&#34;Hello: &#34;</span> <span style="color:#555">+</span> p.Name
+}
+
+<span style="color:#069;font-weight:bold">type</span> Animal <span style="color:#069;font-weight:bold">struct</span> {
+	Legs <span style="color:#078;font-weight:bold">int</span>
+}
+
+<span style="color:#069;font-weight:bold">func</span> (a Animal) <span style="color:#c0f">Hello</span>() <span style="color:#078;font-weight:bold">string</span> {
+	<span style="color:#069;font-weight:bold">return</span> fmt.<span style="color:#c0f">Sprintf</span>(<span style="color:#c30">&#34;I have %d legs!&#34;</span>, a.Legs)
+}
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">main</span>() {
+	p <span style="color:#555">:=</span> Person{Name: <span style="color:#c30">&#34;Fred&#34;</span>}
+	a <span style="color:#555">:=</span> Animal{Legs: <span style="color:#f60">4</span>}
+	<span style="color:#09f;font-style:italic">// ...	
+</span><span style="color:#09f;font-style:italic"></span>}
+</code></pre></div><p>In this example both <code>Person</code> and <code>Animal</code> have the same <code>Hello()</code> method. If we wanted to store a list of both the <code>Person</code> and <code>Animal</code> <code>structs</code>, we would have to define it as:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">list <span style="color:#555">:=</span> []<span style="color:#069;font-weight:bold">interface</span>{}{p,a}
+</code></pre></div><p>But this way we lose the type information of the list elements.
+This is where <code>interfaces</code> come in. Since both <code>Person</code> and <code>Animal</code> <em>implement</em> a method with the same signature, we can extract that signature into an <code>interface</code> and use it for storing items in a list:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">type</span> <span style="color:#069;font-weight:bold">interface</span> Hello {
+	<span style="color:#c0f">Hello</span>() <span style="color:#078;font-weight:bold">string</span>
+}
+<span style="color:#09f;font-style:italic">// ...
+</span><span style="color:#09f;font-style:italic"></span>list <span style="color:#555">:=</span> []Hello{p,a}
+fmt.<span style="color:#c0f">Printf</span>(<span style="color:#c30">&#34;Person: [%v] Animal: [%v]\n&#34;</span>, list[<span style="color:#f60">0</span>].<span style="color:#c0f">Hello</span>(), list[<span style="color:#f60">1</span>].<span style="color:#c0f">Hello</span>())
+</code></pre></div><p>Awesome. Now let&rsquo;s say the <code>struct</code> you are extracting the <code>interface</code> from is a big one. A really big one. With lots and lots of methods spread out in different <code>.go</code> files. Creating such an <code>interface</code> manually would be very laborious.</p>
+<p>This problem is itching to get an AST treatment. Let&rsquo;s get to it!</p>
+<h2 id="ast-to-the-rescue">AST to the rescue!&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#ast-to-the-rescue"></i></a> </h2>
+<p>Let&rsquo;s break down the task at hand into smaller, digestable parts:</p>
+<ol>
+<li>Scan the source code for all methods implemented on a specific <code>struct</code></li>
+<li>Collect all those methods (and their comments, for clarity)</li>
+<li>Create a new file that will contain an <code>interface</code> with all the collected methods inside</li>
+<li>&hellip;</li>
+<li>Profit?</li>
+</ol>
+<p><strong>Note:</strong> Usually the <code>interface</code> doesn&rsquo;t contain all of the <code>struct</code> methods, but we&rsquo;ll leave the topics of abstraction and better code organization for another blog post.</p>
+<h3 id="scanning-the-source-code-for-all-struct-methods">Scanning the source code for all <code>struct</code> methods&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#scanning-the-source-code-for-all-struct-methods"></i></a> </h3>
+<p>Here&rsquo;s a short piece of code that scans a folder of <code>.go</code> source code to first find a package by name and then search for all methods that are bound to the <code>struct</code> we&rsquo;re interested in.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">fset <span style="color:#555">:=</span> token.<span style="color:#c0f">NewFileSet</span>()
+<span style="color:#09f;font-style:italic">// 1. scan source code folder
+</span><span style="color:#09f;font-style:italic"></span>pkgs, err <span style="color:#555">:=</span> parser.<span style="color:#c0f">ParseDir</span>(fset, folder, <span style="color:#069;font-weight:bold">nil</span>, parser.AllErrors|parser.ParseComments)
+<span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+	log.<span style="color:#c0f">Fatalf</span>(<span style="color:#c30">&#34;Unable to parse %s folder&#34;</span>, folder)
+}
+<span style="color:#09f;font-style:italic">// 2. find the required package by name
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">var</span> appPkg <span style="color:#555">*</span>ast.Package
+<span style="color:#069;font-weight:bold">for</span> _, pkg <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> pkgs {
+	<span style="color:#069;font-weight:bold">if</span> pkg.Name <span style="color:#555">==</span> pkgName {
+		appPkg = pkg
+		<span style="color:#069;font-weight:bold">break</span>
+	}
+}
+<span style="color:#069;font-weight:bold">if</span> appPkg <span style="color:#555">==</span> <span style="color:#069;font-weight:bold">nil</span> {
+	log.<span style="color:#c0f">Fatalf</span>(<span style="color:#c30">&#34;Unable to find package %s&#34;</span>, pkgName)
+}
+
+<span style="color:#09f;font-style:italic">// 3. find all methods that are bound to the specific struct
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">for</span> _, file <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> appPkg.Files {
+	ast.<span style="color:#c0f">Inspect</span>(file, <span style="color:#069;font-weight:bold">func</span>(n ast.Node) <span style="color:#078;font-weight:bold">bool</span> {
+		<span style="color:#069;font-weight:bold">if</span> fun, ok <span style="color:#555">:=</span> n.(<span style="color:#555">*</span>ast.FuncDecl); ok {
+			<span style="color:#09f;font-style:italic">// 4. Validate that method is exported and has a receiver
+</span><span style="color:#09f;font-style:italic"></span>			<span style="color:#069;font-weight:bold">if</span> fun.Name.<span style="color:#c0f">IsExported</span>() <span style="color:#555">&amp;&amp;</span> fun.Recv <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> <span style="color:#555">&amp;&amp;</span> <span style="color:#366">len</span>(fun.Recv.List) <span style="color:#555">==</span> <span style="color:#f60">1</span> {
+					<span style="color:#09f;font-style:italic">// 5. Check that the receiver is actually the struct we want
+</span><span style="color:#09f;font-style:italic"></span>					<span style="color:#069;font-weight:bold">if</span> r, rok <span style="color:#555">:=</span> fun.Recv.List[<span style="color:#f60">0</span>].Type.(<span style="color:#555">*</span>ast.StarExpr); rok <span style="color:#555">&amp;&amp;</span> r.X.(<span style="color:#555">*</span>ast.Ident).Name <span style="color:#555">==</span> structName {
+						<span style="color:#09f;font-style:italic">// we found it!
+</span><span style="color:#09f;font-style:italic"></span>					}
+				}
+			}
+
+		}
+		<span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">true</span>
+	})
+}
+</code></pre></div><p>Steps 1 and 2 are pretty straightforward, the interesting bits start at step 3: For each file in the package, we execute <code>ast.Inspect</code> to get all the AST nodes. For every node that is actually a function (checked by <code>n.(*ast.FuncDecl)</code>), we check if that function is:</p>
+<ul>
+<li>Exported (we are not interested in private methods)</li>
+<li>Has a receiver (it&rsquo;s bound to a <code>struct</code>)</li>
+<li>Receiver&rsquo;s type matches the <code>struct</code> we are interested in</li>
+</ul>
+<h3 id="collecting-functions-and-their-comments">Collecting functions and their comments&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#collecting-functions-and-their-comments"></i></a> </h3>
+<p>Now that we can get a <code>*ast.FuncDecl</code> (let&rsquo;s call it <code>fun</code>) for each function, we can collect all the information about it and reconstruct it:</p>
+<ol>
+<li>Name: <code>fun.Name.Name</code></li>
+<li>Comments: <code>fun.Doc.List</code></li>
+<li>Parameters: <code>fun.Type.Params.List</code></li>
+<li>Return values: <code>fun.Type.Results.List</code></li>
+</ol>
+<h3 id="generate-the-interface-file">Generate the <code>interface</code> file&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#generate-the-interface-file"></i></a> </h3>
+<p>To generate the output <code>interface</code>, we&rsquo;ll use Go&rsquo;s <code>template</code> package. Let&rsquo;s define a simple template:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">const</span> outputTemplate = <span style="color:#c30">`
+</span><span style="color:#c30">// DO NOT EDIT, auto generated
+</span><span style="color:#c30">
+</span><span style="color:#c30">package </span><span style="color:#099">{{</span><span style="color:#309">.Package</span><span style="color:#099">}}</span><span style="color:#c30">
+</span><span style="color:#c30">
+</span><span style="color:#c30">type </span><span style="color:#099">{{</span><span style="color:#309">.Name</span><span style="color:#099">}}</span><span style="color:#c30"> interface {
+</span><span style="color:#c30">	</span><span style="color:#099">{{</span><span style="color:#309">.Content</span><span style="color:#099">}}</span><span style="color:#c30">
+</span><span style="color:#c30">}
+</span><span style="color:#c30">`</span>
+</code></pre></div><p>And populate it:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">sort.<span style="color:#c0f">Strings</span>(funcs)
+out <span style="color:#555">:=</span> bytes.<span style="color:#c0f">NewBufferString</span>(<span style="color:#c30">&#34;&#34;</span>)
+
+t <span style="color:#555">:=</span> template.<span style="color:#c0f">Must</span>(template.<span style="color:#c0f">New</span>(<span style="color:#c30">&#34;&#34;</span>).<span style="color:#c0f">Parse</span>(outputTemplate))
+err = t.<span style="color:#c0f">Execute</span>(out, <span style="color:#069;font-weight:bold">map</span>[<span style="color:#078;font-weight:bold">string</span>]<span style="color:#069;font-weight:bold">interface</span>{}{
+	<span style="color:#c30">&#34;Content&#34;</span>: strings.<span style="color:#c0f">Join</span>(funcs, <span style="color:#c30">&#34;\n&#34;</span>),
+	<span style="color:#c30">&#34;Name&#34;</span>:    ifName,
+	<span style="color:#c30">&#34;Package&#34;</span>: pkgName,
+})
+</code></pre></div><p>We&rsquo;re almost done! Our <code>interface</code> file is ready, but it&rsquo;s missing a crucial part - <code>imports</code>. Luckily, there is a package for that™ - <a href="https://pkg.go.dev/golang.org/x/tools/imports">https://pkg.go.dev/golang.org/x/tools/imports</a>.</p>
+<p>Let&rsquo;s give it whirl:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">formatted, err <span style="color:#555">:=</span> imports.<span style="color:#c0f">Process</span>(outputFile, out.<span style="color:#c0f">Bytes</span>(), <span style="color:#555">&amp;</span>imports.Options{Comments: <span style="color:#069;font-weight:bold">true</span>})
+<span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+	log.<span style="color:#c0f">Panic</span>(err)
+}
+err = ioutil.<span style="color:#c0f">WriteFile</span>(outputFile, formatted, <span style="color:#f60">0644</span>)
+</code></pre></div><p>Voila! You have an <code>interface</code> file that contains all the methods implemented on the <code>struct</code>.</p>
+<h2 id="struct2interface"><code>struct2interface</code>&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#struct2interface"></i></a> </h2>
+<p>The process I&rsquo;ve described is a rather generic one, so to make it fully repeatable, I&rsquo;ve extracted it into a separate CLI utility called <code>struct2interface</code>. It can be found at <a href="https://github.com/reflog/struct2interface">https://github.com/reflog/struct2interface</a>.</p>
+<h2 id="conclusion">Conclusion&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#conclusion"></i></a> </h2>
+<p>Once again, AST came to the rescue and saved us lots and lots of manual labor. Hurray! In the next post of this series, I&rsquo;ll describe how we combined our <code>layers</code> approach with AST to create a clean <code>opentracing</code> instrumentation we&rsquo;ve started in the first part of these series.</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Eli Yukelzon
+-
+<a href="https://community.mattermost.com/core/messages/@eli.yukelzon" target="_blank">
+    @eli.yukelzon
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/reflog" target="_blank">
+    @reflog
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                <h6>Table Of Contents</h6>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#welcome">Welcome!</a></li>
+    <li><a href="#problem-a-struct-with-no-interface">Problem: A <code>struct</code> with no <code>interface</code></a></li>
+    <li><a href="#ast-to-the-rescue">AST to the rescue!</a>
+      <ul>
+        <li><a href="#scanning-the-source-code-for-all-struct-methods">Scanning the source code for all <code>struct</code> methods</a></li>
+        <li><a href="#collecting-functions-and-their-comments">Collecting functions and their comments</a></li>
+        <li><a href="#generate-the-interface-file">Generate the <code>interface</code> file</a></li>
+      </ul>
+    </li>
+    <li><a href="#struct2interface"><code>struct2interface</code></a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+
+                    
+    
+    
+    
+    
+    
+    
+
+    
+        
+        
+            
+            
+            
+        
+    
+        
+        
+    
+        
+        
+    
+    
+        
+            
+            
+        
+    
+        
+    
+        
+    
+    
+        <p>
+            Part 2 of 3 in the <b>AST</b> series.
+        </p>
+        <p>
+        
+            <a href="https://developers.mattermost.com/blog/instrumenting-go-code-via-ast/"><i class="fa fa-angle-double-left"></i>&nbsp;Part 1</a>
+        
+        
+                |
+        
+        
+            <a href="https://developers.mattermost.com/blog/open-tracing/">Part 3&nbsp;<i class="fa fa-angle-double-right"></i></a></p>
+        
+    
+
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-3/">Fixing a bug in the Go compiler as a newbie: a deep dive (III)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-2/">Fixing a bug in the Go compiler as a newbie: a deep dive (II)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-1/">Fixing a bug in the Go compiler as a newbie: a deep dive (I)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

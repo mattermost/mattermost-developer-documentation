@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/categories/</link>
+    <description>Recent content in Categories on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Jun 2021 00:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>cloud</title>
+      <link>https://developers.mattermost.com/categories/cloud/</link>
+      <pubDate>Tue, 01 Jun 2021 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>https://developers.mattermost.com/categories/go/</link>
+      <pubDate>Fri, 23 Apr 2021 12:02:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>performance</title>
+      <link>https://developers.mattermost.com/categories/performance/</link>
+      <pubDate>Tue, 02 Feb 2021 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/performance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>testing</title>
+      <link>https://developers.mattermost.com/categories/testing/</link>
+      <pubDate>Tue, 02 Feb 2021 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>i18n</title>
+      <link>https://developers.mattermost.com/categories/i18n/</link>
+      <pubDate>Fri, 04 Dec 2020 12:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/i18n/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>devops</title>
+      <link>https://developers.mattermost.com/categories/devops/</link>
+      <pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>opensource</title>
+      <link>https://developers.mattermost.com/categories/opensource/</link>
+      <pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/opensource/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>security</title>
+      <link>https://developers.mattermost.com/categories/security/</link>
+      <pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ui automation</title>
+      <link>https://developers.mattermost.com/categories/ui-automation/</link>
+      <pubDate>Mon, 27 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/ui-automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>https://developers.mattermost.com/categories/git/</link>
+      <pubDate>Fri, 27 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>markdown</title>
+      <link>https://developers.mattermost.com/categories/markdown/</link>
+      <pubDate>Thu, 26 Mar 2020 12:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>“linting”</title>
+      <link>https://developers.mattermost.com/categories/linting/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/linting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>announcements</title>
+      <link>https://developers.mattermost.com/categories/announcements/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/announcements/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://developers.mattermost.com/categories/kubernetes/</link>
+      <pubDate>Wed, 18 Dec 2019 12:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>plugins</title>
+      <link>https://developers.mattermost.com/categories/plugins/</link>
+      <pubDate>Wed, 11 Dec 2019 10:49:35 +0200</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/plugins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>contributing</title>
+      <link>https://developers.mattermost.com/categories/contributing/</link>
+      <pubDate>Thu, 24 Jan 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/contributing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>announcement</title>
+      <link>https://developers.mattermost.com/categories/announcement/</link>
+      <pubDate>Wed, 18 Jul 2018 15:35:09 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/categories/announcement/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

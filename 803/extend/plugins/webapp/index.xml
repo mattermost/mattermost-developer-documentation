@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web App Plugins on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/extend/plugins/webapp/</link>
+    <description>Recent content in Web App Plugins on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Jul 2018 00:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/extend/plugins/webapp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Quick Start</title>
+      <link>https://developers.mattermost.com/extend/plugins/webapp/hello-world/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/webapp/hello-world/</guid>
+      <description>This tutorial will walk you through the basics of extending the Mattermost web app.
+Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing mattermost-plugin-starter-template for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the migration document to upgrade older plugins.
+Prerequisites Plugins, just like the Mattermost web app itself, are built using ReactJS with Redux.</description>
+    </item>
+    
+    <item>
+      <title>Web App Reference</title>
+      <link>https://developers.mattermost.com/extend/plugins/webapp/reference/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/webapp/reference/</guid>
+      <description>PluginClass The PluginClass interface defines two methods used by the Mattermost web app to initialize and uninitialize your plugin:
+class PluginClass { /** * initialize is called by the webapp when the plugin is first loaded. * Receives the following: * - registry - an instance of the registry tied to your plugin id * - store - the Redux store of the web app. */ initialize(registry, store) /** * uninitialize is called by the webapp if your plugin is uninstalled */ uninitialize() } Your plugin should implement this class and register it using the global registerPlugin method defined on the window by the webapp:</description>
+    </item>
+    
+    <item>
+      <title>Redux Actions</title>
+      <link>https://developers.mattermost.com/extend/plugins/webapp/actions/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/webapp/actions/</guid>
+      <description>When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in mattermost-redux, our library of shared code between Mattermost JavaScript clients.
+Here we&amp;rsquo;ll show how to use Redux actions with a plugin. To learn more about these actions, see the contributor documentation.
+Prerequisites This guide assumes you have already set up your plugin development environment for web app plugins to match mattermost-plugin-starter-template.</description>
+    </item>
+    
+    <item>
+      <title>Best Practices</title>
+      <link>https://developers.mattermost.com/extend/plugins/webapp/best-practices/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/webapp/best-practices/</guid>
+      <description>Design Best Practices Actions that apply to specific Channels  Recommendation: Have your plugin register the actions to the channel header. This makes it quickly accessible for users and the actions apply on the channel they&amp;rsquo;re viewing. Example: Zoom meeting posts to a channel  You can additionally register a slash command on the server-side to take channel-specific actions.
+ Example: Jira project actions  Actions that apply to specific messages  Recommendation: Have your plugin register a post dropdown menu component with some text, icon and an action function.</description>
+    </item>
+    
+  </channel>
+</rss>

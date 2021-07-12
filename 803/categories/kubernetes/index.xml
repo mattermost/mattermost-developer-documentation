@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kubernetes on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/categories/kubernetes/</link>
+    <description>Recent content in kubernetes on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Dec 2019 12:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>KubeCon NA 2019</title>
+      <link>https://developers.mattermost.com/blog/kubecon-na-2019/</link>
+      <pubDate>Wed, 18 Dec 2019 12:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/kubecon-na-2019/</guid>
+      <description>It wasn’t my first time flying. It also wasn’t the first time I had arrived at the airport early enough to require multiple cups of coffee. As I sat at my gate, however, I did find myself wondering for the first time: had I ever heard the words “Lambda,” “stateful set&amp;rdquo;, and “yaml” while waiting to board?
+You see, a bunch of us were coming from all over to attend KubeCon + CloudNativeCon North America 2019.</description>
+    </item>
+    
+  </channel>
+</rss>

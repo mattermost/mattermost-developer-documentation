@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Avoiding Common Internationalization Mistakes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Avoiding Common Internationalization Mistakes">
+
+ 
+  
+    
+      <meta name="description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="twitter:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="og:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+
+    
+  
+
+
+ 
+<link rel="canonical" href="https://mattermost.com/blog/avoiding-common-internationalization-mistakes/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Avoiding Common Internationalization Mistakes
+                            
+                            </h1>
+                            <small></small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            December 4, 2020
+                            <small class="blog-item__count">2146 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>Languages are complicated, and every language is complicated in different ways that can be hard to understand without learning every single one of them. Some languages form words from multiple characters while others have symbols that represent entire concepts. Some feature words without pluralization or gender and rely on context for that while others have two or even more genders for words. Some are very phonetic while others pronounce words seemingly at random (<em>cough</em> English, though <em>cough</em>).</p>
+<p>Thanks to a tremendous contribution long ago from then-community member Elias Nahum, we have full support for translation throughout Mattermost, and thanks to our community of translators, Mattermost is used in a variety of different languages.</p>
+<p>Because we support so many languages, we have to be aware of how to keep our applications properly translatable. There are many easy mistakes you can make when writing an application in one language that can make it difficult to translate into others. We use <a href="https://formatjs.io/docs/react-intl/">React Intl</a> in our client-side applications and <a href="https://github.com/nicksnyder/go-i18n">go-i18n</a> on the server which both offer a range of features to help with this, but we can still cause problems if we&rsquo;re not careful when using translated text. Here are a few examples of common problems that we&rsquo;ve run into and how to solve them.</p>
+<h2 id="mistake-1-not-translating-something">Mistake 1: Not translating something&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#mistake-1-not-translating-something"></i></a> </h2>
+<p>This one is definitely the easiest to avoid, but it can still catch people who aren&rsquo;t used to writing applications outside their native language.</p>
+<p>For example, suppose someone is adding a new button to the web app using React. If they forget to make it to use React Intl, they may write something like this:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#069;font-weight:bold">function</span> MyButton() {
+    <span style="color:#069;font-weight:bold">return</span> &lt;<span style="color:#309;font-weight:bold">button</span>&gt;{<span style="color:#c30">&#39;Click me!&#39;</span>}&lt;/<span style="color:#309;font-weight:bold">button</span>&gt;;
+}
+</code></pre></div><p>That&rsquo;s fine if only English-speaking people use your application, but that doesn&rsquo;t work for us. Instead, we can use React Intl&rsquo;s <code>FormattedMessage</code> component to do the translation for us.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#069;font-weight:bold">import</span> {FormattedMessage} from <span style="color:#c30">&#39;react-intl&#39;</span>;
+
+<span style="color:#069;font-weight:bold">function</span> MyButton() {
+    <span style="color:#069;font-weight:bold">return</span> (
+        &lt;<span style="color:#309;font-weight:bold">button</span>&gt;
+            &lt;<span style="color:#309;font-weight:bold">FormattedMessage</span>
+                <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#39;my_button.label&#39;</span>
+                <span style="color:#309">defaultMessage</span><span style="color:#555">=</span><span style="color:#c30">&#39;Click me!&#39;</span>
+            /&gt;
+        &lt;/<span style="color:#309;font-weight:bold">button</span>&gt;
+    );
+}
+</code></pre></div><p>The code ends up being a bit longer, but that&rsquo;s more than worth it for making the app translatable.</p>
+<h2 id="mistake-2-hard-coding-translations">Mistake 2: Hard coding translations&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#mistake-2-hard-coding-translations"></i></a> </h2>
+<p>This mistake is less common since it requires mixing translated and non-translated text, but it comes from a real-world example in Mattermost.</p>
+<p>When you reply to an older message in Mattermost, we display &ldquo;Commented on Billy&rsquo;s message:&rdquo; to tell everyone that you&rsquo;re responding to Billy. For a while after we had translation support added, the code for that looked like this:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#069;font-weight:bold">let</span> username <span style="color:#555">=</span> <span style="color:#c30">&#39;@&#39;</span> <span style="color:#555">+</span> rootPost.username;
+<span style="color:#069;font-weight:bold">if</span> (<span style="color:#555">!</span>username.endsWith(<span style="color:#c30">&#39;s&#39;</span>)) {
+    username <span style="color:#555">+=</span> <span style="color:#c30">&#39;\&#39;s&#39;</span>;
+}
+
+<span style="color:#069;font-weight:bold">return</span> (
+    &lt;<span style="color:#309;font-weight:bold">FormattedMessage</span>
+        <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#39;post.commentedOn&#39;</span>
+        <span style="color:#309">defaultMessage</span><span style="color:#555">=</span><span style="color:#c30">&#39;Commented on {username} message:&#39;</span>
+        <span style="color:#309">values</span><span style="color:#555">=</span>{{username}}
+    /&gt;
+)
+</code></pre></div><p>Here, we&rsquo;re using React Intl to add Billy&rsquo;s name into the text as a value, but we&rsquo;re making a mistake by trying to make the username into a possessive adjective ourselves. By manually adding the &ldquo;&rsquo;s&rdquo;, we&rsquo;re applying English grammar regardless of the user&rsquo;s language setting, so this label won&rsquo;t make sense in other languages.</p>
+<p>Instead, the &ldquo;&rsquo;s&rdquo; should be part of the translation string. That required changing our grammar rules slightly since we previously avoided adding &ldquo;&rsquo;s&rdquo; to the end of names that ended in the letter &ldquo;s&rdquo;, but the new way is still correct according to other popular grammar guidelines. Isn&rsquo;t English great?</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#069;font-weight:bold">return</span> (
+    &lt;<span style="color:#309;font-weight:bold">FormattedMessage</span>
+        <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#39;post.commentedOn&#39;</span>
+        <span style="color:#309">defaultMessage</span><span style="color:#555">=</span><span style="color:#c30">&#34;Commented on @{username}&#39;s message:&#34;</span>
+        <span style="color:#309">values</span><span style="color:#555">=</span>{{username: <span style="color:#078;font-weight:bold">rootPost.username</span>}}
+    /&gt;
+);
+</code></pre></div><h2 id="mistake-3-incorrect-pluralization">Mistake 3: Incorrect pluralization&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#mistake-3-incorrect-pluralization"></i></a> </h2>
+<p>Another common mistake is to forget that pluralization exists when counting something, so you end up with text that looks like &ldquo;1 posts deleted&rdquo;. You can attempt to avoid that by adding (s) to the end of a word, but that doesn&rsquo;t look very nice, and other languages may not have anything comparable that they can do to replicate that. Thankfully, our translation libraries can help us out here.</p>
+<p>Say you&rsquo;re adding a feature that sends out an email to a number of people, and you want it to report back on its progress in both the UI and in the server&rsquo;s logs. You might write something like this:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#069;font-weight:bold">return</span> (
+    &lt;<span style="color:#309;font-weight:bold">FormattedMessage</span>
+        <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#39;email_sender.remaining&#39;</span>
+        <span style="color:#309">defaultMessage</span><span style="color:#555">=</span><span style="color:#c30">&#39;{remaining, number} email(s) remaining.&#39;</span>
+        <span style="color:#309">values</span><span style="color:#555">=</span>{{remaining}}
+    /&gt;
+);
+</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#09f;font-style:italic">/*
+</span><span style="color:#09f;font-style:italic">    The translation file contains:
+</span><span style="color:#09f;font-style:italic">    {
+</span><span style="color:#09f;font-style:italic">        &#34;id&#34;: &#34;app.email_sender.remaining&#34;,
+</span><span style="color:#09f;font-style:italic">        &#34;translation&#34;: &#34;{{.Remaining}} email(s) remaining&#34;
+</span><span style="color:#09f;font-style:italic">    }
+</span><span style="color:#09f;font-style:italic">*/</span>
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">logEmailsRemaining</span>(remaining <span style="color:#078;font-weight:bold">int</span>) {
+    log.<span style="color:#c0f">Print</span>(<span style="color:#c0f">translateFunc</span>(<span style="color:#c30">&#34;app.email_sender.remaining&#34;</span>, <span style="color:#069;font-weight:bold">map</span>[<span style="color:#078;font-weight:bold">string</span>]<span style="color:#069;font-weight:bold">interface</span>{}{
+        <span style="color:#c30">&#34;Remaining&#34;</span>: remaining,
+    }))
+}
+</code></pre></div><p>Note that the React example uses a feature of React Intl to specify that <code>remaining</code> is a number. Without it, &ldquo;0 emails remaining&rdquo; wouldn&rsquo;t be shown properly because it&rsquo;s a falsy value in JavaScript.</p>
+<p>That is an example of how we can tell React Intl to behave slightly differently though. If we use the <code>plural</code> modifier, we can specify different text based on the value of <code>remaining</code>. go-i18n has a similar feature, but it takes two different versions of the translated string instead of constructing one that&rsquo;s more complicated.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#069;font-weight:bold">return</span> (
+    &lt;<span style="color:#309;font-weight:bold">FormattedMessage</span>
+        <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#39;email_sender.remaining&#39;</span>
+        <span style="color:#309">defaultMessage</span><span style="color:#555">=</span><span style="color:#c30">&#39;{remaining, number} {remaining, plural, one {email} other {emails}} remaining.&#39;</span>
+        <span style="color:#309">values</span><span style="color:#555">=</span>{{remaining}}
+    /&gt;
+);
+</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#09f;font-style:italic">/*
+</span><span style="color:#09f;font-style:italic">    The translation file contains:
+</span><span style="color:#09f;font-style:italic">    {
+</span><span style="color:#09f;font-style:italic">        &#34;id&#34;: &#34;app.email_sender.remaining&#34;,
+</span><span style="color:#09f;font-style:italic">        &#34;translation&#34;: {
+</span><span style="color:#09f;font-style:italic">            &#34;one&#34;: &#34;{{.Remaining}} email remaining&#34;,
+</span><span style="color:#09f;font-style:italic">            &#34;other&#34;: &#34;{{.Remaining}} emails remaining&#34;
+</span><span style="color:#09f;font-style:italic">        }
+</span><span style="color:#09f;font-style:italic">    }
+</span><span style="color:#09f;font-style:italic">*/</span>
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">logEmailsRemaining</span>(remaining <span style="color:#078;font-weight:bold">int</span>) {
+    log.<span style="color:#c0f">Print</span>(<span style="color:#c0f">translateFunc</span>(<span style="color:#c30">&#34;app.email_sender.remaining&#34;</span>, remaining, <span style="color:#069;font-weight:bold">map</span>[<span style="color:#078;font-weight:bold">string</span>]<span style="color:#069;font-weight:bold">interface</span>{}{
+        <span style="color:#c30">&#34;Remaining&#34;</span>: remaining,
+    }))
+}
+</code></pre></div><p>In both of these, we&rsquo;re defining different translation strings based on the value of remaining. As mentioned before, React Intl lets you change how a single part of the string is translated as opposed to go-i18n which swaps out the entire string, but the result is the same either way.</p>
+<p>In addition to just changing &ldquo;email&rdquo; to &ldquo;emails&rdquo;, this also lets translators handle pluralization differently for their own language. For example, some languages don&rsquo;t pluralize their word for email while others, such as Spanish, may also change pluralize &ldquo;remaining&rdquo; as well. Here&rsquo;s how the web app&rsquo;s translation file would look for the React example above:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;email_sender.remaining&#34;</span>: <span style="color:#c30">&#34;{remaining, number} {remaining, plural, one {correo pendiente} other {correos pendientes}}.&#34;</span>
+}
+</code></pre></div><p>Since &ldquo;pendiente&rdquo; for &ldquo;remaining&rdquo; changes based on the number of remaining emails, it has also been moved into the curly brackets.</p>
+<h2 id="mistake-4-concatenating-translated-strings">Mistake 4: Concatenating translated strings&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#mistake-4-concatenating-translated-strings"></i></a> </h2>
+<p>This last mistake is one we encounter more often, and it&rsquo;s one that&rsquo;s a bit harder to solve because it requires using some more complicated techniques that even we haven&rsquo;t adopted everywhere yet. It also takes a bit longer to describe the problem we can encounter here.</p>
+<p>Suppose you have a popup which contains some helpful information as well as a link to further documentation. It probably ends with the sentence &ldquo;<a href="https://mattermost.com">Click here</a> for more information.&rdquo; where &ldquo;Click here&rdquo; is a link. You might just write this as follows:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#069;font-weight:bold">return</span> (
+    &lt;&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span>
+            <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#39;https://mattermost.com&#39;</span>
+            <span style="color:#309">rel</span><span style="color:#555">=</span><span style="color:#c30">&#39;noreferrer&#39;</span>
+            <span style="color:#309">target</span><span style="color:#555">=</span><span style="color:#c30">&#39;_blank&#39;</span>
+        &gt;
+            &lt;<span style="color:#309;font-weight:bold">FormattedMessage</span>
+                <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#39;popup.clickHere&#39;</span>
+                <span style="color:#309">defaultMessage</span><span style="color:#555">=</span><span style="color:#c30">&#39;Click here&#39;</span>
+            /&gt;
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        {<span style="color:#c30">&#39; &#39;</span>}
+        &lt;<span style="color:#309;font-weight:bold">FormattedMessage</span>
+            <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#39;popup.forMoreInformation&#39;</span>
+            <span style="color:#309">defaultMessage</span><span style="color:#555">=</span><span style="color:#c30">&#39;for more information.&#39;</span>
+        /&gt;
+    &lt;/&gt;
+);
+</code></pre></div><p>This works in English, but it may not work in other languages. For example, some languages may invert the sentence structure to be more like &ldquo;For more information, click here&rdquo; while others, like Chinese, may not include a space between words.</p>
+<p>Generally, we shouldn&rsquo;t be concatenating translated strings since it&rsquo;s a sign that the sentence structure may not work for everyone. Instead, we should move as much as we can into the translation string so that translators can construct the sentence as necessary. There&rsquo;s a few ways to do this that we&rsquo;ve been iterating and improving on, so I&rsquo;m going to present them separately and talk about why the final method is likely the best.</p>
+<h3 id="solution-1-react-elements-as-values">Solution 1: React elements as values&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#solution-1-react-elements-as-values"></i></a> </h3>
+<p>Similar to the example on pluralization, we can actually pass translated text into another block of translated text as a value to construct the sentence.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#069;font-weight:bold">return</span> (
+    &lt;<span style="color:#309;font-weight:bold">FormattedMessage</span>
+        <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#39;popup.moreInformation&#39;</span>
+        <span style="color:#309">defaultMessage</span><span style="color:#555">=</span><span style="color:#c30">&#39;{link} for more information.&#39;</span>
+        <span style="color:#309">values</span><span style="color:#555">=</span>{{
+            link<span style="color:#555">:</span> (
+                &lt;<span style="color:#309;font-weight:bold">a</span>
+                    <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#39;https://mattermost.com&#39;</span>
+                    <span style="color:#309">rel</span><span style="color:#555">=</span><span style="color:#c30">&#39;noreferrer&#39;</span>
+                    <span style="color:#309">target</span><span style="color:#555">=</span><span style="color:#c30">&#39;_blank&#39;</span>
+                &gt;
+                    &lt;<span style="color:#309;font-weight:bold">FormattedMessage</span>
+                        <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#39;popup.moreInformation.link&#39;</span>
+                        <span style="color:#309">defaultMessage</span><span style="color:#555">=</span><span style="color:#c30">&#39;Click here&#39;</span>
+                    /&gt;
+                &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+            ),
+        }}
+    /&gt;
+);
+</code></pre></div><p>You&rsquo;ll often see this used in older Mattermost code when we&rsquo;re trying to format part of a string. It allows us to add more complex formatting within translated text without making it impossible to translate.</p>
+<p>It does, however, make it harder for translators to understand the meaning of the text. They need to spend time reconstructing the entire sentence which may be difficult. It also makes the code more complicated to read for the same reason.</p>
+<h3 id="solution-2-formattedhtmlmessage">Solution 2: FormattedHTMLMessage&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#solution-2-formattedhtmlmessage"></i></a> </h3>
+<p><code>FormattedHTMLMessage</code> was another way to solve this problem, but it was removed in more recent versions. It&rsquo;s a component provided by React Intl, similar to <code>FormattedMessage</code>, but allows us to include HTML in the translation string instead of nesting translated text. Since it&rsquo;s been removed, it can&rsquo;t be used any more, but it demonstrates another problem we ran into in the past.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#09f;font-style:italic">// import {FormattedHTMLMessage} from &#39;react-intl&#39;;
+</span><span style="color:#09f;font-style:italic"></span>
+<span style="color:#069;font-weight:bold">return</span> (
+    &lt;<span style="color:#309;font-weight:bold">FormattedHTMLMessage</span>
+        <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#39;popup.moreInformation&#39;</span>
+        <span style="color:#309">defaultMessage</span><span style="color:#555">=</span><span style="color:#c30">&#39;&lt;a href=&#34;https://mattermost.com&#34; rel=&#34;noreferrer&#34; target=&#34;_blank&#34;&gt;Click here&lt;/a&gt; for more information.&#39;</span>
+    /&gt;
+);
+</code></pre></div><p>As with the previous solution, this allows translators to reconstruct the sentence however they need, but it comes with a few serious downsides such as:</p>
+<ol>
+<li>Translators needed to understand HTML, including more complicated things like the extra parameters on the <code>a</code> tag.</li>
+<li>It added the chance that an incorrect translation could break part of the application by accidentally including malformed HTML within a string.</li>
+<li>It also had potential performance impacts since we were going outside of React&rsquo;s DOM manipulation optimizations by using raw HTML.</li>
+<li>We lost the ability to wrap parts of the string in React elements which can have more functionality, such as encapsulating the additional parameters passed into <code>a</code> tag.</li>
+<li>Since it used HTML, <code>FormattedHTMLMessage</code> wasn&rsquo;t available in React Native for use in our mobile apps.</li>
+</ol>
+<p>But despite these issues, it helped point us in the right direction since it led to a custom component that&rsquo;s much nicer to work with.</p>
+<h3 id="solution-3-formattedmarkdownmessage">Solution 3: FormattedMarkdownMessage&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#solution-3-formattedmarkdownmessage"></i></a> </h3>
+<p><code>FormattedMarkdownMessage</code> was added by another one of our team members, Martin Kraft, as a safer and slightly simpler alternative to <code>FormattedHTMLMessage</code>. Instead of the translator needing to understand the complexities of HTML, they instead use Markdown which is generally simpler.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#09f;font-style:italic">// import {FormattedMarkdownMessage} from &#39;components/formatted_markdown_message&#39;;
+</span><span style="color:#09f;font-style:italic"></span>
+<span style="color:#069;font-weight:bold">return</span> (
+    &lt;<span style="color:#309;font-weight:bold">FormattedMarkdownMessage</span>
+        <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#39;popup.moreInformation&#39;</span>
+        <span style="color:#309">defaultMessage</span><span style="color:#555">=</span><span style="color:#c30">&#39;[Click here](!https://mattermost.com) for more information.&#39;</span>
+    /&gt;
+);
+</code></pre></div><p>Much better! It does require some additional knowledge that adding an exclamation mark to the link tells <code>FormattedMarkdownMessage</code> to open it in a new window, but there&rsquo;s a lot less learning required compared to HTML. That said, this formatting is even more limited than the previous options, and <code>FormattedMarkdownMessage</code> doesn&rsquo;t fix the potential for performance problems because it still has to parse Markdown.</p>
+<p>This technique is used frequently throughout our apps, and until recently, I would&rsquo;ve considered it to be the best way of doing this, but now that we&rsquo;ve upgraded React Intl, we have access to a new feature which I think is even nicer.</p>
+<h3 id="solution-4-rich-text-formatting-in-react-intl">Solution 4: Rich text formatting in React Intl&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#solution-4-rich-text-formatting-in-react-intl"></i></a> </h3>
+<p>React Intl now supports custom HTML-like formatting within the translated text. To do this, you construct an HTML-like string such as <code>&lt;link&gt;Click here&lt;/link&gt; for more information.</code> using any number of custom tags, and then you define what those tags mean without the translator having to worry about the defails.</p>
+<p>In our case, we still want the link to open in a new tab, but now we can do that without the translator having to know anything about that.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#069;font-weight:bold">return</span> (
+    &lt;<span style="color:#309;font-weight:bold">FormattedMessage</span>
+        <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#39;popup.moreInformation&#39;</span>
+        <span style="color:#309">defaultMessage</span><span style="color:#555">=</span><span style="color:#c30">&#39;&lt;link&gt;Click here&lt;/link&gt; for more information.&#39;</span>
+        <span style="color:#309">values</span><span style="color:#555">=</span>{{
+            link<span style="color:#555">:</span> (msg: <span style="color:#078;font-weight:bold">React.ReactNode</span>) <span style="color:#555">=&gt;</span> (
+                &lt;<span style="color:#309;font-weight:bold">a</span>
+                    <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#39;https://mattermost.com&#39;</span>
+                    <span style="color:#309">referrer</span><span style="color:#555">=</span><span style="color:#c30">&#39;noreferrer&#39;</span>
+                    <span style="color:#309">target</span><span style="color:#555">=</span><span style="color:#c30">&#39;_blank&#39;</span>
+                &gt;
+                    {msg}
+                &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+            ),
+        }}
+    /&gt;
+);
+</code></pre></div><p>The code itself looks similar to when we used nested translation strings, but there&rsquo;s only a single HTML-like string to translate and a function is passed in as the <code>link</code> value instead of a React node. That function defines how we want the link rendered, and it lets us include whatever potentially complex formatting we need without complicating the lives of the translators. It also lets us keep the existing translated string even if we need to change how the link works.</p>
+<p>In addition to being able to render HTML in this way, we can even use it to format translated text with custom React components too. For example, if we had an <code>ExternalLink</code> component that encapsulated the extra parameters passed to the <code>a</code> tag, we could simplify this code even further.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#069;font-weight:bold">return</span> (
+    &lt;<span style="color:#309;font-weight:bold">FormattedMessage</span>
+        <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#39;popup.moreInformation&#39;</span>
+        <span style="color:#309">defaultMessage</span><span style="color:#555">=</span><span style="color:#c30">&#39;&lt;link&gt;Click here&lt;/link&gt; for more information.&#39;</span>
+        <span style="color:#309">values</span><span style="color:#555">=</span>{{
+            link<span style="color:#555">:</span> (msg: <span style="color:#078;font-weight:bold">React.ReactNode</span>) <span style="color:#555">=&gt;</span> &lt;<span style="color:#309;font-weight:bold">ExternalLink</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#39;https://mattermost.com&#39;</span>&gt;{msg}&lt;/<span style="color:#309;font-weight:bold">ExternalLink</span>&gt;,
+        }}
+    /&gt;
+);
+</code></pre></div><h2 id="closing-thoughts">Closing Thoughts&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#closing-thoughts"></i></a> </h2>
+<p>Hopefully, we can do our best to make Mattermost easily translatable and available in many different languages, even as Mattermost grows and the amount of text that needs to be translated increases. By avoiding these mistakes and using some of these techniques, we can help to reduce the workload of our translators and make their jobs easier.</p>
+<p>Special thanks again to everyone who helps translate Mattermost and who make it usable by so many more people around the world. We tremendously appreciate your efforts and all the work you put in to make sure the translations stay complete and up to date.</p>
+<p>If you&rsquo;re interested in helping out with localization or if you have any suggestions for how to improve our process, feel free to join us in the <code>~localization</code> channel on the Mattermost community server at <a href="https://community.mattermost.com">https://community.mattermost.com</a>.</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Harrison Healey
+-
+<a href="https://community.mattermost.com/core/messages/@harrison" target="_blank">
+    @harrison
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/hmhealey" target="_blank">
+    @hmhealey
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-3/">Fixing a bug in the Go compiler as a newbie: a deep dive (III)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-2/">Fixing a bug in the Go compiler as a newbie: a deep dive (II)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-1/">Fixing a bug in the Go compiler as a newbie: a deep dive (I)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/i18n">i18n</a></li>
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

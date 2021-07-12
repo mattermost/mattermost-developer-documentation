@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Fixing a bug in the Go compiler as a newbie: a deep dive (II)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Fixing a bug in the Go compiler as a newbie: a deep dive (II)">
+
+ 
+  
+    
+      <meta name="description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="twitter:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="og:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+
+    
+  
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/optimizing-go-compiler-2/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Fixing a bug in the Go compiler as a newbie: a deep dive (II)
+                            
+                            </h1>
+                            <small></small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            April 23, 2021
+                            <small class="blog-item__count">2422 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>This is the second part of a series of posts on the Go compiler. Make sure you&rsquo;ve read <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-1">the first part</a> before going on.</p>
+<p>In the first part of the series we learned what the issue is and the role of SSA and the rewrite rules in the Go compiler. Let&rsquo;s try and use what we know now to actually investigate the bug.</p>
+<h1 id="the-investigation">The investigation&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#the-investigation"></i></a> </h1>
+<p>As we learned in the first part, the issue we need to investigate is that the generated code for the following function is not as optimized as it could be:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">import</span> <span style="color:#c30">&#34;encoding/binary&#34;</span>
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">copyArrayToSlice</span>(dest []<span style="color:#078;font-weight:bold">byte</span>, src <span style="color:#555">*</span>[<span style="color:#f60">8</span>]<span style="color:#078;font-weight:bold">byte</span>) {
+	_ = dest[<span style="color:#f60">8</span>]                                <span style="color:#09f;font-style:italic">// 1. bounds check
+</span><span style="color:#09f;font-style:italic"></span>	temp <span style="color:#555">:=</span> binary.LittleEndian.<span style="color:#c0f">Uint64</span>(src[:]) <span style="color:#09f;font-style:italic">// 2. read the contents of the source array into temp
+</span><span style="color:#09f;font-style:italic"></span>	binary.LittleEndian.<span style="color:#c0f">PutUint64</span>(dest, temp)  <span style="color:#09f;font-style:italic">// 3. write the contents into the destination slice
+</span><span style="color:#09f;font-style:italic"></span>}
+</code></pre></div><p>Let&rsquo;s use our first tool, SSA, to understand what the compiler is generating. If we generate the SSA for the original function, <code>copyArrayToSlice</code>, and look at the <code>lower</code> phase, we&rsquo;ll see the following:</p>
+<pre><code>b1:
+
+    v1 (?) = InitMem &lt;mem&gt;
+    v7 (5) = Arg &lt;*[8]byte&gt; {src} (b.ptr[*byte], src[*[8]byte])
+    v8 (?) = MOVQconst &lt;int&gt; [8] (b.cap[int], b.len[int])
+    v9 (+6) = Arg &lt;int&gt; {dest} [8] (b.len[int], dest+8[int])
+    v248 (84) = Arg &lt;*byte&gt; {dest}
+    v153 (6) = CMPQconst &lt;flags&gt; [8] v9
+
+UGT v153 → b43 b3 (likely) (6)
+
+b3: ← b1
+
+    v12 (6) = LoweredPanicBoundsC &lt;mem&gt; [0] v8 v9 v1
+
+Exit v12 (6)
+
+b43: ← b1
+
+    v18 (+7) = LoweredNilCheck &lt;void&gt; v7 v1
+    v29 (7) = InlMark &lt;void&gt; [0] v1
+    v152 (+8) = InlMark &lt;void&gt; [1] v1
+    v34 (+79) = MOVQload &lt;uint64&gt; v7 v1
+    v171 (+84) = MOVBstore &lt;mem&gt; v248 v34 v1
+    v168 (+85) = SHRQconst &lt;uint64&gt; [8] v34
+    v216 (+89) = SHRQconst &lt;uint64&gt; [40] v34
+    v180 (+91) = SHRQconst &lt;uint64&gt; [56] v34
+    v219 (88) = MOVLstore &lt;mem&gt; [1] v248 v168 v171
+    v243 (90) = MOVWstore &lt;mem&gt; [5] v248 v216 v219
+    v255 (91) = MOVBstore &lt;mem&gt; [7] v248 v180 v243
+
+Ret v255 (+8)
+
+</code></pre><p>The interesting blocks are <code>b1</code>, which initialize the values with the arguments of the function, and <code>b43</code>, which makes the actual copy. The <code>b3</code> block simply handles the situation where the bounds check in the first line of our functions fails, issuing a <code>panic</code> as expected.</p>
+<h2 id="definition-block">Definition block&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#definition-block"></i></a> </h2>
+<p>Let&rsquo;s take a closer look at the block where the values are initialized, <code>b1</code>:</p>
+<pre><code>v1 (?) = InitMem &lt;mem&gt;
+v7 (5) = Arg &lt;*[8]byte&gt; {src} (b.ptr[*byte], src[*[8]byte])
+v8 (?) = MOVQconst &lt;int&gt; [8] (b.cap[int], b.len[int])
+v9 (+6) = Arg &lt;int&gt; {dest} [8] (b.len[int], dest+8[int])
+v248 (84) = Arg &lt;*byte&gt; {dest}
+v153 (6) = CMPQconst &lt;flags&gt; [8] v9
+</code></pre><p>There are a couple of formalities there: the first line represents the initialized memory with the value <code>v1</code>, and the last one computes which block will be the following one to execute (the copy block or the panic block). The interesting lines are the ones in the middle, which define the parameters passed.</p>
+<p>In particular, we see that <code>v7</code> is the second parameter of the function, <code>src</code>, whereas <code>v248</code> is a pointer to the memory of the slice <code>dest</code>, the first parameter. Although I <em>believe</em> that <code>v8</code> and <code>v9</code> are also part of the definition of the slice (the capacity and length), there are some details that I don&rsquo;t completely understand, so I will not try to explain this in more detail.</p>
+<p>For now, knowing that <code>v7</code> represents <code>src</code> and <code>v248</code> represents <code>dest</code> is more than enough!</p>
+<h2 id="copy-block">Copy block&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#copy-block"></i></a> </h2>
+<p>Once we have our values initialized, we can study the interesting instructions, those in block <code>b43</code>:</p>
+<pre><code>v18 (+7) = LoweredNilCheck &lt;void&gt; v7 v1
+v29 (7) = InlMark &lt;void&gt; [0] v1
+v152 (+8) = InlMark &lt;void&gt; [1] v1
+v34 (+79) = MOVQload &lt;uint64&gt; v7 v1
+v171 (+84) = MOVBstore &lt;mem&gt; v248 v34 v1
+v168 (+85) = SHRQconst &lt;uint64&gt; [8] v34
+v216 (+89) = SHRQconst &lt;uint64&gt; [40] v34
+v180 (+91) = SHRQconst &lt;uint64&gt; [56] v34
+v219 (88) = MOVLstore &lt;mem&gt; [1] v248 v168 v171
+v243 (90) = MOVWstore &lt;mem&gt; [5] v248 v216 v219
+v255 (91) = MOVBstore &lt;mem&gt; [7] v248 v180 v243
+</code></pre><p>We can skip the first three lines, which are again formalities, and start on the one for the value <code>v34</code>:</p>
+<pre><code>v34 (+79) = MOVQload &lt;uint64&gt; v7 v1
+</code></pre><p>Cool, our first real instruction, <code>MOVQload</code>! Now, what does that cryptic name means? The best way to know is to go directly to <a href="https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L702">its definition</a>:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#09f;font-style:italic">// load 8 bytes from arg0+auxint+aux. arg1=mem
+</span><span style="color:#09f;font-style:italic"></span>{
+	name: <span style="color:#c30">&#34;MOVQload&#34;</span>,
+	argLength: <span style="color:#f60">2</span>,
+	reg: gpload,
+	asm: <span style="color:#c30">&#34;MOVQ&#34;</span>,
+	aux: <span style="color:#c30">&#34;SymOff&#34;</span>,
+	typ: <span style="color:#c30">&#34;UInt64&#34;</span>,
+	faultOnNilArg0: <span style="color:#069;font-weight:bold">true</span>,
+	symEffect: <span style="color:#c30">&#34;Read&#34;</span>,
+}
+</code></pre></div><p>The data in this struct defines what the <code>MOVQload</code> instruction does; the corresponding code in assembly, <code>MOVQ</code>; its returning type, <code>UInt64</code>; or the number of arguments it receives, 2. The comment does a pretty good job explaining what the instruction does: it loads 8 bytes from the data pointed to by the first argument (plus some auxiliary arguments, if present, which we&rsquo;ll see are constant numbers in square brackets) into the second, which should represent the memory. If we go back to our line:</p>
+<pre><code>v34 (+79) = MOVQload &lt;uint64&gt; v7 v1
+━━┓                           ━┓ ━┓
+  ┗ we can see this            ┃  ┗ memory
+    one as temp                ┗ src
+</code></pre><p>We now can understand that this loads the contents from the <code>src</code> argument (remember that <code>v7</code>represented<code>src</code>), into the memory we initialized at the very beginning (represented by <code>v1</code>). There are no auxiliary arguments, so we can safely forget about those! The result of this instruction is represented by the <code>v34</code> value, which we can understand as the <code>temp</code> variable.</p>
+<p>This first line of the block, then, seems perfectly fine: it loads the whole contents of the <code>src</code> array into memory (which is effectively the <code>temp</code> variable we defined in the code), and it does it with a single instruction. We can no longer optimize this.</p>
+<p>But remember that the original function did two things: First, it loaded the contents of the <code>src</code> array into a temporary variable, and then it stored those contents into the <code>dest</code> slice. We&rsquo;ve already loaded the contents into memory with the line we discussed above, so the rest of the block should do the rest of the work: Store those contents from memory into the <code>dest</code> slice (which was represented by value <code>v248</code>). Let&rsquo;s see the rest of the block again:</p>
+<pre><code>v171 (+84) = MOVBstore &lt;mem&gt; v248 v34 v1
+v168 (+85) = SHRQconst &lt;uint64&gt; [8] v34
+v216 (+89) = SHRQconst &lt;uint64&gt; [40] v34
+v180 (+91) = SHRQconst &lt;uint64&gt; [56] v34
+v219 (88) = MOVLstore &lt;mem&gt; [1] v248 v168 v171
+v243 (90) = MOVWstore &lt;mem&gt; [5] v248 v216 v219
+v255 (91) = MOVBstore &lt;mem&gt; [7] v248 v180 v243
+</code></pre><p>See that the values defined in the second, third, and fourth lines are used in the three last lines. Let&rsquo;s rewrite the block, simply replacing the values where they&rsquo;re used:</p>
+<pre><code>v171 (+84) = MOVBstore &lt;mem&gt; v248 v34 v1
+v219 (88) = MOVLstore &lt;mem&gt; [1] v248 (SHRQconst &lt;uint64&gt; [8] v34) v171
+v243 (90) = MOVWstore &lt;mem&gt; [5] v248 (SHRQconst &lt;uint64&gt; [40] v34) v219
+v255 (91) = MOVBstore &lt;mem&gt; [7] v248 (SHRQconst &lt;uint64&gt; [56] v34) v243
+</code></pre><p>SPOILER: These are the lines that store to the slice what we just read into memory. As you can see, we&rsquo;re using four instructions instead of one, which is what we&rsquo;re going to optimize!</p>
+<p>But let&rsquo;s not get ahead of ourselves! To better understand what&rsquo;s going on here, we need to understand what <code>MOVBstore</code>, <code>MOVLstore</code>, and <code>MOVWstore</code> do, as well as <code>SHRQconst</code>. The first set of instructions look quite similar to the one we already understand: <code>MOVQload</code>.</p>
+<p>We can study the first one, <code>MOVBstore</code>, as before, looking into <a href="https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L703">its definition</a>:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#09f;font-style:italic">// store byte in arg1 to arg0+auxint+aux. arg2=mem
+</span><span style="color:#09f;font-style:italic"></span>{
+	name: <span style="color:#c30">&#34;MOVBstore&#34;</span>,
+	argLength: <span style="color:#f60">3</span>,
+	reg: gpstore,
+	asm: <span style="color:#c30">&#34;MOVB&#34;</span>,
+	aux: <span style="color:#c30">&#34;SymOff&#34;</span>,
+	typ: <span style="color:#c30">&#34;Mem&#34;</span>,
+	faultOnNilArg0: <span style="color:#069;font-weight:bold">true</span>,
+	symEffect: <span style="color:#c30">&#34;Write&#34;</span>,
+}
+</code></pre></div><p>Again, the comment does a good job explaining what&rsquo;s going on. The instruction receives three arguments, and it stores a single byte from the memory pointed to by the first argument (plus the auxiliary arguments) into the second argument. The state of the memory is represented by the third argument. The <code>typ</code> of the struct tells us that what this instruction returns is the new state of the memory after the operation. In short, this instruction gets a single byte from a place in memory and stores it somewhere else.</p>
+<p>Ok, and what about <code>MOVWstore</code> and <code>MOVLstore</code>? We can take a look at <a href="https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L704">their</a> <a href="https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L705">definitions</a>, but we can also see what those suffixes (<code>B</code>, <code>W</code>, <code>L</code> and <code>Q</code>) mean. This is explained at <a href="https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L26-L30">the beginning of the file that contains the definition of the instructions</a>:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#09f;font-style:italic">// Suffixes encode the bit width of various instructions.
+</span><span style="color:#09f;font-style:italic">// Q (quad word) = 64 bit
+</span><span style="color:#09f;font-style:italic">// L (long word) = 32 bit
+</span><span style="color:#09f;font-style:italic">// W (word)      = 16 bit
+</span><span style="color:#09f;font-style:italic">// B (byte)      = 8 bit
+</span></code></pre></div><p>Knowing what we know about <code>MOVBstore</code>, it&rsquo;s clear what the others do:</p>
+<ul>
+<li><code>MOVBstore</code> stores a single <strong>B</strong>yte (8 bits, 1 byte)</li>
+<li><code>MOVWstore</code> stores a <strong>W</strong>ord (16 bits, 2 bytes)</li>
+<li><code>MOVLstore</code> stores a <strong>L</strong>ong word (32 bits, 4 bytes)</li>
+</ul>
+<p>That&rsquo;s it, these operations simply store a fixed number of bytes from some place in memory to another place.</p>
+<p>That leaves us with the last instruction: <code>SHRQconst</code>. We can do the same as before, and go straight to <a href="https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L398">its definition</a> to know what it does:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#09f;font-style:italic">// unsigned arg0 &gt;&gt; auxint, shift amount 0-63
+</span><span style="color:#09f;font-style:italic"></span>{
+	name: <span style="color:#c30">&#34;SHRQconst&#34;</span>,
+	argLength: <span style="color:#f60">1</span>,
+	reg: gp11,
+	asm: <span style="color:#c30">&#34;SHRQ&#34;</span>,
+	aux: <span style="color:#c30">&#34;Int8&#34;</span>,
+	resultInArg0: <span style="color:#069;font-weight:bold">true</span>,
+	clobberFlags: <span style="color:#069;font-weight:bold">true</span>,
+}
+</code></pre></div><p>It&rsquo;s a good ol&rsquo; shift to the right! That is: An operation that takes a binary number, and shifts it to the right a specific number of places, specified by the <code>auxint</code> argument (the constant integer we see in square brackets). If shifting to the left was the same as multiplying by a power of two, shifting a number to the right <code>n</code> places means halving it <code>n</code> times, which is equal to dividing it between <code>2^n</code>.</p>
+<p>We have all the ingredients now:</p>
+<ul>
+<li><code>MOVXstore</code> stores the contents from the second argument into the first one, with the number of bytes moved depending on the prefix <code>X</code>.</li>
+<li><code>SHRQconst</code> shifts the number in its only argument a number of places specified by the auxiliary argument, the number in square brackets.</li>
+</ul>
+<p>Let&rsquo;s see the lines again, one by one. The first one was:</p>
+<pre><code>v171 (+84) = MOVBstore &lt;mem&gt; v248 v34 v1
+</code></pre><p>This one is straightforward: it stores a single <strong>B</strong>yte from <code>v34</code> (the contents in <code>temp</code>) into the memory pointed to by <code>v248</code> (which is <code>dest</code>). That is, we are copying <code>temp[0]</code> into <code>dest[0]</code>.</p>
+<p>The second one is more interesting, let&rsquo;s break it down:</p>
+<pre><code>                   this L means 4 bytes        ┏ dest               temp ┓
+                   ━━━━━━━━┳━━━━━━━━━━━        ┃                         ┃
+                           ┃                ━━━┛                         ┗━━
+     new                                                                               previous
+state of ━┫ v219 (88) = MOVLstore &lt;mem&gt; [1] v248 (SHRQconst &lt;uint64&gt; [8] v34) v171 ┣━━ state of
+  memory                                                                               memory
+                                        ━┳━                          ━┳━
+                                         ┃                            ┃
+         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓      ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+           auxiliary argument to MOVLstore, so it           auxiliary argument to SHRQconst, so
+           starts writing data one byte after the           it shifts the contents 8 bits to the
+           memory pointed to by the second argument         right, effectively discarding them
+         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+</code></pre><p>Now we&rsquo;re storing a <strong>L</strong>ong word (4 bytes) from the second argument, <code>(SHRQconst &lt;uint64&gt; [8] v34)</code>, into the memory pointed to by <code>v248</code>, which is <code>dest</code>. But we have the <code>[1]</code> auxiliary argument! So we don&rsquo;t write directly into the memory pointed to by <code>v248</code>, but one byte after that pointer: That is, the first byte of <code>dest</code> is left untouched, and we write contents from the second byte on. In terms of Go code, as we&rsquo;re storing 4 bytes, it means that we&rsquo;re writing to <code>dest[1]</code>, <code>dest[2]</code>, <code>dest[3]</code> and <code>dest[4]</code>.</p>
+<p>But what 4 bytes do we write? That&rsquo;s what <code>(SHRQconst &lt;uint64&gt; [8] v34)</code> is telling us: We already wrote <code>temp[0]</code> in <code>dest[0]</code>, so it would make sense to read now from <code>temp[1]</code> on. And that&rsquo;s exactly what we&rsquo;re doing with the shift: As the auxiliary argument is <code>[8]</code>, that means that we&rsquo;re shifting the content of <code>v34</code> (or <code>temp</code>) to the right 8 bits. Those 8 bits are already in <code>dest[0]</code>, so we can safely discard them and only read the next ones: from <code>temp[1]</code> on. As <code>MOVLstore</code> is writing 4 bytes, that means that we&rsquo;re getting 4 bytes&rsquo; worth of data; that is: <code>temp[1]</code>, <code>temp[2]</code>, <code>temp[3]</code>, and <code>temp[4]</code>.</p>
+<p>So that&rsquo;s it! That long, complex, full of arguments and auxiliary arguments, instruction is simply doing this:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">dest[<span style="color:#f60">1</span>] = temp[<span style="color:#f60">1</span>]
+dest[<span style="color:#f60">2</span>] = temp[<span style="color:#f60">2</span>]
+dest[<span style="color:#f60">3</span>] = temp[<span style="color:#f60">3</span>]
+dest[<span style="color:#f60">4</span>] = temp[<span style="color:#f60">4</span>]
+</code></pre></div><p>That was a bit hard, I agree. But we already have everything we need to know, because the two following lines are structurally identical!</p>
+<pre><code>v243 (90) = MOVWstore &lt;mem&gt; [5] v248 (SHRQconst &lt;uint64&gt; [40] v34) v219
+</code></pre><p>This one stores 2 bytes (see the <code>W</code> prefix there?) into the memory pointed to by <code>v248</code> plus <code>[5]</code> bytes; that is, we write into <code>dest[5]</code> and <code>dest[6]</code>. And what we write is the content of <code>v34</code> (<code>temp</code>) shifted to the right <code>[40]</code> bits (or 5 bytes, as we&rsquo;ve already copied from <code>temp[0]</code> to <code>temp[4]</code>). That&rsquo;s right, this line is doing the following:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">dest[<span style="color:#f60">5</span>] = temp[<span style="color:#f60">5</span>]
+dest[<span style="color:#f60">6</span>] = temp[<span style="color:#f60">6</span>]
+</code></pre></div><p>So this leaves us with the last line of the block! And you already know what will happen:</p>
+<pre><code>v255 (91) = MOVBstore &lt;mem&gt; [7] v248 (SHRQconst &lt;uint64&gt; [56] v34) v243
+</code></pre><p>Yup, we&rsquo;re simply copying the last byte from <code>temp</code> (skipping the first <code>[56]</code> bits, or 7 bytes!), into the <code>dest</code> slice (starting to write after <code>[7]</code> bytes, or 56 bits!). That&rsquo;s it, in terms of Go code, we&rsquo;re simply doing this:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">dst[<span style="color:#f60">7</span>] = temp[<span style="color:#f60">7</span>]
+</code></pre></div><p>Wrapping up everything we&rsquo;ve learned up until now, we&rsquo;re doing the following:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">dst[<span style="color:#f60">0</span>] = temp[<span style="color:#f60">0</span>]  <span style="color:#09f;font-style:italic">// v171 (+84) = MOVBstore &lt;mem&gt; v248 v34 v1
+</span><span style="color:#09f;font-style:italic"></span>
+dst[<span style="color:#f60">1</span>] = temp[<span style="color:#f60">1</span>]  <span style="color:#09f;font-style:italic">// v219 (88) = MOVLstore &lt;mem&gt; [1] v248 (SHRQconst &lt;uint64&gt; [8] v34) v171
+</span><span style="color:#09f;font-style:italic"></span>dst[<span style="color:#f60">2</span>] = temp[<span style="color:#f60">2</span>]  <span style="color:#09f;font-style:italic">//
+</span><span style="color:#09f;font-style:italic"></span>dst[<span style="color:#f60">3</span>] = temp[<span style="color:#f60">3</span>]  <span style="color:#09f;font-style:italic">//
+</span><span style="color:#09f;font-style:italic"></span>dst[<span style="color:#f60">4</span>] = temp[<span style="color:#f60">4</span>]  <span style="color:#09f;font-style:italic">//
+</span><span style="color:#09f;font-style:italic"></span>
+dst[<span style="color:#f60">5</span>] = temp[<span style="color:#f60">5</span>]  <span style="color:#09f;font-style:italic">// v243 (90) = MOVWstore &lt;mem&gt; [5] v248 (SHRQconst &lt;uint64&gt; [40] v34) v219
+</span><span style="color:#09f;font-style:italic"></span>dst[<span style="color:#f60">6</span>] = temp[<span style="color:#f60">6</span>]  <span style="color:#09f;font-style:italic">//
+</span><span style="color:#09f;font-style:italic"></span>
+dst[<span style="color:#f60">7</span>] = temp[<span style="color:#f60">7</span>]  <span style="color:#09f;font-style:italic">// v255 (91) = MOVBstore &lt;mem&gt; [7] v248 (SHRQconst &lt;uint64&gt; [56] v34) v243
+</span></code></pre></div><p>Cool, we did it! We understood what a whole block of SSA is doing, so feel free to treat yourself with a snack before going on.</p>
+<h1 id="next-steps">Next steps&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#next-steps"></i></a> </h1>
+<p>Now that we understand what the compiler is doing with our original function, we can plan how to fix it. In <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-3">the next and last part of the series</a> we will see how to convert that beast of 4 instructions&mdash;which store a byte, then 4 more, then another 2, and finally one more ¯\_(ツ)_/¯&mdash;into a single one that directly stores the 8 bytes.</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Alejandro García Montoro
+-
+<a href="https://community.mattermost.com/core/messages/@alejandro.garcia" target="_blank">
+    @alejandro.garcia
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/agarciamontoro" target="_blank">
+    @agarciamontoro
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-3/">Fixing a bug in the Go compiler as a newbie: a deep dive (III)</a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-1/">Fixing a bug in the Go compiler as a newbie: a deep dive (I)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/go">go</a></li>
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

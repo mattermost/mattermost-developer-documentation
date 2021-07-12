@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Incorporating GolangCI-Lint at Mattermost</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Incorporating GolangCI-Lint at Mattermost">
+
+ 
+  <meta name="description" content="Although go vet and gofmt work well, there are a lot of other powerful linters out there which we’re potentially missing out on.">
+<meta name="twitter:description" content="Although go vet and gofmt work well, there are a lot of other powerful linters out there which we’re potentially missing out on.">
+<meta name="og:description" content="Although go vet and gofmt work well, there are a lot of other powerful linters out there which we’re potentially missing out on.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/incorporating-golangci-lint/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Incorporating GolangCI-Lint at Mattermost
+                            
+                            </h1>
+                            <small>Although go vet and gofmt work well, there are a lot of other powerful linters out there which we’re potentially missing out on.</small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            January 13, 2020
+                            <small class="blog-item__count">1602 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>At Mattermost, we have traditionally relied on the trusty <code>go vet</code> and <code>gofmt</code> checks for our CI runs. Although it works well, there are a lot of other powerful linters out there which we&rsquo;re potentially missing out on.</p>
+<p>Speaking of linters, the first name that inevitably comes up is <a href="https://staticcheck.io/">staticcheck</a>. It&rsquo;s a powerful metalinter with a whole slew of checks. But simply running staticcheck is not sufficient, because it misses out on other linters which perform a single task, but nevertheless are very powerful. A few popular ones are <a href="https://github.com/gordonklaus/ineffassign">ineffassign</a>, <a href="https://github.com/kisielk/errcheck">errcheck</a>, <a href="https://github.com/mdempsky/unconvert">unconvert</a>, <a href="https://github.com/remyoudompheng/go-misc/tree/master/deadcode">deadcode</a>, and <a href="https://gitlab.com/opennota/check/tree/master/cmd/structcheck">structcheck</a> among others.</p>
+<p>We needed a way to run all of these linters together and efficiently too. Gometalinter was a pioneer in this field by providing a way to run multiple linters together. Unfortunately, it did this by shelling out to the linters and running them, which made it very inefficient. In its defense, using all the linters as a library was also equally hard, because there wasn’t any standard API that all of them could use.</p>
+<p>But the introduction of the <code>golang.org/x/tools/go/analysis</code> package during the 1.12 cycle was a game-changer. It introduced a standard API for writing Go static analyzers, which allowed them to be easily shared with the rest of the ecosystem in a plug-and-play model. Finally the One Ring to rule them all!</p>
+<p>Unsurprisingly, before too long, GolangCI-Lint came up on the horizon. It used the go/analysis API to load all the linters and ran them concurrently, leading to a drastic reduction in memory and improvement in speed; becoming the successor to Gometalinter which is deprecated now.</p>
+<p>The writing was on the wall. GolangCI-Lint was the right choice. Following is an account of how we integrated it into our codebase.</p>
+<h4 id="integrating-golangci-lint-into-our-ci">Integrating GolangCI-Lint into our CI&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#integrating-golangci-lint-into-our-ci"></i></a> </h4>
+<p>Right off the bat, there was a big question mark hanging over our heads. It would be very, <em>very</em> painful to have to fix <em>all</em> the issues in our codebase before enforcing it as a CI check, by which time, new issues would have crept in. It would be a never-ending chase.</p>
+<p>Fortunately, GolangCI-Lint provides us with a <code>--new-from-rev=HEAD~1</code> option which allows it to check only code added in the latest commit. This gives us breathing room to enable the check in our CI and retroactively fix all the old issues. Granted, it won’t catch issues for PRs with more than one commit, but it’s a start and we planned to lift this restriction anyways.</p>
+<p>We also decided to start off with the GitHub <a href="https://golangci.com/">check</a> which relieves any CI setup burden on our side. This check helps community members spot linter issues at first glance.</p>
+<h4 id="selecting-the-initial-set-of-linters">Selecting the Initial Set of Linters&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#selecting-the-initial-set-of-linters"></i></a> </h4>
+<p>So with that taken care of, our next task was to decide on a set of linters to start off with. We couldn&rsquo;t begin with a huge set because first of all, it would take longer to run. Additionally, it would further delay our target of fixing all the existing issues in our codebase. We needed a small but powerful set of linters that would catch effective issues, but wouldn’t take too long to fix.</p>
+<p>After some trial and error, we settled down on <a href="https://github.com/mattermost/mattermost-server/blob/e2a2a1a5bce69f153e6e095e07dadf92b64df699/.golangci.yml#L18-L26">these</a>.</p>
+<p>We chose not to include <code>staticcheck</code> for the first cut because a lot of the functionality was already provided by the other linters. We also did not include <code>errcheck</code> because it uncovered <em>too</em> many issues which did not look likely to be fixed within a reasonable time frame.</p>
+<h4 id="what-issues-were-uncovered">What Issues were Uncovered?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#what-issues-were-uncovered"></i></a> </h4>
+<p>Most of the issues fixed in the process were stylistic. We fixed <a href="https://github.com/mattermost/mattermost-server/pull/12943">formatting issues</a>, <a href="https://github.com/mattermost/mattermost-server/pull/12928">removed unnecessary</a> <a href="https://github.com/mattermost/mattermost-server/pull/12927">code</a>, and <a href="https://github.com/mattermost/mattermost-server/pull/12924">removed</a> <a href="https://github.com/mattermost/mattermost-server/pull/12968">a lot of</a>, <a href="https://github.com/mattermost/mattermost-server/pull/12929">unused</a> <a href="https://github.com/mattermost/mattermost-server/pull/12926">code</a>. These fixes are great to keep the code base clean and consistent but have no impact on the behavior of the software and did not reveal any bugs.</p>
+<p>The more interesting issues were found by <code>ineffassign</code> and <code>govet</code>.</p>
+<p><code>ineffassign</code> reports instances where a value was assigned to a variable but not used. We found two instances in test files where we didn’t validate a returned valued. Although it’s a minor improvement, it’s still great to fix these issues.</p>
+<p>The most interesting issue where found by <code>govet</code>. Take a look at this code sample:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">obj, err <span style="color:#555">:=</span> us.<span style="color:#c0f">GetReplica</span>().<span style="color:#c0f">Get</span>(model.Compliance{}, id)
+<span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+	<span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">nil</span>, model.<span style="color:#c0f">NewAppError</span>(<span style="color:#c30">&#34;SqlComplianceStore.Get&#34;</span>, <span style="color:#c30">&#34;store.sql_compliance.get.finding.app_error&#34;</span>, <span style="color:#069;font-weight:bold">nil</span>, err.<span style="color:#c0f">Error</span>(), http.StatusInternalServerError)
+}
+<span style="color:#069;font-weight:bold">if</span> obj <span style="color:#555">==</span> <span style="color:#069;font-weight:bold">nil</span> {
+	<span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">nil</span>, model.<span style="color:#c0f">NewAppError</span>(<span style="color:#c30">&#34;SqlComplianceStore.Get&#34;</span>, <span style="color:#c30">&#34;store.sql_compliance.get.finding.app_error&#34;</span>, <span style="color:#069;font-weight:bold">nil</span>, err.<span style="color:#c0f">Error</span>(), http.StatusNotFound)
+}
+</code></pre></div><p>Looks fine, doesn’t it? Except it contains a null pointer exception. At the second <code>return</code> we know that <code>err == nil</code> and hence <code>err.Error()</code> will panic. <code>govet</code> found this issue and <a href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-c5a8591c69e26808c8171db5d5dddef7L78-R78">we fixed it</a>.</p>
+<p>There were <a href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-92d8335ab3456e9fd16cb67c739c52e0R163-R165">actually</a>, <a href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-2c6106afe8477623894c02707bffe06dL622-R622">a</a> <a href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-0425a0737e8b051835b0978d034d22fcL139-R139">couple</a>, <a href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-32736de6a4585a5384f7606e57b2792fR269-R290">of</a> <a href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-2c6106afe8477623894c02707bffe06dL589-R589">issues</a> like this one. Finding these issues alone has been a huge success and proved that linters can help fix bugs before they occur in a production environment.</p>
+<p>Another issue found by <code>govet</code> lies in this piece of code:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">newSecret <span style="color:#555">:=</span> <span style="color:#555">&amp;</span>model.SystemPostActionCookieSecret{
+	Secret: <span style="color:#366">make</span>([]<span style="color:#078;font-weight:bold">byte</span>, <span style="color:#f60">32</span>),
+}
+_, err <span style="color:#555">:=</span> rand.Reader.<span style="color:#c0f">Read</span>(newSecret.Secret)
+<span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+	<span style="color:#069;font-weight:bold">return</span> err
+}
+
+system <span style="color:#555">:=</span> <span style="color:#555">&amp;</span>model.System{
+	Name: model.SYSTEM_POST_ACTION_COOKIE_SECRET,
+}
+v, err <span style="color:#555">:=</span> json.<span style="color:#c0f">Marshal</span>(newSecret)
+<span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+	<span style="color:#069;font-weight:bold">return</span> err
+}
+system.Value = <span style="color:#366">string</span>(v)
+<span style="color:#09f;font-style:italic">// If we were able to save the key, use it, otherwise log the error.
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">if</span> err = a.Srv.Store.<span style="color:#c0f">System</span>().<span style="color:#c0f">Save</span>(system); err <span style="color:#555">==</span> <span style="color:#069;font-weight:bold">nil</span> {
+	secret = newSecret
+}
+</code></pre></div><p><code>a.Srv.Store.System().Save</code> returns a custom error type <code>model.AppError</code>, that is commonly used in the Mattermost code base. But assigning this custom error to the variable <code>err</code> of type <code>error</code> results in variable that will never be <code>nil</code>. Hence, the line <code>secret = newSecret</code> will never be reached. This is <a href="https://golang.org/doc/faq#nil_error">a common gotcha in Go</a>. Using a dedicated variable for the custom error is the right way to fix this.
+We found and fixed <a href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-76e64b305c25e308c6b9f4c2fa572c51R204-R207">two</a> of these <a href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-76e64b305c25e308c6b9f4c2fa572c51R142-R144">issues</a>.</p>
+<h4 id="what-issues-were-encountered-during-the-golangci-lint-integration">What Issues were Encountered During the GolangCI-Lint Integration?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#what-issues-were-encountered-during-the-golangci-lint-integration"></i></a> </h4>
+<p>The first issue we observed was there was a warning that always showed up in CI, but we could never reproduce it locally.</p>
+<pre><code>WARN [runner] Can't run linter goanalysis_metalinter: findcall: analysis skipped: errors in package: [/home/agniva/play/go/src/github.com/mattermost/mattermost-server/testlib/resources.go:64:58: cannot use (func(fileInfo os.FileInfo) bool literal) (value of type func(fileInfo os.FileInfo) bool) as func(os.FileInfo) bool value in argument to fileutils.FindPath /home/agniva/play/go/src/github.com/mattermost/mattermost-server/testlib/resources.go:49:57: cannot use (func(fileInfo os.FileInfo) bool literal) (value of type func(fileInfo os.FileInfo) bool) as func(os.FileInfo) bool value in argument to fileutils.FindPath]
+</code></pre><p>Further digging showed that it was somehow related to a cold cache. We could reproduce the issue (although not deterministically) with a greater probability if the cache was cleaned. An issue was filed <a href="https://github.com/golangci/golangci-lint/issues/885">here</a>.</p>
+<p>We also noticed that syntax errors were displayed very poorly, which did not lead to a good dev experience. And moreover, syntax errors led to a warning, whereas technically it should be an error.</p>
+<p>For instance, a single missing parenthesis would lead to a single line containing all the errors found:</p>
+<pre><code>WARN [runner] Can't run linter unused: buildssa: analysis skipped: errors in package: [/home/agniva/play/go/src/github.com/mattermost/mattermost-server/app/channel.go:1889:64: missing ',' before newline in argument list /home/agniva/play/go/src/github.com/mattermost/mattermost-server/app/channel.go:1890:1: expected operand, found '}' /home/agniva/play/go/src/github.com/mattermost/mattermost-server/app/channel.go:1897:2: missing ',' in argument list /home/agniva/play/go/src/github.com/mattermost/mattermost-server/app/channel.go:1898:1: expected operand, found '}' /home/agniva/play/go/src/github.com/mattermost/mattermost-server/app/channel.go:1903:2: missing ',' in argument list /home/agniva/play/go/src/github.com/mattermost/mattermost-server/app/channel.go:1904:1: expected operand, found '}' /home/agniva/play/go/src/github.com/mattermost/mattermost-server/app/channel.go:1911:2: missing ',' in argument list /home/agniva/play/go/src/github.com/mattermost/mattermost-server/app/channel.go:1912:1: expected operand, found '}' /home/agniva/play/go/src/github.com/mattermost/mattermost-server/app/channel.go:1915:2: missing ',' in argument list /home/agniva/play/go/src/github.com/mattermost/mattermost-server/app/channel.go:1916:3: expected operand, found 'return' /home/agniva/play/go/src/github.com/mattermost/mattermost-server/app/channel.go:1917:2: expected operand, found '}'] 
+WARN [runner] Can't run linter goanalysis_metalinter: structcheck: analysis skipped: errors in package: [/home/agniva/play/go/src/github.com/mattermost/mattermost-server/wsapi/api.go:7:2: could not import github.com/mattermost/mattermost-server/v5/app (/home/agniva/play/go/src/github.com/mattermost/mattermost-server/app/channel.go:1889:64: missing ',' before newline in argument list)] 
+</code></pre><p>Compare that to the <code>go vet</code> output:</p>
+<pre><code># github.com/mattermost/mattermost-server/v5/app
+app/channel.go:1889:64: syntax error: unexpected newline, expecting comma or )
+# github.com/mattermost/mattermost-server/v5/app
+vet: app/channel.go:1889:64: missing ',' before newline in argument list (and 10 more errors)
+</code></pre><p>The warnings which should have been an error already had an <a href="https://github.com/golangci/golangci-lint/issues/866">issue</a>. We filed another <a href="https://github.com/golangci/golangci-lint/issues/886">one</a> for the poor syntax errors.</p>
+<p>Lastly, we just wanted to touch upon something that might be surprising to new Gophers out there. Mattermost has a very thin enterprise layer which gets built by including the directory as a symlink from inside the open-source repo.</p>
+<p>While running GolangCI-Lint with the enterprise layer included, we observed that it was failing to run the checks inside the symlink. This is due to the fact that the Go toolchain does not work very well with symlinks. As a simple fix, we added another <a href="https://github.com/mattermost/mattermost-server/blob/f672eb729103ef0c8512a3facb48d44c386cd00a/Makefile#L163">command</a> to run that directory specifically.</p>
+<h4 id="future-work">Future Work&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#future-work"></i></a> </h4>
+<p>Now that we have a base in place, our plan is to add more linters. Here is a short wish-list for the near term, roughly in the order of priority:</p>
+<ul>
+<li><strong>errcheck</strong>: This got missed out in our initial cut because the work involved was too big. It is one of the most common mistakes in Go code, and extremely important that these get caught.</li>
+<li><strong>bodyclose</strong>: A common slip is to forget to close the body while reading HTTP responses. This is our next linter to integrate.</li>
+<li><strong>misspell</strong>: Spelling mistakes are sometimes hard to detect, and they invariably creep in the codebase. This is a great linter to check that.</li>
+<li><strong>nakedret</strong>: This flags usages of naked returns in functions greater than a specified length. It is a recommended point in the <a href="https://github.com/golang/go/wiki/CodeReviewComments#named-result-parameters">Code Review Comments</a> guide. There are not too many instances of this in our codebase. So we would like them removed to be more idiomatic.
+That’s the plan for now. We may want to integrate <code>staticcheck</code> also in the long-term future.</li>
+</ul>
+<p>Lastly, we would like to mention that any community contributions to help out with adding these linters are highly appreciated !</p>
+<p>Feel free to check out the <a href="https://developers.mattermost.com/contribute/getting-started">getting started</a> page to find out how to set up the project on your machine. You can also join the <code>~Developers</code> channel on our Mattermost <a href="https://community.mattermost.com/">community server</a> if you have any questions. We would be happy to help out.</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    :
+                    <ul>
+                        <li>
+                            Agniva De Sarker
+-
+<a href="https://community.mattermost.com/core/messages/@agnivade" target="_blank">
+    @agnivade
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/agnivade" target="_blank">
+    @agnivade
+</a>
+on GitHub
+
+                        </li>
+                        <li>
+                            Ben Schumacher
+-
+<a href="https://community.mattermost.com/core/messages/@hanzei" target="_blank">
+    @hanzei
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/hanzei" target="_blank">
+    @hanzei
+</a>
+on GitHub
+
+                        </li>
+                    </ul>
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-3/">Fixing a bug in the Go compiler as a newbie: a deep dive (III)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-2/">Fixing a bug in the Go compiler as a newbie: a deep dive (II)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/optimizing-go-compiler-1/">Fixing a bug in the Go compiler as a newbie: a deep dive (I)</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/go">go</a></li>
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/linting">“linting”</a></li>
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>
