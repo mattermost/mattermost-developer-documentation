@@ -83,19 +83,11 @@ v248 (84) = Arg <*byte> {dest}
 v153 (6) = CMPQconst <flags> [8] v9
 ```
 
-There are a couple of formalities there, such as representing the initialized memory with the value `v1`, but then we see how we define the arguments of the function:
+There are a couple of formalities there: the first line represents the initialized memory with the value `v1`, and the last one computes which block will be the following one to execute (the copy block or the panic block). The interesting lines are the ones in the middle, which define the parameters passed.
 
-```
-v7 (5) = Arg <*[8]byte> {src} (b.ptr[*byte], src[*[8]byte])
-```
+In particular, we see that `v7` is the second parameter of the function, `src`, whereas `v248` is a pointer to the memory of the slice `dest`, the first parameter. Although I _believe_ that `v8` and `v9` are also part of the definition of the slice (the capacity and length), there are some details that I don't completely understand, so I will not try to explain this in more detail.
 
-`v7` is the second argument of the function, `src`, which is a pointer to an array of 8 bytes (remember that `src` was of type `[8]byte`).
-
-```
-v248 (84) = Arg <*byte> {dest}
-```
-
-`v248` is the first argument of the function, `dest`, which is a pointer to bytes (we do not know the length here, as it was defined as a slice, which has a variable length).
+For now, knowing that `v7` represents `src` and `v248` represents `dest` is more than enough!
 
 ## Copy block
 
