@@ -29,7 +29,7 @@ In the Mattermost Desktop client run:
 
 ### Manifest
 
-Hello, Webhooks! is an HTTP app, it requests the *permissions* to act as a System Admin and Bot to access the Mattermost REST API. It also requests permissions to receive 3rd party webhook messages. It binds itself to `/` commands.
+`Hello, Webhooks!` is an HTTP app. It requests the *permissions* to act as a System Admin and Bot to access the Mattermost REST API. It also requests permissions to receive 3rd party webhook messages. It binds itself to `/` commands.
 
 ```json
 {
@@ -52,7 +52,7 @@ Hello, Webhooks! is an HTTP app, it requests the *permissions* to act as a Syste
 
 ### Bindings and locations
 
-The Hello Webhooks app creates two commands: `/hello-webhooks info | send`.
+The `Hello Webhooks!` app creates two commands: `/hello-webhooks info | send`.
 
 ```json
 {
@@ -97,18 +97,14 @@ The Hello Webhooks app creates two commands: `/hello-webhooks info | send`.
 
 The `/hello-webhooks send` command from the `info` command response will send a webhook message to the apps plugin which verifies the secret and forwards the request to the hello app. The `Hello, Webhooks!` app receives the webhook and posts an ephemeral message in Mattermost.
 
-### Webhooks call handler
-
-To handle the incoming webhook
-
-`<mattermost-site-url>/plugins/com.mattermost.apps/apps/hello-webhooks/webhook/hello?secret=<your-app-secret>`
-
-`https://jasonf.ngrok.io/plugins/com.mattermost.apps/apps/hello-webhooks/webhook/hello?secret=wmmd5wztzty4dfqidu3zee9uuc`
+### Webhook call handler
 
 ```go
     // Webhook handler
     http.HandleFunc("/webhook/", webhookReceived)
 ```
+
+`webhookReceived` receives the webhook message and posts a confirmation message in the channel.
 
 ```go
 func webhookReceived(w http.ResponseWriter, req *http.Request) {
@@ -121,12 +117,37 @@ func webhookReceived(w http.ResponseWriter, req *http.Request) {
 
     asBot.CreatePost(&model.Post{
         ChannelId: channelID,
-        Message:   fmt.Sprintf("received webhook, path `%s`, data: `%v`", creq.Values["path"], creq.Values["data"]),
+        Message:   fmt.Sprintf("received webhook, path `%s`, data: `%v`", creq.Path, creq.Values["data"]),
     })
 
     json.NewEncoder(w).Encode(apps.CallResponse{Type: apps.CallResponseTypeOK})
 }
 ```
+
+The following image shows the displayed confirmation message after the webhook is recieved.
+![webhookReceived message](received-webhook.png)
+
+### `info` Command
+
+`/hello-webhook info` composes a call response markdown message with a valid `/hello-webhooks send` slash command
+
+```go
+func info(w http.ResponseWriter, req *http.Request) {
+    creq := apps.CallRequest{}
+    json.NewDecoder(req.Body).Decode(&creq)
+
+    json.NewEncoder(w).Encode(apps.CallResponse{
+        Markdown: md.Markdownf("Try `/hello-webhooks send %s`",
+            creq.Context.MattermostSiteURL+creq.Context.AppPath+apps.PathWebhook+
+                "/hello"+
+                "?secret="+creq.Context.App.WebhookSecret),
+    })
+}
+```
+
+### `send` Command
+
+`/hello-webhook send` composes an HTTP Post method to the url specified in the `/hello-webhooks send` command provided by `/hello-webhooks info`.  A call response markdown message posts a confirmation message in the channel validating a webhook was sent.
 
 ```go
 func send(w http.ResponseWriter, req *http.Request) {
@@ -145,6 +166,5 @@ func send(w http.ResponseWriter, req *http.Request) {
 }
 ```
 
-### `info` Command
-
-### `send` Command
+The following image shows the displayed confirmation message after the webhook is sent using the `/hello-webhooks send` command.
+![webhookSent message](sent-webhook.png)
