@@ -93,9 +93,43 @@ The `Hello Webhooks!` app creates two commands: `/hello-webhooks info | send`.
 
 `/hello-webhooks info` displays a valid `/hello-webhooks send` command constructed with your mattermost-site-url, the path to the hello app webhook endpoint, and a secret.
 
+```go
+func info(w http.ResponseWriter, req *http.Request) {
+    creq := apps.CallRequest{}
+    json.NewDecoder(req.Body).Decode(&creq)
+
+    json.NewEncoder(w).Encode(apps.CallResponse{
+        Markdown: md.Markdownf("Try `/hello-webhooks send %s`",
+            creq.Context.MattermostSiteURL+creq.Context.AppPath+apps.PathWebhook+
+                "/hello"+
+                "?secret="+creq.Context.App.WebhookSecret),
+    })
+}
+```
+
 ### Sending a webhook command
 
 The `/hello-webhooks send` command from the `info` command response will send a webhook message to the apps plugin which verifies the secret and forwards the request to the hello app. The `Hello, Webhooks!` app receives the webhook and posts an ephemeral message in Mattermost.
+
+```go
+func send(w http.ResponseWriter, req *http.Request) {
+    creq := apps.CallRequest{}
+    json.NewDecoder(req.Body).Decode(&creq)
+    url, _ := creq.Values["url"].(string)
+
+    http.Post(
+        url,
+        "application/json",
+        bytes.NewReader([]byte(`"Hello from a webhook!"`)))
+
+    json.NewEncoder(w).Encode(apps.CallResponse{
+        Markdown: "posted a Hello webhook message",
+    })
+}
+```
+
+The following image shows the displayed confirmation message after the webhook is sent using the `/hello-webhooks send` command.
+![webhookSent message](sent-webhook.png)
 
 ### Webhook call handler
 
@@ -126,45 +160,3 @@ func webhookReceived(w http.ResponseWriter, req *http.Request) {
 
 The following image shows the displayed confirmation message after the webhook is recieved.
 ![webhookReceived message](received-webhook.png)
-
-### `info` Command
-
-`/hello-webhook info` composes a call response markdown message with a valid `/hello-webhooks send` slash command
-
-```go
-func info(w http.ResponseWriter, req *http.Request) {
-    creq := apps.CallRequest{}
-    json.NewDecoder(req.Body).Decode(&creq)
-
-    json.NewEncoder(w).Encode(apps.CallResponse{
-        Markdown: md.Markdownf("Try `/hello-webhooks send %s`",
-            creq.Context.MattermostSiteURL+creq.Context.AppPath+apps.PathWebhook+
-                "/hello"+
-                "?secret="+creq.Context.App.WebhookSecret),
-    })
-}
-```
-
-### `send` Command
-
-`/hello-webhook send` composes an HTTP Post method to the url specified in the `/hello-webhooks send` command provided by `/hello-webhooks info`.  A call response markdown message posts a confirmation message in the channel validating a webhook was sent.
-
-```go
-func send(w http.ResponseWriter, req *http.Request) {
-    creq := apps.CallRequest{}
-    json.NewDecoder(req.Body).Decode(&creq)
-    url, _ := creq.Values["url"].(string)
-
-    http.Post(
-        url,
-        "application/json",
-        bytes.NewReader([]byte(`"Hello from a webhook!"`)))
-
-    json.NewEncoder(w).Encode(apps.CallResponse{
-        Markdown: "posted a Hello webhook message",
-    })
-}
-```
-
-The following image shows the displayed confirmation message after the webhook is sent using the `/hello-webhooks send` command.
-![webhookSent message](sent-webhook.png)
