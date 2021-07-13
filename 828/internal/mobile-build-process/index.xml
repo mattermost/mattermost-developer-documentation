@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mobile Build Process on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/internal/mobile-build-process/</link>
+    <description>Recent content in Mobile Build Process on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 14 Mar 2019 09:05:00 -0500</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/internal/mobile-build-process/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bump Version Number</title>
+      <link>https://developers.mattermost.com/internal/mobile-build-process/bump-version-number/</link>
+      <pubDate>Tue, 07 Nov 2017 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/mobile-build-process/bump-version-number/</guid>
+      <description>This must be done in your local copy of the mattermost-mobile
+ Source the environment variables export LC_ALL=&amp;quot;en_US.UTF-8&amp;quot; ############ MATTERMOST BUILD ############ export COMMIT_CHANGES_TO_GIT=true export BRANCH_TO_BUILD=master export GIT_LOCAL_BRANCH=version-number export RESET_GIT_BRANCH=false export INCREMENT_VERSION_NUMBER_MESSAGE=&amp;quot;Bump app version number to&amp;quot; export VERSION_NUMBER=   Env vars
+Alternatively you can copy the environment variables to the mattermost-mobile/fastlane/.env file.   Specify version number
+Set the variable VERSION_NUMBER to X.X.X (eg: 1.17.0).    Increase the version number of the app.</description>
+    </item>
+    
+    <item>
+      <title>Bump Build Number</title>
+      <link>https://developers.mattermost.com/internal/mobile-build-process/bump-build-number/</link>
+      <pubDate>Tue, 07 Nov 2017 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/mobile-build-process/bump-build-number/</guid>
+      <description>This must be done in your local copy of the mattermost-mobile
+ Source the environment variables export LC_ALL=&amp;quot;en_US.UTF-8&amp;quot; ############ MATTERMOST BUILD ############ export COMMIT_CHANGES_TO_GIT=true export BRANCH_TO_BUILD=master export GIT_LOCAL_BRANCH=build-number export RESET_GIT_BRANCH=false export INCREMENT_BUILD_NUMBER=true export INCREMENT_BUILD_NUMBER_MESSAGE=&amp;quot;Bump app build number to&amp;quot;   Env vars
+Alternatively you can copy the environment variables to the mattermost-mobile/fastlane/.env file.   Specify build number
+Sometimes you need to specify the build number instead of just increasing it by one.</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting</title>
+      <link>https://developers.mattermost.com/internal/mobile-build-process/troubleshooting/</link>
+      <pubDate>Tue, 07 Nov 2017 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/mobile-build-process/troubleshooting/</guid>
+      <description>Error message Unable to resolve module mattermost-redux/client from /Users/****/workspace/mm/mobile-build-app-pr/share_extension/android/index.js: Module mattermost-redux/client does not exist in the Haste module map.
+Solution Make sure the mattermost-redux package is build correctly.
+The make build set of commands uses npm ci, sometimes the npm ci command will not run the prepare script used by mattermost-redux thus the library will not built causing the mobile build to fail.
+ ssh to the build machine (MacStadium) cd ~/workspace/mm/mattermost-mobile-prod-release/mattermost-mobile rm -rf node_modules npm cache clean --force npm i Finally make sure ls node_modules/mattermost-redux/ shows that mattermost-redux was built.</description>
+    </item>
+    
+  </channel>
+</rss>

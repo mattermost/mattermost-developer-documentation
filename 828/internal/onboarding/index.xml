@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Onboarding on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/internal/onboarding/</link>
+    <description>Recent content in Onboarding on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Nov 2017 14:28:35 -0500</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/internal/onboarding/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>New Staff Guide</title>
+      <link>https://developers.mattermost.com/internal/onboarding/new-staff-guide/</link>
+      <pubDate>Tue, 07 Nov 2017 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/onboarding/new-staff-guide/</guid>
+      <description>Helpful links  https://docs.mattermost.com/developer/developer-flow.html Jira bug ticket process Feature flag process RN build process if you are joining the Mobile team Glance through the release processes:  https://docs.mattermost.com/process/feature-release.html https://docs.mattermost.com/process/bug-fix-release.html   Security: Read through the security channel/issues spreadsheet and look at past exploits Developer Reading List: Located in the header of the public Developer channel  Mentor For The Day  Meet with a dev team member every day for about 30 mins.</description>
+    </item>
+    
+    <item>
+      <title>Manager Guide</title>
+      <link>https://developers.mattermost.com/internal/onboarding/manager-guide/</link>
+      <pubDate>Tue, 07 Nov 2017 14:28:35 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/onboarding/manager-guide/</guid>
+      <description>Mentor For The Day  Schedule a 1-1 each day between new staff and team members (including QA and PM) and other devs who would be relevant to meet with for the first two weeks  These meetings should be about 30 minutes and do not need to be focused on work topics. They should spend some time getting to know each other The first 1-1 should be between you and the new staff member   In addition to the above 1-1s, you should meet personally with the new staff member for 5-10 minutes every day for the first week or so to make sure everything is going well  Channels and Teams  Make sure new staff is added to the private team Private Core and all relevant channels See here for basic list of channels  Meetings and Accounts  Add new staff member to all appropriate meetings  OneLogin Account Set-up  Login to OneLogin and go to https://mattermost.</description>
+    </item>
+    
+  </channel>
+</rss>

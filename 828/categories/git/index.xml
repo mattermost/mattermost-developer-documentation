@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/categories/git/</link>
+    <description>Recent content in git on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 27 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/categories/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Advanced Git with the Free University of Tbilisi</title>
+      <link>https://developers.mattermost.com/blog/advanced-git-tbilisi-free-university/</link>
+      <pubDate>Fri, 27 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/advanced-git-tbilisi-free-university/</guid>
+      <description>On Monday, March 16, 2020, I had the privilege to (virtually) join Shota Gvinepadze and his students at the Free University of Tbilisi and speak about &amp;ldquo;Advanced Git @ Mattermost&amp;rdquo; for a portion of their class time.
+The following are my speaking notes from the session, slightly modified from the original slides for this format. Keep in mind that the command line examples are illustrative of my workflow, and not meant to be run in isolation.</description>
+    </item>
+    
+  </channel>
+</rss>

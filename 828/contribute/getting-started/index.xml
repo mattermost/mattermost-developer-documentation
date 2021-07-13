@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Getting Started on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/contribute/getting-started/</link>
+    <description>Recent content in Getting Started on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 19 May 2018 12:01:23 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/contribute/getting-started/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Contributions Without Ticket</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/contributions-without-ticket/</link>
+      <pubDate>Fri, 11 Oct 2019 15:44:36 -0200</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/contributions-without-ticket/</guid>
+      <description>Contributions for minor corrections and improvements without a corresponding Help Wanted ticket are welcome. For example, a pull request for a bug or incremental improvement, with less than 20 lines of code change, is usually accepted if the change to existing behaviour is minor.
+All pull requests submitted without a corresponding ticket will first be reviewed by a core team product manager. Some examples of minor corrections and improvements include:</description>
+    </item>
+    
+    <item>
+      <title>Contribution Checklist</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/contribution-checklist/</link>
+      <pubDate>Sun, 20 Aug 2017 12:33:36 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/contribution-checklist/</guid>
+      <description>Thanks for your interest in contributing to Mattermost! Come join our Contributors community channel on the community server, where you can discuss questions with community members and the Mattermost core team.
+To help with translations, see the localization process.
+Follow this checklist for submitting a pull request (PR):
+ You&amp;rsquo;ve signed the Contributor License Agreement, so you can be added to the Mattermost Approved Contributor List.   If you&amp;rsquo;ve included your mailing address in the signed Contributor License Agreement, you may receive a Limited Edition Mattermost Mug as a thank you gift after your first pull request is merged.</description>
+    </item>
+    
+    <item>
+      <title>Inactive Contributions</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/inactive-contributions/</link>
+      <pubDate>Sun, 20 Aug 2017 12:33:36 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/inactive-contributions/</guid>
+      <description>This process describes how inactive contributions are managed at Mattermost, inspired by the Kubernetes project:
+ After 10 days of inactivity, a contribution becomes stale.   If action is required from submitter, Community Coordinator asks if the team can help clarify previous feedback or provide guidance on next steps, and adds lifecycle/1:stale label to the contribution. If action is required from reviewers, Community Coordinator asks reviewers to share feedback or help answer questions, and adds lifecycle/1:stale label to the contribution.</description>
+    </item>
+    
+    <item>
+      <title>Core Committers</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/core-committers/</link>
+      <pubDate>Sun, 20 Aug 2017 12:33:36 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/core-committers/</guid>
+      <description>A core committer is a maintainer on the Mattermost project that has merge access to Mattermost repositories. They are responsible for reviewing pull requests, cultivating the Mattermost developer community, and guiding the technical vision of Mattermost.
+If you have a question or need some help, please visit the Core Committers page in the Mattermost Handbook.</description>
+    </item>
+    
+    <item>
+      <title>Code Review</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/code-review/</link>
+      <pubDate>Tue, 06 Mar 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/code-review/</guid>
+      <description>All changes to the product must be reviewed.
+ User experience changes must be reviewed by a product manager. Code changes must be reviewed by at least two core committers and a QA tester. Documentation changes must be reviewed by a product manager.  Product managers may ask for reviews from core committers and QA testers as required.    If you are a community member seeking a review  Submit your pull request.</description>
+    </item>
+    
+    <item>
+      <title>Labels</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/labels/</link>
+      <pubDate>Tue, 06 Mar 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/labels/</guid>
+      <description>We leverage GitHub labels to track the details and lifecycle of issues and pull requests.
+Issue Labels  Area/&amp;lt;name&amp;gt;: Involves changes to the named area (APIv4, E2E Tests, Localization, Plugins, etc.) Bug Report/Open: Bug report unresolved, awaiting for more information or in development backlog. Bug Report/Scheduled for Release: Bug report resolved and scheduled for an upcoming release. Milestone indicates scheduled release version. Difficulty/1:easy: Easy ticket. Difficulty/2:medium: Medium ticket. Difficulty/3:hard: Hard ticket.</description>
+    </item>
+    
+    <item>
+      <title>Mattermost tick-tock Branching Strategy</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/branching/</link>
+      <pubDate>Tue, 18 Jun 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/branching/</guid>
+      <description>Mattermost previously adopted a tick-tock release strategy where every other release was a &amp;ldquo;quality release&amp;rdquo; that only had bug fixes and no new features.
+The following diagram provides an overview of the branching strategy that was used to accomplish this. As an example, release-5.4 is a feature release and release-5.5 is a quality release. Note the &amp;ldquo;quality release&amp;rdquo; branch is based on the previous release branch.
+Cherry Pick Process - Developer When your PR is required on a release branch, you will follow the cherry picking process.</description>
+    </item>
+    
+    <item>
+      <title>Slash Commands</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/slash-commands/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/slash-commands/</guid>
+      <description>There are a couple of slash-commands available on GitHub which are implemented via Mattermod. They only work on PRs.
+The commands are:
+ /cherry-pick $BRANCH_NAME, e.g. /cherry-pick release-5.10: Opens a PR to cherry pick a change into the branch $BRANCH_NAME. This command only works for the submitter of the PR and members of the Mattermost organization. /check-cla: Checks if the PR contributor has signed the CLA. /autoassign: Automatically assigns reviewers to a PR.</description>
+    </item>
+    
+    <item>
+      <title>Engineering Guilds</title>
+      <link>https://developers.mattermost.com/contribute/getting-started/guilds/</link>
+      <pubDate>Mon, 25 Jan 2021 16:50:35 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/getting-started/guilds/</guid>
+      <description>Our Engineering Guilds are a forum for sharing knowledge, discussing and agreeing on plans, and disseminating information related to a particular subject or technical topic. Many (although not all) Engineering Guilds are affiliated to a particular &amp;ldquo;platform&amp;rdquo; that forms a part of Mattermost, and are therefore associated with a particular Platform Team. However, the participants in each Guild span many engineering teams at Mattermost in order to get people together to share knowledge and disseminate decisions across the Engineering organization.</description>
+    </item>
+    
+  </channel>
+</rss>

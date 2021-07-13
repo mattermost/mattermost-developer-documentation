@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Writing a Blog Post</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Writing a Blog Post">
+
+ 
+  <meta name="description" content="Blog posts are a great way to share your experience with the community. Follow these guidelines when writing a blog post for Mattermost.">
+<meta name="twitter:description" content="Blog posts are a great way to share your experience with the community. Follow these guidelines when writing a blog post for Mattermost.">
+<meta name="og:description" content="Blog posts are a great way to share your experience with the community. Follow these guidelines when writing a blog post for Mattermost.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/internal/writing-a-blog-post/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+    </head>
+<body>
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div id="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 sidebar">
+    <div class="sidebar__menu-toggle">
+        Writing a Blog Post
+        <i class="fa fa-bars pull-right"></i>
+    </div>
+    <div class="row sidebar__links">
+        
+            
+        
+            
+        
+            
+        
+            
+            
+                
+                
+
+                
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/internal/infrastructure/"> Infrastructure</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a href="https://developers.mattermost.com/internal/infrastructure/kubernetes/"> Kubernetes</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/internal/infrastructure/kubernetes/kubernetes-troubleshooting/"> Kubernetes Maintenance</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/internal/infrastructure/grafana/"> Community Grafana</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/internal/infrastructure/vpn-cloud/"> VPN(CLOUD)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/internal/infrastructure/plugins/"> Adding a Plugin to Community</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/internal/infrastructure/aws/"> AWS</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/internal/infrastructure/onelogin-aws/"> OneLogin and AWS</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/internal/infrastructure/build/"> Build</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/internal/infrastructure/guidelines/"> Guidelines for New Infrastructure</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/internal/qa/"> QA</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/internal/offboarding/"> Offboarding</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/internal/onboarding/"> Onboarding</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/internal/onboarding/new-staff-guide/"> New Staff Guide</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/internal/onboarding/manager-guide/"> Manager Guide</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/internal/mobile-build-process/"> Mobile Build Process</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/internal/mobile-build-process/bump-version-number/"> Bump Version Number</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/internal/mobile-build-process/bump-build-number/"> Bump Build Number</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/internal/mobile-build-process/troubleshooting/"> Troubleshooting</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/internal/release-tagging-process/"> Release Tagging Process</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/internal/release-process/"> Release Cutting Process</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/internal/plugin-release-process/"> Plugin Release Process</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/internal/tips-and-best-practices/"> Tips and Best Practices</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+                    
+                
+
+                
+                
+                    
+                
+
+                <span class="item active">
+                    <i class="sub-menu__toggle fa fa-minus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a class="active" href="#"> Writing a Blog Post</a>
+                    
+                </span>
+
+                <ul class="sub-menu" style="display: block">
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/internal/rd-teams/"> R&amp;D Teams</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/internal/sustained-engineering/"> Sustained Engineering Team</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/internal/gitlab-omnibus/"> GitLab Omnibus</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+            
+        
+            
+        
+    </div>
+</div>
+
+                <div class="col-lg-9 doc-content">
+                    
+<a href="https://github.com/mattermost/mattermost-developer-documentation/edit/master/site/content/internal/writing-a-blog-post.md" class="float-right edit-github">
+    Edit on GitHub
+</a>
+
+
+                    <h1 class="mt-0 doc-title">
+                        
+                            Writing a Blog Post at Mattermost
+                        
+                    </h1>
+                    <p>Been to a conference recently? Worked on something cool? Got something else Mattermost-related you want to post about? Writing a blog post is a great way to share your experience with the community.</p>
+<p>Blog posts can cover a wide range of topics, such as:</p>
+<ul>
+<li>Addressing a customer-facing problem</li>
+<li>Describing an experience with Mattermost/your Mattermost implementation</li>
+<li>Sharing information about cool tech</li>
+<li>Sharing feedback on an interesting talk or conference</li>
+<li>Part of a Hackathon project</li>
+<li>A Help Wanted ticket</li>
+<li>A knowledge-share and call for feedback/community engagement</li>
+<li>A discussion of a specific problem or improvement that you worked on</li>
+<li>A breakdown of a new process or technology you’re using</li>
+</ul>
+<p>Once you&rsquo;ve got the topic in mind - what it&rsquo;s about, what you want to achieve with the post, and what the next steps are - it’s sometimes helpful to start writing the conclusion and expand to your jumping off point to introduce your topic/idea/discovery draws.</p>
+<p>Make a note of your intended audience, so you can decide whether to use very technical terms/jargon, or spend time unpacking terminology.</p>
+<h2 id="structuring-your-blog-post">Structuring Your Blog Post&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#structuring-your-blog-post"></i></a> </h2>
+<p>These are some ideas of the parts of a blog post. They’re not mandatory and not all blog posts will include every aspect. What works for some posts won’t work for others.</p>
+<ul>
+<li><strong>Introduction/Overview:</strong> An opening paragraph detailing the goal of the post and the technologies/processes that were used. For example: “Monitoring is an essential part of our organization. When we started, we were using “x” which gave us insight into “y”. With our growth as a company, we need more insights into areas that “x” can’t handle, so we decided to switch to “a” and “b””.</li>
+<li><strong>Problem/Solution/Situation:</strong> Detail the problem or scenario that sparked the blog post. For example, “Our monitoring tools weren’t giving us the insight we needed, and were costing a lot of money. We decided to try solve this by using multiple tools that could be used or on standby as needed. This saves money.”</li>
+<li><strong>Environment:</strong> Plugins, software, specific configurations/services used.</li>
+<li><strong>Steps:</strong> The process followed to get from conception to implementation, for example, how the monitoring was configured initially, and the new configuration. Include code samples and/or screenshots. How long it took to build a database/history. What steps were taken to create a good alert system.</li>
+<li><strong>Samples:</strong> Code samples are often useful, as are screenshots/animated GIFs if a complex process is being demonstrated.</li>
+<li><strong>Benefits:</strong> The benefits of the exercise or process of the blog post - man-hours saved, budget target achieved, lower overheads, etc.</li>
+<li><strong>Conclusion:</strong> Whether the exercise or process has long-term potential, whether it’s still in place, or whether it was a failure.</li>
+</ul>
+<p>Some popular blogs that are worth reading include:</p>
+<ul>
+<li><a href="https://blog.golang.org/">https://blog.golang.org/</a></li>
+<li><a href="https://dave.cheney.net/">https://dave.cheney.net/</a></li>
+<li><a href="https://technology.riotgames.com/">https://technology.riotgames.com/</a></li>
+<li><a href="https://www.freecodecamp.org/news/">https://www.freecodecamp.org/news/</a></li>
+<li><a href="https://alistapart.com/">https://alistapart.com/</a></li>
+</ul>
+<p>The <a href="https://github.com/mattermost/mattermost-developer-documentation/tree/master/site/content/blog">/site/content/blog/</a> folder also has some good examples.</p>
+<h2 id="writing-your-blog-post">Writing Your Blog Post&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#writing-your-blog-post"></i></a> </h2>
+<p>The steps below outline the process involved in creating the blog post file from a cloned repo, and then submitting the PR.</p>
+<ol>
+<li>Clone <a href="https://github.com/mattermost/mattermost-developer-documentation">https://github.com/mattermost/mattermost-developer-documentation</a>.</li>
+<li>Create a new .md file in the <a href="https://github.com/mattermost/mattermost-developer-documentation/tree/master/site/content/blog">/site/content/blog/</a> folder.</li>
+</ol>
+<ul>
+<li>Use <code>YYYY-MM-DD-&lt;your-blog-post-title&gt;.md</code> as the filename.</li>
+</ul>
+<ol start="3">
+<li>
+<p>Paste this template into your file</p>
+<pre><code>---
+title: &lt;user readable title of your blog post, e.g. My Blog Post&gt;
+description: &quot;&lt;brief description of the post less than 160 characters in length&gt;&quot;
+heading: &quot;&lt;the heading that appears at the top of the page content&gt;&quot;
+slug: &lt;URL name of your blog post, e.g. my-blog-post&gt;
+date: YYYY-MM-DDT12:00:00-04:00
+author: &lt;FirstName LastName&gt;
+github: &lt;your GitHub username&gt;
+community: &lt;your community.mattermost.com username&gt;
+---
+
+&lt;intro to blog post&gt;
+
+#### &lt;some heading&gt;
+&lt;some content&gt;
+
+#### &lt;another heading&gt;
+&lt;some more content&gt;
+</code></pre></li>
+<li>
+<p>Write your blog post.</p>
+</li>
+<li>
+<p>(Optional) If you wrote the blog post with someone else, you can also add a second author by adding <code>author_2</code>, <code>github_2</code> and <code>community_2</code> to the <a href="https://gohugo.io/content-management/front-matter">front matter</a>.</p>
+</li>
+<li>
+<p>Submit a pull request to <a href="https://github.com/mattermost/mattermost-developer-documentation">https://github.com/mattermost/mattermost-developer-documentation</a> and assign two dev reviews and an editor review from @amyblais or @justinegeffen.</p>
+</li>
+<li>
+<p>Once merged it should show up on <a href="https://developers.mattermost.com/blog">developers.mattermost.com/blog</a> within 10-15 minutes. When it shows up, post about it in the Developers channel on community.mattermost.com.</p>
+</li>
+</ol>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+</html>

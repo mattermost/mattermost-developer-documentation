@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>QA on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/internal/qa/</link>
+    <description>Recent content in QA on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Jun 2018 13:31:26 +0200</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/internal/qa/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

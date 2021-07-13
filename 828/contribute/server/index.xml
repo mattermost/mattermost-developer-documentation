@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Server on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/contribute/server/</link>
+    <description>Recent content in Server on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 19 Apr 2018 12:01:23 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/contribute/server/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Developer Setup</title>
+      <link>https://developers.mattermost.com/contribute/server/developer-setup/</link>
+      <pubDate>Sat, 01 Feb 2020 19:50:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/developer-setup/</guid>
+      <description>Set up your development environment for building, running, and testing the Mattermost server.
+Note: If you&amp;rsquo;re developing plugins, see the plugin developer setup documentation.
+For minimum software requirements, see the following table:
+   Software Minimum Version     Docker 17.12.0+   Docker Compose 1.21.0+   Go 1.15.0+    Mac OS X Ubuntu 16.04/18.04 Windows WSL Archlinux CentOS 7/Fedora 31   title: &amp;ldquo;OSX Development Environment Setup&amp;rdquo; heading: &amp;ldquo;How to Set Up Mattermost in Mac OS X&amp;rdquo; description: &amp;ldquo;Read about how to set up your developer environment in Mattermost using a Mac OS X.</description>
+    </item>
+    
+    <item>
+      <title>Go Style Guide</title>
+      <link>https://developers.mattermost.com/contribute/server/style-guide/</link>
+      <pubDate>Tue, 12 Jan 2021 16:00:00 +0530</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/style-guide/</guid>
+      <description>Go is a more opinionated language than many others when it comes to coding style. The compiler enforces some basic stylistic elements, such as the removal of unused variables and imports. Many others are enforced by the gofmt tool, such as usage of white-space, semicolons, indentation, and alignment. The gofmt tool is run over all code in the Mattermost Server CI pipeline. Any code which is not consistent with the formatting enforced by gofmt will not be accepted into the repository.</description>
+    </item>
+    
+    <item>
+      <title>Feature Flags</title>
+      <link>https://developers.mattermost.com/contribute/server/feature-flags/</link>
+      <pubDate>Thu, 15 Oct 2020 16:00:00 -0700</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/feature-flags/</guid>
+      <description>Feature flags allow us to be more confident in shipping features continuously to Mattermost Cloud. Feature flags also allow us to control which features are enabled on a cluster level.
+How to use Adding the feature flag in code  Add the new flag to the feature flag struct located in model/feature_flags.go. Set a default value in the SetDefaults function in the same file. Use the feature flag in code as you would use a regular configuration setting.</description>
+    </item>
+    
+    <item>
+      <title>Server Workflow</title>
+      <link>https://developers.mattermost.com/contribute/server/developer-workflow/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/developer-workflow/</guid>
+      <description>If you haven&amp;rsquo;t set up your developer environment, please do so before continuing with this section.
+Join the Developers community channel to ask questions from community members and the Mattermost core team.
+Workflow Here&amp;rsquo;s a general workflow for a Mattermost developer working on the mattermost-server repository:
+ Review the repository structure to familiarize yourself with the project  ./api4/ holds all API and application related code. ./model/ holds all data model definitions and the Go driver.</description>
+    </item>
+    
+    <item>
+      <title>REST API</title>
+      <link>https://developers.mattermost.com/contribute/server/rest-api/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/rest-api/</guid>
+      <description>The REST API is a JSON web service that facilitates communication between Mattermost clients, as well as integrations, and the server.
+The server is currently on API version 4.
+Reference Looking for the API reference? That can be found here: https://api.mattermost.com.
+Adding an Endpoint To add an endpoint to API version 4, each item on the following checklist must be completed:
+ Document the endpoint Implement the API handler on the server Add a function to the Go driver Write a unit test Submit your implementation!</description>
+    </item>
+    
+    <item>
+      <title>System Console</title>
+      <link>https://developers.mattermost.com/contribute/server/system_console/</link>
+      <pubDate>Wed, 09 Oct 2019 13:38:26 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/system_console/</guid>
+      <description>Adding fields to the configuration In order to add fields to the configuration, you need to modify model/config.go in the server by adding the desired field to one of the structs such as ServiceSettings and setting its default value in the corresponding SetDefaults method.
+Exposing settings in the System Console To expose the newly-added field in the System Console, you need to add that same setting to the AdminDefinition JS object in mattermost-webapp/components/admin_console/admin_definition.</description>
+    </item>
+    
+    <item>
+      <title>Dependencies</title>
+      <link>https://developers.mattermost.com/contribute/server/dependencies/</link>
+      <pubDate>Wed, 27 Mar 2019 16:00:00 -0700</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/dependencies/</guid>
+      <description>The Mattermost server uses go modules to manage dependencies. To manage dependencies you must have modules enabled.
+Enabling go modules support (Do this first!) While golang migrates to support go modules, you need to set the environment variable GO111MODULE to on if you are developing in the GOPATH. For example:
+export GO111MODULE=on Once this is done, all go commands issued will use the modules system.
+Adding or updating a new dependency Be sure you have enabled go modules support.</description>
+    </item>
+    
+    <item>
+      <title>CLI Commands</title>
+      <link>https://developers.mattermost.com/contribute/server/cli-commands/</link>
+      <pubDate>Fri, 21 Sep 2018 18:40:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/cli-commands/</guid>
+      <description>Mattermost provides a CLI (command-line interface) to administer and handle specific administrative tasks.
+Understanding the CLI The CLI interface is written in Cobra, a powerful and modern CLI creation library. If you have never used Cobra before, it is well documented in its GitHub Repository.
+The source code used to build our CLI interface is written in the cmd/mattermost directory of the mattermost-server repository.
+Each &amp;ldquo;command&amp;rdquo; of the CLI is stored in a different file of the cmd/mattermost/commands directory.</description>
+    </item>
+    
+    <item>
+      <title>Plugins</title>
+      <link>https://developers.mattermost.com/contribute/server/plugins/</link>
+      <pubDate>Sun, 20 Aug 2017 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/plugins/</guid>
+      <description>Mattermost supports plugins that offer powerful features for extending and deeply integrating with both the server and web/desktop apps.
+This document covers the plugin infrastructure and how to contribute to it.
+Building Plugins Looking to build a plugin? Then you want the plugin author documentation.
+Overview Plugins are generally made of at least two parts: a manifest and a server binary and/or a JavaScript bundle.
+The manifest tells Mattermost what the plugin is and provides a set of metadata used by the server to install and run the plugin.</description>
+    </item>
+    
+    <item>
+      <title>Tooling</title>
+      <link>https://developers.mattermost.com/contribute/server/tooling/</link>
+      <pubDate>Wed, 22 Apr 2020 17:52:04 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/tooling/</guid>
+      <description>Mattermost Server In the mattermost-server repository we are using Docker images and Docker Compose to set up the development enviroment. The following are required images:
+ MySQL PostgreSQL MinIO Inbucket OpenLDAP Elasticsearch  We also have added optional tools to help with your development:
+Dejavu Dejavu is a user interface for Elasticsearch when no UI is provided to visualize or modify the data you&amp;rsquo;re storing inside Elasticsearch.
+To use Dejavu, execute docker-compose up -d dejavu.</description>
+    </item>
+    
+    <item>
+      <title>Arch Linux Development Environment Setup</title>
+      <link>https://developers.mattermost.com/contribute/server/developer-setup/arch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/developer-setup/arch/</guid>
+      <description>Install and configure Docker CE:
+sudo pacman -S docker sudo gpasswd -a $USER docker sudo systemctl enable docker.service sudo systemctl start docker.service newgrp docker Note: MM-9791 introduced using docker-compose to manage containers. To preserve your data on upgrade, execute the following steps.
+First, backup from any existing containers:
+mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test &amp;gt; mm_mysql_backup.sql pg_dump -U mmuser -W -d mattermost_test -h 127.0.0.1 &amp;gt; mm_postgres_backup.bak Then after upgrading and starting the new docker-compose managed containers, restore the data:</description>
+    </item>
+    
+    <item>
+      <title>CentOS Development Environment Setup</title>
+      <link>https://developers.mattermost.com/contribute/server/developer-setup/centos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/developer-setup/centos/</guid>
+      <description>Install and configure Docker CE:
+curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh sudo usermod -aG docker $(whoami) docker login If you prefer to perform these steps manually:
+ https://docs.docker.com/install/linux/docker-ce/centos/ https://docs.docker.com/install/linux/linux-postinstall/  Note: MM-9791 introduced using docker-compose to manage containers. To preserve your data on upgrade, execute the following steps.
+First, backup from any existing containers:
+mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test &amp;gt; mm_mysql_backup.sql pg_dump -U mmuser -W -d mattermost_test -h 127.</description>
+    </item>
+    
+    <item>
+      <title>Mattermost Developer Setup: Ubuntu</title>
+      <link>https://developers.mattermost.com/contribute/server/developer-setup/ubuntu/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/developer-setup/ubuntu/</guid>
+      <description>Install and configure Docker CE:
+curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh sudo usermod -aG docker $(whoami) docker login If you prefer to perform these steps manually:
+ https://docs.docker.com/install/linux/docker-ce/ubuntu/ https://docs.docker.com/install/linux/linux-postinstall/  Note: MM-9791 introduced using docker-compose to manage containers. To preserve your data on upgrade, execute the following steps.
+First, backup from any existing containers:
+mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test &amp;gt; mm_mysql_backup.sql pg_dump -U mmuser -W -d mattermost_test -h 127.</description>
+    </item>
+    
+    <item>
+      <title>OSX Development Environment Setup</title>
+      <link>https://developers.mattermost.com/contribute/server/developer-setup/osx/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/developer-setup/osx/</guid>
+      <description>Install and configure Docker CE: https://docs.docker.com/docker-for-mac/.
+Note: MM-9791 introduced using docker-compose to manage containers. To preserve your data on upgrade, execute the following steps.
+First, backup from any existing containers:
+mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test &amp;gt; mm_mysql_backup.sql pg_dump -U mmuser -W -d mattermost_test -h 127.0.0.1 &amp;gt; mm_postgres_backup.bak Then after upgrading and starting the new docker-compose managed containers, restore the data:
+mysql -u mmuser -p -h 127.</description>
+    </item>
+    
+    <item>
+      <title>Windows with WSL Development Environment Setup</title>
+      <link>https://developers.mattermost.com/contribute/server/developer-setup/windows-wsl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/server/developer-setup/windows-wsl/</guid>
+      <description>This is an unofficial guide. Community testing, feedback, and improvements are welcome and greatly appreciated.
+  Install the Windows Subsystem for Linux: https://docs.microsoft.com/en-us/windows/wsl/install-win10.
+Note: Docker for Windows expects path to have the format /c/foo/bar, but WSL uses /mnt/c/foo/bar instead.
+Run winver and check which version of Windows you have. If you are using 1803 or higher, then you need to create a file /etc/wsl.conf with the following content to make sure your drives are mounted at the root rather than inside /mnt:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Infrastructure on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/internal/infrastructure/</link>
+    <description>Recent content in Infrastructure on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 06 Nov 2017 19:30:07 -0500</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/internal/infrastructure/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Community Grafana</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/grafana/</link>
+      <pubDate>Tue, 31 Mar 2020 20:52:46 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/grafana/</guid>
+      <description>Community Grafana The Grafana application is used to visualise the performance metrics of the community installations. The application runs in the Mattermost Cloud infrastructure in the same cluster that community installations are hosted.
+Grafana URL: https://grafana.mattermost.com
+How to create and use the variable that enables selection between installations To get the different versions of installations in a simple variable, a variable of type query needs to be created with a query value of label_values(v1alpha1_mattermost_com_installation).</description>
+    </item>
+    
+    <item>
+      <title>VPN(CLOUD)</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/vpn-cloud/</link>
+      <pubDate>Tue, 05 Jun 2018 16:08:19 +0200</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/vpn-cloud/</guid>
+      <description>Table of contents
+ Setup VPN access on Pritunl  Viscosity client Pritunl client   Gnome VPN Client Older Setup of VPN access on OpenVPN  Setup VPN access on Pritunl Viscosity client  Install a VPN client that supports DNS settings such as Visocity.  brew cask install viscosity  Go to the VPN server and select Sign in with OneLogin. Then connect with your OneLogin username and password and when prompt put the OTP (One Time Password).</description>
+    </item>
+    
+    <item>
+      <title>Adding a Plugin to Community</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/plugins/</link>
+      <pubDate>Mon, 06 Nov 2017 19:30:07 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/plugins/</guid>
+      <description>To add a plugin to https://community.mattermost.com, you need to do the following:
+ Add the configuration for your plugin and enable it by modifying PluginSettings and PluginState here: https://github.com/mattermost/platform-private/blob/master/kubernetes/community-kubernetes/configmap-config.yaml   community-daily is using the configuration in the Database, so to configure the plugin you need first deploy the plugin and then access the system console and configure the plugin and enable it.  Add a line for your plugin here so it gets downloaded https://github.</description>
+    </item>
+    
+    <item>
+      <title>AWS</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/aws/</link>
+      <pubDate>Mon, 06 Nov 2017 19:30:07 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/aws/</guid>
+      <description>Most of our infrastructure is hosted in AWS.
+Accessing AWS You can sign into the web console for the master AWS account at this URL:
+https://mattermost.signin.aws.amazon.com/console
+After signing into the master account, you can access other accounts within the organization through role switching. This can be done from the dropdown on the right side of the console&amp;rsquo;s menu bar, or you can use this link to switch to the developer account:</description>
+    </item>
+    
+    <item>
+      <title>OneLogin and AWS</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/onelogin-aws/</link>
+      <pubDate>Wed, 07 Nov 2018 16:10:15 +0100</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/onelogin-aws/</guid>
+      <description>Please refer to https://docs.google.com/document/d/1S4i1XFGn7a1VXbtFV28GtbAe56m7fOHDZDgRmm5FBkg/edit#heading=h.ortqmqq1zjyx for the latest instructions to generate AWS credentials for development environments.</description>
+    </item>
+    
+    <item>
+      <title>Build</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/build/</link>
+      <pubDate>Mon, 20 Nov 2017 20:52:46 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/build/</guid>
+      <description>Jenkins build.mattermost.com Most of our automated builds currently take place on Jenkins at build.mattermost.com.
+Updating Go Builds on this Jenkins installation use a globally installed Golang distribution. To update it, you&amp;rsquo;ll need to access the master instance and all of its slaves. Make sure the machine isn&amp;rsquo;t in use, then run the following (replacing &amp;ldquo;1.9.2 &amp;rdquo; with the desired Go version):
+wget https://storage.googleapis.com/golang/go1.9.2 .linux-amd64.tar.gz sudo su rm -r /usr/local/go/ tar -C /usr/local -xzf go1.</description>
+    </item>
+    
+    <item>
+      <title>Guidelines for New Infrastructure</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/guidelines/</link>
+      <pubDate>Mon, 06 Nov 2017 19:30:07 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/guidelines/</guid>
+      <description>All new infrastructure should meet these requirements. Authentication should be centralized. OneLogin, LDAP, IAM Groups, GitHub, or even Mattermost should define the level of access granted to a person. We want to minimize the number of steps required to onboard or offboard new team members and don&amp;rsquo;t want to have to grant or revoke access service-by-service.
+For example, new machines in AWS should be created without a keypair and use Vault+OneLogin to control SSH access.</description>
+    </item>
+    
+  </channel>
+</rss>

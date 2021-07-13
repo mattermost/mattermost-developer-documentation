@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>announcement on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/categories/announcement/</link>
+    <description>Recent content in announcement on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Jul 2018 15:35:09 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/categories/announcement/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Plugin System Overhaul</title>
+      <link>https://developers.mattermost.com/blog/plugins-v2/</link>
+      <pubDate>Wed, 18 Jul 2018 15:35:09 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/plugins-v2/</guid>
+      <description>Mattermost 5.2 will include major overhauls to the plugin system. Over the last six months of plugins being in beta, we&amp;rsquo;ve received a lot of great feedback from our community and customers building Mattermost plugins, as well as from our core team. We&amp;rsquo;ve taken this experience and feedback and used it to enhance our plugin system. This brings us a step closer to moving plugins out of beta and into a full stable release.</description>
+    </item>
+    
+    <item>
+      <title>Subpath Support</title>
+      <link>https://developers.mattermost.com/blog/subpath/</link>
+      <pubDate>Mon, 25 Jun 2018 15:35:09 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/subpath/</guid>
+      <description>Mattermost 5.1 will include support for serving Mattermost from subpaths. This allows Mattermost to be exposed at something like https://example.com/company/mattermost, with your proxy server exposing different services at other subpaths. Subpath support is configured via the Site URL.
+Using subpaths in production In production, after configuration and restart, the application server expects all HTTP requests to be anchored to the configured subpath. This includes static assets, API calls, and WebSockets. For convenience, the application server redirects any unexpected requests back into this subpath, e.</description>
+    </item>
+    
+    <item>
+      <title>npm@6</title>
+      <link>https://developers.mattermost.com/blog/npm-v6/</link>
+      <pubDate>Tue, 22 May 2018 10:16:52 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/npm-v6/</guid>
+      <description>Heads up that with PR#1239, we&amp;rsquo;re effectively switching to npm@6.
+Why the change? Previously, doing a fresh npm install would unexpectedly change package-lock.json. Upgrading to npm@6 should resolve this going forward.
+What do I need to do? Make sure you&amp;rsquo;re running npm@6:
+npm install -g npm@6 </description>
+    </item>
+    
+    <item>
+      <title>Platform Repository Splitting</title>
+      <link>https://developers.mattermost.com/blog/repo-split/</link>
+      <pubDate>Mon, 04 Sep 2017 11:09:47 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/repo-split/</guid>
+      <description>A reminder that Mattermost will be separating the /platform repo into two repositories on September 6th, 2017:
+ a new repository for webapp client code, hosted at github.com/mattermost/mattermost-webapp existing repository (/platform) renamed to /mattermost-server, containing the server code.  Why the change? Separates PRs for client and server with better naming conventions. This is similar to React Native and Redux repositories and helps us:
+ work on one part of the system (webapp/server) without worrying about the other.</description>
+    </item>
+    
+  </channel>
+</rss>

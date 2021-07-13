@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Setup Push Notifications on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/contribute/mobile/push-notifications/</link>
+    <description>Recent content in Setup Push Notifications on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 May 2015 11:35:32 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/contribute/mobile/push-notifications/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Android Push Notifications</title>
+      <link>https://developers.mattermost.com/contribute/mobile/push-notifications/android/</link>
+      <pubDate>Wed, 20 May 2015 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/push-notifications/android/</guid>
+      <description>Push notifications on Android are managed and dispatched using Firebase Cloud Messaging (FCM)
+  Create a Firebase project within the Firebase Console.
+  Click Add Project   Enter the project name, project ID and Country
+  Click CREATE PROJECT
+  Once the project is created you&amp;rsquo;ll be redirected to the Firebase project dashboard
+  Click Add Firebase to your Android App
+  Enter the package ID of your custom Mattermost app as the Android package name.</description>
+    </item>
+    
+    <item>
+      <title>iOS Push Notifications</title>
+      <link>https://developers.mattermost.com/contribute/mobile/push-notifications/ios/</link>
+      <pubDate>Wed, 20 May 2015 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/push-notifications/ios/</guid>
+      <description>Push notifications on iOS are managed and dispatched using Apple&amp;rsquo;s Push Notification Service. You must have a Paid Apple Developer account to create certificates needed to send notifications using this service.
+  Generate a Certificate from Keychain Access
+  Launch the Keychain Access application in your Mac and select KeyChain Access -\Certificate Assistant -\Request a Certificate From a Certificate Authority&amp;hellip;   Enter your email address in User Email Address and check the &amp;ldquo;Save to disk&amp;rdquo; option, then click Continue   Save the certificate request     Log in to Apple developer account and click Certificates, Identifiers and Profiles   Select the plus icon to create a new certificate   Select a new &amp;ldquo;Apple Push Notifications service SSL (Sandbox &amp;amp; Production)&amp;rdquo;   Choose the App ID you&amp;rsquo;re generating a certificate for.</description>
+    </item>
+    
+    <item>
+      <title>Push Notification Service</title>
+      <link>https://developers.mattermost.com/contribute/mobile/push-notifications/service/</link>
+      <pubDate>Wed, 20 May 2015 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/push-notifications/service/</guid>
+      <description>Install the Mattermost Push Notification Service Now that the app can receive push notifications, we need to make sure that the Mattermost Push Notification Service is able to send the notification to the device. This guide will focus on installing and configuring the push notification service.
+Requirements  A Linux box server with at least 1GB of memory. A copy of the Mattermost Push Notification Service. Custom Android and/or iOS Mattermost mobile apps.</description>
+    </item>
+    
+    <item>
+      <title>Push Notification Service with Corporate Proxy</title>
+      <link>https://developers.mattermost.com/contribute/mobile/push-notifications/corporate-proxy/</link>
+      <pubDate>Mon, 09 Mar 2020 11:35:32 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/push-notifications/corporate-proxy/</guid>
+      <description>Receiving mobile push notification if the use of a corporate proxy server is required by your IT policy When your IT policy requires a corporate proxy to scan and audit all outbound traffic the following options are available:
+1 - Deploy Mattermost with connection restricted post-proxy relay in DMZ or a trusted cloud environment Some legacy corporate proxy configurations may be incompatible with the requirements of modern mobile architectures, such as the requirement of HTTP/2 requests from Apple to send push notifications to iOS devices.</description>
+    </item>
+    
+  </channel>
+</rss>
