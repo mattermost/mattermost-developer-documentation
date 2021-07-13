@@ -23,14 +23,17 @@ They are defined by:
 
 The types of fields are:
 
-| Name             | Description                                            |
-| :--------------- | :----------------------------------------------------- |
-| `text`           | Text field.                                            |
-| `static_select`  | A dropdown select with static elements.                |
-| `dynamic_select` | A dropdown select that loads the elements dynamically. |
-| `bool`           | A boolean selector represented as a checkbox.          |
-| `user`           | A dropdown with to select users.                       |
-| `channel`        | A dropdown to select channels.                         |
+| Name             | Description                                              |
+| :--------------- | :------------------------------------------------------- |
+| `text`           | Text field.                                              |
+| `static_select`  | A dropdown select with static elements.                  |
+| `dynamic_select` | A dropdown select that loads the elements dynamically.   |
+| `bool`           | A boolean selector represented as a checkbox.            |
+| `user`           | A dropdown to select users.                              |
+| `channel`        | A dropdown to select channels.                           |
+| `markdown`       | Only visible on modal forms. An arbitrary markdown text. |
+
+Markdown fields are a special field that allows you to better format your form. They will not generate any value in the form submission sent to the app. The content is defined in the field description.
 
 All fields include ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field)):
 
