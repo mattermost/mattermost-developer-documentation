@@ -682,8 +682,35 @@ go run .
 }
 </code></pre></div><h3 id="displaying-the-webhook-command">Displaying the webhook command&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#displaying-the-webhook-command"></i></a> </h3>
 <p><code>/hello-webhooks info</code> displays a valid <code>/hello-webhooks send</code> command constructed with your mattermost-site-url, the path to the hello app webhook endpoint, and a secret.</p>
-<h3 id="sending-a-webhook-command">Sending a webhook command&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#sending-a-webhook-command"></i></a> </h3>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">info</span>(w http.ResponseWriter, req <span style="color:#555">*</span>http.Request) {
+    creq <span style="color:#555">:=</span> apps.CallRequest{}
+    json.<span style="color:#c0f">NewDecoder</span>(req.Body).<span style="color:#c0f">Decode</span>(<span style="color:#555">&amp;</span>creq)
+
+    json.<span style="color:#c0f">NewEncoder</span>(w).<span style="color:#c0f">Encode</span>(apps.CallResponse{
+        Markdown: md.<span style="color:#c0f">Markdownf</span>(<span style="color:#c30">&#34;Try `/hello-webhooks send %s`&#34;</span>,
+            creq.Context.MattermostSiteURL<span style="color:#555">+</span>creq.Context.AppPath<span style="color:#555">+</span>apps.PathWebhook<span style="color:#555">+</span>
+                <span style="color:#c30">&#34;/hello&#34;</span><span style="color:#555">+</span>
+                <span style="color:#c30">&#34;?secret=&#34;</span><span style="color:#555">+</span>creq.Context.App.WebhookSecret),
+    })
+}
+</code></pre></div><h3 id="sending-a-webhook-command">Sending a webhook command&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#sending-a-webhook-command"></i></a> </h3>
 <p>The <code>/hello-webhooks send</code> command from the <code>info</code> command response will send a webhook message to the apps plugin which verifies the secret and forwards the request to the hello app. The <code>Hello, Webhooks!</code> app receives the webhook and posts an ephemeral message in Mattermost.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">send</span>(w http.ResponseWriter, req <span style="color:#555">*</span>http.Request) {
+    creq <span style="color:#555">:=</span> apps.CallRequest{}
+    json.<span style="color:#c0f">NewDecoder</span>(req.Body).<span style="color:#c0f">Decode</span>(<span style="color:#555">&amp;</span>creq)
+    url, _ <span style="color:#555">:=</span> creq.Values[<span style="color:#c30">&#34;url&#34;</span>].(<span style="color:#078;font-weight:bold">string</span>)
+
+    http.<span style="color:#c0f">Post</span>(
+        url,
+        <span style="color:#c30">&#34;application/json&#34;</span>,
+        bytes.<span style="color:#c0f">NewReader</span>([]<span style="color:#366">byte</span>(<span style="color:#c30">`&#34;Hello from a webhook!&#34;`</span>)))
+
+    json.<span style="color:#c0f">NewEncoder</span>(w).<span style="color:#c0f">Encode</span>(apps.CallResponse{
+        Markdown: <span style="color:#c30">&#34;posted a Hello webhook message&#34;</span>,
+    })
+}
+</code></pre></div><p>The following image shows the displayed confirmation message after the webhook is sent using the <code>/hello-webhooks send</code> command.
+<img src="sent-webhook.png" alt="webhookSent message"></p>
 <h3 id="webhook-call-handler">Webhook call handler&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#webhook-call-handler"></i></a> </h3>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#09f;font-style:italic">// Webhook handler
 </span><span style="color:#09f;font-style:italic"></span>    http.<span style="color:#c0f">HandleFunc</span>(<span style="color:#c30">&#34;/webhook/&#34;</span>, webhookReceived)
@@ -705,37 +732,6 @@ go run .
 }
 </code></pre></div><p>The following image shows the displayed confirmation message after the webhook is recieved.
 <img src="received-webhook.png" alt="webhookReceived message"></p>
-<h3 id="info-command"><code>info</code> Command&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#info-command"></i></a> </h3>
-<p><code>/hello-webhook info</code> composes a call response markdown message with a valid <code>/hello-webhooks send</code> slash command</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">info</span>(w http.ResponseWriter, req <span style="color:#555">*</span>http.Request) {
-    creq <span style="color:#555">:=</span> apps.CallRequest{}
-    json.<span style="color:#c0f">NewDecoder</span>(req.Body).<span style="color:#c0f">Decode</span>(<span style="color:#555">&amp;</span>creq)
-
-    json.<span style="color:#c0f">NewEncoder</span>(w).<span style="color:#c0f">Encode</span>(apps.CallResponse{
-        Markdown: md.<span style="color:#c0f">Markdownf</span>(<span style="color:#c30">&#34;Try `/hello-webhooks send %s`&#34;</span>,
-            creq.Context.MattermostSiteURL<span style="color:#555">+</span>creq.Context.AppPath<span style="color:#555">+</span>apps.PathWebhook<span style="color:#555">+</span>
-                <span style="color:#c30">&#34;/hello&#34;</span><span style="color:#555">+</span>
-                <span style="color:#c30">&#34;?secret=&#34;</span><span style="color:#555">+</span>creq.Context.App.WebhookSecret),
-    })
-}
-</code></pre></div><h3 id="send-command"><code>send</code> Command&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#send-command"></i></a> </h3>
-<p><code>/hello-webhook send</code> composes an HTTP Post method to the url specified in the <code>/hello-webhooks send</code> command provided by <code>/hello-webhooks info</code>.  A call response markdown message posts a confirmation message in the channel validating a webhook was sent.</p>
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">send</span>(w http.ResponseWriter, req <span style="color:#555">*</span>http.Request) {
-    creq <span style="color:#555">:=</span> apps.CallRequest{}
-    json.<span style="color:#c0f">NewDecoder</span>(req.Body).<span style="color:#c0f">Decode</span>(<span style="color:#555">&amp;</span>creq)
-    url, _ <span style="color:#555">:=</span> creq.Values[<span style="color:#c30">&#34;url&#34;</span>].(<span style="color:#078;font-weight:bold">string</span>)
-
-    http.<span style="color:#c0f">Post</span>(
-        url,
-        <span style="color:#c30">&#34;application/json&#34;</span>,
-        bytes.<span style="color:#c0f">NewReader</span>([]<span style="color:#366">byte</span>(<span style="color:#c30">`&#34;Hello from a webhook!&#34;`</span>)))
-
-    json.<span style="color:#c0f">NewEncoder</span>(w).<span style="color:#c0f">Encode</span>(apps.CallResponse{
-        Markdown: <span style="color:#c30">&#34;posted a Hello webhook message&#34;</span>,
-    })
-}
-</code></pre></div><p>The following image shows the displayed confirmation message after the webhook is sent using the <code>/hello-webhooks send</code> command.
-<img src="sent-webhook.png" alt="webhookSent message"></p>
 
 
                 </div>
