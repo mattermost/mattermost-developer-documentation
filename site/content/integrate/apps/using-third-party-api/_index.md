@@ -5,7 +5,7 @@ description: "Mattermost Apps framework provides services for using remote (thir
 weight: 90
 ---
 
-There are two examples here to illustrate the [OAuth2](#hello-oauth2) and [webhook](#hello-webhooks) support. Both are HTTP app written in Go and runnable on http://localhost:8080.
+There are two examples here to illustrate the [OAuth2](#hello-oauth2) and [webhook](#hello-webhooks) support. Both are HTTP apps written in Go and runnable on `http://localhost:8080`.
 
 ### [Hello, Oauth2 example]({{< ref hello-oauth2 >}})
 

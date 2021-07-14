@@ -5,7 +5,7 @@ description: "In this example, the http app will demonstrate connect webhooks"
 weight: 90
 ---
 
-This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-webhooks)), written in Go and runnable on http://localhost:8080.
+This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-webhooks)), written in Go and runnable on `http://localhost:8080`.
 
 - It contains a `manifest.json`, declares itself an HTTP application, requests permissions, and binds itself to locations in the Mattermost user interface.
 - In its `bindings` function it declares two commands: `info` and `send`.
