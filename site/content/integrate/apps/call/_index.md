@@ -133,7 +133,6 @@ There are several types ([godoc](https://pkg.go.dev/github.com/mattermost/matter
 | :---------------- | :----- | :------------------ |
 | `type`            | string | Use `navigate`.     |
 | `navigate_to_url` | string | URL to navigate to. |
-| `navigate_to_url` | string | URL to navigate to. |
 
 ## Special calls
 
