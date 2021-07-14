@@ -1,7 +1,7 @@
 ---
-title: "Oauth2"
-heading: "Hello, Oauth2!"
-description: "In this example, the http will connect via oauth2"
+title: "OAuth2"
+heading: "Hello, OAuth2!"
+description: "In this example, the http will connect via OAuth2"
 weight: 90
 ---
 
