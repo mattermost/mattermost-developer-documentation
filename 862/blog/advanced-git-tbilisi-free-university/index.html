@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Advanced Git with the Free University of Tbilisi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Advanced Git with the Free University of Tbilisi">
+
+ 
+  <meta name="description" content="Jesse Hallam gives a virtual course on advanced Git at the Free University of Tbilisi.">
+<meta name="twitter:description" content="Jesse Hallam gives a virtual course on advanced Git at the Free University of Tbilisi.">
+<meta name="og:description" content="Jesse Hallam gives a virtual course on advanced Git at the Free University of Tbilisi.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/advanced-git-tbilisi-free-university/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Advanced Git with the Free University of Tbilisi
+                            
+                            </h1>
+                            <small>Jesse Hallam gives a virtual course on advanced Git at the Free University of Tbilisi.</small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            March 27, 2020
+                            <small class="blog-item__count">3112 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>On Monday, March 16, 2020, I had the privilege to (virtually) join <a href="https://community.mattermost.com/core/messages/@shota.gvinepadze">Shota Gvinepadze</a> and his students at the <a href="http://freeuni.edu.ge/en">Free University of Tbilisi</a> and speak about &ldquo;Advanced Git @ Mattermost&rdquo; for a portion of their class time.</p>
+<p>The following are my speaking notes from the session, slightly modified from the <a href="https://docs.google.com/presentation/d/1tVH2kw_WJ5_rCCOIGHPxVc8O07g1zHK0hQIloCwEYAk/edit">original slides</a> for this format. Keep in mind that the command line examples are illustrative of my workflow, and not meant to be run in isolation.</p>
+<h3 id="introduction">Introduction&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#introduction"></i></a> </h3>
+<p>Today&rsquo;s session on open source will focus on understanding Git better. I&rsquo;ve interacted with a lot of people who are &ldquo;scared of Git.&rdquo; They know the basics &ndash; pulling, committing, pushing &ndash; but anytime something goes wrong, they&rsquo;re stuck. Or they know about some of the advanced Git commands, but worry every time they have to do one.</p>
+<p>Over the next hour, my hope is to demystify some of these advanced commands, and show you how I use these tools to solve day-to-day problems while working at Mattermost.</p>
+<h3 id="advanced-git">Advanced Git&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#advanced-git"></i></a> </h3>
+<p>What do I mean by advanced Git? I&rsquo;m thinking of four different operations in particular:</p>
+<ul>
+<li><code>git revert</code></li>
+<li><code>git cherry-pick</code></li>
+<li><code>git rebase</code></li>
+<li><code>git reflog</code></li>
+</ul>
+<p>Keep in mind that I can&rsquo;t hope to exhaust the depths of how these commands are implemented within Git. My goal is to share with you a working knowledge of these commands.</p>
+<h3 id="git-revert">git revert&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#git-revert"></i></a> </h3>
+<p>Let&rsquo;s start with <code>git revert</code>. This is one of many different ways to &ldquo;undo&rdquo; something in Git. What motivates undoing something?</p>
+<p>Just over two years ago, I began working at Mattermost. As part of a team investigating performance improvements, I had been asked to dig into a slow SQL query to determine if there was an opportunity for improvement. After several days of analysis and testing, I <a href="https://community.mattermost.com/core/pl/ezfwp364ct8bbewbji3ikpusrr">found</a> a major issue and a very promising improvement: a query that took upwards of 3 seconds in a large dataset could be modified to run in just a few milliseconds instead. I implemented the improvement, we tested it in our own environment, and ultimately shipped it in Mattermost v4.9.</p>
+<p>Just over a month later, one of larger customers upgraded to v4.9 and found their system grinding to a halt. We hopped on an emergency call to glean some information, and everything pointed to my changes making things much worse instead of much better. You can read the <a href="https://community.mattermost.com/core/pl/n8bfq7wq77rkff8mgrrstqeuye">details of my second investigation</a> into what went wrong, but in the end, we decided to <a href="https://github.com/mattermost/mattermost-server/pull/8659">revert my changes</a> and ship a patch release.</p>
+<p>When I undid these changes, I wanted to bring the code back to exactly the way it was before my changes. We already knew how that code behaved for this customer, and the goal was to restore stability by using the old code instead. I could, of course, make the changes manually: finding the old code and copying it over top of the new code. But one of Git&rsquo;s built-in commands is an operation to do this automatically. Let&rsquo;s see it in action!</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#09f;font-style:italic"># Checkout the mattermost-server repository</span>
+git clone https://github.com/mattermost/mattermost-server.git
+<span style="color:#366">cd</span> mattermost-server
+
+<span style="color:#09f;font-style:italic"># Go back in time to the v4.9.0 tag</span>
+git checkout -b test-git-revert
+git reset --hard v4.9.0
+
+<span style="color:#09f;font-style:italic"># Find the offending commit</span>
+git log --author Jesse
+git show 4b675b347b5241def7807fab5e01ce9b98531815
+git revert --no-commit 4b675b347b5241def7807fab5e01ce9b98531815
+
+<span style="color:#09f;font-style:italic"># Examine and commit the differences</span>
+git diff --cached
+git commit
+</code></pre></div><p>Just like that, Git has created a commit to undo my changes. What exactly did it do under the cover? The practical thing to understand is that Git created a new commit that undid the changes in the existing commit. It did not go back in time and change what already happened. Instead, it moved my commit history forward by introducing a new commit that effectively restored some past state.</p>
+<p>This has some practical consequences:</p>
+<ul>
+<li>You can revert a revert: it&rsquo;s just like any other commit.</li>
+<li>You can push your branch, containing the revert, and submit a pull request to review your changes.</li>
+<li>If you&rsquo;re working out of a shared branch, your peers will pull the revert like any other commit. This is usually the right way to &ldquo;undo changes&rdquo; in a shared branch, vs. using a command that rewrites history and requires a force push instead.</li>
+</ul>
+<p>Of course, if you&rsquo;ve ever done this before, you know that I&rsquo;ve kind of cheated today: my revert was clean, in that there were no merge conflicts. Sometimes, especially if some time has passed, other changes might have touched the same lines, and the revert will require resolving those changes. Hold that thought, though, since I&rsquo;ll work through an example of resolving merge conflicts with the next command.
+Remember, reverts are just new commits!</p>
+<h3 id="git-cherry-pick">git cherry-pick&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#git-cherry-pick"></i></a> </h3>
+<p>Next up: cherry picking! The general idea of cherry picking &ndash; not specific to Git &ndash; is to pick and choose just what you want. You can imagine yourself standing in front of an actual cherry tree, and saying, &ldquo;I&rsquo;ll take that one, and that one, and that one&rdquo; and ignoring the rest.</p>
+<p>In git, the idea is similar. Given one or more commits &ndash; anywhere in the tree &ndash; apply those same changes to my current branch. Why would you want to do that?</p>
+<p>At Mattermost, <code>master</code> is our development branch. Every two months we <a href="https://developers.mattermost.com/contribute/getting-started/branching/">release a new version</a> of Mattermost that branches off <code>master</code>. Our release team begins to qualify this release, inevitably finding issues. We first fix the bugs in <code>master</code>, and then cherry-pick those changes back to the <code>release</code> branch. Of course, there are lots of different ways of using Git to handle releases, but this is the strategy we use at Mattermost.</p>
+<p><img src="https://developers.mattermost.com/blog/2020-03-27-advanced-git-tbilisi-free-university/branching-overview.png" alt="image"></p>
+<p>Let&rsquo;s look at the most recent such feature release: v5.20.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#09f;font-style:italic"># Checkout the mattermost-server repository (if not already done)</span>
+git clone https://github.com/mattermost/mattermost-server.git
+<span style="color:#366">cd</span> mattermost-server
+
+<span style="color:#09f;font-style:italic"># Examine the combined history of release-5.20 and master</span>
+git log --graph --oneline origin/release-5.20 master
+</code></pre></div><p>Observe that <code>master</code> has advanced in the weeks since we released v5.20. When we first released v5.20.0, a community member tried installing it and promptly <a href="https://community.mattermost.com/core/pl/877mkcc967ytjpgcgpbo6bi7ty">reported</a> that his server was crashing! A bit of debugging on a Saturday, and I realized that we had introduced a regression into a code path we didn&rsquo;t often use ourselves. I filed <a href="https://mattermost.atlassian.net/browse/MM-22619">MM-21619</a> and got to work on the fix. Let&rsquo;s find it in the <code>master</code> branch.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#09f;font-style:italic"># Find the commit for MM-22619 in master and release 5.20</span>
+git log --grep MM-22619 master
+</code></pre></div><p>Now let&rsquo;s try to repeat that cherry-pick from the original v5.20.0 tag.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git checkout -b test-git-cherrypick v5.20.0
+git cherry-pick 9a51c73f6428b70e31fc8c35de770b91270e6bba
+</code></pre></div><p>Oh no, merge conflicts! Two of the files were cherry-picked without issue, but some other changes had snuck into master before my fix. Whenever a merge conflict occurs, Git annotates the file with conflict markers. Let&rsquo;s open up the file and take a look. There are three blocks: HEAD (what&rsquo;s in my current branch), parent (the common ancestor of the cherry-pick and this branch), and the cherry-pick itself.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-patch" data-lang="patch">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+	th := Setup(t).InitBasic()
+||||||| parent of 9a51c73f6... MM-22619: check for nil plugins environment (#13901)
+	th := Setup(t)
+<span style="color:#030;font-weight:bold">=======
+</span><span style="color:#030;font-weight:bold"></span>	th := SetupWithCustomConfig(t, func(config *model.Config) {
+		*config.PluginSettings.Enable = false
+	})
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 9a51c73f6... MM-22619: check for nil plugins environment (#13901)
+	defer th.TearDown()
+</code></pre></div><p>I have a mergetool configured with Git to show this same information using a three-way merge inside Vim:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git mergetool
+</code></pre></div><p><img src="https://developers.mattermost.com/blog/2020-03-27-advanced-git-tbilisi-free-university/mergetool.png" alt="image"></p>
+<p>The middle pane shows the common ancestor. On its left is what&rsquo;s in the current branch, and on the right is what&rsquo;s incoming. The bottom pane is the current file, showing the conflict markers. In general with merge conflicts, you have to understand the context of the code you are changing in order to make the decision on what version to keep, or whether to blend the changes somehow. In this case, I happen to know that a colleague of mine removed a redundant call to <code>InitBasic</code> in the master branch as part of a cleanup effort, but those clean up changes aren&rsquo;t in this release branch. So I need to combine the two changes together and put the call to <code>InitBasic</code> on top of the my original code. Then I&rsquo;ll get rid of the other sections and the conflict markers.</p>
+<p>With the conflicts resolved, I&rsquo;m good to finish the cherry-pick!</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git cherry-pick --continue
+</code></pre></div><p>I&rsquo;ve created a new commit that contains the changes from another branch, and would now be ready to push up this branch for review and CI testing before merging it into the <code>release</code> branch.</p>
+<p>The conflict resolution I just performed might have just as easily happened when doing a <code>git revert</code>. The process would be the same, and the hard part shouldn&rsquo;t be the tool you are using, but knowing the context of the code you are changing so you can make the right decisions.</p>
+<h3 id="git-rebase">git rebase&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#git-rebase"></i></a> </h3>
+<p>My all time favorite Git command is <code>git rebase</code>! Long before I learned Git, I used a version control system called Perforce. It was undoubtedly powerful for its time, but I found it intensely frustrating to organize my code changes for review. Let me describe my typical workflow:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git checkout feature-branch
+vim ...
+git commit -m <span style="color:#c30">&#39;wip&#39;</span>
+vim ...
+git commit -m <span style="color:#c30">&#39;wip&#39;</span>
+...
+</code></pre></div><p>This technique is known as &ldquo;commit early and often&rdquo;. Every now and then, I&rsquo;ll also push my feature branch upstream (without opening a pull request) just to save my changes in case my computer dies. This is a perfectly fine way to develop, but it makes for very poor pull requests. You can read my thoughts on <a href="https://developers.mattermost.com/blog/submitting-great-prs/">Submitting Great PRs</a>, but the summary is that the best pull requests consist of a sequence of logically ordered commits that break up the changes into easy to follow chunks.</p>
+<p>Let me walk you through an example. We&rsquo;re going to see about improving some code coverage for the model package:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#09f;font-style:italic"># Checkout the mattermost-server repository (if not already done)</span>
+git clone https://github.com/mattermost/mattermost-server.git
+<span style="color:#366">cd</span> mattermost-server
+
+git checkout -b test-git-rebase
+<span style="color:#366">cd</span> model
+go <span style="color:#366">test</span> ./... -coverprofile<span style="color:#555">=</span>coverage.out <span style="color:#555">&amp;&amp;</span> go tool cover -html<span style="color:#555">=</span>coverage.out -o coverage.html <span style="color:#555">&amp;&amp;</span> open coverage.html
+</code></pre></div><p>Let&rsquo;s take a look at the coverage of <code>model/config.go</code>:</p>
+<p><img src="https://developers.mattermost.com/blog/2020-03-27-advanced-git-tbilisi-free-university/code-coverage-1.png" alt="image"></p>
+<p>Ah, it appears we aren&rsquo;t explicitly adding a test to verify that the <code>SiteURL</code> is initialized differently when <code>EnableDeveloper</code> is <code>true</code>. Let&rsquo;s add that now.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">TestConfigEnableDeveloper</span>(t <span style="color:#555">*</span>testing.T) {
+	c1 <span style="color:#555">:=</span> Config{
+		ServiceSettings: ServiceSettings{
+			EnableDeveloper: <span style="color:#c0f">NewBool</span>(<span style="color:#069;font-weight:bold">true</span>),
+		},
+	}
+	c1.<span style="color:#c0f">SetDefaults</span>()
+
+	require.<span style="color:#c0f">Equal</span>(t, SERVICE_SETTINGS_DEFAULT_SITE_URL, <span style="color:#555">*</span>c1.ServiceSettings.SiteURL)
+}
+</code></pre></div><p>Commit that and run the tests again:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git add model/config.go
+git commit -m <span style="color:#c30">&#39;add TestConfigEnableDeveloper&#39;</span>
+go <span style="color:#366">test</span> ./... -coverprofile<span style="color:#555">=</span>coverage.out <span style="color:#555">&amp;&amp;</span> go tool cover -html<span style="color:#555">=</span>coverage.out -o coverage.html <span style="color:#555">&amp;&amp;</span> open coverage.html
+</code></pre></div><p>and examine the coverage:</p>
+<p><img src="https://developers.mattermost.com/blog/2020-03-27-advanced-git-tbilisi-free-university/code-coverage-2.png" alt="image"></p>
+<p>Looks better! But I&rsquo;m not super happy with the way that test was written, since I&rsquo;m only explicitly testing one case. Let&rsquo;s test all three cases with sub tests.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">TestConfigEnableDeveloper</span>(t <span style="color:#555">*</span>testing.T) {
+	t.<span style="color:#c0f">Run</span>(<span style="color:#c30">&#34;empty site URL when nil&#34;</span>, <span style="color:#069;font-weight:bold">func</span>(t <span style="color:#555">*</span>testing.T) {
+		c1 <span style="color:#555">:=</span> Config{
+			ServiceSettings: ServiceSettings{
+				EnableDeveloper: <span style="color:#069;font-weight:bold">nil</span>,
+			},
+		}
+		c1.<span style="color:#c0f">SetDefaults</span>()
+
+		require.<span style="color:#c0f">Empty</span>(t, <span style="color:#555">*</span>c1.ServiceSettings.SiteURL)
+	})
+
+	t.<span style="color:#c0f">Run</span>(<span style="color:#c30">&#34;empty site URL when false&#34;</span>, <span style="color:#069;font-weight:bold">func</span>(t <span style="color:#555">*</span>testing.T) {
+		c1 <span style="color:#555">:=</span> Config{
+			ServiceSettings: ServiceSettings{
+				EnableDeveloper: <span style="color:#c0f">NewBool</span>(<span style="color:#069;font-weight:bold">false</span>),
+			},
+		}
+		c1.<span style="color:#c0f">SetDefaults</span>()
+
+		require.<span style="color:#c0f">Empty</span>(t, <span style="color:#555">*</span>c1.ServiceSettings.SiteURL)
+	})
+
+	t.<span style="color:#c0f">Run</span>(<span style="color:#c30">&#34;default site URL when true&#34;</span>, <span style="color:#069;font-weight:bold">func</span>(t <span style="color:#555">*</span>testing.T) {
+		c1 <span style="color:#555">:=</span> Config{
+			ServiceSettings: ServiceSettings{
+				EnableDeveloper: <span style="color:#c0f">NewBool</span>(<span style="color:#069;font-weight:bold">true</span>),
+			},
+		}
+		c1.<span style="color:#c0f">SetDefaults</span>()
+
+		require.<span style="color:#c0f">Equal</span>(t, SERVICE_SETTINGS_DEFAULT_SITE_URL, <span style="color:#555">*</span>c1.ServiceSettings.SiteURL)
+	})
+}
+</code></pre></div><p>Ok, save that and check again.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git add model/config.go
+git commit -m <span style="color:#c30">&#39;improve testing coe&#39;</span>
+go <span style="color:#366">test</span> ./... -coverprofile<span style="color:#555">=</span>coverage.out <span style="color:#555">&amp;&amp;</span> go tool cover -html<span style="color:#555">=</span>coverage.out -o coverage.html <span style="color:#555">&amp;&amp;</span> open coverage.html
+</code></pre></div><p>Same coverage, but the tests are better structured. Let&rsquo;s see what else we can fix! Hmm, something&rsquo;s not right with <code>EnableIncomingWebhooks</code>:</p>
+<p><img src="https://developers.mattermost.com/blog/2020-03-27-advanced-git-tbilisi-free-university/code-coverage-3.png" alt="image"></p>
+<p>Ah, it looks like we&rsquo;ve duplicated the initialization code, so there&rsquo;s no way this second block can ever run! Let&rsquo;s remove those lines and save again.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git add model/config.go
+git commit -m <span style="color:#c30">&#39;remove dead code&#39;</span>
+go <span style="color:#366">test</span> ./... -coverprofile<span style="color:#555">=</span>coverage.out <span style="color:#555">&amp;&amp;</span> go tool cover -html<span style="color:#555">=</span>coverage.out -o coverage.html <span style="color:#555">&amp;&amp;</span> open coverage.html
+</code></pre></div><p><img src="https://developers.mattermost.com/blog/2020-03-27-advanced-git-tbilisi-free-university/code-coverage-4.png" alt="image"></p>
+<p>Excellent! But, you know, I&rsquo;m not really happy with the tests I wrote earlier. There&rsquo;s a lot of duplicate code, and it&rsquo;s really hard to understand what&rsquo;s going on. Let&rsquo;s rewrite those tests as cases instead.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">TestConfigEnableDeveloper</span>(t <span style="color:#555">*</span>testing.T) {
+	testCases <span style="color:#555">:=</span> []<span style="color:#069;font-weight:bold">struct</span> {
+		Description     <span style="color:#078;font-weight:bold">string</span>
+		EnableDeveloper <span style="color:#555">*</span><span style="color:#078;font-weight:bold">bool</span>
+		ExpectedSiteURL <span style="color:#078;font-weight:bold">string</span>
+	}{
+		{<span style="color:#c30">&#34;empty site URL when nil&#34;</span>, <span style="color:#069;font-weight:bold">nil</span>, <span style="color:#c30">&#34;&#34;</span>},
+		{<span style="color:#c30">&#34;empty site URL when false&#34;</span>, <span style="color:#c0f">NewBool</span>(<span style="color:#069;font-weight:bold">false</span>), <span style="color:#c30">&#34;&#34;</span>},
+		{<span style="color:#c30">&#34;default site URL when true&#34;</span>, <span style="color:#c0f">NewBool</span>(<span style="color:#069;font-weight:bold">true</span>), SERVICE_SETTINGS_DEFAULT_SITE_URL},
+	}
+
+	<span style="color:#069;font-weight:bold">for</span> _, testCase <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> testCases {
+		t.<span style="color:#c0f">Run</span>(testCase.Description, <span style="color:#069;font-weight:bold">func</span>(t <span style="color:#555">*</span>testing.T) {
+			c1 <span style="color:#555">:=</span> Config{
+				ServiceSettings: ServiceSettings{
+					EnableDeveloper: testCase.EnableDeveloper,
+				},
+			}
+			c1.<span style="color:#c0f">SetDefaults</span>()
+
+			require.<span style="color:#c0f">Equal</span>(t, testCase.ExpectedSiteURL, <span style="color:#555">*</span>c1.ServiceSettings.SiteURL)
+		})
+	}
+}
+</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git add model/config.go
+git commit -m <span style="color:#c30">&#39;wip&#39;</span>
+go <span style="color:#366">test</span> ./... -coverprofile<span style="color:#555">=</span>coverage.out <span style="color:#555">&amp;&amp;</span> go tool cover -html<span style="color:#555">=</span>coverage.out -o coverage.html <span style="color:#555">&amp;&amp;</span> open coverage.html
+</code></pre></div><p>Excellent! Now let&rsquo;s look at the commit history:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git log -p
+</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">commit 3489625af31bdf825f615e1963220c0857d7ca31 <span style="color:#555">(</span>HEAD -&gt; test-git-rebase<span style="color:#555">)</span>
+Author: Jesse Hallam 
+Date:   Mon Mar <span style="color:#f60">16</span> 11:31:05 <span style="color:#f60">2020</span> -0300
+
+    wip
+
+commit f1ef494d443099ebbbb719286ddef2eb8a80168e
+Author: Jesse Hallam 
+Date:   Mon Mar <span style="color:#f60">16</span> 11:26:09 <span style="color:#f60">2020</span> -0300
+
+    remove dead code
+
+commit b57fde46986f27197696e72e93493a98896baaea
+Author: Jesse Hallam 
+Date:   Mon Mar <span style="color:#f60">16</span> 11:27:37 <span style="color:#f60">2020</span> -0300
+
+    improve testing coe
+
+commit da0d04f00b9b11b10969a3467f88d109abc0ab9b
+Author: Jesse Hallam 
+Date:   Mon Mar <span style="color:#f60">16</span> 11:24:53 <span style="color:#f60">2020</span> -0300
+
+    add TestConfigEnableDeveloper
+</code></pre></div><p>So the final diff is great, but the commits themselves are pretty disorganized. That&rsquo;s not how I want to present my work to my team. Imagine if these were dozens of commits over hundreds of changes. Imagine if I decided to rename a variable used all over the code halfway through my changes. It&rsquo;s pretty hard to review a set of disorganized changes so, <code>git rebase</code> to the rescue! Let&rsquo;s run it interactively:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git rebase -i origin/master
+</code></pre></div><p>It&rsquo;s thrown me into an editor, with each of my commits as a separate line. By default, they are all (cherry) &ldquo;picked&rdquo; to be kept, but I have a number of options to help me reorganize my code. So the first two commits and the last commit really don&rsquo;t need to be separated at all: they should just be a single commit. I&rsquo;m going to move the last line up above the third commit, and then tell <code>git rebase</code> to squash the two commits into the first commit:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">pick … <span style="color:#555">(</span>Jesse Hallam<span style="color:#555">)</span> add TestConfigEnableDeveloper
+squash … <span style="color:#555">(</span>Jesse Hallam<span style="color:#555">)</span> improve testing coe
+squash … <span style="color:#555">(</span>Jesse Hallam<span style="color:#555">)</span> wip
+pick  … <span style="color:#555">(</span>Jesse Hallam<span style="color:#555">)</span> remove dead code
+</code></pre></div><p>When I save and exit this file, Git will create a temporary ref at <code>origin/master</code>, and cherry-pick the changes in the order I requested. When I tell it to squash, commit amends to the previous commit, effectively squashing the three commits together. Save and exit, and you&rsquo;ll see I&rsquo;m being prompted to write a new commit history for the squash commits. Finally, let&rsquo;s look at the diff:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git log -p 
+</code></pre></div><p>Much better! Except, the messages are still pretty disorganized. Let&rsquo;s fix that with another rebase, but we&rsquo;ll reword the messages this time:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git rebase -i origin/master
+</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">reword … <span style="color:#555">(</span>Jesse Hallam<span style="color:#555">)</span> add TestConfigEnableDeveloper
+pick  … <span style="color:#555">(</span>Jesse Hallam<span style="color:#555">)</span> remove dead code
+</code></pre></div><p>Neat! Of course, I didn&rsquo;t have to do this in two passes, but I wanted to show you that you can run it as often as necessary. Sometimes, when you reorder your commits, you&rsquo;ll end up with merge conflicts. Just as with <code>git cherry-pick</code> and <code>git revert</code>, <code>git rebase</code> will stop and ask you to resolve the conflicts. Then you can <code>--continue</code> and it will pick up with the next commit.</p>
+<p>There&rsquo;s a lot more that <code>git rebase</code> can do &ndash; for example, if I delete a line during an interactive rebase, that commit is dropped altogether. Let&rsquo;s try that now:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git rebase -i origin/master
+</code></pre></div><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">pick … <span style="color:#555">(</span>Jesse Hallam<span style="color:#555">)</span> add TestConfigEnableDeveloper
+</code></pre></div><p>Great! But&hellip; wait, I just deleted the commit! Oh no, my work is gone &hellip; not exactly!</p>
+<h3 id="git-reflog">git reflog&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#git-reflog"></i></a> </h3>
+<p><code>git reflog</code> to the rescue! What is the reflog? <a href="https://git-scm.com/docs/git-reflog">https://git-scm.com/docs/git-reflog</a> explains:</p>
+<blockquote>
+<p>Reference logs, or &lsquo;reflogs&rsquo;, record when the tips of branches and other references were updated in the local repository.</p>
+</blockquote>
+<p>In layman terms, think of this way: Git remembers every commit you make, even if they aren&rsquo;t reachable by your named branches. Let&rsquo;s take a look at the reflog for HEAD:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git reflog
+</code></pre></div><pre><code>bd8501963 (HEAD -&gt; test-git-rebase) HEAD@{0}: rebase -i (finish): returning to refs/heads/test-git-rebase
+bd8501963 (HEAD -&gt; test-git-rebase) HEAD@{1}: rebase -i (start): checkout origin/master
+353db22f6 HEAD@{2}: rebase -i (finish): returning to refs/heads/test-git-rebase
+353db22f6 HEAD@{3}: rebase -i (pick): remove dead code
+bd8501963 (HEAD -&gt; test-git-rebase) HEAD@{4}: rebase -i (reword): add TestConfigEnableDeveloper
+e9d6796e8 HEAD@{5}: rebase -i: fast-forward
+1c498996a (origin/master, origin/HEAD, master) HEAD@{6}: rebase -i (start): checkout origin/master
+9ee8564a3 HEAD@{7}: rebase -i (finish): returning to refs/heads/test-git-rebase
+9ee8564a3 HEAD@{8}: rebase -i (pick): remove dead code
+e9d6796e8 HEAD@{9}: rebase -i (squash): add TestConfigEnableDeveloper
+4fe98edfa HEAD@{10}: rebase -i (squash): # This is a combination of 2 commits.
+da0d04f00 HEAD@{11}: rebase -i (start): checkout origin/master
+3489625af HEAD@{12}: rebase -i (finish): returning to refs/heads/test-git-rebase
+3489625af HEAD@{13}: rebase -i (pick): wip
+f1ef494d4 HEAD@{14}: rebase -i (pick): remove dead code
+b57fde469 HEAD@{15}: rebase -i (pick): improve testing coe
+da0d04f00 HEAD@{16}: rebase -i (pick): add TestConfigEnableDeveloper
+1c498996a (origin/master, origin/HEAD, master) HEAD@{17}: rebase -i (start): checkout origin/master
+</code></pre><p>You can see the rebase we just did, and the rebase before that, and the rebase before that. If I run the command again with another flag, I can see the time when these references changed:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git reflog --date<span style="color:#555">=</span>iso
+</code></pre></div><pre><code>bd8501963 (HEAD -&gt; test-git-rebase) HEAD@{2020-03-16 18:01:49 -0300}: rebase -i (finish): returning to refs/heads/test-git-rebase
+bd8501963 (HEAD -&gt; test-git-rebase) HEAD@{2020-03-16 18:01:49 -0300}: rebase -i (start): checkout origin/master
+353db22f6 HEAD@{2020-03-16 18:01:45 -0300}: rebase -i (finish): returning to refs/heads/test-git-rebase
+353db22f6 HEAD@{2020-03-16 18:01:45 -0300}: rebase -i (pick): remove dead code
+bd8501963 (HEAD -&gt; test-git-rebase) HEAD@{2020-03-16 18:01:43 -0300}: rebase -i (reword): add TestConfigEnableDeveloper
+e9d6796e8 HEAD@{2020-03-16 18:01:43 -0300}: rebase -i: fast-forward
+1c498996a (origin/master, origin/HEAD, master) HEAD@{2020-03-16 18:01:43 -0300}: rebase -i (start): checkout origin/master
+9ee8564a3 HEAD@{2020-03-16 18:01:37 -0300}: rebase -i (finish): returning to refs/heads/test-git-rebase
+9ee8564a3 HEAD@{2020-03-16 18:01:37 -0300}: rebase -i (pick): remove dead code
+e9d6796e8 HEAD@{2020-03-16 18:01:35 -0300}: rebase -i (squash): add TestConfigEnableDeveloper
+4fe98edfa HEAD@{2020-03-16 18:01:35 -0300}: rebase -i (squash): # This is a combination of 2 commits.
+da0d04f00 HEAD@{2020-03-16 18:01:35 -0300}: rebase -i (start): checkout origin/master
+3489625af HEAD@{2020-03-16 17:53:19 -0300}: rebase -i (finish): returning to refs/heads/test-git-rebase
+3489625af HEAD@{2020-03-16 17:53:19 -0300}: rebase -i (pick): wip
+f1ef494d4 HEAD@{2020-03-16 17:53:19 -0300}: rebase -i (pick): remove dead code
+b57fde469 HEAD@{2020-03-16 17:53:19 -0300}: rebase -i (pick): improve testing coe
+da0d04f00 HEAD@{2020-03-16 17:53:19 -0300}: rebase -i (pick): add TestConfigEnableDeveloper
+1c498996a (origin/master, origin/HEAD, master) HEAD@{2020-03-16 17:53:19 -0300}: rebase -i (start): checkout origin/master
+</code></pre><p>And there&rsquo;s my missing commit reference! I can <code>git show f1ef494d4</code> it to confirm, and then bring it back into my branch with a simple <code>git cherry-pick f1ef494d4</code>.</p>
+<p>I presented <code>git reflog</code> last, since I think it&rsquo;s one of the harder commands to fundamentally understand: but this is probably the one command you should learn first, because you recover from almost any mistake you make with Git using the reflog.</p>
+<h1 id="conclusion">Conclusion&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#conclusion"></i></a> </h1>
+<p>There&rsquo;s a ton more one could say about these commands, and even other advanced Git commands. My hope is that you won&rsquo;t give up if you find Git intimidating, especially when you know you can rely on the reflog to experiment without fear.</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Jesse Hallam
+-
+<a href="https://community.mattermost.com/core/messages/@jesse.hallam" target="_blank">
+    @jesse.hallam
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/lieut-data" target="_blank">
+    @lieut-data
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/all-about-emojis/">All About Emojis</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/">Maintaining Consistency in Codebases with Go vet</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/git">git</a></li>
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

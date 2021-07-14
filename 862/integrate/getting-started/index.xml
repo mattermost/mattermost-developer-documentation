@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Getting Started on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/integrate/getting-started/</link>
+    <description>Recent content in Getting Started on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 19 Aug 2017 12:01:23 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/integrate/getting-started/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How Should I Integrate?</title>
+      <link>https://developers.mattermost.com/integrate/getting-started/how-should-i-integrate/</link>
+      <pubDate>Sun, 20 Aug 2017 12:33:36 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/integrate/getting-started/how-should-i-integrate/</guid>
+      <description>Very good question! Mattermost has many different integration points and this page will help you pick the right one(s) for the job.
+I just want to post into Mattermost If you only want to post messages into a Mattermost channel, then all you need is an incoming webhook.
+I want to know when someone says something Tracking what gets posted into a channel and receiving real-time events about it can be done using outgoing webhooks.</description>
+    </item>
+    
+  </channel>
+</rss>

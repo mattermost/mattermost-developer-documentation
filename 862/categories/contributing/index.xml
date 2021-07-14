@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>contributing on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/categories/contributing/</link>
+    <description>Recent content in contributing on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Jan 2019 00:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/categories/contributing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Submitting Great PRs</title>
+      <link>https://developers.mattermost.com/blog/submitting-great-prs/</link>
+      <pubDate>Thu, 24 Jan 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/submitting-great-prs/</guid>
+      <description>If you want to submit good pull requests, start with our contribution checklist. Today, that page talks about what to fork, how to style your code, how to write unit tests and where to push your code. Implicit in all of that is the need to write great code, of course!
+But this blog post isn&amp;rsquo;t about writing great code, it&amp;rsquo;s about making your pull request a great experience for you and your reviewers.</description>
+    </item>
+    
+  </channel>
+</rss>

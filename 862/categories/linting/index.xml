@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>“linting” on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/categories/linting/</link>
+    <description>Recent content in “linting” on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/categories/linting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Incorporating GolangCI-Lint at Mattermost</title>
+      <link>https://developers.mattermost.com/blog/incorporating-golangci-lint/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/incorporating-golangci-lint/</guid>
+      <description>At Mattermost, we have traditionally relied on the trusty go vet and gofmt checks for our CI runs. Although it works well, there are a lot of other powerful linters out there which we&amp;rsquo;re potentially missing out on.
+Speaking of linters, the first name that inevitably comes up is staticcheck. It&amp;rsquo;s a powerful metalinter with a whole slew of checks. But simply running staticcheck is not sufficient, because it misses out on other linters which perform a single task, but nevertheless are very powerful.</description>
+    </item>
+    
+  </channel>
+</rss>

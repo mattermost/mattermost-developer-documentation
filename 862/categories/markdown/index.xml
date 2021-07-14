@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>markdown on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/categories/markdown/</link>
+    <description>Recent content in markdown on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Mar 2020 12:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/categories/markdown/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>All About Emojis</title>
+      <link>https://developers.mattermost.com/blog/all-about-emojis/</link>
+      <pubDate>Thu, 26 Mar 2020 12:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/all-about-emojis/</guid>
+      <description>In person, you can easily tell someone&amp;rsquo;s mood based on their body language and how they speak, but that&amp;rsquo;s much more difficult with text alone. Emojis are a great way to add tone to a piece of text and also help make text-based conversation feel more casual, relaxed, and fun. Thanks to emojis, we can chat with much more real emotion than you might get by being careful about your word choice or by including just the right number of exclamation marks and periods at the end of a sentence.</description>
+    </item>
+    
+  </channel>
+</rss>

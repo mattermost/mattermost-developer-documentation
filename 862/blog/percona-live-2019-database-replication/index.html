@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Percona Live 2019 &amp; Database Replication</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Percona Live 2019 &amp; Database Replication">
+
+ 
+  <meta name="description" content="Everything you need to know about database replication and how it applies to Mattermost.">
+<meta name="twitter:description" content="Everything you need to know about database replication and how it applies to Mattermost.">
+<meta name="og:description" content="Everything you need to know about database replication and how it applies to Mattermost.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/percona-live-2019-database-replication/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Percona Live 2019: Database Replication
+                            
+                            </h1>
+                            <small>Everything you need to know about database replication and how it applies to Mattermost.</small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            June 4, 2019
+                            <small class="blog-item__count">1202 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>This past week, I was privileged to attend <a href="https://www.percona.com/live/19/">Percona Live 2019</a>, an open-source database conference held this year in Austin, Texas. With the breadth of the sessions I attended being captured on a <a href="https://community.mattermost.com/core/pl/ssy76opykjrd3fj35mh5sdjxuy">community.mattermost.com post</a>, I wanted to use this blog post to dive into a recurring topic from the conference: database replication.</p>
+<h4 id="what-is-replication">What is replication?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#what-is-replication"></i></a> </h4>
+<p>Replication is a means by which data on one database server is automatically copied &ndash; or replicated &ndash; to other database servers called replicas. Having extra copies of a database reduces the chance of data-loss in the event of a server failure. Plus, the copies can be used as databases themselves, spreading out load to improve application performance.</p>
+<h4 id="how-does-replication-work">How does replication work?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#how-does-replication-work"></i></a> </h4>
+<p>Most types of replication fall into one of the following categories:</p>
+<h5 id="asynchronous-replication">Asynchronous Replication&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#asynchronous-replication"></i></a> </h5>
+<p>Asynchronous replication allows copied data to be out-of-date relative to the master copy. Consider a typical database interaction on a single server:</p>
+<p><img src="https://developers.mattermost.com/blog/2019-06-04-percona-live-2019/transaction-1.svg" alt="image"></p>
+<p>The client sends a <code>COMMIT</code> to confirm the transaction, but must wait for the database to flush that transaction to disk to be confident it was persisted. Otherwise, a sudden power loss after the <code>COMMIT</code> but before the <code>fsync()</code> would result in data-loss.</p>
+<p>When a replica is configured, the server receiving the write is also trying to make a copy of the data. Asynchronous replication releases the client before the copy has been confirmed on the replica:</p>
+<p><img src="https://developers.mattermost.com/blog/2019-06-04-percona-live-2019/transaction-2.svg" alt="image"></p>
+<p>A power loss before the copy is made would result in the replica being out-of-date, but it can easily catch up from the master copy on restart. Even without a power loss, there is a period of time in which the replica will be out-of-date before it receives the copy. This period of time (sometimes measured as a number of bytes) is called the replication lag.</p>
+<p>When an application directly queries an asynchronous replica, it must be prepared to deal with some replication lag. For example, such an application should never <code>INSERT</code> a row on one server and then immediately query it from another: the data won&rsquo;t be there yet! Mattermost v5.12 includes a <a href="https://github.com/mattermost/mattermost-server/pull/10899">fix</a> for just such an issue.  A healthy database keeps replication lag to a minimum. If a replica fails to keep up, it might be necessary for the application to stop querying it to avoid unexpected results.</p>
+<p>Sometimes it can be useful to introduce an artificial replication lag. A delayed replica intentionally stays out-of-date with the master copy to simplify disaster recovery scenarios. If an errant application decides to <code>TRUNCATE</code> a table, a normal replica will happily truncate its own tables to stay up-to-date. By contrast, a delayed replica avoids applying changes right away, maintaining a view into the older data. While this is no replacement for a proper backup, a delayed replica can be useful to recover a dropped table much more quickly than restoring from a full backup.</p>
+<h5 id="synchronous-replication">Synchronous Replication&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#synchronous-replication"></i></a> </h5>
+<p>The various replication options involve a tradeoff between durability &ndash; the guarantee that the data will not be lost &ndash; and throughput &ndash; the speed at which data can be written. While asynchronous replication prioritizes performance at the expense of durability, synchronous replication prioritizes durability. The client committing the transaction must wait for the copy to persist to the replica:</p>
+<p><img src="https://developers.mattermost.com/blog/2019-06-04-percona-live-2019/transaction-3.svg" alt="image"></p>
+<p>Synchronous replication is the only approach that guarantees no data loss if the master copy fails. The impact to performance increases for each synchronous replica, but an application may combine these replication strategies. One replica would be synchronous to increase durability, and the others would be asynchronous to improve performance:</p>
+<p><img src="https://developers.mattermost.com/blog/2019-06-04-percona-live-2019/transaction-4.svg" alt="image"></p>
+<h5 id="semi-synchronous-replication">Semi-synchronous replication&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#semi-synchronous-replication"></i></a> </h5>
+<p>Semi-synchronous replication attempts to straddle the tradeoff between durability and performance. The client now waits a bit longer for the replica to confirm receipt of the copy, but not for it to write that copy to disk:</p>
+<p><img src="https://developers.mattermost.com/blog/2019-06-04-percona-live-2019/transaction-5.svg" alt="image"></p>
+<p>This approach exploits the fact that two servers failing at the same time is relatively rare, and the in-memory copy of the data on the replica is extremely likely to get written to disk. Semi-synchronous replication is supported by <a href="https://dev.mysql.com/doc/refman/5.7/en/replication-semisync.html">MySQL</a>, but not yet for Postgres.</p>
+<h4 id="group-replication">Group Replication&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#group-replication"></i></a> </h4>
+<p>Group replication is a variant of synchronous replication with increased flexibility. Instead of configuring a fixed number of replicas, all servers are distributed peers and technically capable of accepting writes. A group consensus model such as <a href="http://harry.me/blog/2014/12/27/neat-algorithms-paxos/">Paxos</a> or <a href="http://thesecretlivesofdata.com/raft/">Raft</a> is used to ensure a majority of nodes have persisted the write before the client is released.</p>
+<p>The primary benefit of this approach is built-in, automatic failover. When a server goes down &ndash; even the ones receiving writes &ndash; the cluster automatically elects a new primary node from the remaining servers and resumes accepting writes. When a replacement server becomes available, it can rejoin the cluster automatically. Ultimately, this self-healing minimizes disruption to the application and avoids the delays of having to get a human involved.</p>
+<p>But this increased flexibility comes at the cost of increased complexity. For example, there must be at least three nodes in a group replication cluster, otherwise a majority consensus cannot be well-defined. <a href="https://www.percona.com/blog/2017/02/15/group-replication-shipped-early/">Bugs</a> in the implementation are more complicated, and there is the rare possibility of <a href="https://severalnines.com/blog/how-recover-galera-cluster-or-mysql-replication-split-brain-syndrome">split-brain syndrome</a>.</p>
+<p><a href="https://github.com/jberkus">Josh Berkus</a> gave a session at the conference in which he described how <a href="https://github.com/zalando/patroni">Patroni</a> for Postgres avoids split-brain syndrome in a Kubernetes deployment. Normally, operators rely on services to define endpoints, but their <a href="https://github.com/zalando/postgres-operator">operator</a> creates its own endpoint that simultaneously serves as the definition of what server is primary in the cluster and as the means of directing traffic to it. By effectively using this Kubernetes primitive as a locking mechanism, it is impossible for the consensus reached by the cluster to diverge from where a client actually sends writes.</p>
+<h4 id="how-do-i-configure-all-of-this">How do I configure all of this?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#how-do-i-configure-all-of-this"></i></a> </h4>
+<p>I leave the specifics to the linked documentation, but here&rsquo;s some MySQL and Postgres resources to consider:</p>
+<ul>
+<li><a href="https://dev.mysql.com/doc/refman/5.7/en/replication.html">MySQL replication</a>: An async, master/slave setup for MySQL.</li>
+<li><a href="https://dev.mysql.com/doc/refman/5.7/en/group-replication.html">MySQL group replication</a>: A sync, multi-master setup for MySQL.</li>
+<li><a href="https://www.postgresql.org/docs/current/warm-standby.html">Postgres replication</a>: A sync/async setup for Postgres.</li>
+<li><a href="https://github.com/zalando/patroni">Patroni</a>: A sync/async setup with automatic failover for Postgres, including Kubernetes support.</li>
+<li><a href="http://galeracluster.com/products/">Galera Cluster</a>: A sync, multi-master setup for MySQL and MariaDB (though increasingly focusing on the open-source MariaDB over MySQL).</li>
+</ul>
+<p>In addition to the stock options available, there is always the opportunity to tune the replication algorithm for a specific workload. <a href="https://www.linkedin.com/in/anirban-rahut-8973071/">Anirban Rahut</a> from Facebook gave a session in which he spoke about their modifications to the (non-group) replication algorithm in MySQL. While the master copy can accept writes in parallel, MySQL replicas currently apply all changes from the master copy serially. If the master copy receives a high volume of writes, the replication lag can grow uncontrollably, with the replicas unable to catch up. Anirban and his team modified the MySQL source to parse and interpret the replication stream, build a <a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">DAG</a> modelling the write dependencies, and apply subsets of the binary logs in parallel, all while preserving commit order. For typical workloads, these replicas improved throughput by 4-5x!</p>
+<h4 id="how-does-this-apply-to-mattermost">How does this apply to Mattermost?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#how-does-this-apply-to-mattermost"></i></a> </h4>
+<p>All versions of Mattermost can rely on replication to provide redundancy. Mattermost E20 customers can leverage the <a href="https://docs.mattermost.com/deployment/cluster.html">High Availability Cluster</a> feature set to improve performance by directing read-only traffic to the replicas. Understanding the available replication options is crucial to configuring the database used by Mattermost for the desired durability and performance.</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Jesse Hallam
+-
+<a href="https://community.mattermost.com/core/messages/@jesse.hallam" target="_blank">
+    @jesse.hallam
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/lieut-data" target="_blank">
+    @lieut-data
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/advanced-git-tbilisi-free-university/">Advanced Git with the Free University of Tbilisi</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/all-about-emojis/">All About Emojis</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/">Maintaining Consistency in Codebases with Go vet</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Migrating thousands of Mattermost installations to new Kubernetes Custom Resources">
+
+ 
+  
+    
+      <meta name="description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="twitter:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="og:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+
+    
+  
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Migrating thousands of Mattermost installations to new Kubernetes Custom Resources
+                            
+                            </h1>
+                            <small></small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            June 1, 2021
+                            <small class="blog-item__count">1361 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>More than a year after the release of Mattermost Operator 1.0 with <code>ClusterInstallation</code> Custom Resources (CRs) in version <code>v1alpha1</code>, with many lessons learned in the process we decided it&rsquo;s time to migrate CRs to the new <code>v1beta1</code> version.</p>
+<p>This blog post covers some challenges we encountered during the migration and describes how we solved them.</p>
+<h2 id="objectives">Objectives&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#objectives"></i></a> </h2>
+<p>As part of <a href="https://mattermost.com/mattermost-cloud/">Mattermost Cloud offering</a>, we have thousands of Mattermost instances running in our Kubernetes clusters and each of them is represented as a CR managed by the Mattermost Operator.</p>
+<p>Mattermost Operator is also one of <a href="https://docs.mattermost.com/guides/administrator.html#installing-mattermost">the recommended ways to install Mattermost</a> for self-managed customers.</p>
+<p>Those facts put some constraints on our migration story and we boiled them down to the following:</p>
+<ul>
+<li>No downtime of Mattermost instance during the migration.</li>
+<li>As little manual intervention as possible.</li>
+<li>Ability to run the migration for several installations at the same time.</li>
+</ul>
+<h2 id="changing-the-custom-resource">Changing the Custom Resource&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#changing-the-custom-resource"></i></a> </h2>
+<p>After using Mattermost Operator for quite some time, we&rsquo;ve learned some lessons and decided to simplify some things.</p>
+<p>However, removing some features and adding new ones was not the biggest change in the migration process.</p>
+<p>Our initial CRs representing Mattermost installations were called <code>ClusterInstallation</code>, which made sense from the domain perspective of Mattermost Cloud but didn&rsquo;t really follow good practices of the Kubernetes ecosystem.</p>
+<p>For a <code>v1beta1</code> specification we decided to change the whole CR to simply <code>Mattermost</code>.</p>
+<h2 id="migration-challenges">Migration challenges&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#migration-challenges"></i></a> </h2>
+<h3 id="changing-resource-kind">Changing resource Kind&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#changing-resource-kind"></i></a> </h3>
+<p>The usual way of migrating CRs to the new version is by using <a href="https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#webhook-conversion">Conversion Webhooks</a> which give the ability to convert the CR specification &ldquo;on the fly&rdquo; by creating a webhook used by the Kubernetes API server. This mechanism allows users to operate on several versions of the resource while only one version is stored in the <code>etcd</code> database.</p>
+<p>Conversion webhooks, however, are designed to handle the migration from one version to another but the Custom Resource name and group can&rsquo;t be changed during this process, as those are the identifying properties of the Custom Resource Definition (CRD).</p>
+<p>Unfortunately, conversion webhooks did not apply to our case as, in addition to the change of version, we also changed both resource Group and Kind effectively creating a whole new CR: <code>Mattermost</code>.</p>
+<h4 id="migrating-to-the-new-resource">Migrating to the new resource&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#migrating-to-the-new-resource"></i></a> </h4>
+<p>When the <code>ClusterInstallation</code> CR is created, the Mattermost Operator spins up a new instance of the application. This includes Kubernetes Deployments which are running the actual Mattermost application. When the CR is deleted all the resources are deleted together with it thanks to <a href="https://kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/#owners-and-dependents">Owner References</a>.</p>
+<p>This prevents us from simply running the script that would delete <code>ClusterInstallation</code> and create <code>Mattermost</code> in its place as it would cause the downtime of the Mattermost application (unless we choose to orphan all resources).</p>
+<p>To &ldquo;exchange&rdquo; the existing resources between different CRs, as well as support both resources for some time, we decided to run two <a href="https://kubernetes.io/docs/concepts/architecture/controller/">Controllers</a> as part of Mattermost Operator and make them perform the desired migration. As we wanted to retain some control over Mattermost instances that were being migrated we decided to introduce a new field to the <code>ClusterInstallation</code> spec that would be a signal for the Operator to start the migration.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#069;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>mattermost.com/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#069;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ClusterInstallation<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#069;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#069;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-mattermost<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#069;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>...<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#069;font-weight:bold">migrate</span>:<span style="color:#bbb"> </span><span style="color:#c30">&#34;true&#34;</span><span style="color:#bbb">  </span><span style="color:#09f;font-style:italic"># New field added to ClusterInstallation. Setting it to &#39;true&#39; instructs the controller to start the migration.</span><span style="color:#bbb">
+</span></code></pre></div><p>This way we can perform the migration in the following way:</p>
+<ul>
+<li>When the controller for <code>ClusterInstallation</code> sees that the <code>spec.migrate</code> is set to <code>true</code>, it stops regular reconciliation of the CR and starts the migration by converting the old resource to the new one.</li>
+<li>Immediately after the <code>Mattermost</code> resource is created, the controller for <code>Mattermost</code> sees it and starts to adjust existing resources like Services and Deployments to the new CR, making small changes and overriding owner references.</li>
+<li>When we&rsquo;re sure that the controller for <code>Mattermost</code> has successfully finished its work and Mattermost pods are ready to serve traffic, the old <code>ClusterInstallation</code> is deleted, and voila!</li>
+<li>As in the second phase the controller is just checking new pods&rsquo; health, it can just do it once and requeue the resource for latter reconciliation while starting the migration for the next one. This gives us the ability to migrate multiple resources at a time.</li>
+</ul>
+<p>The migration process has another advantage: If anything goes wrong it can be easily reverted just by setting <code>spec.migrate</code> back to <code>false</code> and removing the newly created <code>Mattermost</code> CR. The controller for <code>ClusterInstallation</code> will then claim the resources back and continue to monitor them.</p>
+<h3 id="dealing-with-immutable-fields">Dealing with immutable fields&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#dealing-with-immutable-fields"></i></a> </h3>
+<p>&ldquo;Exchanging&rdquo; the Kubernetes resources ownership between two Custom Resources worked fine in most cases but not for all of them.</p>
+<p>Old Mattermost Deployments created by the Operator used the following <code>spec.selector</code>:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#069;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#069;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span>...<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#069;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#069;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#069;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#069;font-weight:bold">app</span>:<span style="color:#bbb"> </span>mattermost<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#069;font-weight:bold">v1alpha1.mattermost.com/installation</span>:<span style="color:#bbb"> </span>my-mattermost<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#069;font-weight:bold">v1alpha1.mattermost.com/resource</span>:<span style="color:#bbb"> </span>my-mattermost<span style="color:#bbb">
+</span><span style="color:#bbb"></span>...<span style="color:#bbb">
+</span></code></pre></div><p>It&rsquo;s understandable that when we set out to migrate to version <code>v1beta</code> we wanted to get rid of all references to <code>v1alpha1</code> and change it as well.</p>
+<p>Kubernetes Deployments have some awesome features like <a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/">rolling updates</a> that we use all the time when we change environment variables, versions, or other configurations of our installations. It allows for updating Pods sequentially keeping some of them running while others are being updated.</p>
+<p>Unfortunately, the <code>spec.selector</code> field is immutable so we couldn&rsquo;t just update the Deployment. We also can&rsquo;t have two Deployments of the same name in the same namespace and we didn&rsquo;t want to change the names of resources created by the Operator.</p>
+<p>Simply running the <a href="https://github.com/kubernetes/client-go">Client Go</a> equivalent of <code>kubectl delete deployment...</code> and creating it from scratch wasn&rsquo;t an option either as it would cause the deletion of all Pods running Mattermost. This would result in a brief downtime of the Mattermost instance managed by the Mattermost Operator and it would violate one of our objectives.</p>
+<h4 id="recreating-deployments-without-downtime">Recreating Deployments without downtime&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#recreating-deployments-without-downtime"></i></a> </h4>
+<p>However, we can still delete the Deployment without deleting the Pods by using proper <a href="https://kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/#controlling-how-the-garbage-collector-deletes-dependents">deletion propagation policy</a> and orphaning them.</p>
+<p>In fact, the resources we orphan are not directly Pods but rather <a href="https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/">Replica Sets</a> that manage Pods on behalf of the Deployment.</p>
+<p><img src="./2021-04-16-migrating-operator-custom-resource/deployment-replica-sets-pods.png" alt="Deployment-Replica-Sets-Pods"></p>
+<p>Although the Replica Sets (RS) <code>spec.selector</code> field is also immutable, and we&rsquo;ll have to eventually delete it, Replica Sets names are not as unique as the Deployment names. They contain a random suffix attached after the Deployment name they are connected to, for example: <code>my-mattermost-8599f77fcb</code> (the suffix is also a part of Pods name suffix managed by the RS).</p>
+<pre><code>❯ kubectl get deployments.apps
+NAME      READY   UP-TO-DATE   AVAILABLE   AGE
+mm-abcd   2/2     2            2           22h
+
+❯ kubectl get replicasets.apps
+NAME                 DESIRED   CURRENT   READY   AGE
+mm-abcd-6fccc4f76f   0         0         0       22h  &lt;- Old Replica Set is scaled to 0
+mm-abcd-9df98d568    2         2         2       16m
+
+❯ kubectl get pods
+NAME                      READY   STATUS    RESTARTS   AGE
+mm-abcd-9df98d568-q8z6g   1/1     Running   0          16m  &lt;- Pods share part of the suffix with the RS they belong to
+mm-abcd-9df98d568-vdxjx   1/1     Running   0          16m
+</code></pre><p>This allows us to recreate the Deployment and for a moment simultaneously have Replica Sets for both the old Deployment and the new one. As a result, our installations experience no downtime whatsoever.</p>
+<p>There are some minor drawbacks to this approach such as that after the migration we lose previous revisions of the Deployment or at some point in time there will be twice as many Pods running for migrating the Mattermost installation but none of those was a deal-breaker for us.</p>
+<h2 id="managing-the-migration">Managing the migration&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#managing-the-migration"></i></a> </h2>
+<p>For thousands of installations running as part of Mattermost Cloud, the migration was almost fully automated and performed by <a href="https://github.com/mattermost/mattermost-cloud">our managing service</a>.</p>
+<p>There we already have all the building blocks for managing all those Custom Resources for version updates etc. All we had to do was to add some code that would perform the update on the <code>ClusterInstallation</code> resource (set <code>spec.migrate</code> to <code>true</code>) and wait for the new <code>Mattermost</code> resource to reach the <code>stable</code> state while Mattermost Operators perform their magic.</p>
+<p>For customers using the Mattermost Operator directly in most cases, the migration is as easy as running <a href="https://github.com/mattermost/mattermost-operator/blob/master/docs/migration.md">one kubectl command</a>.</p>
+<h2 id="conclusion">Conclusion&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#conclusion"></i></a> </h2>
+<p>The migration went fairly smooth with some minor bumps along the way, but nothing that caused any downtime to customers or any headaches to us.</p>
+<p>The <code>ClusterInstallation</code> CR will still be supported by the Operator until version <code>2.0</code> but new features are not added there. If you manage your Mattermost with Mattermost Operator and still use <code>ClusterInstallation</code> check out <a href="https://github.com/mattermost/mattermost-operator/blob/master/docs/migration.md">this guide on how to migrate</a>.</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Szymon Gibała
+-
+<a href="https://community.mattermost.com/core/messages/@szymon.gibala" target="_blank">
+    @szymon.gibala
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/Szymongib" target="_blank">
+    @Szymongib
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/advanced-git-tbilisi-free-university/">Advanced Git with the Free University of Tbilisi</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/all-about-emojis/">All About Emojis</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/">Maintaining Consistency in Codebases with Go vet</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/cloud">cloud</a></li>
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

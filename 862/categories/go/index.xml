@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/categories/go/</link>
+    <description>Recent content in Go on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Nov 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/categories/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tuning MySQL and the Ghost of Index Merge Intersection</title>
+      <link>https://developers.mattermost.com/blog/mysql-index-merge/</link>
+      <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/mysql-index-merge/</guid>
+      <description>Optimizing SQL queries is always fun, except when it isn&amp;rsquo;t. If you&amp;rsquo;re a MySQL veteran and have read the title, you already know where this is heading 😉. In that case, allow me to regale the uninitiated reader.
+This is the story of an (apparently) smart optimization to a SQL query that backfired spectacularly and how we finally fixed it.
+Act I: A slow query It started off with a customer noticing that a SQL query was running slowly in their environment.</description>
+    </item>
+    
+    <item>
+      <title>Getting Hands-on with io_uring using Go</title>
+      <link>https://developers.mattermost.com/blog/hands-on-iouring-go/</link>
+      <pubDate>Wed, 20 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/hands-on-iouring-go/</guid>
+      <description>In Linux, system calls (syscalls) are at the heart of everything. They are the primary interface through which an application interacts with the kernel. Therefore, it is vital that they are fast. And especially in a post-Spectre/Meltdown world, this is all the more important.
+A major chunk of the syscalls deal with I/O, because that&amp;rsquo;s what most applications do. For network I/O, we&amp;rsquo;ve had the epoll family of syscalls which have provided us with reasonably fast performance.</description>
+    </item>
+    
+    <item>
+      <title>Maintaining Consistency in Codebases with Go vet</title>
+      <link>https://developers.mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/</link>
+      <pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/</guid>
+      <description>Maintaining success in a large open-source project is one of the key objectives of Mattermost. We have hundreds of contributors and we want to create a project that could serve as a model in the Go community. Having said that, following idiomatic Go principles is the thing that we care most about while maintaining our code consistency. For this specific task, we utilized go vet and with this blog post, I would like to explain how we pushed the limits of this tool by extending it.</description>
+    </item>
+    
+    <item>
+      <title>Layered Store and Struct Embedding in Go</title>
+      <link>https://developers.mattermost.com/blog/layered-store-and-struct-embedding/</link>
+      <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/layered-store-and-struct-embedding/</guid>
+      <description>One of the most important parts of the Mattermost source code is the one responsible for accessing the Mattermost database - the store. Every single database access is handled by the store, so we needed to find a way to extend its functionality while introducing as little complexity as possible. This is the reason behind the current layered approach using struct embedding.
+Our store is responsible for storing and retrieving data, and sometimes we need to add functionality that is not strictly related to the database queries, for example, cache data or add instrumentation.</description>
+    </item>
+    
+    <item>
+      <title>Incorporating GolangCI-Lint at Mattermost</title>
+      <link>https://developers.mattermost.com/blog/incorporating-golangci-lint/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/incorporating-golangci-lint/</guid>
+      <description>At Mattermost, we have traditionally relied on the trusty go vet and gofmt checks for our CI runs. Although it works well, there are a lot of other powerful linters out there which we&amp;rsquo;re potentially missing out on.
+Speaking of linters, the first name that inevitably comes up is staticcheck. It&amp;rsquo;s a powerful metalinter with a whole slew of checks. But simply running staticcheck is not sufficient, because it misses out on other linters which perform a single task, but nevertheless are very powerful.</description>
+    </item>
+    
+    <item>
+      <title>Localizing Matterpoll</title>
+      <link>https://developers.mattermost.com/blog/localizing-matterpoll/</link>
+      <pubDate>Wed, 11 Dec 2019 10:49:35 +0200</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/localizing-matterpoll/</guid>
+      <description>Matterpoll is a plugin that allows users to create polls in Mattermost. Since Mattermost is localized in 16 different languages, it’s optimal that Matterpoll is similarly localized.
+Because we rely on contributors to do the translations, we want to make it easy for them to translate new strings and determine whether already translated strings need to be updated because the &amp;ldquo;source&amp;rdquo; text changed. On the other hand, Matterpoll only has two maintainers (@kaakaa and me) and no infrastructure of its own to work with.</description>
+    </item>
+    
+    <item>
+      <title>Go: Idiomatic Error Handling</title>
+      <link>https://developers.mattermost.com/blog/idiomatic-error-handling/</link>
+      <pubDate>Thu, 18 Oct 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/idiomatic-error-handling/</guid>
+      <description>Go is an extremely opinionated programming language. import something in a file that&amp;rsquo;s not used? It won&amp;rsquo;t compile, and there&amp;rsquo;s no flag to override. While there are workarounds, the end result remains the same: Go files are never cluttered by unused imports. This is true for all Go code everywhere, making every Go project more accessible.
+Not all Go opinions are enforced by the compiler. Some are documented in Effective Go, and yet others are reflected only in the coding style of the Go standard library.</description>
+    </item>
+    
+  </channel>
+</rss>

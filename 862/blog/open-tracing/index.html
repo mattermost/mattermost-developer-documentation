@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> OpenTracing for Go Projects</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="OpenTracing for Go Projects">
+
+ 
+  
+    
+      <meta name="description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="twitter:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+<meta name="og:description" content="Your one-stop shop for all of your Mattermost contribution, integration, and extension needs.">
+
+    
+  
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/open-tracing/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                OpenTracing for Go Projects
+                            
+                            </h1>
+                            <small></small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            June 10, 2020
+                            <small class="blog-item__count">2617 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <h2 id="what-is-distributed-tracing">What is distributed tracing?&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#what-is-distributed-tracing"></i></a> </h2>
+<p>Large-scale cloud applications are usually built using interconnected services that can be rather hard to troubleshoot. When a service is scaled, simple logging doesn&rsquo;t cut it anymore and a more in-depth view into system&rsquo;s flow is required.
+That&rsquo;s where <a href="https://opentracing.io/docs/overview/what-is-tracing/">distributed tracing</a> comes into play; it allows developers and SREs to get a detailed view of a request as it travels through the system of services. With distributed tracing you can:</p>
+<ol>
+<li>Trace the execution path of a single request as it goes through a complicated path inside the distributed system</li>
+<li>Pinpoint bottlenecks and measure latency of specific parts of the execution path</li>
+<li>Record and analyze system behavior</li>
+</ol>
+<p><a href="https://opentracing.io">OpenTracing</a> is an open standard describing how distributed tracing works.</p>
+<p>There are a few key terms used in tracing:</p>
+<ul>
+<li><strong>Trace</strong>: A recording of the execution path of a request</li>
+<li><strong>Span</strong>: A named, timed operation representing a contiguous segment inside the trace</li>
+<li><strong>Root Span</strong>: The first span in a trace - a common ancestor to all spans in a trace</li>
+<li><strong>Context</strong>: Information identifying the request, required to connect spans in a distributed trace</li>
+</ul>
+<p>A trace recording usually looks something like this:</p>
+<p><img src="https://developers.mattermost.com/blog/2020-06-10-opentracing/trace.png" alt="trace image"></p>
+<p>We&rsquo;ve previously explored an OpenTracing implementation in the <a href="https://developers.mattermost.com/blog/instrumenting-go-code-via-ast/">first post of this series</a>. Next, we want to add distributed tracing capabilities to <a href="https://github.com/mattermost/mattermost-server">mattermost-server</a>. For this, we&rsquo;ve picked <a href="https://github.com/opentracing/opentracing-go">OpenTracing Go</a>.</p>
+<p>In this article we&rsquo;ll discuss all the nitty-gritty details of implementing a tracing system in your Go application without littering your code with repetitive, boilerplate tracing code.</p>
+<h2 id="the-goal">The goal&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#the-goal"></i></a> </h2>
+<p>So what are we actually working on? We want to make sure that every API request that&rsquo;s being handled by our server will get recorded into a trace, together with context information. This gives us the ability to dive deep into the execution and allow easy problem analysis.</p>
+<p>The resulting system trace will look like this (using <a href="https://www.jaegertracing.io/">Jaeger</a> web-ui visualization):
+<img src="https://developers.mattermost.com/blog/2020-06-10-opentracing/result.png" alt="jaeger view"></p>
+<h2 id="straightforward-tracing-implementation">Straightforward tracing implementation&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#straightforward-tracing-implementation"></i></a> </h2>
+<p>To add tracing to any API call, we can do the following in our <code>ServeHTTP</code> function:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+<span style="color:#069;font-weight:bold">package</span> web
+
+<span style="color:#069;font-weight:bold">import</span> (
+	<span style="color:#09f;font-style:italic">// ...
+</span><span style="color:#09f;font-style:italic"></span>	<span style="color:#c30">&#34;github.com/opentracing/opentracing-go&#34;</span>
+	<span style="color:#c30">&#34;github.com/opentracing/opentracing-go/ext&#34;</span>
+	spanlog <span style="color:#c30">&#34;github.com/opentracing/opentracing-go/log&#34;</span>
+)
+
+<span style="color:#069;font-weight:bold">func</span> (h Handler) <span style="color:#c0f">ServeHTTP</span>(w http.ResponseWriter, r <span style="color:#555">*</span>http.Request) {
+	c <span style="color:#555">:=</span> <span style="color:#555">&amp;</span>Context{}
+	<span style="color:#09f;font-style:italic">// Start root span
+</span><span style="color:#09f;font-style:italic"></span>	span, ctx <span style="color:#555">:=</span> tracing.<span style="color:#c0f">StartRootSpanByContext</span>(context.<span style="color:#c0f">Background</span>(), <span style="color:#c30">&#34;apiHandler&#34;</span>)
+	<span style="color:#09f;font-style:italic">// Populate different span fields based on request headers
+</span><span style="color:#09f;font-style:italic"></span>	carrier <span style="color:#555">:=</span> opentracing.<span style="color:#c0f">HTTPHeadersCarrier</span>(r.Header)
+	_ = opentracing.<span style="color:#c0f">GlobalTracer</span>().<span style="color:#c0f">Inject</span>(span.<span style="color:#c0f">Context</span>(), opentracing.HTTPHeaders, carrier)
+	ext.HTTPMethod.<span style="color:#c0f">Set</span>(span, r.Method)
+	ext.HTTPUrl.<span style="color:#c0f">Set</span>(span, c.App.<span style="color:#c0f">Path</span>())
+	ext.PeerAddress.<span style="color:#c0f">Set</span>(span, c.App.<span style="color:#c0f">IpAddress</span>())
+	span.<span style="color:#c0f">SetTag</span>(<span style="color:#c30">&#34;request_id&#34;</span>, c.App.<span style="color:#c0f">RequestId</span>())
+	span.<span style="color:#c0f">SetTag</span>(<span style="color:#c30">&#34;user_agent&#34;</span>, c.App.<span style="color:#c0f">UserAgent</span>())
+	<span style="color:#09f;font-style:italic">// On handler exit, do the following:
+</span><span style="color:#09f;font-style:italic"></span>	<span style="color:#069;font-weight:bold">defer</span> <span style="color:#069;font-weight:bold">func</span>() {
+		<span style="color:#09f;font-style:italic">// In case of an error, add it to the trace
+</span><span style="color:#09f;font-style:italic"></span>		<span style="color:#069;font-weight:bold">if</span> c.Err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+			span.<span style="color:#c0f">LogFields</span>(spanlog.<span style="color:#c0f">Error</span>(c.Err))
+			ext.HTTPStatusCode.<span style="color:#c0f">Set</span>(span, <span style="color:#366">uint16</span>(c.Err.StatusCode))
+			ext.Error.<span style="color:#c0f">Set</span>(span, <span style="color:#069;font-weight:bold">true</span>)
+		}
+		<span style="color:#09f;font-style:italic">// Finish the span
+</span><span style="color:#09f;font-style:italic"></span>		span.<span style="color:#c0f">Finish</span>()
+	}()
+	<span style="color:#09f;font-style:italic">// Set current context to the one we got from root span - it will be passed down to actual API handlers
+</span><span style="color:#09f;font-style:italic"></span>	c.App.<span style="color:#c0f">SetContext</span>(ctx)
+	<span style="color:#09f;font-style:italic">// ...
+</span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">// Execute the actual API handler
+</span><span style="color:#09f;font-style:italic"></span>	h.<span style="color:#c0f">HandleFunc</span>(c, w, r)
+}
+</code></pre></div><p>Next, we&rsquo;ll modify the actual business logic function that&rsquo;s called by the API handler to nest it inside the parent span (we&rsquo;ll use <code>SearchUsers</code> as an example):</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> (a <span style="color:#555">*</span>App) <span style="color:#c0f">SearchUsers</span>(props <span style="color:#555">*</span>model.UserSearch, options <span style="color:#555">*</span>model.UserSearchOptions) ([]<span style="color:#555">*</span>model.User, <span style="color:#555">*</span>model.AppError) {
+	<span style="color:#09f;font-style:italic">// Save previous context
+</span><span style="color:#09f;font-style:italic"></span>	origCtx <span style="color:#555">:=</span> a.ctx
+	<span style="color:#09f;font-style:italic">// Generate new span, nested inside the parent span
+</span><span style="color:#09f;font-style:italic"></span>	span, newCtx <span style="color:#555">:=</span> tracing.<span style="color:#c0f">StartSpanWithParentByContext</span>(a.ctx, <span style="color:#c30">&#34;app.SearchUsers&#34;</span>)
+	<span style="color:#09f;font-style:italic">// Set new context
+</span><span style="color:#09f;font-style:italic"></span>	a.ctx = newCtx
+	
+	<span style="color:#09f;font-style:italic">// Log some parameters
+</span><span style="color:#09f;font-style:italic"></span>	span.<span style="color:#c0f">SetTag</span>(<span style="color:#c30">&#34;searchProps&#34;</span>, props)
+
+	<span style="color:#09f;font-style:italic">// On function exit, restore context and finish the span
+</span><span style="color:#09f;font-style:italic"></span>	<span style="color:#069;font-weight:bold">defer</span> <span style="color:#069;font-weight:bold">func</span>() {
+		a.ctx = origCtx
+		span.<span style="color:#c0f">Finish</span>()
+	}()
+
+	<span style="color:#09f;font-style:italic">// ...
+</span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">// Perform actual work
+</span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">// ...
+</span><span style="color:#09f;font-style:italic"></span>
+	<span style="color:#09f;font-style:italic">// In case of an error, add it to the span
+</span><span style="color:#09f;font-style:italic"></span>	<span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+		span.<span style="color:#c0f">LogFields</span>(spanlog.<span style="color:#c0f">Error</span>(err))
+		ext.Error.<span style="color:#c0f">Set</span>(span, <span style="color:#069;font-weight:bold">true</span>)
+	}
+
+	<span style="color:#09f;font-style:italic">// Return results
+</span><span style="color:#09f;font-style:italic"></span>}
+</code></pre></div><p>Rather straightforward, right? We marked our &ldquo;entry-point&rdquo; by creating a root span, populated it with useful context information, passed the context down the stack, and created a new span underneath it.</p>
+<p>We could stop right here, because this is all you need to have a working trace! <strong>But</strong> for a large application like <code>mattermost-server</code> wrapping all of the 900+ API handlers in tracing code would be incredibly labor intensive and will create a lot of noise in the source code.</p>
+<p>So, can we do better?</p>
+<h2 id="decorator-pattern">Decorator pattern&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#decorator-pattern"></i></a> </h2>
+<p>Before diving into our solution, I want to first introduce the decorator pattern.</p>
+<p>To quote <a href="https://en.wikipedia.org/wiki/Decorator_pattern">Wikipedia</a>:</p>
+<blockquote>
+<p>In object-oriented programming, the decorator pattern is a design pattern that allows behavior to be added to an individual object, dynamically, without affecting the behavior of other objects from the same class. The decorator pattern is often useful for adhering to the Single Responsibility Principle, as it allows functionality to be divided between classes with unique areas of concern. The decorator pattern is structurally nearly identical to the chain of responsibility pattern, the difference being that in a chain of responsibility, exactly one of the classes handles the request, while for the decorator, all classes handle the request.</p>
+</blockquote>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/8/83/W3sDesign_Decorator_Design_Pattern_UML.jpg?1591628685344" alt="decorator pattern"></p>
+<p>In simpler terms, let&rsquo;s say we have an object called <code>Cow</code> that has some methods:</p>
+<p><img src="https://developers.mattermost.com/blog/2020-06-10-opentracing/cowundecorated.png" alt="cow undecorated"></p>
+<p>We want to introduce additional functionality on top of what <code>Cow</code> already does, without modifying the actual code of the <code>Cow</code> object. For example, we want to measure performance of each method and log the parameters that are being passed to each method. Here&rsquo;s how it would look if we apply the <a href="https://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>:</p>
+<p><img src="https://developers.mattermost.com/blog/2020-06-10-opentracing/cowdecorated.png" alt="cow decorated"></p>
+<p>We wrapped each method of <code>Cow</code> in a chain of additional functions: <code>f(x) = y</code> became <code>f(x) = a(b(y))</code>, with each function having its own responsibility.</p>
+<p>If we apply the same pattern to our problem, we can decorate all of <code>mattermost-server</code> API calls with OpenTracing, without actually modifying the functions themselves!</p>
+<p>Implementing such functionality in other, dynamic, languages is rather trivial. For example, here&rsquo;s how JavaScript handles it given a simple <code>Cow</code> object:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#069;font-weight:bold">const</span> cow <span style="color:#555">=</span> {
+  feed<span style="color:#555">:</span> <span style="color:#069;font-weight:bold">function</span>(x) {
+    <span style="color:#069;font-weight:bold">return</span> <span style="color:#c30">`Ate for </span><span style="color:#a00">${</span>x<span style="color:#a00">}</span><span style="color:#c30"> seconds!`</span>
+  },
+  speak<span style="color:#555">:</span> <span style="color:#069;font-weight:bold">function</span>(x) {
+    <span style="color:#069;font-weight:bold">return</span> <span style="color:#c30">`</span><span style="color:#a00">${</span><span style="color:#c30">&#34;Moo &#34;</span>.repeat(x)<span style="color:#a00">}</span><span style="color:#c30">!`</span>
+  }
+}
+
+console.log(cow.feed(<span style="color:#f60">20</span>))
+console.log(cow.speak(<span style="color:#f60">3</span>))
+</code></pre></div><p>We can wrap it in a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">proxy</a>:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#069;font-weight:bold">const</span> tracerHandler <span style="color:#555">=</span> {
+  get<span style="color:#555">:</span> <span style="color:#069;font-weight:bold">function</span>(target, prop, receiver) {
+    <span style="color:#069;font-weight:bold">if</span> (<span style="color:#069;font-weight:bold">typeof</span> target[prop] <span style="color:#555">===</span> <span style="color:#c30">&#34;function&#34;</span>) {
+      <span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">function</span>(...args) {
+        console.log(<span style="color:#c30">`&#39;</span><span style="color:#a00">${</span>prop<span style="color:#a00">}</span><span style="color:#c30"> &#39;called with arguments: `</span>, ...arguments);
+        <span style="color:#069;font-weight:bold">return</span> target[prop](...arguments);
+      };
+    }
+  }
+};
+
+<span style="color:#069;font-weight:bold">const</span> timerHandler <span style="color:#555">=</span> {
+  get<span style="color:#555">:</span> <span style="color:#069;font-weight:bold">function</span>(target, prop, receiver) {
+    <span style="color:#069;font-weight:bold">if</span> (<span style="color:#069;font-weight:bold">typeof</span> target[prop] <span style="color:#555">===</span> <span style="color:#c30">&#34;function&#34;</span>) {
+      <span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">function</span>(...args) {
+        console.log(<span style="color:#c30">`starting &#39;</span><span style="color:#a00">${</span>prop<span style="color:#a00">}</span><span style="color:#c30">&#39;`</span>);
+        <span style="color:#069;font-weight:bold">const</span> t1 <span style="color:#555">=</span> <span style="color:#366">window</span>.performance.now();
+
+        <span style="color:#069;font-weight:bold">const</span> res <span style="color:#555">=</span> target[prop](...arguments);
+        <span style="color:#069;font-weight:bold">const</span> t2 <span style="color:#555">=</span> <span style="color:#366">window</span>.performance.now();
+
+        console.log(<span style="color:#c30">`&#39;</span><span style="color:#a00">${</span>prop<span style="color:#a00">}</span><span style="color:#c30">&#39; took </span><span style="color:#a00">${</span>t2 <span style="color:#555">-</span> t1<span style="color:#a00">}</span><span style="color:#c30">ns`</span>);
+        <span style="color:#069;font-weight:bold">return</span> res;
+      };
+    }
+  }
+};
+
+<span style="color:#069;font-weight:bold">const</span> proxy <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> <span style="color:#366">Proxy</span>(cow, tracerHandler);
+<span style="color:#069;font-weight:bold">const</span> proxy2 <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> <span style="color:#366">Proxy</span>(proxy, timerHandler);
+console.log(proxy2.feed(<span style="color:#f60">20</span>));
+console.log(proxy2.speak(<span style="color:#f60">3</span>));
+</code></pre></div><p>Unfortunately, in Go, there&rsquo;s no way to do this in a performant manner, and the regular approach would involve using reflection which can seriously impact performance on the underlying code.</p>
+<h2 id="our-solution">Our solution&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#our-solution"></i></a> </h2>
+<p>The implementation of the decorator pattern we chose involved three parts:</p>
+<ol>
+<li>Struct embedding</li>
+<li>Code parsing using AST</li>
+<li>Code generation using templates</li>
+</ol>
+<h3 id="struct-embedding">Struct embedding&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#struct-embedding"></i></a> </h3>
+<p>Quoting <a href="https://golang.org/doc/faq#Is_Go_an_object-oriented_language">Go FAQ</a></p>
+<blockquote>
+<p>Although Go has types and methods and allows an object-oriented style of programming, there is no type hierarchy. The concept of &ldquo;interface&rdquo; in Go provides a different approach that we believe is easy to use and in some ways more general. There are also ways to embed types in other types to provide something analogous <strong>but not identical</strong> to subclassing.</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">type</span> Animal <span style="color:#069;font-weight:bold">struct</span>{
+	Name <span style="color:#078;font-weight:bold">string</span>
+}
+
+<span style="color:#069;font-weight:bold">type</span> Cow <span style="color:#069;font-weight:bold">struct</span>{
+	Animal
+}
+
+<span style="color:#069;font-weight:bold">func</span> (c Cow) <span style="color:#c0f">Speak</span>() {
+	fmt.<span style="color:#c0f">Printf</span>(<span style="color:#c30">&#34;Moo, I am a %s&#34;</span>, c.Animal.Name)
+}
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">main</span>() {
+	a <span style="color:#555">:=</span> Animal{Name:<span style="color:#c30">&#34;Cow&#34;</span>}
+	c <span style="color:#555">:=</span> Cow{Animal:a}
+	c.<span style="color:#c0f">Speak</span>()
+}
+</code></pre></div><p>How does struct embedding help us in the implementation of a decorator pattern?</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+<span style="color:#069;font-weight:bold">type</span> Speaker <span style="color:#069;font-weight:bold">interface</span> {
+	<span style="color:#c0f">Speak</span>(x <span style="color:#078;font-weight:bold">int</span>)
+}
+
+<span style="color:#069;font-weight:bold">type</span> Animal <span style="color:#069;font-weight:bold">struct</span> {
+	Name <span style="color:#078;font-weight:bold">string</span>
+}
+
+<span style="color:#069;font-weight:bold">type</span> TraceAnimal <span style="color:#069;font-weight:bold">struct</span> {
+	Speaker
+}
+
+<span style="color:#069;font-weight:bold">type</span> MeasureAnimal <span style="color:#069;font-weight:bold">struct</span> {
+	Speaker
+}
+
+<span style="color:#069;font-weight:bold">func</span> (c Animal ) <span style="color:#c0f">Speak</span>(x <span style="color:#078;font-weight:bold">int</span>) {
+	fmt.<span style="color:#c0f">Println</span>(strings.<span style="color:#c0f">Repeat</span>(<span style="color:#c30">&#34;I am a &#34;</span> <span style="color:#555">+</span> c.Name <span style="color:#555">+</span> <span style="color:#c30">&#34; &#34;</span>,x))
+}
+
+<span style="color:#069;font-weight:bold">func</span> (c TraceAnimal) <span style="color:#c0f">Speak</span>(x <span style="color:#078;font-weight:bold">int</span>) {
+	fmt.<span style="color:#c0f">Printf</span>(<span style="color:#c30">&#34;Running Speak(x) function with x=%d!\n&#34;</span>,x)
+	c.Speaker.<span style="color:#c0f">Speak</span>(x)
+}
+
+<span style="color:#069;font-weight:bold">func</span> (c MeasureAnimal) <span style="color:#c0f">Speak</span>(x <span style="color:#078;font-weight:bold">int</span>) {
+	fmt.<span style="color:#c0f">Println</span>(<span style="color:#c30">&#34;Timing Speak() function...&#34;</span>)
+	t <span style="color:#555">:=</span> time.<span style="color:#c0f">Now</span>()
+	c.Speaker.<span style="color:#c0f">Speak</span>(x)
+	
+	fmt.<span style="color:#c0f">Printf</span>(<span style="color:#c30">&#34;Speak(%d) took %s\n&#34;</span>, x, time.<span style="color:#c0f">Since</span>(t))
+}
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">main</span>() {
+	a <span style="color:#555">:=</span> Animal{Name: <span style="color:#c30">&#34;Cow&#34;</span>}
+	c <span style="color:#555">:=</span> TraceAnimal {Speaker: a}
+	d <span style="color:#555">:=</span> MeasureAnimal{Speaker: c}
+	d.<span style="color:#c0f">Speak</span>(<span style="color:#f60">2</span>)
+}
+</code></pre></div><p>Running the following code will yield:</p>
+<pre><code>Timing Speak() function...
+Running Speak(x) function with x=2!
+I am a Cow I am a Cow 
+Speak(2) took 0s
+</code></pre><p>So we&rsquo;ve basically implemented two decorators over the original <code>Speak()</code> method. First we started timing the execution in <code>MeasureAnimal</code>, then passed it to <code>TraceAnimal</code>, which in turn called the actual <code>Speak()</code> implementation.
+``</p>
+<p>This works great and stays performant since we don&rsquo;t use any dynamic techniques such as reflection. However this is very verbose and requires us to write a lot of wrapper code - and that&rsquo;s no fun at all.</p>
+<p>We can do better!</p>
+<h3 id="code-parsing-using-ast">Code parsing using AST&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#code-parsing-using-ast"></i></a> </h3>
+<p>Using the methods we&rsquo;ve discussed in parts <a href="https://developers.mattermost.com/blog/instrumenting-go-code-via-ast/">1</a> and <a href="https://developers.mattermost.com/blog/instrumenting-go-code-via-ast-2/">2</a> of this series we can scan the interface of the struct we want to wrap and collect all the information needed to generate the decorators/wrappers automatically. Let&rsquo;s dig in.</p>
+<p>First of all, we kick off the AST parser on our input file that contains the interface and start walking through the found nodes:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">package</span> main
+
+<span style="color:#069;font-weight:bold">import</span> (
+	<span style="color:#c30">&#34;bytes&#34;</span>
+	<span style="color:#c30">&#34;flag&#34;</span>
+	<span style="color:#c30">&#34;fmt&#34;</span>
+	<span style="color:#c30">&#34;go/ast&#34;</span>
+	<span style="color:#c30">&#34;go/parser&#34;</span>
+	<span style="color:#c30">&#34;go/token&#34;</span>
+	<span style="color:#c30">&#34;io/ioutil&#34;</span>
+	<span style="color:#c30">&#34;log&#34;</span>
+	<span style="color:#c30">&#34;os&#34;</span>
+	<span style="color:#c30">&#34;path&#34;</span>
+	<span style="color:#c30">&#34;strings&#34;</span>
+	<span style="color:#c30">&#34;text/template&#34;</span>
+
+	<span style="color:#c30">&#34;golang.org/x/tools/imports&#34;</span>
+)
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">main</span>() {
+	fset <span style="color:#555">:=</span> token.<span style="color:#c0f">NewFileSet</span>() <span style="color:#09f;font-style:italic">// Positions are relative to fset
+</span><span style="color:#09f;font-style:italic"></span>
+	file, err <span style="color:#555">:=</span> os.<span style="color:#c0f">Open</span>(<span style="color:#c30">&#34;animal.go&#34;</span>)
+	<span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+		<span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">nil</span>, fmt.<span style="color:#c0f">Errorf</span>(<span style="color:#c30">&#34;Unable to open %s file: %w&#34;</span>, inputFile, err)
+	}
+	<span style="color:#069;font-weight:bold">defer</span> file.<span style="color:#c0f">Close</span>()
+
+	src, err <span style="color:#555">:=</span> ioutil.<span style="color:#c0f">ReadAll</span>(file)
+	<span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+		<span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">nil</span>, err
+	}
+	f, err <span style="color:#555">:=</span> parser.<span style="color:#c0f">ParseFile</span>(fset, <span style="color:#c30">&#34;animal.go&#34;</span>, src, parser.AllErrors|parser.ParseComments)
+	<span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+		<span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">nil</span>, err
+	}
+
+	ast.<span style="color:#c0f">Inspect</span>(f, <span style="color:#069;font-weight:bold">func</span>(n ast.Node) <span style="color:#078;font-weight:bold">bool</span> {
+		<span style="color:#09f;font-style:italic">// ... Handle the found nodes
+</span><span style="color:#09f;font-style:italic"></span>	})
+}	
+</code></pre></div><p>To differentiate interface methods from other AST nodes, we can do the following:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	ast.<span style="color:#c0f">Inspect</span>(f, <span style="color:#069;font-weight:bold">func</span>(n ast.Node) <span style="color:#078;font-weight:bold">bool</span> {
+		<span style="color:#069;font-weight:bold">switch</span> x <span style="color:#555">:=</span> n.(<span style="color:#069;font-weight:bold">type</span>) {
+		<span style="color:#069;font-weight:bold">case</span> <span style="color:#555">*</span>ast.TypeSpec:
+			<span style="color:#069;font-weight:bold">if</span> x.Name.Name <span style="color:#555">==</span> <span style="color:#c30">&#34;Speaker&#34;</span> {
+				<span style="color:#069;font-weight:bold">for</span> _, method <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> x.Type.(<span style="color:#555">*</span>ast.InterfaceType).Methods.List {
+					methodName <span style="color:#555">:=</span> method.Names[<span style="color:#f60">0</span>].Name
+					<span style="color:#09f;font-style:italic">// Here we can parse all the required information about the method
+</span><span style="color:#09f;font-style:italic"></span>					methods[methodName] = <span style="color:#c0f">extractMethodMetadata</span>(method, src)
+				}
+			}
+		}
+		<span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">true</span>
+	})
+</code></pre></div><p>Let&rsquo;s define a couple of structs to help us collect information about methods:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">type</span> methodParam <span style="color:#069;font-weight:bold">struct</span> {
+	Name <span style="color:#078;font-weight:bold">string</span>
+	Type <span style="color:#078;font-weight:bold">string</span>
+}
+
+<span style="color:#069;font-weight:bold">type</span> methodData <span style="color:#069;font-weight:bold">struct</span> {
+	Params        []methodParam
+	Results       []<span style="color:#078;font-weight:bold">string</span>
+}
+
+
+<span style="color:#09f;font-style:italic">// For each found method we&#39;ll store its name, params with their types, and return types in methods := map[string]methodData {}
+</span></code></pre></div><p>Now let&rsquo;s write a short function to populate these structs with metadata about a method:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">formatNode</span>(src []<span style="color:#078;font-weight:bold">byte</span>, node ast.Expr) <span style="color:#078;font-weight:bold">string</span> {
+	<span style="color:#069;font-weight:bold">return</span> <span style="color:#366">string</span>(src[node.<span style="color:#c0f">Pos</span>()<span style="color:#555">-</span><span style="color:#f60">1</span> : node.<span style="color:#c0f">End</span>()<span style="color:#555">-</span><span style="color:#f60">1</span>])
+}
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">extractMethodMetadata</span>(method <span style="color:#555">*</span>ast.Field, src []<span style="color:#078;font-weight:bold">byte</span>) methodData {
+	params <span style="color:#555">:=</span> []methodParam{}
+	results <span style="color:#555">:=</span> []<span style="color:#078;font-weight:bold">string</span>{}
+	e <span style="color:#555">:=</span> method.Type.(<span style="color:#555">*</span>ast.FuncType)
+	<span style="color:#069;font-weight:bold">if</span> e.Params <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+		<span style="color:#069;font-weight:bold">for</span> _, param <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> e.Params.List {
+			<span style="color:#069;font-weight:bold">for</span> _, paramName <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> param.Names {
+				paramType <span style="color:#555">:=</span> <span style="color:#c0f">formatNode</span>(src, param.Type)
+				params = <span style="color:#366">append</span>(params, methodParam{Name: paramName.Name, Type: paramType})
+			}
+		}
+	}
+
+	<span style="color:#069;font-weight:bold">if</span> e.Results <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+		<span style="color:#069;font-weight:bold">for</span> _, r <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> e.Results.List {
+			typeStr <span style="color:#555">:=</span> <span style="color:#c0f">formatNode</span>(src, r.Type)
+			<span style="color:#069;font-weight:bold">if</span> <span style="color:#366">len</span>(r.Names) &gt; <span style="color:#f60">0</span> {
+				<span style="color:#069;font-weight:bold">for</span> _, k <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> r.Names {
+					results = <span style="color:#366">append</span>(results, fmt.<span style="color:#c0f">Sprintf</span>(<span style="color:#c30">&#34;%s %s&#34;</span>, k.Name, typeStr))
+				}
+			} <span style="color:#069;font-weight:bold">else</span> {
+				results = <span style="color:#366">append</span>(results, typeStr)
+			}
+		}
+	}
+	<span style="color:#069;font-weight:bold">return</span> methodData{Params: params, Results: results}
+}
+</code></pre></div><p>Now we can run the parser on our interface and we&rsquo;ll get something like: <code>map[Speak:{Params:[{Name:x Type:int}] Results:[]}]</code>.
+As you can see, we collected all the information needed about interface methods and we can now move on to generating the decorator with this data.</p>
+<h3 id="code-generation-using-templates">Code generation using templates&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#code-generation-using-templates"></i></a> </h3>
+<p>Let&rsquo;s get to it! We&rsquo;ll start by defining a few helper functions that will be useful during code generation. They will operate on the metadata we&rsquo;ve collected before.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	helperFuncs <span style="color:#555">:=</span> template.FuncMap{
+		<span style="color:#c30">&#34;joinResults&#34;</span>: <span style="color:#069;font-weight:bold">func</span>(results []<span style="color:#078;font-weight:bold">string</span>) <span style="color:#078;font-weight:bold">string</span> {
+			<span style="color:#069;font-weight:bold">return</span> strings.<span style="color:#c0f">Join</span>(results, <span style="color:#c30">&#34;, &#34;</span>)
+		},
+		<span style="color:#c30">&#34;joinResultsForSignature&#34;</span>: <span style="color:#069;font-weight:bold">func</span>(results []<span style="color:#078;font-weight:bold">string</span>) <span style="color:#078;font-weight:bold">string</span> {
+			<span style="color:#069;font-weight:bold">return</span> fmt.<span style="color:#c0f">Sprintf</span>(<span style="color:#c30">&#34;(%s)&#34;</span>, strings.<span style="color:#c0f">Join</span>(results, <span style="color:#c30">&#34;, &#34;</span>))
+		},
+		<span style="color:#c30">&#34;joinParams&#34;</span>: <span style="color:#069;font-weight:bold">func</span>(params []methodParam) <span style="color:#078;font-weight:bold">string</span> {
+			paramsNames <span style="color:#555">:=</span> []<span style="color:#078;font-weight:bold">string</span>{}
+			<span style="color:#069;font-weight:bold">for</span> _, param <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> params {
+				s <span style="color:#555">:=</span> param.Name
+				<span style="color:#069;font-weight:bold">if</span> strings.<span style="color:#c0f">HasPrefix</span>(param.Type, <span style="color:#c30">&#34;...&#34;</span>) {
+					s <span style="color:#555">+=</span> <span style="color:#c30">&#34;...&#34;</span>
+				}
+				paramsNames = <span style="color:#366">append</span>(paramsNames, s)
+			}
+			<span style="color:#069;font-weight:bold">return</span> strings.<span style="color:#c0f">Join</span>(paramsNames, <span style="color:#c30">&#34;, &#34;</span>)
+		},
+		<span style="color:#c30">&#34;joinParamsWithType&#34;</span>: <span style="color:#069;font-weight:bold">func</span>(params []methodParam) <span style="color:#078;font-weight:bold">string</span> {
+			paramsWithType <span style="color:#555">:=</span> []<span style="color:#078;font-weight:bold">string</span>{}
+			<span style="color:#069;font-weight:bold">for</span> _, param <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> params {
+				paramsWithType = <span style="color:#366">append</span>(paramsWithType, fmt.<span style="color:#c0f">Sprintf</span>(<span style="color:#c30">&#34;%s %s&#34;</span>, param.Name, param.Type))
+			}
+			<span style="color:#069;font-weight:bold">return</span> strings.<span style="color:#c0f">Join</span>(paramsWithType, <span style="color:#c30">&#34;, &#34;</span>)
+		},
+	}
+</code></pre></div><p>Next we&rsquo;ll create a <a href="https://golang.org/pkg/text/template/">Go Template</a> for both our decorators:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	tracerTemplate <span style="color:#555">:=</span> <span style="color:#c30">`
+</span><span style="color:#c30">	// Generated code; DO NOT EDIT.
+</span><span style="color:#c30">	package animals
+</span><span style="color:#c30">
+</span><span style="color:#c30">	type AnimalTracer struct {
+</span><span style="color:#c30">		Speaker
+</span><span style="color:#c30">	}
+</span><span style="color:#c30">	</span><span style="color:#099">{{</span><span style="color:#069;font-weight:bold">range</span><span style="color:#bbb"> </span>$index<span style="color:#a00;background-color:#faa">,</span><span style="color:#bbb"> </span>$element<span style="color:#bbb"> </span><span style="color:#555">:=</span><span style="color:#bbb"> </span><span style="color:#309">.</span><span style="color:#099">}}</span><span style="color:#c30">
+</span><span style="color:#c30">	func (a *AnimalTracer) </span><span style="color:#099">{{</span>$index<span style="color:#099">}}</span><span style="color:#c30">(</span><span style="color:#099">{{</span>$element<span style="color:#309">.Params</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span>joinParamsWithType<span style="color:#099">}}</span><span style="color:#c30">) </span><span style="color:#099">{{</span>$element<span style="color:#309">.Results</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span>joinResultsForSignature<span style="color:#099">}}</span><span style="color:#c30"> {
+</span><span style="color:#c30">		fmt.Printf(&#34;Running </span><span style="color:#099">{{</span>$index<span style="color:#099">}}</span><span style="color:#c30">(</span><span style="color:#099">{{</span>$element<span style="color:#309">.Params</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span>joinParams<span style="color:#099">}}</span><span style="color:#c30">) with </span><span style="color:#099">{{</span><span style="color:#069;font-weight:bold">range</span><span style="color:#bbb"> </span>$paramIdx<span style="color:#a00;background-color:#faa">,</span><span style="color:#bbb"> </span>$param<span style="color:#bbb"> </span><span style="color:#555">:=</span><span style="color:#bbb"> </span>$element<span style="color:#309">.Params</span><span style="color:#099">}}</span><span style="color:#c30">&#39;</span><span style="color:#099">{{</span>$param<span style="color:#309">.Name</span><span style="color:#099">}}</span><span style="color:#c30">&#39;=%v </span><span style="color:#099">{{</span><span style="color:#069;font-weight:bold">end</span><span style="color:#099">}}</span><span style="color:#c30">&#34;,</span><span style="color:#099">{{</span>$element<span style="color:#309">.Params</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span>joinParams<span style="color:#099">}}</span><span style="color:#c30">)
+</span><span style="color:#c30">		</span><span style="color:#099">{{-</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">if</span><span style="color:#bbb"> </span>$element<span style="color:#309">.Results</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">len</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">eq</span><span style="color:#bbb"> </span>0<span style="color:#099">}}</span><span style="color:#c30">
+</span><span style="color:#c30">			a.Speaker.</span><span style="color:#099">{{</span>$index<span style="color:#099">}}</span><span style="color:#c30">(</span><span style="color:#099">{{</span>$element<span style="color:#309">.Params</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span>joinParams<span style="color:#099">}}</span><span style="color:#c30">)
+</span><span style="color:#c30">		</span><span style="color:#099">{{</span><span style="color:#069;font-weight:bold">else</span><span style="color:#099">}}</span><span style="color:#c30">
+</span><span style="color:#c30">			return a.Speaker.</span><span style="color:#099">{{</span>$index<span style="color:#099">}}</span><span style="color:#c30">(</span><span style="color:#099">{{</span>$element<span style="color:#309">.Params</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span>joinParams<span style="color:#099">}}</span><span style="color:#c30">)
+</span><span style="color:#c30">		</span><span style="color:#099">{{</span><span style="color:#069;font-weight:bold">end</span><span style="color:#099">}}</span><span style="color:#c30">	
+</span><span style="color:#c30">	}
+</span><span style="color:#c30">	</span><span style="color:#099">{{</span><span style="color:#069;font-weight:bold">end</span><span style="color:#099">}}</span><span style="color:#c30">
+</span><span style="color:#c30">	`</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>I know it looks a little scary, but the premise is rather simple. Given the following metadata: <code>map[Speak:{Params:[{Name:x Type:int}] Results:[]}]</code> we want to generate a new struct that embeds our <code>Animal</code> and wraps its calls in additional functionality.</p>
+<p>I&rsquo;ll go through the template line by line:</p>
+<ul>
+<li><strong>2 - 6</strong>: Define the new struct</li>
+<li><strong>7</strong>: Iterate over methods in our metadata</li>
+<li><strong>8</strong>: Define a function on the new struct that has exactly the same signature as original one</li>
+<li><strong>9</strong>: Print all function parameters by iterating on <code>$element.Params</code> using the helper functions defined above</li>
+<li><strong>10 - 14</strong>: Run the actual code and either exit the function or return the results, depending on function signature</li>
+</ul>
+<p>For the <code>Timer</code> decorator, we&rsquo;ll write the following template:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	timerTemplate <span style="color:#555">:=</span> <span style="color:#c30">`
+</span><span style="color:#c30">	// Generated code; DO NOT EDIT.
+</span><span style="color:#c30">	package animals
+</span><span style="color:#c30">
+</span><span style="color:#c30">	type AnimalTimer struct {
+</span><span style="color:#c30">		Speaker
+</span><span style="color:#c30">	}
+</span><span style="color:#c30">	</span><span style="color:#099">{{</span><span style="color:#069;font-weight:bold">range</span><span style="color:#bbb"> </span>$index<span style="color:#a00;background-color:#faa">,</span><span style="color:#bbb"> </span>$element<span style="color:#bbb"> </span><span style="color:#555">:=</span><span style="color:#bbb"> </span><span style="color:#309">.</span><span style="color:#099">}}</span><span style="color:#c30">
+</span><span style="color:#c30">	func (a *AnimalTimer) </span><span style="color:#099">{{</span>$index<span style="color:#099">}}</span><span style="color:#c30">(</span><span style="color:#099">{{</span>$element<span style="color:#309">.Params</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span>joinParamsWithType<span style="color:#099">}}</span><span style="color:#c30">) </span><span style="color:#099">{{</span>$element<span style="color:#309">.Results</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span>joinResultsForSignature<span style="color:#099">}}</span><span style="color:#c30"> {
+</span><span style="color:#c30">		fmt.Println(&#34;Timing </span><span style="color:#099">{{</span>$index<span style="color:#099">}}</span><span style="color:#c30"> function...&#34;)
+</span><span style="color:#c30">		__t := time.Now()
+</span><span style="color:#c30">		</span><span style="color:#099">{{-</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">if</span><span style="color:#bbb"> </span>$element<span style="color:#309">.Results</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">len</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">eq</span><span style="color:#bbb"> </span>0<span style="color:#099">}}</span><span style="color:#c30">
+</span><span style="color:#c30">			a.Speaker.</span><span style="color:#099">{{</span>$index<span style="color:#099">}}</span><span style="color:#c30">(</span><span style="color:#099">{{</span>$element<span style="color:#309">.Params</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span>joinParams<span style="color:#099">}}</span><span style="color:#c30">)
+</span><span style="color:#c30">		</span><span style="color:#099">{{</span><span style="color:#069;font-weight:bold">else</span><span style="color:#099">}}</span><span style="color:#c30">
+</span><span style="color:#c30">			ret := a.Speaker.</span><span style="color:#099">{{</span>$index<span style="color:#099">}}</span><span style="color:#c30">(</span><span style="color:#099">{{</span>$element<span style="color:#309">.Params</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span>joinParams<span style="color:#099">}}</span><span style="color:#c30">)
+</span><span style="color:#c30">		</span><span style="color:#099">{{</span><span style="color:#069;font-weight:bold">end</span><span style="color:#099">}}</span><span style="color:#c30">	
+</span><span style="color:#c30">		fmt.Printf(&#34;</span><span style="color:#099">{{</span>$index<span style="color:#099">}}</span><span style="color:#c30"> took %s\n&#34;, x, time.Since(__t))
+</span><span style="color:#c30">		</span><span style="color:#099">{{-</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">if</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">not</span><span style="color:#bbb"> </span><span style="color:#555">(</span>$element<span style="color:#309">.Results</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">len</span><span style="color:#bbb"> </span><span style="color:#555">|</span><span style="color:#bbb"> </span><span style="color:#069;font-weight:bold">eq</span><span style="color:#bbb"> </span>0<span style="color:#555">)</span><span style="color:#099">}}</span><span style="color:#c30">
+</span><span style="color:#c30">		return ret
+</span><span style="color:#c30">		</span><span style="color:#099">{{</span><span style="color:#069;font-weight:bold">end</span><span style="color:#099">}}</span><span style="color:#c30">	
+</span><span style="color:#c30">
+</span><span style="color:#c30">	}
+</span><span style="color:#c30">	</span><span style="color:#099">{{</span><span style="color:#069;font-weight:bold">end</span><span style="color:#099">}}</span><span style="color:#c30">
+</span><span style="color:#c30">	`</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>This is very similar to the template above, only this time we record the start time of the function and print the elapsed time on exit.</p>
+<p>With these templates in hand, we can now generate the decorators!</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#09f;font-style:italic">// Create output buffer
+</span><span style="color:#09f;font-style:italic"></span>	out <span style="color:#555">:=</span> bytes.<span style="color:#c0f">NewBufferString</span>(<span style="color:#c30">&#34;&#34;</span>)
+	<span style="color:#09f;font-style:italic">// Parse the template and pass it the helper functions
+</span><span style="color:#09f;font-style:italic"></span>	t <span style="color:#555">:=</span> template.<span style="color:#c0f">Must</span>(template.<span style="color:#c0f">New</span>(<span style="color:#c30">&#34;my.go.tmpl&#34;</span>).<span style="color:#c0f">Funcs</span>(helperFuncs).<span style="color:#c0f">Parse</span>(tracerTemplate))
+	<span style="color:#09f;font-style:italic">// Execute the template and pass it the metadata we collected before
+</span><span style="color:#09f;font-style:italic"></span>	t.<span style="color:#c0f">Execute</span>(out, metadata)
+	<span style="color:#09f;font-style:italic">// Add needed imports and format the code before printing
+</span><span style="color:#09f;font-style:italic"></span>	formattedCode, err <span style="color:#555">:=</span> imports.<span style="color:#c0f">Process</span>(<span style="color:#c30">&#34;animal_tracer.go&#34;</span>, out.<span style="color:#c0f">Bytes</span>(), <span style="color:#555">&amp;</span>imports.Options{Comments: <span style="color:#069;font-weight:bold">true</span>})
+	<span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+		fmt.<span style="color:#c0f">Printf</span>(<span style="color:#c30">&#34;cannot format source code, might be an error in template: %s\n&#34;</span>, err)
+		<span style="color:#069;font-weight:bold">return</span> err
+	}
+	<span style="color:#09f;font-style:italic">// print it out!
+</span><span style="color:#09f;font-style:italic"></span>	fmt.<span style="color:#c0f">Println</span>(<span style="color:#366">string</span>(formattedCode))
+</code></pre></div><p>The result will be:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">package</span> animals
+
+<span style="color:#069;font-weight:bold">import</span> <span style="color:#c30">&#34;fmt&#34;</span>
+
+<span style="color:#069;font-weight:bold">type</span> AnimalTracer <span style="color:#069;font-weight:bold">struct</span> {
+	Speaker
+}
+
+<span style="color:#069;font-weight:bold">func</span> (a <span style="color:#555">*</span>AnimalTracer) <span style="color:#c0f">Speak</span>(x <span style="color:#078;font-weight:bold">int</span>) {
+	fmt.<span style="color:#c0f">Printf</span>(<span style="color:#c30">&#34;Running Speak(x) with &#39;x&#39;=%v &#34;</span>, x)
+	a.Speaker.<span style="color:#c0f">Speak</span>(x)
+}
+</code></pre></div><p>Beautiful!</p>
+<p>Similarly, running the generator over the <code>timerTemplate</code> will yield:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">package</span> animals
+
+<span style="color:#069;font-weight:bold">import</span> (
+	<span style="color:#c30">&#34;fmt&#34;</span>
+	<span style="color:#c30">&#34;time&#34;</span>
+)
+
+<span style="color:#069;font-weight:bold">type</span> AnimalTimer <span style="color:#069;font-weight:bold">struct</span> {
+	Speaker
+}
+
+<span style="color:#069;font-weight:bold">func</span> (a <span style="color:#555">*</span>AnimalTimer) <span style="color:#c0f">Speak</span>(x <span style="color:#078;font-weight:bold">int</span>) {
+	fmt.<span style="color:#c0f">Println</span>(<span style="color:#c30">&#34;Timing Speak function...&#34;</span>)
+	__t <span style="color:#555">:=</span> time.<span style="color:#c0f">Now</span>()
+	a.Speaker.<span style="color:#c0f">Speak</span>(x)
+	fmt.<span style="color:#c0f">Printf</span>(<span style="color:#c30">&#34;Speak took %s\n&#34;</span>, x, time.<span style="color:#c0f">Since</span>(__t))
+}
+</code></pre></div><h2 id="finishing-up">Finishing up&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#finishing-up"></i></a> </h2>
+<p>Using the techniques from the previous section, we can now generate the OpenTracing decorator we want by using the following template:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{<span style="color:#069;font-weight:bold">range</span> <span style="color:#a00;background-color:#faa">$</span>index, <span style="color:#a00;background-color:#faa">$</span>element <span style="color:#555">:=</span> .Methods}}
+<span style="color:#069;font-weight:bold">func</span> (a <span style="color:#555">*</span>{{<span style="color:#a00;background-color:#faa">$</span>.Name}}) {{<span style="color:#a00;background-color:#faa">$</span>index}}({{<span style="color:#a00;background-color:#faa">$</span>element.Params | joinParamsWithType}}) {{<span style="color:#a00;background-color:#faa">$</span>element.Results | joinResultsForSignature}} {
+	origCtx <span style="color:#555">:=</span> a.ctx
+	span, newCtx <span style="color:#555">:=</span> tracing.<span style="color:#c0f">StartSpanWithParentByContext</span>(a.ctx, <span style="color:#c30">&#34;app.{{$index}}&#34;</span>)
+
+	a.ctx = newCtx
+	a.app.<span style="color:#c0f">Srv</span>().Store.<span style="color:#c0f">SetContext</span>(newCtx)
+	<span style="color:#069;font-weight:bold">defer</span> <span style="color:#069;font-weight:bold">func</span>() { 
+		a.app.<span style="color:#c0f">Srv</span>().Store.<span style="color:#c0f">SetContext</span>(origCtx)
+		a.ctx = origCtx 
+	}()
+	{{<span style="color:#069;font-weight:bold">range</span> <span style="color:#a00;background-color:#faa">$</span>paramIdx, <span style="color:#a00;background-color:#faa">$</span>param <span style="color:#555">:=</span> <span style="color:#a00;background-color:#faa">$</span>element.Params}}
+		{{ shouldTrace <span style="color:#a00;background-color:#faa">$</span>element.ParamsToTrace <span style="color:#a00;background-color:#faa">$</span>param.Name }}
+	{{end}}
+	<span style="color:#069;font-weight:bold">defer</span> span.<span style="color:#c0f">Finish</span>()
+	{{<span style="color:#555">-</span> <span style="color:#069;font-weight:bold">if</span> <span style="color:#a00;background-color:#faa">$</span>element.Results | len | eq <span style="color:#f60">0</span>}}
+		a.app.{{<span style="color:#a00;background-color:#faa">$</span>index}}({{<span style="color:#a00;background-color:#faa">$</span>element.Params | joinParams}})
+	{{<span style="color:#069;font-weight:bold">else</span>}}
+		{{<span style="color:#a00;background-color:#faa">$</span>element.Results | genResultsVars}} <span style="color:#555">:=</span> a.app.{{<span style="color:#a00;background-color:#faa">$</span>index}}({{<span style="color:#a00;background-color:#faa">$</span>element.Params | joinParams}})
+		{{<span style="color:#069;font-weight:bold">if</span> <span style="color:#a00;background-color:#faa">$</span>element.Results | errorPresent}}
+			<span style="color:#069;font-weight:bold">if</span> {{<span style="color:#a00;background-color:#faa">$</span>element.Results | errorVar}} <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+				span.<span style="color:#c0f">LogFields</span>(spanlog.<span style="color:#c0f">Error</span>({{<span style="color:#a00;background-color:#faa">$</span>element.Results | errorVar}}))
+				ext.Error.<span style="color:#c0f">Set</span>(span, <span style="color:#069;font-weight:bold">true</span>)
+			}
+		{{end}}		
+		<span style="color:#069;font-weight:bold">return</span> {{<span style="color:#a00;background-color:#faa">$</span>element.Results | genResultsVars <span style="color:#555">-</span>}}
+	{{end}}}
+{{end}}
+</code></pre></div><p>Phew, this was quite a trip, huh? I hope you found it interesting. You can see the actual generator implementation inside <code>mattermost-server</code> in <a href="https://github.com/mattermost/mattermost-server/blob/master/app/layer_generators/main.go">/app/layer_generators/main.go</a>.</p>
+<p><em>Side note:</em> This is just one way of handling this problem. Not everyone wants to rely on using code-generation too much since it hides a lot of implementation and complicates the build process (you have to re-run the generators each time your interface changes). We&rsquo;ve settled on this approach due to its flexibility and performance.</p>
+<p>If you have any notes or ideas on how this could be implemented in a cleaner way - please stop by the <a href="https://community.mattermost.com">Mattermost Community</a> server - I&rsquo;ll be <strong>very</strong> glad to discuss it further.</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Eli Yukelzon
+-
+<a href="https://community.mattermost.com/core/messages/@eli.yukelzon" target="_blank">
+    @eli.yukelzon
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/reflog" target="_blank">
+    @reflog
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                <h6>Table Of Contents</h6>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-distributed-tracing">What is distributed tracing?</a></li>
+    <li><a href="#the-goal">The goal</a></li>
+    <li><a href="#straightforward-tracing-implementation">Straightforward tracing implementation</a></li>
+    <li><a href="#decorator-pattern">Decorator pattern</a></li>
+    <li><a href="#our-solution">Our solution</a>
+      <ul>
+        <li><a href="#struct-embedding">Struct embedding</a></li>
+        <li><a href="#code-parsing-using-ast">Code parsing using AST</a></li>
+        <li><a href="#code-generation-using-templates">Code generation using templates</a></li>
+      </ul>
+    </li>
+    <li><a href="#finishing-up">Finishing up</a></li>
+  </ul>
+</nav>
+
+                    
+    
+    
+    
+    
+    
+    
+
+    
+        
+        
+            
+            
+            
+        
+    
+        
+        
+            
+            
+            
+        
+    
+        
+        
+    
+    
+        
+    
+        
+    
+        
+    
+    
+        <p>
+            Part 3 of 3 in the <b>AST</b> series.
+        </p>
+        <p>
+        
+            <a href="https://developers.mattermost.com/blog/instrumenting-go-code-via-ast-2/"><i class="fa fa-angle-double-left"></i>&nbsp;Part 2</a>
+        
+        
+        
+    
+
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/advanced-git-tbilisi-free-university/">Advanced Git with the Free University of Tbilisi</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/all-about-emojis/">All About Emojis</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/">Maintaining Consistency in Codebases with Go vet</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>
