@@ -626,7 +626,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git clone https://github.com/mattermost/mattermost-plugin-apps.git
 <span style="color:#366">cd</span> mattermost-plugin-apps/examples/go/hello-webhooks
 go run . 
-</code></pre></div><p>In the Mattermost Desktop client run:</p>
+</code></pre></div><p>Run the following Mattermost slash command:</p>
 <pre><code>/apps install http http://localhost:8080/manifest.json
 </code></pre><h3 id="manifest">Manifest&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#manifest"></i></a> </h3>
 <p><code>Hello, Webhooks!</code> is an HTTP app. It requests the <em>permissions</em> to act as a System Admin and Bot to access the Mattermost REST API. It also requests permissions to receive 3rd party webhook messages. It binds itself to <code>/</code> commands.</p>
