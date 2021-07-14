@@ -19,7 +19,7 @@ cd mattermost-plugin-apps/examples/go/hello-oauth2
 go run . 
 ```
 
-In the Mattermost Desktop client run:
+Run the following Mattermost slash command:
 
 ```
 /apps install http http://localhost:8080/manifest.json
