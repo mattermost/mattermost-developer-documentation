@@ -44,7 +44,7 @@ Hello OAuth2! is an HTTP app, it requests the *permissions* to act as a System A
     "display_name": "Hello, OAuth2!",
     "app_type": "http",
     "root_url": "http://localhost:8080",
-    "homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/examples/go/hello-oauth2",
+    "homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-oauth2",
     "requested_permissions": [
         "act_as_admin",
         "act_as_user",

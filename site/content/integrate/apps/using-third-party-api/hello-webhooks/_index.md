@@ -38,7 +38,7 @@ In the Mattermost Desktop client run:
     "display_name": "Hello, Webhooks!",
     "app_type": "http",
     "root_url": "http://localhost:8080",
-    "homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/examples/go/hello-webhooks",
+    "homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-webhooks",
     "requested_permissions": [
         "act_as_admin",
         "act_as_bot",
