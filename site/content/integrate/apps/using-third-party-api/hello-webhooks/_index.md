@@ -17,7 +17,7 @@ This is an example of an HTTP app ([source](https://github.com/mattermost/matter
 
 To install "Hello, Webhooks" on a locally-running instance of Mattermost follow these steps (go 1.16 is required):
 
-Make sure you have the followed Quick Start Guide [prerequisite steps]({{< ref quick-start-go >}}).
+Make sure you have followed the Quick Start Guide [prerequisite steps]({{< ref quick-start-go >}}).
 
 ```sh
 git clone https://github.com/mattermost/mattermost-plugin-apps.git
