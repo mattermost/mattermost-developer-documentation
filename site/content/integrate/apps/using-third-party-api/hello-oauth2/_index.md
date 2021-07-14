@@ -11,7 +11,11 @@ This is an example of an HTTP app ([source](https://github.com/mattermost/matter
 - In its `bindings` function it declares three commands: `configure`, `connect`, and `send`.
 - Its `send` function mentions the user by their Google name, and lists their Google Calendars.
 
+### Install
+
 To install "Hello, OAuth2" on a locally-running instance of Mattermost follow these steps (go 1.16 is required):
+
+Make sure you have the followed Quick Start Guide [prerequisite steps]({{< ref quick-start-go >}}).
 
 ```sh
 git clone https://github.com/mattermost/mattermost-plugin-apps.git
@@ -24,6 +28,8 @@ Run the following Mattermost slash command:
 ```
 /apps install http http://localhost:8080/manifest.json
 ```
+
+### Configure
 
 You need to configure your [Google API Credentials](https://console.cloud.google.com/apis/credentials) for the app. Use `$MATTERMOST_SITE_URL$/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete` for the `Authorized redirect URIs` field. After configuring the credentials, in the Mattermost Desktop client run:
 

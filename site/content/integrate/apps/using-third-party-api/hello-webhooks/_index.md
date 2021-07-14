@@ -13,7 +13,11 @@ This is an example of an HTTP app ([source](https://github.com/mattermost/matter
 - The `send` command sends a webhook message to the apps plugin which in turn sends the webhook request to the `Hello, webhooks!` app
 - The hello app receives the webhook, via it's `/webhook` endpoint, and responds with an ephemeral message when the webhook is received.
 
+### Install
+
 To install "Hello, Webhooks" on a locally-running instance of Mattermost follow these steps (go 1.16 is required):
+
+Make sure you have the followed Quick Start Guide [prerequisite steps]({{< ref quick-start-go >}}).
 
 ```sh
 git clone https://github.com/mattermost/mattermost-plugin-apps.git
