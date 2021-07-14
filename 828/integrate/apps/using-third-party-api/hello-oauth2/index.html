@@ -620,13 +620,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>In its <code>bindings</code> function it declares three commands: <code>configure</code>, <code>connect</code>, and <code>send</code>.</li>
 <li>Its <code>send</code> function mentions the user by their Google name, and lists their Google Calendars.</li>
 </ul>
+<h3 id="install">Install&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#install"></i></a> </h3>
 <p>To install &ldquo;Hello, OAuth2&rdquo; on a locally-running instance of Mattermost follow these steps (go 1.16 is required):</p>
+<p>Make sure you have the followed Quick Start Guide <a href="https://developers.mattermost.com/integrate/apps/quick-start-go/">prerequisite steps</a>.</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git clone https://github.com/mattermost/mattermost-plugin-apps.git
 <span style="color:#366">cd</span> mattermost-plugin-apps/examples/go/hello-oauth2
 go run . 
 </code></pre></div><p>Run the following Mattermost slash command:</p>
 <pre><code>/apps install http http://localhost:8080/manifest.json
-</code></pre><p>You need to configure your <a href="https://console.cloud.google.com/apis/credentials">Google API Credentials</a> for the app. Use <code>$MATTERMOST_SITE_URL$/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete</code> for the <code>Authorized redirect URIs</code> field. After configuring the credentials, in the Mattermost Desktop client run:</p>
+</code></pre><h3 id="configure">Configure&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#configure"></i></a> </h3>
+<p>You need to configure your <a href="https://console.cloud.google.com/apis/credentials">Google API Credentials</a> for the app. Use <code>$MATTERMOST_SITE_URL$/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete</code> for the <code>Authorized redirect URIs</code> field. After configuring the credentials, in the Mattermost Desktop client run:</p>
 <pre><code>/hello-oauth2 configure --client-id $CLIENT_ID --client-secret $CLIENT_SECRET
 </code></pre><p>Now, you can connect your account to Google with <code>/hello-oauth2 connect</code> command, and then try <code>/hello-oauth2 send</code>.</p>
 <h3 id="manifest">Manifest&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#manifest"></i></a> </h3>
