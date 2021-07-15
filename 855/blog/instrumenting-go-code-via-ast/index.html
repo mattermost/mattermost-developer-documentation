@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Instrumenting Go code via AST</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Instrumenting Go code via AST">
+
+ 
+  <meta name="description" content="Learn about what Go AST is, why we need it, and instrumenting our handlers with tracing code.">
+<meta name="twitter:description" content="Learn about what Go AST is, why we need it, and instrumenting our handlers with tracing code.">
+<meta name="og:description" content="Learn about what Go AST is, why we need it, and instrumenting our handlers with tracing code.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/instrumenting-go-code-via-ast/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Instrumenting Go Code via AST - Part 2
+                            
+                            </h1>
+                            <small>Learn about what Go AST is, why we need it, and instrumenting our handlers with tracing code.</small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            October 31, 2019
+                            <small class="blog-item__count">1316 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>We&rsquo;ve been working on integrating call tracing in the server to provide exact measurements of all API and DB calls.
+We&rsquo;ve picked <a href="https://github.com/opentracing/opentracing-go">OpenTracing</a> - a lovely open source project that allows you to setup trace reporting and enables you to support <a href="https://opentracing.io/docs/overview/what-is-tracing/">Distributed tracing</a>.</p>
+<p>Instrumenting your API handler in Go is very straightforward - setup a connection to a collection server supporting the OpenTracing spec (we&rsquo;ve decided to use <a href="https://www.jaegertracing.io/">Jaeger</a>) and wrap your code in spans.</p>
+<p>To simplify this, we&rsquo;ve added a simple tracing module:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">package</span> tracing
+
+<span style="color:#069;font-weight:bold">import</span> (
+    <span style="color:#c30">&#34;context&#34;</span>
+
+    opentracing <span style="color:#c30">&#34;github.com/opentracing/opentracing-go&#34;</span>
+    <span style="color:#c30">&#34;github.com/uber/jaeger-client-go&#34;</span>
+    jaegercfg <span style="color:#c30">&#34;github.com/uber/jaeger-client-go/config&#34;</span>
+    jaegerlog <span style="color:#c30">&#34;github.com/uber/jaeger-client-go/log&#34;</span>
+    <span style="color:#c30">&#34;github.com/uber/jaeger-lib/metrics&#34;</span>
+)
+
+<span style="color:#069;font-weight:bold">var</span> initialized = <span style="color:#069;font-weight:bold">false</span>
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">Initialize</span>() <span style="color:#078;font-weight:bold">error</span> {
+    cfg <span style="color:#555">:=</span> jaegercfg.Configuration{
+        Sampler: <span style="color:#555">&amp;</span>jaegercfg.SamplerConfig{
+                Type:  jaeger.SamplerTypeConst,
+                Param: <span style="color:#f60">1</span>,
+        },
+        Reporter: <span style="color:#555">&amp;</span>jaegercfg.ReporterConfig{
+                LogSpans: <span style="color:#069;font-weight:bold">true</span>,
+        },
+    }
+
+    _, err <span style="color:#555">:=</span> cfg.<span style="color:#c0f">InitGlobalTracer</span>(
+        <span style="color:#c30">&#34;mattermost&#34;</span>,
+        jaegercfg.<span style="color:#c0f">Logger</span>(jaegerlog.StdLogger),
+        jaegercfg.<span style="color:#c0f">Metrics</span>(metrics.NullFactory),
+    )
+    <span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+        <span style="color:#069;font-weight:bold">return</span> err
+    }
+
+    initialized = <span style="color:#069;font-weight:bold">true</span>
+
+    <span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">nil</span>
+}
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">StartRootSpanByContext</span>(ctx context.Context, operationName <span style="color:#078;font-weight:bold">string</span>) (opentracing.Span, context.Context) {
+    <span style="color:#069;font-weight:bold">return</span> opentracing.<span style="color:#c0f">StartSpanFromContext</span>(ctx, operationName)
+}
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">StartSpanWithParentByContext</span>(ctx context.Context, operationName <span style="color:#078;font-weight:bold">string</span>) (opentracing.Span, context.Context) {
+    parentSpan <span style="color:#555">:=</span> opentracing.<span style="color:#c0f">SpanFromContext</span>(ctx)
+
+    <span style="color:#069;font-weight:bold">if</span> parentSpan <span style="color:#555">==</span> <span style="color:#069;font-weight:bold">nil</span> {
+        <span style="color:#069;font-weight:bold">return</span> <span style="color:#c0f">StartRootSpanByContext</span>(ctx, operationName)
+    }
+
+    <span style="color:#069;font-weight:bold">return</span> opentracing.<span style="color:#c0f">StartSpanFromContext</span>(ctx, operationName, opentracing.<span style="color:#c0f">ChildOf</span>(parentSpan.<span style="color:#c0f">Context</span>()))
+}
+</code></pre></div><p>Now, wrapping an API call in a span is very easy:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">apiCall</span>(c <span style="color:#555">*</span>Context, w http.ResponseWriter, r <span style="color:#555">*</span>http.Request) {
+    span, ctx <span style="color:#555">:=</span> tracing.<span style="color:#c0f">StartSpanWithParentByContext</span>(c.App.Context, <span style="color:#c30">&#34;api4:apiCall&#34;</span>)
+    c.App.Context = ctx
+    <span style="color:#069;font-weight:bold">defer</span> span.<span style="color:#c0f">Finish</span>()
+
+    <span style="color:#09f;font-style:italic">// perform actual request handling
+</span><span style="color:#09f;font-style:italic"></span>}
+</code></pre></div><p>Now, each time the <code>apiCall</code> handler is invoked, it will be measured and traced on Jaeger.</p>
+<p>The problem is that we have a rather large API surface (around 300+ handlers) and it would be a really tough task to instrument all the handlers by hand. That&rsquo;s where our story begins.</p>
+<h2 id="go-ast">Go AST&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#go-ast"></i></a> </h2>
+<p>So what is an AST really? Well, to quote <a href="https://www.wikiwand.com/en/Abstract_syntax_tree">Wikipedia</a>:</p>
+<blockquote>
+<p>In computer science, an abstract syntax tree (AST), or just syntax tree, is a tree representation of the abstract syntactic structure of source code written in a programming language. Each node of the tree denotes a construct occurring in the source code.</p>
+</blockquote>
+<p><img src="https://developers.mattermost.com/blog/2019-10-25-instrumenting-go-code-via-ast/Abstract_syntax_tree_for_Euclidean_algorithm.png" alt="ast example"></p>
+<p>Basically, an AST is a tree-like representation of your source code.</p>
+<p>Why do we need it?</p>
+<p>Parsing the code into an AST allows us to refactor code on a statement level, meaning, instead of finding methods and fields using string search, we can find them by their actual structure. This gives us incredible flexibility in writing custom go refactoring tools.</p>
+<p>Let&rsquo;s see a small example for a &lsquo;Hello World&rsquo; program:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">package</span> main
+
+<span style="color:#069;font-weight:bold">import</span> (
+	<span style="color:#c30">&#34;fmt&#34;</span>
+)
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">main</span>() {
+	fmt.<span style="color:#c0f">Printf</span>(<span style="color:#c30">&#34;Hello, Golang\n&#34;</span>)
+}
+
+</code></pre></div><p>After passing it through <code>go/parser</code>, we get the following structure (image generated using: <a href="http://goast.yuroyoro.net/):">http://goast.yuroyoro.net/):</a></p>
+<p><img src="https://developers.mattermost.com/blog/2019-10-25-instrumenting-go-code-via-ast/hello_ast.png" alt="hello ast"></p>
+<p>So given this structure, we can easily find, for example, the <code>Printf</code> statement by looking at <code>File.Decls[1].Body.List[0]</code>.</p>
+<p>Now that we understand the basic idea behind ASTs, let&rsquo;s go ahead and try to solve the issue at hand - instrumenting our handlers with tracing code.</p>
+<h2 id="analyzing-existing-code">Analyzing existing code&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#analyzing-existing-code"></i></a> </h2>
+<h3 id="finding-the-pattern">Finding the pattern&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#finding-the-pattern"></i></a> </h3>
+<p>The first thing we need is to identify the methods that we want to instrument. In our code base, all of the API handlers sit in the <code>api4</code> folder and each method that handles a certain API has the same signature:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">apiCall</span>(c <span style="color:#555">*</span>Context, w http.ResponseWriter, r <span style="color:#555">*</span>http.Request) {
+    <span style="color:#09f;font-style:italic">// perform actual request handling
+</span><span style="color:#09f;font-style:italic"></span>}
+</code></pre></div><p>So we are looking at a function that has <strong>exactly</strong> 3 arguments, with specific names and types.</p>
+<p>Let&rsquo;s write some AST walker boilerplate that will go through all the files in the <code>api4</code> folder and parse them:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">package</span> main
+
+<span style="color:#069;font-weight:bold">import</span> (
+	<span style="color:#c30">&#34;bytes&#34;</span>
+	<span style="color:#c30">&#34;fmt&#34;</span>
+	<span style="color:#c30">&#34;go/ast&#34;</span>
+	<span style="color:#c30">&#34;go/format&#34;</span>
+	<span style="color:#c30">&#34;go/parser&#34;</span>
+	<span style="color:#c30">&#34;go/token&#34;</span>
+	<span style="color:#c30">&#34;io/ioutil&#34;</span>
+)
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">fix</span>(dir <span style="color:#078;font-weight:bold">string</span>) {
+	fset <span style="color:#555">:=</span> token.<span style="color:#c0f">NewFileSet</span>()
+	pkgs, err <span style="color:#555">:=</span> parser.<span style="color:#c0f">ParseDir</span>(fset, dir, <span style="color:#069;font-weight:bold">nil</span>, parser.ParseComments)
+	<span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+		<span style="color:#366">panic</span>(err)
+	}
+
+	<span style="color:#069;font-weight:bold">for</span> _, pkg <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> pkgs {
+		<span style="color:#069;font-weight:bold">for</span> fileName, file <span style="color:#555">:=</span> <span style="color:#069;font-weight:bold">range</span> pkg.Files {
+			fmt.<span style="color:#c0f">Printf</span>(<span style="color:#c30">&#34;working on file %v\n&#34;</span>, fileName)
+			ast.<span style="color:#c0f">Inspect</span>(file, <span style="color:#069;font-weight:bold">func</span>(n ast.Node) <span style="color:#078;font-weight:bold">bool</span> {
+                <span style="color:#09f;font-style:italic">// perform analysis here
+</span><span style="color:#09f;font-style:italic"></span>				<span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">true</span>
+			})
+
+			buf <span style="color:#555">:=</span> <span style="color:#366">new</span>(bytes.Buffer)
+			err <span style="color:#555">:=</span> format.<span style="color:#c0f">Node</span>(buf, fset, file)
+			<span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+				fmt.<span style="color:#c0f">Printf</span>(<span style="color:#c30">&#34;error: %v\n&#34;</span>, err)
+			} <span style="color:#069;font-weight:bold">else</span> <span style="color:#069;font-weight:bold">if</span> fileName[<span style="color:#366">len</span>(fileName)<span style="color:#555">-</span><span style="color:#f60">8</span>:] <span style="color:#555">!=</span> <span style="color:#c30">&#34;_test.go&#34;</span> {
+				ioutil.<span style="color:#c0f">WriteFile</span>(fileName, buf.<span style="color:#c0f">Bytes</span>(), <span style="color:#f60">0664</span>)
+			}
+		}
+	}
+}
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">main</span>() {
+	<span style="color:#c0f">fix</span>(<span style="color:#c30">&#34;./api4&#34;</span>)
+}
+</code></pre></div><p><code>ast.Inspect</code> visits all AST nodes in each file and provides us with a parsed token.
+To only operate on specific nodes in the AST, we try to cast to the type we are interested in and only then proceed:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">fn, ok  <span style="color:#555">:=</span> n.(<span style="color:#555">*</span>ast.FuncDecl)
+<span style="color:#069;font-weight:bold">if</span> ok {
+  <span style="color:#09f;font-style:italic">// current node is a function!
+</span><span style="color:#09f;font-style:italic"></span>}
+</code></pre></div><p>Next we need to extract and analyze the parameters to the function (we&rsquo;ll also add a small helper function to get a node as a string):</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">FormatNode</span>(node ast.Node) <span style="color:#078;font-weight:bold">string</span> {
+	buf <span style="color:#555">:=</span> <span style="color:#366">new</span>(bytes.Buffer)
+	_ = format.<span style="color:#c0f">Node</span>(buf, token.<span style="color:#c0f">NewFileSet</span>(), node)
+	<span style="color:#069;font-weight:bold">return</span> buf.<span style="color:#c0f">String</span>()
+}
+<span style="color:#09f;font-style:italic">// retreive function&#39;s parameter list
+</span><span style="color:#09f;font-style:italic"></span>params  <span style="color:#555">:=</span> fn.Type.Params.List
+<span style="color:#09f;font-style:italic">// we are only interested in functions with exactly 3 parameters
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">if</span>  <span style="color:#366">len</span>(params) <span style="color:#555">==</span>  <span style="color:#f60">3</span> {
+	first_parameter_is_c <span style="color:#555">:=</span> <span style="color:#c0f">FormatNode</span>(params[<span style="color:#f60">0</span>].Names[<span style="color:#f60">0</span>]) <span style="color:#555">==</span>  <span style="color:#c30">&#34;c&#34;</span>  <span style="color:#555">&amp;&amp;</span>  <span style="color:#c0f">FormatNode</span>(params[<span style="color:#f60">0</span>].Type) <span style="color:#555">==</span>  <span style="color:#c30">&#34;*Context&#34;</span>
+	second_parameter_is_w <span style="color:#555">:=</span> <span style="color:#c0f">FormatNode</span>(params[<span style="color:#f60">1</span>].Names[<span style="color:#f60">0</span>]) <span style="color:#555">==</span>  <span style="color:#c30">&#34;w&#34;</span>  <span style="color:#555">&amp;&amp;</span>  <span style="color:#c0f">FormatNode</span>(params[<span style="color:#f60">1</span>].Type) <span style="color:#555">==</span>  <span style="color:#c30">&#34;http.ResponseWriter&#34;</span>  
+	third_parameters_is_r <span style="color:#555">:=</span> <span style="color:#c0f">FormatNode</span>(params[<span style="color:#f60">2</span>].Names[<span style="color:#f60">0</span>]) <span style="color:#555">==</span>  <span style="color:#c30">&#34;r&#34;</span>  <span style="color:#555">&amp;&amp;</span>  <span style="color:#c0f">FormatNode</span>(params[<span style="color:#f60">2</span>].Type) <span style="color:#555">==</span>  <span style="color:#c30">&#34;*http.Request&#34;</span>
+	<span style="color:#069;font-weight:bold">if</span> first_parameter_is_c <span style="color:#555">&amp;&amp;</span> second_parameter_is_w <span style="color:#555">&amp;&amp;</span> third_parameters_is_r {
+		<span style="color:#09f;font-style:italic">// this is an API handler!
+</span><span style="color:#09f;font-style:italic"></span>	}
+}
+</code></pre></div><p>Now that we&rsquo;ve found our function, the fun begins! We want to add a couple of statements as described in the introduction and a relevant import.</p>
+<h2 id="instrumenting-the-code">Instrumenting the code&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#instrumenting-the-code"></i></a> </h2>
+<p>As a reminder, this is the piece of code we want to inject at the beginning of every API handler to instrument the code:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	span, ctx <span style="color:#555">:=</span> tracing.<span style="color:#c0f">StartSpanWithParentByContext</span>(c.App.Context, <span style="color:#c30">&#34;api4:apiCall&#34;</span>)
+	c.App.Context = ctx
+    <span style="color:#069;font-weight:bold">defer</span> span.<span style="color:#c0f">Finish</span>()
+</code></pre></div><p>First of all - we need to take care of imports. We are using the &lsquo;tracing&rsquo; module so we need to add just one line (utilizing the golang.org/x/tools/go/ast/astutil module):</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">astutil.<span style="color:#c0f">AddImport</span>(fset, file, <span style="color:#c30">&#34;github.com/mattermost/mattermost-server/services/tracing&#34;</span>)
+</code></pre></div><p>Now we are ready to inject the code. To do that, we need to convert it from its textual representation into a set of AST nodes.
+To help us do that, we can feed that code to <a href="http://goast.yuroyoro.net/">http://goast.yuroyoro.net/</a> to receive the parsed tree. With that in hand, we are ready to write our instrumentation code:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#09f;font-style:italic">// first statement is the assignment:
+</span><span style="color:#09f;font-style:italic">// span, ctx := tracing.StartSpanWithParentByContext(c.App.Context, &#34;api4:apiCall&#34;)
+</span><span style="color:#09f;font-style:italic"></span>a1 <span style="color:#555">:=</span> ast.AssignStmt{
+    <span style="color:#09f;font-style:italic">// token.DEFINE is := 
+</span><span style="color:#09f;font-style:italic"></span>	Tok: token.DEFINE,
+	<span style="color:#09f;font-style:italic">// left hand side has two identifiers, span and ctx
+</span><span style="color:#09f;font-style:italic"></span>	Lhs: []ast.Expr{
+		<span style="color:#555">&amp;</span>ast.Ident{Name: <span style="color:#c30">&#34;span&#34;</span>},
+		<span style="color:#555">&amp;</span>ast.Ident{Name: <span style="color:#c30">&#34;ctx&#34;</span>},
+	},
+	<span style="color:#09f;font-style:italic">// right hand is a call to function
+</span><span style="color:#09f;font-style:italic"></span>	Rhs: []ast.Expr{
+		<span style="color:#555">&amp;</span>ast.CallExpr{
+		    <span style="color:#09f;font-style:italic">// function is taken from a module &#39;tracing&#39; by it&#39;s name
+</span><span style="color:#09f;font-style:italic"></span>			Fun: <span style="color:#555">&amp;</span>ast.SelectorExpr{
+				X:   <span style="color:#555">&amp;</span>ast.Ident{Name: <span style="color:#c30">&#34;tracing&#34;</span>},
+				Sel: <span style="color:#555">&amp;</span>ast.Ident{Name: <span style="color:#c30">&#34;StartSpanWithParentByContext&#34;</span>},
+			},
+			<span style="color:#09f;font-style:italic">// function has two arguments
+</span><span style="color:#09f;font-style:italic"></span>			Args: []ast.Expr{
+			    <span style="color:#09f;font-style:italic">// c.App.Context
+</span><span style="color:#09f;font-style:italic"></span>				<span style="color:#555">&amp;</span>ast.SelectorExpr{
+					X: <span style="color:#555">&amp;</span>ast.SelectorExpr{
+						X:   <span style="color:#555">&amp;</span>ast.Ident{Name: <span style="color:#c30">&#34;c&#34;</span>},
+						Sel: <span style="color:#555">&amp;</span>ast.Ident{Name: <span style="color:#c30">&#34;App&#34;</span>},
+					},
+					Sel: <span style="color:#555">&amp;</span>ast.Ident{Name: <span style="color:#c30">&#34;Context&#34;</span>},
+				},
+				<span style="color:#09f;font-style:italic">// handler identifier, a basic string which we prepare based on current moduleName and function name
+</span><span style="color:#09f;font-style:italic"></span>				<span style="color:#555">&amp;</span>ast.BasicLit{Kind: token.STRING, Value: fmt.<span style="color:#c0f">Sprintf</span>(<span style="color:#c30">&#34;\&#34;api4:%s:%s\&#34;&#34;</span>, moduleName, fn.Name.Name)},
+			},
+		},
+	},
+}
+<span style="color:#09f;font-style:italic">// second statement is a simple assignment
+</span><span style="color:#09f;font-style:italic">// c.App.Context = ctx							
+</span><span style="color:#09f;font-style:italic"></span>a2 <span style="color:#555">:=</span> ast.AssignStmt{
+    <span style="color:#09f;font-style:italic">// token.ASSIGN is =
+</span><span style="color:#09f;font-style:italic"></span>	Tok: token.ASSIGN,
+	Lhs: []ast.Expr{
+		<span style="color:#555">&amp;</span>ast.SelectorExpr{
+			X: <span style="color:#555">&amp;</span>ast.SelectorExpr{
+				X:   <span style="color:#555">&amp;</span>ast.Ident{Name: <span style="color:#c30">&#34;c&#34;</span>},
+				Sel: <span style="color:#555">&amp;</span>ast.Ident{Name: <span style="color:#c30">&#34;App&#34;</span>},
+			},
+			Sel: <span style="color:#555">&amp;</span>ast.Ident{Name: <span style="color:#c30">&#34;Context&#34;</span>},
+		},
+	},
+	Rhs: []ast.Expr{
+		<span style="color:#555">&amp;</span>ast.Ident{Name: <span style="color:#c30">&#34;ctx&#34;</span>},
+	},
+}
+<span style="color:#09f;font-style:italic">// last statement is &#39;defer&#39;							
+</span><span style="color:#09f;font-style:italic"></span>a3 <span style="color:#555">:=</span> ast.DeferStmt{
+	<span style="color:#09f;font-style:italic">// what function call should be deferred?
+</span><span style="color:#09f;font-style:italic"></span>	Call: <span style="color:#555">&amp;</span>ast.CallExpr{
+	    <span style="color:#09f;font-style:italic">// Finish from &#39;span&#39; identifier
+</span><span style="color:#09f;font-style:italic"></span>		Fun: <span style="color:#555">&amp;</span>ast.SelectorExpr{
+			X:   <span style="color:#555">&amp;</span>ast.Ident{Name: <span style="color:#c30">&#34;span&#34;</span>},
+			Sel: <span style="color:#555">&amp;</span>ast.Ident{Name: <span style="color:#c30">&#34;Finish&#34;</span>},
+		},
+	},
+}
+<span style="color:#09f;font-style:italic">// now we prepend the three statements before the rest of function body							
+</span><span style="color:#09f;font-style:italic"></span>fn.Body.List = <span style="color:#366">append</span>([]ast.Stmt{<span style="color:#555">&amp;</span>a1, <span style="color:#555">&amp;</span>a2, <span style="color:#555">&amp;</span>a3}, fn.Body.List<span style="color:#555">...</span>)
+</code></pre></div><p>And that&rsquo;s it! We have our custom refactoring/instrumentation tool that we can tweak however we want.</p>
+<h2 id="go2ast">Go2AST&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#go2ast"></i></a> </h2>
+<p>Since the process of writing AST code by hand based on <code>go/printer</code> or <a href="http://goast.yuroyoro.net/">http://goast.yuroyoro.net/</a> is rather tedious, I&rsquo;ve taken the code of <code>go/printer</code> and converted it into a reusable CLI command that does all the work for you! Just feed it some Go code and it&rsquo;ll spit out a ready-to-paste AST tree.</p>
+<p>Take a look here: <a href="https://github.com/reflog/go2ast">https://github.com/reflog/go2ast</a>.</p>
+<h2 id="conclusion">Conclusion&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#conclusion"></i></a> </h2>
+<p>Writing refactoring tools is fun and the possibilities are endless. The Go standard library contains everything you need to create your own little tools for every repeatable task.
+Seeing code as an AST for the first time can be a little daunting, but once you get this knowledge in your tool-belt, you&rsquo;ll look for other places to apply it immediately!</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Eli Yukelzon
+-
+<a href="https://community.mattermost.com/core/messages/@eli.yukelzon" target="_blank">
+    @eli.yukelzon
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/reflog" target="_blank">
+    @reflog
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                <h6>Table Of Contents</h6>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#go-ast">Go AST</a></li>
+    <li><a href="#analyzing-existing-code">Analyzing existing code</a>
+      <ul>
+        <li><a href="#finding-the-pattern">Finding the pattern</a></li>
+      </ul>
+    </li>
+    <li><a href="#instrumenting-the-code">Instrumenting the code</a></li>
+    <li><a href="#go2ast">Go2AST</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+
+                    
+    
+    
+    
+    
+    
+    
+
+    
+        
+        
+    
+        
+        
+    
+        
+        
+    
+    
+        
+            
+            
+        
+    
+        
+            
+            
+        
+    
+        
+    
+    
+        <p>
+            Part 1 of 3 in the <b>AST</b> series.
+        </p>
+        <p>
+        
+        
+        
+            <a href="https://developers.mattermost.com/blog/instrumenting-go-code-via-ast-2/">Part 2&nbsp;<i class="fa fa-angle-double-right"></i></a></p>
+        
+    
+
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/advanced-git-tbilisi-free-university/">Advanced Git with the Free University of Tbilisi</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/all-about-emojis/">All About Emojis</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/">Maintaining Consistency in Codebases with Go vet</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

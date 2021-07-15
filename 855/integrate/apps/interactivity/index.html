@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Interactivity</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Interactivity">
+
+ 
+  <meta name="description" content="TODO">
+<meta name="twitter:description" content="TODO">
+<meta name="og:description" content="TODO">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/integrate/apps/interactivity/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+    </head>
+<body>
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div id="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 sidebar">
+    <div class="sidebar__menu-toggle">
+        Interactivity
+        <i class="fa fa-bars pull-right"></i>
+    </div>
+    <div class="row sidebar__links">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+            
+                
+                
+
+                
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/getting-started/"> Getting Started</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/getting-started/how-should-i-integrate/"> How Should I Integrate?</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/incoming-webhooks/"> Incoming Webhooks</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/outgoing-webhooks/"> Outgoing Webhooks</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/slash-commands/"> Slash Commands</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/rest-api/"> API Reference</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/examples/"> Examples</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+                    
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-minus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/integrate/apps/"> Apps (Developers Preview)</a>
+                    
+                </span>
+
+                <ul class="sub-menu" style="display: block">
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/quick-start-js/"> Quick start guide (JS)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/quick-start-go/"> Quick start guide (Go)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/manifest/"> Manifest</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/call/"> Call</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/bindings/"> Bindings</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        <span class="item active">
+                            <i class="sub-menu__toggle fa fa-minus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a class="active" href="#"> Interactivity</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" style="display: block">
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/integrate/apps/interactivity/example-post-menu/"> Post Menu Example</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/using-mattermost-api/"> Apps APIs</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/using-third-party-api/"> Third-party APIs</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/lifecycle/"> App Lifecycle</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/deployment-aws/"> Deployment (AWS)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/integrate/apps/deployment-aws/prepare-app/"> Preparing App (Developers)</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/integrate/apps/deployment-aws/deploy-to-aws/"> Deployment (Admins)</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/integrate/apps/deployment-aws/hello-lambda/"> Hello, lambda!</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/integrate/apps/deployment-http/"> Deployment (HTTP Server)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+            
+        
+    </div>
+</div>
+
+                <div class="col-lg-9 doc-content">
+                    
+<a href="https://github.com/mattermost/mattermost-developer-documentation/edit/master/site/content/integrate/apps/interactivity/_index.md" class="float-right edit-github">
+    Edit on GitHub
+</a>
+
+
+                    <h1 class="mt-0 doc-title">
+                        
+                            Interactivity
+                        
+                    </h1>
+                    <h3 id="modal-forms">Modal Forms&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#modal-forms"></i></a> </h3>
+<p>Modal Forms (<a href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form">godoc</a>) open as a modal on the user interface as a result of a Form call response. One example is the <code>send</code> form in the <a href="https://github.com/mattermost/mattermost-plugin-apps/blob/master/examples/go/hello-world/send_form.json">Hello World!</a> app.</p>
+<p>They are defined by:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>title</code></td>
+<td align="left">string</td>
+<td align="left">Title of the form, shown in the modal.</td>
+</tr>
+<tr>
+<td align="left"><code>header</code></td>
+<td align="left">string</td>
+<td align="left">(Optional) Text used as introduction in the form.</td>
+</tr>
+<tr>
+<td align="left"><code>footer</code></td>
+<td align="left">string</td>
+<td align="left">(Optional) Text used at the end of the modal.</td>
+</tr>
+<tr>
+<td align="left"><code>icon</code></td>
+<td align="left">string</td>
+<td align="left">(Optional) Either a fully-qualified URL, or a path for an app&rsquo;s static asset.</td>
+</tr>
+<tr>
+<td align="left"><code>call</code></td>
+<td align="left">Call</td>
+<td align="left">Call to perform for this form.</td>
+</tr>
+<tr>
+<td align="left"><code>submit_buttons</code></td>
+<td align="left">string</td>
+<td align="left">(Optional) Key of the field to be used as the submit buttons. Must be of type <code>static_select</code>.</td>
+</tr>
+<tr>
+<td align="left"><code>fields</code></td>
+<td align="left">Fields</td>
+<td align="left">List of fields in the form.</td>
+</tr>
+</tbody>
+</table>
+<p>The types of fields are:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>text</code></td>
+<td align="left">Text field.</td>
+</tr>
+<tr>
+<td align="left"><code>static_select</code></td>
+<td align="left">A dropdown select with static elements.</td>
+</tr>
+<tr>
+<td align="left"><code>dynamic_select</code></td>
+<td align="left">A dropdown select that loads the elements dynamically.</td>
+</tr>
+<tr>
+<td align="left"><code>bool</code></td>
+<td align="left">A boolean selector represented as a checkbox.</td>
+</tr>
+<tr>
+<td align="left"><code>user</code></td>
+<td align="left">A dropdown to select users.</td>
+</tr>
+<tr>
+<td align="left"><code>channel</code></td>
+<td align="left">A dropdown to select channels.</td>
+</tr>
+<tr>
+<td align="left"><code>markdown</code></td>
+<td align="left">Only visible on modal forms. An arbitrary markdown text.</td>
+</tr>
+</tbody>
+</table>
+<p>Markdown fields are a special field that allows you to better format your form. They will not generate any value in the form submission sent to the app. The content is defined in the field description.</p>
+<p>All fields include (<a href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field">godoc</a>):</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>name</code></td>
+<td align="left">string</td>
+<td align="left">Key to use in the values field of the call.</td>
+</tr>
+<tr>
+<td align="left"><code>type</code></td>
+<td align="left">FieldType</td>
+<td align="left">The type of the field.</td>
+</tr>
+<tr>
+<td align="left"><code>is_required</code></td>
+<td align="left">bool</td>
+<td align="left">(Optional) Whether the field needs to be filled.</td>
+</tr>
+<tr>
+<td align="left"><code>multiselect</code></td>
+<td align="left">bool</td>
+<td align="left">(Optional) Whether a select field allows multiple values to be selected.</td>
+</tr>
+<tr>
+<td align="left"><code>value</code></td>
+<td align="left">value</td>
+<td align="left">(Optional) Default value.</td>
+</tr>
+<tr>
+<td align="left"><code>description</code></td>
+<td align="left">string</td>
+<td align="left">(Optional) Text to show below the field describing it.</td>
+</tr>
+<tr>
+<td align="left"><code>modal_label</code></td>
+<td align="left">string</td>
+<td align="left">(Optional) Label to name the field in the modal.</td>
+</tr>
+</tbody>
+</table>
+<p>Text fields may include:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>subtype</code></td>
+<td align="left">string</td>
+<td align="left">(Optional) The type of text that will be shown. Available types are one of input, textarea, email, number, password, tel, or URL.</td>
+</tr>
+<tr>
+<td align="left"><code>min_length</code></td>
+<td align="left">int</td>
+<td align="left">(Optional) Validate the field length before performing the call.</td>
+</tr>
+<tr>
+<td align="left"><code>max_length</code></td>
+<td align="left">int</td>
+<td align="left">(Optional) Validate the field length before performing the call.</td>
+</tr>
+</tbody>
+</table>
+<p>Static select fields include:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>options</code></td>
+<td align="left">Options</td>
+<td align="left">Options for the dropdown.</td>
+</tr>
+</tbody>
+</table>
+<p>Each Option includes:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>label</code></td>
+<td align="left">string</td>
+<td align="left">User-facing string.</td>
+</tr>
+<tr>
+<td align="left"><code>value</code></td>
+<td align="left">string</td>
+<td align="left">Machine-facing value.</td>
+</tr>
+</tbody>
+</table>
+<p>All select also include:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>refresh</code></td>
+<td align="left">bool</td>
+<td align="left">(Optional) Allows the form to be refreshed when the value of a dropdown is changed.</td>
+</tr>
+</tbody>
+</table>
+<p>A modal form performs a lookup call to the call endpoint any time a dynamic dropdown is selected. The lookup call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form. The expected response is error or the following:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Item</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">data</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td align="left"><code>items</code></td>
+<td align="left">Options</td>
+<td align="left">The list of options to show.</td>
+</tr>
+</tbody>
+</table>
+<p>If any select has the refresh value set as <code>true</code>, a form call to the call endpoint happens any time the select changes value. The form call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form. The expected response is a form response. The whole form will be updated with the new form.</p>
+<p>On submit, the submit call to the call endpoint will be sent. The submit call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form.</p>
+<h2 id="commands-as-forms">Commands as forms&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#commands-as-forms"></i></a> </h2>
+<p>Commands arguments are treated as forms. When a leaf command is typed, the arguments of the command are fetched. If the command binding has a form attached, those will be used. If not, a form call will be made to the command call. The call will include in the context the app ID, user ID, the post ID, the root post ID (if any), the channel ID, and the team ID. The call will expect a form response.</p>
+<p>A command form is defined as:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>fields</code></td>
+<td align="left">Fields</td>
+<td align="left">List of fields in the form.</td>
+</tr>
+<tr>
+<td align="left"><code>call</code></td>
+<td align="left">Call</td>
+<td align="left">(Optional) Call to perform on all actions form related (including submit). If not provided, will use the command binding call.</td>
+</tr>
+</tbody>
+</table>
+<p>The type of fields is the same as for Modal forms.</p>
+<p>All fields include:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>name</code></td>
+<td align="left">string</td>
+<td align="left">Key to use in the values field of the call, and as part of the command.</td>
+</tr>
+<tr>
+<td align="left"><code>type</code></td>
+<td align="left">FieldType</td>
+<td align="left">The type of the field.</td>
+</tr>
+<tr>
+<td align="left"><code>is_required</code></td>
+<td align="left">bool</td>
+<td align="left">Whether the field needs to be filled.</td>
+</tr>
+<tr>
+<td align="left"><code>description</code></td>
+<td align="left">string</td>
+<td align="left">Text to show on the description line on autocomplete.</td>
+</tr>
+<tr>
+<td align="left"><code>hint</code></td>
+<td align="left">string</td>
+<td align="left">Text to show on the hint line on autocomplete.</td>
+</tr>
+<tr>
+<td align="left"><code>label</code></td>
+<td align="left">string</td>
+<td align="left">Label to name the field in autocomplete.</td>
+</tr>
+</tbody>
+</table>
+<p>Options are defined as:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>label</code></td>
+<td align="left">string</td>
+<td align="left">User-facing string.</td>
+</tr>
+<tr>
+<td align="left"><code>value</code></td>
+<td align="left">string</td>
+<td align="left">Machine-facing value.</td>
+</tr>
+<tr>
+<td align="left"><code>icon_data</code></td>
+<td align="left">string</td>
+<td align="left">URL to icon to show on autocomplete.</td>
+</tr>
+</tbody>
+</table>
+<p>When the command is executed, a submit call will be performed on the call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID, and the team ID.</p>
+<h2 id="embedded-bindings">Embedded Bindings&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#embedded-bindings"></i></a> </h2>
+<p>Posts can be embedded with bindings. These are used for asynchronous interaction with the user. In order to add an embedded binding you need to add an <code>app_bindings</code> property with a list of <code>EmbeddedBindings</code>. An <code>EmbeddedBinding</code> includes:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>app_id</code></td>
+<td align="left">string</td>
+<td align="left">The app ID.</td>
+</tr>
+<tr>
+<td align="left"><code>title</code></td>
+<td align="left">string</td>
+<td align="left">Title of the attachment.</td>
+</tr>
+<tr>
+<td align="left"><code>text</code></td>
+<td align="left">string</td>
+<td align="left">Text of the attachment.</td>
+</tr>
+<tr>
+<td align="left"><code>bindings</code></td>
+<td align="left">Binding</td>
+<td align="left">List of embedded bindings.</td>
+</tr>
+</tbody>
+</table>
+<p>Bindings are of two types, buttons or selects.
+Buttons include:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>location</code></td>
+<td align="left">string</td>
+<td align="left">Location name. The whole location path will be provided in the context.</td>
+</tr>
+<tr>
+<td align="left"><code>label</code></td>
+<td align="left">string</td>
+<td align="left">Label that will show in the button.</td>
+</tr>
+<tr>
+<td align="left"><code>call</code></td>
+<td align="left">Call</td>
+<td align="left">Call to be made when the button is clicked.</td>
+</tr>
+</tbody>
+</table>
+<p>Selects include:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>location</code></td>
+<td align="left">string</td>
+<td align="left">Location name. The whole location path will be provided in the context.</td>
+</tr>
+<tr>
+<td align="left"><code>label</code></td>
+<td align="left">string</td>
+<td align="left">Label that will show in the button.</td>
+</tr>
+<tr>
+<td align="left"><code>call</code></td>
+<td align="left">Call</td>
+<td align="left">(Optional) Call to be made when the button is clicked. If none is provided, all options must include a call.</td>
+</tr>
+<tr>
+<td align="left"><code>bindings</code></td>
+<td align="left">Binding</td>
+<td align="left">Options for the select.</td>
+</tr>
+</tbody>
+</table>
+<p>Options bindings include:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>location</code></td>
+<td align="left">string</td>
+<td align="left">Option name. The whole location path will be provided in the context.</td>
+</tr>
+<tr>
+<td align="left"><code>label</code></td>
+<td align="left">string</td>
+<td align="left">User-facing string.</td>
+</tr>
+<tr>
+<td align="left"><code>call</code></td>
+<td align="left">Call</td>
+<td align="left">(Optional) Call to perform when the option is selected. If none is defined, it will take the call from the select.</td>
+</tr>
+</tbody>
+</table>
+<p>Whenever a button is clicked or a select field is selected, a submit call is performed to the corresponding call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID.</p>
+<h2 id="post-menu-examplehahahugoshortcode-s0-hbhb"><a href="https://developers.mattermost.com/integrate/apps/interactivity/example-post-menu/">Post Menu example</a>&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#post-menu-examplehahahugoshortcode-s0-hbhb"></i></a> </h2>
+<h2 id="example-data-flows">Example data flows&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#example-data-flows"></i></a> </h2>
+<h3 id="clicking-channel-header">Clicking Channel Header&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#clicking-channel-header"></i></a> </h3>
+<details><summary>Client Submit Request</summary>
+<p><code>POST /plugins/com.mattermost.apps/api/v1/call</code></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;path&#34;</span>: <span style="color:#c30">&#34;/send-modal/submit&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;context&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;app_id&#34;</span>: <span style="color:#c30">&#34;helloworld&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;location&#34;</span>: <span style="color:#c30">&#34;send-button&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;channel_id&#34;</span>: <span style="color:#c30">&#34;ytqokpzzcinszf7ywrbdfitusw&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;team_id&#34;</span>: <span style="color:#c30">&#34;t35b8k7hginoujwn76tfatue5e&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;user_agent&#34;</span>: <span style="color:#c30">&#34;webapp&#34;</span>
+    },
+    <span style="color:#309;font-weight:bold">&#34;expand&#34;</span>: {}
+}
+</code></pre></div></details>
+<details><summary>MM Submit Request</summary>
+<p><code>POST /plugins/com.mattermost.apps/example/hello/send-modal/submit</code></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;path&#34;</span>: <span style="color:#c30">&#34;/send-modal/submit&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;expand&#34;</span>: {},
+    <span style="color:#309;font-weight:bold">&#34;context&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;app_id&#34;</span>: <span style="color:#c30">&#34;helloworld&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;location&#34;</span>: <span style="color:#c30">&#34;send-button&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;bot_user_id&#34;</span>: <span style="color:#c30">&#34;i4wzxbk1hbbufq8rnecso96oxr&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;acting_user_id&#34;</span>: <span style="color:#c30">&#34;81bqom3kjjbo7bcjcnzs6dc8uh&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;team_id&#34;</span>: <span style="color:#c30">&#34;t35b8k7hginoujwn76tfatue5e&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;channel_id&#34;</span>: <span style="color:#c30">&#34;ytqokpzzcinszf7ywrbdfitusw&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;mattermost_site_url&#34;</span>: <span style="color:#c30">&#34;http://localhost:8065&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;user_agent&#34;</span>: <span style="color:#c30">&#34;webapp&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;bot_access_token&#34;</span>: <span style="color:#c30">&#34;sqo3nwt377ys3co78jzye3cwmw&#34;</span>
+    }
+}
+</code></pre></div></details>
+<details><summary>App Form Response</summary>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;type&#34;</span>: <span style="color:#c30">&#34;form&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;form&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;title&#34;</span>: <span style="color:#c30">&#34;Hello, world!&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;icon&#34;</span>: <span style="color:#c30">&#34;icon.png&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;fields&#34;</span>: [
+            {
+                <span style="color:#309;font-weight:bold">&#34;type&#34;</span>: <span style="color:#c30">&#34;text&#34;</span>,
+                <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;message&#34;</span>,
+                <span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;message&#34;</span>
+            },
+            {
+                <span style="color:#309;font-weight:bold">&#34;type&#34;</span>: <span style="color:#c30">&#34;user&#34;</span>,
+                <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;user&#34;</span>,
+                <span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;user&#34;</span>,
+                <span style="color:#309;font-weight:bold">&#34;refresh&#34;</span>: <span style="color:#069;font-weight:bold">true</span>
+            },
+            {
+                <span style="color:#309;font-weight:bold">&#34;type&#34;</span>: <span style="color:#c30">&#34;dynamic_select&#34;</span>,
+                <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;lookup&#34;</span>,
+                <span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;lookup&#34;</span>
+            }
+        ],
+        <span style="color:#309;font-weight:bold">&#34;call&#34;</span>: {
+            <span style="color:#309;font-weight:bold">&#34;path&#34;</span>: <span style="color:#c30">&#34;/send&#34;</span>
+        }
+    }
+}
+</code></pre></div></details>
+<h3 id="selected-user-in-modal">Selected user in modal&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#selected-user-in-modal"></i></a> </h3>
+<p><code>refresh: true</code> is used to tell the client to notify the server when a value is selected from this field</p>
+<details><summary>Client Form Request</summary>
+<p><code>POST /plugins/com.mattermost.apps/api/v1/call</code></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;path&#34;</span>: <span style="color:#c30">&#34;/send/form&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;expand&#34;</span>: {},
+    <span style="color:#309;font-weight:bold">&#34;values&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;message&#34;</span>: <span style="color:#c30">&#34;This is great!&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;user&#34;</span>: {
+            <span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;mickmister&#34;</span>,
+            <span style="color:#309;font-weight:bold">&#34;value&#34;</span>: <span style="color:#c30">&#34;81bqom3kjjbo7bcjcnzs6dc8uh&#34;</span>
+        }
+    },
+    <span style="color:#309;font-weight:bold">&#34;context&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;app_id&#34;</span>: <span style="color:#c30">&#34;helloworld&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;location&#34;</span>: <span style="color:#c30">&#34;/command&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;bot_user_id&#34;</span>: <span style="color:#c30">&#34;i4wzxbk1hbbufq8rnecso96oxr&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;acting_user_id&#34;</span>: <span style="color:#c30">&#34;81bqom3kjjbo7bcjcnzs6dc8uh&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;team_id&#34;</span>: <span style="color:#c30">&#34;t35b8k7hginoujwn76tfatue5e&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;channel_id&#34;</span>: <span style="color:#c30">&#34;f45uwdqsejdnzjtyy19ysqr44w&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;mattermost_site_url&#34;</span>: <span style="color:#c30">&#34;http://localhost:8065&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;user_agent&#34;</span>: <span style="color:#c30">&#34;webapp&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;bot_access_token&#34;</span>: <span style="color:#c30">&#34;gcn6r3ac178zbxwiw5pc38e8zc&#34;</span>
+    },
+    <span style="color:#309;font-weight:bold">&#34;raw_command&#34;</span>: <span style="color:#c30">&#34;/helloworld send&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;selected_field&#34;</span>: <span style="color:#c30">&#34;user&#34;</span>
+}
+</code></pre></div></details>
+<details><summary>MM Form Request</summary>
+<p><code>POST /plugins/com.mattermost.apps/hello/send/form</code></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;path&#34;</span>: <span style="color:#c30">&#34;/send/form&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;expand&#34;</span>: {},
+    <span style="color:#309;font-weight:bold">&#34;values&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;message&#34;</span>: <span style="color:#c30">&#34;This is great!&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;user&#34;</span>: {
+            <span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;mickmister&#34;</span>,
+            <span style="color:#309;font-weight:bold">&#34;value&#34;</span>: <span style="color:#c30">&#34;81bqom3kjjbo7bcjcnzs6dc8uh&#34;</span>
+        }
+    },
+    <span style="color:#309;font-weight:bold">&#34;context&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;app_id&#34;</span>: <span style="color:#c30">&#34;helloworld&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;location&#34;</span>: <span style="color:#c30">&#34;/command&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;bot_user_id&#34;</span>: <span style="color:#c30">&#34;i4wzxbk1hbbufq8rnecso96oxr&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;acting_user_id&#34;</span>: <span style="color:#c30">&#34;81bqom3kjjbo7bcjcnzs6dc8uh&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;team_id&#34;</span>: <span style="color:#c30">&#34;t35b8k7hginoujwn76tfatue5e&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;channel_id&#34;</span>: <span style="color:#c30">&#34;f45uwdqsejdnzjtyy19ysqr44w&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;mattermost_site_url&#34;</span>: <span style="color:#c30">&#34;http://localhost:8065&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;user_agent&#34;</span>: <span style="color:#c30">&#34;webapp&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;bot_access_token&#34;</span>: <span style="color:#c30">&#34;gcn6r3ac178zbxwiw5pc38e8zc&#34;</span>
+    },
+    <span style="color:#309;font-weight:bold">&#34;raw_command&#34;</span>: <span style="color:#c30">&#34;/helloworld send&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;selected_field&#34;</span>: <span style="color:#c30">&#34;user&#34;</span>
+}
+</code></pre></div></details>
+<details><summary>App Form Response</summary>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;type&#34;</span>: <span style="color:#c30">&#34;form&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;form&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;title&#34;</span>: <span style="color:#c30">&#34;Hello, world!&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;icon&#34;</span>: <span style="color:#c30">&#34;icon.png&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;fields&#34;</span>: [
+            {
+				<span style="color:#309;font-weight:bold">&#34;type&#34;</span>: <span style="color:#c30">&#34;text&#34;</span>,
+				<span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;message&#34;</span>,
+				<span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;message&#34;</span>
+			},
+			{
+				<span style="color:#309;font-weight:bold">&#34;type&#34;</span>: <span style="color:#c30">&#34;user&#34;</span>,
+				<span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;user&#34;</span>,
+				<span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;user&#34;</span>,
+				<span style="color:#309;font-weight:bold">&#34;refresh&#34;</span>: <span style="color:#069;font-weight:bold">true</span>
+			},
+			{
+				<span style="color:#309;font-weight:bold">&#34;type&#34;</span>: <span style="color:#c30">&#34;dynamic_select&#34;</span>,
+				<span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;lookup&#34;</span>,
+				<span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;lookup&#34;</span>
+			}
+        ],
+        <span style="color:#309;font-weight:bold">&#34;call&#34;</span>: {
+            <span style="color:#309;font-weight:bold">&#34;path&#34;</span>: <span style="color:#c30">&#34;/send&#34;</span>
+        }
+    }
+}
+</code></pre></div></details>
+<h2 id="dynamic-lookup">Dynamic Lookup&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#dynamic-lookup"></i></a> </h2>
+<details><summary>Client Lookup Request</summary>
+<p><code>POST /plugins/com.mattermost.apps/api/v1/call</code></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;path&#34;</span>: <span style="color:#c30">&#34;/send/lookup&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;context&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;app_id&#34;</span>: <span style="color:#c30">&#34;helloworld&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;location&#34;</span>: <span style="color:#c30">&#34;/command&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;root_id&#34;</span>: <span style="color:#c30">&#34;&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;channel_id&#34;</span>: <span style="color:#c30">&#34;f45uwdqsejdnzjtyy19ysqr44w&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;team_id&#34;</span>: <span style="color:#c30">&#34;t35b8k7hginoujwn76tfatue5e&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;user_agent&#34;</span>: <span style="color:#c30">&#34;webapp&#34;</span>
+    },
+    <span style="color:#309;font-weight:bold">&#34;values&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;message&#34;</span>: <span style="color:#069;font-weight:bold">null</span>,
+        <span style="color:#309;font-weight:bold">&#34;user&#34;</span>: <span style="color:#069;font-weight:bold">null</span>,
+        <span style="color:#309;font-weight:bold">&#34;lookup&#34;</span>: {
+            <span style="color:#309;font-weight:bold">&#34;icon_data&#34;</span>: <span style="color:#c30">&#34;&#34;</span>,
+            <span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;Option 1&#34;</span>,
+            <span style="color:#309;font-weight:bold">&#34;value&#34;</span>: <span style="color:#c30">&#34;option1&#34;</span>
+        }
+    },
+    <span style="color:#309;font-weight:bold">&#34;expand&#34;</span>: {},
+    <span style="color:#309;font-weight:bold">&#34;raw_command&#34;</span>: <span style="color:#c30">&#34;/helloworld send&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;query&#34;</span>: <span style="color:#c30">&#34;o&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;selected_field&#34;</span>: <span style="color:#c30">&#34;lookup&#34;</span>
+}
+</code></pre></div></details>
+<details><summary>MM Lookup Request</summary>
+<p><code>POST /plugins/com.mattermost.apps/example/hello/send/lookup</code></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;path&#34;</span>: <span style="color:#c30">&#34;/send/lookup&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;expand&#34;</span>: {},
+    <span style="color:#309;font-weight:bold">&#34;values&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;lookup&#34;</span>: {
+            <span style="color:#309;font-weight:bold">&#34;icon_data&#34;</span>: <span style="color:#c30">&#34;&#34;</span>,
+            <span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;Option 1&#34;</span>,
+            <span style="color:#309;font-weight:bold">&#34;value&#34;</span>: <span style="color:#c30">&#34;option1&#34;</span>
+        },
+        <span style="color:#309;font-weight:bold">&#34;message&#34;</span>: <span style="color:#069;font-weight:bold">null</span>,
+        <span style="color:#309;font-weight:bold">&#34;user&#34;</span>: <span style="color:#069;font-weight:bold">null</span>
+    },
+    <span style="color:#309;font-weight:bold">&#34;context&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;app_id&#34;</span>: <span style="color:#c30">&#34;helloworld&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;location&#34;</span>: <span style="color:#c30">&#34;/command&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;bot_user_id&#34;</span>: <span style="color:#c30">&#34;i4wzxbk1hbbufq8rnecso96oxr&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;acting_user_id&#34;</span>: <span style="color:#c30">&#34;81bqom3kjjbo7bcjcnzs6dc8uh&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;team_id&#34;</span>: <span style="color:#c30">&#34;t35b8k7hginoujwn76tfatue5e&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;channel_id&#34;</span>: <span style="color:#c30">&#34;f45uwdqsejdnzjtyy19ysqr44w&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;mattermost_site_url&#34;</span>: <span style="color:#c30">&#34;http://localhost:8065&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;user_agent&#34;</span>: <span style="color:#c30">&#34;webapp&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;bot_access_token&#34;</span>: <span style="color:#c30">&#34;gcn6r3ac178zbxwiw5pc38e8zc&#34;</span>
+    },
+    <span style="color:#309;font-weight:bold">&#34;raw_command&#34;</span>: <span style="color:#c30">&#34;/helloworld send&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;selected_field&#34;</span>: <span style="color:#c30">&#34;lookup&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;query&#34;</span>: <span style="color:#c30">&#34;o&#34;</span>
+}
+</code></pre></div></details>
+<details><summary>App Lookup Response</summary>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;type&#34;</span>: <span style="color:#c30">&#34;ok&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;data&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;items&#34;</span>: [
+            {
+                <span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;Option 1&#34;</span>,
+                <span style="color:#309;font-weight:bold">&#34;value&#34;</span>: <span style="color:#c30">&#34;option1&#34;</span>,
+                <span style="color:#309;font-weight:bold">&#34;icon_data&#34;</span>: <span style="color:#c30">&#34;&#34;</span>
+            },
+            {
+                <span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;Option 2&#34;</span>,
+                <span style="color:#309;font-weight:bold">&#34;value&#34;</span>: <span style="color:#c30">&#34;option2&#34;</span>,
+                <span style="color:#309;font-weight:bold">&#34;icon_data&#34;</span>: <span style="color:#c30">&#34;&#34;</span>
+            }
+        ]
+    }
+}
+</code></pre></div></details>
+<h3 id="submitted-modal">Submitted Modal&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#submitted-modal"></i></a> </h3>
+<details><summary>Client Submit Request</summary>
+<p><code>POST /plugins/com.mattermost.apps/api/v1/call</code></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;path&#34;</span>: <span style="color:#c30">&#34;/send/submit&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;context&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;app_id&#34;</span>: <span style="color:#c30">&#34;helloworld&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;location&#34;</span>: <span style="color:#c30">&#34;/command&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;root_id&#34;</span>: <span style="color:#c30">&#34;&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;channel_id&#34;</span>: <span style="color:#c30">&#34;qxb1zg7eqjn1ixwuwhwtgmt55o&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;team_id&#34;</span>: <span style="color:#c30">&#34;t35b8k7hginoujwn76tfatue5e&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;user_agent&#34;</span>: <span style="color:#c30">&#34;webapp&#34;</span>
+    },
+    <span style="color:#309;font-weight:bold">&#34;values&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;message&#34;</span>: <span style="color:#c30">&#34;the message&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;user&#34;</span>: {
+            <span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;mickmister&#34;</span>,
+            <span style="color:#309;font-weight:bold">&#34;value&#34;</span>: <span style="color:#c30">&#34;81bqom3kjjbo7bcjcnzs6dc8uh&#34;</span>
+        },
+        <span style="color:#309;font-weight:bold">&#34;lookup&#34;</span>: {
+            <span style="color:#309;font-weight:bold">&#34;icon_data&#34;</span>: <span style="color:#c30">&#34;&#34;</span>,
+            <span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;Option 1&#34;</span>,
+            <span style="color:#309;font-weight:bold">&#34;value&#34;</span>: <span style="color:#c30">&#34;option1&#34;</span>
+        }
+    },
+    <span style="color:#309;font-weight:bold">&#34;expand&#34;</span>: {},
+    <span style="color:#309;font-weight:bold">&#34;raw_command&#34;</span>: <span style="color:#c30">&#34;/helloworld send&#34;</span>
+}
+</code></pre></div></details>
+<details><summary>MM Submit Request</summary>
+<p><code>POST /plugins/com.mattermost.apps/example/hello/send/submit</code></p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;path&#34;</span>: <span style="color:#c30">&#34;/send/submit&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;expand&#34;</span>: {},
+    <span style="color:#309;font-weight:bold">&#34;values&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;lookup&#34;</span>: {
+            <span style="color:#309;font-weight:bold">&#34;icon_data&#34;</span>: <span style="color:#c30">&#34;&#34;</span>,
+            <span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;Option 1&#34;</span>,
+            <span style="color:#309;font-weight:bold">&#34;value&#34;</span>: <span style="color:#c30">&#34;option1&#34;</span>
+        },
+        <span style="color:#309;font-weight:bold">&#34;message&#34;</span>: <span style="color:#c30">&#34;the message&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;user&#34;</span>: {
+            <span style="color:#309;font-weight:bold">&#34;label&#34;</span>: <span style="color:#c30">&#34;mickmister&#34;</span>,
+            <span style="color:#309;font-weight:bold">&#34;value&#34;</span>: <span style="color:#c30">&#34;81bqom3kjjbo7bcjcnzs6dc8uh&#34;</span>
+        }
+    },
+    <span style="color:#309;font-weight:bold">&#34;context&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;app_id&#34;</span>: <span style="color:#c30">&#34;helloworld&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;location&#34;</span>: <span style="color:#c30">&#34;/command&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;bot_user_id&#34;</span>: <span style="color:#c30">&#34;i4wzxbk1hbbufq8rnecso96oxr&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;acting_user_id&#34;</span>: <span style="color:#c30">&#34;81bqom3kjjbo7bcjcnzs6dc8uh&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;team_id&#34;</span>: <span style="color:#c30">&#34;t35b8k7hginoujwn76tfatue5e&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;channel_id&#34;</span>: <span style="color:#c30">&#34;qxb1zg7eqjn1ixwuwhwtgmt55o&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;mattermost_site_url&#34;</span>: <span style="color:#c30">&#34;http://localhost:8065&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;user_agent&#34;</span>: <span style="color:#c30">&#34;webapp&#34;</span>,
+        <span style="color:#309;font-weight:bold">&#34;bot_access_token&#34;</span>: <span style="color:#c30">&#34;gcn6r3ac178zbxwiw5pc38e8zc&#34;</span>
+    },
+    <span style="color:#309;font-weight:bold">&#34;raw_command&#34;</span>: <span style="color:#c30">&#34;/helloworld send&#34;</span>
+}
+</code></pre></div></details>
+<details><summary>App Submit Response</summary>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;type&#34;</span>:<span style="color:#c30">&#34;ok&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;markdown&#34;</span>:<span style="color:#c30">&#34;Sent survey to mickmister.&#34;</span>
+}
+</code></pre></div></details>
+<h3 id="returning-a-single-error">Returning a single error&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#returning-a-single-error"></i></a> </h3>
+<details><summary>Main Error Response</summary>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;type&#34;</span>:<span style="color:#c30">&#34;error&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;error&#34;</span>:<span style="color:#c30">&#34;This is the error.&#34;</span>
+}
+</code></pre></div></details>
+<h3 id="returning-errors-for-specific-fields">Returning errors for specific fields&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#returning-errors-for-specific-fields"></i></a> </h3>
+<details><summary>Field-specific Error Response</summary>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;type&#34;</span>:<span style="color:#c30">&#34;error&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;data&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;errors&#34;</span>:{
+            <span style="color:#309;font-weight:bold">&#34;somefield&#34;</span>: <span style="color:#c30">&#34;This field seems to have an invalid value.&#34;</span>
+        }
+    }
+}
+</code></pre></div></details>
+<h3 id="returning-a-main-error-and-errors-for-specific-fields-includes-picture">Returning a main error and errors for specific fields (includes picture)&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#returning-a-main-error-and-errors-for-specific-fields-includes-picture"></i></a> </h3>
+<details><summary>Main Error and Field-specific Error Response</summary>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#309;font-weight:bold">&#34;type&#34;</span>:<span style="color:#c30">&#34;error&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;error&#34;</span>:<span style="color:#c30">&#34;This is the error.&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;data&#34;</span>: {
+        <span style="color:#309;font-weight:bold">&#34;errors&#34;</span>:{
+            <span style="color:#309;font-weight:bold">&#34;somefield&#34;</span>: <span style="color:#c30">&#34;This field seems to have an invalid value.&#34;</span>
+        }
+    }
+}
+</code></pre></div><p><img src="error3.png" alt="modal-errors.png"></p>
+</details>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+</html>

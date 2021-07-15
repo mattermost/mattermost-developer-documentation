@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sign Unsigned Builds on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/contribute/mobile/unsigned/</link>
+    <description>Recent content in Sign Unsigned Builds on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 May 2018 11:35:32 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/contribute/mobile/unsigned/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sign Unsigned Android</title>
+      <link>https://developers.mattermost.com/contribute/mobile/unsigned/android/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/unsigned/android/</guid>
+      <description>With every Mattermost mobile app release, we publish the Android unsigned apk in in the GitHub Releases page. This guide describes the steps needed to modify and sign the app, so it can be distributed and installed on Android devices.
+Prerequisites  Apktool is a tool for reverse engineering Android apk files. XMLStarlet is a set of command line utilities (tools) which can be used to transform, query, validate, and edit XML documents and files using a simple set of shell commands in the same way it is done for plain text files using UNIX grep, sed, awk, diff, patch, join, etc.</description>
+    </item>
+    
+    <item>
+      <title>Sign Unsigned iOS</title>
+      <link>https://developers.mattermost.com/contribute/mobile/unsigned/ios/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/unsigned/ios/</guid>
+      <description>With every Mattermost mobile app release, we publish the iOS unsigned ipa in in the GitHub Releases page, this guide describes the steps needed to modify and sign the app, so it can be distributed and installed on iOS devices.
+Requisites  macOS with Xcode installed. The minimum required version is 11.0. Install the Xcode command line tools: $ xcode-select --install  Set up your Certificate and Provisioning profiles as described in steps 1 and 2 for Run on iOS Devices in the Developer Setup.</description>
+    </item>
+    
+  </channel>
+</rss>

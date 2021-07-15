@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Avoiding Flaky Tests</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Avoiding Flaky Tests">
+
+ 
+  <meta name="description" content="Flaky tests are no stranger to the Mattermost code base. Find out what we&#39;ve done to avoid flaky tests.">
+<meta name="twitter:description" content="Flaky tests are no stranger to the Mattermost code base. Find out what we&#39;ve done to avoid flaky tests.">
+<meta name="og:description" content="Flaky tests are no stranger to the Mattermost code base. Find out what we&#39;ve done to avoid flaky tests.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/avoiding-flaky-tests/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Avoiding Flaky Tests
+                            
+                            </h1>
+                            <small>Flaky tests are no stranger to the Mattermost code base. Find out what we&#39;ve done to avoid flaky tests.</small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            September 29, 2019
+                            <small class="blog-item__count">1418 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <blockquote>
+<p>&ldquo;Your tests are failing.&rdquo;</p>
+</blockquote>
+<p>This comment on a pull request is crushing. After all the effort you&rsquo;ve spent writing your code, adding new unit tests, and rebasing your changes to make each commit almost a work of art: how could your tests possibly be failing?</p>
+<p>Begrudgingly, you sign into your CI server only to realize the failing tests have nothing to do with your code. You think, &ldquo;Hmm, maybe the code is more coupled than I expected.&rdquo;</p>
+<p>You run the unit tests locally. PASS. You check out <code>origin/master</code> and run the tests again. PASS.</p>
+<p>Flipping back to your CI server, your eye is drawn to the &ldquo;Rebuild&rdquo; icon on your CI pipeline. You think to yourself, &ldquo;Maybe it&rsquo;s just a flaky test&hellip;&rdquo;</p>
+<p>Flaky tests are no stranger to the Mattermost code base. With 6000+ server-side tests, 3500+ client-side tests, and a growing number of Cypress integration tests, we&rsquo;ve seen our fair share of flaky tests. A few sprints back, we decided to focus some efforts on squashing several of the server-side flaky tests. What follows are some practical observations to anyone reading, writing or running similar unit tests.</p>
+<h2 id="strategies-to-avoid-flaky-tests">Strategies to avoid flaky tests&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#strategies-to-avoid-flaky-tests"></i></a> </h2>
+<h3 id="1-dont-rebuild-until-youve-filed-a-ticket">1) Don&rsquo;t rebuild until you&rsquo;ve filed a ticket&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#1-dont-rebuild-until-youve-filed-a-ticket"></i></a> </h3>
+<p>With developers often on a deadline, it&rsquo;s not always realistic to context switch and root cause a flaky test. But don&rsquo;t waste the opportunity of having observed a flaky test: file a ticket with as much detail as possible. Include the full build log and any artifacts generated by the CI server. If someone else already filed a ticket, add your details to help raise the investigation priority and help the poor soul tasked with debugging it.</p>
+<h3 id="2-avoid-using-timesleep-to-wait-for-asynchronous-results">2) Avoid using <code>time.Sleep</code> to wait for asynchronous results&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#2-avoid-using-timesleep-to-wait-for-asynchronous-results"></i></a> </h3>
+<p>Consider the following simplified test based on a <a href="https://mattermost.atlassian.net/browse/MM-17314">reported flaky test</a>:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#09f;font-style:italic">// TestHTTPTimeout verifies that the HTTP service is configured with the requested timeout.
+</span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">TestHTTPTimeout</span>(t <span style="color:#555">*</span>testing.T) {
+    expectedTimeout <span style="color:#555">:=</span> <span style="color:#f60">100</span> <span style="color:#555">*</span> time.Millisecond
+
+    server <span style="color:#555">:=</span> httptest.<span style="color:#c0f">NewServer</span>(http.<span style="color:#c0f">HandlerFunc</span>(<span style="color:#069;font-weight:bold">func</span>(w http.ResponseWriter, r <span style="color:#555">*</span>http.Request) {
+        time.<span style="color:#c0f">Sleep</span>(<span style="color:#f60">101</span> <span style="color:#555">*</span> time.Millisecond)
+    })
+    <span style="color:#069;font-weight:bold">defer</span> server.<span style="color:#c0f">Close</span>()
+
+    httpService <span style="color:#555">:=</span> <span style="color:#c0f">NewHttpService</span>(HttpServiceOptions{RequestTimeout: expectedTimeout})
+    err <span style="color:#555">:=</span> httpService.<span style="color:#c0f">Do</span>()
+    require.<span style="color:#c0f">EqualError</span>(t, err, <span style="color:#c30">&#34;timeout&#34;</span>)
+}
+</code></pre></div><p>By waiting for 101 milliseconds &ndash; 1 millisecond longer than the configured timeout &ndash; the test hoped to verify the timeout handling behaviour of the http service.</p>
+<p>Unfortunately, the underlying service implementation effectively deferred to <code>http.Client</code>, which was itself relying on a <code>time.Timer</code>. The <a href="https://golang.org/pkg/time/#NewTimer">corresponding documentation</a> for <code>time.Timer</code> makes it clear &ndash; with added emphasis:</p>
+<blockquote>
+<p>NewTimer creates a new Timer that will send the current time on its channel after <strong>at least</strong> duration d.</p>
+</blockquote>
+<p>That is, this particular timeout is guaranteed to wait at least 100 milliseconds, but makes no promise how soon thereafter it will fire. Simply put, waiting just 101 milliseconds sometimes isn&rsquo;t enough.</p>
+<p>The best solution is to avoid using <code>time.Sleep</code> altogether in this case. We ended up <a href="https://github.com/mattermost/mattermost-server/pull/11712">rewriting</a> the flaky test as something like:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">TestHTTPTimeout</span>(t <span style="color:#555">*</span>testing.T) {
+    expectedTimeout <span style="color:#555">:=</span> <span style="color:#f60">100</span> <span style="color:#555">*</span> time.Millisecond
+
+    releaseHandler <span style="color:#555">:=</span> <span style="color:#366">make</span>(<span style="color:#069;font-weight:bold">chan</span> <span style="color:#069;font-weight:bold">interface</span>{})
+    server <span style="color:#555">:=</span> httptest.<span style="color:#c0f">NewServer</span>(http.<span style="color:#c0f">HandlerFunc</span>(<span style="color:#069;font-weight:bold">func</span>(w http.ResponseWriter, r <span style="color:#555">*</span>http.Request) {
+        <span style="color:#09f;font-style:italic">// Don&#39;t actually handle the response, allowing the service to timeout.
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#555">&lt;-</span>releaseHandler
+    })
+    <span style="color:#069;font-weight:bold">defer</span> server.<span style="color:#c0f">Close</span>()
+    <span style="color:#069;font-weight:bold">defer</span> <span style="color:#366">close</span>(releaseHandler)
+
+    httpService <span style="color:#555">:=</span> <span style="color:#c0f">NewHttpService</span>(HttpServiceOptions{RequestTimeout: expectedTimeout})
+    err <span style="color:#555">:=</span> httpService.<span style="color:#c0f">Do</span>()
+    require.<span style="color:#c0f">EqualError</span>(t, err, <span style="color:#c30">&#34;timeout&#34;</span>)
+}
+</code></pre></div><p>Now the handler is guaranteed never to return until the test closes the channel, which occurs only after a timeout has been observed.</p>
+<h3 id="3-do-use-timesleep-to-advance-the-clock">3) Do use <code>time.Sleep</code> to advance the clock&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#3-do-use-timesleep-to-advance-the-clock"></i></a> </h3>
+<p>Don&rsquo;t underestimate how fast a computer can execute code. Consider the following test:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> (s <span style="color:#555">*</span>Store) <span style="color:#c0f">CreateUserRecord</span>(user <span style="color:#555">*</span>model.User) {
+    <span style="color:#09f;font-style:italic">// Keep track of the creation time in milliseconds since epoch.
+</span><span style="color:#09f;font-style:italic"></span>    user.CreateAt = time.<span style="color:#c0f">Now</span>().<span style="color:#c0f">UnixNano</span>() <span style="color:#555">/</span> <span style="color:#366">int64</span>(time.Millisecond)
+
+    s.db.<span style="color:#c0f">Insert</span>(user)
+}
+
+<span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">TestTimeDelta</span>(t <span style="color:#555">*</span>testing.T) {
+    store <span style="color:#555">:=</span> <span style="color:#c0f">NewStore</span>()
+
+    user1, err <span style="color:#555">:=</span> store.<span style="color:#c0f">CreateUserRecord</span>(<span style="color:#555">&amp;</span>model.User{Username: <span style="color:#c30">&#34;test1&#34;</span>})
+    require.<span style="color:#c0f">NoError</span>(t, user)
+
+    user2, err <span style="color:#555">:=</span> store.<span style="color:#c0f">CreateUserRecord</span>(<span style="color:#555">&amp;</span>model.User{Username: <span style="color:#c30">&#34;test2&#34;</span>})
+    require.<span style="color:#c0f">NoError</span>(t, user)
+
+    require.<span style="color:#c0f">NotEqual</span>(t, user1.CreateAt, user2.CreateAt)
+}
+</code></pre></div><p>The test here is rightly trying to verify that <code>CreateAt</code> is actually getting set. Implicitly, it assumes that at least a millisecond happens between the calls to create a user record. Yet even with the cost of a database write, it&rsquo;s still sometimes possible to create two user records in the same millisecond.</p>
+<p>The simplest solution is to make the assumption explicit and safely rely on <code>time.Sleep</code> to advance the clock:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#069;font-weight:bold">func</span> <span style="color:#c0f">TestTimeDelta</span>(t <span style="color:#555">*</span>testing.T) {
+    store <span style="color:#555">:=</span> <span style="color:#c0f">NewStore</span>()
+
+    user1, err <span style="color:#555">:=</span> store.<span style="color:#c0f">CreateUserRecord</span>(<span style="color:#555">&amp;</span>model.User{Username: <span style="color:#c30">&#34;test1&#34;</span>})
+    require.<span style="color:#c0f">NoError</span>(t, user)
+
+    <span style="color:#09f;font-style:italic">// Ensure the next user has a different CreateAt timestamp.
+</span><span style="color:#09f;font-style:italic"></span>    time.<span style="color:#c0f">Sleep</span>(<span style="color:#f60">1</span> <span style="color:#555">*</span> time.Millisecond)
+
+    user2, err <span style="color:#555">:=</span> store.<span style="color:#c0f">CreateUserRecord</span>(<span style="color:#555">&amp;</span>model.User{Username: <span style="color:#c30">&#34;test2&#34;</span>})
+    require.<span style="color:#c0f">NoError</span>(t, user)
+
+    require.<span style="color:#c0f">NotEqual</span>(t, user1.CreateAt, user2.CreateAt)
+}
+</code></pre></div><h3 id="4-mysql-is-surprising">4) MySQL is surprising&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#4-mysql-is-surprising"></i></a> </h3>
+<p>So much could be written about oddities within MySQL. One <a href="https://mattermost.atlassian.net/browse/MM-16838">issue</a> we encountered turned out to have the same underlying cause as above, but manifested in a new way:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">s1, err <span style="color:#555">:=</span> ss.<span style="color:#c0f">Scheme</span>().<span style="color:#c0f">Save</span>(s1)
+require.<span style="color:#c0f">Nil</span>(t, err)
+s1, err = ss.<span style="color:#c0f">Scheme</span>().<span style="color:#c0f">Save</span>(s1)
+require.<span style="color:#c0f">Nil</span>(t, err)
+s2, err = ss.<span style="color:#c0f">Scheme</span>().<span style="color:#c0f">Save</span>(s2)
+require.<span style="color:#c0f">Nil</span>(t, err)
+</code></pre></div><p>Note the duplicate call to <code>ss.Scheme().Save(s1)</code>. The implementation of <code>Save</code> would effectively perform an upsert if it was asked to save an object already having a unique <code>Id</code>. Thus, the second call would run through the following block:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#09f;font-style:italic">// Keep track of the update time in milliseconds since epoch.
+</span><span style="color:#09f;font-style:italic"></span>    scheme.UpdateAt = time.<span style="color:#c0f">Now</span>().<span style="color:#c0f">UnixNano</span>() <span style="color:#555">/</span> <span style="color:#366">int64</span>(time.Millisecond)
+
+	rowsChanged, err <span style="color:#555">:=</span> s.<span style="color:#c0f">GetMaster</span>().<span style="color:#c0f">Update</span>(scheme)
+	<span style="color:#069;font-weight:bold">if</span> err <span style="color:#555">!=</span> <span style="color:#069;font-weight:bold">nil</span> {
+		<span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">nil</span>, model.<span style="color:#c0f">NewAppError</span>(<span style="color:#c30">&#34;SqlSchemeStore.Save&#34;</span>, <span style="color:#c30">&#34;store.sql_scheme.save.update.app_error&#34;</span>, <span style="color:#069;font-weight:bold">nil</span>, err.<span style="color:#c0f">Error</span>(), http.StatusInternalServerError)
+	}
+	<span style="color:#069;font-weight:bold">if</span> rowsChanged <span style="color:#555">!=</span> <span style="color:#f60">1</span> {
+		<span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">nil</span>, model.<span style="color:#c0f">NewAppError</span>(<span style="color:#c30">&#34;SqlSchemeStore.Save&#34;</span>, <span style="color:#c30">&#34;store.sql_scheme.save.update.app_error&#34;</span>, <span style="color:#069;font-weight:bold">nil</span>, <span style="color:#c30">&#34;no record to update&#34;</span>, http.StatusInternalServerError)
+	}
+</code></pre></div><p>As the <a href="https://github.com/mattermost/mattermost-server/pull/11701">fix discovered</a>, MySQL will only return <code>rowsChanged == 1</code> if the row it found actually changes, not just if it found a row matching the constraints. The test would thus fail with an unexpected error whenever two consecutive <code>Save</code> operations occurred in the same millisecond.</p>
+<p>This actually deserved a more holistic fix at the store layer to avoid tripping over MySQL&rsquo;s unique <code>rowsChanged</code> semantics, but in practice this kind of event was considered unlikely in a production environment.</p>
+<h3 id="5-keep-in-mind-that-random-sometimes-doesnt-seem-like-it">5) Keep in mind that random sometimes doesn&rsquo;t seem like it&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#5-keep-in-mind-that-random-sometimes-doesnt-seem-like-it"></i></a> </h3>
+<p>In addition to a number of <a href="https://github.com/mattermost/mattermost-server/blob/e5ba0a0a1808660d4885ef04888da437c2a5b6a0/model/team.go#L137-L196">length and character checks</a>, the Mattermost server <a href="https://github.com/mattermost/mattermost-server/blob/969c032a1e9cb2ce0ef2c59143c071dbf78cdcb1/model/utils.go#L360">rejects certain prefixes</a> to avoid team names like <code>signup</code> or <code>LOGIN21</code>.</p>
+<p>When unit testing, we often rely on <code>model.NewId</code> to generate random, UUID version 4 Guid values for testing:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	t1 <span style="color:#555">:=</span> model.Team{}
+	t1.DisplayName = <span style="color:#c30">&#34;Name&#34;</span>
+	t1.Name = model.<span style="color:#c0f">NewId</span>()
+	t1.Email = <span style="color:#c0f">MakeEmail</span>()
+	t1.Type = model.TEAM_OPEN
+	_, err <span style="color:#555">:=</span> ss.<span style="color:#c0f">Team</span>().<span style="color:#c0f">Save</span>(<span style="color:#555">&amp;</span>t1)
+	require.<span style="color:#c0f">Nil</span>(t, err)
+</code></pre></div><p>Every so often, a test would fail claiming that <a href="https://mattermost.atlassian.net/browse/MM-17053">the team name was invalid</a>. It turned out that, from to time, some of those reserved prefixes would be randomly selected for the start of a <code>model.NewId</code>, e.g. <code>APICE0E9143C...</code>. Random? Yes! Invalid? Yes! Expected? No.</p>
+<p>The <a href="https://github.com/mattermost/mattermost-server/pull/11705">fix</a> was simple, and replicated the pattern used in most other tests to prefix the team name:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	t1 <span style="color:#555">:=</span> model.Team{}
+	t1.DisplayName = <span style="color:#c30">&#34;Name&#34;</span>
+	t1.Name = <span style="color:#c30">&#34;zz&#34;</span> <span style="color:#555">+</span> model.<span style="color:#c0f">NewId</span>()
+	t1.Email = <span style="color:#c0f">MakeEmail</span>()
+	t1.Type = model.TEAM_OPEN
+	_, err <span style="color:#555">:=</span> ss.<span style="color:#c0f">Team</span>().<span style="color:#c0f">Save</span>(<span style="color:#555">&amp;</span>t1)
+	require.<span style="color:#c0f">Nil</span>(t, err)
+</code></pre></div><h3 id="6-avoid-remote-dependencies">6) Avoid remote dependencies.&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#6-avoid-remote-dependencies"></i></a> </h3>
+<p>We <a href="https://golang.org/cmd/go/#hdr-Vendor_Directories">vendor</a> all Go dependencies to ensure a reliable build. This strategy also greatly speeds up <a href="https://git-scm.com/docs/git-bisect">git bisect</a> when your Go cache doesn&rsquo;t already have dependencies from an older branch.</p>
+<p>Unfortunately, for some plugin tests, our compilation strategy involved using a temporary directory outside of our <code>vendor</code> scope. This went undiscovered until some upstream resource couldn&rsquo;t be fetched and the CI build failed accordingly. This became especially problematic when <a href="https://blogs.apache.org/infra/entry/subversion-to-git-service-git">git.apache.org</a> went down and took many Go build pipelines along with it.</p>
+<p>We&rsquo;ve since fixed the compilation issue for plugin tests, and even applied this strategy to <a href="https://github.com/mattermost/mattermost-server/pull/12365">other flaky tests</a> to avoid connecting to remote dependencies outside of our control.</p>
+<h3 id="7-dont-assume-the-test-is-actually-flaky">7) Don&rsquo;t assume the test is actually flaky!&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#7-dont-assume-the-test-is-actually-flaky"></i></a> </h3>
+<p>One danger of having flaky tests is conditioning developers to believe that <strong>any</strong> unexpected test failure is likely to be flaky. As an example, we had received <a href="https://mattermost.atlassian.net/browse/MM-16479">multiple reports</a> of a flaky unit test concerning the <code>FileWillBeUploaded</code> plugin hook.  Much effort was spent statically analyzing the code and attempting to reproduce locally. Even with the test repeated 100x, it always succeeded locally. Given the ongoing impact to developers with unrelated changes, we were contemplating disabling the test altogether.</p>
+<p>Fastforward a few weeks, and a community member <a href="https://community.mattermost.com/core/pl/oficg6nb9bb6igzz87fpumgxuo">reported</a> a mysterious issue: sometimes files processed by a plugin using <code>FileWillBeUploaded</code> wouldn&rsquo;t successfully update. One of our newest staff members took a look, and immediately <a href="https://community.mattermost.com/core/pl/5p9fjcqk3tdw7brjpfm1f3poza">spotted</a> a race condition in the related code. The <a href="https://github.com/mattermost/mattermost-server/pull/12249">resulting fix</a> addressed both the community member&rsquo;s issue and our longstanding &ldquo;flaky&rdquo; test.</p>
+<h2 id="conclusion">Conclusion&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#conclusion"></i></a> </h2>
+<p>To summarize from our own observations:</p>
+<ul>
+<li>File a ticket with as much detail as possible!</li>
+<li>Don&rsquo;t use <code>time.Sleep</code>? Do use <code>time.Sleep</code>? Know when to use <code>time.Sleep</code> responsibly.</li>
+<li>Know your database semantics.</li>
+<li>Expect anything from the unexpected and plan accordingly.</li>
+<li>Assume anything outside of your control will eventually fail.</li>
+<li>Every flaky test is a bug. Don&rsquo;t assume it&rsquo;s always a bug in the test.</li>
+</ul>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Jesse Hallam
+-
+<a href="https://community.mattermost.com/core/messages/@jesse.hallam" target="_blank">
+    @jesse.hallam
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/lieut-data" target="_blank">
+    @lieut-data
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/advanced-git-tbilisi-free-university/">Advanced Git with the Free University of Tbilisi</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/all-about-emojis/">All About Emojis</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/">Maintaining Consistency in Codebases with Go vet</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/testing">testing</a></li>
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Build Your Own App on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/contribute/mobile/build-your-own/</link>
+    <description>Recent content in Build Your Own App on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 May 2018 11:35:32 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/contribute/mobile/build-your-own/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Build the Android App</title>
+      <link>https://developers.mattermost.com/contribute/mobile/build-your-own/android/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/build-your-own/android/</guid>
+      <description>At times, you may want to build your own Mattermost mobile app. The most common use cases are:
+ To white label the Mattermost mobile app. To use your own deployment of the Mattermost Push Notification Service (always required if you are building your own version of the mobile app).  Build Preparations 1. Package name and source files  Ensure the package ID of the mobile app remains the same as the one in the original mattermost-mobile GitHub repository in com.</description>
+    </item>
+    
+    <item>
+      <title>Build the iOS App</title>
+      <link>https://developers.mattermost.com/contribute/mobile/build-your-own/ios/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/build-your-own/ios/</guid>
+      <description>At times, you may want to build your own Mattermost mobile app. The most common use cases are:
+ To white label the Mattermost mobile app. To use your own deployment of the Mattermost Push Notification Service (always required if you are building your own version of the mobile app).  Build Preparations 1. Prerequisites The Mattermost mobile app for iOS needs to be built on a macOS computer with Xcode and the Xcode command line tools installed.</description>
+    </item>
+    
+    <item>
+      <title>White Labeling</title>
+      <link>https://developers.mattermost.com/contribute/mobile/build-your-own/white-label/</link>
+      <pubDate>Sun, 20 May 2018 11:35:32 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/contribute/mobile/build-your-own/white-label/</guid>
+      <description>We&amp;rsquo;ve made it easy to white label the mobile app and to replace and override the assets used, however, you have to Build Your Own App from source.
+If you look at the Project Folder Structure, you&amp;rsquo;ll see that there is an assets folder containing a base folder with assets provided by Mattermost. These include localization files and images as well as a release folder that optionally contains the icons and the splash screen of the app when building in release mode.</description>
+    </item>
+    
+  </channel>
+</rss>

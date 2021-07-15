@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>testing on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/categories/testing/</link>
+    <description>Recent content in testing on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 Feb 2021 00:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/categories/testing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Streamlining Developer Access to Prometheus and Grafana</title>
+      <link>https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/</link>
+      <pubDate>Tue, 02 Feb 2021 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/</guid>
+      <description>With access to the Enterprise source code, the developer build tooling now automates the setup of Prometheus and Grafana for performance monitoring. Even the canonical Grafana dashboards are setup without any manual configuration required!</description>
+    </item>
+    
+    <item>
+      <title>Improving performance (and more) through load testing</title>
+      <link>https://developers.mattermost.com/blog/improving-performance-through-load-testing/</link>
+      <pubDate>Mon, 07 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/improving-performance-through-load-testing/</guid>
+      <description>Have you ever wondered how many active users your application can handle at the same time? If so, you&amp;rsquo;re not alone. Here at Mattermost we&amp;rsquo;re building a highly concurrent messaging platform for team collaboration that needs to potentially serve up to several thousands of users simultaneously.
+While standard functional testing (e.g. unit tests) is critical to verify correct behavior of your application, it&amp;rsquo;s usually not sufficient to guarantee its performance at scale.</description>
+    </item>
+    
+    <item>
+      <title>Automated UI Testing With Cypress</title>
+      <link>https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/</link>
+      <pubDate>Mon, 27 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/</guid>
+      <description>It&amp;rsquo;s been more than a year and a half since we started using Cypress for our automated functional testing and it has been worth the investment. It has now become an essential part of our process to automate regression testing to ship new releases faster, with increased quality.
+It’s fun and easy to get started with Cypress but as we added more scripts with the varying requirements, we faced several setbacks and hurdles, such as flaky tests, which slow down our efforts in automating test cases.</description>
+    </item>
+    
+    <item>
+      <title>Avoiding Flaky Tests</title>
+      <link>https://developers.mattermost.com/blog/avoiding-flaky-tests/</link>
+      <pubDate>Sun, 29 Sep 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/avoiding-flaky-tests/</guid>
+      <description>&amp;ldquo;Your tests are failing.&amp;rdquo;
+ This comment on a pull request is crushing. After all the effort you&amp;rsquo;ve spent writing your code, adding new unit tests, and rebasing your changes to make each commit almost a work of art: how could your tests possibly be failing?
+Begrudgingly, you sign into your CI server only to realize the failing tests have nothing to do with your code. You think, &amp;ldquo;Hmm, maybe the code is more coupled than I expected.</description>
+    </item>
+    
+  </channel>
+</rss>

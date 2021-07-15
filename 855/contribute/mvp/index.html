@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> MVP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="MVP">
+
+ 
+  <meta name="description" content="Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best.">
+<meta name="twitter:description" content="Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best.">
+<meta name="og:description" content="Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/contribute/mvp/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+    </head>
+<body>
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div id="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 sidebar">
+    <div class="sidebar__menu-toggle">
+        MVP
+        <i class="fa fa-bars pull-right"></i>
+    </div>
+    <div class="row sidebar__links">
+        
+            
+        
+            
+            
+                
+                
+
+                
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/contribute/getting-started/"> Getting Started</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/getting-started/contributions-without-ticket/"> Contributions Without Ticket</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/getting-started/contribution-checklist/"> Contribution Checklist</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/getting-started/inactive-contributions/"> Inactive Contributions</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/getting-started/core-committers/"> Core Committers</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/getting-started/code-review/"> Code Review</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/getting-started/labels/"> Labels</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/getting-started/branching/"> Mattermost tick-tock Branching Strategy</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/getting-started/slash-commands/"> Slash Commands</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/getting-started/guilds/"> Engineering Guilds</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/contribute/server/"> Server</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/developer-setup/"> Developer Setup</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/style-guide/"> Go Style Guide</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/feature-flags/"> Feature Flags</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/developer-workflow/"> Server Workflow</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/rest-api/"> REST API</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/system_console/"> System Console</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/dependencies/"> Dependencies</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/cli-commands/"> CLI Commands</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/plugins/"> Plugins</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/tooling/"> Tooling</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/developer-setup/arch/"> Arch Linux Development Environment Setup</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/developer-setup/centos/"> CentOS Development Environment Setup</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/developer-setup/ubuntu/"> Mattermost Developer Setup: Ubuntu</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/developer-setup/osx/"> OSX Development Environment Setup</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/server/developer-setup/windows-wsl/"> Windows with WSL Development Environment Setup</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/contribute/webapp/"> Web App</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/webapp/developer-setup/"> Developer Setup</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/webapp/developer-workflow/"> Web App Workflow</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/webapp/build-component/"> Build a Component</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/webapp/unit-testing/"> Unit Testing</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/webapp/end-to-end-tests/"> End-to-End Testing</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/webapp/using-i18n-extract/"> Using make i18n-extract</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/webapp/redux/"> Redux</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/webapp/redux/actions/"> Actions</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/webapp/redux/reducers/"> Reducers</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/webapp/redux/selectors/"> Selectors</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/webapp/redux/react-redux/"> Using Redux with React</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/webapp/migrating-to-typescript/"> Migrating to Typescript</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/contribute/mobile/"> Mobile Apps</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/mobile/developer-setup/"> Developer Setup</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/developer-setup/structure/"> Folder Structure</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/developer-setup/run/"> Run the app</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/developer-setup/dependecies/"> Add new dependencies</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/mobile/build-your-own/"> Build Your Own App</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/build-your-own/android/"> Build the Android App</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/build-your-own/ios/"> Build the iOS App</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/build-your-own/white-label/"> White Labeling</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/mobile/push-notifications/"> Setup Push Notifications</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/push-notifications/android/"> Android Push Notifications</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/push-notifications/ios/"> iOS Push Notifications</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/push-notifications/service/"> Push Notification Service</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/push-notifications/corporate-proxy/"> Push Notification Service with Corporate Proxy</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/mobile/unsigned/"> Sign Unsigned Builds</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/unsigned/android/"> Sign Unsigned Android</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/unsigned/ios/"> Sign Unsigned iOS</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/mobile/e2e/"> Mobile End-to-End Testing</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/e2e/file-structure/"> Folder and File Structure</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/e2e/android/"> Setup and Run Android E2E</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/e2e/ios/"> Setup and Run iOS E2E</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/e2e/guide-for-writing/"> Guide for Writing E2E</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/contribute/mobile/e2e/environment-vars/"> Environment Variables</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/mobile/storybook/"> Storybook</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/contribute/plugins/"> Plugins</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/contribute/desktop/"> Desktop App</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/desktop/developer-setup/"> Developer Setup</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/desktop/debugging/"> Debugging</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/contribute/desktop/code-signing/"> Code Signing</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/contribute/devtalks/"> Mattermost Dev Talks</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/contribute/containers/"> Containers</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/contribute/team_contributions/"> Contributor Wall of Fame</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/contribute/gsoc/"> Google Summer of Code</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+                    
+                
+
+                
+                
+                    
+                
+
+                <span class="item active">
+                    <i class="sub-menu__toggle fa fa-minus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a class="active" href="#"> MVP</a>
+                    
+                </span>
+
+                <ul class="sub-menu" style="display: block">
+                    
+                </ul>
+            
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+</div>
+
+                <div class="col-lg-9 doc-content">
+                    
+<a href="https://github.com/mattermost/mattermost-developer-documentation/edit/master/site/content/contribute/mvp/_index.md" class="float-right edit-github">
+    Edit on GitHub
+</a>
+
+
+                    <h1 class="mt-0 doc-title">
+                        
+                            Mattermost Hall of Fame
+                        
+                    </h1>
+                    <p>Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best.</p>
+<p><span style="max-width:40%;display:block;text-align:center;margin:auto"><img src="https://developers.mattermost.com/img/mvp_award.png" alt="MVP Award"></span></p>
+<h2 id="mattermost-mvp">Mattermost MVP&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#mattermost-mvp"></i></a> </h2>
+<p>The title of “Most Valued Professional” is awarded to an outstanding contributor for a key Mattermost release.</p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Release date</th>
+<th>MVP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5.36</td>
+<td>June 16, 2021</td>
+<td><a href="https://github.com/bbodenmiller">Ben Bodenmiller</a></td>
+</tr>
+<tr>
+<td>5.35</td>
+<td>May 16, 2021</td>
+<td><a href="https://github.com/TheDarkestDay">Alexander Brenchev</a></td>
+</tr>
+<tr>
+<td>5.34</td>
+<td>April 16, 2021</td>
+<td><a href="https://github.com/darkLord19">darkLord19</a></td>
+</tr>
+<tr>
+<td>5.33</td>
+<td>March 16, 2021</td>
+<td><a href="https://github.com/mahmud2011">Mahmudul Haque</a></td>
+</tr>
+<tr>
+<td>5.32</td>
+<td>February 16, 2021</td>
+<td><a href="https://github.com/kaakaa">Yusuke Nemoto</a></td>
+</tr>
+<tr>
+<td>5.31</td>
+<td>January 16, 2021</td>
+<td><a href="https://github.com/haardikdharma10">Haardik Dharma</a></td>
+</tr>
+<tr>
+<td>5.30</td>
+<td>December 16, 2020</td>
+<td><a href="https://github.com/XxLilBoPeepsxX">XxLilBoPeepsxX</a></td>
+</tr>
+<tr>
+<td>5.29</td>
+<td>November 16, 2020</td>
+<td><a href="https://github.com/ctlaltdieliet">Tom De Moor</a></td>
+</tr>
+<tr>
+<td>5.28</td>
+<td>October 16, 2020</td>
+<td><a href="https://github.com/josephk96">Soo Hwan Kim</a></td>
+</tr>
+<tr>
+<td>5.27</td>
+<td>September 16, 2020</td>
+<td><a href="https://github.com/openmohan">Mohan Prasath</a></td>
+</tr>
+<tr>
+<td>5.26</td>
+<td>August 16, 2020</td>
+<td><a href="https://github.com/abdusabri">Abdu Assabri</a></td>
+</tr>
+<tr>
+<td>5.25</td>
+<td>July 16, 2020</td>
+<td><a href="https://github.com/rvillablanca">Rodrigo Villablanca</a></td>
+</tr>
+<tr>
+<td>5.24</td>
+<td>June 16, 2020</td>
+<td><a href="https://github.com/rakhi2104">Rakesh Peela</a></td>
+</tr>
+<tr>
+<td>5.23</td>
+<td>May 16, 2020</td>
+<td><a href="https://github.com/nadalfederer">Vladimir Lebedev</a></td>
+</tr>
+<tr>
+<td>5.22</td>
+<td>April 16, 2020</td>
+<td><a href="https://github.com/der-test">Tim Estermann</a></td>
+</tr>
+<tr>
+<td>5.21</td>
+<td>March 16, 2020</td>
+<td><a href="https://github.com/AGMETEOR">Allan Guwatudde</a></td>
+</tr>
+<tr>
+<td>5.20</td>
+<td>February 16, 2020</td>
+<td><a href="https://github.com/M-ZubairAhmed">Md Zubair Ahmed</a></td>
+</tr>
+<tr>
+<td>5.19</td>
+<td>January 16, 2020</td>
+<td><a href="https://github.com/allenlai18">Allen Lai</a></td>
+</tr>
+<tr>
+<td>5.18</td>
+<td>December 16, 2019</td>
+<td><a href="https://github.com/larkox">larkox</a></td>
+</tr>
+<tr>
+<td>5.17</td>
+<td>November 16, 2019</td>
+<td><a href="https://github.com/avasconcelos114">Andre Vasconcelos</a></td>
+</tr>
+<tr>
+<td>5.16</td>
+<td>October 16, 2019</td>
+<td><a href="https://github.com/pbitty">Paulo Bittencourt</a></td>
+</tr>
+<tr>
+<td>5.15</td>
+<td>September 16, 2019</td>
+<td><a href="https://github.com/liusy182">Siyuan Liu</a></td>
+</tr>
+<tr>
+<td>5.14</td>
+<td>August 16, 2019</td>
+<td><a href="https://github.com/rvillablanca">Rodrigo Villablanca Vásquez</a></td>
+</tr>
+<tr>
+<td>5.13</td>
+<td>July 16, 2019</td>
+<td><a href="https://github.com/thiefmaster">Adrian Mönnich</a></td>
+</tr>
+<tr>
+<td>5.12</td>
+<td>June 16, 2019</td>
+<td><a href="https://github.com/scottleedavis">Scott Davis</a></td>
+</tr>
+<tr>
+<td>5.11</td>
+<td>May 16, 2019</td>
+<td><a href="https://github.com/manland">Maneschi Romain</a></td>
+</tr>
+<tr>
+<td>5.10</td>
+<td>April 16, 2019</td>
+<td><a href="https://github.com/kosgrz">Grzegorz Kosik</a></td>
+</tr>
+<tr>
+<td>5.9</td>
+<td>March 16, 2019</td>
+<td><a href="https://github.com/JtheBAB">JtheBAB</a></td>
+</tr>
+<tr>
+<td>5.8</td>
+<td>February 16, 2019</td>
+<td><a href="https://github.com/pichouk">Kyâne Pichou</a></td>
+</tr>
+<tr>
+<td>5.7</td>
+<td>January 16, 2019</td>
+<td><a href="https://github.com/sadb">sadb</a></td>
+</tr>
+<tr>
+<td>5.6</td>
+<td>December 16, 2018</td>
+<td><a href="https://github.com/pradeepmurugesan">Pradeep Murugesan</a></td>
+</tr>
+<tr>
+<td>5.5</td>
+<td>November 16, 2018</td>
+<td><a href="https://github.com/mukulrawat1986">Mukul Rawat</a></td>
+</tr>
+<tr>
+<td>5.4</td>
+<td>October 16, 2018</td>
+<td><a href="https://github.com/Hanzei">Hanzei</a></td>
+</tr>
+<tr>
+<td>5.3</td>
+<td>September 16, 2018</td>
+<td><a href="https://github.com/SmartHoneybee">SmartHoneybee</a></td>
+</tr>
+<tr>
+<td>5.2</td>
+<td>August 16, 2018</td>
+<td><a href="https://github.com/DSchalla">Daniel Schalla</a></td>
+</tr>
+<tr>
+<td>5.1</td>
+<td>July 16, 2018</td>
+<td><a href="https://github.com/cometkim">Hyeseong Kim</a></td>
+</tr>
+<tr>
+<td>5.0</td>
+<td>June 16, 2018</td>
+<td><a href="https://github.com/wget">William Gathoye</a></td>
+</tr>
+<tr>
+<td>4.10</td>
+<td>May 16, 2018</td>
+<td><a href="https://github.com/liusy182">Siyuan Liu</a></td>
+</tr>
+<tr>
+<td>4.9</td>
+<td>April 16, 2018</td>
+<td><a href="https://github.com/chumbalum">Christian Hoff</a></td>
+</tr>
+<tr>
+<td>4.8</td>
+<td>March 16, 2018</td>
+<td><a href="https://github.com/kemenaran">Pierre de La Morinerie of Codeurs en Liberté</a></td>
+</tr>
+<tr>
+<td>4.7</td>
+<td>February 16, 2018</td>
+<td><a href="https://github.com/tkbky">Kher Yee Ting</a></td>
+</tr>
+<tr>
+<td>4.6</td>
+<td>January 16, 2018</td>
+<td><a href="https://github.com/kaakaa">Yusuke Nemoto</a></td>
+</tr>
+<tr>
+<td>4.5</td>
+<td>December 16, 2017</td>
+<td><a href="https://github.com/r-wang97">Ryan Wang</a></td>
+</tr>
+<tr>
+<td>4.4</td>
+<td>November 16, 2017</td>
+<td><a href="https://github.com/sudheerDev">Sudheer Timmaraju</a></td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>October 16, 2017</td>
+<td><a href="https://github.com/jespino">Jesús Espino</a></td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>September 16, 2017</td>
+<td>Uber Development Team</td>
+</tr>
+<tr>
+<td>4.1</td>
+<td>August 16, 2017</td>
+<td><a href="https://github.com/n1aba">Nazar Laba</a></td>
+</tr>
+<tr>
+<td>4.0</td>
+<td>July 16, 2017</td>
+<td><a href="https://github.com/prixone">prixone</a> and <a href="https://github.com/sousapro">sousapro</a></td>
+</tr>
+<tr>
+<td>3.10</td>
+<td>June 16, 2017</td>
+<td><a href="https://github.com/matterhorn-chat">Galois, Inc.</a></td>
+</tr>
+<tr>
+<td>3.9</td>
+<td>May 16, 2017</td>
+<td><a href="https://github.com/cpanato">Carlos Tadeu Panato Junior</a></td>
+</tr>
+<tr>
+<td>3.8</td>
+<td>April 16, 2017</td>
+<td><a href="https://github.com/veralyu">VeraLyu</a></td>
+</tr>
+<tr>
+<td>3.7</td>
+<td>March 16, 2017</td>
+<td><a href="https://github.com/saturninoabril">Saturnino Abril</a></td>
+</tr>
+<tr>
+<td>3.6</td>
+<td>January 16, 2017</td>
+<td><a href="https://github.com/cpanato">Carlos Tadeu Panato Junior</a></td>
+</tr>
+<tr>
+<td>3.5</td>
+<td>November 16, 2016</td>
+<td><a href="https://github.com/harshavardhana">Harshavardhana</a></td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>September 16, 2016</td>
+<td><a href="https://github.com/42wim">Wim van Wemmel</a></td>
+</tr>
+<tr>
+<td>3.3</td>
+<td>August 16, 2016</td>
+<td><a href="https://github.com/samogot">Ivan Naydonov</a></td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>July 16, 2016</td>
+<td><a href="https://github.com/meilon">Christian Arnold</a></td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>June 16, 2016</td>
+<td><a href="https://github.com/tbalthazar">Thomas Balthazar</a></td>
+</tr>
+</tbody>
+</table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+</html>

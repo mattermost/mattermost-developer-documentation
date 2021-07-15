@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/internal/infrastructure/kubernetes/</link>
+    <description>Recent content in Kubernetes on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 06 Nov 2018 12:36:58 +0100</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/internal/infrastructure/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Kubernetes Maintenance</title>
+      <link>https://developers.mattermost.com/internal/infrastructure/kubernetes/kubernetes-troubleshooting/</link>
+      <pubDate>Wed, 07 Nov 2018 15:24:42 +0100</pubDate>
+      
+      <guid>https://developers.mattermost.com/internal/infrastructure/kubernetes/kubernetes-troubleshooting/</guid>
+      <description>This page helps developers access and perform any type of maintenance in the Production Mattermost Kubernetes Cluster, which is running on AWS using EKS.
+Set up a local environment to access Kubernetes (K8s)   Make sure you have kubectl version 1.10 or later installed. If not, follow these instructions.
+  Use your OneLogin account to retrieve AWS Keys for the main Mattermost AWS account following these instructions to install onelogin-aws command line application.</description>
+    </item>
+    
+  </channel>
+</rss>

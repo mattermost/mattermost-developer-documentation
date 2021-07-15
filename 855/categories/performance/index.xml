@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>performance on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/categories/performance/</link>
+    <description>Recent content in performance on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 Feb 2021 00:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/categories/performance/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Streamlining Developer Access to Prometheus and Grafana</title>
+      <link>https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/</link>
+      <pubDate>Tue, 02 Feb 2021 00:00:00 -0400</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/</guid>
+      <description>With access to the Enterprise source code, the developer build tooling now automates the setup of Prometheus and Grafana for performance monitoring. Even the canonical Grafana dashboards are setup without any manual configuration required!</description>
+    </item>
+    
+    <item>
+      <title>Improving performance (and more) through load testing</title>
+      <link>https://developers.mattermost.com/blog/improving-performance-through-load-testing/</link>
+      <pubDate>Mon, 07 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/improving-performance-through-load-testing/</guid>
+      <description>Have you ever wondered how many active users your application can handle at the same time? If so, you&amp;rsquo;re not alone. Here at Mattermost we&amp;rsquo;re building a highly concurrent messaging platform for team collaboration that needs to potentially serve up to several thousands of users simultaneously.
+While standard functional testing (e.g. unit tests) is critical to verify correct behavior of your application, it&amp;rsquo;s usually not sufficient to guarantee its performance at scale.</description>
+    </item>
+    
+  </channel>
+</rss>

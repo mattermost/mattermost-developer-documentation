@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Server Plugins on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/extend/plugins/server/</link>
+    <description>Recent content in Server Plugins on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Jul 2018 00:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/extend/plugins/server/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Quick Start</title>
+      <link>https://developers.mattermost.com/extend/plugins/server/hello-world/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/server/hello-world/</guid>
+      <description>This tutorial will walk you through the basics of writing a Mattermost plugin with a server component.
+Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing mattermost-plugin-starter-template for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the migration document to upgrade older plugins.
+Prerequisites Mattermost plugins extend the server using a Go API. In the future, gRPC may be supported, allowing you to write plugins in any language.</description>
+    </item>
+    
+    <item>
+      <title>Server Reference</title>
+      <link>https://developers.mattermost.com/extend/plugins/server/reference/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/server/reference/</guid>
+      <description>This is the documentation for the Go github.com/mattermost/mattermost-server/plugin package. It can also be found on GoDoc.  Run make plugin-data to generate this documentation. </description>
+    </item>
+    
+    <item>
+      <title>High Availability</title>
+      <link>https://developers.mattermost.com/extend/plugins/server/ha/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/server/ha/</guid>
+      <description>Mattermost Enterprise Edition servers with an E20 license have the ability to run in High Availability (HA) mode, meaning a cluster of Mattermost app servers running together as a single Mattermost deployment.
+It is important that all plugins consider HA environments when being built.
+Plugins are started as subprocesses of the main Mattermost process on each app server. This means a Mattermost deployment that has three app servers will have three separate copies of the same plugin running.</description>
+    </item>
+    
+    <item>
+      <title>Best Practices</title>
+      <link>https://developers.mattermost.com/extend/plugins/server/best-practices/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/server/best-practices/</guid>
+      <description>How should plugins serve publicly available static files? Add all static files under a file directory named public within the plugin directory, and include the files in the plugin bundle using the Makefile.
+How can plugins make sure http requests are authentic? Plugins can implement the ServeHTTP to listen to http requests. This can e.g. be used to receive post action requests when Interactive Messages Buttons and Menus are triggered by users.</description>
+    </item>
+    
+    <item>
+      <title>Debugging Server Plugins</title>
+      <link>https://developers.mattermost.com/extend/plugins/server/debugging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/extend/plugins/server/debugging/</guid>
+      <description>Plugins communicate with the main Mattermost server by RPC. In order to debug them with Delve, a few steps are necessary.
+MacOS  After starting the main Mattermost application, run ps aux | grep name.of.your.plugin. This will print a list of running processes that match that name, as such: username 78836 0.0 0.1 4397696 12492 s006 S 7:07AM 0:00.03 plugins/name.of.your.plugin/server/dist/plugin-darwin-amd64. Grab the pid, which is the second number after your username in the output above.</description>
+    </item>
+    
+  </channel>
+</rss>

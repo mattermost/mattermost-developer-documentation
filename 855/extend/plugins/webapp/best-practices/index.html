@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Best Practices</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Best Practices">
+
+ 
+  <meta name="description" content="Thinking about adding a plugin to Mattermost? Check out these design best practices.">
+<meta name="twitter:description" content="Thinking about adding a plugin to Mattermost? Check out these design best practices.">
+<meta name="og:description" content="Thinking about adding a plugin to Mattermost? Check out these design best practices.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/extend/plugins/webapp/best-practices/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+    </head>
+<body>
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div id="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 sidebar">
+    <div class="sidebar__menu-toggle">
+        Best Practices
+        <i class="fa fa-bars pull-right"></i>
+    </div>
+    <div class="row sidebar__links">
+        
+            
+        
+            
+        
+            
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/extend/getting-started/"> Getting Started</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/extend/customization/"> Customizing Mattermost</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/customization/server-build/"> Server Build (Team Edition)</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/customization/server-files/"> Server Files</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/customization/webapp/"> Web App</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+                    
+                
+
+                
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-minus-square-o" aria-hidden="true" style=""></i>
+                    
+                        <a href="https://developers.mattermost.com/extend/plugins/"> Plugins (Beta)</a>
+                    
+                </span>
+
+                <ul class="sub-menu" style="display: block">
+                    
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/plugins/overview/"> Overview</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/plugins/developer-setup/"> Developer Setup</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/plugins/developer-workflow/"> Developer Workflow</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/plugins/server/"> Server Plugins</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/extend/plugins/server/hello-world/"> Quick Start</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/extend/plugins/server/reference/"> Server Reference</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/extend/plugins/server/ha/"> High Availability</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/extend/plugins/server/best-practices/"> Best Practices</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/extend/plugins/server/debugging/"> Debugging Server Plugins</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-minus-square-o" aria-hidden="true" style=""></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/plugins/webapp/"> Web App Plugins</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" style="display: block">
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/extend/plugins/webapp/hello-world/"> Quick Start</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/extend/plugins/webapp/reference/"> Web App Reference</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item ">
+                                
+                                    <a href="https://developers.mattermost.com/extend/plugins/webapp/actions/"> Redux Actions</a>
+                                
+                                </span>
+                            
+                            
+                                <span class="item active">
+                                
+                                    <a class="active" href="#"> Best Practices</a>
+                                
+                                </span>
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/plugins/manifest-reference/"> Manifest Reference</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/plugins/mobile/"> Mobile Plugins</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/plugins/example-plugins/"> Example Plugins</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/plugins/migration/"> Migrating Plugins</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/plugins/community_process/"> Process to Include Plugin on Community</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/plugins/community-plugin-marketplace/"> Community Plugins in the Marketplace</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/plugins/best-practices/"> Best Practices</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/plugins/source-available-license/"> Source Available License</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                            
+                        
+
+                        <span class="item ">
+                            <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                            
+                                <a href="https://developers.mattermost.com/extend/plugins/helpers/"> Plugin Helpers</a>
+                            
+                        </span>
+
+                        <ul class="sub-menu" >
+                            
+                        </ul>
+                
+                </ul>
+            
+                
+                
+
+                
+                
+
+                
+                
+                    
+                
+
+                <span class="item ">
+                    <i class="sub-menu__toggle fa fa-plus-square-o" aria-hidden="true" style="display: none"></i>
+                    
+                        <a href="https://developers.mattermost.com/extend/embed/"> Embed</a>
+                    
+                </span>
+
+                <ul class="sub-menu" >
+                    
+                </ul>
+            
+            
+        
+            
+        
+            
+        
+    </div>
+</div>
+
+                <div class="col-lg-9 doc-content">
+                    
+<a href="https://github.com/mattermost/mattermost-developer-documentation/edit/master/site/content/extend/plugins/webapp/best-practices.md" class="float-right edit-github">
+    Edit on GitHub
+</a>
+
+
+                    <h1 class="mt-0 doc-title">
+                        
+                            Best Practices for Plugins - Mattermost
+                        
+                    </h1>
+                    <h2 id="design-best-practices">Design Best Practices&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#design-best-practices"></i></a> </h2>
+<h3 id="actions-that-apply-to-specific-channels">Actions that apply to specific Channels&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#actions-that-apply-to-specific-channels"></i></a> </h3>
+<ul>
+<li>Recommendation: Have your plugin register the actions to <a href="https://developers.mattermost.com/extend/plugins/webapp/reference/#registerChannelHeaderButtonAction">the channel header</a>. This makes it quickly accessible for users and the actions apply on the channel they&rsquo;re viewing.</li>
+<li>Example: Zoom meeting posts to a channel</li>
+</ul>
+<p><img src="https://developers.mattermost.com/img/extend/bp-channel-header.png" alt="Custom Channel Header Button"></p>
+<p>You can additionally <a href="https://developers.mattermost.com/extend/plugins/server/reference/#API.RegisterCommand">register a slash command</a> on the server-side to take channel-specific actions.</p>
+<ul>
+<li>Example: Jira project actions</li>
+</ul>
+<p><img src="https://developers.mattermost.com/img/extend/bp-slash-command.gif" alt="Slash Command"></p>
+<h3 id="actions-that-apply-to-specific-messages">Actions that apply to specific messages&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#actions-that-apply-to-specific-messages"></i></a> </h3>
+<ul>
+<li>Recommendation: Have your plugin register a <a href="https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPostDropdownMenuComponent">post dropdown menu component</a> with some text, icon and an action function. This adds your action to the &ldquo;More Actions&rdquo; post menu dropdown for easy discovery.</li>
+<li>Examples: Create or attach to Jira issue from a message; copy a message to another channel; report an inappropriate message</li>
+</ul>
+<p><img src="https://developers.mattermost.com/img/extend/bp-post-dropdown-menu.png" alt="Post Dropdown Menu"></p>
+<h3 id="actions-related-to-files-or-images">Actions related to files or images&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#actions-related-to-files-or-images"></i></a> </h3>
+<ul>
+<li>Recommendation: Have your plugin register a <a href="https://developers.mattermost.com/extend/plugins/webapp/reference/#registerFileUploadMethod">file upload method</a> with some text, icon and an action function. This adds your new action to the file upload menu.</li>
+<li>Examples: File sharing from OneDrive or GDrive; Draw plugin for sketches</li>
+</ul>
+<p><img src="https://developers.mattermost.com/img/extend/bp-file-upload.png" alt="File Upload Action"></p>
+<h3 id="actions-that-apply-to-specific-teams">Actions that apply to specific teams&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#actions-that-apply-to-specific-teams"></i></a> </h3>
+<ul>
+<li>Recommendation: Have your plugin register <a href="https://developers.mattermost.com/extend/plugins/webapp/reference/#registerLeftSidebarHeaderComponent">left sidebar header component</a> with some text, icon and an action function. This adds your action above your team&rsquo;s channels in the sidebar.</li>
+<li>Examples: Trello kanban board plugin, GitHub Plugin</li>
+</ul>
+<p><img src="https://developers.mattermost.com/img/extend/bp-left-sidebar-header.png" alt="left sidebar header"></p>
+<h3 id="quick-links-or-status-summaries-of-workflows">Quick links or status summaries of workflows&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#quick-links-or-status-summaries-of-workflows"></i></a> </h3>
+<ul>
+<li>Recommendation: Have your plugin register a <a href="https://developers.mattermost.com/extend/plugins/webapp/reference/#registerBottomTeamSidebarComponent">bottom team sidebar component</a>. This adds icons to the lower left corner of the UI.</li>
+<li>Examples: GitHub sidebar links with summary of outstanding reviews or unread messages; ServiceNow incident status summary</li>
+</ul>
+<p><img src="https://developers.mattermost.com/img/extend/bp-bottom-team-sidebar.png" alt="bottom team sidebar"></p>
+<h3 id="global-actions-that-can-be-taken-anywhere-in-the-server-and-not-directly-related-to-teams-channels-or-users">Global actions that can be taken anywhere in the server and not directly related to teams, channels or users&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#global-actions-that-can-be-taken-anywhere-in-the-server-and-not-directly-related-to-teams-channels-or-users"></i></a> </h3>
+<ul>
+<li>Recommendation: Have your plugin register <a href="https://developers.mattermost.com/extend/plugins/webapp/reference/#registerMainMenuAction">main menu action</a> with some text, icon for mobile, and an action function. This adds your action to the Main Menu. You can additionally <a href="https://developers.mattermost.com/extend/plugins/server/reference/#API.RegisterCommand">register a slash command</a> on the server-side.</li>
+<li>Examples: Share feedback plugin in Main Menu; /jira slash commands for quick actions</li>
+</ul>
+<p><img src="https://developers.mattermost.com/img/extend/bp-main-menu-action.png" alt="main menu action"></p>
+<h3 id="actions-that-apply-to-specific-users">Actions that apply to specific users&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#actions-that-apply-to-specific-users"></i></a> </h3>
+<ul>
+<li>Recommendation: Have your plugin register a <a href="https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserActionsComponent">popover user actions component</a>. This adds your action button to the user profile popover.</li>
+<li>Examples: Report User plugin; Display extra information about the user from an LDAP server</li>
+</ul>
+<p><img src="https://developers.mattermost.com/img/extend/bp-user-popover.png" alt="popover user actions component"></p>
+<h3 id="extra-information-on-a-user-profile">Extra information on a user profile&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#extra-information-on-a-user-profile"></i></a> </h3>
+<ul>
+<li>Recommendation: Have your plugin register a <a href="https://developers.mattermost.com/extend/plugins/webapp/reference/#registerPopoverUserAttributesComponent">popover user attribute component</a>. This adds your custom attributes to the user profile popover.</li>
+<li>Examples: Custom User Attributes plugin</li>
+</ul>
+<p><img src="https://developers.mattermost.com/img/extend/bp-user-attributes.png" alt="popover user attribute component"></p>
+<h3 id="actions-related-to-emoji-and-gifs">Actions related to emoji and GIFs&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#actions-related-to-emoji-and-gifs"></i></a> </h3>
+<ul>
+<li>Recommendation: Have your plugin add a component to the emoji picker. This is not yet supported, but some <a href="https://github.com/mattermost/mattermost-server/issues/10412#issuecomment-481776595">work had previously started</a> with the issue currently opened as Help Wanted.</li>
+<li>Examples: Bitmoji plugin; GIFs via Giphy or Gfycat</li>
+</ul>
+<h2 id="setting-up-the-plugin-to-properly-communicate-with-the-mattermost-server">Setting up the plugin to properly communicate with the Mattermost server&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#setting-up-the-plugin-to-properly-communicate-with-the-mattermost-server"></i></a> </h2>
+<h3 id="using-the-mattermost-servers-siteurl-in-your-web-app-plugin">Using the Mattermost server&rsquo;s SiteURL in your web app plugin&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#using-the-mattermost-servers-siteurl-in-your-web-app-plugin"></i></a> </h3>
+<p>In order to make sure your plugin has full compatibility with your Mattermost server, you should use the server&rsquo;s configured SiteURL in each API call you send to the server from the webapp. Here&rsquo;s an <a href="https://github.com/mattermost/mattermost-plugin-jira/blob/19a9c2442817132b4eee5c77e259b80a40188a6a/webapp/src/selectors/index.js#L13-L26">example</a> of how to compute the SiteURL:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#069;font-weight:bold">export</span> <span style="color:#069;font-weight:bold">const</span> getPluginServerRoute <span style="color:#555">=</span> (state) =&gt; {
+    <span style="color:#069;font-weight:bold">const</span> config <span style="color:#555">=</span> getConfig(state);
+
+    <span style="color:#069;font-weight:bold">let</span> basePath <span style="color:#555">=</span> <span style="color:#c30">&#39;&#39;</span>;
+    <span style="color:#069;font-weight:bold">if</span> (config <span style="color:#555">&amp;&amp;</span> config.SiteURL) {
+        basePath <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> URL(config.SiteURL).pathname;
+
+        <span style="color:#069;font-weight:bold">if</span> (basePath <span style="color:#555">&amp;&amp;</span> basePath[basePath.length <span style="color:#555">-</span> <span style="color:#f60">1</span>] <span style="color:#555">===</span> <span style="color:#c30">&#39;/&#39;</span>) {
+            basePath <span style="color:#555">=</span> basePath.substr(<span style="color:#f60">0</span>, basePath.length <span style="color:#555">-</span> <span style="color:#f60">1</span>);
+        }
+    }
+
+    <span style="color:#069;font-weight:bold">return</span> basePath <span style="color:#555">+</span> <span style="color:#c30">&#39;/plugins/&#39;</span> <span style="color:#555">+</span> PluginId;
+};
+</code></pre></div><h3 id="including-the-servers-csrf-token-in-your-webapp-plugins-requests">Including the server&rsquo;s CSRF token in your webapp plugin&rsquo;s requests&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#including-the-servers-csrf-token-in-your-webapp-plugins-requests"></i></a> </h3>
+<p>The Mattermost server can be configured to require a CSRF token to be present in HTTP requests sent from the webapp. In order to include the token in each request, you can use the <code>mattermost-redux</code> library&rsquo;s <code>Client4.getOptions</code> function to add the token to your <code>fetch</code> request. Here&rsquo;s an <a href="https://github.com/mattermost/mattermost-plugin-jira/blob/19a9c2442817132b4eee5c77e259b80a40188a6a/webapp/src/client/index.js#L14">example</a> of how to include the CSRF token.</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#069;font-weight:bold">const</span> response <span style="color:#555">=</span> await fetch(url, Client4.getOptions(options));
+</code></pre></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title> Plugin System Overhaul</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<meta http-equiv="content-language" content="en-us" />
+
+<meta name="og:site_name" value="Mattermost.com">
+<meta name="og:title" value="Plugin System Overhaul">
+
+ 
+  <meta name="description" content="In 2018, we overhauled our entire plugin system. Read about the biggest challenges and takeaways from that experience.">
+<meta name="twitter:description" content="In 2018, we overhauled our entire plugin system. Read about the biggest challenges and takeaways from that experience.">
+<meta name="og:description" content="In 2018, we overhauled our entire plugin system. Read about the biggest challenges and takeaways from that experience.">
+
+
+
+ 
+<link rel="canonical" href="https://developers.mattermost.com/blog/plugins-v2/">
+
+
+<link rel="shortcut icon" type="image/png" href="https://developers.mattermost.com/img/favicon-32x32.png" />
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/tabs.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/bar.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/styles.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/code.css">
+<link rel="stylesheet" href="https://developers.mattermost.com/css/note.css">
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53S4TVZ');</script>
+
+
+</head>
+
+<body class="blog-single">
+    
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53S4TVZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    
+<header class="with-notification-bar">
+
+    <a href="https://developers.mattermost.com/"><img src="https://developers.mattermost.com/img/logo.svg" alt="Mattermost Logo" width="212px"></a>
+    <div class="header__menu-toggle">
+        <i class="fa fa-bars"></i>
+    </div>
+    <ul class="header__links--right">
+        <li><a href="https://developers.mattermost.com/">Home</a></li>
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/contribute/getting-started/">Contribute</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/integrate/getting-started/">Integrate</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://developers.mattermost.com/extend/getting-started/">Extend</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li class="active"><a href="https://developers.mattermost.com/blog/">Blog</a></li>
+                
+            
+        
+            
+            
+            
+                
+                    <li><a href="https://docs.mattermost.com/">Admin Docs</a></li>
+                
+            
+        
+    </ul>
+</header>
+
+
+<div class='notification-bar sticky-top'>
+    <div class="notification-bar__content">
+        <a class="notification-bar__close">
+            <span aria-hidden="true">×</span>
+        </a>
+        <a href="https://mattermost.com/careers">
+            We&#39;re hiring!
+        </a>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 doc-content">
+                <div class="well well-sm">
+                    <div class="blog-item__header">
+                        <div class="blog-item__title">
+                            <h1>
+                            
+                                Mattermost Plugin System Overhaul
+                            
+                            </h1>
+                            <small>In 2018, we overhauled our entire plugin system. Read about the biggest challenges and takeaways from that experience.</small>
+                            
+                        </div>
+                        <div class="blog-item__info">
+                            July 18, 2018
+                            <small class="blog-item__count">592 words</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <p>Mattermost 5.2 will include major overhauls to the plugin system. Over the last six months of plugins being in beta, we&rsquo;ve received a lot of great feedback from our community and customers building Mattermost plugins, as well as from our core team. We&rsquo;ve taken this experience and feedback and used it to enhance our plugin system. This brings us a step closer to moving plugins out of beta and into a full stable release.</p>
+<h4 id="switching-to-hashicorps-go-plugin">Switching to HashiCorp&rsquo;s go-plugin&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#switching-to-hashicorps-go-plugin"></i></a> </h4>
+<p>The biggest change to the plugin system is that the server-side is now built on top of HashiCorp&rsquo;s production-proven <a href="https://github.com/hashicorp/go-plugin">go-plugin</a>. We made this decision because the system we built ourselves was very similar to go-plugin and with go-plugin, we get the insurance of stability from a system that has been used in production for years. We also get slew of features that will make Mattermost plugins even better over time, such as gRPC support that would allow server-side plugins to be written in almost any programming language.</p>
+<h4 id="server-side-hooks">Server-side Hooks&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#server-side-hooks"></i></a> </h4>
+<p>Server-side plugin hooks have had a <a href="https://godoc.org/github.com/mattermost/mattermost-server/plugin#Context">Context</a> added to them as the first parameter. Right now the Context is blank. But in the future, we will be adding useful context-specific information, such as request IDs and other tracing/logging information.</p>
+<p>We&rsquo;ve also added many more hooks, such as allowing plugins to intercept/reject post creation and triggering events when a user joins or leaves channels/teams. See the <a href="https://godoc.org/github.com/mattermost/mattermost-server/plugin#Hooks">godoc</a> for all available hooks.</p>
+<h4 id="extensibility-over-replacement">Extensibility Over Replacement&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#extensibility-over-replacement"></i></a> </h4>
+<p>One of the big features of the initial implementation of the client-side plugin system was to allow overriding or replacing existing Mattermost UI components with custom ones. This worked well when one large plugin installed at a time but quickly fell down when multiple plugins wanted to override the same component. To address this the new plugin system for the web and desktop apps, we focused on providing extensibility over replacement.</p>
+<p>Now, the focus is less on overriding Mattermost UI components and more on allowing one or more plugins to extend them by inserting custom components into certain pluggable locations. This makes it feasible for many plugins to be installed and work together, instead of fighting over which plugin gets to override a single component.</p>
+<h4 id="more-new-features">More New Features&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#more-new-features"></i></a> </h4>
+<p>In addition to the larger changes above, the new plugin system in Mattermost 5.2 will also have some other cool new features:</p>
+<ul>
+<li><strong>Enhanced plugin logging</strong> - log like you normally would to stdout or stderr, or use the new logging API, and either way it will get captured in the Mattermost structured server logs</li>
+<li><strong>Custom WebSocket events</strong> - publish your own WebSocket events from the server-side of your plugin and add function handlers for those events on your client-side</li>
+<li><strong>Expanded APIs</strong> - new APIs give more power and options both server-side and client-side (thanks to <a href="https://github.com/dschalla">dschalla</a> for the help here!)</li>
+<li><strong>CLI management</strong> - fully manage plugins from the Mattermost command-line interface (thanks to <a href="https://github.com/santos22">santos22</a> for the help here!)</li>
+</ul>
+<h4 id="breaking-changes">Breaking Changes&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#breaking-changes"></i></a> </h4>
+<p>All these great changes will require changes to any plugins built for pre-5.2 versions of Mattermost. See our <a href="https://developers.mattermost.com/extend/plugins/migration/">migration guide</a> for steps on how to update your plugins.</p>
+<h4 id="plugin-hackathon">Plugin Hackathon&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#plugin-hackathon"></i></a> </h4>
+<p><a href="https://www.meetup.com/mattermost/events/253346351/?rv=ea1_v2&amp;_xtd=gatlbWFpbF9jbGlja9oAJDVmOTQ0YTg5LTJiNWYtNDRjNS04Y2FhLWQyOTMxMjY0MDE5ZQ&amp;_cookie-check=dTkGAAOqZWt6N4bI">Join us for a plugin hackathon</a> during August 16th and 17th, with presentations happening on August 20th!</p>
+<h4 id="thanks">Thanks&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#thanks"></i></a> </h4>
+<p>Huge shout out to our community for all the feedback and help with plugins. Extra thanks to <a href="https://github.com/santos22">santos22</a> for adding CLI commands and <a href="https://github.com/dschalla">dschalla</a> for adding server-side hooks and APIs, as well as <a href="https://github.com/thiefmaster">ThiefMaster</a>, <a href="https://github.com/smarthoneybee">Bee</a>, <a href="https://github.com/Hanzei">Hanzei</a> and everyone else who has been helping in the <a href="https://community.mattermost.com/core/channels/developer-toolkit">~Toolkit</a> channel.</p>
+<h4 id="documentation">Documentation&nbsp;<a class="hanchor fa fa-link" ariaLabel="Anchor" href="#documentation"></i></a> </h4>
+<p>For the full documentation on plugins, see <a href="https://developers.mattermost.com/extend/plugins/">developers.mattermost.com/extend/plugins</a>.</p>
+
+
+                    <hr>
+                    
+                    Written by
+                    
+                    Joram Wilander
+-
+<a href="https://community.mattermost.com/core/messages/@joram" target="_blank">
+    @joram
+</a>
+on
+<a href="https://community.mattermost.com/signup_user_complete" target="_blank">
+    community.mattermost.com
+</a>
+and
+<a href="https://github.com/jwilander" target="_blank">
+    @jwilander
+</a>
+on GitHub
+
+                    
+                    
+                    <br />
+                    <br />
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
+                        target="_blank">community.mattermost.com</a>!
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 doc-content tags-sidebar">
+                <div class="well well-sm">
+
+                    
+
+
+                    <h6>Other Posts</h6>
+                    <ul class="list-unstyled">
+                        
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/migrating-thousands-of-mattermost-installations-to-new-kubernetes-custom-resources/">Migrating thousands of Mattermost installations to new Kubernetes Custom Resources</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automating-nodes-rotation/">Automating Nodes Rotation Using Gitlab Pipelines</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/streamlining-developer-access-to-prometheus-and-grafana/">Streamlining Developer Access to Prometheus and Grafana</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/common-i18n-mistakes/">Avoiding Common Internationalization Mistakes</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/mysql-index-merge/">Tuning MySQL and the Ghost of Index Merge Intersection</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/docker-content-trust-in-gitlab-with-delegation/">Docker Content Trust in GitLab&#39;s .gitlab-ci.yml with Delegation</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/improving-performance-through-load-testing/">Improving performance (and more) through load testing</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/">Automated UI Testing With Cypress</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/pritunl/">From OpenVPN to Pritunl VPN: The transition</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/open-tracing/">OpenTracing for Go Projects</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/hands-on-iouring-go/">Getting Hands-on with io_uring using Go</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/advanced-git-tbilisi-free-university/">Advanced Git with the Free University of Tbilisi</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/all-about-emojis/">All About Emojis</a></li>
+                        
+                        
+                        
+                        <li class="blog-item__sidebar">- <a href="https://developers.mattermost.com/blog/maintaining-consistency-in-codebases-with-go-vet/">Maintaining Consistency in Codebases with Go vet</a></li>
+                        
+                        
+                    </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        
+                    <li>- <a href="https://developers.mattermost.com/categories/announcement">announcement</a></li>
+                           
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+    <div class="container-fluid">
+        <div class="footer__copyright">© Mattermost, Inc. All Rights Reserved.</div>
+        <div class="footer__icons">
+            <a href="https://www.facebook.com/Mattermost-2300985916642531/" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/mattermost" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA" target="_blank" rel="noopener noreferrer" class="btn-primary"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://developers.mattermost.com/js/tabs.js"></script>
+<script src="https://developers.mattermost.com/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ui automation on Mattermost Developers</title>
+    <link>https://developers.mattermost.com/categories/ui-automation/</link>
+    <description>Recent content in ui automation on Mattermost Developers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 Jul 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://developers.mattermost.com/categories/ui-automation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Automated UI Testing With Cypress</title>
+      <link>https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/</link>
+      <pubDate>Mon, 27 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://developers.mattermost.com/blog/automated-ui-testing-with-cypress/</guid>
+      <description>It&amp;rsquo;s been more than a year and a half since we started using Cypress for our automated functional testing and it has been worth the investment. It has now become an essential part of our process to automate regression testing to ship new releases faster, with increased quality.
+It’s fun and easy to get started with Cypress but as we added more scripts with the varying requirements, we faced several setbacks and hurdles, such as flaky tests, which slow down our efforts in automating test cases.</description>
+    </item>
+    
+  </channel>
+</rss>
