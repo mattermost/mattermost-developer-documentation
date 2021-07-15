@@ -79,7 +79,6 @@ Depending on the location and expansions, calls will have different context. The
 | `channel_id`               | string   | ID from the channel from within which the call was performed.                       |
 | `post_id`                  | string   | ID from the post from within which the call was performed.                          |
 | `root_post_id`             | string   | If the call was performed from a post in a thread, the root post ID of that thread. |
-| `mattermost_site_url`      | string   | Mattermost base URL.                                                                |
 | `app_path`                 | string   | App's path on the Mattermost instance (appendable to `mattermost_site_url`).        |
 | `mattermost_site_url`      | string   | Mattermost base URL.                                                                |
 | `user_agent`               | string   | User agent used to perform the call. It can be either `webapp` or `mobile`.         |
