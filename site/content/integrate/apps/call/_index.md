@@ -128,10 +128,11 @@ There are several types ([godoc](https://pkg.go.dev/github.com/mattermost/matter
 
 #### Navigate response
 
-| Name              | Type   | Description         |
-| :---------------- | :----- | :------------------ |
-| `type`            | string | Use `navigate`.     |
-| `navigate_to_url` | string | URL to navigate to. |
+| Name                   | Type   | Description                                                  |
+| :--------------------- | :----- | :----------------------------------------------------------- |
+| `type`                 | string | Use `navigate`.                                              |
+| `navigate_to_url`      | string | URL to navigate to.                                          |
+| `use_external_browser` | bool   | Whether the navigation link wll open in an external browser. |
 
 ## Special calls
 
