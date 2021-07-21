@@ -1,5 +1,3 @@
-include legacy.mk
-
 .PHONY: dist
 dist: plugin-data
 	rm -rf ./dist
