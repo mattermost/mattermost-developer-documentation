@@ -26,47 +26,47 @@ Add message buttons as `actions` in your integration [message attachments](https
 The following payload gives an example that uses message buttons.
 
 ```
-  {
-    "attachments": [
-      {
-        "pretext": "This is the attachment pretext.",
-        "text": "This is the attachment text.",
-        "actions": [
-          {
-            "id": "message",
-            "name": "Ephemeral Message",
-            "integration": {
-              "url": "http://127.0.0.1:7357",
-              "context": {
-                "action": "do_something_ephemeral"
-              }
-            }
-          }, {
-            "id": "update",
-            "name": "Update",
-            "integration": {
-              "url": "http://127.0.0.1:7357",
-              "context": {
-                "action": "do_something_update"
-              }
+{
+  "attachments": [
+    {
+      "pretext": "This is the attachment pretext.",
+      "text": "This is the attachment text.",
+      "actions": [
+        {
+          "id": "message",
+          "name": "Ephemeral Message",
+          "integration": {
+            "url": "http://127.0.0.1:7357",
+            "context": {
+              "action": "do_something_ephemeral"
             }
           }
-        ]
-      }
-    ]
-  }
+        }, {
+          "id": "update",
+          "name": "Update",
+          "integration": {
+            "url": "http://127.0.0.1:7357",
+            "context": {
+              "action": "do_something_update"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
 ```
 
 The integration can respond with an update to the original post, or with an ephemeral message:
 
 ```
-  {
-    "update": {
-      "message": "Updated!",
-      "props": {}
-    },
-    "ephemeral_text": "You updated the post!"
-  }
+{
+  "update": {
+    "message": "Updated!",
+    "props": {}
+  },
+  "ephemeral_text": "You updated the post!"
+}
 ```
 
 ![image](interactive_message.gif)
@@ -80,53 +80,53 @@ Similar to buttons, add message menus as `actions` in your integration [message 
 The following payload gives an example that uses message menus.
 
 ```
-  {
-    "attachments": [
-      {
-        "pretext": "This is the attachment pretext.",
-        "text": "This is the attachment text.",
-        "actions": [
-          {
-            "id": "action_options",
-            "name": "Select an option...",
-            "integration": {
-              "url": "http://127.0.0.1:7357/action_options",
-              "context": {
-                "action": "do_something"
-              }
-            },
-            "type": "select",
-            "options": [
-                    {
-                        "text": "Option1",
-                        "value": "opt1"
-                    },
-                    {
-                        "text": "Option2",
-                        "value": "opt2"
-                    },
-                    {
-                        "text": "Option3",
-                        "value": "opt3"
-                    }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+{
+  "attachments": [
+    {
+      "pretext": "This is the attachment pretext.",
+      "text": "This is the attachment text.",
+      "actions": [
+        {
+          "id": "action_options",
+          "name": "Select an option...",
+          "integration": {
+            "url": "http://127.0.0.1:7357/action_options",
+            "context": {
+              "action": "do_something"
+            }
+          },
+          "type": "select",
+          "options": [
+                  {
+                      "text": "Option1",
+                      "value": "opt1"
+                  },
+                  {
+                      "text": "Option2",
+                      "value": "opt2"
+                  },
+                  {
+                      "text": "Option3",
+                      "value": "opt3"
+                  }
+          ]
+        }
+      ]
+    }
+  ]
+}
 ```
 
 The integration can respond with an update to the original post, or with an ephemeral message:
 
 ```
-  {
-    "update": {
-      "message": "Updated!",
-      "props": {}
-    },
-    "ephemeral_text": "You updated the post!"
-  }
+{
+  "update": {
+    "message": "Updated!",
+    "props": {}
+  },
+  "ephemeral_text": "You updated the post!"
+}
 ```
 
 ### Message Menus for Channels
@@ -136,28 +136,28 @@ You can provide a list of channels for message menus for users to select from. U
 Specify `channels` as your action's `data_source` as follows:
 
 ```
-  {
-    "attachments": [
-      {
-        "pretext": "This is the attachment pretext.",
-        "text": "This is the attachment text.",
-        "actions": [
-          {
-            "id": "action_options",
-            "name": "Select an option...",
-            "integration": {
-              "url": "http://127.0.0.1:7357/action_options",
-              "context": {
-                "action": "do_something"
-              }
-            },
-            "type": "select",
-            "data_source": "channels"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "attachments": [
+    {
+      "pretext": "This is the attachment pretext.",
+      "text": "This is the attachment text.",
+      "actions": [
+        {
+          "id": "action_options",
+          "name": "Select an option...",
+          "integration": {
+            "url": "http://127.0.0.1:7357/action_options",
+            "context": {
+              "action": "do_something"
+            }
+          },
+          "type": "select",
+          "data_source": "channels"
+        }
+      ]
+    }
+  ]
+}
 ```
 
 ### Message Menus for Users
@@ -167,28 +167,28 @@ Similar to channels, you can also provide a list of users for message menus. The
 Specify `users` as your action's `data_source` as follows:
 
 ```
-  {
-    "attachments": [
-      {
-        "id": "action_options",
-        "pretext": "This is the attachment pretext.",
-        "text": "This is the attachment text.",
-        "actions": [
-          {
-            "name": "Select an option...",
-            "integration": {
-              "url": "http://127.0.0.1:7357/action_options",
-              "context": {
-                "action": "do_something"
-              }
-            },
-            "type": "select",
-            "data_source": "users"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "attachments": [
+    {
+      "id": "action_options",
+      "pretext": "This is the attachment pretext.",
+      "text": "This is the attachment text.",
+      "actions": [
+        {
+          "name": "Select an option...",
+          "integration": {
+            "url": "http://127.0.0.1:7357/action_options",
+            "context": {
+              "action": "do_something"
+            }
+          },
+          "type": "select",
+          "data_source": "users"
+        }
+      ]
+    }
+  ]
+}
 ```
 
 ### Parameters
@@ -210,52 +210,52 @@ Context
   A simple example of a request is given below:
 
 ```
-    {
-    "user_id": "rd49ehbqyjytddasoownkuqrxe",
-    "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
-    "channel_id": "j6j53p28k6urx15fpcgsr20psq",
-    "team_id": "5xxzt146eax4tul69409opqjlf",
-    "context": {
-      "action": "do_something"
-      }
+  {
+  "user_id": "rd49ehbqyjytddasoownkuqrxe",
+  "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
+  "channel_id": "j6j53p28k6urx15fpcgsr20psq",
+  "team_id": "5xxzt146eax4tul69409opqjlf",
+  "context": {
+    "action": "do_something"
     }
+  }
 ```
 
 In most cases, your integration will do one or both of these things:
   
   1. **Identifying which action was triggered**. For example, a GitHub integration might store something like this in the context:
 
-   ```
-      {
-      "user_id": "rd49ehbqyjytddasoownkuqrxe",
-      "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
-      "channel_id": "j6j53p28k6urx15fpcgsr20psq",
-      "team_id": "5xxzt146eax4tul69409opqjlf",
-      "context": {
-        "repo": "mattermost/mattermost-server"
-        "pr": 1234,
-        "action": "merge"
-        }
+```
+    {
+    "user_id": "rd49ehbqyjytddasoownkuqrxe",
+    "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
+    "channel_id": "j6j53p28k6urx15fpcgsr20psq",
+    "team_id": "5xxzt146eax4tul69409opqjlf",
+    "context": {
+      "repo": "mattermost/mattermost-server"
+      "pr": 1234,
+      "action": "merge"
       }
-   ```   
+    }
+```   
 
 In the example above, when the message button is selected, your integration sends a request to the specified URL with the intention to merge the pull request identified by the context.
 
   2. **Authenticating the server**. An important property of the context parameter is that it's kept confidential. If your integration is not behind a firewall, you could add a token to your context without users ever being able to see it:
 
 ```
-      {
-      "user_id": "rd49ehbqyjytddasoownkuqrxe",
-      "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
-      "channel_id": "j6j53p28k6urx15fpcgsr20psq",
-      "team_id": "5xxzt146eax4tul69409opqjlf",
-      "context": {
-        "repo": "mattermost/mattermost-server"
-        "pr": 1234,
-        "action": "merge",
-        "token": "somerandomlygeneratedsecret"
-        }
+    {
+    "user_id": "rd49ehbqyjytddasoownkuqrxe",
+    "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
+    "channel_id": "j6j53p28k6urx15fpcgsr20psq",
+    "team_id": "5xxzt146eax4tul69409opqjlf",
+    "context": {
+      "repo": "mattermost/mattermost-server"
+      "pr": 1234,
+      "action": "merge",
+      "token": "somerandomlygeneratedsecret"
       }
+    }
 ```
 
 Then, when your integration receives the request, it can verify that the token matches one that you previously generated and know that the request is legitimately coming from the Mattermost server and is not forged.
@@ -263,32 +263,32 @@ Then, when your integration receives the request, it can verify that the token m
 Depending on the application, integrations can also perform authentication statelessly with cryptographic signatures such as:
 
 ```
-      {
-      "user_id": "rd49ehbqyjytddasoownkuqrxe",
-      "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
-      "channel_id": "j6j53p28k6urx15fpcgsr20psq",
-      "team_id": "5xxzt146eax4tul69409opqjlf",
-      "context": {
-        "repo": "mattermost/mattermost-server"
-        "pr": 1234,
-        "action": "merge",
-        "signature": "mycryptographicsignature"
-        }
+    {
+    "user_id": "rd49ehbqyjytddasoownkuqrxe",
+    "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
+    "channel_id": "j6j53p28k6urx15fpcgsr20psq",
+    "team_id": "5xxzt146eax4tul69409opqjlf",
+    "context": {
+      "repo": "mattermost/mattermost-server"
+      "pr": 1234,
+      "action": "merge",
+      "signature": "mycryptographicsignature"
       }
+    }
 ```
 
 It's also possible for integrations to do both of these things with a single token and use something like this as context:
 
-  ```
-      {
-      "user_id": "rd49ehbqyjytddasoownkuqrxe",
-      "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
-      "channel_id": "j6j53p28k6urx15fpcgsr20psq",
-      "team_id": "5xxzt146eax4tul69409opqjlf",
-      "context": {
-        "action_id": "someunguessableactionid"
-        }
+```
+    {
+    "user_id": "rd49ehbqyjytddasoownkuqrxe",
+    "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
+    "channel_id": "j6j53p28k6urx15fpcgsr20psq",
+    "team_id": "5xxzt146eax4tul69409opqjlf",
+    "context": {
+      "action_id": "someunguessableactionid"
       }
+    }
 ```
 
 Then, when the integration receives the request, it can act based on the action ID.
@@ -313,13 +313,13 @@ However, the schema for these objects is slightly different given Slack requires
 If your `ephemeral_text` gets incorrectly handled by the Slack-compatibility logic, send `"skip_slack_parsing":true` along your `ephemeral_text` to bypass it.
 
 ```
-  {
-    "update": {
-      "message": "Updated!"
-    },
-    "ephemeral_text": "You updated the post!",
-    "skip_slack_parsing": true
-  }
+{
+  "update": {
+    "message": "Updated!"
+  },
+  "ephemeral_text": "You updated the post!",
+  "skip_slack_parsing": true
+}
 ```
 
 ## Frequently Asked Questions
