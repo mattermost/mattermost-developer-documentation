@@ -3092,6 +3092,10 @@ code {
     word-break: break-word;
 }
 
+td:first-child code {
+    word-break: normal;
+}
+
 .container-fluid {
     max-width: 1140px;
 }
