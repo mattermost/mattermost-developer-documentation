@@ -12,11 +12,11 @@ weight: 80
 2. Identify the account you want to create a personal access token with. You may optionally create a new user account for your integration, such as for a bot account. By default, only System Admins have permissions to create a personal access token.
 3. To create an access token with a non-admin account, you must first give it the appropriate permissions. Go to **System Console > User Management > Users**, search for the user account, then select **Manage Roles** from the dropdown.
 
-![image](images/access_token_manage_roles.png)
+![image](access_token_manage_roles.png)
 
 4. Select **Allow this account to generate personal access tokens.**
 
-![image](images/access_tokens_additional_roles.png)
+![image](access_tokens_additional_roles.png)
 
 You may optionally allow the account to post to any channel in your Mattermost server, including direct messages by choosing the **post:all** role. **post:channels** role allows the account to post to any public channel in the Mattermost server.
 
@@ -33,7 +33,7 @@ Then select **Save**.
 8. Copy the access token now for your integration and store it in a secure location. You won't be able to see it again!
 9. You're all set! You can now use the personal access token for integrations to interact with your Mattermost server and [authenticate against the Mattermost REST API](https://about.mattermost.com/default-api-authentication).
 
-![image](images/access_token_settings.png)
+![image](access_token_settings.png)
 
 ## Revoking a Personal Access Token
 
