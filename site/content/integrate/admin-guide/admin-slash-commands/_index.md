@@ -101,7 +101,7 @@ If your integration sends back a JSON response, make sure it returns the `applic
 10. To have your application post a message back to `town-square`, it can respond to the HTTP POST request with a JSON response such as:
 
 ```
-   {"response_type": "in_channel", "text": "
+ {"response_type": "in_channel", "text": "
    ---
    #### Weather in Toronto, Ontario for the Week of February 16th, 2016
 
