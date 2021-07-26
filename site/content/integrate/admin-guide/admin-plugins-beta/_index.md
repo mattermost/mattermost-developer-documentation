@@ -21,8 +21,6 @@ The Plugin Marketplace is a collection of plugins that can greatly increase the 
 
 The Plugin Marketplace is available from v5.16 and is accessed via **Main Menu > Plugin Marketplace**. More listings will be added as we add new features and plugins that our customers request.
 
-.. image:: https://user-images.githubusercontent.com/915956/66891467-1b18eb80-ef9e-11e9-9de3-37a3c5899bd8.png
-
 ### Plugin labels
 
 Plugins in the Plugin Marketplace are labeled to make it easier for administrators to choose plugins that fit their company's security and risk policies if they do not allow for community plugins to be used.
