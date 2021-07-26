@@ -28,8 +28,6 @@ Below is a list of planned features of the developer toolkit with estimated time
 
  - The ability to build plugins similar to the webapp but for React Native apps for iOS and Android.
  - A system or architecture to combine the above plugins into one easy-to-share and easy-to-install package.
- - A market or directory to find official and/or certified by Mattermost plugins and a process to get your plugin certified.
- - A guide or system to enable the embedding of Mattermost into other apps as a chat service.
 
 All of the documentation required to support the use and building of the toolkit will be done as we work through the above systems.
 
