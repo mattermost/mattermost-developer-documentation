@@ -95,7 +95,7 @@ The Mattermost team has over 50 zaps integrated on our [Community Contributors t
     [Body of issue or comment]
 ```
 
-.. image:: ../images/zapier-ch1.png
+![image](zapier-ch1.png)
 
 **Forum Posts, Jira Comments, Hacker News Mentions, Tweets**
 
