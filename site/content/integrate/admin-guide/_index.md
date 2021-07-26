@@ -27,7 +27,6 @@ Below is a list of planned features of the developer toolkit with estimated time
 2. Upcoming:
 
  - The ability to build plugins similar to the webapp but for React Native apps for iOS and Android.
- - A system or architecture to combine the above plugins into one easy-to-share and easy-to-install package.
 
 All of the documentation required to support the use and building of the toolkit will be done as we work through the above systems.
 
