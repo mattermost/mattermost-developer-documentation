@@ -18,32 +18,30 @@ Save the below HTML code in a file called `mattermost-button-example.html` then 
 ```
   <script>
 
-      var myWindow = null;
+    var myWindow = null;
 
-      function openMMWindow() {
-          myWindow = window.open("https://community.mattermost.com/core/channels/developer", "Mattermost", "top=0,left=0,width=400,height=600,status=no,toolbar=no,location=no,menubar=no,titlebar=no");
-      }
+    function openMMWindow() {
+        myWindow = window.open("https://community.mattermost.com/core/channels/developer", "Mattermost", "top=0,left=0,width=400,height=600,status=no,toolbar=no,location=no,menubar=no,titlebar=no");
+    }
 
+    function closeMMWindow() {
+        if (myWindow) {
+            myWindow.close();
+        }
+    }
 
-      function closeMMWindow() {
-          if (myWindow) {
-              myWindow.close();
-          }
-      }
+</script>
 
-
-  </script>
-
-  <html>
-      <br/>
-      <br/>
-      <button onclick="openMMWindow()">Open Developer Channel</button>
-      <br/>
-      <br/>
-      <button onclick="closeMMWindow()">Close Developer Channel</button>
-      <br/>
-      <br/>
-  </html>
+<html>
+    <br/>
+    <br/>
+    <button onclick="openMMWindow()">Open Developer Channel</button>
+    <br/>
+    <br/>
+    <button onclick="closeMMWindow()">Close Developer Channel</button>
+    <br/>
+    <br/>
+</html>
 ```
 
 ## Embedding Mattermost in Web Applications Using an iframe
