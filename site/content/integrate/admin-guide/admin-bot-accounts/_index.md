@@ -41,17 +41,19 @@ Once set, System Admin can create bot accounts for integrations using the **Inte
 Below are different ways to create bot accounts. After the bot account is created, make sure to:
 
 1. Copy the generated bot access token for your integration.
-2. Add the bot account to teams and channels you want it to interact in.
+2. Add the bot account to teams and channels you want it to interact in. To add the bot account to your team, navigate to **Main Menu > Invite People** and enter the bot account in the **Add or Invite People** field, then choose **Invite Member**. After that you should be able to add the bot account to channels like any other user.
 
 ### User Interface (UI)
 
 1. Go to **Main Menu > Integrations > Bot Accounts**.
 2. Select **Add Bot Account**.
-3. Set the **Username** of the bot. The username must begin with a letter, and contain between 3 and 22 lowercase characters made up of numbers, letters, and symbols including ".", "-", or "_".
+3. Set the **Username** of the bot. The username must begin with a letter, and contain between 3 and 22 lowercase characters made up of numbers, letters, and symbols including ".", "-", or "\_".
 4. (Optional) Upload an image for the **Bot Icon**. This will be used as the profile image of the bot throughout Mattermost.
 5. (Optional) Set a **Display Name** and **Description**.
 6. (Optional) Choose what role the bot should have. Defaults to **Member**. If you assign **System Admin**, the bot will have read and write access for any Public channels, Private channels, and Direct Messages.
 7. (Optional) Select additional permissions for the account. Enable the bot to post to all Mattermost channels, or post to all Mattermost Public channels.
+8. Select **Create Bot Account**
+9. Copy the token displayed on the **Setup Successful** page before selecting **Done** as you will not have access to the token again once you navigate from that screen.
 
 ### RESTful API
 
