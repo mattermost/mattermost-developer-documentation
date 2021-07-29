@@ -60,6 +60,8 @@ You can follow these general guidelines to set up a custom Mattermost slash comm
 4. Set the **Request URL** and **Request Method**. The request URL is the endpoint that Mattermost hits to reach your application, and the request method is either POST or GET and specifies the type of request sent to the request URL.
 5. (Optional) Set the response username and icon the command will post messages as in Mattermost. If not set, the command will use your username and profile picture.
 
+**Important:** Custom command URLs do not support basic authentication as the slash commands provide their own authentication level.
+
 **Note:** [Enable integrations to override usernames](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames, and [similarly for profile picture icons](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons). Enable them from **System Console > Integrations > Integration Management** or ask your Mattermost System Admin.
 
 6. (Optional) Include the slash command in the command autocomplete list, displayed when typing ``/`` in an empty input box. Use it to make your command easier to discover by your teammates. You can also provide a hint listing the arguments of your command and a short description displayed in the autocomplete list.
