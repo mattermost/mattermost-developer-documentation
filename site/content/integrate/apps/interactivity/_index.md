@@ -37,14 +37,15 @@ Markdown fields are a special field that allows you to better format your form. 
 
 All fields include ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field)):
 
-| Name          | Type      | Description                                            |
-| :------------ | :-------- | :----------------------------------------------------- |
-| `name`        | string    | Key to use in the values field of the call.            |
-| `type`        | FieldType | The type of the field.                                 |
-| `is_required` | bool      | (Optional) Whether the field needs to be filled.       |
-| `value`       | value     | (Optional) Default value.                              |
-| `description` | string    | (Optional) Text to show below the field describing it. |
-| `modal_label` | string    | (Optional) Label to name the field in the modal.       |
+| Name          | Type      | Description                                                              |
+| :------------ | :-------- | :----------------------------------------------------------------------- |
+| `name`        | string    | Key to use in the values field of the call.                              |
+| `type`        | FieldType | The type of the field.                                                   |
+| `is_required` | bool      | (Optional) Whether the field needs to be filled.                         |
+| `multiselect` | bool      | (Optional) Whether a select field allows multiple values to be selected. |
+| `value`       | value     | (Optional) Default value.                                                |
+| `description` | string    | (Optional) Text to show below the field describing it.                   |
+| `modal_label` | string    | (Optional) Label to name the field in the modal.                         |
 
 Text fields may include:
 
