@@ -328,7 +328,7 @@ If your `ephemeral_text` gets incorrectly handled by the Slack-compatibility log
 
 Yes, message buttons and menus are supported in ephemeral messages in Mattermost 5.10 and later. This applies to integrations using plugins, the RESTful API and webhooks, across the browser and desktop app.
 
-As an advanced feature, you can also use plugins to update the contents of an ephemeral message with message buttons or menus with the [UpdateEphemeralMessage plugin API](https://developers.mattermost.com/extend/plugins/server/reference/#API.UpdateEphemeralPost).
+As an advanced feature, you can also use plugins to update the contents of an ephemeral message with message buttons or menus with the [UpdateEphemeralMessage plugin API](https://developers.mattermost.com/integrate/plugins/server/reference/#API.UpdateEphemeralPost).
 
 ### Why does an interactive button or menu return a 400 error?
 

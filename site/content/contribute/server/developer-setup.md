@@ -8,7 +8,7 @@ weight: 2
 
 Set up your development environment for building, running, and testing the Mattermost server.
 
-**Note:** If you're developing plugins, see the plugin [developer setup](https://developers.mattermost.com/extend/plugins/developer-setup/) documentation.
+**Note:** If you're developing plugins, see the plugin [developer setup](https://developers.mattermost.com/integrate/plugins/developer-setup/) documentation.
 
 For minimum software requirements, see the following table:
 
