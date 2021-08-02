@@ -3,34 +3,43 @@ title: "Developer Setup"
 description: "Find out how to configure your development environment to build, run, and test the Mattermost web app."
 date: 2017-08-20T11:35:32-04:00
 weight: 2
-subsection: Web App
 ---
 
 Set up your development environment for building, running, and testing the Mattermost web app.
 
 1. Set up your [development environment for the Mattermost server](/contribute/server/developer-setup/).
 
-2. Install dependencies:
+2. Install Node.js 16:
 
-    - On Mac, use [Homebrew](https://brew.sh/) to install Node.js v10 and libpng:
+    - If you use [NVM](https://github.com/nvm-sh/nvm), use that to install Node 16.
+
+    - On Mac, use [Homebrew](https://brew.sh/) to install it:
 
         ```sh
-        brew install node@10 libpng
+        brew install node@16
         ```
 
-    - For other platforms, install Node.js v10 from https://www.npmjs.com/get-npm.
+    - For other platforms, install it from https://www.npmjs.com/get-npm.
 
-    - Prefer to use [NVM](https://github.com/nvm-sh/nvm) to manage different versions of Node on a given machine? Ensure you're running Node v10.15.3+ and npm v6.4.1+ to [avoid compatibility-related Jest test failures](/contribute/webapp/unit-testing/#4-getting-jest-assertion-failures-at-lines-containing-expect-tobecalledwith-expect-tohavebeennthcalledwith-or-expect-tohavebeencalledtimes-when-running-make-test).
+3. If necessary, install libpng:
 
-3. Fork https://github.com/mattermost/mattermost-webapp
+    - On Mac, use [Homebrew](https://brew.sh/) to install it:
 
-4. Clone the Mattermost source code from your fork next to your mattermost-server directory:
+        ```sh
+        brew install libpng
+        ```
+
+    - On Linux-based operating systems, use your preferred package manager to install it.
+
+4. Fork https://github.com/mattermost/mattermost-webapp
+
+5. Clone the Mattermost source code from your fork next to your mattermost-server directory:
 
     ```sh
     git clone https://github.com/$GITHUB_USERNAME/mattermost-webapp.git
     ```
 
-5. Link the `client` directory in your server with the `dist` directory in your webapp:
+6. Link the `client` directory in your server with the `dist` directory in your webapp:
 
     ```sh
     mkdir -p mattermost-webapp/dist
@@ -39,13 +48,14 @@ Set up your development environment for building, running, and testing the Matte
     cd ..
     ```
 
-6. Test your environment:
+7. Test your environment:
 
     ```sh
     cd mattermost-webapp
     make test
     ```
-7. When tests pass, run the app: 
+
+8. When tests pass, run the app:
 
      ```sh
     make run

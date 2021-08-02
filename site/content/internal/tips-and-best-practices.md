@@ -3,7 +3,6 @@ title: Tips and Best Practices
 heading: "Mattermost - Tips and Best Practices"
 description: "Mattermost takes pride in working with the community and we encourage each Mattermost developer to work with community members."
 date: 2017-11-07T14:28:35-05:00
-section: internal
 weight: 102
 ---
 

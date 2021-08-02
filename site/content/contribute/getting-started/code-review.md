@@ -4,7 +4,6 @@ heading: "Code Review at Mattermost"
 description: "All changes to the Mattermost product must be reviewed. Learn about how Mattermost reviews product updates."
 date: 2018-03-06T00:00:00-04:00
 weight: 5
-subsection: Getting Started
 ---
 
 All changes to the product must be reviewed.
@@ -115,6 +114,7 @@ If you are a core committer asked to give a review
     * Prioritize earlier milestones when reviewing to help with the release process.
     * Responding quickly doesn't necessarily mean reviewing quickly! Just don't leave the author hanging.
 2. Feel free to clarify expectations with the author.
+    * If the PR adds a substantial feature, check that a feature flag is included. Please see [criteria here](https://developers.mattermost.com/contribute/server/feature-flags/#when-to-use).
     * If the code is experimental, they may need only a cursory glance and thumbs up to proceed with productizing their changes.
     * If the review is large or complex, additional time may be required to complete your review. Be upfront with the author.
     * If you are not comfortable reviewing the code, avoid "rubber stamping" the review. Be honest with the author and ask them to consider another core committer.

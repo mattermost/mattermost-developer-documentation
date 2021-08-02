@@ -3,7 +3,6 @@ title: Sustained Engineering Team
 heading: "What is the Sustained Engineering Team?"
 description: "Learn more about the Sustained Engineering Team (SET), which is responsible for improving and maintaining quality."
 date: 2019-02-06T14:28:35-05:00
-section: internal
 weight: 120
 ---
 
@@ -27,9 +26,7 @@ Team members on SET should pull tickets off the top of TO DO queue, work on them
 
 Discussion related to SET should occur in the [~Sustained Engineering](https://community.mattermost.com/core/channels/sustained-engineering) channel on https://community.mattermost.com.
 
-SET meets twice per week, after the Tuesday and Thursday triage meetings. During these meetings SET members should provide status updates and talk about any blockers that have been encountered.
-
-After the Tuesday meeting, the SET lead should post a team status update in the ~Sustained Engineering channel using the following template:
+On Tuesdays, the SET lead should post a team status update in the ~Sustained Engineering channel using the following template:
 
 ```
 #set-update #set-update-YYYY-MM-DD
@@ -77,13 +74,11 @@ Below is how SET prioritizes what is worked on.
 
 ## Triage
 
-SET attends all triage meetings. During triage, SET should:
+SET triages SET tickets asynchronously and also helps Release Manager to
 
-* Help route tickets to the appropriate feature team
+* Help route new unassigned tickets to the appropriate feature team
 * Assign bugs to SET when there is no clear feature team owner
 * Make sure reported bugs are in fact bugs and recommend turning non-bugs into stories or feature requests
-
-During non-release weeks, triage is held twice a week. Near the end of the release cycle, triage is held daily.
 
 ## Customer and Pre-Sales Support Escalation Process
 

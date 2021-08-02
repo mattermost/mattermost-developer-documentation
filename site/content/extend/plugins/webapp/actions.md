@@ -3,7 +3,6 @@ title: Redux Actions
 heading: "Redux Actions for Web App Plugins"
 description: "Mattermost-redux is a library of shared code between Mattermost JavaScript clients. Learn how to use Redux actions with a plugin."
 date: 2018-07-10T00:00:00-05:00
-subsection: Web App Plugins
 weight: 11
 ---
 

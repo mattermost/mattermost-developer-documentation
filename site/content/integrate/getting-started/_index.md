@@ -3,7 +3,7 @@ title: "Getting Started"
 heading: "Getting Started with Mattermost"
 description: "Ready to contribute to Mattermost? Learn how to get started building an integration."
 date: "2017-08-19T12:01:23-04:00"
-section: "integrate"
+weight: 10
 ---
 
 {{< bignumber number="1" title="Sign up to our Mattermost site" content="Go to [community.mattermost.com](https://community.mattermost.com/signup_user_complete) and join the [Toolkit](https://community.mattermost.com/core/channels/developer-toolkit), [Developers](https://community.mattermost.com/core/channels/developers), and [Contributors](https://community.mattermost.com/core/channels/tickets) channels to ask questions." >}}

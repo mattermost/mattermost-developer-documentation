@@ -3,7 +3,6 @@ title: "Embed"
 heading: "Embedding Plugins with Mattermost"
 description: "With Mattermost’s rich RESTful web service API and OAuth 2.0 support, you can build your own clients to embed Mattermost within any application."
 date: 2017-05-10T00:00:00-05:00
-section: extend
 ---
 
 With Mattermost's rich RESTful web service API and OAuth 2.0 support it's possible to build your own clients to embed Mattermost within any application of your choice.

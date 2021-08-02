@@ -2,7 +2,6 @@
 title: Community Plugins in the Marketplace
 heading: "Community Plugins in the Plugin Marketplace"
 description: "Once your plugin has reached a certain level of quality, you might consider submitting it to the Plugin Marketplace."
-subsection: Plugins (Beta)
 weight: 60
 ---
 

@@ -3,7 +3,6 @@ title: "VPN(CLOUD)"
 heading: "Setting up VPN Access on Pritunl"
 description: "Learn how to use a VPN service with Mattermost to enjoy additional layers of protection."
 date: 2018-06-05T16:08:19+02:00
-subsection: internal
 weight: 20
 ---
 
@@ -11,6 +10,7 @@ Table of contents
 - [Setup VPN access on Pritunl](#setup-vpn-access-on-pritunl)
   - [Viscosity client](#viscosity-client)
   - [Pritunl client](#pritunl-client)
+- [Gnome VPN Client](#gnome-vpn-client)
 - [Older Setup of VPN access on OpenVPN](#older-setup-of-vpn-access-on-openvpn)
 
 ## Setup VPN access on Pritunl
@@ -47,6 +47,11 @@ Select `Show More` and hit `Download Profile`
 6. Add, if it is not there, in your `/etc/resolv.conf`:
     `nameserver 10.247.0.2`
 
+    For MacOS, first check what CIDR was in the resolv.conf with `cat /etc/resolv.conf` and then you will need to run
+    `sudo networksetup -setdnsservers Wi-Fi 10.247.0.2 8.8.8.8 X.X.X.X` with your extra CIDRs that they were already in
+    your resolv.conf. Also check if you are connected with Wi-Fi, or to find your available devices by running
+    `networksetup -listallnetworkservices` and to replace it in the above command.
+
 7. After following these steps you should be able to connect to VPN and then to resolve private DNS entries.
 
 
@@ -81,6 +86,11 @@ Then connect with your OneLogin username and password and when prompt put the OT
 
 7. Add, if it is not there, in your `/etc/resolv.conf`:
     `nameserver 10.247.0.2`
+
+    For MacOS, first check what CIDR was in the resolv.conf with `cat /etc/resolv.conf` and then you will need to run
+    `sudo networksetup -setdnsservers Wi-Fi 10.247.0.2 8.8.8.8 X.X.X.X` with your extra CIDRs that they were already in
+    your resolv.conf. Also check if you are connected with Wi-Fi, or to find your available devices by running
+    `networksetup -listallnetworkservices` and to replace it in the above command.
 
 8. After following these steps you should be able to connect to VPN and resolve private DNS entries.
 

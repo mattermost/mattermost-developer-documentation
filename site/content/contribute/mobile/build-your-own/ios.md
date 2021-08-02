@@ -4,7 +4,6 @@ heading: "Building an iOS Mattermost App"
 description: "At times, you may want to build your own Mattermost mobile app. This page guides you through that process."
 date: 2018-05-20T11:35:32-04:00
 weight: 2
-subsection: Build Your Own App
 ---
 
 At times, you may want to build your own Mattermost mobile app. The most common use cases are:
@@ -39,35 +38,35 @@ To make it easier to customize your build, we've defined a few environment varia
 
 | Variable            | Description                                | Default    | Required  |
 |---------------------|--------------------------------------------|------------|-----------|
-| `COMMIT\_CHANGES\_TO\_GIT` | Should the fastlane script ensure that there are no changes to Git before building the app and that every change made during the build is committed back to Git.<br><br>Valid values are: `true`, `false` | `false` | No |
-| `BRANCH\_TO\_BUILD` | Defines the Git branch that is going to be used for generating the build. <br><br>**Make sure that, if this value is set, the branch it is set to exists**.| `$GIT_BRANCH` | No |
-| `GIT\_LOCAL\_BRANCH` | Defines the local branch to be created from BRANCH\_TO\_BUILD to ensure the base branch does not get any new commits on it.<br><br>**Make sure a branch with this name does not yet exist in your local git**. | build | No |
-| `RESET\_GIT\_BRANCH` | Defines if, once the build is done, the branch should be reset to the initial state before building and whether to also delete the branch created to build the app. <br><br>Valid values are: `true`, `false` | `false` | No |
-| `VERSION\_NUMBER` | Set the version of the app at build time to a specific value, rather than using the one set in the project. |  | No |
-| `INCREMENT\_VERSION\_<br>NUMBER\_MESSAGE` | Set the commit message when changing the app version number. | Bump app version number to | No |
-| `INCREMENT\_BUILD\_NUMBER` | Defines if the app build number should be incremented.<br><br>Valid values are: `true`, `false` | `false` | No |
-| `BUILD\_NUMBER` | Set the build number of the app at build time to a specific value, rather than incrementing the last build number. |  | No |
-| `INCREMENT\_BUILD\_<br>NUMBER\_MESSAGE` | Set the commit message when changing the app build number. | Bump app build number to | No |
-| `APP\_NAME` | The name of the app as it is going to be shown in the device home screen. | Mattermost Beta | Yes |
-| `APP\_SCHEME` | The URL naming scheme for the app as used in direct deep links to app content from outside the app. | mattermost | No |
-| `REPLACE\_ASSETS` | Override the assets as described in [White Labeling](contribute/mobile/build-your-own/white-label/).<br><br>Valid values are: `true`, `false` | `false` | No |
-| `MAIN\_APP\_IDENTIFIER` | The bundle identifier for the app. | | Yes |
-| `BUILD\_FOR\_RELEASE` | Defines if the app should be built in release mode. <br><br>Valid values are: `true`, `false` <br><br>**Make sure you set this value to true if you plan to submit this app to TestFlight, the Apple App Store or distribute it in any other way**. | `false` | Yes |
-| `NOTIFICATION\_SERVICE\_IDENTIFIER` | The bundle identifier for the notification service extension. |  | Yes |
-| `EXTENSION\_APP\_IDENTIFIER` | The bundle identifier for the share extension. |  | Yes |
-| `FASTLANE\_TEAM\_ID` | The ID of your Apple Developer Portal Team. |  | Yes |
-| `IOS\_ICLOUD\_CONTAINER` | The iOS iCloud container identifier used to support iCloud storage. | | Yes |
-| `IOS\_APP\_GROUP` | The iOS App Group identifier used to share data between the app and the share extension. |  | Yes |
-| `SYNC\_PROVISIONING\_PROFILES` | Should we run **match** to sync the provisioning profiles. **Note**: Not syncing the provisioning profiles, will cause the singing to fail. Valid values are: `true`, `false` | `false` | Yes |
-| `MATCH\_USERNAME` | Your Apple ID Username. |  | Yes |
-| `MATCH\_PASSWORD` | Your Apple ID Password. |  | Yes |
-| `MATCH\_KEYCHAIN\_PASSWORD` | Your Mac user password used to install the certificates in the build computer KeyChain. |  | No |
-| `MATCH\_GIT\_URL` | URL to the Git repo containing all the certificates. <br><br> **Make sure this Git repo is set to private. Remember this repo will be used to sync the provisioning profiles and other certificates**.|  | Yes |
-| `MATCH\_APP\_IDENTIFIER` | The Bundle Identifiers for the app (comma-separated).<br><br>**List the identifiers for each target of the app**. | for example:<br>`com.mattermost.rnbeta`, <br>`com.mattermost.rnbeta.MattermostShare`, <br>`com.mattermost.rnbeta.NotificationService` | Yes |
-| `MATCH\_TYPE` | Define the provisioning profile type to sync. Valid values are: `appstore`, `adhoc`, `development`, `enterprise` <br><br>**Make sure you set this value to the same type as the `IOS\_BUILD\_EXPORT\_METHOD` as you want to have the same provisioning profiles installed in the machine so they are found when signing the app**. | `adhoc` | Yes |
-| `SUBMIT\_IOS\_TO\_TESTFLIGHT` | Submit the app to TestFlight once the build finishes. Valid values are: `true`, `false` | `false` | No |
-| `PILOT\_USERNAME` | Your Apple ID Username used to deploy the app to TestFlight. |  | No |
-| `PILOT\_SKIP\_WAITING\_<br>FOR\_BUILD\_PROCESSING` | Do not wait until TestFlight finishes processing the app.<br><br>Valid values are: `true`, `false` | `true` | No |
+| `COMMIT_CHANGES_TO_GIT` | Should the fastlane script ensure that there are no changes to Git before building the app and that every change made during the build is committed back to Git.<br><br>Valid values are: `true`, `false` | `false` | No |
+| `BRANCH_TO_BUILD` | Defines the Git branch that is going to be used for generating the build. <br><br>**Make sure that, if this value is set, the branch it is set to exists**.| `$GIT_BRANCH` | No |
+| `GIT_LOCAL_BRANCH` | Defines the local branch to be created from BRANCH\_TO\_BUILD to ensure the base branch does not get any new commits on it.<br><br>**Make sure a branch with this name does not yet exist in your local git**. | build | No |
+| `RESET_GIT_BRANCH` | Defines if, once the build is done, the branch should be reset to the initial state before building and whether to also delete the branch created to build the app. <br><br>Valid values are: `true`, `false` | `false` | No |
+| `VERSION_NUMBER` | Set the version of the app at build time to a specific value, rather than using the one set in the project. |  | No |
+| `INCREMENT_VERSION_<br>NUMBER_MESSAGE` | Set the commit message when changing the app version number. | Bump app version number to | No |
+| `INCREMENT_BUILD_NUMBER` | Defines if the app build number should be incremented.<br><br>Valid values are: `true`, `false` | `false` | No |
+| `BUILD_NUMBER` | Set the build number of the app at build time to a specific value, rather than incrementing the last build number. |  | No |
+| `INCREMENT_BUILD_<br>NUMBER_MESSAGE` | Set the commit message when changing the app build number. | Bump app build number to | No |
+| `APP_NAME` | The name of the app as it is going to be shown in the device home screen. | Mattermost Beta | Yes |
+| `APP_SCHEME` | The URL naming scheme for the app as used in direct deep links to app content from outside the app. | mattermost | No |
+| `REPLACE_ASSETS` | Override the assets as described in [White Labeling](contribute/mobile/build-your-own/white-label/).<br><br>Valid values are: `true`, `false` | `false` | No |
+| `MAIN_APP_IDENTIFIER` | The bundle identifier for the app. | | Yes |
+| `BUILD_FOR_RELEASE` | Defines if the app should be built in release mode. <br><br>Valid values are: `true`, `false` <br><br>**Make sure you set this value to true if you plan to submit this app to TestFlight, the Apple App Store or distribute it in any other way**. | `false` | Yes |
+| `NOTIFICATION_SERVICE_IDENTIFIER` | The bundle identifier for the notification service extension. |  | Yes |
+| `EXTENSION_APP_IDENTIFIER` | The bundle identifier for the share extension. |  | Yes |
+| `FASTLANE_TEAM_ID` | The ID of your Apple Developer Portal Team. |  | Yes |
+| `IOS_ICLOUD_CONTAINER` | The iOS iCloud container identifier used to support iCloud storage. | | Yes |
+| `IOS_APP_GROUP` | The iOS App Group identifier used to share data between the app and the share extension. |  | Yes |
+| `SYNC_PROVISIONING_PROFILES` | Should we run **match** to sync the provisioning profiles. **Note**: Not syncing the provisioning profiles, will cause the singing to fail. Valid values are: `true`, `false` | `false` | Yes |
+| `MATCH_USERNAME` | Your Apple ID Username. |  | Yes |
+| `MATCH_PASSWORD` | Your Apple ID Password. |  | Yes |
+| `MATCH_KEYCHAIN_PASSWORD` | Your Mac user password used to install the certificates in the build computer KeyChain. |  | No |
+| `MATCH_GIT_URL` | URL to the Git repo containing all the certificates. <br><br> **Make sure this Git repo is set to private. Remember this repo will be used to sync the provisioning profiles and other certificates**.|  | Yes |
+| `MATCH_APP_IDENTIFIER` | The Bundle Identifiers for the app (comma-separated).<br><br>**List the identifiers for each target of the app**. | for example:<br>`com.mattermost.rnbeta`, <br>`com.mattermost.rnbeta.MattermostShare`, <br>`com.mattermost.rnbeta.NotificationService` | Yes |
+| `MATCH_TYPE` | Define the provisioning profile type to sync. Valid values are: `appstore`, `adhoc`, `development`, `enterprise` <br><br>**Make sure you set this value to the same type as the `IOS_BUILD_EXPORT_METHOD` as you want to have the same provisioning profiles installed in the machine so they are found when signing the app**. | `adhoc` | Yes |
+| `SUBMIT_IOS_TO_TESTFLIGHT` | Submit the app to TestFlight once the build finishes. Valid values are: `true`, `false` | `false` | No |
+| `PILOT_USERNAME` | Your Apple ID Username used to deploy the app to TestFlight. |  | No |
+| `PILOT_SKIP_WAITING_<br>FOR_BUILD_PROCESSING` | Do not wait until TestFlight finishes processing the app.<br><br>Valid values are: `true`, `false` | `true` | No |
 
 ---
 **Note:**

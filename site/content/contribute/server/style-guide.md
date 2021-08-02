@@ -2,7 +2,6 @@
 title: "Go Style Guide"
 date: 2021-01-12T16:00:00+0530
 weight: 3
-subsection: Server
 ---
 
 Go is a more opinionated language than many others when it comes to coding style. The compiler enforces some basic stylistic elements, such as the removal of unused variables and imports. Many others are enforced by the `gofmt` tool, such as usage of white-space, semicolons, indentation, and alignment. The `gofmt` tool is run over all code in the Mattermost Server CI pipeline. Any code which is not consistent with the formatting enforced by `gofmt` will not be accepted into the repository.
@@ -257,6 +256,22 @@ func (worker *Worker) Run() {
 	mlog.Debug("Worker started", mlog.String("worker", worker.name))
 	..
 ```
+
+### Performance sensitive areas
+
+Any PR that can potentially have a performance impact on the `mattermost-server` codebase is encouraged to have a performance review. For more information, please see this [link](https://docs.google.com/document/d/1Uzt3XHyKhDKipkuCmESkHoPio7vz7VYS4N_5_9ffgNU/edit). The following is a brief list of indicators that should to undergo a performance review:
+
+- New features that might require benchmarks and/or are missing load-test coverage.
+- PRs touching performance of critical parts of the codebase (e.g. `Hub`/`WebConn`).
+- PRs adding or updating SQL queries.
+- Creating goroutines.
+- Doing potentially expensive allocations: `bytes.Buffer` and `[]byte`:
+	- Use of `Buffer.Grow`, `Buffer.ReadFrom`, `ioutil.ReadAll`.
+	- Creating big slices and maps without capacity when size is known in advance.
+- Recursion, unbounded, and deeply nested `for` loops.
+- Use of locks and/or other synchronization primitives.
+- Regular expressions, especially when creating `regexp.MustCompile` dynamically every time.
+- Use of the `reflect` package.
 
 ## Proposing a new rule
 

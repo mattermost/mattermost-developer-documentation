@@ -4,7 +4,6 @@ heading: "Contributing to Mattermost without a Ticket"
 description: "Contributions for minor corrections and improvements without a corresponding Help Wanted ticket are welcome."
 date: 2019-10-11T15:44:36-02:00
 weight: 1
-subsection: Getting Started
 ---
 
 Contributions for minor corrections and improvements without a corresponding `Help Wanted` ticket are welcome. For example, a pull request for a bug or incremental improvement, with less than 20 lines of code change, is usually accepted if the change to existing behaviour is minor.
