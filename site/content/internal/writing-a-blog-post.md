@@ -1,7 +1,8 @@
 ---
 title: Writing a Blog Post
+heading: "Writing a Blog Post at Mattermost"
+description: "Blog posts are a great way to share your experience with the community. Follow these guidelines when writing a blog post for Mattermost."
 date: 2019-02-06T14:28:35-05:00
-section: internal
 weight: 105
 ---
 
@@ -61,6 +62,8 @@ The steps below outline the process involved in creating the blog post file from
     ```
     ---
     title: <user readable title of your blog post, e.g. My Blog Post>
+    description: "<brief description of the post less than 160 characters in length>"
+    heading: "<the heading that appears at the top of the page content>"
     slug: <URL name of your blog post, e.g. my-blog-post>
     date: YYYY-MM-DDT12:00:00-04:00
     author: <FirstName LastName>

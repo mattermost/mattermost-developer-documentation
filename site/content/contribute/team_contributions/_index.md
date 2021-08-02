@@ -1,9 +1,8 @@
 ---
 title: "Contributor Wall of Fame"
-section: "contribute"
+heading: "Contributor Hall of Fame"
+description: "Check out the Mattermost Contributor Hall of Fame to learn about the incredible people who've contributed to Mattermost over the years."
 ---
-
-# Mattermost Contributor Wall of Fame
 
 Mattermost is an open source Slack-alternative that helps teams stay in sync, with messaging and file sharing across PCs and phones, with archiving and search, and a growing community of integrations, bots and applications.
 

@@ -1,7 +1,8 @@
 ---
 title: Overview
+heading: "An Overview of Mattermost Plugins"
+description: "Plugins are defined by a manifest file and contain at least a server or web app component, or both. Learn more in our overview of plugins."
 date: 2018-07-10T00:00:00-05:00
-subsection: Plugins (Beta)
 weight: 1
 ---
 
@@ -17,7 +18,7 @@ The plugin manifest provides required metadata about the plugin, such as name an
 See the [manifest reference](/extend/plugins/manifest-reference/) for more information.
 
 ### Server
-The server component of a plugin is written in Go and runs as a subprocess of the Mattermost server process. The Go code extends the [MattermostPlugin](https://godoc.org/github.com/mattermost/mattermost-server/plugin#MattermostPlugin) struct that contains an [API](/extend/plugins/server/reference/#API) and allows for the implementation of [Hook](/extend/plugins/server/reference/#Hooks) methods that enable the plugin to interact with the Mattermost server.
+The server component of a plugin is written in Go and runs as a subprocess of the Mattermost server process. The Go code extends the [MattermostPlugin](https://godoc.org/github.com/mattermost/mattermost-server/v5/plugin#MattermostPlugin) struct that contains an [API](/extend/plugins/server/reference/#API) and allows for the implementation of [Hook](/extend/plugins/server/reference/#Hooks) methods that enable the plugin to interact with the Mattermost server.
 
 The sample plugin implements this simply in [plugin.go](https://github.com/mattermost/mattermost-plugin-starter-template/blob/master/server/plugin.go) and the demo plugin splits the API and hook usage throughout [multiple files](https://github.com/mattermost/mattermost-plugin-demo/tree/master/server).
 

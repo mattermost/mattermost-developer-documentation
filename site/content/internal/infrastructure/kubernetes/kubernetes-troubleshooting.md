@@ -1,5 +1,7 @@
 ---
 title: "Kubernetes Maintenance"
+heading: "Troubleshooting Kubernetes at Mattermost"
+description: "This page helps developers access and perform any type of maintenance in the Production Mattermost Kubernetes Cluster."
 date: 2018-11-07T15:24:42+01:00
 weight: 10
 ---

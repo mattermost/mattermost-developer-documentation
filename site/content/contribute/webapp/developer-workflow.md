@@ -1,8 +1,9 @@
 ---
 title: "Web App Workflow"
+heading: "Mattermost Web App Workflow"
+description: "See what a general workflow for a Mattermost developer working on the mattermost-webapp repository looks like."
 date: 2017-08-20T11:35:32-04:00
 weight: 3
-subsection: Web App
 ---
 
 If you haven't [set up your developer environment](https://developers.mattermost.com/contribute/webapp/developer-setup/), please do so before continuing with this section.
