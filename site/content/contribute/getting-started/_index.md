@@ -23,11 +23,11 @@ Improvements to Mattermost may require you to contribute to multiple projects; i
 
 ## How to Contribute Code
 
-If you’re looking for an existing issue to help with, check out the [help wanted tickets on GitHub](https://mattermost.com/pl/help-wanted). If you see any that you’re interested in working on, comment on it to let everyone know you’re working on it. If there’s no ticket for what you want to contribute, see our guide on [contributing without a ticket.](https://developers.mattermost.com/contribute/getting-started/contributions-without-ticket/)
+If you’re looking for an existing issue to help with, check out the [help wanted tickets on GitHub](https://mattermost.com/pl/help-wanted). If you see any that you’re interested in working on, comment on it to let everyone know you’re working on it. If there’s no ticket for what you want to contribute, see our guide on [contributing without a ticket.]({{< ref "contributions-without-ticket.md" >}})
 
-Once you’ve created some code that you want to contribute, follow our [pull request checklist](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/) to submit your contribution for [review](https://developers.mattermost.com/contribute/getting-started/code-review/), and one of our [core committers](https://handbook.mattermost.com/contributors/contributors/core-committers) will reach out with any feedback, questions, or requests they have.
+Once you’ve created some code that you want to contribute, follow our [pull request checklist]({{< ref "contribution-checklist.md" >}}) to submit your contribution for [review]({{< ref "code-review.md" >}}), and one of our [core committers](https://handbook.mattermost.com/contributors/contributors/core-committers) will reach out with any feedback, questions, or requests they have.
 
 
 ## How to Get Help With Your Contribution
 
-Our contributor community is segmented into [guilds](https://developers.mattermost.com/contribute/getting-started/guilds/) that focus on specific components within the Mattermost ecosystem. Each guild has a leader and a channel on our [community chat server](https://docs.mattermost.com/guides/community-chat) where you can ask questions about your contribution.
+Our contributor community is segmented into [guilds]({{< ref "guilds.md" >}}) that focus on specific components within the Mattermost ecosystem. Each guild has a leader and a channel on our [community chat server](https://docs.mattermost.com/guides/community-chat) where you can ask questions about your contribution.
