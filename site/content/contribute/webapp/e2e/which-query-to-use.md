@@ -1,5 +1,5 @@
 ---
-title: "Which query to use?"
+title: "Which Query to Use?"
 date: 2018-12-04T11:35:32-04:00
 weight: 5
 subsection: End-to-End Testing

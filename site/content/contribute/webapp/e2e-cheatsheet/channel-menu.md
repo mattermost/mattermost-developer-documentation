@@ -10,7 +10,7 @@ subsection: Cypress cheatsheet
 ***
 
 ### `cy.uiOpenChannelMenu(item)`
-Open the Channel Menu by clicking the channel header title or dropdown icon at the center channel view.
+Open the Channel Menu by clicking the channel header title or dropdown icon when viewing a channel.
 
 - `item`
 < <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type">string</a> >
@@ -31,7 +31,7 @@ cy.uiOpenChannelMenu('View Info');
 ***
 
 ##### `cy.uiCloseChannelMenu()`
-Close the Channel Menu by clicking again the channel header title or dropdown icon at the center channel view, given that the menu is presently opened.
+Close the Channel Menu by clicking the channel header title or dropdown icon again at the center channel view, given that the menu is already open.
 
 ```javascript
 cy.uiCloseChannelMenu();

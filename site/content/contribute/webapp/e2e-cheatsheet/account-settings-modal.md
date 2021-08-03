@@ -1,5 +1,5 @@
 ---
-title: "Account settings modal"
+title: "Account Settings Modal"
 date: 2020-12-11T00:00
 weight: 2
 subsection: Cypress cheatsheet
@@ -10,7 +10,7 @@ subsection: Cypress cheatsheet
 ***
 
 #### `cy.uiOpenAccountSettingsModal(section)`
-Open the settings modal when currently viewing the channel page.
+Open the account settings modal when viewing a channel.
 
 - `section`
 < <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type">string</a> >
@@ -98,7 +98,7 @@ cy.uiOpenAccountSettingsModal('Notifications').within(() => {
     // # Open 'Words That Trigger Mentions' setting
     cy.findByRole('heading', {name: 'Words That Trigger Mentions'}).should('be.visible').click();
 
-+    // # Check channel-wide mentions
++   // # Check channel-wide mentions
 +   cy.findByRole('checkbox', {name: 'Channel-wide mentions "@channel", "@all", "@here"'}).click();
 });
 ```
@@ -106,7 +106,7 @@ cy.uiOpenAccountSettingsModal('Notifications').within(() => {
 ***
 
 #### `cy.uiSave` and `cy.uiClose`
-Common commands that can be used to save settings and close the modal
+Common commands that can be used to save settings and close the modal.
 
 ##### Save and Close
 ```diff

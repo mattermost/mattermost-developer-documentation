@@ -1,5 +1,5 @@
 ---
-title: "Basic code structure"
+title: "Basic Code Structure"
 date: 2020-12-11T00:00
 weight: 1
 subsection: Cypress cheatsheet
@@ -33,21 +33,21 @@ describe('Change to Functional Group', () => {
         });
     });
 
-    // Add a title of "[tm4j_id] - [tm4j_title]" for test case with single step,
-    // or "[tm4j_id]_[step_number] - [tm4j_title]" for test case with multiple steps
-    it('[tm4j_id] - [tm4j_title]', () => {
+    // Add a title of "[Zephyr_id] - [Zephyr title]" for test case with single step,
+    // or "[Zephyr_id]_[step_number] - [Zephyr title]" for test case with multiple steps
+    it('[Zephyr_id] - [Zephyr title]', () => {
         // Test steps and assertion here
     });
 });
 ```
 
 ##### Group
-- Group are used to filter spec files so it can run in specific group
-- May run `META=Group npm run uniq-meta` to see list of existing values
+- Groups are used in order to filter spec files to run group-specific tests
+- Run `META=Group npm run uniq-meta` to see a list of existing values
 - Possible values:
   - functional group (required), e.g. `@account_setting`
   - specific server requirement, e.g. `@not_cloud`, `@te_only`
-- The word should be named after a functional group related to test case/s
+- The word should be named after a functional group related to test case(s)
 
 ##### Hard requirement
 - Possible values:
@@ -64,6 +64,6 @@ describe('Change to Functional Group', () => {
   - `cy.apiRequireLicenseForFeature('Feature')` where `Feature` is "LDAP", "Guest Accounts", etc.
 
 ##### Init basic setup for test isolation
-- As much as possible, do init setup to test in isolation.
+- Make use of InitSetup as much as possible to help run tests in isolation.
 - It is recommended to log in as a new user and visit the generated team and/or channel.
 - Avoid the use of `sysadmin` user or default `ad-1` team.

@@ -24,14 +24,14 @@ cy.uiOpenMainMenu();
 
 ##### Open the Main Menu and click on specific item
 ```javascript
-// # Open 'Advanced' section of 'Account Settings' modal
+// # Open 'Integrations' section of 'Account Settings' modal
 cy.uiOpenMainMenu('Integrations');
 ```
 
 ***
 
 ##### `cy.uiCloseMainMenu()`
-Close the Main Menu by clicking again the team header title or hamburger icon at the LHS, given that the menu is presently opened.
+Close the Main Menu by clicking the team title or hamburger icon again on the LHS, given that the menu is already open.
 
 ```javascript
 cy.uiCloseMainMenu();
