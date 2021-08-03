@@ -41,7 +41,7 @@ Once set, System Admin can create bot accounts for integrations using the **Inte
 Below are different ways to create bot accounts. After the bot account is created, make sure to:
 
 1. Copy the generated bot access token for your integration.
-2. Add the bot account to teams and channels you want it to interact in. To add the bot account to your team, navigate to **Main Menu > Invite People** and enter the bot account in the **Add or Invite People** field, then choose **Invite Member**. After that you should be able to add the bot account to channels like any other user.
+2. Add the bot account to teams and channels you want it to interact in by going to **Main Menu > Invite People**, entering the bot account in the **Add or Invite People** field, then choosing **Invite Member**. You should now be able to add the bot account to channels like any other user.
 
 ### User Interface (UI)
 
