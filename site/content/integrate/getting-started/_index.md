@@ -35,8 +35,8 @@ Plugins are the most comprehensive way to add new features and customization, bu
 
 
 
-* Slash Commands - Enable your users to [trigger custom actions](https://developers.mattermost.com/integrate/slash-commands/) from within Mattermost.
-* Webhooks - Post to channels with [incoming webhooks](https://developers.mattermost.com/integrate/incoming-webhooks/), or listen for new messages with [outgoing webhooks](https://developers.mattermost.com/integrate/outgoing-webhooks/).
-* Embed - Learn how to use the Mattermost API to [embed Mattermost](https://developers.mattermost.com/integrate/embed/) into web browsers and web applications.
-* Customize - Modify the source code for the server or web app to make basic [changes and customization](https://developers.mattermost.com/integrate/customization/).
+* Slash Commands - Enable your users to [trigger custom actions](/integrate/other-integrations/slash-commands/) from within Mattermost.
+* Webhooks - Post to channels with [incoming webhooks](/integrate/other-integrations/incoming-webhooks/), or listen for new messages with [outgoing webhooks](/integrate/other-integrations/outgoing-webhooks/).
+* Embed - Learn how to use the Mattermost API to [embed Mattermost](/integrate/other-integrations/embed/) into web browsers and web applications.
+* Customize - Modify the source code for the server or web app to make basic [changes and customization](/integrate/other-integrations/customization/).
 * Interactive Messages - Create messages that include [interactive functionality](https://docs.mattermost.com/developer/interactive-messages.html).
