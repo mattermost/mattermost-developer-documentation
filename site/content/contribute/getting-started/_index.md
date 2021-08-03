@@ -16,6 +16,7 @@ The Mattermost core repositories include:
 * [Web App](https://developers.mattermost.com/contribute/webapp/) - JavaScript client app built on React and Redux
 * [Mobile Apps](https://developers.mattermost.com/contribute/mobile/) - JavaScript client apps for Android and iOS built on React Native
 * [Desktop App](https://developers.mattermost.com/contribute/desktop/) - An Electron wrapper around the web app project that runs on Windows, Linux, and macOS
+* [Core Plugins](https://developers.mattermost.com/contribute/plugins/) - A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
 
 Improvements to Mattermost may require you to contribute to multiple projects; if you’re unsure where to start, the server repository is generally the best way to get introduced to the codebase.
 
