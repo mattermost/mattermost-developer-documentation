@@ -1,8 +1,9 @@
 ---
 title: "Unit Testing"
+heading: "Unit Testing at Mattermost"
+description: "Review our guidelines for unit testing for your Mattermost webapp, including a guide on how to do component testing."
 date: 2018-11-20T11:35:32-04:00
 weight: 5
-subsection: Web App
 ---
 
 ## Component and Utility files
@@ -16,10 +17,8 @@ Below is a brief guide on how to do component testing:
 1. Match snapshot using default or expected props. Note that while the snapshot is convenient, we require not to rely solely on this for every test case as this is easily overlooked by initiating `jest -updateSnapshot` without carefully inspecting the change.
     ```javascript
     const baseProps = {
-        activeSection: 'email',
-        onSubmit: jest.fn(),
-        updateSection: jest.fn(),
-    };
+        active        onSubmit: jest.fn(),
+        update    };
 
     test('should match snapshot, not send email notifications', () => {
         const wrapper = shallow(<EmailNotificationSetting {...baseProps}/>);
@@ -266,12 +265,3 @@ b. Use async test callback for async function instance
         expect(addUsersToTeam).toHaveBeenCalledTimes(1);
     }
     ```
-### 4. Getting Jest assertion failures at lines containing ``expect.toBeCalledWith()``, ``expect.toHaveBeenNthCalledWith()`` or ``expect.toHaveBeenCalledTimes()`` when running ``make test``
-
-<img src="/img/extend/jest-assertion-fails-nodeversion.png" width="445" />
-
-a. Firstly, ensure that your machine has all the [required prerequisites](/contribute/webapp/developer-setup/) installed for the mattermost-webapp project.
-
-b. If not already, ensure that your machine has Node v10.15.3+ running (preferably Node 10 Latest) with npm v6.4.1+
-
-c. Rerun ``make test`` once your machine has Node v10.15.3+ and npm v6.4.1+ installed. Double check that you've selected / are currently using Node v10.15.3+ in the mattermost-webapp directory if you're [using NVM]( https://github.com/nvm-sh/nvm) to manage different versions of Node on your machine (``nvm current``). The Jest tests should now pass.

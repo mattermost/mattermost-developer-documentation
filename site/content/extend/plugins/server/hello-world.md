@@ -1,13 +1,14 @@
 ---
 title: Quick Start
+heading: "Writing a Mattermost Plugin"
+description: "This tutorial will walk you through the basics of writing a Mattermost plugin with a server component."
 date: 2018-07-10T00:00:00-05:00
-subsection: Server Plugins
 weight: -10
 ---
 
 This tutorial will walk you through the basics of writing a Mattermost plugin with a server component.
 
-Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration](/extend/plugins/migration) document to upgrade older plugins.
+Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration](/extend/plugins/migration/) document to upgrade older plugins.
 
 ## Prerequisites
 

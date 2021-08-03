@@ -1,5 +1,7 @@
 ---
 title: CanSecWest and Encryption in Mattermost
+heading: "CanSecWest and Encryption in Mattermost"
+description: "Check out these takeaways from CanSecWest 2019, which was full of exploits and interesting anecdotes."
 slug: cansecwest-2019-encryption
 date: 2019-04-25T12:00:00-04:00
 author: Christopher Speller

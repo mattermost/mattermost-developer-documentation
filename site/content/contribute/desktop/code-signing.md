@@ -1,7 +1,8 @@
 ---
 title: "Code Signing"
+heading: "Code Signing at Mattermost"
+description: "When releasing the Mattermost Desktop application for Windows and macOS, we have to sign the executable with a certificate."
 date: 2018-01-16T10:32:51-05:00
-subsection: "Desktop App"
 ---
 
 When releasing the Mattermost Desktop application for Windows and macOS, we have to sign the executable with a certificate that allows the end user's computer to verify our identity.
@@ -39,7 +40,7 @@ On Windows hosts, Microsoft's [`SignTool`](https://msdn.microsoft.com/en-us/libr
 
 To install `SignTool` you'll need the Microsoft Windows Software Development Kit (SDK). If you have a copy of Visual Studio installed, you might already have it included with the commandlines packaged with Visual Studio.
 
-After successfully [building and packaging](/contribute/desktop/developer-setup#building) the Mattermost Desktop application for Windows, you can run the signing command from the root of the repository:
+After successfully [building and packaging](/contribute/desktop/developer-setup/#building) the Mattermost Desktop application for Windows, you can run the signing command from the root of the repository:
 ```bash
 SignTool sign /f [PATH_TO_THE_PFX_FILE] /p [PFX_FILE_PASSWORD] /tr http://tsa.starfieldtech.com /td SHA256 [PATH_TO_UNSIGNED_EXE]
 ```
@@ -62,9 +63,9 @@ or via Apt on Ubuntu:
 ~$ sudo apt-get install osslsigncode
 ```
 
-After successfully [building and packaging](/contribute/desktop/developer-setup#building) the Mattermost Desktop application for Windows, you can run the signing command from the root of the repository:
+After successfully [building and packaging](/contribute/desktop/developer-setup/#building) the Mattermost Desktop application for Windows, you can run the signing command from the root of the repository:
 ```bash
-~$ osslsigncode -pkcs12 [PATH_TO_THE_PFX_FILE] -pass [PFX_FILE_PASSWORD] -n "Mattermost Desktop" -i https://mattermost.com -t http://timestamp.verisign.com/scripts/timstamp.dll -h sha2 -in [PATH_TO_UNSIGNED_EXE] -out [PATH_TO_WRITE_SIGNED_EXE_TO]
+~$ osslsigncode sign -pkcs12 [PATH_TO_THE_PFX_FILE] -passfile [PFX_FILE_PASSWORD] -n "Mattermost Desktop" -i https://mattermost.com -t http://timestamp.verisign.com/scripts/timstamp.dll -h sha2 -in [PATH_TO_UNSIGNED_EXE] -out [PATH_TO_WRITE_SIGNED_EXE_TO]
 Succeeded
 ```
 Where
@@ -154,7 +155,7 @@ Finally, you'll need to install the `electron-osx-sign` utility via NPM:
 ```
 
 #### Signing the Release
-Note that once the code signing certificate and private key have been imported as described in the **Prerequisites** section above, the application will automatically be code signed during [building and packaging](/contribute/desktop/developer-setup#building). To confirm that this step has been completed, skip down to the **Verifying the Signature** section below.
+Note that once the code signing certificate and private key have been imported as described in the **Prerequisites** section above, the application will automatically be code signed during [building and packaging](/contribute/desktop/developer-setup/#building). To confirm that this step has been completed, skip down to the **Verifying the Signature** section below.
 If the application was built and packaged by somebody else, and you need to sign to the `.app` that they produced, you can run the signing command from the root of the repository:
 ```bash
 ~$ electron-osx-sign release/mac/Mattermost.app

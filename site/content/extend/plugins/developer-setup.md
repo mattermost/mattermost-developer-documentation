@@ -1,11 +1,12 @@
 ---
 title: "Developer Setup"
+heading: "Mattermost Developer Setup"
+description: "Learn how to set up your Mattermost environment to develop and deploy plugins with our guide to Developer Setup."
 date: 2020-07-11T23:00:00-04:00
 weight: 2
-subsection: Plugins
 ---
 
-Once you have your [server](/contribute/server/developer-setup) and [webapp](/contribute/webapp/developer-setup) set up, you can start developing on plugins.
+Once you have your [server](/contribute/server/developer-setup/) and [webapp](/contribute/webapp/developer-setup/) set up, you can start developing on plugins.
 
 **Note:** Plugin development doesn't require a development build of Mattermost. Development builds of Mattermost are only required if you want to develop for Mattermost internally.
 

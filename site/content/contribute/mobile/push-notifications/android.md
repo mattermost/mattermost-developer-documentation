@@ -1,8 +1,9 @@
 ---
 title: "Android Push Notifications"
+heading: "Android Push Notifications at Mattermost"
+description: "Learn how Android push notifications work using Mattermost and Firebase Cloud Messaging."
 date: 2015-05-20T11:35:32-04:00
 weight: 1
-subsection: "Setup Push Notifications"
 ---
 
 Push notifications on Android are managed and dispatched using [Firebase Cloud Messaging (FCM)](http://firebase.google.com/docs/cloud-messaging/)
@@ -40,5 +41,5 @@ changes in the project.
 
 - Replace `android/app/google-services.json` with the one you downloaded earlier
 
-At this point, you can build the Mattermost app for Android and setup the [Mattermost Push Notification Service](/contribute/mobile/push-notifications/service).
+At this point, you can build the Mattermost app for Android and setup the [Mattermost Push Notification Service](/contribute/mobile/push-notifications/service/).
 

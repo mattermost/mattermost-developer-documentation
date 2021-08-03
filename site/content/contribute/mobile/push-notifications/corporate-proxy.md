@@ -1,8 +1,9 @@
 ---
 title: "Push Notification Service with Corporate Proxy"
+heading: "Push Notification Service with Corporate Proxy"
+description: "Receiving mobile push notifications in Mattermost if the use of a corporate proxy server is required by your IT policy."
 date: 2020-03-09T11:35:32
 weight: 4
-subsection: "Setup Push Notifications"
 ---
 
 ### Receiving mobile push notification if the use of a corporate proxy server is required by your IT policy
@@ -15,7 +16,7 @@ Some legacy corporate proxy configurations may be incompatible with the requirem
 
 In this case, a **post-proxy relay** (which accepts network traffic from a corporate proxy such as NGINX, and transmits it to the final destination) can be deployed to take messages from the Mattermost server passing through your corporate IT proxy in the incompatible format, e.g. HTTP/1.1, transform it to HTTP/2 and relay it to its final destination, either to the [Apple Push Notification Service (APNS)](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html#//apple_ref/doc/uid/TP40008194-CH8-SW1) and [Google Fire Cloud Messaging (FCM)](https://firebase.google.com/docs/cloud-messaging) services.
 
-The **post-proxy relay** [can be configured using the Mattermost Push Proxy installation guide](https://developers.mattermost.com/contribute/mobile/push-notifications/service) with connection restrictions to meet your custom security and compliance requirements.
+The **post-proxy relay** [can be configured using the Mattermost Push Proxy installation guide](https://developers.mattermost.com/contribute/mobile/push-notifications/service/) with connection restrictions to meet your custom security and compliance requirements.
 
 You can also host in a trusted cloud environment such as AWS or Azure in place of a DMZ (this option may depend on your organization's internal policies).
 

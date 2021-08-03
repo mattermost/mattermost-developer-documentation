@@ -1,3 +1,7 @@
+html {
+    scroll-padding-top: 80px;
+}
+
 .notification-bar {
     text-align: center;
     display: flex;

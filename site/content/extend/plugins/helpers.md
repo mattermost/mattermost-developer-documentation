@@ -1,7 +1,8 @@
 ---
 title: Plugin Helpers
+heading: "Plugin Helpers at Mattermost"
+description: "Learn when to write a new plugin helper, a new API method, and a new hook for Mattermost."
 date: 2019-09-30T00:00:00-05:00
-subsection: Plugins (Beta)
 weight: 100
 ---
 
@@ -40,7 +41,7 @@ func (p *Plugin) OnActivate() error {
 }
 ```
 
-Although plugin helpers are defined in the [github.com/mattermost/mattermost-server/plugin](https://godoc.org/github.com/mattermost/mattermost-server/plugin#Helpers) package, they aren't part of the RPC exchange with the Mattermost server. This distinction has a number of advantages:
+Although plugin helpers are defined in the [github.com/mattermost/mattermost-server/v5/plugin](https://godoc.org/github.com/mattermost/mattermost-server/v5/plugin#Helpers) package, they aren't part of the RPC exchange with the Mattermost server. This distinction has a number of advantages:
 
 * Compatibility with older Mattermost servers (so long as they support the underlying API and hooks).
 * Flexibility in adding new helpers without cluttering the RPC protocol and corresponding API documentation.
@@ -69,7 +70,7 @@ Old servers won't do anything with new, unrecognized fields, but also won't brea
 
 ## How do I add a plugin helper?
 
-To add a helper to the official [github.com/mattermost/mattermost-server/plugin](https://godoc.org/github.com/mattermost/mattermost-server/plugin#Helpers) package:
+To add a helper to the official [github.com/mattermost/mattermost-server/v5/plugin](https://godoc.org/github.com/mattermost/mattermost-server/v5/plugin#Helpers) package:
 
 * Extend the [`Helpers` interface](https://github.com/mattermost/mattermost-server/blob/master/plugin/helpers.go) with the new method.
 * Add a new method to the concrete `HelpersImpl` struct in a new or existing `helpers_*` file:

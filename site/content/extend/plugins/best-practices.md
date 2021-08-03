@@ -1,6 +1,7 @@
 ---
 title: "Best Practices"
-subsection: Plugins (Beta)
+heading: "Best Practices for Plugins"
+description: "Learn more about best practices for using Mattermost plugins to better extend and integrate your Mattermost server and apps."
 weight: 90
 ---
 

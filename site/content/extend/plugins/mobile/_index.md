@@ -1,7 +1,8 @@
 ---
 title: Mobile Plugins
+heading: "Mobile Plugins at Mattermost"
+description: "Full support for mobile plugins is still a work in progress. See where things stand and learn what you can do."
 date: 2018-07-10T00:00:00-05:00
-subsection: Plugins (Beta)
 weight: 30
 ---
 

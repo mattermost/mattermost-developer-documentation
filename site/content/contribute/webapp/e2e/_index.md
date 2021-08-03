@@ -1,5 +1,7 @@
 ---
 title: "End-to-End Testing"
+heading: "End-to-end Testing in Mattermost"
+description: "This page describes how to run End-to-End (E2E) testing and to build tests for a section or page of the Mattermost web application."
 date: "2018-03-19T12:01:23-04:00"
 subsection: Web App
 weight: 6

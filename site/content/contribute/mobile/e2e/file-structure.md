@@ -1,8 +1,9 @@
 ---
 title: "Folder and File Structure"
+heading: "Mattermost Folder and File Structure"
+description: "Learn about the folder structure, which is mostly based on the Detox scaffold which was created on initial run."
 date: 2020-09-02T09:00:00-00:00
 weight: 2
-subsection: Mobile End-to-End Testing
 ---
 
 The folder structure is mostly based on the [Detox scaffold](https://github.com/wix/Detox/blob/master/docs/Guide.Jest.md) which was created on initial run. The folders and files are:

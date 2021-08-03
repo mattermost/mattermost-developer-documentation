@@ -1,6 +1,7 @@
 ---
 title: "Source Available License"
-subsection: Plugins (Beta)
+heading: "Mattermost Source Available License"
+description: "Some plugins authored by Mattermost are licensed under the Mattermost Source Available License."
 weight: 91
 ---
 

@@ -1,13 +1,14 @@
 ---
 title: "Guide for Writing E2E"
+heading: "Guide for Writing E2E Tests at Mattermost"
+description: "Interested in writing an end-to-end testing script? Follow this guide to learn what needs to be done."
 date: 2020-09-01T09:00:00-00:00
 weight: 5
-subsection: Mobile End-to-End Testing
 ---
 
 Before writing a script, ensure that it has a corresponding test case in Test Management for Jira (TM4J). All test cases may be found in this [link](https://mattermost.atlassian.net/projects/MM?selectedItem=com.atlassian.plugins.atlassian-connect-plugin%3Acom.kanoah.test-manager__main-project-page#!/design?projectId=10302). If test case is not available, feel free to prompt the QA team who will either search from an existing TM4J entry or if it's a new one, it will be created for you.
 
-1. Create a test file based on [folder and file structure](/contribute/mobile/e2e/file-structure).
+1. Create a test file based on [folder and file structure](/contribute/mobile/e2e/file-structure/).
 2. Include TM4J identification (ID) and title in the test description, following the format of `it('[tm4j_id] [title]')` or `it('[tm4j_id]_[step] [title]')` if the test case has multiple steps.
 
    For test case "[MM-T109 RN apps: User can't send the same message repeatedly](https://mattermost.atlassian.net/projects/MM?selectedItem=com.atlassian.plugins.atlassian-connect-plugin%3Acom.kanoah.test-manager__main-project-page#!/testCase/MM-T109)", it should be:
