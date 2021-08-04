@@ -69,7 +69,7 @@ Similarly, [Enable integrations to override profile picture icons](https://docs.
 1. Webhooks are designed to easily allow you to post messages. For other actions such as channel creation, you must also use the [Mattermost APIs](https://api.mattermost.com).
 2. If the text is longer than the allowable character limit per post, the message is split into multiple consecutive posts, each within the character limit. Servers running Mattermost Server v5.0 or later [can support posts up to 16383 characters](https://docs.mattermost.com/upgrade/important-upgrade-notes.html).
 3. You can restrict who can create incoming webhooks in [System Console > Integrations > Integration Management](https://docs.mattermost.com/administration/config-settings.html#restrict-managing-integrations-to-admins).
-4. Mattermost incoming webhooks are Slack-compatible. You can copy-and-paste code used for a Slack incoming webhook to create Mattermost integrations. Mattermost [automatically translates the Slack's proprietary JSON payload format](https://docs.mattermost.com/developer/webhooks-incoming.html#translate-slack-s-data-format-to-mattermost).
+4. Mattermost incoming webhooks are Slack-compatible. You can copy-and-paste code used for a Slack incoming webhook to create Mattermost integrations. Mattermost [automatically translates the Slack's proprietary JSON payload format](#translate-slack-s-data-format-to-mattermost).
 5. The external application may be written in any programming language as long as it supports sending an HTTP POST request in the required JSON format to a specified Mattermost URL.
 6. For the HTTP request body, if `Content-Type` is specified as `application/json` in the header of the HTTP request, then the body can be direct JSON. For example,
 
