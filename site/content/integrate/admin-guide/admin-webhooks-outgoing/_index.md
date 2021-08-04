@@ -96,7 +96,7 @@ Similarly, [Enable integrations to override profile picture icons](https://docs.
 2. If the text in the JSON response is longer than the allowable character limit per post, the message is split into multiple consecutive posts, each within the character limit. Servers running Mattermost Server v5.0 or later [can support posts up to 16383 characters](https://docs.mattermost.com/administration/important-upgrade-notes.html).
 3. Outgoing webhooks are supported in public channels only. If you need a trigger that works in a Private Channel or a Direct Message, consider using a [slash command](../admin-slash-commands) instead.
 4. You can restrict who can create outgoing webhooks in [System Console > Integrations > Integration Management](https://docs.mattermost.com/configure/configuration-settings.html#restrict-managing-integrations-to-admins).
-5. Mattermost outgoing webhooks are Slack-compatible. You can copy-and-paste code used for a Slack outgoing webhook to create Mattermost integrations. Mattermost [automatically translates the Slack's proprietary JSON response format](https://docs.mattermost.com/developer/webhooks-outgoing.html#translate-slack-s-data-format-to-mattermost).
+5. Mattermost outgoing webhooks are Slack-compatible. You can copy-and-paste code used for a Slack outgoing webhook to create Mattermost integrations. Mattermost [automatically translates the Slack's proprietary JSON response format](#translate-slack-s-data-format-to-mattermost).
 6. The external application may be written in any programming language. It needs to provide a URL which reacts to the request sent by your Mattermost server, and send an HTTP POST in the required JSON format as a response.
  
 ## Share Your Integration
