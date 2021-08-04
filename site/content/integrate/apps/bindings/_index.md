@@ -77,7 +77,7 @@ A leaf command must include:
 | `hint`        | string | (Optional) Hint line on command autocomplete.                                                                                                |
 | `description` | string | (Optional) Description line on command autocomplete.                                                                                         |
 | `call`        | Call   | Call to perform when executing the command.                                                                                                  |
-| `form`        | Form   | (Optional) Form representing the parameters the command can receive. If no form is provided, a form call will be made to the specified call. |
+| `form`        | Form   | (Optional) Form representing the parameters the command can receive. If no form is provided, a form call will be made to the specified call. If you want to create a command with no arguments, you must pass a form with no fields. |
 
 The context of the call for these bindings will include the user ID, the post ID, the root post ID (if any), the channel ID and the team ID. It will also include the raw command.
 
