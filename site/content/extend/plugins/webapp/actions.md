@@ -1,115 +1,502 @@
 ---
-title: Redux Actions
-heading: "Redux Actions for Web App Plugins"
+title: Interactions with Redux
+heading: "Redux Interactions for Web App Plugins"
 description: "Mattermost-redux is a library of shared code between Mattermost JavaScript clients. Learn how to use Redux actions with a plugin."
 date: 2018-07-10T00:00:00-05:00
 weight: 11
 ---
 
-When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients.
+When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients. The `mattermost-redux` library exports types and functions that are imported by the web application and mobile application. These functions can be imported by plugins, and used the same way. There are a few different kinds of functions exported by the library:
 
-Here we'll show how to use Redux actions with a plugin. To learn more about these actions, see the [contributor documentation](/contribute/redux/actions/).
+[actions](https://github.com/mattermost/mattermost-redux/tree/master/src/actions) - Actions perform API requests and can change the state of Mattermost.
+
+[client](https://github.com/mattermost/mattermost-redux/tree/master/src/client) - The client package can be used to instantiate a Client4 object, to interact with the Mattermost API directly. This is useful in plugins as well as javascript server applications communicating with Mattermost.
+
+[constants](https://github.com/mattermost/mattermost-redux/tree/master/src/constants) - An assortment of constants within Mattermost's data model
+
+[selectors](https://github.com/mattermost/mattermost-redux/tree/master/src/selectors) - Selectors return certain data from the Redux store, such as getPost which allows you get a post by id from the Redux store.
+
+[store](https://github.com/mattermost/mattermost-redux/tree/master/src/store) - Functions related to the Redux store itself
+
+[types](https://github.com/mattermost/mattermost-redux/tree/master/src/types) - Various types of objects in Mattermost's data model. This is useful in plugins as well as javascript server applications communicating with Mattermost.
+
+[utils](https://github.com/mattermost/mattermost-redux/tree/master/src/utils) - Various utility functions shared across the web application and mobile application
+
 
 ## Prerequisites
 
 This guide assumes you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide](/extend/plugins/webapp/hello-world/).
 
-## Import mattermost-redux
 
-First, you'll need to add `mattermost-redux` as a dependency of your web app plugin.
+## Basic Example
 
-```bash
-cd /path/to/plugin/webapp
-npm install mattermost-redux
-```
-
-That will add `mattermost-redux` as a dependency in your `package.json` file, allowing it to be imported into any of your plugin's JavaScript files.
-
-## Use an Action
-
-Actions are used as part of components. To give components access to these actions, we pass them in as React props from the component's container `index.js` file. To demonstrate this, we'll create a new component.
-
-In the `webapp` directory, let's create a component folder called `action_example` and switch into it.
-
-```bash
-mkdir -p src/components/action_example
-cd src/components/action_example
-```
-
-In there, create two files: `index.js` and `action_example.jsx`. If you're not familiar with why we're creating these directories and files, [read the contributor documentation on using React with Redux](/contribute/redux/react-redux/).
-
-Open up `action_example.jsx` and add the following:
-
-```javascript
-import React from 'react';
-import PropTypes from 'prop-types';
-
-export default class ActionExample extends React.PureComponent {
-    static propTypes = {
-        user: PropTypes.object.isRequired,
-        patchUser: PropTypes.func.isRequired, // here we define the action as a prop
-    }
-
-    updateFirstName = () => {
-        const patchedUser = {
-            id: this.props.user.id,
-            first_name: 'Jim',
-        };
-
-        this.props.patchUser(patchedUser); // here we use the action
-    }
-
-    render() {
-        return (
-            <div>
-                {'First name: ' + this.props.user.first_name}
-                <a
-                    href='#'
-                    onClick={this.updateFirstName}
-                >
-                    Click me to update the first name!
-                </a>
-            </div>
-        );
-    }
-}
-```
-
-This component will display a user's first name and then, when the link is clicked, use an action to update that user's first name to "Jim".
-
-The action `patchUser` is from mattermost-redux. It takes in a subset of a user object and updates the user on the server, [using the `PUT /users/{user_id}/patch` endpoint](https://api.mattermost.com/#tag/users%2Fpaths%2F~1users~1%7Buser_id%7D~1patch%2Fput).
-
-We must now use our container to import this action and pass it our component. Open up the `index.js` file and add:
+Here's an [example](https://github.com/mattermost/mattermost-plugin-jira/blob/master/webapp/src/components/modals/create_issue/index.ts) of a webapp plugin making use of [mattermost-redux's](https://github.com/mattermost/mattermost-redux) functions:
 
 ```javascript
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {patchUser} from 'mattermost-redux/actions'; // importing the action
+import {getPost} from 'mattermost-redux/selectors/entities/posts';
+import {getCurrentTeam} from 'mattermost-redux/selectors/entities/teams';
 
-import ActionExample from './action_example.jsx';
+import {closeCreateModal, createIssue, fetchJiraIssueMetadataForProjects, redirectConnect} from 'actions';
+import {isCreateModalVisible, getCreateModal} from 'selectors';
+
+import CreateIssue from './create_issue_modal';
 
 const mapStateToProps = (state) => {
-    const currentUserId = state.entities.users.currentUserId;
+    const {postId, description, channelId} = getCreateModal(state);
+    const post = (postId) ? getPost(state, postId) : null;
+    const currentTeam = getCurrentTeam(state);
 
     return {
-        user: state.entities.users.profiles[currentUserId],
+        visible: isCreateModalVisible(state),
+        post,
+        description,
+        channelId,
+        currentTeam,
     };
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    patchUser, // passing the action as a prop
+    close: closeCreateModal,
+    create: createIssue,
+    fetchJiraIssueMetadataForProjects,
+    redirectConnect,
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(ActionExample);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateIssue);
 ```
 
-The container is doing two things. First, it's grabbing the current (logged in) user from the Redux state and passing it in as a prop. Anytime the Redux state updates, for example when we use the `patchUser` action, our component will get the updated copy of the current user. Second, the container is importing the `patchUser` action from mattermost-redux and passing it in as an action prop to our component.
 
-Now we can use `this.props.patchUser()` to update a user. The example component we made uses it to patch the current user's first name.
+## Some Common Actions
 
-To use our component in our plugin we would then use the registry in the initialization function of the plugin to register the component somewhere in the Mattermost UI. That is beyond the scope of this guide, but you can [read more about that here](/extend/plugins/webapp/reference/).
+We have listed out some of the commonly used actions that you can use in your web app plugin as per requirement. But you can always find all the actions that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/actions).
 
-## Available Actions
+**createChannel**
 
-The actions that are available for your plugin to import can be [found in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/actions).
+This action should be dispatched when we intend to create a new channel
+
+```javascript
+export function createChannel(channel: Channel, userId: string): ActionFunc {
+    return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
+        let created;
+        try {
+            created = await Client4.createChannel(channel);
+        } catch (error) {
+            forceLogoutIfNecessary(error, dispatch, getState);
+            dispatch(batchActions([
+                {
+                    type: ChannelTypes.CREATE_CHANNEL_FAILURE,
+                    error,
+                },
+                logError(error),
+            ]));
+            return {error};
+        }
+```
+
+**getCustomEmoji**
+
+This action should be dispatched when we intend to fetch a specific emoji associated with the emoji ID provided
+
+```javascript
+export function getCustomEmoji(emojiId: string): ActionFunc {
+    return bindClientFunc({
+        clientFunc: Client4.getCustomEmoji,
+        onSuccess: EmojiTypes.RECEIVED_CUSTOM_EMOJI,
+        params: [
+            emojiId,
+        ],
+    });
+}
+```
+
+**createPost**
+
+This action should be dispatched when we intend to create a new post
+
+```javascript
+export function createPost(post: Post, files: any[] = []) {
+    return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
+        const state = getState();
+        const currentUserId = state.entities.users.currentUserId;
+
+        const timestamp = Date.now();
+        const pendingPostId = post.pending_post_id || `${currentUserId}:${timestamp}`;
+        let actions: Action[] = [];
+
+        if (Selectors.isPostIdSending(state, pendingPostId)) {
+            return {data: true};
+        }
+
+        let newPost = {
+            ...post,
+            pending_post_id: pendingPostId,
+            create_at: timestamp,
+            update_at: timestamp,
+            reply_count: 0,
+        };
+
+        if (post.root_id) {
+            newPost.reply_count = Selectors.getPostRepliesCount(state, post.root_id) + 1;
+        }
+
+        // We are retrying a pending post that had files
+        if (newPost.file_ids && !files.length) {
+            files = newPost.file_ids.map((id) => state.entities.files.files[id]); // eslint-disable-line
+        }
+
+        if (files.length) {
+            const fileIds = files.map((file) => file.id);
+
+            newPost = {
+                ...newPost,
+                file_ids: fileIds,
+            };
+
+            actions.push({
+                type: FileTypes.RECEIVED_FILES_FOR_POST,
+                postId: pendingPostId,
+                data: files,
+            });
+        }
+
+        actions.push({
+            type: PostTypes.RECEIVED_NEW_POST,
+            data: {
+                ...newPost,
+                id: pendingPostId,
+            },
+        });
+
+```
+
+**getMyTeams**
+
+This action should be dispatched when we intend to fetch all the team types associated with
+
+```javascript
+export function getMyTeams(): ActionFunc {
+    return bindClientFunc({
+        clientFunc: Client4.getMyTeams,
+        onRequest: TeamTypes.MY_TEAMS_REQUEST,
+        onSuccess: [TeamTypes.RECEIVED_TEAMS_LIST, TeamTypes.MY_TEAMS_SUCCESS],
+        onFailure: TeamTypes.MY_TEAMS_FAILURE,
+    });
+}
+```
+
+**createUser**
+
+This action should be dispatched when we intend to create a new user profile
+
+```javascript
+export function createUser(user: UserProfile, token: string, inviteId: string, redirect: string): ActionFunc {
+    return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
+        let created;
+
+        try {
+            created = await Client4.createUser(user, token, inviteId, redirect);
+        } catch (error) {
+            forceLogoutIfNecessary(error, dispatch, getState);
+            dispatch(logError(error));
+            return {error};
+        }
+
+        const profiles: {
+            [userId: string]: UserProfile;
+        } = {
+            [created.id]: created,
+        };
+        dispatch({type: UserTypes.RECEIVED_PROFILES, data: profiles});
+
+        return {data: created};
+    };
+}
+```
+
+
+## Some Common Selectors
+
+We have listed out some of the commonly used selectors that you can use in your web app plugin as per requirement. But you can always find all the selectors that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/selectors).
+
+**getCurrentUserId**
+
+Retrieves the user ID of the current user from the Redux store
+
+```javascript
+export function getCurrentUserId(state) {
+    return state.entities.users.currentUserId;
+}
+```
+
+**getCurrentUser**
+
+Retrieves the user profile of the current user from the Redux store
+
+```javascript
+export function getCurrentUser(state: GlobalState): UserProfile {
+    return state.entities.users.profiles[getCurrentUserId(state)];
+}
+```
+
+**getUsers**
+
+Retrieves all user profiles from the Redux store
+
+```javascript
+export function getUsers(state: GlobalState): IDMappedObjects<UserProfile> {
+    return state.entities.users.profiles;
+}
+```
+
+**getChannel**
+
+Retrieves a channel as it exists in the store without filling in any additional details such as the display_name for DM/GM channels.
+
+```javascript
+export function getChannel(state: GlobalState, id: string) {
+    return getAllChannels(state)[id];
+}
+```
+
+**getCurrentChannelId**
+
+Retrieves the channel ID of the current channel from the Redux store
+
+```javascript
+export function getCurrentChannelId(state: GlobalState): string {
+    return state.entities.channels.currentChannelId;
+}
+```
+
+**getCurrentChannel**
+
+Retrives the complete channel info of the current channel from the Redux Store
+
+```javascript
+export const getCurrentChannel: (state: GlobalState) => Channel = createSelector(
+    getAllChannels,
+    getCurrentChannelId,
+    (state: GlobalState): UsersState => state.entities.users,
+    getTeammateNameDisplaySetting,
+    (allChannels: IDMappedObjects<Channel>, currentChannelId: string, users: UsersState, teammateNameDisplay: string): Channel => {
+        const channel = allChannels[currentChannelId];
+
+        if (channel) {
+            return completeDirectChannelInfo(users, teammateNameDisplay, channel);
+        }
+
+        return channel;
+    },
+);
+```
+
+**getPost**
+
+Retrieves the specific post associated with the supplied `postID` from the Redux Store
+
+```javascript
+export function getPost(state: GlobalState, postId: $ID<Post>): Post {
+    return getAllPosts(state)[postId];
+}
+```
+
+**getCurrentTeamId**
+
+Retrieves the Team ID of the current team from the Redux store
+
+```javascript
+export function getCurrentTeamId(state: GlobalState) {
+    return state.entities.teams.currentTeamId;
+}
+```
+
+**getCurrentTeam**
+
+Retrieves the team info of the current team from the Redux store
+
+```javascript
+export const getCurrentTeam: (state: GlobalState) => Team = createSelector(
+    getTeams,
+    getCurrentTeamId,
+    (teams, currentTeamId) => {
+        return teams[currentTeamId];
+    },
+);
+```
+
+**getCustomEmojisByName**
+
+Retrieves the the specific emoji associated with the supplied `customEmojiName` from the Redux Store
+
+```javascript
+export const getCustomEmojisByName: (state: GlobalState) => Map<string, CustomEmoji> = createSelector(
+    getCustomEmojis,
+    (emojis: IDMappedObjects<CustomEmoji>): Map<string, CustomEmoji> => {
+        const map: Map<string, CustomEmoji> = new Map();
+
+        Object.keys(emojis).forEach((key: string) => {
+            map.set(emojis[key].name, emojis[key]);
+        });
+
+        return map;
+    },
+);
+```
+
+**getConfig**
+
+Retrieves the config of the server for admin analysis
+
+```javascript
+export function getConfig(state: GlobalState) {
+    return state.entities.admin.config;
+}
+```
+
+
+## Some Common Client Functions
+
+We have listed out some of the widely used common client functions that you can use in your web app plugin as per requirement. But you can always find all the client functions that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts).
+
+**getUser**
+
+Routes to the user profile of the specified `userId` from the Redux store
+
+```javascript
+ getUser = (userId: string) => {
+        return this.doFetch<UserProfile>(
+            `${this.getUserRoute(userId)}`,
+            {method: 'get'},
+        );
+    };
+```
+
+**getUserByUsername**
+
+Routes to the user profile of the specified `username` from the Redux store
+
+```javascript
+getUserByUsername = (username: string) => {
+        return this.doFetch<UserProfile>(
+            `${this.getUsersRoute()}/username/${username}`,
+            {method: 'get'},
+        );
+    };
+```
+
+**getChannel**
+
+Routes to the channel of the specified `channelId` from the Redux store
+
+```javascript
+getChannel = (channelId: string) => {
+        this.trackEvent('api', 'api_channel_get', {channel_id: channelId});
+
+        return this.doFetch<Channel>(
+            `${this.getChannelRoute(channelId)}`,
+            {method: 'get'},
+        );
+    };
+```
+
+**getChannelByName**
+
+Routes to the channel of the specified `channelName` from the Redux store
+
+```javascript
+ getChannelByName = (teamId: string, channelName: string, includeDeleted = false) => {
+        return this.doFetch<Channel>(
+            `${this.getTeamRoute(teamId)}/channels/name/${channelName}?include_deleted=${includeDeleted}`,
+            {method: 'get'},
+        );
+    };
+```
+
+**getTeam**
+
+Routes to the team of the specified `teamId` from the Redux store
+
+```javascript
+  getTeam = (teamId: string) => {
+        return this.doFetch<Team>(
+            this.getTeamRoute(teamId),
+            {method: 'get'},
+        );
+    };
+```
+
+**getTeamByName**
+
+Routes to the team of the specified `teamName` from the Redux store
+
+```javascript
+  getTeamByName = (teamName: string) => {
+        this.trackEvent('api', 'api_teams_get_team_by_name');
+
+        return this.doFetch<Team>(
+            this.getTeamNameRoute(teamName),
+            {method: 'get'},
+        );
+    };
+```
+
+**executeCommand**
+
+Executes the specified command with the arguments provided and fetches the response
+
+```javascript
+   executeCommand = (command: string, commandArgs: CommandArgs) => {
+        this.trackEvent('api', 'api_integrations_used');
+
+        return this.doFetch<CommandResponse>(
+            `${this.getCommandsRoute()}/execute`,
+            {method: 'post', body: JSON.stringify({command, ...commandArgs})},
+        );
+    };
+```
+
+**getOptions**
+
+This one is special, because it is needed to make custom requests to the server
+
+```javascript
+  getOptions(options: Options) {
+        const newOptions: Options = {...options};
+
+        const headers: {[x: string]: string} = {
+            [HEADER_REQUESTED_WITH]: 'XMLHttpRequest',
+            ...this.defaultHeaders,
+        };
+
+        if (this.token) {
+            headers[HEADER_AUTH] = `${HEADER_BEARER} ${this.token}`;
+        }
+
+        const csrfToken = this.csrf || this.getCSRFFromCookie();
+        if (options.method && options.method.toLowerCase() !== 'get' && csrfToken) {
+            headers[HEADER_X_CSRF_TOKEN] = csrfToken;
+        }
+
+        if (this.includeCookies) {
+            newOptions.credentials = 'include';
+        }
+
+        if (this.userAgent) {
+            headers[HEADER_USER_AGENT] = this.userAgent;
+        }
+
+        if (newOptions.headers) {
+            Object.assign(headers, newOptions.headers);
+        }
+
+        return {
+            ...newOptions,
+            headers,
+        };
+    }
+```
+
+You can also refer to the [Redux developer guide](https://developers.mattermost.com/contribute/webapp/redux/) to learn more about the [Redux actions](https://developers.mattermost.com/contribute/webapp/redux/actions/), [Redux selectors](https://developers.mattermost.com/contribute/webapp/redux/selectors/) and [Redux reducers](https://developers.mattermost.com/contribute/webapp/redux/reducers/) and gain insights on how these can be used in your Web App plugins.
