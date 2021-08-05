@@ -239,7 +239,7 @@ class MyPlugin {
 }
 ```
 
-The `initialize` callback now receives an instance of the plugin [registry](/integrate/plugins/webapp/reference/#registry). In some cases, the registry's API now requires a more discrete breakdown of the registered component to allow the web app to handle various rendering scenarios:
+The `initialize` callback now receives an instance of the plugin [registry]({{< ref "/integrate/plugins/webapp/reference#registry" >}}). In some cases, the registry's API now requires a more discrete breakdown of the registered component to allow the web app to handle various rendering scenarios:
 
 ```js
 import ChannelHeaderButtonIcon from './components/channel_header_button/icon';

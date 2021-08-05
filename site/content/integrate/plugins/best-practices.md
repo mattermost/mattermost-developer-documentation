@@ -6,7 +6,7 @@ weight: 90
 aliases: [/extend/plugins/best-practices/]
 ---
 
-See here for [server-specific best practices for plugins](/integrate/plugins/server/best-practices/). Webapp-specific best practices are incoming.
+See here for [server-specific best practices for plugins]({{< ref "/integrate/plugins/server/best-practices" >}}). Webapp-specific best practices are incoming.
 
 ## How can a plugin enable its configuration through the System Console?
 

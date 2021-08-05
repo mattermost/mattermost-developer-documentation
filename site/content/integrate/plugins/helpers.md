@@ -7,7 +7,7 @@ weight: 100
 aliases: [/extend/plugins/helpers/]
 ---
 
-The plugin architecture consists of an [API](/integrate/plugins/server/reference/#API), [hooks](/integrate/plugins/server/reference/#Hooks), and plugin helpers.
+The plugin architecture consists of an [API]({{< ref "/integrate/plugins/server/reference#API" >}}), [hooks]({{< ref "/integrate/plugins/server/reference#Hooks" >}}), and plugin helpers.
 
 When a plugin invokes an API method, it makes an RPC call to the Mattermost server and waits for a response. When the Mattermost server invokes a hook method, it makes an RPC call to the plugin and waits for a response:
 

@@ -6,17 +6,17 @@ date: "2018-05-19T12:01:23-04:00"
 weight: 1
 ---
 
-This site is for developers who want to contribute code to the core Mattermost project. If you’re looking for other ways to contribute, [head over to our website](https://mattermost.com/contribute/). Before getting started, it’s a good idea to review our guide on [integrating and extending Mattermost](https://developers.mattermost.com/integrate/getting-started/) because you might be able to build the improvements you want without needing to contribute them upstream.
+This site is for developers who want to contribute code to the core Mattermost project. If you’re looking for other ways to contribute, [head over to our website](https://mattermost.com/contribute/). Before getting started, it’s a good idea to review our guide on [integrating and extending Mattermost]({{< ref "/integrate/getting-started" >}}) because you might be able to build the improvements you want without needing to contribute them upstream.
 
 
 ## Technical Overview
 
 The Mattermost core repositories include:
-* [Server](https://developers.mattermost.com/contribute/server/) - Highly-scalable Mattermost installation written in Go
-* [Web App](https://developers.mattermost.com/contribute/webapp/) - JavaScript client app built on React and Redux
-* [Mobile Apps](https://developers.mattermost.com/contribute/mobile/) - JavaScript client apps for Android and iOS built on React Native
-* [Desktop App](https://developers.mattermost.com/contribute/desktop/) - An Electron wrapper around the web app project that runs on Windows, Linux, and macOS
-* [Core Plugins](https://developers.mattermost.com/contribute/plugins/) - A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
+* [Server]({{< ref "/contribute/server" >}}) - Highly-scalable Mattermost installation written in Go
+* [Web App]({{< ref "/contribute/webapp" >}}) - JavaScript client app built on React and Redux
+* [Mobile Apps]({{< ref "/contribute/mobile" >}}) - JavaScript client apps for Android and iOS built on React Native
+* [Desktop App]({{< ref "/contribute/desktop" >}}) - An Electron wrapper around the web app project that runs on Windows, Linux, and macOS
+* [Core Plugins]({{< ref "/contribute/plugins" >}}) - A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
 
 Improvements to Mattermost may require you to contribute to multiple projects; if you’re unsure where to start, the server repository is generally the best way to get introduced to the codebase.
 

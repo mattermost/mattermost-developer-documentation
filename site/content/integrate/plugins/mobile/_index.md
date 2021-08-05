@@ -9,4 +9,4 @@ aliases: [/extend/plugins/mobile/]
 
 Full support for mobile plugins is still a work in progress.
 
-[Server plugins](/integrate/plugins/server/) can interact with mobile clients, but there isn't currently an ability to customize the mobile user experience, the user interface, or render custom post types.
+[Server plugins]({{< ref "/integrate/plugins/server" >}}) can interact with mobile clients, but there isn't currently an ability to customize the mobile user experience, the user interface, or render custom post types.

@@ -185,6 +185,6 @@ If, for example, we want to add support for German, which has the language code 
 This is a rough outline of how plugins can use the existing framework to fully support localization. If other plugin developers adapt this approach, it might get officially supported by Mattermost. This means that the plugin framework would support translations via go-i18n.
 
 - As you can see, using `goi18n` is a bit cumbersome. To make translating easier some commands could be encapsulated in make target in the [starter-template](https://github.com/mattermost/mattermost-plugin-starter-template/blob/master/Makefile).
-- The helper methods like `initBundle`, `getUserLocalizer` and `getServerLocalizer` could become a [plugin helper](https://developers.mattermost.com/integrate/plugins/helpers/).
+- The helper methods like `initBundle`, `getUserLocalizer` and `getServerLocalizer` could become a [plugin helper]({{< ref "/integrate/plugins/helpers" >}}).
 
 I would love to hear feedback about the approach we took. Feel free to share it on the [Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) on the Mattermost community server.

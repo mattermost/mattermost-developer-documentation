@@ -13,7 +13,7 @@ Here we'll show how to use Redux actions with a plugin. To learn more about thes
 
 ## Prerequisites
 
-This guide assumes you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide](/integrate/plugins/webapp/hello-world/).
+This guide assumes you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide]({{< ref "/integrate/plugins/webapp/hello-world" >}}).
 
 ## Import mattermost-redux
 
@@ -109,7 +109,7 @@ The container is doing two things. First, it's grabbing the current (logged in) 
 
 Now we can use `this.props.patchUser()` to update a user. The example component we made uses it to patch the current user's first name.
 
-To use our component in our plugin we would then use the registry in the initialization function of the plugin to register the component somewhere in the Mattermost UI. That is beyond the scope of this guide, but you can [read more about that here](/integrate/plugins/webapp/reference/).
+To use our component in our plugin we would then use the registry in the initialization function of the plugin to register the component somewhere in the Mattermost UI. That is beyond the scope of this guide, but you can [read more about that here]({{< ref "/integrate/plugins/webapp/reference" >}}).
 
 ## Available Actions
 

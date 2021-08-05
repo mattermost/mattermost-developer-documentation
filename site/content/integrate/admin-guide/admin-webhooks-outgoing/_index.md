@@ -82,7 +82,7 @@ which would render in Mattermost as:
 
 ![image](images/webhooksTable.png)
 
-11. You're all set! See [developer documentation](/integrate/other-integrations/outgoing-webhooks) for details on what parameters are supported by outgoing webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins](https://about.mattermost.com/default-plugins).
+11. You're all set! See [developer documentation]({{< ref "/integrate/other-integrations/outgoing-webhooks" >}}) for details on what parameters are supported by outgoing webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins](https://about.mattermost.com/default-plugins).
 
 Messages with advanced formatting can be created by including an [attachment array](../admin-message-attachments) and [interactive message buttons](../admin-interactive-messages) in the JSON payload.
 

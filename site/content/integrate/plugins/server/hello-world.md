@@ -9,7 +9,7 @@ aliases: [/extend/plugins/server/hello-world/]
 
 This tutorial will walk you through the basics of writing a Mattermost plugin with a server component.
 
-Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration](/integrate/plugins/migration/) document to upgrade older plugins.
+Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration]({{< ref "/integrate/plugins/migration" >}}) document to upgrade older plugins.
 
 ## Prerequisites
 
@@ -71,7 +71,7 @@ Now, we'll need to define the required manifest describing your plugin's entry p
 }
 ```
 
-This manifest gives the server the location of your executable within your plugin bundle. Consult the [manifest reference](/integrate/plugins/manifest-reference.md) for more details, including how to define a cross-platform bundle by defining multiple executables, and how to define a minimum required server version for your plugin.
+This manifest gives the server the location of your executable within your plugin bundle. Consult the [manifest reference]({{< ref "/integrate/plugins/manifest-reference.md" >}}) for more details, including how to define a cross-platform bundle by defining multiple executables, and how to define a minimum required server version for your plugin.
 
 Note that you may also use `plugin.yaml` to define the manifest.
 
