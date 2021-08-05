@@ -33,8 +33,6 @@ When you develop using the Apps Framework, your apps can:
 
 Apps are available as a Developers Preview and we're looking for your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost community instance.
 
-* Apps will soon be available for self-managed deployments as well as customers' own AWS environments.
-
 Read the [JavaScript start guide]({{< ref "quick-start-js" >}}) or [Go quick start guide]({{< ref "quick-start-go" >}}) to learn how to write your first app.
 
 ## FAQ
