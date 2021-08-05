@@ -8,6 +8,7 @@ subsection: End-to-End Testing
 ### Environment Variables
 
 We use several environment variables for Cypress testing in order to:
+
 - Easily change when running in CI.
 - Cater to different values across developer machines.
 
@@ -42,6 +43,7 @@ Environment variables are [defined in cypress.json](https://github.com/mattermos
 ### In Continuous Integration Pipeline
 
 We run all tests in our Continuous Integration (CI) pipeline. However, they are grouped according to test stability.
+
 1. __Daily production tests against development branch (master)__ - Initiated on master branch by `node run_tests.js --stage='@prod'` in the command line. These are tests, known as production tests, which were selected and labeled with `@prod` [test metadata](/contribute/webapp/end-to-end-tests/#adding-test-metadata-on-spec-files). See <a target="_blank" href="https://community.mattermost.com/core/pl/i3kg97o1fir9pje7yi8wecd45r">link</a> for an example test run posted in our community channel.
 2. __Daily production tests against release branch__ - Same as above except the test is initiated against the release branch. See <a target="_blank" href="https://community.mattermost.com/core/pl/mhtepy6p33gi9fp33fsek161qr">link</a> for an example test run.
 3. __Daily unstable tests against development branch (master)__ - Initiated on the master branch by `node run_tests.js --stage='@prod' --invert` in the command line to run all except production tests. We call these unstable tests as they either consistently or intermittently fail due to automation bugs and not product bugs.

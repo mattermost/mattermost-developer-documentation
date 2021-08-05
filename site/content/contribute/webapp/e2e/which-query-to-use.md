@@ -5,7 +5,7 @@ weight: 5
 subsection: End-to-End Testing
 ---
 
-We love `testing-library` as it encourages to write maintainable tests, to develop with confidence and to ensure web application is accessible by default. Fortunately, there is `@testing-library/cypress` which provides simple and complete custom Cypress commands and utilities that encourage such good testing practices.
+We love `testing-library` as it encourages writing maintainable tests, to develop with confidence, and to ensure web application is accessible by default. Fortunately, there is `@testing-library/cypress` which provides simple and complete custom Cypress commands and utilities that encourage such good testing practices.
 
 #### With that, which query should I use when writing Cypress tests?
 
