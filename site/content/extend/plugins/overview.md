@@ -15,7 +15,7 @@ A more detailed example is the [Demo Plugin](https://github.com/mattermost/matte
 ### Manifest
 The plugin manifest provides required metadata about the plugin, such as name and ID. It is defined in JSON or YAML. This is `plugin.json` in both the [sample](https://github.com/mattermost/mattermost-plugin-starter-template/blob/master/plugin.json) and [demo](https://github.com/mattermost/mattermost-plugin-demo/blob/master/plugin.json) plugins.
 
-See the [manifest reference](/extend/plugins/manifest-reference/) for more information.
+See the [manifest reference](https://developers.mattermost.com/extend/plugins/manifest-reference/) for more information.
 
 ### Server
 The server component of a plugin is written in Go and runs as a subprocess of the Mattermost server process. The Go code extends the [MattermostPlugin](https://godoc.org/github.com/mattermost/mattermost-server/v5/plugin#MattermostPlugin) struct that contains an [API](/extend/plugins/server/reference/#API) and allows for the implementation of [Hook](/extend/plugins/server/reference/#Hooks) methods that enable the plugin to interact with the Mattermost server.
@@ -31,7 +31,7 @@ The sample plugin has a [shell of an implemented PluginClass](https://github.com
 
 The desktop app is a shim of the web app, meaning any plugin that works in the web app will also work in the desktop app.
 
-Read more about the web app component of plugins [here](/extend/plugins/webapp/).
+Read more about the web app component of plugins [here](https://developers.mattermost.com/extend/plugins/webapp/).
 
 ### Mobile App
 Currently there is no mobile app component of plugins but it is planned for the near term.
@@ -39,4 +39,4 @@ Currently there is no mobile app component of plugins but it is planned for the 
 
 ----
 
-If you'd like to better understand how plugins work, [see the contributor documentation on plugins](/contribute/server/plugins/).
+If you'd like to better understand how plugins work, [see the contributor documentation on plugins](https://developers.mattermost.com/contribute/server/plugins/).
