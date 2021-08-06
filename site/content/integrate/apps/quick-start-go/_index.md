@@ -14,7 +14,7 @@ This quick start guide explains the basics of writing a Mattermost app. In this 
 
 ## Prerequisites
 
-Before you can start with your app, you first need to set up a local developer environment following the [server](/contribute/server/developer-setup/) and [webapp](/contribute/webapp/developer-setup/) setup guides. You must enable the apps feature flag before starting the Mattermost server by setting the environment variable `MM_FEATUREFLAGS_AppsEnabled` to `true` by e.g. adding `export MM_FEATUREFLAGS_AppsEnabled=true` to your `.bashrc` or using `make run-server MM_FEATUREFLAGS_AppsEnabled=true`.
+Before you can start with your app, you first need to set up a local developer environment following the [server](https://github.com/mattermost/mattermost-developer-documentation/tree/master/site/content/contribute/server/developer-setup) and [webapp](https://github.com/mattermost/mattermost-developer-documentation/blob/master/site/content/contribute/webapp/developer-setup.md) setup guides. You must enable the apps feature flag before starting the Mattermost server by setting the environment variable `MM_FEATUREFLAGS_AppsEnabled` to `true` by e.g. adding `export MM_FEATUREFLAGS_AppsEnabled=true` to your `.bashrc` or using `make run-server MM_FEATUREFLAGS_AppsEnabled=true`.
 
 In the System Console, ensure that the following are set to **true**:
 
