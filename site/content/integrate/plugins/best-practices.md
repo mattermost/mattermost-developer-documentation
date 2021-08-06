@@ -10,9 +10,9 @@ See here for [server-specific best practices for plugins]({{< ref "/integrate/pl
 
 ## How can a plugin enable its configuration through the System Console?
 
-Once a plugin is installed, Administrators have access to the plugin's configuration page in the __System Console > Plugins__ section. The configurable settings must first be defined in the plugin's manifest [setting schema](https://developers.mattermost.com/integrate/plugins/manifest-reference/#settings_schema). The web app supports several basic pre-defined settings type, e.g. `bool` and `dropdown`, for which the corresponding UI components are provided in order to complete configuration in the System Console.
+Once a plugin is installed, Administrators have access to the plugin's configuration page in the __System Console > Plugins__ section. The configurable settings must first be defined in the plugin's manifest [setting schema]({{< ref "/integrate/plugins/manifest-reference#settings_schema" >}}). The web app supports several basic pre-defined settings type, e.g. `bool` and `dropdown`, for which the corresponding UI components are provided in order to complete configuration in the System Console.
 
-These settings are stored within the server configuration under [`Plugins`] indexed by plugin ids. The plugin's server code can access their current configuration calling the [`getConfig`](https://developers.mattermost.com/integrate/plugins/server/reference/#API.GetConfig) API call and can also make changes as needed with [`saveConfig`](https://developers.mattermost.com/integrate/plugins/server/reference/#API.SaveConfig).
+These settings are stored within the server configuration under [`Plugins`] indexed by plugin ids. The plugin's server code can access their current configuration calling the [`getConfig`]({{< ref "/integrate/plugins/server/reference#API.GetConfig" >}}) API call and can also make changes as needed with [`saveConfig`]({{< ref "/integrate/plugins/server/reference#API.SaveConfig" >}}).
 
 ## How can a plugin define its own setting type?
 
@@ -32,7 +32,7 @@ A plugin could define its own type of setting with a corresponding custom user i
 }
 ```
 
-2. In the plugin's web app code, define a custom component to manage the plugin's custom setting and register it in the web app with [`registerAdminConsoleCustomSetting`](https://developers.mattermost.com/integrate/plugins/webapp/reference/#registerAdminConsoleCustomSetting). This component will be instantiated in the System Console with the following `props` passed in:
+2. In the plugin's web app code, define a custom component to manage the plugin's custom setting and register it in the web app with [`registerAdminConsoleCustomSetting`]({{< ref "/integrate/plugins/webapp/reference#registerAdminConsoleCustomSetting" >}}). This component will be instantiated in the System Console with the following `props` passed in:
 
     - `id`: The setting `key` as defined in the plugin manifest within `settings_schema.settings`.
     - `label`: The text for the component label based on the setting's `displayName` defined in the manifest. 

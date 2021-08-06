@@ -196,4 +196,4 @@ See the [admin guide's notes on Slack compatibility](https://docs.mattermost.com
 
 ##### If you are developing a plugin
 
-Use [`CreatePost`](https://developers.mattermost.com/integrate/plugins/server/reference/#API.CreatePost) plugin API. Make sure to set the  `UserId` of the post to the `UserId` of the Bot Account. If you want to create an ephemeral post, use [`SendEphemeralPost`](https://developers.mattermost.com/integrate/plugins/server/reference/#API.SendEphemeralPost) plugin API instead.
+Use [`CreatePost`]({{< ref "/integrate/plugins/server/reference#API.CreatePost" >}}) plugin API. Make sure to set the  `UserId` of the post to the `UserId` of the Bot Account. If you want to create an ephemeral post, use [`SendEphemeralPost`]({{< ref "/integrate/plugins/server/reference#API.SendEphemeralPost" >}}) plugin API instead.
