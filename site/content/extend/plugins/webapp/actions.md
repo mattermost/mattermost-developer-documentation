@@ -6,7 +6,7 @@ date: 2018-07-10T00:00:00-05:00
 weight: 11
 ---
 
-When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients. The `mattermost-redux` library exports types and functions that are imported by the web application and mobile application. These functions can be imported by plugins and used the same way. There are a few different kinds of functions exported by the library:
+When building web app plugins, it is common to perform actions or access the state that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients. The `mattermost-redux` library exports types and functions that are imported by the web application. These functions can be imported by plugins and used the same way. There are a few different kinds of functions exported by the library:
 
 [actions](https://github.com/mattermost/mattermost-redux/tree/master/src/actions) - Actions perform API requests and can change the state of Mattermost.
 
@@ -19,7 +19,7 @@ When building web app plugins, it is common to perform actions that web and mobi
 [store](https://github.com/mattermost/mattermost-redux/tree/master/src/store) - Functions related to the Redux store itself.
 
 [types](https://github.com/mattermost/mattermost-redux/tree/master/src/types) - Various types of objects in Mattermost's data model. These are useful in plugins written in Typescript.
-[utils](https://github.com/mattermost/mattermost-redux/tree/master/src/utils) - Various utility functions shared across the web application and mobile application.
+[utils](https://github.com/mattermost/mattermost-redux/tree/master/src/utils) - Various utility functions shared across the web application.
 
 ## Prerequisites
 
@@ -67,11 +67,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(CreateIssue);
 
 ## Some Common Actions
 
-We have listed out some of the commonly used actions that you can use in your web app plugin. You can find all the actions that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/actions).
+We have listed out some of the commonly-used actions that you can use in your webapp plugin. You can find all the actions that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/actions).
 
 **createChannel**
 
-This action should be dispatched when we intend to create a new channel.
+Dispatch this action to create a new channel.
 
 ```javascript
 export function createChannel(channel: Channel, userId: string): ActionFunc {
@@ -94,7 +94,7 @@ export function createChannel(channel: Channel, userId: string): ActionFunc {
 
 **getCustomEmoji**
 
-This action should be dispatched when we intend to fetch a specific emoji associated with the emoji ID provided.
+Dispatch this action to fetch a specific emoji associated with the emoji ID provided.
 
 ```javascript
 export function getCustomEmoji(emojiId: string): ActionFunc {
@@ -110,7 +110,7 @@ export function getCustomEmoji(emojiId: string): ActionFunc {
 
 **createPost**
 
-This action should be dispatched when we intend to create a new post.
+Dispatch this action to create a new post.
 
 ```javascript
 export function createPost(post: Post, files: any[] = []) {
@@ -170,7 +170,7 @@ export function createPost(post: Post, files: any[] = []) {
 
 **getMyTeams**
 
-This action should be dispatched when we intend to fetch all the team types associated with.
+Dispatch this action to fetch all the team types associated with.
 
 ```javascript
 export function getMyTeams(): ActionFunc {
@@ -185,7 +185,7 @@ export function getMyTeams(): ActionFunc {
 
 **createUser**
 
-This action should be dispatched when we intend to create a new user profile.
+Dispatch this action to create a new user profile.
 
 ```javascript
 export function createUser(user: UserProfile, token: string, inviteId: string, redirect: string): ActionFunc {
@@ -214,7 +214,7 @@ export function createUser(user: UserProfile, token: string, inviteId: string, r
 
 ## Some common selectors
 
-We have listed out some of the commonly used selectors that you can use in your web app plugin. You can find all the selectors that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/selectors).
+We have listed out some of the commonly-used selectors that you can use in your webapp plugin. You can find all the selectors that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/selectors).
 
 **getCurrentUserId**
 
@@ -342,9 +342,9 @@ export const getCustomEmojisByName: (state: GlobalState) => Map<string, CustomEm
 ```
 
 
-## Some Common Client Functions
+## Some common client functions
 
-We have listed out some of the widely used common client functions that you can use in your web app plugin. You can find all the client functions that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts).
+We have listed out some of the commonly-used client functions that you can use in your webapp plugin. You can find all the client functions that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts).
 
 **getUser**
 
@@ -445,7 +445,7 @@ Executes the specified command with the arguments provided and fetches the respo
 
 **getOptions**
 
-This call is needed in order to make custom requests to the server.
+Get the client options to make requests to the server. Use this to create your own custom requests.
 
 ```javascript
   getOptions(options: Options) {
@@ -482,6 +482,19 @@ This call is needed in order to make custom requests to the server.
             headers,
         };
     }
+```
+
+
+## Common reducers and actions
+
+Reducers in Redux are pure functions that describe how the data in the store changes after any given action. Reducers are pure and they will always produce the same resulting state for a given state and action. You can always register a reducer for your plugin against the Redux store with the `registerReducer` function. You can find all the reducers that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/reducers).
+
+**registerReducer**
+
+Registers a reducer against the Redux store. It will be accessible in Redux state under `state['plugins-<yourpluginid>']`. It generally accepts a reducer and returns undefined.
+
+```javascript
+  registerReducer(reducer)
 ```
 
 You can also refer to the [Redux developer guide](https://developers.mattermost.com/contribute/webapp/redux/) to learn more about the [Redux actions](https://developers.mattermost.com/contribute/webapp/redux/actions/), [Redux selectors](https://developers.mattermost.com/contribute/webapp/redux/selectors/), and [Redux reducers](https://developers.mattermost.com/contribute/webapp/redux/reducers/) and gain insights into how these can be used in your Web App plugins.
