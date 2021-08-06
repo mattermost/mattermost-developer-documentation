@@ -20,7 +20,7 @@ When building web app plugins, it is common to perform actions that web and mobi
 
 [types](https://github.com/mattermost/mattermost-redux/tree/master/src/types) - Various types of objects in Mattermost's data model. These are useful in plugins as well as javascript server applications communicating with Mattermost.
 
-[utils](https://github.com/mattermost/mattermost-redux/tree/master/src/utils) - Various utility functions shared across the web application and mobile application
+[utils](https://github.com/mattermost/mattermost-redux/tree/master/src/utils) - Various utility functions shared across the web application and mobile application.
 
 ## Prerequisites
 
