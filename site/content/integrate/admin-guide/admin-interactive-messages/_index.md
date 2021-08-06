@@ -71,7 +71,7 @@ The integration can respond with an update to the original post, or with an ephe
 
 ![image](interactive_message.gif)
 
-Button actions support a style parameter to change the color of the button. The possible values for style are: `good`, `warning`, `danger`, `default`, `primary` and `success`. It is possible to pass also a theme variable or a hex color, but we discourage this option because it will be not resilient against theme changes.
+Button actions support a style parameter to change the color of the button. The possible values for style are: `good`, `warning`, `danger`, `default`, `primary` and `success`. It's also possible to pass a theme variable or a hex color, but we discourage this approach because it won't be resilient against theme changes.
 
 ![image](interactive_button_style.png)
 
