@@ -19,7 +19,6 @@ When building web app plugins, it is common to perform actions that web and mobi
 [store](https://github.com/mattermost/mattermost-redux/tree/master/src/store) - Functions related to the Redux store itself.
 
 [types](https://github.com/mattermost/mattermost-redux/tree/master/src/types) - Various types of objects in Mattermost's data model. These are useful in plugins written in Typescript.
-
 [utils](https://github.com/mattermost/mattermost-redux/tree/master/src/utils) - Various utility functions shared across the web application and mobile application.
 
 ## Prerequisites
