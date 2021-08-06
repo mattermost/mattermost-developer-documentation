@@ -8,7 +8,7 @@ weight: 1
 
 In both Mattermost Team and Enterprise editions, you have the freedom to alter how content is displayed by being able to change the contents of localized files and email templates.
 
-Before proceeding with the steps below, make sure you have completed the [mattermost-server](/contribute/server/developer-setup/) and [mattermost-webapp](/contribute/webapp/developer-setup/) setup process.
+Before proceeding with the steps below, make sure you have completed the [mattermost-server](https://github.com/mattermost/mattermost-developer-documentation/tree/master/site/content/contribute/server/developer-setup) and [mattermost-webapp](https://github.com/mattermost/mattermost-developer-documentation/blob/master/site/content/contribute/webapp/developer-setup.md) setup process.
 ## i18n Files
 The `i18n` files define many of the contents seen in email notifications and responses from the server.
 
