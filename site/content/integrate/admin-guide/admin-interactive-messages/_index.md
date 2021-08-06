@@ -75,7 +75,7 @@ Button actions support a style parameter to change the color of the button. The 
 
 ![image](interactive_button_style.png)
 
-The actions used for the previous example are the following:
+The actions used in the previous example include the following:
 
 ```
 [
