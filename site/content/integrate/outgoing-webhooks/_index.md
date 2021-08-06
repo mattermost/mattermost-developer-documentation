@@ -89,10 +89,10 @@ Outgoing webhooks support more than just the `text` field. Here is a full list o
 
 | Parameter | Description | Required |
 |---|---|---|
-| text | [Markdown-formatted](https://docs.mattermost.com/help/messaging/formatting-text.html) message to display in the post.<br> To trigger notifications, use `@<username>`, `@channel` and `@here` like you would in normal Mattermost messaging. | If `attachments` is not set, yes |
+| text | [Markdown-formatted](https://docs.mattermost.com/messaging/formatting-text.html) message to display in the post.<br> To trigger notifications, use `@<username>`, `@channel` and `@here` like you would in normal Mattermost messaging. | If `attachments` is not set, yes |
 | response\_type | Set to "comment" to reply to the message that triggered it.<br> Set to blank or "post" to create a regular message.<br> Defaults to "post". | No |
-| username | Overrides the username the message posts as.<br> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-usernames). | No |
-| icon\_url | Overrides the profile picture the message posts with.<br> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons). | No |
+| username | Overrides the username the message posts as.<br> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames). | No |
+| icon\_url | Overrides the profile picture the message posts with.<br> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons). | No |
 | attachments | [Message attachments](https://docs.mattermost.com/developer/message-attachments.html) used for richer formatting options. | If `text` is not set, yes |
 | type | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with "custom\_". Passing `attachments` will ignore this field and set the type to `slack\_attachment`. | No |
 | props | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br> Mainly used by other integrations accessing posts through the REST API.<br> The following keys are reserved: "from\_webhook", "override\_username", "override\_icon\_url", "webhook\_display\_name" and "attachments". | No |
@@ -125,6 +125,6 @@ See the [admin guide's notes on Slack compatibility](https://docs.mattermost.com
 
 ### Tips and Best Practices
 
-1. If the `text` is longer than the allowable character limit per post, the message is split into multiple consecutive posts, each within the character limit. Servers running Mattermost Server v5.0 or later [can support posts up to 16383 characters](https://docs.mattermost.com/administration/important-upgrade-notes.html).
+1. If the `text` is longer than the allowable character limit per post, the message is split into multiple consecutive posts, each within the character limit. Servers running Mattermost Server v5.0 or later [can support posts up to 16383 characters](https://docs.mattermost.com/upgrade/important-upgrade-notes.html).
 2. Your webhook integration may be written in any programming language as long as it supports handling HTTP POST requests.
 3. Outgoing webhooks are supported in public channels only. If you need a trigger that works in a private channel or a direct message, consider using a [slash command](/integrate/slash-commands/) instead.
