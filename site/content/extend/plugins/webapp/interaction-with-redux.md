@@ -498,4 +498,4 @@ This call is needed in order to make custom requests to the server.
     }
 ```
 
-You can also refer to the [Redux developer guide](https://developers.mattermost.com/contribute/webapp/redux/) to learn more about the [Redux actions](https://developers.mattermost.com/contribute/webapp/redux/actions/), [Redux selectors](https://developers.mattermost.com/contribute/webapp/redux/selectors/) and [Redux reducers](https://developers.mattermost.com/contribute/webapp/redux/reducers/) and gain insights on how these can be used in your Web App plugins.
+You can also refer to the [Redux developer guide](https://developers.mattermost.com/contribute/webapp/redux/) to learn more about the [Redux actions](https://developers.mattermost.com/contribute/webapp/redux/actions/), [Redux selectors](https://developers.mattermost.com/contribute/webapp/redux/selectors/), and [Redux reducers](https://developers.mattermost.com/contribute/webapp/redux/reducers/) and gain insights into how these can be used in your Web App plugins.
