@@ -459,7 +459,7 @@ Executes the specified command with the arguments provided and fetches the respo
 
 **getOptions**
 
-This one is special, because it is needed to make custom requests to the server
+This call is needed in order to make custom requests to the server.
 
 ```javascript
   getOptions(options: Options) {
