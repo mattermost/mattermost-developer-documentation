@@ -358,7 +358,7 @@ export function getConfig(state: GlobalState) {
 
 ## Some Common Client Functions
 
-We have listed out some of the widely used common client functions that you can use in your web app plugin as per requirement. But you can always find all the client functions that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts).
+We have listed out some of the widely used common client functions that you can use in your web app plugin. You can find all the client functions that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts).
 
 **getUser**
 
