@@ -212,7 +212,7 @@ export function createUser(user: UserProfile, token: string, inviteId: string, r
 }
 ```
 
-## Some Common Selectors
+## Some common selectors
 
 We have listed out some of the commonly used selectors that you can use in your web app plugin. You can find all the selectors that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/selectors).
 
