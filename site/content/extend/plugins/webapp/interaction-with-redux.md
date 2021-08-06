@@ -444,7 +444,7 @@ Routes to the team of the specified `teamName` from the Redux store
 
 **executeCommand**
 
-Executes the specified command with the arguments provided and fetches the response
+Executes the specified command with the arguments provided and fetches the response.
 
 ```javascript
    executeCommand = (command: string, commandArgs: CommandArgs) => {
