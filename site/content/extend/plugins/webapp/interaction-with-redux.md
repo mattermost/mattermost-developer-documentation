@@ -6,7 +6,7 @@ date: 2018-07-10T00:00:00-05:00
 weight: 11
 ---
 
-When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients. The `mattermost-redux` library exports types and functions that are imported by the web application and mobile application. These functions can be imported by plugins, and used the same way. There are a few different kinds of functions exported by the library:
+When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients. The `mattermost-redux` library exports types and functions that are imported by the web application and mobile application. These functions can be imported by plugins and used the same way. There are a few different kinds of functions exported by the library:
 
 [actions](https://github.com/mattermost/mattermost-redux/tree/master/src/actions) - Actions perform API requests and can change the state of Mattermost.
 
