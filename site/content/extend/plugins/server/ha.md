@@ -26,4 +26,20 @@ In this scenario, the trigger word is now only set for the plugin process runnin
 
 The proper way to deal with this case would be for the plugin to store the trigger word in a global store, such as the KV store. Then any time a user posts the plugin can pull the trigger word from the store and properly alert the user, regardless of which app server handles the request.
 
-In the future the plugin API will introduce capabilities for coordinating across multiple plugin instances.
+## Running a scheduled job in High Availability mode
+
+Using the [mattermost-plugin-api/cluster](https://github.com/mattermost/mattermost-plugin-api/blob/37eccf0f0f3e9e0737d017b555ef3e2e720b3021/cluster/job.go#L112) package, we can schedule jobs to perform background activity on a regular interval, without having to explicitly coordinate with other instances of the same plugin. Here's an example from the [Demo Plugin](https://github.com/mattermost/mattermost-plugin-demo/blob/d647f1ed7fdc384f5bc163a6bba689ab4293704e/server/activate_hooks.go#L72):
+
+```go
+job, cronErr := cluster.Schedule(
+    p.API,
+    "BackgroundJob",
+    cluster.MakeWaitForRoundedInterval(15*time.Minute),
+    p.BackgroundJobFunc,
+)
+if cronErr != nil {
+    return errors.Wrap(cronErr, "failed to schedule background job")
+}
+
+p.backgroundJob = job
+```
