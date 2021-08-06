@@ -218,7 +218,7 @@ export function createUser(user: UserProfile, token: string, inviteId: string, r
 
 ## Some Common Selectors
 
-We have listed out some of the commonly used selectors that you can use in your web app plugin as per requirement. But you can always find all the selectors that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/selectors).
+We have listed out some of the commonly used selectors that you can use in your web app plugin. You can find all the selectors that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/selectors).
 
 **getCurrentUserId**
 
