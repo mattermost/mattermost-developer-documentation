@@ -403,7 +403,7 @@ getChannel = (channelId: string) => {
 
 **getChannelByName**
 
-Routes to the channel of the specified `channelName` from the Redux store
+Routes to the channel of the specified `channelName` from the Redux store.
 
 ```javascript
  getChannelByName = (teamId: string, channelName: string, includeDeleted = false) => {
