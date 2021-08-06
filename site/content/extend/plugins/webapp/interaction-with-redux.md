@@ -248,7 +248,7 @@ export function getUsers(state: GlobalState): IDMappedObjects<UserProfile> {
 
 **getChannel**
 
-Retrieves a channel as it exists in the store without filling in any additional details such as the display_name for DM/GM channels.
+Retrieves a channel as it exists in the store without filling in any additional details such as the `display_name` for Direct Messages/Group Messages.
 
 ```javascript
 export function getChannel(state: GlobalState, id: string) {
