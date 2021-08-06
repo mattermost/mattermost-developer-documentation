@@ -74,7 +74,7 @@ We have listed out some of the commonly used actions that you can use in your we
 
 **createChannel**
 
-This action should be dispatched when we intend to create a new channel
+This action should be dispatched when we intend to create a new channel.
 
 ```javascript
 export function createChannel(channel: Channel, userId: string): ActionFunc {
@@ -97,7 +97,7 @@ export function createChannel(channel: Channel, userId: string): ActionFunc {
 
 **getCustomEmoji**
 
-This action should be dispatched when we intend to fetch a specific emoji associated with the emoji ID provided
+This action should be dispatched when we intend to fetch a specific emoji associated with the emoji ID provided.
 
 ```javascript
 export function getCustomEmoji(emojiId: string): ActionFunc {
@@ -113,7 +113,7 @@ export function getCustomEmoji(emojiId: string): ActionFunc {
 
 **createPost**
 
-This action should be dispatched when we intend to create a new post
+This action should be dispatched when we intend to create a new post.
 
 ```javascript
 export function createPost(post: Post, files: any[] = []) {
@@ -173,7 +173,7 @@ export function createPost(post: Post, files: any[] = []) {
 
 **getMyTeams**
 
-This action should be dispatched when we intend to fetch all the team types associated with
+This action should be dispatched when we intend to fetch all the team types associated with.
 
 ```javascript
 export function getMyTeams(): ActionFunc {
@@ -188,7 +188,7 @@ export function getMyTeams(): ActionFunc {
 
 **createUser**
 
-This action should be dispatched when we intend to create a new user profile
+This action should be dispatched when we intend to create a new user profile.
 
 ```javascript
 export function createUser(user: UserProfile, token: string, inviteId: string, redirect: string): ActionFunc {
@@ -222,7 +222,7 @@ We have listed out some of the commonly used selectors that you can use in your 
 
 **getCurrentUserId**
 
-Retrieves the user ID of the current user from the Redux store
+Retrieves the user ID of the current user from the `Mattermost Server`.
 
 ```javascript
 export function getCurrentUserId(state) {
@@ -232,7 +232,7 @@ export function getCurrentUserId(state) {
 
 **getCurrentUser**
 
-Retrieves the user profile of the current user from the Redux store
+Retrieves the user profile of the current user from the `Mattermost Server`.
 
 ```javascript
 export function getCurrentUser(state: GlobalState): UserProfile {
@@ -242,7 +242,7 @@ export function getCurrentUser(state: GlobalState): UserProfile {
 
 **getUsers**
 
-Retrieves all user profiles from the Redux store
+Retrieves all user profiles from the `Mattermost Server`.
 
 ```javascript
 export function getUsers(state: GlobalState): IDMappedObjects<UserProfile> {
@@ -262,7 +262,7 @@ export function getChannel(state: GlobalState, id: string) {
 
 **getCurrentChannelId**
 
-Retrieves the channel ID of the current channel from the Redux store
+Retrieves the channel ID of the current channel from the `Mattermost Server`.
 
 ```javascript
 export function getCurrentChannelId(state: GlobalState): string {
@@ -272,7 +272,7 @@ export function getCurrentChannelId(state: GlobalState): string {
 
 **getCurrentChannel**
 
-Retrives the complete channel info of the current channel from the Redux Store
+Retrives the complete channel info of the current channel from the `Mattermost Server`.
 
 ```javascript
 export const getCurrentChannel: (state: GlobalState) => Channel = createSelector(
@@ -294,7 +294,7 @@ export const getCurrentChannel: (state: GlobalState) => Channel = createSelector
 
 **getPost**
 
-Retrieves the specific post associated with the supplied `postID` from the Redux Store
+Retrieves the specific post associated with the supplied `postID` from the `Mattermost Server`.
 
 ```javascript
 export function getPost(state: GlobalState, postId: $ID<Post>): Post {
@@ -304,7 +304,7 @@ export function getPost(state: GlobalState, postId: $ID<Post>): Post {
 
 **getCurrentTeamId**
 
-Retrieves the Team ID of the current team from the Redux store
+Retrieves the Team ID of the current team from the `Mattermost Server`.
 
 ```javascript
 export function getCurrentTeamId(state: GlobalState) {
@@ -314,7 +314,7 @@ export function getCurrentTeamId(state: GlobalState) {
 
 **getCurrentTeam**
 
-Retrieves the team info of the current team from the Redux store
+Retrieves the team info of the current team from the `Mattermost Server`.
 
 ```javascript
 export const getCurrentTeam: (state: GlobalState) => Team = createSelector(
@@ -328,7 +328,7 @@ export const getCurrentTeam: (state: GlobalState) => Team = createSelector(
 
 **getCustomEmojisByName**
 
-Retrieves the the specific emoji associated with the supplied `customEmojiName` from the Redux Store
+Retrieves the the specific emoji associated with the supplied `customEmojiName` from the `Mattermost Server`.
 
 ```javascript
 export const getCustomEmojisByName: (state: GlobalState) => Map<string, CustomEmoji> = createSelector(
@@ -345,16 +345,6 @@ export const getCustomEmojisByName: (state: GlobalState) => Map<string, CustomEm
 );
 ```
 
-**getConfig**
-
-Retrieves the config of the server for admin analysis
-
-```javascript
-export function getConfig(state: GlobalState) {
-    return state.entities.admin.config;
-}
-```
-
 
 ## Some Common Client Functions
 
@@ -362,7 +352,7 @@ We have listed out some of the widely used common client functions that you can 
 
 **getUser**
 
-Routes to the user profile of the specified `userId` from the Redux store
+Routes to the user profile of the specified `userId` from the `Mattermost Server`.
 
 ```javascript
  getUser = (userId: string) => {
@@ -375,7 +365,7 @@ Routes to the user profile of the specified `userId` from the Redux store
 
 **getUserByUsername**
 
-Routes to the user profile of the specified `username` from the Redux store
+Routes to the user profile of the specified `username` from the `Mattermost Server`.
 
 ```javascript
 getUserByUsername = (username: string) => {
@@ -388,7 +378,7 @@ getUserByUsername = (username: string) => {
 
 **getChannel**
 
-Routes to the channel of the specified `channelId` from the Redux store
+Routes to the channel of the specified `channelId` from the `Mattermost Server`.
 
 ```javascript
 getChannel = (channelId: string) => {
@@ -403,7 +393,7 @@ getChannel = (channelId: string) => {
 
 **getChannelByName**
 
-Routes to the channel of the specified `channelName` from the Redux store.
+Routes to the channel of the specified `channelName` from the `Mattermost Server`.
 
 ```javascript
  getChannelByName = (teamId: string, channelName: string, includeDeleted = false) => {
@@ -416,7 +406,7 @@ Routes to the channel of the specified `channelName` from the Redux store.
 
 **getTeam**
 
-Routes to the team of the specified `teamId` from the Redux store.
+Routes to the team of the specified `teamId` from the `Mattermost Server`.
 
 ```javascript
   getTeam = (teamId: string) => {
@@ -429,7 +419,7 @@ Routes to the team of the specified `teamId` from the Redux store.
 
 **getTeamByName**
 
-Routes to the team of the specified `teamName` from the Redux store
+Routes to the team of the specified `teamName` from the `Mattermost Server`.
 
 ```javascript
   getTeamByName = (teamName: string) => {
