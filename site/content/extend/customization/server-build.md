@@ -8,7 +8,7 @@ weight: 1
 
 If plugin functionalities don't cover your use cases, you have the freedom to customize and build your own version of the `mattermost-server` project.
 
-Before proceeding with the steps below, make sure you have completed the [mattermost-server setup](/contribute/server/developer-setup/) process.
+Before proceeding with the steps below, make sure you have completed the [mattermost-server setup](https://docs.mattermost.com/install/config-mattermost-server.html) process.
 
 1. Customize the project according to your requirements.
 
