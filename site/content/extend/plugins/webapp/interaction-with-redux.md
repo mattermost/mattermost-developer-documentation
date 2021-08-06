@@ -25,7 +25,6 @@ When building web app plugins, it is common to perform actions that web and mobi
 
 This guide assumes you have already set up your plugin development environment for webapp plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide](/extend/plugins/webapp/hello-world/).
 
-
 ## Basic Example
 
 Here's an [example](https://github.com/mattermost/mattermost-plugin-jira/blob/master/webapp/src/components/modals/create_issue/index.ts) of a webapp plugin making use of [mattermost-redux's](https://github.com/mattermost/mattermost-redux) functions:
