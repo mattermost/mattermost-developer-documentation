@@ -133,7 +133,7 @@ Similarly, [Enable integrations to override profile picture icons](https://docs.
 1. Slash commands are designed to easily allow you to post messages. For other actions such as channel creation, you must also use the [Mattermost APIs](https://api.mattermost.com).
 2. Posts size is limited to 16393 characters for servers running [Mattermost Server v5.0 or later](https://docs.mattermost.com/upgrade/important-upgrade-notes.html). Use the [extra_responses](#parameters) field to reply to a triggered slash command with more than one post.
 3. You can restrict who can create slash commands in [System Console > Integrations > Integration Management](https://docs.mattermost.com/configure/configuration-settings.html#restrict-managing-integrations-to-admins).
-4. Mattermost outgoing webhooks are Slack-compatible. You can copy-and-paste code used for a Slack outgoing webhook to create Mattermost integrations. Mattermost [automatically translates the Slack's proprietary JSON payload format](https://docs.mattermost.com/developer/slash-commands.html#translate-slack-s-data-format-to-mattermost).
+4. Mattermost outgoing webhooks are Slack-compatible. You can copy-and-paste code used for a Slack outgoing webhook to create Mattermost integrations. Mattermost [automatically translates the Slack's proprietary JSON payload format](#translate-slack-s-data-format-to-mattermost).
 5. The external application may be written in any programming language. It needs to provide a URL which receives the request sent by your Mattermost server and responds with in the required JSON format.
 
 ## Share Your Integration
