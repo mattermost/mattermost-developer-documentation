@@ -5,7 +5,7 @@ description: "Mattermost supports plugins to customize and extend the platform."
 weight: 80
 ---
 
-See our [demo plugin](https://github.com/mattermost/mattermost-plugin-demo) that illustrates the potential for a Mattermost plugin. To start writing your own plugin, consult our [starter template](https://github.com/mattermost/mattermost-plugin-starter-template).
+See our [demo plugin](https://github.com/mattermost/mattermost-plugin-demo) that illustrates the potential for a Mattermost plugin. To start writing your own plugin, consult our [starter template](https://github.com/mattermost/mattermost-plugin-starter-template). Please see the [plugin development documentation](https://developers.mattermost.com/extend/plugins/) for more information on creating plugins.
 
 Consider using a plugin in the following scenarios:
 
