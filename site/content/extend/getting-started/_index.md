@@ -19,7 +19,7 @@ Plugins are easy to build, effortless to maintain, and offer powerful new option
 
 Mattermost is a great communication platform but sometimes it's more convenient to send and receive messages from within a non-Mattermost application. With Mattermost's rich RESTful web service API and OAuth 2.0 support it's possible to build your own clients to embed Mattermost within any application of your choice.
 
-[Read more about embedding.](https://docs.mattermost.com/integrations/embedding.html)
+[Read more about embedding.](/extend/embed/)
 
 ### Fork
 
