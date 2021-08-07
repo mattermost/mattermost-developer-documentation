@@ -5,7 +5,7 @@ description: "Mattermost supports slash commands to easily integrate external ap
 weight: 80
 ---
 
-Messages that begin with `/` are interpreted as slash commands. The commands will send an HTTP POST request to a web service, and process a response back to Mattermost. Mattermost supports both [built-in](https://docs.mattermost.com/messaging/executing-slash-commands.html#built-in-commands) and [custom slash commands](https://docs.mattermost.com/developer/slash-commands.html#custom-slash-command).
+Messages that begin with `/` are interpreted as slash commands. The commands will send an HTTP POST request to a web service, and process a response back to Mattermost. Mattermost supports both [built-in](#built-in-commands) and [custom slash commands](#custom-slash-command).
 
 **Note:** To prevent malicious users from trying to perform [phishing attacks](https://en.wikipedia.org/wiki/Phishing), a *BOT* indicator appears next to posts coming from webhooks regardless of what username is specified.
 
