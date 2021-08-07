@@ -13,7 +13,7 @@ Mattermost can be extended by building and installing plugins, by embedding Matt
 
 Plugins are easy to build, effortless to maintain, and offer powerful new options to add functionality and UI to the server and web/desktop apps in ways not available with any other integration method.
 
-[Read more about plugins.](https://developers.mattermost.com/contribute/server/plugins/)
+[Read more about plugins.](/extend/plugins/)
 
 ### Embed
 
