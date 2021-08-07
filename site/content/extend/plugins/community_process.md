@@ -7,7 +7,7 @@ weight: 50
 ---
 
 
-Getting your plugin onto our Community server https://community.mattermost.com is a valuable source of feedback. Whether you are a [Core Committer](https://developers.mattermost.com/contribute/getting-started/core-committers/) or anyone from the community, we want you to get feedback to improve your plugin. 
+Getting your plugin onto our Community server https://community.mattermost.com is a valuable source of feedback. Whether you are a [Core Committer](https://handbook.mattermost.com/contributors/contributors/core-committers) or anyone from the community, we want you to get feedback to improve your plugin.
 
 However we must ensure that our Community server remains stable for everyone. This document outlines the process of getting your plugin onto the Community server and some of these steps are required to get your plugin into the [Plugin Marketplace](https://mattermost.com/marketplace/). 
 
