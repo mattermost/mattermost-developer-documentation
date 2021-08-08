@@ -213,7 +213,7 @@ We've listed out some of the commonly-used selectors that you can use in your we
 
 **getCurrentUserId**
 
-Retrieves the user ID of the current user from the `Mattermost Server`.
+Retrieves the `userId` of the current user from the `Mattermost Server`.
 
 ```javascript
 export function getCurrentUserId(state) {
