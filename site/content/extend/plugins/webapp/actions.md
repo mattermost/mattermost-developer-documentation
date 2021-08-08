@@ -490,4 +490,4 @@ Registers a reducer against the Redux store. It will be accessible in Redux stat
   registerReducer(reducer)
 ```
 
-You can also refer to the [Redux developer guide](https://developers.mattermost.com/contribute/webapp/redux/) to learn more about the [Redux actions](https://developers.mattermost.com/contribute/webapp/redux/actions/), [Redux selectors](https://developers.mattermost.com/contribute/webapp/redux/selectors/), and [Redux reducers](https://developers.mattermost.com/contribute/webapp/redux/reducers/) and gain insights into how these can be used in your Web App plugins.
+You can also refer to the [Redux developer guide](https://developers.mattermost.com/contribute/webapp/redux/) to learn more about the [Redux actions](https://developers.mattermost.com/contribute/webapp/redux/actions/), [Redux selectors](https://developers.mattermost.com/contribute/webapp/redux/selectors/), and [Redux reducers](https://developers.mattermost.com/contribute/webapp/redux/reducers/) and gain insights into how these can be used in your web app plugins.
