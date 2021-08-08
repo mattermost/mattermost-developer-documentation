@@ -162,7 +162,7 @@ Reply immediately with an `ephemeral` message to confirm response of the command
 
 By default, Mattermost prohibits outgoing connections that resolve to certain common IP ranges, including the loopback (`127.0.0.0/8`) and various private-use subnets.
 
-During development, you may override this behaviour by setting `ServiceSettings.AllowedUntrustedInternalConnections` to `"127.0.0.0/8"` in your `config.json` or via the System Console's Advanced > Developer page. See the [admin guide's notes](https://docs.mattermost.com/configure/configuration-settings.html#allow-untrusted-internal-connections-to) for more details.
+During development, you may override this behavior by setting `ServiceSettings.AllowedUntrustedInternalConnections` to `"127.0.0.0/8"` in your `config.json` or via **System Console > Advanced > Developer**. See the [admin guide's notes](https://docs.mattermost.com/configure/configuration-settings.html#allow-untrusted-internal-connections-to) for more details.
 
 #### Should I configure my slash command to use `POST` or `GET`?
 
