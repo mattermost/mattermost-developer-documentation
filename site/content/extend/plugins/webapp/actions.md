@@ -13,7 +13,7 @@ When building web app plugins, it is common to perform actions or access the sta
 * [constants](https://github.com/mattermost/mattermost-redux/tree/master/src/constants) - An assortment of constants within Mattermost's data model.
 * [selectors](https://github.com/mattermost/mattermost-redux/tree/master/src/selectors) - Selectors return certain data from the Redux store, such as getPost which allows you get a post by id from the Redux store.
 * [store](https://github.com/mattermost/mattermost-redux/tree/master/src/store) - Functions related to the Redux store itself.
-* [types](https://github.com/mattermost/mattermost-redux/tree/master/src/types) - Various types of objects in Mattermost's data model. These are useful in plugins written in Typescript.
+* [types](https://github.com/mattermost/mattermost-redux/tree/master/src/types) - Various types of objects in Mattermost's data model. These are useful for plugins written in Typescript.
 * [utils](https://github.com/mattermost/mattermost-redux/tree/master/src/utils) - Various utility functions shared across the web application.
 
 ## Prerequisites
