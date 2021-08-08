@@ -72,7 +72,7 @@ Delayed responses are useful when the action takes more than three seconds to pe
 - Retrieval of data from external third-party services, where the response time may take longer than three seconds.
 - Report generation, batch processing or other long-running processes that take longer than three seconds to respond.
 
-Any requests that are made to the response URL should either be a plain text or JSON-encoded body. The JSON-encoded message supports both [Markdown formatting](https://docs.mattermost.com/messaging/formatting-text.html#formatting-text) and [message attachments](https://docs.mattermost.com/developer/message-attachments.html).
+Any requests that are made to the response URL should either be a plain text or JSON-encoded body. The JSON-encoded message supports both [Markdown formatting](https://docs.mattermost.com/messaging/formatting-text.html#formatting-text) and [message attachments]({{< ref "admin-message-attachments" >}}).
 
 ### Parameters
 
