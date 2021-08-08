@@ -165,7 +165,7 @@ export function createPost(post: Post, files: any[] = []) {
 
 **getMyTeams**
 
-Dispatch this action to fetch all the team types associated with.
+Dispatch this action to fetch all the team types associated with the current user.
 
 ```javascript
 export function getMyTeams(): ActionFunc {
