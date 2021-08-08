@@ -89,7 +89,7 @@ export function createChannel(channel: Channel, userId: string): ActionFunc {
 
 **getCustomEmoji**
 
-Dispatch this action to fetch a specific emoji associated with the emoji ID provided.
+Dispatch this action to fetch a specific emoji associated with the `emojiId` provided.
 
 ```javascript
 export function getCustomEmoji(emojiId: string): ActionFunc {
