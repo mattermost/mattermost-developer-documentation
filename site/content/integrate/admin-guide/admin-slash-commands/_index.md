@@ -170,4 +170,4 @@ Mattermost automatically translates the data coming from Slack:
 
 ## Troubleshooting
 
-See [developer documentation](../admin-slash-commands) for troubleshooting, or [join the Mattermost user community for help](https://mattermost.com/ask-mattermost-community/).
+See [developer documentation](../admin-slash-commands) for troubleshooting, or [join the Mattermost user community for help](https://mattermost.com/pl/default-ask-mattermost-community).
