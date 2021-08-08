@@ -89,7 +89,7 @@ Outgoing webhooks support more than just the `text` field. Here is a full list o
 
 | Parameter | Description | Required |
 |---|---|---|
-| text | [Markdown-formatted](https://docs.mattermost.com/messaging/formatting-text.html) message to display in the post.<br> To trigger notifications, use `@<username>`, `@channel` and `@here` like you would in normal Mattermost messaging. | If `attachments` is not set, yes |
+| text | [Markdown-formatted](https://docs.mattermost.com/messaging/formatting-text.html) message to display in the post.<br> To trigger notifications, use `@<username>`, `@channel`, and `@here` like you would in normal Mattermost messaging. | If `attachments` is not set, yes |
 | response\_type | Set to "comment" to reply to the message that triggered it.<br> Set to blank or "post" to create a regular message.<br> Defaults to "post". | No |
 | username | Overrides the username the message posts as.<br> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames). | No |
 | icon\_url | Overrides the profile picture the message posts with.<br> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons). | No |
