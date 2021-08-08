@@ -295,7 +295,7 @@ export function getPost(state: GlobalState, postId: $ID<Post>): Post {
 
 **getCurrentTeamId**
 
-Retrieves the Team ID of the current team from the `Mattermost Server`.
+Retrieves the `teamId` of the current team from the `Mattermost Server`.
 
 ```javascript
 export function getCurrentTeamId(state: GlobalState) {
