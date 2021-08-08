@@ -338,7 +338,7 @@ export const getCustomEmojisByName: (state: GlobalState) => Map<string, CustomEm
 
 ## Some common client functions
 
-We have listed out some of the commonly-used client functions that you can use in your webapp plugin. You can find all the client functions that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts).
+We've listed out some of the commonly-used client functions that you can use in your web app plugin. You can find all the client functions that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts).
 
 **getUser**
 
