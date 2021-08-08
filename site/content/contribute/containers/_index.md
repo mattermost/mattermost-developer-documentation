@@ -56,4 +56,4 @@ This page lists all the Docker repositories currently in use.
 
 - [mattermost/matterwick](https://hub.docker.com/repository/docker/mattermost/matterwick) - For internal use. A GitHub Bot to spin test servers for pull requests. Please refer to the [GitHub repo](https://github.com/mattermost/matterwick) for more information.
 
-- [mattermost/webrtc](https://hub.docker.com/repository/docker/mattermost/webrtc) - DEPRECATED. Preview docker image of Mattermost WebRTC. Docs: [Here](http://bit.ly/2fVbWjU)
+- [mattermost/webrtc](https://hub.docker.com/repository/docker/mattermost/webrtc) - DEPRECATED. Preview docker image of Mattermost WebRTC.
