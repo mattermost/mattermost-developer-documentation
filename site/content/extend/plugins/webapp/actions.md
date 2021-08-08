@@ -22,7 +22,7 @@ This guide assumes you've already set up your plugin development environment for
 
 ## Basic Example
 
-Here's an [example](https://github.com/mattermost/mattermost-plugin-jira/blob/master/webapp/src/components/modals/create_issue/index.ts) of a webapp plugin making use of [mattermost-redux's](https://github.com/mattermost/mattermost-redux) functions:
+Here's an [example](https://github.com/mattermost/mattermost-plugin-jira/blob/master/webapp/src/components/modals/create_issue/index.ts) of a web app plugin making use of [mattermost-redux's](https://github.com/mattermost/mattermost-redux) functions:
 
 ```javascript
 import {connect} from 'react-redux';
