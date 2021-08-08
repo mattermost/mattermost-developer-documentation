@@ -263,7 +263,7 @@ export function getCurrentChannelId(state: GlobalState): string {
 
 **getCurrentChannel**
 
-Retrives the complete channel info of the current channel from the `Mattermost Server`.
+Retrieves the complete channel info of the current channel from the `Mattermost Server`.
 
 ```javascript
 export const getCurrentChannel: (state: GlobalState) => Channel = createSelector(
