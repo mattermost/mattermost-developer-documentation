@@ -114,7 +114,7 @@ The actions used in the previous example include the following:
 
 ## Message Menus
 
-Similar to buttons, add message menus as `actions` in your integration [message attachments](https://docs.mattermost.com/developer/message-attachments.html).
+Similar to buttons, add message menus as `actions` in your integration [message attachments]({{< ref "message-attachments" >}}).
 
 ![image](images/message-menus.png)
 
