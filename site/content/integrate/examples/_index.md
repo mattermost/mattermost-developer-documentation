@@ -6,7 +6,7 @@ date: "2017-01-19T12:01:23-04:00"
 weight: 80
 ---
 
-See a full list of all Mattermost integrations <a target="_blank" href="https://about.mattermost.com/community-applications/">here</a>.
+See a full list of all Mattermost integrations <a target="_blank" href="https://mattermost.com/marketplace/">here</a>.
 
 ### [Hubot Adapter](https://github.com/loafoe/hubot-matteruser)
 
