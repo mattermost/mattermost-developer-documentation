@@ -25,4 +25,4 @@ Mattermost is a great communication platform but sometimes it's more convenient 
 
 Mattermost is open-source, which means you have the ability to fork the source code if you need to modify Mattermost in ways not otherwise supported.
 
-[Read about creating a derivative work of Mattermost.](https://docs.mattermost.com/overview/faq.html#how-can-i-create-an-open-source-derivative-work-of-mattermost)
+[Read about creating a derivative work of Mattermost.](https://docs.mattermost.com/about/frequently-asked-questions.html#how-can-i-create-an-open-source-derivative-work-of-mattermost)
