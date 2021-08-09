@@ -33,6 +33,6 @@ You will need to [whitelist one subdomain and one port from Apple](https://devel
 
 ###### 3 - Run App Store versions of the Mattermost mobile apps
 
-You can use the mobile applications hosted by Mattermost in the [Apple App Store](https://apps.apple.com/ca/app/mattermost/id1257222717) or [Google Play Store](https://play.google.com/store/apps/details?id=com.mattermost.rn) and connect with [Mattermost Hosted Push Notification Service (HPNS)](https://docs.mattermost.com/mobile/mobile-hpns.html) through your corporate proxy.
+You can use the mobile applications hosted by Mattermost in the [Apple App Store](https://apps.apple.com/ca/app/mattermost/id1257222717) or [Google Play Store](https://play.google.com/store/apps/details?id=com.mattermost.rn) and connect with [Mattermost Hosted Push Notification Service (HPNS)](https://docs.mattermost.com/deploy/mobile-hpns.html) through your corporate proxy.
 
-The use of hosted applications by Mattermost [can be deployed with Enterprise Mobility Management solutions via AppConfig](https://docs.mattermost.com/mobile/mobile-appconfig.html). Wrapping is not supported with this option.
+The use of hosted applications by Mattermost [can be deployed with Enterprise Mobility Management solutions via AppConfig](https://docs.mattermost.com/deploy/mobile-appconfig.html). Wrapping is not supported with this option.
