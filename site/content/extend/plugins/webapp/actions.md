@@ -213,7 +213,7 @@ We've listed out some of the commonly-used selectors that you can use in your we
 
 **getCurrentUserId**
 
-Retrieves the `userId` of the current user from the `Mattermost Server`.
+Retrieves the `userId` of the current user from the `Redux store`.
 
 ```javascript
 export function getCurrentUserId(state) {
@@ -223,7 +223,7 @@ export function getCurrentUserId(state) {
 
 **getCurrentUser**
 
-Retrieves the user profile of the current user from the `Mattermost Server`.
+Retrieves the user profile of the current user from the `Redux store`.
 
 ```javascript
 export function getCurrentUser(state: GlobalState): UserProfile {
@@ -233,7 +233,7 @@ export function getCurrentUser(state: GlobalState): UserProfile {
 
 **getUsers**
 
-Retrieves all user profiles from the `Mattermost Server`.
+Retrieves all user profiles from the `Redux store`.
 
 ```javascript
 export function getUsers(state: GlobalState): IDMappedObjects<UserProfile> {
@@ -253,7 +253,7 @@ export function getChannel(state: GlobalState, id: string) {
 
 **getCurrentChannelId**
 
-Retrieves the channel ID of the current channel from the `Mattermost Server`.
+Retrieves the channel ID of the current channel from the `Redux store`.
 
 ```javascript
 export function getCurrentChannelId(state: GlobalState): string {
@@ -263,7 +263,7 @@ export function getCurrentChannelId(state: GlobalState): string {
 
 **getCurrentChannel**
 
-Retrieves the complete channel info of the current channel from the `Mattermost Server`.
+Retrieves the complete channel info of the current channel from the `Redux store`.
 
 ```javascript
 export const getCurrentChannel: (state: GlobalState) => Channel = createSelector(
@@ -285,7 +285,7 @@ export const getCurrentChannel: (state: GlobalState) => Channel = createSelector
 
 **getPost**
 
-Retrieves the specific post associated with the supplied `postID` from the `Mattermost Server`.
+Retrieves the specific post associated with the supplied `postID` from the `Redux store`.
 
 ```javascript
 export function getPost(state: GlobalState, postId: $ID<Post>): Post {
@@ -295,7 +295,7 @@ export function getPost(state: GlobalState, postId: $ID<Post>): Post {
 
 **getCurrentTeamId**
 
-Retrieves the `teamId` of the current team from the `Mattermost Server`.
+Retrieves the `teamId` of the current team from the `Redux store`.
 
 ```javascript
 export function getCurrentTeamId(state: GlobalState) {
@@ -305,7 +305,7 @@ export function getCurrentTeamId(state: GlobalState) {
 
 **getCurrentTeam**
 
-Retrieves the team info of the current team from the `Mattermost Server`.
+Retrieves the team info of the current team from the `Redux store`.
 
 ```javascript
 export const getCurrentTeam: (state: GlobalState) => Team = createSelector(
@@ -319,7 +319,7 @@ export const getCurrentTeam: (state: GlobalState) => Team = createSelector(
 
 **getCustomEmojisByName**
 
-Retrieves the the specific emoji associated with the supplied `customEmojiName` from the `Mattermost Server`.
+Retrieves the the specific emoji associated with the supplied `customEmojiName` from the `Redux store`.
 
 ```javascript
 export const getCustomEmojisByName: (state: GlobalState) => Map<string, CustomEmoji> = createSelector(
