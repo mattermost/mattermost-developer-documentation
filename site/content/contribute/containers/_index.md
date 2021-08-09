@@ -18,7 +18,7 @@ This page lists all the Docker repositories currently in use.
 
 - [mattermost/mattermost-loadtest](https://hub.docker.com/r/mattermost/mattermost-loadtest) - Image for the Load Test application. Tools for profiling Mattermost under heavy load. [GitHub](https://github.com/mattermost/mattermost-load-test).
 
-- [mattermost/mattermost-operator](https://hub.docker.com/r/mattermost/mattermost-operator) - Official image for Mattermost Operator for Kubernetes. For more information check the [GitHub repo](https://github.com/mattermost/mattermost-operator).
+- [mattermost/mattermost-operator](https://hub.docker.com/r/mattermost/mattermost-operator) - Official image for Mattermost Operator for Kubernetes. For more information please refer to the [GitHub repo](https://github.com/mattermost/mattermost-operator).
 
 - [mattermost/mattermost-cloud](https://hub.docker.com/r/mattermost/mattermost-cloud) - Mattermost Private Cloud is a SaaS offering meant to smooth and accelerate the customer journey from trial to full adoption. For more information check the [GitHub repo](https://github.com/mattermost/mattermost-cloud).
 
