@@ -6,4 +6,6 @@ date: 2017-11-07T14:28:35-05:00
 weight: 101
 ---
 
-This page has been moved to the [Handbook](https://handbook.mattermost.com/operations/research-and-development/engineering/plugin-release-process).
+Redirecting to handbook.mattermost.com
+
+<meta http-equiv="refresh" content="0; url=https://handbook.mattermost.com/operations/research-and-development/engineering/plugin-release-process" />
