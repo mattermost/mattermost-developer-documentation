@@ -334,7 +334,7 @@ As an advanced feature, you can also use plugins to update the contents of an ep
 
 It is likely for one of three reasons:
 
-1. Mattermost wasn't able to connect to the integration. If the integration is on your internal infrastructure, it'll need to be whitelisted (see ["AllowedUntrustedInternalConnections" config.json setting](https://docs.mattermost.com/administration/config-settings.html#allow-untrusted-internal-connections-to). The log will include the text `err=address forbidden` in the error message.
+1. Mattermost wasn't able to connect to the integration. If the integration is on your internal infrastructure, it'll need to be whitelisted (see ["AllowedUntrustedInternalConnections" config.json setting](https://docs.mattermost.com/configure/configuration-settings.html#allow-untrusted-internal-connections-to). The log will include the text `err=address forbidden` in the error message.
 2. The integration didn't return HTTP status 200. The log will include the text `status=XXX` in the error message.
 3. The integration didn't return a valid JSON response. The log will include the text `err=some json error message` in the error message.
 
