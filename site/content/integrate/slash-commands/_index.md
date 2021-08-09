@@ -72,7 +72,7 @@ Delayed responses are useful when the action takes more than three seconds to pe
 - Retrieval of data from external third-party services, where the response time may take longer than three seconds.
 - Report generation, batch processing or other long-running processes that take longer than three seconds to respond.
 
-Any requests that are made to the response URL should either be a plain text or JSON-encoded body. The JSON-encoded message supports both [Markdown formatting](https://docs.mattermost.com/help/messaging/formatting-text.html) and [message attachments](https://docs.mattermost.com/developer/message-attachments.html).
+Any requests that are made to the response URL should either be a plain text or JSON-encoded body. The JSON-encoded message supports both [Markdown formatting](https://docs.mattermost.com/messaging/formatting-text.html) and [message attachments](https://docs.mattermost.com/developer/message-attachments.html).
 
 ### Parameters
 
@@ -80,13 +80,13 @@ Slash command responses support more than just the `text` field. Here is a full 
 
 | Parameter | Description | Required |
 |---|---|---|
-| text | [Markdown-formatted](https://docs.mattermost.com/help/messaging/formatting-text.html) message to display in the post. | If `attachments` is not set, yes |
+| text | [Markdown-formatted](https://docs.mattermost.com/messaging/formatting-text.html) message to display in the post. | If `attachments` is not set, yes |
 | response\_type | Set to blank or `ephemeral` to reply with a message that only the user can see. <br> Set to `in_channel` to create a regular message.<br> Defaults to `ephemeral`. | No |
-| username | Overrides the username the message posts as.<br> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-usernames). | No |
+| username | Overrides the username the message posts as.<br> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames). | No |
 | channel\_id | Overrides the channel to which the message gets posted.<br> Defaults to the channel in which the command was issued. | No |
-| icon\_url | Overrides the profile picture the message posts with.<br> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons). | No |
+| icon\_url | Overrides the profile picture the message posts with.<br> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons). | No |
 | goto\_location | A URL to redirect the user to. Supports many protocols, including `http://`, `https://`, `ftp://`, `ssh://` and `mailto://`.| No |
-| attachments | [Message attachments](https://docs.mattermost.com/developer/message-attachments.html) used for richer formatting options. | If `text` is not set, yes |
+| attachments | [Message attachments]({{< ref "admin-message-attachments" >}}) used for richer formatting options. | If `text` is not set, yes |
 | type | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with `custom_`. Passing `attachments` will ignore this field and set the type to `slack_attachment`. | No |
 | extra\_responses | An array of responses used to send more than one post in your response. Each item in this array takes the shape of its own command response, so it can include any of the other parameters listed here, except `goto\_location` and `extra\_responses` itself. Available in Mattermost v5.6 and later. | No |
 | skip_slack_parsing | If set to `true` Mattermost will skip the Slack-compatibility handling. Useful if the post contains text or code which is incorrectly handled by the Slack-compatibility logic. Available in Mattermost v5.20 and later. | No |
@@ -162,7 +162,7 @@ Reply immediately with an `ephemeral` message to confirm response of the command
 
 By default, Mattermost prohibits outgoing connections that resolve to certain common IP ranges, including the loopback (`127.0.0.0/8`) and various private-use subnets.
 
-During development, you may override this behaviour by setting `ServiceSettings.AllowedUntrustedInternalConnections` to `"127.0.0.0/8"` in your `config.json` or via the System Console's Advanced > Developer page. See the [admin guide's notes](https://docs.mattermost.com/administration/config-settings.html#allow-untrusted-internal-connections-to) for more details.
+During development, you may override this behaviour by setting `ServiceSettings.AllowedUntrustedInternalConnections` to `"127.0.0.0/8"` in your `config.json` or via System Console **Advanced > Developer**. See the [admin guide's notes](https://docs.mattermost.com/configure/configuration-settings.html#allow-untrusted-internal-connections-to) for more details.
 
 #### Should I configure my slash command to use `POST` or `GET`?
 
