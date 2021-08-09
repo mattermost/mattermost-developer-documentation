@@ -478,7 +478,7 @@ Get the client options to make requests to the server. Use this to create your o
     }
 ```
 
-## Common reducers and actions
+## Custom reducers and actions
 
 Reducers in Redux are pure functions that describe how the data in the store changes after any given action. Reducers will always produce the same resulting state for a given state and action. You can always register a reducer for your plugin against the Redux store with the `registerReducer` function. You can find all the reducers that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/reducers).
 
