@@ -10,11 +10,11 @@ The Mattermost desktop app is an [Electron](https://electronjs.org/) wrapper aro
 
 ## Repository
 
-https://github.com/mattermost/desktop
+You can find the repository [here](https://github.com/mattermost/desktop).
 
 ## Channel
 
-https://community.mattermost.com/core/channels/desktop-app
+You can find the channel [here](https://community.mattermost.com/core/channels/desktop-app).
 
 ## Help Wanted
 
