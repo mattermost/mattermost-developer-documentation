@@ -1,7 +1,7 @@
 ---
-title: "Mattermost Integrations and Developer Toolkit"
-heading: "Integrations and Toolkit Overview"
-description: "The Mattermost Developer Toolkit gives community and in-house customer developers the power to integrate deeply with, and extend, Mattermost servers and clients in order to meet their particular requirements - without “reinventing the wheel”."
+title: "Development Guides"
+heading: "Mattermost Integration Guides"
+description: "Learn how to build Mattermost integrations via demos, example code, and guided content."
 weight: 90
 ---
 
