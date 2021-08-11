@@ -1,45 +1,29 @@
 ---
 title: "Development Guides"
-heading: "Mattermost Integration Guides"
+heading: "Mattermost Development Guides"
 description: "Learn how to build Mattermost integrations via demos, example code, and guided content."
 weight: 90
 ---
+Mattermost offers numerous methods for developers to build integrations; you can add functionality and customize nearly every aspect of the Mattermost user experience. Visit the [Integrate & Extend Mattermost]({{< ref "/integrate/getting-started" >}}) page to learn more about the ways you can integrate with Mattermost. This section of the docs includes guides, tutorials, and example code to help you build your integration more quickly. 
 
-## Better Control for System Admins
+Here are some guides to help you get started with your Mattermost integration:
+* [Example Integrations]({{< ref "/integrate/admin-guide/examples" >}}) - Many Mattermost integrations are open source, which means you can use them as a reference for how to build your own.
+*  [Use Bot Accounts]({{< ref "/integrate/admin-guide/admin-bot-accounts" >}}) -  Bot accounts are headless user accounts that access Mattermost via personal access tokens.
+* [Interactive Messages]({{< ref "/integrate/admin-guide/admin-interactive-messages" >}}) - Create messages with built-in menus and buttons to enable user interaction.
+* [Slash Commands]({{< ref "/integrate/admin-guide/admin-slash-commands" >}}) - Custom slash commands enable your users to execute complex functionality from within Mattermost channels.
+* Webhooks - Webhooks send data  notifications to or from your Mattermost server.
+  * [Incoming Webhooks]({{< ref "integrate/admin-guide/admin-webhooks-incoming" >}}) - Receive notifications from external services as messages in Mattermost channels
+  * [Outgoing Webhooks]({{< ref "/integrate/admin-guide/admin-webhooks-outgoing" >}}) - Send notifications to external services for changes that happen on your Mattermost server
+* [Message Attachments]({{< ref "/integrate/admin-guide/admin-message-attachments" >}}) - Include custom content as an attachment to Mattermost messages.
+* [Interactive Dialogs]({{< ref "/integrate/admin-guide/admin-interactive-dialogs" >}}) - Create dialogs that let your users interact with Mattermost integrations.
+* [OAuth 2.0]({{< ref "/integrate/admin-guide/admin-oauth2" >}}) - Connect OAuth applications to Mattermost.
+* [Embed Mattermost]({{< ref "/integrate/admin-guide/admin-embedding" >}}) - Embed Mattermost into other applications.
+* [Build a Plugin]({{< ref "/integrate/admin-guide/admin-plugins-beta" >}}) - Learn how to build your own Mattermost plugin.
 
-The main benefits of the Mattermost Developer Toolkit from a system administration perspective are first, that it puts all of the resources and information that developers will need in one central location and second, it simplifies integrations with Mattermost.
+Take a look at the left hand navigation for a complete list of Mattermost integration guides.
 
-Consequently this will save time for system administrators as well as developers.
-
-## Features of the Developer Toolkit
-
-Below is a list of planned features of the developer toolkit with estimated time of delivery.
-
-1. Completed:
-
- - Webhooks and slash commands to allow easy, low-effort extension and integration.
- - Mattermost HTTP REST APIv4 allowing for much more powerful server interaction.
- - Mattermost webapp moved over to Redux infrustructure.
- - API developer token to provide a simple method to authenticate to the Mattermost REST API.
- - The ability to build webapp client plugins to override existing UI components (replace posts with your custom components, use your own video services etc.), modify/extend client drivers to interact with custom server API endpoints, and add whole new UI views in predetermined places.
- - The ability to build server plugins to hook directly into server events (e.g., new post events, user update events, etc.), have some form of database access (possibly access to certain tables, and the ability to create new tables) and to add custom endpoints to extend the Mattermost REST API.
-
-2. Upcoming:
-
- - The ability to build plugins similar to the webapp but for React Native apps for iOS and Android.
-
-All of the documentation required to support the use and building of the toolkit will be done as we work through the above systems.
-
-### Example Uses
-
-Examples of uses for the plugin architecture include:
-
-1. Building common integrations such as Jira and GitHub, and including them as default integrations for Mattermost.
-2. Providing tools to interact with user posts.
-3. Redesigning the current video and audio calling to use the plugin architecture, and offering it as one of many video and audio calling solutions.
-4. Incorporating other third-party applications such as annual performance reviews right from the Mattermost interface.
-
-## What's the difference between incoming and outgoing webhooks?
+## FAQ
+### What's the difference between incoming and outgoing webhooks?
 
 A webhook is a way for one app to send real-time data to another app.
 
@@ -47,43 +31,43 @@ In Mattermost, incoming webhooks receive data from external applications and mak
 
 Outgoing webhooks take data from Mattermost, and send it to an external application. Then the outgoing webhook can post a response back in Mattermost. They're great for listening in on channels, and then notifying external applications when a trigger word is used.
 
-## What is a slash command?
+### What is a slash command?
 
 A slash command is similar to an outgoing webhook, but instead of listening to a channel it is used as a command tool. This means if you type in a slash command it will not be posted to a channel, whereas an outgoing webhook is only triggered by posted messages.
 
-## What does Slack-compatible mean?
+### What does Slack-compatible mean?
 
 Slack compatible means that Mattermost accepts integrations that have a payload in the same format as Slack.  
 
 If you have a Slack integration, you should be able to set it up in Mattermost without changing the format.   
 
-## What if I have a webhook from somewhere other than Slack?
+### What if I have a webhook from somewhere other than Slack?
 
 If you have an integration that outputs a payload in a different format you need to write an intermediate application to act as a translation layer to change it to the format Mattermost uses. Since there’s currently no general standard for webhook formatting, this is unavoidable and just a part of how webhooks work.
 
 If there's no translation layer, Mattermost won't understand the data you're sending.
 
-## What are attachments?
+### What are attachments?
 
 When "attachments" are mentioned in the integrations documentation, it refers to Slack's Message Attachments. These "attachments" can be optionally added as an array in the data sent by an integration, and are used to customize the formatting of the message.
 
 We currently don't support the ability to attach files to a post made by an integration.
 
-## Where can I find existing integrations?
+### Where can I find existing integrations?
 
 [Visit our app directory](https://mattermost.com/marketplace/) for dozens of open source integrations to common tools like Jira, Jenkins, GitLab, Trac, Redmine, and Bitbucket, along with interactive bot applications (Hubot, mattermost-bot), and other communication tools (Email, IRC, XMPP, Threema) that are freely available for use and customization.
 
-## Where should I install my integrations? 
+### Where should I install my integrations? 
 
 For self-hosted deployments in small setups you might host integrations on the same server on which Mattermost is installed. For larger deployments you can setup a separate server for integrations, or add them to the server on which the external application is hosted - for example, if you're self-hosting a Jira server you could deploy a Jira integration on the Jira server itself.
 
 When self-hosting restrictions are less strict, AWS, Heroku, and other public cloud options could also be used.
 
-## How do I create a bot account with personal access tokens?
+### How do I create a bot account with personal access tokens?
 
 See [bot accounts documentation](../admin-bot-accounts) to learn more about how to create and manage bot accounts in Mattermost.
 
-## How do I create a bot account without personal access tokens or webhooks?
+### How do I create a bot account without personal access tokens or webhooks?
 
 Deployments that cannot create bot accounts via webhooks due to security reasons and do not want to use [personal access tokens](../admin-personal-access-tokens) with no expiry time, can use the following approach:
 
@@ -137,7 +121,7 @@ Deployments that cannot create bot accounts via webhooks due to security reasons
 
 **Note:** The Mattermost development team is also working on an [API developer token](https://docs.google.com/document/d/1ey4eNQmwK410pNTvlnmMWTa1fqtj8MV4d9XkCumI384), which allows you to authenticate the bot account via the API token rather than retrieving a session token from a user account.
 
-## How should I automate the install and upgrade of Mattermost when included in another application?
+### How should I automate the install and upgrade of Mattermost when included in another application?
 
 Automating Mattermost installation within another application:
 
