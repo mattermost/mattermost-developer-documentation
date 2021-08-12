@@ -32,7 +32,7 @@ Inside the `integration` directory, there are subdirectories that roughly break 
 
     `Test Key` is used for mapping test cases per Release Testing specification. It will be used to measure coverage between manual and automated tests.
 
-    In case the `Test Key` is not available, feel free to prompt the QA team who will either search from an existing Zephyr entry or if it's a new one, it will be created for you.
+    In case the `Test Key` is not available, feel free to prompt the QA team who will either search for an existing Zephyr entry or if it's a new one, it will be created for you.
 
 5. Add check if a certain test requires server license.
     ```javascript

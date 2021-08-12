@@ -11,14 +11,14 @@ We love `testing-library` as it encourages writing maintainable tests, to develo
 
 There is a dedicated page from `testing-library` that helps answering the question. Read the said [article](https://testing-library.com/docs/guide-which-query/) to learn more. The following is a short summary of the recommended order of priority:
 
-__Queries Accessible to Everyone__ queries that reflect the experience of visual/mouse users as well as those that use assistive technology
+__Queries Accessible to Everyone__ reflect the experience of visual/mouse users as well as those that use assistive technology.
 1. `cy.findByRole`
 2. `cy.findByLabelText`
 3. `cy.findByPlaceholderText`
 4. `cy.findByText`
 5. `cy.findByDisplayValue`
 
-__Semantic Queries__ HTML5 and ARIA compliant selectors. Note that the user experience of interacting with these attributes varies greatly across browsers and assistive technology.
+__Semantic Queries__ use HTML5 and ARIA–compliant selectors. Note that the user experience of interacting with these attributes varies greatly across browsers and assistive technology.
 
 6. `cy.findByAltText`
 7. `cy.findByTitle`

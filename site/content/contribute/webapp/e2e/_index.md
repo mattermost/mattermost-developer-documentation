@@ -16,7 +16,7 @@ Not familiar with Cypress? Here is some documentation that will help you get sta
 
 ## What Requires an E2E Test?
 
-1. Test cases defined in help-wanted E2E issues - for e.g., see [link](https://github.com/mattermost/mattermost-webapp/pull/5857/files) that opens a private channel using keyboard navigation with Ctrl/Cmd+K, arrow and enter keys.
-2. New features or stories - for e.g., see [link](https://github.com/mattermost/mattermost-webapp/pull/4243/files) for `Mark As Unread` feature.
-3. Bug fixes - for e.g., see [link](https://github.com/mattermost/mattermost-webapp/pull/5908/files#diff-dcfea130d9ceb044f5959134a2d220d9R56-R84) that fixes mention highlight to self.
-4. Test cases from Zephyr - for e.g., see [link](https://github.com/mattermost/mattermost-webapp/pull/5850/files) which adds automated tests for `Guest Accounts`. 
+1. Test cases defined in help-wanted E2E issues - for example, see [link](https://github.com/mattermost/mattermost-webapp/pull/5857/files) that opens a private channel using keyboard navigation with Ctrl/Cmd+K, arrow and enter keys.
+2. New features or stories - for example, see [link](https://github.com/mattermost/mattermost-webapp/pull/4243/files) for `Mark As Unread` feature.
+3. Bug fixes - for example, see [link](https://github.com/mattermost/mattermost-webapp/pull/5908/files#diff-dcfea130d9ceb044f5959134a2d220d9R56-R84) that fixes mention highlight to self.
+4. Test cases from Zephyr - for example, see [link](https://github.com/mattermost/mattermost-webapp/pull/5850/files) which adds automated tests for `Guest Accounts`. 
