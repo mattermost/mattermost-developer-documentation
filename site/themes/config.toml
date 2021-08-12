@@ -50,7 +50,7 @@ theme = "hugo-elate-theme"
     img = "img_7.jpg"
 
   [[params.intro.item]]
-    title = "Integrate"
+    title = "Integrate & Extend"
     description = "Integrate with Mattermsot through incoming and outgoing webhooks, slash commands, OAuth 2.0 and the REST API."
     url = "/integrate"
     button = "Start Integrating"
