@@ -1,8 +1,8 @@
 ---
 title: "Apps (Developers Preview)"
-heading: "Introduction"
+heading: "Mattermost Apps"
 description: "Apps are lightweight interactive add-ons to Mattermost."
-weight: 90
+weight: 20
 ---
 
 Apps are lightweight, interactive add-ons to Mattermost which can use any HTTP-compatible hosting mechanism to run without dedicated infrastructure. Apps can:
@@ -33,8 +33,6 @@ When you develop using the Apps Framework, your apps can:
 
 Apps are available as a Developers Preview and we're looking for your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost community instance.
 
-* Apps will soon be available for self-managed deployments as well as customers' own AWS environments.
-
 Read the [JavaScript start guide]({{< ref "quick-start-js" >}}) or [Go quick start guide]({{< ref "quick-start-go" >}}) to learn how to write your first app.
 
 ## FAQ
@@ -45,7 +43,7 @@ That depends on your use case, as they each have benefits.
 
 The built-in [incoming webhook]({{< ref "incoming-webhooks" >}}) is great for simple use cases. It requires the incoming payload to contain a valid [Post](https://pkg.go.dev/github.com/nhannv/mattermost-server/model#Post) JSON object - but some external systems don't allow the customization of the fields included in the webhook payload. Compared to built-in webhooks, an App or plugin can be customized to receive an HTTP webhook posting from another system, and can process the incoming data then augment it or make an actionable message in a channel.
 
-A plugin should be used when you need to [directly alter the UI]({{< ref "extend/plugins/webapp/best-practices" >}}) in Mattermost or you have a feature that requires low latency with the server (such as replacing characters in any message [before it is saved]({{< ref "extend/plugins/server/reference#Hooks.MessageWillBePosted" >}})). Currently, plugins have several [UX hooks]({{< ref "extend/plugins/server/reference#Hooks" >}}) that Apps cannot access, however we plan to add/migrate more UX hooks into the Apps Framework over time. Please see the [plugin documentation]({{< ref "extend/plugins" >}}) for more information.
+A plugin should be used when you need to [directly alter the UI]({{< ref "integrate/plugins/webapp/best-practices" >}}) in Mattermost or you have a feature that requires low latency with the server (such as replacing characters in any message [before it is saved]({{< ref "integrate/plugins/server/reference#Hooks.MessageWillBePosted" >}})). Currently, plugins have several [UX hooks]({{< ref "integrate/plugins/server/reference#Hooks" >}}) that Apps cannot access, however we plan to add/migrate more UX hooks into the Apps Framework over time. Please see the [plugin documentation]({{< ref "integrate/plugins" >}}) for more information.
 
 ### What's the difference between the apps framework and the plugin framework?
 

@@ -1,7 +1,7 @@
 ---
-title: "Mattermost Integrations and Developer Toolkit"
-heading: "Integrations and Toolkit Overview"
-description: "The Mattermost Developer Toolkit gives community and in-house customer developers the power to integrate deeply with, and extend, Mattermost servers and clients in order to meet their particular requirements - without “reinventing the wheel”."
+title: "Development Guides"
+heading: "Mattermost Integration Guides"
+description: "Learn how to build Mattermost integrations via demos, example code, and guided content."
 weight: 90
 ---
 
@@ -71,7 +71,7 @@ We currently don't support the ability to attach files to a post made by an inte
 
 ## Where can I find existing integrations?
 
-[Visit our app directory](https://about.mattermost.com/default-app-directory/) for dozens of open source integrations to common tools like Jira, Jenkins, GitLab, Trac, Redmine, and Bitbucket, along with interactive bot applications (Hubot, mattermost-bot), and other communication tools (Email, IRC, XMPP, Threema) that are freely available for use and customization.
+[Visit our app directory](https://mattermost.com/marketplace/) for dozens of open source integrations to common tools like Jira, Jenkins, GitLab, Trac, Redmine, and Bitbucket, along with interactive bot applications (Hubot, mattermost-bot), and other communication tools (Email, IRC, XMPP, Threema) that are freely available for use and customization.
 
 ## Where should I install my integrations? 
 
@@ -143,7 +143,7 @@ Automating Mattermost installation within another application:
 
 1. Review the [Mattermost installation documentation](https://docs.mattermost.com/guides/install-deploy-upgrade-scale.html#install-mattermost) to understand configuration steps of the production deployment.
 2. Install Mattermost files to a dedicated `/opt/mattermost` directory by decompressing the `tar.gz` file of the latest release for your target platform (for example `linux-amd64`).
-3. Review [Configuration Settings](https://docs.mattermost.com/administration/config-settings.html) in `config.json` and set your automation to customize your Mattermost deployment based on your requirements.
+3. Review [Configuration Settings](https://docs.mattermost.com/configure/configuration-settings.html) in `config.json` and set your automation to customize your Mattermost deployment based on your requirements.
 4. For directory locations defined in `config.json`, such as the location of the local file storage directory (`./data/`) or logs directory (`./logs`), you can redefine those locations in your `config.json` settings and move the directories.
    - All other directories should remain as they are in `/mattermost`.
 5. Test that your Mattermost server is running with your new configuration.
@@ -151,7 +151,7 @@ Automating Mattermost installation within another application:
 
 Automating Mattermost upgrade within another application:
 
-1. Review the [upgrade guide](https://docs.mattermost.com/administration/upgrade.html) for an overview of the upgrade procedure.
+1. Review the [upgrade guide](https://docs.mattermost.com/upgrade/upgrading-mattermost-server.html) for an overview of the upgrade procedure.
 2. Create automation to upgrade to the next Mattermost versions:
     - Back up the `config.json` file to preserve any settings a user may have made.
     - Back up the `./data` directory if local storage is used for files.
