@@ -242,7 +242,7 @@ Routes to the team of the specified `teamId` from the `Mattermost Server`.
 Routes to the team of the specified `teamName` from the `Mattermost Server`.
 
 ```
-  getTeamByName = (teamName: string) =>
+  getTeamByName = (teamName: string)
 ```
 
 ### func [executeCommand](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L2463)
