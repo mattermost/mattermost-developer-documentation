@@ -18,7 +18,7 @@ When building web app plugins, it is common to perform actions or access the sta
 
 ## Prerequisites
 
-This guide assumes you've already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide](/extend/plugins/webapp/hello-world/).
+This guide assumes you've already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide]({{< ref "/webapp/hello-world/" >}}).
 
 ## Basic example
 
@@ -527,7 +527,7 @@ Get the client options to make requests to the server. Use this to create your o
 
 ## Custom reducers and actions
 
-Reducers in Redux are pure functions that describe how the data in the store changes after any given action. Reducers will always produce the same resulting state for a given state and action. You can register a custom reducer for your plugin against the Redux store with the `registerReducer` function. You can refer to this [documentation](https://developers.mattermost.com/integrate/plugins/webapp/reference/#registerReducer) for more info.
+Reducers in Redux are pure functions that describe how the data in the store changes after any given action. Reducers will always produce the same resulting state for a given state and action. You can register a custom reducer for your plugin against the Redux store with the `registerReducer` function. You can refer to this [documentation]({{< ref "/webapp/reference/#registerReducer/" >}}).
 
 <details>
     <summary> <b>registerReducer</b> <br/>
@@ -539,4 +539,6 @@ Registers a reducer against the Redux store. It will be accessible in Redux stat
 ```
 </details>
 
-You can also refer to the [Redux developer guide](https://developers.mattermost.com/contribute/webapp/redux/) to learn more about the [Redux actions](https://developers.mattermost.com/contribute/webapp/redux/actions/), [Redux selectors](https://developers.mattermost.com/contribute/webapp/redux/selectors/), and [Redux reducers](https://developers.mattermost.com/contribute/webapp/redux/reducers/) and gain insights into how these can be used in your web app plugins.
+You can also refer to the [Redux developer guide]({{< ref "/webapp/redux/" >}}) to learn more about the [Redux actions]({{< ref "/redux/actions/" >}}), [Redux selectors]({{< ref "/redux/selectors/" >}}), and [Redux reducers]({{< ref "/redux/reducers/" >}}) and gain insights into how these can be used in your web app plugins.
+    
+    [see the Hello, World! guide]({{< ref "/webapp/hello-world/" >}})
