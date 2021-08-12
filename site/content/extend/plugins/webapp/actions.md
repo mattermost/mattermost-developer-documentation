@@ -70,7 +70,7 @@ We've listed out some of the commonly-used actions that you can use in your web 
 Dispatch this action to create a new channel.</summary>
 
 ```javascript
-export function createChannel(channel: Channel, userId: string): ActionFunc {
+createChannel(channel: Channel, userId: string): ActionFunc
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
         let created;
         try {
