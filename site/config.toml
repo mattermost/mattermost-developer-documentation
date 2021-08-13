@@ -73,7 +73,7 @@ pygmentsStyle = "manni"
 
     [[menu.postpend]]
       url = "/integrate/getting-started/"
-      name = "Integrate"
+      name = "Integrate & Extend"
       weight = 2
 
     [[menu.postpend]]
@@ -90,7 +90,7 @@ pygmentsStyle = "manni"
     # Workaround to add draft status to menu items
     [[params.navigation.drafts]]
       Contribute = false
-      Integrate = false
+      "Integrate & Extend" = false
       Blog = false
       Internal = false
       'Admin Docs' = false
