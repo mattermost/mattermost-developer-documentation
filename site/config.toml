@@ -91,7 +91,6 @@ pygmentsStyle = "manni"
     [[params.navigation.drafts]]
       Contribute = false
       Integrate = false
-      Extend = false
       Blog = false
       Internal = false
       'Admin Docs' = false
