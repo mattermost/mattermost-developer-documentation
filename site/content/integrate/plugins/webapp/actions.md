@@ -191,6 +191,8 @@ Get the client options to make requests to the server. Use this to create your o
 
 Reducers in Redux are pure functions that describe how the data in the store changes after any given action. Reducers will always produce the same resulting state for a given state and action. You can register a custom reducer for your plugin against the Redux store with the `registerReducer` function.
 
-### [registerReducer(reducer)]({{< ref "/webapp/reference/#registerReducer/" >}})
+### [registerReducer(reducer)]({{< ref "/plugins/webapp/reference/#registerReducer/" >}})
 
 Registers a reducer against the Redux store. It will be accessible in Redux state under `state['plugins-<yourpluginid>']`. It generally accepts a reducer and returns undefined.
+
+You can also refer to the [Redux developer guide]({{< ref "/contribute/webapp/redux/" >}}) to learn more about the [Redux actions]({{< ref "/webapp/redux/actions/" >}}), [Redux selectors]({{< ref "/webapp/redux/selectors/" >}}), and [Redux reducers]({{< ref "/webapp/redux/reducers/" >}}) and gain insights into how these can be used in your web app plugins.
