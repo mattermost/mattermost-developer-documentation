@@ -194,5 +194,3 @@ Reducers in Redux are pure functions that describe how the data in the store cha
 ### [registerReducer(reducer)]({{< ref "plugins/webapp/reference/#registerReducer" >}})
 
 Registers a reducer against the Redux store. It will be accessible in Redux state under `state['plugins-<yourpluginid>']`. It generally accepts a reducer and returns undefined.
-
-You can also refer to the [Redux developer guide]({{< ref "contribute/webapp/redux" >}}) to learn more about the [Redux actions]({{< ref "contribute/webapp/redux/actions" >}}), [Redux selectors]({{< ref "contribute/webapp/redux/selectors" >}}), and [Redux reducers]({{< ref "contribute/webapp/redux/reducers" >}}) and gain insights into how these can be used in your web app plugins.
