@@ -19,7 +19,7 @@ When building web app plugins, it is common to perform actions or access the sta
 
 ## Prerequisites
 
-This guide assumes you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide]({{< ref "/integrate/plugins/webapp/hello-world" >}}).
+This guide assumes you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide]({{< ref "/integrate/plugins/webapp/hello-world/" >}}).
 
 ## Basic example
 
