@@ -5,7 +5,7 @@ description: "Mattermost integrates with several CI/CD tools."
 weight: -10
 ---
 
-Here are some popular options below, including self-hosted on-prem or self-hosted private cloud solutions, and vendor-hosted SaaS solutions.
+Mattermost integrates with several CI/CD tools. Here are some popular options below, including self-hosted on-prem or self-hosted private cloud solutions, and vendor-hosted SaaS solutions.
 
 ## GitHub
 
