@@ -5,7 +5,7 @@ description: "Mattermost supports several integrations to connect and use bots."
 weight: -10
 ---
 
-Here are some popular options below, including self-hosted on-prem or self-hosted private cloud solutions, and vendor-hosted SaaS solutions.
+Mattermost supports several integrations to connect and use bots. Here are some popular options below, including self-hosted on-prem or self-hosted private cloud solutions, and vendor-hosted SaaS solutions.
 
 ## WelcomeBot
 
