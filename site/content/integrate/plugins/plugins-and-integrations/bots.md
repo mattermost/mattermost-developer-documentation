@@ -2,9 +2,7 @@
 title: Bot Integrations
 heading: "Bot integrations"
 description: "Mattermost supports several integrations to connect and use bots."
-date: 2018-07-10T00:00:00-05:00
-weight: 20
-aliases: [/extend/plugins/webapp/]
+weight: -10
 ---
 
 Here are some popular options below, including self-hosted on-prem or self-hosted private cloud solutions, and vendor-hosted SaaS solutions.
