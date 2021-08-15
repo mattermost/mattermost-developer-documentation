@@ -5,7 +5,7 @@ description: "There are several ways to integrate voice, video, and screensharin
 weight: -10
 ---
 
-Here are some popular options below, including self-hosted on-prem, self-hosted private cloud solutions, and vendor-hosted SaaS solutions.
+There are several ways to integrate voice, video, and screensharing tools in Mattermost. Here are some popular options below, including self-hosted on-prem, self-hosted private cloud solutions, and vendor-hosted SaaS solutions.
 
 **Tip:** You can also neatly link voice, video and screensharing solutions to channels by using Markdown formatting in the channel header. Example: `[Click for video call](https://link_to_solution)`.
 
@@ -13,7 +13,7 @@ Here are some popular options below, including self-hosted on-prem, self-hosted 
 
 - Start and join voice calls, video calls, and use screensharing with your team members, developed by Mattermost.
 - Click a video icon in a Mattermost channel to invite team members to join a Zoom call, hosted using the credentials of the user who initiated the call.
-- Requires one paid `Zoom Pro, Business, Education, or API plan, <https://zoom.us/pricing>`_ to generate an API key and secret.
+- Requires one paid [Zoom Pro, Business, Education, or API plan](https://zoom.us/pricing) to generate an API key and secret.
 - Supports a self-hosted cloud solution and a vendor-hosted cloud solution.
 - Docs available at: https://docs.mattermost.com/integrations/zoom.html.
 - Source code available at: https://github.com/mattermost/mattermost-plugin-zoom.
@@ -29,8 +29,8 @@ Here are some popular options below, including self-hosted on-prem, self-hosted 
 ## Cisco Webex Cloud
 
 - Start and join voice and video calls, and share your screen with members of your team, developed by Mattermost.
-- Use the ``/webex`` slash command or click the video icon in a Mattermost channel to invite team members to join a Webex call, hosted using the credentials of the user who initiated the call.
-- Requires one paid `Cisco Webex Developer Account, <https://developer.webex.com/>`_ to generate an API key and secret.
+- Use the `/webex` slash command or click the video icon in a Mattermost channel to invite team members to join a Webex call, hosted using the credentials of the user who initiated the call.
+- Requires one paid [Cisco Webex Developer Account](https://developer.webex.com) to generate an API key and secret.
 - Supports a self-hosted cloud solution and a vendor-hosted cloud solution.
 - Source code and docs available at: https://github.com/mattermost/mattermost-plugin-webex.
 
