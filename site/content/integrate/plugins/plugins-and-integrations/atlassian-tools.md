@@ -5,14 +5,14 @@ description: "There are several integrations to connect Atlassian tools in Matte
 weight: -10
 ---
 
-Here are some popular options below, including self-hosted on-prem or self-hosted private cloud solutions, and vendor-hosted SaaS solutions.
+There are several integrations to connect Atlassian tools in Mattermost. Here are some popular options below, including self-hosted on-prem or self-hosted private cloud solutions, and vendor-hosted SaaS solutions.
 
 ## Jira Plugin
 
 - Two-way integration between Mattermost and Jira, developed by Mattermost.
 - Send event notifications from your Jira projects to Mattermost channels, with full JQL filtering support.
 - Create and transition Jira issues, and attach Mattermost messages to Jira in the Mattermost user interface.
-- Supports Jira Core and Jira Software products, for Cloud, Server and Data Center platforms.
+- Supports Jira Core and Jira Software products, for Cloud, Server, and Data Center platforms.
 - Source code + docs: https://github.com/mattermost/mattermost-plugin-jira
 
 ## Jira Atlassian App
