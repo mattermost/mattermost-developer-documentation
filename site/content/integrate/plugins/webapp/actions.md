@@ -1,9 +1,10 @@
 ---
-title: Interactions with Redux
-heading: "Redux Interactions for Web App Plugins"
-description: "Mattermost-redux is a library of shared code between Mattermost JavaScript clients. Learn how to use Redux with a plugin."
+title: Redux Actions
+heading: "Redux Actions for Web App Plugins"
+description: "Mattermost-redux is a library of shared code between Mattermost JavaScript clients. Learn how to use Redux actions with a plugin."
 date: 2018-07-10T00:00:00-05:00
 weight: 11
+aliases: [/extend/plugins/webapp/actions/]
 ---
 
 When building web app plugins, it is common to perform actions or access the state that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients. The `mattermost-redux` library exports types and functions that are imported by the web application. These functions can be imported by plugins and used the same way. There are a few different kinds of functions exported by the library:
@@ -18,7 +19,7 @@ When building web app plugins, it is common to perform actions or access the sta
 
 ## Prerequisites
 
-This guide assumes you've already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide]({{< ref "/webapp/hello-world/" >}}).
+This guide assumes you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide]({{< ref "integrate/plugins/webapp/hello-world" >}}).
 
 ## Basic example
 
@@ -186,16 +187,10 @@ Executes the specified command with the arguments provided and fetches the respo
 
 Get the client options to make requests to the server. Use this to create your own custom requests.
 
-
-## Custom reducers and actions
+    ## Custom reducers and actions
 
 Reducers in Redux are pure functions that describe how the data in the store changes after any given action. Reducers will always produce the same resulting state for a given state and action. You can register a custom reducer for your plugin against the Redux store with the `registerReducer` function.
 
-### [registerReducer(reducer)]({{< ref "/webapp/reference/#registerReducer/" >}})
+### [registerReducer(reducer)]({{< ref "plugins/webapp/reference/#registerReducer" >}})
 
 Registers a reducer against the Redux store. It will be accessible in Redux state under `state['plugins-<yourpluginid>']`. It generally accepts a reducer and returns undefined.
-
-
-You can also refer to the [Redux developer guide]({{< ref "/webapp/redux/" >}}) to learn more about the [Redux actions]({{< ref "/redux/actions/" >}}), [Redux selectors]({{< ref "/redux/selectors/" >}}), and [Redux reducers]({{< ref "/redux/reducers/" >}}) and gain insights into how these can be used in your web app plugins.
-    
-    [see the Hello, World! guide]({{< ref "/webapp/hello-world/" >}})
