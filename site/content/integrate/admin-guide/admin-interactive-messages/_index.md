@@ -71,9 +71,50 @@ The integration can respond with an update to the original post, or with an ephe
 
 ![image](interactive_message.gif)
 
+Button actions support a style parameter to change the color of the button. The possible values for style are: `good`, `warning`, `danger`, `default`, `primary`, and `success`. It's also possible to pass a theme variable or a hex color, but we discourage this approach because it won't be resilient against theme changes.
+
+![image](interactive_button_style.png)
+
+The actions used in the previous example include the following:
+
+```
+[
+  {
+    "id": "vote0",
+    "type": "button",
+    "name": "Yes",
+    "style": "default"
+  },
+  {
+    "id": "vote1",
+    "type": "button",
+    "name": "No",
+    "style": "primary"
+  },
+  {
+    "id": "addOption",
+    "type": "button",
+    "name": "Add Option",
+    "style": "warning"
+  },
+  {
+    "id": "deletePoll",
+    "type": "button",
+    "name": "Delete Poll",
+    "style": "success"
+  },
+  {
+    "id": "endPoll",
+    "type": "button",
+    "name": "End Poll",
+    "style": "danger"
+  }
+]
+```
+
 ## Message Menus
 
-Similar to buttons, add message menus as `actions` in your integration [message attachments](https://docs.mattermost.com/developer/message-attachments.html).
+Similar to buttons, add message menus as `actions` in your integration [message attachments]({{< ref "admin-message-attachments" >}}).
 
 ![image](images/message-menus.png)
 
@@ -328,7 +369,7 @@ If your `ephemeral_text` gets incorrectly handled by the Slack-compatibility log
 
 Yes, message buttons and menus are supported in ephemeral messages in Mattermost 5.10 and later. This applies to integrations using plugins, the RESTful API and webhooks, across the browser and desktop app.
 
-As an advanced feature, you can also use plugins to update the contents of an ephemeral message with message buttons or menus with the [UpdateEphemeralMessage plugin API](https://developers.mattermost.com/extend/plugins/server/reference/#API.UpdateEphemeralPost).
+As an advanced feature, you can also use plugins to update the contents of an ephemeral message with message buttons or menus with the [UpdateEphemeralMessage plugin API]({{< ref "/integrate/plugins/server/reference#API.UpdateEphemeralPost" >}}).
 
 ### Why does an interactive button or menu return a 400 error?
 
