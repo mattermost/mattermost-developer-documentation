@@ -6,6 +6,7 @@
 /site/data/DevTalks.json
 /scripts/node_modules
 /scripts/mattermost-webapp
+/scripts/package-lock.json
 
 # os artifacts
 *.swp

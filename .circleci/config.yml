@@ -12,7 +12,7 @@ jobs:
       - run:
           name: build Hugo
           environment:
-            HUGO_VERSION: 0.67.1
+            HUGO_VERSION: 0.74.2
           command: |
             wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -O /tmp/hugo.tar.gz
             tar -xvf /tmp/hugo.tar.gz hugo
@@ -33,38 +33,16 @@ jobs:
           from: dist/html
           to: s3://mattermost-developer-documentation/branches/$CIRCLE_BRANCH
           arguments: '--acl public-read'
-      - aws-s3/sync:
-          from: dist/html
-          to: s3://mattermost-developer-documentation/commits/$CIRCLE_SHA1
-          arguments: '--acl public-read'
-
-  status:
-    docker:
-      - image: circleci/python:3.6
-    steps:
-      - run:
-          name: Reporting status to GitHub
-          command: 'curl -H "Authorization: token $GITHUB_TOKEN" --data "{\"state\": \"success\", \"target_url\": \"http://mattermost-developer-documentation.s3-website-us-east-1.amazonaws.com/commits/<< pipeline.git.revision >>\", \"description\": \"Deployed to S3\", \"context\": \"Continuous Deployment\"}" "https://api.github.com/repos/mattermost/mattermost-developer-documentation/statuses/<< pipeline.git.revision >>"'
 
 workflows:
   version: 2
   ci:
     jobs:
-      - build:
-          filters:
-            branches:
-              ignore: gh-pages
+      - build
       - deploy:
           context: mattermost-dev-docs-s3
           requires:
             - build
           filters:
             branches:
-              ignore: gh-pages
-      - status:
-          context: matterbuild-github-token
-          requires:
-            - deploy
-          filters:
-            branches:
-              ignore: gh-pages
+              only: master
