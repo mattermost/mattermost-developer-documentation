@@ -63,7 +63,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(CreateIssue);
 
 ## Some common actions
 
-We've listed out some of the commonly-used actions that you can use in your web app plugin. You can find all the actions that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/actions).
+We've listed out some of the commonly-used actions that you can use in your web app plugin. You can find all the actions are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/actions).
 
 * ### [createChannel(channel: Channel, userId: string)](https://github.com/mattermost/mattermost-redux/blob/3d1028034d7677adfda58e91b9a5dcaf1bc0ff99/src/actions/channels.ts#L47)
 
