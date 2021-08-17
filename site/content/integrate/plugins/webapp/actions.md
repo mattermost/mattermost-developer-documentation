@@ -194,7 +194,7 @@ Reducers in Redux are pure functions that describe how the data in the store cha
 ### [registerReducer(reducer)]({{< ref "/integrate/plugins/webapp/reference#registerReducer" >}})
 
 Registers a reducer against the Redux store. It will be accessible in Redux state under `state['plugins-<yourpluginid>']`. It generally accepts a reducer and returns undefined.
-=======
+
 When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients.
 
 Here we'll show how to use Redux actions with a plugin. To learn more about these actions, see the [contributor documentation](/contribute/redux/actions/).
@@ -302,4 +302,3 @@ To use our component in our plugin we would then use the registry in the initial
 ## Available Actions
 
 The actions that are available for your plugin to import can be [found in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/actions).
-
