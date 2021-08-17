@@ -146,7 +146,7 @@ Retrieves the the specific emoji associated with the supplied `customEmojiName` 
 
 ## Some common client functions
 
-We've listed out some of the commonly-used client functions that you can use in your web app plugin. You can find all the client functions that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts).
+We've listed out some of the commonly-used client functions you can use in your web app plugin. You can find all the client functions that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts).
 
 * ### [getUser = (userId: string)](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L846)
 
