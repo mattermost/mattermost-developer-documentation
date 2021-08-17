@@ -314,7 +314,7 @@ The integration may also return a generic error message to the user that is not 
 
 Support for generic error messages was added in Mattermost v5.18.
 
-Finally, once the request is submitted, we recommend that the integration responds with a system message or an ephemeral message confirming the submission. This should be a separate request back to Mattermost once the service has received and responded to a submission request from a dialog. This can be done either via [the REST API](https://api.mattermost.com/#tag/posts%2Fpaths%2F~1posts~1ephemeral%2Fpost), or via the [Plugin API](https://developers.mattermost.com/extend/plugins/server/reference/#API.SendEphemeralPost) if you're developing a plugin.
+Finally, once the request is submitted, we recommend that the integration responds with a system message or an ephemeral message confirming the submission. This should be a separate request back to Mattermost once the service has received and responded to a submission request from a dialog. This can be done either via [the REST API](https://api.mattermost.com/#tag/posts%2Fpaths%2F~1posts~1ephemeral%2Fpost), or via the [Plugin API]({{< ref "/integrate/plugins/server/reference#API.SendEphemeralPost" >}}) if you're developing a plugin.
 
 **Note:** If the dialog is closed by clicking **Cancel** or **X**, no data will be submitted. If a user clicks away from the dialog, the dialog won’t close. This is to prevent accidentally losing any answers they've made to an unsubmitted dialog.
 
@@ -454,9 +454,9 @@ Below is a full example of a JSON payload that creates an interactive dialog in 
 
 ## Share your integration
 
-If you've built an integration for Mattermost, please consider [sharing your work](https://mattermost.org/share-your-mattermost-projects) in our [app directory](https://integrations.mattermost.com).
+If you've built an integration for Mattermost, please consider [sharing your work](https://developers.mattermost.com/integrate/getting-started/) in our [app directory](https://mattermost.com/marketplace/).
 
-The [app directory](https://integrations.mattermost.com) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-managed infrastructure.
+The [app directory](https://mattermost.com/marketplace/) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-managed infrastructure.
 
 ## Slack compatibility
 

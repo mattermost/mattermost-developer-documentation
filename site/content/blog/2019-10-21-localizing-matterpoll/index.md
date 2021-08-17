@@ -66,7 +66,7 @@ With these decisions made we started working on integrating go-i18n into Matterp
 
 Because Matterpoll needs to fetch the translation files on startup, they need to be included in the plugin bundle. The makefile of the plugin starter template allows plugin developers to simply place their file into `assets` [to get them included in the bundle](https://github.com/mattermost/mattermost-plugin-starter-template#how-do-i-include-assets-in-the-plugin-bundle). 
 
-Beginning with Mattermost v5.10, there is also a [`GetBundlePath()`](https://developers.mattermost.com/extend/plugins/server/reference/#API.GetBundlePath) method in the plugin API that returns the absolute path where the plugin's bundle was unpacked. This makes accessing assets much easier. The code to load the translation [looks like this](https://github.com/matterpoll/matterpoll/pull/133/files#diff-700816f9b4d51d7404d71e90d2661ddcR15-R45):
+Beginning with Mattermost v5.10, there is also a [`GetBundlePath()`](https://developers.mattermost.com/integrate/plugins/server/reference/#API.GetBundlePath) method in the plugin API that returns the absolute path where the plugin's bundle was unpacked. This makes accessing assets much easier. The code to load the translation [looks like this](https://github.com/matterpoll/matterpoll/pull/133/files#diff-700816f9b4d51d7404d71e90d2661ddcR15-R45):
 ```go
 // initBundle loads all localization files in i18n into a bundle and return this
 func (p *MatterpollPlugin) initBundle() (*i18n.Bundle, error) {
@@ -102,7 +102,7 @@ func (p *MatterpollPlugin) initBundle() (*i18n.Bundle, error) {
 }
 ```
 
-The bundle returned is stored inside the `MatterpollPlugin` struct. We call `initBundle` once in [`OnActivate`](https://developers.mattermost.com/extend/plugins/server/reference/#Hooks.OnActivate).
+The bundle returned is stored inside the `MatterpollPlugin` struct. We call `initBundle` once in [`OnActivate`](https://developers.mattermost.com/integrate/plugins/server/reference/#Hooks.OnActivate).
 
 A `Localizer` is ephemeral and needs to be created every time a user interacts with the plugin, for example, when creating a poll via `/poll` or voting by pressing an [Interactive Message Button](https://docs.mattermost.com/developer/interactive-messages.html). In order to create a `Localizer`  we need to fetch the user's `Locale` setting. Conveniently, it's part of the [`User`](https://godoc.org/github.com/mattermost/mattermost-server/model#User) struct. We wrote a short helper function to create a `Localizer` for a specific user:
 
@@ -185,6 +185,6 @@ If, for example, we want to add support for German, which has the language code 
 This is a rough outline of how plugins can use the existing framework to fully support localization. If other plugin developers adapt this approach, it might get officially supported by Mattermost. This means that the plugin framework would support translations via go-i18n.
 
 - As you can see, using `goi18n` is a bit cumbersome. To make translating easier some commands could be encapsulated in make target in the [starter-template](https://github.com/mattermost/mattermost-plugin-starter-template/blob/master/Makefile).
-- The helper methods like `initBundle`, `getUserLocalizer` and `getServerLocalizer` could become a [plugin helper](https://developers.mattermost.com/extend/plugins/helpers/).
+- The helper methods like `initBundle`, `getUserLocalizer` and `getServerLocalizer` could become a [plugin helper]({{< ref "/integrate/plugins/helpers" >}}).
 
 I would love to hear feedback about the approach we took. Feel free to share it on the [Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) on the Mattermost community server.
