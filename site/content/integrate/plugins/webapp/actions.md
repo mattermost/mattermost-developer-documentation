@@ -7,7 +7,7 @@ weight: 11
 aliases: [/extend/plugins/webapp/actions/]
 ---
 
-When building web app plugins, it is common to perform actions or access the state that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients. The `mattermost-redux` library exports types and functions that are imported by the web application. These functions can be imported by plugins and used the same way. There are a few different kinds of functions exported by the library:
+When building web app plugins, it's common to perform actions or access the state that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), which is our library of shared code between Mattermost JavaScript clients. The `mattermost-redux` library exports types and functions that are imported by the web application. These functions can be imported by plugins and used the same way. There are a few different kinds of functions exported by the library:
 
 * [actions](https://github.com/mattermost/mattermost-redux/tree/master/src/actions) - Actions perform API requests and can change the state of Mattermost.
 * [client](https://github.com/mattermost/mattermost-redux/tree/master/src/client) - The client package can be used to instantiate a Client4 object, to interact with the Mattermost API directly. This is useful in plugins as well as JavaScript server applications communicating with Mattermost.
