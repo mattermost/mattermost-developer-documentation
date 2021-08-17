@@ -9,7 +9,7 @@ There are two examples here to illustrate [OAuth2](#hello-oauth2) and [Webhook](
 
 ### [Hello, OAuth2 example]({{< ref hello-oauth2 >}})
 
-This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-oauth2)) that connects a user via oauth2.
+This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-oauth2)) that connects a user via OAuth2.
 
 ### [Hello, Webhooks example]({{< ref hello-webhooks >}})
 
