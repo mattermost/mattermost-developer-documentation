@@ -33,7 +33,7 @@ Run the following Mattermost slash command:
 
 ### Manifest
 
-`Hello, Webhooks!` is an HTTP app. It requests the *permissions* to act as a System Admin and Bot to access the Mattermost REST API. It also requests permissions to receive 3rd party webhook messages. It binds itself to `/` commands.
+`Hello, Webhooks!` is an HTTP app. It requests the *permissions* to act as a System Admin and bot to access the Mattermost REST API. It also requests permissions to receive third-party webhook messages. It binds itself to `/` commands.
 
 ```json
 {
