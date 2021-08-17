@@ -6,10 +6,10 @@ date: 2020-09-01T09:00:00-00:00
 weight: 5
 ---
 
-Before writing a script, ensure that it has a corresponding test case in Test Management for Jira (TM4J). All test cases may be found in this [link](https://mattermost.atlassian.net/projects/MM?selectedItem=com.atlassian.plugins.atlassian-connect-plugin%3Acom.kanoah.test-manager__main-project-page#!/design?projectId=10302). If test case is not available, feel free to prompt the QA team who will either search from an existing TM4J entry or if it's a new one, it will be created for you.
+Before writing a script, ensure that it has a corresponding test case in Zephyr. All test cases may be found in this [link](https://mattermost.atlassian.net/projects/MM?selectedItem=com.atlassian.plugins.atlassian-connect-plugin%3Acom.kanoah.test-manager__main-project-page#!/design?projectId=10302). If test case is not available, feel free to prompt the QA team who will either search from an existing Zephyr entry or if it's a new one, it will be created for you.
 
 1. Create a test file based on [folder and file structure](/contribute/mobile/e2e/file-structure/).
-2. Include TM4J identification (ID) and title in the test description, following the format of `it('[tm4j_id] [title]')` or `it('[tm4j_id]_[step] [title]')` if the test case has multiple steps.
+2. Include Zephyr identification (ID) and title in the test description, following the format of `it('[Zephyr_id] [title]')` or `it('[Zephyr_id]_[step] [title]')` if the test case has multiple steps.
 
    For test case "[MM-T109 RN apps: User can't send the same message repeatedly](https://mattermost.atlassian.net/projects/MM?selectedItem=com.atlassian.plugins.atlassian-connect-plugin%3Acom.kanoah.test-manager__main-project-page#!/testCase/MM-T109)", it should be:
     ```javascript
@@ -19,7 +19,7 @@ Before writing a script, ensure that it has a corresponding test case in Test Ma
         }
     }
     ```
-    `TM4J ID` is used for mapping test cases per Release Testing specification. It will be used to measure coverage between manual and automated tests.
+    `Zephyr ID` is used for mapping test cases per Release Testing specification. It will be used to measure coverage between manual and automated tests.
 
 3. Target an element using available [matchers](https://github.com/wix/Detox/blob/master/docs/APIRef.Matchers.md#matchers). For best results, it is recommended to match elements by unique identifiers using `testID`. The identifier should follow the following format to avoid duplication.
     ```
