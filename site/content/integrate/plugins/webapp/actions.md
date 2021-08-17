@@ -92,7 +92,7 @@ Dispatch this action to create a new user profile.
 
 ## Some common selectors
 
-We've listed out some of the commonly-used selectors that you can use in your web app plugin. You can find all the selectors that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/selectors).
+We've listed out some of the commonly-used selectors you can use in your web app plugin. You can find all the selectors that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/selectors).
 
 * ### [getCurrentUserId(state)](https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/common.ts#L46)
 
