@@ -2,7 +2,6 @@
 title: Atlassian Tools
 heading: "Atlassian Integrations and Tools"
 description: "There are several integrations to connect Atlassian tools in Mattermost."
-weight: -10
 ---
 
 There are several integrations to connect Atlassian tools in Mattermost. Here are some popular options below, including self-hosted on-prem or self-hosted private cloud solutions, and vendor-hosted SaaS solutions.
