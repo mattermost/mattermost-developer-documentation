@@ -15,7 +15,7 @@ When building web app plugins, it's common to perform actions or access the stat
 * [selectors](https://github.com/mattermost/mattermost-redux/tree/master/src/selectors): Selectors return certain data from the Redux store, such as getPost which allows you get a post by id.
 * [store](https://github.com/mattermost/mattermost-redux/tree/master/src/store): Functions related to the Redux store itself.
 * [types](https://github.com/mattermost/mattermost-redux/tree/master/src/types): Various types of objects in Mattermost's data model. These are useful for plugins written in Typescript.
-* [utils](https://github.com/mattermost/mattermost-redux/tree/master/src/utils) - Various utility functions shared across the web application.
+* [utils](https://github.com/mattermost/mattermost-redux/tree/master/src/utils): Various utility functions shared across the web application.
 
 ## Prerequisites
 
