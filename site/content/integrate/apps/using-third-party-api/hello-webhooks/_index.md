@@ -162,5 +162,5 @@ func webhookReceived(w http.ResponseWriter, req *http.Request) {
 }
 ```
 
-The following image shows the displayed confirmation message after the webhook is recieved.
+The following image shows the displayed confirmation message after the webhook is received.
 ![webhookReceived message](received-webhook.png)
