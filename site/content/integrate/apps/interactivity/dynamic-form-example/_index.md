@@ -1,6 +1,6 @@
 ---
-title: "Interacting with Forms"
-heading: "Interacting with Forms"
+title: "Dynamic Form Example"
+heading: "Dynamic Form Example"
 description: "This guide explains how to provide dynamic values to forms, as well as how to show a new or modified form upon submission"
 weight: 5
 ---
@@ -26,11 +26,13 @@ Each of these examples will be using a modal form to help the user create a tick
 
 ### Setup
 
-These examples assume you have a Node.js App set up using [express](https://github.com/expressjs/express), like the [quick start example]({{< ref "quick-start-js" >}}).
+These examples assume you have a Node.js App set up using [express](https://github.com/expressjs/express), like the [quick start example]({{< ref "quick-start-js" >}}), or the [example](https://github.com/mattermost/mattermost-plugin-apps/blob/master/dev/node_app/src/app.ts) from the App framework [development environment](https://github.com/mattermost/mattermost-plugin-apps/tree/master/dev).
 
-The examples on this page use types from the [mattermost-redux](https://github.com/mattermost/mattermost-redux) library, namely the App-specific types in [types/apps.ts](https://github.com/mattermost/mattermost-redux/blob/master/src/types/apps.ts); Mattermost types `Post`, `UserProfile`, and `Team`; and the Mattermost JavaScript `Client4`. See the end of the guide for the import paths for each type.
+The examples on this page use types from the [mattermost-redux](https://github.com/mattermost/mattermost-redux) library, namely the App-specific types in [types/apps.ts](https://github.com/mattermost/mattermost-redux/blob/master/src/types/apps.ts); Mattermost types `Post`, `UserProfile`, and `Team`; and the Mattermost JavaScript client. See the end of the guide for the import paths for each of these.
 
 ### Manifest
+
+When our App is installed, we will return this Manifest to define our App:
 
 ```ts
 app.get('/manifest', (req, res) => {
@@ -45,7 +47,7 @@ app.get('/manifest', (req, res) => {
             'act_as_bot', // This is necessary to create public posts as our bot
         ],
         requested_locations: [
-            '/post_menu', // This is necessary to render elements in the post dot menu
+            '/post_menu', // This is necessary to render elements in the post menu
         ],
     } as AppManifest;
 
@@ -53,13 +55,13 @@ app.get('/manifest', (req, res) => {
 });
 ```
 
-We can then install our App in Mattermost using this command:
+With our server running, we can then install our App in Mattermost using this command:
 
 `/apps install http http://localhost:3000/manifest`
 
 ### Bindings
 
-The App will receive a request to provide UI elements to show to the user, whenever the user visits a different channel. This allows us to dynamically show different UI elements or slash commands in each channel. This request will be sent to the `/bindings` endpoint.
+The App will receive a request to provide UI elements to show to the user, whenever the user visits a different channel. This allows us to dynamically show different UI elements or slash commands in each channel. We need to handle this request being sent to the `/bindings` endpoint.
 
 ```ts
 app.post('/bindings', (req, res) => {
@@ -102,6 +104,9 @@ app.use('/static', express.static(staticDirectory));
 We now have an item in the post dropdown menu that says "Create ticket", along with the icon located at `static/create-ticket.png` displayed next to the label. When the post menu item is clicked, our App will receive a [Call]({{< ref "call" >}}) at the endpoint `/forms/create-ticket-from-post/submit`. If we return a form in our response, a modal will be shown to the user with our form in the modal.
 
 Note that the `expand` object with `post: 'summary'` means that we will receive the relevant `Post` at `call.context.post` when we receive the request. This makes it so we don't have to fetch the `Post` manually when handling the request. Learn more about Expand [here]({{< ref "call" >}}).
+
+By defining the post menu item's `Call` with the path `/forms/create-ticket-post-menu`, we've implicitly registered an endpoint to process a request when this item is clicked:
+- `/forms/create-ticket-post-menu/submit`
 
 ### Opening a modal
 
@@ -155,11 +160,16 @@ app.post('/forms/create-ticket-post-menu/submit', (req, res) => {
 
 The user is shown a form with text fields labeled "Summary" and "Description". The Description field is prepopulated with the `Post`'s message.
 
+By defining the form's `Call` with the path `/forms/create-ticket`, we've implicitly registered three endpoints for this form to use:
+- `/forms/create-ticket/lookup` is used to fetch autocomplete values
+- `/forms/create-ticket/form` is used to dynamically redefine the modal when a particular field's value is chosen
+- `/forms/create-ticket/submit` is used to process the form's submission
+
 ### Processing the form submission
 
 Now let's process the form submitted at the path `/forms/create-ticket/submit`
 
-We've specified in the `expand` clause to include expanding the acting `User` that is submitting the form, as well as the `Team` so we can construct a post's permalink using the team's name.
+We've specified in the `expand` clause to include the acting `User` that is submitting the form, as well as the `Team` so we can construct a post's permalink using the team's name.
 
 ```ts
 import Client4 from 'mattermost-redux/client/client4';
@@ -251,14 +261,13 @@ const createPostAsBot = async (context: AppContext, message: string): Promise<Po
 };
 ```
 
-
-Now we have a functioning form that allows the user to attach a post to a new ticket, along with the public bot post that links to the new post.
+Now we have a functioning form that allows the user to attach a post to a new ticket, along with a reply `Post` made by our bot that links to the new ticket.
 
 ### Static select values
 
 This form works for simple use cases, but ticket systems are usually more complicated than this. What if we have some labels the user needs to choose from? We'll call the labels "tags" in this example so as to not get confused with the `label` field for the select options.
 
-If the App is providing a fixed set of values, we can use a `static_select` field. Let's add this field to our form's `fields` array:
+If the App needs to provide a fixed set of values, we can use a `static_select` field. Let's add this field to our form's `fields` array:
 
 ```ts
 const tagsField: AppField = {
@@ -369,7 +378,7 @@ app.post('/forms/create-ticket/lookup', async (req, res) => {
 });
 ```
 
-Now we have our form integrated with an external system's autocomplete service, with just a few lines of code. Note that we also have access to all of the currently selected values in the form when we receive a `lookup` request. For example, we have access to the current Summary and Description through `call.values.summary` and `call.values.description`.
+Now we have our form integrated with an external system's autocomplete service, with just a few lines of code. Note that we also have access to all of the currently selected values in the form whenever we receive a `lookup` request. For example, we have access to the current Summary and Description through `call.values.summary` and `call.values.description`.
 
 ### Redefining the form after user actions
 
