@@ -5,10 +5,6 @@ description: "This guide explains how to provide dynamic values to forms, as wel
 weight: 5
 ---
 
-### TODOs:
-
-(add screenshots of form)
-
 ### Overview
 
 Each of these examples will be using a modal form to help the user create a ticket in an external system such as Jira or Zendesk. The form will get a little more complex in each example. In this guide we'll cover:
