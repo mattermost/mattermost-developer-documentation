@@ -100,14 +100,15 @@ The type of fields is the same as for Modal forms.
 
 All fields include:
 
-| Name          | Type      | Description                                                             |
-| :------------ | :-------- | :---------------------------------------------------------------------- |
-| `name`        | string    | Key to use in the values field of the call, and as part of the command. |
-| `type`        | FieldType | The type of the field.                                                  |
-| `is_required` | bool      | Whether the field needs to be filled.                                   |
-| `description` | string    | Text to show on the description line on autocomplete.                   |
-| `hint`        | string    | Text to show on the hint line on autocomplete.                          |
-| `label`       | string    | Label to name the field in autocomplete.                                |
+| Name          | Type      | Description                                                                                                                                                    |
+| :------------ | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`        | string    | Key to use in the values field of the call, and as part of the command.                                                                                        |
+| `type`        | FieldType | The type of the field.                                                                                                                                         |
+| `is_required` | bool      | Whether the field needs to be filled.                                                                                                                          |
+| `description` | string    | Text to show on the description line on autocomplete.                                                                                                          |
+| `hint`        | string    | Text to show on the hint line on autocomplete.                                                                                                                 |
+| `label`       | string    | Label to name the field in autocomplete.                                                                                                                       |
+| `position`    | int       | (Optional) Positional argument (can be provided without a --flag). `If >0`, indicates the position this field is in. `If =-1`, it is considered the last argument. |
 
 
 Options are defined as:
@@ -132,7 +133,8 @@ Posts can be embedded with bindings. These are used for asynchronous interaction
 | `bindings` | Binding | List of embedded bindings. |
 
 
-Bindings are of two types, buttons or selects.
+Bindings are of two types, buttons or selects. 
+
 Buttons include:
 
 | Name       | Type   | Description                                                             |
@@ -140,7 +142,6 @@ Buttons include:
 | `location` | string | Location name. The whole location path will be provided in the context. |
 | `label`    | string | Label that will show in the button.                                     |
 | `call`     | Call   | Call to be made when the button is clicked.                             |
-
 
 Selects include:
 
