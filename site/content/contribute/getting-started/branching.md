@@ -1,13 +1,14 @@
 ---
 title: "Mattermost tick-tock Branching Strategy"
+heading: "Mattermost Tick-Tock Branching Strategy"
+description: "Mattermost recently moved away from a tick-tock release strategy with alternating feature and quality releases."
 date: 2019-06-18T00:00:00-04:00
 weight: 20
-subsection: Getting Started
 ---
 
-Mattermost uses a [tick-tock release strategy](https://docs.mattermost.com/process/release-faq.html#release-overview) where every other release is a "quality release" that only has bug fixes and no new features.
+Mattermost previously adopted a [tick-tock release strategy](https://docs.mattermost.com/process/release-faq.html#release-overview) where every other release was a "quality release" that only had bug fixes and no new features.
 
-The following diagram provides an overview of the branching strategy used to accomplish this. As an example, release-5.4 is a feature release and release-5.5 is a quality release. Note the "quality release" branch is based on the previous release branch.
+The following diagram provides an overview of the branching strategy that was used to accomplish this. As an example, release-5.4 is a feature release and release-5.5 is a quality release. Note the "quality release" branch is based on the previous release branch.
 
 ![Branching Overview](/contribute/getting-started/branching-overview.png)
 
@@ -20,7 +21,7 @@ When your PR is required on a release branch, you will follow the cherry picking
 1. Add the appropriate milestone and the `CherryPick/Approved` label.
 1. When your PR is approved, it will be assigned back to you to perform the merge and any cherry picking if necessary.
 1. Merge the PR.
-1. An automated cherry-pick process will try to cherry-pick the PR. If the automatic process succeeds, a new PR pointing to the correct release branch will open with all the appropriate labels.
+1. An automated cherry-pick process will try to cherry-pick the PR. If the automatic process succeeds, a new PR pointing to the correct release branch will open with all the appropriate labels. If there are no additional changes from the original PR for the cherry-pick, it can be merged without further review.
 1. If the automated cherry-pick fails, the developer will need to cherry-pick the PR manually. Cherry-pick the master commit back to the appropriate releases. If the release branches have not been cut yet, leave the labels as-is and cherry-pick once the branch has been cut. The release manager will remind you to finish your cherry-pick.
 1. Set the `CherryPick/Done` label when completed.
 

@@ -1,8 +1,9 @@
 ---
 title: "Labels"
+heading: "Using Labels to Track Issues and PRs at Mattermost"
+description: "We leverage GitHub labels to track the details and lifecycle of issues and pull requests. Learn what our labels mean."
 date: 2018-03-06T00:00:00-04:00
 weight: 5
-subsection: Getting Started
 ---
 
 We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to track the details and lifecycle of issues and pull requests.
@@ -25,10 +26,10 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 # Pull Request Labels
 
 * `1: PM Review`: Requires review by a [product manager](/contribute/getting-started/core-committers/#product-managers).
-* `1: UX Review`: Requires review by a UX Designer.
+* `1: UX Review`: Requires review by a UX designer.
 * `2: Dev Review`: Requires review by a [core committer](/contribute/getting-started/core-committers/#core-committers).
-* `2: QA Review`: Requires review by a [QA tester](/contribute/getting-started/core-committers/#qa-testers). May occur at the same time as Dev Review.
-* `3: Reviews Complete`: All reviewers have approved the pull request.
+* `3: QA Review`: Requires review by a [QA tester](/contribute/getting-started/core-committers/#qa-testers). May occur at the same time as Dev Review.
+* `4: Reviews Complete`: All reviewers have approved the pull request.
 * `Awaiting Submitter Action`: Blocked on the author.
 * `AutoMerge`: If all checks and approvals pass and the user adds this label, it will be in the queue to get merge automatically without a human intervention.
 * `Changelog/Done`: Required changelog entry has been written.

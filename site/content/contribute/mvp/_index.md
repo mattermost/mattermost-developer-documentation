@@ -1,9 +1,8 @@
 ---
 title: "MVP"
-section: "contribute"
+heading: "Mattermost Hall of Fame"
+description: "Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best."
 ---
-
-# Mattermost Hall of Fame
 
 Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best.
 
@@ -15,6 +14,23 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+5.38    | August 16, 2021     | [kamre](https://github.com/kamre)
+5.37    | July 16, 2021       | [Sera Geyran](https://github.com/srgyrn)
+5.36    | June 16, 2021       | [Ben Bodenmiller](https://github.com/bbodenmiller)
+5.35    | May 16, 2021        | [Alexander Brenchev](https://github.com/TheDarkestDay)
+5.34    | April 16, 2021      | [darkLord19](https://github.com/darkLord19)
+5.33    | March 16, 2021      | [Mahmudul Haque](https://github.com/mahmud2011)
+5.32    | February 16, 2021   | [Yusuke Nemoto](https://github.com/kaakaa)
+5.31    | January 16, 2021    | [Haardik Dharma](https://github.com/haardikdharma10)
+5.30    | December 16, 2020   | [XxLilBoPeepsxX](https://github.com/XxLilBoPeepsxX)
+5.29    | November 16, 2020   | [Tom De Moor](https://github.com/ctlaltdieliet)
+5.28    | October 16, 2020    | [Soo Hwan Kim](https://github.com/josephk96)
+5.27    | September 16, 2020  | [Mohan Prasath](https://github.com/openmohan)
+5.26    | August 16, 2020     | [Abdu Assabri](https://github.com/abdusabri)
+5.25    | July 16, 2020       | [Rodrigo Villablanca](https://github.com/rvillablanca)
+5.24    | June 16, 2020       | [Rakesh Peela](https://github.com/rakhi2104)
+5.23    | May 16, 2020        | [Vladimir Lebedev](https://github.com/nadalfederer)
+5.22    | April 16, 2020      | [Tim Estermann](https://github.com/der-test)
 5.21    | March 16, 2020      | [Allan Guwatudde](https://github.com/AGMETEOR)
 5.20    | February 16, 2020   | [Md Zubair Ahmed](https://github.com/M-ZubairAhmed)
 5.19    | January 16, 2020    | [Allen Lai](https://github.com/allenlai18)

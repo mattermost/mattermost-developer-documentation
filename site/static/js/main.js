@@ -8,7 +8,18 @@ $(document).ready(function(){
         $(this).toggleClass('fa-plus-square-o fa-minus-square-o');
     });
 
+    let hideBannerExist = document.cookie.split(';').filter(item => { return item.indexOf('hideBanner=') >= 0}).length
+
+    if(hideBannerExist){
+        $(".notification-bar").addClass("closed");
+        $("header").removeClass("with-notification-bar");
+    }
+
     $('.notification-bar__close').on('click', function(){
-       $(".notification-bar").addClass("closed");
+        if(!hideBannerExist){
+            $(".notification-bar").addClass("closed");
+            $("header").removeClass("with-notification-bar");
+        }
+        document.cookie = 'hideBanner=true'
     });
 });

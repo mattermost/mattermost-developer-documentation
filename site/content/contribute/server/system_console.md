@@ -1,8 +1,9 @@
 ---
 title: "System Console"
+heading: "The Mattermost System Console"
+description: "Find out how to add fields, expose settings, and make settings available for non-admins in the System Console."
 date: 2019-10-09T13:38:26-04:00
 weight: 5
-subsection: Server
 ---
 
 ## Adding fields to the configuration
@@ -12,7 +13,7 @@ In order to add fields to the configuration, you need to modify `model/config.go
 
 ### Exposing settings in the System Console
 
-To expose the newly added field in the System Console, you need to add that same setting to the `AdminDefinition` JS object in `components/admin_console/admin_definition.jsx`. This object defines most of the settings in the System Console.
+To expose the newly-added field in the System Console, you need to add that same setting to the `AdminDefinition` JS object in `mattermost-webapp/components/admin_console/admin_definition.jsx`. This object defines most of the settings in the System Console.
 
 
 ### Making settings available for non-admin users

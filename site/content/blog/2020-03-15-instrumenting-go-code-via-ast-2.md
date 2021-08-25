@@ -1,9 +1,12 @@
 ---
 title: "Instrumenting Go code via AST, Part 2"
+heading: "Instrumenting Go Code via AST - Part 1"
+description: "This is the second part of our AST blog post series, expanding on the subject of utilizing Go AST libraries to automate and improve your workflow."
 slug: instrumenting-go-code-via-ast-2
 series: "AST"
 date: 2020-03-15T00:00:00-04:00
 author: Eli Yukelzon
+toc: true
 github: reflog
 community: eli.yukelzon
 ---

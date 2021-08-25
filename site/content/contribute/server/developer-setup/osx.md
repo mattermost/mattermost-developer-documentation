@@ -1,3 +1,9 @@
+---
+title: "OSX Development Environment Setup"
+heading: "How to Set Up Mattermost in Mac OS X"
+description: "Read about how to set up your developer environment in Mattermost using a Mac OS X."
+---
+
 1. Install and configure Docker CE: https://docs.docker.com/docker-for-mac/.
 
     **Note:** [MM-9791](https://github.com/mattermost/mattermost-server/pull/10872) introduced using [docker-compose](https://docs.docker.com/compose/) to manage containers. To preserve your data on upgrade, execute the following steps.

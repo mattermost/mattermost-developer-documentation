@@ -1,11 +1,12 @@
 ---
 title: Guidelines for New Infrastructure
+heading: "Guidelines for New Infrastructure - Mattermost"
+description: "Building or deploying new infrastructure? Make sure it follows these guidelines."
 date: 2017-11-06T19:30:07-05:00
-subsection: internal
 weight: 100
 ---
 
-# All new infrastructure should meet these requirements.
+## All new infrastructure should meet these requirements.
 
 ### Authentication should be centralized.
 

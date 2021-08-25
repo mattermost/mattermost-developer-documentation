@@ -9,7 +9,7 @@
   "author": "Joram Wilander",
   "license": "MIT",
   "dependencies": {
-    "esprima": "^4.0.0",
+    "espree": "^7.0.0",
     "fs-promise": "^2.0.3",
     "path": "^0.12.7"
   }

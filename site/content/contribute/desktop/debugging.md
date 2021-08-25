@@ -1,11 +1,10 @@
 ---
 title: "Debugging"
+heading: "Debugging at Mattermost"
+description: "The electron app itself can be inspected using the developer tools, available from the View menu of Safari."
 date: 2019-01-22T00:00:00-05:00
 weight: 3
-subsection: "Debugging"
 ---
-
-# Developer Tools
 
 The electron app itself can be inspected using the developer tools, available from the View menu:
 

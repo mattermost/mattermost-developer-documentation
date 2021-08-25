@@ -1,7 +1,8 @@
 ---
 title: Bump Build Number
+heading: "Bump Build Number at Mattermost"
+description: "Find out how to bump a build number in your local copy of mattermost-mobile."
 date: 2017-11-07T14:28:35-05:00
-subsection: Mobile Build Process
 weight: 2
 ---
 
@@ -20,11 +21,10 @@ This must be done in your local copy of the [mattermost-mobile](https://github.c
     export INCREMENT_BUILD_NUMBER=true
     export INCREMENT_BUILD_NUMBER_MESSAGE="Bump app build number to"
     ```
-    
-    {{%note "Env vars"%}}Alternatively you can copy the environment variables to the `mattermost-mobile/fastlane/.env` file.{{%/note%}}
-    
-    {{%note "Specify build number"%}}Sometimes you need to specify the build number instead of just increasing it by one.
-    In that case add the environment variable `BUILD_NUMBER` and set the build number.{{%/note%}}
+
+{{%note "Env vars"%}}Alternatively you can copy the environment variables to the `mattermost-mobile/fastlane/.env` file.{{%/note%}}
+
+{{%note "Specify build number"%}}Sometimes you need to specify the build number instead of just increasing it by one.<br />In that case add the environment variable `BUILD_NUMBER` and set the build number.{{%/note%}}
 
 2. Increase the build number of the app.
     - ``$ cd fastlane`` in the mattermost-mobile directory.

@@ -3081,10 +3081,19 @@ body {
 
 a {
     color: #186CDA;
+    word-break: break-word;
 }
 
 a:hover {
     text-decoration: none;
+}
+
+code {
+    word-break: break-word;
+}
+
+td:first-child code {
+    word-break: normal;
 }
 
 .container-fluid {
@@ -3165,6 +3174,10 @@ header {
     z-index: 5;
 }
 
+header.with-notification-bar {
+    margin-top: 64px;
+}
+
 .header__links--right {
     float: right;
     list-style: none;
@@ -3224,6 +3237,7 @@ footer {
     line-height: 3.8rem;
     margin: 10px;
     width: 3.8rem;
+    transition: background-color .15s ease-in-out;
 }
 
 .footer__icons i {
@@ -3265,6 +3279,11 @@ h6:first-child {
 .blog-item__title {
     font-size: 1.5rem;
     margin-bottom: .6rem;
+}
+.blog-item__title h1 {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin-bottom: 0;
 }
 
 .blog-item__count {
@@ -3397,7 +3416,7 @@ table>tbody>tr:nth-of-type(odd) {
 }
 
 .doc-content .edit-github {
-    padding-top: 0.9rem;
+    padding: 0.9rem;
 }
 
 .doc-content .doc-title {
@@ -3417,10 +3436,6 @@ table>tbody>tr:nth-of-type(odd) {
     background: #f5f5f5;
     border-radius: 5px;
     padding: 14px;
-}
-
-.doc-content table {
-    .table-striped;
 }
 
 .homepage .homepage__bg {
@@ -3575,6 +3590,51 @@ table>tbody>tr:nth-of-type(odd) {
     height: 60px;
 }
 
+.steps-row {
+    display: flex;
+    margin: 3rem 0;
+}
+
+.steps-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border: 1px solid #007bff;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    margin-right: 35px;
+    color: #007bff;
+}
+
+.steps-header {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.steps-row .content {
+    margin-right: 10px;
+}
+
+.alert {
+    font-size: 95%;
+}
+
+blockquote {
+    margin: 0 0.5rem;
+    padding: 0 0.5rem;
+    border-left: 1px solid grey;
+}
+
+pre {
+    padding: 0.5rem;
+}
+
+ol > li + li {
+    margin-top: 1rem;
+}
+
 @media (max-width: 992px) {
     .sidebar__menu-toggle {
         display: block;
@@ -3639,35 +3699,7 @@ table>tbody>tr:nth-of-type(odd) {
     .homepage-boxes {
         margin-top: -13em;
     }
-}
 
-.steps-row {
-    display: flex;
-    margin: 3rem 0;
-}
-
-.steps-number {
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    border: 1px solid #007bff;
-    display: flex;
-    flex-shrink: 0;
-    justify-content: center;
-    align-items: center;
-    margin-right: 35px;
-    color: #007bff;
-}
-
-.steps-header {
-    margin-bottom: 10px;
-}
-
-.alert {
-    font-size: 95%;
-}
-
-@media (max-width: 768px) {
     .blog-list .blog-item__date {
         float: none;
         display: block;
@@ -3675,16 +3707,20 @@ table>tbody>tr:nth-of-type(odd) {
     }
 }
 
-blockquote {
-    margin: 0 0.5rem;
-    padding: 0 0.5rem;
-    border-left: 1px solid grey;
+@media (max-width: 576px) {
+    .steps-number {
+        margin-right: 20px;
+    }
+    .sidebar+.doc-content {
+        padding-left: 40px;
+    }
 }
 
-pre {
-    padding: 0.5rem;
-}
-
-ol > li + li {
-    margin-top: 1rem;
+@media (max-width: 400px) {
+    .sidebar+.doc-content {
+        padding-left: 30px;
+    }
+    .sidebar {
+        margin: 50px 30px 0;
+    }
 }
