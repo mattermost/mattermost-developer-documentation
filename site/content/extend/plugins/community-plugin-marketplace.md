@@ -19,7 +19,7 @@ Every community plugin must fulfill the following checklist to be added to the M
 4. The plugin provides detailed usage documentation with at least one screenshot of the plugin in action, list of features, and a development guide. This is typically a `README` file or a landing page on the web. The link to the documentation is set as `homepage_url` in the manifest. A great example is the [`README` of the GitHub plugin](https://github.com/mattermost/mattermost-plugin-github/blob/master/README.md).
 5. For the current release and future releases, a changelog must be published. The link to the current release notes has to be recorded in the `release_notes_url` property of the `plugin.json` manifest. For example GitHub releases can be used to publish the changelog.
 6. The plugin has to be out of Beta and be released with at least v1.0.0.
-7. All configuration is accessible via the Mattermost UI.
+7. All configuration is accessible via the Mattermost interface.
 8. The plugin ID defined in the manifest must not collide with the ID of an existing plugin in the Plugin Marketplace. It should follow [the documentation's suggested naming convention](https://developers.mattermost.com/extend/plugins/manifest-reference/#id).
 
 **Technical requirements (checked by developers of the Toolkit team or the Integrations team)**
