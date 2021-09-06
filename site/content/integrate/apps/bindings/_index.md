@@ -43,7 +43,7 @@ Bindings are organized by top level locations. Top level bindings just need to d
 | `call`     | Call   | (Optional) Call to perform. You must provide a call if there is no form, or the form itself does not have a call. |
 | `form`     | Form   | (Optional) Modal form to open. You must provide a Form with a Call if there is no Call defined in the Binding.    |
 
-The call for these bindings will include in the context the user ID, the post ID, the root post ID if any, the channel ID and the team ID.
+The call for these bindings will include in the context the user ID, the post ID, the root post ID if any, the channel ID, and the team ID.
 
 ### `/channel_header` bindings
 
