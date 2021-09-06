@@ -53,7 +53,7 @@ The call for these bindings will include in the context the user ID, the post ID
 | `icon`     | string | (Optional / Webapp Required) Either a fully-qualified URL, or a path for an app's static asset.                             |
 | `label`    | string | (Optional) Text to show in the item on mobile and webapp collapsed view. Defaults to location. Must be unique in its level. |
 | `hint`     | string | (Optional / Webapp Required) Text to show in tooltip.                                                                       |
-| `call`     | Call   | (Optional) Call to perform. You must provide a Call if there is no Form, or the Form itself does not have a Call.           |
+| `call`     | Call   | (Optional) Call to perform. You must provide a call if there is no form, or the form itself does not have a call.           |
 | `form`     | Form   | (Optional) Modal form to open. You must provide a Form with a Call if there is no Call defined in the Binding.              |
 
 The context of the call for these bindings will include the user ID, the channel ID, and the team ID.
