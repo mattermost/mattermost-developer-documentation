@@ -141,7 +141,7 @@ Buttons include:
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------- |
 | `location` | string | Location name. The whole location path will be provided in the context.                                                                              |
 | `label`    | string | Label that will show in the button. Defaults to location. Must be unique in its level.                                                                |
-| `call`     | Call   | (Optional) Call to be made when the button is clicked. You must provide a Call if there is no Form, or the Form itself does not have a Call.          |
+| `call`     | Call   | (Optional) Call to be made when the button is selected. You must provide a call if there is no form, or the form itself does not have a call.          |
 | `form`     | Form   | (Optional) Form to open in a modal form when the button is clicked. You must provide a Form with a Call if there is no Call defined in the Binding. |
 
 Selects include:
