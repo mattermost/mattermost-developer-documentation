@@ -22,7 +22,7 @@ Every community plugin must fulfill the following checklist to be added to the M
 6. All configuration is accessible via the Mattermost interface.
 7. The plugin ID defined in the manifest must not collide with the ID of an existing plugin in the Marketplace. It should follow [the documentation's suggested naming convention]({{< ref "/integrate/plugins/manifest-reference#id" >}}).
 
-**Technical requirements (checked by developers of the Toolkit team or the Integrations team)**
+**Technical requirements (checked by developers of the Interstellar team)**
 
 1. The plugin works for 60k concurrent connections and in a High Availability deployment. **Note:** There are currently no publicly-available tools to verify these properties. As such, they are checked during code review by a developer.
 2. The plugin logs important events on appropriate log levels to allow System Admins to troubleshoot issues.
