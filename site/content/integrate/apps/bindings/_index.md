@@ -50,7 +50,7 @@ The call for these bindings will include in the context the user ID, the post ID
 | Name       | Type   | Description                                                                                                                 |
 | :--------- | :----- | :-------------------------------------------------------------------------------------------------------------------------- |
 | `location` | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.               |
-| `icon`     | string | (Optional / Webapp Required) Either a fully-qualified URL, or a path for an app's static asset.                             |
+| `icon`     | string | (Optional/Web App required) Either a fully-qualified URL, or a path for an app's static asset.                             |
 | `label`    | string | (Optional) Text to show in the item on mobile and webapp collapsed view. Defaults to location. Must be unique in its level. |
 | `hint`     | string | (Optional / Webapp Required) Text to show in tooltip.                                                                       |
 | `call`     | Call   | (Optional) Call to perform. You must provide a call if there is no form, or the form itself does not have a call.           |
