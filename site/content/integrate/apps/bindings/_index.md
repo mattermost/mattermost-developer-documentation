@@ -37,9 +37,9 @@ Bindings are organized by top level locations. Top level bindings just need to d
 
 | Name       | Type   | Description                                                                                                       |
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------- |
-| `location` | string | Name of this location. The whole path of locations will be added in the context.                                  |
+| `location` | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.     |
 | `icon`     | string | (Optional) Either a fully-qualified URL, or a path for an app's static asset.                                     |
-| `label`    | string | (Optional) Text to show in the item. Defaults to location.                                                        |
+| `label`    | string | (Optional) Text to show in the item. Defaults to location. Must be unique in its level.                           |
 | `call`     | Call   | (Optional) Call to perform. You must provide a Call if there is no Form, or the Form itself does not have a Call. |
 | `form`     | Form   | (Optional) Modal form to open. You must provide a Form with a Call if there is no Call defined in the Binding.    |
 
@@ -47,14 +47,14 @@ The call for these bindings will include in the context the user ID, the post ID
 
 ### `/channel_header` bindings
 
-| Name       | Type   | Description                                                                                                       |
-| :--------- | :----- | :---------------------------------------------------------------------------------------------------------------- |
-| `location` | string | Name of this location. The whole path of locations will be added in the context.                                  |
-| `icon`     | string | (Optional / Webapp Required) Either a fully-qualified URL, or a path for an app's static asset.                   |
-| `label`    | string | (Optional) Text to show in the item on mobile and webapp collapsed view. Defaults to location.                    |
-| `hint`     | string | (Optional / Webapp Required) Text to show in tooltip.                                                             |
-| `call`     | Call   | (Optional) Call to perform. You must provide a Call if there is no Form, or the Form itself does not have a Call. |
-| `form`     | Form   | (Optional) Modal form to open. You must provide a Form with a Call if there is no Call defined in the Binding.    |
+| Name       | Type   | Description                                                                                                                 |
+| :--------- | :----- | :-------------------------------------------------------------------------------------------------------------------------- |
+| `location` | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.               |
+| `icon`     | string | (Optional / Webapp Required) Either a fully-qualified URL, or a path for an app's static asset.                             |
+| `label`    | string | (Optional) Text to show in the item on mobile and webapp collapsed view. Defaults to location. Must be unique in its level. |
+| `hint`     | string | (Optional / Webapp Required) Text to show in tooltip.                                                                       |
+| `call`     | Call   | (Optional) Call to perform. You must provide a Call if there is no Form, or the Form itself does not have a Call.           |
+| `form`     | Form   | (Optional) Modal form to open. You must provide a Form with a Call if there is no Call defined in the Binding.              |
 
 The context of the call for these bindings will include the user ID, the channel ID, and the team ID.
 
@@ -64,22 +64,22 @@ For commands we can distinguish between leaf commands (executable subcommand) an
 
 A partial command must include:
 
-| Name          | Type     | Description                                                                                  |
-| :------------ | :------- | :------------------------------------------------------------------------------------------- |
-| `location`    | string   | Name of this location. The whole path of locations will be added in the context.             |
-| `label`       | string   | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. |
-| `hint`        | string   | (Optional) Hint line on command autocomplete.                                                |
-| `description` | string   | (Optional) Description line on command autocomplete.                                         |
-| `bindings`    | Bindings | List of subcommands.                                                                         |
-| `call`        | Call     | (Optional) Call to be inherited by all its subcommands.                                      |
-| `form`        | Form     | (Optional) Form to be inherited by all its subcommands.                                      |
+| Name          | Type     | Description                                                                                                               |
+| :------------ | :------- | :------------------------------------------------------------------------------------------------------------------------ |
+| `location`    | string   | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.             |
+| `label`       | string   | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level. |
+| `hint`        | string   | (Optional) Hint line on command autocomplete.                                                                             |
+| `description` | string   | (Optional) Description line on command autocomplete.                                                                      |
+| `bindings`    | Bindings | List of subcommands.                                                                                                      |
+| `call`        | Call     | (Optional) Call to be inherited by all its subcommands.                                                                   |
+| `form`        | Form     | (Optional) Form to be inherited by all its subcommands.                                                                   |
 
 A leaf command must include:
 
 | Name          | Type   | Description                                                                                                                                  |
 | :------------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------- |
-| `location`    | string | Name of this location. The whole path of locations will be added in the context.                                                               |
-| `label`       | string | The label to use to define the command. Cannot include spaces or tabs. Defaults to location.                                                   |
+| `location`    | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.                                   |
+| `label`       | string | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level.                       |
 | `hint`        | string | (Optional) Hint line on command autocomplete.                                                                                                   |
 | `description` | string | (Optional) Description line on command autocomplete.                                                                                           |
 | `call`        | Call   | (Optional) Call to perform when executing the command. You must provide a Call if there is no Form, or the Form itself does not have a Call. |                                                                                                    |
