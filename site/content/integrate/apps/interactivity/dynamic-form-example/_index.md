@@ -9,7 +9,7 @@ weight: 5
 
 Each of these examples will be using a modal form to help the user create a ticket in an external system such as Jira or Zendesk. The form will get a little more complex in each example. In this guide we'll cover:
 
-- How to render an item in the post dot menu
+- How to render an item in the post dot menu.
 - How to open a modal when the post menu item is clicked
 - How to create a form with:
     - Text fields
