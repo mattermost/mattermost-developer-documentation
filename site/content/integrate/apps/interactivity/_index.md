@@ -37,15 +37,15 @@ Markdown fields are a special field that allows you to better format your form. 
 
 All fields include ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field)):
 
-| Name          | Type      | Description                                                              |
-| :------------ | :-------- | :----------------------------------------------------------------------- |
-| `name`        | string    | Key to use in the values field of the call.                              |
-| `type`        | FieldType | The type of the field.                                                   |
-| `is_required` | bool      | (Optional) Whether the field needs to be filled.                         |
-| `multiselect` | bool      | (Optional) Whether a select field allows multiple values to be selected. |
-| `value`       | value     | (Optional) Default value.                                                |
-| `description` | string    | (Optional) Text to show below the field describing it.                   |
-| `modal_label` | string    | (Optional) Label to name the field in the modal.                         |
+| Name          | Type      | Description                                                                                                 |
+| :------------ | :-------- | :---------------------------------------------------------------------------------------------------------- |
+| `name`        | string    | Key to use in the values field of the call. Cannot include spaces nor tabs. Cannot include spaces nor tabs. |
+| `type`        | FieldType | The type of the field.                                                                                      |
+| `is_required` | bool      | (Optional) Whether the field needs to be filled.                                                            |
+| `multiselect` | bool      | (Optional) Whether a select field allows multiple values to be selected.                                    |
+| `value`       | value     | (Optional) Default value.                                                                                   |
+| `description` | string    | (Optional) Text to show below the field describing it.                                                      |
+| `modal_label` | string    | (Optional) Label to name the field in the modal. Defaults to `label` (if defined) or `name`.                |
 
 Text fields may include:
 
@@ -63,10 +63,10 @@ Static select fields include:
 
 Each Option includes:
 
-| Name    | Type   | Description           |
-| :------ | :----- | :-------------------- |
-| `label` | string | User-facing string.   |
-| `value` | string | Machine-facing value. |
+| Name    | Type   | Description                                                           |
+| :------ | :----- | :-------------------------------------------------------------------- |
+| `label` | string | User-facing string. Defaults to value. Must be unique on this select. |
+| `value` | string | Machine-facing value. Must be unique on this select.                  |
 
 All select also include:
 
@@ -102,12 +102,12 @@ All fields include:
 
 | Name          | Type      | Description                                                                                                                                                    |
 | :------------ | :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`        | string    | Key to use in the values field of the call, and as part of the command.                                                                                        |
-| `type`        | FieldType | The type of the field.                                                                                                                                         |
-| `is_required` | bool      | Whether the field needs to be filled.                                                                                                                          |
-| `description` | string    | Text to show on the description line on autocomplete.                                                                                                          |
-| `hint`        | string    | Text to show on the hint line on autocomplete.                                                                                                                 |
-| `label`       | string    | Label to name the field in autocomplete.                                                                                                                       |
+| `name`        | string    | Key to use in the values field of the call, and as part of the command. Cannot include spaces nor tabs.                                                             |
+| `type`        | FieldType | The type of the field.                                                                                                                                               |
+| `is_required` | bool      | Whether the field needs to be filled.                                                                                                                               |
+| `description` | string    | Text to show on the description line on autocomplete.                                                                                                               |
+| `hint`        | string    | Text to show on the hint line on autocomplete.                                                                                                                       |
+| `label`       | string    | Label to name the field in autocomplete. Defaults to `name`. Must be unique.                                                                                         |
 | `position`    | int       | (Optional) Positional argument (can be provided without a --flag). `If >0`, indicates the position this field is in. `If =-1`, it is considered the last argument. |
 
 
@@ -137,28 +137,31 @@ Bindings are of two types, buttons or selects.
 
 Buttons include:
 
-| Name       | Type   | Description                                                             |
-| :--------- | :----- | :---------------------------------------------------------------------- |
-| `location` | string | Location name. The whole location path will be provided in the context. |
-| `label`    | string | Label that will show in the button.                                     |
-| `call`     | Call   | Call to be made when the button is clicked.                             |
+| Name       | Type   | Description                                                                                                                                          |
+| :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `location` | string | Location name. The whole location path will be provided in the context.                                                                              |
+| `label`    | string | Label that will show in the button. Defaults to location. Must be unique in its level.                                                                |
+| `call`     | Call   | (Optional) Call to be made when the button is clicked. You must provide a Call if there is no Form, or the Form itself does not have a Call.          |
+| `form`     | Form   | (Optional) Form to open in a modal form when the button is clicked. You must provide a Form with a Call if there is no Call defined in the Binding. |
 
 Selects include:
 
-| Name       | Type    | Description                                                                                                  |
-| :--------- | :------ | :----------------------------------------------------------------------------------------------------------- |
-| `location` | string  | Location name. The whole location path will be provided in the context.                                      |
-| `label`    | string  | Label that will show in the button.                                                                          |
-| `call`     | Call    | (Optional) Call to be made when the button is clicked. If none is provided, all options must include a call. |
-| `bindings` | Binding | Options for the select.                                                                                      |
+| Name       | Type    | Description                                                             |
+| :--------- | :------ | :---------------------------------------------------------------------- |
+| `location` | string  | Location name. The whole location path will be provided in the context. |
+| `label`    | string  | Label that will show in the button.                                     |
+| `call`     | Call    | (Optional) Call to be made inherited by the options.                    |
+| `form`     | Form    | (Optional) Form to be inherited by the options.                         |
+| `bindings` | Binding | Options for the select.                                                 |
 
 Options bindings include:
 
-| Name       | Type   | Description                                                                                                        |
-| :--------- | :----- | :----------------------------------------------------------------------------------------------------------------- |
-| `location` | string | Option name. The whole location path will be provided in the context.                                              |
-| `label`    | string | User-facing string.                                                                                                |
-| `call`     | Call   | (Optional) Call to perform when the option is selected. If none is defined, it will take the call from the select. |
+| Name       | Type   | Description                                                                                                                                          |
+| :--------- | :----- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| `location` | string | Option name. The whole location path will be provided in the context.                                                                                |
+| `label`    | string | User-facing string. Defaults to location. Must be unique in its level.                                                                                |
+| `call`     | Call   | (Optional) Call to perform when the option is selected. You must provide a Call if there is no Form, or the Form itself does not have a Call.    |
+| `form`     | Form   | (Optional) Form to open in a modal form when the option is selected. You must provide a Form with a Call if there is no Call defined in the Binding. |
 
 Whenever a button is clicked or a select field is selected, a submit call is performed to the corresponding call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID.
 
