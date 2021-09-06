@@ -82,7 +82,7 @@ A leaf command must include:
 | `label`       | string | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level.                       |
 | `hint`        | string | (Optional) Hint line on command autocomplete.                                                                                                   |
 | `description` | string | (Optional) Description line on command autocomplete.                                                                                           |
-| `call`        | Call   | (Optional) Call to perform when executing the command. You must provide a Call if there is no Form, or the Form itself does not have a Call. |                                                                                                    |
+| `call`        | Call   | (Optional) Call to perform when executing the command. You must provide a call if there is no form, or the form itself does not have a call. |                                                                                                    |
 | `form`        | Form   | (Optional) Form representing the parameters the command can receive. If no form is provided, a form call will be made to the specified call. |
 
 The context of the call for these bindings will include the user ID, the post ID, the root post ID (if any), the channel ID and the team ID. It will also include the raw command.
