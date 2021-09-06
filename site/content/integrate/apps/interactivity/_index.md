@@ -39,7 +39,7 @@ All fields include ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-
 
 | Name          | Type      | Description                                                                                                 |
 | :------------ | :-------- | :---------------------------------------------------------------------------------------------------------- |
-| `name`        | string    | Key to use in the values field of the call. Cannot include spaces nor tabs. Cannot include spaces nor tabs. |
+| `name`        | string    | Key to use in the values field of the call. Cannot include spaces nor tabs. |
 | `type`        | FieldType | The type of the field.                                                                                      |
 | `is_required` | bool      | (Optional) Whether the field needs to be filled.                                                            |
 | `multiselect` | bool      | (Optional) Whether a select field allows multiple values to be selected.                                    |
