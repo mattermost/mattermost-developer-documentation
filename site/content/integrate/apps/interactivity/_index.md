@@ -160,7 +160,7 @@ Options bindings include:
 | :--------- | :----- | :----------------------------------------------------------------------------------------------------------------------------------------- |
 | `location` | string | Option name. The whole location path will be provided in the context.                                                                                |
 | `label`    | string | User-facing string. Defaults to location. Must be unique in its level.                                                                                |
-| `call`     | Call   | (Optional) Call to perform when the option is selected. You must provide a Call if there is no Form, or the Form itself does not have a Call.    |
+| `call`     | Call   | (Optional) Call to perform when the option is selected. You must provide a call if there is no form, or the form itself does not have a call.    |
 | `form`     | Form   | (Optional) Form to open in a modal form when the option is selected. You must provide a Form with a Call if there is no Call defined in the Binding. |
 
 Whenever a button is clicked or a select field is selected, a submit call is performed to the corresponding call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID.
