@@ -40,7 +40,7 @@ Bindings are organized by top level locations. Top level bindings just need to d
 | `location` | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.     |
 | `icon`     | string | (Optional) Either a fully-qualified URL, or a path for an app's static asset.                                     |
 | `label`    | string | (Optional) Text to show in the item. Defaults to location. Must be unique in its level.                           |
-| `call`     | Call   | (Optional) Call to perform. You must provide a Call if there is no Form, or the Form itself does not have a Call. |
+| `call`     | Call   | (Optional) Call to perform. You must provide a call if there is no form, or the form itself does not have a call. |
 | `form`     | Form   | (Optional) Modal form to open. You must provide a Form with a Call if there is no Call defined in the Binding.    |
 
 The call for these bindings will include in the context the user ID, the post ID, the root post ID if any, the channel ID and the team ID.
