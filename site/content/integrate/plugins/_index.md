@@ -1,5 +1,5 @@
 ---
-title: Plugins (Beta)
+title: Plugins
 heading: "Plugins in Mattermost"
 description: "Mattermost supports plugins that offer powerful features for extending and deeply integrating with both the server and web/desktop apps."
 date: 2017-07-10T00:00:00-05:00
