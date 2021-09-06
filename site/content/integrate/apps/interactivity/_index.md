@@ -89,6 +89,8 @@ On submit, the submit call to the call endpoint will be sent. The submit call wi
 
 Commands arguments are treated as forms. When a leaf command is typed, the arguments of the command are fetched. If the command binding has a form attached, those will be used. If not, a form call will be made to the command call. The call will include in the context the app ID, user ID, the post ID, the root post ID (if any), the channel ID, and the team ID. The call will expect a form response.
 
+During autocomplete, the user can open the form as a Modal Form to finish completing the command. Any fields not supported by commands (like markdown fields) or form attributes not visible in commands (like the title) will be shown when opened as a Modal Form.
+
 A command form is defined as:
 
 | Name     | Type   | Description                                                                                                                    |
