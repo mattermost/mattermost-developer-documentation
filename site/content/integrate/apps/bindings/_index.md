@@ -35,24 +35,26 @@ Bindings are organized by top level locations. Top level bindings just need to d
 
 ### `/post_menu` bindings
 
-| Name       | Type   | Description                                                                     |
-| :--------- | :----- | :------------------------------------------------------------------------------ |
-| `location` | string | Name of this location. The whole path of locations will be added in the context |
-| `icon`     | string | (Optional) Either a fully-qualified URL, or a path for an app's static asset.   |
-| `label`    | string | Text to show in the item.                                                       |
-| `call`     | Call   | Call to perform.                                                                |
+| Name       | Type   | Description                                                                                                       |
+| :--------- | :----- | :---------------------------------------------------------------------------------------------------------------- |
+| `location` | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.     |
+| `icon`     | string | (Optional) Either a fully-qualified URL, or a path for an app's static asset.                                     |
+| `label`    | string | (Optional) Text to show in the item. Defaults to location. Must be unique in its level.                           |
+| `call`     | Call   | (Optional) Call to perform. You must provide a call if there is no form, or the form itself does not have a call. |
+| `form`     | Form   | (Optional) Modal form to open. You must provide a form with a call if there is no call defined in the binding.    |
 
-The call for these bindings will include in the context the user ID, the post ID, the root post ID if any, the channel ID and the team ID.
+The call for these bindings will include in the context the user ID, the post ID, the root post ID if any, the channel ID, and the team ID.
 
 ### `/channel_header` bindings
 
-| Name       | Type   | Description                                                                      |
-| :--------- | :----- | :------------------------------------------------------------------------------- |
-| `location` | string | Name of this location. The whole path of locations will be added in the context. |
-| `icon`     | string | (Optional) Either a fully-qualified URL, or a path for an app's static asset.    |
-| `label`    | string | Text to show in the item on mobile and webapp collapsed view.                    |
-| `hint`     | string | Text to show in tooltip.                                                         |
-| `call`     | Call   | Call to perform.                                                                 |
+| Name       | Type   | Description                                                                                                                 |
+| :--------- | :----- | :-------------------------------------------------------------------------------------------------------------------------- |
+| `location` | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.               |
+| `icon`     | string | (Optional/Web App required) Either a fully-qualified URL, or a path for an app's static asset.                             |
+| `label`    | string | (Optional) Text to show in the item on mobile and webapp collapsed view. Defaults to location. Must be unique in its level. |
+| `hint`     | string | (Optional/Web App required) Text to show in tooltip.                                                                       |
+| `call`     | Call   | (Optional) Call to perform. You must provide a call if there is no form, or the form itself does not have a call.           |
+| `form`     | Form   | (Optional) Modal form to open. You must provide a form with a call if there is no call defined in the binding.              |
 
 The context of the call for these bindings will include the user ID, the channel ID, and the team ID.
 
@@ -62,24 +64,28 @@ For commands we can distinguish between leaf commands (executable subcommand) an
 
 A partial command must include:
 
-| Name          | Type     | Description                                          |
-| :------------ | :------- | :--------------------------------------------------- |
-| `location`    | string   | The label to use to define the command.              |
-| `hint`        | string   | (Optional) Hint line on command autocomplete.        |
-| `description` | string   | (Optional) Description line on command autocomplete. |
-| `bindings`    | Bindings | List of subcommands.                                 |
+| Name          | Type     | Description                                                                                                               |
+| :------------ | :------- | :------------------------------------------------------------------------------------------------------------------------ |
+| `location`    | string   | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.             |
+| `label`       | string   | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level. |
+| `hint`        | string   | (Optional) Hint line on command autocomplete.                                                                             |
+| `description` | string   | (Optional) Description line on command autocomplete.                                                                      |
+| `bindings`    | Bindings | List of subcommands.                                                                                                      |
+| `call`        | Call     | (Optional) Call to be inherited by all its subcommands.                                                                   |
+| `form`        | Form     | (Optional) Form to be inherited by all its subcommands.                                                                   |
 
 A leaf command must include:
 
 | Name          | Type   | Description                                                                                                                                  |
 | :------------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------- |
-| `location`    | string | The label to use to define the command.                                                                                                      |
-| `hint`        | string | (Optional) Hint line on command autocomplete.                                                                                                |
-| `description` | string | (Optional) Description line on command autocomplete.                                                                                         |
-| `call`        | Call   | Call to perform when executing the command.                                                                                                  |
+| `location`    | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.                                   |
+| `label`       | string | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level.                       |
+| `hint`        | string | (Optional) Hint line on command autocomplete.                                                                                                   |
+| `description` | string | (Optional) Description line on command autocomplete.                                                                                           |
+| `call`        | Call   | (Optional) Call to perform when executing the command. You must provide a call if there is no form, or the form itself does not have a call. |                                                                                                    |
 | `form`        | Form   | (Optional) Form representing the parameters the command can receive. If no form is provided, a form call will be made to the specified call. |
 
-The context of the call for these bindings will include the user ID, the post ID, the root post ID (if any), the channel ID and the team ID. It will also include the raw command.
+The context of the call for these bindings will include the user ID, the post ID, the root post ID (if any), the channel ID, and the team ID. It will also include the raw command.
 
 ## Example data flow
 
