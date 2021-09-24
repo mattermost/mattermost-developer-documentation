@@ -51,6 +51,7 @@ mkdir my-app
 cd my-app
 go mod init my-app
 go get github.com/mattermost/mattermost-plugin-apps/apps@master
+go get github.com/mattermost/mattermost-plugin-apps/utils/
 ```
 
 ### Manifest
