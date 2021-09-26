@@ -12,7 +12,11 @@ Mattermost offers a wealth of methods to add functionality and customize the exp
 
 ## Apps
 
-Apps are lightweight, interactive add-ons that can be written in any language and run on any HTTP-compatible hosting service. They’re for developers who want the most effective way to build Mattermost customizations and improvements efficiently.
+Apps are lightweight, interactive add-ons that can be written in any programming
+language and run on any HTTP-compatible hosting service or several serverless
+providers like [AWS Lambda](https://aws.amazon.com/lambda/) or
+[OpenFaaS](https://www.openfaas.com/). They’re for developers who want the most
+effective way to build Mattermost customizations and improvements efficiently.
 
 [Build your App now]({{< ref "/integrate/apps" >}})
 

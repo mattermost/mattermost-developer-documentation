@@ -12,7 +12,7 @@ This quick start guide explains the basics of writing a Mattermost app. In this 
 - Contains a `send` function that sends a parameterized message back to the user.
 - Contains a `send-modal` function that forces displaying the `send` form as a modal.
 
-You can view an example [here](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/js/aws_hello).
+You can view an example [here](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/js/hello-world).
 
 ## Prerequisites
 
@@ -84,9 +84,11 @@ app.get('/manifest.json', (req, res) => {
     res.json({
         app_id: 'hello-world',
         display_name: 'Hello, world!',
-        app_type: 'http',
         icon: 'icon.png',
-        root_url: 'http://localhost:8080',
+        http: {
+            root_url: 'http://localhost:8080',
+        },
+        homepage_url: 'https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/js/hello-world',
         requested_permissions: [
             'act_as_bot',
         ],
@@ -265,7 +267,7 @@ node app.js
 Then run the following slash commands on your Mattermost server:
 
 ```
-/apps install http http://localhost:8080/manifest.json
+/apps install url http://localhost:8080/manifest.json
 ```
 
 Confirm the installation in the modal that pops up. You can insert any secret into the **App secret** field for now.
