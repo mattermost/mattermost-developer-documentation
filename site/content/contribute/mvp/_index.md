@@ -14,6 +14,8 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+5.39    | September 16, 2021  | [Rutam Prita Mishra](https://github.com/Rutam21)
+5.38    | August 16, 2021     | [kamre](https://github.com/kamre)
 5.37    | July 16, 2021       | [Sera Geyran](https://github.com/srgyrn)
 5.36    | June 16, 2021       | [Ben Bodenmiller](https://github.com/bbodenmiller)
 5.35    | May 16, 2021        | [Alexander Brenchev](https://github.com/TheDarkestDay)

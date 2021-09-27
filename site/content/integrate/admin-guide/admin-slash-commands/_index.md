@@ -56,11 +56,11 @@ You can follow these general guidelines to set up a custom Mattermost slash comm
 
 1. Open **Main Menu > Integrations > Slash Commands**. If you don't have the **Integrations** option in your Main Menu, slash commands may not be enabled on your Mattermost server or may be disabled for non-admins. Enable them from **System Console > Integrations > Integration Management** or ask your Mattermost System Admin to do so.
 2. Select **Add Slash Command** and add a name and description for the command.
-3. Set the **Command Trigger Word**. The trigger word must be unique and cannot begin with a slash or contain any spaces. It also cannot be one of the [built-in commands](https://docs.mattermost.com/help/messaging/executing-commands.html#built-in-commands).
+3. Set the **Command Trigger Word**. The trigger word must be unique and cannot begin with a slash or contain any spaces. It also cannot be one of the [built-in commands](#built-in-commands).
 4. Set the **Request URL** and **Request Method**. The request URL is the endpoint that Mattermost hits to reach your application, and the request method is either POST or GET and specifies the type of request sent to the request URL.
 5. (Optional) Set the response username and icon the command will post messages as in Mattermost. If not set, the command will use your username and profile picture.
 
-**Note:** [Enable integrations to override usernames](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames, and [similarly for profile picture icons](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons). Enable them from **System Console > Integrations > Integration Management** or ask your Mattermost System Admin.
+**Note:** [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames, and [similarly for profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons). Enable them from **System Console > Integrations > Integration Management** or ask your Mattermost System Admin.
 
 6. (Optional) Include the slash command in the command autocomplete list, displayed when typing ``/`` in an empty input box. Use it to make your command easier to discover by your teammates. You can also provide a hint listing the arguments of your command and a short description displayed in the autocomplete list.
 7. Select **Save**. On the next page, copy the **Token** value. This will be used in a later step.
@@ -124,23 +124,23 @@ which would render in Mattermost as:
 
 11. You're all set! See [developer documentation](../admin-slash-commands) for details on what parameters are supported by slash commands. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins](https://about.mattermost.com/default-plugins). Messages with advanced formatting can be created by including an [attachment array](../admin-message-attachments) and [interactive message buttons](../admin-interactive-messages) in the JSON payload.
 
-**Note:** [Enable integrations to override usernames](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the username is set to `webhook`.
+**Note:** [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the username is set to `webhook`.
 
-Similarly, [Enable integrations to override profile picture icons](https://docs.mattermost.com/administration/config-settings.html#enable-integrations-to-override-profile-picture-icons) must be set to `true` in `config.json` to override profile picture icons. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the icon of the creator of the webhook URL is used to post messages.
+Similarly, [Enable integrations to override profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons) must be set to `true` in `config.json` to override profile picture icons. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the icon of the creator of the webhook URL is used to post messages.
 
 ## Tips and Best Practices
 
 1. Slash commands are designed to easily allow you to post messages. For other actions such as channel creation, you must also use the [Mattermost APIs](https://api.mattermost.com).
 2. Posts size is limited to 16393 characters for servers running [Mattermost Server v5.0 or later](https://docs.mattermost.com/administration/important-upgrade-notes.html). Use the [extra_responses](#parameters) field to reply to a triggered slash command with more than one post.
 3. You can restrict who can create slash commands in [System Console > Integrations > Integration Management](https://docs.mattermost.com/administration/config-settings.html#restrict-managing-integrations-to-admins).
-4. Mattermost outgoing webhooks are Slack-compatible. You can copy-and-paste code used for a Slack outgoing webhook to create Mattermost integrations. Mattermost [automatically translates the Slack's proprietary JSON payload format](https://docs.mattermost.com/developer/webhooks-incoming.html#translate-slack-s-data-format-to-mattermost).
+4. Mattermost outgoing webhooks are Slack-compatible. You can copy-and-paste code used for a Slack outgoing webhook to create Mattermost integrations. Mattermost [automatically translates the Slack's proprietary JSON payload format](#translate-slacks-data-format-to-mattermost).
 5. The external application may be written in any programming language. It needs to provide a URL which receives the request sent by your Mattermost server and responds with in the required JSON format.
 
 ## Share Your Integration
 
-If you've built an integration for Mattermost, please consider [sharing your work](https://mattermost.org/share-your-mattermost-projects) in our [app directory](https://integrations.mattermost.com).
+If you've built an integration for Mattermost, please consider [sharing your work](https://developers.mattermost.com/integrate/getting-started/) in our [app directory](https://mattermost.com/marketplace/).
 
-The [app directory](https://integrations.mattermost.com) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-managed infrastructure.
+The [app directory](https://mattermost.com/marketplace/) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-managed infrastructure.
 
 ## Slack Compatibility
 

@@ -22,19 +22,20 @@ TODO: Define differences between all and summary
 
 The possible expansions are:
 
-| Name                       | Description                                   |
-| :------------------------- | :-------------------------------------------- |
-| `app`                      | Expands the app information.                  |
-| `acting_user`              | Expands the acting user information.          |
-| `acting_user_access_token` | Include the user-level access token.          |
-| `admin_access_token`       | Include the admin access token.               |
-| `channel`                  | Expands the channel information.              |
-| `post`                     | Expands the post information.                 |
-| `root_post`                | Expands the root post information.            |
-| `team`                     | Expands the team information.                 |
-| `user`                     | Expands the subject user information.         |
-| `oauth2_app`               | Expands the remote OAuth2 configuration data. |
-| `oauth2_user`              | Expands the remote OAuth2 user.               |
+| Name                       | Description                                           |
+| :------------------------- | :---------------------------------------------------- |
+| `app`                      | Expands the app information.                          |
+| `acting_user`              | Expands the acting user information.                  |
+| `acting_user_access_token` | Include the user-level access token.                  |
+| `admin_access_token`       | Include the admin access token.                       |
+| `channel`                  | Expands the channel information.                      |
+| `post`                     | Expands the post information.                         |
+| `root_post`                | Expands the root post information.                    |
+| `team`                     | Expands the team information.                         |
+| `user`                     | Expands the subject user information.                 |
+| `oauth2_app`               | Expands the remote OAuth2 configuration data.         |
+| `oauth2_user`              | Expands the remote OAuth2 user.                       |
+| `locale`                   | Expands the user locale, to be used in localizations. |
 
 
 ## Call handling
@@ -93,6 +94,7 @@ Depending on the location and expansions, calls will have different context. The
 | `root_post`                | Post     | (Expansion)                                                                         |
 | `team`                     | Team     | (Expansion)                                                                         |
 | `user`                     | User     | (Expansion)                                                                         |
+| `locale`                   | string   | (Expansion)                                                                         |
 
 ### Call response
 
