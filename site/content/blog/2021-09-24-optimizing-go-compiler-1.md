@@ -160,7 +160,7 @@ We can skip the first three lines, which are again formalities, and start on the
 v34 (+79) = MOVQload <uint64> v7 v1
 ```
 
-Cool, our first real instruction, `MOVQload`! Now, what does that cryptic name means? The best way to know is to go directly to [its definition](https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L702):
+Cool, our first real instruction, `MOVQload`! Now, what does that cryptic name means? The best way to know is to go directly to [its definition](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L697):
 
 ```go
 // load 8 bytes from arg0+auxint+aux. arg1=mem
@@ -216,7 +216,7 @@ SPOILER: These are the lines that store to the slice what we just read into memo
 
 But let's not get ahead of ourselves! To better understand what's going on here, we need to understand what `MOVBstore`, `MOVLstore`, and `MOVWstore` do, as well as `SHRQconst`. The first set of instructions look quite similar to the one we already understand: `MOVQload`.
 
-We can study the first one, `MOVBstore`, as before, looking into [its definition](https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L703):
+We can study the first one, `MOVBstore`, as before, looking into [its definition](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L698):
 
 ```go
 // store byte in arg1 to arg0+auxint+aux. arg2=mem
@@ -236,7 +236,7 @@ Again, the comment does a good job explaining what's going on. The instruction r
 
 In short, this instruction gets a single byte from a place in memory and stores it somewhere else.
 
-Ok, and what about `MOVWstore` and `MOVLstore`? We can take a look at [their](https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L704) [definitions](https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L705), but we can also see what those suffixes (`B`, `W`, `L` and `Q`) mean. This is explained at [the beginning of the file that contains the definition of the instructions](https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L26-L30):
+Ok, and what about `MOVWstore` and `MOVLstore`? We can take a look at [their](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L704) [definitions](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L699-L700), but we can also see what those suffixes (`B`, `W`, `L` and `Q`) mean. This is explained at [the beginning of the file that contains the definition of the instructions](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L26-L30):
 
 ```go
 // Suffixes encode the bit width of various instructions.
@@ -254,7 +254,7 @@ Knowing what we know about `MOVBstore`, it's clear what the others do:
 
 That's it, these operations simply store a fixed number of bytes from some place in memory to another place.
 
-That leaves us with the last instruction: `SHRQconst`. We can do the same as before, and go straight to [its definition](https://github.com/golang/go/blob/7240a18adbfcff5cfe750a1fa4af0fd42ade4381/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L398) to know what it does:
+That leaves us with the last instruction: `SHRQconst`. We can do the same as before, and go straight to [its definition](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L397) to know what it does:
 
 ```go
 // unsigned arg0 >> auxint, shift amount 0-63

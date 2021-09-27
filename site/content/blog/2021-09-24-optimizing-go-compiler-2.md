@@ -18,14 +18,14 @@ In the first part of the series, we discussed what the issue was, understanding 
 
 # A failing test
 
-As we learned in the [SSA post](/blog/ssa-rewrite-rules/#how-to-compile-the-compiler-and-test-it), running the test suite in the Go compiler is as easy as running the following from the Go repository:
+As we learned in the [SSA post](/blog/ssa-rewrite-rules/#connecting-it-all-together), running the test suite in the Go compiler is as easy as running the following from the Go repository:
 
 ```sh
 cd src/
 ./all.bash
 ```
 
-This will run all tests, which is always nice, but we can also decide to only run the ones in a single file. For example, the file [`test/codegen/memcombine.go`](https://github.com/golang/go/blob/master/test/codegen/memcombine.go) contains tests checking memory loads and stores. We can run that single file with the following command:
+This will run all tests, which is always nice, but we can also decide to only run the ones in a single file. For example, the file [`test/codegen/memcombine.go`](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/test/codegen/memcombine.go) contains tests checking memory loads and stores. We can run that single file with the following command:
 
 ```sh
 cd test/
@@ -265,7 +265,7 @@ As I noted before, the only architecture that was not passing the test was `s390
   => (MOVDBRstore p1 w mem)
 ```
 
-The structure is identical to the rule we studied in this series of posts, but if you're interested in the details of the S390X-specific instructions, feel free to dive into [the S390Xops.go file](https://github.com/golang/go/blob/master/src/cmd/compile/internal/ssa/gen/S390XOps.go) to learn what those instructions do.
+The structure is identical to the rule we studied in this series of posts, but if you're interested in the details of the S390X-specific instructions, feel free to dive into [the S390Xops.go file](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/S390XOps.go) to learn what those instructions do.
 
 # Conclusions
 

@@ -20,11 +20,11 @@ When I made [my first ever contribution to the Go compiler](/blog/optimizing-go-
 
 Essentially, a compiler is a translator: it converts a piece of code in a language (in our case, Go) to an equivalent piece of code in another language (in our case, assembly code, whose specific instructions depend on the specific architecture we want to run the executable in). Hopefully, the meaning of what we wrote in Go (the behavior of our program), is maintained throughout the process of translation.
 
-In the Go compiler, this complex process is divided into phases. There are _a lot_ of them, and we will not discuss the whole structure in this blog post---see [`cmd/compile/README.md`](https://github.com/golang/go/blob/0c93b16d015663a60ac77900ca0dcfab92310790/src/cmd/compile/README.md) for a high-level view of the phases, and take a look directly [at the code](https://github.com/golang/go/blob/0c93b16d015663a60ac77900ca0dcfab92310790/src/cmd/compile/internal/ssa/compile.go#L426-L481) to see the complete list---. We will instead focus on one of the last phases, which converts the so-called Static Single Assignment (SSA) form into the final assembly instructions, that depend on the architecture we are compiling for.
+In the Go compiler, this complex process is divided into phases. There are _a lot_ of them, and we will not discuss the whole structure in this blog post---see [`cmd/compile/README.md`](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/README.md) for a high-level view of the phases, and take a look directly [at the code](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/compile.go#L426-L481) to see the complete list---. We will instead focus on one of the last phases, which converts the so-called Static Single Assignment (SSA) form into the final assembly instructions, that depend on the architecture we are compiling for.
 
 # Static Single Assignment
 
-SSA is an intermediate generic representation of the code, which makes it easier to apply some optimizations before going too low-level into the architecture-specific instructions. There are great resources about SSA out there: Make sure to read [the documentation](https://github.com/golang/go/blob/master/src/cmd/compile/internal/ssa/README.md) and, if you have time, go and see [this 30 minute talk](https://www.youtube.com/watch?v=uTMvKVma5ms), which is a great introduction to the topic.
+SSA is an intermediate generic representation of the code, which makes it easier to apply some optimizations before going too low-level into the architecture-specific instructions. There are great resources about SSA out there: Make sure to read [the documentation](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/README.md) and, if you have time, go and see [this 30 minute talk](https://www.youtube.com/watch?v=uTMvKVma5ms), which is a great introduction to the topic.
 
 For the purpose of this post, we need to know that SSA is a representation of the original code with a simple rule: **every value is assigned only once**, although it can be used any number of times.
 
@@ -122,27 +122,27 @@ The best place to start is the `generic.rules` file, which contains [an introduc
 //  - aux will be nil if not specified.
 ```
 
-Out of all that specification, the most interesting part is to see how we can specify SSA values: `(op <type> [auxint] {aux} arg0 arg1 ...)`. Every value contains an opcode, which is the part of the instruction that specifies what to do, three optional fields (the type, an auxiliary integer and auxiliary argument) and finally the arguments for the opcode specified. If you want to know how these values are actually implemented in the code, look at [the `type Value struct` definition](https://github.com/golang/go/blob/master/src/cmd/compile/internal/ssa/value.go#L17-L63).
+Out of all that specification, the most interesting part is to see how we can specify SSA values: `(op <type> [auxint] {aux} arg0 arg1 ...)`. Every value contains an opcode, which is the part of the instruction that specifies what to do, three optional fields (the type, an auxiliary integer and auxiliary argument) and finally the arguments for the opcode specified. If you want to know how these values are actually implemented in the code, look at [the `type Value struct` definition](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/value.go#L17-L63).
 
 Let's focus on the matching part of our sample instruction, `Mul8 <t> n (Const8 [c])`, and try to dissect it:
 
--   The first thing we see, `Mul8`, is the opcode of this instruction. This opcode is defined in the [genericOps.go file](https://github.com/golang/go/blob/master/src/cmd/compile/internal/ssa/gen/genericOps.go#L41), and it specifies what it does: it performs the multiplication of the two arguments it receives.
+-   The first thing we see, `Mul8`, is the opcode of this instruction. This opcode is defined in the [genericOps.go file](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/genericOps.go#L41), and it specifies what it does: it performs the multiplication of the two arguments it receives.
 -   Then we have a generic type `<t>`.
 -   Then we see the two arguments that `Mul8` is expecting:
     -   A variable `n`, which matches any value.
-    -   The value `(Const8 [c])`, which we can inspect by reading its definition, again in the [genericOps.go file](https://github.com/golang/go/blob/master/src/cmd/compile/internal/ssa/gen/genericOps.go#L317). As we see, this opcode simply defines an 8-bit (hence the suffix) constant value, which is stored in its `auxint` field. In this case, we are matching any constant `c`.
+    -   The value `(Const8 [c])`, which we can inspect by reading its definition, again in the [genericOps.go file](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/genericOps.go#L316). As we see, this opcode simply defines an 8-bit (hence the suffix) constant value, which is stored in its `auxint` field. In this case, we are matching any constant `c`.
 
 So, after all, what this pattern matches is any multiplication of a variable `n` times an 8-bit constant `c`. That's it!
 
-But we were trying to match multiplications that involved a constant that had to be a power of two, right? That is what we achieved with the boolean condition `isPowerOfTwo8(c)`, which is a simple Go function defined in the [rewrite.go file](https://github.com/golang/go/blob/master/src/cmd/compile/internal/ssa/rewrite.go#L462-L465). That function returns true when its single `int8` argument is a power of two.
+But we were trying to match multiplications that involved a constant that had to be a power of two, right? That is what we achieved with the boolean condition `isPowerOfTwo8(c)`, which is a simple Go function defined in the [rewrite.go file](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/rewrite.go#L436-L439). That function returns true when its single `int8` argument is a power of two.
 
 Ok, so that's it for the matching pattern of this instruction. What about the instruction we're generating instead? `Lsh8x64 <t> n (Const64 <typ.UInt64> [log8(c)])` is not much more difficult to understand:
 
--   Again, the first thing we have is the opcode, `Lsh8x64`. This opcode, which specifies a **L**eft **sh**ift, is defined in the [genericOps.go file](https://github.com/golang/go/blob/master/src/cmd/compile/internal/ssa/gen/genericOps.go#L115), which also describes what the `8x64` suffix means: what we are shifting is an 8-bit value, and the amount of places to shift is specified by a 64-bit constant.
+-   Again, the first thing we have is the opcode, `Lsh8x64`. This opcode, which specifies a **L**eft **sh**ift, is defined in the [genericOps.go file](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/genericOps.go#L115), which also describes what the `8x64` suffix means: what we are shifting is an 8-bit value, and the amount of places to shift is specified by a 64-bit constant.
 -   Then we have the generic type `<t>`.
 -   And finally the two arguments expected by this opcode:
     -   The variable `n` defined in the matching pattern.
-    -   The 64-bit constant (of type unsigned integer of 64 bits) `log8[c]`. `c` is the constant defined in the matching pattern, and the `log8` function is again a plain Go function defined in [the rewrite.go file](https://github.com/golang/go/blob/master/src/cmd/compile/internal/ssa/rewrite.go#L441-L445): it returns the logarithm base 2 of its 8-bit argument.
+    -   The 64-bit constant (of type unsigned integer of 64 bits) `log8[c]`. `c` is the constant defined in the matching pattern, and the `log8` function is again a plain Go function defined in [the rewrite.go file](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/rewrite.go#L415-L419): it returns the logarithm base 2 of its 8-bit argument.
 
 So this instruction shifts the variable `n` to the left as many places as specified by the logarithm base 2 of `c`, which is exactly what we wanted!
 
@@ -194,4 +194,4 @@ cd src/
 
 This was a very basic introduction to SSA and rewrite rules. There is a whole lot more to them that I described here, but this information should allow you to go out and continue investigating the interesting world of compilers.
 
-If you want to continue learning about rewrite rules and study a specific application of them, make sure to read my series on the investigation of the very first issue I fixed in Go: [Fixing a bug in the Go compiler as a newbie: a deep dive](/blog/optimizing-go-compiler-2). After all, it was there where I started learning about SSA.
+If you want to continue learning about rewrite rules and study a specific application of them, make sure to read my series on the investigation of the very first issue I fixed in Go: [Fixing a bug in the Go compiler as a newbie: a deep dive](/blog/optimizing-go-compiler-1). After all, it was there where I started learning about SSA.
