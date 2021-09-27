@@ -4,7 +4,7 @@ heading: "Fixing a bug in the Go compiler as a newbie: a deep dive (II)"
 description: ""
 summary: "After investigating the nature of the bug and understanding what is happening, we need now to come up with a way to fix it. This post will walk through the steps I took to solve the bug."
 slug: optimizing-go-compiler-2
-date: 2021-09-24T12:02:00-05:00
+date: 2021-09-27T12:02:00-05:00
 categories:
     - "go"
 author: Alejandro García Montoro

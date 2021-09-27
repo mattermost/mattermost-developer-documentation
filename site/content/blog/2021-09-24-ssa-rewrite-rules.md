@@ -4,7 +4,7 @@ heading: "My Journey Into Static Single Assignment With The Go Compiler"
 description: ""
 summary: "Contributing to the Go compiler is within everyone's reach. This post describes the most important aspects of Static Single Assignment, rewrite rules and some specific incantations to hack on the Go compiler."
 slug: ssa-rewrite-rules
-date: 2021-09-24T12:00:00-05:00
+date: 2021-09-27T12:00:00-05:00
 categories:
     - "go"
 author: Alejandro García Montoro

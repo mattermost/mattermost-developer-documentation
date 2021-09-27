@@ -4,7 +4,7 @@ heading: "Fixing a bug in the Go compiler as a newbie: a deep dive (I)"
 description: ""
 summary: "The first part of this series of posts defines the issue we are going to try to fix, how I got to work on it and an initial investigation to fully understand what the bug is."
 slug: optimizing-go-compiler-1
-date: 2021-09-24T12:01:00-05:00
+date: 2021-09-27T12:01:00-05:00
 categories:
     - "go"
 author: Alejandro García Montoro
@@ -12,7 +12,7 @@ github: agarciamontoro
 community: alejandro.garcia
 ---
 
-[bf48163e8f2b604f3b9e83951e331cd11edd8495](https://github.com/golang/go/commit/bf48163e8f2b604f3b9e83951e331cd11edd8495). That is the hash of one of the 49761 commits that, at the time of this writing, build the whole Git history of the Go compiler. It is definitely not the most important commit there, and most of the other ones probably deserve way more attention. But I like `bf48163`. It is a good commit, I think. I may be a bit biased, of course, as it is my first contribution to Go.
+[bf48163e8f2b604f3b9e83951e331cd11edd8495](https://github.com/golang/go/commit/bf48163e8f2b604f3b9e83951e331cd11edd8495). That is the hash of one of the 49778 commits that, at the time of this writing, build the whole Git history of the Go compiler. It is definitely not the most important commit there, and most of the other ones probably deserve way more attention. But I like `bf48163`. It is a good commit, I think. I may be a bit biased, of course, as it is my first contribution to Go.
 
 Not only that, it is my first contribution _ever_ to any compiler!
 
