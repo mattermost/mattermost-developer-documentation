@@ -1,5 +1,5 @@
 ---
-title: "App Manifest"
+title: "Manifest"
 heading: "App Manifest"
 description: "App manifest spec"
 weight: 100
