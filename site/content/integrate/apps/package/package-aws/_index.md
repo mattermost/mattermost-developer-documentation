@@ -1,6 +1,6 @@
 ---
 title: "aws"
-heading: "Preparing your app for AWS (For App Developers)"
+heading: "Packaging apps for AWS Lambda"
 description: "TODO"
 weight: 30 
 ---

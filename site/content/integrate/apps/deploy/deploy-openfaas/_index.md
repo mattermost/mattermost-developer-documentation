@@ -23,7 +23,7 @@ configured, and `docker login` done, with sufficient credentials to push to the
 registry of choice.
 
 To deploy OpenFaaS Apps use `appsctl aws deploy {openfaas-bundle.zip}` command.
-It will deploy all functions in yhe bundle, and "list" (upload the manifest of)
+It will deploy all functions in the bundle, and "list" (upload the manifest of)
 the app in Mattermost server. `--install` can be used to automatically install
 the app once it's deployed.
 
@@ -34,7 +34,7 @@ Flags:
   successfully deployed.
 - `--update` update the function that already exists.
 
-The command requires that the following ernvironment variables are set:
+The command requires that the following environment variables are set:
 - `MM_SERVICESETTINGS_SITEURL` must be set to where the Mattermost server APIs can
   be accessed.
 - `MM_ADMIN_TOKEN` must be set to access the Mattermost REST APIs.

@@ -2,38 +2,18 @@
 title: "API"
 heading: "Mattermost Apps API Reference"
 description: "This reference describes the Mattermost Apps API"
-weight: 200
+weight: 300
 ---
 
 ## App Structure
 
-Apps consist of just 3 things:
+Apps consist of 3 kinds of assets:
 - [manifest.json]({{< ref "manifest" >}}) file
-- [Call]({{< ref "call" >}}) responders, starting with `/bindings` (see [Interactivity]({{< ref "interactivity" >}})) and `/on_install` (see [Manifest]({{< ref "manifest" >}}))
-- Static assets, currently just icon files
-
-## Mattermost Authentication
-An app declares in its `Manifest` the `Locations` that it will be binding to, and `Permissions` it will require to operate. These are consented to by the system administrator when installing Mattermost apps interactively, in Mattermost.
-
-Each app when installed into Mattermost gets an OAuth2 cientID/secret (not yet used), and a Bot User Account with a personal access token. Each call may receive a combination of `bot_access_token`, `acting_user_access_token`, and `admin_access_token` as applicable. See [Authentication]({{< ref "authentication" >}}) for more.
-
-Apps can use OAuth2 to connect to 3rd party APIs. See [3rd party OAuth2]({{< ref
-"3rdparty-oauth2" >}}) for more.
-
-
-
-
-Each call request an app receives contains a `bot_access_token` in the `context`. 
-
-Additionaly, if the app was granted `act_as_user` permission, and the call's
-`expand` contained `acting_user_access_token=all`, the call receives
-`acting_user_access_token` in the request `context`.
-
-Similarly, if the app was granted `act_as_admin` permission, the acting user is
-a system administrator, and the call's `expand` contained
-`admin_access_token=all`, the call receives `admin_access_token` in the
-`context`.
-
+- [Call]({{< ref "call" >}}) handlers, starting with `/bindings` (see
+  [Interactivity]({{< ref "interactivity" >}})) and `/on_install` (see
+  [Manifest]({{< ref "manifest" >}})). Call handlers are typically source files
+  in a programming language like JavaScript, Python, or Go.
+- Static assets, currently solely icon files
 
 ## Interactivty: Bindings and Forms
 
@@ -46,7 +26,6 @@ a system administrator, and the call's `expand` contained
   changes). A Form invokes a `Call` when it is submitted. A `/`=command is just
   another way of filling out a `Form`.
 
-
 ## Using Mattermost APIs
 - REST
 - App
@@ -56,13 +35,7 @@ a system administrator, and the call's `expand` contained
 
 ## App Lifecycle 
 
-**Note: OAuth2 is not yet implemented, for now session tokens are passed in as ActingUserAccessToken**
-
-An app authenticates its requests to Mattermost by providing access tokens, usually Bot Access token, or user's OAuth2 access token. Each call request sent to the app includes Mattermost site URL, and optionally one or more access tokens the app can use.
-
-What tokens the app gets, and what access the app may have with them depends on the combination of App granted permissions, the tokens requested in `call.Expand`, and their respective access rights.
-
-See [here]({{< ref "manifest#permissions">}}) to learn more about the available permissions
+- on_install, etc.
 
 ## Apps subscriptions API
 

@@ -2,7 +2,7 @@
 title: "Packaging"
 heading: "Guide to packaging deployable app bundles"
 description: "TODO"
-weight: 300
+weight: 400
 ---
 
 This section describes how to package Apps code and assets for deployment in

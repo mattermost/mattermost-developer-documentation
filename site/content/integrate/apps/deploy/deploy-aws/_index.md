@@ -54,7 +54,7 @@ Set the following environment variables based on bucket name and region
 
 The following command will create Mattermost invoke credentials and policy for use with AWS.
 
-`go run ./cmd/appsctl aws init [--create] [--create-access-key] [...other flags]`
+`go run ./cmd/appsctl aws init [flags...]`
 
 It will create or update:
 
@@ -76,7 +76,7 @@ Flags:
   `mattermost-apps-invoke-group`.
 - `--policy` name the policy used to invoke function(s), default
   `mattermost-apps-invoke-policy`.
-- `--user` name the user to invoke the function(s), default
+- `--user` name the user to invoke the lambda function(s), default
   `mattermost-apps-invoke`.
 
 The output of the command will contain two "Invoke" environment variables.
@@ -111,15 +111,15 @@ as needed, and "list" (upload the manifest of) the app in Mattermost server.
 `--install` can be used to automatically install the app once it's deployed.
 
 Flags:
-- `--execute-role` name of the role to use for executing the function, default
-  `mattermost-apps-execute-lambda-role`
+- `--execute-role` name of the role to use for executing the lambda function,
+  default `mattermost-apps-execute-lambda-role`
 - `--install` install the app onto the Mattermost server once it's been
   successfully deployed.
-- `--policy` name of the policy to use to invoke the function, default
+- `--policy` name of the policy to use to invoke the lambda function, default
   `mattermost-apps-invoke-policy`.
-- `--update` update the function that already exists.
+- `--update` update the lambda function that already exists.
 
-The command requires that the following ernvironment variables are set:
+The command requires that the following environment variables are set:
 - `MM_SERVICESETTINGS_SITEURL` must be set to where the Mattermost server APIs can
   be accessed.
 - `MM_ADMIN_TOKEN` must be set to access the Mattermost REST APIs.

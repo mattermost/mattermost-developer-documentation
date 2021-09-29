@@ -38,7 +38,7 @@ Run the following Mattermost slash command:
 ```json
 {
     "app_id": "hello-webhooks",
-	"version": "demo",
+	"version": "0.8.0",
 	"display_name": "Hello, Webhooks!",
 	"app_type": "http",
 	"icon": "icon.png",

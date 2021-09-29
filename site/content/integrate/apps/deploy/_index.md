@@ -2,11 +2,11 @@
 title: "Deployment (admin)"
 heading: "Admin's Guide to Deploying Apps"
 description: "TODO"
-weight: 500
+weight: 1000
 ---
 
 - In **Mattermost Cloud**, all apps are deployed to the Marketplace by Mattermost
-  staff. They can be installed ontp a specific Mattermost instance using `/apps
+  staff. They can be installed onto a specific Mattermost instance using `/apps
   install listed` command. No special configuration is required, the `/apps
   install` command should be enabled and functional by default.
 
