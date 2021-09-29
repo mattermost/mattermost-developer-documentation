@@ -2,7 +2,7 @@
 title: "Interactivity"
 heading: "Interactivity"
 description: "TODO"
-weight: 600
+weight: 500
 ---
 
 ### Modal Forms

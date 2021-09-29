@@ -2,7 +2,7 @@
 title: "REST"
 heading: "Using Mattermost REST APIs with Apps"
 description: "An app can use the Mattermost server REST API, as well as new App Services APIs offered specifically to Mattermost Apps."
-weight: 500
+weight: 600
 ---
 
 See [here]({{< ref "app-to-mattermost">}}) to learn more authenticating to the REST APIs
