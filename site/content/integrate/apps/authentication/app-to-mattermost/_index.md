@@ -1,6 +1,6 @@
 ---
 title: "To Mattermost"
-heading: "Authenticating apps with Mattermost"
+heading: "Authenticating with Mattermost"
 description: "TODO"
 weight: 100
 ---
