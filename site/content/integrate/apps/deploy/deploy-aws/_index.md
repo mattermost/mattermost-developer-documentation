@@ -2,7 +2,7 @@
 title: "AWS"
 heading: "Admin's Guide to Deploying Apps to AWS"
 description: "TODO"
-weight: 10
+weight: 200
 ---
 
 # Deployment in self-managed environments

@@ -2,7 +2,7 @@
 title: "HTTP"
 heading: "Admin's Guide to HTTP Apps"
 description: "TODO"
-weight: 200
+weight: 100
 ---
 
 External service providers can offer "remote" apps already deployed as HTTP
