@@ -438,6 +438,4 @@ dist-openfaas:
 .PHONY: dist
 ## dist: creates all bundles
 dist: dist-aws dist-openfaas
-
-#...
 ```

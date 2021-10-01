@@ -115,7 +115,7 @@ Each function contains the following fields:
 | `path`(*)    | (Root) path of calls to be mapped to this function, e.g. `"/"` |
 | `name`(*)    | Function's base name. Is used as a base name to compose the actual AWS Lambda name. `{name}.zip` is used looking up the lambda function in an app bundle by `appsctl aws deploy` |
 | `handler`(*) | The name of the handler go function |
-| `runtime`(*) | AWS Lambda runtime to use, e.g. `"go1.x"` |
+| `runtime`(*) | AWS Lambda runtime to use, see [here](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) |
 
 Example (some fields omitted):
 ```json
