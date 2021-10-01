@@ -382,7 +382,7 @@ all: dist run
 
 `make run` will run locally, as an http server
 
-```
+```make
 .PHONY: run
 ## run: runs the app locally
 run: 
