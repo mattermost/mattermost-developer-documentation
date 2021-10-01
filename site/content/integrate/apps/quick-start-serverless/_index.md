@@ -421,7 +421,7 @@ dist-aws:
 - `/template`
 After unzipping and pre-processing `manifest.yml`, one should be able to run `faas-cli up -f manifest.yml` for the bundle.
 
-```
+```make
 .PHONY: dist-openfaas
 ## dist-openfaas: creates the bundle file for OpenFaaS deployments
 dist-openfaas:
