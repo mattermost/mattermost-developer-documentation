@@ -89,6 +89,16 @@ Provides configuration for accessing an app that is deployed exterally of Matter
 | `root_url` | Base URL to send all calls and static asset requests to. |
 | `use_jwt`  | Include a secret-based JWT in all requests to the App. The secret must be provided by the app to the sysadmin and entered at the app's installation time. |
 
+Example:
+```json
+{
+	"http": {
+		"root_url": "https://myurl.test/somepath",
+		"use_jwt": true
+	}
+}
+```
+
 #### `aws_lambda`: Apps deployable and accessible as AWS Lambda functions and S3 static assets
 
 Provides configuration for deploying an app (bundle) onto the AWS Lambda and S3
@@ -96,7 +106,7 @@ services and accessing it there.
 
 | Name          | Type                | Description |
 | :------------ | :------------------ | :---------------- |
-| `function`(*) | AWS Lambda Function | List of functions |
+| `functions`(*) | AWS Lambda Function | List of functions |
 
 Each function contains the following fields:
 
@@ -107,13 +117,27 @@ Each function contains the following fields:
 | `handler`(*) | The name of the handler go function |
 | `runtime`(*) | AWS Lambda runtime to use, e.g. `"go1.x"` |
 
+Example (some fields omitted):
+```json
+{
+  	"aws_lambda": {
+    	"functions": [
+	  		{
+	    		"path": "/",
+	  	  		"name": "my-funct"
+ 			}
+		]
+	}
+}
+```
+
 #### `open_faas`: Apps deployable and accessible as OpenFaaS or faasd functions
 
 Provides configuration for deploying an app (bundle) onto OpenFaaS and faasd platforms.
 
 | Name          | Type              | Description |
 | :------------ | :---------------- | :---------------- |
-| `function`(*) | OpenFaaS Function | List of functions |
+| `functions`(*) | OpenFaaS Function | List of functions |
 
 Each function contains the following fields:
 
@@ -122,13 +146,27 @@ Each function contains the following fields:
 | `path`(*) | (Root) path of calls to be mapped to this function, e.g. `"/"` |
 | `name`(*) | Function's base name. Is used as a base name to compose the actual OpenFaaS name, combined with the app ID and version. |
 
+Example (some fields omitted):
+```json
+{
+  	"open_faas": {
+    	"functions": [
+	  		{
+	    		"path": "/",
+	  	  		"name": "my-funct"
+  			}
+		]
+	}
+}
+```
+
 #### `Kubeless`: Apps deployable and accessible as Kubeless
 
 Provides configuration for deploying an app (bundle) onto Kubeless serverless platform on Kubernetes.
 
 | Name          | Type              | Description |
 | :------------ | :---------------- | :---------------- |
-| `function`(*) | Kubeless Function | List of functions |
+| `functions`(*) | Kubeless Function | List of functions |
 
 Each function contains the following fields:
 
@@ -141,3 +179,17 @@ Each function contains the following fields:
 | `deps_file` | Dependencies file for the function (`go.mod` or `requirements.txt`) |
 | `timeout` | Function completion timeout in seconds, default none |
 | `port` | IPV4 port to use in the function image, default 8080 |
+
+Example (some fields omitted):
+```json
+{
+	"kubeless": {
+		"functions": [
+			{
+				"path": "/",
+				"handler": "hello"
+			}
+		]
+	}
+}
+```
