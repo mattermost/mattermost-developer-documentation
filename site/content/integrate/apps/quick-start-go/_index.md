@@ -66,7 +66,7 @@ Create a file called `manifest.json` containing:
 ```json
 {
 	"app_id": "hello-world",
-    "version":"v0.8.0",
+    "version":"0.8.0",
 	"display_name": "Hello, world!",
 	"icon": "icon.png",
 	"homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/examples/go/hello-world",
