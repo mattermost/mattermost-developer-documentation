@@ -382,7 +382,7 @@ all: dist run
 
 `make run` will run locally, as an http server
 
-```
+```make
 .PHONY: run
 ## run: runs the app locally
 run: 
@@ -397,7 +397,7 @@ run:
 - `hello-serverless.zip` which in turn contains a linux-amd64 executable,
   `hello-serverless`.
 
-```
+```make
 .PHONY: dist-aws
 ## dist-aws: creates the bundle file for AWS Lambda deployments
 dist-aws: 
@@ -421,7 +421,7 @@ dist-aws:
 - `/template`
 After unzipping and pre-processing `manifest.yml`, one should be able to run `faas-cli up -f manifest.yml` for the bundle.
 
-```
+```make
 .PHONY: dist-openfaas
 ## dist-openfaas: creates the bundle file for OpenFaaS deployments
 dist-openfaas:
