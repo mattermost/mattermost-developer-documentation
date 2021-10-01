@@ -397,7 +397,7 @@ run:
 - `hello-serverless.zip` which in turn contains a linux-amd64 executable,
   `hello-serverless`.
 
-```
+```make
 .PHONY: dist-aws
 ## dist-aws: creates the bundle file for AWS Lambda deployments
 dist-aws: 
