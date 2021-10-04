@@ -71,7 +71,7 @@ Any language you want. We currently have an [official driver for Go](https://pkg
 2. **External** (HTTP) apps. Apps can be hosted as publicly available HTTP
    services, the choice of hosting provider is yours. A self-managed Mattermost
    customer would be able to install your app from a URL. External apps are not
-   currently accepted in the Mattermost App Marketplace.
+   currently accepted in the Mattermost Marketplace.
 3. **Customer-deployable** apps. An app can be packaged as a bundle, deployable
    by the customer in their own hosting environment. Currently, [AWS
    Lambda](https://aws.amazon.com/lambda/),
