@@ -78,7 +78,7 @@ Any language you want. We currently have an [official driver for Go](https://pkg
    [OpenFaaS](https://www.openfaas.com/), and [Kubeless](https://kubeless.io/)
    are supported, with plans for more serverless platforms, Kubernetes, and
    docker compose. Customer-deployable apps are not yet distributed via the
-   Mattermost App Marketplace.
+   Mattermost Marketplace.
 
 ### Can I write "internal" organization-specific apps?
 
