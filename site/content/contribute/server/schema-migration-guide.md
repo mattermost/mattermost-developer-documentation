@@ -27,13 +27,13 @@ The problem arises when in some databases, for some tables, due to various techn
 ### How do I measure the impact of the migration?
 
 You mainly need to answer two questions:
-1. Is it a large table? (The performance team can help you with this.)
+1. Is it a large table (like `Posts` or `ThreadMemberships`)? (The performance team can help you with this.)
 2. Can my change run concurrently with other DB operations in that table? Check MySQL and Postgres documentations, from their required minimum versions.
 
-If the answer to 2. is yes, then it should be pretty simle. In that case, if the answer to 1 is also yes, then please extract the raw SQL query to be run and add it in the release notes for customers who want to run it in off-hours to speed up upgrade time.
+If the answer to 2. is yes, then it should be pretty simple. In that case, if the answer to 1 is also yes, then please extract the raw SQL query to be run and add it in the release notes for customers who want to run it in off-hours to speed up upgrade time.
 
 If the answer to 2. is no, then contact the performance team and we can work towards a solution.
 
 ### Inform SRE team.
 
-If the migration is large, when the PR is review complete, please cc an SRE team member and ask them to merge it and their convenience. This is so that the migration can run on our Community cluster at a suitable time.
+If the migration is large, when the PR is review complete, please cc an SRE team member and ask them to merge it and their convenience. This is so that the migration can run on our Community cluster and Cloud at a suitable time.
