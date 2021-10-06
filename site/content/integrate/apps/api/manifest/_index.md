@@ -162,7 +162,9 @@ Example (some fields omitted):
 
 #### `Kubeless`: Apps deployable and accessible as Kubeless
 
-Provides configuration for deploying an app (bundle) onto Kubeless serverless platform on Kubernetes.
+Provides configuration for deploying an app (bundle) onto
+[Kubeless](https://kubeless.io/docs/quick-start/) serverless platform on
+Kubernetes.
 
 | Name          | Type              | Description |
 | :------------ | :---------------- | :---------------- |
