@@ -383,8 +383,7 @@ all: dist run
 .PHONY: run
 ## run: runs the app locally
 run: 
-	cd http ; \
-		go run . --manifest=../manifest.json --static=../static
+	go run ./http --manifest=manifest.json --static=static
 
 ```
 
