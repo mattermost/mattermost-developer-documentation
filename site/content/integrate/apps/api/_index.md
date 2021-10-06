@@ -2,7 +2,7 @@
 title: "API"
 heading: "Mattermost Apps API Reference"
 description: "This reference describes the Mattermost Apps API"
-weight: 300
+weight: 200
 ---
 
 ## App Structure
