@@ -7,7 +7,13 @@ weight: 1000
 
 ## Install
 
-Installing is a process when a System Admin installs provisioned and already registered/published apps in their Mattermost installation. As mentioned above the list of the registered apps are in the memory of the Apps Plugin. Whenever the System Admin executes an `/install` slash command or selects **Install** in the Marketplace, appropriate permissions are requested and the app is installed. A bot and an OAuth app are created on installation, and an `OnInstall` call is also sent to the app and relevant lambda function (if applicable).
+Installing is a process when a System Admin installs deployed apps in their
+Mattermost installation. As mentioned above the list of the registered apps are
+in the memory of the Apps Plugin. Whenever the System Admin executes an
+`/install` slash command or selects **Install** in the Marketplace, appropriate
+permissions are requested and the app is installed. A bot and an OAuth app are
+created on installation, and an `OnInstall` call is also sent to the app and
+relevant lambda function (if applicable).
 
 ![Flow of installing an app in AWS](install-mm-aws-app.png)
 

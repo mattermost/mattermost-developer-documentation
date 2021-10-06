@@ -29,21 +29,21 @@ You will need to create an S3 bucket within AWS or use an existing bucket.
 1. **AWS Region**:
    1. Select your region
    1. Save the slug value for later, to be used in `MM_APPS_AWS_REGION` environment variable (Example: `us-east-1`)
-   1. Corresponding Lambdas will be provisioned in the same region
+   1. Corresponding Lambdas will be deployed in the same region
 2. **Block Public Access settings for this bucket**
    1. (Optional) Check **Block *all* public access**
 3. Select **Create Bucket**.
 
 #### Create a privileged IAM user access key and secret
 
-You will need an access key and secret so that `appsctl` can provision the app. These credentials can come from creating an IAM user, using a privileged IAM user, or even using the AWS account owners personal access key. Please follow the instructions [provided by AWS](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/) to complete these steps and save the `Access key ID` and `Secret access key` values.
+You will need an access key and secret so that `appsctl` can deploy the app. These credentials can come from creating an IAM user, using a privileged IAM user, or even using the AWS account owners personal access key. Please follow the instructions [provided by AWS](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/) to complete these steps and save the `Access key ID` and `Secret access key` values.
 
-#### Set AWS_PROVISION_ environment variables
+#### Set AWS_DEPLOY_ environment variables
 
 Open a terminal where you installed the Apps plugin and set the following variables to the AWS credentials just created and saved:
 
-- `MM_APPS_PROVISION_AWS_ACCESS_KEY`  
-- `MM_APPS_PROVISION_AWS_SECRET_KEY`
+- `MM_APPS_DEPLOY_AWS_ACCESS_KEY`  
+- `MM_APPS_DEPLOY_AWS_SECRET_KEY`
 
 Set the following environment variables based on bucket name and region
 
@@ -127,7 +127,7 @@ The command requires that the following environment variables are set:
   deployed and accessed.
 - `MM_APPS_S3_BUCKET` must be the name of the S3 bucket used to store manifests
   and static assets.
-- `MM_APPS_PROVISION_AWS_ACCESS_KEY`, `MM_APPS_PROVISION_AWS_SECRET_KEY` are the
+- `MM_APPS_DEPLOY_AWS_ACCESS_KEY`, `MM_APPS_DEPLOY_AWS_SECRET_KEY` are the
   priviledged credentials used to deploy functions and files to AWS. 
 - `MM_APPS_AWS_ACCESS_KEY`, `MM_APPS_AWS_SECRET_KEY` are the "unpriviledged"
   credentials used to invoke the functions, used only for the `appsctl aws test`
@@ -139,7 +139,7 @@ install listed` command.
 
 # Deployed app details
 
-AWS Lambda functions have semantic names, which means that a function described in the `manifest.json` file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. **appsctl** provisions lambda functions using this name. For example the name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. **appsctl** handles naming the AWS Lambda functions. The dedicated S3 bucket name is stored in the environment variable: `MM_APPS_S3_BUCKET`.
+AWS Lambda functions have semantic names, which means that a function described in the `manifest.json` file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. **appsctl** deploys lambda functions using this name. For example the name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. **appsctl** handles naming the AWS Lambda functions. The dedicated S3 bucket name is stored in the environment variable: `MM_APPS_S3_BUCKET`.
 
 This also stores all apps' static assets and manifest files.
 
@@ -147,14 +147,14 @@ All files in the static folder of the bundle are considered to be the app's stat
 
 The `manifest.json` file of an app is stored in the same S3 bucket as the key - `manifests/$appID_$appVersion.json`.
 
-![Flow of provisioning custom apps to AWS](provisioning-in-3rd-party-aws.png)
+![Flow of deploying custom apps to AWS](deploy-3rd-party-aws.png)
 
 # Deployment in Mattermost Cloud
 
-In order to be provisioned in Mattermost Cloud an app bundle is uploaded to the specific S3 bucket. On a new app release, a bundle is created by GitLab CI and uploaded to S3. The [Mattermost apps cloud deployer](https://github.com/mattermost/mattermost-apps-cloud-deployer), running as a k8s cron job every hour, detects the S3 upload, and creates appropriate lambda functions, assets, and manifest the same way the **appsclt** does for the third-party accounts.
+In order to be deployed in Mattermost Cloud an app bundle is uploaded to the specific S3 bucket. On a new app release, a bundle is created by GitLab CI and uploaded to S3. The [Mattermost apps cloud deployer](https://github.com/mattermost/mattermost-apps-cloud-deployer), running as a k8s cron job every hour, detects the S3 upload, and creates appropriate lambda functions, assets, and manifest the same way the **appsclt** does for the third-party accounts.
 
-The deployer needs lambda function names, asset keys, and the manifest key to provision the app. It calls the `aws.GetProvisionDataFromFile(/PATH/TO/THE/APP/BUNDLE)` from the Apps Plugin to get the provision data. Same data can be generated using the command:
+The deployer needs lambda function names, asset keys, and the manifest key to deploy the app. It calls the `aws.GetProvisionDataFromFile(/PATH/TO/THE/APP/BUNDLE)` from the Apps Plugin to get the deploy data. Same data can be generated using the command:
 
 `appsctl generate-terraform-data /PATH/TO/YOUR/APP/BUNDLE`
 
-![Flow of provisioning in Mattermost Cloud](provisioning-in-mm-aws.png)
+![Flow of deploying in Mattermost Cloud](deploy-mm-aws.png)

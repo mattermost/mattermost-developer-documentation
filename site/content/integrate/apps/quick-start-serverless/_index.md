@@ -35,8 +35,6 @@ In the System Console, ensure that the following are set to **true**:
 - `Enable Bot Account Creation`
 - `Enable OAuth 2.0 Service Provider`
 
-**Note:** Apps do not work with a production release of Mattermost right now. They can only be run in a development environment. A future release will support production environments.
-
 You also need at least `go1.16` installed. Please follow the guide [here](https://golang.org/doc/install) to install the latest version.
 
 ### Install the Apps plugin
@@ -71,8 +69,7 @@ go get github.com/mattermost/mattermost-plugin-apps/apps@master
 
 Your app has to provide a manifest, which declares app metadata. In this example, the following permissions are requested:
 
-- Create posts as a bot.
-- Render icons in the channel header that will communicate with your app when clicked.
+- Act as the app's bot user.
 - Create slash commands.
 
 Create a file called `manifest.json` containing:
