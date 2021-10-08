@@ -138,12 +138,9 @@ For now, knowing that `v7` represents `src` and `v248` represents `dest` is more
 
 ## Copy block
 
-Once we have our values initialized, we can study the interesting instructions, those in block `b43`:
+Once we have our values initialized, we can study the interesting instructions, those in block `b43`. Omitting the first three lines of the original code, which are again formalities, we have the following code:
 
 ```
-v18 (+7) = LoweredNilCheck <void> v7 v1
-v29 (7) = InlMark <void> [0] v1
-v152 (+8) = InlMark <void> [1] v1
 v34 (+79) = MOVQload <uint64> v7 v1
 v171 (+84) = MOVBstore <mem> v248 v34 v1
 v168 (+85) = SHRQconst <uint64> [8] v34
@@ -154,17 +151,9 @@ v243 (90) = MOVWstore <mem> [5] v248 v216 v219
 v255 (91) = MOVBstore <mem> [7] v248 v180 v243
 ```
 
-We can skip the first three lines, which are again formalities, and start on the one for the value `v34`:
-
-```
-v34 (+79) = MOVQload <uint64> v7 v1
-```
-
-Cool, our first real instruction, `MOVQload`!
-
 ### Loading
 
-Now, what does that cryptic name means? The best way to know is to go directly to [its definition](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L697):
+The first line contains our first real instruction, `MOVQload`! Now, what does that cryptic name means? The best way to know is to go directly to [its definition](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L697):
 
 ```go
 // load 8 bytes from arg0+auxint+aux. arg1=mem
