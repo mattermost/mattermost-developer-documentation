@@ -9,7 +9,7 @@ weight: 3
 
 Schema changes are always made synchronously when Mattermost starts up. This means the application won't be ready to serve requests until all schema changes are applied. In most cases, the new application won't be able to work until those schema changes are in place.
 
-The time taken to run migrations is irrelevant in general. A migration can take hours to run and that is fine. Most of our large customers use High Availability environments, so the application as a whole will always be up. In cases where the customer doesn't run a High Availability environment, we extract out some key SQL queries that the customer can run off-hours on their database. When the application is upgraded, the migration is a no-op because those columns/indexes are already added.
+If your migration will take more time on a larger data set, check if it is possible to extract it as a separate SQL query for the customer to run off-hours on their DB. This is usually possible with new indexes/columns. As a result, when the application is upgraded, the migration is a no-op because those columns/indexes are already added.
 
 The problem arises when in some databases, for some tables, due to various technical reasons, applying a migration prevents other operations from happening on that table. In that case, it causes unavoidable downtime.
 
@@ -32,7 +32,7 @@ Answer the following two questions:
 
 If the answer to 2. is yes, then it should be pretty simple. In that case, if the answer to 1 is also yes, then please extract the raw SQL query to be run and add it in the release notes for customers who want to run it in off-hours to speed up upgrade time.
 
-However, If the answer to the second question above is "no", then contact the Performance team to discuss a solution.
+However, If the answer to the second question above is "no", then contact the [performance team](https://community.mattermost.com/core/channels/developers-performance) to discuss a solution.
 
 ### Inform SRE team.
 
