@@ -16,7 +16,7 @@ The problem arises when in some databases, for some tables, due to various techn
 ### TLDR
 
 1. Migrations are always synchronous.
-2. The time taken to run a migration is irrelevant.
+2. The time taken to run a migration is not always the primary factor in judging impact.
 3. Except in cases where a migration cannot run concurrently with other database operations.
 
 ### I need to make a schema change. What do I do?
