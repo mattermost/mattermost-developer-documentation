@@ -160,7 +160,11 @@ We can skip the first three lines, which are again formalities, and start on the
 v34 (+79) = MOVQload <uint64> v7 v1
 ```
 
-Cool, our first real instruction, `MOVQload`! Now, what does that cryptic name means? The best way to know is to go directly to [its definition](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L697):
+Cool, our first real instruction, `MOVQload`!
+
+### Loading
+
+Now, what does that cryptic name means? The best way to know is to go directly to [its definition](https://github.com/golang/go/blob/bf48163e8f2b604f3b9e83951e331cd11edd8495/src/cmd/compile/internal/ssa/gen/AMD64Ops.go#L697):
 
 ```go
 // load 8 bytes from arg0+auxint+aux. arg1=mem
@@ -190,6 +194,8 @@ v34 (+79) = MOVQload <uint64> v7 v1
 We now can understand that this loads the contents from the `src` argument (remember that `v7`represented`src`), into the memory we initialized at the very beginning (represented by `v1`). There are no auxiliary arguments, so we can safely forget about those! The result of this instruction is represented by the `v34` value, which we can understand as the `temp` variable.
 
 This first line of the block, then, seems perfectly fine: it loads the whole contents of the `src` array into memory (which is effectively the `temp` variable we defined in the code), and it does it with a single instruction. We can no longer optimize this.
+
+### Storing
 
 But remember that the original function did two things: First, it loaded the contents of the `src` array into a temporary variable, and then it stored those contents into the `dest` slice. We've already loaded the contents into memory with the line we discussed above, so the rest of the block should do the rest of the work: Store those contents from memory into the `dest` slice (which was represented by value `v248`). Let's see the rest of the block again:
 
