@@ -19,7 +19,7 @@ Let's learn how to create a simple incoming webhook that posts the following mes
 
 ![image](incoming_webhooks_create_simple.png)
 
-1. First, go to **Main Menu > Integrations > Incoming Webhook**. 
+1. First, go to **Product menu > Integrations > Incoming Webhook**. 
   - If you don't have the **Integrations** option in your Main Menu, incoming webhooks may not be enabled on your Mattermost server or may be disabled for non-admins. They can be enabled by a System Admin from **System Console > Integrations > Integration Management**. Then continue with the steps below.
 2. Select **Add Incoming Webhook** and add name and description for the webhook. The description can be up to 500 characters.
 3. Select the channel to receive webhook payloads, then select **Add** to create the webhook.
@@ -106,7 +106,7 @@ Mattermost automatically translates the data coming from Slack:
 GitLab is the leading open-source alternative to GitHub and offers built-in integrations with Slack. You can use the Slack interface in GitLab to add Mattermost webhooks directly without changing code:
 
 1. In GitLab, go to **Settings > Services** and select **Slack**.
-2. Paste the incoming webhook URL provided by Mattermost from **Main Menu > Integrations > Incoming Webhooks**.
+2. Paste the incoming webhook URL provided by Mattermost from **Product menu > Integrations > Incoming Webhooks**.
 3. Optionally set the **Username** you'd like displayed when the notification is made. Leave the **Channel** field blank.
 4. Select **Save**, then test the settings to confirm messages are sent successfully to Mattermost.
 
