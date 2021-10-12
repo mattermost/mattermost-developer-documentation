@@ -64,7 +64,7 @@ Below are the permissions ([godoc](https://pkg.go.dev/github.com/mattermost/matt
 | `user_joined_channel_notification` | Be notified when users join channels.                                                     |
 | `act_as_bot`                       | Use Mattermost REST API as the app's bot user.                                            |
 | `act_as_user`                      | Use Mattermost REST API as connected users.                                               |
-| `act_as_admin`                     | Use Mattermost REST API as a System Admin.                                                |
+| `act_as_admin`                     | Use Mattermost REST API as a System Admin.  This gives permission for an App to use certain API endpoints that are reserved for administrators.  Use this permission only if required (ie: your App is designed to help maintain or automate certain administrator actions).    |
 | `remote_oauth2`                    | Use remote (third-party) OAuth2 support, and will store secrets to third-party system(s). |
 | `remote_webhooks`                  | Receive webhooks from a remote (third-party) system, and process them as bot.             |
 
