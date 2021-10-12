@@ -55,7 +55,9 @@ An example manifest looks like this:
 
 ### Permissions
 
-These are all the permissions ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Permission)) an app can ask for:
+Apps need to request permissions from the admin who is installing them.  After an app is installed and available to end-users, each user in Mattermost will need to "authenticate" with your App.  Using the `act_as_user` permission, your App will be performing an API call on each authenticated user's behalf.  
+
+Below are the permissions ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Permission)) an app can currently ask for:
 
 | Name                               | Description                                                                               |
 | :--------------------------------- | :---------------------------------------------------------------------------------------- |
