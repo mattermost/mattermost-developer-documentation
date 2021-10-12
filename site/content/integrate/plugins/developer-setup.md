@@ -21,7 +21,7 @@ For developing on Mattermost-managed plugins, each plugin's setup instructions c
 
 If your Mattermost server is running locally, you can enable [local mode](https://docs.mattermost.com/manage/mmctl-command-line-tool.html#local-mode) to streamline deploying your plugin. Edit your server configuration as follows:
 
-```json
+```js
 {
     "ServiceSettings": {
         ...
