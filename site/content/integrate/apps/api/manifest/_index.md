@@ -14,7 +14,7 @@ as a JSON file. The fields of the manifest are:
 | `app_id`(*)             | string       | ID for your app.  |
 | `homepage_url`(*)       | string       | The app homepage. Used in the Marketplace and for OAuth purposes. |
 | `version`               | string       | The version of your app. |
-| `display_name`          | string       | The display name for your app. |
+| `display_name`          | string       | The display name for your app.  |
 | `description`           | string       | The description for your app. Used in the Marketplace. |
 | `icon`                  | string       | The icon for your app. Used as the bot account icon and in the Marketplace. A relative path in the static assets folder of a .PNG image. |
 | `requested_permissions` | Permissions  | All the permissions needed by the app. |
