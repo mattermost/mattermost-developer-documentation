@@ -58,6 +58,6 @@ App services:
   webhooks from 3rd party systems.
 
 - [Lifecycle]({{< ref "lifecycle" >}}) covers lifecycle callback API, i. e.
-  `on_install`.
+  `on_install`.  This is useful for calling your app when it is first installed, or the user is attempting to uninstall it and gives you a chance to initialize or clean up data (such as from the KV store) before uninstalling your app. 
   
   
