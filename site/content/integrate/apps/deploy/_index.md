@@ -19,3 +19,8 @@ weight: 1000
 
   Self-managed customers can also install external [HTTP]({{< relref "deploy-http"
   >}}) apps, with no need to deploy them.
+
+  `appsctl` CLI tool is provided to deploy AWS and OpenFaaS apps in self-managed
+  environments. To install appsctl, `go install
+  github.com/mattermost/mattermost-plugin-apps/cmd/appsctl@latest`
+

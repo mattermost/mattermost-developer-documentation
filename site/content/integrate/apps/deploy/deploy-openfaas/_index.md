@@ -7,11 +7,23 @@ weight: 500
 
 ## OpenFaaS Apps
 
+### What is OpenFaaS?
+
+OpenFaaS makes it relatively simple to deploy both serverless functions and
+existing code in stateless containers on Kubernetes or directly on Linux hosts,
+on any public or private cloud. Learn more at
+[OpenFaas.com](https://www.openfaas.com/)
+
+### Packaging an App for OpenFaaS
+
+For details on how to develop and package apps for AWS see [serverless
+example]({{< ref "quick-start-serverless" >}})
+
+### Deploying with appsctl
+
 An App designed and bundled for OpenFaaS can be deployed to the customer's own
 OpenFaaS or faasd environments, and then installed on a self-managed ("on-prem")
 Mattermost server, using the `appsctl openfaas deploy` command.
-
-For details on how to develop and package apps for AWS see [serverless example]({{< ref "quick-start-serverless" >}})
 
 This command requires that [faas-cli](https://github.com/openfaas/faas-cli) is
 installed and configured, with credentials sufficiently privileged to deploy
@@ -22,7 +34,7 @@ the images that it builds to the function instances, so `docker` must have  been
 configured, and `docker login` done, with sufficient credentials to push to the
 registry of choice.
 
-To deploy OpenFaaS Apps use `appsctl aws deploy {openfaas-bundle.zip}` command.
+To deploy OpenFaaS Apps use `appsctl openfaas deploy {openfaas-bundle.zip}` command.
 It will deploy all functions in the bundle, and "list" (upload the manifest of)
 the app in Mattermost server. `--install` can be used to automatically install
 the app once it's deployed.

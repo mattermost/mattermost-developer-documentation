@@ -101,10 +101,6 @@ now deploy an app to AWS.
 
 #### Deploying an app to AWS
 
-After setting up your Mattermost instance, AWS key, and S3 bucket you can now
-deploy apps using `appsctl`. To install appsctl, `go install
-github.com/mattermost/mattermost-plugin-apps/cmd/appsctl@latest`
-
 To deploy AWS Apps from a bundle use `appsctl aws deploy {aws-bundle.zip}`
 command. It will deploy all necessary resources to AWS, update the invoke policy
 as needed, and "list" (upload the manifest of) the app in Mattermost server.

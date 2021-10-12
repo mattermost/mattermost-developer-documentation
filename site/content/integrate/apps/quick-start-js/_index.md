@@ -23,8 +23,6 @@ In the System Console, ensure that the following are set to **true**:
 - `Enable Bot Account Creation`
 - `Enable OAuth 2.0 Service Provider`
 
-**Note:** Apps do not work with a production release of Mattermost right now. They can only be run in a development environment. A future release will support production environments.
-
 ### Install the Apps plugin
 
 The [apps plugin](https://github.com/mattermost/mattermost-plugin-apps) is a communication bridge between your app and the Mattermost server. To install it on your local server, start by cloning the code in a directory of your choice run:
