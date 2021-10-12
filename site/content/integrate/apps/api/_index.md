@@ -52,7 +52,7 @@ App services:
 ## Other
 
 - [Subscriptions]({{< ref "subscriptions" >}}) covers how to subscribe to
-  notifications abdout Mattermost events.
+  notifications abdout Mattermost events. Examples of a subscription include having your App notified whenever a message is posted in a channel that mentions your @bot account.
 
 - [3rd party webhooks]({{< ref "3rdparty-webhooks" >}}) covers subscribing to
   webhooks from 3rd party systems.
