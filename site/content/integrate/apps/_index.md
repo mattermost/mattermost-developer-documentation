@@ -82,6 +82,4 @@ Any language you want. We currently have an [official driver for Go](https://pkg
 
 ### Can I write "internal" organization-specific apps?
 
-Yes. They can be packaged as "customer-deployable" bundles and then deployed on
-the supported serverless platforms, or ran as HTTP services on the
-organization's own hosting infrastructure.
+Yes. They can be packaged as "customer-deployable" bundles and then deployed on the supported serverless platforms, or ran as HTTP services on the organization's own hosting infrastructure.
