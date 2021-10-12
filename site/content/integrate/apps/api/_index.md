@@ -29,7 +29,7 @@ Apps consist of 3 kinds of assets:
   Forms allow to gather fields with limited dynamic behavior
   (dynamically-populated selects, form refresh on field changes). A Form invokes
   a `Call` when it is submitted. A `/`-command is just another way of filling
-  out a `Form`.
+  out a `Form` and submitting it.
 
 ## Using Mattermost APIs
 
@@ -52,12 +52,12 @@ App services:
 ## Other
 
 - [Subscriptions]({{< ref "subscriptions" >}}) covers how to subscribe to
-  notifications abdout Mattermost events.
+  notifications abdout Mattermost events. Examples of a subscription include having your App notified whenever a message is posted in a channel that mentions your @bot account.
 
 - [3rd party webhooks]({{< ref "3rdparty-webhooks" >}}) covers subscribing to
   webhooks from 3rd party systems.
 
 - [Lifecycle]({{< ref "lifecycle" >}}) covers lifecycle callback API, i. e.
-  `on_install`.
+  `on_install`.  This is useful for calling your app when it is first installed, or the user is attempting to uninstall it and gives you a chance to initialize or clean up data (such as from the KV store) before uninstalling your app. 
   
   

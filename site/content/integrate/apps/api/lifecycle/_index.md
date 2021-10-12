@@ -7,7 +7,7 @@ weight: 1000
 
 ## Install
 
-Installing is a process when a System Admin installs deployed apps in their
+Installation of an App is a process when a System Admin installs already deployed apps, within their
 Mattermost installation. As mentioned above the list of the registered apps are
 in the memory of the Apps Plugin. Whenever the System Admin executes an
 `/install` slash command or selects **Install** in the Marketplace, appropriate

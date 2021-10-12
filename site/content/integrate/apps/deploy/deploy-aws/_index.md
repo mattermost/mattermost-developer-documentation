@@ -130,7 +130,7 @@ The command requires that the following environment variables are set:
   command.
 
 Once deployed, apps can be installed interactively in Mattermost using `/apps
-install listed` command.
+install listed` command which will show all the deployed apps available for installation in Mattermost.
 
 
 # Deployed app details

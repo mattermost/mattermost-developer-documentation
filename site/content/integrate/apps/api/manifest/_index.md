@@ -14,8 +14,8 @@ as a JSON file. The fields of the manifest are:
 | `app_id`(*)             | string       | ID for your app.  |
 | `homepage_url`(*)       | string       | The app homepage. Used in the Marketplace and for OAuth purposes. |
 | `version`               | string       | The version of your app. |
-| `display_name`          | string       | The display name for your app. |
-| `description`           | string       | The description for your app. Used in the Marketplace. |
+| `display_name`          | string       | The display name for your app.  |
+| `description`           | string       | The description for your app. Used in the Marketplace. Provide examples of key functionality the App provides in a short paragraph.  |
 | `icon`                  | string       | The icon for your app. Used as the bot account icon and in the Marketplace. A relative path in the static assets folder of a .PNG image. |
 | `requested_permissions` | Permissions  | All the permissions needed by the app. |
 | `requested_locations`   | Locations    | The list of top-level locations that the application intends to bind to. |
@@ -55,16 +55,18 @@ An example manifest looks like this:
 
 ### Permissions
 
-These are all the permissions ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Permission)) an app can ask for:
+Apps need to request permissions from the admin who is installing them.  After an app is installed and available to end-users, each user in Mattermost will need to "authenticate" with your App.  Using the `act_as_user` permission, your App will be performing an API call on each authenticated user's behalf.  
+
+Below are the permissions ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Permission)) an app can currently ask for:
 
 | Name                               | Description                                                                               |
 | :--------------------------------- | :---------------------------------------------------------------------------------------- |
 | `user_joined_channel_notification` | Be notified when users join channels.                                                     |
 | `act_as_bot`                       | Use Mattermost REST API as the app's bot user.                                            |
 | `act_as_user`                      | Use Mattermost REST API as connected users.                                               |
-| `act_as_admin`                     | Use Mattermost REST API as a System Admin.                                                |
+| `act_as_admin`                     | Use Mattermost REST API as a System Admin.  This gives permission for an App to use certain API endpoints that are reserved for administrators.  Use this permission only if required (ie: your App is designed to help maintain or automate certain administrator actions).    |
 | `remote_oauth2`                    | Use remote (third-party) OAuth2 support, and will store secrets to third-party system(s). |
-| `remote_webhooks`                  | Receive webhooks from a remote (third-party) system, and process them as bot.             |
+| `remote_webhooks`                  | Receive webhooks from a remote (third-party) system, and process them as a bot (which will typically, will add a notification message to a channel)           |
 
 
 ### Locations
