@@ -29,7 +29,7 @@ Apps consist of 3 kinds of assets:
   Forms allow to gather fields with limited dynamic behavior
   (dynamically-populated selects, form refresh on field changes). A Form invokes
   a `Call` when it is submitted. A `/`-command is just another way of filling
-  out a `Form`.
+  out a `Form` and submitting it.
 
 ## Using Mattermost APIs
 
