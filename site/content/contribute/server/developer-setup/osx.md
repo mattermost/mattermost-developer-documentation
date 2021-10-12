@@ -58,6 +58,7 @@ description: "Read about how to set up your developer environment in Mattermost 
     ```
 
     **Note:** If you see lot of `nc: bad address 'elasticsearch'` messages, eventually exiting with the message `Service elasticsearch:9200 did not start within 300 seconds. Aborting...`,  increase the memory available for the Docker Engine by going to [Docker's preferences -> Advanced](https://docs.docker.com/docker-for-mac/#advanced).
+    If you see an error which says `Failed to ping DB`, it is probably due to a conflict between the postgres service in docker and the one which is running system wide. One solution to fix this is to stop the system wide server temporarily by running `brew services stop postgres` in your terminal. You can then restart the docker service.
 
 9. Test your environment:
 
