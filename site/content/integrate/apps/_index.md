@@ -68,7 +68,7 @@ Any language you want. We currently have an [official driver for Go](https://pkg
    (JavaScript) and
    [here](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-serverless)
    (go).
-2. **External** (HTTP) apps. Apps can be hosted as publicly available HTTP
+2. **External** (HTTP) apps. Apps can be hosted as publicly (or privately) available HTTP
    services, the choice of hosting provider is yours. A self-managed Mattermost
    customer would be able to install your app from a URL. External apps are not
    currently accepted in the Mattermost Marketplace.
