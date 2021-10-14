@@ -7,6 +7,18 @@ weight: 10
 aliases: [/extend/plugins/webapp/reference/]
 ---
 
+## Table of Contents:
+
+- [PluginClass](#pluginclass)
+  * [Example](#example)
+- [Registry](#registry)
+- [Theme](#theme)
+- [Exported Libraries and Functions](#exported-libraries-and-functions)
+    + [post-utils](#post-utils)
+      - [`formatText(text, options)`](#-formattext-text--options--)
+      - [`messageHtmlToComponent(html, isRHS, options)`](#-messagehtmltocomponent-html--isrhs--options--)
+      - [Usage Example](#usage-example)
+
 ## PluginClass
 
 The PluginClass interface defines two methods used by the Mattermost web app to `initialize` and `uninitialize` your plugin:
@@ -118,7 +130,7 @@ The theme object has the following properties:
 
 ## Exported Libraries and Functions
 
-The web app exports a number of libraries and functions on the [window](https://developer.mozilla.org/en-US/docs/Web/API/Window) object for plugins to use. To avoid bloating your plugin, we recommend depending on these using [Webpack externals](https://webpack.js.org/configuration/externals/) or importing them manually from the window. Below is a list of the exposed libraries and functions:
+The web app exports a number of [libraries and functions](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js) on the [window](https://developer.mozilla.org/en-US/docs/Web/API/Window) object for plugins to use. To avoid bloating your plugin, we recommend depending on these using [Webpack externals](https://webpack.js.org/configuration/externals/) or importing them manually from the window. Below is a list of the exposed libraries and functions:
 
 | Library | Exported Name | Description |
 | ------- | ------------- | ----------- |
@@ -129,6 +141,8 @@ The web app exports a number of libraries and functions on the [window](https://
 | react-bootstrap | window.ReactBootstrap | [Bootstrap for React](https://react-bootstrap.github.io/) |
 | prop-types | window.PropTypes | [PropTypes](https://www.npmjs.com/package/prop-types) |
 | post-utils | window.PostUtils | Mattermost post utility functions (see below) |
+
+**Note:** Some set of functions like "Functions exposed on window for plugin to use" and "Components exposed on window for internal plugin use only" are not listed here. You can refer to [export.js](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js) file which contains all the exports.
 
 #### post-utils
 
