@@ -28,7 +28,7 @@ The folder structure is mostly based on the [Cypress scaffold](https://docs.cypr
         - Refresh tests list in the Cypress Test Runner and a new file should appear in the list.
     - Subfolder naming convention depends on test grouping, which is usually based on the general functional area (e.g. `/e2e/cypress/integration/messaging/` for "Messaging").
     - Test cases that require an Enterprise license should fall under `/e2e/cypress/integration/enterprise/`. This is to easily identify license requirements, both during local development and production testing for Enterprise features.
-3. `/e2e/cypress/plugins` or [Plugin Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Plugin-files)
+3. `/e2e/cypress/plugins` or [Plugin Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Plugins-file)
     - A convenience mechanism that automatically includes the plugins before running every single spec file.
 4. `/e2e/cypress/support` or [Support Files](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Support-file)
     - A support file is a place for reusable behaviour such as Custom Commands or global overrides that are available and can be applied to all spec files.
