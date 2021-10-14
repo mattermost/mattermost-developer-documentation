@@ -103,7 +103,7 @@ Similarly, [Enable integrations to override profile picture icons](https://docs.
 
 If you've built an integration for Mattermost, please consider [sharing your work](https://developers.mattermost.com/integrate/getting-started/) in our [app directory](https://integrations.mattermost.com).
 
-The [app directory](https://integrations.mattermost.com) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-managed infrastructure.
+The [app directory](https://integrations.mattermost.com) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-hosted infrastructure.
 
 ## Slack Compatibility
 
