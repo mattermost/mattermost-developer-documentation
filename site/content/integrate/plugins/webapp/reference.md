@@ -142,7 +142,7 @@ The web app exports a number of [libraries and functions](https://github.com/mat
 | prop-types | window.PropTypes | [PropTypes](https://www.npmjs.com/package/prop-types) |
 | post-utils | window.PostUtils | Mattermost post utility functions (see below) |
 
-**Note:** Some set of functions like "Functions exposed on window for plugin to use" and "Components exposed on window for internal plugin use only" are not listed here. You can refer to [export.js](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js) file which contains all the exports.
+**Note:** Some sets of functions like "Functions exposed on window for plugin to use" and "Components exposed on window for internal plugin use only" are not listed here. You can refer to [export.js](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js) file which contains all the exports.
 
 #### post-utils
 
