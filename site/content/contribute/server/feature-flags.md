@@ -154,11 +154,11 @@ Features have to soak on Cloud for at least two weeks for testing. Focus is on s
 
 When the feature is rolled out to customers, logs will show if there are crashes, and normally users will report feedback on the feature (e.g. bugs).
 
-## Self-managed releases
+## Self-hosted releases
 
-For a feature-flagged feature to be included in a self-managed release, the feature flag should be removed.
+For a feature-flagged feature to be included in a self-hosted release, the feature flag should be removed.
 
-Feature flags are generally off by default and self-managed releases do not contact the management system. Therefore feature flags that are not ready for a self-managed release will be automatically disabled for all self-managed releases.
+Feature flags are generally off by default and self-hosted releases do not contact the management system. Therefore feature flags that are not ready for a self-hosted release will be automatically disabled for all self-hosted releases.
 
 ## Testing
 
@@ -186,8 +186,8 @@ There are no hard rules on when a feature flag should be used. It is left up to 
 1. What is the expected default value for boolean feature flags? Is it `true` or `false`?
  - Definitely `false`. The idea is to use them to slowly roll out a feature. When the code is deployed, the feature flag is not enabled yet. See more details on feature flag rollout timelines [here](https://developers.mattermost.com/contribute/server/feature-flags/#timelines-for-rollouts).
 
-2. Is it possible to use a plugin feature flag such as `PluginIncidentManagement` to "prepackage" a plugin only on Cloud by only setting a plugin version to that flag on Cloud? Can self-managed customers manually set that flag to install the said plugin?
- - Yes. If you leave the default "" then nothing will happen for self-managed installations. You can ask the Cloud team to set ``split.io/environment`` to a specific version.
+2. Is it possible to use a plugin feature flag such as `PluginIncidentManagement` to "prepackage" a plugin only on Cloud by only setting a plugin version to that flag on Cloud? Can self-hosted customers manually set that flag to install the said plugin?
+ - Yes. If you leave the default "" then nothing will happen for self-hosted installations. You can ask the Cloud team to set ``split.io/environment`` to a specific version.
 
 3. How do feature flags work on webapp?
  - To add a feature flag that affects frontend, the following is needed: 
@@ -215,11 +215,11 @@ There are no hard rules on when a feature flag should be used. It is left up to 
 9. Do feature flag changes require the server to be restarted?
  - Feature flags don’t require a server restart unless the feature being flagged requires a restart itself.
 
-10. For features that are requested by self-managed customers, why do we have to deploy to Cloud first, rather than having the customer who has the test case test it?
- - Cloud is the way to validate the stability of the feature before it goes to self-managed customers. In exceptional cases we can let the self-managed customer know that they can use environment variables to enable the feature flag (but specify that the feature is experimental).
+10. For features that are requested by self-hosted customers, why do we have to deploy to Cloud first, rather than having the customer who has the test case test it?
+ - Cloud is the way to validate the stability of the feature before it goes to self-hosted customers. In exceptional cases we can let the self-hosted customer know that they can use environment variables to enable the feature flag (but specify that the feature is experimental).
 
-11. How does the current process take into account bugs that may arise on self-managed specifically?
- - The process hasn’t changed much from the old release process: Features can still be tested on self-managed servers once they have been rolled out to Cloud. The primary goal is that bugs are first identified on Cloud servers.
+11. How does the current process take into account bugs that may arise on self-hosted specifically?
+ - The process hasn’t changed much from the old release process: Features can still be tested on self-hosted servers once they have been rolled out to Cloud. The primary goal is that bugs are first identified on Cloud servers.
 
-12. How can self-managed installations set feature flags?
- - Self-managed installations can set environment variables to set feature flag values. However, users should recognize that the feature is still considered "experimental" and should not be enabled on production servers.
+12. How can self-hosted installations set feature flags?
+ - Self-hosted installations can set environment variables to set feature flag values. However, users should recognize that the feature is still considered "experimental" and should not be enabled on production servers.
