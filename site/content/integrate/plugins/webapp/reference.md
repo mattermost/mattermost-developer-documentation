@@ -130,7 +130,7 @@ The theme object has the following properties:
 
 ## Exported Libraries and Functions
 
-The web app exports a number of [libraries and functions](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js) on the [window](https://developer.mozilla.org/en-US/docs/Web/API/Window) object for plugins to use. To avoid bloating your plugin, we recommend depending on these using [Webpack externals](https://webpack.js.org/configuration/externals/) or importing them manually from the window. Below is a list of the exposed libraries and functions:
+The web app exposes a number of [exported libraries and functions](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js) on the window object for plugins to use. To avoid bloating your plugin, we recommend depending on these using [Webpack externals](https://webpack.js.org/configuration/externals/) or importing them manually from the window. Below is a list of the exposed libraries and functions:
 
 | Library | Exported Name | Description |
 | ------- | ------------- | ----------- |
