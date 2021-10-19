@@ -11,7 +11,7 @@ aliases: [/extend/plugins/developer-workflow/]
 
 - `make test` - Runs the plugin's server tests and webapp tests
 - `make check-style` - Runs linting checks on the plugin's server and webapp folders
-- `make deploy` - Compiles the plugin using the `make dist` command, then automatically deploys the plugin to the Mattermost server. Enabling [Local Mode](https://developers.mattermost.com/integrate/plugins/developer-setup/#deploying-with-local-mode) on your server is the easiest way to use this command.
+- `make deploy` - Compiles the plugin using the `make dist` command, then automatically deploys the plugin to the Mattermost server. Enabling [Local Mode]({{< ref "/integrate/plugins/developer-setup#deploying-with-local-mode" >}}) on your server is the easiest way to use this command.
 - `make watch` - Uses webpack's watch feature to re-compile and deploy the webapp portion of your plugin on any change to the `webapp/src` folder.
 - `make dist` - Compile the plugin into a g-zipped file, ready to upload to a Mattermost server. The file is saved in the plugin repo's `dist` folder.
 - `make enable` - Enables the plugin on the Mattermost server
