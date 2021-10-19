@@ -15,4 +15,4 @@ The plugin Help Wanted tickets are located in each plugin's respective GitHub re
 
 The plugin [developer setup]({{< ref "/integrate/plugins/developer-setup" >}}) and [developer workflow](/integrate/plugins/developer-workflow/) pages are useful to learn about the plugin development environment. You can find more information about plugins in general [here](/integrate/plugins/).
 
-**Note:** The `make` commands listed in the [developer workflow](https://developers.mattermost.com/integrate/plugins/developer-workflow/#common-make-commands-for-working-with-plugins) page should be executed to run certain tests before submitting a PR. The commands are listed in order of their importance.
+**Note:** The `make` commands listed in the [developer workflow]({{< ref "/integrate/plugins/developer-workflow#common-make-commands-for-working-with-plugins" >}}) page should be executed to run certain tests before submitting a PR. The commands are listed in order of their importance.
