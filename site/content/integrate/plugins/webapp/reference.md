@@ -21,7 +21,7 @@ aliases: [/extend/plugins/webapp/reference/]
 
 ## PluginClass
 
-The PluginClass interface defines two methods used by the Mattermost web app to `initialize` and `uninitialize` your plugin:
+The PluginClass interface defines two methods used by the Mattermost Web App to `initialize` and `uninitialize` your plugin:
 
 ```javascript
 class PluginClass {
