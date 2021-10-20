@@ -15,7 +15,7 @@ Apps are lightweight, interactive add-ons to Mattermost which can use any HTTP-c
 - Be deployed using our serverless hosting infrastructure keeping data secure and supporting scalability by being stateless.
 - Include dynamic fields, code as an on-demand function, and interactive modals.
 
-When you develop using the App Framework, your Apps can:
+When you develop using the Apps Framework, your apps can:
 
 - Create slash commands
 
