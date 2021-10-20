@@ -37,7 +37,7 @@ Read the [JavaScript start guide]({{< ref "quick-start-js" >}}) or [Go quick sta
 
 ## FAQ
 
-### When would you build an App vs a custom slash command vs a webhook vs a plugin?
+### When would you build an app vs. a custom slash command vs. a webhook vs. a plugin?
 
 That depends on your use case, as they each have benefits.
 
