@@ -47,7 +47,7 @@ A plugin should be used when you need to [directly alter the UI]({{< ref "integr
 
 ### What's the difference between the Apps Framework and the plugin framework?
 
-The App framework provides a few differences from plugins, including:
+The Apps Framework provides a few differences from plugins, including:
 
 - Interactive elements are easier to use and develop.
 - Compatible with both Mobile and Desktop clients without any extra code.
