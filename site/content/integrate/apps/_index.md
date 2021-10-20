@@ -37,7 +37,7 @@ Read the [JavaScript start guide]({{< ref "quick-start-js" >}}) or [Go quick sta
 
 ## FAQ
 
-### When would you build an app vs a custom slash command vs a webhook vs a plugin?
+### When would you build an app vs. a custom slash command vs. a webhook vs. a plugin?
 
 That depends on your use case, as they each have benefits.
 
@@ -45,7 +45,7 @@ The built-in [incoming webhook]({{< ref "incoming-webhooks" >}}) is great for si
 
 A plugin should be used when you need to [directly alter the UI]({{< ref "integrate/plugins/webapp/best-practices" >}}) in Mattermost or you have a feature that requires low latency with the server (such as replacing characters in any message [before it is saved]({{< ref "integrate/plugins/server/reference#Hooks.MessageWillBePosted" >}})). Currently, plugins have several [UX hooks]({{< ref "integrate/plugins/server/reference#Hooks" >}}) that Apps cannot access, however we plan to add/migrate more UX hooks into the Apps Framework over time. Please see the [plugin documentation]({{< ref "integrate/plugins" >}}) for more information.
 
-### What's the difference between the apps framework and the plugin framework?
+### What's the difference between the Apps Framework and the plugin framework?
 
 The App framework provides a few differences from plugins, including:
 
