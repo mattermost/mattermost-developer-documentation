@@ -52,6 +52,6 @@ The Apps Framework provides a few differences from plugins, including:
 - Interactive elements are easier to use and develop.
 - Compatible with both Mobile and Desktop clients without any extra code.
 
-### What language should I use to write Apps?
+### What language should I use to write apps?
 
 Any language you want. We currently have an [official driver for Go](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps), and we are planning to release other drivers in the future in conjunction with our community.
