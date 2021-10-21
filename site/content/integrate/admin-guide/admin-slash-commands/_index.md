@@ -30,16 +30,16 @@ Each Mattermost installation comes with some built-in slash commands that are re
 | /help | Open the Mattermost help page   | /help |
 | /invite *@{user}* *~{channel-name}*   | Invite user to the channel   | /invite @john ~sampleChannel  |
 | /invite_people *{name@domain.com ...}*     | Send an email invite to your Mattermost team  | /invite_people john@example.com       |
-| /kick (or /remove) *{@username}*  | Remove a member from a public or private channel  | /kick @alice    |
+| /kick (or /remove) *{@username}*  | Remove a member from a Public or Private channel  | /kick @alice    |
 | /join (or /open) *{channel-name}*   | Join the given channel  | /join off-topic |
 | /leave      | Leave the current channel | /leave  |
 | /mute | Turns off desktop, email and push notifications for the current channel or the [channel] specified | /mute ~[channel] |
 | /logout | Log out of Mattermost    | /logout |
 | /me *{message}*   | Do an action   | /me Hello World  |
 | /msg *{@username}* *{message}*      | Send a Direct Message to a user | /msg @alice hello  |
-| /groupmsg *{@username1, @username2, ...}* *{message}* | Sends a Group Message to the specified users | /groupmsg @alice, @bob hello |
+| /groupmsg *{@username1, @username2, ...}* *{message}* | Send a Group Message to the specified users | /groupmsg @alice, @bob hello |
 | /search *{text}* | Search text in messages    | /search meeting |
-| /settings   | Open the Account Settings dialog  | /settings  |
+| /settings   | Open the Settings dialog  | /settings  |
 
 | /shortcuts     | Display a list of keyboard shortcuts | /shortcuts |
 | /shrug *{message}* | Add ``¯\_(ツ)_/¯`` to your message | /shrug oh well |
@@ -54,7 +54,7 @@ Suppose you want to write an external application that is able to check the weat
 
 You can follow these general guidelines to set up a custom Mattermost slash command for your application.
 
-1. Open **Main Menu > Integrations > Slash Commands**. If you don't have the **Integrations** option in your Main Menu, slash commands may not be enabled on your Mattermost server or may be disabled for non-admins. Enable them from **System Console > Integrations > Integration Management** or ask your Mattermost System Admin to do so.
+1. Open **Product menu > Integrations > Slash Commands**. If you don't have the **Integrations** option in your Main Menu, slash commands may not be enabled on your Mattermost server or may be disabled for non-admins. Enable them from **System Console > Integrations > Integration Management** or ask your Mattermost System Admin to do so.
 2. Select **Add Slash Command** and add a name and description for the command.
 3. Set the **Command Trigger Word**. The trigger word must be unique and cannot begin with a slash or contain any spaces. It also cannot be one of the [built-in commands](#built-in-commands).
 4. Set the **Request URL** and **Request Method**. The request URL is the endpoint that Mattermost hits to reach your application, and the request method is either POST or GET and specifies the type of request sent to the request URL.

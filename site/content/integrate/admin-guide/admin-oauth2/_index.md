@@ -16,7 +16,7 @@ You must register your application in Mattermost to generate OAuth 2.0 credentia
 
 If you'd like to set up a Zapier integration with OAuth 2.0, see our [Zapier documentation](../admin-zapier) to learn more.
 
-### Enable OAuth 2.0 Applications
+### Enable OAuth 2.0 applications
 
 OAuth 2.0 applications are off by default and can be enabled by the System Admin as follows:
 
@@ -26,22 +26,22 @@ OAuth 2.0 applications are off by default and can be enabled by the System Admin
 4. (Optional) If you'd like to allow external applications to post with customizable usernames and profile pictures, then set [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) and [Enable integrations to override profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons) to **true**.
 5. (Optional) If you'd like to allow users on your system who are not System Admins to create OAuth 2.0 applications, then set [Restrict managing integrations to Admins](https://docs.mattermost.com/administration/config-settings.html#restrict-managing-integrations-to-admins) to **False**.
 
-### Register an OAuth 2.0 Application
+### Register an OAuth 2.0 application
 
-1. Go to **Main Menu > Integrations**
-2. Select **OAuth 2.0 Applications**, then choose **Add OAuth 2.0 Application**
+1. Go to **Product menu > Integrations**.
+2. Select **OAuth 2.0 Applications**, then choose **Add OAuth 2.0 Application**.
 3. Set **Is Trusted**: When set to **Yes**, your application is considered trusted by Mattermost. This means Mattermost doesn't require users to accept authorization when signing to third-party applications. When set to **No**, users will be provided with the following page to accept or deny authorization when authenticating for the first time.
 
 ![image](oauth2_authorization_screen.png)
 
 Only System Admins can set OAuth 2.0 applications as trusted.
 
-4. Specify the **Display Name**: Enter a name for your application made of up to 64 characters. This is the name users will see when granting access to the application, when viewing a list of authorized applications in **Account Settings > Security > OAuth 2.0 Applications** and when viewing a list of OAuth 2.0 applications in **Main Menu > Integrations**.
-5. Add **Description**: This is a short description of your application that users will see when viewing a list of authorized applications in **Account Settings > Security > OAuth 2.0 Applications**.
+4. Specify the **Display Name**: Enter a name for your application made of up to 64 characters. This is the name users will see when granting access to the application, when viewing a list of authorized applications in **Settings > Security > OAuth 2.0 Applications** and when viewing a list of OAuth 2.0 applications in the **Integrations** menu.
+5. Add **Description**: This is a short description of your application that users will see when viewing a list of authorized applications in **Settings > Security > OAuth 2.0 Applications**.
 6. Specify the **Homepage**: This is the homepage of the OAuth 2.0 application and lets users visit the app page to learn more what it does. The URL must be a valid URL and start with `http://` or `https://` depending on your server configuration.
-7. (Optional) Add **Icon URL**: The image users will see when viewing a list of authorized applications in **Account Settings > Security > OAuth 2.0 Applications** and when viewing a list of OAuth 2.0 applications in **Main Menu > Integrations**. Must be a valid URL and start with `http://` or `https://`.
+7. (Optional) Add **Icon URL**: The image users will see when viewing a list of authorized applications in **Settings > Security > OAuth 2.0 Applications** and when viewing a list of OAuth 2.0 applications in the **Integrations** menu. Must be a valid URL and start with `http://` or `https://`.
 8. Add **Callback URLs**: These are the URL(s) to which Mattermost will redirect users after accepting or denying authorization of your application, and which will be the only URL(s) that handle authorization codes or access tokens. If more than one URL is specified, users will be redirected to the URL used for the initial authorization of the app. Each URL must be on a separate line and start with `http://` or `https://`.
-9. Select **Save** to create the application. 
+9. Select **Save** to create the application.
 
 ![image](oauth2_app_screen.png)
 
@@ -65,7 +65,7 @@ If the application was registered as a trusted OAuth 2.0 app on the Mattermost s
 
 Once authorized, the application receives an access token to perform requests on behalf of that user. The application can then perform any action for which the user has permission.
 
-Users can view a list of authorized apps from **Account Settings > Security > OAuth 2.0 Applications**, and revoke authorization from this setting.
+Users can view a list of authorized apps from **Settings > Security > OAuth 2.0 Applications**, and revoke authorization from this setting.
 
 ![image](oauth2_deauthorize_app.png)
 
