@@ -13,7 +13,7 @@ import (
 	"reflect"
 	"strings"
 
-	_ "github.com/mattermost/mattermost-server/v5/plugin"
+	_ "github.com/mattermost/mattermost-server/v6/plugin"
 	"github.com/pkg/errors"
 	"golang.org/x/tools/go/packages"
 )
@@ -100,7 +100,7 @@ func typesTypeDocs(t types.Type, typesByName map[string]*doc.Type, info *types.I
 			}
 		}
 	case *types.Named:
-		if obj := x.Obj(); obj.Pkg().Path() == "github.com/mattermost/mattermost-server/v5/model" {
+		if obj := x.Obj(); obj.Pkg().Path() == "github.com/mattermost/mattermost-server/v6/model" {
 			if t, ok := typesByName[obj.Name()]; ok {
 				return docTypeDocs(t, typesByName, info)
 			}
@@ -164,7 +164,7 @@ func astTypeDocs(expr ast.Expr, typesByName map[string]*doc.Type, info *types.In
 }
 
 func generateDocs() (*Docs, error) {
-	packageName := "github.com/mattermost/mattermost-server/v5/model"
+	packageName := "github.com/mattermost/mattermost-server/v6/model"
 	config := &packages.Config{
 		Mode: packages.LoadSyntax,
 	}

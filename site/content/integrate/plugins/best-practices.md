@@ -116,3 +116,16 @@ git push origin compare
 5. Request a code review on the resulting PR.
 
 For future changes, you can always repeat this process, making sure to identify the first commit you want to be reviewed. You can also consider the more common scenario of creating a feature branch (using something like `git checkout -b my.feature.branch`) and opening a PR whenever you want to merge the changes into `master`. It's up to you!
+
+## When to write a new API method? New hook?
+
+Don't be afraid to extend the API or hooks to support brand new functionality. Consider accepting an options struct instead of a list of parameters to simplify extending the API in the future:
+
+```go
+	// GetUsers a list of users based on search options.
+	//
+	// Minimum server version: 5.10
+	GetUsers(options *model.UserGetOptions) ([]*model.User, *model.AppError)
+```
+
+Old servers won't do anything with new, unrecognized fields, but also won't break if they are present. When adding new options that will only be supported by some Mattermost server versions, consider wrapping the functionality with a plugin helper to help plugin authors safely use the API.

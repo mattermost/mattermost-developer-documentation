@@ -19,7 +19,7 @@ The plugin manifest provides required metadata about the plugin, such as name an
 See the [manifest reference]({{< ref "/integrate/plugins/manifest-reference" >}}) for more information.
 
 ### Server
-The server component of a plugin is written in Go and runs as a subprocess of the Mattermost server process. The Go code extends the [MattermostPlugin](https://godoc.org/github.com/mattermost/mattermost-server/v5/plugin#MattermostPlugin) struct that contains an [API](/integrate/plugins/server/reference/#API) and allows for the implementation of [Hook]({{< ref "/integrate/plugins/server/reference#Hooks" >}}) methods that enable the plugin to interact with the Mattermost server.
+The server component of a plugin is written in Go and runs as a subprocess of the Mattermost server process. The Go code extends the [MattermostPlugin](https://godoc.org/github.com/mattermost/mattermost-server/v6/plugin#MattermostPlugin) struct that contains an [API](/integrate/plugins/server/reference/#API) and allows for the implementation of [Hook]({{< ref "/integrate/plugins/server/reference#Hooks" >}}) methods that enable the plugin to interact with the Mattermost server.
 
 The sample plugin implements this simply in [plugin.go](https://github.com/mattermost/mattermost-plugin-starter-template/blob/master/server/plugin.go) and the demo plugin splits the API and hook usage throughout [multiple files](https://github.com/mattermost/mattermost-plugin-demo/tree/master/server).
 
