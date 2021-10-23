@@ -128,4 +128,4 @@ Don't be afraid to extend the API or hooks to support brand new functionality. C
 	GetUsers(options *model.UserGetOptions) ([]*model.User, *model.AppError)
 ```
 
-Old servers won't do anything with new, unrecognized fields, but also won't break if they are present. When adding new options that will only be supported by some Mattermost server versions, consider wrapping the functionality with a plugin helper to help plugin authors safely use the API.
+Old servers won't do anything with new, unrecognized fields, but also won't break if they are present.
