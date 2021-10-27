@@ -26,7 +26,7 @@ go run
 Run the following Mattermost slash command:
 
 ```
-/apps install url http://localhost:8082/manifest.json
+/apps install http http://localhost:8082/manifest.json
 ```
 
 ### Configure

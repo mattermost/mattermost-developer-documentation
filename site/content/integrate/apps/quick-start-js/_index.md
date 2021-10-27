@@ -265,7 +265,7 @@ node app.js
 Then run the following slash commands on your Mattermost server:
 
 ```
-/apps install url http://localhost:8080/manifest.json
+/apps install http http://localhost:8080/manifest.json
 ```
 
 Confirm the installation in the modal that pops up. You can insert any secret into the **App secret** field for now.

@@ -224,7 +224,7 @@ func main() {
 
 	addr := ":4000" // matches manifest.json
 	fmt.Println("Listening on", addr)
-	fmt.Println("Use '/apps install url http://localhost" + addr + "/manifest.json' to install the app") // matches manifest.json
+	fmt.Println("Use '/apps install http http://localhost" + addr + "/manifest.json' to install the app") // matches manifest.json
 	log.Fatal(http.ListenAndServe(addr, nil))
 }
 
@@ -257,7 +257,7 @@ go run .
 Then run the following slash commands on your Mattermost server:
 
 ```
-/apps install url http://localhost:4000/manifest.json
+/apps install http http://localhost:4000/manifest.json
 ```
 
 Confirm the installation in the modal that pops up. You can leave the **App secret** field blank, the app does not require one.

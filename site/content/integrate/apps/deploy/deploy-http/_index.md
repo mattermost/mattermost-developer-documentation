@@ -13,5 +13,5 @@ services on the existing hosting infrastructure, for example, using `systemd`).
 It's important that your internal apps are only reachable by the Mattermost
 server, and not from the public internet.
 
-To install an HTTP app use `/apps install url {URL-to-manifest.json}` command in
+To install an HTTP app use `/apps install http {URL-to-manifest.json}` command in
 Mattermost.
