@@ -8,7 +8,7 @@ weight: 80
 
 ## Creating a Personal Access Token
 
-1. Enable personal access tokens in **System Console > Integrations > Integration Management**.
+1. Enable personal access tokens in **Product menu > Integrations > Integration Management**.
 2. Identify the account you want to create a personal access token with. You may optionally create a new user account for your integration, such as for a bot account. By default, only System Admins have permissions to create a personal access token.
 3. To create an access token with a non-admin account, you must first give it the appropriate permissions. Go to **System Console > User Management > Users**, search for the user account, then select **Manage Roles** from the dropdown.
 
@@ -23,9 +23,7 @@ You may optionally allow the account to post to any channel in your Mattermost s
 Then select **Save**.
 
 5. Sign in to the user account to create a personal access token.
-
-6. Go to **Account Settings > Security > Personal Access Tokens**, then select **Create New Token**.
-
+6. Go to **Settings > Security > Personal Access Tokens**, then select **Create New Token**.
 7. Enter a description for the token, so you remember what it's used for. Then select **Save**.
 
 **Note:** If you create a personal access token for a System Admin account, be extra careful who you share it with. The token enables a user to have full access to the account, including System Admin privileges. It's recommended to create a personal access token for non-admin accounts.
@@ -43,7 +41,7 @@ Tokens can also be temporarily deactivated from the user's account settings. Onc
 
 ### Account Settings
 
-1. Sign in to the user account and go to **Account Settings > Security > Personal Access Tokens**.
+1. Sign in to the user account and go to **Settings > Security > Personal Access Tokens**.
 2. Identify the access token you want to revoke, then select **Delete** and confirm the deletion.
 
 ### System Console

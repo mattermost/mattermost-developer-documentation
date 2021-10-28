@@ -17,7 +17,7 @@ import (
 	"github.com/pkg/errors"
 	"golang.org/x/tools/go/packages"
 
-	_ "github.com/mattermost/mattermost-server/v5/plugin"
+	_ "github.com/mattermost/mattermost-server/v6/plugin"
 )
 
 type Field struct {
@@ -112,7 +112,7 @@ func fields(list *ast.FieldList, info *types.Info) (fields []*Field) {
 }
 
 func generateDocs() (*Docs, error) {
-	packageName := "github.com/mattermost/mattermost-server/v5/plugin"
+	packageName := "github.com/mattermost/mattermost-server/v6/plugin"
 	config := &packages.Config{
 		Mode:  packages.LoadSyntax,
 		Tests: true,
