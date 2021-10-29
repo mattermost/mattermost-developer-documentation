@@ -26,44 +26,6 @@ jobs:
         run: |
           cat pr.txt
           echo "::set-output name=id::$(<pr.txt)"
-      - name: Check label
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        uses: actions/github-script@v5
-        id: label-checker
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            const query = `query($owner:String!, $name:String!, $pr:Int!) {
-              repository(owner:$owner, name:$name){
-                pullRequest(number:$pr) {
-                  labels(first:50) {
-                    nodes{
-                      name
-                    }
-                  }
-                }
-              }
-            }`;
-            const variables = {
-              owner: 'mattermost',
-              name: 'docs',
-              pr: ${{ steps.pr.outputs.id }}
-            };
-            const result = await github.graphql(query, variables);
-            console.log(result);
-            console.log(result.repository.pullRequest);
-            console.log(result.repository.pullRequest.labels);
-            console.log(result.repository.pullRequest.labels.nodes);
-            const labels = result.repository.pullRequest.labels.nodes;
-            for (var index = 0; index < labels.length; ++index) {
-              var label = labels[index];
-              console.log(label);
-              if(label.name == 'preview-environment') {
-                return true;
-              }
-            }
-            return false;
-
       - uses: actions/checkout@v2
         if: ${{ github.event.workflow_run.conclusion == 'success' && steps.label-checker.outputs.result == 'true' }}
         with:
