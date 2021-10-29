@@ -8,6 +8,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    permissions:
+      issues: read
+
+
     steps:
       - name: Download PR number artifact
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -45,9 +50,11 @@ jobs:
               pr: ${{ steps.pr.outputs.id }}
             };
             const result = await github.graphql(query, variables);
+            console.log(result);
+            console.log(result.repository.pullRequest);
+            console.log(result.repository.pullRequest.labels);
             console.log(result.repository.pullRequest.labels.nodes);
             const labels = result.repository.pullRequest.labels.nodes;
-            console.log(labels);
             for (var index = 0; index < labels.length; ++index) {
               var label = labels[index];
               console.log(label);
