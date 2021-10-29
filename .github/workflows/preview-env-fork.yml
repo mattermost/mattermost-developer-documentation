@@ -10,8 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      issues: read
-
+      pull-requests: write
 
     steps:
       - name: Download PR number artifact
