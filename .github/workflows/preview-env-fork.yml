@@ -55,7 +55,7 @@ jobs:
 
       - name: Add comment to PR
         uses: peter-evans/create-or-update-comment@v1
-        if: ${{ success() &&  github.event.workflow_run.conclusion == 'success' && steps.label-checker.outputs.result == 'true' }}
+        if: ${{ success() &&  github.event.workflow_run.conclusion == 'success' }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ steps.pr.outputs.id }}
@@ -63,7 +63,7 @@ jobs:
             Newest code from ${{ github.actor }} has been published to [preview environment](http://mattermost-dev-docs-preview-pulls.s3-website-us-east-1.amazonaws.com/${{ steps.pr.outputs.id }}) for Git SHA ${{ github.event.workflow_run.head_sha }}
 
       - name: The job has failed
-        if: ${{ failure() && github.event.workflow_run.conclusion == 'success' && steps.label-checker.outputs.result == 'true' }}
+        if: ${{ failure() && github.event.workflow_run.conclusion == 'success' }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
