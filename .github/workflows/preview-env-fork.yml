@@ -27,7 +27,6 @@ jobs:
           cat pr.txt
           echo "::set-output name=id::$(<pr.txt)"
       - uses: actions/checkout@v2
-        if: ${{ github.event.workflow_run.conclusion == 'success' && steps.label-checker.outputs.result == 'true' }}
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -35,21 +34,18 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Hugo
-        if: ${{ github.event.workflow_run.conclusion == 'success' && steps.label-checker.outputs.result == 'true' }}
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.74.2'
           # extended: true
 
       - name: Build Previews
-        if: ${{ github.event.workflow_run.conclusion == 'success' && steps.label-checker.outputs.result == 'true' }}
         run: |
           rm -rf ./dist
           hugo -F -s site --baseURL http://mattermost-dev-docs-preview-pulls.s3-website-us-east-1.amazonaws.com/ --destination ../dist/html
 
       - uses: shallwefootball/s3-upload-action@master
         name: Upload Preview Env
-        if: ${{ github.event.workflow_run.conclusion == 'success' && steps.label-checker.outputs.result == 'true' }}
         with:
           aws_key_id: ${{ secrets.AWS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
