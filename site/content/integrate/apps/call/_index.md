@@ -138,6 +138,6 @@ There are several types ([godoc](https://pkg.go.dev/github.com/mattermost/matter
 
 ### Install
 
-When the app is installed and `on_install` is defined in the [manifest]{{< ref "manifest >}}, a special call is made to inform the app that it has been installed on the instance. This call is used mainly to initialize any needed information.
+When the app is installed and `on_install` is defined in the [manifest]{{< ref "manifest" >}}, a special call is made to inform the app that it has been installed on the instance. This call is used mainly to initialize any needed information.
 
 The expected responses are either OK or Error responses.
