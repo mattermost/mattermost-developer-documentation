@@ -52,7 +52,6 @@ Hello OAuth2! is an HTTP app, it requests the *permissions* to act as a System A
     "root_url": "http://localhost:8080",
     "homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-oauth2",
     "requested_permissions": [
-        "act_as_admin",
         "act_as_user",
         "remote_oauth2"
     ],
@@ -110,7 +109,7 @@ The Hello OAuth2 app creates three commands: `/hello-oauth2 configure | connect 
 
 ### Configuring OAuth2
 
-`/hello-oauth2 configure` sets up the Google OAuth2 credentials. It accepts two string flags, `--client-id` and `--client-secret`. Submit will require an Admin token to affect the changes.
+`/hello-oauth2 configure` sets up the Google OAuth2 credentials. It accepts two string flags, `--client-id` and `--client-secret`. Submit will require an user access token to affect the changes.
 
 ```json
 {
@@ -135,7 +134,7 @@ The Hello OAuth2 app creates three commands: `/hello-oauth2 configure | connect 
         "call": {
             "path": "/configure",
             "expand": {
-                "admin_access_token": "all"
+                "acting_user_access_token": "all"
             }
         }
     }
@@ -151,8 +150,8 @@ func configure(w http.ResponseWriter, req *http.Request) {
     clientID, _ := creq.Values["client_id"].(string)
     clientSecret, _ := creq.Values["client_secret"].(string)
 
-    asAdmin := mmclient.AsAdmin(creq.Context)
-    asAdmin.StoreOAuth2App(creq.Context.AppID, clientID, clientSecret)
+    asUser := appclient.AsActingUser(creq.Context)
+    asUser.StoreOAuth2App(creq.Context.AppID, clientID, clientSecret)
 
     json.NewEncoder(w).Encode(apps.CallResponse{
         Markdown: "updated OAuth client credentials",

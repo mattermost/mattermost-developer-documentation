@@ -17,8 +17,7 @@ Apps are installed with `/apps install`:
   - Consent to permissions, locations, OAuth app type
   - Create Bot+Access Token, OAuth App
   - HTTP: collect app’s JWT secret
-- Invoke “OnInstall” callback on the App
-  - Admin access token
+- Invoke “OnInstall” callback on the App, if defined in manifest
 - Also Uninstall/Enable/Disable per App
 
 ## Uninstall

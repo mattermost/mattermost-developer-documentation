@@ -27,7 +27,6 @@ The possible expansions are:
 | `app`                      | Expands the app information.                          |
 | `acting_user`              | Expands the acting user information.                  |
 | `acting_user_access_token` | Include the user-level access token.                  |
-| `admin_access_token`       | Include the admin access token.                       |
 | `channel`                  | Expands the channel information.                      |
 | `post`                     | Expands the post information.                         |
 | `root_post`                | Expands the root post information.                    |
@@ -86,7 +85,6 @@ Depending on the location and expansions, calls will have different context. The
 | `bot_access_token`         | string   | (Expansion)                                                                         |
 | `acting_user`              | User     | (Expansion)                                                                         |
 | `acting_user_access_token` | string   | (Expansion)                                                                         |
-| `admin_access_token`       | string   | (Expansion)                                                                         |
 | `oauth2`                   | App      | (Expansion)                                                                         |
 | `app`                      | App      | (Expansion)                                                                         |
 | `channel`                  | Channel  | (Expansion)                                                                         |
@@ -140,6 +138,6 @@ There are several types ([godoc](https://pkg.go.dev/github.com/mattermost/matter
 
 ### Install
 
-When the app is installed, a special call is made to inform the app that it has been installed on the instance. This call is used mainly to initialize any needed information. If the app asks for Permissions to act as an user, the call will include among the values, the OAuth2 client secret, under the value `oauth2_client_secret`. The context will include the acting user ID, the app ID, the team ID, and the app and Admin access token expanded by default.
+When the app is installed and `on_install` is defined in the [manifest]{{< ref "manifest >}}, a special call is made to inform the app that it has been installed on the instance. This call is used mainly to initialize any needed information.
 
 The expected responses are either OK or Error responses.
