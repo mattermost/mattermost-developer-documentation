@@ -20,7 +20,7 @@ Suppose you want to write an external application, which executes software tests
 
 You can follow these general guidelines to set up a Mattermost outgoing webhook for your application.
 
-1. First, go to **Main Menu > Integrations > Outgoing Webhook**. If you don't have the **Integrations** option in your Main Menu, outgoing webhooks may not be enabled on your Mattermost server or may be disabled for non-admins. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin to do so.
+1. First, go to **Product menu > Integrations > Outgoing Webhook**. If you don't have the **Integrations** option available, outgoing webhooks may not be enabled on your Mattermost server or may be disabled for non-admins. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin to do so.
 2. Select **Add Outgoing Webhook** and add name and description for the webhook. The description can be up to 500 characters. 
 3. Choose the content type by which the request will be sent.
  - If `application/x-www-form-urlencoded` is chosen, the server will encode the parameters in a URL format in the request body.
@@ -103,7 +103,7 @@ Similarly, [Enable integrations to override profile picture icons](https://docs.
 
 If you've built an integration for Mattermost, please consider [sharing your work](https://developers.mattermost.com/integrate/getting-started/) in our [app directory](https://integrations.mattermost.com).
 
-The [app directory](https://integrations.mattermost.com) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-managed infrastructure.
+The [app directory](https://integrations.mattermost.com) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-hosted infrastructure.
 
 ## Slack Compatibility
 

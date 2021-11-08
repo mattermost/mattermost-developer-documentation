@@ -7,7 +7,7 @@ weight: 10
 aliases: [/extend/plugins/server/reference/]
 ---
 
-##### This is the documentation for the Go <code>github.com/mattermost/mattermost-server/plugin</code> package. It can also be found on [GoDoc](https://godoc.org/github.com/mattermost/mattermost-server/v5/plugin).
+##### This is the documentation for the Go <code>github.com/mattermost/mattermost-server/plugin</code> package. It can also be found on [GoDoc](https://godoc.org/github.com/mattermost/mattermost-server/v6/plugin).
 ***
 
 {{<plugingodocs>}}
