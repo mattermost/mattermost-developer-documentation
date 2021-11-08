@@ -151,7 +151,7 @@ func configure(w http.ResponseWriter, req *http.Request) {
     clientID, _ := creq.Values["client_id"].(string)
     clientSecret, _ := creq.Values["client_secret"].(string)
 
-    asAdmin := mmclient.AsAdmin(creq.Context)
+    asAdmin := appsclient.AsAdmin(creq.Context)
     asAdmin.StoreOAuth2App(creq.Context.AppID, clientID, clientSecret)
 
     json.NewEncoder(w).Encode(apps.CallResponse{
@@ -237,7 +237,7 @@ func oauth2Complete(w http.ResponseWriter, req *http.Request) {
 
     token, _ := oauth2Config(&creq).Exchange(context.Background(), code)
 
-    asActingUser := mmclient.AsActingUser(creq.Context)
+    asActingUser := appsclient.AsActingUser(creq.Context)
     asActingUser.StoreOAuth2User(creq.Context.AppID, token)
 
     json.NewEncoder(w).Encode(apps.CallResponse{})
