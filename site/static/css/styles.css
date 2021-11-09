@@ -4503,6 +4503,7 @@ ol > li + li {
 @media (min-width: 768px) {
     .homepage__marquee {
         text-align: center;
+        padding-bottom: 40px;
     }    
 }
 
@@ -4566,6 +4567,11 @@ ol > li + li {
     font-weight: bold;
     padding: 15px 25px;
     display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.homepage-card a:hover {
+    background: #CC8F00;
 }
 
 /* Footer */
