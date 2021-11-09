@@ -1,3 +1,6 @@
+/* Fonts */
+@import url("https://use.typekit.net/hzs0pdc.css");
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 /*!
 *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
 *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -3074,9 +3077,13 @@ readers do not read off random characters that represent icons
 body {
     display: flex;
     flex-direction: column;
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
     font-size: 15px;
     min-height: 100vh;
+    font-family: 'Noto Sans','Helvetica Neue',Arial,sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #363A45;
 }
 
 a {
@@ -3119,9 +3126,20 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: 400;
-    margin-bottom: 1em;
-    margin-top: 1.8em;
+    /* font-weight: 400; */
+    /* margin-bottom: 1em;
+    margin-top: 1.8em; */
+    font-family: 'trade-gothic-next',sans-serif;
+	font-weight: 800;
+}
+
+.ff--trade-gothic {
+    font-family: 'trade-gothic-next',sans-serif;
+}
+
+
+.ff--fira-mono {
+	font-family: 'Fira Mono','Courier New',Courier,monospace;
 }
 
 .hanchor {
@@ -3218,7 +3236,7 @@ header.with-notification-bar {
 }
 
 footer {
-    background: #FAFAFA;
+    /* background: #FAFAFA; */
     padding: 50px 0 40px;
 }
 
@@ -4446,20 +4464,108 @@ ol > li + li {
     }
 }
 
+/* 2021 Reskin Global */
+.mm-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.mm-grid-col-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mm-grid-col-gap-40 {
+	column-gap: 40px;
+}
+
+@media (min-width: 768px) {
+    .mm-grid {
+        display: grid;
+    }
+}
+
 /* Homepage */
 .homepage-wrapper {
     background:  #1E325C;
+    padding: 50px 0;
+}
+
+@media (min-width: 768px) {
+    .homepage-wrapper {
+        padding: 150px 0 100px;
+        background-image: url("../img/home/developers-zipper-corner.png");
+        background-repeat: no-repeat;
+        background-position: top left;
+        background-size: 290px;
+    }    
+}
+
+@media (min-width: 768px) {
+    .homepage__marquee {
+        text-align: center;
+    }    
 }
 
 .mm-h1 {
-    font-size: 52px;
+    font-size: 42px;
     line-height: 130%;
+    margin-bottom: 20px;
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .mm-h1 {
+        font-size: 52px;
+        margin-bottom: 30px;
+    }
 }
 
 .mm-subhead {
     font-size: 24px;
     line-height: 150%;
     color: #C5D2EC;
+}
+
+.homepage-card {
+    background: white;
+    border-radius: 5px;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+@media (min-width: 768px) {
+    .homepage-card {
+        min-height: 400px;
+        margin-bottom: 0;
+    }  
+}
+
+.homepage-card img {
+    height: 55px;
+    width: auto;
+}
+
+.homepage-card h3 {
+    font-weight: 700;
+    margin: 30px 0;
+}
+
+.homepage-card p {
+    font-size: 18px;
+}
+
+.homepage-card a {
+    background: #FFBC1F;
+    border-radius: 30px;
+    color: black;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: bold;
+    padding: 15px 25px;
+    display: inline-block;
 }
 
 /* Footer */
