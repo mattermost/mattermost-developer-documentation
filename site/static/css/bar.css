@@ -1,4 +1,4 @@
-html {
+/* html {
     scroll-padding-top: 80px;
 }
 
@@ -46,4 +46,82 @@ html {
 
 .notification-bar-hide:hover {
     opacity: .5;
+} */
+
+
+/* Notification Banner */
+
+.notification-bar {
+	color: #1B1D22;
+    text-align: center;
+    /* display: none; */
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    white-space: nowrap;
+	background-color: #FFBC1F;
+    /* position: fixed; */
+    z-index: 9999;
 }
+
+.notification-bar.closed {
+    display: none;
+}
+
+.notification-bar__content {
+    padding: 0.5rem 1rem;
+	font-family: "trade-gothic-next","Lato","Helvetica Neue","Arial",sans-serif;
+	font-weight: 700;
+    font-size: 15px;
+	line-height: 1.2;
+    width: 100%;
+}
+
+.notification-bar__content > div {
+	overflow: hidden;
+    text-overflow: ellipsis;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.notification-bar__content > div img {
+	display: none;
+}
+
+.notification-bar a {
+    color: #1B1D22;
+}
+
+.notification-bar__close {
+    font-size: 36px;
+    font-weight: 300;
+    position: absolute;
+    cursor: pointer;
+    right: -5px;
+    opacity: .3;
+    top: 0;
+    width: 64px;
+    line-height: 35px;
+}
+
+/* .notification-bar-hide:hover {
+    opacity: .5;
+}
+
+.with-notification .wy-side-scroll {
+	padding-top: 62px;
+}
+
+.with-notification .notification-bar {
+	display: flex;
+}
+
+.with-notification header {
+	top: 46px;
+}
+
+.with-notification .wy-grid-for-nav {
+	padding-top: 114px;
+} */

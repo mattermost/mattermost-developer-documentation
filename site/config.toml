@@ -241,6 +241,8 @@ pygmentsStyle = "manni"
     twitter = 'https://twitter.com/mattermost'
     facebook = 'https://www.facebook.com/Mattermost-2300985916642531/'
     youtube = 'https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA'
+    linkedin = 'https://www.linkedin.com/company/mattermost/'
+    github = 'https://github.com/mattermost/'
     copyright = '&copy; Mattermost, Inc. All Rights Reserved.'
 
 # Allows html in Hugo >= v0.60.0.  See Github issue #506.

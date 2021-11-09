@@ -22,15 +22,15 @@
         {{ end }}
     </ul>
 </header> -->
-<div data-swiftype-index=false class="notification-bar sticky-top">
+<div data-swiftype-index=false class="notification-bar">
     <div class="notification-bar__content">
         <a class="notification-bar__close" data-ol-has-click-handler="">
             <span aria-hidden="true">×</span>
         </a>
 	    <div>
-			<img src="" width="30" height="30" alt="leaf icon">
-			<a href="https://mattermost.com/blog/hacktoberfest-2021/?utm_source=referral&utm_medium=docs&utm_campaign=fall-events-hacktoberfest-2021">
-				Join us for Hacktoberfest!
+			<img src="img/notification-bar/megaphone_icon.svg" width="30" height="30" alt="megaphone icon">
+			<a href="{{ .Site.Params.notification.url | absURL }}">
+				{{ .Site.Params.notification.text }}
 			</a>
 		</div>
     </div>
@@ -39,7 +39,7 @@
 	<div class="nav-container site-header__container">
 		<div class="row site-header__row">
 			<div class="col-9 col-md-3 col-lg-2 site-header__col--logo">
-				<a href="/" data-ol-has-click-handler=""><img src="" alt="Mattermost Logo"></a>
+				<a href="/" data-ol-has-click-handler=""><img src="img/nav/Mattermost-Logo-Denim.svg" alt="Mattermost Logo"></a>
 			</div>
 			<div class="col-3 col-md-9 site-header__mobile-menu" id="hamburger" data-ol-has-click-handler="">
 				<svg class="hamburger-open" width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +66,7 @@
 							<figure class="sub-menu__block">
 								<a href="https://mattermost.com/channels/" data-ol-has-click-handler="">
 									<div class="sub-menu__block--icon">
-										<img src="">
+										<img src="img/nav/channels-icon.svg">
 									</div>
 									<div class="sub-menu__block--text">
 										<span class="sub-menu__block--text_title">Channels</span>
@@ -77,7 +77,7 @@
 							<div class="sub-menu__block">
 								<a href="https://mattermost.com/playbooks/" data-ol-has-click-handler="">
 									<div class="sub-menu__block--icon">
-										<img src="">
+										<img src="img/nav/playbooks-icon.svg">
 									</div>
 									<div class="sub-menu__block--text">
 										<span class="sub-menu__block--text_title">Playbooks</span>
@@ -88,7 +88,7 @@
 							<figure class="sub-menu__block">
 								<a href="https://mattermost.com/boards/" data-ol-has-click-handler="">
 									<div class="sub-menu__block--icon">
-										<img src="">
+										<img src="img/nav/boards-icon.svg">
 									</div>
 									<div class="sub-menu__block--text">
 										<span class="sub-menu__block--text_title">Boards</span>
@@ -100,17 +100,17 @@
 								<ul>
 									<li class="sub-menu__links--single">
 										<a href="https://mattermost.com/platform-overview/" data-ol-has-click-handler="">
-											<span class="sub-menu__links--icon"><img src=""></span>Product Overview
+											<span class="sub-menu__links--icon"><img src="img/nav/ProductOverview.svg"></span>Product Overview
 										</a>
 									</li>
 									<li class="sub-menu__links--single">
 										<a href="https://mattermost.com/integrations-overview/" data-ol-has-click-handler="">
-											<span class="sub-menu__links--icon"><img src=""></span>Integrations
+											<span class="sub-menu__links--icon"><img src="img/nav/Integrations.svg"></span>Integrations
 										</a>
 									</li>
 									<li class="sub-menu__links--single">
 										<a href="https://mattermost.com/security/" data-ol-has-click-handler="">
-											<span class="sub-menu__links--icon"><img src=""></span>Security
+											<span class="sub-menu__links--icon"><img src="img/nav/Security.svg"></span>Security
 										</a>
 									</li>
 								</ul>
@@ -130,7 +130,7 @@
 								<figure class="sub-menu__block">
 									<a href="https://mattermost.com/solutions/" data-ol-has-click-handler="">
 										<div class="sub-menu__block--icon">
-											<img src="">
+											<img src="img/nav/SolutionsOverview.svg">
 										</div>
 										<div class="sub-menu__block--text">
 											<span class="sub-menu__block--text_title">Solutions Overview</span>
@@ -145,42 +145,42 @@
 									<ul>
 										<li class="sub-menu__links--single">
 											<a href="https://mattermost.com/solutions/use-cases/secure-collaboration/" data-ol-has-click-handler="">
-												<span class="sub-menu__links--icon"><img src=""></span>Secure Collaboration
+												<span class="sub-menu__links--icon"><img src="img/nav/SecureCollaboration.svg"></span>Secure Collaboration
 											</a>
 										</li>
 										<li class="sub-menu__links--single">
 											<a href="https://mattermost.com/solutions/use-cases/devops/" data-ol-has-click-handler="">
-												<span class="sub-menu__links--icon"><img src=""></span>DevOps
+												<span class="sub-menu__links--icon"><img src="img/nav/DevOps.svg"></span>DevOps
 											</a>
 										</li>
 										<li class="sub-menu__links--single">
 											<a href="https://mattermost.com/solutions/use-cases/workflow-orchestration/" data-ol-has-click-handler="">
-												<span class="sub-menu__links--icon"><img src=""></span>Workflow Orchestration
+												<span class="sub-menu__links--icon"><img src="img/nav/WorkflowOrchestration.svg"></span>Workflow Orchestration
 											</a>
 										</li>
 										<li class="sub-menu__links--single">
 											<a href="https://mattermost.com/solutions/use-cases/incident-resolution/" data-ol-has-click-handler="">
-												<span class="sub-menu__links--icon"><img src=""></span>Incident Resolution
+												<span class="sub-menu__links--icon"><img src="img/nav/IncidentCollaboration.svg"></span>Incident Resolution
 											</a>
 										</li>
 										<li class="sub-menu__links--single">
 											<a href="https://mattermost.com/solutions/use-cases/ci-cd/" data-ol-has-click-handler="">
-												<span class="sub-menu__links--icon"><img src=""></span>CI/CD
+												<span class="sub-menu__links--icon"><img src="img/nav/CICD.svg"></span>CI/CD
 											</a>
 										</li>
 										<li class="sub-menu__links--single">
 											<a href="https://mattermost.com/solutions/use-cases/test-qa/" data-ol-has-click-handler="">
-												<span class="sub-menu__links--icon"><img src=""></span>Test/QA
+												<span class="sub-menu__links--icon"><img src="img/nav/TestQA.svg"></span>Test/QA
 											</a>
 										</li>
 										<li class="sub-menu__links--single">
 											<a href="https://mattermost.com/solutions/use-cases/it-service-desk/" data-ol-has-click-handler="">
-												<span class="sub-menu__links--icon"><img src=""></span>IT Service Desk
+												<span class="sub-menu__links--icon"><img src="img/nav/ITServiceDesk.svg"></span>IT Service Desk
 											</a>
 										</li>
 										<li class="sub-menu__links--single">
 											<a href="https://mattermost.com/solutions/use-cases/apm-npm/" data-ol-has-click-handler="">
-												<span class="sub-menu__links--icon"><img src=""></span>APM/NPM
+												<span class="sub-menu__links--icon"><img src="img/nav/APM_NPM.svg"></span>APM/NPM
 											</a>
 										</li>
 									</ul>
@@ -199,27 +199,27 @@
 									<ul>
 										<li class="sub-menu__links--single">
 											<a href="https://mattermost.com/solutions/industries/government/" data-ol-has-click-handler="">
-												<span class="sub-menu__links--icon"><img src=""></span>Government
+												<span class="sub-menu__links--icon"><img src="img/nav/Government.svg"></span>Government
 											</a>
 										</li>
 										<li class="sub-menu__links--single">
 											<a href="https://mattermost.com/solutions/industries/financial-services/" data-ol-has-click-handler="">
-												<span class="sub-menu__links--icon"><img src=""></span>Financial Services
+												<span class="sub-menu__links--icon"><img src="img/nav/FinancialServices.svg"></span>Financial Services
 											</a>
 										</li>
 										<li class="sub-menu__links--single">
 											<a href="https://mattermost.com/solutions/industries/media-entertainment/" data-ol-has-click-handler="">
-												<span class="sub-menu__links--icon"><img src=""></span>Media &amp; Entertainment
+												<span class="sub-menu__links--icon"><img src="img/nav/"></span>Media &amp; Entertainment
 											</a>
 										</li>
 										<li class="sub-menu__links--single">
 											<a href="https://mattermost.com/solutions/industries/legal/" data-ol-has-click-handler="">
-												<span class="sub-menu__links--icon"><img src=""></span>Legal
+												<span class="sub-menu__links--icon"><img src="img/nav/MediaEntertainment.svg"></span>Legal
 											</a>
 										</li>
 										<li class="sub-menu__links--single">
 											<a href="https://mattermost.com/solutions/industries/healthcare/" data-ol-has-click-handler="">
-												<span class="sub-menu__links--icon"><img src=""></span>Healthcare
+												<span class="sub-menu__links--icon"><img src="img/nav/Healthcare.svg"></span>Healthcare
 											</a>
 										</li>
 									</ul>
@@ -242,7 +242,7 @@
 							<figure class="sub-menu__block">
 								<a href="https://mattermost.com/deploy/" data-ol-has-click-handler="">
 									<div class="sub-menu__block--icon">
-										<img src="">
+										<img src="img/nav/Server.svg">
 									</div>
 									<div class="sub-menu__block--text">
 										<span class="sub-menu__block--text_title">Deploy</span>
@@ -253,7 +253,7 @@
 							<figure class="sub-menu__block">
 								<a href="https://mattermost.com/community/" data-ol-has-click-handler="">
 									<div class="sub-menu__block--icon">
-										<img src="">
+										<img src="img/nav/Community.svg">
 									</div>
 									<div class="sub-menu__block--text">
 										<span class="sub-menu__block--text_title">Community</span>
@@ -264,7 +264,7 @@
 							<figure class="sub-menu__block">
 								<a href="https://mattermost.com/contribute/" data-ol-has-click-handler="">
 									<div class="sub-menu__block--icon">
-										<img src="">
+										<img src="img/nav/Contribute.svg">
 									</div>
 									<div class="sub-menu__block--text">
 										<span class="sub-menu__block--text_title">Contribute</span>
@@ -276,17 +276,17 @@
 								<ul>
 									<li class="sub-menu__links--single">
 										<a href="https://mattermost.com/blog/" data-ol-has-click-handler="">
-											<span class="sub-menu__links--icon"><img src=""></span>Blog
+											<span class="sub-menu__links--icon"><img src="img/nav/Blog.svg"></span>Blog
 										</a>
 									</li>
 									<li class="sub-menu__links--single">
 										<a href="https://mattermost.com/resources/" data-ol-has-click-handler="">
-											<span class="sub-menu__links--icon"><img src=""></span>Resources
+											<span class="sub-menu__links--icon"><img src="img/nav/Resources.svg"></span>Resources
 										</a>
 									</li>
 									<li class="sub-menu__links--single">
 										<a href="https://docs.mattermost.com/guides/user.html" data-ol-has-click-handler="">
-											<span class="sub-menu__links--icon"><img src=""></span>Guides
+											<span class="sub-menu__links--icon"><img src="img/nav/Guides.svg"></span>Guides
 										</a>
 									</li>
 								</ul>
@@ -295,17 +295,17 @@
 								<ul>
 									<li class="sub-menu__links--single">
 										<a href="https://docs.mattermost.com/" data-ol-has-click-handler="">
-											<span class="sub-menu__links--icon"><img src=""></span>Docs
+											<span class="sub-menu__links--icon"><img src="img/nav/Docs.svg"></span>Docs
 										</a>
 									</li>
 									<li class="sub-menu__links--single">
 										<a href="https://api.mattermost.com/" data-ol-has-click-handler="">
-											<span class="sub-menu__links--icon"><img src=""></span>API Reference
+											<span class="sub-menu__links--icon"><img src="img/nav/APIReference.svg"></span>API Reference
 										</a>
 									</li>
 									<li class="sub-menu__links--single">
 										<a href="https://docs.mattermost.com/administration/changelog.html" data-ol-has-click-handler="">
-											<span class="sub-menu__links--icon"><img src=""></span>Release Notes
+											<span class="sub-menu__links--icon"><img src="img/nav/ReleaseNotes.svg"></span>Release Notes
 										</a>
 									</li>
 								</ul>
@@ -327,7 +327,7 @@
 							<figure class="sub-menu__block">
 								<a href="https://customers.mattermost.com/login/" data-ol-has-click-handler="">
 									<div class="sub-menu__block--icon">
-										<img src="">
+										<img src="img/nav/my-account.svg">
 									</div>
 									<div class="sub-menu__block--text">
 										<span class="sub-menu__block--text_title">My Account</span>
@@ -338,7 +338,7 @@
 							<figure class="sub-menu__block">
 								<a href="https://mattermost.com/download/" data-ol-has-click-handler="">
 									<div class="sub-menu__block--icon">
-										<img src="">
+										<img src="img/nav/apps.svg">
 									</div>
 									<div class="sub-menu__block--text">
 										<span class="sub-menu__block--text_title">Apps</span>
@@ -349,7 +349,7 @@
 							<figure class="sub-menu__block">
 								<a href="https://support.mattermost.com/hc/en-us/" data-ol-has-click-handler="">
 									<div class="sub-menu__block--icon">
-										<img src="">
+										<img src="img/nav/support.svg">
 									</div>
 									<div class="sub-menu__block--text">
 										<span class="sub-menu__block--text_title">Support</span>
