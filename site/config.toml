@@ -108,7 +108,7 @@ pygmentsStyle = "manni"
     description = "Join thousands of developers who contribute to the Mattermost open source project."
     url = "contribute/getting-started/"
     button = "Start Contributing"
-    icon = "/img/home/Contribute.svg"
+    icon = "img/home/Contribute.svg"
     draft = false
 
   [[params.intro.item]]
@@ -116,7 +116,7 @@ pygmentsStyle = "manni"
     description = "Integrate with Mattermost via Apps, APIs, webhooks, and more."
     url = "integrate/getting-started/"
     button = "Integrate Today"
-    icon = "/img/home/IntegrateExtend.svg"
+    icon = "img/home/IntegrateExtend.svg"
     draft = false
 
   [[params.intro.item]]
@@ -124,7 +124,7 @@ pygmentsStyle = "manni"
     description = "Learn how to build Mattermost integrations via demos, example code, and guided content."
     url = "/integrate/admin-guide/"
     button = "Build Now"
-    icon = "/img/home/AdminGuide.svg"
+    icon = "img/home/AdminGuide.svg"
     draft = false
 
   #[params.intro.video]
