@@ -3074,6 +3074,10 @@ readers do not read off random characters that represent icons
     box-shadow: 0 17px 50px 0 rgba(0, 0, 0, 0.1), 0 12px 15px 0 rgba(0, 0, 0, 0.1);
 }
 
+* {
+    /* border: 1px solid red; */
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -3084,6 +3088,19 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: #363A45;
+}
+
+.sidebar {
+    font-family: 'trade-gothic-next',sans-serif;
+}
+
+.sidebar .sidebar__links > .item {
+    margin: 0;
+}
+
+.sidebar .item .active {
+    color: #363A45;
+    font-weight: 800;
 }
 
 a {
@@ -3635,9 +3652,9 @@ ol > li + li {
 }
 
 @media (max-width: 768px) {
-    header {
+    /* header {
         padding: 0 20px;
-    }
+    } */
 
     .doc-content {
         padding: 0 20px;
@@ -3841,7 +3858,7 @@ ol > li + li {
     position: sticky;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 10000;
 }
 .site-header__col--logo {
     display: flex;

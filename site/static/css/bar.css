@@ -1,56 +1,3 @@
-/* html {
-    scroll-padding-top: 80px;
-}
-
-.notification-bar {
-    text-align: center;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    height: 64px;
-    white-space: nowrap;
-    background-image: -webkit-gradient(linear,left top,right top,from(#f0f6ff),to(#d7e7ff));
-    background-image: linear-gradient(90deg,#f0f6ff 0,#d7e7ff 100%);
-    position: fixed;
-    z-index: 6;
-}
-
-.notification-bar.closed {
-    display: none;
-}
-
-.notification-bar__content {
-    padding: 2rem 2.4rem;
-    width: 1080px;
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 1.4;
-}
-
-.notification-bar a {
-    color: #0058cc;
-}
-
-.notification-bar__close {
-    font-size: 36px;
-    font-weight: 300;
-    position: absolute;
-    cursor: pointer;
-    right: 0px;
-    opacity: .3;
-    top: 0;
-    width: 64px;
-    line-height: 64px;
-}
-
-.notification-bar-hide:hover {
-    opacity: .5;
-} */
-
-
-/* Notification Banner */
-
 .notification-bar {
 	color: #1B1D22;
     text-align: center;
@@ -62,7 +9,7 @@
     white-space: nowrap;
 	background-color: #FFBC1F;
     /* position: fixed; */
-    z-index: 9999;
+    z-index: 99;
 }
 
 .notification-bar.closed {
@@ -78,12 +25,28 @@
     width: 100%;
 }
 
+@media (max-width: 768px) {
+    .notification-bar {
+        display: flex;
+        align-items: center;
+        height: 60px;
+    }
+    .notification-bar__content {
+        padding: 5px 20px;
+    }
+}
+
 .notification-bar__content > div {
 	overflow: hidden;
     text-overflow: ellipsis;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .notification-bar__content > div {
+        justify-content: center;
+    }
 }
 
 .notification-bar__content > div img {
@@ -106,22 +69,8 @@
     line-height: 35px;
 }
 
-/* .notification-bar-hide:hover {
-    opacity: .5;
+@media (max-width: 768px) {
+    .notification-bar__close {
+        line-height: 50px;
+    }
 }
-
-.with-notification .wy-side-scroll {
-	padding-top: 62px;
-}
-
-.with-notification .notification-bar {
-	display: flex;
-}
-
-.with-notification header {
-	top: 46px;
-}
-
-.with-notification .wy-grid-for-nav {
-	padding-top: 114px;
-} */
