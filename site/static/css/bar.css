@@ -32,7 +32,7 @@
         height: 60px;
     }
     .notification-bar__content {
-        padding: 5px 20px;
+        padding: 5px 20px 5px 55px;
     }
 }
 
@@ -62,7 +62,6 @@
     font-weight: 300;
     position: absolute;
     cursor: pointer;
-    right: -5px;
     opacity: .3;
     top: 0;
     width: 64px;
@@ -72,5 +71,13 @@
 @media (max-width: 768px) {
     .notification-bar__close {
         line-height: 50px;
+        left: -5px;
+    }
+}
+
+@media (min-width: 769px) {
+    .notification-bar__close {
+        line-height: 50px;
+        right: -5px;
     }
 }
