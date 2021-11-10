@@ -3263,8 +3263,22 @@ footer {
     color: #5A6072;
 }
 
+.footer__copyright-text {
+    display: inline-block;
+    margin-right: 8px;
+}
+
 .footer__copyright a {
     color: #5A6072;
+}
+
+.footer__copyright a:hover {
+    color: #1C58D9;
+}
+
+.footer__copyright span:not(.footer__copyright-text) {
+    display: inline-block;
+    margin: 0 2px;
 }
 
 h1 {
