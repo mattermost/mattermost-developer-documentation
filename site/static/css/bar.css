@@ -77,7 +77,6 @@
 
 @media (min-width: 769px) {
     .notification-bar__close {
-        line-height: 50px;
-        right: -5px;
+        right: 0px;
     }
 }
