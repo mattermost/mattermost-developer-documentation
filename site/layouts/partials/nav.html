@@ -1,40 +1,4 @@
-<!-- {{ partial "notification.html" . }}
-
-
-{{ if .Site.Params.notification.enable }} -->
-<!-- <header class="with-notification-bar">
-{{ else }}
-<header>
-{{ end }}
-    <a href="/"><img src="img/logo.svg" class="logo__colored" alt="Mattermost Logo" width="212px"></a>
-    <a href="/"><img src="img/logo--white.svg" class="logo__white" alt="Mattermost Logo" width="212px"></a>
-    <div class="header__menu-toggle">
-        <i class="fa fa-bars"></i>
-    </div>
-    <ul class="header__links--right">
-        <li class="active"><a href="/">Home</a></li>
-        {{ range .Site.Menus.postpend }}
-            {{ $drafts := index $.Site.Params.navigation.drafts 0}}
-            {{ $draft := index $drafts .Name }}
-            {{ if or (eq $.Site.BuildDrafts true) (eq $draft false) }}
-            <li><a class="external" href="{{ .URL }}">{{ .Name }}</a></li>
-            {{ end }}
-        {{ end }}
-    </ul>
-</header> -->
-<div data-swiftype-index=false class="notification-bar">
-    <div class="notification-bar__content">
-        <a class="notification-bar__close" data-ol-has-click-handler="">
-            <span aria-hidden="true">×</span>
-        </a>
-	    <div>
-			<img src="img/notification-bar/megaphone_icon.svg" width="26" height="26" alt="megaphone icon">
-			<a href="{{ .Site.Params.notification.url | absURL }}">
-				{{ .Site.Params.notification.text }}
-			</a>
-		</div>
-    </div>
-</div>
+{{ partial "notification.html" . }}
 <header class="site-header" itemscope="" itemtype="https://schema.org/WebSite">
 	<div class="nav-container site-header__container">
 		<div class="row site-header__row">

@@ -1,5 +1,5 @@
 {{ if .Site.Params.notification.enable }}
-<div class='notification-bar sticky-top'>
+<!-- <div class='notification-bar sticky-top'>
     <div class="notification-bar__content">
         <a class="notification-bar__close">
             <span aria-hidden="true">×</span>
@@ -8,6 +8,18 @@
             {{ .Site.Params.notification.text }}
         </a>
     </div>
+</div> -->
+<div data-swiftype-index=false class="notification-bar">
+    <div class="notification-bar__content">
+        <a class="notification-bar__close" data-ol-has-click-handler="">
+            <span aria-hidden="true">×</span>
+        </a>
+	    <div>
+			<img src="/img/notification-bar/megaphone_icon.svg" width="26" height="26" alt="megaphone icon">
+			<a href="{{ .Site.Params.notification.url | absURL }}">
+				{{ .Site.Params.notification.text }}
+			</a>
+		</div>
+    </div>
 </div>
-
 {{ end }}
