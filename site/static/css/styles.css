@@ -4491,6 +4491,12 @@ ol > li + li {
         background-image: url("../img/home/developers-zipper-corner.png");
         background-repeat: no-repeat;
         background-position: top left;
+        background-size: 18vw;
+    }    
+}
+
+@media (min-width: 1280px) {
+    .homepage-wrapper {
         background-size: 290px;
     }    
 }
