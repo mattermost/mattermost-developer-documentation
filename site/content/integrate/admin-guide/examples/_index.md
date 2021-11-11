@@ -1,6 +1,6 @@
 ---
 title: "Examples"
-heading: "Examples of Mattemost Integrations"
+heading: "Examples of Mattermost Integrations"
 description: "Check out some examples of integrations to get a better idea of how you can extend Mattermost."
 date: "2017-01-19T12:01:23-04:00"
 weight: 5
