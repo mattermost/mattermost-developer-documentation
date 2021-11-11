@@ -101,7 +101,7 @@ pygmentsStyle = "manni"
     subtitle = ''
 
   # Intro section
-  # Available icons: http://simplelineicons.com/
+  # Available icons: https://simplelineicons.github.io/
   [params.intro]
   [[params.intro.item]]
     title = "Contribute"
@@ -212,7 +212,7 @@ pygmentsStyle = "manni"
 
     [[params.categories.item]]
       term = "performance"
-      heading = "Content about Peformance at Mattermost"
+      heading = "Content about Performance at Mattermost"
       description = "Looking to improve the performance of your applications? Learn how we approach performance at Mattermost."
 
     [[params.categories.item]]
