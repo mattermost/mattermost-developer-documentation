@@ -142,7 +142,11 @@ Replace the following parameters:
 
 ### Do bot access tokens expire?
 
-No, but you can automate your integration to cycle its token [through the REST API](https://api.mattermost.com/#tag/users%2Fpaths%2F~1users~1%7Buser_id%7D~1tokens%2Fpost).
+No, but you can automate your integration to cycle its token through the REST API:
+1. Use [GetUserAccessTokensForUser](https://api.mattermost.com/#operation/GetUserAccessTokensForUser) to list the existing tokens for the `bot` user.
+2. Use [CreateUserAccessToken](https://api.mattermost.com/#operation/CreateUserAccessToken) to generate a new token.
+3. Update the services that leverage the token with the new `token` value from step 1.
+4. Use [RevokeUserAccessToken](https://api.mattermost.com/#operation/RevokeUserAccessToken) to revoke the old token based on the `token_id`.
 
 For more information about access tokens, see [the personal access tokens documentation](../admin-personal-access-token).
 
