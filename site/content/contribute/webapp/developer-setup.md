@@ -11,7 +11,7 @@ Set up your development environment for building, running, and testing the Matte
 
 2. Install Node.js 16:
 
-    - If you use [NVM](https://github.com/nvm-sh/nvm), use that to install Node 16. Following command can be run inside `matterermost-webapp` folder once you have cloned it, this will install the correct Node version i.e 16.
+    - If you use [NVM](https://github.com/nvm-sh/nvm), use that to install Node 16. Once you've cloned the `matterermost-webapp`repo, run following command inside the `matterermost-webapp` folder to install the correct Node version i.e 16.
         ```sh
         nvm install
         ```
