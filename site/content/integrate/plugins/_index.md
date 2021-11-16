@@ -1,5 +1,5 @@
 ---
-title: Plugins (Beta)
+title: Plugins
 heading: "Plugins in Mattermost"
 description: "Mattermost supports plugins that offer powerful features for extending and deeply integrating with both the Server and Web/Desktop Apps."
 date: 2017-07-10T00:00:00-05:00
@@ -9,7 +9,7 @@ aliases: [/extend/plugins/]
 
 Mattermost supports plugins that offer powerful features for extending and deeply integrating with both the Server and Web/Desktop Apps.
 
-Plugins are still in beta and we're looking for your feedback! Share constructive feedback [on our forum post](https://forum.mattermost.org/t/plugin-system-upgrade-in-mattermost-5-2/5498) or join the [Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) on our Mattermost community server.
+Share constructive feedback [on our forum post](https://forum.mattermost.org/t/plugin-system-upgrade-in-mattermost-5-2/5498) or join the [Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) on our Mattermost community server.
 
 ## Features
 
