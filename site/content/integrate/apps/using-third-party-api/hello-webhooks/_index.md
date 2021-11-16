@@ -148,7 +148,7 @@ func webhookReceived(w http.ResponseWriter, req *http.Request) {
     creq := apps.CallRequest{}
     json.NewDecoder(req.Body).Decode(&creq)
 
-    asBot := mmclient.AsBot(creq.Context)
+    asBot := appsclient.AsBot(creq.Context)
     channelID := ""
     asBot.KVGet("channel_id", "", &channelID)
 

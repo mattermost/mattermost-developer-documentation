@@ -15,14 +15,14 @@ See [here]({{< ref "manifest#permissions">}}) to learn more about the available 
 
 ## Apps subscriptions API
 
-Subscribe and Unsubscribe APIs are invocable with Bot or User tokens, however they may fail if the token lacks access to the resource. For instance, the app's Bot account needs to be invited to the channel before the app can subscribe to the events in the channel as the Bot. [`mmclient.Client`](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/mmclient#Client) exposes a [`Subscribe`](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/mmclient#Client.Subscribe) and [`Unsubscribe`](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/mmclient#Client.Unsubscribe) method. To learn more about about the `Subscription` data structure please see the [godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Subscription) page.
+Subscribe and Unsubscribe APIs are invocable with Bot or User tokens, however they may fail if the token lacks access to the resource. For instance, the app's Bot account needs to be invited to the channel before the app can subscribe to the events in the channel as the Bot. [`appsclient.Client`](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/appsclient#Client) exposes a [`Subscribe`](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/appsclient#Client.Subscribe) and [`Unsubscribe`](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/appsclient#Client.Unsubscribe) method. To learn more about about the `Subscription` data structure please see the [godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Subscription) page.
 
 ## Apps KV Store API
 
-The go driver [`mmclient.Client`](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/mmclient#Client) support method for KV Get/Set/Delete.
+The go driver [`appsclient.Client`](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/appsclient#Client) support method for KV Get/Set/Delete.
 
 The KV APIs require the use of the Bot Account Token, and will fail if a user token is provided.
 
 ## Mattermost REST API
 
-[`mmclient.Client`](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/mmclient#Client) does includes the [`model.Client4`](https://pkg.go.dev/github.com/mattermost/mattermost-server/v6/model#Client4) Mattermost REST API client, pre-initialized with the auth token.
+[`appsclient.Client`](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/appsclient#Client) does includes the [`model.Client4`](https://pkg.go.dev/github.com/mattermost/mattermost-server/v6/model#Client4) Mattermost REST API client, pre-initialized with the auth token.

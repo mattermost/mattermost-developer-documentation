@@ -50,7 +50,7 @@ Start building your app by creating a directory for the code and setting up a ne
 mkdir my-app
 cd my-app
 go mod init my-app
-go get github.com/mattermost/mattermost-plugin-apps/apps@master
+go get github.com/mattermost/mattermost-plugin-apps@master
 ```
 
 ### Manifest
@@ -184,7 +184,7 @@ import (
 	"net/http"
 
 	"github.com/mattermost/mattermost-plugin-apps/apps"
-	"github.com/mattermost/mattermost-plugin-apps/apps/mmclient"
+	"github.com/mattermost/mattermost-plugin-apps/apps/appsclient"
 )
 
 //go:embed icon.png
@@ -237,7 +237,7 @@ func send(w http.ResponseWriter, req *http.Request) {
 	if ok && v != nil {
 		message += fmt.Sprintf(" ...and %s!", v)
 	}
-	mmclient.AsBot(c.Context).DM(c.Context.ActingUserID, message)
+	appsclient.AsBot(c.Context).DM(c.Context.ActingUserID, message)
 
     json.NewEncoder(w).Encode(apps.CallResponse{
 		Type:     apps.CallResponseTypeOK,
