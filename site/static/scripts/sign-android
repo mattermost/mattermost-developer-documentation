@@ -153,6 +153,7 @@ if [ "$PACKAGE_ID" != "" ]; then
     if [ "$GOOGLE_SERVICES_PATH" != "" ]; then
         echo "Replacing Google Services values"
         GOOGLE_SERVICES=$(jq . "$GOOGLE_SERVICES_PATH")
+        PROJECT_ID=$(echo "$GOOGLE_SERVICES" | jq -r .project_info.project_id)
         PROJECT_NUMBER=$(echo "$GOOGLE_SERVICES" | jq -r .project_info.project_number)
         FIREBASE_URL=$(echo "$GOOGLE_SERVICES" | jq -r .project_info.firebase_url)
         FIREBASE_STORAGE_BUCKET=$(echo "$GOOGLE_SERVICES" | jq -r .project_info.storage_bucket)
@@ -160,6 +161,7 @@ if [ "$PACKAGE_ID" != "" ]; then
         FIREBASE_API_KEY=$(echo "$FIREBASE_CLIENT" | jq -r .api_key[].current_key)
         FIREBASE_SDK_APP_ID=$(echo "$FIREBASE_CLIENT" | jq -r .client_info.mobilesdk_app_id)
 
+        xmlstarlet ed -L -u "/resources/string[@name='project_id']" -v "$PROJECT_ID" "$STRINGS_VALUES_PATH"
         xmlstarlet ed -L -u "/resources/string[@name='firebase_database_url']" -v "$FIREBASE_URL" "$STRINGS_VALUES_PATH"
         xmlstarlet ed -L -u "/resources/string[@name='gcm_defaultSenderId']" -v "$PROJECT_NUMBER" "$STRINGS_VALUES_PATH"
         xmlstarlet ed -L -u "/resources/string[@name='google_api_key']" -v "$FIREBASE_API_KEY" "$STRINGS_VALUES_PATH"
@@ -178,8 +180,8 @@ if [ "$MATTERMOST_RELEASE_STORE_FILE" != "" ] && [ "$MATTERMOST_RELEASE_KEY_ALIA
     echo "Signing APK"
     ALIGNED_APK="$OUTPUT/$APP_NAME-aligned.apk"
     SIGNED_APK="$OUTPUT/$NEW_FILE.apk"
-    ZIPALIGN=$(find "$ANDROID" -name zipalign)
-    APKSIGNER=$(find "$ANDROID" -name apksigner)
+    ZIPALIGN=$(find "$ANDROID" -name zipalign | tail -1)
+    APKSIGNER=$(find "$ANDROID" -name apksigner | tail -1)
     $ZIPALIGN -v -p 4 "$REPACK_APK" "$ALIGNED_APK"
     $APKSIGNER sign --ks "$MATTERMOST_RELEASE_STORE_FILE" --ks-key-alias "$MATTERMOST_RELEASE_KEY_ALIAS" --ks-pass "pass:$MATTERMOST_RELEASE_PASSWORD" --out "$SIGNED_APK" "$ALIGNED_APK"
     rm "$ALIGNED_APK"
