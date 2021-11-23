@@ -161,7 +161,7 @@ Create a file called `send_form.json` containing:
 }
 ```
 
-## Icons 
+## Icons
 
 Apps may include static assets. One example that was already used above is the `icon` for the two bindings. Static assets must be served under the `static` path.
 
@@ -284,4 +284,3 @@ Uninstall the app using:
 ```
 /apps uninstall hello-world
 ```
-

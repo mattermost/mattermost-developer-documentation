@@ -22,7 +22,7 @@ Make sure you have followed the Quick Start Guide [prerequisite steps]({{< ref q
 ```sh
 git clone https://github.com/mattermost/mattermost-plugin-apps.git
 cd mattermost-plugin-apps/examples/go/hello-webhooks
-go run . 
+go run .
 ```
 
 Run the following Mattermost slash command:

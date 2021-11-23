@@ -23,4 +23,3 @@ weight: 1000
   `appsctl` CLI tool is provided to deploy AWS and OpenFaaS apps in self-managed
   environments. To install appsctl, `go install
   github.com/mattermost/mattermost-plugin-apps/cmd/appsctl@latest`
-

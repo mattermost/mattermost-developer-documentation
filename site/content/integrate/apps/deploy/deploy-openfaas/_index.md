@@ -30,7 +30,7 @@ installed and configured, with credentials sufficiently privileged to deploy
 functions.
 
 OpenFaaS requires a [docker registry](https://docs.docker.com/registry/) to pass
-the images that it builds to the function instances, so `docker` must have  been
+the images that it builds to the function instances, so `docker` must have been
 configured, and `docker login` done, with sufficient credentials to push to the
 registry of choice.
 

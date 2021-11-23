@@ -158,7 +158,7 @@ Functions handle user events and webhooks. The Hello World app exposes two funct
 
 The functions use a simple form with one text field named `"message"`, the form submits to `/send`.
 
-`/send/form` and  `send-modal/submit` both return the same data:
+`/send/form` and `send-modal/submit` both return the same data:
 
 ```js
 app.post(['/send/form', '/send-modal/submit'], (req, res) => {
@@ -182,7 +182,7 @@ app.post(['/send/form', '/send-modal/submit'], (req, res) => {
 });
 ```
 
-## Icons 
+## Icons
 
 Apps may include static assets. One example that was already used above is the `icon` for the two bindings. Static assets must be served under the `static` path.
 

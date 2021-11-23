@@ -11,7 +11,7 @@ See [here]({{< ref "app-to-mattermost">}}) to learn more authenticating to the R
 
 The go driver [`appclient.Client`](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/appclient#Client) support method for KV Get/Set/Delete.
 
-The KV APIs require the use of the Bot Account Token, and will fail if a user token is provided.
+The KV APIs require the use of the bot account Token, and will fail if a user token is provided.
 
 ## Mattermost REST API
 

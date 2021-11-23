@@ -2,7 +2,7 @@
 title: "aws"
 heading: "Packaging apps for AWS Lambda"
 description: "TODO"
-weight: 30 
+weight: 30
 ---
 
 Developers must prepare apps for deployment to AWS which includes creating an app bundle and making the app runnable as an AWS Lamda function.
@@ -27,12 +27,12 @@ A language library is used to emulate an HTTP to your app. For go you might use 
 
 Finally you need to define the AWS function in the manifest of your app by adding `aws_lambda` to it which has the following fields:
 
-| Name      | Description                                                                                                  |
-| :-------- | :----------------------------------------------------------------------------------------------------------- |
+| Name      | Description                                                                                                              |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------- |
 | `path`    | The lambda function with its path being the longest-matching prefix of the call's path which will be invoked for a call. |
-| `name`    | A human-readable name.                                                                                       |
-| `handler` | The name of the handler function.                                                                            |
-| `runtime` | The AWS Lambda runtime to use.                                                                               |
+| `name`    | A human-readable name.                                                                                                   |
+| `handler` | The name of the handler function.                                                                                        |
+| `runtime` | The AWS Lambda runtime to use.                                                                                           |
 
 For a go app the manifest snippet would look like this:
 

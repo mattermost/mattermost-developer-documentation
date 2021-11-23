@@ -24,7 +24,7 @@ you will build an app that contains:
   a `golang-middleware` template.
 - [`Makefile`](#7-makefile) that can build aws and openfaas bundles (`make dist`).
 
-See complete source code of the example [here](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-serverless). 
+See complete source code of the example [here](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-serverless).
 
 ## Prerequisites
 
@@ -110,7 +110,7 @@ Create a file called `manifest.json` containing:
 }
 ```
 
-### 2. Static (`./static`) 
+### 2. Static (`./static`)
 
 The example app will use an icon, you can download an example icon using:
 
@@ -354,7 +354,7 @@ replace {{path-to-your-module}}/function => ../function
 version: 1.0
 provider:
   name: openfaas
-  # gateway will be overwritten by appsctl 
+  # gateway will be overwritten by appsctl
   gateway: http://192.168.64.3:8080
 functions:
   hello:
@@ -362,7 +362,7 @@ functions:
     build_args:
       GO111MODULE: on
     handler: ./function
-    # docker registry name will be prepended by appsctl 
+    # docker registry name will be prepended by appsctl
 	image: hello-openfaas
 ```
 
@@ -382,7 +382,7 @@ all: dist run
 ```make
 .PHONY: run
 ## run: runs the app locally
-run: 
+run:
 	go run ./http --manifest=manifest.json --static=static
 
 ```
@@ -396,10 +396,10 @@ run:
 ```make
 .PHONY: dist-aws
 ## dist-aws: creates the bundle file for AWS Lambda deployments
-dist-aws: 
+dist-aws:
 	rm -rf dist/aws && mkdir -p dist/aws
 	cd aws ; \
-	 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ../dist/aws/hello-serverless . 
+	 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ../dist/aws/hello-serverless .
 	cp manifest.json dist/aws
 	cp -r static dist/aws
 	cd dist/aws ; \

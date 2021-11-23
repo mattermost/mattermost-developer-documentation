@@ -1,5 +1,5 @@
 ---
-title: "To 3rd party (OAuth2)"
+title: "To third-party (OAuth2)"
 heading: "Hello, OAuth2!"
 description: "In this example, the http will connect via OAuth2"
 weight: 500
@@ -79,7 +79,7 @@ The Hello OAuth2 app creates three commands: `/hello-oauth2 configure | connect 
                 {
                     "icon": "icon.png",
                     "label": "helloworld",
-                    "description": "Hello remote (3rd party) OAuth2 App",
+                    "description": "Hello remote (third-party) OAuth2 App",
                     "hint": "[configure | connect | send]",
                     "bindings": [
                         {
@@ -103,8 +103,8 @@ The Hello OAuth2 app creates three commands: `/hello-oauth2 configure | connect 
                                 "path": "/send"
                             }
                         }
-                        
-                        
+                    ]
+                }
             ]
         }
     ]

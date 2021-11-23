@@ -42,12 +42,12 @@ You will need an access key and secret so that `appsctl` can deploy the app. The
 
 Open a terminal where you installed the Apps plugin and set the following variables to the AWS credentials just created and saved:
 
-- `MM_APPS_DEPLOY_AWS_ACCESS_KEY`  
+- `MM_APPS_DEPLOY_AWS_ACCESS_KEY`
 - `MM_APPS_DEPLOY_AWS_SECRET_KEY`
 
 Set the following environment variables based on bucket name and region from Step 1
 
-- `MM_APPS_S3_BUCKET`  
+- `MM_APPS_S3_BUCKET`
 - `MM_APPS_AWS_REGION`
 
 #### Initialize the AWS resources
@@ -124,7 +124,7 @@ The command requires that the following environment variables are set:
 - `MM_APPS_S3_BUCKET` must be the name of the S3 bucket used to store manifests
   and static assets.
 - `MM_APPS_DEPLOY_AWS_ACCESS_KEY`, `MM_APPS_DEPLOY_AWS_SECRET_KEY` are the
-  priviledged credentials used to deploy functions and files to AWS. 
+  priviledged credentials used to deploy functions and files to AWS.
 - `MM_APPS_AWS_ACCESS_KEY`, `MM_APPS_AWS_SECRET_KEY` are the "unpriviledged"
   credentials used to invoke the functions, used only for the `appsctl aws test`
   command.
@@ -143,7 +143,7 @@ All files in the static folder of the bundle are considered to be the app's stat
 
 The `manifest.json` file of an app is stored in the same S3 bucket as the key - `manifests/$appID_$appVersion.json`.
 
-![Flow of deploying custom apps to AWS](deploy-3rd-party-aws.png)
+![Flow of deploying custom apps to AWS](deploy-third-party-aws.png)
 
 # Deployment in Mattermost Cloud
 

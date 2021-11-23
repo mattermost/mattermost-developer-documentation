@@ -6,7 +6,7 @@ weight: 100
 ---
 
 External service providers can offer "remote" apps already deployed as HTTP
-services. 
+services.
 
 Internal organization-specific apps can also be developed and ran as HTTP
 services on the existing hosting infrastructure, for example, using `systemd`).

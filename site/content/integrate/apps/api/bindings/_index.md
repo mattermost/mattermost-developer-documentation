@@ -50,9 +50,9 @@ The call for these bindings will include in the context the user ID, the post ID
 | Name       | Type   | Description                                                                                                                 |
 | :--------- | :----- | :-------------------------------------------------------------------------------------------------------------------------- |
 | `location` | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.               |
-| `icon`     | string | (Optional/Web App required) Either a fully-qualified URL, or a path for an app's static asset.                             |
+| `icon`     | string | (Optional/Web App required) Either a fully-qualified URL, or a path for an app's static asset.                              |
 | `label`    | string | (Optional) Text to show in the item on mobile and webapp collapsed view. Defaults to location. Must be unique in its level. |
-| `hint`     | string | (Optional/Web App required) Text to show in tooltip.                                                                       |
+| `hint`     | string | (Optional/Web App required) Text to show in tooltip.                                                                        |
 | `call`     | Call   | (Optional) Call to perform. You must provide a call if there is no form, or the form itself does not have a call.           |
 | `form`     | Form   | (Optional) Modal form to open. You must provide a form with a call if there is no call defined in the binding.              |
 
@@ -78,11 +78,11 @@ A leaf command must include:
 
 | Name          | Type   | Description                                                                                                                                  |
 | :------------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------- |
-| `location`    | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.                                   |
-| `label`       | string | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level.                       |
-| `hint`        | string | (Optional) Hint line on command autocomplete.                                                                                                   |
-| `description` | string | (Optional) Description line on command autocomplete.                                                                                           |
-| `call`        | Call   | (Optional) Call to perform when executing the command. You must provide a call if there is no form, or the form itself does not have a call. |                                                                                                    |
+| `location`    | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.                                |
+| `label`       | string | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level.                    |
+| `hint`        | string | (Optional) Hint line on command autocomplete.                                                                                                |
+| `description` | string | (Optional) Description line on command autocomplete.                                                                                         |
+| `call`        | Call   | (Optional) Call to perform when executing the command. You must provide a call if there is no form, or the form itself does not have a call. |  |
 | `form`        | Form   | (Optional) Form representing the parameters the command can receive. If no form is provided, a form call will be made to the specified call. |
 
 The context of the call for these bindings will include the user ID, the post ID, the root post ID (if any), the channel ID, and the team ID. It will also include the raw command.
