@@ -14,7 +14,7 @@ Mattermost.
 
 For details on how to develop and package apps for AWS see [Package / AWS]({{< ref "package-aws" >}})
 
-There are 3 steps required to enable AWS applications on a self-managed
+There are three steps required to enable AWS applications on a self-managed
 Mattermost instance.
 
 ### 1. Initialize the AWS environment.
