@@ -61,8 +61,7 @@ Any language you want. We currently have an [official driver for Go](https://pkg
 1. **[Mattermost Cloud](https://mattermost.com/mattermost-cloud/)** apps. Cloud
    customers can use apps from Mattermost Marketplace. Marketplace apps are
    deployed as AWS Lambda functions, and their usage is included in the service.
-   You can find more information about the Marketplace and how to submit your
-   app at [here TBD](https://mattermost.com). Example AWS Lambda apps can be
+   You can find more information about the Marketplace [here](https://mattermost.com/marketplace/). Example AWS Lambda apps can be
    found
    [here](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/js/aws_hello)
    (JavaScript) and
