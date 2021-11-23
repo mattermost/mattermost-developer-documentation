@@ -7,7 +7,7 @@ weight: 200
 
 ## App Structure
 
-Apps consist of 3 kinds of assets:
+Apps consist of three kinds of assets:
 
 - [manifest.json]({{< ref "manifest" >}}) file
 
@@ -18,7 +18,7 @@ Apps consist of 3 kinds of assets:
 
 - Static assets, currently solely icon files
 
-## Interactivty: Bindings and Forms
+## Interactivity: Bindings and Forms
 
 - To interact with users an App must [bind]({{< ref "bindings" >}}) a call to a
   location in the Mattermost user interface. These locations may be

@@ -1,5 +1,5 @@
 ---
-title: "3rd party webhooks"
+title: "Third-party webhooks"
 heading: "Hello, Webhooks!"
 description: "In this example, the http app will demonstrate connect webhooks"
 weight: 800

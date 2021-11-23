@@ -45,14 +45,14 @@ Open a terminal where you installed the Apps plugin and set the following variab
 - `MM_APPS_DEPLOY_AWS_ACCESS_KEY`  
 - `MM_APPS_DEPLOY_AWS_SECRET_KEY`
 
-Set the following environment variables based on bucket name and region
+Set the following environment variables based on bucket name and region from Step 1
 
 - `MM_APPS_S3_BUCKET`  
 - `MM_APPS_AWS_REGION`
 
 #### Initialize the AWS resources
 
-The following command will create Mattermost invoke credentials and policy for use with AWS.
+The following command will create Mattermost invocation credentials and policy for use with AWS.
 
 `go run ./cmd/appsctl aws init [flags...]`
 
@@ -68,7 +68,7 @@ It will create or update:
   (`mattermost-apps-execute-lambda-role`) with the `AWSLambdaBasicExecutionRole`
   attached to it.
 
-Flags:
+Optional Flags for the `appsctl` command:
 - `--create-access-key` create a new access key and print it out.
 - `--create` create resources that don't yet exist (user, group, role, access
   policy).

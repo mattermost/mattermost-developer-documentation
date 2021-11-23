@@ -65,20 +65,20 @@ Below are the permissions ([godoc](https://pkg.go.dev/github.com/mattermost/matt
 | `act_as_bot`                       | Use Mattermost REST API as the app's bot user.                                            |
 | `act_as_user`                      | Use Mattermost REST API as connected users.                                               |
 | `act_as_admin`                     | Use Mattermost REST API as a System Admin.  This gives permission for an App to use certain API endpoints that are reserved for administrators.  Use this permission only if required (ie: your App is designed to help maintain or automate certain administrator actions).    |
-| `remote_oauth2`                    | Use remote (third-party) OAuth2 support, and will store secrets to third-party system(s). |
+| `remote_oauth2`                    | Use remote (third-party) OAuth2 support, and will store secrets and tokens to third-party system(s) within the Mattermost server. |
 | `remote_webhooks`                  | Receive webhooks from a remote (third-party) system, and process them as a bot (which will typically, will add a notification message to a channel)           |
 
 
 ### Locations
 
-Locations ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Location)) are spaces in the UI where the app can add interactions.
+Locations ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Location)) are spaces in the UI where an app can add interactions.  Locations in the App framework are supported on the Mobile/Desktop/Webapp clients unless otherwise noted.  This list of locations will grow over time as the App Framework expands.
 
 | Name              | Description                                                                  |
 | :---------------- | :--------------------------------------------------------------------------- |
-| `/post_menu`      | An item in the post menu.                                                    |
-| `/channel_header` | Webapp: A button in the channel header, Mobile: An item in the channel menu. |
-| `/command`        | A slash command.                                                             |
-| `/in_post`        | Attachment embedded to a post.                                               |
+| `/post_menu`      | An item in a Mattermost post's dropdown menu (aka Message Action) where the user can leverage the message content as part of your App's action.  A good example for using the post menu: someone reports a bug in a channel with some details, then using the "post-menu" button the message's content could be used to create a new "bug" object in a tracking system.    |
+| `/channel_header` | Webapp: A button in the channel header, Mobile: An item in the channel menu. This is used for actions that take place at the channel level, for example a button for the user to set up a notification subscription for all new tickets in system XYZ to be posted to the current channel  |
+| `/command`        | A slash command accessed by typing `/` at the beginning of any new message in Mattermost.  Slash commands are an easy way for power-users to perform actions in external systems via a "chat-command-line" that can interactively provide the users with hints and suggestions based on dynamic lookups.  For example, a slash command `/ticketing --name "test Ticket" --priority high` can capture two fields and create a ticket in an external system.  The options for "priority" field could be displayed to the user in a multi-select menu to reduce their need to type.                                                        |
+| `/in_post`        | A form that is embedded within a message in Mattermost.  Used to interact with users without switching context to an Interactive Dialog.   Great for confirming simple things - like "Did you complete your OKR review yet? (Yes/No) options can be presented to the user and they can simply check off a box.                                          |
 
 ### Deployment Information
 
