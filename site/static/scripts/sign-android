@@ -155,7 +155,8 @@ if [ "$PACKAGE_ID" != "" ]; then
         GOOGLE_SERVICES=$(jq . "$GOOGLE_SERVICES_PATH")
         PROJECT_ID=$(echo "$GOOGLE_SERVICES" | jq -r .project_info.project_id)
         PROJECT_NUMBER=$(echo "$GOOGLE_SERVICES" | jq -r .project_info.project_number)
-        FIREBASE_URL=$(echo "$GOOGLE_SERVICES" | jq -r .project_info.firebase_url)
+        FIREBASE_URL="https://$PROJECT_ID.firebaseio.com"
+        echo "Setting  FIREBASE_URL to: $FIREBASE_URL"
         FIREBASE_STORAGE_BUCKET=$(echo "$GOOGLE_SERVICES" | jq -r .project_info.storage_bucket)
         FIREBASE_CLIENT=$(echo "$GOOGLE_SERVICES" | jq ".client[] | select(. | .client_info.android_client_info.package_name == \"$PACKAGE_ID\")")
         FIREBASE_API_KEY=$(echo "$FIREBASE_CLIENT" | jq -r .api_key[].current_key)
