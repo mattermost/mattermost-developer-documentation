@@ -17,7 +17,7 @@ Mattermost has a plugin architecture to extend its functionality to a user's wor
 
 This has served us well for several years, but as plugins started to be more powerful, they needed to maintain their own state in separate database tables. Initially, we just had a single table offering key-value semantics for all plugins via the plugin API, but clearly that wasn't enough. Plugins needed access to the database.
 
-This created a new challenge. Since each plugin was its own isolated process, each of them would open additional connections to the DB. And the more plugins we had, the more amplified this would become. Our customers started to complain that the system exceeded the `max_connections` config setting on their DB.
+This created a new challenge. Since each plugin was its own isolated process, each of them would open additional connections to the DB. And the more plugins we had, the more amplified this would become. Our users started to complain that the system exceeded the `max_connections` config setting on their DB.
 
 ![image](/blog/2021-11-17-database-sql/1.png)
 
