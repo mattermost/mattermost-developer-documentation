@@ -19,11 +19,11 @@ This has served us well for several years, but as plugins started to be more pow
 
 This created a new challenge. Since each plugin was its own isolated process, each of them would open additional connections to the DB. And the more plugins we had, the more amplified this would become. Our users started to complain that the system exceeded the `max_connections` config setting on their DB.
 
-![image](/blog/2021-11-17-database-sql/1.png)
+![image](/blog/2021-11-17-database-sql/2.png)
 
 What we needed was to route all queries via the server so that a single connection pool would be used by all plugins. An obvious solution here is to put a connection proxy (like `PgBouncer` or `ProxySQL`) in front of the database to multiplex between connections. While that works (and indeed we use that in our Cloud environments), ours is primarily an on-prem software, which means we just cannot ask all of our customers to add a DB proxy in their stack.
 
-![image](/blog/2021-11-17-database-sql/2.png)
+![image](/blog/2021-11-17-database-sql/1.png)
 
 ### Approaches
 
