@@ -13,7 +13,7 @@ Inside the `integration` directory, there are subdirectories that roughly break 
 
 ### Writing Specs
 
-1. See [which-query-to-use](account-settings-modal) when selecting an element base on order of priority.
+1. See [which-query-to-use](/contribute/webapp/e2e/which-query-to-use/) when selecting an element base on order of priority.
    - Use `camelCase` when assigning `data-testid` or element ID. Watch out for potential breaking changes in the snapshot of the unit testing.  Run `make test` to see if all are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot testing.
 2. Add custom commands to `/e2e/cypress/support`. See Cypress documentation for more details about custom commands [[link](https://docs.cypress.io/api/cypress-api/custom-commands.html)].
    - For ease of use, in-code documentation and discoverability, custom commands should have type definition added. See [declaration file](https://github.com/mattermost/mattermost-webapp/blob/master/e2e/cypress/support/api/user.d.ts) for reference on how to include.
@@ -28,7 +28,7 @@ Inside the `integration` directory, there are subdirectories that roughly break 
     }
     ```
 
-    For those writing E2E from Help Wanted tickets with `Area/E2E Tests` label, the `Test Key` is available in the [GitHub issue itself](https://github.com/mattermost/mattermost-server/issues/10574).
+    For those writing E2E from Help Wanted tickets with `Area/E2E Tests` label, the `Test Key` is available in the [GitHub issue itself](https://github.com/mattermost/mattermost-server/issues/18523).
 
     `Test Key` is used for mapping test cases per Release Testing specification. It will be used to measure coverage between manual and automated tests.
 
