@@ -109,7 +109,7 @@ The Hello OAuth2 app creates three commands: `/hello-oauth2 configure | connect 
 
 ### Configuring OAuth2
 
-`/hello-oauth2 configure` sets up the Google OAuth2 credentials. It accepts two string flags, `--client-id` and `--client-secret`. Submit will require an user access token to affect the changes.
+`/hello-oauth2 configure` sets up the Google OAuth2 credentials. It accepts two string flags, `--client-id` and `--client-secret`. Submit will require a user access token to effect the changes.
 
 ```json
 {
