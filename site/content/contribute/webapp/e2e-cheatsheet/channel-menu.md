@@ -14,7 +14,7 @@ Open the Channel Menu by clicking the channel header title or dropdown icon when
 
 - `item`
 < <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type">string</a> >
-  - Possible values: `'View Info'`, `'Notification Preferences'`, `'Mute Channel'`, `'View Members'`, `'Edit Channel Header'`, `'Edit Channel Purpose'` and `'Rename Channel'`.
+  - Possible values: `'View Info'`, `'Move to...'`,`'Notification Preferences'`, `'Mute Channel'`, `'Add Members'`, `'Manage Members'`,`'Edit Channel Header'`, `'Edit Channel Purpose'`, `'Rename Channel'`, and `'Convert to Private Channel'`, `'Archive Channel'`, and `'Leave Channel'`,.
 
 ##### Open the Channel Menu
 ```javascript

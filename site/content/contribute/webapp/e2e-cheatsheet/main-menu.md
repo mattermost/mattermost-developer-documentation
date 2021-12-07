@@ -1,37 +1,37 @@
 ---
-title: "Main Menu"
+title: "Product Menu"
 date: 2020-12-11T00:00
 weight: 4
 subsection: Cypress cheatsheet
 ---
 
-![image](/contribute/webapp/e2e-cheatsheet/main-menu.png)
+![image](/contribute/webapp/e2e-cheatsheet/product-menu.png)
 
 ***
 
 ### `cy.uiOpenMainMenu(item)`
-Open the Main Menu by clicking the team header title or hamburger icon at the LHS.
+Open the Product menu by clicking the product name in the Global Header.
 
 - `item`
 < <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type">string</a> >
-  - Possible values: `'Account Settings'`, `'Invite People'`, `'Team Settings'`, `'Manage Members'`, `'Create a Team'`, `'Join Another Team'`, `'Leave Team'`, `'Integrations'`, `'Plugin Marketplace'`, `'System Console'`, `'Help'`, `'Keyboard Shortcuts'`, `'Report a Problem'`, `'Download Apps'`, `'About Mattermost'` and `'Logout'`.
+  - Possible values: `'Channels'`, `'Boards'`, `'Playbooks'`, `'System Console'`, `'Integrations'`, `'Marketplace'`, `'Download Apps'`, and `'About Mattermost'`.
 
-##### Open the Main Menu
+##### Open the Product menu
 ```javascript
-// # Open 'Main Menu'
+// # Open 'Product menu'
 cy.uiOpenMainMenu();
 ```
 
-##### Open the Main Menu and click on specific item
+##### Open the Product menu and click on a specific item
 ```javascript
-// # Open 'Integrations' section of 'Account Settings' modal
+// # Open 'Integrations' section of 'Product Menu' modal
 cy.uiOpenMainMenu('Integrations');
 ```
 
 ***
 
 ##### `cy.uiCloseMainMenu()`
-Close the Main Menu by clicking the team title or hamburger icon again on the LHS, given that the menu is already open.
+Close the Product menu by the product name in the Global Header again, given that the menu is already open.
 
 ```javascript
 cy.uiCloseMainMenu();
@@ -40,7 +40,7 @@ cy.uiCloseMainMenu();
 ***
 
 ##### `cy.uiGetMainMenu()`
-Get the DOM elements of Main Menu.
+Get the DOM elements of the Product menu.
 
 ```javascript
 cy.uiGetMainMenu();
