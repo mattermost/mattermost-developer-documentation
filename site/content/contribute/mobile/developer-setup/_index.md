@@ -82,7 +82,7 @@ $ npm -g install react-native-cli
 
 ##### MacOs
 
-While MacOS supplies a Ruby environment, it's being deprecated and it will only suffice if your architecture is Intel-based. For M1-based architecture, it's recommended to install Ruby using Homebrew.
+While MacOS supplies a Ruby environment, it's being deprecated and it will only suffice if your architecture is Intel-based. For M1-based architecture, it's recommended to install Ruby using Homebrew or [RVM](https://rvm.io/).
 
 ```sh
 $ brew install ruby
@@ -91,11 +91,6 @@ $ brew install ruby
 ##### Windows 10
 - Install git from [here](https://git-scm.com/download/win)
 
-#### Install `bundler --version 2.1.4` gem
-
-```sh
-$ gem install bundler --version 2.1.4
-```
 #### Obtaining the source code
 
 We use GitHub to host the source code so we recommend that you install [Git](https://git-scm.com/). Optionally, you can also contribute by submitting [pull requests](https://help.github.com/articles/creating-a-pull-request). If you do not have Git installed you can do so with Homebrew by opening a terminal and executing:
@@ -137,7 +132,7 @@ Make sure you have the following ENV VARS configured:
 
     ```sh
     source ~/.bash_profile
-    ```
+    ````
     
 ##### Linux
 
