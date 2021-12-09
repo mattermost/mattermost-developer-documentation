@@ -82,11 +82,19 @@ $ npm -g install react-native-cli
 
 ##### MacOs
 
-While MacOS supplies a Ruby environment, it's being deprecated and it will only suffice if your architecture is Intel-based. For M1-based architecture, it's recommended to install Ruby using Homebrew or [RVM](https://rvm.io/).
+While MacOS supplies a Ruby environment, it's being deprecated and it will only suffice if your architecture is Intel-based. It's recommended to install Ruby using Homebrew or [RVM](https://rvm.io/).
 
 ```sh
 $ brew install ruby
 ```
+
+or
+
+```sh
+$ rvm install 3.0
+$ rvm use 3.0
+```
+
 #### Install Git
 ##### Windows 10
 - Install git from [here](https://git-scm.com/download/win)
