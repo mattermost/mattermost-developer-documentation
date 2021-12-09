@@ -132,7 +132,7 @@ Make sure you have the following ENV VARS configured:
 
     ```sh
     source ~/.bash_profile
-    ````
+    ```
     
 ##### Linux
 
