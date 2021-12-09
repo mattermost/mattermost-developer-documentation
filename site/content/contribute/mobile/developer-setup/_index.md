@@ -82,7 +82,7 @@ $ npm -g install react-native-cli
 
 ##### MacOs
 
-While MacOS supplies a Ruby environment, it's being deprecated and it will only suffice if your architecture is Intel-based. It's recommended to install Ruby using Homebrew or [RVM](https://rvm.io/).
+While MacOS supplies a Ruby environment, it's being deprecated. It's recommended to install Ruby using Homebrew or [RVM](https://rvm.io/).
 
 ```sh
 $ brew install ruby
