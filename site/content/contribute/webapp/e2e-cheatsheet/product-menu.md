@@ -9,7 +9,7 @@ subsection: Cypress cheatsheet
 
 ***
 
-### `cy.uiOpenMainMenu(item)`
+### `cy.uiOpenProductMenu(item)`
 Open the Product menu by clicking the product name in the Global Header.
 
 - `item`
@@ -19,31 +19,22 @@ Open the Product menu by clicking the product name in the Global Header.
 ##### Open the Product menu
 ```javascript
 // # Open 'Product menu'
-cy.uiOpenMainMenu();
+cy.uiOpenProductMenu();
 ```
 
 ##### Open the Product menu and click on a specific item
 ```javascript
 // # Open 'Integrations' section of 'Product Menu' modal
-cy.uiOpenMainMenu('Integrations');
+cy.uiOpenProductMenu('Integrations');
 ```
 
 ***
 
-##### `cy.uiCloseMainMenu()`
-Close the Product menu by the product name in the Global Header again, given that the menu is already open.
-
-```javascript
-cy.uiCloseMainMenu();
-```
-
-***
-
-##### `cy.uiGetMainMenu()`
+##### `cy.uiGetProductMenu()`
 Get the DOM elements of the Product menu.
 
 ```javascript
-cy.uiGetMainMenu();
+cy.uiGetProductMenu();
 ```
 
 ***

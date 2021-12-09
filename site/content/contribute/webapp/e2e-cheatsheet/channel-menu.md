@@ -24,7 +24,7 @@ cy.uiOpenChannelMenu();
 
 ##### Open the Channel Menu and click on specific item
 ```javascript
-// # Open 'Advanced' section of 'Account Settings' modal
+// # Open 'Advanced' section of 'Settings' modal
 cy.uiOpenChannelMenu('View Info');
 ```
 
