@@ -35,7 +35,7 @@ Then select **Save**.
 
 ## Revoking a Personal Access Token
 
-A personal access token can be revoked by deleting the token from either the user's profile or from the System Console. Once deleted, all sessions using the token are deleted, and any attempts to use the token to interact with the Mattermost server are blocked.
+A personal access token can be revoked by deleting the token from either the user's profile settings or from the System Console. Once deleted, all sessions using the token are deleted, and any attempts to use the token to interact with the Mattermost server are blocked.
 
 Tokens can also be temporarily deactivated from the user's profile. Once deactivated, all sessions using the token are deleted, and any attempts to use the token to interact with the Mattermost server are blocked. However, the token can be reactivated at any time.
 
