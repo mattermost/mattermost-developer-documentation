@@ -3,7 +3,7 @@ title: "Build and CLI Commands"
 heading: "Build and CLI Command Reference"
 description: "Some useful build commands for the Desktop App"
 date: 2019-01-22T00:00:00-05:00
-weight: 3
+weight: 2
 ---
 
 ## Build
