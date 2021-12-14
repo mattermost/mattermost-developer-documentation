@@ -22,18 +22,22 @@ You can read more about the Process Model [here](https://www.electronjs.org/docs
 
 #### Directory Structure
 The directory structure is broken down into a few pieces to best organize the code:
-- **docs:** holds documentation for working on the Desktop App
-- **e2e:** holds the E2E tests
-    - **modules:** holds the setup code for the E2E tests
-    - **specs:** holds the E2E tests themselves
-- **resources:** holds any assets, such as images or sound files that the Desktop App uses
-- **scripts:** holds any automated scripts used for building or packaging the Desktop App
-- **src:** holds the source code
-    - **assets:** holds any assets, such as images or sound files that the Desktop App uses
-    - **common:** holds common objects and utility functions that aren't specifically tied to Electron
-    - **main:** holds the majority of the main process code, including setup for the Electron app
-    - **renderer:** holds the web code for all of the main application wrapper, modals and server dropdown views that are used by the renderer process
-    - **types:** holds common types for use between all of the individual modules
+
+```
+Mattermost Desktop
+├── docs/ - Documentation for working on the Desktop App
+├── e2e/ - E2E tests
+│   ├── modules/ - Setup code for the E2E tests
+│   └── specs/ - E2E tests themselves
+├── resources/ - Assets, such as images or sound files that the Desktop App uses
+├── scripts/ - Automated scripts used for building or packaging the Desktop App
+└── src/ - Application source code.
+    ├── assets/ - Assets, such as images or sound files that the Desktop App uses
+    ├── common/ - Common objects and utility functions that aren't specifically tied to Electron
+    ├── main/ - The majority of the main process code, including setup for the Electron app
+    ├── renderer/ - The web code for all of the main application wrapper, modals and server dropdown views that are used by the renderer process
+    └── types/ - Common types for use between all of the individual modules
+```
 
 #### Repository
 
