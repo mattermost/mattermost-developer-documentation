@@ -35,7 +35,7 @@ where **<os>** is one of the following values: `windows, mac, mac-universal, lin
 
 All of the above values will generate builds for all applicable architectures:
 - `windows`: x86, x64 - `exe` format
-- `mac`: x64, arm64 (M1) - `dmg` and `zip` formats
+- `mac`: x64, arm64 (M1) - `dmg` and `zip` formats, one for each architecture.
 - `mac-universal`: universal binary for all architectures - `dmg`
 - `linux`: x64, x86 - `deb`, `rpm` and `tarball` formats
 
