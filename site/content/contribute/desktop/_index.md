@@ -39,14 +39,13 @@ Mattermost Desktop
     └── types/ - Common types for use between all of the individual modules
 ```
 
-#### Repository
+#### GitHub Links
 
-You can find the repository [here](https://github.com/mattermost/desktop).
+You can find the GitHub repository [here](https://github.com/mattermost/desktop).
+[Find help wanted tickets here.](https://mattermost.com/pl/help-wanted-desktop)
 
-#### Channel
+#### Questions?
+
+If you have any questions around development of the Desktop App, you can ask us in the **Developers: Desktop App** channel on the Contributors team on **community.mattermost.com**
 
 You can find the channel [here](https://community.mattermost.com/core/channels/desktop-app).
-
-#### Help Wanted
-
-[Find help wanted tickets here.](https://mattermost.com/pl/help-wanted-desktop)
