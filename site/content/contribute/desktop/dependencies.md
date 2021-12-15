@@ -27,7 +27,7 @@ For **major and minor version** releases of the Desktop App, we will upgrade to 
 
 #### Bug Fixes
 
-Sometimes, it is necessary to upgrade the Electron version in order to resolve a bug in the app caused by the framework. If this is the case, please change the dependency according to the above guidelines, and the PR will be merged and released as per the same guidelines
+Sometimes, it's necessary to upgrade the Electron version in order to resolve a bug in the app caused by the framework. If this is the case, please change the dependency according to the above guidelines, and the PR will be merged and released as per the same guidelines.
 
 ## Other Dependencies
 
