@@ -25,7 +25,7 @@ start - Runs the Desktop App using the current code built in the dist/ folder
 restart - Re-runs the build process and then starts the app (amalgam of build and start)
 clean - Removes all installed Node modules and built code
     clean-install - Same as above, but then runs npm install to reinstall the Node modules
-    clean-dist - Just removes the built code
+    clean-dist - Only removes the built code
 watch - Runs the app, but watches for code changes and recompiles on the fly when a file is changed
     watch:main - Above, but only for the main module.
     watch:renderer - Above, but only for the renderer module.
