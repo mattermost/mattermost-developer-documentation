@@ -19,7 +19,7 @@ The renderer processes are controller by Chrome instances, so each of them will 
 You can access these instances by going to the **View** menu (under the 3-dot menu on Windows/Linux, and in the top bar on macOS) and selecting:
 - **Developer Tools for Application Wrapper** for anything involving the top bar.
 - **Developer Tools for Current Tab** for anything involving the Mattermost view or the preload script
-    - *Note:* for this one you need to make sure you're currently on the tab you want to load the Developer Tools for. You can have instances of the tools open for tabs you aren't currently viewing, but to open them in the first place requires it to be opened.
+    - **Note:** For this one, make sure you're currently on the tab where you want to load the Developer Tools. You can have instances open for tabs you aren't currently viewing, but to open them in the first place requires it to be opened.
 
 There are other `BrowserViews` that are governed seperately from the main application wrapper, including:
 - Dropdown Menu
