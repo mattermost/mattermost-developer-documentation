@@ -32,5 +32,5 @@ Sometimes, it is necessary to upgrade the Electron version in order to resolve a
 ## Other Dependencies
 
 We try to keep the majority of dependencies up-to-date as much as possible, with a few exceptions:
-- **React:** We generally keep the same version of `react` in the Desktop App for as long as possible, unless an upgrade or a new feature is required. Since the Desktop App doesn't rely too heavily on `react`, it is better for us to not introduce potential breaking changes unless something needs to urgently change.
+- **React:** We generally keep the same version of `react` in the Desktop App for as long as possible, unless an upgrade or a new feature is required. Since the Desktop App doesn't rely too heavily on `react`, it's better for us to avoid introducing potential breaking changes unless something urgently needs to change.
 - **Webpack:** Upgrading `webpack` requires us to change our configuration significantly, so we generally keep it the same unless we need to make a change.
