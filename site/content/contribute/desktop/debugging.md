@@ -41,7 +41,7 @@ There are other `BrowserViews` that are governed seperately from the main applic
         ```js
         urlView.webContents.openDevTools({mode: 'detach'});
         ```
-    - *Note:* This view is ephemeral based on whether a link is hovered with the mouse, so it might be best to use some logging instead here.
+    - **Note:** This view is ephemeral and based on whether a link is hovered with the mouse, so it might be best to use some logging instead here.
 
 ## Debugging the Mattermost Server/Webapp
 
