@@ -28,7 +28,7 @@ clean - Removes all installed Node modules and built code
     clean-dist - Only removes the built code
 watch - Runs the app, but watches for code changes and recompiles on the fly when a file is changed
     watch:main - Same as above, but only for the main module
-    watch:renderer - Above, but only for the renderer module.
+    watch:renderer - Same as above, but only for the renderer module
 test - Builds and runs all of the automated tests for the Desktop App
     test:e2e - Builds and runs the E2E tests for the Desktop App
         test:e2e:nobuild - Runs the E2E tests without rebuilding the entire app
