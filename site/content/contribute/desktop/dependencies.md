@@ -14,7 +14,7 @@ All dependencies are locked using a `package-lock.json` file to ensure that we d
 
 ## Electron
 
-The most important dependency for the Desktop App is Electron, and is usually the library that can have the most effect on how the Desktop App works. The Electron dependency also contains the Chromium driver.
+The most important dependency for the Desktop App is Electron, and is usually the library that can have the most impact on how the Desktop App works. The Electron dependency also contains the Chromium driver.
 
 Generally we try to use the **latest possible version** of Electron where applicable to ensure we have the latest security fixes and are using the latest possible version of Chromium to maintain compatibility with the Web App.
 
