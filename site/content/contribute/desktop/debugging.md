@@ -51,3 +51,7 @@ Some ways of determining if this is true are as follows:
 - Does the issue reproduce on the browser? Specifically Chrome?
 - Does the issue surround a piece of code on the server/webapp that only applies to the Desktop App? You can check this by seeing if there is a call to `isDesktopApp` in the webapp.
 
+If you have determined that the issue does not apply to the Desktop App code base directly, you can file a ticket in the appropriate repository, such as the [server](https://github.com/mattermost/mattermost-server) or [webapp](https://github.com/mattermost/mattermost-webapp) repository.
+
+If you are having trouble determining where the issue lies, feel free to post in the [Developers: Desktop App](https://community.mattermost.com/core/channels/desktop-app) on Mattermost Community, or you can file a ticket in the [server](https://github.com/mattermost/mattermost-server) repository and it will be triaged and transferred to the appropriate location.
+

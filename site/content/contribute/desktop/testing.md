@@ -19,6 +19,8 @@ You can run the following command to run the tests:
 Unit tests are usually written for parts of the `common` and `main` modules, and usually cover individual functions or classes.
 We should endaevor to write our code for easy testibility, and any new features or bug fixes should likely have an associated unit test if possible.
 
+An example unit test PR can be found [here](https://github.com/mattermost/desktop/pull/1874).
+
 In order to ensure that most of the app is covered, we try to maintain 70% coverage of the `common` and `main` modules.
 You can view a coverage map by running this command:
 
@@ -40,6 +42,8 @@ You can also run this command to build the tests without rebuilding the app with
 
 E2E tests are usually written to cover parts of the `renderer` module and should generally cover complete workflows, such as creating/editing a server.
 You will generally need a combination of both Playwright and RobotJS APIs to test most workflows.
+
+An example E2E test PR can be found [here](https://github.com/mattermost/desktop/pull/1843).
 
 #### Notes
 

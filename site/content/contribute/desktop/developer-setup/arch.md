@@ -1,3 +1,5 @@
+**NOTE:** We do not officially support Arch Linux for use with the Mattermost Desktop App. The provided guide is unofficial.
+
 1. Open Terminal
 2. Install dependencies:
 
