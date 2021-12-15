@@ -15,7 +15,7 @@ Set up your development environment for building, running, and testing the Matte
     <button class="tablinks" onclick="openTab(event, 'windows')">Windows</button>
     <button class="tablinks" onclick="openTab(event, 'ubuntu')">Ubuntu</button>
     <button class="tablinks" onclick="openTab(event, 'archlinux')">Arch Linux</button>
-    <button class="tablinks" onclick="openTab(event, 'redhat')">Fedora/RedHat</button>
+    <button class="tablinks" onclick="openTab(event, 'redhat')">Fedora/RedHat/CentOS</button>
 </div>
 
 <div id="mac" class="tabcontent" style="display: block;">
