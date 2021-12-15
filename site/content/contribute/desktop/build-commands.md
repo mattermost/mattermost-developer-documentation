@@ -57,7 +57,7 @@ Some useful CLI options that our app uses are shown below.
 You can also display these by running: `npm run start help`
 
 ```
---version, -v: Prints the application version.
+--version, -v: Prints the application version
 --dataDir, -d: Set the path to where user data is stored.
 --disableDevMode, -p: Disable development mode. Allows for testing as if it was Production.
 ```
