@@ -47,7 +47,7 @@ There are other `BrowserViews` that are governed seperately from the main applic
 
 Some issues are only reproducible on the Desktop App, though the code that is causing the issue may not live in the Desktop App.
 
-Some ways of determining if this is true are as follows:
+Here are some ways of determining whether this is true:
 - Does the issue reproduce on the browser? Specifically Chrome?
 - Does the issue surround a piece of code on the server/webapp that only applies to the Desktop App? You can check this by seeing if there is a call to `isDesktopApp` in the webapp.
 
