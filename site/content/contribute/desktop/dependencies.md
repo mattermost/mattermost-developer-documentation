@@ -22,7 +22,7 @@ Generally we try to use the **latest possible version** of Electron where applic
 
 For **patch** releases of the Desktop App, we will generally upgrade Electron to the latest **patch version**.
 
-For **major and minor version** release of the Desktop, we will upgrade to the latest **major version**.
+For **major and minor version** releases of the Desktop App, we will upgrade to the latest **major version**.
 * This will usually require QA to do some testing to ensure that nothing has broken between versions.
 
 #### Bug Fixes
