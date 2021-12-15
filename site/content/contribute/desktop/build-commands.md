@@ -17,7 +17,7 @@ npm run <command>
 
 #### Commands
 ```
-build - An amalgam of the following build commands, used to build the Desktop App
+build - An amalgam of the following build commands, used to build the Desktop App:
     build:main - Builds the source code used by the Electron Main process
     build:renderer - Builds the source code used by the Electron Renderer process
     build:robotjs - Builds a version of RobotJS specifically for the current OS/architecture/Electron version
