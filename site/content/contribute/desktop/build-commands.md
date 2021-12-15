@@ -17,7 +17,7 @@ npm run <command>
 
 #### Commands
 ```
-build - An amalgam of the following build commands, used to build the Desktop App
+build - An amalgam of the following build commands, used to build the Desktop App:
     build:main - Builds the source code used by the Electron Main process
     build:renderer - Builds the source code used by the Electron Renderer process
     build:robotjs - Builds a version of RobotJS specifically for the current OS/architecture/Electron version
@@ -25,10 +25,10 @@ start - Runs the Desktop App using the current code built in the dist/ folder
 restart - Re-runs the build process and then starts the app (amalgam of build and start)
 clean - Removes all installed Node modules and built code
     clean-install - Same as above, but then runs npm install to reinstall the Node modules
-    clean-dist - Just removes the built code
+    clean-dist - Only removes the built code
 watch - Runs the app, but watches for code changes and recompiles on the fly when a file is changed
-    watch:main - Above, but only for the main module.
-    watch:renderer - Above, but only for the renderer module.
+    watch:main - Same as above, but only for the main module
+    watch:renderer - Same as above, but only for the renderer module
 test - Builds and runs all of the automated tests for the Desktop App
     test:e2e - Builds and runs the E2E tests for the Desktop App
         test:e2e:nobuild - Runs the E2E tests without rebuilding the entire app
@@ -57,9 +57,9 @@ Some useful CLI options that our app uses are shown below.
 You can also display these by running: `npm run start help`
 
 ```
---version, -v: Prints the application version.
---dataDir, -d: Set the path to where user data is stored.
---disableDevMode, -p: Disable development mode. Allows for testing as if it was Production.
+--version, -v: Prints the application version
+--dataDir, -d: Set the path to where user data is stored
+--disableDevMode, -p: Disable development mode to allow for testing as if it was Production
 ```
 
 ## Environment Variables

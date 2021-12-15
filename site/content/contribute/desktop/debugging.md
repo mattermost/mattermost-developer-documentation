@@ -8,18 +8,18 @@ weight: 3
 
 ## Debugging in the Main Process
 
-The simplest way to debug the main process is to simply insert logging statements wherever needed and having the application output logs of whatever is necessary.
+The simplest way to debug the main process is to simply insert logging statements wherever needed and have the application output logs of whatever is necessary.
 
-If you'd like to make use of better debugging tools, you can make use of the Chrome Dev Tools or the debugger in VSCode by following the steps here: https://www.electronjs.org/docs/latest/tutorial/debugging-main-process
+If you'd like to make use of better debugging tools, you can use the Chrome Dev Tools or the debugger in VSCode by following the steps here: https://www.electronjs.org/docs/latest/tutorial/debugging-main-process
 
 ## Debugging in the Renderer Process
 
 The renderer processes are controller by Chrome instances, so each of them will have their own Developer Tools instance.
 
-You can access these instances by going to the View menu (under the 3-dot menu on Windows/Linux, and in the top bar on macOS) and selecting:
+You can access these instances by going to the **View** menu (under the 3-dot menu on Windows/Linux, and in the top bar on macOS) and selecting:
 - **Developer Tools for Application Wrapper** for anything involving the top bar.
 - **Developer Tools for Current Tab** for anything involving the Mattermost view or the preload script
-    - *Note:* for this one you need to make sure you're currently on the tab you want to load the Developer Tools for. You can have instances of the tools open for tabs you aren't currently viewing, but to open them in the first place requires it to be opened.
+    - **Note:** For this one, make sure you're currently on the tab where you want to load the Developer Tools. You can have instances open for tabs you aren't currently viewing, but to open them in the first place requires it to be opened.
 
 There are other `BrowserViews` that are governed seperately from the main application wrapper, including:
 - Dropdown Menu
@@ -41,13 +41,13 @@ There are other `BrowserViews` that are governed seperately from the main applic
         ```js
         urlView.webContents.openDevTools({mode: 'detach'});
         ```
-    - *Note:* This view is ephemeral based on whether a link is hovered with the mouse, so it might be best to use some logging instead here.
+    - **Note:** This view is ephemeral and based on whether a link is hovered with the mouse, so it might be best to use some logging instead here.
 
 ## Debugging the Mattermost Server/Webapp
 
 Some issues are only reproducible on the Desktop App, though the code that is causing the issue may not live in the Desktop App.
 
-Some ways of determining if this is true are as follows:
+Here are some ways of determining whether this is true:
 - Does the issue reproduce on the browser? Specifically Chrome?
 - Does the issue surround a piece of code on the server/webapp that only applies to the Desktop App? You can check this by seeing if there is a call to `isDesktopApp` in the webapp.
 
