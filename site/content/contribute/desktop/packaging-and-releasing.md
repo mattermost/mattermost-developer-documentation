@@ -20,7 +20,7 @@ Our application uses `webpack` to bundle the scripts together for the main and r
 There are bundles generated for each page used the renderer process, and one bundle for the main process.  
 A bundle is also generated for the E2E tests when needed.
 
-You can predefine certain variables in the app before build, by editing the build config under `src/common/config/buildConfig.ts`. You can predefine servers, or disable server management for example.
+You can predefine certain variables in the app before building, by editing the build config under `src/common/config/buildConfig.ts`. For example, you can predefine servers, or disable server management.
 
 ## Packaging
 
