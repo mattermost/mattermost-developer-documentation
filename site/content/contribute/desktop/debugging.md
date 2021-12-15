@@ -8,7 +8,7 @@ weight: 3
 
 ## Debugging in the Main Process
 
-The simplest way to debug the main process is to simply insert logging statements wherever needed and having the application output logs of whatever is necessary.
+The simplest way to debug the main process is to simply insert logging statements wherever needed and have the application output logs of whatever is necessary.
 
 If you'd like to make use of better debugging tools, you can make use of the Chrome Dev Tools or the debugger in VSCode by following the steps here: https://www.electronjs.org/docs/latest/tutorial/debugging-main-process
 
