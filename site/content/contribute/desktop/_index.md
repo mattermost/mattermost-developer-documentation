@@ -16,7 +16,7 @@ The **renderer** processes are Chromium instances that perform different functio
 
 ![Process diagram](/contribute/desktop/process-diagram.png)
 
-In order to facilitate communication between the two processes, there is a communication layer in which information can be sent between. We expose *ONLY* the communication API to the renderer process so that we don't allow any malicious server to wreak havoc on a user's computer.
+In order to facilitate communication between the two processes, there's a communication layer in which information can be sent between. We expose *ONLY* the communication API to the renderer process so that we don't allow any malicious server to wreak havoc on a user's computer.
 
 You can read more about the Process Model [here](https://www.electronjs.org/docs/latest/tutorial/process-model).
 
