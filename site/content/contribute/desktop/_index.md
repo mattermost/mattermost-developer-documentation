@@ -29,7 +29,7 @@ Mattermost Desktop
 ├── e2e/ - E2E tests
 │   ├── modules/ - Setup code for the E2E tests
 │   └── specs/ - E2E tests themselves
-├── resources/ - Assets, such as images or sound files that the Desktop App uses
+├── resources/ - Assets such as images or sound files that the Desktop App uses
 ├── scripts/ - Automated scripts used for building or packaging the Desktop App
 └── src/ - Application source code.
     ├── assets/ - Assets, such as images or sound files that the Desktop App uses
