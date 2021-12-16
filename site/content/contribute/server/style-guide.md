@@ -14,7 +14,7 @@ This document, which should be read in conjunction with [Effective Go](https://g
 
 ### Application of guidelines
 
-The following guidelines should be applied to both new and existing code. This does not, however, mean that a developer is *required* to fix any surrounding code that contravenes the rules in the style guide. It's encouraged to keep fixing things as you go, but it is not compulsory to do so. Reviewers should refrain from asking for stylistic changes in surrounding code if the submitter has not included them in their pull request.
+The following guidelines should be applied to both new and existing code. However, this does not mean that a developer is *required* to fix any surrounding code that contravenes the rules in the style guide. It's encouraged to keep fixing things as you go, but it's not compulsory to do so. Reviewers should refrain from asking for stylistic changes in surrounding code if the submitter has not included them in their pull request.
 
 ## Guidelines
 
@@ -261,7 +261,7 @@ Any PR that can potentially have a performance impact on the `mattermost-server`
 
 ### Generics
 
-Generics is a new feature coming in Go 1.18. This is a significant language feature which is yet to be used widely and the patterns around it are unknown. Following the Go team's [recommendation](https://groups.google.com/g/golang-dev/c/iuB22_G9Kbo/m/7B1jd1I3BQAJ), it is advised not to use these features in the main server unless we have more experience from the broader community in using them and some clear patterns emerge.
+Generics is a new feature coming in Go 1.18. This is a significant language feature which is yet to be used widely and the patterns around it are unknown. Following the Go team's [recommendation](https://groups.google.com/g/golang-dev/c/iuB22_G9Kbo/m/7B1jd1I3BQAJ), it's advised not to use these features in the main server unless we have more experience from the broader community in using them and some clear patterns emerge.
 
 You are welcome to use it in small tools under the Mattermost org, but usage in the main server [repo](https://github.com/mattermost/mattermost-server) is not advised for now.
 
