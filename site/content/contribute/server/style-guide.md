@@ -12,17 +12,9 @@ However, at present, some of the guidelines from these sources come into conflic
 
 This document, which should be read in conjunction with [Effective Go](https://golang.org/doc/effective_go.html) and [CodeReviewComments](https://github.com/golang/go/wiki/CodeReviewComments), outlines the small number of exceptions we make to maintain backward compatibility, as well as a number of additional stylistic rules we have adopted on top of those external recommendations.
 
-### Model package
-
-The `model` package is our public API which is consumed by many plugins and third-party integrations. The need to maintain backward compatibility for these external users of the `model` package prevents us from immediately bringing it into compliance with some of the rules outlined in this document.
-
-In order to avoid delaying the adoption of these rules in the wider codebase, we have chosen to temporarily exempt only the `model` package from certain rules (indicated below). However, outside of the `model` package, these rules should be followed in all new or modified code.
-
 ### Application of guidelines
 
-In addition to the specific exceptions made for backward compatibility in the `model` package, all new commits should also follow the rules as outlined in this and the linked documents, for both new and modified code.
-
-This does not, however, mean that a developer is *required* to fix any surrounding code that contravenes the rules in the style guide. It's encouraged to keep fixing things as you go, but it is not compulsory to do so. Reviewers should refrain from asking for stylistic changes in surrounding code if the submitter has not included them in their pull request.
+The following guidelines should be applied to both new and existing code. However, this does not mean that a developer is *required* to fix any surrounding code that contravenes the rules in the style guide. It's encouraged to keep fixing things as you go, but it's not compulsory to do so. Reviewers should refrain from asking for stylistic changes in surrounding code if the submitter has not included them in their pull request.
 
 ## Guidelines
 
@@ -76,8 +68,6 @@ Do not create one-off goroutines without knowing when/how they exit. They cause 
 
 Do not use pointers to slices. Slices are already reference types which point to an underlying array. If you want a function to modify a slice, then return that slice from the function, rather than passing a pointer.
 
-This rule is not yet fully applied to the `model` package due to backward compatibility requirements.
-
 #### Avoid creating more ToJSON methods
 
 Do not create new `ToJSON` methods for model structs. Instead, just use `json.Marshal` at the call site. This has two major benefits:
@@ -102,8 +92,6 @@ These are just guidelines and not strict rules. Understand your use case and app
 #### [CamelCase variables/constants](https://github.com/golang/go/wiki/CodeReviewComments#mixed-caps)
 
 We use CamelCase names like WebsocketEventPostEdited, not WEBSOCKET_EVENT_POST_EDITED.
-
-This rule is not yet fully applied to the `model` package due to backward compatibility requirements.
 
 #### Empty string check
 
@@ -143,8 +131,6 @@ if !ok || d != '{' {
 #### [Initialisms](https://github.com/golang/go/wiki/CodeReviewComments#initialisms)
 
 Use `userID` rather than `userId`. Same for abbreviations; `HTTP` is preferred over `Http` or `http`.
-
-This rule is not yet fully applied to the `model` package due to backward compatibility requirements.
 
 #### [Receiver Names](https://github.com/golang/go/wiki/CodeReviewComments#receiver-names)
 
@@ -272,6 +258,12 @@ Any PR that can potentially have a performance impact on the `mattermost-server`
 - Use of locks and/or other synchronization primitives.
 - Regular expressions, especially when creating `regexp.MustCompile` dynamically every time.
 - Use of the `reflect` package.
+
+### Generics
+
+Generics is a new feature coming in Go 1.18. This is a significant language feature which is yet to be used widely and the patterns around it are unknown. Following the Go team's [recommendation](https://groups.google.com/g/golang-dev/c/iuB22_G9Kbo/m/7B1jd1I3BQAJ), it's advised not to use these features in the main server unless we have more experience from the broader community in using them and some clear patterns emerge.
+
+You are welcome to use it in small tools under the Mattermost org, but usage in the main server [repo](https://github.com/mattermost/mattermost-server) is not advised for now.
 
 ## Proposing a new rule
 
