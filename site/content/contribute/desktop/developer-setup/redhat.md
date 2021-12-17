@@ -1,4 +1,4 @@
-**NOTE:** We do not officially support Fedora/Red Hat/CentOS Linux for use with the Mattermost Desktop App. The provided guide is unofficial.
+**NOTE:** We don't officially support Fedora/Red Hat/CentOS Linux for use with the Mattermost Desktop App. The provided guide is unofficial.
 
 1. Open Terminal
 2. Install dependencies:
