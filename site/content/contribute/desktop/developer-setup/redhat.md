@@ -10,7 +10,7 @@
     ```
 
 #### Notes
-* To build RPMs, you need `rpmbuild`
+* To build RPMs, you need `rpmbuild`:
 
     ```sh
     sudo dnf install rpm-build

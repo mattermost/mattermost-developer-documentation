@@ -21,7 +21,7 @@
     ```
 
 #### Notes
-* To build RPMs, you need `rpmbuild`
+* To build RPMs, you need `rpmbuild`:
 
     ```sh
     sudo apt install rpm
