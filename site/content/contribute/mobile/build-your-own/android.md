@@ -83,7 +83,7 @@ To make it easier to customize your build, we've defined a few environment varia
 | `INCREMENT_BUILD_<br>NUMBER_MESSAGE` | Set the commit message when changing the app build number. | Bump app build number to | No |
 | `APP_NAME` | The name of the app as it is going to be shown on the device home screen. | Mattermost Beta | Yes |
 | `APP_SCHEME` | The URL naming scheme for the app as used in direct deep links to app content from outside the app. | mattermost | No |
-| `REPLACE_ASSETS` | Override the assets as described in [White Labeling](contribute/mobile/build-your-own/white-label/). <br><br>Valid values are: `true`, `false` | `false` | No |
+| `REPLACE_ASSETS` | Override the assets as described in [White Labeling](/contribute/mobile/build-your-own/white-label/). <br><br>Valid values are: `true`, `false` | `false` | No |
 | `MAIN_APP_IDENTIFIER` | The package identifier for the app. | | Yes |
 | `BUILD_FOR_RELEASE` | Defines if the app should be built in release mode. <br><br>Valid values are: `true`, `false` <br><br>**Make sure you set this value to true if you plan to submit this app Google Play or distribute it in any other way**. | `false` | Yes |
 | `SEPARATE_APKS` | Build one APK per achitecture (armeabi-v7a, x86, arm64-v8a and x86_64) as well as a universal APK. The advantage is the size of the APK is reduced by about 4MB. <br><br>People will download the correct APK from the Play Store based on the CPU architecture of their device. | `false` | Yes |
