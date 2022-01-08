@@ -37,7 +37,7 @@ Putting everything under `internal` has the advantage that you're free to change
 
 Following are some of the anti-patterns to keep in mind:
 
-- Don't use the `pkg` pattern. This is a common standard used by many projects. But it goes against the Go philosophy of naming packages that signify what they contain. From https://blog.golang.org/package-names:
+- Don't use the `pkg` pattern. This is a common standard used by many projects. But it goes against the Go philosophy of naming packages that signify what they contain. From https://blog.golang.org/package-names :
 
 >  A package's name provides context for its contents, making it easier for clients to understand what the package is for and how to use it.
 
