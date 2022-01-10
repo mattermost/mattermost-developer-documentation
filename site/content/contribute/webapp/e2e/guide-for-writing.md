@@ -13,7 +13,7 @@ Inside the `integration` directory, there are subdirectories that roughly break 
 
 ### Writing Specs
 
-1. See [which-query-to-use](account-settings-modal) when selecting an element base on order of priority.
+1. See [which-query-to-use](/contribute/webapp/e2e/which-query-to-use/) when selecting an element base on order of priority.
    - Use `camelCase` when assigning `data-testid` or element ID. Watch out for potential breaking changes in the snapshot of the unit testing.  Run `make test` to see if all are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot testing.
 2. Add custom commands to `/e2e/cypress/support`. See Cypress documentation for more details about custom commands [[link](https://docs.cypress.io/api/cypress-api/custom-commands.html)].
    - For ease of use, in-code documentation and discoverability, custom commands should have type definition added. See [declaration file](https://github.com/mattermost/mattermost-webapp/blob/master/e2e/cypress/support/api/user.d.ts) for reference on how to include.
@@ -28,7 +28,7 @@ Inside the `integration` directory, there are subdirectories that roughly break 
     }
     ```
 
-    For those writing E2E from Help Wanted tickets with `Area/E2E Tests` label, the `Test Key` is available in the [GitHub issue itself](https://github.com/mattermost/mattermost-server/issues/10574).
+    For those writing E2E from Help Wanted tickets with `Area/E2E Tests` label, the `Test Key` is available in the [GitHub issue itself](https://github.com/mattermost/mattermost-server/issues/18523).
 
     `Test Key` is used for mapping test cases per Release Testing specification. It will be used to measure coverage between manual and automated tests.
 
@@ -56,7 +56,7 @@ Inside the `integration` directory, there are subdirectories that roughly break 
 Test metadata is used to identify each spec file ahead of time before it is forwarded for Cypress run. Currently, supported test metadata are the following:
 
 1. "Stage" - Indicates environment for testing, e.g. `@prod`, `@smoke`, `@pull_request`. "Stage" metadata is owned and controlled by QA team who carefully analyze stability of test and promote/demote into a certain stage. This is not required when submitting a spec file and it should be removed when adding new or modifying an existing spec file.
-2. "Group" - Indicates test group or category, which is primarily based on functional areas and existing release testing groups, e.g. `@account_settings` for Account Settings, `@messaging` for Messaging, etc. This is required when submitting a spec file.
+2. "Group" - Indicates test group or category, which is primarily based on functional areas and existing release testing groups, e.g. `@settings` for Settings, `@playbooks` for Playbooks, etc. This is required when submitting a spec file.
 3. "Skip" - Is a way to skip a spec file depending on capability of test environment. This is required when submitting a spec file if a test has certain limitation or requirement. Capabilities could be as follows:
    - Per platform, e.g. `@darwin` for Mac, `@linux` for Linux flavor like Ubuntu, `@win32` for Windows, etc.
    - Per browser, e.g. `@electron`, `@chrome`, `@firefox`, `@edge`

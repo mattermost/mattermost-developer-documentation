@@ -12,7 +12,7 @@ This quick start guide explains the basics of writing a Mattermost app. In this 
 - Contains a `send` function that sends a parameterized message back to the user.
 - Contains a `send-modal` function that forces displaying the `send` form as a modal.
 
-You can view an example [here](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/js/aws_hello).
+You can view an example [here](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/js/hello-world).
 
 ## Prerequisites
 
@@ -22,8 +22,6 @@ In the System Console, ensure that the following are set to **true**:
 
 - `Enable Bot Account Creation`
 - `Enable OAuth 2.0 Service Provider`
-
-**Note:** Apps do not work with a production release of Mattermost right now. They can only be run in a development environment. A future release will support production environments.
 
 ### Install the Apps plugin
 
@@ -84,9 +82,11 @@ app.get('/manifest.json', (req, res) => {
     res.json({
         app_id: 'hello-world',
         display_name: 'Hello, world!',
-        app_type: 'http',
         icon: 'icon.png',
-        root_url: 'http://localhost:8080',
+        http: {
+            root_url: 'http://localhost:8080',
+        },
+        homepage_url: 'https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/js/hello-world',
         requested_permissions: [
             'act_as_bot',
         ],
@@ -158,7 +158,7 @@ Functions handle user events and webhooks. The Hello World app exposes two funct
 
 The functions use a simple form with one text field named `"message"`, the form submits to `/send`.
 
-`/send/form` and  `send-modal/submit` both return the same data:
+`/send/form` and `send-modal/submit` both return the same data:
 
 ```js
 app.post(['/send/form', '/send-modal/submit'], (req, res) => {
@@ -182,7 +182,7 @@ app.post(['/send/form', '/send-modal/submit'], (req, res) => {
 });
 ```
 
-## Icons 
+## Icons
 
 Apps may include static assets. One example that was already used above is the `icon` for the two bindings. Static assets must be served under the `static` path.
 

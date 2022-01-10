@@ -61,7 +61,7 @@ Each dialog supports elements for users to enter information.
 - `text`: Single-line plain text field. Use this for inputs such as names, email addresses, or phone numbers.
 - `textarea`: Multi-line plain text field. Use this field when the answer is expected to be longer than 150 characters.
 - `select`: Message menu. Use this for pre-selected choices. Can either be static menus or dynamic menus generated from users and Public channels of the system. For more information on message menus, see [the documentation]({{< ref "admin-interactive-messages.md" >}}).
-- `boo`: Checkbox option. Use this for binary selection.
+- `bool`: Checkbox option. Use this for binary selection.
 - `radio`: Radio button option. Use this to quickly select an option from pre-selected choices.
 
 Each element is required by default, otherwise the client will return an error as shown below. Note that the error message will appear below the help text, if one is specified. To make an element optional, set the field `"optional": "true"`.
@@ -456,7 +456,7 @@ Below is a full example of a JSON payload that creates an interactive dialog in 
 
 If you've built an integration for Mattermost, please consider [sharing your work](https://developers.mattermost.com/integrate/getting-started/) in our [app directory](https://mattermost.com/marketplace/).
 
-The [app directory](https://mattermost.com/marketplace/) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-managed infrastructure.
+The [app directory](https://mattermost.com/marketplace/) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-hosted infrastructure.
 
 ## Slack compatibility
 

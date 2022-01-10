@@ -8,7 +8,7 @@ weight: 80
 
 ## Creating a Personal Access Token
 
-1. Enable personal access tokens in **System Console > Integrations > Integration Management**.
+1. Enable personal access tokens in **Product menu > Integrations > Integration Management**.
 2. Identify the account you want to create a personal access token with. You may optionally create a new user account for your integration, such as for a bot account. By default, only System Admins have permissions to create a personal access token.
 3. To create an access token with a non-admin account, you must first give it the appropriate permissions. Go to **System Console > User Management > Users**, search for the user account, then select **Manage Roles** from the dropdown.
 
@@ -23,9 +23,7 @@ You may optionally allow the account to post to any channel in your Mattermost s
 Then select **Save**.
 
 5. Sign in to the user account to create a personal access token.
-
-6. Go to **Account Settings > Security > Personal Access Tokens**, then select **Create New Token**.
-
+6. Go to **Settings > Security > Personal Access Tokens**, then select **Create New Token**.
 7. Enter a description for the token, so you remember what it's used for. Then select **Save**.
 
 **Note:** If you create a personal access token for a System Admin account, be extra careful who you share it with. The token enables a user to have full access to the account, including System Admin privileges. It's recommended to create a personal access token for non-admin accounts.
@@ -37,25 +35,25 @@ Then select **Save**.
 
 ## Revoking a Personal Access Token
 
-A personal access token can be revoked by deleting the token from either the user's account settings or from the System Console. Once deleted, all sessions using the token are deleted, and any attempts to use the token to interact with the Mattermost server are blocked.
+A personal access token can be revoked by deleting the token from either the user's profile settings or from the System Console. Once deleted, all sessions using the token are deleted, and any attempts to use the token to interact with the Mattermost server are blocked.
 
-Tokens can also be temporarily deactivated from the user's account settings. Once deactivated, all sessions using the token are deleted, and any attempts to use the token to interact with the Mattermost server are blocked. However, the token can be reactivated at any time.
+Tokens can also be temporarily deactivated from the user's profile. Once deactivated, all sessions using the token are deleted, and any attempts to use the token to interact with the Mattermost server are blocked. However, the token can be reactivated at any time.
 
-### Account Settings
+### User's Profile
 
-1. Sign in to the user account and go to **Account Settings > Security > Personal Access Tokens**.
+1. Sign in to the user account, select the user avatar, then select **Profile > Security > Personal Access Tokens**.
 2. Identify the access token you want to revoke, then select **Delete** and confirm the deletion.
 
 ### System Console
 
-1. Go to **System Console > Users**, search for the user account which the token belongs to, then select **Manage Tokens** from the dropdown.
+1. Go to **System Console > User Management > Users**, search for the user account which the token belongs to, then select **Manage Tokens** from the dropdown.
 2. Identify the access token you want to revoke, then select **Delete** and confirm the deletion.
 
 ## Frequently Asked Questions (FAQ)
 
 ### How do personal access tokens differ from regular session tokens?
 
-- Personal access tokens do not expire. As a result, you can more easily integrate with Mattermost, bypassing the [session length limits set in the System Console](https://docs.mattermost.com/administration/config-settings.html#sessions).
+- Personal access tokens do not expire. As a result, you can more easily integrate with Mattermost, bypassing the [session length limits set in the System Console](https://docs.mattermost.com/configure/configuration-settings.html#session-lengths).
 - Personal access tokens can be used to authenticate against the API more easily, including with AD/LDAP and SAML accounts.
 - You can optionally assign additional roles for the account creating personal access tokens. This lets the account post to any channel in Mattermost, including direct messages.
 
