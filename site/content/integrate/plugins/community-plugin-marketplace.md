@@ -53,7 +53,6 @@ Every community plugin must fulfill the following checklist to be added to the M
 
 Please note that Mattermost reserves the right to reject any plugin submission from the Marketplace.
 
-As the plugin framework is currently in Beta, the rapid development cycle means that breaking changes (especially for the web app) can be expected. It's recommended that plugin authors keep up with these changes and fix bugs that may occur. Breaking changes will be mentioned in the "Important Upgrades Notes" section of the [Mattermost Changelog](https://docs.mattermost.com/administration/changelog.html).
 
 ### Requirements for updating a community plugin on the Marketplace
 
