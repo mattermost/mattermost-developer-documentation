@@ -3983,6 +3983,7 @@ ol > li + li {
     font-size: 18px;
     padding: 12px 25px;
     font-weight: 400;
+    border-width: 1px;
 }
 @media (min-width: 992px) {
     .site-header__col--menu .site-nav__button a {
@@ -4139,6 +4140,10 @@ ol > li + li {
         align-items: flex-start;
         display: flex;
         padding-left: 40px;
+    }
+    .site-header__col--menu .site-nav__hassubnav .sub-menu__links img {
+        max-width: 25px;
+        height: auto;
     }
     .site-header__col--menu .site-nav__hassubnav .sub-menu__links:first-child {
         padding-left: 0;
@@ -4423,6 +4428,7 @@ ol > li + li {
     }
     .site-header .site-nav__button {
         padding-top: 40px;
+        padding-bottom: 0;
     }
 }
 .mm-button {
@@ -4457,6 +4463,27 @@ ol > li + li {
         background-color: #043cb5;
         border-color: #043cb5;
     }
+}
+.mm-button.mm-button-outline--thin.mm-button-outline--thin-blue {
+	transition: background-color .3s ease, color 0s ease;
+	color: #1c58d9;
+	border: 1px solid #1c58d9
+}
+
+@media (max-width:991.98px) {
+	.mm-button.mm-button-outline--thin.mm-button-outline--thin-blue:focus,
+	.mm-button.mm-button-outline--thin.mm-button-outline--thin-blue:hover {
+		color: #1c58d9
+	}
+}
+
+@media (min-width:768px) {
+	.mm-button.mm-button-outline--thin.mm-button-outline--thin-blue:focus,
+	.mm-button.mm-button-outline--thin.mm-button-outline--thin-blue:hover {
+		color: #fff;
+		background-color: #043cb5;
+		border: 1px solid #043cb5
+	}
 }
 
 /* 2021 Reskin Global */
