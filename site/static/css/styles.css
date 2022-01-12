@@ -4192,9 +4192,15 @@ ol > li + li {
     width: 30px;
 }
 @media (max-width: 991.98px) {
-    .site-header__col--menu .site-nav__hassubnav .sub-menu__products img {
+    .site-header__col--menu .site-nav__hassubnav .sub-menu__products .sub-menu__block img,
+    .site-header__col--menu .site-nav__hassubnav .sub-menu__community .sub-menu__block img {
         width: 40px;
         height: auto;
+    }
+    .site-header__col--menu .site-nav__hassubnav .sub-menu__products .sub-menu__links img,
+    .site-header__col--menu .site-nav__hassubnav .sub-menu__community .sub-menu__links img{
+        max-width: 30px;
+        max-height: 30px;
     }
 }
 @media (min-width: 992px) {
