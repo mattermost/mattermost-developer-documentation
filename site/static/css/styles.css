@@ -3475,6 +3475,15 @@ table>tbody>tr:nth-of-type(odd) {
     padding: 14px;
 }
 
+.doc-content h5 a {
+    color: #363a45;
+}
+
+.doc-content .well .btn,
+.blog-pagination .btn {
+    background-color:#1c58d9;
+}
+
 .homepage .homepage__bg {
     -moz-transform: skew(0deg, -5deg);
     -ms-transform: skew(0deg, -5deg);
