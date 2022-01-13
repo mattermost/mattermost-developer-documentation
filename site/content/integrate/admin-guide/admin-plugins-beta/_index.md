@@ -33,6 +33,14 @@ Plugins identified as "Community" are produced by the open-source community or p
 
 Plugins may be labeled as "Beta" if they're released to the Marketplace early for customer previews. We do not recommend running beta plugins on production servers.
 
+**Experimental**
+
+Plugins labeled as "Experimental" are still being tested. These should not be run on production servers.
+
+**Partner**
+
+Plugins identified as "Partner" are created and maintained by a Mattermost partner.
+
 ### Installing a plugin
 
 When a new plugin becomes available on the Marketplace, it's listed with an option to **Install**. Select **Install** to download and install the latest plugin binary from its respective GitHub repository. If there's a cluster present, the plugin will be distributed to each server automatically.
