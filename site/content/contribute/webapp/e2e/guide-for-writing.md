@@ -56,7 +56,7 @@ Inside the `integration` directory, there are subdirectories that roughly break 
 Test metadata is used to identify each spec file ahead of time before it is forwarded for Cypress run. Currently, supported test metadata are the following:
 
 1. "Stage" - Indicates environment for testing, e.g. `@prod`, `@smoke`, `@pull_request`. "Stage" metadata is owned and controlled by QA team who carefully analyze stability of test and promote/demote into a certain stage. This is not required when submitting a spec file and it should be removed when adding new or modifying an existing spec file.
-2. "Group" - Indicates test group or category, which is primarily based on functional areas and existing release testing groups, e.g. `@account_settings` for Account Settings, `@messaging` for Messaging, etc. This is required when submitting a spec file.
+2. "Group" - Indicates test group or category, which is primarily based on functional areas and existing release testing groups, e.g. `@settings` for Settings, `@playbooks` for Playbooks, etc. This is required when submitting a spec file.
 3. "Skip" - Is a way to skip a spec file depending on capability of test environment. This is required when submitting a spec file if a test has certain limitation or requirement. Capabilities could be as follows:
    - Per platform, e.g. `@darwin` for Mac, `@linux` for Linux flavor like Ubuntu, `@win32` for Windows, etc.
    - Per browser, e.g. `@electron`, `@chrome`, `@firefox`, `@edge`
