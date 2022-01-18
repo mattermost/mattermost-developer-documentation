@@ -9,6 +9,17 @@ weight: 3
 
 Schema changes are always made synchronously when Mattermost starts up. This means the application won't be ready to serve requests until all schema changes are applied. In most cases, the new application won't be able to work until those schema changes are in place.
 
+In a high availability environment, multiple instances will try to run migrations. To prevent that a lock table is used in the migration system therefore until migrations are completed none of the instances will start. Once the lock is released by a node, another instance will obtain the lock and it will be going to check the migrations table. Since the previous node already applied the migrations, other nodes are not going to apply migrations.
+
+Since release 6.4 we have started to use a schema-based migration system. We are now creating SQL statement files to run migrations. A developer must create migration files for each database driver. Since we want our migrations to be reversible, the developer must create one `up` script along with a `down` script. For instance, a single migration would have the following files:
+
+- `000066_upgrade_posts_v6.0.down.sql`
+- `000066_upgrade_posts_v6.0.up.sql`
+
+The naming convention is the first part that will be used to determine the order in which the migrations should be applied and the next part until the `up|down.sql` suffix will be the migration name. We were using a database version before the new migration system hence the versions exist in the migration file name in the example. But using version identifiers for the next migration files is not mandatory. A developer can add any information to the name if they think it's going to be helpful.
+
+We are using [morph](https://github.com/go-morph/morph) for the migration engine. The tool has a library and also a CLI. Mattermost server imports the library to have programmatic access to morph functions. A developer can use the morph CLI tool to test their migrations if they are working properly. Please follow instructions in the morph documentation about using the morph CLI tool.
+
 If your migration will take more time on a larger data set, check if it is possible to extract it as a separate SQL query for the customer to run off-hours on their DB. This is usually possible with new indexes/columns. As a result, when the application is upgraded, the migration is a no-op because those columns/indexes are already added.
 
 The problem arises when in some databases, for some tables, due to various technical reasons, applying a migration prevents other operations from happening on that table. In that case, it causes unavoidable downtime.
@@ -21,8 +32,9 @@ The problem arises when in some databases, for some tables, due to various techn
 
 ### I need to make a schema change. What do I do?
 
-1. Every store is initialized in a `newXXXStore` function in `store/sqlstore/XXX_store.go` file. It should have a `db.AddTableWithName` call. Add your column to that table with the right `ColMap` param. Add other constraints as necessary.
-2. Modify the `store/sqlstore/upgrade.go` file. Scroll to the bottom, and add your migration there. (This method is going to change in the near future).
+1. Add appropriate sql script file with the statements you want to run into the migrations directory. Which is located in `{project_dir}/db/migrations/{driver_name}/`. Do not forget to add script for `mysql` and `postgres`.
+2. To embed the script run `make migrations-bindata`.
+3. You can run the mattermost-server binary and the tool will automatically apply the migration if it is required. And the migration name will be saved into `db_migrations` table.
 
 ### How do I measure the impact of the migration?
 
