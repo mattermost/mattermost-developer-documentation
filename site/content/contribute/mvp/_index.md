@@ -14,6 +14,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+6.3     | January 16, 2022    | [Ujjwal Sharma](https://github.com/shadowshot-x)
 6.2     | December 16, 2021   | [Julien Fabre](https://github.com/jufab)
 6.1     | November 16, 2021   | [Penthaa Patel](https://github.com/penthaapatel)
 6.0     | October 13, 2021    | [Johannes Marbach](https://github.com/Johennes)
