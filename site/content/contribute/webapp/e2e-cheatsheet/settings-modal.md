@@ -1,38 +1,38 @@
 ---
-title: "Account Settings Modal"
+title: "Settings Modal"
 date: 2020-12-11T00:00
 weight: 2
 subsection: Cypress cheatsheet
 ---
 
-![image](/contribute/webapp/e2e-cheatsheet/account-settings-modal.png)
+![image](/contribute/webapp/e2e-cheatsheet/settings-modal.png)
 
 ***
 
-#### `cy.uiOpenAccountSettingsModal(section)`
-Open the account settings modal when viewing a channel.
+#### `cy.uiOpenSettingsModal(section)`
+Open the settings modal when viewing a channel.
 
 - `section`
 < <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type">string</a> >
-  - Possible values: `'General'`, `'Security'`, `'Notifications'`, `'Display'`, `'Sidebar'` and `'Advanced'`
+  - Possible values: `'Notifications'`, `'Display'`, `'Sidebar'` and `'Advanced'`
 
-##### Open the Account Settings modal
+##### Open the Settings modal
 ```javascript
-// # Open 'Account Settings' modal and view the default 'General Settings'
-cy.uiOpenAccountSettingsModal();
+// # Open 'Settings' modal and view the default 'General Settings'
+cy.uiOpenSettingsModal();
 ```
 
-##### Open the Account Settings modal and view a specific section
+##### Open the Settings modal and view a specific section
 ```javascript
-// # Open 'Advanced' section of 'Account Settings' modal
-cy.uiOpenAccountSettingsModal('Advanced');
+// # Open 'Advanced' section of 'Settings' modal
+cy.uiOpenSettingsModal('Advanced');
 ```
 
 
-##### Open the Account Settings modal, view a specific section and change a setting
+##### Open the Settings modal, view a specific section and change a setting
 ```javascript
-// # Open 'Advanced' section of 'Account Settings' modal
-cy.uiOpenAccountSettingsModal('Advanced').within(() => {
+// # Open 'Advanced' section of 'Settings' modal
+cy.uiOpenSettingsModal('Advanced').within(() => {
     // # Open 'Enable Join/Leave Messages' and turn it off
     cy.findByRole('heading', {name: 'Enable Join/Leave Messages'}).click();
     cy.findByRole('radio', {name: 'Off'}).click();
@@ -50,12 +50,12 @@ Use to select section's button within a modal.
 
 - `name`
 < <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type">string</a> >
-  - Possible values: `'General'`, `'Security'`, `'Notifications'`, `'Display'`, `'Sidebar'` and `'Advanced'`
+  - Possible values: `'Notifications'`, `'Display'`, `'Sidebar'` and `'Advanced'`
 
-##### Open a section within the Account Settings modal
+##### Open a section within the Settings modal
 ```diff
-// # Open 'Advanced' section of 'Account Settings' modal
-cy.uiOpenAccountSettingsModal().within(() => {
+// # Open 'Advanced' section of 'Settings' modal
+cy.uiOpenSettingsModal().within(() => {
 +   // # Click 'Notifications' button
 +   cy.findByRoleExtended('button', {name: 'Notifications'}).should('be.visible').click();
 });
@@ -70,10 +70,10 @@ Use to select a setting of a section within a modal.
 < <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type">string</a> >
   - Possible values: `'Full Name'`, `'Username'`, and others depending of a section
 
-##### Open a section within the Account Settings modal
+##### Open a section within the Settings modal
 ```diff
-// # Open 'Notifications' of 'Account Settings' modal
-cy.uiOpenAccountSettingsModal('Notifications').within(() => {
+// # Open 'Notifications' of 'Settings' modal
+cy.uiOpenSettingsModal('Notifications').within(() => {
 +   // # Open 'Words That Trigger Mentions' setting
 +   cy.findByRole('heading', {name: 'Words That Trigger Mentions'}).should('be.visible').click();
 });
@@ -93,8 +93,8 @@ Use to select a setting of a section within a modal.
 
 ##### Change value of a section's setting
 ```diff
-// # Open 'Notifications' of 'Account Settings' modal
-cy.uiOpenAccountSettingsModal('Notifications').within(() => {
+// # Open 'Notifications' of 'Settings' modal
+cy.uiOpenSettingsModal('Notifications').within(() => {
     // # Open 'Words That Trigger Mentions' setting
     cy.findByRole('heading', {name: 'Words That Trigger Mentions'}).should('be.visible').click();
 
@@ -110,8 +110,8 @@ Common commands that can be used to save settings and close the modal.
 
 ##### Save and Close
 ```diff
-// # Open 'Notifications' of 'Account Settings' modal
-cy.uiOpenAccountSettingsModal('Notifications').within(() => {
+// # Open 'Notifications' of 'Settings' modal
+cy.uiOpenSettingsModal('Notifications').within(() => {
     // # Open 'Words That Trigger Mentions' setting
     cy.findByRole('heading', {name: 'Words That Trigger Mentions'}).should('be.visible').click();
 
