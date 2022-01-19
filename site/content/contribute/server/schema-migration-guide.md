@@ -36,6 +36,10 @@ The problem arises when in some databases, for some tables, due to various techn
 2. To embed the script run `make migrations-bindata`.
 3. You can run the mattermost-server binary and the tool will automatically apply the migration if it is required. And the migration name will be saved into `db_migrations` table.
 
+### My migration has failed. What do I do?
+1. If you think your migration is applied, and you want to revert changes: You can run the down script to rollback in a clean way. You can use morph CLI to apply down migrations.
+2. The migration has been shipped in a release and you want to apply fixes: Instead of changing the existing script, you should add a new one so that `db_migrations` will stay consistent. You can edit the existing migration to be a no-op for future releases in this case.
+
 ### How do I measure the impact of the migration?
 
 Answer the following two questions:
