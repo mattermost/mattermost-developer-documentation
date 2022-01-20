@@ -38,6 +38,8 @@ The problem arises when in some databases, for some tables, due to various techn
 
 ### My migration has failed. What do I do?
 1. If you think your migration is applied, and you want to revert changes: You can run the down script to rollback in a clean way. You can use morph CLI to apply down migrations.
+    - Before rolling down the script, check the `db_migrations` table whether the migration is applied or not.
+    - If it's applied you can revert it using morph CLI command. An example command would look like `morph apply down --driver postgres --dsn "{your-dsn}" --path ./db/migrations/postgres --number 1`
 2. The migration has been shipped in a release and you want to apply fixes: Instead of changing the existing script, you should add a new one so that `db_migrations` will stay consistent. You can edit the existing migration to be a no-op for future releases in this case.
 
 ### How do I measure the impact of the migration?
