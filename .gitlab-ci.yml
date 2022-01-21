@@ -15,7 +15,7 @@ build-package:
   stage: build
   image: $IMAGE_BUILD
   before_script:
-    - apt-get update && apt-get install hugo -y
+    - go install github.com/gohugoio/hugo@v0.92.0
   script:
     - make dist
   artifacts:
