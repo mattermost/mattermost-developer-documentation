@@ -108,7 +108,7 @@ pygmentsStyle = "manni"
     description = "Join thousands of developers who contribute to the Mattermost open source project."
     url = "contribute/getting-started/"
     button = "Start Contributing"
-    icon = "img/home/Contribute.svg"
+    icon = "/img/contribute-icon.svg"
     draft = false
 
   [[params.intro.item]]
@@ -116,7 +116,7 @@ pygmentsStyle = "manni"
     description = "Integrate with Mattermost via Apps, APIs, webhooks, and more."
     url = "integrate/getting-started/"
     button = "Integrate Today"
-    icon = "img/home/IntegrateExtend.svg"
+    icon = "/img/extend-icon.svg"
     draft = false
 
   [[params.intro.item]]
@@ -124,7 +124,7 @@ pygmentsStyle = "manni"
     description = "Learn how to build Mattermost integrations via demos, example code, and guided content."
     url = "/integrate/admin-guide/"
     button = "Build Now"
-    icon = "img/home/AdminGuide.svg"
+    icon = "/img/integrate-icon.svg"
     draft = false
 
   #[params.intro.video]
@@ -241,8 +241,6 @@ pygmentsStyle = "manni"
     twitter = 'https://twitter.com/mattermost'
     facebook = 'https://www.facebook.com/Mattermost-2300985916642531/'
     youtube = 'https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA'
-    linkedin = 'https://www.linkedin.com/company/mattermost/'
-    github = 'https://github.com/mattermost/'
     copyright = '&copy; Mattermost, Inc. All Rights Reserved.'
 
 # Allows html in Hugo >= v0.60.0.  See Github issue #506.
