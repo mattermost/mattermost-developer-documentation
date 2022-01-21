@@ -3,7 +3,7 @@
 variables:
   AWS_DEFAULT_REGION: "us-east-1"
 
-  IMAGE_BUILD: golang:1.17.6
+  IMAGE_BUILD: cimg/go:1.17-node
   IMAGE_AWS_CI: $CI_REGISTRY/images/aws-ci:2.1.1-1
 
 
