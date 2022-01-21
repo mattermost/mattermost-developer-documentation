@@ -1,0 +1,40 @@
+# This run in the mattermost gitlab internal instace
+
+variables:
+  AWS_DEFAULT_REGION: "us-east-1"
+
+  IMAGE_BUILD: cimg/go:1.17-node
+  IMAGE_AWS_CI: $CI_REGISTRY/images/aws-ci:2.1.1-1
+
+
+stages:
+  - build
+  - deploy
+
+build-package:
+  stage: build
+  image: $IMAGE_BUILD
+  before_script:
+    - go install github.com/gohugoio/hugo@v0.92.0
+  script:
+    - make dist
+  artifacts:
+    paths:
+      - ./dist/html
+    expire_in: 2 hours
+  only:
+    refs:
+      - master
+
+s3-release:
+  image: $IMAGE_AWS_CI
+  variables:
+    BUCKET: mattermost-developer-documentation/branches
+  stage: deploy
+  script:
+    - aws s3 cp dist/html s3://mattermost-developer-documentation/branches/master --recursive --cache-control no-cache --acl public-read
+  needs:
+    - build-package
+  only:
+    refs:
+      - master
