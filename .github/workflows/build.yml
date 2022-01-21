@@ -23,7 +23,6 @@ jobs:
         go-version: 1.17.x
 
     - name: Setup Hugo
-      if: github.event.pull_request.head.repo.full_name == github.repository
       uses: peaceiris/actions-hugo@v2
       with:
         hugo-version: '0.80.0'
