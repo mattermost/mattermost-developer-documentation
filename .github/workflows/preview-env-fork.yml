@@ -8,6 +8,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+
     steps:
       - name: Download PR number artifact
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -21,42 +25,7 @@ jobs:
         run: |
           cat pr.txt
           echo "::set-output name=id::$(<pr.txt)"
-      - name: Check label
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        uses: actions/github-script@v4
-        id: label-checker
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            const query = `query($owner:String!, $name:String!, $pr:Int!) {
-              repository(owner:$owner, name:$name){
-                pullRequest(number:$pr) {
-                  labels(first:50) {
-                    nodes{
-                      name
-                    }
-                  }
-                }
-              }
-            }`;
-            const variables = {
-              owner: 'mattermost',
-              name: 'docs',
-              pr: ${{ steps.pr.outputs.id }}
-            };
-            const result = await github.graphql(query, variables);
-            console.log(result.repository.pullRequest.labels.nodes);
-            const labels = result.repository.pullRequest.labels.nodes;
-            for (var index = 0; index < labels.length; ++index) {
-              var label = labels[index];
-              if(label.name == 'preview-environment') {
-                return true;
-              }
-            }
-            return false;
-
       - uses: actions/checkout@v2
-        if: ${{ github.event.workflow_run.conclusion == 'success' && steps.label-checker.outputs.result == 'true' }}
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -64,21 +33,18 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Hugo
-        if: ${{ github.event.workflow_run.conclusion == 'success' && steps.label-checker.outputs.result == 'true' }}
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.74.2'
+          hugo-version: '0.92.0'
           # extended: true
 
       - name: Build Previews
-        if: ${{ github.event.workflow_run.conclusion == 'success' && steps.label-checker.outputs.result == 'true' }}
         run: |
           rm -rf ./dist
           hugo -F -s site --baseURL http://mattermost-dev-docs-preview-pulls.s3-website-us-east-1.amazonaws.com/ --destination ../dist/html
 
       - uses: shallwefootball/s3-upload-action@master
         name: Upload Preview Env
-        if: ${{ github.event.workflow_run.conclusion == 'success' && steps.label-checker.outputs.result == 'true' }}
         with:
           aws_key_id: ${{ secrets.AWS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -88,7 +54,7 @@ jobs:
 
       - name: Add comment to PR
         uses: peter-evans/create-or-update-comment@v1
-        if: ${{ success() &&  github.event.workflow_run.conclusion == 'success' && steps.label-checker.outputs.result == 'true' }}
+        if: ${{ success() &&  github.event.workflow_run.conclusion == 'success' }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ steps.pr.outputs.id }}
@@ -96,7 +62,7 @@ jobs:
             Newest code from ${{ github.actor }} has been published to [preview environment](http://mattermost-dev-docs-preview-pulls.s3-website-us-east-1.amazonaws.com/${{ steps.pr.outputs.id }}) for Git SHA ${{ github.event.workflow_run.head_sha }}
 
       - name: The job has failed
-        if: ${{ failure() && github.event.workflow_run.conclusion == 'success' && steps.label-checker.outputs.result == 'true' }}
+        if: ${{ failure() && github.event.workflow_run.conclusion == 'success' }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

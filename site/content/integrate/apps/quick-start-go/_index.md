@@ -21,8 +21,6 @@ In the System Console, ensure that the following are set to **true**:
 - `Enable Bot Account Creation`
 - `Enable OAuth 2.0 Service Provider`
 
-**Note:** Apps do not work with a production release of Mattermost right now. They can only be run in a development environment. A future release will support production environments.
-
 You also need at least `go1.16` installed. Please follow the guide [here](https://golang.org/doc/install) to install the latest version.
 
 ### Install the Apps plugin
@@ -50,7 +48,7 @@ Start building your app by creating a directory for the code and setting up a ne
 mkdir my-app
 cd my-app
 go mod init my-app
-go get github.com/mattermost/mattermost-plugin-apps/apps@master
+go get github.com/mattermost/mattermost-plugin-apps@master
 ```
 
 ### Manifest
@@ -66,17 +64,20 @@ Create a file called `manifest.json` containing:
 ```json
 {
 	"app_id": "hello-world",
+    "version":"0.8.0",
 	"display_name": "Hello, world!",
-	"app_type": "http",
-    "icon": "icon.png",
-	"root_url": "http://localhost:8080",
+	"icon": "icon.png",
+	"homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/examples/go/hello-world",
 	"requested_permissions": [
 		"act_as_bot"
 	],
 	"requested_locations": [
 		"/channel_header",
 		"/command"
-	]
+	],
+	"http": {
+		"root_url": "http://localhost:4000"
+	}
 }
 ```
 
@@ -160,7 +161,7 @@ Create a file called `send_form.json` containing:
 }
 ```
 
-## Icons 
+## Icons
 
 Apps may include static assets. One example that was already used above is the `icon` for the two bindings. Static assets must be served under the `static` path.
 
@@ -181,10 +182,12 @@ import (
 	_ "embed"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/mattermost/mattermost-plugin-apps/apps"
-	"github.com/mattermost/mattermost-plugin-apps/apps/mmclient"
+	"github.com/mattermost/mattermost-plugin-apps/apps/appclient"
+	"github.com/mattermost/mattermost-plugin-apps/utils/httputils"
 )
 
 //go:embed icon.png
@@ -199,33 +202,30 @@ var bindingsData []byte
 //go:embed send_form.json
 var formData []byte
 
-const (
-	host = "localhost"
-	port = 8080
-)
-
 func main() {
 	// Serve its own manifest as HTTP for convenience in dev. mode.
-	http.HandleFunc("/manifest.json", writeJSON(manifestData))
+	http.HandleFunc("/manifest.json", httputils.HandleJSONData(manifestData))
 
 	// Returns the Channel Header and Command bindings for the app.
-	http.HandleFunc("/bindings", writeJSON(bindingsData))
+	http.HandleFunc("/bindings", httputils.HandleJSONData(bindingsData))
 
 	// The form for sending a Hello message.
-	http.HandleFunc("/send/form", writeJSON(formData))
+	http.HandleFunc("/send/form", httputils.HandleJSONData(formData))
 
 	// The main handler for sending a Hello message.
 	http.HandleFunc("/send/submit", send)
 
 	// Forces the send form to be displayed as a modal.
-	http.HandleFunc("/send-modal/submit", writeJSON(formData))
+	http.HandleFunc("/send-modal/submit", httputils.HandleJSONData(formData))
 
 	// Serves the icon for the app.
-	http.HandleFunc("/static/icon.png", writeData("image/png", iconData))
+	http.HandleFunc("/static/icon.png",
+		httputils.HandleData("image/png", iconData))
 
-	addr := fmt.Sprintf("%v:%v", host, port)
-	fmt.Printf(`hello-world app listening at http://%s`, addr)
-	http.ListenAndServe(addr, nil)
+	addr := ":4000" // matches manifest.json
+	fmt.Println("Listening on", addr)
+	fmt.Println("Use '/apps install http http://localhost" + addr + "/manifest.json' to install the app") // matches manifest.json
+	log.Fatal(http.ListenAndServe(addr, nil))
 }
 
 func send(w http.ResponseWriter, req *http.Request) {
@@ -237,23 +237,10 @@ func send(w http.ResponseWriter, req *http.Request) {
 	if ok && v != nil {
 		message += fmt.Sprintf(" ...and %s!", v)
 	}
-	mmclient.AsBot(c.Context).DM(c.Context.ActingUserID, message)
+	appclient.AsBot(c.Context).DM(c.Context.ActingUserID, message)
 
-    json.NewEncoder(w).Encode(apps.CallResponse{
-		Type:     apps.CallResponseTypeOK,
-		Markdown: "Created a post in your DM channel.",
-	})
-}
-
-func writeData(ct string, data []byte) func(w http.ResponseWriter, r *http.Request) {
-	return func(w http.ResponseWriter, req *http.Request) {
-		w.Header().Set("Content-Type", ct)
-		w.Write(data)
-	}
-}
-
-func writeJSON(data []byte) func(w http.ResponseWriter, r *http.Request) {
-	return writeData("application/json", data)
+	httputils.WriteJSON(w,
+		apps.NewOKResponse(nil, "Created a post in your DM channel."))
 }
 ```
 
@@ -270,10 +257,10 @@ go run .
 Then run the following slash commands on your Mattermost server:
 
 ```
-/apps install http http://localhost:8080/manifest.json
+/apps install http http://localhost:4000/manifest.json
 ```
 
-Confirm the installation in the modal that pops up. You can insert any secret into the **App secret** field for now.
+Confirm the installation in the modal that pops up. You can leave the **App secret** field blank, the app does not require one.
 
 ## Using the app
 
@@ -297,4 +284,3 @@ Uninstall the app using:
 ```
 /apps uninstall hello-world
 ```
-

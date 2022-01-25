@@ -1,8 +1,9 @@
----
+
+<!---
 title: "OSX Development Environment Setup"
 heading: "How to Set Up Mattermost in Mac OS X"
 description: "Read about how to set up your developer environment in Mattermost using a Mac OS X."
----
+--->
 
 1. Install and configure Docker CE: https://docs.docker.com/docker-for-mac/.
 
@@ -58,6 +59,8 @@ description: "Read about how to set up your developer environment in Mattermost 
     ```
 
     **Note:** If you see lot of `nc: bad address 'elasticsearch'` messages, eventually exiting with the message `Service elasticsearch:9200 did not start within 300 seconds. Aborting...`,  increase the memory available for the Docker Engine by going to [Docker's preferences -> Advanced](https://docs.docker.com/docker-for-mac/#advanced).
+    
+   **Note:** If you see an error which says `Failed to ping DB`, it's probably due to a conflict between the PostgreSQL service in Docker and the one which is running system-wide. You can stop the system-wide server temporarily by running `brew services stop postgres` in your terminal, then restart the Docker service.
 
 9. Test your environment:
 

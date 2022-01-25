@@ -57,7 +57,7 @@ The following payload gives an example that uses message buttons.
 }
 ```
 
-The integration can respond with an update to the original post, or with an ephemeral message:
+In the HTTP response for this request, the integration can choose to update the original post, and/or respond with an ephemeral message:
 
 ```
 {
@@ -343,7 +343,7 @@ Tips and Best Practices
 
 If you've built an integration for Mattermost, please consider sharing your work in our [app directory](https://integrations.mattermost.com).
 
-The [app directory](https://integrations.mattermost.com) lists open source integrations developed by the Mattermost community and are available for download, customization, and deployment to your private cloud or self-managed infrastructure.
+The [app directory](https://integrations.mattermost.com) lists open source integrations developed by the Mattermost community and are available for download, customization, and deployment to your private cloud or self-hosted infrastructure.
 
 ## Slack Compatibility
 
@@ -367,7 +367,7 @@ If your `ephemeral_text` gets incorrectly handled by the Slack-compatibility log
 
 ### Are message buttons and menus supported in ephemeral messages?
 
-Yes, message buttons and menus are supported in ephemeral messages in Mattermost 5.10 and later. This applies to integrations using plugins, the RESTful API and webhooks, across the browser and desktop app.
+Yes, message buttons and menus are supported in ephemeral messages in Mattermost 5.10 and later. This applies to integrations using plugins, the RESTful API and webhooks, across the browser and Desktop App.
 
 As an advanced feature, you can also use plugins to update the contents of an ephemeral message with message buttons or menus with the [UpdateEphemeralMessage plugin API]({{< ref "/integrate/plugins/server/reference#API.UpdateEphemeralPost" >}}).
 
@@ -375,7 +375,7 @@ As an advanced feature, you can also use plugins to update the contents of an ep
 
 It is likely for one of three reasons:
 
-1. Mattermost wasn't able to connect to the integration. If the integration is on your internal infrastructure, it'll need to be whitelisted (see ["AllowedUntrustedInternalConnections" config.json setting](https://docs.mattermost.com/configure/configuration-settings.html#allow-untrusted-internal-connections-to). The log will include the text `err=address forbidden` in the error message.
+1. Mattermost wasn't able to connect to the integration. If the integration is on your internal infrastructure, it'll need to be whitelisted (see ["AllowedUntrustedInternalConnections" config.json setting](https://docs.mattermost.com/configure/configuration-settings.html#allow-untrusted-internal-connections-to)). The log will include the text `err=address forbidden` in the error message.
 2. The integration didn't return HTTP status 200. The log will include the text `status=XXX` in the error message.
 3. The integration didn't return a valid JSON response. The log will include the text `err=some json error message` in the error message.
 
