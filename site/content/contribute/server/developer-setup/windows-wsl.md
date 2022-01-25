@@ -131,4 +131,4 @@ This is an unofficial guide. Community testing, feedback, and improvements are w
     
     If that's the case, `postgresql.conf` is probably a directory rather than a file, which means the volume wasn't mounted properly, so you are most likely missing some of the configuration changes from step 1 (Linux Subsystem Installation).
     
-4. If you see an error like `ERROR: for mattermost-postgres. Cannot create container for service postgres: status code not OK but 500: {"Message":"Unhandled exception: Drive has not been shared"}`, make sure you enabled file sharing for the drive that contains the `mattermost-server` project. 
+4. If you see an error like `ERROR: for mattermost-postgres. Cannot create container for service postgres: status code not OK but 500: {"Message":"Unhandled exception: Drive has not been shared"}`, make sure you enabled file sharing for the drive that contains the `mattermost-server` project.
