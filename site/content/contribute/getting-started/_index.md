@@ -30,4 +30,4 @@ Once you’ve created some code that you want to contribute, follow our [pull re
 
 ## How to Get Help With Your Contribution
 
-Our contributor community is segmented into [guilds]({{< ref "guilds.md" >}}) that focus on specific components within the Mattermost ecosystem. Each guild has a leader and a channel on our [community chat server](https://docs.mattermost.com/guides/community-chat) where you can ask questions about your contribution.
+Our contributor community is segmented into [guilds]({{< ref "guilds.md" >}}) that focus on specific components within the Mattermost ecosystem. Each guild has a leader and a channel on our [community chat server](https://docs.mattermost.com/guides/community-chat.html) where you can ask questions about your contribution.
