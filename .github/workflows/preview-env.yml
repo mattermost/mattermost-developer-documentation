@@ -18,7 +18,7 @@ jobs:
         if: github.event.pull_request.head.repo.full_name == github.repository
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.74.2'
+          hugo-version: '0.92.0'
 
       - name: Build Previews
         if: github.event.pull_request.head.repo.full_name == github.repository

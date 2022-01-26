@@ -8,7 +8,7 @@ weight: 1
 
 The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version [here](http://about.mattermost.com/mattermost-ios-app) and the Android version [here](http://about.mattermost.com/mattermost-android-app). Source code can be found at the [GitHub Mattermost Mobile app repository](https://github.com/mattermost/mattermost-mobile).
 
-If you run into any issues getting your environment set up, check the [Troubleshooting](https://developers.mattermost.com/contribute/mobile/developer-setup/troubleshooting/) section in the left sidebar for common solutions.
+If you run into any issues getting your environment set up, check the [Troubleshooting](https://docs.mattermost.com/deploy/mobile-troubleshoot.html) section in the left sidebar for common solutions.
 
 **Note: This guide describes how to set up the development environment on macOS or Linux.**
 
