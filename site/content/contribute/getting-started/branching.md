@@ -1,19 +1,14 @@
 ---
-title: "Mattermost tick-tock Branching Strategy"
-heading: "Mattermost Tick-Tock Branching Strategy"
-description: "Mattermost recently moved away from a tick-tock release strategy with alternating feature and quality releases."
+title: "Mattermost cherry-pick process"
+heading: "Mattermost Cherry-Pick Process"
+description: " "
 date: 2019-06-18T00:00:00-04:00
 weight: 20
 ---
 
-Mattermost previously adopted a [tick-tock release strategy](https://docs.mattermost.com/process/release-faq.html#release-overview) where every other release was a "quality release" that only had bug fixes and no new features.
+The self-managed releases are now cut based off of the Mattermost Cloud release tags (e.g Mattermost Server v5.32 release was based off of cloud-2021-01-26 tag). See [the Hanbook release process](https://handbook.mattermost.com/operations/research-and-development/product/release-process/release-overview#cloud-release-branch-processes) for more details.
 
-The following diagram provides an overview of the branching strategy that was used to accomplish this. As an example, release-5.4 is a feature release and release-5.5 is a quality release. Note the "quality release" branch is based on the previous release branch.
-
-![Branching Overview](/contribute/getting-started/branching-overview.png)
-
-
-## Cherry Pick Process - Developer
+## Cherry-Pick Process - Developer
 
 When your PR is required on a release branch, you will follow the cherry picking process.
 
