@@ -77,7 +77,7 @@ pygmentsStyle = "manni"
       weight = 2
 
     [[menu.postpend]]
-      url = "/blog/"
+      url = "https://mattermost.com/blog/category/engineering/"
       name = "Blog"
       weight = 4
 
