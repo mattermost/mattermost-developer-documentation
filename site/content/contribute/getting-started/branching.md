@@ -10,7 +10,7 @@ The self-managed releases are now cut based off of the Mattermost Cloud release 
 
 ## Cherry-Pick Process - Developer
 
-When your PR is required on a release branch, you will follow the cherry picking process.
+When your PR is required on a release branch (e.g. for a dot release or to fix a regression for an upcoming release), you will follow the cherry picking process.
 
 1. Make a PR to 'master' like normal.
 1. Add the appropriate milestone and the `CherryPick/Approved` label.
