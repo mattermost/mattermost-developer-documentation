@@ -6,7 +6,7 @@ date: 2019-06-18T00:00:00-04:00
 weight: 20
 ---
 
-The self-managed releases are now cut based off of the Mattermost Cloud release tags (e.g Mattermost Server v6.3 release was based off of ``cloud-2021-12-08-1`` Cloud release tag). See [the Handbook release process](https://handbook.mattermost.com/operations/research-and-development/product/release-process/release-overview#cloud-release-branch-processes) for more details.
+The self-managed releases are now cut based off of the Mattermost Cloud release tags (e.g Mattermost Server v6.3 release was based off of ``cloud-2021-12-08-1`` Cloud release tag) in the server, webapp, enterprise, and api-reference repos. See [the Handbook release process](https://handbook.mattermost.com/operations/research-and-development/product/release-process/release-overview#cloud-release-branch-processes) for more details.
 
 ## Cherry-pick process - Developer
 
