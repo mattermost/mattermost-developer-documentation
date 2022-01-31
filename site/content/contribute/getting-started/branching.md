@@ -6,11 +6,11 @@ date: 2019-06-18T00:00:00-04:00
 weight: 20
 ---
 
-The self-managed releases are now cut based off of the Mattermost Cloud release tags (e.g Mattermost Server v6.3 release was based off of ``cloud-2021-12-08-1`` Cloud release tag). See [the Hanbook release process](https://handbook.mattermost.com/operations/research-and-development/product/release-process/release-overview#cloud-release-branch-processes) for more details.
+The self-managed releases are now cut based off of the Mattermost Cloud release tags (e.g Mattermost Server v6.3 release was based off of ``cloud-2021-12-08-1`` Cloud release tag). See [the Handbook release process](https://handbook.mattermost.com/operations/research-and-development/product/release-process/release-overview#cloud-release-branch-processes) for more details.
 
-## Cherry-Pick Process - Developer
+## Cherry-pick process - Developer
 
-When your PR is required on a release branch (e.g. for a dot release or to fix a regression for an upcoming release), you will follow the cherry picking process.
+When your PR is required on a release branch (e.g. for a dot release or to fix a regression for an upcoming release), you will follow the cherry-picking process.
 
 1. Make a PR to 'master' like normal.
 1. Add the appropriate milestone and the `CherryPick/Approved` label.
@@ -28,8 +28,8 @@ When your PR is required on a release branch (e.g. for a dot release or to fix a
 1. Remove the `CherryPick/Approved` label and apply the `CherryPick/Done` label.
 
 Note:
-  - If the PR need to go to other release branches, you can run the command `/cherry-pick release-x.yz` in the PR comments and it will try to cherry-pick it to the branch you specified.
+  - If the PR needs to go to other release branches, you can run the command `/cherry-pick release-x.yz` in the PR comments and it will try to cherry-pick it to the branch you specified.
 
-## Cherry Pick Process - Reviewer
+## Cherry pick process - Reviewer
 
-If you are the second reviewer reviewing a PR that needs to be cherry-picked, do not merge the PR. If the submitter is a core team member, you should set the `Reviews Complete` label and assign it to the submitter to cherry pick. If the submitter is a community member who is not available to cherry pick their PR or can not do it themselves, you should follow the cherry pick process above.
+If you are the second reviewer reviewing a PR that needs to be cherry-picked, do not merge the PR. If the submitter is a core team member, you should set the `Reviews Complete` label and assign it to the submitter to cherry-pick. If the submitter is a community member who is not available to cherry-pick their PR or can not do it themselves, you should follow the cherry-pick process above.
