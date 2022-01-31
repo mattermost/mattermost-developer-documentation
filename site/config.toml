@@ -38,7 +38,7 @@ pygmentsStyle = "manni"
 
   [[params.sidebar.item]]
     name = "integrate"
-    displayName = "Integrate"
+    displayName = "Integrate & Extend"
     draft = true
 
   [[params.sidebar.item]]
@@ -73,13 +73,8 @@ pygmentsStyle = "manni"
 
     [[menu.postpend]]
       url = "/integrate/getting-started/"
-      name = "Integrate"
+      name = "Integrate & Extend"
       weight = 2
-
-    [[menu.postpend]]
-      url = "/extend/getting-started/"
-      name = "Extend"
-      weight = 3
 
     [[menu.postpend]]
       url = "/blog/"
@@ -95,8 +90,7 @@ pygmentsStyle = "manni"
     # Workaround to add draft status to menu items
     [[params.navigation.drafts]]
       Contribute = false
-      Integrate = false
-      Extend = false
+      'Integrate & Extend' = false
       Blog = false
       Internal = false
       'Admin Docs' = false
@@ -107,30 +101,30 @@ pygmentsStyle = "manni"
     subtitle = ''
 
   # Intro section
-  # Available icons: http://simplelineicons.com/
+  # Available icons: https://simplelineicons.github.io/
   [params.intro]
   [[params.intro.item]]
     title = "Contribute"
-    description = "Join the hundreds of contributors and submit code directly to the Mattermost open-source project."
+    description = "Join thousands of developers who contribute to the Mattermost open source project."
     url = "contribute/getting-started/"
     button = "Start Contributing"
     icon = "/img/contribute-icon.svg"
     draft = false
 
   [[params.intro.item]]
-    title = "Integrate"
-    description = "Integrate with Mattermost through incoming and outgoing webhooks, slash commands, OAuth 2.0 and the REST API."
+    title = "Integrate & Extend"
+    description = "Integrate with Mattermost via Apps, APIs, webhooks, and more."
     url = "integrate/getting-started/"
-    button = "Start Integrating"
-    icon = "/img/integrate-icon.svg"
+    button = "Integrate Today"
+    icon = "/img/extend-icon.svg"
     draft = false
 
   [[params.intro.item]]
-    title = "Extend"
-    description = "Extend Mattermost to fit your purpose through powerful client and server plugins, embedding or forking."
-    url = "extend/getting-started/"
-    button = "Start Extending"
-    icon = "/img/extend-icon.svg"
+    title = "Development Guides"
+    description = "Learn how to build Mattermost integrations via demos, example code, and guided content."
+    url = "/integrate/admin-guide/"
+    button = "Build Now"
+    icon = "/img/integrate-icon.svg"
     draft = false
 
   #[params.intro.video]
@@ -150,11 +144,6 @@ pygmentsStyle = "manni"
       relPermaLink = "/contribute/"
       heading = "How to Contribute to Mattermost"
       description = "Find out how to contribute to the Mattermost open source project and the various ways to get involved."
-
-    [[params.indexes.item]]
-      relPermaLink = "/extend/"
-      heading = "How to Extend Mattermost"
-      description = "Learn about how you can extend Mattermost to customize it for your unique purposes."
 
     [[params.indexes.item]]
       relPermaLink = "/integrate/"
@@ -223,7 +212,7 @@ pygmentsStyle = "manni"
 
     [[params.categories.item]]
       term = "performance"
-      heading = "Content about Peformance at Mattermost"
+      heading = "Content about Performance at Mattermost"
       description = "Looking to improve the performance of your applications? Learn how we approach performance at Mattermost."
 
     [[params.categories.item]]

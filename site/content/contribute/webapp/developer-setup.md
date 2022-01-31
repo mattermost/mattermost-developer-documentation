@@ -9,19 +9,33 @@ Set up your development environment for building, running, and testing the Matte
 
 1. Set up your [development environment for the Mattermost server](/contribute/server/developer-setup/).
 
-2. Install Node.js 14:
+2. Fork https://github.com/mattermost/mattermost-webapp
 
-    - If you use [NVM](https://github.com/nvm-sh/nvm), use that to install Node 14.
+3. Clone the Mattermost source code from your fork next to your mattermost-server directory:
 
-    - On Mac, use [Homebrew](https://brew.sh/) to install it:
+    ```sh
+    git clone https://github.com/$GITHUB_USERNAME/mattermost-webapp.git
+    ```
 
+4. Link the `client` directory in your server with the `dist` directory in your webapp:
+
+    ```sh
+    mkdir -p mattermost-webapp/dist
+    cd mattermost-server
+    ln -nfs ../mattermost-webapp/dist client
+    cd ..
+    ```
+
+5. Install NVM and use it to install the required version of Node.js:
+
+    - First, install [NVM](https://github.com/nvm-sh/nvm) by following [these instructions](https://github.com/nvm-sh/nvm#installing-and-updating).
+
+    - Then, use NVM to install the correct version of Node.js for the Mattermost web app:
         ```sh
-        brew install node@14
+        nvm install
         ```
 
-    - For other platforms, install it from https://www.npmjs.com/get-npm.
-
-3. If necessary, install libpng:
+6. If you don't have it already, install libpng:
 
     - On Mac, use [Homebrew](https://brew.sh/) to install it:
 
@@ -30,23 +44,6 @@ Set up your development environment for building, running, and testing the Matte
         ```
 
     - On Linux-based operating systems, use your preferred package manager to install it.
-
-4. Fork https://github.com/mattermost/mattermost-webapp
-
-5. Clone the Mattermost source code from your fork next to your mattermost-server directory:
-
-    ```sh
-    git clone https://github.com/$GITHUB_USERNAME/mattermost-webapp.git
-    ```
-
-6. Link the `client` directory in your server with the `dist` directory in your webapp:
-
-    ```sh
-    mkdir -p mattermost-webapp/dist
-    cd mattermost-server
-    ln -nfs ../mattermost-webapp/dist client
-    cd ..
-    ```
 
 7. Test your environment:
 
