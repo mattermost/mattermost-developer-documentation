@@ -92,6 +92,7 @@ To make it easier to customize your build, we've defined a few environment varia
 | `SUPPLY_TRACK` | The track of the application to use when submitting the app to Google Play Store. Valid values are: `alpha`, `beta`, `production` <br><br>**RIt is not recommended to submit the app to production. First try any of the other tracks and then promote your app using the Google Play console**. | `alpha` | Yes |
 | `SUPPLY_PACKAGE_NAME` | The package Id of your application, make sure it matches `MAIN_APP_IDENTIFIER`. |  | Yes |
 | `SUPPLY_JSON_KEY` | The path to the service account `json` file used to authenticate with Google.<br><br>See the [Supply documentation]( https://docs.fastlane.tools/actions/supply/#setup) to learn more. |  | Yes |
+| `SUPPLY_RELEASE_STATUS` | The release status for the application when submitting the app to Google Play Store (used when uploading new apks/aabs). Valid values are: `completed`, `draft`, `halted`, `inProgress` | `completed` | No |
 
 ---
 **Note:**
