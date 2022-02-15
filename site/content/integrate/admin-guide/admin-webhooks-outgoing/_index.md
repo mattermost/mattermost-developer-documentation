@@ -36,7 +36,7 @@ In our example, we would set the channel to `town-square` and specify `#build` a
  - If the first word of a message matches one of the trigger words exactly, or
  - If the first word of a message starts with one of the trigger words.
 
-6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a [trusted internal connection](https://about.mattermost.com/default-allow-internal-connections-settings-documentation).
+6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a [trusted internal connection](https://docs.mattermost.com/configure/configuration-settings.html).
 7. On the next page, copy the **Token** value. This will be used in a later step.
 
 ![image](images/outgoing_webhooks_token.png)
@@ -82,7 +82,7 @@ which would render in Mattermost as:
 
 ![image](images/webhooksTable.png)
 
-11. You're all set! See [developer documentation]({{< ref "/integrate/other-integrations/outgoing-webhooks" >}}) for details on what parameters are supported by outgoing webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins](https://about.mattermost.com/default-plugins).
+11. You're all set! See [developer documentation]({{< ref "/integrate/other-integrations/outgoing-webhooks" >}}) for details on what parameters are supported by outgoing webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins](https://developers.mattermost.com/integrate/admin-guide/admin-plugins-beta/).
 
 Messages with advanced formatting can be created by including an [attachment array](../admin-message-attachments) and [interactive message buttons](../admin-interactive-messages) in the JSON payload.
 

@@ -1,7 +1,7 @@
 ---
 title: "Personal Access Tokens"
 heading: "Using personal access tokens"
-description: "Personal access tokens function similar to session tokens and can be used by integrations to [authenticate against the REST API](https://about.mattermost.com/default-api-authentication). It is the most commonly used type of token for integrations.
+description: "Personal access tokens function similar to session tokens and can be used by integrations to [authenticate against the REST API](https://api.mattermost.com/#tag/authentication). It is the most commonly used type of token for integrations.
 "
 weight: 80
 ---
@@ -29,7 +29,7 @@ Then select **Save**.
 **Note:** If you create a personal access token for a System Admin account, be extra careful who you share it with. The token enables a user to have full access to the account, including System Admin privileges. It's recommended to create a personal access token for non-admin accounts.
   
 8. Copy the access token now for your integration and store it in a secure location. You won't be able to see it again!
-9. You're all set! You can now use the personal access token for integrations to interact with your Mattermost server and [authenticate against the Mattermost REST API](https://about.mattermost.com/default-api-authentication).
+9. You're all set! You can now use the personal access token for integrations to interact with your Mattermost server and [authenticate against the Mattermost REST API](https://api.mattermost.com/#tag/authentication).
 
 ![image](access_token_settings.png)
 
