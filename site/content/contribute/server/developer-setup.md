@@ -45,13 +45,3 @@ For minimum software requirements, see the following table:
 <div id="centos" class="tabcontent">
     {{% content "contribute/server/developer-setup/centos.md" %}}
 </div>
-
-### Customize your workflow
-
-#### Makefile
-
-You can customize variables of the Makefile by creating a `config.override.mk` file or setting environment variables. To get started, you can copy the `config.mk` file to `config.override.mk` and change the values in your newly copied file.
-
-#### Docker-compose
-
-If you create a `docker-compose.override.yaml` file at the root of the project, it will be automatically loaded by all the `Makefile` tasks using `docker-compose`, allowing you to define your own services or change the configuration of the ones mattermost provides.
