@@ -54,4 +54,4 @@ You can customize variables of the Makefile by creating a `config.override.mk` f
 
 #### Docker-compose
 
-If you create a `docker-compose.override.yaml` file at the root of the project, it will be automatically loaded by all the Makefile tasks using docker-compose, allowing you to define your own services or change the configuration of the one mattermost provides.
+If you create a `docker-compose.override.yaml` file at the root of the project, it will be automatically loaded by all the `Makefile` tasks using `docker-compose`, allowing you to define your own services or change the configuration of the ones mattermost provides.
