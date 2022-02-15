@@ -50,7 +50,7 @@ For minimum software requirements, see the following table:
 
 #### Makefile
 
-You can customize variables of the Makefile by creating a `config.override.mk` file or setting environment variables. To get started, you can copy the `config.mk` file and change the values in your newly copied file.
+You can customize variables of the Makefile by creating a `config.override.mk` file or setting environment variables. To get started, you can copy the `config.mk` file to `config.override.mk` and change the values in your newly copied file.
 
 #### Docker-compose
 
