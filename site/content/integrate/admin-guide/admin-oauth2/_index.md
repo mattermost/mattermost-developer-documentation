@@ -53,7 +53,7 @@ Only System Admins can set OAuth 2.0 applications as trusted.
 
 ![image](oauth2_regenerate_secret.png)
 
-## Granting permissions to your application 
+## Granting permissions to your application
 
 Once you have created an OAuth 2.0 application, all users on the Mattermost server are automatically given access to it.
 
@@ -69,7 +69,11 @@ Users can view a list of authorized apps from **Settings > Security > OAuth 2.0 
 
 ![image](oauth2_deauthorize_app.png)
 
-## OAuth login endpoints
+## Supported OAuth flows
+
+We support the [authorization code](https://oauth.net/2/grant-types/authorization-code/) and [implicit](https://oauth.net/2/grant-types/implicit/) grant flows for OAuth 2.0 applications.
+
+## OAuth endpoints
 
 - Authorize URI `/oauth/authorize`
 - Token URI `/oauth/access_token`

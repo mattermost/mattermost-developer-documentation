@@ -34,7 +34,17 @@ Inside the `integration` directory, there are subdirectories that roughly break 
 
     In case the `Test Key` is not available, feel free to prompt the QA team who will either search for an existing Zephyr entry or if it's a new one, it will be created for you.
 
-5. Add check if a certain test requires server license.
+5. If a test is failing due to a known issue, append the Jira issue key in the test description, following the format of ` -- KNOWN ISSUE: [Jira_key]`. For example,
+    ```javascript
+    describe('Upload Files', () => {
+        it('MM-T2261 Upload SVG and post -- KNOWN ISSUE: MM-38982', () => {
+            // Test steps and assertion here
+        }
+    }
+    ```
+    Conversely, remove the Jira issue key if the issue has been resolved and the test is passing.
+
+6. Add check if a certain test requires server license.
     ```javascript
     describe('Test description', () => {
        before(() => {
@@ -47,9 +57,9 @@ Inside the `integration` directory, there are subdirectories that roughly break 
     }
     ```
 
-6. Run the test in isolation using a convenient custom command of `cy.apiInitSetup()`. This command creates a new team, channel, and user which can only be used by the spec file itself.
+7. Run the test in isolation using a convenient custom command of `cy.apiInitSetup()`. This command creates a new team, channel, and user which can only be used by the spec file itself.
 
-7. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/5891/files) as a guide on how to write and submit an end-to-end testing PR.
+8. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/5891/files) as a guide on how to write and submit an end-to-end testing PR.
 
 ### Adding Test Metadata on Spec Files
 

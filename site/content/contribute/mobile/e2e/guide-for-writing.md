@@ -21,7 +21,16 @@ Before writing a script, ensure that it has a corresponding test case in Zephyr.
     ```
     `Zephyr ID` is used for mapping test cases per Release Testing specification. It will be used to measure coverage between manual and automated tests.
 
-3. Target an element using available [matchers](https://github.com/wix/Detox/blob/master/docs/APIRef.Matchers.md#matchers). For best results, it is recommended to match elements by unique identifiers using `testID`. The identifier should follow the following format to avoid duplication.
+3. If a test is failing due to a known issue, append the Jira issue key in the test description, following the format of ` -- KNOWN ISSUE: [Jira_key]`. For example,
+    ```javascript
+    describe('Upload Files', () => {
+        it('MM-T2261 Upload SVG and post -- KNOWN ISSUE: MM-38982', () => {
+            // Test steps and assertion here
+        }
+    }
+    ```
+    Conversely, remove the Jira issue key if the issue has been resolved and the test is passing.
+4. Target an element using available [matchers](https://github.com/wix/Detox/blob/master/docs/APIRef.Matchers.md#matchers). For best results, it is recommended to match elements by unique identifiers using `testID`. The identifier should follow the following format to avoid duplication.
     ```
     <location>.<modifier>.<element>.<identifier>
     ```
@@ -37,10 +46,10 @@ Before writing a script, ensure that it has a corresponding test case in Zephyr.
     Example:
     - `send.button`
     - `post.<post-id>`
-4. Prefix each comment line with appropriate indicator. Each line in a multi-line comment should be prefixed accordingly. Separate and group test step comments and assertion comments for better readability.
+5. Prefix each comment line with appropriate indicator. Each line in a multi-line comment should be prefixed accordingly. Separate and group test step comments and assertion comments for better readability.
     - `#` indicates a test step (e.g. `// # Go to a screen`)
     - `*` indicates an assertion (e.g. `// * Check the title`)
-5. Simulate user interaction using available [actions](https://github.com/wix/Detox/blob/master/docs/APIRef.ActionsOnElement.md).
-6. Verify user interface (UI) expectation using [expect](https://github.com/wix/Detox/blob/master/docs/APIRef.Expect.md).
-7. When using `action`, `match`, or another API specific to particular platform, verify that the equivalent logic is applied so that the API does not impact the other platform. Always run tests in both platforms.
-8. See Detox [documentation](https://github.com/wix/Detox/tree/master/docs) for reference.
+6. Simulate user interaction using available [actions](https://github.com/wix/Detox/blob/master/docs/APIRef.ActionsOnElement.md).
+7. Verify user interface (UI) expectation using [expect](https://github.com/wix/Detox/blob/master/docs/APIRef.Expect.md).
+8. When using `action`, `match`, or another API specific to particular platform, verify that the equivalent logic is applied so that the API does not impact the other platform. Always run tests in both platforms.
+9. See Detox [documentation](https://github.com/wix/Detox/tree/master/docs) for reference.
