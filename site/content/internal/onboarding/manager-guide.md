@@ -1,7 +1,8 @@
 ---
 title: Manager Guide
+heading: "The Manager's Guide to Onboarding at Mattermost"
+description: "This guide helps managers learn what they need to do to help new hires onboard into Mattermost."
 date: 2017-11-07T14:28:35-05:00
-subsection: Onboarding
 weight: 30
 ---
 
@@ -13,7 +14,7 @@ weight: 30
 
 ### Channels and Teams
 - Make sure new staff is added to the private team `Private Core` and all relevant channels
-- See [here](/internal/onboarding/new-staff-guide#channels-and-teams) for basic list of channels
+- See [here](/internal/onboarding/new-staff-guide/#channels-and-teams) for basic list of channels
 
 ### Meetings and Accounts
 - Add new staff member to all appropriate meetings

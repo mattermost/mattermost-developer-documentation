@@ -1,5 +1,7 @@
 ---
 title: Advanced Git with the Free University of Tbilisi
+heading: "Advanced Git with the Free University of Tbilisi"
+description: "Jesse Hallam gives a virtual course on advanced Git at the Free University of Tbilisi."
 slug: advanced-git-tbilisi-free-university
 date: 2020-03-27
 categories:

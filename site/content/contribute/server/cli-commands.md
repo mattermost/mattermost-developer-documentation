@@ -1,8 +1,9 @@
 ---
 title: "CLI Commands"
+heading: "CLI Commands in Mattermost"
+description: "Mattermost provides a CLI (command-line interface) to administer and handle specific administrative tasks."
 date: 2018-09-21T18:40:32-04:00
 weight: 5
-subsection: Server
 ---
 
 Mattermost provides a CLI (command-line interface) to administer and handle specific administrative tasks.
@@ -99,4 +100,4 @@ Usually, you would then add several subcommands to perform various tasks.
 
 ## Submitting your Pull Request
 
-Please submit a pull request against the [mattermost/mattermost-server](https://github.com/mattermost/mattermost-server) repository by [following these instructions](/contribute/server/developer-workflow).
+Please submit a pull request against the [mattermost/mattermost-server](https://github.com/mattermost/mattermost-server) repository by [following these instructions](/contribute/server/developer-workflow/).

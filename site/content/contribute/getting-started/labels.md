@@ -1,8 +1,9 @@
 ---
 title: "Labels"
+heading: "Using Labels to Track Issues and PRs at Mattermost"
+description: "We leverage GitHub labels to track the details and lifecycle of issues and pull requests. Learn what our labels mean."
 date: 2018-03-06T00:00:00-04:00
 weight: 5
-subsection: Getting Started
 ---
 
 We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to track the details and lifecycle of issues and pull requests.
@@ -50,7 +51,9 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 * `Lifecycle/<state>`: An [inactive contribution](/contribute/getting-started/inactive-contributions/).
 * `Loadtest`: Triggers an automatic load test.
 * `Major Change`: The pull request is a major feature or affects large areas of the code base (e.g. [moving channel store and actions to Redux](https://github.com/mattermost/platform/pull/6235)).
-* `Setup Test Server`: Triggers the creation of a test server.
+* `Setup Cloud Test Server`: Triggers the creation of a test server.
+* `Setup HA Cloud Test Server`: Triggers the creation of a test server that has high availability.
+* `Setup Cloud + CWS Test Server`: Triggers the creation of a test server that connects to our test Customer Web Server.
 * `Setup Upgrade Test Server`: Triggers the creation a test server and performs an upgrade.
 * `Tests/Done`: Required tests have been written.
 * `Tests/Not Needed`: Does not require tests.

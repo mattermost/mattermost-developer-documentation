@@ -1,7 +1,8 @@
 ---
 title: New Staff Guide
+heading: "Onboarding at Mattermost: New Staff Guide"
+description: "Are you new to working at Mattermost? Check out this guide as you begin working here."
 date: 2017-11-07T14:28:35-05:00
-subsection: Onboarding
 weight: 10
 ---
 
@@ -9,7 +10,7 @@ weight: 10
 
 - https://docs.mattermost.com/developer/developer-flow.html
 - [Jira bug ticket process](https://docs.mattermost.com/process/new-bug-tickets.html)
-- [PR cherry-picking process](https://developers.mattermost.com/contribute/getting-started/branching/)
+- [Feature flag process](https://developers.mattermost.com/contribute/server/feature-flags/)
 - [RN build process](https://developers.mattermost.com/internal/mobile-build-process/) if you are joining the Mobile team
 - Glance through the release processes:
     - https://docs.mattermost.com/process/feature-release.html

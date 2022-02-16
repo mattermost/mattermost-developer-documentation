@@ -1,35 +1,23 @@
 ---
 title: "Developer Setup"
+description: "Find out how to configure your development environment to build, run, and test the Mattermost web app."
 date: 2017-08-20T11:35:32-04:00
 weight: 2
-subsection: Web App
 ---
 
 Set up your development environment for building, running, and testing the Mattermost web app.
 
-1. Set up your [development environment for the Mattermost server](/contribute/server/developer-setup).
+1. Set up your [development environment for the Mattermost server](/contribute/server/developer-setup/).
 
-2. Install dependencies:
+2. Fork https://github.com/mattermost/mattermost-webapp
 
-    - On Mac, use [Homebrew](https://brew.sh/) to install Node.js v10 and libpng:
-
-        ```sh
-        brew install node@10 libpng
-        ```
-
-    - For other platforms, install Node.js v10 from https://www.npmjs.com/get-npm.
-
-    - Prefer to use [NVM](https://github.com/nvm-sh/nvm) to manage different versions of Node on a given machine? Ensure you're running Node v10.15.3+ and npm v6.4.1+ to [avoid compatibility-related Jest test failures](/contribute/webapp/unit-testing/#4-getting-jest-assertion-failures-at-lines-containing-expect-tobecalledwith-expect-tohavebeennthcalledwith-or-expect-tohavebeencalledtimes-when-running-make-test).
-
-3. Fork https://github.com/mattermost/mattermost-webapp
-
-4. Clone the Mattermost source code from your fork next to your mattermost-server directory:
+3. Clone the Mattermost source code from your fork next to your mattermost-server directory:
 
     ```sh
     git clone https://github.com/$GITHUB_USERNAME/mattermost-webapp.git
     ```
 
-5. Link the `client` directory in your server with the `dist` directory in your webapp:
+4. Link the `client` directory in your server with the `dist` directory in your webapp:
 
     ```sh
     mkdir -p mattermost-webapp/dist
@@ -38,13 +26,33 @@ Set up your development environment for building, running, and testing the Matte
     cd ..
     ```
 
-6. Test your environment:
+5. Install NVM and use it to install the required version of Node.js:
+
+    - First, install [NVM](https://github.com/nvm-sh/nvm) by following [these instructions](https://github.com/nvm-sh/nvm#installing-and-updating).
+
+    - Then, use NVM to install the correct version of Node.js for the Mattermost web app:
+        ```sh
+        nvm install
+        ```
+
+6. If you don't have it already, install libpng:
+
+    - On Mac, use [Homebrew](https://brew.sh/) to install it:
+
+        ```sh
+        brew install libpng
+        ```
+
+    - On Linux-based operating systems, use your preferred package manager to install it.
+
+7. Test your environment:
 
     ```sh
     cd mattermost-webapp
     make test
     ```
-7. When tests pass, run the app: 
+
+8. When tests pass, run the app:
 
      ```sh
     make run
