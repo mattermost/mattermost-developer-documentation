@@ -13,7 +13,7 @@ This page outlines everything you need to know about contributing to Mattermost 
 1. Communicate! 
    * Sign up for an account on our [community collaboration platform](https://community.mattermost.com). Join the [GSoC channel](https://community.mattermost.com/core/channels/google-summer-of-code) to chat with mentors and other contributors.
    * Leave any questions you have about the projects as comments on the GitHub issues linked below.
-   * If you have general questions about participating in GSoC with Mattermost, send an email to gsoc@mattermost.com
+   * If you have general questions about participating in GSoC with Mattermost, ask in the [GSoC channel](https://community.mattermost.com/core/channels/google-summer-of-code) or send an email to gsoc@mattermost.com
 1. Work with your mentors on your application, all applications must go through Google's official application process.
 1. Sumit your application before the deadline.
 
