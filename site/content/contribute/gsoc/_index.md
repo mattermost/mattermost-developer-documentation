@@ -2,8 +2,6 @@
 title: "Google Summer of Code"
 description: "Ideas list for Google Summer of Code"
 ---
-
-# Google Summer of Code
 This page outlines everything you need to know about contributing to Mattermost for Google Summer of Code (GSoC).
 
 ## Contributor Guidance
@@ -15,7 +13,7 @@ This page outlines everything you need to know about contributing to Mattermost 
    * Leave any questions you have about the projects as comments on the GitHub issues linked below.
    * If you have general questions about participating in GSoC with Mattermost, ask in the [GSoC channel](https://community.mattermost.com/core/channels/google-summer-of-code) or send an email to gsoc@mattermost.com
 1. Work with the project mentors on your application: they are there to help you write a good proposal!
-1. Submit your application before the deadline. Note that all applications must go through Google's official application process.
+1. Submit your application before the deadline. All applications must go through Google's official application process.
 
 Make sure to take a look at [the full Google Summer of Code timeline](https://summerofcode.withgoogle.com/how-it-works/#timeline) for more details!
 
@@ -39,8 +37,8 @@ Here are our mentors for this year, the links lead to their profiles on our comm
 All project ideas are listed as issues on our community GitHub repo. Here are the summaries:
 * [Playbooks mobile app](https://github.com/mattermost/community/issues/171) - Build a proof of concept Playbooks integration for the Mattermost mobile app.
 * [Boards mobile app](https://github.com/mattermost/community/issues/170) - Build a proof of concept Boards integration for the Mattermost mobile app.
-* [CI pipeline analysis](https://github.com/mattermost/community/issues/169) - Publish a plugin to analyze the CI pipelines in Mattermost to alert the team of build and test failures
-* [Speech to Text Integration](https://github.com/mattermost/community/issues/168) - Publish a plugin to analyze the CI pipelines in Mattermost to alert the team of build and test failures
+* [CI pipeline analysis](https://github.com/mattermost/community/issues/169) - Publish a plugin to analyze the CI pipelines in Mattermost to alert the team of build and test failures.
+* [Speech to Text Integration](https://github.com/mattermost/community/issues/168) - Publish a plugin to record an audio message, convert it to text and send it to a channel.
 * [Post Edit History](https://github.com/mattermost/community/issues/167) - Publish a plugin to view the history of edits in posts and improve message history auditing.
 * [Recordings for Calls](https://github.com/mattermost/community/issues/166) - Design and implement a recordings service for Calls.
 * [Qualify posts importance](https://github.com/mattermost/community/issues/165) - Design and implement a system that introduces the concept of importance to Mattermost messages.
