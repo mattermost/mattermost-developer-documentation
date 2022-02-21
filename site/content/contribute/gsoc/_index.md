@@ -56,5 +56,4 @@ If none of the ideas in this list speak to you, you can always propose new ones!
 
 Ideas proposed by contributors are more than welcome, don’t hesitate to send them our way! As with all the other projects, you need to take into account that the proposals would need to fit in the overall philosophy of the project: Our product managers will take a look before we can approve them, and we can always discuss the details with the whole team if we decide to move forward with it.
 
-If you want to propose your own idea, share your idea as early as possible in our [GSoC channel](https://community.mattermost.com/core/channels/google-summer-of-code
-).
+If you want to propose your own idea, share your idea as early as possible in our [GSoC channel](https://community.mattermost.com/core/channels/google-summer-of-code).
