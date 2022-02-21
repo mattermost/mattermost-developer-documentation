@@ -4,7 +4,7 @@ description: "Ideas list for Google Summer of Code"
 ---
 
 # Google Summer of Code
-This page outlines everything you need to know about contributing to Mattermost for the Google Summer of Code (GSoC).
+This page outlines everything you need to know about contributing to Mattermost for Google Summer of Code (GSoC).
 
 ## Contributor Guidance
 1. Read everything in this doc, we've put this together to maximize your chances of drafting a successful GSoC proposal.
