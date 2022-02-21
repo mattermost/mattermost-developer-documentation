@@ -26,6 +26,7 @@ Here are our mentors for this year, the links lead to their profiles on our comm
     -   Alejandro García Montoro ([@alejandro.garcia](https://community.mattermost.com/core/messages/@alejandro.garcia))
     -   Elias Nahum ([@elias.nahum](https://community.mattermost.com/core/messages/@elias.nahum))
     -    Claudio Costa ([@claudio.costa](https://community.mattermost.com/core/messages/@claudio.costa))
+    -    Ibrahim Acikgoz ([@ibrahim.acikgoz](https://community-daily.mattermost.com/core/messages/@ibrahim.acikgoz))
 -   Product mentors:
     -   Eric Sethna ([@eric.sethna](https://community.mattermost.com/core/messages/@eric.sethna))
     -   Asaad Mahmood ([@asaad.mahmood](https://community.mattermost.com/core/messages/@asaad.mahmood))
