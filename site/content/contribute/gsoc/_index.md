@@ -46,7 +46,7 @@ All project ideas are listed as issues on our community GitHub repo. Here are th
 * [Qualify posts importance](https://github.com/mattermost/community/issues/165) - Design and implement a system that introduces the concept of importance to Mattermost messages.
 * [Post timed reminders](https://github.com/mattermost/community/issues/164) - Publish a plugin that manages timed reminders on posts that should be read later.
 * [Username aliases](https://github.com/mattermost/community/issues/163) - Design and implement a system to manage username aliases.
-* [Custom keyboard shortcuts](https://github.com/mattermost/community/issues/162) - Design and implement a system to let users customize their keyboard shortcuts
+* [Custom keyboard shortcuts](https://github.com/mattermost/community/issues/162) - Design and implement a system to let users customize their keyboard shortcuts.
 * [Community moderation plugin](https://github.com/mattermost/community/issues/160) - Provide the tools a community needs to moderate activity on their Mattermost instance.
 * [Coffee time plugin](https://github.com/mattermost/community/issues/161) - Publish a plugin that helps Mattermost users connect for 1:1 casual conversations and improve remote community building.
 
