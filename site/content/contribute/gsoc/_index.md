@@ -24,7 +24,7 @@ Here are our mentors for this year, the links lead to their profiles on our comm
     -   Devin Binnie ([@devin.binnie](https://community.mattermost.com/core/messages/@devin.binnie))
     -   Daniel Espino García ([@daniel.espino.garcia](https://community.mattermost.com/core/messages/@daniel.espino.garcia))
     -   Alejandro García Montoro ([@alejandro.garcia](https://community.mattermost.com/core/messages/@alejandro.garcia))
-    -   Elias N ([@elias.nahum](https://community.mattermost.com/core/messages/@elias.nahum))
+    -   Elias Nahum ([@elias.nahum](https://community.mattermost.com/core/messages/@elias.nahum))
     -    Claudio Costa ([@claudio.costa](https://community.mattermost.com/core/messages/@claudio.costa))
 -   Product mentors:
     -   Eric Sethna ([@eric.sethna](https://community.mattermost.com/core/messages/@eric.sethna))
