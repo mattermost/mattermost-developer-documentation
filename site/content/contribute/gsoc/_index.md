@@ -9,7 +9,7 @@ This page outlines everything you need to know about contributing to Mattermost 
 ## Contributor Guidance
 1. Read everything in this doc, we've put this together to maximize your chances of drafting a successful GSoC proposal.
 1. Learn about our [contribution process](https://developers.mattermost.com/contribute/getting-started/). We encourage applicants to participate in one of the many contribution opportunities we have prior to applying.
-1. Review our idea list below for any that might that interest you, all of the details are listed in GitHub Issues on our Community repository.
+1. Review our idea list below for any that might interest you, all of the details are listed [in GitHub Issues on our Community repository](https://github.com/mattermost/community/issues?q=is%3Aissue+is%3Aopen+label%3AGSoC).
 1. Communicate! 
    * Sign up for an account on our [community collaboration platform](https://community.mattermost.com). Join the [GSoC channel](https://community.mattermost.com/core/channels/google-summer-of-code) to chat with mentors and other contributors.
    * Leave any questions you have about the projects as comments on the GitHub issues linked below.
