@@ -41,7 +41,7 @@ All project ideas are listed as issues on our community GitHub repo. Here are th
 * [Boards mobile app](https://github.com/mattermost/community/issues/170) - Build a proof of concept Boards integration for the Mattermost mobile app.
 * [CI pipeline analysis](https://github.com/mattermost/community/issues/169) - Publish a plugin to analyze the CI pipelines in Mattermost to alert the team of build and test failures
 * [Speech to Text Integration](https://github.com/mattermost/community/issues/168) - Publish a plugin to analyze the CI pipelines in Mattermost to alert the team of build and test failures
-* [Post Edit History](https://github.com/mattermost/community/issues/167) - Publish a plugin to view the history of edits in posts and improve message history auditing
+* [Post Edit History](https://github.com/mattermost/community/issues/167) - Publish a plugin to view the history of edits in posts and improve message history auditing.
 * [Recordings for Calls](https://github.com/mattermost/community/issues/166) - Design and implement a recordings service for Calls.
 * [Qualify posts importance](https://github.com/mattermost/community/issues/165) - Design and implement a system that introduces the concept of importance to Mattermost messages.
 * [Post timed reminders](https://github.com/mattermost/community/issues/164) - Publish a plugin that manages timed reminders on posts that should be read later.
