@@ -8,13 +8,13 @@ weight: 80
  The authorization allows:
 
 - Users with an account on a Mattermost server to sign in to third-party applications. You can find a [sample OAuth2 Client Application for Mattermost here](https://github.com/enahum/mattermost-oauth2-client-sample) to test the functionality.
-- A Mattermost server to authenticate requests to a third-party API. One popular application is Zapier integration which allows you to integrate more than 700 applications with Mattermost through OAuth 2.0. See our [Zapier documentation](../admin-zapier) to learn more.
+- A Mattermost server to authenticate requests to a third-party API. One popular application is Zapier integration which allows you to integrate more than 700 applications with Mattermost through OAuth 2.0. See our [Zapier documentation](../admin-zapier-integration/) to learn more.
 
 ## Register your application in Mattermost
 
 You must register your application in Mattermost to generate OAuth 2.0 credentials (client ID and secret), which your application can use to authenticate API calls to Mattermost, and which Mattermost uses to authorize API requests from the application.
 
-If you'd like to set up a Zapier integration with OAuth 2.0, see our [Zapier documentation](../admin-zapier) to learn more.
+If you'd like to set up a Zapier integration with OAuth 2.0, see our [Zapier documentation](../admin-zapier-integration/) to learn more.
 
 ### Enable OAuth 2.0 applications
 
@@ -53,7 +53,7 @@ Only System Admins can set OAuth 2.0 applications as trusted.
 
 ![image](oauth2_regenerate_secret.png)
 
-## Granting permissions to your application 
+## Granting permissions to your application
 
 Once you have created an OAuth 2.0 application, all users on the Mattermost server are automatically given access to it.
 
@@ -69,7 +69,11 @@ Users can view a list of authorized apps from **Settings > Security > OAuth 2.0 
 
 ![image](oauth2_deauthorize_app.png)
 
-## OAuth login endpoints
+## Supported OAuth flows
+
+We support the [authorization code](https://oauth.net/2/grant-types/authorization-code/) and [implicit](https://oauth.net/2/grant-types/implicit/) grant flows for OAuth 2.0 applications.
+
+## OAuth endpoints
 
 - Authorize URI `/oauth/authorize`
 - Token URI `/oauth/access_token`
