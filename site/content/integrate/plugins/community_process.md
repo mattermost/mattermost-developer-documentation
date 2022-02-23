@@ -12,7 +12,7 @@ Getting your plugin onto our Community server https://community.mattermost.com i
 
 However we must ensure that our Community server remains stable for everyone. This document outlines the process of getting your plugin onto the Community server and some of these steps are required to get your plugin into the [Marketplace]({{< ref "/integrate/plugins/community-plugin-marketplace" >}}). 
 
-When you're ready to begin this process for your plugin, ask in the [Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) on the Community server. The PM, or someone else from the Integrations team will help you start the process.
+When you're ready to begin this process for your plugin, ask in the [Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) on the Community server. The PM, or someone else from the Integrations team, will help you start the process.
 
 ## Checklist
 
