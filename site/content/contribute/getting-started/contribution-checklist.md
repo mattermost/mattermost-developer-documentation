@@ -12,8 +12,8 @@ To help with translations, [see the localization process](https://docs.mattermos
 
 Follow this checklist for submitting a pull request (PR):
 
-1. You've signed the [Contributor License Agreement](http://www.mattermost.org/mattermost-contributor-agreement/), so you can be added to the Mattermost [Approved Contributor List](https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true).
- - If you've included your mailing address in the signed [Contributor License Agreement](https://www.mattermost.org/mattermost-contributor-agreement/), you may receive a [Limited Edition Mattermost Mug](https://forum.mattermost.org/t/limited-edition-mattermost-mugs/143) as a thank you gift after your first pull request is merged.
+1. You've signed the [Contributor License Agreement](https://mattermost.com/mattermost-contributor-agreement/), so you can be added to the Mattermost [Approved Contributor List](https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true).
+ - If you've included your mailing address in the signed [Contributor License Agreement](https://mattermost.com/mattermost-contributor-agreement/), you may receive a [Limited Edition Mattermost Mug](https://forum.mattermost.com/t/limited-edition-mattermost-mugs/143) as a thank you gift after your first pull request is merged.
 2. Your ticket is a Help Wanted GitHub issue for the Mattermost project you're contributing to.
     - If not, follow the process [here](/contribute/getting-started/contributions-without-ticket/).
 3. Your code is thoroughly tested, including appropriate unit tests, [end-to-end tests for webapp](/contribute/webapp/end-to-end-tests/), and manual testing.
