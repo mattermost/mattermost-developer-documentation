@@ -37,13 +37,13 @@ If you're running [cURL on Windows](https://curl.haxx.se/windows), ensure inner 
   curl -i -X POST -H "Content-Type: application/json" -d "{\"text\": \"Hello, this is some text\nThis is more text. :tada:\"}" http://{your-mattermost-site}/hooks/xxx-generatedkey-xxx
 ```
 
-See [developer documentation]({{< ref "/integrate/other-integrations/incoming-webhooks" >}}) for details on what parameters are supported by incoming webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins](https://about.mattermost.com/default-plugins). The following payload gives an example webhook that uses additional parameters and formatting options:
+See [developer documentation]({{< ref "/integrate/other-integrations/incoming-webhooks" >}}) for details on what parameters are supported by incoming webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins](https://developers.mattermost.com/integrate/admin-guide/admin-plugins-beta/). The following payload gives an example webhook that uses additional parameters and formatting options:
 
 ```
   payload={
     "channel": "town-square",
     "username": "test-automation",
-    "icon_url": "https://mattermost.org/wp-content/uploads/2016/04/icon.png",
+    "icon_url": "http://mattermost.com/wp-content/uploads/2022/02/icon.png",
     "text": "#### Test results for July 27th, 2017\n<!channel> please review failed tests.\n
     | Component  | Tests Run   | Tests Failed                                   |
     |:-----------|:-----------:|:-----------------------------------------------|
@@ -79,9 +79,9 @@ Similarly, [Enable integrations to override profile picture icons](https://docs.
 
 ## Share Your Integration
 
-If you've built an integration for Mattermost, please consider [sharing your work](https://mattermost.org/share-your-mattermost-projects) in our [app directory](https://integrations.mattermost.com).
+If you've built an integration for Mattermost, please consider [sharing your work](https://spinpunch.wufoo.com/forms/mattermost-integrations-and-installers/) in our [app directory](https://mattermost.com/marketplace/).
 
-The [app directory](https://integrations.mattermost.com) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-hosted infrastructure.
+The [app directory](https://mattermost.com/marketplace/) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-hosted infrastructure.
 
 ## Slack Compatibility
 
@@ -133,7 +133,7 @@ Some common error messages include:
 
 If your integration prints the JSON payload data instead of rendering the generated message, make sure your integration is returning the `application/json` content-type.
 
-For further assistance, review the [Troubleshooting forum](https://forum.mattermost.org/c/trouble-shoot) for previously reported errors, or [join the Mattermost user community for troubleshooting help](https://mattermost.com/pl/default-ask-mattermost-community).
+For further assistance, review the [Troubleshooting forum](https://forum.mattermost.com/c/trouble-shoot) for previously reported errors, or [join the Mattermost user community for troubleshooting help](https://mattermost.com/pl/default-ask-mattermost-community).
 
 ## Frequently Asked Questions
 
