@@ -24,8 +24,8 @@ pygmentsStyle = "manni"
 
   [params.notification]
     enable = true
-    url = "https://mattermost.com/careers"
-    text = "We're hiring!"
+    url = "https://forms.gle/z4JonkKCN8Em3zUf9"
+    text = "Complete a quick survey for the chance to receive a $50 gift card"
 
   [params.search]
     enable = false
