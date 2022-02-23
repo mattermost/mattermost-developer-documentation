@@ -81,6 +81,7 @@ To make it easier to customize your build, we've defined a few environment varia
 | `INCREMENT_BUILD_NUMBER` | Defines if the app build number should be incremented. <br><br>Valid values are: `true`, `false` | `false` | No |
 | `BUILD_NUMBER` | Set the build number of the app at build time to a specific value, rather than incrementing the last build number. |  | No |
 | `INCREMENT_BUILD_<br>NUMBER_MESSAGE` | Set the commit message when changing the app build number. | Bump app build number to | No |
+| `ANDROID_BUILD_TASK` | The build tasks for Android. This is a comma-separated list of tasks that can have two values: 'assemble' and 'bundle'. <br><br>`assemble` is used for building `APK` file and `bundle` is used for building `AAB` file. | assemble | No |
 | `APP_NAME` | The name of the app as it is going to be shown on the device home screen. | Mattermost Beta | Yes |
 | `APP_SCHEME` | The URL naming scheme for the app as used in direct deep links to app content from outside the app. | mattermost | No |
 | `REPLACE_ASSETS` | Override the assets as described in [White Labeling]({{< ref "/contribute/mobile/build-your-own/white-label" >}}). <br><br>Valid values are: `true`, `false` | `false` | No |
