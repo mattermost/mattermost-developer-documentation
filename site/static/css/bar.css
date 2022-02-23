@@ -80,3 +80,7 @@
         right: 0px;
     }
 }
+
+html {
+    scroll-padding-top: 80px;
+}
