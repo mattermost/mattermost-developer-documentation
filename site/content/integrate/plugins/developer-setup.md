@@ -19,7 +19,7 @@ For developing on Mattermost-managed plugins, each plugin's setup instructions c
 
 **Note:** Deploying with local mode will only work for plugins that have been updated with the functionality from the [Plugin Starter Template](https://github.com/mattermost/mattermost-plugin-starter-template).
 
-If your Mattermost server is running locally, you can enable [local mode](https://docs.mattermost.com/manage/mmctl-command-line-tool.html#local-mode) to streamline deploying your plugin. Edit your server configuration as follows:
+If your Mattermost server is running locally, you can enable [local mode](https://docs.mattermost.com/manage/mmctl-command-line-tool.html#local-mode) and [plugin uploads](https://docs.mattermost.com/configure/configuration-settings.html#enable-plugin-uploads) to streamline deploying your plugin. Edit your server configuration as follows:
 
 ```js
 {
@@ -27,6 +27,11 @@ If your Mattermost server is running locally, you can enable [local mode](https:
         ...
         "EnableLocalMode": true,
         "LocalModeSocketLocation": "/var/tmp/mattermost_local.socket"
+    },
+    "PluginSettings": {
+        ...
+        "Enable": true,
+        "EnableUploads": true
     }
 }
 ```
