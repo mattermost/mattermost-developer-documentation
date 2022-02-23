@@ -13,7 +13,7 @@ Use [curl](https://curl.haxx.se), a simple command line tool for sending HTTP re
 
 To prevent malicious users from trying to perform [phishing attacks](https://en.wikipedia.org/wiki/Phishing), a *BOT* indicator appears next to posts coming from webhooks regardless of what username is specified.
 
-## Simple Incoming Webhook
+## Simple incoming webhook
 
 Let's learn how to create a simple incoming webhook that posts the following message to Mattermost.
 
@@ -64,7 +64,7 @@ Messages with advanced formatting can be created by including an [attachment arr
 
 Similarly, [Enable integrations to override profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons) must be set to `true` in `config.json` to override profile picture icons. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the icon of the creator of the webhook URL is used to post messages.
 
-## Tips and Best Practices
+## Tips and best practices
 
 1. Webhooks are designed to easily allow you to post messages. For other actions such as channel creation, you must also use the [Mattermost APIs](https://api.mattermost.com).
 2. If the text is longer than the allowable character limit per post, the message is split into multiple consecutive posts, each within the character limit. Servers running Mattermost Server v5.0 or later [can support posts up to 16383 characters](https://docs.mattermost.com/upgrade/important-upgrade-notes.html).
@@ -77,13 +77,13 @@ Similarly, [Enable integrations to override profile picture icons](https://docs.
 
 7. When using the `icon_emoji` parameter, the user profile image is replaced by the emoji provided. This will also override the `icon_url` parameter if both are provided.
 
-## Share Your Integration
+## Share your integration
 
 If you've built an integration for Mattermost, please consider [sharing your work](https://spinpunch.wufoo.com/forms/mattermost-integrations-and-installers/) in our [app directory](https://mattermost.com/marketplace/).
 
 The [app directory](https://mattermost.com/marketplace/) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-hosted infrastructure.
 
-## Slack Compatibility
+## Slack compatibility
 
 Mattermost makes it easy to migrate integrations written for Slack to Mattermost. Using the Slack `icon_emoji` parameter overrides the profile icon and the `icon_url` parameter and is supported from version 5.14.
 
