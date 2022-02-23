@@ -36,7 +36,7 @@ In our example, we would set the channel to `town-square` and specify `#build` a
  - If the first word of a message matches one of the trigger words exactly, or
  - If the first word of a message starts with one of the trigger words.
 
-6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a [trusted internal connection](https://about.mattermost.com/default-allow-internal-connections-settings-documentation).
+6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a [trusted internal connection](https://docs.mattermost.com/configure/configuration-settings.html).
 7. On the next page, copy the **Token** value. This will be used in a later step.
 
 ![image](images/outgoing_webhooks_token.png)
