@@ -329,7 +329,7 @@ Below is a full example of a JSON payload that creates an interactive dialog in 
      "dialog":{
         "callback_id":"somecallbackid",
         "title":"Test Title",
-        "icon_url":"https://mattermost.org/wp-content/uploads/2016/04/icon.png",
+        "icon_url":"http://mattermost.com/wp-content/uploads/2022/02/icon.png",
         "elements":[
            {
               "display_name":"Display Name",
