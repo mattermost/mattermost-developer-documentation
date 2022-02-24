@@ -94,6 +94,16 @@ Optionally, you can assign that account System Admin rights with the following c
 mattermost user create --email user@example.com --username test1 --password mypassword --system_admin
 ```
 
+### Customize your workflow
+
+#### Makefile
+
+You can customize variables of the Makefile by creating a `config.override.mk` file or setting environment variables. To get started, you can copy the `config.mk` file to `config.override.mk` and change the values in your newly copied file.
+
+#### Docker-compose
+
+If you create a `docker-compose.override.yaml` file at the root of the project, it will be automatically loaded by all the `Makefile` tasks using `docker-compose`, allowing you to define your own services or change the configuration of the ones mattermost provides.
+
 ### Testing Email Notifications
 
 When Docker starts, the SMTP server is available on port 2500. A username and password are not required.
