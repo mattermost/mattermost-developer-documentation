@@ -36,10 +36,10 @@ weight: 30
 - Message @hanna.park and ask her to send the new hire their core committer mug
 
 ### Release Dates Google Calendar
-- Message @lindy.isherwood and ask her to add the new hire to the Mattermost Release Dates google calendar
+- Message @amy.blais and ask her to add the new hire to the Mattermost Release Dates google calendar
 
 ### R&D Google Calendar
 - [This](https://calendar.google.com/calendar/embed?src=mattermost.com_u77qllr0v45a3vss7rqcutt7d4%40group.calendar.google.com&ctz=America%2FLos_Angeles) is a shared calendar for R&D related meetings and events.  All events on this calendar are open to anyone who wants to join, and are shared here as a way for people both inside and outside R&D to be able to participate in discussions that they're interested in, and also keep track of the work that's happening in R&D.
 
 ### Jira Access
-- Message @amy.blais and ask her to add the new hire to ``jira-developers`` and ``internal`` groups in Jira
+- Message @daniel.sichy and ask her to add the new hire to ``jira-developers`` and ``internal`` groups in Jira
