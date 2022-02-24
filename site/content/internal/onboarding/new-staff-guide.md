@@ -12,7 +12,7 @@ weight: 10
 - [Jira bug ticket process](https://docs.mattermost.com/process/new-bug-tickets.html)
 - [Feature flag process](https://developers.mattermost.com/contribute/server/feature-flags/)
 - [RN build process](https://developers.mattermost.com/internal/mobile-build-process/) if you are joining the Mobile team
-- Glance through [the release processes](https://handbook.mattermost.com/operations/research-and-development/product/release-process/release-overview) docs
+- [Release processes](https://handbook.mattermost.com/operations/research-and-development/product/release-process/release-overview) docs
 - Security: Read through the security channel/issues spreadsheet and look at past exploits
 - Developer Reading List: Located in the header of the public [Developer channel](https://community.mattermost.com/core/channels/developers)
 
@@ -48,8 +48,7 @@ weight: 10
     - Developers Meeting
     - Bugs
     - Contributors
-    - Release Discussion
-    - Release Checklist (optional)
+    - Release Announcements
     - Toolkit (optional)
     - Redux (optional)
     - Installers and Images (optional)
