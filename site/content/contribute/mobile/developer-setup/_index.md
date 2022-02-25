@@ -21,8 +21,7 @@ A macOS computer is required to build the Mattermost iOS mobile app.
 Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using [Homebrew](https://brew.sh) as a package manager.
 
 #### Node and NPM
-For mobile V1, we recommend using npm version 7 (with either Node 15 or 16). For mobile v2 (gekidou), we recommend npm version 8 and Node 16. To make switching easier, many of our team use [nvm](https://github.com/nvm-sh/nvm) to manage the npm and node versions.
-
+We recommend using npm version 7 (with either Node 15 or 16). To make switching easier, many of our team use [nvm](https://github.com/nvm-sh/nvm) to manage the npm and node versions.
 
 #### Install Cygwin (Windows only)
 ##### Windows 10
@@ -109,7 +108,7 @@ Some distributions come with Git preinstalled but you'll most likely have to ins
 
 1. Follow the [React Native environment setup](https://reactnative.dev/docs/environment-setup) docs until the `cocoapods` point, then stop. 
 2. Specify the correct version of xCode in the terminal: `sudo xcode-select --switch /Applications/Xcode.app`
-3. With m1 mac you may have to install cocoapods using a Rosetta terminal. Follow step 1 from [this blog post](https://www.courier.com/blog/tips-and-tricks-to-setup-your-apple-m1-for-development/) to install a Rosetta terminal.
+3. With m1 mac you **may** have to install cocoapods using a Rosetta terminal. Follow step 1 from [this blog post](https://www.courier.com/blog/tips-and-tricks-to-setup-your-apple-m1-for-development/) to install a Rosetta terminal.
 4. In the Rosetta terminal, change to the `mattermost-mobile/ios` directory and run:
 ```sh
 sudo arch -x86_64 gem install ffi
