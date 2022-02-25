@@ -34,7 +34,17 @@ Inside the `integration` directory, there are subdirectories that roughly break 
 
     In case the `Test Key` is not available, feel free to prompt the QA team who will either search for an existing Zephyr entry or if it's a new one, it will be created for you.
 
-5. Add check if a certain test requires server license.
+5. If a test is failing due to a known issue, append the Jira issue key in the test description, following the format of ` -- KNOWN ISSUE: [Jira_key]`. For example,
+    ```javascript
+    describe('Upload Files', () => {
+        it('MM-T2261 Upload SVG and post -- KNOWN ISSUE: MM-38982', () => {
+            // Test steps and assertion here
+        }
+    }
+    ```
+    Conversely, remove the Jira issue key if the issue has been resolved and the test is passing.
+
+6. Add check if a certain test requires server license.
     ```javascript
     describe('Test description', () => {
        before(() => {
@@ -47,16 +57,16 @@ Inside the `integration` directory, there are subdirectories that roughly break 
     }
     ```
 
-6. Run the test in isolation using a convenient custom command of `cy.apiInitSetup()`. This command creates a new team, channel, and user which can only be used by the spec file itself.
+7. Run the test in isolation using a convenient custom command of `cy.apiInitSetup()`. This command creates a new team, channel, and user which can only be used by the spec file itself.
 
-7. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/5891/files) as a guide on how to write and submit an end-to-end testing PR.
+8. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/5891/files) as a guide on how to write and submit an end-to-end testing PR.
 
 ### Adding Test Metadata on Spec Files
 
 Test metadata is used to identify each spec file ahead of time before it is forwarded for Cypress run. Currently, supported test metadata are the following:
 
 1. "Stage" - Indicates environment for testing, e.g. `@prod`, `@smoke`, `@pull_request`. "Stage" metadata is owned and controlled by QA team who carefully analyze stability of test and promote/demote into a certain stage. This is not required when submitting a spec file and it should be removed when adding new or modifying an existing spec file.
-2. "Group" - Indicates test group or category, which is primarily based on functional areas and existing release testing groups, e.g. `@account_settings` for Account Settings, `@messaging` for Messaging, etc. This is required when submitting a spec file.
+2. "Group" - Indicates test group or category, which is primarily based on functional areas and existing release testing groups, e.g. `@settings` for Settings, `@playbooks` for Playbooks, etc. This is required when submitting a spec file.
 3. "Skip" - Is a way to skip a spec file depending on capability of test environment. This is required when submitting a spec file if a test has certain limitation or requirement. Capabilities could be as follows:
    - Per platform, e.g. `@darwin` for Mac, `@linux` for Linux flavor like Ubuntu, `@win32` for Windows, etc.
    - Per browser, e.g. `@electron`, `@chrome`, `@firefox`, `@edge`

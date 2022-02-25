@@ -14,17 +14,17 @@ This page lists all the Docker repositories currently in use.
 
 - [mattermost/mattermost-team-edition](https://hub.docker.com/r/mattermost/mattermost-team-edition) - **Official Mattermost Server** image for the **Team Edition version**. To find the Dockerfile please refer to the [GitHub repo](https://github.com/mattermost/mattermost-server/tree/master/build).
 
-- [mattermost/mattermost-push-proxy](https://hub.docker.com/r/mattermost/mattermost-push-proxy) - Mattermost Push Proxy. [Documentation](https://developers.mattermost.com/contribute/mobile/push-notifications/service/). [GitHub](https://github.com/mattermost/mattermost-push-proxy).
+- [mattermost/mattermost-push-proxy](https://hub.docker.com/r/mattermost/mattermost-push-proxy) - Mattermost Push Proxy. [Documentation](https://developers.mattermost.com/contribute/mobile/push-notifications/service/). [GitHub repo](https://github.com/mattermost/mattermost-push-proxy).
 
-- [mattermost/mattermost-loadtest](https://hub.docker.com/r/mattermost/mattermost-loadtest) - Image for the Load Test application. Tools for profiling Mattermost under heavy load. [GitHub](https://github.com/mattermost/mattermost-load-test).
+- [mattermost/mattermost-loadtest](https://hub.docker.com/r/mattermost/mattermost-loadtest) - Image for the Load Test application. Tools for profiling Mattermost under heavy load. [GitHub repo](https://github.com/mattermost/mattermost-load-test).
 
 - [mattermost/mattermost-operator](https://hub.docker.com/r/mattermost/mattermost-operator) - Official image for Mattermost Operator for Kubernetes. For more information please refer to the [GitHub repo](https://github.com/mattermost/mattermost-operator).
 
 - [mattermost/mattermost-cloud](https://hub.docker.com/r/mattermost/mattermost-cloud) - Mattermost Private Cloud is a SaaS offering meant to smooth and accelerate the customer journey from trial to full adoption. For more information please refer to the [GitHub repo](https://github.com/mattermost/mattermost-cloud).
 
-- [mattermost/mattermost-preview](https://hub.docker.com/r/mattermost/mattermost-preview) - This is a Docker image to install Mattermost in Preview Mode for exploring product functionality on a single machine using Docker. [Documentation](http://bit.ly/1W76riY). [GitHub](https://github.com/mattermost/mattermost-docker-preview).
+- [mattermost/mattermost-preview](https://hub.docker.com/r/mattermost/mattermost-preview) - This is a Docker image to install Mattermost in Preview Mode for exploring product functionality on a single machine using Docker. [Documentation](http://bit.ly/1W76riY). [GitHub repo](https://github.com/mattermost/mattermost-docker-preview).
 
-- [mattermost/platform](https://hub.docker.com/r/mattermost/platform) - Mirror of **mattermost/mattermost-preview**. This is a Docker image to install Mattermost in Preview Mode for exploring product functionality on a single machine using Docker. Preview image (mirror). [Documentation](http://bit.ly/1W76riY). [GitHub](https://github.com/mattermost/mattermost-docker-preview).
+- [mattermost/platform](https://hub.docker.com/r/mattermost/platform) - Mirror of **mattermost/mattermost-preview**. This is a Docker image to install Mattermost in Preview Mode for exploring product functionality on a single machine using Docker. Preview image (mirror). [Documentation](http://bit.ly/1W76riY). [GitHub repo](https://github.com/mattermost/mattermost-docker-preview).
 
 ## Community-Maintained Docker Images
 

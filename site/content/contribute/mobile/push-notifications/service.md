@@ -149,7 +149,7 @@ In the [mattermost-push-proxy project](https://github.com/mattermost/mattermost-
   {{% note "Migration" %}}
   Remove the `apple:`, `apple_rn`, `android:` or `android_rn:` prefix from your device ID before replacing `DEVICE_ID`. Use that prefix as the `PLATFORM` (make sure to remove the ":").
   {{% /note %}}
-* You can also verify push notifications are working by opening your Mattermost site and mentioning a user who has push notifications enabled in **Account Settings > Notifications > Mobile Push Notifications**.
+* You can also verify push notifications are working by opening your Mattermost site and mentioning a user who has push notifications enabled in **Settings > Notifications > Mobile Push Notifications**.
 
 To view the log file, use:
 
