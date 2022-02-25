@@ -11,13 +11,24 @@
 </head>
 
 <body class="blog-single">
+    {{ partial "gtm-body-noscript.html" }}
     {{ partial "nav2.html" .}}
     <div class="container">
         <div class="row">
             <div class="col-md-9 doc-content">
                 <div class="well well-sm">
                     <div class="blog-item__header">
-                        <div class="blog-item__title">{{ .Title }}<br> <small>{{ .Description }}</small></div>
+                        <div class="blog-item__title">
+                            <h1>
+                            {{ if .Params.heading }}
+                                {{ .Params.heading }}
+                            {{ else }}
+                                {{ .Title }}
+                            {{ end }}
+                            </h1>
+                            <small>{{ .Description }}</small>
+                            
+                        </div>
                         <div class="blog-item__info">
                             {{ .Date.Format "January 2, 2006" }}
                             <small class="blog-item__count">{{ .WordCount }} words</small>
@@ -44,7 +55,7 @@
                     {{ end }}
                     <br />
                     <br />
-                    Join us on <a href="https://community.mattermost.com/signup_user_complete/?id=f1924a8db44ff3bb41c96424cdc20676"
+                    Join us on <a href="https://community.mattermost.com/signup_user_complete"
                         target="_blank">community.mattermost.com</a>!
                 </div>
             </div>
@@ -55,7 +66,7 @@
 {{ if .Params.toc }}
                 <h6>Table Of Contents</h6>
                     {{ .TableOfContents }}
-{{ end }}                    
+{{ end }}
                     {{ partial "series_link.html" . }}
 
                     <h6>Other Posts</h6>
@@ -66,10 +77,17 @@
                         {{ end }}
                         {{ end }}
                     </ul>
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        {{ range .Params.categories }}
+                    <li>- <a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}">{{ . }}</a></li>
+                        {{ end }}   
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+    {{ partial "footer.html" .}}
 </body>
 
 </html>

@@ -1,8 +1,9 @@
 ---
 title: "Code Review"
+heading: "Code Review at Mattermost"
+description: "All changes to the Mattermost product must be reviewed. Learn about how Mattermost reviews product updates."
 date: 2018-03-06T00:00:00-04:00
 weight: 5
-subsection: Getting Started
 ---
 
 All changes to the product must be reviewed.
@@ -21,7 +22,7 @@ If you are a community member seeking a review
     * Product managers are on the lookout for new pull requests and usually handle this for you automatically.
     * If you have been working alongside a core committer, feel free to message them for help.
     * When in doubt, ask for help in the [Developers](https://community.mattermost.com/core/channels/developers) channel on our community server.
-    * If you are still stuck, please message [Jason Blais](/contribute/getting-started/core-committers/#jason.blais) or [Ben Schumacher (Hanzei)](/contribute/getting-started/core-committers/#hanzei).
+    * If you are still stuck, please message Jason Blais (@jasonblais on GitHub) or Jason Frerich (@jfrerich on GitHub).
 3. [Wait for a review](#if-you-are-awaiting-a-review).
     * Expect some interaction with at least one reviewer within 5 business days (weekdays, Monday through Friday, excluding [statutory holidays](https://docs.mattermost.com/process/working-at-mattermost.html#holidays)).
     * Keep in mind that core committers are geographically distributed around the world and likely in a different time zone than your own.
@@ -29,6 +30,7 @@ If you are a community member seeking a review
 4. Make any necessary changes.
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
     * Once you've addressed the concerns, please at-mention the reviewer with a comment on your PR.
+**Note:** Once a PR is submitted it's best practice to avoid rebasing on the base branch or force-pushing. Jesse, a developer at Mattermost, mentions this in his blog article [Submitting Great PRs](https://mattermost.com/blog/submitting-great-prs/). When the PR is merged, all the PR's commits are automatically squashed into one commit, so you don't need to worry about having multiple commits on the PR.
 5. Wait for your code to be merged.
     * Larger pull requests may require more time to review.
     * Once all reviewers have approved your changes, they will handle merging your code.
@@ -44,7 +46,7 @@ If you are a core committer seeking a review
     * `CherryPick/Approved`: Apply this if the pull request is meant for a quality or patch release.
     * `Do Not Merge/Awaiting PR`: Apply this if the pull request depends on another (e.g. server changes)
     * `Setup Test Server`: Apply this to create a test server with your changes for review.
-    * See [labels](/contribute/getting-started/labels) for additional labels.
+    * See [labels](/contribute/getting-started/labels/) for additional labels.
 4. Assign a milestone as necessary.
     * Most issues are targeted for an upcoming release, and should be assigned the corresponding milestone.
     * The milestone is mandatory for bug fixes that must be cherry-picked.
@@ -67,6 +69,7 @@ If you are a core committer seeking a review
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing so as to avoid churn if changes are requested.
     * Remove the `2: Dev Review` label only when these reviews are done and they accept the changes.
 7. After Dev review, assign a [QA tester](/contribute/getting-started/core-committers/#qa-testers).
+    * Ensure that your PR includes test steps or expected results for QA reference if the QA Test Steps in the Jira ticket have not already been filled in.
     * The choice of QA tester is up to you.
         - In most cases, choose the QA tester embedded with your team.
         - If your change primarily touches another team's codebase, consider their QA tester.
@@ -83,7 +86,8 @@ If you are a core committer seeking a review
     * Merge your pull request and delete the branch if not from a fork.
         - Note that any core committer is free to merge on your behalf.
         - If your pull request depends on other pull requests, consider assigning the `Do Not Merge/Awaiting PR` label.
-9. For handling cherry-picks, please check [here](https://developers.mattermost.com/contribute/getting-started/branching/).
+9. Handle any cherry-picks.
+    * There is an automated cherry-pick process. The author of the pull request should make sure the cherry-pick succeeds. Assume this is the case unless you are explicitly asked to help cherry-pick. Please [check here](https://developers.mattermost.com/contribute/getting-started/branching/#cherry-pick-process---developer) for details.
 10. After a pull request is merged (and cherry-picked where needed), update the Jira ticket.
     * Resolve the ticket for QA from "Ready for QA" button with QA test steps (or "No Testing Required" if no QA testing is needed).
     * Update the release fix version.
@@ -110,6 +114,7 @@ If you are a core committer asked to give a review
     * Prioritize earlier milestones when reviewing to help with the release process.
     * Responding quickly doesn't necessarily mean reviewing quickly! Just don't leave the author hanging.
 2. Feel free to clarify expectations with the author.
+    * If the PR adds a substantial feature, check that a feature flag is included. Please see [criteria here](https://developers.mattermost.com/contribute/server/feature-flags/#when-to-use).
     * If the code is experimental, they may need only a cursory glance and thumbs up to proceed with productizing their changes.
     * If the review is large or complex, additional time may be required to complete your review. Be upfront with the author.
     * If you are not comfortable reviewing the code, avoid "rubber stamping" the review. Be honest with the author and ask them to consider another core committer.

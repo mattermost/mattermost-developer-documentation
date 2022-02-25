@@ -1,3 +1,9 @@
+<!---
+title: "CentOS Development Environment Setup"
+heading: "Developer Setup Using CentOS"
+description: "Read about how to set up your developer environment in Mattermost using the CentOS distribution of Linux."
+--->
+
 1. Install and configure Docker CE:
 
     ```sh

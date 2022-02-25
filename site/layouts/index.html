@@ -8,10 +8,10 @@
         {{ partial "head.html" .}}
     </head>
     <body class="homepage">
+        {{ partial "gtm-body-noscript.html" }}
         {{ partial "nav.html" .}}
 
-        <div id="wrapper">
-            <div class="homepage__bg"></div>
+        <div class="homepage-wrapper">
             {{ partial "hero.html" .}}
 
             <div class="container-fluid">
