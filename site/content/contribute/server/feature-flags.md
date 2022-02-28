@@ -35,6 +35,8 @@ We've used Split's SDK to integrate with the Mattermost server. You can find the
 
 We currently have a limited number of seats for our Split account, so not everyone gets access. Currently, two people per each engineering team plus some PM/UX folk have access. If you need to manage some feature flags, ask your team lead who has access and can help you out. It's up to each team to determine who has access.
 
+You can request access to Split from @daniel.sischy at the Systems channel on the Staff team.
+
 ### How do I log in?
 
 Login is controlled via OneLogin. If you have access you will be able to log in through there.
