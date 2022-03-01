@@ -107,7 +107,7 @@ Some distributions come with Git preinstalled but you'll most likely have to ins
 #### Additional setup for iOS on m1 macs
 
 1. Follow the [React Native environment setup](https://reactnative.dev/docs/environment-setup) docs until the `cocoapods` point, then stop. 
-2. Specify the correct version of xCode in the terminal: `sudo xcode-select --switch /Applications/Xcode.app`
+2. Specify the correct version of Xcode in the terminal: `sudo xcode-select --switch /Applications/Xcode.app`
 3. In the Rosetta terminal, change to the `mattermost-mobile/ios` directory and run:
 ```sh
 sudo arch -x86_64 gem install ffi
