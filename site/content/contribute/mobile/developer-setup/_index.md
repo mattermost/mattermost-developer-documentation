@@ -114,7 +114,7 @@ sudo arch -x86_64 gem install ffi
 sudo gem install cocoapods
 arch -x86_64 pod install
 ```
-4. If you need to use the xCode app (e.g., to build, sign, and transfer the app to an iOS device), be sure to start it in Rosetta mode.
+4. If you need to use the Xcode app (e.g., to build, sign, and transfer the app to an iOS device), be sure to start it in Rosetta mode.
 
 ### Additional setup for Android
 
