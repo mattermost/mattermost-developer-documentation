@@ -52,7 +52,7 @@ Topics demonstrated:
 
 ## Profanity Filter
 
-The [profanity filter plugin for Mattermost](https://github.com/mattermost/mattermost-plugin-profanity-filter) automatically detects restricted words in posts and censors them prior to writing to the database. For more use cases, [see this forum post](https://forum.mattermost.org/t/coming-soon-apiv4-mattermost-post-intercept/4982).
+The [profanity filter plugin for Mattermost](https://github.com/mattermost/mattermost-plugin-profanity-filter) automatically detects restricted words in posts and censors them prior to writing to the database. For more use cases, [see this forum post](https://forum.mattermost.com/t/coming-soon-apiv4-mattermost-post-intercept/4982).
 
 Topics demonstrated:
 
