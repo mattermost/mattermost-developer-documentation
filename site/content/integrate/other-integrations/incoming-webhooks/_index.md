@@ -83,7 +83,7 @@ Content-Length: 630
 {
   "channel": "town-square",
   "username": "test-automation",
-  "icon_url": "https://www.mattermost.org/wp-content/uploads/2016/04/icon.png",
+  "icon_url": "https://mattermost.com/wp-content/uploads/2022/02/icon.png",
   "text": "#### Test results for July 27th, 2017\n@channel please review failed tests.\n\n| Component  | Tests Run   | Tests Failed                                   |\n|:-----------|:-----------:|:-----------------------------------------------|\n| Server     | 948         | :white_check_mark: 0                           |\n| Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |\n| iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |"
 }
 ```
@@ -106,7 +106,7 @@ Content-Type: application/json
 }
 ```
 
-When there is `props` object with a `card` property attached to the webhook payload, the posted message displays a small info icon next to the timestamp. Clicking this icon expands the right-hand side panel to display the Markdown included in the `card` property:
+When there is a `props` object with a `card` property attached to the webhook payload, the posted message displays a small info icon next to the timestamp. Clicking this icon expands the right-hand side panel to display the Markdown included in the `card` property:
 
 ![image](https://user-images.githubusercontent.com/915956/64055959-ec0cfe80-cb44-11e9-8ee3-b64d47c86032.png)
 
