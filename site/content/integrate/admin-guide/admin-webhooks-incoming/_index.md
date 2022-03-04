@@ -43,7 +43,7 @@ See [developer documentation]({{< ref "/integrate/other-integrations/incoming-we
   payload={
     "channel": "town-square",
     "username": "test-automation",
-    "icon_url": "http://mattermost.com/wp-content/uploads/2022/02/icon.png",
+    "icon_url": "https://mattermost.com/wp-content/uploads/2022/02/icon.png",
     "text": "#### Test results for July 27th, 2017\n<!channel> please review failed tests.\n
     | Component  | Tests Run   | Tests Failed                                   |
     |:-----------|:-----------:|:-----------------------------------------------|

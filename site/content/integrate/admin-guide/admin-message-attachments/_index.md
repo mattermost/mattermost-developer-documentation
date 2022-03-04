@@ -84,7 +84,7 @@ Here is an example message attachment:
         "pretext": "This is optional pretext that shows above the attachment.",
         "text": "This is the text of the attachment. It should appear just above an image of the Mattermost logo. The left border of the attachment should be colored orange, and below the image it should include additional fields that are formatted in columns. At the top of the attachment, there should be an author name followed by a bolded title. Both the author name and the title should be hyperlinks.",
         "author_name": "Mattermost",
-        "author_icon": "http://mattermost.com/wp-content/uploads/2022/02/icon_WS.png",
+        "author_icon": "https://mattermost.com/wp-content/uploads/2022/02/icon_WS.png",
         "author_link": "https://mattermost.org/",
         "title": "Example Attachment",
         "title_link": "https://developers.mattermost.com/integrate/admin-guide/admin-message-attachments/",
@@ -110,7 +110,7 @@ Here is an example message attachment:
             "value":"Testing"
           }
         ],
-        "image_url": "http://mattermost.com/wp-content/uploads/2022/02/icon_WS.png"
+        "image_url": "https://mattermost.com/wp-content/uploads/2022/02/icon_WS.png"
       }
     ]
   }
