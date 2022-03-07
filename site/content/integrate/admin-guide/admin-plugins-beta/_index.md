@@ -256,7 +256,7 @@ Join our community server discussion in the [Toolkit channel](https://community.
 
 ## Troubleshooting
 
-Please see common questions below. For further assistance, review the [Troubleshooting forum](https://forum.mattermost.org/c/trouble-shoot) for previously reported errors, or [join the Mattermost user community for troubleshooting help](https://mattermost.com/pl/default-ask-mattermost-community).
+Please see common questions below. For further assistance, review the [Troubleshooting forum](https://forum.mattermost.com/c/trouble-shoot) for previously reported errors, or [join the Mattermost user community for troubleshooting help](https://mattermost.com/pl/default-ask-mattermost-community).
 
 ### Plugin uploads fail even though uploads are enabled
 
