@@ -9,7 +9,7 @@ aliases: [/extend/plugins/]
 
 Mattermost supports plugins that offer powerful features for extending and deeply integrating with both the Server and Web/Desktop Apps.
 
-Share constructive feedback [on our forum post](https://forum.mattermost.org/t/plugin-system-upgrade-in-mattermost-5-2/5498) or join the [Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) on our Mattermost community server.
+Share constructive feedback [on our forum post](https://forum.mattermost.com/t/plugin-system-upgrade-in-mattermost-5-2/5498) or join the [Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) on our Mattermost community server.
 
 ## Features
 

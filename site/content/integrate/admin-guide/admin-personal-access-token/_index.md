@@ -61,7 +61,7 @@ Besides the above differences, personal access tokens are exactly the same as re
 
 ### Can I set personal access tokens to expire?
 
-Not in Mattermost, but you can automate your integration to cycle its token [through the REST API](https://api.mattermost.com/#tag/users%2Fpaths%2F~1users~1%7Buser_id%7D~1tokens%2Fpost).
+Not in Mattermost, but you can automate your integration to cycle its token [through the REST API](https://api.mattermost.com/#operation/CreateUserAccessToken).
 
 ### How do I identify a badly behaving personal access token?
 

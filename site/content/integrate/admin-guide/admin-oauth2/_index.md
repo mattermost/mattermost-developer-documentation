@@ -8,13 +8,13 @@ weight: 80
  The authorization allows:
 
 - Users with an account on a Mattermost server to sign in to third-party applications. You can find a [sample OAuth2 Client Application for Mattermost here](https://github.com/enahum/mattermost-oauth2-client-sample) to test the functionality.
-- A Mattermost server to authenticate requests to a third-party API. One popular application is Zapier integration which allows you to integrate more than 700 applications with Mattermost through OAuth 2.0. See our [Zapier documentation](../admin-zapier) to learn more.
+- A Mattermost server to authenticate requests to a third-party API. One popular application is Zapier integration which allows you to integrate more than 700 applications with Mattermost through OAuth 2.0. See our [Zapier documentation](../admin-zapier-integration/) to learn more.
 
 ## Register your application in Mattermost
 
 You must register your application in Mattermost to generate OAuth 2.0 credentials (client ID and secret), which your application can use to authenticate API calls to Mattermost, and which Mattermost uses to authorize API requests from the application.
 
-If you'd like to set up a Zapier integration with OAuth 2.0, see our [Zapier documentation](../admin-zapier) to learn more.
+If you'd like to set up a Zapier integration with OAuth 2.0, see our [Zapier documentation](../admin-zapier-integration/) to learn more.
 
 ### Enable OAuth 2.0 applications
 
