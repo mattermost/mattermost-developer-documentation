@@ -26,7 +26,7 @@ Here's a general workflow for a Mattermost developer working on the [mattermost-
 5. Once everything works to meet the ticket requirements, stop Mattermost by running `make stop` in the server repository, then run `make check-style` to check your syntax.
 6. Run the tests using one or more of the following options:
      * Run `make test` to run all the tests in the project. This may take a long time and provides very little feedback while it's running.
-     * Run individual tests by name executing `go test -run "TestName"`.
+     * Run individual tests by name executing `go test -run "TestName" ./<directory>`.
      * Run all the tests in a package where changes were made executing `go test app`.
      * Create a draft PR with your changes and let our CI servers run the tests for you.
 7. If you added or changed any localization strings you will need to run `make i18n-extract` to generate the new/updated strings.
@@ -47,8 +47,7 @@ Some useful `make` commands:
 * `make clean` cleans your local environment of temporary files.
 * `make config-reset` resets the `config/config.json` file to the default.
 * `make nuke` wipes your local environment back to a completely fresh start.
-* `make package` creates packages for distributing your builds and puts them in the `~/go/src/github.com/mattermost/mattermost-server/dist` directory. First you will need to run `make build` and `make build-client`.
-* `make megacheck` runs the tool [megacheck](https://github.com/dominikh/go-tools/tree/master/cmd/megacheck) against the code base to find potential issues in the code. Please note the results are guidelines, and not mandatory in all cases. If in doubt, ask in the [Developers community channel](https://community.mattermost.com/core/channels/developers).
+* `make package` creates packages for distributing your builds and puts them in the `./dist` directory. First you will need to run `make build` and `make build-client`.
 
 ### Running Only Specific Server Unit Tests
 
@@ -73,25 +72,27 @@ Install the server with `go install ./cmd/mattermost` in the server repository.
 You can reset your database to the initial state using:
 
 ```
-mattermost reset
+mattermost db reset
 ```
 
-After that, you can generate random data to populate the Mattermost database using:
+The following commands need to be run via our [mmctl](https://docs.mattermost.com/manage/mmctl-command-line-tool.html) tool.
+
+You can generate random data to populate the Mattermost database using:
 
 ```
-mattermost sampledata
+mmctl sampledata
 ```
 
 Create an account using the following command:
 
 ```
-mattermost user create --email user@example.com --username test1 --password mypassword
+mmctl user create --email user@example.com --username test1 --password mypassword
 ```
 
 Optionally, you can assign that account System Admin rights with the following command:
 
 ```
-mattermost user create --email user@example.com --username test1 --password mypassword --system_admin
+mmctl user create --email user@example.com --username test1 --password mypassword --system_admin
 ```
 
 ### Customize your workflow
