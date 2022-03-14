@@ -32,26 +32,18 @@ description: "Read about how to set up your developer environment in Mattermost 
 4. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`) and add the following:
 
     ```sh
-    export GOPATH=$HOME/go
-    export PATH=$PATH:$GOPATH/bin
     ulimit -n 8096
     ```
 
-5. Re-source your shell's initialization script to update `GOPATH` and `PATH` in your current shell:
+5. Fork https://github.com/mattermost/mattermost-server
 
-    ```sh
-    source $HOME/.bashrc
-    ```
-
-6. Fork https://github.com/mattermost/mattermost-server
-
-7. Clone the Mattermost source code from your fork:
+6. Clone the Mattermost source code from your fork:
 
     ```sh
     git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost-server.git
     ```
 
-8. Start the server:
+7. Start the server:
 
     ```sh
     cd mattermost-server
@@ -62,7 +54,7 @@ description: "Read about how to set up your developer environment in Mattermost 
     
    **Note:** If you see an error which says `Failed to ping DB`, it's probably due to a conflict between the PostgreSQL service in Docker and the one which is running system-wide. You can stop the system-wide server temporarily by running `brew services stop postgres` in your terminal, then restart the Docker service.
 
-9. Test your environment:
+8. Test your environment:
 
     ```sh
     curl http://localhost:8065/api/v4/system/ping
