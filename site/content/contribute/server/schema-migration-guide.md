@@ -33,8 +33,7 @@ The problem arises when in some databases, for some tables, due to various techn
 ### I need to make a schema change. What do I do?
 
 1. Add the appropriate SQL script file containing the statements you want to run into the migrations directory. This directory is located in `{project_dir}/db/migrations/{driver_name}/`. Do not forget to add scripts for both `mysql` and `postgres` databases.
-2. To embed the script, run `make migrations-bindata`.
-3. When you run the mattermost-server binary, the tool will automatically apply the migration if it's required. The migration name will be saved in the `db_migrations` table.
+2. When you run the mattermost-server binary, the tool will automatically apply the migration if it's required. The migration name will be saved in the `db_migrations` table.
 
 ### My migration has failed. What do I do?
 1. If you think your migration is applied, and you want to revert changes, you can run the down script to roll back in a clean way. You can use morph CLI to apply down migrations.
