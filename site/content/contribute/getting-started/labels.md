@@ -27,7 +27,7 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 
 * `1: PM Review`: Requires review by a [product manager](https://handbook.mattermost.com/contributors/contributors/core-committers#product-managers).
 * `1: UX Review`: Requires review by a UX designer.
-* `1: SME Review`: Requires review by a subject matter expert (used in the Handbook)
+* `1: SME Review`: Requires review by a subject matter expert (used in the Handbook).
 * `2: Dev Review`: Requires review by a [core committer](https://handbook.mattermost.com/contributors/contributors/core-committers#core-committers).
 * `2: Editor Review: Requires review by a [technical writer](https://handbook.mattermost.com/contributors/contributors/core-committers#technical-writers).
 * `3: QA Review`: Requires review by a [QA tester](https://handbook.mattermost.com/contributors/contributors/core-committers#qa-testers). May occur at the same time as Dev Review.
