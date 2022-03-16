@@ -6,12 +6,13 @@ date: 2018-03-06T00:00:00-04:00
 weight: 5
 ---
 
-All changes to the product must be reviewed.
+All changes to the product should be reviewed. Every team will have its own workflow, but in general:
 
-* User experience changes must be reviewed by a [product manager](/contribute/getting-started/core-committers/#product-managers).
-* Code changes must be reviewed by at least two [core committers](/contribute/getting-started/core-committers/#core-committers) and a [QA tester](/contribute/getting-started/core-committers/#qa-testers).
-* Documentation changes must be reviewed by a [product manager](/contribute/getting-started/core-committers/#product-managers).
-  * Product managers may ask for reviews from [core committers](/contribute/getting-started/core-committers/#core-committers) and [QA testers](/contribute/getting-started/core-committers/#qa-testers) as required.
+* User experience changes should be reviewed by a product manager or designer.
+* Code changes should be reviewed by at least two core committers.
+* Documentation changes should be reviewed by a product manager or technical writer.
+
+Staff should consult the internal [organization chart](https://docs.google.com/spreadsheets/d/1lH8QIjQGEoGospDUdVs_LQ_i2b82I1ce6W7z18vhPTQ/edit#gid=1730823498) as needed when finding the right reviewer.
 
 If you are a community member seeking a review
 ----------------------------------------------
@@ -22,15 +23,15 @@ If you are a community member seeking a review
     * Product managers are on the lookout for new pull requests and usually handle this for you automatically.
     * If you have been working alongside a core committer, feel free to message them for help.
     * When in doubt, ask for help in the [Developers](https://community.mattermost.com/core/channels/developers) channel on our community server.
-    * If you are still stuck, please message Jason Blais (@jasonblais on GitHub) or Jason Frerich (@jfrerich on GitHub).
+    * If you are still stuck, message Jason Blais ([@jasonblais](https://github.com/jasonblais) on GitHub) or Jason Frerich ([@jfrerich](https://github.com/jfrerich) on GitHub).
 3. [Wait for a review](#if-you-are-awaiting-a-review).
-    * Expect some interaction with at least one reviewer within 5 business days (weekdays, Monday through Friday, excluding [statutory holidays](https://docs.mattermost.com/process/working-at-mattermost.html#holidays)).
+    * Expect some interaction with at least one reviewer within 5 business days. (Business days are typically Monday to Friday, excluding [statutory holidays](https://handbook.mattermost.com/operations/workplace/people/working-at-mattermost/paid-time-off#typical-public-holidays-in-canada-germany-uk-us).)
     * Keep in mind that core committers are geographically distributed around the world and likely in a different time zone than your own.
-    * If no interaction has occurred after 5 business days, please at-mention a reviewer with a comment on your PR.
+    * If no interaction has occurred after 5 business days, at-mention a reviewer with a comment on your PR.
 4. Make any necessary changes.
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
-    * Once you've addressed the concerns, please at-mention the reviewer with a comment on your PR.
-**Note:** Once a PR is submitted it's best practice to avoid rebasing on the base branch or force-pushing. Jesse, a developer at Mattermost, mentions this in his blog article [Submitting Great PRs](https://mattermost.com/blog/submitting-great-prs/). When the PR is merged, all the PR's commits are automatically squashed into one commit, so you don't need to worry about having multiple commits on the PR.
+    * Once you've addressed the concerns, re-request a review from any reviewer requesting changes.
+    * [Avoid force pushing](https://mattermost.com/blog/submitting-great-prs/#4-avoid-force-pushing).
 5. Wait for your code to be merged.
     * Larger pull requests may require more time to review.
     * Once all reviewers have approved your changes, they will handle merging your code.
@@ -40,57 +41,59 @@ If you are a core committer seeking a review
 
 1. Submit your pull request.
     * Follow the [contribution checklist](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/).
-2. Immediately add the `1: PM Review`, `2: Dev Review`, and `3: QA Review` labels.
+2. Immediately add the `1: UX Review`, `2: Dev Review`, and `3: QA Review` labels.
     * Your pull request should not be merged until these labels are later removed in the review process.
 3. Apply additional labels as necessary:
     * `CherryPick/Approved`: Apply this if the pull request is meant for a quality or patch release.
     * `Do Not Merge/Awaiting PR`: Apply this if the pull request depends on another (e.g. server changes)
     * `Setup Test Server`: Apply this to create a test server with your changes for review.
-    * See [labels](/contribute/getting-started/labels/) for additional labels.
+    * See [labels](/contribute/getting-started/labels/) for additional documentation.
 4. Assign a milestone as necessary.
-    * Most issues are targeted for an upcoming release, and should be assigned the corresponding milestone.
+    * Most pull requests do not require a milestone, but will simply ship once merged.
+    * Some reviewers may prioritize reviews for known upcoming milestones.
     * The milestone is mandatory for bug fixes that must be cherry-picked.
-5. Request a review from a [Product Manager](/contribute/getting-started/core-committers/#product-managers).
-    * The choice of Product Manager is up to you.
-        - In most cases, choose the Product Manager embedded with your team.
-        - If your change primarily touches another team's codebase, consider their Product Manager.
-        - If in doubt, assign any Product Manager and comment about the uncertainty. The Product Manager may reassign as appropriate.
+5. Request a review from a Product Manager and/or a Designer.
+    * The choice of Product Manager or Designer is up to you.
+        - In most cases, choose the individual embedded with your team.
+        - If your change primarily touches another team's codebase, assign the individual from that team.
+        - If in doubt, assign any Product Manager or Designer and comment about the uncertainty. They may reassign as appropriate.
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing so as to avoid churn if changes are requested.
-    * Remove the `1: PM Review` label only when their review is done and they accept the changes.
-        - Product Managers ensure the changes meet [user experience guidelines](https://docs.mattermost.com/developer/fx-guidelines.html).
-    * If your changes do not affect the user experience, you may remove `1: PM Review` immediately.
-6. After PM review, request a review from two [core committers](/contribute/getting-started/core-committers/).
+    * Remove the `1: UX Review` label only when these reviews are done and they accept the changes.
+        - Product Managers and Designers ensure the changes meet [user experience guidelines](https://docs.mattermost.com/developer/fx-guidelines.html).
+    * If your changes do not affect the user experience, you may remove `1: UX Review` immediately.
+6. After UX review, request a review from two core committers.
     * The choice of core committers is up to you.
         - When picking your first core committer, consider someone with domain expertise relative to your changes. Sometimes GitHub will recommend a recent editor of the code, but often you must rely on your own intuition from past interactions.
-        - When picking your second core committer, consider someone from another team who may have expertise in the language you're using or the problem you're solving, even if they aren't intricately familiar with the codebase. This can provide a fresh set of eyes on the code to reveal blindspots that are not biased by hitting deadlines, and helps expose the team to new parts of the code to help spread out domain knowledge. This may not make sense for every pull request but is a practice to keep in mind.
+        - When picking your second core committer, consider someone who may have expertise in the language you're using or the problem you're solving, even if they aren't intricately familiar with the codebase. This can provide a fresh set of eyes on the code to reveal blindspots that are not biased by hitting deadlines, and helps expose the team to new parts of the code to help spread out domain knowledge. This may not make sense for every pull request but is a practice to keep in mind.
         - Don't be afraid to pick someone who gives "hard" reviews. Code review feedback is never a personal attack: it should "sharpen" the skills of both the author and the reviewers, not to mention improving the quality of the product.
         - Try to avoid assigning the same person to all of your reviews unless they are related.
         - When in doubt, ask for recommendations on our community server.
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing so as to avoid churn if changes are requested.
     * Remove the `2: Dev Review` label only when these reviews are done and they accept the changes.
-7. After Dev review, assign a [QA tester](/contribute/getting-started/core-committers/#qa-testers).
+7. After Dev review, assign a QA tester.
     * Ensure that your PR includes test steps or expected results for QA reference if the QA Test Steps in the Jira ticket have not already been filled in.
     * The choice of QA tester is up to you.
-        - In most cases, choose the QA tester embedded with your team.
-        - If your change primarily touches another team's codebase, consider their QA tester.
-        - If in doubt, assign any QA tester and comment about the uncertainty. The QA tester may reassign as appropriate.
+        - In most cases, choose the individual embedded with your team.
+        - If your change primarily touches another team's codebase, assign the individual from that team.
+        - If in doubt, assign any QA tester and comment about the uncertainty. They may reassign as appropriate.
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing.
         - It is the QA tester's responsibility to determine the scope of required testing, if any.
     * Remove the `3: QA Review` label only when their review is done and they accept the changes.
     * In the rare event your changes do not require QA review, you may remove `3: QA Review` immediately.
         - Comment on the pull request clearly explaining the rationale.
 8. Merge the pull request.
-    * Do not merge until the labels `1: PM Review`, `2: Dev Review` and `3: QA Review` labels have been removed.
+    * Do not merge until the labels `1: UX Review`, `2: Dev Review` and `3: QA Review` labels have been removed.
     * Add the `4: Reviews Complete` label if the last reviewer did not already add it.
     * Do not merge if there are outstanding changes requested.
     * Merge your pull request and delete the branch if not from a fork.
         - Note that any core committer is free to merge on your behalf.
-        - If your pull request depends on other pull requests, consider assigning the `Do Not Merge/Awaiting PR` label.
+        - If your pull request depends on other pull requests, consider assigning the `Do Not Merge/Awaiting PR` label to avoid merging prematurely.
 9. Handle any cherry-picks.
-    * There is an automated cherry-pick process. The author of the pull request should make sure the cherry-pick succeeds. Assume this is the case unless you are explicitly asked to help cherry-pick. Please [check here](https://developers.mattermost.com/contribute/getting-started/branching/#cherry-pick-process---developer) for details.
+    * There is an automated cherry-pick process. 
+    * As the author of the pull request, you should make sure the cherry-pick succeeds. 
+    * [Check here](https://developers.mattermost.com/contribute/getting-started/branching/#cherry-pick-process---developer) for details.
 10. After a pull request is merged (and cherry-picked where needed), update the Jira ticket.
     * Resolve the ticket for QA from "Ready for QA" button with QA test steps (or "No Testing Required" if no QA testing is needed).
-    * Update the release fix version.
 
 If you are awaiting a review
 ----------------------------
@@ -126,7 +129,7 @@ If you are a core committer asked to give a review
     * Try to accept or reject the review instead of just leaving comments.
     * If you are the last developer to approve the changes, consider requesting a review from the appropriate QA tester to speed up the process.
 5. Merge the pull request.
-    * Do not merge until the labels `1: PM Review`, `2: Dev Review` and `3: QA Review` labels have been removed.
+    * Do not merge until the labels `1: UX Review`, `2: Dev Review` and `3: QA Review` labels have been removed.
     * Add the `4: Reviews Complete` label if the last reviewer did not already add it.
     * Do not merge if there are outstanding changes requested.
     * Do not merge if there are any `Do Not Merge` labels applied.
