@@ -10,9 +10,9 @@ weight: 5
 
 In order to add fields to the configuration, you need to modify `model/config.go` in the server by adding the desired field to one of the structs such as `ServiceSettings` and setting its default value in the corresponding `SetDefaults` method.
 
-Note that some of the configuration values are collected as telemetries. The telemetry definitions are defined in `services/telemetry` package. Once a configuration is added it should be added to telemetry package. If the configuration value is not going to be collected as a telemetry, `// telemetry: none` comment must be added to prevent [configtelemetry](https://github.com/mattermost/mattermost-govet#included-analyzers) check fail.
+Note that some of the configuration values are collected as telemetries. The telemetry definitions are defined in the `services/telemetry` package. Once a configuration is added, it should be added to telemetry package. If the configuration value is not going to be collected as a telemetry, a `// telemetry: none` comment must be added to prevent the [configtelemetry](https://github.com/mattermost/mattermost-govet#included-analyzers) check from failing.
 
-Also we use struct tags to identify access level for configuration values. If the value requires a restriction please use this tag accordingly.
+Also we use struct tags to identify access level for configuration values. If the value requires a restriction, please use this tag accordingly.
 
 ### Exposing settings in the System Console
 
