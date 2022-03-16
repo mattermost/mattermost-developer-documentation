@@ -1,16 +1,16 @@
 ---
 title: "CLI Commands"
 heading: "CLI Commands and mmctl"
-description: "Mattermost provides a CLI tool (mmctl) to to enable access to mattermost server from the command line."
+description: "Mattermost provides a CLI tool (mmctl) to to enable access to Mattermost server from the command line."
 date: 2022-03-15T18:40:32-04:00
 weight: 5
 ---
 
-As of 6.0, mattermost cli has been replaced by [mmctl](https://github.com/mattermost/mmctl). `mmctl` is built to enable access to mattermost server from the command line. The tool leverages the public API so that administrator and user tasks can be performed.
+As of 6.0, Mattermost CLI has been replaced by [mmctl](https://github.com/mattermost/mmctl). `mmctl` is built to enable access to Mattermost server from the command line. The tool leverages the public API so that administrator and user tasks can be performed.
 
 Since `mmctl` uses the public API, an authorization mechanism is required. Which means the access rights are managed on the server side. There is a pre-run check to read credentials and use it in the client. In addition to authentication via credentials, `mmctl` can communicate to a local server without any authentication. This must be enabled via server configuration and both `mmctl` and `mattermost-server` needs to be running in the same machine.
 
-In addition to provide more functionality towards testing and development, `db` subcommand has been added mattermost server binary.
+In addition to provide more functionality towards testing and development, `db` subcommand has been added Mattermost server binary.
 
 ## Understanding the CLI
 
