@@ -1,5 +1,5 @@
 ---
-title: "Mattermost Cherry-Pick process"
+title: "Mattermost Cherry-Pick Process"
 heading: "Mattermost Cherry-Pick Process"
 description: "What the branching strategy and cherry-pick process looks like."
 date: 2019-06-18T00:00:00-04:00

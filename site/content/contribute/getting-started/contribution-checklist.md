@@ -12,8 +12,8 @@ To help with translations, [see the localization process](https://docs.mattermos
 
 Follow this checklist for submitting a pull request (PR):
 
-1. You've signed the [Contributor License Agreement](http://www.mattermost.org/mattermost-contributor-agreement/), so you can be added to the Mattermost [Approved Contributor List](https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true).
- - If you've included your mailing address in the signed [Contributor License Agreement](https://www.mattermost.org/mattermost-contributor-agreement/), you may receive a [Limited Edition Mattermost Mug](https://forum.mattermost.org/t/limited-edition-mattermost-mugs/143) as a thank you gift after your first pull request is merged.
+1. You've signed the [Contributor License Agreement](https://mattermost.com/mattermost-contributor-agreement/), so you can be added to the Mattermost [Approved Contributor List](https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true).
+ - If you've included your mailing address in the signed [Contributor License Agreement](https://mattermost.com/mattermost-contributor-agreement/), you may receive a [Limited Edition Mattermost Mug](https://forum.mattermost.com/t/limited-edition-mattermost-mugs/143) as a thank you gift after your first pull request is merged.
 2. Your ticket is a Help Wanted GitHub issue for the Mattermost project you're contributing to.
     - If not, follow the process [here](/contribute/getting-started/contributions-without-ticket/).
 3. Your code is thoroughly tested, including appropriate unit tests, [end-to-end tests for webapp](/contribute/webapp/end-to-end-tests/), and manual testing.
@@ -24,7 +24,7 @@ Follow this checklist for submitting a pull request (PR):
 
     4.1 In the webapp repository run `make i18n-extract` to generate the new/updated strings.
 5. The PR is submitted against the Mattermost `master` branch from your fork.
-6. The PR title begins with the Jira or GitHub Ticket ID (e.g. `[MM-394]` or `[GH-394]`) and summary template is filled out.
+6. The PR title begins with the Jira or GitHub ticket ID (e.g. `[MM-394]` or `[GH-394]`) and summary template is filled out.
 7. If your PR adds or changes a RESTful API endpoint, please update the [API documentation](https://github.com/mattermost/mattermost-api-reference).
 8. If your PR adds a new plugin API method or hook, please add an example to the [Plugin Starter Template](https://github.com/mattermost/mattermost-plugin-starter-template).
 9. If QA review is applicable, your PR includes test steps or expected results.
