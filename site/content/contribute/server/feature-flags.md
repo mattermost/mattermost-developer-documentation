@@ -162,7 +162,7 @@ For a feature-flagged feature to be included in a self-hosted release, the featu
 
 Feature flags are generally off by default and self-hosted releases do not contact the management system. Therefore feature flags that are not ready for a self-hosted release will be automatically disabled for all self-hosted releases.
 
-Optionally the feature flag can be set to ``True`` in code if we are not yet ready to fully remove the feature flag. Some [examples are here](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
+Optionally the feature flag can be set to ``true`` in code if we are not yet ready to fully remove the feature flag. Some [examples are here](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
 
 ## Testing
 
