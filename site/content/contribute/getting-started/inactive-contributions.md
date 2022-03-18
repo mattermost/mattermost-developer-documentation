@@ -8,9 +8,9 @@ weight: 1.5
 
 This process describes how inactive contributions are managed at Mattermost, inspired by the [Kubernetes project](https://github.com/kubernetes/kubernetes):
 
-1. After 10 days of inactivity, a contribution becomes stale.
- - If action is required from submitter, Community Coordinator asks if the team can help clarify previous feedback or provide guidance on next steps, and adds `lifecycle/1:stale` label to the contribution.
- - If action is required from reviewers, Community Coordinator asks reviewers to share feedback or help answer questions, and adds `lifecycle/1:stale` label to the contribution. The Coordinator will follow up with reviewers until a response is received.
+1. After 10 days of inactivity, a contribution becomes stale and a bot will add the `lifecycle/1:stale` label to the contribution.
+ - If action is required from submitter, Community Coordinator asks if the team can help clarify previous feedback or provide guidance on next steps.
+ - If action is required from reviewers, Community Coordinator asks reviewers to share feedback or help answer questions. The Coordinator will follow up with reviewers until a response is received.
 
 2. After 20 days of inactivity, a contribution becomes inactive.
  - Community Coordinator asks the submitter if the team can help with questions. They acknowledge that after another 30 days of inactivity the contribution will be closed. They also add a `lifecycle/2:inactive` label to the contribution.
