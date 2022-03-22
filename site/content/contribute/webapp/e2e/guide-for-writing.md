@@ -35,7 +35,7 @@ Inside the `integration` directory, there are subdirectories that roughly break 
     In case the `Test Key` is not available, feel free to prompt the QA team who will either search for an existing Zephyr entry or if it's a new one, it will be created for you.
 
 5. If a test is failing due to a known issue, 
-   1. append the Jira issue key in the test description, following the format of ` -- KNOWN ISSUE: [Jira_key]`. For example,
+   1. Append the Jira issue key in the test title, following the format of ` -- KNOWN ISSUE: [Jira_key]`. For example,
         ```javascript
         describe('Upload Files', () => {
             it('MM-T2261 Upload SVG and post -- KNOWN ISSUE: MM-38982', () => {
@@ -43,12 +43,12 @@ Inside the `integration` directory, there are subdirectories that roughly break 
             }
         }
         ```
-   1. move the test case into a sperate `spec` file, following the format of `<existting spec file name_[1-9].js>`. For example,
+   2. Move the test case into a separate `spec` file following the format of `<existing_spec_file_name_[1-9].js>`. For example,
      `accessibility_account_settings_spec_1.js` and demote the spec file (i.e remove `// Stage: @prod` from the spec file)
 
-   1. if all the test cases are failing in a spec file, update their names as mentioned above and demote the spec file.
+   3. If all the test cases are failing in a spec file, update each title as mentioned above and demote the spec file.
 
-   1. link the failed test case/s to Jira issue, `Goto Jira Bug > Click Zephyr Scale tab > Click 'add an existing one' link > Select test case/s > Click Add`
+   4. Link the failed test case/s to Jira issue, `Go to Jira Bug > Click Zephyr Scale tab > Click 'add an existing one' link > Select test case/s > Click Add`
 
     
     Conversely, remove the Jira issue key if the issue has been resolved and the test is passing.
