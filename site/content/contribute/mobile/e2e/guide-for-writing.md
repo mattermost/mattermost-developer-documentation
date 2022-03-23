@@ -30,7 +30,7 @@ Before writing a script, ensure that it has a corresponding test case in Zephyr.
             }
         }
         ```
-   2. Move the test case into a separate `spec` file following the format of `<existing_spec_file_name_[1-9].js>`. For example,
+   2. Move the test case into a separate `spec` file following the format of `<existing_spec_file_name_[1-9].js>`. For example:
      `accessibility_account_settings_spec_1.js` and demote the spec file (i.e remove `// Stage: @prod` from the spec file)
 
    3. If all the test cases are failing in a spec file, update each title as mentioned above and demote the spec file.
