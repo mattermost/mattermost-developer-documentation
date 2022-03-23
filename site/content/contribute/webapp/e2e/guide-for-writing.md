@@ -35,7 +35,7 @@ Inside the `integration` directory, there are subdirectories that roughly break 
     In case the `Test Key` is not available, feel free to prompt the QA team who will either search for an existing Zephyr entry or if it's a new one, it will be created for you.
 
 5. If a test is failing due to a known issue:
-   1. Append the Jira issue key in the test title, following the format of ` -- KNOWN ISSUE: [Jira_key]`. For example,
+   1. Append the Jira issue key in the test title, following the format of ` -- KNOWN ISSUE: [Jira_key]`. For example:
         ```javascript
         describe('Upload Files', () => {
             it('MM-T2261 Upload SVG and post -- KNOWN ISSUE: MM-38982', () => {
