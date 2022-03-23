@@ -48,7 +48,7 @@ Inside the `integration` directory, there are subdirectories that roughly break 
 
    3. If all the test cases are failing in a spec file, update each title as mentioned above and demote the spec file.
 
-   4. Link the failed test case/s to Jira issue, `Go to Jira Bug > Click Zephyr Scale tab > Click 'add an existing one' link > Select test case/s > Click Add`
+   4. Link the failed test case/s to the Jira issue. In the Jira bug, select the **Zephyr Scale** tab. Select the **add an existing one** link, then select test case/s, and select **Add**.
 
     
     Conversely, remove the Jira issue key if the issue has been resolved and the test is passing.
