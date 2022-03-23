@@ -35,7 +35,7 @@ Before writing a script, ensure that it has a corresponding test case in Zephyr.
 
    3. If all the test cases are failing in a spec file, update each title as mentioned above and demote the spec file.
 
-   4. Link the failed test case/s to Jira issue, `Go to Jira Bug > Click Zephyr Scale tab > Click 'add an existing one' link > Select test case/s > Click Add`
+   4. Link the failed test case/s to the Jira issue. In the Jira bug, select the **Zephyr Scale** tab. Select the **add an existing one** link, then select test case/s, and select **Add**.
 
     Conversely, remove the Jira issue key if the issue has been resolved and the test is passing.
 4. Target an element using available [matchers](https://github.com/wix/Detox/blob/master/docs/APIRef.Matchers.md#matchers). For best results, it is recommended to match elements by unique identifiers using `testID`. The identifier should follow the following format to avoid duplication.
