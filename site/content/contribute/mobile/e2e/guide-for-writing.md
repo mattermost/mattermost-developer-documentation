@@ -22,7 +22,7 @@ Before writing a script, ensure that it has a corresponding test case in Zephyr.
     `Zephyr ID` is used for mapping test cases per Release Testing specification. It will be used to measure coverage between manual and automated tests.
 
 3. If a test is failing due to a known issue:
-   1. Append the Jira issue key in the test title, following the format of ` -- KNOWN ISSUE: [Jira_key]`. For example,
+   1. Append the Jira issue key in the test title, following the format of ` -- KNOWN ISSUE: [Jira_key]`. For example:
         ```javascript
         describe('Upload Files', () => {
             it('MM-T2261 Upload SVG and post -- KNOWN ISSUE: MM-38982', () => {
