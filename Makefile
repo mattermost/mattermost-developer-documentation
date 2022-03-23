@@ -4,7 +4,7 @@ dist: plugin-data
 	hugo -s site --destination ../dist/html
 
 .PHONY: plugin-data
-plugin-data: backend-plugin-data frontend-plugin-data devtalks-data
+plugin-data: backend-plugin-data frontend-plugin-data
 
 .PHONY: backend-plugin-data
 backend-plugin-data:
@@ -19,13 +19,6 @@ frontend-plugin-data:
 	cd scripts && npm install
 	mkdir -p site/data
 	node scripts/plugin-jsdocs.js > site/data/PluginJSDocs.json
-
-.PHONY: frontend-plugin-data
-devtalks-data:
-	mkdir -p site/data
-ifdef YOUTUBE_API_KEY
-	go run ./cmd/devtalks > site/data/DevTalks.json
-endif
 
 .PHONY: run
 run:
