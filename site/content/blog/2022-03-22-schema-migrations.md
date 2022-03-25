@@ -3,7 +3,7 @@ title: "Revamping Mattermost Schema Migrations"
 slug: revamping-mattermost-schema-migrations
 date: 2022-03-22T00:00:00-04:00
 categories:
-    - "paltform"
+    - "platform"
 author: Ibrahim Serdar Acikgoz
 github: isacigkoz
 community: ibrahim.acikgoz
@@ -18,15 +18,15 @@ As an application evolves, the data flowing inside inevitably evolves. If you ha
 
 As we mentioned in the beginning, as the application evolves, you need to find a way to keep track of your changes. It’s pretty straightforward for the source code, using a version control system and publishing releases with semantic versioning is a proven way that works for many teams. There are also alternatives to versioning strategy but in the essence, they generally serve similar purposes.
 
-So, what happens to your schema changes over time? One way to track these changes is to sync the schema versioning to the application version. Although it seems to make sense at a glance, there is a major difference once you dig deeper into the motivations of versioning. In a nutshell, you don’t need to give promises as your public API since the database is not intended for public use (generally). So you don’t need to follow major, minor, and patch semantics. But still, you may want to track the changes for several reasons. Let’s review some of these reasons:
+So, what happens to your schema changes over time? One way to track these changes is to tie the schema versioning to the application version. Although it seems to make sense at a glance, there is a major difference once you dig deeper into the motivations of versioning. In a nutshell, you don’t need to give promises as your public API since the database is not intended for public use (generally). So you don’t need to follow major, minor, and patch semantics. But still, you may want to track the changes for several reasons. Let’s review some of these reasons:
 
 ### Track history of a version
 
-You can see when a table or column was changed and who changed it. You can also see how the change is implemented by looking diffs between the two versions.
+You can see when a table or column was changed and who changed it. You can also see how the change is implemented by looking at diffs between the two versions.
 
 ### Restore a previous version
 
-If there is an error in any version, if the current version is broken, or if you simply like a previous version better, you can replace the current version with a previous one.
+If there is an error in any version, or the current version is broken, or if you simply like a previous version better, you can replace the current version with a previous one.
 
 If we have enough reasons to control versions of our schema, let’s continue with how we can manage this.
 
@@ -108,7 +108,7 @@ For example:
 0000000001_create_user.down.sql
 ```
 
-Apart from the essential arguments, morph can be initialized with a locking option which enables a lock mechanism (to mimic advisory locking) that’s been builtin with the tool. It is being used for cases where multiple applications could execute the migrations at the same time. If the database driver implements the following interface, morph can be used safely in multi-application deployments:
+Apart from the essential arguments, morph can be initialized with a locking option which enables a lock mechanism (to mimic advisory locking) that’s been builtin with the tool. The reason we avoid using the advisory lock is that; we use [PgBouncer](https://github.com/pgbouncer/pgbouncer) on our cloud infrastructure and for scaling reasons we had to use transaction pooling mode instead of session pooling. The transaction pooling prevents using session-level advisory locks hence we had to implement our own locking feature to overcome this. In essence, this locking mechanism is being used for cases where multiple applications could execute the migrations at the same time. If the database driver implements the following interface, morph can be used safely in multi-application deployments:
 
 ```Go
 type Locker interface {
@@ -119,8 +119,10 @@ type Locker interface {
 
 It essentially allows an instance to create a mutex value with expiration in the database and refreshes it until the instance finishes applying migrations. Other instances will keep waiting until the mutex is either removed from the database or get expired. The main difference here is that locking is not used for a single statement but it’s being used for the entire migration process. And this mechanism creates another level above sessions hence it wouldn’t fail if the advisory locks are bound to the sessions.
 
-The morph CLI provides the same functionality from the command line. Feel free to install and experiment as we think the command discovery should be sufficient to start using it!
+The morph CLI provides the same functionality as the command line. Feel free to install and experiment as we think the command discovery should be sufficient to start using it!
+
+For those who have read this far, the following question may immediately come to mind: why you just didn't use an existing tool? Or at least, there should be some tools already developed for such problems (schema migrations). Yes, you are absolutely correct. Let us explain why we didn't use [golang-migrate](https://github.com/golang-migrate/migrate) which is one of the most popular projects and we already appreciate it. The main reason is a migration can fail at any time for various reasons, in a failure scenario `golang-migrate` leaves the migration state dirty and it requires some manual steps to fix the issue. Since we have idempotent migrations, it is OK to run a migration over and over again. So we don't need to use the dirty state. The application can even choose to roll back the migration in case of failure. The other motivation is to have a more granular schema version as we store every applied migration. Let's think of a scenario where you are planning to introduce 2 new migrations for the new release (let their version number be 18 and 19). At the last minute, you decided to pull out 18. migration. In this case, you need to rename 19. migration to 18 or rename the 18. migration to 20. but the way we store migrations do not require this. You can simply add 19. migration before the 18. one.
 
 ## Summary
 
-Schema migrations enable versioning as the schema evolves. Making schema changes to databases is serious business as it means changing your customers' data structures. And that always comes with some risks. We consider it is a good practice to have easy recovery paths and to handle changes as a unit. We developed [morph](https://github.com/mattermost/morph/) to achieve these goals. Even though it’s not mature enough to be used in many different application types, we are continuously improving it as requirements change.
+Schema migrations enable versioning as the schema evolves. Making schema changes to databases is serious business as it means changing your customers' data structures. And that always comes with some risks. We consider it is a good practice to have easy recovery paths and to handle changes as a unit. We developed [morph](https://github.com/mattermost/morph/) to achieve these goals. It's being used on Channels product and we started to expand its usage on other products too. We are continuously improving it as requirements change and emerge. Feel free to try it out on your own application and we are always open to any type of contribution!
