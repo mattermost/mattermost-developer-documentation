@@ -8,7 +8,7 @@ weight: 9
 
 The [Focalboard](https://www.focalboard.com) / [Mattermost Boards](https://mattermost.com/boards) project is written in [TypeScript](https://www.typescriptlang.org/) and [Go](https://go.dev/).
 
-Like what you see? 👀 Help us make Focalboard even better! Follow these simple steps to make your experience as great as possible:
+Here's the process for contributing to Focalboard:
 
 1. Fork the [Focalboard repository](https://github.com/mattermost/focalboard), clone it locally, and follow the steps in the [Personal Server Setup Guide](personal-server-setup-guide) to build it. You can read the [changelog](https://github.com/mattermost/focalboard/blob/main/CHANGELOG.md) to get familiar with recent updates.
 
