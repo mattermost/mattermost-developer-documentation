@@ -17,6 +17,7 @@ The Mattermost core repositories include:
 * [Mobile Apps]({{< ref "/contribute/mobile" >}}) - JavaScript client apps for Android and iOS built on React Native
 * [Desktop App]({{< ref "/contribute/desktop" >}}) - An Electron wrapper around the web app project that runs on Windows, Linux, and macOS
 * [Core Plugins]({{< ref "/contribute/plugins" >}}) - A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
+* Core Integrations - Major Mattermost features including [Focalboard]({{< ref "/contribute/focalboard" >}}) and [Playbooks](https://github.com/mattermost/mattermost-plugin-playbooks).
 
 Improvements to Mattermost may require you to contribute to multiple projects; if you’re unsure where to start, the server repository is generally the best way to get introduced to the codebase.
 
