@@ -10,7 +10,7 @@ The Mattermost mobile apps are written in [JavaScript](https://developer.mozilla
 
 ## Repository
 
-Further explanation of the file structure can be found in [the Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/structure/)
+Further explanation of the file structure can be found in [the Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/structure/).
 
 
 ## Mobile App Contributor Resources
