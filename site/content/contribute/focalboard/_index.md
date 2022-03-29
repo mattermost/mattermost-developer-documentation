@@ -33,4 +33,3 @@ You can join the [public Focalboard channel](https://community.mattermost.com/co
 ## Help Wanted
 
 You can find help wanted tickets [here](https://github.com/mattermost/focalboard/issues?q=is%3Aopen+is%3Aissue+label%3A%22Up+for+grabs%22+label%3A%22Help+Wanted%22).
-
