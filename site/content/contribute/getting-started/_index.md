@@ -17,6 +17,7 @@ The Mattermost core repositories include:
 * [Mobile Apps]({{< ref "/contribute/mobile" >}}) - JavaScript client apps for Android and iOS built on React Native
 * [Desktop App]({{< ref "/contribute/desktop" >}}) - An Electron wrapper around the web app project that runs on Windows, Linux, and macOS
 * [Core Plugins]({{< ref "/contribute/plugins" >}}) - A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
+* Core Integrations - Major Mattermost features including [Focalboard]({{< ref "/contribute/focalboard" >}}) and [Playbooks](https://github.com/mattermost/mattermost-plugin-playbooks).
 
 Improvements to Mattermost may require you to contribute to multiple projects; if you’re unsure where to start, the server repository is generally the best way to get introduced to the codebase.
 
@@ -25,7 +26,7 @@ Improvements to Mattermost may require you to contribute to multiple projects; i
 
 If you’re looking for an existing issue to help with, check out the [help wanted tickets on GitHub](https://mattermost.com/pl/help-wanted). If you see any that you’re interested in working on, comment on it to let everyone know you’re working on it. If there’s no ticket for what you want to contribute, see our guide on [contributing without a ticket.]({{< ref "contributions-without-ticket.md" >}})
 
-Once you’ve created some code that you want to contribute, follow our [pull request checklist]({{< ref "contribution-checklist.md" >}}) to submit your contribution for [review]({{< ref "code-review.md" >}}), and one of our [core committers](https://handbook.mattermost.com/contributors/contributors/core-committers) will reach out with any feedback, questions, or requests they have.
+Once you’ve created some code that you want to contribute, follow our [pull request checklist]({{< ref "contribution-checklist.md" >}}) to submit your contribution for [review]({{< ref "code-review.md" >}}), and one of our [core committers](core-committers/) will reach out with any feedback, questions, or requests they have.
 
 
 ## How to Get Help With Your Contribution
