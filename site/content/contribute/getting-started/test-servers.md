@@ -3,7 +3,7 @@ title: "Test Servers"
 heading: "Pull Request Test Servers"
 description: "Leveraging our Cloud infrastructure we can spin up full environments on demand to test code submitted in a PR."
 date: 2022-01-28T00:00:00-04:00
-weight: 7
+weight: 8
 ---
 
 As part of the pull request review process, reviewers may need to test and verify proposed changes. Leveraging our Cloud infrastructure, we can spin up full environments on demand to test code submitted in PRs.
