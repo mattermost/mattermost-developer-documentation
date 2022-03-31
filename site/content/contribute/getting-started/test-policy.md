@@ -26,18 +26,18 @@ Not all test types are required in a single pull request. Only write whichever t
 
 In general, when to have these tests?
 -------------------------------------
-1. For all files written in the main language/s of the repo; could be Javascript/Typescript including JSX/TSX, Go, or both which are exported such as functions, modules, or components being used in several places.
-2. Unexported functions or methods, which have low or no test coverage from the parent exported function/method, that affects critical functionality or behavior of the application.
-3. New features and bug fixes, especially customer and community bugs.
+- For all files written in the main language/s of the repo; could be Javascript/Typescript including JSX/TSX, Go, or both which are exported such as functions, modules, or components being used in several places.
+- Unexported functions or methods, which have low or no test coverage from the parent exported function/method, that affects critical functionality or behavior of the application.
+- New features and bug fixes, especially customer and community bugs.
 
 And when is it fine not to have these tests?
 --------------------------------------------
-1. For implementation details for standard libraries or external packages that are implicitly covered by the standard library or external package itself.
-2. May require external services running to effectively test the functionality, such as dependencies on feature flags via https://split.io, OAuth with third-party providers like Google, etc.
-3. Tests should be made at the most effective and lowest possible level, but if it requires too much effort or complicated setup to accomplish at a unit test level, it would be best to skip and assess feasibility on the next level such as integration or end-to-end testing.
-4. Mocks and test helpers.
-5. Types only.
-6. Interfaces only or interfaces to other repos, such as with private Enterprise via “einterfaces”.
-7. End-to-end tests codebase.
-8. Automatically generated code for database migrations, store layers, etc.
-9. External dependencies, modules, imports, or vendors.
+- For implementation details for standard libraries or external packages that are implicitly covered by the standard library or external package itself.
+- May require external services running to effectively test the functionality, such as dependencies on feature flags via https://split.io, OAuth with third-party providers like Google, etc.
+- Tests should be made at the most effective and lowest possible level, but if it requires too much effort or complicated setup to accomplish at a unit test level, it would be best to skip and assess feasibility on the next level such as integration or end-to-end testing.
+- Mocks and test helpers.
+- Types only.
+- Interfaces only or interfaces to other repos, such as with private Enterprise via “einterfaces”.
+- End-to-end tests codebase.
+- Automatically generated code for database migrations, store layers, etc.
+- External dependencies, modules, imports, or vendors.
