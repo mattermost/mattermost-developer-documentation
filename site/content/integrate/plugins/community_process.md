@@ -8,7 +8,7 @@ aliases: [/extend/plugins/community_process/]
 ---
 
 
-Getting your plugin onto our Community server https://community.mattermost.com is a valuable source of feedback. Whether you're a [Core Committer](https://github.com/mattermost/mattermost-developer-documentation/blob/dae9ecb3b445111479acbaba9f382e9eb263bc52/contribute/getting-started/core-committers) or anyone from the community, we want you to get feedback to improve your plugin. 
+Getting your plugin onto our Community server https://community.mattermost.com is a valuable source of feedback. Whether you're a [core committer](/contribute/getting-started/core-committers/) or anyone from the community, we want you to get feedback to improve your plugin. 
 
 However we must ensure that our Community server remains stable for everyone. This document outlines the process of getting your plugin onto the Community server and some of these steps are required to get your plugin into the [Marketplace]({{< ref "/integrate/plugins/community-plugin-marketplace" >}}). 
 

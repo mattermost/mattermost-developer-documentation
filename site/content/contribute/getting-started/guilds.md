@@ -12,7 +12,7 @@ The main activity of Guilds is a regular meeting. These meetings are public, and
 
 The Web Platform Guild covers all areas related to front-end web development and Electron desktop app development at Mattermost.
 
-- **Guild Lead:** Jesse Hallam
+- **Guild Lead:** Harrison Healey
 - **Guild channel:** [~Developers: WebApp](https://community.mattermost.com/core/channels/webapp)
 - **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
@@ -24,34 +24,19 @@ The Mobile Guild covers all areas related to mobile application development and 
 - **Guild channel:** [~Developers: Mobile](https://community.mattermost.com/core/channels/native-mobile-apps)
 - **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
-## Server/Backend Guild
+## Server Guild
 
-The Server/Backend Guild covers all areas related to our server codebase and general Go development at Mattermost.
+The Server Guild covers all areas related to our server codebase and general Go development at Mattermost.
 
-- **Guild Lead:** Miguel de la Cruz
+- **Guild Lead:** Agniva De Sarker
 - **Guild channel:** [~Developers: Server](https://community.mattermost.com/core/channels/developers-server)
-- **Guild meeting time:** *(see header of Guild channel for meeting invite)*
-
-## Cloud Guild
-
-The Cloud Guild covers all areas related to our cloud infrastructure and Kubernetes orchestration of Mattermost.
-
-- **Guild Lead:** Gabe Jackson
-- **Guild channel:** [~Developers: Cloud](https://community-daily.mattermost.com/core/channels/cloud)
 - **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
 ## QA Guild
 
 The QA Guild covers all areas related to Quality Assurance and automated testing infrastructure at Mattermost.
 
-- **Guild Lead:** Linda Mitchell
+- **Guild Lead:** Saturnino Abril
 - **Guild channel:** [~QA: Weekly Meetings](https://community.mattermost.com/core/channels/qa-weekly-meetings)
 - **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
-## Contributor Community Guild
-
-The Contributor Community Guild covers all areas related to the Mattermost Contributor Community like the contributor experience, code contributions, recognition, and more.
-
-- **Guild Lead:** Emily Cook
-- **Guild channel:** [~guild-contributor-community ](https://community.mattermost.com/core/channels/guild-contributor-community)
-- **Guild meeting time:** *(see header of Guild channel for meeting invite)*

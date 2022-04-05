@@ -21,14 +21,22 @@ Before writing a script, ensure that it has a corresponding test case in Zephyr.
     ```
     `Zephyr ID` is used for mapping test cases per Release Testing specification. It will be used to measure coverage between manual and automated tests.
 
-3. If a test is failing due to a known issue, append the Jira issue key in the test description, following the format of ` -- KNOWN ISSUE: [Jira_key]`. For example,
-    ```javascript
-    describe('Upload Files', () => {
-        it('MM-T2261 Upload SVG and post -- KNOWN ISSUE: MM-38982', () => {
-            // Test steps and assertion here
+3. If a test is failing due to a known issue:
+   1. Append the Jira issue key in the test title, following the format of ` -- KNOWN ISSUE: [Jira_key]`. For example:
+        ```javascript
+        describe('Upload Files', () => {
+            it('MM-T2261 Upload SVG and post -- KNOWN ISSUE: MM-38982', () => {
+                // Test steps and assertion here
+            }
         }
-    }
-    ```
+        ```
+   2. Move the test case into a separate `spec` file following the format of `<existing_spec_file_name_[1-9].js>`. For example:
+     `accessibility_account_settings_spec_1.js` and demote the spec file (i.e. remove `// Stage: @prod` from the spec file)
+
+   3. If all the test cases are failing in a spec file, update each title as mentioned above and demote the spec file.
+
+   4. Link the failed test cases to the Jira issue. In the Jira bug, select the **Zephyr Scale** tab. Select the **add an existing one** link, then select test cases, and select **Add**.
+
     Conversely, remove the Jira issue key if the issue has been resolved and the test is passing.
 4. Target an element using available [matchers](https://github.com/wix/Detox/blob/master/docs/APIRef.Matchers.md#matchers). For best results, it is recommended to match elements by unique identifiers using `testID`. The identifier should follow the following format to avoid duplication.
     ```
