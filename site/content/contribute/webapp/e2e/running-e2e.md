@@ -34,7 +34,7 @@ Environment variables are [defined in cypress.json](https://github.com/mattermos
     - Run `make test-data` to preload your server instance with initial seed data.
     - Each test case should handle the required system or user settings, but in case you encounter an unexpected error while testing, you may want to run the server with default config based on `mattermost-server/config/default.json`.
     - In another terminal, in the `mattermost-webapp` directory, run `npm run storybook`. This is required for the Cypress tests which run against the Storybook widgets to pass.
-2.  Change directory to `mattermost-webapp/e2e`, and install npm dependencies by running `npm i`.
+2.  Change directory to `mattermost-webapp/e2e/cypress`, and install npm dependencies by running `npm i`.
     - Initiate `npm run cypress:run` in the command line to start full E2E testing. This excludes the specs in the `/cypress/integration/enterprise` folder as they require an Enterprise license to run successfully.
     - Initiate `npm run cypress:open` in the command line to start partial testing depending on which spec is selected via Cypress's desktop app.
     - Initiate via node CLI to selectively run specs based on test metadata, e.g. `node run_tests.js --group='@accessibility'` which will run all specs with `@accessibility` metadata.
