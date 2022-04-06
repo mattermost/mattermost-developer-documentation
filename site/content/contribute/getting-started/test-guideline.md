@@ -1,7 +1,7 @@
 ---
-title: "Test Policy"
-heading: "Test Policy for Every Pull Request"
-description: "Test Policy for Every Pull Request"
+title: "Test Guideline"
+heading: "Test Guideline for Every Pull Request"
+description: "Test Guideline for Every Pull Request"
 date: 2022-03-30T00:00:00+08:00
 weight: 6
 ---
@@ -12,7 +12,7 @@ We value test-writing as much as a feature or a bug fix, and it's integrated in 
 
 This document was written to stress the importance of tests for every pull request being submitted. This is not to meet higher code coverage but rather to write effective and well-planned use cases depending on the changes being made.
 
-This document aims to serve as the foundation of our test policy, and serves as a guide on why we don't merge code without tests. But of course, there's always an exception. If it isn't possible for some reason, let the reviewers know by writing a description to start a discussion and to fully understand the situation you are facing.
+This document aims to serve as the foundation of our test guideline, and serves as a reference on why we don't merge code without tests. But of course, there's always an exception. If it isn't possible for some reason, let the reviewers know by writing a description to start a discussion and to fully understand the situation you are facing.
 
 Test categories
 ---------------
