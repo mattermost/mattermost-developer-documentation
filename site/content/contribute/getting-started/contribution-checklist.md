@@ -3,7 +3,7 @@ title: "Contribution Checklist"
 heading: "Mattermost Contribution Checklist"
 description: "Join our Contributors community channel where you can discuss questions with community members and the Mattermost core team."
 date: 2017-08-20T12:33:36-04:00
-weight: 1
+weight: 2
 ---
 
 Thanks for your interest in contributing to Mattermost! Come join our [Contributors community channel](https://community.mattermost.com/core/channels/tickets) on the community server, where you can discuss questions with community members and the Mattermost core team.
