@@ -47,13 +47,13 @@ To run the server:
  ./bin/focalboard-server
 ```
 
-Then navigate your browser to `[http://localhost:8000](http://localhost:8000)` to access your Focalboard server. The port is configured in `config.json`.
+Then navigate your browser to [`http://localhost:8000`](http://localhost:8000) to access your Focalboard server. The port is configured in `config.json`.
 
 Once the server is running, you can rebuild just the web app via `make webapp` in a separate terminal window. Reload your browser to see the changes.
 
 ## Building and running standalone desktop apps
 
-You can build standalone apps that package the server to run locally against SQLite:
+You can build standalone apps that package the server to run locally against [SQLite](https://www.sqlite.org/index.html):
 
 * **Windows**:
     * *Requires Windows 10, [Windows 10 SDK](https://developer.microsoft.com/en-us/windows/downloads/sdk-archive/) 10.0.19041.0, and .NET 4.8 developer pack*
@@ -84,7 +84,7 @@ Cross-compilation currently isn't fully supported, so please build on the approp
 
 ## Setting up VS Code
 
-* Open a VS Code terminal window in the project folder.
+* Open a [VS Code](https://code.visualstudio.com/) terminal window in the project folder.
 * Run `make prebuild` to install packages. *Do this whenever dependencies change in `webapp/package.json`.*
 * Run `cd webapp && npm run watchdev` to automatically rebuild the web app when files are changed. It also includes source maps from JavaScript to TypeScript.
 * Install the [Go](https://marketplace.visualstudio.com/items?itemName=golang.Go) and [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) VS Code extensions (if you haven't already).
@@ -123,7 +123,7 @@ Run `make ci`, which is similar to the `.gitlab-ci.yml` workflow and includes:
 
 Are you interested in influencing the future of the Focalboard open source project? Please read the [Focalboard Contribution Guide](../). We welcome everyone and appreciate any feedback. ❤️ There are several ways you can get involved:
 
-* **Changelog**: See [CHANGELOG.md](CHANGELOG.md) for the latest updates
+* **Changes**: See the [CHANGELOG](https://github.com/mattermost/focalboard/blob/main/CHANGELOG.md) for the latest updates
 * **GitHub Discussions**: Join the [Developer Discussion](https://github.com/mattermost/focalboard/discussions) board
 * **Bug Reports**: [File a bug report](https://github.com/mattermost/focalboard/issues/new?assignees=&labels=bug&template=bug_report.md&title=)
 * **Chat**: Join the [Focalboard community channel](https://community.mattermost.com/core/channels/focalboard)
