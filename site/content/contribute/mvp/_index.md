@@ -6,7 +6,7 @@ description: "Hundreds of developers around the world contribute to Mattermost o
 
 Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best.
 
-<span style="max-width:40%;display:block;text-align:center;margin:auto">![MVP Award](/img/mvp_award.png)</span>
+<span style="display:block;text-align:center;margin:auto">![MVP Award](/img/mvp_award.png)</span>
 
 ## Mattermost MVP
 The title of “Most Valued Professional” is awarded to an outstanding contributor for a key Mattermost release.
