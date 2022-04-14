@@ -50,7 +50,7 @@ Some useful `make` commands:
 * `make nuke` wipes your local environment back to a completely fresh start.
 * `make package` creates packages for distributing your builds and puts them in the `./dist` directory. First you will need to run `make build` and `make build-client`.
 
-If you would like to run the development environment without Docker you can set the `MM_NO_DOCKER` environment variable.
+If you would like to run the development environment without Docker you can set the `MM_NO_DOCKER` environment variable. If you do this, you will need to set up your own database and any of the other services needed to run Mattermost.
 
 ### Running Only Specific Server Unit Tests
 
