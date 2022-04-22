@@ -1,41 +1,85 @@
 ---
-title: "Apps (Developers Preview)"
+title: "Mattermost Apps (Developer Preview)"
 heading: "Mattermost Apps"
 description: "Apps are lightweight interactive add-ons to Mattermost."
 weight: 20
 ---
 
-Apps are lightweight, interactive add-ons to Mattermost which can be hosted as HTTP services, or as serverless functions on AWS Lambda, OpenFaaS, Kubernetes, etc. to run without dedicated infrastructure. Apps can:
+If you're a developer or system integrator looking to learn how to extend Mattermost product functionality, but not sure where to start,  you're in the right place. In this section, you'll learn how to get started developing Mattermost Apps using the Mattermost Apps Framework.
 
-- Display interactive, dynamic modal forms and message actions.
-- Be written in any language.
-- Attach themselves to locations in the Mattermost user interface (e.g. channel bar buttons, post menu, channel menu, commands), and can add their custom slash commands with full autocomplete.
-- Receive webhooks from Mattermost, and third-parties, and use the Mattermost REST APIs to post messages, etc.
-- Work on both Mobile and Desktop clients so developers can focus on the functionality of their apps.
-- Be deployed using our serverless hosting infrastructure keeping data secure and supporting scalability by being stateless.
-- Include dynamic fields, code as an on-demand function, and interactive modals.
+- Is JavaScript or Golang your language of choice? Jump right in to our [JavaScript](https://developers.mattermost.com/integrate/apps/quick-start-js/) and [Golang](https://developers.mattermost.com/integrate/apps/quick-start-go/) developer quick start guides. Looking for another language? *[learn how to contribute here]*
+- Got an existing Mattermost plugin you want to convert to an app? *[where to go for that info?]*
 
-When you develop using the Apps Framework, your apps can:
+### Want to extend Mattermost **without** having to develop an app? 
+Visit the [Mattermost Development Guides](https://developers.mattermost.com/integrate/admin-guide/) to explore the many Mattermost integrations already available. Then, browse the [Mattermost Marketplace](https://mattermost.com/marketplace/) to learn how our Mattermost Community is helping extend core Mattermost features with the Apps Framework to fit their specific organizational needs.
 
-- Create slash commands
+## What are Mattermost Apps?
+Mattermost Apps are lightweight, interactive add-ons to Mattermost implemented as a collection of HTTP endpoints. You can write Mattermost apps in your language of choice, and your app is supported on all Mattermost clients, including web, desktop, and mobile.
 
-![image](app-slash-command-zoomed-in.png)
+Apps are available as a Developer Preview and we're looking for your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost Community instance.
 
-- Post messages to channels
+## What's the Mattermost Apps Framework?
 
-![image](app-bot.png)
+*[what is it and how does it differ from the existing plugin framework?]*
 
-- Add buttons to channel headers and post menus
+Using the Mattermost Apps Framework, you can:
 
-![image](app-channel-header-zoomed-in.png)
+- Include full slash command control, including autocompletion.
+- Post messages to channels using the Mattermost REST APIs.
+- Add buttons to channel headers and post menus.
+- Receive webhooks from Mattermost and third-party systems.
+- Deliver an interactive app experience with dynamic fields and on-demand functions.
 
-![image](app-action-zoomed-in.png)
+## Host Mattermost Apps
+You can host your Mattermost Apps as HTTP services or as serverless functions running without dedicated infrastructure in one of three ways:
 
-Apps are available as a Developers Preview and we're looking for your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost community instance.
+- **As a Mattermost Cloud app**. 
+  - Cloud customers can use apps available on the [Mattermost Marketplace](https://mattermost.com/marketplace/). Marketplace apps are deployed as AWS Lambda functions, and their usage is included in the service. See our example AWS Lambda apps available for [JavaScript](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/js/aws_hello) and [Golang](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-serverless).
+- **As an external (HTTP) app**. 
+  - Apps can be hosted as publicly (or privately) available HTTP services, and the choice of hosting provider is yours. A self-hosted Mattermost customer can install your app from a URL. **External apps are not currently accepted into or available from the Mattermost Marketplace.**
+- **As a customer-deployable app**. 
+  - An app can be packaged as a bundle, deployable by a customer in their own hosting environment. Currently, [AWS Lambda](https://aws.amazon.com/lambda/), [OpenFaaS](https://www.openfaas.com/), and [Kubeless](https://github.com/vmware-archive/kubeless) are supported, with plans for more serverless platforms, including [Kubernetes](https://kubernetes.io/), and [Docker Compose](https://github.com/docker/compose). **Customer-deployable apps are not yet distributed or available via the Mattermost Marketplace.**
 
-Read the [JavaScript start guide]({{< ref "quick-start-js" >}}) or [Go quick start guide]({{< ref "quick-start-go" >}}) to learn how to write your first App.
+## What's Next?
 
-## FAQ
+Learn how to get started developing apps using the Mattermost Apps Framework:
+- Deploy with Docker
+- Try out the test app
+- Review frequently asked questions about the apps framework
+- Learn how to troubleshoot common errors
+
+## Deploy Mattermost with Docker
+
+The following steps outline basic steps to deploy Mattermost with Docker. See our [deployment](https://docs.mattermost.com/guides/deployment.html#deploy-mattermost-for-production-use) product documentation for more information.
+
+1. Clone the https://github.com/mattermost/docker repository.
+2. Create a copy of the ``env.example`` file as a starting point: 
+    ```
+    cp env.example .env
+    ```
+    By default, this repository includes the latest Mattermost server ESR and the Mattermost enterprise binary. 
+3. Edit the ENV file to change the following values:
+   - The Mattermost server version and binary you want to work with. 
+   - Your Mattermost server domain.
+4. Create required directories and set their permissions: 
+
+    ```
+    mkdir -p ./volumes/app/mattermost/{config,data,logs,plugins,client/plugins,bleve-indexes}
+    sudo chown -R 2000:2000 ./volumes/app/mattermost
+    ```
+
+5. Deploy the Mattermost server by running the following command:
+
+    ```
+    sudo docker-compose -f docker-compose.yml -f docker-compose.without-nginx.yml up -d
+    ```
+6. Access your Mattermost workspace for the first time based on the hostname and port specified in the ENV file. Follow the onboarding flow as the first first System Admin user for this Mattermost workspace.
+
+## Try the test app
+
+TBD
+
+## Frequently asked questions
 
 ### When would you build an app vs. a custom slash command vs. a webhook vs. a plugin?
 
@@ -55,29 +99,6 @@ The Apps Framework provides a few differences from plugins, including:
 ### What language should I use to write apps?
 
 Any language you want. We currently have an [official driver for Go](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps), and we are planning to release other drivers in the future in conjunction with our community.
-
-### How and where will my app be hosted?
-
-1. **[Mattermost Cloud](https://mattermost.com/mattermost-cloud/)** apps. Cloud
-   customers can use apps from Mattermost Marketplace. Marketplace apps are
-   deployed as AWS Lambda functions, and their usage is included in the service.
-   You can find more information about the Marketplace [here](https://mattermost.com/marketplace/). Example AWS Lambda apps can be
-   found
-   [here](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/js/aws_hello)
-   (JavaScript) and
-   [here](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-serverless)
-   (go).
-2. **External** (HTTP) apps. Apps can be hosted as publicly (or privately) available HTTP
-   services, the choice of hosting provider is yours. A self-managed Mattermost
-   customer would be able to install your app from a URL. External apps are not
-   currently accepted in the Mattermost Marketplace.
-3. **Customer-deployable** apps. An app can be packaged as a bundle, deployable
-   by the customer in their own hosting environment. Currently, [AWS
-   Lambda](https://aws.amazon.com/lambda/),
-   [OpenFaaS](https://www.openfaas.com/), and [Kubeless](https://kubeless.io/)
-   are supported, with plans for more serverless platforms, Kubernetes, and
-   docker compose. Customer-deployable apps are not yet distributed via the
-   Mattermost Marketplace.
 
 ### Can I write "internal" organization-specific apps?
 
