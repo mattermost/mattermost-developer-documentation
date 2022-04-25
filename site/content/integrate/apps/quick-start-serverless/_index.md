@@ -12,6 +12,10 @@ you will build an app that contains:
 - [`manifest.json`](#1-manifest-manifestjson), declares itself an application
   that can be deployed as HTTP, AWS Lambda, or OpenFaaS, that acts as a bot, and
   attaches to locations in the user interface.
+
+  _NOTE:_ unlike the [Hello, world]({{< ref "quick-start-go" >}}) example which
+  defines the app manifest as a `go` struct, it is easier here to have it as a
+  separate JSON file, for it is required in the serverless app bundles.
 - [`static/`](#2-static-static) with static assets.
 - [`function/`](#3-function-package) package that implements most of the app,
   and is ready to be deployed to OpenFaaS. [`bindings.json`](#bindingsjson) to
@@ -67,7 +71,9 @@ go get github.com/mattermost/mattermost-plugin-apps/apps@master
 
 ### 1. Manifest (`./manifest.json`)
 
-Your app has to provide a manifest, which declares app metadata. In this example, the following permissions are requested:
+To be deployable as serverless with `appsctl`, an app has to provide a manifest
+file, which declares the app's metadata. In this example, the following
+permissions are requested:
 
 - Act as the app's bot user.
 - Create slash commands.
@@ -77,7 +83,7 @@ Create a file called `manifest.json` containing:
 ```json
 {
 	"app_id": "hello-serverless",
-	"version": "demo",
+	"version": "1.0.0",
 	"display_name": "Hello, Serverless!",
 	"homepage_url": "https://github.com/mattermost/mattermost-plugin-apps",
 	"requested_permissions": [
@@ -107,8 +113,7 @@ Create a file called `manifest.json` containing:
 			}
 		]
 	}
-}
-```
+}```
 
 ### 2. Static (`./static`)
 
@@ -121,56 +126,6 @@ curl https://github.com/mattermost/mattermost-plugin-apps/raw/master/examples/go
 
 ### 3. `./function` package
 
-#### `bindings.json`
-```json
-{
-	"type": "ok",
-	"data": [
-		{
-			"location": "/command",
-			"bindings": [
-				{
-					"icon": "icon.png",
-					"label": "hello-serverless",
-					"description": "Hello Serverless app",
-					"hint": "[send]",
-					"bindings": [
-						{
-							"location": "send",
-							"label": "send",
-							"call": {
-								"path": "/send"
-							}
-						}
-					]
-				}
-			]
-		}
-	]
-}
-```
-
-#### `send_form.json`
-
-```json
-{
-	"type": "form",
-	"form": {
-		"title": "Hello, serverless!",
-		"icon": "/static/icon.png",
-		"fields": [
-			{
-				"type": "text",
-				"name": "message",
-				"label": "message"
-			}
-		],
-		"call": {
-			"path": "/send"
-		}
-	}
-}
-```
 
 ### `function.go`
 
@@ -188,46 +143,76 @@ import (
 	"github.com/mattermost/mattermost-plugin-apps/utils/httputils"
 )
 
-//go:embed bindings.json
-var bindingsData []byte
+// DeployType is used to set, and then display how the app's instance is
+// actually running (deployed as).
+var DeployType apps.DeployType
 
-//go:embed send_form.json
-var formData []byte
-
-// Handler for OpenFaaS and faasd.
+// Handler is used exclusively for OpenFaaS and faasd, as the main entry-point.
+// The name `Handler` appears hardcoded in the OpenFaas template used to build
+// the image.
+//
+// `golang-middleware` template makes use of `http.DefaultServeMux`, so we just
+// need to add our handlers and serve, like we do in AWS or HTTP deployments.
 func Handle(w http.ResponseWriter, r *http.Request) {
-	InitApp(apps.DeployOpenFAAS)
+	DeployType = apps.DeployOpenFAAS
 	http.DefaultServeMux.ServeHTTP(w, r)
 }
-```
 
-Note: names `package function` and `func Handle` appear to be required
-(hardcoded) for OpenFaaS.
+// Init sets up the app's HTTp server, which is exactly the same for all of the
+// deploy types. Including this package as `_ ".../function"` is sufficient to
+// initialize the app's server.
+//
+// The app itself is very simple, registers a single /-command to send a DM back
+// to the user. The DM includes the current DeployType of the app.
+func init() {
+	// Serve app's Calls. "/ping" is used to confirm successful deployment of an
+	// App, specifically on AWS but we always make it available. Returns "PONG".
+	http.HandleFunc("/ping", httputils.DoHandleJSON(
+		apps.NewTextResponse("PONG")))
 
-`golang-middleware` template makes use of adding boilerplate handlers to
-`http.DefaultServeMux`, so we just need to add our handlers and serve.
-
-```go
-var deployType apps.DeployType
-
-func InitApp(dt apps.DeployType) {
 	// Returns the Channel Header and Command bindings for the App.
-	http.HandleFunc("/bindings", httputils.HandleJSONData(bindingsData))
-
-	// The form for sending a Hello message.
-	http.HandleFunc("/send/form", httputils.HandleJSONData(formData))
+	http.HandleFunc("/bindings", httputils.DoHandleJSON(
+		apps.NewDataResponse(Bindings)))
 
 	// The main handler for sending a Hello message.
-	http.HandleFunc("/send/submit", send)
+	http.HandleFunc("/send", send)
+}
 
-	deployType = dt
+var Bindings = []apps.Binding{
+	{
+		Location: apps.LocationCommand,
+		Bindings: []apps.Binding{
+			{
+				Icon:        "icon.png",
+				Label:       "hello-serverless",
+				Description: "Hello Serverless app",
+				Hint:        "[send]",
+				Bindings: []apps.Binding{
+					{
+						Label: "send",
+						Form: &apps.Form{
+							Title: "Hello, serverless!",
+							Icon:  "/static/icon.png",
+							Fields: []apps.Field{
+								{
+									Type: apps.FieldTypeText,
+									Name: "message",
+								},
+							},
+							Submit: apps.NewCall("/send"),
+						},
+					},
+				},
+			},
+		},
+	},
 }
 
 func send(w http.ResponseWriter, req *http.Request) {
 	creq := apps.CallRequest{}
 	json.NewDecoder(req.Body).Decode(&creq)
 
-	message := fmt.Sprintf("Hello from a serververless app running as %s!", deployType)
+	message := fmt.Sprintf("Hello from a serverless app running as %s!", DeployType)
 	v, ok := creq.Values["message"]
 	if ok && v != nil {
 		message += fmt.Sprintf(" ...and %s!", v)
@@ -237,7 +222,7 @@ func send(w http.ResponseWriter, req *http.Request) {
 	asBot.DM(creq.Context.ActingUserID, message)
 
 	httputils.WriteJSON(w,
-		apps.NewOKResponse(nil, "Created a post in your DM channel."))
+		apps.NewTextResponse("Created a post in your DM channel."))
 }
 ```
 

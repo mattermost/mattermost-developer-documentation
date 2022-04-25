@@ -54,15 +54,6 @@ The call request ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-pl
 | `query`          | string  | Used in lookups and form refresh what query strings is entered by the user.                |
 
 
-The call type ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallType)) can be:
-
-| Type     | Meaning                              |
-| :------- | :----------------------------------- |
-| `submit` | Submit.                              |
-| `form`   | Request for a form.                  |
-| `cancel` | A form was canceled.                 |
-| `lookup` | Lookup for dynamic selects in forms. |
-
 ### Call context
 
 Depending on the location and expansions, calls will have different context. These are all the possible context ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context)) values.
@@ -110,14 +101,15 @@ There are several types ([godoc](https://pkg.go.dev/github.com/mattermost/matter
 | Name       | Type   | Description                                                                  |
 | :--------- | :----- | :--------------------------------------------------------------------------- |
 | `type`     | string | Use `ok`.                                                                    |
-| `markdown` | string | (Optional) Markdown text that will be sent to the user as an ephemeral post. |
+| `text` | string | (Optional) Markdown text that will be sent to the user as an ephemeral post. |
+| `data` | Object | (Optional) data that will be returned from the call. |
 
 #### Error response
 
 | Name    | Type   | Description                                                       |
 | :------ | :----- | :---------------------------------------------------------------- |
 | `type`  | string | Use `error`.                                                      |
-| `error` | string | Markdown text that will be sent to the user as an ephemeral post. |
+| `text` | string | Markdown text that will be displayed to the user, as an error message. |
 
 #### Form response
 

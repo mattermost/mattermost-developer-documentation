@@ -13,7 +13,7 @@ as a JSON file. The fields of the manifest are:
 | :---------------------- | :---------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
 | `app_id`(*)             | string      | ID for your app.                                                                                                                         |
 | `homepage_url`(*)       | string      | The app homepage. Used in the Marketplace and for OAuth purposes.                                                                        |
-| `version`               | string      | The version of your app.                                                                                                                 |
+| `version`               | string      | The version of your app. Recommended format: `v00.00.000`. |
 | `display_name`          | string      | The display name for your app.                                                                                                           |
 | `description`           | string      | The description for your app. Used in the Marketplace. Provide examples of key functionality the App provides in a short paragraph.      |
 | `icon`                  | string      | The icon for your app. Used as the bot account icon and in the Marketplace. A relative path in the static assets folder of a .PNG image. |
@@ -24,6 +24,10 @@ as a JSON file. The fields of the manifest are:
 | `on_enable`             | Call        | The call gets invoked when the app is enabled after having been disabled.                                                                |
 | `on_install`            | Call        | The call gets invoked when the app gets installed.                                                                                       |
 | `on_uninstall`          | Call        | The call gets invoked when the app gets uninstalled, before the app is actually removed.                                                 |
+| `get_oauth2_connect_url` | Call        | called when the App's "connect to 3rd party" link is clicked, to be redirected to the OAuth flow. It must return Data set to the remote OAuth2 redirect URL. |
+| `on_oauth2_complete` | Call        | called upon successful completion of the remote (3rd party) OAuth2 flow, and after the "state" has already been validated. |
+| `on_remote_webhook` | Call        | called upon a (validated) webhook message received from a 3rd party system. |
+| `remote_webhook_auth_type` | string | specifies how the incoming webhook messages should be authenticated. "secret" (default), "none", or "jwt" (not yet supported) |
 
 - (*) `app_id` and `homepage_url` must be provided and valid.
 - `on_...` callbacks are not invoked unless explicitly provided in the manifest.
@@ -55,17 +59,18 @@ An example manifest looks like this:
 
 ### Permissions
 
-Apps need to request permissions from the admin who is installing them. After an app is installed and available to end users, each user in Mattermost will need to "authenticate" with your app. Using the `act_as_user` permission, your app will be performing an API call on each authenticated user's behalf.
+Apps need to request permissions from the admin who is installing them. After an app is installed and available to end-users, each user in Mattermost will need to "authenticate" with your App. Using the `act_as_user` permission, your App will be performing an API call on each authenticated user's behalf.
 
 Below are the permissions ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Permission)) an app can currently ask for:
 
-| Name                               | Description                                                                                                                                         |
-| :--------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `user_joined_channel_notification` | Be notified when users join channels.                                                                                                               |
-| `act_as_bot`                       | Use Mattermost REST API as the app's bot user.                                                                                                      |
-| `act_as_user`                      | Use Mattermost REST API as connected users.                                                                                                         |
-| `remote_oauth2`                    | Use remote (third-party) OAuth2 support, and will store secrets and tokens to third-party system(s) within the Mattermost server.                   |
-| `remote_webhooks`                  | Receive webhooks from a remote (third-party) system, and process them as a bot (which will typically, will add a notification message to a channel) |
+| Name                               | Description                                                                                                                                                                                                                                                                |
+| :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `user_joined_channel_notification` | Be notified when users join channels.                                                                                                                                                                                                                                      |
+| `act_as_bot`                       | Use Mattermost REST API as the app's bot user.                                                                                                                                                                                                                             |
+| `act_as_user`                      | Use Mattermost REST API as connected users.                                                                                                                                                                                                                                |
+| `act_as_admin`                     | Use Mattermost REST API as a System Admin. This gives permission for an App to use certain API endpoints that are reserved for administrators. Use this permission only if required (ie: your App is designed to help maintain or automate certain administrator actions). |
+| `remote_oauth2`                    | Use remote (third-party) OAuth2 support, and will store secrets and tokens to third-party system(s) within the Mattermost server.                                                                                                                                          |
+| `remote_webhooks`                  | Receive webhooks from a remote (third-party) system, and process them as a bot (which will typically, will add a notification message to a channel)                                                                                                                        |
 
 
 ### Locations
@@ -77,7 +82,7 @@ Locations ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-ap
 | `/post_menu`      | An item in a Mattermost post's dropdown menu (aka Message Action) where the user can leverage the message content as part of your App's action. A good example for using the post menu: someone reports a bug in a channel with some details, then using the "post-menu" button the message's content could be used to create a new "bug" object in a tracking system.                                                                                                                                                                                                        |
 | `/channel_header` | Webapp: A button in the channel header, Mobile: An item in the channel menu. This is used for actions that take place at the channel level, for example a button for the user to set up a notification subscription for all new tickets in system XYZ to be posted to the current channel                                                                                                                                                                                                                                                                                     |
 | `/command`        | A slash command accessed by typing `/` at the beginning of any new message in Mattermost. Slash commands are an easy way for power-users to perform actions in external systems via a "chat-command-line" that can interactively provide the users with hints and suggestions based on dynamic lookups. For example, a slash command `/ticketing --name "test Ticket" --priority high` can capture two fields and create a ticket in an external system. The options for "priority" field could be displayed to the user in a multi-select menu to reduce their need to type. |
-| `/in_post`        | A form that is embedded within a message in Mattermost. Used to interact with users without switching context to an Interactive Dialog. Great for confirming simple things - like "Did you complete your OKR review yet? (Yes/No)" options can be presented to the user and they can simply check off a box.                                                                                                                                                                                                                                                                   |
+| `/in_post`        | A form that is embedded within a message in Mattermost. Used to interact with users without switching context to an Interactive Dialog. Great for confirming simple things - like "Did you complete your OKR review yet? (Yes/No) options can be presented to the user and they can simply check off a box.                                                                                                                                                                                                                                                                  |
 
 ### Deployment Information
 
@@ -156,42 +161,6 @@ Example (some fields omitted):
 	    		"path": "/",
 	  	  		"name": "my-funct"
   			}
-		]
-	}
-}
-```
-
-#### `Kubeless`: Apps deployable and accessible as Kubeless
-
-Provides configuration for deploying an app (bundle) onto
-[Kubeless](https://kubeless.io/docs/quick-start/) serverless platform on
-Kubernetes.
-
-| Name           | Type              | Description       |
-| :------------- | :---------------- | :---------------- |
-| `functions`(*) | Kubeless Function | List of functions |
-
-Each function contains the following fields:
-
-| Name         | Description                                                         |
-| :----------- | :------------------------------------------------------------------ |
-| `path`(*)    | (root) path of calls to be mapped to this function, e.g. `"/"`      |
-| `handler`(*) | the name of the language-specific function to invoke                |
-| `file`(*)    | the name of the file to invoke                                      |
-| `runtime`(*) | Kubeless runtime to use                                             |
-| `deps_file`  | Dependencies file for the function (`go.mod` or `requirements.txt`) |
-| `timeout`    | Function completion timeout in seconds, default none                |
-| `port`       | IPV4 port to use in the function image, default 8080                |
-
-Example (some fields omitted):
-```json
-{
-	"kubeless": {
-		"functions": [
-			{
-				"path": "/",
-				"handler": "hello"
-			}
 		]
 	}
 }

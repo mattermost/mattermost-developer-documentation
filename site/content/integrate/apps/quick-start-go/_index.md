@@ -7,7 +7,7 @@ weight: 10
 
 This quick start guide explains the basics of writing a Mattermost app. In this guide you will build an app that:
 
-- Contains a `manifest.json`, declares itself an HTTP application that acts as a bot, and attaches to locations in the user interface.
+- Contains a `manifest`, declares itself an HTTP application that acts as a bot, and attaches to locations in the user interface.
 - Attaches the form `send-modal` in its `bindings` to a button in the channel header, and the form `send` to a `/helloworld` command.
 - Contains a `send` function that sends a parameterized message back to the user.
 - Contains a `send-modal` function that forces displaying the `send` form as a modal.
@@ -51,129 +51,26 @@ go mod init my-app
 go get github.com/mattermost/mattermost-plugin-apps@master
 ```
 
-### Manifest
+## Inside the app
 
-Your app has to provide a manifest, which declares app metadata. In this example, the following permissions are requested:
+You can use the
+[helloworld](https://github.com/mattermost/mattermost-plugin-apps/examples/go/hello-world)
+example as a starting point for your app.
 
-- Create posts as a bot.
-- Render icons in the channel header that will communicate with your app when clicked.
-- Create slash commands.
+The `helloworld` app adds a `/helloworld send` command, with an optional custom
+message, and sends it back to the user. It also adds a button in the channel
+header that displays a modal prompt to enter the message, then executes the same
+`send` function upon submit.
 
-Create a file called `manifest.json` containing:
+It is built as an http server, exposes `/manifest.json` for its manifest,
+`/bindings` for the bindings definitions, and `/send` for the send command. The
+form used to gather the custom message is static, and is embedded in the
+bindings. 
 
-```json
-{
-	"app_id": "hello-world",
-    "version":"0.8.0",
-	"display_name": "Hello, world!",
-	"icon": "icon.png",
-	"homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/examples/go/hello-world",
-	"requested_permissions": [
-		"act_as_bot"
-	],
-	"requested_locations": [
-		"/channel_header",
-		"/command"
-	],
-	"http": {
-		"root_url": "http://localhost:4000"
-	}
-}
-```
+It conists of just 2 files: `hello.go` with all of the app's logic, and
+`icon.png` for the display of the app and its messages.
 
-### Bindings and locations
-
-Locations are named elements in the Mattermost user interface. Bindings specify how an app's calls should be displayed and invoked from these locations.
-
-The app creates a channel header button, and adds a `/helloworld send` command.
-
-Create a file called `bindings.json` containing:
-
-```json
-{
-	"type": "ok",
-	"data": [
-		{
-			"location": "/channel_header",
-			"bindings": [
-				{
-					"location": "send-button",
-					"icon": "icon.png",
-					"label":"send hello message",
-					"call": {
-						"path": "/send-modal"
-					}
-				}
-			]
-		},
-		{
-			"location": "/command",
-			"bindings": [
-				{
-					"icon": "icon.png",
-					"label": "helloworld",
-					"description": "Hello World app",
-					"hint": "[send]",
-					"bindings": [
-						{
-							"location": "send",
-							"label": "send",
-							"call": {
-								"path": "/send"
-							}
-						}
-					]
-				}
-			]
-		}
-	]
-}
-```
-
-### Functions and form
-
-Functions handle user events and webhooks. The Hello World app exposes two functions:
-
-- `/send` that services the command and modal.
-- `/send-modal` that forces the modal to be displayed.
-
-The functions use a simple form with one text field named `"message"`, the form submits to `/send`.
-
-Create a file called `send_form.json` containing:
-
-```json
-{
-	"type": "form",
-	"form": {
-		"title": "Hello, world!",
-		"icon": "icon.png",
-		"fields": [
-			{
-				"type": "text",
-				"name": "message",
-				"label": "message"
-			}
-		],
-		"call": {
-			"path": "/send"
-		}
-	}
-}
-```
-
-## Icons
-
-Apps may include static assets. One example that was already used above is the `icon` for the two bindings. Static assets must be served under the `static` path.
-
-Download an example icon using:
-
-```bash
-curl https://github.com/mattermost/mattermost-plugin-apps/raw/master/examples/go/hello-world/icon.png -o icon.png
-```
-
-### Serving the data
-
-Finally, add the application logic that gets executed when either the slash command is run or the modal submitted by creating a file named `main.go` with the following content:
+#### hello.go
 
 ```go
 package main
@@ -191,36 +88,115 @@ import (
 )
 
 //go:embed icon.png
-var iconData []byte
+var IconData []byte
 
-//go:embed manifest.json
-var manifestData []byte
+// Manifest declares the app's metadata. It must be provided for the app to be
+// installable. In this example, the following permissions are requested:
+//   - Create posts as a bot.
+//   - Add icons to the channel header that will call back into your app when
+//     clicked.
+//   - Add a /-command with a callback.
+var Manifest = apps.Manifest{
+	// App ID must be unique across all Mattermost Apps.
+	AppID: "hello-world",
 
-//go:embed bindings.json
-var bindingsData []byte
+	// App's release/version.
+	Version: "v0.8.0",
 
-//go:embed send_form.json
-var formData []byte
+	// A (long) display name for the app.
+	DisplayName: "Hello, world!",
 
+	// The icon for the app's bot account, same icon is also used for bindings
+	// and forms.
+	Icon: "icon.png",
+
+	// HomepageURL is required for an app to be installable.
+	HomepageURL: "https://github.com/mattermost/mattermost-plugin-apps/examples/go/hello-world",
+
+	// Need ActAsBot to post back to the user.
+	RequestedPermissions: []apps.Permission{
+		apps.PermissionActAsBot,
+	},
+
+	// Add UI elements: a /-command, and a channel header button.
+	RequestedLocations: []apps.Location{
+		apps.LocationChannelHeader,
+		apps.LocationCommand,
+	},
+
+	// Running the app as an HTTP service is the only deployment option
+	// supported.
+	Deploy: apps.Deploy{
+		HTTP: &apps.HTTP{
+			RootURL: "http://localhost:4000",
+		},
+	},
+}
+
+// The details for the App UI bindings
+var Bindings = []apps.Binding{
+	{
+		Location: apps.LocationChannelHeader,
+		Bindings: []apps.Binding{
+			{
+				Location: "send-button",        // an app-chosen string.
+				Icon:     "icon.png",           // reuse the App icon for the channel header.
+				Label:    "send hello message", // appearance in the "more..." menu.
+				Form:     &SendForm,            // the form to display.
+			},
+		},
+	},
+	{
+		Location: "/command",
+		Bindings: []apps.Binding{
+			{
+				// For commands, Location is not necessary, it will be defaulted to the label.
+				Icon:        "icon.png",
+				Label:       "helloworld",
+				Description: "Hello World app", // appears in autocomplete.
+				Hint:        "[send]",          // appears in autocomplete, usually indicates as to what comes after choosing the option.
+				Bindings: []apps.Binding{
+					{
+						Label: "send", // "/helloworld send" sub-command.
+						Form:  &SendForm,
+					},
+				},
+			},
+		},
+	},
+}
+
+// SendForm is used to display the modal after clicking on the channel header
+// button. It is also used for `/helloworld send` sub-command's autocomplete. It
+// contains just one field, "message" for the user to customize the message.
+var SendForm = apps.Form{
+	Title: "Hello, world!",
+	Icon:  "icon.png",
+	Fields: []apps.Field{
+		{
+			Type:  "text",
+			Name:  "message",
+			Label: "message",
+		},
+	},
+	Submit: apps.NewCall("/send"),
+}
+
+// main sets up the http server, with paths mapped for the static assets, the
+// bindings callback, and the send function.
 func main() {
-	// Serve its own manifest as HTTP for convenience in dev. mode.
-	http.HandleFunc("/manifest.json", httputils.HandleJSONData(manifestData))
+	// Serve static assets: the manifest and the icon.
+	http.HandleFunc("/manifest.json",
+		httputils.DoHandleJSON(Manifest))
+	http.HandleFunc("/static/icon.png",
+		httputils.DoHandleData("image/png", IconData))
 
-	// Returns the Channel Header and Command bindings for the app.
-	http.HandleFunc("/bindings", httputils.HandleJSONData(bindingsData))
-
-	// The form for sending a Hello message.
-	http.HandleFunc("/send/form", httputils.HandleJSONData(formData))
+	// Bindinings callback.
+	http.HandleFunc("/bindings",
+		httputils.DoHandleJSON(Bindings))
 
 	// The main handler for sending a Hello message.
-	http.HandleFunc("/send/submit", send)
-
-	// Forces the send form to be displayed as a modal.
-	http.HandleFunc("/send-modal/submit", httputils.HandleJSONData(formData))
-
-	// Serves the icon for the app.
-	http.HandleFunc("/static/icon.png",
-		httputils.HandleData("image/png", iconData))
+	http.HandleFunc("/send", Send)
 
 	addr := ":4000" // matches manifest.json
 	fmt.Println("Listening on", addr)
@@ -228,7 +204,8 @@ func main() {
 	log.Fatal(http.ListenAndServe(addr, nil))
 }
 
-func send(w http.ResponseWriter, req *http.Request) {
+// Send sends a DM back to the user.
+func Send(w http.ResponseWriter, req *http.Request) {
 	c := apps.CallRequest{}
 	json.NewDecoder(req.Body).Decode(&c)
 
@@ -240,11 +217,20 @@ func send(w http.ResponseWriter, req *http.Request) {
 	appclient.AsBot(c.Context).DM(c.Context.ActingUserID, message)
 
 	httputils.WriteJSON(w,
-		apps.NewOKResponse(nil, "Created a post in your DM channel."))
+		apps.NewTextResponse("Created a post in your DM channel."))
 }
 ```
 
-The app is a simple HTTP server that serves the files you created above. The only application logic is in `send`, which takes the received `"message"` field and sends a message back to the user as the bot. Also, an ephemeral message is posted in the current channel.
+
+#### icon.png
+
+Apps may include icons. In this example, the icon is served directly from the go program, as `/static/icon.png`. One can also create and serve an entire `/static` folder using `http.FileServer`. Static assets must be served under the `static` path.
+
+Download the example icon using:
+
+```bash
+curl https://github.com/mattermost/mattermost-plugin-apps/raw/master/examples/go/hello-world/icon.png -o icon.png
+```
 
 ## Installing the app
 
@@ -260,7 +246,7 @@ Then run the following slash commands on your Mattermost server:
 /apps install http http://localhost:4000/manifest.json
 ```
 
-Confirm the installation in the modal that pops up. You can leave the **App secret** field blank, the app does not require one.
+Confirm the installation in the modal that pops up.
 
 ## Using the app
 

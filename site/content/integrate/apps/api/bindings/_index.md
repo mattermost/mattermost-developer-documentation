@@ -5,7 +5,14 @@ description: "TODO"
 weight: 400
 ---
 
-Bindings ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding)) are what establish the relationship between locations and calls. Whenever the bindings route is called, your app needs to provide the list of bindings available according to the context ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context)). Some fields included in the context:
+Bindings
+([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding))
+tell the Mattermost Client what UI elements to display for the app, and what to
+do if the "feature" is interacted with. To display anything in the Client the
+app needs to handle the bindings call. When it is invoked, your app needs to
+provide the list of bindings available according to the context
+([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context)).
+Some fields included in the context:
 
 - Your app's bot user access token
 - The Mattermost Site URL
@@ -16,32 +23,52 @@ Bindings ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-app
 
 **Note:** Bindings are fetched (and refreshed) on every channel switch. When the user moves to a different context (like opening a thread, or a post in a search view) new bindings may be fetched to provide the correct bindings for the thread/post context. Bindings are also fetched when an OAuth2 process is completed and when the application gets installed.
 
-One example bindings response is the one from the [Hello World!](https://github.com/mattermost/mattermost-plugin-apps/blob/master/examples/go/hello-world/bindings.json) app.
-
 The expected response should include the following:
 
-| Type   | Function | Description           |
-| :----- | :------- | :-------------------- |
-| `data` | bindings | The list of bindings. |
+| Name   | Type | Description           |
+| :----- | :-------- | :-------------------- |
+| `type` | string    | "ok" |
+| `data` | []Binding | The list of (top-level) bindings and their sub-bindings. |
 
+### top-level bindings
 Bindings are organized by top level locations. Top level bindings just need to define:
 
 | Name       | Type     | Description                             |
 | :--------- | :------- | :-------------------------------------- |
-| `location` | string   | Top level location.                     |
-| `bindings` | Bindings | A list of bindings under this location. |
+| `location` | string   | A pre-defined top level location, e.g. `/command`. |
+| `bindings` | []Binding | A list of bindings for this location. |
 
-`/in_post` bindings don't need to be defined in this call.
+<!-- TODO: how to customise top-level /-command -->
+
+**NOTE**: `/in_post` bindings should not be included in the bindings response.
+
+
+### all bindings (common attributes)
+
+Each Binding consists of:
+
+| Name   | Type | Description           |
+| :----- | :------- | :-------------------- |
+| `Location` | string | (Optional) Location allows the App to identify where in the UX the Call request comes from. defaults to the App ID. Location defaults to Label, one of them must be provided. |
+| `Label` | string | (Optional) Label is the (usually short) primary text to display at the location. For command autocomplete, Label defaults to Location, one of them must be provided. |
+| `Description` | string | (Optional) Description is the extended help text, used in post-embedded, modals and command autocomplete. |
+| `Hint` | string | (Optional) Hint is the secondary text to display, used in command autocomplete and channel header. |
+| `Icon` | string | (Optional) Icon is the icon to display, should be either a fully-qualified URL, or a path for an app's static asset. |
+
+Each binding must include one of the following:
+
+| Name   | Type | Description           |
+| :----- | :------- | :-------------------- |
+| `submit` | Call |  The call to perform immediately if the Binding is invoked by the user. |
+| `form` | Form | The (modal) form to open to gather more info, or to confirm submission.  |
+| `bindings` | Bindings | Sub-bindings, used for sub-commands and sub-menus. |
+<!-- TODO: "open_as" -->
 
 ### `/post_menu` bindings
 
 | Name       | Type   | Description                                                                                                       |
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------- |
-| `location` | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.     |
-| `icon`     | string | (Optional) Either a fully-qualified URL, or a path for an app's static asset.                                     |
-| `label`    | string | (Optional) Text to show in the item. Defaults to location. Must be unique in its level.                           |
-| `call`     | Call   | (Optional) Call to perform. You must provide a call if there is no form, or the form itself does not have a call. |
-| `form`     | Form   | (Optional) Modal form to open. You must provide a form with a call if there is no call defined in the binding.    |
+| `label`    | string | (Optional) Label is used as the text to show in the post menu. |
 
 The call for these bindings will include in the context the user ID, the post ID, the root post ID if any, the channel ID, and the team ID.
 
@@ -49,12 +76,8 @@ The call for these bindings will include in the context the user ID, the post ID
 
 | Name       | Type   | Description                                                                                                                 |
 | :--------- | :----- | :-------------------------------------------------------------------------------------------------------------------------- |
-| `location` | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.               |
-| `icon`     | string | (Optional/Web App required) Either a fully-qualified URL, or a path for an app's static asset.                              |
-| `label`    | string | (Optional) Text to show in the item on mobile and webapp collapsed view. Defaults to location. Must be unique in its level. |
-| `hint`     | string | (Optional/Web App required) Text to show in tooltip.                                                                        |
-| `call`     | Call   | (Optional) Call to perform. You must provide a call if there is no form, or the form itself does not have a call.           |
-| `form`     | Form   | (Optional) Modal form to open. You must provide a form with a call if there is no call defined in the binding.              |
+| `label`    | string | (Optional) Text to show in the item on mobile and webapp collapsed view. |
+| `hint`     | string | (required for Web App) Text to show in tooltip. |
 
 The context of the call for these bindings will include the user ID, the channel ID, and the team ID.
 
@@ -64,26 +87,20 @@ For commands we can distinguish between leaf commands (executable subcommand) an
 
 A partial command must include:
 
-| Name          | Type     | Description                                                                                                               |
-| :------------ | :------- | :------------------------------------------------------------------------------------------------------------------------ |
-| `location`    | string   | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.             |
-| `label`       | string   | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level. |
+| Name | Type | Description |
+| :---- | :------- | :---- |
+| `label`       | string   | (Optional) The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level. |
 | `hint`        | string   | (Optional) Hint line on command autocomplete.                                                                             |
 | `description` | string   | (Optional) Description line on command autocomplete.                                                                      |
 | `bindings`    | Bindings | List of subcommands.                                                                                                      |
-| `call`        | Call     | (Optional) Call to be inherited by all its subcommands.                                                                   |
-| `form`        | Form     | (Optional) Form to be inherited by all its subcommands.                                                                   |
 
-A leaf command must include:
+A leaf command must include either `submit` or a `form`, and may include the following fields:
 
-| Name          | Type   | Description                                                                                                                                  |
+| Name          | Type   | Description |
 | :------------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------- |
-| `location`    | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.                                |
-| `label`       | string | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level.                    |
-| `hint`        | string | (Optional) Hint line on command autocomplete.                                                                                                |
-| `description` | string | (Optional) Description line on command autocomplete.                                                                                         |
-| `call`        | Call   | (Optional) Call to perform when executing the command. You must provide a call if there is no form, or the form itself does not have a call. |  |
-| `form`        | Form   | (Optional) Form representing the parameters the command can receive. If no form is provided, a form call will be made to the specified call. |
+| `label`       | string   | (Optional) The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its parent location. |
+| `hint`        | string   | (Optional) Hint line on command autocomplete.                                                                             |
+| `description` | string   | (Optional) Description line on command autocomplete.                                                                                         |
 
 The context of the call for these bindings will include the user ID, the post ID, the root post ID (if any), the channel ID, and the team ID. It will also include the raw command.
 
@@ -130,8 +147,8 @@ The context of the call for these bindings will include the user ID, the post ID
                     "location": "send-button",
                     "icon": "icon.png",
                     "label": "send hello message",
-                    "call": {
-                        "path": "/send-modal"
+                    "form": {
+                        "--form--": "--definition--"
                     }
                 }
             ]
@@ -143,7 +160,7 @@ The context of the call for these bindings will include the user ID, the post ID
                     "location": "send-button",
                     "icon": "icon.png",
                     "label": "send hello message",
-                    "call": {
+                    "submit": {
                         "path": "/send",
                         "expand": {
                             "post": "all"
@@ -163,7 +180,7 @@ The context of the call for these bindings will include the user ID, the post ID
                         {
                             "location": "send",
                             "label": "send",
-                            "call": {
+                            "submit": {
                                 "path": "/send-modal"
                             }
                         }

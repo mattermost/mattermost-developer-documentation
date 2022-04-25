@@ -52,6 +52,7 @@ Hello OAuth2! is an HTTP app, it requests the *permissions* to act as a System A
 	"icon": "icon.png",
 	"homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/examples/go/hello-oauth2",
 	"requested_permissions": [
+		"act_as_admin",
 		"act_as_user",
 		"remote_oauth2"
 	],
@@ -153,8 +154,13 @@ func configure(w http.ResponseWriter, req *http.Request) {
     clientID, _ := creq.Values["client_id"].(string)
     clientSecret, _ := creq.Values["client_secret"].(string)
 
+<<<<<<< HEAD
+    asAdmin := appclient.AsAdmin(creq.Context)
+    asAdmin.StoreOAuth2App(creq.Context.AppID, clientID, clientSecret)
+=======
     asUser := appclient.AsActingUser(creq.Context)
     asUser.StoreOAuth2App(creq.Context.AppID, clientID, clientSecret)
+>>>>>>> 4ed227c498e6a332cf5c90a4dbc2888407e71d4f
 
     json.NewEncoder(w).Encode(apps.CallResponse{
         Markdown: "updated OAuth client credentials",

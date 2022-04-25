@@ -44,6 +44,7 @@ Run the following Mattermost slash command:
 	"icon": "icon.png",
 	"homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/examples/go/hello-webhooks",
 	"requested_permissions": [
+		"act_as_admin",
 		"act_as_bot",
 		"remote_webhooks"
 	],
