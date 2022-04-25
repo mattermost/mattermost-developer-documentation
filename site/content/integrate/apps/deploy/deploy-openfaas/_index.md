@@ -5,21 +5,22 @@ description: "TODO"
 weight: 500
 ---
 
-## OpenFaaS Apps
+# OpenFaaS Apps
 
-### What is OpenFaaS?
+## What is OpenFaaS?
 
 OpenFaaS makes it relatively simple to deploy both serverless functions and
 existing code in stateless containers on Kubernetes or directly on Linux hosts,
 on any public or private cloud. Learn more at
 [OpenFaas.com](https://www.openfaas.com/)
 
-### Packaging an App for OpenFaaS
+## Packaging for OpenFaaS
 
-For details on how to develop and package apps for AWS see [serverless
-example]({{< ref "quick-start-serverless" >}})
+For details on how to develop and package apps for OpenFaaS see the
+[serverless](https://github.com/mattermost/mattermost-plugin-apps/examples/go/serverless)
+example app.
 
-### Deploying with appsctl
+## Deploying with `appsctl`
 
 An App designed and bundled for OpenFaaS can be deployed to the customer's own
 OpenFaaS or faasd environments, and then installed on a self-managed ("on-prem")

@@ -5,21 +5,27 @@ description: "TODO"
 weight: 200
 ---
 
-# Deployment in self-managed environments
+# AWS Apps
+
+## Packaging for AWS
+
+For details on how to develop and package apps for AWS see [Package / AWS]({{< ref "package-aws" >}}), and the
+[serverless](https://github.com/mattermost/mattermost-plugin-apps/examples/go/serverless)
+example app.
+
+## Deploying with `appsctl`
 
 An App designed and bundled for AWS Lambda can be deployed to the customer's own
 AWS environment, and then installed on a self-managed ("on-prem") Mattermost
 instance. Note that Mattermost Cloud instances only allows apps hosted by
 Mattermost.
 
-For details on how to develop and package apps for AWS see [Package / AWS]({{< ref "package-aws" >}})
-
 There are three steps required to enable AWS applications on a self-managed
 Mattermost instance.
 
-### 1. Initialize the AWS environment.
+#### 1. Initialize the AWS environment.
 
-#### Set up AWS S3 bucket
+###### Set up AWS S3 bucket
 
 You will need to create an S3 bucket within AWS or use an existing bucket.
 
@@ -34,11 +40,11 @@ You will need to create an S3 bucket within AWS or use an existing bucket.
    1. (Optional) Check **Block *all* public access**
 3. Select **Create Bucket**.
 
-#### Create a privileged IAM user access key and secret
+###### Create a privileged IAM user access key and secret
 
 You will need an access key and secret so that `appsctl` can deploy the app. These credentials can come from creating an IAM user, using a privileged IAM user, or even using the AWS account owners personal access key. Please follow the instructions [provided by AWS](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/) to complete these steps and save the `Access key ID` and `Secret access key` values.
 
-#### Set AWS_DEPLOY_ environment variables
+###### Set AWS_DEPLOY_ environment variables
 
 Open a terminal where you installed the Apps plugin and set the following variables to the AWS credentials just created and saved:
 
@@ -50,7 +56,7 @@ Set the following environment variables based on bucket name and region from Ste
 - `MM_APPS_S3_BUCKET`
 - `MM_APPS_AWS_REGION`
 
-#### Initialize the AWS resources
+###### Initialize the AWS resources
 
 The following command will create Mattermost invocation credentials and policy for use with AWS.
 
@@ -81,7 +87,7 @@ Optional Flags for the `appsctl` command:
 
 The output of the command will contain two "Invoke" environment variables.
 
-### 2. Enable AWS Upstream for Mattermost Apps
+#### 2. Enable AWS Upstream for Mattermost Apps
 
 To enable AWS Apps installation and use, the Mattermost server must be
 (re-)started with the following environment variables:
@@ -96,10 +102,9 @@ To enable AWS Apps installation and use, the Mattermost server must be
 Restart the Mattermost server to complete your Mattermost and AWS setup. You can
 now deploy an app to AWS.
 
+#### 3. Deploy apps to AWS
 
-### 3. Deploy apps to AWS
-
-#### Deploying an app to AWS
+###### Deploying an app to AWS
 
 To deploy AWS Apps from a bundle use `appsctl aws deploy {aws-bundle.zip}`
 command. It will deploy all necessary resources to AWS, update the invoke policy
@@ -133,7 +138,7 @@ Once deployed, apps can be installed interactively in Mattermost using `/apps
 install listed` command which will show all the deployed apps available for installation in Mattermost.
 
 
-# Deployed app details
+## Deployed app details
 
 AWS Lambda functions have semantic names, which means that a function described in the `manifest.json` file translates to AWS as `$appID_$appVersion_$functionName` to avoid collisions with other apps' or other versions' functions. **appsctl** deploys lambda functions using this name. For example the name of a `servicenow` app's lambda function might be `com-mattermost-servicenow_0-1-0_go-function`. **appsctl** handles naming the AWS Lambda functions. The dedicated S3 bucket name is stored in the environment variable: `MM_APPS_S3_BUCKET`.
 
@@ -145,7 +150,7 @@ The `manifest.json` file of an app is stored in the same S3 bucket as the key - 
 
 ![Flow of deploying custom apps to AWS](deploy-third-party-aws.png)
 
-# Deployment in Mattermost Cloud
+## Deployment in Mattermost Cloud
 
 In order to be deployed in Mattermost Cloud an app bundle is uploaded to the specific S3 bucket. On a new app release, a bundle is created by GitLab CI and uploaded to S3. The [Mattermost apps cloud deployer](https://github.com/mattermost/mattermost-apps-cloud-deployer), running as a k8s cron job every hour, detects the S3 upload, and creates appropriate lambda functions, assets, and manifest the same way the **appsclt** does for the third-party accounts.
 
