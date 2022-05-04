@@ -125,7 +125,7 @@ With the props defined and, if necessary, the container built, you're ready to i
 
 Our `ItemList` example might look something like this:
 
-```typescript
+```tsx
 type Props = {
     /**
      * The title of the list
