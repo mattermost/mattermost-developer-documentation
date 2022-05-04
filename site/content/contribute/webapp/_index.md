@@ -22,9 +22,11 @@ https://github.com/mattermost/mattermost-webapp
 
 The main directories are:
 
-* `actions` - Redux action creators and other logic actions
+* `actions` - Redux action creators and other view logic
 * `components` - React UI components
+* `e2e` - End-to-end tests for the web app
 * `i18n` - Localization files and utilities
+* `packages` - Subpackages used by the web app and related projects, including [mattermost-redux](https://github.com/mattermost/mattermost-webapp/tree/master/packages/mattermost-redux)
 * `plugins` - Plugin utilities, documentation and components
 * `reducers` - Web app specific Redux reducers
 * `selectors` - Web app specific Redux selectors
