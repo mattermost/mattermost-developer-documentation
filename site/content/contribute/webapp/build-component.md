@@ -23,7 +23,7 @@ The components for the webapp currently live in the `components/` directory in t
 
 These requirements are discussed in more detail in the following sections.
 
-## Designing your Component
+## Designing the Component
 
 The most important part of designing your component is deciding on what the props will be. Props are very much the API for your component. Think of them as a contract between your component and the users.
 
@@ -53,7 +53,7 @@ Make sure you add brief but clear comments to each prop type as shown in the exa
 
 Our ItemList component would live in a file named `item_list.tsx`.
 
-## Using a Redux container component
+## Using a Redux Container Component
 
 The next question to ask yourself is whether you're going to need a container component. This is the `index.ts` file mentioned above. If your component needs either of the following, then you'll need a container:
 
@@ -119,7 +119,7 @@ If the selectors and/or actions you need don't yet exist in Redux then you shoul
 
 Your `index.ts` and `item_list.ts` files will live together in an `item_list/` directory.
 
-## Implementing your component
+## Implementing the Component
 
 With the props defined and, if necessary, the container built, you're ready to implement the rest of your component. For the most part, implementing a component for the web app is no different than building any other React component. While older code tends to use class components which inherit from `React.PureComponent`, most newer code should use functional components.
 
