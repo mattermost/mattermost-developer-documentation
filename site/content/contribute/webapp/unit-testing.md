@@ -104,7 +104,7 @@ Below is a brief guide on how to do component testing:
 7. Provide a mock for a single function imported from another file while keeping the original version of the rest of that file's exports.
     ```javascript
     jest.mock('utils/utils', () => {
-        const original = require.requireActual('utils/utils');
+        const original = jest.requireActual('utils/utils');
         return {
             ...original,
             isMobileView: jest.fn(() => true),
@@ -115,7 +115,7 @@ Below is a brief guide on how to do component testing:
 8.  Mock async ``redux`` actions as necessary while providing a readable action type and having them pass their arguments.
     ```javascript
     jest.mock('mattermost-redux/actions/channels', () => {
-        const original = require.requireActual('mattermost-redux/actions/channels');
+        const original = jest.requireActual('mattermost-redux/actions/channels');
         return {
             ...original,
             fetchMyChannelsAndMembers: (...args) => ({type: 'MOCK_FETCH_CHANNELS_AND_MEMBERS', args}),
@@ -160,7 +160,7 @@ Finally, initiate the following commands:
 a. Check if the code being tested used native timer functions (i.e., setTimeout, setInterval, clearTimeout, clearInterval). You can mock the timers and/or run fake timers (e.g. `jest.useFakeTimers()`) if necessary. Note that `jest.useFakeTimers()` is already in the Jest [global setup](https://github.com/mattermost/mattermost-webapp/blob/master/tests/setup.js), but there are cases where it needs to run specifically depending on how the component uses the native timer functions.
 
 ### 2. If you get an error like "UnhandledPromiseRejectionWarning: TypeError: (0 , \_fff.hhh) is not a function"
-a. Check if you're mocking part of an imported module without providing other exports which are used. You can use `require.requireActual` to get the unmocked version of the file.
+a. Check if you're mocking part of an imported module without providing other exports which are used. You can use `jest.requireActual` to get the unmocked version of the file.
 
     ```javascript
     // DO NOT partially mock the module
@@ -170,7 +170,7 @@ a. Check if you're mocking part of an imported module without providing other ex
 
     // DO fully mock the module
     jest.mock('actions/storage', () => {
-        const original = require.requireActual('actions/storage');
+        const original = jest.requireActual('actions/storage');
         return {
             ...original,
             setGlobalItem: (...args) => ({type: 'MOCK_SET_GLOBAL_ITEM', args}),
