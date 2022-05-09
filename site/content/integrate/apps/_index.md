@@ -1,5 +1,5 @@
 ---
-title: "Apps (Developers Preview)"
+title: "Apps"
 heading: "Mattermost Apps"
 description: "Apps are lightweight interactive add-ons to Mattermost."
 weight: 20
