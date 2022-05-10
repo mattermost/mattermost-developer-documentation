@@ -179,7 +179,7 @@ a. Check if you're mocking part of an imported module without providing other ex
     ```
 
 ### 3. If you get an error like "UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'data' of undefined"
-a. Use async mock functions with resolved value. The property that cannot be readcan be `error`, `data`, `exists`, `match`, or whatever the resolved value contains.
+a. Use async mock functions with resolved value. The property that cannot be read can be `error`, `data`, `exists`, `match`, or whatever the resolved value contains.
 
 If the file being tested contains a line where it awaits on an async value like
 
@@ -217,7 +217,7 @@ Remember to make individual test cases async when testing async functions.
         expect(...)
     });
 
-    // DO remember to await on the async function and to make the entire test case async.
+    // DO remember to wait on the async function and to make the entire test case async.
     test('should match state when handleSubmit is called', async () => {
         await wrapper.instance().handleSubmit();
         expect(addUsersToTeam).toHaveBeenCalledTimes(1);

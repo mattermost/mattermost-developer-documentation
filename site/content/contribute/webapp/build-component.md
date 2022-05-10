@@ -47,7 +47,7 @@ type Props = {
 }
 ```
 
-The `title` prop would control the string to display for the title, while `items` would be an array of the item objects we would like to display. Note that `items` is required while `title` is optional.
+The `title` prop is a string that's displayed as the title of the list, and `items` is an array of objects that make up the contents of the list. Note that `items` is required while `title` is optional.
 
 Make sure you add brief but clear comments to each prop type as shown in the example.
 
@@ -121,7 +121,7 @@ Your `index.ts` and `item_list.ts` files will live together in an `item_list/` d
 
 ## Implementing the Component
 
-With the props defined and, if necessary, the container built, you're ready to implement the rest of your component. For the most part, implementing a component for the web app is no different than building any other React component. While older code tends to use class components which inherit from `React.PureComponent`, most newer code should use functional components.
+With the props defined and, if necessary, the container built, you're ready to implement the rest of your component. For the most part, implementing a component for the web app is no different than building any other React component. While older code tends to use class components which extend `React.PureComponent`, most newer code should use functional components.
 
 Our `ItemList` example might look something like this:
 
@@ -146,7 +146,7 @@ type Props = {
 }
 
 export default function ItemList(props: Props) {
-    const title = this.props.title ? <h1>{this.props.title}</h1> : undefined;
+    const title = this.props.title ? <h1>{this.props.title}</h1> : null;
     const items = this.props.items.map((item: ListItem) => (
         <Item
             key={item.id}
