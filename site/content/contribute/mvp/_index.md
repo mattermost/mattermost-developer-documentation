@@ -14,6 +14,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 Version |	   Release date   | MVP
 ------- | ------------------- | ---
+6.7     | May 16, 2022        | [Vishakha Poonia](https://github.com/VishakhaPoonia)
 6.6     | April 16, 2022      | [Sayanta Banerjee](https://github.com/Sayanta66)
 6.5     | March 16, 2022      | [Sinan Sonmez](https://github.com/sinansonmez)
 6.4     | February 16, 2022   | [Suneet Srivastava](https://github.com/codedsun)
