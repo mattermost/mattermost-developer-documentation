@@ -54,3 +54,8 @@ However, If the answer to the second question above is "no", then contact the [p
 ### Inform SRE team.
 
 If the migration is large, when the PR is review complete, please cc an SRE team member and ask them to merge it and their convenience. This is so that the migration can run on our Community cluster and Cloud at a suitable time.
+
+### Always sync with upstream before merge
+
+Since we don't want to have a collision on version numbers of the migration files, the developer should merge the upstream branch to the feature branch just before merging so that we can be sure that there are no versioning issues. In case of a version number collision, the build process will fail and main branch will be broken until it gets fixed. 
+
