@@ -57,7 +57,7 @@ To make it easier to customize your build, we've defined a few environment varia
 | `FASTLANE_TEAM_ID` | The ID of your Apple Developer Portal Team. |  | Yes |
 | `IOS_ICLOUD_CONTAINER` | The iOS iCloud container identifier used to support iCloud storage. | | Yes |
 | `IOS_APP_GROUP` | The iOS App Group identifier used to share data between the app and the share extension. |  | Yes |
-| `SYNC_PROVISIONING_PROFILES` | Should we run **match** to sync the provisioning profiles. **Note**: Not syncing the provisioning profiles, will cause the singing to fail. Valid values are: `true`, `false` | `false` | Yes |
+| `SYNC_PROVISIONING_PROFILES` | Should we run **match** to sync the provisioning profiles. **Note**: Not syncing the provisioning profiles, will cause the signing to fail. Valid values are: `true`, `false` | `false` | Yes |
 | `MATCH_USERNAME` | Your Apple ID Username. |  | Yes |
 | `MATCH_PASSWORD` | Your Apple ID Password. |  | Yes |
 | `MATCH_KEYCHAIN_PASSWORD` | Your Mac user password used to install the certificates in the build computer KeyChain. |  | No |
