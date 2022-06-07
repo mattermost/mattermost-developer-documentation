@@ -35,6 +35,8 @@ We've used Split's SDK to integrate with the Mattermost server. You can find the
 
 We currently have a limited number of seats for our Split account, so not everyone gets access. Currently, two people per each engineering team plus some PM/UX folk have access. If you need to manage some feature flags, ask your team lead who has access and can help you out. It's up to each team to determine who has access.
 
+You can request access to Split from @daniel.sischy in [the Systems channel](https://community.mattermost.com/private-core/channels/systems) on the Staff team.
+
 ### How do I log in?
 
 Login is controlled via OneLogin. If you have access you will be able to log in through there.
@@ -159,6 +161,8 @@ When the feature is rolled out to customers, logs will show if there are crashes
 For a feature-flagged feature to be included in a self-hosted release, the feature flag should be removed.
 
 Feature flags are generally off by default and self-hosted releases do not contact the management system. Therefore feature flags that are not ready for a self-hosted release will be automatically disabled for all self-hosted releases.
+
+Optionally the feature flag can be set to ``true`` in code if we are not yet ready to fully remove the feature flag. Some [examples are here](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
 
 ## Testing
 

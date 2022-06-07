@@ -6,7 +6,7 @@ description: "Check out the Mattermost Contributor Hall of Fame to learn about t
 
 Mattermost is an open source Slack-alternative that helps teams stay in sync, with messaging and file sharing across PCs and phones, with archiving and search, and a growing community of integrations, bots and applications.
 
-The project is developed by a global community of contributors and is maintained and supported by a distributed company, [Mattermost Inc.](https://about.mattermost.com/company/), based in Palo Alto, California.
+The project is developed by a global community of contributors and is maintained and supported by a distributed company, [Mattermost Inc.](https://mattermost.com/about-us/), based in Palo Alto, California.
 
 If you notice an error or omission in the list, please email community[at]mattermost.com so we can correct the issue.
 
@@ -58,8 +58,8 @@ Abhisek Datta, Alex Garbutt, Alyssa Milburn, Andreas Lindh, Andrey Dyatlov, Arya
 
 ## Quality Assurance Contributors
 
-Quality Assurance contributors by GitHub username and (first contribution date) are alphabetically listed below. The list is updated regularly (last updated November 18, 2020). Contributions include completed testing assignments listed in the [quality-assurance](https://github.com/mattermost/quality-assurance/issues) repository.
+Quality Assurance contributors by GitHub username are alphabetically listed below. The list is updated regularly (last updated March 21, 2022). Contributions include completed testing assignments listed in the [quality-assurance](https://github.com/mattermost/quality-assurance/issues) repository.
 
 Join others who have helped test Mattermost's apps, and [get started today](https://github.com/mattermost/quality-assurance).
 
-fagunbhavsar (2020.10.28), seongwon-kang (2020.10.29)
+ahmad.danial, alaure.gaillard, arjitc, armanchand, ayushs, codesun, ctlaltdieliet, dipak-demansol-qa, fagunbhavsar, haardikdharma10, jprusch, kamre, krmh04, nirmalsharma, papanireal, rutamhere, sayanta66, seongwon-kang, shadowshot-x, sonichigo, varghese.jose, xxlilbopeepsxx 

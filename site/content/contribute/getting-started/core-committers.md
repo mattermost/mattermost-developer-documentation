@@ -7,5 +7,3 @@ weight: 4
 ---
 
 A core committer is a maintainer on the Mattermost project that has merge access to Mattermost repositories. They are responsible for reviewing pull requests, cultivating the Mattermost developer community, and guiding the technical vision of Mattermost. 
-
-If you have a question or need some help, please visit the [Core Committers](https://handbook.mattermost.com/contributors/contributors/core-committers) page in the Mattermost Handbook.

@@ -48,8 +48,6 @@ heading: "Mattermost Developer Setup: Ubuntu"
 4. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`) and add the following:
 
     ```sh
-    export GOPATH=$HOME/go
-    export PATH=$PATH:$GOPATH/bin
     export PATH=$PATH:/usr/local/go/bin
     ```
 

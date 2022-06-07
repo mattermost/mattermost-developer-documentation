@@ -84,10 +84,10 @@ Here is an example message attachment:
         "pretext": "This is optional pretext that shows above the attachment.",
         "text": "This is the text of the attachment. It should appear just above an image of the Mattermost logo. The left border of the attachment should be colored orange, and below the image it should include additional fields that are formatted in columns. At the top of the attachment, there should be an author name followed by a bolded title. Both the author name and the title should be hyperlinks.",
         "author_name": "Mattermost",
-        "author_icon": "https://mattermost.org/wp-content/uploads/2016/04/icon_WS.png",
+        "author_icon": "https://mattermost.com/wp-content/uploads/2022/02/icon_WS.png",
         "author_link": "https://mattermost.org/",
         "title": "Example Attachment",
-        "title_link": "https://docs.mattermost.com/developer/message-attachments.html",
+        "title_link": "https://developers.mattermost.com/integrate/admin-guide/admin-message-attachments/",
         "fields": [
           {
             "short":false,
@@ -110,7 +110,7 @@ Here is an example message attachment:
             "value":"Testing"
           }
         ],
-        "image_url": "https://mattermost.org/wp-content/uploads/2016/03/logoHorizontal_WS.png"
+        "image_url": "https://mattermost.com/wp-content/uploads/2022/02/icon_WS.png"
       }
     ]
   }
@@ -137,7 +137,7 @@ And here is how it renders in Mattermost:
 
 ### Can I send a message attachment via the API?
 
-Yes, you can use the [create post RESTful API](https://api.mattermost.com/#tag/posts%2Fpaths%2F~1posts%2Fpost).
+Yes, you can use the [create post RESTful API](https://api.mattermost.com/#operation/CreatePost).
 
 You need to add an "attachment" key to the post's props JSON field. The value is an array of message attachments you want attached to the post. See below for an example curl command.
 

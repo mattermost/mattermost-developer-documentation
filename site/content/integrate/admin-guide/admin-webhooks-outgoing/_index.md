@@ -14,7 +14,7 @@ Outgoing webhooks are supported in public channels only. If you need a trigger t
 
 **Note:** To prevent malicious users from trying to perform [phishing attacks](https://en.wikipedia.org/wiki/Phishing) a **BOT** indicator appears next to posts coming from webhooks regardless of what username is specified.
 
-## Create an Outgoing Webhook
+## Create an outgoing webhook
 
 Suppose you want to write an external application, which executes software tests after someone posts a message starting with the word `#build` in the `town-square` channel.
 
@@ -36,7 +36,7 @@ In our example, we would set the channel to `town-square` and specify `#build` a
  - If the first word of a message matches one of the trigger words exactly, or
  - If the first word of a message starts with one of the trigger words.
 
-6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a [trusted internal connection](https://about.mattermost.com/default-allow-internal-connections-settings-documentation).
+6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a [trusted internal connection](https://docs.mattermost.com/configure/configuration-settings.html).
 7. On the next page, copy the **Token** value. This will be used in a later step.
 
 ![image](images/outgoing_webhooks_token.png)
@@ -82,7 +82,7 @@ which would render in Mattermost as:
 
 ![image](images/webhooksTable.png)
 
-11. You're all set! See [developer documentation]({{< ref "/integrate/other-integrations/outgoing-webhooks" >}}) for details on what parameters are supported by outgoing webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins](https://about.mattermost.com/default-plugins).
+11. You're all set! See [developer documentation]({{< ref "/integrate/other-integrations/outgoing-webhooks" >}}) for details on what parameters are supported by outgoing webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins](https://developers.mattermost.com/integrate/admin-guide/admin-plugins-beta/).
 
 Messages with advanced formatting can be created by including an [attachment array](../admin-message-attachments) and [interactive message buttons](../admin-interactive-messages) in the JSON payload.
 
@@ -90,7 +90,7 @@ Messages with advanced formatting can be created by including an [attachment arr
 
 Similarly, [Enable integrations to override profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin. If not enabled, the icon of the creator of the webhook URL is used to post messages.
 
-## Tips and Best Practices
+## Tips and best practices
 
 1. Webhooks are designed to easily allow you to post messages. For other actions such as channel creation, you must also use the [Mattermost APIs](https://api.mattermost.com).
 2. If the text in the JSON response is longer than the allowable character limit per post, the message is split into multiple consecutive posts, each within the character limit. Servers running Mattermost Server v5.0 or later [can support posts up to 16383 characters](https://docs.mattermost.com/administration/important-upgrade-notes.html).
@@ -138,7 +138,7 @@ To debug outgoing webhooks in **System Console > Logs**, set **System Console > 
 
 When `TRUE`, as of v5.14 all outgoing webhooks are logged and include a `request_id` value in the log file. 
 
-For further assistance, review the [Troubleshooting forum](https://forum.mattermost.org/c/trouble-shoot) for previously reported errors, or [join the Mattermost user community for troubleshooting help](https://mattermost.com/pl/default-ask-mattermost-community).
+For further assistance, review the [Troubleshooting forum](https://forum.mattermost.com/c/trouble-shoot) for previously reported errors, or [join the Mattermost user community for troubleshooting help](https://mattermost.com/pl/default-ask-mattermost-community).
 
 ### My integration prints the JSON data in a Mattermost channel
 

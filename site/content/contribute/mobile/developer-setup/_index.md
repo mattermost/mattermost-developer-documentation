@@ -6,7 +6,7 @@ date: 2017-08-20T11:35:32-04:00
 weight: 1
 ---
 
-The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version [here](http://about.mattermost.com/mattermost-ios-app) and the Android version [here](http://about.mattermost.com/mattermost-android-app). Source code can be found at the [GitHub Mattermost Mobile app repository](https://github.com/mattermost/mattermost-mobile).
+The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version [here](https://apps.apple.com/us/app/mattermost/id1257222717) and the Android version [here](https://play.google.com/store/apps/details?id=com.mattermost.rn). Source code can be found at the [GitHub Mattermost Mobile app repository](https://github.com/mattermost/mattermost-mobile).
 
 If you run into any issues getting your environment set up, check the [Troubleshooting](https://docs.mattermost.com/deploy/mobile-troubleshoot.html) section in the left sidebar for common solutions.
 
@@ -20,10 +20,8 @@ A macOS computer is required to build the Mattermost iOS mobile app.
 
 Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using [Homebrew](https://brew.sh) as a package manager.
 
-#### Install [NodeJS 16](https://nodejs.org/en/).
-This includes NPM 7 which is also needed.
-
-**Known working node versions: 16.2.0**
+#### Node and NPM
+We recommend using npm version 7 (with either Node 15 or 16). To make switching easier, many of our team use [nvm](https://github.com/nvm-sh/nvm) to manage the npm and node versions.
 
 #### Install Cygwin (Windows only)
 ##### Windows 10
@@ -36,7 +34,7 @@ This includes NPM 7 which is also needed.
 - To install using Homebrew open a terminal and execute:
 
 ```sh
-    $ brew install node
+    $ brew install nvm
 ```
 
 ##### Linux
@@ -105,6 +103,18 @@ Some distributions come with Git preinstalled but you'll most likely have to ins
 ### Additional setup for iOS
 
 *  Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12) to build and run the app on iOS. The minimum required version is 11.0.
+
+#### Additional setup for iOS on m1 macs
+
+1. Follow the [React Native environment setup](https://reactnative.dev/docs/environment-setup) docs until the `cocoapods` point, then stop. 
+2. Specify the correct version of Xcode in the terminal: `sudo xcode-select --switch /Applications/Xcode.app`
+3. In the Rosetta terminal, change to the `mattermost-mobile/ios` directory and run:
+```sh
+sudo arch -x86_64 gem install ffi
+sudo gem install cocoapods
+arch -x86_64 pod install
+```
+4. If you need to use the Xcode app (e.g., to build, sign, and transfer the app to an iOS device), be sure to start it in Rosetta mode.
 
 ### Additional setup for Android
 

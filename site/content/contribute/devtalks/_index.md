@@ -5,8 +5,4 @@ description: "The Mattermost team releases a developer talk that discusses the a
 date: "2017-01-05T09:51:35-05:00"
 ---
 
-Approximately once a month, a member of the Mattermost team releases a developer talk that discusses the architecture, design principles, and tools that the Mattermost project uses.
-
-On this page, you'll find a list of those dev talks. They are also available on [our YouTube channel](https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA).
-
-{{< devtalks >}}
+The Mattermost [YouTube channel](https://www.youtube.com/channel/UCNR05H72hi692y01bWaFXNA) has a [playlist of Dev Talks](https://www.youtube.com/playlist?list=PL-jqvaPsjQpM-Cysf3o-6bf_P3ARQNhV4). Check them out for some useful content for contributing to the Mattermost codebases.

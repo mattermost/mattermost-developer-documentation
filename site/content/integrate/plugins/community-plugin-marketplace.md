@@ -39,7 +39,7 @@ Every community plugin must fulfill the following checklist to be added to the M
 
 **Documentation requirements (checked by a Technical Writer)**
 
-1 The plugin must include detailed usage documentation with at least one screenshot of the plugin in action, list of features, and a development guide. This is typically a `README` file or a landing page on the web. The link to the documentation is set as `homepage_url` in the manifest. A great example is the [`README` of the GitHub plugin](https://github.com/mattermost/mattermost-plugin-github/blob/master/README.md). Typical components of documentation include:
+1. The plugin must include detailed usage documentation with at least one screenshot of the plugin in action, list of features, and a development guide. This is typically a `README` file or a landing page on the web. The link to the documentation is set as `homepage_url` in the manifest. A great example is the [`README` of the GitHub plugin](https://github.com/mattermost/mattermost-plugin-github/blob/master/README.md). Typical components of documentation include:
 
     * Requirements/Prerequisites
     * Installation steps

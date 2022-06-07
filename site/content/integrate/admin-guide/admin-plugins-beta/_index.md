@@ -236,7 +236,9 @@ To enable plugin uploads, manually set `PluginSettings > EnableUploads` to `true
 
 With plugin uploads enabled, navigate to **System Console > Plugins > Management** and upload a plugin bundle. Plugin bundles are `*.tar.gz` files containing the server executables and web app resources for the plugin. You can also specify a URL to install a plugin bundle from a remote source.
 
-**Note:** When `RequirePluginSignature` is `true`, plugin uploads cannot be enabled, and may only be installed via the Marketplace (which verifies Plugin Code Signatures).
+**Note:**
+1. When `RequirePluginSignature` is `true`, plugin uploads cannot be enabled, and may only be installed via the Marketplace (which verifies Plugin Code Signatures).
+2. `EnableRemoteMarketplaceURL` also remains disabled as long as `EnableUploads` is disabled. 
 
 Custom plugins may also be installed via the [command line interface](https://docs.mattermost.com/administration/command-line-tools.html#mattermost-plugin).
 
@@ -256,7 +258,7 @@ Join our community server discussion in the [Toolkit channel](https://community.
 
 ## Troubleshooting
 
-Please see common questions below. For further assistance, review the [Troubleshooting forum](https://forum.mattermost.org/c/trouble-shoot) for previously reported errors, or [join the Mattermost user community for troubleshooting help](https://mattermost.com/pl/default-ask-mattermost-community).
+Please see common questions below. For further assistance, review the [Troubleshooting forum](https://forum.mattermost.com/c/trouble-shoot) for previously reported errors, or [join the Mattermost user community for troubleshooting help](https://mattermost.com/pl/default-ask-mattermost-community).
 
 ### Plugin uploads fail even though uploads are enabled
 

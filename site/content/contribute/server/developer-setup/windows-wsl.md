@@ -66,8 +66,6 @@ This is an unofficial guide. Community testing, feedback, and improvements are w
 6. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`) and add the following:
 
     ```sh
-    export GOPATH=$HOME/go
-    export PATH=$PATH:$GOPATH/bin
     export PATH=$PATH:/usr/local/go/bin
     ulimit -n 8096
     ```

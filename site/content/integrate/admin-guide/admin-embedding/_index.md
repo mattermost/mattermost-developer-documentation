@@ -48,7 +48,7 @@ Save the below HTML code in a file called `mattermost-button-example.html` then 
 
 Any web application embedded into another using an iframe is at risk of security exploits, since the outer application intercepts all user input into the embedded application, an exploit known as [Click-Jacking](https://en.wikipedia.org/wiki/Clickjacking). By default, Mattermost disables embedding. If you choose to embed Mattermost we highly recommend it is done only on a private network that you control.
 
-See [this recipe](https://forum.mattermost.org/t/recipe-embedding-mattermost-in-web-applications-using-an-iframe-unsupported-recipe/10233) for details.
+See [this recipe](hhttps://forum.mattermost.com/t/recipe-embedding-mattermost-in-web-applications-using-an-iframe-unsupported-recipe/10233) for details.
 
 ## Embedding Mattermost in Mobile Applications
 
@@ -62,4 +62,4 @@ The mobile applications also provide full source code for push notifications.
 
 ### Mobile Applications Offering Mattermost with React Native Components 
 
-https://github.com/mattermost/mattermost-mobile
+- https://github.com/mattermost/mattermost-mobile
