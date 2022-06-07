@@ -1,12 +1,16 @@
 ---
 title: "CLI Commands"
-heading: "CLI Commands in Mattermost"
-description: "Mattermost provides a CLI (command-line interface) to administer and handle specific administrative tasks."
-date: 2018-09-21T18:40:32-04:00
+heading: "CLI Commands and mmctl"
+description: "Mattermost provides a CLI tool (mmctl) to to enable access to Mattermost server from the command line."
+date: 2022-03-15T18:40:32-04:00
 weight: 5
 ---
 
-Mattermost provides a CLI (command-line interface) to administer and handle specific administrative tasks.
+As of 6.0, Mattermost CLI has been replaced by [mmctl](https://github.com/mattermost/mmctl). `mmctl` is built to enable access to Mattermost server from the command line. The tool leverages the public API so that administrator and user tasks can be performed.
+
+Since `mmctl` uses the public API, an authorization mechanism is required. Which means the access rights are managed on the server side. There is a pre-run check to read credentials and use it in the client. In addition to authentication via credentials, `mmctl` can communicate to a local server without any authentication. This must be enabled via server configuration and both `mmctl` and `mattermost-server` needs to be running in the same machine.
+
+In addition to provide more functionality towards testing and development, `db` subcommand has been added Mattermost server binary.
 
 ## Understanding the CLI
 
@@ -14,16 +18,16 @@ The CLI interface is written in [Cobra](https://github.com/spf13/cobra), a
 powerful and modern CLI creation library. If you have never used Cobra before, it is
 well documented in its [GitHub Repository](https://github.com/spf13/cobra).
 
-The source code used to build our CLI interface is written in the `cmd/mattermost` directory of the [mattermost-server](https://github.com/mattermost/mattermost-server) repository.
+The source code used to build our CLI interface is written in the `commands` directory of the [mmctl](https://github.com/mattermost/mmctl) repository.
 
 Each "command" of the CLI is stored in a different file of the
-`cmd/mattermost/commands` directory. Within each file, you can find
+`commands` directory. Within each file, you can find
 multiple "subcommands".
 
 ## Adding a New Subcommand
 
 If you want to add a new subcommand in an existing mattermost command, first find the relevant file. For example, if you want to add a `show` command to
-the `channel` command, go to `cmd/mattermost/commands/channel.go` and add your subcommand there.
+the `channel` command, go to `commands/channel.go` and add your subcommand there.
 
 To add the subcommand, start by creating a new `Command` instance, for example:
 
@@ -40,14 +44,12 @@ var ChannelShowCmd = &cobra.Command{
 Then implement the subcommand function, in this example `showChannelCmdF`.
 
 ```go
-func showChannelCmdF(command *cobra.Command, args []string) error {
-    app, err := InitDBCommandContextCobra(command)
-    if err != nil {
-        return err
-    }
-    defer app.Shutdown()
-
+func showChannelCmdF(c client.Client, cmd *cobra.Command, args []string) error {
     // Your code implementing the command itself
+    newChannel, _, err := c.ShowChannel(channel)
+	if err != nil {
+		return err
+	}
 
     return nil
 }
@@ -70,13 +72,13 @@ func init() {
 }
 ```
 
-Finally, implement unit tests in `cmd/mattermost/commands/channel_test.go`.
+Finally, implement unit tests in `commands/channel_test.go` and end-to-end tests to commands/channel_e2e_test.go`.
 
 ## Adding a New Command
 
-If you want to add a new command to Mattermost, first create a file for the command.
+If you want to add a new command to `mmctl`, first create a file for the command.
 For example, if you want to add a new `emoji` command to manage emojis in
-Mattermost from the CLI, create `cmd/mattermost/commands/emoji.go`
+Mattermost from the CLI, create `commands/emoji.go`
 and add your command and your subcommands there.
 
 A command is exactly the same as a subcommand, so you can follow the same
@@ -100,4 +102,4 @@ Usually, you would then add several subcommands to perform various tasks.
 
 ## Submitting your Pull Request
 
-Please submit a pull request against the [mattermost/mattermost-server](https://github.com/mattermost/mattermost-server) repository by [following these instructions](/contribute/server/developer-workflow/).
+Please submit a pull request against the [mattermost/mmctl](https://github.com/mattermost/mmctl) repository by [following these instructions](/contribute/server/developer-workflow/).

@@ -82,7 +82,7 @@ pygmentsStyle = "manni"
       weight = 4
 
     [[menu.postpend]]
-      url = "https://docs.mattermost.com/"
+      url = "https://docs.mattermost.com/guides/administration.html"
       name = "Admin Docs"
       weight = 5
 
