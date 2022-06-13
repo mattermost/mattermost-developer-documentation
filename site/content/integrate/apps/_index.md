@@ -1,5 +1,5 @@
 ---
-title: "Mattermost Apps (Developer Preview)"
+title: "Apps"
 heading: "Mattermost Apps"
 description: "Apps are lightweight interactive add-ons to Mattermost."
 weight: 20
@@ -31,14 +31,17 @@ Using the Mattermost Apps Framework, you can:
 - Deliver an interactive app experience with dynamic fields and on-demand functions.
 
 ## Host Mattermost Apps
+
+Apps are now generally available and we always appreciate your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost community instance.
+
 You can host your Mattermost Apps as HTTP services or as serverless functions running without dedicated infrastructure in one of three ways:
 
 - **As a Mattermost Cloud app**. 
-  - Cloud customers can use apps available on the [Mattermost Marketplace](https://mattermost.com/marketplace/). Marketplace apps are deployed as AWS Lambda functions, and their usage is included in the service. See our example AWS Lambda apps available for [JavaScript](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/js/aws_hello) and [Golang](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-serverless).
+  - Cloud customers can use apps available on the [Mattermost Marketplace](https://mattermost.com/marketplace/). Marketplace apps are deployed as AWS Lambda functions, and their usage is included in the service. 
 - **As an external (HTTP) app**. 
-  - Apps can be hosted as publicly (or privately) available HTTP services, and the choice of hosting provider is yours. A self-hosted Mattermost customer can install your app from a URL. **External apps are not currently accepted into or available from the Mattermost Marketplace.**
+  - Apps can be hosted as publicly (or privately) available HTTP services, and the choice of hosting provider is yours. A self-hosted Mattermost customer can install your app from a URL.
 - **As a customer-deployable app**. 
-  - An app can be packaged as a bundle, deployable by a customer in their own hosting environment. Currently, [AWS Lambda](https://aws.amazon.com/lambda/), [OpenFaaS](https://www.openfaas.com/), and [Kubeless](https://github.com/vmware-archive/kubeless) are supported, with plans for more serverless platforms, including [Kubernetes](https://kubernetes.io/), and [Docker Compose](https://github.com/docker/compose). **Customer-deployable apps are not yet distributed or available via the Mattermost Marketplace.**
+  - An app can be packaged as a bundle, deployable by a customer in their own hosting environment. Currently, [AWS Lambda](https://aws.amazon.com/lambda/), [OpenFaaS](https://www.openfaas.com/), and [Kubeless](https://github.com/vmware-archive/kubeless) are supported, with plans for more serverless platforms, including [Kubernetes](https://kubernetes.io/), and [Docker Compose](https://github.com/docker/compose).
 
 ## What's Next?
 

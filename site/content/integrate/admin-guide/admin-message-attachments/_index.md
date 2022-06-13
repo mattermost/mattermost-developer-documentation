@@ -137,7 +137,7 @@ And here is how it renders in Mattermost:
 
 ### Can I send a message attachment via the API?
 
-Yes, you can use the [create post RESTful API](https://api.mattermost.com/#tag/posts%2Fpaths%2F~1posts%2Fpost).
+Yes, you can use the [create post RESTful API](https://api.mattermost.com/#operation/CreatePost).
 
 You need to add an "attachment" key to the post's props JSON field. The value is an array of message attachments you want attached to the post. See below for an example curl command.
 
