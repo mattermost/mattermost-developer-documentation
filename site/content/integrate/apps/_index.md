@@ -5,24 +5,23 @@ description: "Apps are lightweight interactive add-ons to Mattermost."
 weight: 20
 ---
 
-If you're a developer or system integrator looking to learn how to extend Mattermost product functionality, but not sure where to start,  you're in the right place. In this section, you'll learn how to get started developing Mattermost Apps using the Mattermost Apps Framework.
+If you're a developer or system integrator looking to learn how to extend Mattermost product functionality, but not sure where to start, you're in the right place. In this section, you'll learn how to get started developing Mattermost Apps using the Mattermost Apps framework.
 
 - Is JavaScript or Golang your language of choice? Jump right in to our [JavaScript](https://developers.mattermost.com/integrate/apps/quick-start-js/) and [Golang](https://developers.mattermost.com/integrate/apps/quick-start-go/) developer quick start guides. Looking for another language? *[learn how to contribute here]*
 - Got an existing Mattermost plugin you want to convert to an app? *[where to go for that info?]*
 
 ### Want to extend Mattermost **without** having to develop an app? 
-Visit the [Mattermost Development Guides](https://developers.mattermost.com/integrate/admin-guide/) to explore the many Mattermost integrations already available. Then, browse the [Mattermost Marketplace](https://mattermost.com/marketplace/) to learn how our Mattermost Community is helping extend core Mattermost features with the Apps Framework to fit their specific organizational needs.
+Visit the [Mattermost Development Guides](https://developers.mattermost.com/integrate/admin-guide/) to explore the many Mattermost integrations already available. Then, browse the [Mattermost Marketplace](https://mattermost.com/marketplace/) to learn how our Mattermost Community is helping extend core Mattermost features with the Apps framework to fit their specific organizational needs.
 
 ## What are Mattermost Apps?
 Mattermost Apps are lightweight, interactive add-ons to Mattermost implemented as a collection of HTTP endpoints. You can write Mattermost apps in your language of choice, and your app is supported on all Mattermost clients, including web, desktop, and mobile.
 
-Apps are available as a Developer Preview and we're looking for your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost Community instance.
+Apps are now generally available and we always appreciate your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost community instance.
 
-## What's the Mattermost Apps Framework?
+## What's the Mattermost Apps framework?
+The Mattermost Apps framework wraps the Mattermost API into a tool making it easy to develop integrations that interact with both the Mattermost Server and web app in predefined ways.
 
-*[what is it and how does it differ from the existing plugin framework?]*
-
-Using the Mattermost Apps Framework, you can:
+While plugins have the ability to modify the Mattermost Server and web app without having to fork those specific repositories, using the Mattermost Apps framework, you can:
 
 - Include full slash command control, including autocompletion.
 - Post messages to channels using the Mattermost REST APIs.
@@ -31,8 +30,6 @@ Using the Mattermost Apps Framework, you can:
 - Deliver an interactive app experience with dynamic fields and on-demand functions.
 
 ## Host Mattermost Apps
-
-Apps are now generally available and we always appreciate your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost community instance.
 
 You can host your Mattermost Apps as HTTP services or as serverless functions running without dedicated infrastructure in one of three ways:
 
@@ -43,11 +40,14 @@ You can host your Mattermost Apps as HTTP services or as serverless functions ru
 - **As a customer-deployable app**. 
   - An app can be packaged as a bundle, deployable by a customer in their own hosting environment. Currently, [AWS Lambda](https://aws.amazon.com/lambda/), [OpenFaaS](https://www.openfaas.com/), and [Kubeless](https://github.com/vmware-archive/kubeless) are supported, with plans for more serverless platforms, including [Kubernetes](https://kubernetes.io/), and [Docker Compose](https://github.com/docker/compose).
 
-## What's Next?
+## What's next?
 
-Learn how to get started developing apps using the Mattermost Apps Framework:
+Learn how to get started developing apps using the Mattermost Apps framework:
 - Deploy with Docker
-- Try out the test app
+- Check out these sample apps:
+
+    - ServiceNow
+    - [Zendesk](https://mattermost.com/marketplace/zendesk-app/)
 - Review frequently asked questions about the apps framework
 - Learn how to troubleshoot common errors
 
@@ -78,10 +78,6 @@ The following steps outline basic steps to deploy Mattermost with Docker. See ou
     ```
 6. Access your Mattermost workspace for the first time based on the hostname and port specified in the ENV file. Follow the onboarding flow as the first first System Admin user for this Mattermost workspace.
 
-## Try the test app
-
-TBD
-
 ## Frequently asked questions
 
 ### When would you build an app vs. a custom slash command vs. a webhook vs. a plugin?
@@ -90,14 +86,14 @@ That depends on your use case, as they each have benefits.
 
 The built-in [incoming webhook]({{< ref "incoming-webhooks" >}}) is great for simple use cases. It requires the incoming payload to contain a valid [Post](https://pkg.go.dev/github.com/nhannv/mattermost-server/model#Post) JSON object - but some external systems don't allow the customization of the fields included in the webhook payload. Compared to built-in webhooks, an App or plugin can be customized to receive an HTTP webhook posting from another system, and can process the incoming data then augment it or make an actionable message in a channel.
 
-A plugin should be used when you need to [directly alter the UI]({{< ref "integrate/plugins/webapp/best-practices" >}}) in Mattermost or you have a feature that requires low latency with the server (such as replacing characters in any message [before it is saved]({{< ref "integrate/plugins/server/reference#Hooks.MessageWillBePosted" >}})). Currently, plugins have several [UX hooks]({{< ref "integrate/plugins/server/reference#Hooks" >}}) that apps cannot access, however we plan to add/migrate more UX hooks into the Apps Framework over time. Please see the [plugin documentation]({{< ref "integrate/plugins" >}}) for more information.
+A plugin should be used when you need to [directly alter the UI]({{< ref "integrate/plugins/webapp/best-practices" >}}) in Mattermost or you have a feature that requires low latency with the server (such as replacing characters in any message [before it is saved]({{< ref "integrate/plugins/server/reference#Hooks.MessageWillBePosted" >}})). Currently, plugins have several [UX hooks]({{< ref "integrate/plugins/server/reference#Hooks" >}}) that apps cannot access, however we plan to add/migrate more UX hooks into the Apps framework over time. Please see the [plugin documentation]({{< ref "integrate/plugins" >}}) for more information.
 
-### What's the difference between the Apps Framework and the plugin framework?
+### What's the difference between the Apps framework and the plugin framework?
 
-The Apps Framework provides a few differences from plugins, including:
+The Apps framework provides a few differences from plugins, including:
 
 - Interactive elements are easier to use and develop.
-- Compatible with both Mobile and Desktop clients without any extra code.
+- Compatible with both mobile and desktop clients without any extra code.
 
 ### What language should I use to write apps?
 
