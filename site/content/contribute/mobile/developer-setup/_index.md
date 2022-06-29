@@ -203,3 +203,18 @@ In order to develop and build the Mattermost mobile apps, you'll need to get a c
     ```
 
 4.  Install the project dependencies with `npm install`
+
+## Environment Troubleshooting
+
+### `PhaseScriptExecution` Failure
+
+When building `ios` targets and using `nvm` to manage `node`, you may encounter an error like:
+
+```sh
+The following build commands failed:
+    PhaseScriptExecution [CP-User]\ Generate\ Specs /Users/user/Library/Developer/Xcode/DerivedData/Mattermost-ahgfkbexhhzwuycanwlxiauwkxlt/Build/Intermediates.noindex/ArchiveIntermediates/Mattermost/IntermediateBuildFilesPath/Pods.build/Release-iphoneos/FBReactNativeSpec.build/Script-46EB2E0002D370.sh (in target 'FBReactNativeSpec' from project 'Pods')
+(1 failure)
+[08:00:31]: Exit status: 65
+```
+
+Ensure you are running the latest version of `nvm` using the [Upgrade Instructions](https://github.com/nvm-sh/nvm#install--update-script)
