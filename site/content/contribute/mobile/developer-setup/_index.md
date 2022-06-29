@@ -217,4 +217,10 @@ The following build commands failed:
 [08:00:31]: Exit status: 65
 ```
 
-Ensure you are running the latest version of `nvm` using the [Upgrade Instructions](https://github.com/nvm-sh/nvm#install--update-script)
+Check the following things:
+
+* Ensure you are running the latest version of `nvm` using the [Upgrade Instructions](https://github.com/nvm-sh/nvm#install--update-script)
+* Ensure you have set your desired version of node in the file `~/.nvmrc`.  E.g.,
+```sh
+$echo v16.2.0 > ~/.nvmrc
+```
