@@ -8,11 +8,10 @@ weight: 5
 This quick start guide explains the basics of writing a Mattermost app. In this guide you will build an app using TypeScript that:
 
 - Contains a `manifest.json`, declares itself an HTTP application that acts as a bot, and attaches to locations in the user interface.
-- Contains a `send` function that sends a interpolated message back to the user.
-- Contains a `send-modal` function that forces displaying the `send` form as a modal.
-- Attaches the form `send-modal` in its `bindings` to a button in the channel header, and the form `send` to a `/node-example` command.
+- Contains a `form` with a `submit` function that can launch a modal (if applicable) and send a interpolated message back to the user.
+- Attaches an icon button to the channel header and creates a `/node-example` slash command to provide functionality.
 
-You can view a working development environment for this example [here](https://github.com/mattermost/mattermost-plugin-apps/tree/master/dev/).
+You can utilize a working development environment for this example [here](https://github.com/mattermost/mattermost-plugin-apps/tree/master/dev/).
 
 ## Prerequisites
 
@@ -29,7 +28,7 @@ The `dev` folder has a `docker-compose.yml` and a `node_app` folder that contain
 docker-compose up
 ```
 
-After everything comes online, you can navigate to [http://localhost:8066/](http://localhost:8066/) to see your local Mattermost server that's configured for building apps locally.
+After everything comes online, you can navigate to [http://localhost:8065/](http://localhost:8065/) to see your local Mattermost server that's configured for building apps locally.
 
 ## Building the app
 
@@ -51,7 +50,7 @@ app.listen(port, () => {
 
 ### Providing a manifest
 
-Your app has to provide a manifest, which declares the app's metadata required for installation. In this example, the following permissions are requested:
+Your app has to provide a manifest, which declares the app's metadata required for installation. In this example, the following permissions and locations are requested:
 
 - Create posts as a bot (`act_as_bot`)
 - Render icons in the channel header (`/channel_header`)
@@ -61,6 +60,7 @@ Your app has to provide a manifest, which declares the app's metadata required f
 const manifest = {
     app_id: 'node-example',
     display_name: "I'm an App!",
+    description: "Example app written with Node.js",
     homepage_url: 'https://github.com/mattermost/mattermost-plugin-apps',
     app_type: 'http',
     icon: 'icon.png',
@@ -97,9 +97,7 @@ const channelHeaderBindings = {
             location: 'send-button',
             icon: 'icon.png',
             label: 'send hello message',
-            submit: {
-                path: '/send',
-            },
+            form
         },
     ],
 } as AppBinding;
@@ -110,7 +108,7 @@ const commandBindings = {
         {
             icon: 'icon.png',
             label: 'node-example',
-            description: 'Example app written with Node.js',
+            description: manifest.description,
             hint: '[send]',
             bindings: [
                 {
@@ -136,47 +134,34 @@ app.post('/bindings', (req, res) => {
 });
 ```
 
-### Functions and forms
+### Providing a form
 
-Functions handle user events on the bindings. This app exposes a `/send` function that displays a `form` modal to capture input (via the channel header binding) before passing to `/send/submit` (explained below). This is necessary to capture the user input because they are simply clicking a button and not passing in any parameters when invoking the binding.
+Forms handle user events on the bindings. This app provides a `form` before `POST`ing to the `/submit` function. In the case of a channel header, the form will launch a modal to collect its fields. In the case of a slash command, the form's fields will be collected as arguments from the user's command.
 
 ```ts
-app.post('/send', (req, res) => {
-    res.json({
-        type: 'form',
-        form: {
-            title: 'Hello, world!',
-            icon: 'icon.png',
-            fields: [
-                {
-                    type: 'text',
-                    name: 'message',
-                    label: 'message',
-                },
-            ],
-            submit: {
-                path: '/send/submit',
-            },
+const form: AppForm = {
+    title: "I'm a form!",
+    icon: 'icon.png',
+    fields: [
+        {
+            type: 'text',
+            name: 'message',
+            label: 'message',
+            position: 1,
         },
-    });
-});
-```
-
-## Serving static assets
-
-Apps may include static assets (e.g., `icon.png`). Static assets must be served under the `static` path. For example, there is a `icon.png` file in the `dev/node_app/static` directory that this app serves:
-
-```ts
-// Serve resources from the static folder
-app.use('/static', express.static('./static'));
+    ],
+    submit: {
+        path: '/submit',
+    },
+};
 ```
 
 ### Serving data
 
-Finally, add the application logic that gets executed when either the slash command is run or the modal submitted:
+Finally, you can see the application logic that is executed when either the slash command is sent or the channel header's modal is submitted. It collects the user's input, interpolates it with a string, and DMs that string in a message back to the user:
 
 ```ts
-app.post('/send/submit', async (req, res) => {
+app.post('/submit', async (req, res) => {
     const call = req.body as AppCallRequest;
 
     const botClient = new Client4();
@@ -229,6 +214,15 @@ app.post('/send/submit', async (req, res) => {
 
     res.json(callResponse);
 });
+```
+
+## Serving static assets
+
+Apps may include static assets (e.g., `icon.png`). Static assets must be served under the `static` path. For example, there is a `icon.png` file in the `dev/node_app/static` directory that this app serves:
+
+```ts
+// Serve resources from the static folder
+app.use('/static', express.static('./static'));
 ```
 
 ## Installing your app in Mattermost
