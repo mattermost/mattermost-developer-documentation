@@ -8,22 +8,19 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     permissions:
       pull-requests: write
 
     steps:
       - name: Download PR number artifact
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: ${{ github.event.workflow_run.workflow_id }}
           name: pr.txt
       - name: Save PR number
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         id: pr
         run: |
-          cat pr.txt
           echo "::set-output name=id::$(<pr.txt)"
       - uses: actions/checkout@v2
         with:
@@ -54,7 +51,7 @@ jobs:
 
       - name: Add comment to PR
         uses: peter-evans/create-or-update-comment@v1
-        if: ${{ success() &&  github.event.workflow_run.conclusion == 'success' }}
+        if: ${{ success() }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ steps.pr.outputs.id }}
@@ -62,7 +59,7 @@ jobs:
             Newest code from ${{ github.actor }} has been published to [preview environment](http://mattermost-dev-docs-preview-pulls.s3-website-us-east-1.amazonaws.com/${{ steps.pr.outputs.id }}) for Git SHA ${{ github.event.workflow_run.head_sha }}
 
       - name: The job has failed
-        if: ${{ failure() && github.event.workflow_run.conclusion == 'success' }}
+        if: ${{ failure() }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
