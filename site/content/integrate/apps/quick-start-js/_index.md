@@ -8,7 +8,7 @@ weight: 5
 This quick start guide explains the basics of writing a Mattermost app. In this guide you will build an app using TypeScript that:
 
 - Contains a `manifest.json`, declares itself an HTTP application that acts as a bot, and attaches to locations in the user interface.
-- Contains a `form` with a `submit` function that can launch a modal (if applicable) and send a interpolated message back to the user.
+- Contains a `form` with a `submit` function that can launch a modal (if applicable) and send an interpolated message back to the user.
 - Attaches an icon button to the channel header and creates a `/node-example` slash command to provide functionality.
 
 You can utilize a working development environment for this example [here](https://github.com/mattermost/mattermost-plugin-apps/tree/master/dev/).
@@ -51,7 +51,6 @@ app.listen(port, () => {
 ### Providing a manifest
 
 Your app has to provide a manifest, which declares the app's metadata required for installation. In this example, the following permissions and locations are requested:
-
 - Create posts as a bot (`act_as_bot`)
 - Render icons in the channel header (`/channel_header`)
 - Create slash commands (`/command`)

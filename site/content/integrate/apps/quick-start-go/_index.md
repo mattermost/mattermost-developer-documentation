@@ -204,19 +204,19 @@ var formData []byte
 
 func main() {
 	// Serve its own manifest as HTTP for convenience in dev. mode.
-	http.HandleFunc("/manifest.json", httputils.HandleJSONData(manifestData))
+	http.HandleFunc("/manifest.json", httputils.DoHandleJSONData(manifestData))
 
 	// Returns the Channel Header and Command bindings for the app.
-	http.HandleFunc("/bindings", httputils.HandleJSONData(bindingsData))
+	http.HandleFunc("/bindings", httputils.DoHandleJSONData(bindingsData))
 
 	// The form for sending a Hello message.
-	http.HandleFunc("/send/form", httputils.HandleJSONData(formData))
+	http.HandleFunc("/send/form", httputils.DoHandleJSONData(formData))
 
 	// The main handler for sending a Hello message.
 	http.HandleFunc("/send/submit", send)
 
 	// Forces the send form to be displayed as a modal.
-	http.HandleFunc("/send-modal/submit", httputils.HandleJSONData(formData))
+	http.HandleFunc("/send-modal/submit", httputils.DoHandleJSONData(formData))
 
 	// Serves the icon for the app.
 	http.HandleFunc("/static/icon.png",
@@ -240,7 +240,7 @@ func send(w http.ResponseWriter, req *http.Request) {
 	appclient.AsBot(c.Context).DM(c.Context.ActingUserID, message)
 
 	httputils.WriteJSON(w,
-		apps.NewOKResponse(nil, "Created a post in your DM channel."))
+		apps.NewDataResponse("Created a post in your DM channel."))
 }
 ```
 

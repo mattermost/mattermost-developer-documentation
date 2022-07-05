@@ -24,8 +24,8 @@ pygmentsStyle = "manni"
 
   [params.notification]
     enable = true
-    url = "https://mattermost.com/careers"
-    text = "We're hiring!"
+    url = "https://mattermost.com/blog/mattermost-v7-0-is-now-available/"
+    text = "Mattermost v7.0 is now available!"
 
   [params.search]
     enable = false
