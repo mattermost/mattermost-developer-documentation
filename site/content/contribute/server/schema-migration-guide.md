@@ -33,7 +33,8 @@ The problem arises when in some databases, for some tables, due to various techn
 ### I need to make a schema change. What do I do?
 
 1. Add the appropriate SQL script file containing the statements you want to run into the migrations directory. This directory is located in `{project_dir}/db/migrations/{driver_name}/`. Do not forget to add scripts for both `mysql` and `postgres` databases.
-2. When you run the mattermost-server binary, the tool will automatically apply the migration if it's required. The migration name will be saved in the `db_migrations` table.
+2. Run `make migrations-extract` to add your new migrations to the `db/migrations/migrations.list` file. This will ensure that there will be merge conflicts in case there is a conflict on migration sequence numbers with the master branch. Since we don't want to have a collision on version numbers of the migration files, the developer should merge the upstream branch to the feature branch just before merging so that we can be sure that there are no versioning issues. In case of a version number collision, the build process will fail and main branch will be broken until it gets fixed.
+3. When you run the mattermost-server binary, the tool will automatically apply the migration if it's required. The migration name will be saved in the `db_migrations` table.
 
 ### My migration has failed. What do I do?
 1. If you think your migration is applied, and you want to revert changes, you can run the down script to roll back in a clean way. You can use morph CLI to apply down migrations.
@@ -54,8 +55,3 @@ However, If the answer to the second question above is "no", then contact the [p
 ### Inform SRE team.
 
 If the migration is large, when the PR is review complete, please cc an SRE team member and ask them to merge it and their convenience. This is so that the migration can run on our Community cluster and Cloud at a suitable time.
-
-### Always sync with upstream before merge
-
-Since we don't want to have a collision on version numbers of the migration files, the developer should merge the upstream branch to the feature branch just before merging so that we can be sure that there are no versioning issues. In case of a version number collision, the build process will fail and main branch will be broken until it gets fixed. 
-
