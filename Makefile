@@ -23,3 +23,8 @@ frontend-plugin-data:
 .PHONY: run
 run:
 	hugo server --buildDrafts --disableFastRender -F -s site
+
+.PHONY: build
+build:
+	rm -rf ./dist
+	hugo -s site --destination ../dist/html --printUnusedTemplates

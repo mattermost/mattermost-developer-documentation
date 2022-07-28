@@ -2,7 +2,7 @@
 title: "Get Started"
 heading: "Integrate & Extend Mattermost"
 description: "Extend Mattermost with Apps, APIs, plugins, webhooks, and more."
-weight: 5
+weight: 10
 aliases: 
     - /integrate/getting-started/how-should-i-integrate/
     - /extend/getting-started
@@ -39,8 +39,8 @@ Plugins are the most comprehensive way to add new features and customization, bu
 
 
 
-* Slash Commands - Enable your users to [trigger custom actions]({{< ref "/integrate/other-integrations/slash-commands" >}}) from within Mattermost.
-* Webhooks - Post to channels with [incoming webhooks]({{< ref "/integrate/other-integrations/incoming-webhooks" >}}), or listen for new messages with [outgoing webhooks]({{< ref "/integrate/other-integrations/outgoing-webhooks" >}}).
-* Embed - Learn how to use the Mattermost API to [embed Mattermost]({{< ref "/integrate/other-integrations/embed" >}}) into web browsers and web applications.
-* Customize - Modify the source code for the server or web app to make basic [changes and customization]({{< ref "/integrate/other-integrations/customization" >}}).
+* Slash Commands - Enable your users to [trigger custom actions]({{< ref "/integrate/slash-commands" >}}) from within Mattermost.
+* Webhooks - Post to channels with [incoming webhooks]({{< ref "/integrate/webhooks/incoming/incoming-webhooks" >}}), or listen for new messages with [outgoing webhooks]({{< ref "/integrate/webhooks/outgoing/outgoing-webhooks" >}}).
+* Embed - Learn how to use the Mattermost API to [embed Mattermost]({{< ref "/integrate/customization/embed" >}}) into web browsers and web applications.
+* Customize - Modify the source code for the server or web app to make basic [changes and customization]({{< ref "/integrate/customization/customization" >}}).
 * Interactive Messages - Create messages that include [interactive functionality](https://docs.mattermost.com/developer/interactive-messages.html).
