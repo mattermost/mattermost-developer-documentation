@@ -1,5 +1,5 @@
 ---
-title: "Outgoing Webhooks"
+title: "Using Outgoing Webhooks"
 heading: "Using outgoing webhooks"
 description: "Mattermost supports webhooks to easily integrate external applications into the server. Use outgoing webhooks to post automated responses to posts made by your users."
 weight: 80

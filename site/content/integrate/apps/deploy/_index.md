@@ -2,7 +2,7 @@
 title: "Deployment"
 heading: "Admin's Guide to Deploying Apps"
 description: "TODO"
-weight: 70
+weight: 80
 ---
 
 - In **Mattermost Cloud**, all apps are deployed to the Marketplace by Mattermost

@@ -1,5 +1,5 @@
 ---
-title: "Incoming Webhooks"
+title: "Using Incoming Webhooks"
 heading: "Using incoming webhooks"
 description: "Mattermost supports webhooks to easily integrate external applications into the server. Use incoming webhooks to post messages to Mattermost Public Channels, Private Channels, and Direct Messages. Messages are sent via an HTTP POST request to a Mattermost URL generated for each application and contain a specifically formatted JSON payload in the request body."
 weight: 80

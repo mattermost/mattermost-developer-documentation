@@ -6,7 +6,7 @@ weight: 80
 ---
 
 Integrations open dialogs by sending an `HTTP POST`, containing some data in the request body, to an endpoint on the Mattermost server. Integrations can use this endpoint to open dialogs when users [click message buttons or select an option from a menu]({{< ref "admin-interactive-messages.md" >}}), or use a 
-[custom slash command]({{< ref "admin-slash-commands.md" >}}).
+[custom slash command]({{< ref "/integrate/slash-commands" >}}).
 
 Moreover, [plugins]({{< ref "admin-plugins-beta.md" >}}) can trigger a dialog based on user actions. For instance, if a plugin adds a button in the channel header, clicking that button may open a dialog.
 

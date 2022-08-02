@@ -2,7 +2,7 @@
 title: "Quick start guide (serverless)"
 heading: "Writing a Mattermost app for AWS and OpenFaaS, in Go"
 description: "This quick start guide will walk you through the basics of writing a Mattermost app that can be deployed to serverless platforms, in Go."
-weight: 15
+weight: 30
 ---
 
 This quick start guide explains the basics of writing a Mattermost app that can
@@ -208,6 +208,8 @@ Note: names `package function` and `func Handle` appear to be required
 `http.DefaultServeMux`, so we just need to add our handlers and serve.
 
 ```go
+package path_to_your_module
+
 var deployType apps.DeployType
 
 func InitApp(dt apps.DeployType) {
@@ -245,7 +247,7 @@ func send(w http.ResponseWriter, req *http.Request) {
 
 Since package `function` is built independently by OpenFaaS, add its own `go.mod` for its ddependencies:
 
-```go
+```
 module {{path-to-your-module}}/function
 
 go 1.16
@@ -277,7 +279,7 @@ func main() {
 ```
 
 #### `go.mod`
-```go
+```
 module {{path-to-your-module}}/aws
 
 go 1.16
@@ -335,7 +337,7 @@ func main() {
 ```
 
 #### `go.mod`
-```go
+```
 module {{path-to-your-module}}/http
 
 go 1.16
@@ -363,7 +365,7 @@ functions:
       GO111MODULE: on
     handler: ./function
     # docker registry name will be prepended by appsctl
-	image: hello-openfaas
+    image: "hello-openfaas"
 ```
 
 #### `template`

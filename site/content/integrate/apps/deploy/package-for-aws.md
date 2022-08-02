@@ -1,5 +1,5 @@
 ---
-title: "aws"
+title: "Packaging for AWS"
 heading: "Packaging apps for AWS Lambda"
 description: "TODO"
 weight: 30

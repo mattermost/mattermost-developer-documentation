@@ -1,5 +1,5 @@
 ---
-title: "Slash Commands"
+title: "Using Slash Commands"
 heading: "Using slash commands"
 description: "Mattermost supports slash commands to easily integrate external applications into the server. They function similarly to outgoing webhooks, except they can be used in any channel - including Private channels and Direct Messages."
 weight: 80

@@ -1,7 +1,6 @@
 ---
 title: "Subscriptions"
-heading: "Subscriptions - receiving and acting on Mattermost events"
-description: "TODO."
+description: "Interacting with Mattermost events"
 weight: 10
 ---
 
