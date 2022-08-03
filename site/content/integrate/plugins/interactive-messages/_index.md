@@ -3,6 +3,8 @@ title: "Interactive Messages: Buttons and Menus"
 heading: "Using Buttons and Menus"
 description: "Mattermost supports interactive message buttons and menus for incoming and outgoing webhooks, custom slash commands, and plugins via actions. They help make your integrations richer by completing common tasks inside Mattermost conversations, increasing user engagement and productivity."
 weight: 80
+aliases:
+  - /integrate/admin-guide/admin-interactive-messages/
 ---
 
 ![image](interactive-messages.png)

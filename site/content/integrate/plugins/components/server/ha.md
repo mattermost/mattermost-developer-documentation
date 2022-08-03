@@ -4,7 +4,9 @@ heading: "Mattermost Enterprise Edition E20: High Availability"
 description: "All Mattermost plugins should consider High Availability (HA) environments. Learn more about our standards for workign with HA mode servers."
 date: 2018-07-10T00:00:00-05:00
 weight: 60
-aliases: [/extend/plugins/server/ha/]
+aliases: 
+  - /extend/plugins/server/ha/
+  - /integrate/plugins/server/ha/
 ---
 
 Mattermost Enterprise Edition servers with an E20 license have the ability to run in [High Availability (HA)](https://docs.mattermost.com/deployment/cluster.html) mode, meaning a cluster of Mattermost app servers running together as a single Mattermost deployment.

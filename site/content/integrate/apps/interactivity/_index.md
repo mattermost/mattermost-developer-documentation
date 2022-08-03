@@ -3,6 +3,8 @@ title: "Interactivity"
 heading: "Interactivity"
 description: "TODO"
 weight: 40
+aliases:
+  - /integrate/apps/api/interactivity/
 ---
 
 ### Modal Forms

@@ -3,7 +3,9 @@ title: Best Practices
 heading: "Best Practices for Plugins on Mattermost"
 description: "Read about some of the best practices for working with plugins in Mattermost."
 weight: 0
-aliases: [/extend/plugins/server/best-practices/]
+aliases:
+  - /extend/plugins/server/best-practices/
+  - /integrate/plugins/server/best-practices/
 ---
 
 ## How should plugins serve publicly available static files?

@@ -3,6 +3,8 @@ title: "Third-party webhooks"
 heading: "Hello, Webhooks!"
 description: "In this example, the http app will demonstrate connect webhooks"
 weight: 800
+aliases:
+  - /integrate/apps/api/third-party-webhooks/
 ---
 
 This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-webhooks)), written in Go and runnable on `http://localhost:8081`.

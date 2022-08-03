@@ -3,6 +3,8 @@ title: "Quick start guide (Node.js)"
 heading: "Writing a Mattermost app in Node.js with TypeScript"
 description: "This quick start guide will walk you through the basics of writing a Mattermost app in Node.js with TypeScript."
 weight: 20
+aliases:
+  - /integrate/apps/quick-start-js/
 ---
 
 This quick start guide explains the basics of writing a Mattermost app. In this guide you will build an app using TypeScript that:

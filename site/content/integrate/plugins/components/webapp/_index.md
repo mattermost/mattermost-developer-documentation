@@ -4,7 +4,9 @@ heading: "Web App Plugins at Mattermost"
 description: "Web app plugins extend and modify the Mattermost web and desktop apps, without having to fork and rebase on every Mattermost release."
 date: 2018-07-10T00:00:00-05:00
 weight: 20
-aliases: [/extend/plugins/webapp/]
+aliases:
+  - /extend/plugins/webapp/
+  - /integrate/plugins/webapp/
 ---
 
 Web app plugins extend and modify the Mattermost web and desktop apps, without having to fork and rebase on every Mattermost release.

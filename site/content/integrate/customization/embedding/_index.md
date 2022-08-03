@@ -3,6 +3,9 @@ title: "Embedding Mattermost"
 heading: "Using Mattermost in other applications"
 description: "This guide discusses how to embed Mattermost into other applications in different ways."
 weight: 80
+aliases:
+  - /integrate/other-integrations/embed/
+  - /integrate/admin-guide/admin-embedding/
 ---
 
 ## Launching Mattermost From a Button Selection

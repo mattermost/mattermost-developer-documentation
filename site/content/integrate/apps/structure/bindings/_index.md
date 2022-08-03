@@ -3,6 +3,8 @@ title: "Bindings"
 heading: "Bindings"
 description: "TODO"
 weight: 30
+aliases:
+  - /integrate/apps/api/bindings/
 ---
 
 Bindings ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding)) are what establish the relationship between locations and calls. Whenever the bindings route is called, your app needs to provide the list of bindings available according to the context ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context)). Some fields included in the context:

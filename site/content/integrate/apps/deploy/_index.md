@@ -3,6 +3,8 @@ title: "Deployment"
 heading: "Admin's Guide to Deploying Apps"
 description: "TODO"
 weight: 80
+aliases:
+  - /integrate/apps/devenv/
 ---
 
 - In **Mattermost Cloud**, all apps are deployed to the Marketplace by Mattermost

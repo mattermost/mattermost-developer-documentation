@@ -4,7 +4,9 @@ heading: "Quick Start: Extending the Mattermost Web App"
 description: "This quickstart tutorial will walk you through the basics of extending the Mattermost web app using plugins."
 date: 2018-07-10T00:00:00-05:00
 weight: -10
-aliases: [/extend/plugins/webapp/hello-world/]
+aliases:
+  - /extend/plugins/webapp/hello-world/
+  - /integrate/plugins/webapp/hello-world/
 ---
 
 This tutorial will walk you through the basics of extending the Mattermost web app.

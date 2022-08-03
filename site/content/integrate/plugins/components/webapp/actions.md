@@ -4,7 +4,9 @@ heading: "Redux Actions for Web App Plugins"
 description: "Mattermost-redux is a library of shared code between Mattermost JavaScript clients. Learn how to use Redux actions with a plugin."
 date: 2018-07-10T00:00:00-05:00
 weight: 11
-aliases: [/extend/plugins/webapp/actions/]
+aliases:
+  - /extend/plugins/webapp/actions/
+  - /integrate/plugins/webapp/actions/
 ---
 
 When building web app plugins, it's common to perform actions or access the state that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), which is our library of shared code between Mattermost JavaScript clients. The `mattermost-redux` library exports types and functions that are imported by the web application. These functions can be imported by plugins and used the same way. There are a few different kinds of functions exported by the library:

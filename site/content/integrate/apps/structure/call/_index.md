@@ -3,6 +3,8 @@ title: "Call"
 heading: "Call"
 description: "TODO"
 weight: 20
+aliases:
+  - /integrate/apps/api/call/
 ---
 
 

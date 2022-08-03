@@ -3,12 +3,14 @@ title: "Using OAuth2.0 with Mattermost"
 heading: "Using OAuth2.0 with Mattermost"
 description: "OAuth 2.0 is a protocol that allows Mattermost to authorize API requests from external applications."
 weight: 80
+aliases:
+  - /integrate/admin-guide/admin-oauth2/
 ---
 
  The authorization allows:
 
 - Users with an account on a Mattermost server to sign in to third-party applications. You can find a [sample OAuth2 Client Application for Mattermost here](https://github.com/enahum/mattermost-oauth2-client-sample) to test the functionality.
-- A Mattermost server to authenticate requests to a third-party API. One popular application is Zapier integration which allows you to integrate more than 700 applications with Mattermost through OAuth 2.0. See our [Zapier documentation](../admin-zapier-integration/) to learn more.
+- A Mattermost server to authenticate requests to a third-party API. One popular application is Zapier integration which allows you to integrate more than 700 applications with Mattermost through OAuth 2.0. See our [Zapier documentation]({{< ref "/integrate/zapier-integration" >}}) to learn more.
 
 ## Register your application in Mattermost
 

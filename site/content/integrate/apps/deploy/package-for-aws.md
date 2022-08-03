@@ -3,6 +3,9 @@ title: "Packaging for AWS"
 heading: "Packaging apps for AWS Lambda"
 description: "TODO"
 weight: 30
+aliases:
+  - /integrate/apps/package/
+  - /integrate/apps/package-aws/
 ---
 
 Developers must prepare apps for deployment to AWS which includes creating an app bundle and making the app runnable as an AWS Lamda function.

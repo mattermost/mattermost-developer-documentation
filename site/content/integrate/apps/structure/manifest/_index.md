@@ -3,6 +3,8 @@ title: "Manifest"
 heading: "App Manifest"
 description: "App manifest spec"
 weight: 10
+aliases:
+  - /integrate/apps/api/manifest/
 ---
 
 All apps should define a manifest

@@ -4,8 +4,9 @@ heading: "Integrate & Extend Mattermost"
 description: "Extend Mattermost with Apps, APIs, plugins, webhooks, and more."
 weight: 10
 aliases: 
-    - /integrate/getting-started/how-should-i-integrate/
-    - /extend/getting-started
+  - /integrate/getting-started/how-should-i-integrate/
+  - /extend/getting-started/
+  - /integrate/other-integrations/
 ---
 Mattermost offers a wealth of methods to add functionality and customize the experience to suit your needs, whether you want to add new user capabilities with slash commands, build an advanced chatbot, or completely change the functionality of your server.
 

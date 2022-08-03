@@ -3,9 +3,11 @@ title: "Bot Accounts"
 heading: "Using bot accounts"
 description: "Use bot accounts to integrate with Mattermost through plugins or the Mattermost RESTful API."
 weight: 30
+aliases:
+  - /integrate/admin-guide/admin-bot-accounts/
 ---
 
-Bot accounts access the Mattermost [RESTful API](https://api.mattermost.com) on behalf of a bot through the use of the [personal access tokens feature](../admin-personal-access-token.md). Bot accounts are just like user accounts, except they:
+Bot accounts access the Mattermost [RESTful API](https://api.mattermost.com) on behalf of a bot through the use of the [personal access tokens feature]({{< ref "/integrate/reference/personal-access-token" >}}). Bot accounts are just like user accounts, except they:
 
   - Can't be logged into.
   - Can't be used to create other bot accounts.
@@ -148,7 +150,7 @@ No, but you can automate your integration to cycle its token through the REST AP
 3. Update the services that leverage the token with the new `token` value from step 1.
 4. Use [RevokeUserAccessToken](https://api.mattermost.com/#operation/RevokeUserAccessToken) to revoke the old token based on the `token_id`.
 
-For more information about access tokens, see [the personal access tokens documentation](../admin-personal-access-token).
+For more information about access tokens, see [the personal access tokens documentation]({{< ref "/integrate/reference/personal-access-token" >}}).
 
 ### Do bot accounts make it easier to impersonate someone else such as the CEO or an HR coordinator?
 

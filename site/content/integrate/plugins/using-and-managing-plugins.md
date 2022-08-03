@@ -3,6 +3,8 @@ title: "Using and Managing Plugins"
 heading: "Using plugins with Mattermost"
 description: "Mattermost supports plugins to customize and extend the platform."
 weight: 50
+aliases:
+  - /integrate/admin-guide/admin-plugins-beta/
 ---
 
 See our [demo plugin](https://github.com/mattermost/mattermost-plugin-demo) that illustrates the potential for a Mattermost plugin. To start writing your own plugin, consult our [starter template](https://github.com/mattermost/mattermost-plugin-starter-template).

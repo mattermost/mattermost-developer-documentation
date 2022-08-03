@@ -3,6 +3,8 @@ title: "Using Slash Commands"
 heading: "Using slash commands"
 description: "Mattermost supports slash commands to easily integrate external applications into the server. They function similarly to outgoing webhooks, except they can be used in any channel - including Private channels and Direct Messages."
 weight: 80
+aliases:
+  - /integrate/admin-guide/admin-slash-commands/
 ---
 
 Messages that begin with `/` are interpreted as slash commands. The commands will send an HTTP POST request to a web service, and process a response back to Mattermost. Mattermost supports both [built-in](https://docs.mattermost.com/developer/slash-commands.html#built-in-commands) and [custom slash commands](https://docs.mattermost.com/developer/slash-commands.html#custom-slash-command).
@@ -121,7 +123,7 @@ which would render in Mattermost as:
 
 ![image](weatherBot.png)
 
-11. You're all set! See [developer documentation](../admin-slash-commands) for details on what parameters are supported by slash commands. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins](https://developers.mattermost.com/integrate/admin-guide/admin-plugins-beta/). Messages with advanced formatting can be created by including an [attachment array](../admin-message-attachments) and [interactive message buttons](../admin-interactive-messages) in the JSON payload.
+11. You're all set! See [developer documentation]({{< ref "/integrate/slash-commands/using-slash-commands" >}}) for details on what parameters are supported by slash commands. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins]({{< ref "/integrate/plugins/using-and-managing-plugins" >}}). Messages with advanced formatting can be created by including an [attachment array]({{< ref "/integrate/reference/message-attachments" >}}) and [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}) in the JSON payload.
 
 **Note:** [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the username is set to `webhook`.
 
@@ -137,7 +139,7 @@ Similarly, [Enable integrations to override profile picture icons](https://docs.
 
 ## Share Your Integration
 
-If you've built an integration for Mattermost, please consider [sharing your work](https://developers.mattermost.com/integrate/getting-started/) in our [app directory](https://mattermost.com/marketplace/).
+If you've built an integration for Mattermost, please consider [sharing your work]({{< ref "/integrate/getting-started" >}}) in our [app directory](https://mattermost.com/marketplace/).
 
 The [app directory](https://mattermost.com/marketplace/) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-hosted infrastructure.
 
@@ -169,4 +171,4 @@ Mattermost automatically translates the data coming from Slack:
 
 ## Troubleshooting
 
-See [developer documentation](../admin-slash-commands) for troubleshooting, or [join the Mattermost user community for help](https://mattermost.com/pl/default-ask-mattermost-community).
+See [developer documentation]({{< ref "/integrate/slash-commands/using-slash-commands" >}}) for troubleshooting, or [join the Mattermost user community for help](https://mattermost.com/pl/default-ask-mattermost-community).

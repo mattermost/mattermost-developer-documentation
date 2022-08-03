@@ -3,7 +3,9 @@ title: Best Practices
 heading: "Best Practices for Plugins - Mattermost"
 description: "Thinking about adding a plugin to Mattermost? Check out these design best practices."
 weight: 0
-aliases: [/extend/plugins/webapp/best-practices/]
+aliases:
+  - /extend/plugins/webapp/best-practices/
+  - /integrate/plugins/webapp/best-practices/
 ---
 
 ## Design Best Practices

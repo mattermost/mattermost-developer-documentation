@@ -3,6 +3,8 @@ title: "Quick start guide (serverless)"
 heading: "Writing a Mattermost app for AWS and OpenFaaS, in Go"
 description: "This quick start guide will walk you through the basics of writing a Mattermost app that can be deployed to serverless platforms, in Go."
 weight: 30
+aliases:
+  - /integrate/apps/quick-start-serverless/
 ---
 
 This quick start guide explains the basics of writing a Mattermost app that can

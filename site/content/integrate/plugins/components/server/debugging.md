@@ -2,7 +2,9 @@
 title: "Debugging Server Plugins"
 heading: "Debugging the Mattermost Server"
 description: "Plugins communicate with the main Mattermost server by RPC. Learn how to debug them."
-aliases: [/extend/plugins/server/debugging/]
+aliases: 
+  - /extend/plugins/server/debugging/
+  - /integrate/plugins/server/debugging/
 ---
 
 Plugins communicate with the main Mattermost server by [RPC](https://github.com/hashicorp/go-plugin). In order to debug them with Delve, a few steps are necessary.

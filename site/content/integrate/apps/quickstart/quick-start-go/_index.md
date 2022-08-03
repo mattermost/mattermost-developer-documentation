@@ -3,6 +3,8 @@ title: "Quick start guide (Go)"
 heading: "Writing a Mattermost app in Go"
 description: "This quick start guide will walk you through the basics of writing a Mattermost app in Go."
 weight: 10
+aliases:
+  - /integrate/apps/quick-start-go/
 ---
 
 This quick start guide explains the basics of writing a Mattermost app. In this guide you will build an app that:

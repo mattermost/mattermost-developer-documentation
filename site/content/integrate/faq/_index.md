@@ -1,28 +1,11 @@
 ---
-title: "Development Guides"
-heading: "Mattermost Development Guides"
-description: "Learn how to build Mattermost integrations via demos, example code, and guided content."
-weight: 90
+title: "Frequently Asked Questions (FAQ)"
+heading: "Frequently Asked Questions (FAQ)"
+description: "Frequently Asked Questions"
+weight: 80
+aliases:
+  - /integrate/admin-guide/
 ---
-Mattermost offers numerous methods for developers to build integrations; you can add functionality and customize nearly every aspect of the Mattermost user experience. Visit the [Integrate & Extend Mattermost]({{< ref "/integrate/getting-started" >}}) page to learn more about the ways you can integrate with Mattermost. This section of the docs includes guides, tutorials, and example code to help you build your integration more quickly. 
-
-Here are some guides to help you get started with your Mattermost integration:
-* [Example Integrations]({{< ref "/integrate/admin-guide/examples" >}}) - Many Mattermost integrations are open source, which means you can use them as a reference for how to build your own.
-*  [Use Bot Accounts]({{< ref "/integrate/admin-guide/admin-bot-accounts" >}}) -  Bot accounts are headless user accounts that access Mattermost via personal access tokens.
-* [Interactive Messages]({{< ref "/integrate/admin-guide/admin-interactive-messages" >}}) - Create messages with built-in menus and buttons to enable user interaction.
-* [Slash Commands]({{< ref "/integrate/admin-guide/admin-slash-commands" >}}) - Custom slash commands enable your users to execute complex functionality from within Mattermost channels.
-* Webhooks - Webhooks send data  notifications to or from your Mattermost server.
-  * [Incoming Webhooks]({{< ref "integrate/admin-guide/admin-webhooks-incoming" >}}) - Receive notifications from external services as messages in Mattermost channels
-  * [Outgoing Webhooks]({{< ref "/integrate/admin-guide/admin-webhooks-outgoing" >}}) - Send notifications to external services for changes that happen on your Mattermost server
-* [Message Attachments]({{< ref "/integrate/admin-guide/admin-message-attachments" >}}) - Include custom content as an attachment to Mattermost messages.
-* [Interactive Dialogs]({{< ref "/integrate/admin-guide/admin-interactive-dialogs" >}}) - Create dialogs that let your users interact with Mattermost integrations.
-* [OAuth 2.0]({{< ref "/integrate/admin-guide/admin-oauth2" >}}) - Connect OAuth applications to Mattermost.
-* [Embed Mattermost]({{< ref "/integrate/admin-guide/admin-embedding" >}}) - Embed Mattermost into other applications.
-* [Build a Plugin]({{< ref "/integrate/admin-guide/admin-plugins-beta" >}}) - Learn how to build your own Mattermost plugin.
-
-Take a look at the left hand navigation for a complete list of Mattermost integration guides.
-
-## FAQ
 ### What's the difference between incoming and outgoing webhooks?
 
 A webhook is a way for one app to send real-time data to another app.
@@ -65,11 +48,11 @@ When self-hosting restrictions are less strict, AWS, Heroku, and other public cl
 
 ### How do I create a bot account with personal access tokens?
 
-See [bot accounts documentation](../admin-bot-accounts) to learn more about how to create and manage bot accounts in Mattermost.
+See [bot accounts documentation]({{< ref "/integrate/reference/bot-accounts" >}}) to learn more about how to create and manage bot accounts in Mattermost.
 
 ### How do I create a bot account without personal access tokens or webhooks?
 
-Deployments that cannot create bot accounts via webhooks due to security reasons and do not want to use [personal access tokens](../admin-personal-access-tokens) with no expiry time, can use the following approach:
+Deployments that cannot create bot accounts via webhooks due to security reasons and do not want to use [personal access tokens]({{< ref "/integrate/reference/personal-access-token" >}}) with no expiry time, can use the following approach:
 
 1. Create a bot account using a secure email and strong password.
 2. Manually add the account to all teams and channels it needs access to. If your deployment has a lot of teams or channels, you may create a CLI script to automate the process.

@@ -4,7 +4,9 @@ heading: "Writing a Mattermost Plugin"
 description: "This tutorial will walk you through the basics of writing a Mattermost plugin with a server component."
 date: 2018-07-10T00:00:00-05:00
 weight: -10
-aliases: [/extend/plugins/server/hello-world/]
+aliases: 
+  - /extend/plugins/server/hello-world/
+  - /integrate/plugins/server/hello-world/
 ---
 
 This tutorial will walk you through the basics of writing a Mattermost plugin with a server component.

@@ -3,6 +3,8 @@ title: "Interactive Dialogs"
 heading: "Using interactive dialogs"
 description: "Interactive dialogs are used by applications that integrate with the Mattermost server. They are a method for integrations to receive some form-styled input from users and have that input submitted back to the integration. Use them to gather structured information from the end user to perform an action or a request."
 weight: 70
+aliases:
+  - /integrate/admin-guide/admin-interactive-dialogs/
 ---
 
 Integrations open dialogs by sending an `HTTP POST`, containing some data in the request body, to an endpoint on the Mattermost server. Integrations can use this endpoint to open dialogs when users [click message buttons or select an option from a menu]({{< ref "/integrate/plugins/interactive-messages" >}}), or use a 

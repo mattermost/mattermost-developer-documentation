@@ -4,7 +4,9 @@ heading: "Mattermost Web App Reference"
 description: "Learn how to implement the PluginClass interface used by the Mattermost web app to initialize and uninitialize your plugin."
 date: 2018-07-10T00:00:00-05:00
 weight: 10
-aliases: [/extend/plugins/webapp/reference/]
+aliases:
+  - /extend/plugins/webapp/reference/
+  - /integrate/plugins/webapp/reference/
 ---
 
 ## Table of Contents:

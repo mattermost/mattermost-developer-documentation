@@ -3,6 +3,8 @@ title: "Lifecycle"
 heading: "The App Lifecycle"
 description: "The app lifecycle."
 weight: 20
+aliases:
+  - /integrate/apps/api/lifecycle/
 ---
 
 ## Install

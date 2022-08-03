@@ -3,13 +3,15 @@ title: "Using Mattermost with Webhook"
 heading: "Using Mattermost with Golang Webhook"
 description: "[Webhook](https://github.com/adnanh/webhook) is a Golang application for setting up webhooks on a server with minimal configuration. It provides a simple way to trigger events on a server while keeping it separate from your web server."
 weight: 80
+aliases:
+  - /integrate/admin-guide/admin-golang-webhook/
 ---
 
 Mattermost's outgoing webhooks feature can be used with this fairly easily as long as you take a few things into account.
 
 ## Sending information from Mattermost
 
-Mattermost's [interactive message buttons](../admin-interactive-messages) send information using a parameter called "context." The easiest way to get all the information from Mattermost is to use the following configuration, which will pass the entire payload to your script as a string:
+Mattermost's [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}) send information using a parameter called "context." The easiest way to get all the information from Mattermost is to use the following configuration, which will pass the entire payload to your script as a string:
 
 ```
   {

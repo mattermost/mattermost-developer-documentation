@@ -3,6 +3,8 @@ title: "Structure"
 heading: "Apps Structure"
 description: "An overview of the structure of an App"
 weight: 30
+aliases:
+  - /integrate/apps/api/
 ---
 
 ## App Structure

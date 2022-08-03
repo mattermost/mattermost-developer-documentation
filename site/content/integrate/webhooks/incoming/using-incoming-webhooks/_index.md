@@ -3,6 +3,8 @@ title: "Using Incoming Webhooks"
 heading: "Using incoming webhooks"
 description: "Mattermost supports webhooks to easily integrate external applications into the server. Use incoming webhooks to post messages to Mattermost Public Channels, Private Channels, and Direct Messages. Messages are sent via an HTTP POST request to a Mattermost URL generated for each application and contain a specifically formatted JSON payload in the request body."
 weight: 80
+aliases:
+  - /integrate/admin-guide/admin-webhooks-incoming/
 ---
 
 
@@ -37,7 +39,7 @@ If you're running [cURL on Windows](https://curl.haxx.se/windows), ensure inner 
   curl -i -X POST -H "Content-Type: application/json" -d "{\"text\": \"Hello, this is some text\nThis is more text. :tada:\"}" http://{your-mattermost-site}/hooks/xxx-generatedkey-xxx
 ```
 
-See [developer documentation]({{< ref "/integrate/webhooks/incoming/incoming-webhooks" >}}) for details on what parameters are supported by incoming webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins](https://developers.mattermost.com/integrate/admin-guide/admin-plugins-beta/). The following payload gives an example webhook that uses additional parameters and formatting options:
+See [developer documentation]({{< ref "/integrate/webhooks/incoming/incoming-webhooks" >}}) for details on what parameters are supported by incoming webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins]({{< ref "/integrate/plugins/using-and-managing-plugins" >}}). The following payload gives an example webhook that uses additional parameters and formatting options:
 
 ```
   payload={
@@ -58,7 +60,7 @@ This content will be displayed in the Town Square channel.
 
 ![image](incoming_webhooks_full_example.png)
 
-Messages with advanced formatting can be created by including an [attachment array](../admin-message-attachments) and [interactive message buttons](../admin-interactive-messages) in the JSON payload.
+Messages with advanced formatting can be created by including an [attachment array]({{< ref "/integrate/reference/message-attachments" >}}) and [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}) in the JSON payload.
 
 **Note:** [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the username is set to `webhook`.
 

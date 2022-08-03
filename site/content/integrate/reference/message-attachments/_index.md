@@ -7,7 +7,7 @@ weight: 40
 
 For additional formatting options, and for compatibility with Slack non-markdown integrations, an `attachments` array can be sent by integrations and rendered by Mattermost.
 
-You can also add interactive message buttons as part of attachments. They help make your integrations richer by completing common tasks inside Mattermost conversations, increasing user engagement and productivity. For more information, see [documentation](../admin-interactive-messages).
+You can also add interactive message buttons as part of attachments. They help make your integrations richer by completing common tasks inside Mattermost conversations, increasing user engagement and productivity. For more information, see [documentation]({{< ref "/integrate/plugins/interactive-messages" >}}).
 
 ## Attachment Options
 
