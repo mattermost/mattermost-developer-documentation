@@ -17,7 +17,7 @@ Zapier is authorized using OAuth2.0. The setup guide requires that a System Admi
 
 The first time you set up Zapier on your Mattermost instance you'll be required to enable an OAuth 2.0 application which can be used by everyone on your server. Your System Admin must execute these steps.
 
-To learn more about OAuth 2.0 applications, including what permissions they have access to, see the [OAuth 2.0 documentation]({{< ref "/integrate/apps/authentication/admin-oauth2" >}}).
+To learn more about OAuth 2.0 applications, including what permissions they have access to, see the [OAuth 2.0 documentation]({{< ref "/integrate/apps/authentication/oauth2" >}}).
 
 #### Enable OAuth 2.0
 

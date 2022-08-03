@@ -7,7 +7,7 @@ weight: 80
 
 ![image](interactive-messages.png)
 
-For information on interactive dialogs, [see here](../admin-interactive-dialogs).
+For information on interactive dialogs, [see here]({{< ref "/integrate/plugins/interactive-dialogs" >}}).
 
 Use interactive messages to simplify complex workflows by allowing users to take quick actions directly through your integration post. For example, they enable your integration to:
 
@@ -114,7 +114,7 @@ The actions used in the previous example include the following:
 
 ## Message Menus
 
-Similar to buttons, add message menus as `actions` in your integration [message attachments]({{< ref "admin-message-attachments" >}}).
+Similar to buttons, add message menus as `actions` in your integration [message attachments]({{< ref "/integrate/reference/message-attachments" >}}).
 
 ![image](images/message-menus.png)
 

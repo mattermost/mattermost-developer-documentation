@@ -5,7 +5,7 @@ description: "Interactive dialogs are used by applications that integrate with t
 weight: 70
 ---
 
-Integrations open dialogs by sending an `HTTP POST`, containing some data in the request body, to an endpoint on the Mattermost server. Integrations can use this endpoint to open dialogs when users [click message buttons or select an option from a menu]({{< ref "admin-interactive-messages.md" >}}), or use a 
+Integrations open dialogs by sending an `HTTP POST`, containing some data in the request body, to an endpoint on the Mattermost server. Integrations can use this endpoint to open dialogs when users [click message buttons or select an option from a menu]({{< ref "/integrate/plugins/interactive-messages" >}}), or use a 
 [custom slash command]({{< ref "/integrate/slash-commands" >}}).
 
 Moreover, [plugins]({{< ref "/integrate/plugins/using-and-managing-plugins" >}}) can trigger a dialog based on user actions. For instance, if a plugin adds a button in the channel header, clicking that button may open a dialog.
@@ -60,7 +60,7 @@ Each dialog supports elements for users to enter information.
 
 - `text`: Single-line plain text field. Use this for inputs such as names, email addresses, or phone numbers.
 - `textarea`: Multi-line plain text field. Use this field when the answer is expected to be longer than 150 characters.
-- `select`: Message menu. Use this for pre-selected choices. Can either be static menus or dynamic menus generated from users and Public channels of the system. For more information on message menus, see [the documentation]({{< ref "admin-interactive-messages.md" >}}).
+- `select`: Message menu. Use this for pre-selected choices. Can either be static menus or dynamic menus generated from users and Public channels of the system. For more information on message menus, see [the documentation]({{< ref "/integrate/plugins/interactive-messages" >}}).
 - `bool`: Checkbox option. Use this for binary selection.
 - `radio`: Radio button option. Use this to quickly select an option from pre-selected choices.
 
@@ -162,7 +162,7 @@ Select elements are message menus that allow users to select one predefined opti
   }
 ```
 
-Note that the JSON payload for `select` type elements matches [interactive message menus]({{< ref "admin-interactive-messages.md" >}}).
+Note that the JSON payload for `select` type elements matches [interactive message menus]({{< ref "/integrate/plugins/interactive-messages" >}}).
 
 The `select` element can also be generated dynamically from users and channels of the system.
 
@@ -470,4 +470,4 @@ The schema for these objects is the same as Slack's, except for the following di
   - `hint` in Slack dialogs is `help_text` in Mattermost dialogs for a more consistent naming convention with other integration types.
   - `value` in Slack dialogs is `default` in Mattermost dialogs for a more consistent naming convention with other integration types.
 
-Moreover, the JSON payload for `select` type elements matches [interactive message menus]({{< ref "admin-interactive-messages.md" >}}).
+Moreover, the JSON payload for `select` type elements matches [interactive message menus]({{< ref "/integrate/plugins/interactive-messages" >}}).
