@@ -45,3 +45,11 @@ Once downloaded and executed, each plugin should have registered itself via the 
 Components registered by the plugin via the registry are tracked in the Redux store and used by `Pluggable` components throughout the web app. `Pluggable` components with a `pluggableName` attribute can render multiple such components registered by plugins.
 
 Custom post types work similarly, but are registered slightly differently, use a separate reducer and have more of a custom implementation.
+
+## Redux Actions
+
+Further information on the available Redux Actions is documented here: [Redux Actions]({{< ref "/integrate/plugins/components/webapp/actions" >}})
+
+## Best Practices
+
+Some best practices for working with the webapp component of a plugin are documented here: [Best Practices]({{< ref "/integrate/plugins/components/webapp/best-practices" >}})

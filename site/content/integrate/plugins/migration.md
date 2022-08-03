@@ -3,7 +3,7 @@ title: Migrating Plugins
 heading: "Migrating Plugins from Mattermost 5.5"
 description: "The plugin package exposed by Mattermost 5.6 and later drops support for automatically unmarshalling a plugin’s configuration onto the struct embedding MattermostPlugin."
 date: 2018-10-01T00:00:00-05:00
-weight: 50
+weight: 60
 aliases: [/extend/plugins/migration/]
 ---
 

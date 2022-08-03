@@ -3,7 +3,7 @@ title: "Examples"
 heading: "Examples of Mattermost Integrations"
 description: "Check out some examples of integrations to get a better idea of how you can extend Mattermost."
 date: "2017-01-19T12:01:23-04:00"
-weight: 5
+weight: 65
 ---
 
 See a full list of all Mattermost integrations <a target="_blank" href="https://mattermost.com/marketplace/">here</a>.

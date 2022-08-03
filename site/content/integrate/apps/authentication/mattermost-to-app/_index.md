@@ -2,7 +2,7 @@
 title: "From Mattermost"
 heading: "Authenticating incoming requests from Mattermost"
 description: "TODO"
-weight: 200
+weight: 20
 ---
 
 - HTTP apps can request that Mattermost includes a secret-based JWT in each request. See [HTTP Deployment]({{< ref "deploy-http">}}) for more.

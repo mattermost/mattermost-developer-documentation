@@ -1,5 +1,5 @@
 ---
-title: "OAuth 2.0 Applications"
+title: "Using OAuth2.0 with Mattermost"
 heading: "Using OAuth2.0 with Mattermost"
 description: "OAuth 2.0 is a protocol that allows Mattermost to authorize API requests from external applications."
 weight: 80

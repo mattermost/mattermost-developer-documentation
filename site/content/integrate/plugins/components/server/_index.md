@@ -38,3 +38,15 @@ Plugins with both a web app and server component can leverage this REST API to e
 When starting a plugin, the server consults the [plugin's manifest]({{< ref "/integrate/plugins/manifest-reference" >}}) to determine if a server component was included. If found, the server launches a new process using the executable included with the plugin.
 
 The server will trigger the [OnActivate]({{< ref "/integrate/plugins/components/server/reference#Hooks.OnActivate" >}}) hook if the plugin is successfully started, allowing you to perform startup events. If the plugin is disabled, the server will trigger the [OnDeactivate]({{< ref "/integrate/plugins/components/server/reference#Hooks.OnDeactivate" >}}) hook. While running, the server plugin can consume hook events, make API calls, launch threads or subprocesses of its own, interact with third-party services or do anything else a regular program can do.
+
+## High Availability
+
+Considerations for plugins in a high availability configuration are documented here: [High Availability]({{< ref "/integrate/plugins/components/server/ha" >}})
+
+## Best Practices
+
+Some best practices for working with the server component of a plugin are documented here: [Best Practices]({{< ref "/integrate/plugins/components/server/best-practices" >}})
+
+## Debugging
+
+Guidelines for debugging the server-side of plugins are documented here: [Debugging]({{< ref "/integrate/plugins/components/server/debugging" >}})

@@ -2,7 +2,7 @@
 title: "To third-party (OAuth2)"
 heading: "Hello, OAuth2!"
 description: "In this example, the http will connect via OAuth2"
-weight: 500
+weight: 30
 ---
 
 This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-oauth2)), written in Go and runnable on `http://localhost:8082`.
