@@ -126,7 +126,7 @@ And here is how it renders in Mattermost:
 
 `footer_icon`: An optional URL to an image file (GIF, JPEG, PNG, BMP, or SVG) that is displayed as a 16x16 pixel thumbnail before the footer text.
 
-.![image](attachments-footer.png)
+![image](attachments-footer.png)
 
 ## Known Issues
 

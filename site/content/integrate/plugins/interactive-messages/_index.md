@@ -118,7 +118,7 @@ The actions used in the previous example include the following:
 
 Similar to buttons, add message menus as `actions` in your integration [message attachments]({{< ref "/integrate/reference/message-attachments" >}}).
 
-![image](images/message-menus.png)
+![image](message-menus.png)
 
 The following payload gives an example that uses message menus.
 

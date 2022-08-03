@@ -41,7 +41,7 @@ In our example, we would set the channel to `town-square` and specify `#build` a
 6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a [trusted internal connection](https://docs.mattermost.com/configure/configuration-settings.html).
 7. On the next page, copy the **Token** value. This will be used in a later step.
 
-![image](images/outgoing_webhooks_token.png)
+![image](/integrate/faq/images/outgoing_webhooks_token.png)
 
 8. Next, write your external application. Include a function, which receives HTTP POST requests from Mattermost. The function should look something like this:
 
@@ -82,7 +82,7 @@ If your integration sends back a JSON response, make sure it returns the `applic
 
 which would render in Mattermost as:
 
-![image](images/webhooksTable.png)
+![image](/integrate/faq/images/webhooksTable.png)
 
 11. You're all set! See [developer documentation]({{< ref "/integrate/webhooks/outgoing/outgoing-webhooks" >}}) for details on what parameters are supported by outgoing webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins]({{< ref "/integrate/plugins/using-and-managing-plugins" >}}).
 
