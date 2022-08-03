@@ -2,7 +2,7 @@
 title: "Message Attachments"
 heading: "Using message attachments"
 description: "A wide range of rich text formatting options, including bold, italic, headings, in-line images, and tables, can be used in integrations. For more information about formatting, see [formatting text](https://docs.mattermost.com/help/messaging/formatting-text.html)."
-weight: 80
+weight: 40
 ---
 
 For additional formatting options, and for compatibility with Slack non-markdown integrations, an `attachments` array can be sent by integrations and rendered by Mattermost.

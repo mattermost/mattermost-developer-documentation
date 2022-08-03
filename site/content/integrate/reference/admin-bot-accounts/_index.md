@@ -2,7 +2,7 @@
 title: "Bot Accounts"
 heading: "Using bot accounts"
 description: "Use bot accounts to integrate with Mattermost through plugins or the Mattermost RESTful API."
-weight: 80
+weight: 30
 ---
 
 Bot accounts access the Mattermost [RESTful API](https://api.mattermost.com) on behalf of a bot through the use of the [personal access tokens feature](../admin-personal-access-token.md). Bot accounts are just like user accounts, except they:

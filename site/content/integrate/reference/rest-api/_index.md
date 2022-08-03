@@ -6,6 +6,4 @@ date: "2017-01-19T12:01:23-04:00"
 weight: 19
 ---
 
-Redirecting to api.mattermost.com
-
-<meta http-equiv="refresh" content="0; url=https://api.mattermost.com/" />
+The Mattermost REST API is documented here: {{< newtabref href="https://api.mattermost.com" title="Mattermost REST API" >}}
