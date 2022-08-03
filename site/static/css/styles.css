@@ -4540,6 +4540,10 @@ ol > li + li {
     margin: 0 auto;
 }
 
+.mm-grid-col-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .mm-grid-col-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -4567,20 +4571,20 @@ ol > li + li {
         background-repeat: no-repeat;
         background-position: top left;
         background-size: 18vw;
-    }    
+    }
 }
 
 @media (min-width: 1280px) {
     .homepage-wrapper {
         background-size: 290px;
-    }    
+    }
 }
 
 @media (min-width: 768px) {
     .homepage__marquee {
         text-align: center;
         padding-bottom: 40px;
-    }    
+    }
 }
 
 .mm-h1 {
@@ -4617,7 +4621,7 @@ ol > li + li {
     .homepage-card {
         min-height: 400px;
         margin-bottom: 0;
-    }  
+    }
 }
 
 .homepage-card img {
