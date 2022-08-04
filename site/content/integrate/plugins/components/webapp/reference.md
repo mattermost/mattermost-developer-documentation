@@ -17,8 +17,8 @@ aliases:
 - [Theme](#theme)
 - [Exported Libraries and Functions](#exported-libraries-and-functions)
     + [post-utils](#post-utils)
-      - [`formatText(text, options)`](#-formattext-text--options--)
-      - [`messageHtmlToComponent(html, isRHS, options)`](#-messagehtmltocomponent-html--isrhs--options--)
+      - [`formatText(text, options)`](#formattexttext-options)
+      - [`messageHtmlToComponent(html, isRHS, options)`](#messagehtmltocomponenthtml-isrhs-options)
       - [Usage Example](#usage-example)
 
 ## PluginClass
@@ -42,7 +42,7 @@ class PluginClass {
 }
 ```
 
-<a name="registerPlugin"/>
+<a id="registerPlugin"></a>
 
 Your plugin should implement this class and register it using the global `registerPlugin` method defined on the window by the webapp:
 

@@ -16,7 +16,7 @@ There are a few limitations regarding [how the re-branding of Mattermost](https:
 
 The [Mattermost server](https://github.com/mattermost/mattermost-server)'s source code, written in Golang, may be customized to deliver additional functionalities or to meet specific security requirements.
 
-It's recommended that you attempt to meet such customizations by leveraging the [Plugin framework](/integrate/plugins/) in order to avoid creating any breaking changes, however details on how to build a custom server may be found [here]({{< ref "/integrate/customization/customization/server-build" >}}).
+It's recommended that you attempt to meet such customizations by leveraging the [Plugin framework]({{< ref "/integrate/plugins" >}}) in order to avoid creating any breaking changes, however details on how to build a custom server may be found [here]({{< ref "/integrate/customization/customization/server-build" >}}).
 
 ## Server files
 
@@ -26,4 +26,4 @@ Note: Modifications to server files can be utilized in both Team Edition and Ent
 
 ## Web App
 
-Mattermost's web application runs on React, and [its codebase](https://github.com/mattermost/mattermost-webapp) has been open-sourced (regardless of which edition your server uses). You can view details on how to customize the web app in [here]({{< ref "/integrate/customization/customization/webapp" >}}). Keep in mind, however, that some changes to the web app can also leverage the [Plugin](/integrate/plugins/webapp/) framework, which can help reduce the necessity of rebasing your custom client to each Mattermost release.
+Mattermost's web application runs on React, and [its codebase](https://github.com/mattermost/mattermost-webapp) has been open-sourced (regardless of which edition your server uses). You can view details on how to customize the web app in [here]({{< ref "/integrate/customization/customization/webapp" >}}). Keep in mind, however, that some changes to the web app can also leverage the [Plugin]({{< ref "/integrate/plugins/components/webapp" >}}) framework, which can help reduce the necessity of rebasing your custom client to each Mattermost release.

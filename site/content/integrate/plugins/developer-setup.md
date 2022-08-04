@@ -7,7 +7,7 @@ weight: 20
 aliases: [/extend/plugins/developer-setup/]
 ---
 
-Once you have your [server](/contribute/server/developer-setup/) and [webapp](/contribute/webapp/developer-setup/) set up, you can start developing on plugins.
+Once you have your [server]({{< ref "/contribute/server/developer-setup" >}}) and [webapp]({{< ref "/contribute/webapp/developer-setup" >}}) set up, you can start developing on plugins.
 
 **Note:** Plugin development doesn't require a development build of Mattermost. Development builds of Mattermost are only required if you want to develop for Mattermost internally.
 
