@@ -211,7 +211,7 @@ The list of supported fields for the `select` type element is included below:
 
 From Mattermost v5.16 you can use `checkbox` elements. It looks like a plain text field with a checkbox to be selected. Below is an example of a `checkbox` element that asks for meeting feedback.
 
-.. image:: ../../source/images/interactive-dialog-bool.png
+![image](interactive-dialog-bool.png)
 
 ```
   {
@@ -456,7 +456,7 @@ Below is a full example of a JSON payload that creates an interactive dialog in 
 
 ## Share your integration
 
-If you've built an integration for Mattermost, please consider [sharing your work](https://developers.mattermost.com/integrate/getting-started/) in our [app directory](https://mattermost.com/marketplace/).
+If you've built an integration for Mattermost, please consider [sharing your work]({{< ref "/integrate/getting-started" >}}) in our [app directory](https://mattermost.com/marketplace/).
 
 The [app directory](https://mattermost.com/marketplace/) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-hosted infrastructure.
 

@@ -16,7 +16,7 @@ aliases:
 
 You must register your application in Mattermost to generate OAuth 2.0 credentials (client ID and secret), which your application can use to authenticate API calls to Mattermost, and which Mattermost uses to authorize API requests from the application.
 
-If you'd like to set up a Zapier integration with OAuth 2.0, see our [Zapier documentation](../admin-zapier-integration/) to learn more.
+If you'd like to set up a Zapier integration with OAuth 2.0, see our [Zapier documentation]({{< ref "/integrate/zapier-integration" >}}) to learn more.
 
 ### Enable OAuth 2.0 applications
 
