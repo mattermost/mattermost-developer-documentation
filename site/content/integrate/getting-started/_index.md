@@ -21,13 +21,11 @@ effective way to build Mattermost customizations and improvements efficiently.
 
 [Build your App now]({{< ref "/integrate/apps" >}})
 
-
 ## API
 
 Interact with users, channels, and everything else that happens on your Mattermost server via a modern REST API that meets the OpenAPI specification. The API is for developers who want to build bots and other interactions that don’t rely on customizing the Mattermost user experience.
 
-[View the API Reference](https://api.mattermost.com/).
-
+{{< newtabref href="https://api.mattermost.com" title="View the API Reference" >}}<br/>
 
 ## Plugins
 
