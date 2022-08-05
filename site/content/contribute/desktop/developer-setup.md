@@ -44,8 +44,8 @@ To develop with the Desktop App, we recommend that you setup a Mattermost server
 
 You can find information on setting up those instances here:
 
-[Server Developer Setup](/contribute/server/developer-setup)  
-[Webapp Developer Setup](/contribute/webapp/developer-setup)
+[Server Developer Setup]({{< ref "/contribute/server/developer-setup" >}})  
+[Webapp Developer Setup]({{< ref "/contribute/webapp/developer-setup" >}})
 
 Alternatively, for some changes you may be able to test using an existing Mattermost instance, or one that has been deployed on platforms like Docker, Linux, Kubernetes, Heroku, or others. Please refer to the [Mattermost Deployment Guide](https://docs.mattermost.com/guides/deployment.html) for more info.
 

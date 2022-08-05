@@ -8,7 +8,7 @@ weight: 5
 
 Before writing a script, ensure that it has a corresponding test case in Zephyr. All test cases may be found in this [link](https://mattermost.atlassian.net/projects/MM?selectedItem=com.atlassian.plugins.atlassian-connect-plugin%3Acom.kanoah.test-manager__main-project-page#!/design?projectId=10302). If test case is not available, feel free to prompt the QA team who will either search from an existing Zephyr entry or if it's a new one, it will be created for you.
 
-1. Create a test file based on [folder and file structure](/contribute/mobile/e2e/file-structure/).
+1. Create a test file based on [folder and file structure]({{< ref "/contribute/mobile/e2e/file-structure" >}}).
 2. Include Zephyr identification (ID) and title in the test description, following the format of `it('[Zephyr_id] [title]')` or `it('[Zephyr_id]_[step] [title]')` if the test case has multiple steps.
 
    For test case "[MM-T109 RN apps: User can't send the same message repeatedly](https://mattermost.atlassian.net/projects/MM?selectedItem=com.atlassian.plugins.atlassian-connect-plugin%3Acom.kanoah.test-manager__main-project-page#!/testCase/MM-T109)", it should be:

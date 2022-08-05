@@ -7,7 +7,7 @@ weight: 2
 
 Set up your development environment for building, running, and testing the Mattermost web app.
 
-1. Set up your [development environment for the Mattermost server](/contribute/server/developer-setup/).
+1. Set up your [development environment for the Mattermost server]({{< ref "/contribute/server/developer-setup" >}}).
 
 2. Fork https://github.com/mattermost/mattermost-webapp
 

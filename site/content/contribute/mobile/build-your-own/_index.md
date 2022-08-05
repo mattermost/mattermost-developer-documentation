@@ -14,11 +14,11 @@ As an alternative we've also created a set of **scripts** to help automate build
 
 **Note:** By using the **scripts**, [Fastlane](https://docs.fastlane.tools/#choose-your-installation-method) and other dependencies will be installed in your system.
 
-##### [Buid the Android app](android/) or [Buid the iOS app](ios/)
-
+- [Build the Android app]({{< ref "/contribute/mobile/build-your-own/android" >}})
+- [Build the iOS app]({{< ref "/contribute/mobile/build-your-own/ios" >}})
 
 ### Push Notifications with Your Own App
 
 When building your own Mattermost mobile app, you will also need to host the [Mattermost Push Notification Service](https://github.com/mattermost/mattermost-push-proxy) in order to receive push notifications.
 
-See [Setup Push Notifications](/contribute/mobile/push-notifications/) for more details.
+See [Setup Push Notifications]({{< ref "/contribute/mobile/push-notifications" >}}) for more details.

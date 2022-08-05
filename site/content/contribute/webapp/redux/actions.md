@@ -157,7 +157,7 @@ To add a new Redux action, you must
     }
     ```
 
-3. If you're adding a new action type, add or update existing reducers to handle the new action. More information about reducers is available [here](/contribute/redux/reducers/).
+3. If you're adding a new action type, add or update existing reducers to handle the new action. More information about reducers is available [here]({{< ref "/contribute/webapp/redux/reducers" >}}).
 4. Add unit tests to make sure that the action has the intended effects on the store. Test location is adjacent to the file being tested. Example, for `src/actions/admin.js`, test is located at `src/actions/admin.test.js`.  Add test file if necessary. More information on unit testing reducers is available below.
 
 ### Adding a new API Action
@@ -192,7 +192,7 @@ If your action is wrapping an API call, there's a few things that you will need 
         );
     }
     ```
-4. Make the necessary changes to the reducers to handle your action as well as adding a reducer to update the `requests` section of the store. In most cases, you can use the `handleRequest` and `initialRequestState` helper functions to construct the reducer for you. More information about reducers is available [here](/contribute/redux/reducers/).
+4. Make the necessary changes to the reducers to handle your action as well as adding a reducer to update the `requests` section of the store. In most cases, you can use the `handleRequest` and `initialRequestState` helper functions to construct the reducer for you. More information about reducers is available [here]({{< ref "/contribute/webapp/redux/reducers" >}}).
     ```javascript
     function getUser(state = initialRequestState(), action) {
         return handleRequest(
