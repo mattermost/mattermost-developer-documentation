@@ -6,6 +6,7 @@ date: "2017-08-19T12:01:23-04:00"
 weight: 30
 aliases:
   - /integrate/other-integrations/outgoing-webhooks/
+  - /integrate/outgoing-webhooks/
 ---
 
 ### Basic Usage

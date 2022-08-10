@@ -56,7 +56,7 @@ App services:
 - [Subscriptions]({{< ref "subscriptions" >}}) covers how to subscribe to
   notifications abdout Mattermost events. Examples of a subscription include having your App notified whenever a message is posted in a channel that mentions your @bot account.
 
-- [Third-party webhooks]({{< ref "third-party-webhooks" >}}) covers subscribing to
+- [External webhooks]({{< ref "/integrate/apps/functionality/external-webhooks" >}}) covers subscribing to
   webhooks from third-party systems.
 
 - [Lifecycle]({{< ref "lifecycle" >}}) covers lifecycle callback API, i. e.
