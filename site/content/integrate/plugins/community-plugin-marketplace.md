@@ -2,7 +2,7 @@
 title: Community Plugins in the Marketplace
 heading: "Community Plugins in the Marketplace"
 description: "Once your plugin has reached a certain level of quality, you might consider submitting it to the Marketplace."
-weight: 60
+weight: 110
 aliases: [/extend/plugins/community-plugin-marketplace/]
 ---
 

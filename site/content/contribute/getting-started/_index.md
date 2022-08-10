@@ -4,6 +4,8 @@ heading: "Contribute Code to Mattermost"
 description: "Learn how to contribute code to the core Mattermost repositories."
 date: "2018-05-19T12:01:23-04:00"
 weight: 1
+aliases:
+  - /contribute/devtalks/
 ---
 
 This site is for developers who want to contribute code to the core Mattermost project. If you’re looking for other ways to contribute, [head over to our website](https://mattermost.com/contribute/). Before getting started, it’s a good idea to review our guide on [integrating and extending Mattermost]({{< ref "/integrate/getting-started" >}}) because you might be able to build the improvements you want without needing to contribute them upstream.
