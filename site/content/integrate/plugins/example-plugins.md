@@ -9,11 +9,11 @@ aliases: [/extend/plugins/example-plugins/]
 
 ## Server "Hello, world!"
 
-To get started extending server-side functionality with plugins, take a look at our [server "Hello, world!" tutorial](../server/hello-world/).
+To get started extending server-side functionality with plugins, take a look at our [server "Hello, world!" tutorial]({{< ref "/integrate/plugins/components/server/hello-world" >}}).
 
 ## Web App "Hello, world!"
 
-To get started extending browser-side functionality with plugins, take a look at our [web app "Hello, world!" tutorial](../webapp/hello-world/).
+To get started extending browser-side functionality with plugins, take a look at our [web app "Hello, world!" tutorial]({{< ref "/integrate/plugins/components/webapp/hello-world" >}}).
 
 ## Demo Plugin
 

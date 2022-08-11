@@ -115,7 +115,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(ItemList);
 ```
 
-If the selectors and/or actions you need don't yet exist in Redux then you should go add those first by following the [guide to adding actions and selectors](/contribute/redux/actions/).
+If the selectors and/or actions you need don't yet exist in Redux then you should go add those first by following the [guide to adding actions and selectors]({{< ref "/contribute/webapp/redux/actions" >}}).
 
 Your `index.ts` and `item_list.ts` files will live together in an `item_list/` directory.
 
@@ -165,4 +165,4 @@ export default function ItemList(props: Props) {
 ```
 
 ---
-To test your component, [follow the guide here](/contribute/webapp/unit-testing/).
+To test your component, [follow the guide here]({{< ref "/contribute/webapp/unit-testing" >}}).

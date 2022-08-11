@@ -6,7 +6,7 @@ date: 2022-03-24T00:40:23-07:00
 weight: 1
 ---
 
-This guide will help you configure your developer environment for the Focalboard **Personal Server**. For most features, this is the easiest way to get started working against code that ships across editions. For working with **Mattermost Boards** (Focalboard as a plugin), please refer to the [Mattermost Boards Plugin Guide](../mattermost-boards-setup-guide/).
+This guide will help you configure your developer environment for the Focalboard **Personal Server**. For most features, this is the easiest way to get started working against code that ships across editions. For working with **Mattermost Boards** (Focalboard as a plugin), please refer to the [Mattermost Boards Plugin Guide]({{< ref "/contribute/focalboard/mattermost-boards-setup-guide" >}}).
 
 ## Installing prerequisites
 ### All
@@ -130,7 +130,7 @@ Run `make ci`, which is similar to the `.gitlab-ci.yml` workflow and includes:
 
 ## Staying informed
 
-Are you interested in influencing the future of the Focalboard open source project? Please read the [Focalboard Contribution Guide](../). We welcome everyone and appreciate any feedback. ❤️ There are several ways you can get involved:
+Are you interested in influencing the future of the Focalboard open source project? Please read the [Focalboard Contribution Guide]({{< ref "/contribute/focalboard" >}}). We welcome everyone and appreciate any feedback. ❤️ There are several ways you can get involved:
 
 * **Changes**: See the [CHANGELOG](https://github.com/mattermost/focalboard/blob/main/CHANGELOG.md) for the latest updates
 * **GitHub Discussions**: Join the [Developer Discussion](https://github.com/mattermost/focalboard/discussions) board

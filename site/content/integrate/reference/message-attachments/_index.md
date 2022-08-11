@@ -87,7 +87,7 @@ Here is an example message attachment:
         "author_icon": "https://mattermost.com/wp-content/uploads/2022/02/icon_WS.png",
         "author_link": "https://mattermost.org/",
         "title": "Example Attachment",
-        "title_link": "https://developers.mattermost.com/integrate/admin-guide/admin-message-attachments/",
+        "title_link": "https://developers.mattermost.com/integrate/reference/message-attachments/",
         "fields": [
           {
             "short":false,

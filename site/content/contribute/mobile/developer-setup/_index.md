@@ -39,7 +39,7 @@ We recommend using npm version 7 (with either Node 15 or 16). To make switching 
 
 ##### Linux
 
--	Install using your distribution's package manager (Note that different distros provide different node versions, check that it is a supported [NodeJS version](#install-nodejs))
+-	Install using your distribution's package manager (Note that different distros provide different node versions, check that it is a supported [NodeJS version](#node-and-npm))
 
 Other installation options:
 

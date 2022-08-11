@@ -28,7 +28,7 @@ const selectedPost = getSelectedPost(state);
 const postsInSelectedThread = getPostsInThread(state, selectedPost.root_id);
 ```
 
-For an example of how a selector like `makeGetPostInThread` could be used with React, see [here](/contribute/redux/react-redux/).
+For an example of how a selector like `makeGetPostInThread` could be used with React, see [here]({{< ref "/contribute/webapp/redux/react-redux" >}}).
 
 ## Adding a Selector
 

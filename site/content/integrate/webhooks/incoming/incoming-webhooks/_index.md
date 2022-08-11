@@ -1,5 +1,5 @@
 ---
-title: "Incoming Webhooks at Mattermost"
+title: "Incoming Webhooks"
 heading: "Incoming Webhooks at Mattermost"
 description: "Incoming webhooks let you post some data to a Mattermost endpoint to create a message in a channel."
 date: "2017-08-19T12:01:23-04:00"
@@ -8,6 +8,8 @@ aliases:
   - /integrate/other-integrations/incoming-webhooks/
   - /integrate/incoming-webhooks/
 ---
+
+Incoming webhooks let you POST some data to a Mattermost endpoint to create a message in a channel.
 
 ### Basic usage
 
