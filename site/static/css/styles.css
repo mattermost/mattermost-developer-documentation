@@ -4536,7 +4536,8 @@ ol > li + li {
 
 /* 2021 Reskin Global */
 .mm-container {
-    max-width: 1100px;
+    /* 2 cards of equal width + 40px space between the cards + 20px left padding + 20px right padding */
+    max-width: 760px;
     margin: 0 auto;
 }
 

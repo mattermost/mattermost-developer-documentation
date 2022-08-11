@@ -5,4 +5,4 @@ description: "TODO"
 weight: 40
 ---
 
-See [third-party webhooks]({{< ref "third-party-webhooks">}}).
+See [external webhooks]({{< ref "/integrate/apps/functionality/external-webhooks">}}).

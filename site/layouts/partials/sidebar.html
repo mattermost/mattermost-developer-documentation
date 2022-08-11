@@ -8,7 +8,7 @@
             {{ if eq $.Section .Section }}
             {{ range .Pages.ByWeight }}
                 {{ $active := (eq $ .) }}
-                {{ $expanded := $.IsDescendant . }}
+                {{ $expanded := or ($.IsDescendant .) (eq $ .) }}
 
                 {{ $icon :=  "fa-plus-square-o" }}
                 {{ if $expanded }}
@@ -32,7 +32,7 @@
                 <ul class="sub-menu" {{ if $expanded }}style="display: block"{{ end }}>
                     {{ range .Pages.ByWeight }}
                         {{ $active := (eq $ .) }}
-                        {{ $expanded := $.IsDescendant . }}
+                        {{ $expanded := or ($.IsDescendant .) (eq $ .) }}
 
                         {{ $icon :=  "fa-plus-square-o" }}
                         {{ if $expanded }}

@@ -3,6 +3,11 @@ title: "AWS"
 heading: "Admin's Guide to Deploying Apps to AWS"
 description: "TODO"
 weight: 20
+aliases:
+  - /integrate/apps/deployment-aws/
+  - /integrate/apps/deployment-aws/deploy-to-aws/
+  - /integrate/apps/deployment-aws/hello-lambda/
+  - /integrate/apps/deployment-aws/prepare-app/
 ---
 
 # Deployment in self-managed environments

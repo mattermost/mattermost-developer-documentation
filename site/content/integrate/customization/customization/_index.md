@@ -3,7 +3,9 @@ title: "Customizing Mattermost"
 heading: "Customizing Mattermost: An Introduction"
 description: "Learn more about customizing Mattermost to create a more personalized experience depending on the needs of your deployment."
 weight: 50
-aliases: [/extend/customization/]
+aliases: 
+  - /extend/customization/
+  - /integrate/other-integrations/customization/
 ---
 
 Mattermost allows for a variety of customization options and modifications, making it possible to create a more adequate experience depending on the needs of each deployment.
