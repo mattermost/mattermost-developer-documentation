@@ -14,7 +14,7 @@ Now that the app can receive push notifications, we need to make sure that the M
 
 - A Linux box server with at least 1GB of memory.
 - A copy of the [Mattermost Push Notification Service](https://github.com/mattermost/mattermost-push-proxy/releases).
-- [Custom Android and/or iOS](/contribute/mobile/build-your-own/) Mattermost mobile apps.
+- [Custom Android and/or iOS]({{< ref "/contribute/mobile/build-your-own" >}}) Mattermost mobile apps.
 - Private and public keys obtained from the [Apple Developer Program](https://developer.apple.com/account/ios/certificate/).
 - A Firebase Cloud Messaging Server key obtained from the [Firebase Console](https://console.firebase.google.com).
 
@@ -70,7 +70,7 @@ In this command, `vX.X.X` refers to the release version you want to download. Se
 
 ### Set up Mattermost Push Notification Service to Send iOS Push Notifications
 
-- Double click the **Push Notifications Certificate** which is generated and downloaded while [Setting up Push Notifications for iOS](/contribute/mobile/push-notifications/ios) to add it to your Keychain Access. It downloads by default as `aps.cer`.
+- Double click the **Push Notifications Certificate** which is generated and downloaded while [Setting up Push Notifications for iOS]({{< ref "/contribute/mobile/push-notifications/ios" >}}) to add it to your Keychain Access. It downloads by default as `aps.cer`.
 
 - Open **Keychain Access**, select the **login** keychain and **My Certificates** from the side menu.
 ![image](/img/mobile/ios_keychain_select.png)
@@ -191,7 +191,7 @@ This could also be because you generated a certificate for the wrong bundle ID. 
 
 ##### *TLS: Unknown Certificate Authority* error
 
-**For iOS / Apple Push Notifications**: If you see a message in the push proxy log that includes `tls: unknown certificate authority` for iOS devices, it's likely Apple has invalidated your client certificate, or you're using a client certificate without [the correct certificate authority.](https://developer.apple.com/news/?id=7gx0a2lp) To resolve this, follow [these instructions to generate a new certificate](https://developers.mattermost.com/contribute/mobile/push-notifications/ios/), and then [upload it to your push proxy server](#set-up-mattermost-push-notification-service-to-send-ios-push-notifications).
+**For iOS / Apple Push Notifications**: If you see a message in the push proxy log that includes `tls: unknown certificate authority` for iOS devices, it's likely Apple has invalidated your client certificate, or you're using a client certificate without [the correct certificate authority.](https://developer.apple.com/news/?id=7gx0a2lp) To resolve this, follow [these instructions to generate a new certificate]({{< ref "/contribute/mobile/push-notifications/ios" >}}), and then [upload it to your push proxy server](#set-up-mattermost-push-notification-service-to-send-ios-push-notifications).
 
 ### Reporting issues
 

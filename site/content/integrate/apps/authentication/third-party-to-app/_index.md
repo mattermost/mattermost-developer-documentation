@@ -2,7 +2,7 @@
 title: "From third-party (webhooks)"
 heading: "Authenticating incoming requests from third-party"
 description: "TODO"
-weight: 700
+weight: 40
 ---
 
-See [third-party webhooks]({{< ref "third-party-webhooks">}}).
+See [external webhooks]({{< ref "/integrate/apps/functionality/external-webhooks">}}).

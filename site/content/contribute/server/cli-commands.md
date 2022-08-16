@@ -102,4 +102,4 @@ Usually, you would then add several subcommands to perform various tasks.
 
 ## Submitting your Pull Request
 
-Please submit a pull request against the [mattermost/mmctl](https://github.com/mattermost/mmctl) repository by [following these instructions](/contribute/server/developer-workflow/).
+Please submit a pull request against the [mattermost/mmctl](https://github.com/mattermost/mmctl) repository by [following these instructions]({{< ref "/contribute/server/developer-workflow" >}}).

@@ -16,9 +16,13 @@
         </a>
 	    <div>
             <img src="{{ "img/notification-bar/megaphone_icon.svg" | absURL }}" width="26" height="26" alt="megaphone icon">
+    {{ if eq .Site.Params.notification.url "" }}
+            {{ .Site.Params.notification.text }}
+    {{ else }}
 			<a href="{{ .Site.Params.notification.url | absURL }}">
 				{{ .Site.Params.notification.text }}
 			</a>
+    {{ end }}
 		</div>
     </div>
 </div>

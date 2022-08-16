@@ -188,7 +188,7 @@ There are no hard rules on when a feature flag should be used. It is left up to 
 ## FAQ
 
 1. What is the expected default value for boolean feature flags? Is it `true` or `false`?
- - Definitely `false`. The idea is to use them to slowly roll out a feature. When the code is deployed, the feature flag is not enabled yet. See more details on feature flag rollout timelines [here](https://developers.mattermost.com/contribute/server/feature-flags/#timelines-for-rollouts).
+ - Definitely `false`. The idea is to use them to slowly roll out a feature. When the code is deployed, the feature flag is not enabled yet. See more details on feature flag rollout timelines [here]({{< ref "/contribute/server/feature-flags#timelines-for-rollouts" >}}).
 
 2. Is it possible to use a plugin feature flag such as `PluginIncidentManagement` to "prepackage" a plugin only on Cloud by only setting a plugin version to that flag on Cloud? Can self-hosted customers manually set that flag to install the said plugin?
  - Yes. If you leave the default "" then nothing will happen for self-hosted installations. You can ask the Cloud team to set ``split.io/environment`` to a specific version.

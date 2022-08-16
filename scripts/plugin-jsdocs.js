@@ -1,9 +1,8 @@
-const path = require('path');
-const fsp = require('fs-promise');
 const espree = require('espree');
+const fetch = require('sync-fetch');
 
 // Parse the registry and extract the class methods, parameters and leading comments.
-const registryContent = fsp.readFileSync(path.join(__dirname, 'mattermost-webapp/plugins/registry.js'), 'utf-8')
+const registryContent = fetch('https://raw.githubusercontent.com/mattermost/mattermost-webapp/master/plugins/registry.js').text();
 const registryParsed = espree.parse(registryContent, { comment: true, loc: true, sourceType: 'module', ecmaVersion: 10 });
 
 const pluginRegistryClassMethods = registryParsed.body.find(statement =>
