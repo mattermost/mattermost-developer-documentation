@@ -6,7 +6,7 @@ date: 2017-08-20T11:35:32-04:00
 weight: 5
 ---
 
-Reducers in Redux are pure functions that describe how the data in the store changes after any given action. A reducer receives the previous state of the store and an action as a JavaScript object (see [here](/contribute/redux/actions/) for more information on actions) and should output the resulting state without receiving any outside data. Because reducers are pure, they will always produce the same resulting state for a given state and action.
+Reducers in Redux are pure functions that describe how the data in the store changes after any given action. A reducer receives the previous state of the store and an action as a JavaScript object (see [here]({{< ref "/contribute/webapp/redux/actions" >}}) for more information on actions) and should output the resulting state without receiving any outside data. Because reducers are pure, they will always produce the same resulting state for a given state and action.
 
 ```javascript
 const myValueDefault = '';

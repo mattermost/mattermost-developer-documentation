@@ -24,8 +24,8 @@ pygmentsStyle = "manni"
 
   [params.notification]
     enable = true
-    url = "https://mattermost.com/careers"
-    text = "We're hiring!"
+    url = ""
+    text = "We're improving your developer experience."
 
   [params.search]
     enable = false
@@ -113,18 +113,10 @@ pygmentsStyle = "manni"
 
   [[params.intro.item]]
     title = "Integrate & Extend"
-    description = "Integrate with Mattermost via Apps, APIs, webhooks, and more."
+    description = "Integrate with Mattermost via webhooks, slash commands, Apps, and more."
     url = "integrate/getting-started/"
     button = "Integrate Today"
     icon = "img/home/IntegrateExtend.svg"
-    draft = false
-
-  [[params.intro.item]]
-    title = "Development Guides"
-    description = "Learn how to build Mattermost integrations via demos, example code, and guided content."
-    url = "/integrate/admin-guide/"
-    button = "Build Now"
-    icon = "img/home/AdminGuide.svg"
     draft = false
 
   #[params.intro.video]

@@ -3,12 +3,12 @@ title: Process to Include Plugin on Community
 heading: "Process to Include Plugins on Community"
 description: "Getting your project on the Community server is a great way to get valuable feedback from Mattermost users and staff."
 date: 2018-10-01T00:00:00-05:00
-weight: 50
+weight: 120
 aliases: [/extend/plugins/community_process/]
 ---
 
 
-Getting your plugin onto our Community server https://community.mattermost.com is a valuable source of feedback. Whether you're a [core committer](/contribute/getting-started/core-committers/) or anyone from the community, we want you to get feedback to improve your plugin. 
+Getting your plugin onto our Community server https://community.mattermost.com is a valuable source of feedback. Whether you're a [core committer]({{< ref "/contribute/getting-started/core-committers" >}}) or anyone from the community, we want you to get feedback to improve your plugin. 
 
 However we must ensure that our Community server remains stable for everyone. This document outlines the process of getting your plugin onto the Community server and some of these steps are required to get your plugin into the [Marketplace]({{< ref "/integrate/plugins/community-plugin-marketplace" >}}). 
 
@@ -26,7 +26,7 @@ When you're ready to begin this process for your plugin, ask in the [Toolkit cha
 
 - Complete code review by two core committers. One focused on security.
 - [QA pass](#qa-pass)
-- [PM/UX review](#pm-ux-review)
+- [PM/UX review](#pmux-review)
 - Release created and [CI system setup](#ci-system-setup) to build releases
 
 ### Deploying to community.mattermost.com
@@ -37,7 +37,7 @@ When you're ready to begin this process for your plugin, ask in the [Toolkit cha
 
 ### Basic code review
 
-Basic code review of an experimental plugin involves a quick review by a [core committer](/contribute/getting-started/core-committers/) to verify that the plugin does what it says it does and to provide any guidance and feedback. To make it easier to provide feedback, a PR can be made that contains all the code of the plugin that isn't the boilerplate from mattermost-plugin-starter-template.
+Basic code review of an experimental plugin involves a quick review by a [core committer]({{< ref "/contribute/getting-started/core-committers" >}}) to verify that the plugin does what it says it does and to provide any guidance and feedback. To make it easier to provide feedback, a PR can be made that contains all the code of the plugin that isn't the boilerplate from mattermost-plugin-starter-template.
 
 - When you are ready for your plugin to start this process, post an introduction in the [Integrations and Apps channel](https://community.mattermost.com/core/channels/integrations) on the Community server. Here is [an example](https://community.mattermost.com/core/pl/6dci1ssexjrh9rmdzt4pdpb9zy).
 

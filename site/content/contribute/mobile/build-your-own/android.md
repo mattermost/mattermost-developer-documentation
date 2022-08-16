@@ -22,7 +22,7 @@ At times, you may want to build your own Mattermost mobile app. The most common 
 
 As Android requires all apps to be digitally signed with a certificate before they can be installed building the Android app for distribution requires the release APK to be signed.
 
-To generate the signed key, use **keytool** which comes with the JDK required to develop the Android app. (see [Developer Setup](/contribute/mobile/developer-setup/#additional-setup-for-android)).
+To generate the signed key, use **keytool** which comes with the JDK required to develop the Android app. (see [Developer Setup]({{< ref "/contribute/mobile/developer-setup#additional-setup-for-android" >}})).
 
 ```sh
 $ keytool -genkey -v -keystore <my-release-key>.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
@@ -101,7 +101,7 @@ To configure your variables create the file `./mattermost-mobile/fastlane/.env` 
 
 ### 6. Google Services
 
-Replace the `google-services.json` file as instructed in the [Android Push Notification Guide](/contribute/mobile/push-notifications/android/) before you build the app.
+Replace the `google-services.json` file as instructed in the [Android Push Notification Guide]({{< ref "/contribute/mobile/push-notifications/android" >}}) before you build the app.
 
 ## Building the App
 

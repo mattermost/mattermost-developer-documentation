@@ -6,14 +6,14 @@ date: 2017-08-20T11:35:32-04:00
 weight: 3
 ---
 
-If you haven't [set up your developer environment](https://developers.mattermost.com/contribute/webapp/developer-setup/), please do so before continuing with this section.
+If you haven't [set up your developer environment]({{< ref "/contribute/webapp/developer-setup" >}}), please do so before continuing with this section.
 
 ### Workflow
 
 Here's a general workflow for a Mattermost developer working on the [mattermost-webapp](https://github.com/mattermost/mattermost-webapp) repository:
 
 1. Review the repository structure to familiarize yourself with the project.
-    * [./actions/](https://github.com/mattermost/mattermost-webapp/tree/master/actions) contains [Redux](redux.js.org/) actions which make up much of the view logic for the web app.
+    * [./actions/](https://github.com/mattermost/mattermost-webapp/tree/master/actions) contains [Redux](https://redux.js.org/) actions which make up much of the view logic for the web app.
     * [./components/](https://github.com/mattermost/mattermost-webapp/tree/master/components) contains [React](https://reactjs.org/) UI components and views.
     * [./e2e/](https://github.com/mattermost/mattermost-webapp/tree/master/e2e) contains end-to-end (E2E) tests writen using [Cypress](https://www.cypress.io/) and [Playwright](https://playwright.dev/).
     * [./i18n/](https://github.com/mattermost/mattermost-webapp/tree/master/i18n) contains the localization files for the web app. Generally, only `i18n/en.json` is modified directly from this repo while other languages' translation files are updated using [Weblate](https://translate.mattermost.com).
@@ -40,4 +40,4 @@ Here's a general workflow for a Mattermost developer working on the [mattermost-
 
 ### Useful Mattermost Commands
 
-During development you may want to reset the database and generate random data for testing your changes. See [the corresponding section of the server developer workflow](https://developers.mattermost.com/contribute/server/developer-workflow/#useful-mattermost-commands) for how to do that.
+During development you may want to reset the database and generate random data for testing your changes. See [the corresponding section of the server developer workflow]({{< ref "/contribute/server/developer-workflow#useful-mattermost-commands" >}}) for how to do that.

@@ -14,8 +14,7 @@ backend-plugin-data:
 
 .PHONY: frontend-plugin-data
 frontend-plugin-data:
-	rm -rf scripts/mattermost-webapp
-	cd scripts && git clone https://github.com/mattermost/mattermost-webapp.git
+	rm -rf scripts/mattermost-webapp || true
 	cd scripts && npm install
 	mkdir -p site/data
 	node scripts/plugin-jsdocs.js > site/data/PluginJSDocs.json
@@ -23,3 +22,8 @@ frontend-plugin-data:
 .PHONY: run
 run:
 	hugo server --buildDrafts --disableFastRender -F -s site
+
+.PHONY: build
+build:
+	rm -rf ./dist
+	hugo -s site --destination ../dist/html --printUnusedTemplates

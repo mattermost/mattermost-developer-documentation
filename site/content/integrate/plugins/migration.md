@@ -3,7 +3,7 @@ title: Migrating Plugins
 heading: "Migrating Plugins from Mattermost 5.5"
 description: "The plugin package exposed by Mattermost 5.6 and later drops support for automatically unmarshalling a plugin’s configuration onto the struct embedding MattermostPlugin."
 date: 2018-10-01T00:00:00-05:00
-weight: 50
+weight: 60
 aliases: [/extend/plugins/migration/]
 ---
 
@@ -105,7 +105,7 @@ func main() {
 
 #### Hook Parameters
 
-Most hook callbacks now contain a leading `plugin.Context` parameter. Consult the [Hooks](../server/reference/#Hooks) documentation for more details, but for example, the `ServeHTTP` hook was previously:
+Most hook callbacks now contain a leading `plugin.Context` parameter. Consult the [Hooks]({{< ref "/integrate/plugins/components/server/reference#Hooks" >}}) documentation for more details, but for example, the `ServeHTTP` hook was previously:
 
 ```go
 func (p *MyPlugin) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -123,7 +123,7 @@ func (p *MyPlugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.R
 
 #### API Changes
 
-Most of the previous API calls remain available and unchanged, with the notable exception of removing the `KeyValueStore()`. Use [KVSet](../server/reference/#API.KVSet), [KVGet](../server/reference/#API.KVGet) and [KVDelete](../server/reference/#API.KVDelete) instead test:
+Most of the previous API calls remain available and unchanged, with the notable exception of removing the `KeyValueStore()`. Use [KVSet]({{< ref "/integrate/plugins/components/server/reference#API.KVSet" >}}), [KVGet]({{< ref "/integrate/plugins/components/server/reference#API.KVGet" >}}) and [KVDelete]({{< ref "/integrate/plugins/components/server/reference#API.KVDelete" >}}) instead test:
 
 ```go
 func (p *MyPlugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Request) {
@@ -239,7 +239,7 @@ class MyPlugin {
 }
 ```
 
-The `initialize` callback now receives an instance of the plugin [registry]({{< ref "/integrate/plugins/webapp/reference#registry" >}}). In some cases, the registry's API now requires a more discrete breakdown of the registered component to allow the web app to handle various rendering scenarios:
+The `initialize` callback now receives an instance of the plugin [registry]({{< ref "/integrate/plugins/components/webapp/reference#registry" >}}). In some cases, the registry's API now requires a more discrete breakdown of the registered component to allow the web app to handle various rendering scenarios:
 
 ```js
 import ChannelHeaderButtonIcon from './components/channel_header_button/icon';

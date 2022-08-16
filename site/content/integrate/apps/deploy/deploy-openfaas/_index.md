@@ -2,7 +2,7 @@
 title: "OpenFaaS"
 heading: "Admin's Guide to Deploying Apps to OpenFaaS and faasd"
 description: "TODO"
-weight: 500
+weight: 40
 ---
 
 ## OpenFaaS Apps

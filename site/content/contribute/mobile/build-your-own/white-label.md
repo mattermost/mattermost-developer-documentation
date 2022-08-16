@@ -6,9 +6,9 @@ date: 2018-05-20T11:35:32-04:00
 weight: 3
 ---
 
-We've made it easy to white label the mobile app and to replace and override the assets used, however, you have to [Build Your Own App](/contribute/mobile/build-your-own/) from source.
+We've made it easy to white label the mobile app and to replace and override the assets used, however, you have to [Build Your Own App]({{< ref "/contribute/mobile/build-your-own" >}}) from source.
 
-If you look at the [Project Folder Structure](/contribute/mobile/developer-setup/structure/), you'll see that there is an assets folder containing a base folder with assets provided by Mattermost. These include localization files and images as well as a release folder that optionally contains the icons and the splash screen of the app when building in release mode.
+If you look at the [Project Folder Structure]({{< ref "/contribute/mobile/developer-setup/structure" >}}), you'll see that there is an assets folder containing a base folder with assets provided by Mattermost. These include localization files and images as well as a release folder that optionally contains the icons and the splash screen of the app when building in release mode.
 
 To replace these with your own assets, create a sub-directory called `override` in the `assets` folder. The assets that you add using the same directory structure and file names as in the `base` directory, will be used instead of the original ones.
 
