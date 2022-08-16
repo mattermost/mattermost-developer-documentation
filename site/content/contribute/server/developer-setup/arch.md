@@ -78,7 +78,7 @@ description: "Read about how to set up your developer environment in Mattermost 
     {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
     ```
 
-    **Note:** Browsing directly to http://localhost:8065/ will display a `404 Not Found` until the web app is configured. See [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for additional setup.
+    **Note:** Browsing directly to http://localhost:8065/ will display a `404 Not Found` until the web app is configured. See [Web App Developer Setup]({{< ref "/contribute/webapp/developer-setup" >}}) and [Mobile App Developer Setup]({{< ref "/contribute/mobile/developer-setup" >}}) for additional setup.
 
     The `stop-server` make target does not stop all the docker containers started by `run-server`. To stop the running docker containers:
 

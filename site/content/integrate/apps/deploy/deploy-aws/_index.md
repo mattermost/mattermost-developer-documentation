@@ -2,7 +2,12 @@
 title: "AWS"
 heading: "Admin's Guide to Deploying Apps to AWS"
 description: "TODO"
-weight: 200
+weight: 20
+aliases:
+  - /integrate/apps/deployment-aws/
+  - /integrate/apps/deployment-aws/deploy-to-aws/
+  - /integrate/apps/deployment-aws/hello-lambda/
+  - /integrate/apps/deployment-aws/prepare-app/
 ---
 
 # Deployment in self-managed environments
@@ -12,7 +17,7 @@ AWS environment, and then installed on a self-managed ("on-prem") Mattermost
 instance. Note that Mattermost Cloud instances only allows apps hosted by
 Mattermost.
 
-For details on how to develop and package apps for AWS see [Package / AWS]({{< ref "package-aws" >}})
+For details on how to develop and package apps for AWS see [Package / AWS]({{< ref "/integrate/apps/deploy/package-for-aws" >}})
 
 There are three steps required to enable AWS applications on a self-managed
 Mattermost instance.

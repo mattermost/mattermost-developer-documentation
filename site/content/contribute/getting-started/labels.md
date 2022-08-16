@@ -25,10 +25,10 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 
 # Pull Request Labels
 
-* `1: PM Review`: Requires review by a [product manager](/contribute/getting-started/core-committers/#product-managers).
+* `1: PM Review`: Requires review by a [product manager]({{< ref "/contribute/getting-started/core-committers#product-managers" >}}).
 * `1: UX Review`: Requires review by a UX designer.
-* `2: Dev Review`: Requires review by a [core committer](/contribute/getting-started/core-committers/#core-committers).
-* `3: QA Review`: Requires review by a [QA tester](/contribute/getting-started/core-committers/#qa-testers). May occur at the same time as Dev Review.
+* `2: Dev Review`: Requires review by a [core committer]({{< ref "/contribute/getting-started/core-committers#core-committers" >}}).
+* `3: QA Review`: Requires review by a [QA tester]({{< ref "/contribute/getting-started/core-committers#qa-testers" >}}). May occur at the same time as Dev Review.
 * `4: Reviews Complete`: All reviewers have approved the pull request.
 * `Awaiting Submitter Action`: Blocked on the author.
 * `AutoMerge`: If all checks and approvals pass and the user adds this label, it will be in the queue to get merge automatically without a human intervention.
@@ -48,7 +48,7 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 * `Docs/Not Needed`: Does not require documentation.
 * `Hackfest`: Related to a Mattermost hackathon.
 * `Hacktoberfest`: Related to [Hacktoberfest](https://hacktoberfest.digitalocean.com/).
-* `Lifecycle/<state>`: An [inactive contribution](/contribute/getting-started/inactive-contributions/).
+* `Lifecycle/<state>`: An [inactive contribution]({{< ref "/contribute/getting-started/inactive-contributions" >}}).
 * `Loadtest`: Triggers an automatic load test.
 * `Major Change`: The pull request is a major feature or affects large areas of the code base (e.g. [moving channel store and actions to Redux](https://github.com/mattermost/platform/pull/6235)).
 * `Setup Cloud Test Server`: Triggers the creation of a Enterprise Edition test server.

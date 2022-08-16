@@ -14,7 +14,7 @@ This page lists all the Docker repositories currently in use.
 
 - [mattermost/mattermost-team-edition](https://hub.docker.com/r/mattermost/mattermost-team-edition) - **Official Mattermost Server** image for the **Team Edition version**. To find the Dockerfile please refer to the [GitHub repo](https://github.com/mattermost/mattermost-server/tree/master/build).
 
-- [mattermost/mattermost-push-proxy](https://hub.docker.com/r/mattermost/mattermost-push-proxy) - Mattermost Push Proxy. [Documentation](https://developers.mattermost.com/contribute/mobile/push-notifications/service/). [GitHub repo](https://github.com/mattermost/mattermost-push-proxy).
+- [mattermost/mattermost-push-proxy](https://hub.docker.com/r/mattermost/mattermost-push-proxy) - Mattermost Push Proxy. [Documentation]({{< ref "/contribute/mobile/push-notifications/service" >}}). [GitHub repo](https://github.com/mattermost/mattermost-push-proxy).
 
 - [mattermost/mattermost-loadtest](https://hub.docker.com/r/mattermost/mattermost-loadtest) - Image for the Load Test application. Tools for profiling Mattermost under heavy load. [GitHub repo](https://github.com/mattermost/mattermost-load-test).
 

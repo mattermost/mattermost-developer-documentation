@@ -6,7 +6,7 @@ date: 2022-03-24T00:40:23-07:00
 weight: 1
 ---
 
-This guide will help you configure your developer environment for the Focalboard **Personal Server**. For most features, this is the easiest way to get started working against code that ships across editions. For working with **Mattermost Boards** (Focalboard as a plugin), please refer to the [Mattermost Boards Plugin Guide](../mattermost-boards-setup-guide/).
+This guide will help you configure your developer environment for the Focalboard **Personal Server**. For most features, this is the easiest way to get started working against code that ships across editions. For working with **Mattermost Boards** (Focalboard as a plugin), please refer to the [Mattermost Boards Plugin Guide]({{< ref "/contribute/focalboard/mattermost-boards-setup-guide" >}}).
 
 ## Installing prerequisites
 ### All
@@ -58,18 +58,27 @@ You can build standalone apps that package the server to run locally against [SQ
 * **Windows**:
     * *Requires Windows 10, [Windows 10 SDK](https://developer.microsoft.com/en-us/windows/downloads/sdk-archive/) 10.0.19041.0, and .NET 4.8 developer pack*
     * Open a `git-bash` prompt.
+    * Run `make prebuild`
+    * The above prebuild step needs to be run only when you make changes to or want to install your npm dependencies, etc.
+    * Once the prebuild is completed, you can keep repeating the below steps to build the app & see the changes.
     * Run `make win-wpf-app`
     * Run `cd win-wpf/msix && focalboard.exe`
 * **Mac**:
     * *Requires macOS 11.3+ and Xcode 13.2.1+*
-    * `make mac-app`
-    * `open mac/dist/Focalboard.app`
+    * Run `make prebuild`
+    * The above prebuild step needs to be run only when you make changes to or want to install your npm dependencies, etc.
+    * Once the prebuild is completed, you can keep repeating the below steps to build the app & see the changes.
+    * Run `make mac-app`
+    * Run `open mac/dist/Focalboard.app`
 * **Linux**:
     * *Tested on Ubuntu 18.04*
     * Install `webgtk` dependencies
-        * `sudo apt-get install libgtk-3-dev`
-        * `sudo apt-get install libwebkit2gtk-4.0-dev`
-    * `make linux-app`
+        * Run `sudo apt-get install libgtk-3-dev`
+        * Run `sudo apt-get install libwebkit2gtk-4.0-dev`
+    * Run `make prebuild`
+    * The above prebuild step needs to be run only when you make changes to or want to install your npm dependencies, etc.
+    * Once the prebuild is completed, you can keep repeating the below steps to build the app & see the changes.
+    * Run `make linux-app`
     * Uncompress `linux/dist/focalboard-linux.tar.gz` to a directory of your choice
     * Run `focalboard-app` from the directory you have chosen
 * **Docker**:
@@ -121,7 +130,7 @@ Run `make ci`, which is similar to the `.gitlab-ci.yml` workflow and includes:
 
 ## Staying informed
 
-Are you interested in influencing the future of the Focalboard open source project? Please read the [Focalboard Contribution Guide](../). We welcome everyone and appreciate any feedback. ❤️ There are several ways you can get involved:
+Are you interested in influencing the future of the Focalboard open source project? Please read the [Focalboard Contribution Guide]({{< ref "/contribute/focalboard" >}}). We welcome everyone and appreciate any feedback. ❤️ There are several ways you can get involved:
 
 * **Changes**: See the [CHANGELOG](https://github.com/mattermost/focalboard/blob/main/CHANGELOG.md) for the latest updates
 * **GitHub Discussions**: Join the [Developer Discussion](https://github.com/mattermost/focalboard/discussions) board
