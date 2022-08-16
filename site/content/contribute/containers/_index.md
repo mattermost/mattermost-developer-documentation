@@ -1,6 +1,6 @@
 ---
 title: "Containers"
-heading: "Mattermost Containers and Official Docker Images"
+heading: "Mattermost containers and official Docker images"
 description: "Mattermost uses Docker to publish the official images for the Mattermost Server, and this page lists all Docker repositories in use."
 ---
 
@@ -8,7 +8,7 @@ Mattermost uses the [Docker Registry](https://hub.docker.com/u/mattermost) to pu
 
 This page lists all the Docker repositories currently in use.
 
-## Mattermost Official Docker Images
+## Mattermost official docker images
 
 - [mattermost/mattermost-enterprise-edition](https://hub.docker.com/r/mattermost/mattermost-enterprise-edition) - **Official Mattermost Server** image for the **Enterprise Edition version**. To find the Dockerfile please refer to the [GitHub repo](https://github.com/mattermost/mattermost-server/tree/master/build).
 
@@ -26,7 +26,7 @@ This page lists all the Docker repositories currently in use.
 
 - [mattermost/platform](https://hub.docker.com/r/mattermost/platform) - Mirror of **mattermost/mattermost-preview**. This is a Docker image to install Mattermost in Preview Mode for exploring product functionality on a single machine using Docker. Preview image (mirror). [Documentation](http://bit.ly/1W76riY). [GitHub repo](https://github.com/mattermost/mattermost-docker-preview).
 
-## Community-Maintained Docker Images
+## Community-maintained Docker images
 
 - [mattermost/mattermost-prod-app](https://hub.docker.com/r/mattermost/mattermost-prod-app) - Community driven image for Mattermost Server. **This Docker repository will be deprecated in Mattermost 6.0**. For more information and to check the Dockerfile please refer to the [GitHub repo](https://github.com/mattermost/mattermost-docker).
 
@@ -34,7 +34,7 @@ This page lists all the Docker repositories currently in use.
 
 - [mattermost/mattermost-prod-web](https://hub.docker.com/r/mattermost/mattermost-prod-web) - Community driven image for WebServer to run together with **mattermost/mattermost-prod-app**. **This Docker repository will be deprecated in Mattermost 6.0**. For more information and to check the Dockerfile please refer to the [GitHub repo](https://github.com/mattermost/mattermost-docker).
 
-## Mattermost Internal Docker Images
+## Mattermost internal Docker images
 
 - [mattermost/mattermost-test-enterprise](https://hub.docker.com/r/mattermost/mattermost-test-enterprise) - Repository where all testing images are published and available for any type of testing. These images are built from the CircleCI Pipelines from the [mattermost-server](https://github.com/mattermost/mattermost-server) and [mattermost-webapp](https://github.com/mattermost/mattermost-webapp).
 

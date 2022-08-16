@@ -1,6 +1,6 @@
 ---
-title: "White Labeling"
-heading: "White Labeling Mattermost"
+title: "White label"
+heading: "White label"
 description: "Learn how to white label the Mattermost Mobile app, and how to replace and override the assets used for your Mattermost deployment."
 date: 2018-05-20T11:35:32-04:00
 weight: 3
@@ -12,7 +12,7 @@ If you look at the [Project Folder Structure]({{< ref "/contribute/mobile/develo
 
 To replace these with your own assets, create a sub-directory called `override` in the `assets` folder. The assets that you add using the same directory structure and file names as in the `base` directory, will be used instead of the original ones.
 
-### Localization Strings
+### Localization strings
 
 To replace these with your own assets, create a sub-directory called `override` in the `assets` folder. Using the same directory structure and file names as in the `base` directory, you can add assets to the override folder to be used instead.
 
@@ -29,13 +29,13 @@ Make sure the images have the same height, width, and DPI as the images that you
 
 ---
 
-### App Splash Screen and Launch Icons
+### App splash screen and launch icons
 
 In the `assets` directory you will find a folder named `assets/base/release` which contains an `icons` folder and a `splash_screen` folder under each platform directory.
 
 Copy the full `release` directory under `assets/override/release` and then replace each image with the same name. Make sure you replace all the icon images for the platform you are building the app - the same applies to the splash screen.
 
-The splash screen's background color is white by default and the image is centered. If you need to change the color or the layout to improve the experience of your new splash screen make sure that you also override the file `launch_screen.xml` for Android and `LaunchScreen.storyboard` for iOS. Both can be found under `assets/base/release/splash_screen/\<platform>`.
+The splash screen's background color is white by default and the image is centered. If you need to change the color or the layout to improve the experience of your new splash screen make sure that you also override the file `launch_screen.xml` for Android and `LaunchScreen.storyboard` for iOS. Both can be found under `assets/base/release/splash_screen/<platform>/`.
 
 Splash screen and launch icons assets are replaced at build time when the environment variable `REPLACE_ASSETS` is set to true (default is false).
 

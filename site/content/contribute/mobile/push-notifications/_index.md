@@ -1,6 +1,6 @@
 ---
-title: "Setup Push Notifications"
-heading: "Setting up Push Notifications - Mattermost"
+title: "Set up push notifications"
+heading: "Set up push notifications"
 description: "Learn how to set up push notifications in your Mattermost mobile application."
 date: 2015-05-20T11:35:32-04:00
 weight: 3
@@ -11,4 +11,4 @@ When building a custom version of the Mattermost mobile app, you will also need 
 1. Setup the custom mobile apps to receive push notifications
     - [Android]({{< ref "/contribute/mobile/push-notifications/android" >}})
     - [iOS]({{< ref "/contribute/mobile/push-notifications/ios" >}})
-2. [Setup the Mattermost Push Notification Service]({{< ref "/contribute/mobile/push-notifications/service" >}})
+2. [Setup the Mattermost push notification service]({{< ref "/contribute/mobile/push-notifications/service" >}})

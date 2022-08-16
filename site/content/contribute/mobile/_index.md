@@ -1,6 +1,6 @@
 ---
-title: "Mobile Apps"
-heading: "Mattermost Mobile Apps"
+title: "Mobile apps"
+heading: "Mattermost mobile apps"
 description: "The Mattermost mobile apps are written in JavaScript using React Native. Learn more about our mobile app repo, community channel and more."
 date: "2022-03-15T12:01:23-04:00"
 weight: 4
@@ -13,7 +13,7 @@ The Mattermost mobile apps are written in [JavaScript](https://developer.mozilla
 Further explanation of the file structure can be found in [the Developer Setup]({{< ref "/contribute/mobile/developer-setup/structure" >}}).
 
 
-## Mobile App Contributor Resources
+## Mobile app contributor resources
  - [GitHub Repository](https://github.com/mattermost/mattermost-mobile) - Get the code, report issues, or submit PRs.
  - [Running the app]({{< ref "/contribute/mobile/developer-setup/run" >}}) - Compile recommendations.
  - [Channel](https://community.mattermost.com/core/channels/native-mobile-apps)  - Use the channel to interact with other Mattermost Mobile developers.

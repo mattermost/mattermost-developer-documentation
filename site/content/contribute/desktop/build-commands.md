@@ -1,7 +1,7 @@
 ---
-title: "Build and CLI Commands"
-heading: "Build and CLI Command Reference"
-description: "Some useful build commands for the Desktop App"
+title: "Build and CLI commands"
+heading: "Build and CLI command reference"
+description: "Some useful build commands for the desktop app"
 date: 2019-01-22T00:00:00-05:00
 weight: 2
 ---
@@ -51,7 +51,7 @@ check-types - Runs the TypeScript compiler against the code
 prune - Runs ts-prune to display unused code
 ```
 
-## CLI Options
+## CLI options
 
 Some useful CLI options that our app uses are shown below.  
 You can also display these by running: `npm run start help`
@@ -62,7 +62,7 @@ You can also display these by running: `npm run start help`
 --disableDevMode, -p: Disable development mode to allow for testing as if it was Production
 ```
 
-## Environment Variables
+## Environment variables
 
 Some common environment variables we use:
 

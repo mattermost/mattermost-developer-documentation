@@ -1,6 +1,6 @@
 ---
-title: "Build Your Own App"
-heading: "Build Your Own Mattermost App"
+title: "Build your own mobile app"
+heading: "Build your own Mattermost mobile app"
 description: "Learn how to build your own Mattermost mobile app and distribute it within your team."
 date: 2018-05-20T11:35:32-04:00
 weight: 2
@@ -17,7 +17,7 @@ As an alternative we've also created a set of **scripts** to help automate build
 - [Build the Android app]({{< ref "/contribute/mobile/build-your-own/android" >}})
 - [Build the iOS app]({{< ref "/contribute/mobile/build-your-own/ios" >}})
 
-### Push Notifications with Your Own App
+### Push notifications with your own mobile app
 
 When building your own Mattermost mobile app, you will also need to host the [Mattermost Push Notification Service](https://github.com/mattermost/mattermost-push-proxy) in order to receive push notifications.
 

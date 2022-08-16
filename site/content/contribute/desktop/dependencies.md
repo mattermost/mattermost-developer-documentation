@@ -1,7 +1,7 @@
 ---
 title: "Dependencies"
-heading: "Managing Dependencies in the Desktop App"
-description: "Working with other libraries in the Desktop App"
+heading: "Manage dependencies in the desktop app"
+description: "Work with other libraries in the desktop app"
 date: 2019-01-22T00:00:00-05:00
 weight: 3
 ---
@@ -25,11 +25,11 @@ For **patch** releases of the Desktop App, we will generally upgrade Electron to
 For **major and minor version** releases of the Desktop App, we will upgrade to the latest **major version**.
 * This will usually require QA testing to ensure that nothing has broken between versions.
 
-#### Bug Fixes
+#### Bug fixes
 
 Sometimes, it's necessary to upgrade the Electron version in order to resolve a bug in the app caused by the framework. If this is the case, please change the dependency according to the above guidelines, and the PR will be merged and released as per the same guidelines.
 
-## Other Dependencies
+## Other dependencies
 
 We try to keep the majority of dependencies up-to-date as much as possible, with a few exceptions:
 - **React:** We generally keep the same version of `react` in the Desktop App for as long as possible, unless an upgrade or a new feature is required. Since the Desktop App doesn't rely too heavily on `react`, it's better for us to avoid introducing potential breaking changes unless something urgently needs to change.

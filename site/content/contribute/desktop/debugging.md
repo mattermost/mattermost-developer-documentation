@@ -1,18 +1,18 @@
 ---
-title: "Debugging"
-heading: "Debugging at Mattermost"
+title: "Debug the desktop app"
+heading: "Debug the desktop app"
 description: "The electron app itself can be inspected using the developer tools, available from the View menu of Safari."
 date: 2019-01-22T00:00:00-05:00
 weight: 3
 ---
 
-## Debugging in the Main Process
+## Debug the main process
 
 The simplest way to debug the main process is to simply insert logging statements wherever needed and have the application output logs of whatever is necessary.
 
 If you'd like to make use of better debugging tools, you can use the Chrome Dev Tools or the debugger in VSCode by following the steps here: https://www.electronjs.org/docs/latest/tutorial/debugging-main-process
 
-## Debugging in the Renderer Process
+## Debug the renderer process
 
 The renderer processes are controller by Chrome instances, so each of them will have their own Developer Tools instance.
 
@@ -43,7 +43,7 @@ There are other `BrowserViews` that are governed seperately from the main applic
         ```
     - **Note:** This view is ephemeral and based on whether a link is hovered with the mouse, so it might be best to use some logging instead here.
 
-## Debugging the Mattermost Server/Webapp
+## Debug the Mattermost Server/webapp
 
 Some issues are only reproducible on the Desktop App, though the code that is causing the issue may not live in the Desktop App.
 

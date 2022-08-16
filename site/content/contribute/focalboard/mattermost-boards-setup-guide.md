@@ -1,6 +1,6 @@
 ---
-title: "Mattermost Boards Plugin Guide"
-heading: "Mattermost Boards Plugin Guide"
+title: "Mattermost Boards plugin guide"
+heading: "Mattermost Boards plugin guide"
 description: "Learn how to build the Mattermost Boards plugin."
 date: 2022-03-24T00:40:23-07:00
 weight: 2
@@ -8,7 +8,7 @@ weight: 2
 
 **[Mattermost Boards](https://mattermost.com/boards/)** is the Mattermost plugin version of Focalboard that combines project management tools with messaging and collaboration for teams of all sizes. It is installed and enabled by default in Mattermost v6.0 and later. For working with Focalboard as a standalone application, please refer to the [Personal Server Setup Guide]({{< ref "/contribute/focalboard/personal-server-setup-guide" >}}).
 
-## Building the plugin
+## Build the plugin
 
 Fork the [Focalboard repository](https://github.com/mattermost/focalboard) and clone it locally.
 
@@ -29,13 +29,13 @@ make dist
 
 Refer to the [dev-release.yml](https://github.com/mattermost/focalboard/blob/main/.github/workflows/dev-release.yml#L168) workflow for the up-to-date commands that are run as part of CI.
 
-## Uploading and installing the plugin
+## Upload and install the plugin
 
 1. Enable [custom plugins]({{< ref "/integrate/plugins/using-and-managing-plugins#custom-plugins" >}}) by setting `PluginSettings.EnableUploads` to `true` and set `FileSettings.MaxFileSize` to a number larger than the size of the packed`.tar.gz` plugin file in bytes (e.g., `524288000`) in the Mattermost `config.json` file.
 2. Navigate to **System Console > Plugins > Management** and upload the packed `.tar.gz` file from your `mattermost-plugin/dist` directory.
 3. Enable the plugin.
 
-## Deploying the plugin to a local Mattermost server
+## Deploy the plugin to a local Mattermost server
 
 Instead of following the steps above, you can also set up a `mattermost-server` in local mode and automatically deploy `mattermost-plugin` via `make deploy`.
 

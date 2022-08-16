@@ -1,14 +1,14 @@
 ---
-title: "Personal Server Setup Guide"
-heading: "Personal Server Setup Guide"
-description: "Learn how to build the Focalboard Personal Server."
+title: "Personal server setup guide"
+heading: "Personal server setup guide"
+description: "Learn how to build the Focalboard personal server."
 date: 2022-03-24T00:40:23-07:00
 weight: 1
 ---
 
 This guide will help you configure your developer environment for the Focalboard **Personal Server**. For most features, this is the easiest way to get started working against code that ships across editions. For working with **Mattermost Boards** (Focalboard as a plugin), please refer to the [Mattermost Boards Plugin Guide]({{< ref "/contribute/focalboard/mattermost-boards-setup-guide" >}}).
 
-## Installing prerequisites
+## Install prerequisites
 ### All
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (if using Windows, see below)
 * [Go](https://golang.org/doc/install)
@@ -28,11 +28,11 @@ This guide will help you configure your developer environment for the Focalboard
 * `sudo apt-get install libwebkit2gtk-4.0-dev`
 * `sudo apt-get install autoconf dh-autoreconf`
 
-## Forking the project repository
+## Fork the project repository
 
 Fork the [Focalboard GitHub repository](https://github.com/mattermost/focalboard) and clone it locally.
 
-## Building via the terminal
+## Build via the terminal
 
 To build the server:
 
@@ -51,7 +51,7 @@ Then navigate your browser to [`http://localhost:8000`](http://localhost:8000) t
 
 Once the server is running, you can rebuild just the web app via `make webapp` in a separate terminal window. Reload your browser to see the changes.
 
-## Building and running standalone desktop apps
+## Build and run standalone desktop apps
 
 You can build standalone apps that package the server to run locally against [SQLite](https://www.sqlite.org/index.html):
 
@@ -91,7 +91,7 @@ You can build standalone apps that package the server to run locally against [SQ
 
 Cross-compilation currently isn't fully supported, so please build on the appropriate platform. Refer to the GitHub Actions workflows (`build-mac.yml`, `build-win.yml`, `build-ubuntu.yml`) for the detailed list of steps on each platform.
 
-## Setting up VS Code
+## Set up VS Code
 
 * Open a [VS Code](https://code.visualstudio.com/) terminal window in the project folder.
 * Run `make prebuild` to install packages. *Do this whenever dependencies change in `webapp/package.json`.*
@@ -109,17 +109,17 @@ You can now edit the web app code and refresh the browser to see your changes ef
 
 **Debugging the server**: As a starting point, add a breakpoint to `handleGetBlocks()` in `server/api/api.go` and refresh the browser to see how data is retrieved.
 
-## Rebuilding translations
+## Rebuild translations
 
 We use `i18n` to localize the web app. Localized string generally use `intl.formatMessage`. When adding or modifying localized strings, run `npm run i18n-extract` in `webapp` to rebuild `webapp/i18n/en.json`.
 
 Translated strings are stored in other json files under `webapp/i18n`, (e.g. `es.json` for Spanish).
 
-## Accessing the database
+## Access the database
 
 By default, data is stored in a sqlite database `focalboard.db`. You can view and edit this directly using `sqlite3 focalboard.db`.
 
-## Unit testing
+## Unit tests
 
 Run `make ci`, which is similar to the `.gitlab-ci.yml` workflow and includes:
 

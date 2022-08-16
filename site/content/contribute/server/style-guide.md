@@ -1,10 +1,10 @@
 ---
-title: "Go Style Guide"
+title: "Golang style guide"
 date: 2021-01-12T16:00:00+0530
 weight: 3
 ---
 
-Go is a more opinionated language than many others when it comes to coding style. The compiler enforces some basic stylistic elements, such as the removal of unused variables and imports. Many others are enforced by the `gofmt` tool, such as usage of white-space, semicolons, indentation, and alignment. The `gofmt` tool is run over all code in the Mattermost Server CI pipeline. Any code which is not consistent with the formatting enforced by `gofmt` will not be accepted into the repository.
+Golang ("go") is a more opinionated language than many others when it comes to coding style. The compiler enforces some basic stylistic elements, such as the removal of unused variables and imports. Many others are enforced by the `gofmt` tool, such as usage of white-space, semicolons, indentation, and alignment. The `gofmt` tool is run over all code in the Mattermost Server CI pipeline. Any code which is not consistent with the formatting enforced by `gofmt` will not be accepted into the repository.
 
 Despite this, there are still many areas of coding style which are not dictated by these tools. Rather than reinventing the wheel, we are adopting [Effective Go](https://golang.org/doc/effective_go.html) as a basis for our style guide. On top of that, we also follow the guidelines laid out by the Go project at [CodeReviewComments](https://github.com/golang/go/wiki/CodeReviewComments).
 

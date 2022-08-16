@@ -1,5 +1,5 @@
 ---
-title: "Engineering Guilds"
+title: "Engineering guilds"
 date: 2021-01-25T16:50:35+00:00
 weight: 50
 ---
@@ -8,7 +8,7 @@ Our Engineering Guilds are a forum for sharing knowledge, discussing and agreein
 
 The main activity of Guilds is a regular meeting. These meetings are public, and anyone within Mattermost and the wider community is welcome to attend. Details are provided below on each of the Guilds, including how to participate.
 
-## Web Platform Guild
+## Web platform guild
 
 The Web Platform Guild covers all areas related to front-end web development and Electron desktop app development at Mattermost.
 
@@ -16,7 +16,7 @@ The Web Platform Guild covers all areas related to front-end web development and
 - **Guild channel:** [~Developers: WebApp](https://community.mattermost.com/core/channels/webapp)
 - **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
-## Mobile Guild
+## Mobile guild
 
 The Mobile Guild covers all areas related to mobile application development and React Native.
 
@@ -24,7 +24,7 @@ The Mobile Guild covers all areas related to mobile application development and 
 - **Guild channel:** [~Developers: Mobile](https://community.mattermost.com/core/channels/native-mobile-apps)
 - **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
-## Server Guild
+## Server guild
 
 The Server Guild covers all areas related to our server codebase and general Go development at Mattermost.
 
@@ -32,7 +32,7 @@ The Server Guild covers all areas related to our server codebase and general Go 
 - **Guild channel:** [~Developers: Server](https://community.mattermost.com/core/channels/developers-server)
 - **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
-## QA Guild
+## QA guild
 
 The QA Guild covers all areas related to Quality Assurance and automated testing infrastructure at Mattermost.
 

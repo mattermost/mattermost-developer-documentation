@@ -1,6 +1,6 @@
 ---
-title: "Sign Unsigned Android"
-heading: "Sign Unsigned Android Builds - Mattermost"
+title: "Sign unsigned Android builds"
+heading: "Sign unsigned Android builds"
 description: "Learn the steps needed to modify and sign the Mattermost mobile app so it can be distributed and installed on Android devices."
 date: 2018-05-20T11:35:32-04:00
 weight: 1
@@ -17,7 +17,7 @@ With every Mattermost mobile app release, we publish the Android unsigned apk in
 5. Set up keys and Google Services as described in steps 2, 3, 4, and 6 of the [Build your own App guide]({{< ref "/contribute/mobile/build-your-own/android#build-preparations" >}}).
 6. [sign-android](/scripts/sign-android) script to sign the Android app.
 
-#### Signing Tool
+#### Sign tool
 
 ```bash
 Usage: sign-android <unsigned apk file>
@@ -52,21 +52,21 @@ Now that all requirements are met, it's time to sign the Mattermost app for Andr
 * Download the [Android unsigned build](https://github.com/mattermost/mattermost-mobile/releases) and save it in your working directory.
 * Open a terminal to your working directory and make sure the `sign-android` script is executable.
 
-```bash
-$ ls -la
-total 49756
-drwxr-xr-x   4 user  staff       128 Oct  2 08:12 .
-drwx------@ 59 user  staff      1888 Oct  1 14:12 ..
--rw-r--r--   1 user  staff  50685064 Sep 29 10:58 Mattermost-unsigned.apk
--rw-r--r--   1 user  staff      2597 Oct  2 08:19 google-services.json
--rwxr-xr-x   1 user  staff      7005 Sep 30 12:47 sign-android
-```
+    ```
+    $ ls -la
+    total 49756
+    drwxr-xr-x   4 user  staff       128 Oct  2 08:12 .
+    drwx------@ 59 user  staff      1888 Oct  1 14:12 ..
+    -rw-r--r--   1 user  staff  50685064 Sep 29 10:58 Mattermost-unsigned.apk
+    -rw-r--r--   1 user  staff      2597 Oct  2 08:19 google-services.json
+    -rwxr-xr-x   1 user  staff      7005 Sep 30 12:47 sign-android
+    ```
 
 * Sign the app
 
-```bash
-$ ./sign-android Mattermost-unsigned.apk -p com.example.test -g google-services.json -d "My App" MyApp-signed.apk
-```
+    ```bash
+    $ ./sign-android Mattermost-unsigned.apk -p com.example.test -g google-services.json -d "My App" MyApp-signed.apk
+    ```
 
 Once the code sign is complete you should have a signed APK in the working directory with the name **MyApp-signed.apk**.
 

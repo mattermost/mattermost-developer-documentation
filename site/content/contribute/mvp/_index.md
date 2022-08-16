@@ -1,16 +1,14 @@
 ---
 title: "MVP"
-heading: "Mattermost Hall of Fame"
+heading: "Mattermost MVP"
 description: "Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best."
 ---
 
 Hundreds of developers around the world contribute to Mattermost open source projects. Our Hall of Fame honors the best of the best.
 
-<span style="display:block;text-align:center;margin:auto">![MVP Award](/img/mvp_award.png)</span>
+![MVP Award](/img/mvp_award.png)
 
-## Mattermost MVP
 The title of “Most Valued Professional” is awarded to an outstanding contributor for a key Mattermost release.
-
 
 | Version | Release date       | MVP                                                                               |
 |---------|--------------------|-----------------------------------------------------------------------------------|

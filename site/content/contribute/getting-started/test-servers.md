@@ -1,7 +1,7 @@
 ---
-title: "Test Servers"
-heading: "Pull Request Test Servers"
-description: "Leveraging our Cloud infrastructure we can spin up full environments on demand to test code submitted in a PR."
+title: "Test servers"
+heading: "Pull request test servers"
+description: "Leverage our cloud infrastructure we can spin up full environments on demand to test code submitted in a PR."
 date: 2022-01-28T00:00:00-04:00
 weight: 8
 ---
@@ -22,7 +22,7 @@ Once testing is complete, remove the label and the test server will be destroyed
 
 Test servers are available on any repositories that have the labels.
 
-# Tips & Tricks
+# Tips and tricks
 
 * Avoid adding and removing the labels quickly in succession - this can confuse the bot and result in issues. Please be patient. :)
 * Pushing new commits to PRs will trigger the bot to automatically update the test server.
