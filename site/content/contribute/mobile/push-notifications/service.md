@@ -24,7 +24,7 @@ For the sake of making this guide simple we located the files at `/home/ubuntu/m
 
 1. Download the Mattermost Push Notification Service (any version):
 
-`wget https://github.com/mattermost/mattermost-push-proxy/releases/download/vX.X.X/mattermost-push-proxy.tar.gz`
+`wget https://github.com/mattermost/mattermost-push-proxy/releases/download/vX.X.X/mattermost-push-proxy.tar.gz (``mattermost-push-proxy`` releases v5.9 and later)`
 
 In this command, `vX.X.X` refers to the release version you want to download. See [Mattermost Push Notification Service releases](https://github.com/mattermost/mattermost-push-proxy/releases).
 
