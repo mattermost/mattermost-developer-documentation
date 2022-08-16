@@ -14,6 +14,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 | Version | Release date       | MVP                                                                               |
 |---------|--------------------|-----------------------------------------------------------------------------------|
+| 7.2     | August 16, 2022    | [Alexander Griesser](https://github.com/anx-ag/)                                  |
 | 7.1     | July 16, 2022      | [kamre](https://github.com/kamre)                                                 |
 | 7.0     | June 16, 2022      | [Tom De Moor](https://github.com/ctlaltdieliet)                                   |
 | 6.7     | May 16, 2022       | [Vishakha Poonia](https://github.com/VishakhaPoonia)                              |
