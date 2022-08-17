@@ -1,6 +1,6 @@
 ---
-title: Outgoing Webhooks
-description: Outgoing Webhooks
+title: Outgoing webhooks
+description: Outgoing webhooks
 weight: 10
 ---
 

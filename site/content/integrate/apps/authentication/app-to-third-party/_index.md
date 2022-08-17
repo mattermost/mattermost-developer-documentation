@@ -1,6 +1,6 @@
 ---
 title: "To third-party (OAuth2)"
-heading: "Hello, OAuth2!"
+heading: "To third-party (OAuth2)"
 description: "In this example, the http will connect via OAuth2"
 weight: 30
 aliases:
@@ -112,7 +112,7 @@ The Hello OAuth2 app creates three commands: `/hello-oauth2 configure | connect 
 }
 ```
 
-### Configuring OAuth2
+### Configure OAuth2
 
 `/hello-oauth2 configure` sets up the Google OAuth2 credentials. It accepts two string flags, `--client-id` and `--client-secret`. Submit will require a user access token to effect the changes.
 
@@ -164,7 +164,7 @@ func configure(w http.ResponseWriter, req *http.Request) {
 }
 ```
 
-### Connecting as a user
+### Connect as a user
 
 #### `connect` command
 
@@ -208,11 +208,11 @@ func connect(w http.ResponseWriter, req *http.Request) {
 To handle the OAuth2 `connect` flow, the app provides two calls: `/oauth2/connect` that returns the URL to redirect the user to, and `/oauth2/complete` which gets invoked once the flow is finished, and the `state` parameter is verified.
 
 ```go
-    // Handle an OAuth2 connect URL request.
-    http.HandleFunc("/oauth2/connect", oauth2Connect)
+// Handle an OAuth2 connect URL request.
+http.HandleFunc("/oauth2/connect", oauth2Connect)
 
-    // Handle a successful OAuth2 connection.
-    http.HandleFunc("/oauth2/complete", oauth2Complete)
+// Handle a successful OAuth2 connection.
+http.HandleFunc("/oauth2/complete", oauth2Complete)
 ```
 
 `oauth2Connect` extracts the necessary data from the request's context and values ("state"), and composes a Google OAuth2 initial URL.
@@ -248,7 +248,7 @@ func oauth2Complete(w http.ResponseWriter, req *http.Request) {
 }
 ```
 
-#### Obtaining an OAuth2 "Config" for a call
+#### Obtain an OAuth2 "config" for a call
 
 The app is responsible for composing its own remote OAuth2 config, using the remote system-specific settings. The `ClientID` and `ClientSecret` are stored in Mattermost OAuth2App record, and are included in the request context if specified with `expand.oauth2_app="all"`.
 

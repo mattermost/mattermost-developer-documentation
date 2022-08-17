@@ -1,13 +1,11 @@
 ---
-title: "Using Incoming Webhooks"
-heading: "Using incoming webhooks"
+title: "Use incoming webhooks"
+heading: "Use incoming webhooks"
 description: "Mattermost supports webhooks to easily integrate external applications into the server. Use incoming webhooks to post messages to Mattermost Public Channels, Private Channels, and Direct Messages. Messages are sent via an HTTP POST request to a Mattermost URL generated for each application and contain a specifically formatted JSON payload in the request body."
 weight: 80
 aliases:
   - /integrate/admin-guide/admin-webhooks-incoming/
 ---
-
-
 ![image](incoming_webhooks_sample.png)
 *An example of a GitHub integration that posts updates to a Developers channel*
 
@@ -22,38 +20,37 @@ Let's learn how to create a simple incoming webhook that posts the following mes
 ![image](incoming_webhooks_create_simple.png)
 
 1. First, go to **Product menu > Integrations > Incoming Webhook**. 
-  - If you don't have the **Integrations** option in your Main Menu, incoming webhooks may not be enabled on your Mattermost server or may be disabled for non-admins. They can be enabled by a System Admin from **System Console > Integrations > Integration Management**. Then continue with the steps below.
+    - If you don't have the **Integrations** option in your Main Menu, incoming webhooks may not be enabled on your Mattermost server or may be disabled for non-admins. They can be enabled by a System Admin from **System Console > Integrations > Integration Management**. Then continue with the steps below.
 2. Select **Add Incoming Webhook** and add name and description for the webhook. The description can be up to 500 characters.
 3. Select the channel to receive webhook payloads, then select **Add** to create the webhook.
 4. Use a curl command from your terminal or commandline to send the following JSON payload in a HTTP POST request:
 
-```
-  curl -i -X POST -H 'Content-Type: application/json' -d '{"text": "Hello, this is some text\nThis is more text. :tada:"}' http://{your-mattermost-site}/hooks/xxx-generatedkey-xxx
-  # or
-  curl -i -X POST --data-urlencode 'payload={"text": "Hello, this is some text\nThis is more text. :tada:"}' http://{your-mattermost-site}/hooks/xxx-generatedkey-xxx
-```
-
-If you're running [cURL on Windows](https://curl.haxx.se/windows), ensure inner double quotes are escaped with a backslash. Here's an example payload on Windows:
-
-```
-  curl -i -X POST -H "Content-Type: application/json" -d "{\"text\": \"Hello, this is some text\nThis is more text. :tada:\"}" http://{your-mattermost-site}/hooks/xxx-generatedkey-xxx
-```
+    ```shell
+    curl -i -X POST -H 'Content-Type: application/json' -d '{"text": "Hello, this is some text\nThis is more text. :tada:"}' http://{your-mattermost-site}/hooks/xxx-generatedkey-xxx
+    # or
+    curl -i -X POST --data-urlencode 'payload={"text": "Hello, this is some text\nThis is more text. :tada:"}' http://{your-mattermost-site}/hooks/xxx-generatedkey-xxx
+    ```
+    
+    If you're running [cURL on Windows](https://curl.haxx.se/windows), ensure inner double quotes are escaped with a backslash. Here's an example payload on Windows:
+    
+    ```shell
+    curl -i -X POST -H "Content-Type: application/json" -d "{\"text\": \"Hello, this is some text\nThis is more text. :tada:\"}" http://{your-mattermost-site}/hooks/xxx-generatedkey-xxx
+    ```
 
 See [developer documentation]({{< ref "/integrate/webhooks/incoming/incoming-webhooks" >}}) for details on what parameters are supported by incoming webhooks. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins]({{< ref "/integrate/plugins/using-and-managing-plugins" >}}). The following payload gives an example webhook that uses additional parameters and formatting options:
 
 ```
-  payload={
-    "channel": "town-square",
-    "username": "test-automation",
-    "icon_url": "https://mattermost.com/wp-content/uploads/2022/02/icon.png",
-    "text": "#### Test results for July 27th, 2017\n<!channel> please review failed tests.\n
-    | Component  | Tests Run   | Tests Failed                                   |
-    |:-----------|:-----------:|:-----------------------------------------------|
-    | Server     | 948         | :white_check_mark: 0                           |
-    | Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |
-    | iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |
-    "
-    }
+payload={
+  "channel": "town-square",
+  "username": "test-automation",
+  "icon_url": "https://mattermost.com/wp-content/uploads/2022/02/icon.png",
+  "text": "#### Test results for July 27th, 2017\n<!channel> please review failed tests.\n
+  | Component  | Tests Run   | Tests Failed                                   |
+  |:-----------|:-----------:|:-----------------------------------------------|
+  | Server     | 948         | :white_check_mark: 0                           |
+  | Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |
+  | iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |"
+}
 ```
 
 This content will be displayed in the Town Square channel.
@@ -75,7 +72,7 @@ Similarly, [Enable integrations to override profile picture icons](https://docs.
 5. The external application may be written in any programming language as long as it supports sending an HTTP POST request in the required JSON format to a specified Mattermost URL.
 6. For the HTTP request body, if `Content-Type` is specified as `application/json` in the header of the HTTP request, then the body can be direct JSON. For example,
 
-`{"text": "Hello, this is some text."}`
+    `{"text": "Hello, this is some text."}`
 
 7. When using the `icon_emoji` parameter, the user profile image is replaced by the emoji provided. This will also override the `icon_url` parameter if both are provided.
 
@@ -130,16 +127,16 @@ Some common error messages include:
 2. `Couldn't find the user`: Indicates that the user doesn't exist or is invalid. Please modify the ``channel`` parameter before sending another request.
 3. `Unable to parse incoming data`: Indicates that the request received is malformed. Try reviewing that the JSON payload is in a correct format and doesn't have typos such as extra `"`.
 4. `curl: (3) [globbing] unmatched close brace/bracket in column N`: Typically an error when using cURL on Windows, when:
-  1. You have space around JSON separator colons, `payload={"Hello" : "test"}` or  
-  2. You are using single quotes to wrap the `-d` data, `-d 'payload={"Hello":"test"}'`
+   1. You have space around JSON separator colons, `payload={"Hello" : "test"}` or  
+   2. You are using single quotes to wrap the `-d` data, `-d 'payload={"Hello":"test"}'`
 
 If your integration prints the JSON payload data instead of rendering the generated message, make sure your integration is returning the `application/json` content-type.
 
 For further assistance, review the [Troubleshooting forum](https://forum.mattermost.com/c/trouble-shoot) for previously reported errors, or [join the Mattermost user community for troubleshooting help](https://mattermost.com/pl/default-ask-mattermost-community).
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### How do I send a webhook post to a Direct Message channel?
+### How do I send a webhook post to a direct message channel?
 
 To send a message to a Direct Message channel, add an "@" symbol followed by the username to the channel parameter. You can add your own username to send the webhook posts to a Direct Message channel with yourself.
 

@@ -1,7 +1,6 @@
 ---
 title: "Interactivity"
 heading: "Interactivity"
-description: "TODO"
 weight: 40
 aliases:
   - /integrate/apps/api/interactivity/
@@ -14,7 +13,7 @@ Modal Forms ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-
 They are defined by:
 
 | Name             | Type   | Description                                                                                    |
-| :--------------- | :----- | :--------------------------------------------------------------------------------------------- |
+|:-----------------|:-------|:-----------------------------------------------------------------------------------------------|
 | `title`          | string | Title of the form, shown in the modal.                                                         |
 | `header`         | string | (Optional) Text used as introduction in the form.                                              |
 | `footer`         | string | (Optional) Text used at the end of the modal.                                                  |
@@ -26,7 +25,7 @@ They are defined by:
 The types of fields are:
 
 | Name             | Description                                              |
-| :--------------- | :------------------------------------------------------- |
+|:-----------------|:---------------------------------------------------------|
 | `text`           | Text field.                                              |
 | `static_select`  | A dropdown select with static elements.                  |
 | `dynamic_select` | A dropdown select that loads the elements dynamically.   |
@@ -40,7 +39,7 @@ Markdown fields are a special field that allows you to better format your form. 
 All fields include ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field)):
 
 | Name          | Type      | Description                                                                                  |
-| :------------ | :-------- | :------------------------------------------------------------------------------------------- |
+|:--------------|:----------|:---------------------------------------------------------------------------------------------|
 | `name`        | string    | Key to use in the values field of the call. Cannot include spaces nor tabs.                  |
 | `type`        | FieldType | The type of the field.                                                                       |
 | `is_required` | bool      | (Optional) Whether the field needs to be filled.                                             |
@@ -52,7 +51,7 @@ All fields include ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-
 Text fields may include:
 
 | Name         | Type   | Description                                                                                                                       |
-| :----------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------- |
+|:-------------|:-------|:----------------------------------------------------------------------------------------------------------------------------------|
 | `subtype`    | string | (Optional) The type of text that will be shown. Available types are one of input, textarea, email, number, password, tel, or URL. |
 | `min_length` | int    | (Optional) Validate the field length before performing the call.                                                                  |
 | `max_length` | int    | (Optional) Validate the field length before performing the call.                                                                  |
@@ -60,27 +59,27 @@ Text fields may include:
 Static select fields include:
 
 | Name      | Type    | Description               |
-| :-------- | :------ | :------------------------ |
+|:----------|:--------|:--------------------------|
 | `options` | Options | Options for the dropdown. |
 
 Each Option includes:
 
 | Name    | Type   | Description                                                           |
-| :------ | :----- | :-------------------------------------------------------------------- |
+|:--------|:-------|:----------------------------------------------------------------------|
 | `label` | string | User-facing string. Defaults to value. Must be unique on this select. |
 | `value` | string | Machine-facing value. Must be unique on this select.                  |
 
 All select also include:
 
 | Name          | Type | Description                                                                         |
-| :------------ | :--- | :---------------------------------------------------------------------------------- |
+|:--------------|:-----|:------------------------------------------------------------------------------------|
 | `refresh`     | bool | (Optional) Allows the form to be refreshed when the value of a dropdown is changed. |
 | `multiselect` | bool | (Optional) You can select more than one element in this field.                      |
 
 A modal form performs a lookup call to the call endpoint any time a dynamic dropdown is selected. The lookup call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form. The expected response is error or the following:
 
 | Name | Type    | Item    | Description                  |
-| :--- | :------ | :------ | :--------------------------- |
+|:-----|:--------|:--------|:-----------------------------|
 | data |         |         |                              |
 | -    | `items` | Options | The list of options to show. |
 
@@ -97,7 +96,7 @@ During autocomplete, the user can open the form as a Modal form to finish comple
 A command form is defined as:
 
 | Name     | Type   | Description                                                                                                                    |
-| :------- | :----- | :----------------------------------------------------------------------------------------------------------------------------- |
+|:---------|:-------|:-------------------------------------------------------------------------------------------------------------------------------|
 | `fields` | Fields | List of fields in the form.                                                                                                    |
 | `call`   | Call   | (Optional) Call to perform on all actions form related (including submit). If not provided, will use the command binding call. |
 
@@ -106,7 +105,7 @@ The type of fields is the same as for Modal forms.
 All fields include:
 
 | Name          | Type      | Description                                                                                                                                                        |
-| :------------ | :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:--------------|:----------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `name`        | string    | Key to use in the values field of the call, and as part of the command. Cannot include spaces nor tabs.                                                            |
 | `type`        | FieldType | The type of the field.                                                                                                                                             |
 | `is_required` | bool      | Whether the field needs to be filled.                                                                                                                              |
@@ -119,7 +118,7 @@ All fields include:
 Options are defined as:
 
 | Name        | Type   | Description                          |
-| :---------- | :----- | :----------------------------------- |
+|:------------|:-------|:-------------------------------------|
 | `label`     | string | User-facing string.                  |
 | `value`     | string | Machine-facing value.                |
 | `icon_data` | string | URL to icon to show on autocomplete. |
@@ -127,17 +126,17 @@ Options are defined as:
 All select also include:
 
 | Name          | Type | Description                                                    |
-| :------------ | :--- | :------------------------------------------------------------- |
+|:--------------|:-----|:---------------------------------------------------------------|
 | `multiselect` | bool | (Optional) You can select more than one element in this field. |
 
 When the command is executed, a submit call will be performed on the call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID, and the team ID.
 
-## Embedded Bindings
+## Embedded bindings
 
 Posts can be embedded with bindings. These are used for asynchronous interaction with the user. In order to add an embedded binding you need to add an `app_bindings` property with a list of `EmbeddedBindings`. An `EmbeddedBinding` includes:
 
 | Name       | Type    | Description                |
-| :--------- | :------ | :------------------------- |
+|:-----------|:--------|:---------------------------|
 | `app_id`   | string  | The app ID.                |
 | `title`    | string  | Title of the attachment.   |
 | `text`     | string  | Text of the attachment.    |
@@ -149,7 +148,7 @@ Bindings are of two types, buttons or selects.
 Buttons include:
 
 | Name       | Type   | Description                                                                                                                                         |
-| :--------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:-----------|:-------|:----------------------------------------------------------------------------------------------------------------------------------------------------|
 | `location` | string | Location name. The whole location path will be provided in the context.                                                                             |
 | `label`    | string | Label that will show in the button. Defaults to location. Must be unique in its level.                                                              |
 | `call`     | Call   | (Optional) Call to be made when the button is selected. You must provide a call if there is no form, or the form itself does not have a call.       |
@@ -158,7 +157,7 @@ Buttons include:
 Selects include:
 
 | Name       | Type    | Description                                                             |
-| :--------- | :------ | :---------------------------------------------------------------------- |
+|:-----------|:--------|:------------------------------------------------------------------------|
 | `location` | string  | Location name. The whole location path will be provided in the context. |
 | `label`    | string  | Label that will show in the button.                                     |
 | `call`     | Call    | (Optional) Call to be made inherited by the options.                    |
@@ -168,7 +167,7 @@ Selects include:
 Options bindings include:
 
 | Name       | Type   | Description                                                                                                                                          |
-| :--------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:-----------|:-------|:-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | `location` | string | Option name. The whole location path will be provided in the context.                                                                                |
 | `label`    | string | User-facing string. Defaults to location. Must be unique in its level.                                                                               |
 | `call`     | Call   | (Optional) Call to perform when the option is selected. You must provide a call if there is no form, or the form itself does not have a call.        |
@@ -176,11 +175,11 @@ Options bindings include:
 
 Whenever a button is clicked or a select field is selected, a submit call is performed to the corresponding call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID.
 
-## [Post Menu example]({{< ref example-post-menu >}})
+## [Post menu example]({{< ref example-post-menu >}})
 
 ## Example data flows
 
-### Clicking Channel Header
+### Click channel header
 
 <details><summary>Client Submit Request</summary>
 
@@ -359,7 +358,7 @@ Whenever a button is clicked or a select field is selected, a submit call is per
 </details>
 
 
-## Dynamic Lookup
+## Dynamic lookup
 
 <details><summary>Client Lookup Request</summary>
 
@@ -449,7 +448,7 @@ Whenever a button is clicked or a select field is selected, a submit call is per
 ```
 </details>
 
-### Submitted Modal
+### Submitted modal
 
 <details><summary>Client Submit Request</summary>
 

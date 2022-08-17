@@ -1,7 +1,7 @@
 ---
 title: "Quick start guide (serverless)"
-heading: "Writing a Mattermost app for AWS and OpenFaaS, in Go"
-description: "This quick start guide will walk you through the basics of writing a Mattermost app that can be deployed to serverless platforms, in Go."
+heading: "Write a Mattermost App for AWS and OpenFaaS, in Go"
+description: "This quick start guide will walk you through the basics of writing a Mattermost App that can be deployed to serverless platforms, in Go."
 weight: 30
 aliases:
   - /integrate/apps/quick-start-serverless/
@@ -56,7 +56,7 @@ make dist
 
 Then upload it to your local Mattermost server via the System Console.
 
-## Building the app
+## Build the App
 
 Start building your app by creating a directory for the code and setting up a new go module:
 
@@ -210,8 +210,6 @@ Note: names `package function` and `func Handle` appear to be required
 `http.DefaultServeMux`, so we just need to add our handlers and serve.
 
 ```go
-package path_to_your_module
-
 var deployType apps.DeployType
 
 func InitApp(dt apps.DeployType) {
@@ -378,7 +376,6 @@ Can be obtained by running `faas-cli template pull https://github.com/MrWormHole
 .PHONY: all
 ## all: builds and runs the app locally
 all: dist run
-
 ```
 
 `make run` will run locally, as an http server
@@ -388,7 +385,6 @@ all: dist run
 ## run: runs the app locally
 run:
 	go run ./http --manifest=manifest.json --static=static
-
 ```
 
 `make dist-aws` will create an AWS bundle, a zip file that includes:
@@ -410,7 +406,6 @@ dist-aws:
 		zip -m hello-serverless.zip hello-serverless ; \
 		zip -rm ../bundle-aws.zip hello-serverless.zip manifest.json static
 	rm -r dist/aws
-
 ```
 
 `make dist-openfaas` will create an OpenFaaS bundle, a zip file that includes:

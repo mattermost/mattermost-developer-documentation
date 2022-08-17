@@ -1,6 +1,6 @@
 ---
 title: "Manifest"
-heading: "App Manifest"
+heading: "App manifest"
 description: "App manifest spec"
 weight: 10
 aliases:
@@ -12,7 +12,7 @@ All apps should define a manifest
 as a JSON file. The fields of the manifest are:
 
 | Name                    | Type        | Description                                                                                                                              |
-| :---------------------- | :---------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
+|:------------------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------|
 | `app_id`(*)             | string      | ID for your app.                                                                                                                         |
 | `homepage_url`(*)       | string      | The app homepage. Used in the Marketplace and for OAuth purposes.                                                                        |
 | `version`               | string      | The version of your app.                                                                                                                 |
@@ -62,7 +62,7 @@ Apps need to request permissions from the admin who is installing them. After an
 Below are the permissions ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Permission)) an app can currently ask for:
 
 | Name                               | Description                                                                                                                                         |
-| :--------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:-----------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------|
 | `user_joined_channel_notification` | Be notified when users join channels.                                                                                                               |
 | `act_as_bot`                       | Use Mattermost REST API as the app's bot user.                                                                                                      |
 | `act_as_user`                      | Use Mattermost REST API as connected users.                                                                                                         |
@@ -81,14 +81,14 @@ Locations ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-ap
 | `/command`        | A slash command accessed by typing `/` at the beginning of any new message in Mattermost. Slash commands are an easy way for power-users to perform actions in external systems via a "chat-command-line" that can interactively provide the users with hints and suggestions based on dynamic lookups. For example, a slash command `/ticketing --name "test Ticket" --priority high` can capture two fields and create a ticket in an external system. The options for "priority" field could be displayed to the user in a multi-select menu to reduce their need to type. |
 | `/in_post`        | A form that is embedded within a message in Mattermost. Used to interact with users without switching context to an Interactive Dialog. Great for confirming simple things - like "Did you complete your OKR review yet? (Yes/No)" options can be presented to the user and they can simply check off a box.                                                                                                                                                                                                                                                                   |
 
-### Deployment Information
+### Deployment information
 
 #### `http`: Apps accessible via HTTP
 
 Provides configuration for accessing an app that is deployed exterally of Mattermost and is accessible via HTTP.
 
 | Name       | Description                                                                                                                                               |
-| :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:-----------|:----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `root_url` | Base URL to send all calls and static asset requests to.                                                                                                  |
 | `use_jwt`  | Include a secret-based JWT in all requests to the App. The secret must be provided by the app to the sysadmin and entered at the app's installation time. |
 
@@ -108,13 +108,13 @@ Provides configuration for deploying an app (bundle) onto the AWS Lambda and S3
 services and accessing it there.
 
 | Name           | Type                | Description       |
-| :------------- | :------------------ | :---------------- |
+|:---------------|:--------------------|:------------------|
 | `functions`(*) | AWS Lambda Function | List of functions |
 
 Each function contains the following fields:
 
 | Name         | Description                                                                                                                                                                      |
-| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:-------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `path`(*)    | (Root) path of calls to be mapped to this function, e.g. `"/"`                                                                                                                   |
 | `name`(*)    | Function's base name. Is used as a base name to compose the actual AWS Lambda name. `{name}.zip` is used looking up the lambda function in an app bundle by `appsctl aws deploy` |
 | `handler`(*) | The name of the handler go function                                                                                                                                              |
@@ -139,13 +139,13 @@ Example (some fields omitted):
 Provides configuration for deploying an app (bundle) onto OpenFaaS and faasd platforms.
 
 | Name           | Type              | Description       |
-| :------------- | :---------------- | :---------------- |
+|:---------------|:------------------|:------------------|
 | `functions`(*) | OpenFaaS Function | List of functions |
 
 Each function contains the following fields:
 
 | Name      | Description                                                                                                             |
-| :-------- | :---------------------------------------------------------------------------------------------------------------------- |
+|:----------|:------------------------------------------------------------------------------------------------------------------------|
 | `path`(*) | (Root) path of calls to be mapped to this function, e.g. `"/"`                                                          |
 | `name`(*) | Function's base name. Is used as a base name to compose the actual OpenFaaS name, combined with the app ID and version. |
 
@@ -170,13 +170,13 @@ Provides configuration for deploying an app (bundle) onto
 Kubernetes.
 
 | Name           | Type              | Description       |
-| :------------- | :---------------- | :---------------- |
+|:---------------|:------------------|:------------------|
 | `functions`(*) | Kubeless Function | List of functions |
 
 Each function contains the following fields:
 
 | Name         | Description                                                         |
-| :----------- | :------------------------------------------------------------------ |
+|:-------------|:--------------------------------------------------------------------|
 | `path`(*)    | (root) path of calls to be mapped to this function, e.g. `"/"`      |
 | `handler`(*) | the name of the language-specific function to invoke                |
 | `file`(*)    | the name of the file to invoke                                      |

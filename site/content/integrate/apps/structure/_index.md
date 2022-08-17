@@ -1,13 +1,11 @@
 ---
 title: "Structure"
-heading: "Apps Structure"
+heading: "Apps structure"
 description: "An overview of the structure of an App"
 weight: 30
 aliases:
   - /integrate/apps/api/
 ---
-
-## App Structure
 
 Apps consist of three kinds of assets:
 
@@ -20,7 +18,7 @@ Apps consist of three kinds of assets:
 
 - Static assets, currently solely icon files
 
-## Interactivity: Bindings and Forms
+## Interactivity: Bindings and forms
 
 - To interact with users an App must [bind]({{< ref "bindings" >}}) a call to a
   location in the Mattermost user interface. These locations may be
@@ -33,7 +31,7 @@ Apps consist of three kinds of assets:
   a `Call` when it is submitted. A `/`-command is just another way of filling
   out a `Form` and submitting it.
 
-## Using Mattermost APIs
+## Use Mattermost APIs
 
 Apps can use all general [Mattermost REST API]({{< ref "mattermost-api" >}})s,
 as well as special services that are provided to the apps.

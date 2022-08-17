@@ -1,6 +1,6 @@
 ---
-title: "Using Slash Commands"
-heading: "Using slash commands"
+title: "Use slash commands"
+heading: "Use slash commands"
 description: "Mattermost supports slash commands to easily integrate external applications into the server. They function similarly to outgoing webhooks, except they can be used in any channel - including Private channels and Direct Messages."
 weight: 80
 aliases:
@@ -11,45 +11,45 @@ Messages that begin with `/` are interpreted as slash commands. The commands wil
 
 **Note:** To prevent malicious users from trying to perform [phishing attacks](https://en.wikipedia.org/wiki/Phishing), a *BOT* indicator appears next to posts coming from webhooks regardless of what username is specified.
 
-## Built-in Commands
+## Built-in commands
 
 Each Mattermost installation comes with some built-in slash commands that are ready to use. These commands are available in the [latest Mattermost release](https://mattermost.com/download):
 
-| Command   | Description                      | Example     |
-|:--------- |:---------------------------------|:------------|
-| /away     | Set your availablity to away     | /away       |
-| /offline  | Set your availablity to offline  | /offline    |
-| /online   | Set your availablity to online   | /online     |
-| /dnd      | Set your availablity to Do Not Disturb | /dnd  |
-| /code *{text}* | Display text as a code block | /code File bugs |
-| /collapse | Turn on auto-collapsing of image previews    | /collapse |
-| /expand   | Turn off auto-collapsing of image previews   | /expand  |
-| /echo *{message}* *{delay in seconds}*     | Echo back text from your account     | /echo Hello World 5      |
-| /header *{text}*  | Edit the channel header  | /header File bugs here    |
-| /invite *@{user}* *~{channel-name}*   | Invite user to the channel   | /invite @john ~sampleChannel    |
-| /purpose *{text}* | Edit the channel purpose | /purpose A channel to discuss bugs  |
-| /rename *{text}* | Rename the channel | /rename Developers |
-| /help | Open the Mattermost help page   | /help |
-| /invite *@{user}* *~{channel-name}*   | Invite user to the channel   | /invite @john ~sampleChannel  |
-| /invite_people *{name@domain.com ...}*     | Send an email invite to your Mattermost team  | /invite_people john@example.com       |
-| /kick (or /remove) *{@username}*  | Remove a member from a Public or Private channel  | /kick @alice    |
-| /join (or /open) *{channel-name}*   | Join the given channel  | /join off-topic |
-| /leave      | Leave the current channel | /leave  |
-| /mute | Turns off desktop, email and push notifications for the current channel or the [channel] specified | /mute ~[channel] |
-| /logout | Log out of Mattermost    | /logout |
-| /me *{message}*   | Do an action   | /me Hello World  |
-| /msg *{@username}* *{message}*      | Send a Direct Message to a user | /msg @alice hello  |
-| /groupmsg *{@username1, @username2, ...}* *{message}* | Send a Group Message to the specified users | /groupmsg @alice, @bob hello |
-| /search *{text}* | Search text in messages    | /search meeting |
-| /settings   | Open the Settings dialog  | /settings  |
-| /shortcuts     | Display a list of keyboard shortcuts | /shortcuts |
-| /shrug *{message}* | Add ``¯\_(ツ)_/¯`` to your message | /shrug oh well |
-| /status *{emoji_name}* *{descriptive status_message}* | Set a custom status that includes an optional emoji and a descriptive status message | /status sick Feeling unwell and taking time off to recover |
-| /status clear   | Clear the current status   | /status clear  |
+| Command                                               | Description                                                                                        | Example                                                    |
+|:------------------------------------------------------|:---------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|
+| /away                                                 | Set your availablity to away                                                                       | /away                                                      |
+| /offline                                              | Set your availablity to offline                                                                    | /offline                                                   |
+| /online                                               | Set your availablity to online                                                                     | /online                                                    |
+| /dnd                                                  | Set your availablity to Do Not Disturb                                                             | /dnd                                                       |
+| /code *{text}*                                        | Display text as a code block                                                                       | /code File bugs                                            |
+| /collapse                                             | Turn on auto-collapsing of image previews                                                          | /collapse                                                  |
+| /expand                                               | Turn off auto-collapsing of image previews                                                         | /expand                                                    |
+| /echo *{message}* *{delay in seconds}*                | Echo back text from your account                                                                   | /echo Hello World 5                                        |
+| /header *{text}*                                      | Edit the channel header                                                                            | /header File bugs here                                     |
+| /invite *@{user}* *~{channel-name}*                   | Invite user to the channel                                                                         | /invite @john ~sampleChannel                               |
+| /purpose *{text}*                                     | Edit the channel purpose                                                                           | /purpose A channel to discuss bugs                         |
+| /rename *{text}*                                      | Rename the channel                                                                                 | /rename Developers                                         |
+| /help                                                 | Open the Mattermost help page                                                                      | /help                                                      |
+| /invite *@{user}* *~{channel-name}*                   | Invite user to the channel                                                                         | /invite @john ~sampleChannel                               |
+| /invite_people *{name@domain.com ...}*                | Send an email invite to your Mattermost team                                                       | /invite_people john@example.com                            |
+| /kick (or /remove) *{@username}*                      | Remove a member from a Public or Private channel                                                   | /kick @alice                                               |
+| /join (or /open) *{channel-name}*                     | Join the given channel                                                                             | /join off-topic                                            |
+| /leave                                                | Leave the current channel                                                                          | /leave                                                     |
+| /mute                                                 | Turns off desktop, email and push notifications for the current channel or the [channel] specified | /mute ~[channel]                                           |
+| /logout                                               | Log out of Mattermost                                                                              | /logout                                                    |
+| /me *{message}*                                       | Do an action                                                                                       | /me Hello World                                            |
+| /msg *{@username}* *{message}*                        | Send a Direct Message to a user                                                                    | /msg @alice hello                                          |
+| /groupmsg *{@username1, @username2, ...}* *{message}* | Send a Group Message to the specified users                                                        | /groupmsg @alice, @bob hello                               |
+| /search *{text}*                                      | Search text in messages                                                                            | /search meeting                                            |
+| /settings                                             | Open the Settings dialog                                                                           | /settings                                                  |
+| /shortcuts                                            | Display a list of keyboard shortcuts                                                               | /shortcuts                                                 |
+| /shrug *{message}*                                    | Add `¯\_(ツ)_/¯` to your message                                                                    | /shrug oh well                                             |
+| /status *{emoji_name}* *{descriptive status_message}* | Set a custom status that includes an optional emoji and a descriptive status message               | /status sick Feeling unwell and taking time off to recover |
+| /status clear                                         | Clear the current status                                                                           | /status clear                                              |
 
 **Note:** `/status` and `/status clear` slash commands listed above will be available in the Mattermost Mobile App in a future release.
 
-## Custom Slash Command
+## Custom slash command
 
 Suppose you want to write an external application that is able to check the weather for certain cities. By creating a custom slash command, and setting up the application to handle the HTTP POST or GET from the command, you can let your users check the weather in their city using your command, say `/weather toronto week`.
 
@@ -61,67 +61,67 @@ You can follow these general guidelines to set up a custom Mattermost slash comm
 4. Set the **Request URL** and **Request Method**. The request URL is the endpoint that Mattermost hits to reach your application, and the request method is either POST or GET and specifies the type of request sent to the request URL.
 5. (Optional) Set the response username and icon the command will post messages as in Mattermost. If not set, the command will use your username and profile picture.
 
-**Note:** [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames, and [similarly for profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons). Enable them from **System Console > Integrations > Integration Management** or ask your Mattermost System Admin.
+   **Note:** [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames, and [similarly for profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons). Enable them from **System Console > Integrations > Integration Management** or ask your Mattermost System Admin.
 
 6. (Optional) Include the slash command in the command autocomplete list, displayed when typing ``/`` in an empty input box. Use it to make your command easier to discover by your teammates. You can also provide a hint listing the arguments of your command and a short description displayed in the autocomplete list.
 7. Select **Save**. On the next page, copy the **Token** value. This will be used in a later step.
 
-![image](slash_commands_token.png)
+   ![image](slash_commands_token.png)
 
 8. Next, write your external application. Include a function which receives HTTP POST or HTTP GET requests from Mattermost. The request will look something like this:
 
-```
-  POST /slash-command HTTP/1.1
-  Host: example.com
-  User-Agent: Go-http-client/1.1
-  Content-Length: 313
-  Accept: application/json
-  Authorization: Token okwexkjpe7ygb8eq1ww58t483w
-  Content-Type: application/x-www-form-urlencoded
-  Accept-Encoding: gzip
-
-  channel_id=jux16pkewjrkfj3ehep1psxyxc&
-  channel_name=town-square&
-  command=%2Ftest&
-  response_url=http%3A%2F%2Flocalhost%3A8065%2Fhooks%2Fcommands%2Fxbrkb8p393gjpq5cawei7npije&
-  team_domain=test&
-  team_id=carya1qs77bemjup96ff538snh&
-  text=asd&
-  token=okwexkjpe7ygb8eq1ww58t483w&
-  user_id=aoa1agao6t8fmx3ikt1j9w5ybw&
-  user_name=somename
-  channel_mentions=["saepe-5", "aut-8"]
-  channel_mentions_ids=["r3j6sby343fpfdxcbwqg95rfsa", "ehjj46yk7ifptr5bpfb966s6mc"]
-  user_mentions=["aaron.peterson", "aaron.medina"]
-  user_mentions_ids=["q5s3b7xzgprp5eid8h66j9epsy", "czwmumrmw7dfxecww7qibkkoor"]
-```
-
-If your integration sends back a JSON response, make sure it returns the `application/json` content-type.
+    ```
+    POST /slash-command HTTP/1.1
+    Host: example.com
+    User-Agent: Go-http-client/1.1
+    Content-Length: 313
+    Accept: application/json
+    Authorization: Token okwexkjpe7ygb8eq1ww58t483w
+    Content-Type: application/x-www-form-urlencoded
+    Accept-Encoding: gzip
+    
+    channel_id=jux16pkewjrkfj3ehep1psxyxc&
+    channel_name=town-square&
+    command=%2Ftest&
+    response_url=http%3A%2F%2Flocalhost%3A8065%2Fhooks%2Fcommands%2Fxbrkb8p393gjpq5cawei7npije&
+    team_domain=test&
+    team_id=carya1qs77bemjup96ff538snh&
+    text=asd&
+    token=okwexkjpe7ygb8eq1ww58t483w&
+    user_id=aoa1agao6t8fmx3ikt1j9w5ybw&
+    user_name=somename
+    channel_mentions=["saepe-5", "aut-8"]
+    channel_mentions_ids=["r3j6sby343fpfdxcbwqg95rfsa", "ehjj46yk7ifptr5bpfb966s6mc"]
+    user_mentions=["aaron.peterson", "aaron.medina"]
+    user_mentions_ids=["q5s3b7xzgprp5eid8h66j9epsy", "czwmumrmw7dfxecww7qibkkoor"]
+    ```
+    
+    If your integration sends back a JSON response, make sure it returns the `application/json` content-type.
 
 9. Add a configurable *MATTERMOST_TOKEN* variable to your application and set it to the **Token** value from step 7. This value will be used by your application to confirm the HTTP POST or GET request came from Mattermost.
 10. To have your application post a message back to `town-square`, it can respond to the HTTP POST request with a JSON response such as:
 
-```
- {"response_type": "in_channel", "text": "
-   ---
-   #### Weather in Toronto, Ontario for the Week of February 16th, 2016
+    ```
+    {"response_type": "in_channel", "text": "
+      ---
+      #### Weather in Toronto, Ontario for the Week of February 16th, 2016
+    
+      | Day                 | Description                      | High   | Low    |
+      |:--------------------|:---------------------------------|:-------|:-------|
+      | Monday, Feb. 15     | Cloudy with a chance of flurries | 3 °C   | -12 °C |
+      | Tuesday, Feb. 16    | Sunny                            | 4 °C   | -8 °C  |
+      | Wednesday, Feb. 17  | Partly cloudly                   | 4 °C   | -14 °C |
+      | Thursday, Feb. 18   | Cloudy with a chance of rain     | 2 °C   | -13 °C |
+      | Friday, Feb. 19     | Overcast                         | 5 °C   | -7 °C  |
+      | Saturday, Feb. 20   | Sunny with cloudy patches        | 7 °C   | -4 °C  |
+      | Sunday, Feb. 21     | Partly cloudy                    | 6 °C   | -9 °C  |
+      ---
+    "}
+    ```
 
-   | Day                 | Description                      | High   | Low    |
-   |:--------------------|:---------------------------------|:-------|:-------|
-   | Monday, Feb. 15     | Cloudy with a chance of flurries | 3 °C   | -12 °C |
-   | Tuesday, Feb. 16    | Sunny                            | 4 °C   | -8 °C  |
-   | Wednesday, Feb. 17  | Partly cloudly                   | 4 °C   | -14 °C |
-   | Thursday, Feb. 18   | Cloudy with a chance of rain     | 2 °C   | -13 °C |
-   | Friday, Feb. 19     | Overcast                         | 5 °C   | -7 °C  |
-   | Saturday, Feb. 20   | Sunny with cloudy patches        | 7 °C   | -4 °C  |
-   | Sunday, Feb. 21     | Partly cloudy                    | 6 °C   | -9 °C  |
-   ---
-   "}
-```
+    which would render in Mattermost as:
 
-which would render in Mattermost as:
-
-![image](weatherBot.png)
+    ![image](weatherBot.png)
 
 11. You're all set! See [developer documentation]({{< ref "/integrate/slash-commands/using-slash-commands" >}}) for details on what parameters are supported by slash commands. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins]({{< ref "/integrate/plugins/using-and-managing-plugins" >}}). Messages with advanced formatting can be created by including an [attachment array]({{< ref "/integrate/reference/message-attachments" >}}) and [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}) in the JSON payload.
 
@@ -129,7 +129,7 @@ which would render in Mattermost as:
 
 Similarly, [Enable integrations to override profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons) must be set to `true` in `config.json` to override profile picture icons. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the icon of the creator of the webhook URL is used to post messages.
 
-## Tips and Best Practices
+## Tips and best practices
 
 1. Slash commands are designed to easily allow you to post messages. For other actions such as channel creation, you must also use the [Mattermost APIs](https://api.mattermost.com).
 2. Posts size is limited to 16393 characters for servers running [Mattermost Server v5.0 or later](https://docs.mattermost.com/administration/important-upgrade-notes.html). Use the `extra_responses` field to reply to a triggered slash command with more than one post.
@@ -137,13 +137,13 @@ Similarly, [Enable integrations to override profile picture icons](https://docs.
 4. Mattermost outgoing webhooks are Slack-compatible. You can copy-and-paste code used for a Slack outgoing webhook to create Mattermost integrations. Mattermost [automatically translates the Slack's proprietary JSON payload format](#translate-slacks-data-format-to-mattermost).
 5. The external application may be written in any programming language. It needs to provide a URL which receives the request sent by your Mattermost server and responds with in the required JSON format.
 
-## Share Your Integration
+## Share your integration
 
 If you've built an integration for Mattermost, please consider [sharing your work]({{< ref "/integrate/getting-started" >}}) in our [app directory](https://mattermost.com/marketplace/).
 
 The [app directory](https://mattermost.com/marketplace/) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-hosted infrastructure.
 
-## Slack Compatibility
+## Slack compatibility
 
 Mattermost makes it easy to migrate integrations written for Slack to Mattermost.
 
