@@ -1,7 +1,6 @@
 ---
-title: "Cypress Cheatsheet"
+title: "Cypress cheatsheet"
 date: 2020-12-11T00:00
-subsection: Web App
 weight: 6
 ---
 

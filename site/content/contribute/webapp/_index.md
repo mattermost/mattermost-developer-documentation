@@ -1,6 +1,6 @@
 ---
-title: "Web App"
-heading: "Contribute to the Mattermost Web App"
+title: "Web app"
+heading: "Contribute to the Mattermost web app"
 description: "The Mattermost web app is written in JavaScript using React and Redux and is powered by mattermost-redux."
 date: "2018-03-19T12:01:23-04:00"
 weight: 3

@@ -1,6 +1,6 @@
 ---
 title: "Selectors"
-heading: "How to Use Selectors - Mattermost"
+heading: "How to use selectors - Mattermost"
 description: "Find out what selectors are and how to use, add, and test them in Mattermost."
 date: 2017-08-20T11:35:32-04:00
 weight: 6
@@ -10,7 +10,7 @@ Selectors are functions used to compute data from the data in the Redux stores. 
 
 For more information about reselect and how we use it at Mattermost, [check out this developer talk given by core developer Harrison Healey](https://www.youtube.com/watch?v=6N2X7gEwmaQ).
 
-## Using a Selector
+## Use a selector
 
 Selectors are simple functions that take the state from the redux store and return some data computed from them. Most selectors take simply the state of the redux store and return some data from the store.
 
@@ -30,7 +30,7 @@ const postsInSelectedThread = getPostsInThread(state, selectedPost.root_id);
 
 For an example of how a selector like `makeGetPostInThread` could be used with React, see [here]({{< ref "/contribute/webapp/redux/react-redux" >}}).
 
-## Adding a Selector
+## Add a selector
 
 The most basic selector is just a function that takes in the state and returns a part of it without any memoization or complicated logic. All these provide is that they make it easier to access part of the store without having to remember exactly where the data is.
 
@@ -84,7 +84,7 @@ Note that when we make a selector that takes arguments, we typically wrap it in 
 
 This may sound unnecessary if you're writing a one-off selector, but if you think of something like a `getPost` selector in the Mattermost app, we will frequently be rendering 100+ post components each with their own copy of the `getPost` selector. With only a single copy of that selector, it would be constantly recalculating, but with 100+ copies, each only recalculates and rerenders when their specific post changes.
 
-### Testing a Selector
+### Test a selector
 
 Unit tests for selectors are located in the same directory, adjacent to the file being tested. Example, for `src/selectors/admin.js`, test is located at `src/selectors/admin.test.js`. These tests are written using [Jest Testing Framework](https://jestjs.io/). In that folder, there are many examples of how those tests should look. Most follow the same general pattern of:
 1. Construct the initial test state. Note that this doesn't need to be shared between tests as it is in many other cases.

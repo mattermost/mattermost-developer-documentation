@@ -1,5 +1,5 @@
 ---
-title: "Settings Modal"
+title: "Settings modal"
 date: 2020-12-11T00:00
 weight: 2
 subsection: Cypress cheatsheet
@@ -108,7 +108,7 @@ cy.uiOpenSettingsModal('Notifications').within(() => {
 #### `cy.uiSave` and `cy.uiClose`
 Common commands that can be used to save settings and close the modal.
 
-##### Save and Close
+##### Save and close
 ```diff
 // # Open 'Notifications' of 'Settings' modal
 cy.uiOpenSettingsModal('Notifications').within(() => {

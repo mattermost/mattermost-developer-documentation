@@ -1,5 +1,5 @@
 ---
-title: "Product Menu"
+title: "Product menu"
 date: 2020-12-11T00:00
 weight: 4
 subsection: Cypress cheatsheet

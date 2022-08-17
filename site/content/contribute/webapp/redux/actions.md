@@ -52,7 +52,7 @@ function loadAndSelectChannel(channelId) {
 
 Actions live in the `src/actions` directory with the constants that define their types being in the `src/action_types` directory.
 
-## Using Actions
+## Use actions
 
 To use an action, you need to pass it into the `dispatch` method of the Redux store so that it can be passed off to the reducers.
 
@@ -64,7 +64,7 @@ store.dispatch(loadAndSelectChannel(channelId));
 
 Since both the Mattermost web and mobile apps also use React, the `dispatch` method is provided for us by using the `connect` function [React Redux](https://github.com/reactjs/react-redux) to wrap our components.
 
-```javascript
+```jsx
 // src/components/widget/index.jsx
 
 import {connect} from 'react-redux';
@@ -105,7 +105,7 @@ export default class Widget extends React.PureComponent {
 }
 ```
 
-## Adding an Action
+## Add an action
 
 To add a new Redux action, you must
 
@@ -160,7 +160,7 @@ To add a new Redux action, you must
 3. If you're adding a new action type, add or update existing reducers to handle the new action. More information about reducers is available [here]({{< ref "/contribute/webapp/redux/reducers" >}}).
 4. Add unit tests to make sure that the action has the intended effects on the store. Test location is adjacent to the file being tested. Example, for `src/actions/admin.js`, test is located at `src/actions/admin.test.js`.  Add test file if necessary. More information on unit testing reducers is available below.
 
-### Adding a new API Action
+### Add a new API action
 
 If your action is wrapping an API call, there's a few things that you will need to do differently:
 
@@ -210,7 +210,7 @@ If your action is wrapping an API call, there's a few things that you will need 
     ```
 5. Add unit tests to make sure that the action has the intended effects on the store. Test location is adjacent to the file being tested. Example, for `src/actions/admin.js`, test is located at `src/actions/admin.test.js`.  Add test file if necessary. More information on unit testing reducers is available below.
 
-### Testing an Action
+### Test an action
 
 Unit tests for actions are located in the same directory, adjacent to the file being tested. These tests are written using [Jest Testing Framework](https://jestjs.io/). In that folder, there are many examples of how those tests should look. Most follow the same general pattern of:
 1. Construct the initial test state. Note that this doesn't need to be shared between tests as it is in many other cases.

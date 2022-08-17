@@ -132,7 +132,7 @@ if !ok || d != '{' {
 
 Use `userID` rather than `userId`. Same for abbreviations; `HTTP` is preferred over `Http` or `http`.
 
-#### [Receiver Names](https://github.com/golang/go/wiki/CodeReviewComments#receiver-names)
+#### [Receiver names](https://github.com/golang/go/wiki/CodeReviewComments#receiver-names)
 
 The name of a method's receiver should be a reflection of its identity; often a one or two letter abbreviation of its type suffices (such as "c" or "cl" for "Client"). Don't use generic names such as "me", "this", or "self" identifiers typical of object-oriented languages that give the variable a special meaning.
 
@@ -265,7 +265,7 @@ Generics is a new feature coming in Go 1.18. This is a significant language feat
 
 You are welcome to use it in small tools under the Mattermost org, but usage in the main server [repo](https://github.com/mattermost/mattermost-server) is not advised for now.
 
-## Proposing a new rule
+## Propose a new rule
 
 To propose a new rule, follow the process below:
 

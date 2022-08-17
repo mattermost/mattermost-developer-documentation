@@ -22,13 +22,13 @@ For the sake of making this guide simple we located the files at `/home/ubuntu/m
 
 1. Download the Mattermost Push Notification Service (any version):
 
-    `wget https://github.com/mattermost/mattermost-push-proxy/releases/download/vX.X.X/mattermost-push-proxy.tar.gz (``mattermost-push-proxy`` releases v5.9 and later)`
+    `wget https://github.com/mattermost/mattermost-push-proxy/releases/download/vX.X.X/mattermost-push-proxy.tar.gz` (`mattermost-push-proxy-X.X.X.tar.gz` for releases earlier than v5.9)
 
     In this command, `vX.X.X` refers to the release version you want to download. See [Mattermost Push Notification Service releases](https://github.com/mattermost/mattermost-push-proxy/releases).
 
 2. If you're upgrading a previous version of the Mattermost Push Notification Service make sure to back up your `mattermost-push-proxy.json` file before continuing.
 
-3. Unzip the downloaded Mattermost Push Notification Service using: `tar -xvzf mattermost-push-proxy-X.X.X.tar.gz`
+3. Unzip the downloaded Mattermost Push Notification Service using: `tar -xvzf mattermost-push-proxy.tar.gz`
 
 4. Configure the Mattermost Push Notification service by editing the `mattermost-push-proxy.json` file at `/home/ubuntu/mattermost-push-proxy/config`. Follow the steps in the [Android](#set-up-mattermost-push-notification-service-to-send-android-push-notifications)
     and [iOS](#set-up-mattermost-push-notification-service-to-send-ios-push-notifications) sections to replace the values in the config file.
@@ -51,7 +51,7 @@ For the sake of making this guide simple we located the files at `/home/ubuntu/m
 
 6. Start the service with `sudo systemctl start mattermost-push-proxy` or restart with `sudo systemctl restart mattermost-push-proxy`. Use `sudo systemctl enable mattermost-push-proxy` to have systemd start the service on boot.
 
-### Set Up Mattermost push notification service to send Android push notifications
+### Set up Mattermost push notification service to send Android push notifications
 
 - Go to the [Firebase Console](https://console.firebase.google.com) and select the project you've created. Once in the dashboard, go to the project settings and select **CLOUD MESSAGING**.
 ![image](/img/mobile/firebase_settings.png)
@@ -101,7 +101,7 @@ For the sake of making this guide simple we located the files at `/home/ubuntu/m
 
 In the [mattermost-push-proxy project](https://github.com/mattermost/mattermost-push-proxy/tree/master/cmd/renew_apple_cert) there are some scripts to ease the process involved for updating the iOS notification certificates. Please check the README.md for further details.
 
-### Configure the Mattermost Server to use the Mattermost Push Notification Service
+### Configure the Mattermost Server to use the Mattermost push notification service
 
 - In your Mattermost instance, enable mobile push notifications.
     * Go to **System Console > Notifications > Mobile Push**.
@@ -119,7 +119,7 @@ In the [mattermost-push-proxy project](https://github.com/mattermost/mattermost-
 
 - Finally, start your Mattermost Push Notification Service, and your app should start receiving push notifications.
 
-### Test the Mattermost Push Notification Service
+### Test the Mattermost push notification service
 
 * Verify that the server is functioning normally and test the push notification using curl:
   `curl http://127.0.0.1:8066/api/v1/send_push -X POST -H "Content-Type: application/json" -d '{"type": "message", "message": "test", "badge": 1, "platform": "PLATFORM", "server_id": "MATTERMOST_DIAG_ID", "device_id": "DEVICE_ID", "channel_id": "CHANNEL_ID"}'`

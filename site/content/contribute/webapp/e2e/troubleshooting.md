@@ -2,10 +2,9 @@
 title: "Troubleshooting"
 date: 2018-12-04T11:35:32-04:00
 weight: 6
-subsection: End-to-End Testing
 ---
 
-### Cypress Failed To Start After Running 'npm run cypress:run'
+### Cypress failed to start after running `npm run cypress:run`
 
 Either the command line exits immediately without running any test or it logs out like the following.
 

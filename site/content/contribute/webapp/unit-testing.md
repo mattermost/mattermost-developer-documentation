@@ -1,12 +1,12 @@
 ---
-title: "Unit Testing"
-heading: "Unit Testing at Mattermost"
+title: "Unit tests"
+heading: "Unit tests at Mattermost"
 description: "Review our guidelines for unit testing for your Mattermost webapp, including a guide on how to do component testing."
 date: 2018-11-20T11:35:32-04:00
 weight: 5
 ---
 
-## Component and Utility files
+## Component and utility files
 
 The last required piece of building a webapp component is to test it. That can be done using the component testing framework described in this blog post: https://grundleborg.github.io/posts/react-component-testing-in-mattermost/.
 
@@ -156,70 +156,71 @@ Finally, initiate the following commands:
 
 ## Troubleshooting
 
-### 1. If you get an error like "UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'filter' of undefined"
-a. Check if the code being tested used native timer functions (i.e., setTimeout, setInterval, clearTimeout, clearInterval). You can mock the timers and/or run fake timers (e.g. `jest.useFakeTimers()`) if necessary. Note that `jest.useFakeTimers()` is already in the Jest [global setup](https://github.com/mattermost/mattermost-webapp/blob/master/tests/setup.js), but there are cases where it needs to run specifically depending on how the component uses the native timer functions.
+1. If you get an error like `UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'filter' of undefined`
+   - Check if the code being tested used native timer functions (i.e., setTimeout, setInterval, clearTimeout, clearInterval). You can mock the timers and/or run fake timers (e.g. `jest.useFakeTimers()`) if necessary. Note that `jest.useFakeTimers()` is already in the Jest [global setup](https://github.com/mattermost/mattermost-webapp/blob/master/tests/setup.js), but there are cases where it needs to run specifically depending on how the component uses the native timer functions.
 
-### 2. If you get an error like "UnhandledPromiseRejectionWarning: TypeError: (0 , \_fff.hhh) is not a function"
-a. Check if you're mocking part of an imported module without providing other exports which are used. You can use `jest.requireActual` to get the unmocked version of the file.
+2. If you get an error like `UnhandledPromiseRejectionWarning: TypeError: (0 , \_fff.hhh) is not a function`
+   - Check if you're mocking part of an imported module without providing other exports which are used. You can use `jest.requireActual` to get the unmocked version of the file.
 
-    ```javascript
-    // DO NOT partially mock the module
-    jest.mock('actions/storage', () => ({
-        setGlobalItem: (...args) => ({type: 'MOCK_SET_GLOBAL_ITEM', args}),
-    }));
+     ```javascript
+     // DO NOT partially mock the module
+     jest.mock('actions/storage', () => ({
+         setGlobalItem: (...args) => ({type: 'MOCK_SET_GLOBAL_ITEM', args}),
+     }));
 
-    // DO fully mock the module
-    jest.mock('actions/storage', () => {
-        const original = jest.requireActual('actions/storage');
-        return {
-            ...original,
-            setGlobalItem: (...args) => ({type: 'MOCK_SET_GLOBAL_ITEM', args}),
-        };
-    });
-    ```
+     // DO fully mock the module
+     jest.mock('actions/storage', () => {
+         const original = jest.requireActual('actions/storage');
+         return {
+             ...original,
+             setGlobalItem: (...args) => ({type: 'MOCK_SET_GLOBAL_ITEM', args}),
+         };
+     });
+     ```
 
-### 3. If you get an error like "UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'data' of undefined"
-a. Use async mock functions with resolved value. The property that cannot be read can be `error`, `data`, `exists`, `match`, or whatever the resolved value contains.
+3. If you get an error like `UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'data' of undefined`
+   - Use async mock functions with resolved value. The property that cannot be read can be `error`, `data`, `exists`, `match`, or whatever the resolved value contains.
 
-If the file being tested contains a line where it awaits on an async value like
+     If the file being tested contains a line where it awaits on an async value like
 
-    ```javascript
-    const {data} = await this.props.actions.addUsersToTeam(this.props.currentTeamId, userIds);
-    ```
-the mocked function should return a Promise by using `mockResolvedValue`.
+     ```javascript
+     const {data} = await this.props.actions.addUsersToTeam(this.props.currentTeamId, userIds);
+     ```
+   
+      the mocked function should return a Promise by using `mockResolvedValue`.
 
-    ```javascript
-    // DO NOT assign a regular mock function.
-    const addUsersToTeam = jest.fn();
+     ```javascript
+     // DO NOT assign a regular mock function.
+     const addUsersToTeam = jest.fn();
 
-    // DO NOT forget to provide a resolved value.
-    const addUsersToTeam: jest.fn(() => {
-        return new Promise((resolve) => {
-            process.nextTick(() => resolve());
-        });
-    }),
+     // DO NOT forget to provide a resolved value.
+     const addUsersToTeam: jest.fn(() => {
+         return new Promise((resolve) => {
+             process.nextTick(() => resolve());
+         });
+     }),
 
-    // DO mock async function with resolved value. `mockResolvedValue` is the easiest way to do this.
-    const addUsersToTeam = jest.fn().mockResolvedValue({data: true})
+     // DO mock async function with resolved value. `mockResolvedValue` is the easiest way to do this.
+     const addUsersToTeam = jest.fn().mockResolvedValue({data: true})
 
-    // DO mock async function with several resolved values for repeated calls.
-    const addUsersToTeam = jest.fn().
-        mockResolvedValueOnce({error: true}).
-        mockResolvedValue({data: true});
-    ```
+     // DO mock async function with several resolved values for repeated calls.
+     const addUsersToTeam = jest.fn().
+         mockResolvedValueOnce({error: true}).
+         mockResolvedValue({data: true});
+     ```
     
-Remember to make individual test cases async when testing async functions.
+     Remember to make individual test cases async when testing async functions.
 
-    ```javascript
-    // DO NOT forget to wait for the async function to complete.
-    test('should match state when handleSubmit is called', () => {
-        wrapper.instance().handleSubmit();
-        expect(...)
-    });
+     ```javascript
+     // DO NOT forget to wait for the async function to complete.
+     test('should match state when handleSubmit is called', () => {
+         wrapper.instance().handleSubmit();
+         expect(...)
+     });
 
-    // DO remember to wait on the async function and to make the entire test case async.
-    test('should match state when handleSubmit is called', async () => {
-        await wrapper.instance().handleSubmit();
-        expect(addUsersToTeam).toHaveBeenCalledTimes(1);
-    });
-    ```
+     // DO remember to wait on the async function and to make the entire test case async.
+     test('should match state when handleSubmit is called', async () => {
+         await wrapper.instance().handleSubmit();
+         expect(addUsersToTeam).toHaveBeenCalledTimes(1);
+     });
+     ```

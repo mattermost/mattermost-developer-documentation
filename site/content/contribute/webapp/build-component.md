@@ -1,6 +1,6 @@
 ---
-title: "Build a Component"
-heading: "How to Build a Component in Mattermost"
+title: "Build a component"
+heading: "How to build a component in Mattermost"
 description: "This page describes how to build a new React component in the Mattermost webapp and the requirements it must meet."
 date: 2017-08-20T11:35:32-04:00
 weight: 4
@@ -23,7 +23,7 @@ The components for the webapp currently live in the `components/` directory in t
 
 These requirements are discussed in more detail in the following sections.
 
-## Designing the Component
+## Design the component
 
 The most important part of designing your component is deciding on what the props will be. Props are very much the API for your component. Think of them as a contract between your component and the users.
 
@@ -53,7 +53,7 @@ Make sure you add brief but clear comments to each prop type as shown in the exa
 
 Our ItemList component would live in a file named `item_list.tsx`.
 
-## Using a Redux Container Component
+## Use a Redux container component
 
 The next question to ask yourself is whether you're going to need a container component. This is the `index.ts` file mentioned above. If your component needs either of the following, then you'll need a container:
 
@@ -119,7 +119,7 @@ If the selectors and/or actions you need don't yet exist in Redux then you shoul
 
 Your `index.ts` and `item_list.ts` files will live together in an `item_list/` directory.
 
-## Implementing the Component
+## Implement the component
 
 With the props defined and, if necessary, the container built, you're ready to implement the rest of your component. For the most part, implementing a component for the web app is no different than building any other React component. While older code tends to use class components which extend `React.PureComponent`, most newer code should use functional components.
 

@@ -53,7 +53,7 @@ export const combineReducers({
 
 `combineReducers` can be nested further to make up the complex data store as used by Mattermost Redux.
 
-## Avoiding Mutating the Store
+## Avoiding mutating the store
 
 One of the core principals of Redux is that the state of the store should never be modified. If the state changes, a completely new state tree should be returned. That's not to say the entire thing is destroyed and recreated from scratch any time anything changes, but only the parts that are modified are recreated.
 

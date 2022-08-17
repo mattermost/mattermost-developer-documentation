@@ -1,7 +1,7 @@
 ---
-title: "CLI Commands"
-heading: "CLI Commands and mmctl"
-description: "Mattermost provides a CLI tool (mmctl) to to enable access to Mattermost server from the command line."
+title: "CLI commands"
+heading: "CLI commands and mmctl"
+description: "Mattermost provides a CLI tool (mmctl) to to enable access to Mattermost Server from the command line."
 date: 2022-03-15T18:40:32-04:00
 weight: 5
 ---
@@ -12,9 +12,7 @@ Since `mmctl` uses the public API, an authorization mechanism is required. Which
 
 In addition to provide more functionality towards testing and development, `db` subcommand has been added Mattermost server binary.
 
-## Understanding the CLI
-
-The CLI interface is written in [Cobra](https://github.com/spf13/cobra), a
+The CLI interface is written using [Cobra](https://github.com/spf13/cobra), a
 powerful and modern CLI creation library. If you have never used Cobra before, it is
 well documented in its [GitHub Repository](https://github.com/spf13/cobra).
 
@@ -24,7 +22,7 @@ Each "command" of the CLI is stored in a different file of the
 `commands` directory. Within each file, you can find
 multiple "subcommands".
 
-## Adding a New Subcommand
+## Add a new subcommand
 
 If you want to add a new subcommand in an existing mattermost command, first find the relevant file. For example, if you want to add a `show` command to
 the `channel` command, go to `commands/channel.go` and add your subcommand there.
@@ -74,7 +72,7 @@ func init() {
 
 Finally, implement unit tests in `commands/channel_test.go` and end-to-end tests to commands/channel_e2e_test.go`.
 
-## Adding a New Command
+## Add a new command
 
 If you want to add a new command to `mmctl`, first create a file for the command.
 For example, if you want to add a new `emoji` command to manage emojis in
@@ -100,6 +98,6 @@ func init() {
 
 Usually, you would then add several subcommands to perform various tasks.
 
-## Submitting your Pull Request
+## Submit your pull request
 
 Please submit a pull request against the [mattermost/mmctl](https://github.com/mattermost/mmctl) repository by [following these instructions]({{< ref "/contribute/server/developer-workflow" >}}).

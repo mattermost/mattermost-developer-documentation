@@ -10,7 +10,7 @@ Mattermost supports plugins that offer powerful features for extending and deepl
 
 This document covers the plugin infrastructure and how to contribute to it.
 
-## Building Plugins
+## Build plugins
 
 Looking to build a plugin? [Then you want the plugin author documentation.]({{< ref "/integrate/plugins" >}})
 
@@ -28,7 +28,7 @@ All these different components of a plugin are compressed into a .tar.gz bundle.
 
 Check out the [`plugin` package](https://github.com/mattermost/mattermost-server/tree/master/plugin) and the [plugin_* files in the `app` package](https://github.com/mattermost/mattermost-server/tree/master/app) for the code, and [mattermost-plugin-demo](https://github.com/mattermost/mattermost-plugin-demo) for an example plugin. To start developing your own plugin, please follow the instructions [here]({{< ref "/integrate/plugins/developer-setup" >}}).
 
-## Adding an API
+## Add an API
 
 To add a plugin API you need to add the signature of your new method to the [API interface](https://github.com/mattermost/mattermost-server/blob/master/plugin/api.go). You then need to implement the API in the [plugin_api.go](https://github.com/mattermost/mattermost-server/blob/master/app/plugin_api.go) of the `app` package. Finally, you need to run `make pluginapi` to generate the RPC glue code needed for your new API and `make plugin-mocks` to generate the mocks used for plugin testing.
 

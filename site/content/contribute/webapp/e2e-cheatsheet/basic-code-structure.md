@@ -1,8 +1,7 @@
 ---
-title: "Basic Code Structure"
+title: "Basic code structure"
 date: 2020-12-11T00:00
 weight: 1
-subsection: Cypress cheatsheet
 ---
 
 ```javascript
