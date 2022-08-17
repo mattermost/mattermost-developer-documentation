@@ -1,7 +1,7 @@
 ---
-title: High Availability
-heading: "Mattermost Enterprise Edition E20: High Availability"
-description: "All Mattermost plugins should consider High Availability (HA) environments. Learn more about our standards for workign with HA mode servers."
+title: High availability
+heading: "High availability"
+description: "All Mattermost plugins should consider high availability (HA) environments. Learn more about our standards for working with HA mode servers."
 date: 2018-07-10T00:00:00-05:00
 weight: 60
 aliases: 
@@ -29,7 +29,7 @@ In this scenario, the trigger word is now only set for the plugin process runnin
 
 The proper way to deal with this case would be for the plugin to store the trigger word in a global store, such as the KV store. Then any time a user posts the plugin can pull the trigger word from the store and properly alert the user, regardless of which app server handles the request.
 
-## Running a scheduled job in High Availability mode
+## Run a scheduled job in high availability mode
 
 Using the [mattermost-plugin-api/cluster](https://github.com/mattermost/mattermost-plugin-api/blob/37eccf0f0f3e9e0737d017b555ef3e2e720b3021/cluster/job.go#L112) package, we can schedule jobs to perform background activity at regular intervals, without having to explicitly coordinate with other instances of the same plugin. Here's an example from the [Demo Plugin](https://github.com/mattermost/mattermost-plugin-demo/blob/d647f1ed7fdc384f5bc163a6bba689ab4293704e/server/activate_hooks.go#L72):
 

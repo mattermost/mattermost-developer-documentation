@@ -1,6 +1,6 @@
 ---
-title: Quick Start
-heading: "Quick Start: Extending the Mattermost Web App"
+title: Web app quick start
+heading: "Extending the Mattermost web app"
 description: "This quickstart tutorial will walk you through the basics of extending the Mattermost web app using plugins."
 date: 2018-07-10T00:00:00-05:00
 weight: -10
@@ -19,7 +19,7 @@ Plugins, just like the Mattermost web app itself, are built using [ReactJS](http
 
 You'll also need a Mattermost server to install and test the plugin. This server must have [Enable](https://docs.mattermost.com/administration/config-settings.html#enable-plugins) set to true in the [PluginSettings](https://docs.mattermost.com/administration/config-settings.html#plugins-beta) section of its config file. If you want to upload plugins via the System Console or API, you'll also need to set [EnableUploads](https://docs.mattermost.com/administration/config-settings.html#enable-plugin-uploads) to true in the same section.
 
-## Setting up the Workspace
+## Set up the workspace
 
 Create a directory to act as your plugin workspace. With that directory, create and switch to a `webapp` directory:
 
@@ -95,7 +95,7 @@ touch src/index.jsx
 ```
 
 Then populate `src/index.jsx` with the following:
-```js
+```jsx
 import React from 'react';
 
 // Courtesy of https://feathericons.com/
@@ -153,7 +153,7 @@ tar -czvf plugin.tar.gz com.mattermost.webapp-hello-world
 
 You should now have a file named `plugin.tar.gz` in your workspace. Congratulations! This is your first web app plugin!
 
-## Installing the Plugin
+## Install the plugin
 
 Install the plugin in one of the following ways:
 
@@ -169,13 +169,13 @@ Install the plugin in one of the following ways:
     - Extract `plugin.tar.gz` to a folder with the same name as the plugin id you specified in ``plugin.json``, in this case `com.mattermost.server-hello-world/`.
     - Add the plugin to the directory set by **PluginSettings > Directory** in your ``config.json`` file. If none is set, defaults to `./plugins` relative to your Mattermost installation directory. The resulting directory structure should look something like:
 
-    ```
-    mattermost/
-        plugins/
-            com.mattermost.webapp-hello-world/
-                plugin.json
-                main.js
-    ```
+      ```
+      mattermost/
+          plugins/
+              com.mattermost.webapp-hello-world/
+                  plugin.json
+                  main.js
+      ```
     - Restart the Mattermost server.
     - Enable the plugin in **System Console > Plugins (Beta) > Plugin Management**.
 

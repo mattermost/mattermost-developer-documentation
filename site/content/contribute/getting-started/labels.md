@@ -1,6 +1,6 @@
 ---
 title: "Labels"
-heading: "Use labels to track issues and PRs at Mattermost"
+heading: "Using Labels to Track Issues and PRs at Mattermost"
 description: "We leverage GitHub labels to track the details and lifecycle of issues and pull requests. Learn what our labels mean."
 date: 2018-03-06T00:00:00-04:00
 weight: 7
@@ -8,7 +8,7 @@ weight: 7
 
 We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to track the details and lifecycle of issues and pull requests.
 
-# Issue labels
+# Issue Labels
 * `Area/<name>`: Involves changes to the named area (APIv4, E2E Tests, Localization, Plugins, etc.)
 * `Bug Report/Open`: Bug report unresolved, awaiting for more information or in development backlog.
 * `Bug Report/Scheduled for Release`: Bug report resolved and scheduled for an upcoming release. Milestone indicates scheduled release version.
@@ -23,7 +23,7 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 * `Tech/<name>`: Requires using the named technology (Go, JavaScript, ReactJS, Redux, etc.)
 * `Up for Grabs`: Ready for help from the community. Removed when someone volunteers.
 
-# Pull request labels
+# Pull Request Labels
 
 * `1: PM Review`: Requires review by a [product manager]({{< ref "/contribute/getting-started/core-committers#product-managers" >}}).
 * `1: UX Review`: Requires review by a UX designer.
