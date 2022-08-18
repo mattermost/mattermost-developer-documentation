@@ -1,6 +1,6 @@
 ---
-title: "Integrating with Zapier"
-heading: "Integrating with Zapier"
+title: "Integrate with Zapier"
+heading: "Integrate with Zapier"
 description: "Zapier is a service that automates tasks between web apps."
 weight: 100
 aliases:
@@ -11,7 +11,7 @@ You can create "zaps" that contain a trigger and an action for a task that you w
 
 Using Zapier you can integrate over 700 apps into Mattermost, including [Email](https://zapier.com/zapbook/email-parser), [GitHub](https://zapier.com/zapbook/github), [Jira](https://zapier.com/zapbook/jira), [Wufoo](https://zapier.com/zapbook/wufoo), [Salesforce](https://zapier.com/zapbook/salesforce), [Twitter](https://zapier.com/zapbook/twitter), [Gmail](https://zapier.com/zapbook/gmail), and [many more](https://zapier.com/zapbook).
 
-## Zapier Setup Guide
+## Zapier setup guide
 
 Zapier is authorized using OAuth2.0. The setup guide requires that a System Admin register the Zapier app on their Mattermost server and can then optionally allow any users with a Zapier account to create integrations.
 
@@ -28,7 +28,7 @@ To learn more about OAuth 2.0 applications, including what permissions they have
     - Set [Enable OAuth 2.0 Service Provider](https://docs.mattermost.com/configure/configuration-settings.html#enable-oauth-2-0-service-provider) to **True**.
     - If you’d like to allow Zapier integrations to post with customizable usernames and profile pictures, then set [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) and [Enable integrations to override profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons) to **True**.
 
-#### Register Zapier as an OAuth 2.0 Application
+#### Register Zapier as an OAuth 2.0 application
 
 1. Go to **Product menu > Integrations**.
 2. Select **OAuth 2.0 Applications > Add OAuth 2.0 Application** and enter the following fields:
@@ -68,13 +68,13 @@ You'll be provided with a **Client ID** and **Client Secret**. Save these values
       - **Channel:** Choose the channel where new messages will post. The dropdown contains all channels that you belong to. Zapier cannot post into Direct Message channels.
      - **Message Text:** Enter the message text that will post to Mattermost. This text can be formatted using [Markdown](https://docs.mattermost.com/messaging/formatting-text.html#formatting-text) and include the dynamic fields offered by your selected trigger app. Read our message formatting tips below.
 
-![image](zapier-dynamic-fields.png)
+       ![image](zapier-dynamic-fields.png)
 
- 4. **Username:** This is the username that Zapier will post as. Zapier integrations will always appear with a `BOT` tag next to the username. In order for bots to override the username of the authorized user, your System Admin must set [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) to **True**.
-5. **Icon URL:** This is the profile picture of the bot that Zapier will post as. In order for bots to override the profile picture of the authorized user, your System Admin must set [Enable integrations to override profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons) to **True**.
-6. **Test the Zap:** You may want to test your zap formatting in a Private Channel before posting in a channel that is visible to your entire team.
+6. **Username:** This is the username that Zapier will post as. Zapier integrations will always appear with a `BOT` tag next to the username. In order for bots to override the username of the authorized user, your System Admin must set [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) to **True**.
+7. **Icon URL:** This is the profile picture of the bot that Zapier will post as. In order for bots to override the profile picture of the authorized user, your System Admin must set [Enable integrations to override profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons) to **True**.
+8. **Test the Zap:** You may want to test your zap formatting in a Private Channel before posting in a channel that is visible to your entire team.
 
-## Message Formatting Tips
+## Message formatting tips
 
 Here are some useful tips we recommend to get the most out of Zapier integration:
 
@@ -89,27 +89,27 @@ The Mattermost team has over 50 zaps integrated on our [Community Contributors t
 
 **GitHub Issues and Comments, UserVoice Suggestions and Comments, GitLab MM Issues, GitLab Omnibus MM Issues**
 
-```
-    #### [Title of issue]
+```md
+#### [Title of issue]
 
-    #[searchable-hashtag] in [external service](link to service) by [author](link to author profile) on [time-stamp](link to specific issue or comment)
+#[searchable-hashtag] in [external service](link to service) by [author](link to author profile) on [time-stamp](link to specific issue or comment)
 
-    [Body of issue or comment]
+[Body of issue or comment]
 ```
 
 ![image](zapier-ch1.png)
 
 **Forum Posts, Jira Comments, Hacker News Mentions, Tweets**
 
-```
-     > [forum post, media mention, or tweet]
+```md
+> [forum post, media mention, or tweet]
 
-     #[searchable-hashtag] in [external service](link to service) by [author](link to author profile) on [time-stamp](link to specific forum post, media mention or tweet)
+#[searchable-hashtag] in [external service](link to service) by [author](link to author profile) on [time-stamp](link to specific forum post, media mention or tweet)
 ```
 
 ![image](zapier-ch2.png)
 
-## Troubleshooting Guide
+## Troubleshooting guide
 
 Possible solutions to common issues encountered during setup.
 
@@ -120,30 +120,30 @@ Possible solutions to common issues encountered during setup.
     - Correct: `https://community.mattermost.com`
     - Incorrect: `https://community.mattermost.com/`
 
-![image](zapier-error1.png)
+   ![image](zapier-error1.png)
 
 2. `"[Server URL] returned (404)"`
   a. Possible Solution: The **Mattermost URL** cannot have a team appended to the end of the server URL.
     - Correct: `https://community.mattermost.com`
     - Incorrect: `https://community.mattermost.com/core`
 
-![image](zapier-error2.png)
+   ![image](zapier-error2.png)
 
 3. `"[Server URL] returned (500) Internal Server Error"`
   a. Possible Solution: The **Client Secret** might be incorrect. Verify this value by selecting **Integrations > OAuth 2.0 Applications** from the Product menu, or check with your System Admin.
 
- ![image](zapier-error4.png)
+   ![image](zapier-error4.png)
 
 4. `"Error Invalid client id"`
   a. Possible Solution: The **Client ID** and/or **Client Secret** might have trailing spaces in them when copied and pasted into the form. Verify there are no trailing spaces in the **Client ID** and **Client Secret** fields then try again.
 
-![image](zapier-trailing-space-error.png)
+   ![image](zapier-trailing-space-error.png)
 
 5. `"Mattermost needs your help: We couldn't find the requested app"`
   a. Possible Solution: The **Client ID** might be incorrect. Verify this value by selecting **Integrations > OAuth 2.0 Applications** from the Product menu, or check with your System Admin.
 
-![image](zapier-error3.png)
+   ![image](zapier-error3.png)
 
-### Deauthorize the Zapier App
+### Deauthorize the Zapier app
 
 If you'd like to deauthorize Zapier so it can no longer post through your connected account, select your avatar, then select **Profile > Security > OAuth 2.0 Applications**, then select **Deauthorize** on the Zapier app.

@@ -37,7 +37,7 @@
 
 {{ if $docs }}
     {{ safeHTML $docs.Schema.DocHTML }}
-    <h2>Table of Contents</h2>
+    <h2>Table of contents</h2>
     {{ template "ToC" dict "Schema" $docs.Schema "Prefix" "" }}
     <h2>Documentation</h2>
     {{ template "Docs" dict "Schema" $docs.Schema "Prefix" "" }}

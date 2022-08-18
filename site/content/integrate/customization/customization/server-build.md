@@ -1,6 +1,6 @@
 ---
-title: "Server Build (Team Edition)"
-heading: "Server Build - Mattermost Team Edition"
+title: "Server build (Team Edition)"
+heading: "Server build - Mattermost Team Edition"
 description: "Find out how to customize and build your own version of the Mattermost open source project."
 date: 2018-05-20T11:35:32-04:00
 weight: 1
@@ -15,14 +15,16 @@ Before proceeding with the steps below, make sure you have completed the [matter
 
 1. Customize the project according to your requirements.
 
-2. Build binary files for Mattermost server.  
-```
-make build
-```
+2. Build binary files for Mattermost server.
 
-3. Assemble essential files.  
-```
-make package
-```  
+    ```shell
+    make build
+    ```
+
+3. Assemble essential files.
+
+    ```shell
+    make package
+    ```  
 
 4. Transfer desired `.tar.gz` file to server for deployment.

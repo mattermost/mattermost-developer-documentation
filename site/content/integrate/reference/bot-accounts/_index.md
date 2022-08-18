@@ -1,5 +1,5 @@
 ---
-title: "Bot Accounts"
+title: "Bot accounts"
 heading: "Using bot accounts"
 description: "Use bot accounts to integrate with Mattermost through plugins or the Mattermost RESTful API."
 weight: 30
@@ -29,7 +29,7 @@ Note that currently:
 
 If you would like to see improvements to bot accounts, [let us know in the Feature Proposal Forum](https://mattermost.uservoice.com).
 
-## Configuration Settings
+## Configuration settings
 
 By default, plugins can create and manage bot accounts. To enable bot account creation through the user interface or the RESTful API:
 
@@ -38,14 +38,14 @@ By default, plugins can create and manage bot accounts. To enable bot account cr
 
 Once set, System Admin can create bot accounts for integrations using the **Integrations > Bot Accounts** link in the description provided.
 
-## Bot Account Creation
+## Bot account creation
 
 Below are different ways to create bot accounts. After the bot account is created, make sure to:
 
 1. Copy the generated bot access token for your integration.
 2. To add the bot account to teams and channels you want it to interact in, select the team drop-down menu, then select **Invite People**. Next, select **Invite Member** and enter the bot account in the **Add or Invite People** field. Then select **Invite Members**. You should now be able to add the bot account to channels like any other user.
 
-### User Interface (UI)
+### User interface (UI)
 
 1. Go to the Product menu and select **Integrations > Bot Accounts**.
 2. Select **Add Bot Account**.
@@ -65,11 +65,11 @@ See our [API documentation](https://api.mattermost.com/#tag/bots) to learn more 
 
 To authorize your bot via RESTful API use `curl -i -H 'authorization: Bearer <Access Token>' http://localhost:8065/api/v4/users/me`. **Access Token** is not the `Token ID` and won't be visible again once created.
 
-### Command Line Interface (CLI)
+### Command line interface (CLI)
 
 You can use the following CLI command to convert an existing user account to a bot:
 
-```
+```shell
 user convert user@example.com --bot
 ```
 
@@ -83,26 +83,26 @@ Plugins can create bot accounts through an `EnsureBot` helper function. For an e
 
 Bots created by a plugin use the plugin's ID as the creator, unless otherwise specified by the plugin.
 
-## Technical Notes
+## Technical notes
 
-### Data Model
+### Data model
 
 Each bot account has a row in the **Users** table and the **Bots** table. The entries are tied together by `User.Id = Bot.UserId`.
 
 The Bots table schema is described as follows:
 
-| Field    |  Description   |  Type   |  Required   | 
-|----------|----------------|---------|-------------|
-| UserId | User ID of the bot user | string | Y |
-| Username | Username of the bot account | string | Y |   
-| DisplayName | Display name of the bot account | string | N |   
-| Description | Description of the bot account | string | N |
-| OwnerId | User ID of the owner of the bot | string | Y |
-| CreateAt | Unix timestamp of creation time | int64 | Y |
-| UpdateAt | Unix timestamp of update time | int64 | Y |
-| DeleteAt | Unix timestamp of deletion time | int64 | Y |
+| Field       | Description                     | Type   | Required | 
+|-------------|---------------------------------|--------|----------|
+| UserId      | User ID of the bot user         | string | Y        |
+| Username    | Username of the bot account     | string | Y        |   
+| DisplayName | Display name of the bot account | string | N        |   
+| Description | Description of the bot account  | string | N        |
+| OwnerId     | User ID of the owner of the bot | string | Y        |
+| CreateAt    | Unix timestamp of creation time | int64  | Y        |
+| UpdateAt    | Unix timestamp of update time   | int64  | Y        |
+| DeleteAt    | Unix timestamp of deletion time | int64  | Y        |
 
-## Frequently Asked Questions
+## Frequently asked questions
 
 ### Should I migrate all my integrations to use bot accounts?
 
