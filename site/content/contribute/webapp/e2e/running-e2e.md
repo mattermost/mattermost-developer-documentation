@@ -12,7 +12,7 @@ We use several environment variables for Cypress testing in order to:
 - Easily change when running in CI.
 - Cater to different values across developer machines.
 
-Environment variables are [defined in cypress.json](https://github.com/mattermost/mattermost-webapp/blob/master/e2e/cypress.json) under the `env` key. In most cases you don't need to change the values, because it makes use of the default local developer setup. If you do need to make changes, the easiest method is to override by exporting `CYPRESS_*`, where `*` is the key of the variable, for example: `CYPRESS_adminUsername`. See [Cypress documentation](https://docs.cypress.io/guides/guides/environment-variables.html#Setting) for details.
+Environment variables are [defined in cypress.json](https://github.com/mattermost/mattermost-webapp/blob/master/e2e/cypress/cypress.json) under the `env` key. In most cases you don't need to change the values, because it makes use of the default local developer setup. If you do need to make changes, the easiest method is to override by exporting `CYPRESS_*`, where `*` is the key of the variable, for example: `CYPRESS_adminUsername`. See [Cypress documentation](https://docs.cypress.io/guides/guides/environment-variables.html#Setting) for details.
 
 | Variable            | Description                                |
 |---------------------|--------------------------------------------|
@@ -44,6 +44,6 @@ Environment variables are [defined in cypress.json](https://github.com/mattermos
 
 We run all tests in our Continuous Integration (CI) pipeline. However, they are grouped according to test stability.
 
-1. __Daily production tests against development branch (master)__ - Initiated on master branch by `node run_tests.js --stage='@prod'` in the command line. These are tests, known as production tests, which were selected and labeled with `@prod` [test metadata](/contribute/webapp/e2e/guide-for-writing/#adding-test-metadata-on-spec-files). See <a target="_blank" href="https://community.mattermost.com/core/pl/g6wx1d84ibdf7r5frjap4rb55a">link</a> for an example test run posted in our community channel.
+1. __Daily production tests against development branch (master)__ - Initiated on master branch by `node run_tests.js --stage='@prod'` in the command line. These are tests, known as production tests, which were selected and labeled with `@prod` [test metadata]({{< ref "/contribute/webapp/e2e/guide-for-writing#adding-test-metadata-on-spec-files" >}}). See <a target="_blank" href="https://community.mattermost.com/core/pl/g6wx1d84ibdf7r5frjap4rb55a">link</a> for an example test run posted in our community channel.
 2. __Daily production tests against release branch__ - Same as above except the test is initiated against the release branch. See <a target="_blank" href="https://community.mattermost.com/core/pl/8r4f17fkutbxxcwumk5mzwpp5c">link</a> for an example test run.
 3. __Daily unstable tests against development branch (master)__ - Initiated on the master branch by `node run_tests.js --stage='@prod' --invert` in the command line to run all except production tests. We call these unstable tests as they either consistently or intermittently fail due to automation bugs and not product bugs.

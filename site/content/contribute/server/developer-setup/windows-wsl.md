@@ -1,9 +1,3 @@
-<!---
-title: "Windows with WSL Development Environment Setup"
-heading: "Developer Setup for the Windows Subsystem for Linux"
-description: "Read about how to set up your developer environment in Mattermost using the Windows Subsystem for Linux."
---->
-
 This is an unofficial guide. Community testing, feedback, and improvements are welcome and greatly appreciated.
 
 1. Install the Windows Subsystem for Linux: https://docs.microsoft.com/en-us/windows/wsl/install-win10.
@@ -95,7 +89,7 @@ This is an unofficial guide. Community testing, feedback, and improvements are w
 
     If successful, the `curl` step will return a JSON object containing `"status":"OK"`.
 
-    **Note:** Browsing directly to http://localhost:8065/ will display `404 Not Found` until the web app is configured. See [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for additional setup.
+    **Note:** Browsing directly to http://localhost:8065/ will display `404 Not Found` until the web app is configured. See [Web App Developer Setup]({{< ref "/contribute/webapp/developer-setup" >}}) and [Mobile App Developer Setup]({{< ref "/contribute/mobile/developer-setup" >}}) for additional setup.
 
     The `stop-server` make target does not stop all the Docker containers started by `run-server`. To stop the running Docker containers:
 

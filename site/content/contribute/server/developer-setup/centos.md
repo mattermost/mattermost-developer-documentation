@@ -1,9 +1,3 @@
-<!---
-title: "CentOS Development Environment Setup"
-heading: "Developer Setup Using CentOS"
-description: "Read about how to set up your developer environment in Mattermost using the CentOS distribution of Linux."
---->
-
 1. Install and configure Docker CE:
 
     ```sh
@@ -30,7 +24,6 @@ description: "Read about how to set up your developer environment in Mattermost 
     psql -U mmuser -W -h 127.0.0.1 -f mm_postgres_backup.bak mattermost_test
     ```
     If you don't migrate your data, the new, docker-compose-managed containers will start out empty. To remove the old containers and destroy any existing data use `make clean-old-docker`.
-
 
 2. Install docker-compose
 
@@ -86,7 +79,7 @@ description: "Read about how to set up your developer environment in Mattermost 
     {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
     ```
 
-    **Note:** Browsing directly to http://localhost:8065/ will display `404 Not Found` until the web app is configured. See [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for additional setup.
+    **Note:** Browsing directly to http://localhost:8065/ will display `404 Not Found` until the web app is configured. See [Web App Developer Setup]({{< ref "/contribute/webapp/developer-setup" >}}) and [Mobile App Developer Setup]({{< ref "/contribute/mobile/developer-setup" >}}) for additional setup.
 
     The `stop-server` make target does not stop all the Docker containers started by `run-server`. To stop the running Docker containers:
 

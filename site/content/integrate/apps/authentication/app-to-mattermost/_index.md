@@ -2,7 +2,7 @@
 title: "To Mattermost"
 heading: "Authenticating with Mattermost"
 description: "TODO"
-weight: 100
+weight: 10
 ---
 
 An app declares in its `Manifest` the `Locations` that it will be binding to,

@@ -19,4 +19,4 @@ Android and Apple require all apps to be digitally signed with a certificate bef
 
 To avoid rebuilding the apps from scratch, you could just **sign** the unsigned builds published by Mattermost with your certificates and keys.
 
-[Sign Unsigned Android](android/) or [Sign Unsigned iOS](ios/).
+[Sign Unsigned Android]({{< ref "/contribute/mobile/unsigned/android" >}}) or [Sign Unsigned iOS]({{< ref "/contribute/mobile/unsigned/ios" >}}).

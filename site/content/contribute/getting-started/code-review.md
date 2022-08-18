@@ -18,7 +18,7 @@ If you are a community member seeking a review
 ----------------------------------------------
 
 1. Submit your pull request.
-    * Follow the [contribution checklist](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/).
+    * Follow the [contribution checklist]({{< ref "/contribute/getting-started/contribution-checklist" >}}).
 2. Wait for a reviewer to be assigned.
     * Product managers are on the lookout for new pull requests and usually handle this for you automatically.
     * If you have been working alongside a core committer, feel free to message them for help.
@@ -40,14 +40,14 @@ If you are a core committer seeking a review
 --------------------------------------------
 
 1. Submit your pull request.
-    * Follow the [contribution checklist](https://developers.mattermost.com/contribute/getting-started/contribution-checklist/).
+    * Follow the [contribution checklist]({{< ref "/contribute/getting-started/contribution-checklist" >}}).
 2. Immediately add the `1: UX Review`, `2: Dev Review`, and `3: QA Review` labels.
     * Your pull request should not be merged until these labels are later removed in the review process.
 3. Apply additional labels as necessary:
     * `CherryPick/Approved`: Apply this if the pull request is meant for a quality or patch release.
     * `Do Not Merge/Awaiting PR`: Apply this if the pull request depends on another (e.g. server changes)
     * `Setup Test Server`: Apply this to create a test server with your changes for review.
-    * See [labels](/contribute/getting-started/labels/) for additional documentation.
+    * See [labels]({{< ref "/contribute/getting-started/labels" >}}) for additional documentation.
 4. Assign a milestone as necessary.
     * Most pull requests do not require a milestone, but will simply ship once merged.
     * Some reviewers may prioritize reviews for known upcoming milestones.
@@ -91,7 +91,7 @@ If you are a core committer seeking a review
 9. Handle any cherry-picks.
     * There is an automated cherry-pick process. 
     * As the author of the pull request, you should make sure the cherry-pick succeeds. 
-    * [Check here](https://developers.mattermost.com/contribute/getting-started/branching/#cherry-pick-process---developer) for details.
+    * [Check here]({{< ref "/contribute/getting-started/branching#cherry-pick-process---developer" >}}) for details.
 10. After a pull request is merged (and cherry-picked where needed), update the Jira ticket.
     * Resolve the ticket for QA from "Ready for QA" button with QA test steps (or "No Testing Required" if no QA testing is needed).
 
@@ -117,7 +117,7 @@ If you are a core committer asked to give a review
     * Prioritize earlier milestones when reviewing to help with the release process.
     * Responding quickly doesn't necessarily mean reviewing quickly! Just don't leave the author hanging.
 2. Feel free to clarify expectations with the author.
-    * If the PR adds a substantial feature, check that a feature flag is included. Please see [criteria here](https://developers.mattermost.com/contribute/server/feature-flags/#when-to-use).
+    * If the PR adds a substantial feature, check that a feature flag is included. Please see [criteria here]({{< ref "/contribute/server/feature-flags#when-to-use" >}}).
     * If the code is experimental, they may need only a cursory glance and thumbs up to proceed with productizing their changes.
     * If the review is large or complex, additional time may be required to complete your review. Be upfront with the author.
     * If you are not comfortable reviewing the code, avoid "rubber stamping" the review. Be honest with the author and ask them to consider another core committer.

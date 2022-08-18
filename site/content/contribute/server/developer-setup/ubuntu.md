@@ -1,7 +1,3 @@
-<!---
-title: "Mattermost Developer Setup: Ubuntu"
-heading: "Mattermost Developer Setup: Ubuntu"
---->
 1. Install and configure Docker CE:
 
     ```sh
@@ -82,7 +78,7 @@ heading: "Mattermost Developer Setup: Ubuntu"
     {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
     ```
 
-    **Note:** Browsing directly to http://localhost:8065/ will display `404 Not Found` until the web app is configured. See [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for additional setup.
+    **Note:** Browsing directly to http://localhost:8065/ will display `404 Not Found` until the web app is configured. See [Web App Developer Setup]({{< ref "/contribute/webapp/developer-setup" >}}) and [Mobile App Developer Setup]({{< ref "/contribute/mobile/developer-setup" >}}) for additional setup.
 
     The `stop-server` make target does not stop all the Docker containers started by `run-server`. To stop the running Docker containers:
 

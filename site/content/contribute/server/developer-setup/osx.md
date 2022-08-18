@@ -1,10 +1,3 @@
-
-<!---
-title: "OSX Development Environment Setup"
-heading: "How to Set Up Mattermost in Mac OS X"
-description: "Read about how to set up your developer environment in Mattermost using a Mac OS X."
---->
-
 1. Install and configure Docker CE: https://docs.docker.com/docker-for-mac/.
 
     **Note:** [MM-9791](https://github.com/mattermost/mattermost-server/pull/10872) introduced using [docker-compose](https://docs.docker.com/compose/) to manage containers. To preserve your data on upgrade, execute the following steps.
@@ -20,7 +13,6 @@ description: "Read about how to set up your developer environment in Mattermost 
     psql -U mmuser -W -h 127.0.0.1 -f mm_postgres_backup.bak mattermost_test
     ```
     If you don't migrate your data, the new, docker-compose-managed containers will start out empty. To remove the old containers -- destroying any existing data -- use `make clean-old-docker`.
-
 
 2. Download and install homebrew: https://brew.sh/.
 
@@ -66,7 +58,7 @@ description: "Read about how to set up your developer environment in Mattermost 
     {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
     ```
 
-    **Note:** Browsing directly to http://localhost:8065/ will display a `404 Not Found` until the web app is configured. See [Web App Developer Setup](https://developers.mattermost.com/contribute/webapp/developer-setup/) and [Mobile App Developer Setup](https://developers.mattermost.com/contribute/mobile/developer-setup/) for additional setup.
+    **Note:** Browsing directly to http://localhost:8065/ will display a `404 Not Found` until the web app is configured. See [Web App Developer Setup]({{< ref "/contribute/webapp/developer-setup" >}}) and [Mobile App Developer Setup]({{< ref "/contribute/mobile/developer-setup" >}}) for additional setup.
 
     The `stop-server` make target does not stop all the docker containers started by `run-server`. To stop the running docker containers:
 

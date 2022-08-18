@@ -2,7 +2,7 @@
 title: Community Plugins in the Marketplace
 heading: "Community Plugins in the Marketplace"
 description: "Once your plugin has reached a certain level of quality, you might consider submitting it to the Marketplace."
-weight: 60
+weight: 110
 aliases: [/extend/plugins/community-plugin-marketplace/]
 ---
 
@@ -88,11 +88,11 @@ All community plugins are assigned an _owner_ to guide you through the review pr
 
 ### Beta plugins
 
-If a community plugin doesn’t make it through the review process, it may still be added to the Marketplace and marked as “Beta”. The reviewers decide whether the quality of a plugin is sophisticated enough to be added to the Marketplace on a case-by-case basis. Security and functional reviews and items 1, 2, 3, and 5 from the [Product Requirements Checklist](#requirements-for-adding-community-plugin-to-the-marketplace) must be fulfilled for Beta plugins.
+If a community plugin doesn’t make it through the review process, it may still be added to the Marketplace and marked as “Beta”. The reviewers decide whether the quality of a plugin is sophisticated enough to be added to the Marketplace on a case-by-case basis. Security and functional reviews and items 1, 2, 3, and 5 from the [Product Requirements Checklist](#requirements-for-adding-a-community-plugin-to-the-marketplace) must be fulfilled for Beta plugins.
 
 ### Security issues
 
-Any security issues found in the plugin should be reported by email to `responsibledisclosure@mattermost.com` or sent directly to a member of the [Security team](https://developers.mattermost.com/internal/rd-teams/#security-team) on the [Community Server](https://community.mattermost.com/).
+Any security issues found in the plugin should be reported by email to `responsibledisclosure@mattermost.com` or sent directly to a member of the [Security team]({{< ref "/internal/rd-teams#security-team" >}}) on the [Community Server](https://community.mattermost.com/).
 
 ### Take down policy
 

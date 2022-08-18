@@ -50,7 +50,7 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 * `Docs/Not Needed`: Does not require documentation.
 * `Hackfest`: Related to a Mattermost hackathon.
 * `Hacktoberfest`: Related to [Hacktoberfest](https://hacktoberfest.digitalocean.com/).
-* `Lifecycle/<state>`: An [inactive contribution](/contribute/getting-started/inactive-contributions/).
+* `Lifecycle/<state>`: An [inactive contribution]({{< ref "/contribute/getting-started/inactive-contributions" >}}).
 * `Loadtest`: Triggers an automatic load test.
 * `Major Change`: The pull request is a major feature or affects large areas of the code base (e.g. [moving channel store and actions to Redux](https://github.com/mattermost/platform/pull/6235)).
 * `Setup Cloud Test Server`: Triggers the creation of a Enterprise Edition test server.
