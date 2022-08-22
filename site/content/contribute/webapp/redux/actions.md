@@ -1,38 +1,38 @@
 ---
 title: "Actions"
-heading: "Actions in Redux - Mattermost"
-description: "Similar to other frameworks like Flux, actions in Redux represent a single change to the Redux store as a plain JavaScript object."
+heading: "Redux Actions"
+description: "An explanation of Redux actions and how they're used in Mattermost"
 date: 2017-08-20T11:35:32-04:00
 weight: 4
 ---
 
-Similar to other frameworks like Flux, actions in Redux represent a single change to the Redux store as a plain JavaScript object.
+In Redux, actions represent an operation either performed by the user or the server that cause a change to the state of the web app which is stored in the Redux store. It's generally represented as a plain JavaScript object with a constant `type` string with other data stored in fields such as `data`.
 
-```javascript
+```typescript
 {
     type: 'SELECT_CHANNEL',
-    data: channelId
+    data: channelId,
 }
 ```
 
-They are created by functions called action creators. In regular Redux, this function will take some arguments and return an action representing how the store should be changed. Something to note with Mattermost Redux is that we typically refer to the action creators as the "actions" themselves since there's often a single action creator for a given type of action.
+Actions are created by functions called action creators. In regular Redux, this function will take some arguments and return an action representing how the store should be changed. Something to note with Mattermost Redux is that we typically refer to the action creators as the "actions" themselves since there's often a single action creator for a given type of action.
 
-```javascript
-function selectChannel(channelId) {
+```typescript
+function selectChannel(channelId: string) {
     return {
         type: 'SELECT_CHANNEL',
-        data: channelId
+        data: channelId,
     };
 }
 ```
 
 This action is later received by the Redux store's reducers which will know how to read the contents of the action and modify the store accordingly.
 
-Because we use the [Thunk middleware for Redux](https://github.com/gaearon/redux-thunk), we have the ability to use more powerful action creators that can read the state of the store, perform asynchronous actions like network requests, and dispatch multiple actions when needed. Instead of returning a plain object, these action creators return a function that takes the Redux store's `dispatch` and `getState` to be able to dispatch actions as needed.
+Because we use the [Thunk middleware](https://github.com/reduxjs/redux-thunk) for Redux, we have the ability to use more powerful action creators that can read the state of the store, perform asynchronous actions like network requests, and dispatch multiple actions when needed. Instead of returning a plain object, these action creators return a function that takes the Redux store's `dispatch` and `getState` to be able to dispatch actions as needed.
 
-```javascript
-function loadAndSelectChannel(channelId) {
-    return async (dispatch, getState) => {
+```typescript
+function loadAndSelectChannel(channelId: string) {
+    return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
         const {channels} = getState().entities.channels;
 
         if (!channels.hasOwnProperty(channelId)) {
@@ -56,163 +56,303 @@ Actions live in the `src/actions` directory with the constants that define their
 
 To use an action, you need to pass it into the `dispatch` method of the Redux store so that it can be passed off to the reducers.
 
-```javascript
+```typescript
 const store = createReduxStore();
 
 store.dispatch(loadAndSelectChannel(channelId));
 ```
 
-Since both the Mattermost web and mobile apps also use React, the `dispatch` method is provided for us by using the `connect` function [React Redux](https://github.com/reactjs/react-redux) to wrap our components.
+Typically, you won't have direct access to the store to get its `dispatch` method. Instead, you'll receive it from either [React Redux](https://react-redux.js.org/) or [Redux Thunk](https://github.com/reduxjs/redux-thunk) depending on what part of the code you're working on.
+
+### Dispatching actions from a component
+
+[React Redux](https://react-redux.js.org/) provides two ways of accessing dispatch, and you'll see both used throughout Mattermost.
+
+The first is by its `connect` higher order component. Its second parameter `mapDispatchToProps` is used to wrap action creators so that they will automatically be dispatched when called.
 
 ```javascript
-// src/components/widget/index.jsx
+// src/components/widget/index.tsx
 
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 import {loadAndSelectChannel} from 'src/actions/channels';
 
 import Widget from './widget';
 
-// mapDispatchToProps is used to automatically attach `store.dispatch` to the actions
-// so that the component doesn't need to know that it even exists
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators({ // bindActionCreators does the hard work here
-            loadAndSelectChannel
-        }, dispatch)
-    };
-}
+// mapDispatchToProps is an object containing all actions passed into the component
+const mapDispatchToProps = {
+    loadAndSelectChannel,
+};
 
 export default connect(null, mapDispatchToProps)(Widget);
 
-// src/components/widget/widget.jsx
+// src/components/widget/widget.tsx
 
-export default class Widget extends React.PureComponent {
-    handleClick = () => {
-        // Note that we aren't passing in dispatch here since it's already been
-        // done by bindActionCreators
-        this.props.actions.loadAndSelectChannel(this.props.channelId);
-    };
+type Props = {
+    channelId: string;
 
-    render() {
-        return (
-            <button onClick={this.handleClick}>
-                {'Click me!'}
-            </button>
-        );
-    }
+    // Notice that the type of the wrapped action omits the `getState` and `dispatch` parameters of the Thunk action
+    loadAndSelectChannel: (channelId: string) => void;
+}
+
+export default function Widget(props: Props) {
+    const handleClick = useCallback(() => {
+        // We don't need to dispatch anything at this point
+        props.loadAndSelectChannel(props.channelId);
+    }, [props.loadAndSelectChannel, props.channelId]);
+
+    return (
+        <button onClick={handleClick}>
+            {'Click me!'}
+        </button>
+    );
 }
 ```
 
+Alternatively, you can use the `useDispatch` hook to dispatch actions directly in the component.
+
+```typescript
+// src/components/widget/widget.tsx
+
+import {useDispatch} from 'react-redux';
+
+import {loadAndSelectChannel} from 'src/actions/channels';
+
+type Props = {
+    channelId: string;
+}
+
+export default function Widget(props: Props) {
+    const dispatch = useDispatch();
+
+    const handleClick = useCallback(() => {
+        dispatch(loadAndSelectChannel(props.channelId));
+    }, [dispatch, props.channelId]);
+
+    return (
+        <button onClick={handleClick}>
+            {'Click me!'}
+        </button>
+    );
+}
+```
+
+The choice of which method to use is left up to the developer at the moment. `connect` is more widely used throughout the code base, but that's primarily because hooks are relatively new compared to it. The class-based components that make up older parts of the app also aren't compatible with hooks.
+
+When deciding which one to use though, try to match the area of the code that you're working in. Individual components should never mix the two.
+
 ## Adding an Action
 
-To add a new Redux action, you must
+The steps for adding a new Redux action are as follows:
 
-1. If you're adding a new action type, add a constant to one of the files in `src/action_types` to be the type of your new action. This is only required if your action is going to be dispatching a unique action instead of just dispatching existing actions.
+1. Decide where to the action creator will be located. Depending on where the action will be located you will want to put it in one of the following locations:
+    - If the action is more general and affects Redux state stored in`state.entities`, it should be put somewhere in `packages/mattermost-redux/src/actions`.
+    - If the action is specific to the web app, affects `state.views` and will be used in multiple places throughout the app, it should be put in `actions`.
+    - If the action is very specific and will likely only be used by one or more closely related components, it should be put in an `actions.ts` located in the same directory as those components.
 
-    ```javascript
+1. If the action creator will have an effect on the Redux state that isn't covered by existing action types, you'll need to add a new "action type" constant that will be used by the action creator and will be handled by a reducer. These are located separate from the definition of the action creator itself to avoid having reducers import code from the action creators directly.
+
+    Depending on where the action is located, the action creator will be located in one of the following:
+    - If the action is located in `mattermost-redux`, the action type should be added to one of the files in `packages/mattermost-redux/src/action_types`.
+    - If the action is specific to the web app or a single component, the action type should be added to the `ActionTypes` object in `utils/constants.tsx`.
+
+    ```typescript
     export default keyMirror({
-        DO_ACTION: null
+        SOMETHING_HAPPENED: null
     });
     ```
 
-2. Add an action creator to `src/actions`. This function needs to either return a plain JavaScript object for a regular action or a function for a Thunk action. If it's a Thunk action, it should also return an object with two fields: a `data` field containing the results of the action and an `error` field containing an error if one occurs.
+1. Write the action creator itself. Depending on what data is needed by the action and if it needs to perform any async operations will change whether or not a Thunk action should be used. We should generally try to use plain Redux actions wherever possible since they're a bit more complex, both to read and to process.
 
-    ```javascript
-    function doSimpleAction() {
+    ```typescript
+    function somethingHappened(channelId: string) {
         return {
-            type: ActionTypes.DO_SIMPLE_ACTION,
-            data: 1234
+            type: SOMETHING_HAPPENED,
+            channelId,
+            data: 1234,
         };
     }
 
-    function doThunkAction() {
-        return async (dispatch, getState) => {
+    function somethingAsyncHappened(channelId: string) {
+        return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
+            const currentUserId = getCurrentUserId(getState());
+
             let data;
             try {
-                data = await doSomething();
-            } catch(e) {
-                const error = {
-                    message: e.message
-                };
-
+                data = await Client4.doSomething(currentUserId, channelId);
+            } catch (error) {
                 dispatch({
-                    type: ActionTypes.DO_THUNK_ACTION_FAILED,
-                    data: error
+                    type: SOMETHING_FAILED,
+                    channelId,
+                    error,
                 });
 
-                return error;
+                return {error};
             }
 
-            dispatch({
-                type: ActionTypes.DO_THUNK_ACTION,
-                data
-            });
+            // Note that if you need to access state again after waiting for something asynchronous, you should call
+            // getState a second time to ensure you have an up to date version of the state
 
-            return {
-                data
-            };
+            dispatch({
+                type: SOMETHING_HAPPENED,
+                channelId,
+                data,
+            });
         };
     }
-    ```
 
-3. If you're adding a new action type, add or update existing reducers to handle the new action. More information about reducers is available [here]({{< ref "/contribute/webapp/redux/reducers" >}}).
-4. Add unit tests to make sure that the action has the intended effects on the store. Test location is adjacent to the file being tested. Example, for `src/actions/admin.js`, test is located at `src/actions/admin.test.js`.  Add test file if necessary. More information on unit testing reducers is available below.
+1. If you added a new action type, make sure to add or update existing reducers to handle the new action. More information about reducers is available [here]({{< ref "/contribute/webapp/redux/reducers" >}}).
+1. Add unit tests to make sure that the action has the intended effects on the store. More information on unit testing reducers is available below.
 
 ### Adding a new API Action
 
-If your action is wrapping an API call, there's a few things that you will need to do differently:
+If your action is corresponds to an API call, there are a few extra steps required but also a helper function to simplify the error handling for the action. The additional steps are as follows:
 
-1. For your endpoint, you'll need to add a new method to the JavaScript client located in `src/client/client4.js`. This method will look similar to the other methods in that class.
+1. Ensure that `Client4`, the JavaScript API client for Mattermost which is located in `packages/client/src/client4.ts`, has a method that corresponds to the API endpoint that you're using. That method will likely involve simply constructing the URL for the endpoint, optionally constructing a body for the request, and then using the `doFetch` method to actually make the request.
 
-2. In addition to the new action type that you'll be adding, you'll also normally need to add action types to indicate the status of the request. These are not required for optimistic actions.
-    ```javascript
-    // For a getUser request
+    ```typescript
+    class Client4 {
+        doSomething = (userId: string, channelId: string) => {
+            return this.doFetch<SomethingResponse>(
+                `${this.getUserRoute(userId)}/something`,
+                {method: 'post', body: JSON.stringify({channelId})},
+            );
+        }
+    }
+    ```
+
+1. Depending on your use case, you'll likely want to dispatch a Redux action containing the response to the API request when it succeeds. You may optionally also want to dispatch actions when the request is made or fails to update the Redux state as the request progresses.
+    ```typescript
     export default keyMirror({
-        // Used to update the request state in the store
-        USER_REQUEST: null,
-        USER_SUCCESS: null,
-        USER_FAILURE: null,
+        SOMETHING_HAPPENED: null,
 
-        // Used to pass new user data to the store
-        USER_RECEIVED: null
+        // The following actions are optional. They used to be added for every API request, but we found we were only
+        // rarely using their results, so we don't recommend adding them any more
+        SOMETHING_REQUEST: null,
+        SOMETHING_SUCCESS: null,
+        SOMETHING_FAILURE: null,
     });
     ```
-3. When adding the action creator, if it simply calls the client, you can use the `bindClientFunc` helper function to create it for you. More complicated calls will need to dispatch different request actions as necessary.
+1. Most actions involving an API request follow a similar pattern of calling Client4 with the provided parameters, handling any errors that may occur, and dispatching an action containing the result if successful. The `bindClientFunc` helper can help with that.
 
-    ```javascript
-    export function getUser(userId) {
-        return bindClientFunc(
-            Client4.getUser, // The client method
-            UserTypes.USER_REQUEST, // The type of action dispatched when the request is started
-            [UserTypes.RECEIVED_USER, UserTypes.USER_SUCCESS], // One or more types of actions dispatched when the request is completed
-            UserTypes.USER_FAILURE, // The type of action dispatched when the request fails
-            userId // Any other arguments to the action that will be passed to the client call
-        );
+    ```typescript
+    function somethingAsyncHappened(channelId: string) {
+        return bindClientFunc({
+            clientFunc: client.doSomething,
+
+            onSuccess: SOMETHING_HAPPENED,
+            params: [channelId],
+        };
+    }
+
+    // clientFunc is the only mandatory parameter of bindClientFunc. The rest may be added as needed.
+    function somethingVerboseHappened(userId: string, channelId: string) {
+        return bindClientFunc({
+            clientFunc: client.doSomething,
+
+            // The onRequest action will be dispatched before the request is made
+            onRequest: SOMETHING_REQUEST,
+
+            // The onSuccess action will be dispatched if the request succeeds. It will include a data parameter
+            // containing the response to the request. Additionally, onSuccess can be an array of actions if multiple
+            // should be dispatched when the request succeeds.
+            onSuccess: [SOMETHING_SUCCESS, SOMETHING_HAPPENED],
+
+            // The onFailure action will be dispatched if the request fails due to a network issue or an invalid request.
+            // It will include an error parameter containing an Error object.
+            onFailure: SOMETHING_FAILED,
+
+            // An array of parameters will be passed into clientFunc in the order they're received
+            params: [userId, channelId],
+        };
     }
     ```
-4. Make the necessary changes to the reducers to handle your action as well as adding a reducer to update the `requests` section of the store. In most cases, you can use the `handleRequest` and `initialRequestState` helper functions to construct the reducer for you. More information about reducers is available [here]({{< ref "/contribute/webapp/redux/reducers" >}}).
-    ```javascript
-    function getUser(state = initialRequestState(), action) {
-        return handleRequest(
-            UserTypes.USER_REQUEST,
-            UserTypes.USER_SUCCESS,
-            UserTypes.USER_FAILURE,
-            state,
-            action
-        );
-    }
 
-    export default combineReducers({
-        getUser
+## Testing an Action
+
+### Unit testing
+
+Tests for both actions and action creators are written using [Jest](https://jestjs.io/) and will often focus on seeing how dispatching an action affects the stored state in Redux. It'll often look similar to testing a reducer except you'll be looking at the whole store state instead of a single part of it.
+
+There are a few different ways of testing Redux actions used throughout Mattermost, but the most common way involves:
+
+1. Setting up an initial store state for the test case.
+1. Optionally mocking any external operations that may be required for the action. This includes API requests which are mocked using [Nock](https://github.com/nock/nock).
+1. Dispatching the result of the action creator.
+1. Looking at the resulting store state to ensure the required changes are made.
+
+    ```typescript
+    import nock from 'nock';
+
+    import mockStore from 'tests/test_store';
+
+    import {somethingAsyncHappened, somethingHappened} from './actions';
+
+    describe('somethingHappened', () => {
+        const channelId = 'channelId';
+
+        test('should update state.somethingCount', () => {
+            const store = mockStore({
+                somethingCount: 0,
+            });
+
+            // Remember to actually call your action creator since that's very easy to forget to do
+            store.dispatch(somethingHappened(channelId));
+
+            expect(store.getState().somethingCount).toBe(1234);
+        });
+    });
+
+    describe('somethingAsyncHappened', () => {
+        // Initial state may be shared between multiple test cases and may include state that's required for both
+        // testing and for thunk actions
+        const currentUserId = 'currentUserId';
+        const initialState = {
+            entities: {
+                users: {
+                    currentUserId: 'user1',
+                },
+            },
+            somethingCount: 0,
+        };
+
+        test('should update state.somethingCount on success', async () => {
+            const store = mockStore(initialState);
+
+            const expectedResult = {status: 'SomethingHappened'};
+            nock(Client4.getBaseRoute()).
+                post(`/channels/${channelId}/something`).
+                reply(200, {});
+
+            // Remember that tests for async requests need to themselves be async and we need to wait for the dispatch
+            await store.dispatch(somethingAsyncHappened(channelId));
+
+            expect(store.getState().somethingCount).toBe(1234);
+        });
+
+        test('should update state.somethingCount on failure', async () => {
+            const store = mockStore(initialState);
+
+            const expectedResult = {status: 'SomethingHappened'};
+            nock(Client4.getBaseRoute()).
+                post(`/channels/${channelId}/something`).
+                reply(400, {});
+
+            // You can also inspect the result of the action if desired
+            const result = await store.dispatch(somethingAsyncHappened(channelId));
+
+            expect(result.error).toBeDefined();
+            expect(result.data).not.toBeDefined();
+
+            expect(store.getState().somethingCount).toBe(0);
+        });
     });
     ```
-5. Add unit tests to make sure that the action has the intended effects on the store. Test location is adjacent to the file being tested. Example, for `src/actions/admin.js`, test is located at `src/actions/admin.test.js`.  Add test file if necessary. More information on unit testing reducers is available below.
 
-### Testing an Action
+Some unit tests found throughout the web app may also test the actions dispatched by a thunk action rather than testing the effects on the changes to the store state. This method isn't considered as effective.
 
-Unit tests for actions are located in the same directory, adjacent to the file being tested. These tests are written using [Jest Testing Framework](https://jestjs.io/). In that folder, there are many examples of how those tests should look. Most follow the same general pattern of:
-1. Construct the initial test state. Note that this doesn't need to be shared between tests as it is in many other cases.
-2. Mock any actions that would contact the server. This is done using the [nock server mocking framework](https://github.com/node-nock/nock) to mock the server.
-3. Dispatch the action and look for the results.
+### End-to-end testing
+
+Sometimes, it's not easy to test a redux action given it contains complicated async logic or requires a large amount of Redux state to be initialized to test it out. Other times, an action may feel too simple to test, especially if it's just dispatching an action that dictates specifically how the Redux state should change.
+
+In cases where the action will have an effect that's visible to the end user, it's possible to rely more on [end-to-end testing]({{< ref "/contribute/webapp/e2e/" >}}). While this might not test every code path of the action such as poor network conditions, end-to-end tests are often more valuble since they involve testing that the code as a whole does what is expected rather than testing just that a single piece of code works under artificial conditions which may not be realistic.
