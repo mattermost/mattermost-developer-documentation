@@ -1,7 +1,7 @@
 ---
-title: "Style and Code Quality"
-heading: "Style and Code Quality"
-description: "Good code quality is important to maintaining the Desktop App"
+title: "Style and code quality"
+heading: "Style and code quality"
+description: "Good code quality is important to maintaining the desktop app"
 date: 2019-01-22T00:00:00-05:00
 weight: 3
 ---
@@ -19,7 +19,7 @@ You can run the linter using the following command:
 
 Outside of the linter, we generally allow for a loose coding style, although the reviewer of the PR has the final say.
 
-#### Type Checker
+#### Type checker
 
 We make use of TypeScript in our application to help reduce errors when coding.
 
@@ -27,6 +27,6 @@ You can run the type checker by running the following command:
 
     npm run check-types
 
-#### Submitting Great PRs
+#### Submitting great PRs
 
 Jesse Hallam has written an excellent blog post entitled "Submitting Great PRs" that can be found [here](https://mattermost.com/blog/submitting-great-prs/)

@@ -1,6 +1,6 @@
 ---
-title: "Server Workflow"
-heading: "Mattermost Server Workflow"
+title: "Server workflow"
+heading: "Mattermost Server workflow"
 description: "See what a general workflow for a Mattermost developer working on the mattermost-server repository looks like."
 date: 2017-08-20T11:35:32-04:00
 weight: 3
@@ -35,7 +35,7 @@ Here's a general workflow for a Mattermost developer working on the [mattermost-
 10. Once a PR is submitted it's best practice to avoid rebasing on the base branch or force-pushing. Jesse, a developer at Mattermost, mentions this in his blog article [Submitting Great PRs](https://mattermost.com/blog/submitting-great-prs/). When the PR is merged, all the PR's commits are automatically squashed into one commit, so you don't need to worry about having multiple commits on the PR.
 11. That's it! Rejoice that you've helped make Mattermost better.
 
-### Useful Server Makefile Commands
+### Useful Server makefile commands
 
 Some useful `make` commands:
 
@@ -52,7 +52,7 @@ Some useful `make` commands:
 
 If you would like to run the development environment without Docker you can set the `MM_NO_DOCKER` environment variable. If you do this, you will need to set up your own database and any of the other services needed to run Mattermost.
 
-### Running Only Specific Server Unit Tests
+### Run only specific Server unit tests
 
 Running every single unit test takes a lot of time while making changes, so you can run a subset of the serverside unit tests by using the following:
 
@@ -66,7 +66,7 @@ For example, if you want to run `TestUpdatePost` in `app/post_test.go`, you woul
 go test -v -run='TestUpdatePost' ./app
 ```
 
-### Useful Mattermost Commands
+### Useful Mattermost commands
 
 During development you may want to reset the database and generate random data for testing your changes. For this purpose, Mattermost has the following commands in the Mattermost CLI:
 
@@ -108,7 +108,7 @@ You can customize variables of the Makefile by creating a `config.override.mk` f
 
 If you create a `docker-compose.override.yaml` file at the root of the project, it will be automatically loaded by all the `Makefile` tasks using `docker-compose`, allowing you to define your own services or change the configuration of the ones mattermost provides.
 
-### Testing Email Notifications
+### Test email notifications
 
 When Docker starts, the SMTP server is available on port 2500. A username and password are not required.
 
@@ -116,7 +116,7 @@ You can access Inbucket webmail on port 9000.
 
 For additional information on configuring an SMTP email server, including troubleshooting steps, see [https://docs.mattermost.com/install/smtp-email-setup.html](https://docs.mattermost.com/install/smtp-email-setup.html).
 
-### Testing with GitLab Omnibus
+### Test with GitLab Omnibus
 
 To test a locally compiled version of Mattermost with GitLab Omnibus, replace the following GitLab files:
 

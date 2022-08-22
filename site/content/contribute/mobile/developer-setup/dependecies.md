@@ -1,6 +1,6 @@
 ---
 title: "Add new dependencies"
-heading: "Adding New Dependencies in Mattermost"
+heading: "Add new dependencies in Mattermost"
 description: "If you need to add a new dependency to the project, it is important to add them in the right way. Find out how."
 date: 2018-05-20T11:35:32-04:00
 weight: 4
@@ -8,7 +8,7 @@ weight: 4
 
 If you need to add a new dependency to the project, it is important to add them in the right way. Instructions for adding different types of dependencies are described below.
 
-#### JavaScript Only
+#### JavaScript only
 
 If you need to add a new JavaScript dependency that is not related to React Native, **use npm, not yarn**. Be sure to save the exact version number to avoid conflicts in the future.
 

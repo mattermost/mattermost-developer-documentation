@@ -1,6 +1,6 @@
 ---
-title: "External Webhooks"
-heading: "Hello, Webhooks!"
+title: "External webhooks"
+heading: "External webhooks"
 description: "In this example, the http app will demonstrate connect webhooks"
 weight: 800
 aliases:
@@ -105,7 +105,7 @@ The `Hello Webhooks!` app creates two commands: `/hello-webhooks info | send`.
 }
 ```
 
-### Displaying the webhook command
+### Display the webhook command
 
 `/hello-webhooks info` displays a valid `/hello-webhooks send` command constructed with your mattermost-site-url, the path to the hello app webhook endpoint, and a secret.
 
@@ -123,7 +123,7 @@ func info(w http.ResponseWriter, req *http.Request) {
 }
 ```
 
-### Sending a webhook command
+### Send a webhook command
 
 The `/hello-webhooks send` command from the `info` command response will send a webhook message to the apps plugin which verifies the secret and forwards the request to the hello app. The `Hello, Webhooks!` app receives the webhook and posts an ephemeral message in Mattermost.
 
@@ -150,8 +150,8 @@ The following image shows the displayed confirmation message after the webhook i
 ### Webhook call handler
 
 ```go
-    // Webhook handler
-    http.HandleFunc("/webhook/", webhookReceived)
+// Webhook handler
+http.HandleFunc("/webhook/", webhookReceived)
 ```
 
 `webhookReceived` receives the webhook message and posts a confirmation message in the channel.

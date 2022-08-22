@@ -16,9 +16,9 @@ Here's the process for contributing to Focalboard:
 
 3. When your changes are checked in to your fork, follow the steps on our [contribution checklist]({{< ref "/contribute/getting-started/contribution-checklist" >}}). If this will be your first contribution, there is a standard [CLA](https://www.mattermost.org/mattermost-contributor-agreement/) that you will need to sign as part of this checklist.
 
-5. Submit your pull request for a [code review]({{< ref "/contribute/getting-started/code-review#if-you-are-a-community-member-seeking-a-review" >}}) and [wait]({{< ref "/contribute/getting-started/code-review#if-you-are-awaiting-a-review" >}}) for a [Focalboard core committer](https://github.com/mattermost/focalboard/blob/main/CONTRIBUTING.md#contributors) to review it. When in doubt, ask for help in the [Focalboard channel](https://community.mattermost.com/core/channels/focalboard) on our community server. If you are still stuck, please message Chen Lim ([@chenilim](https://github.com/chenilim) on GitHub).
+4. Submit your pull request for a [code review]({{< ref "/contribute/getting-started/code-review#if-you-are-a-community-member-seeking-a-review" >}}) and [wait]({{< ref "/contribute/getting-started/code-review#if-you-are-awaiting-a-review" >}}) for a [Focalboard core committer](https://github.com/mattermost/focalboard/blob/main/CONTRIBUTING.md#contributors) to review it. When in doubt, ask for help in the [Focalboard channel](https://community.mattermost.com/core/channels/focalboard) on our community server. If you are still stuck, please message Chen Lim ([@chenilim](https://github.com/chenilim) on GitHub).
 
-6. After a noteable bug fix or improvement is merged, submit a pull request to the [CHANGELOG](https://github.com/mattermost/focalboard/blob/main/CHANGELOG.md) under the next release section.
+5. After a noteable bug fix or improvement is merged, submit a pull request to the [CHANGELOG](https://github.com/mattermost/focalboard/blob/main/CHANGELOG.md) under the next release section.
 
 We're glad ❤️ you're here! Good luck and have fun!
 
@@ -30,6 +30,6 @@ https://github.com/mattermost/focalboard
 
 You can join the [public Focalboard channel](https://community.mattermost.com/core/channels/focalboard) on our Mattermost community server. You can also [file a bug](https://github.com/mattermost/focalboard/issues/new/choose) for an issue or [start a discussion](https://github.com/mattermost/focalboard/discussions) on the repository.
 
-## Help Wanted
+## Help wanted
 
 You can find help wanted tickets [here](https://github.com/mattermost/focalboard/issues?q=is%3Aopen+is%3Aissue+label%3A%22Up+for+grabs%22+label%3A%22Help+Wanted%22).

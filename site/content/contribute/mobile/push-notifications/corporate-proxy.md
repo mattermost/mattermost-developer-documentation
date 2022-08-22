@@ -1,16 +1,14 @@
 ---
-title: "Push Notification Service with Corporate Proxy"
-heading: "Push Notification Service with Corporate Proxy"
-description: "Receiving mobile push notifications in Mattermost if the use of a corporate proxy server is required by your IT policy."
+title: "Corporate proxy"
+heading: "Push notification service with corporate proxy"
+description: "Receive mobile push notifications in Mattermost if the use of a corporate proxy server is required by your IT policy."
 date: 2020-03-09T11:35:32
 weight: 4
 ---
 
-### Receiving mobile push notification if the use of a corporate proxy server is required by your IT policy
-
 When your IT policy requires a corporate proxy to scan and audit all outbound traffic the following options are available:
 
-###### 1 - Deploy Mattermost with connection restricted post-proxy relay in DMZ or a trusted cloud environment
+###### 1. Deploy Mattermost with connection restricted post-proxy relay in DMZ or a trusted cloud environment
 
 Some legacy corporate proxy configurations may be incompatible with the requirements of modern mobile architectures, such as the requirement of HTTP/2 requests from Apple to send push notifications to iOS devices.
 
@@ -22,7 +20,7 @@ You can also host in a trusted cloud environment such as AWS or Azure in place o
 
 ![image](/img/mobile/post-proxy-relay.png)
 
-###### 2 - Whitelist Mattermost push notification proxy to bypass your corporate proxy server
+###### 2. Whitelist Mattermost push notification proxy to bypass your corporate proxy server
 
 Depending on your internal IT policy and approved waivers/exceptions, you may choose to deploy the [Mattermost Push Proxy]({{< ref "/contribute/mobile/push-notifications/service" >}}) to connect directly to [Apple Push Notification Service (APNS)](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html#//apple_ref/doc/uid/TP40008194-CH8-SW1) without your corporate proxy.
 
@@ -31,7 +29,7 @@ You will need to [whitelist one subdomain and one port from Apple](https://devel
  - Development server: `api.development.push.apple.com:443`
  - Production server: `api.push.apple.com:443`
 
-###### 3 - Run App Store versions of the Mattermost mobile apps
+###### 3. Run App Store versions of the Mattermost mobile apps
 
 You can use the mobile applications hosted by Mattermost in the [Apple App Store](https://apps.apple.com/ca/app/mattermost/id1257222717) or [Google Play Store](https://play.google.com/store/apps/details?id=com.mattermost.rn) and connect with [Mattermost Hosted Push Notification Service (HPNS)](https://docs.mattermost.com/deploy/mobile-hpns.html) through your corporate proxy.
 

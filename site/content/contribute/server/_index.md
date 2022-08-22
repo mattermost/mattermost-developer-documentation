@@ -1,6 +1,6 @@
 ---
 title: "Server"
-heading: "An Introduction to the Mattermost Server"
+heading: "Contribute to the Mattermost Server"
 description: "The server, which is written in Go and compiles on a single binary, is the highly scalable backbone of the Mattermost project."
 date: "2018-04-19T12:01:23-04:00"
 weight: 2
@@ -16,7 +16,7 @@ Data storage is done with MySQL or PostgreSQL for non-binary data. Files are sto
 
 https://github.com/mattermost/mattermost-server
 
-## Server Packages
+## Server packages
 
 The server consists of several different Go packages:
 

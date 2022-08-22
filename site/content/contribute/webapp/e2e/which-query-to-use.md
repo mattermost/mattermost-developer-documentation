@@ -1,36 +1,36 @@
 ---
-title: "Which Query to Use?"
+title: "Which query to use?"
 date: 2018-12-04T11:35:32-04:00
 weight: 5
-subsection: End-to-End Testing
 ---
 
-We love `testing-library` as it encourages writing maintainable tests, to develop with confidence, and to ensure web application is accessible by default. Fortunately, there is `@testing-library/cypress` which provides simple and complete custom Cypress commands and utilities that encourage such good testing practices.
+We love [Testing Library](https://testing-library.com/) as it encourages writing maintainable tests, to develop with confidence, and to ensure web application is accessible by default. Fortunately, there is `@testing-library/cypress` which provides simple and complete custom Cypress commands and utilities that encourage such good testing practices.
 
 #### With that, which query should I use when writing Cypress tests?
 
 There is a dedicated page from `testing-library` that helps answering the question. Read the said [article](https://testing-library.com/docs/guide-which-query/) to learn more. The following is a short summary of the recommended order of priority:
 
 __Queries Accessible to Everyone__ reflect the experience of visual/mouse users as well as those that use assistive technology.
-1. `cy.findByRole`
-2. `cy.findByLabelText`
-3. `cy.findByPlaceholderText`
-4. `cy.findByText`
-5. `cy.findByDisplayValue`
+
+- `cy.findByRole`
+- `cy.findByLabelText`
+- `cy.findByPlaceholderText`
+- `cy.findByText`
+- `cy.findByDisplayValue`
 
 __Semantic Queries__ use HTML5 and ARIA–compliant selectors. Note that the user experience of interacting with these attributes varies greatly across browsers and assistive technology.
 
-6. `cy.findByAltText`
-7. `cy.findByTitle`
+- `cy.findByAltText`
+- `cy.findByTitle`
 
 __Test IDs__
 
-8. `cy.findByTestId`
+- `cy.findByTestId`
 
 __Base Queries__ are considered part of implementation detail and are discouraged to be used. You'll still find it in the codebase but it will be replaced soon. Therefore, please refrain from reusing the existing pattern. However, it's listed as an option when wanting to limit the scope of selection.
 
-9. `cy.get('#elementId')`
-10. `cy.get('.class-name')`
+- `cy.get('#elementId')`
+- `cy.get('.class-name')`
 
 Acceptable usage:
 ```javascript

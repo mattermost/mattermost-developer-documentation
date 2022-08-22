@@ -1,6 +1,6 @@
 ---
-title: Run the app
-heading: "Running the Mattermost App"
+title: Run the mobile app
+heading: "Run the Mattermost mobile app"
 description: "Mattermost provides a set of scripts to help you run the app for different platforms. Learn about them here."
 date: 2018-05-20T11:35:32-04:00
 weight: 2
@@ -36,13 +36,13 @@ Make sure you are adding `--` before the options you want to include or run the 
 $ npx react-native run-android --help
 ```
 
-## Run on a Device
+## Run on a device
 
 By default running the app will launch an Android emulator (if you created one) or an iOS simulator, but if you want to test the performance of the app or if you want to make a contribution it is always a good idea to run the app on an actual device.
 
 This will let you ensure that the app is working correctly and in a performant way before submitting a pull request.
 
-#### Run on Android Devices
+#### Run on Android devices
 
 To be able to run the app on an Android device you'll need to follow these steps:
 
@@ -77,11 +77,11 @@ If you don't see a green bar at the top loading the JavaScript code then it's po
 
 ---
 
-#### Run on iOS Devices
+#### Run on iOS devices
 
 To be able to run the app on an iOS device you'll need to have [Xcode](https://developer.apple.com/xcode/) installed on a Mac computer and follow this steps:
 
-##### 1. Get an Apple Developer Account
+##### 1. Get an Apple Developer account
 
 The apps that run on an iOS device must be signed. To sign it, you'll need a set of provisioning profiles. If you already have an Apple Developer account enrolled in the Apple Developer program you can skip this step. If you don't have an account yet you'll need to [create one](https://appleid.apple.com/account?appId=632&returnUrl=https%3A%2F%2Fdeveloper.apple.com%2Faccount%2F#!&page=create) and enroll in the [Apple Developer Program](https://developer.apple.com/programs/).
 

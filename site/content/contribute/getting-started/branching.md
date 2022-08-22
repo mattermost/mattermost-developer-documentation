@@ -1,7 +1,7 @@
 ---
-title: "Mattermost Cherry-Pick Process"
-heading: "Mattermost Cherry-Pick Process"
-description: "What the branching strategy and cherry-pick process looks like."
+title: "Mattermost cherry-pick process"
+heading: "Mattermost cherry-pick process"
+description: "What the branch strategy and cherry-pick process looks like."
 date: 2019-06-18T00:00:00-04:00
 weight: 20
 ---
@@ -10,7 +10,7 @@ The self-managed releases are cut based off of the Mattermost Cloud release tags
 
 The Mobile and Desktop app release branches are based off of ``master`` branch.
 
-## Cherry-pick process - Developer
+## Developer process
 
 When your PR is required on a release branch (e.g. for a dot release or to fix a regression for an upcoming release), you will follow the cherry-picking process.
 
@@ -32,6 +32,6 @@ When your PR is required on a release branch (e.g. for a dot release or to fix a
 Note:
   - If the PR needs to go to other release branches, you can run the command `/cherry-pick release-x.yz` in the PR comments and it will try to cherry-pick it to the branch you specified.
 
-## Cherry pick process - Reviewer
+## Reviewer process
 
 If you are the second reviewer reviewing a PR that needs to be cherry-picked, do not merge the PR. If the submitter is a core team member, you should set the `Reviews Complete` label and assign it to the submitter to cherry-pick. If the submitter is a community member who is not available to cherry-pick their PR or can not do it themselves, you should follow the cherry-pick process above.

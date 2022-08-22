@@ -1,7 +1,7 @@
 ---
-title: "Developer Setup"
-heading: "Setting up Your Development Environment"
-description: "Find out how to set up your development environment for building, running, and testing the Mattermost Desktop App."
+title: "Developer setup"
+heading: "Set up your development environment"
+description: "Find out how to set up your development environment for building, running, and testing the Mattermost desktop app."
 date: 2020-02-01T19:50:32-04:00
 weight: 1
 ---
@@ -49,7 +49,7 @@ You can find information on setting up those instances here:
 
 Alternatively, for some changes you may be able to test using an existing Mattermost instance, or one that has been deployed on platforms like Docker, Linux, Kubernetes, Heroku, or others. Please refer to the [Mattermost Deployment Guide](https://docs.mattermost.com/guides/deployment.html) for more info.
 
-## Repo Setup
+## Repo setup
 
 1. Fork GitHub Repository: https://github.com/mattermost/desktop
 2. Clone from your repo: 

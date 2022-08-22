@@ -14,7 +14,7 @@ The server is currently on API version 4.
 
 Looking for the API reference? That can be found here: https://api.mattermost.com.
 
-## Adding an Endpoint
+## Add an endpoint
 
 To add an endpoint to API version 4, each item on the following checklist must be completed:
 
@@ -29,7 +29,7 @@ A full example can be found through these two pull requests:
 - Documenting the `POST /teams` endpoint: [mattermost-api-reference#72](https://github.com/mattermost/mattermost-api-reference/pull/72)
 - Implementing the `POST /teams` endpoint: [mattermost-server#5220](https://github.com/mattermost/mattermost-server/pull/5220)
 
-### Documenting the Endpoint
+### Document the endpoint
 
 At Mattermost we use the [OpenAPI specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md) for API documentation. That documentation lives in the [mattermost-api-reference](https://github.com/mattermost/mattermost-api-reference) repository. To document an endpoint, follow these steps:
 
@@ -52,7 +52,7 @@ and create a branch for your changes.
 
 If you're looking for examples, see [users.yaml](https://github.com/mattermost/mattermost-api-reference/blob/master/v4/source/users.yaml).
 
-### Implementing the API Handler
+### Implement the API handler
 
 To implement the API handler you'll first need to [setup your developer environment]({{< ref "/contribute/server/developer-setup" >}}), then follow these steps:
 
@@ -81,7 +81,7 @@ To implement the API handler you'll first need to [setup your developer environm
 3.  Run the server using `make run-server` to check for syntax errors.
 4.  (Optional) Use `curl` or [Postman](https://www.getpostman.com/) to test the basics of your endpoint. The endpoint will also be tested [through a unit test]({{< ref "/contribute/server/rest-api#writing-a-unit-test" >}}), so this step is optional.
 
-### Updating the Go Driver
+### Update the Golang driver
 
 The Go driver for APIv4 is in [/model/client4.go](https://github.com/mattermost/mattermost-server/tree/master/model/client4.go).
 
@@ -96,7 +96,7 @@ To add a function to support your new endpoint:
 
 That's it, you'll be able to test your function in the next section.
 
-### Writing a Unit Test
+### Write a unit test
 
 The most important part of this process is to make sure your endpoint works correctly. Follow these steps to write a test:
 
@@ -118,6 +118,6 @@ Returning the correct error code might require investigation in the [app](https:
 
 When completing this step, please make sure to use the new `model.NewAppError()` function ([see example](https://github.com/mattermost/mattermost-server/blob/master/store/sqlstore/user_store.go)).
 
-### Submitting your Pull Request
+### Submit your pull request
 
 Please submit a pull request against the [mattermost/mattermost-server](https://github.com/mattermost/mattermost-server) repository by [following these instructions]({{< ref "/contribute/server/developer-workflow" >}}).

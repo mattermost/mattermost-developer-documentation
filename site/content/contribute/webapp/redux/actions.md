@@ -1,6 +1,6 @@
 ---
 title: "Actions"
-heading: "Redux Actions"
+heading: "Redux actions"
 description: "An explanation of Redux actions and how they're used in Mattermost"
 date: 2017-08-20T11:35:32-04:00
 weight: 4
@@ -52,7 +52,7 @@ function loadAndSelectChannel(channelId: string) {
 
 Actions live in the `src/actions` directory with the constants that define their types being in the `src/action_types` directory.
 
-## Using Actions
+## Use actions
 
 To use an action, you need to pass it into the `dispatch` method of the Redux store so that it can be passed off to the reducers.
 
@@ -64,14 +64,14 @@ store.dispatch(loadAndSelectChannel(channelId));
 
 Typically, you won't have direct access to the store to get its `dispatch` method. Instead, you'll receive it from either [React Redux](https://react-redux.js.org/) or [Redux Thunk](https://github.com/reduxjs/redux-thunk) depending on what part of the code you're working on.
 
-### Dispatching actions from a component
+### Dispatch actions from a component
 
 [React Redux](https://react-redux.js.org/) provides two ways of accessing dispatch, and you'll see both used throughout Mattermost.
 
 The first is by its `connect` higher order component. Its second parameter `mapDispatchToProps` is used to wrap action creators so that they will automatically be dispatched when called.
 
-```javascript
-// src/components/widget/index.tsx
+```tsx
+// src/components/widget/index.jsx
 
 import {connect} from 'react-redux';
 
@@ -111,7 +111,7 @@ export default function Widget(props: Props) {
 
 Alternatively, you can use the `useDispatch` hook to dispatch actions directly in the component.
 
-```typescript
+```tsx
 // src/components/widget/widget.tsx
 
 import {useDispatch} from 'react-redux';
@@ -141,7 +141,7 @@ The choice of which method to use is left up to the developer at the moment. `co
 
 When deciding which one to use though, try to match the area of the code that you're working in. Individual components should never mix the two.
 
-## Adding an Action
+## Add an action
 
 The steps for adding a new Redux action are as follows:
 
@@ -150,7 +150,7 @@ The steps for adding a new Redux action are as follows:
     - If the action is specific to the web app, affects `state.views` and will be used in multiple places throughout the app, it should be put in `actions`.
     - If the action is very specific and will likely only be used by one or more closely related components, it should be put in an `actions.ts` located in the same directory as those components.
 
-1. If the action creator will have an effect on the Redux state that isn't covered by existing action types, you'll need to add a new "action type" constant that will be used by the action creator and will be handled by a reducer. These are located separate from the definition of the action creator itself to avoid having reducers import code from the action creators directly.
+2. If the action creator will have an effect on the Redux state that isn't covered by existing action types, you'll need to add a new "action type" constant that will be used by the action creator and will be handled by a reducer. These are located separate from the definition of the action creator itself to avoid having reducers import code from the action creators directly.
 
     Depending on where the action is located, the action creator will be located in one of the following:
     - If the action is located in `mattermost-redux`, the action type should be added to one of the files in `packages/mattermost-redux/src/action_types`.
@@ -162,7 +162,7 @@ The steps for adding a new Redux action are as follows:
     });
     ```
 
-1. Write the action creator itself. Depending on what data is needed by the action and if it needs to perform any async operations will change whether or not a Thunk action should be used. We should generally try to use plain Redux actions wherever possible since they're a bit more complex, both to read and to process.
+3. Write the action creator itself. Depending on what data is needed by the action and if it needs to perform any async operations will change whether or not a Thunk action should be used. We should generally try to use plain Redux actions wherever possible since they're a bit more complex, both to read and to process.
 
     ```typescript
     function somethingHappened(channelId: string) {
@@ -200,11 +200,12 @@ The steps for adding a new Redux action are as follows:
             });
         };
     }
+    ```
 
-1. If you added a new action type, make sure to add or update existing reducers to handle the new action. More information about reducers is available [here]({{< ref "/contribute/webapp/redux/reducers" >}}).
-1. Add unit tests to make sure that the action has the intended effects on the store. More information on unit testing reducers is available below.
+4. If you added a new action type, make sure to add or update existing reducers to handle the new action. More information about reducers is available [here]({{< ref "/contribute/webapp/redux/reducers" >}}).
+5. Add unit tests to make sure that the action has the intended effects on the store. More information on unit testing reducers is available below.
 
-### Adding a new API Action
+### Add a new API action
 
 If your action is corresponds to an API call, there are a few extra steps required but also a helper function to simplify the error handling for the action. The additional steps are as follows:
 
@@ -221,7 +222,7 @@ If your action is corresponds to an API call, there are a few extra steps requir
     }
     ```
 
-1. Depending on your use case, you'll likely want to dispatch a Redux action containing the response to the API request when it succeeds. You may optionally also want to dispatch actions when the request is made or fails to update the Redux state as the request progresses.
+2. Depending on your use case, you'll likely want to dispatch a Redux action containing the response to the API request when it succeeds. You may optionally also want to dispatch actions when the request is made or fails to update the Redux state as the request progresses.
     ```typescript
     export default keyMirror({
         SOMETHING_HAPPENED: null,
@@ -233,7 +234,7 @@ If your action is corresponds to an API call, there are a few extra steps requir
         SOMETHING_FAILURE: null,
     });
     ```
-1. Most actions involving an API request follow a similar pattern of calling Client4 with the provided parameters, handling any errors that may occur, and dispatching an action containing the result if successful. The `bindClientFunc` helper can help with that.
+3. Most actions involving an API request follow a similar pattern of calling Client4 with the provided parameters, handling any errors that may occur, and dispatching an action containing the result if successful. The `bindClientFunc` helper can help with that.
 
     ```typescript
     function somethingAsyncHappened(channelId: string) {
@@ -268,18 +269,18 @@ If your action is corresponds to an API call, there are a few extra steps requir
     }
     ```
 
-## Testing an Action
+## Test an action
 
-### Unit testing
+### Unit tests
 
 Tests for both actions and action creators are written using [Jest](https://jestjs.io/) and will often focus on seeing how dispatching an action affects the stored state in Redux. It'll often look similar to testing a reducer except you'll be looking at the whole store state instead of a single part of it.
 
 There are a few different ways of testing Redux actions used throughout Mattermost, but the most common way involves:
 
 1. Setting up an initial store state for the test case.
-1. Optionally mocking any external operations that may be required for the action. This includes API requests which are mocked using [Nock](https://github.com/nock/nock).
-1. Dispatching the result of the action creator.
-1. Looking at the resulting store state to ensure the required changes are made.
+2. Optionally mocking any external operations that may be required for the action. This includes API requests which are mocked using [Nock](https://github.com/nock/nock).
+3. Dispatching the result of the action creator.
+4. Looking at the resulting store state to ensure the required changes are made.
 
     ```typescript
     import nock from 'nock';
@@ -348,10 +349,11 @@ There are a few different ways of testing Redux actions used throughout Mattermo
         });
     });
     ```
+5. Add unit tests to make sure that the action has the intended effects on the store. Test location is adjacent to the file being tested. Example, for `src/actions/admin.js`, test is located at `src/actions/admin.test.js`.  Add test file if necessary. More information on unit testing reducers is available below.
 
 Some unit tests found throughout the web app may also test the actions dispatched by a thunk action rather than testing the effects on the changes to the store state. This method isn't considered as effective.
 
-### End-to-end testing
+### End-to-End tests
 
 Sometimes, it's not easy to test a redux action given it contains complicated async logic or requires a large amount of Redux state to be initialized to test it out. Other times, an action may feel too simple to test, especially if it's just dispatching an action that dictates specifically how the Redux state should change.
 

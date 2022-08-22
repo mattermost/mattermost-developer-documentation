@@ -1,6 +1,6 @@
 ---
-title: "Android Push Notifications"
-heading: "Android Push Notifications at Mattermost"
+title: "Android push notifications"
+heading: "Android push notifications at Mattermost"
 description: "Learn how Android push notifications work using Mattermost and Firebase Cloud Messaging."
 date: 2015-05-20T11:35:32-04:00
 weight: 1

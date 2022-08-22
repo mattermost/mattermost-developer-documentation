@@ -1,6 +1,6 @@
 ---
-title: "Using Redux with React"
-heading: "Using Redux with React in Mattermost"
+title: "Use Redux with React"
+heading: "Use Redux with React in Mattermost"
 description: "Find out how using Redux with React is fairly straightforward thanks to the React Redux library."
 date: 2017-08-20T11:35:32-04:00
 weight: 7
@@ -10,7 +10,7 @@ Using Redux with React is fairly straightforward thanks to the [React Redux](htt
 
 A typical Redux-connected component will be in its own folder with two files: `index.jsx` containing the code to connect to the Redux store and the file where the component is actually implemented. This helps to keep the Redux logic separate from the rendering for the component which keeps it more easily readable and makes it easier to test since it can be done without the whole Redux store.
 
-```javascript
+```jsx
 // components/my_component/index.jsx
 
 import {connect} from 'react-redux';
@@ -64,11 +64,11 @@ export default class MyComponent extends React.PureComponent {
 }
 ```
 
-Both mapStateToProps and mapDispatchToProps are optional and can be omitted as necessary.
+Both `mapStateToProps` and `mapDispatchToProps` are optional and can be omitted as necessary.
 
-If you're using a selector that is produced through a factory, such as makeGetUser, you can instead generate an individual `mapStateToProps` function for each instance of the component.
+If you're using a selector that is produced through a factory, such as `makeGetUser`, you can instead generate an individual `mapStateToProps` function for each instance of the component.
 
-```javascript
+```jsx
 // component/my_component/index.jsx
 
 ...
@@ -93,6 +93,6 @@ function makeMapStateToProps() {
 export default connect(makeMapStateToProps, mapDispatchToProps)(MyComponent);
 ```
 
-## Performance Considerations
+## Performance considerations
 
 Something very important to note when using React with Redux is that every single `mapStateToProps` function within your application will be called whenever anything in the store changes. If any work being done in `mapStateToProps` performs any complicated calculations or returns rich objects, it should be moved into a [selector]({{< ref "/contribute/webapp/redux/selectors" >}}) so that it can be memoized whenever possible.

@@ -1,6 +1,6 @@
 ---
 title: "OpenFaaS"
-heading: "Admin's Guide to Deploying Apps to OpenFaaS and faasd"
+heading: "Deploy Apps to OpenFaas and faasd"
 description: "TODO"
 weight: 40
 ---
@@ -14,12 +14,12 @@ existing code in stateless containers on Kubernetes or directly on Linux hosts,
 on any public or private cloud. Learn more at
 [OpenFaas.com](https://www.openfaas.com/)
 
-### Packaging an App for OpenFaaS
+### Package an App for OpenFaaS
 
 For details on how to develop and package apps for AWS see [serverless
-example]({{< ref "quick-start-serverless" >}})
+example]({{< ref "/integrate/apps/quickstart/quick-start-serverless" >}})
 
-### Deploying with appsctl
+### Deploy with `appsctl`
 
 An App designed and bundled for OpenFaaS can be deployed to the customer's own
 OpenFaaS or faasd environments, and then installed on a self-managed ("on-prem")

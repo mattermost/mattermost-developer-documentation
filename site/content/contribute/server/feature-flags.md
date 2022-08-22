@@ -1,17 +1,15 @@
 ---
-title: "Feature Flags"
-heading: "Feature Flags and Mattermost Cloud"
+title: "Feature flags"
+heading: "Feature flags and Mattermost Cloud"
 description: "Feature flags allow us to be more confident in shipping features continuously to Mattermost Cloud. Find out why."
 date: 2020-10-15T16:00:00-0700
 weight: 3
 ---
-
-
 Feature flags allow us to be more confident in shipping features continuously to Mattermost Cloud. Feature flags also allow us to control which features are enabled on a cluster level.
 
 # How to use
 
-## Adding the feature flag in code
+## Add the feature flag in code
 
 1. Add the new flag to the feature flag struct located in `model/feature_flags.go`.
 2. Set a default value in the `SetDefaults` function in the same file.
@@ -51,7 +49,7 @@ In Split, there's some terminology you will need to understand:
  - **Server** - Single Mattermost workspace
  - **Segment** - A list of servers that can be targeted by a split
 
-### Adding a split
+### Add a split
 
 After you've added the feature flag in code, you'll need to create a split for it.
 
@@ -66,7 +64,7 @@ After you've added the feature flag in code, you'll need to create a split for i
 
 The split is now created but not targeting anything. The next section covers adding basic targeting rules.
 
-###  Add targeting rules to a split
+### Add targeting rules to a split
 
 To have the split have any effect, it needs targeting rules to know which environment and servers it should set the feature flag value to. To add basic targeting rules:
 
@@ -122,7 +120,7 @@ To set a flag via Split for community:
  1. Open the split for your flag.
  2. At the top under the split name, select the "Cloud Staging" environment.
  3. Find "Set targeting rules" and click **Add rule**.
-   - The rule may already exist, and in that case you can edit the existing one.
+    - The rule may already exist, and in that case you can edit the existing one.
  4. Leave the rule set to "is in segment" and click **Select Segment...** and choose "community".
  5. Select the treatment you want community.mattermost.com to get.
  6. At the top right, click **Save changes** and confirm them on the next screen.
@@ -164,7 +162,7 @@ Feature flags are generally off by default and self-hosted releases do not conta
 
 Optionally the feature flag can be set to ``true`` in code if we are not yet ready to fully remove the feature flag. Some [examples are here](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
 
-## Testing
+## Tests
 
 Tests should be written to verify all states of the feature flag. Tests should cover any migrations that may take place in both directions (i.e., from "off" to "on" and from "on" to "off"). Ideally E2E tests should be written before the feature is merged, or at least before the feature flag is removed.
 
@@ -188,42 +186,42 @@ There are no hard rules on when a feature flag should be used. It is left up to 
 ## FAQ
 
 1. What is the expected default value for boolean feature flags? Is it `true` or `false`?
- - Definitely `false`. The idea is to use them to slowly roll out a feature. When the code is deployed, the feature flag is not enabled yet. See more details on feature flag rollout timelines [here]({{< ref "/contribute/server/feature-flags#timelines-for-rollouts" >}}).
+   - Definitely `false`. The idea is to use them to slowly roll out a feature. When the code is deployed, the feature flag is not enabled yet. See more details on feature flag rollout timelines [here]({{< ref "/contribute/server/feature-flags#timelines-for-rollouts" >}}).
 
 2. Is it possible to use a plugin feature flag such as `PluginIncidentManagement` to "prepackage" a plugin only on Cloud by only setting a plugin version to that flag on Cloud? Can self-hosted customers manually set that flag to install the said plugin?
- - Yes. If you leave the default "" then nothing will happen for self-hosted installations. You can ask the Cloud team to set ``split.io/environment`` to a specific version.
+   - Yes. If you leave the default "" then nothing will happen for self-hosted installations. You can ask the Cloud team to set ``split.io/environment`` to a specific version.
 
 3. How do feature flags work on webapp?
- - To add a feature flag that affects frontend, the following is needed: 
-    1. PR to server code to add the new feature flag. 
-    2. PR to redux to update the types. 
-    3. PR to webapp to actually use the feature flag.
+   - To add a feature flag that affects frontend, the following is needed: 
+     1. PR to server code to add the new feature flag. 
+     2. PR to redux to update the types. 
+     3. PR to webapp to actually use the feature flag.
 
 4. How do feature flags work on mobile?
- - To add a feature flag that affects mobile, the following is needed: 
-    1. PR to server code to add the new feature flag. 
-    2. PR to mobile to update the types and to actually use the feature flag.
+   - To add a feature flag that affects mobile, the following is needed: 
+     1. PR to server code to add the new feature flag. 
+     2. PR to mobile to update the types and to actually use the feature flag.
 
 5. How do we enable a feature flag for testing on community-daily and on Cloud test servers?
- - You can post in [~Developers: Cloud channel](https://community.mattermost.com/core/channels/cloud) with the feature flag name and what you want the Cloud team to set it to.
+   - You can post in [~Developers: Cloud channel](https://community.mattermost.com/core/channels/cloud) with the feature flag name and what you want the Cloud team to set it to.
 
 6. What is the environment variable to set a feature flag?
- - It is `MM_FEATUREFLAGS_<myflag>`.
+   - It is `MM_FEATUREFLAGS_<myflag>`.
 
 7. Can plugins use feature flags to enable small features aside of the version forcing feature flag?
- - Yes. You can create feature flags as if they were added for the core product, and they'll get included in the plugin through the config.
+   - Yes. You can create feature flags as if they were added for the core product, and they'll get included in the plugin through the config.
 
 8. Does it make sense to use feature flags for A/B testing?
- - This is something we're going to be evaluating using split.io. We've already implemented support for this in the server.
+   - This is something we're going to be evaluating using split.io. We've already implemented support for this in the server.
 
 9. Do feature flag changes require the server to be restarted?
- - Feature flags don’t require a server restart unless the feature being flagged requires a restart itself.
+   - Feature flags don’t require a server restart unless the feature being flagged requires a restart itself.
 
 10. For features that are requested by self-hosted customers, why do we have to deploy to Cloud first, rather than having the customer who has the test case test it?
- - Cloud is the way to validate the stability of the feature before it goes to self-hosted customers. In exceptional cases we can let the self-hosted customer know that they can use environment variables to enable the feature flag (but specify that the feature is experimental).
+    - Cloud is the way to validate the stability of the feature before it goes to self-hosted customers. In exceptional cases we can let the self-hosted customer know that they can use environment variables to enable the feature flag (but specify that the feature is experimental).
 
 11. How does the current process take into account bugs that may arise on self-hosted specifically?
- - The process hasn’t changed much from the old release process: Features can still be tested on self-hosted servers once they have been rolled out to Cloud. The primary goal is that bugs are first identified on Cloud servers.
+    - The process hasn’t changed much from the old release process: Features can still be tested on self-hosted servers once they have been rolled out to Cloud. The primary goal is that bugs are first identified on Cloud servers.
 
 12. How can self-hosted installations set feature flags?
- - Self-hosted installations can set environment variables to set feature flag values. However, users should recognize that the feature is still considered "experimental" and should not be enabled on production servers.
+    - Self-hosted installations can set environment variables to set feature flag values. However, users should recognize that the feature is still considered "experimental" and should not be enabled on production servers.

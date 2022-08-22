@@ -1,6 +1,6 @@
 ---
-title: "End-to-End Testing"
-heading: "End-to-end Testing in Mattermost"
+title: "End-to-End tests"
+heading: "End-to-End tests in Mattermost"
 description: "This page describes how to run End-to-End (E2E) testing and to build tests for a section or page of the Mattermost web application."
 date: "2018-03-19T12:01:23-04:00"
 subsection: Web App
@@ -16,7 +16,7 @@ Not familiar with Cypress? Here is some documentation that will help you get sta
   - [Developer Guide](https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell)
   - [API Reference](https://docs.cypress.io/api/api/table-of-contents.html)
 
-## What Requires an E2E Test?
+## What requires an E2E test?
 
 1. Test cases defined in help-wanted E2E issues - for example, see [link](https://github.com/mattermost/mattermost-webapp/pull/5857/files) that opens a private channel using keyboard navigation with Ctrl/Cmd+K, arrow and enter keys.
 2. New features or stories - for example, see [link](https://github.com/mattermost/mattermost-webapp/pull/4243/files) for `Mark As Unread` feature.

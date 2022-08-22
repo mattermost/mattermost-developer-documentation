@@ -1,7 +1,7 @@
 ---
-title: "Test Guideline"
-heading: "Test Guideline for Every Pull Request"
-description: "Test Guideline for Every Pull Request"
+title: "Test guidelines"
+heading: "Test guidelines for every pull request"
+description: "Test guidelines for every pull request"
 date: 2022-03-30T00:00:00+08:00
 weight: 6
 ---

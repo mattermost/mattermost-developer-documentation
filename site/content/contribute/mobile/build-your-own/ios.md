@@ -1,6 +1,6 @@
 ---
-title: "Build the iOS App"
-heading: "Building an iOS Mattermost App"
+title: "Build the iOS mobile app"
+heading: "Build a Mattermost iOS mobile app"
 description: "At times, you may want to build your own Mattermost mobile app. This page guides you through that process."
 date: 2018-05-20T11:35:32-04:00
 weight: 2
@@ -11,7 +11,7 @@ At times, you may want to build your own Mattermost mobile app. The most common 
 * To white label the Mattermost mobile app.
 * To use your own deployment of the Mattermost Push Notification Service (always required if you are building your own version of the mobile app).
 
-# Build Preparations
+# Build preparations
 
 ### 1. Prerequisites
 
@@ -26,13 +26,13 @@ $ xcode-select --install
 * Follow the steps 1, 2, and 3 for [Run on iOS Devices]({{< ref "/contribute/mobile/developer-setup/run#run-on-ios-devices" >}}) in the Developer Setup.
 * After configuring the app in the previous step, **ensure** the bundle ID for each target of the mobile app remains the same as the one in the original [mattermost-mobile GitHub repository](https://github.com/mattermost/mattermost-mobile) (`com.mattermost.rnbeta`, `com.mattermost.rnbeta.MattermostShare`, and `com.mattermost.rnbeta.NotificationService`).
 
-### 3. Code signing
+### 3. Code sign
 
 Apple requires all apps to be digitally signed with a certificate before they can be installed.
 
 The build script will make use of [Match](https://docs.fastlane.tools/actions/match/) to sync your provisioning profiles (the profiles will be created for you if needed). The provisioning profiles will be created based on the environment variables.
 
-### 4. Configure Environment Variables
+### 4. Configure environment variables
 
 To make it easier to customize your build, we've defined a few environment variables that are going to be used by Fastlane during the build process.
 
@@ -75,7 +75,7 @@ To configure your variables create the file `./mattermost-mobile/fastlane/.env` 
 
 ---
 
-## Building the App
+## Build the mobile app
 
 Once all the previous steps are complete, execute the following command from within the project's directory:
 

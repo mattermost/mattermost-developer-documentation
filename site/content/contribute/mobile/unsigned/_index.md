@@ -1,6 +1,6 @@
 ---
-title: "Sign Unsigned Builds"
-heading: "Signing Unsigned Builds with Mattermost"
+title: "Sign unsigned builds"
+heading: "Sign unsigned builds with Mattermost"
 description: "Mattermost publishes an unsigned build of the mobile app in the GitHub Releases page with every version that gets released."
 date: 2018-05-20T11:35:32-04:00
 weight: 4
@@ -19,4 +19,5 @@ Android and Apple require all apps to be digitally signed with a certificate bef
 
 To avoid rebuilding the apps from scratch, you could just **sign** the unsigned builds published by Mattermost with your certificates and keys.
 
-[Sign Unsigned Android]({{< ref "/contribute/mobile/unsigned/android" >}}) or [Sign Unsigned iOS]({{< ref "/contribute/mobile/unsigned/ios" >}}).
+- [Sign Unsigned Android]({{< ref "/contribute/mobile/unsigned/android" >}})
+- [Sign Unsigned iOS]({{< ref "/contribute/mobile/unsigned/ios" >}})

@@ -1,6 +1,6 @@
 ---
-title: "Slash Commands"
-heading: "Slash Commands at Mattermost"
+title: "Slash commands"
+heading: "Slash commands at Mattermost"
 description: "Slash commands trigger an HTTP request to a web service that can in turn post one or more messages in response."
 date: "2017-08-19T12:01:23-04:00"
 weight: 30
@@ -13,7 +13,7 @@ Slash commands are messages that begin with `/` and trigger an HTTP request to a
 Unlike outgoing webhooks, slash commands work in private channels and direct messages in addition to public channels, and can be configured to auto-complete when typing. Note that while Mattermost includes a number of built-in slash commands, this document concerns itself only with the slash commands that can be configured as custom integrations.
 
 
-### Basic Usage
+### Basic usage
 
 Follow [the admin guide](https://docs.mattermost.com/developer/slash-commands.html#custom-slash-command) to create a slash command.
 
@@ -122,7 +122,7 @@ Content-Length: 696
 
 To debug slash commands in **System Console > Logs**, set **System Console > Logging > Enable Webhook Debugging** to **true** and set **System Console > Logging > Console Log Level** to **DEBUG**.
 
-#### How do I send multiple responses from a slash command.
+#### How do I send multiple responses from a slash command?
 
 You can send multiple responses with an `extra_responses` parameter as follows.
 

@@ -1,6 +1,6 @@
 ---
-title: "DB Migration Guide"
-heading: "DB Migration Guide"
+title: "DB migration guide"
+heading: "DB migration guide"
 date: 2021-10-05T16:00:00-0700
 weight: 3
 ---
@@ -24,7 +24,7 @@ If your migration will take more time on a larger data set, check if it is possi
 
 The problem arises when in some databases, for some tables, due to various technical reasons, applying a migration prevents other operations from happening on that table. In that case, it causes unavoidable downtime.
 
-### TLDR
+### TL;DR
 
 1. Migrations are always synchronous.
 2. The time taken to run a migration is not always the primary factor in judging impact.
@@ -52,6 +52,6 @@ If the answer to 2. is yes, then it should be pretty simple. In that case, if th
 
 However, If the answer to the second question above is "no", then contact the [performance team](https://community.mattermost.com/core/channels/developers-performance) to discuss a solution.
 
-### Inform SRE team.
+### Inform SRE team
 
 If the migration is large, when the PR is review complete, please cc an SRE team member and ask them to merge it and their convenience. This is so that the migration can run on our Community cluster and Cloud at a suitable time.

@@ -1,6 +1,6 @@
 ---
-title: Best Practices
-heading: "Best Practices for Plugins on Mattermost"
+title: Best practices
+heading: "Best practices for Plugins on Mattermost"
 description: "Read about some of the best practices for working with plugins in Mattermost."
 weight: 0
 aliases:

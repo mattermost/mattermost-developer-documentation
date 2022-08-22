@@ -1,6 +1,6 @@
 ---
-title: "Web App Workflow"
-heading: "Mattermost Web App Workflow"
+title: "Web app workflow"
+heading: "Mattermost web app workflow"
 description: "See what a general workflow for a Mattermost developer working on the mattermost-webapp repository looks like."
 date: 2017-08-20T11:35:32-04:00
 weight: 3
@@ -38,6 +38,6 @@ Here's a general workflow for a Mattermost developer working on the [mattermost-
 8. Respond to feedback on your pull request and make changes as necessary by committing to your branch and pushing it. Your branch should be kept roughly up to date by [merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging#_basic_merging) master into it periodically. This can either be done using [`git merge`](https://git-scm.com/docs/git-merge) or, as long as there are no conflicts, by commenting `/update-branch` on the PR.
 9. That's it! Rejoice that you've helped make Mattermost better.
 
-### Useful Mattermost Commands
+### Useful Mattermost commands
 
 During development you may want to reset the database and generate random data for testing your changes. See [the corresponding section of the server developer workflow]({{< ref "/contribute/server/developer-workflow#useful-mattermost-commands" >}}) for how to do that.

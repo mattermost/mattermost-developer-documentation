@@ -1,6 +1,6 @@
 ---
-title: "Contributions Without Ticket"
-heading: "Contributing to Mattermost without a Ticket"
+title: "Contributions without ticket"
+heading: "Contributing to Mattermost without a ticket"
 description: "Contributions for minor corrections and improvements without a corresponding Help Wanted ticket are welcome."
 date: 2019-10-11T15:44:36-02:00
 weight: 1

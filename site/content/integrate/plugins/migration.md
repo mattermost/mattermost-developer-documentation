@@ -1,13 +1,12 @@
 ---
-title: Migrating Plugins
-heading: "Migrating Plugins from Mattermost 5.5"
+title: Migrate plugins
+heading: "Migrate plugins from Mattermost 5.5"
 description: "The plugin package exposed by Mattermost 5.6 and later drops support for automatically unmarshalling a plugin’s configuration onto the struct embedding MattermostPlugin."
 date: 2018-10-01T00:00:00-05:00
 weight: 60
-aliases: [/extend/plugins/migration/]
+aliases:
+  - /extend/plugins/migration/
 ---
-
-## Migrating Plugins from Mattermost 5.5 and earlier
 
 The plugin package exposed by Mattermost 5.6 and later drops support for automatically unmarshalling a plugin's configuration onto the struct embedding `MattermostPlugin`. As server plugins are inherently concurrent (hooks being called asynchronously) and the plugin configuration can change at any time, access to the configuration must be synchronized.
 
@@ -17,7 +16,7 @@ Note that you do not need to wait until Mattermost 5.6 to make these changes, as
 
 ### Server changes
 
-#### Loading configuration
+#### Unmarshalling configuration
 
 Previously, any public fields defined on the struct embedding `MattermostPlugin` would be automatically unmarshalled from the plugin's configuration:
 
@@ -27,7 +26,6 @@ type Plugin struct {
 
     Greeting string
 }
-
 
 func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "Hello %s!", p.Greeting)
@@ -71,7 +69,7 @@ func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Req
 
 Unfortunately, this adds a fair bit of extra complexity. You may wish to base your updated implementation off of [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) or [mattermost-plugin-demo](https://github.com/mattermost/mattermost-plugin-demo) to simplify your code.
 
-## Migrating Plugins from Mattermost 5.1 and earlier
+## Migrate plugins from Mattermost 5.1 and earlier
 
 Mattermost 5.2 introduces breaking changes to the plugins beta. This page documents the changes necessary to migrate your existing plugins to be compatible with Mattermost 5.2 and later.
 
@@ -81,7 +79,7 @@ See [mattermost-plugin-zoom](https://github.com/mattermost/mattermost-plugin-zoo
 
 Although the underlying changes are significant, the required migration for server plugins is minimal.
 
-#### Entry Point
+#### Entry point
 
 The plugin entry point was previously:
 
@@ -103,7 +101,7 @@ func main() {
 }
 ```
 
-#### Hook Parameters
+#### Hook parameters
 
 Most hook callbacks now contain a leading `plugin.Context` parameter. Consult the [Hooks]({{< ref "/integrate/plugins/components/server/reference#Hooks" >}}) documentation for more details, but for example, the `ServeHTTP` hook was previously:
 
@@ -121,7 +119,7 @@ func (p *MyPlugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.R
 }
 ```
 
-#### API Changes
+#### API changes
 
 Most of the previous API calls remain available and unchanged, with the notable exception of removing the `KeyValueStore()`. Use [KVSet]({{< ref "/integrate/plugins/components/server/reference#API.KVSet" >}}), [KVGet]({{< ref "/integrate/plugins/components/server/reference#API.KVGet" >}}) and [KVDelete]({{< ref "/integrate/plugins/components/server/reference#API.KVDelete" >}}) instead test:
 
@@ -153,16 +151,16 @@ func (p *MyPlugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.R
 ```
 
 This would generate something like the following in your server logs:
-```
+```json
 {"level":"debug","ts":1531494669.83655,"caller":"app/plugin_api.go:254","msg":"received http request","plugin_id":"my-plugin","user_agent":"HTTPie/0.9.9"}
-{"level":"error","ts":1531494669.8368616,"caller":"app/plugin_api.go:260","msg":"missing referer","plugin_id":""my-plugin"}
+{"level":"error","ts":1531494669.8368616,"caller":"app/plugin_api.go:260","msg":"missing referer","plugin_id":"my-plugin"}
 ```
 
-### Web App Changes
+### Web app changes
 
 The changes to web app plugins are more significant than server plugins.
 
-#### Entry Point
+#### Entry point
 
 The plugin entry point was previously registered by directly manipulating a global variable:
 
@@ -176,7 +174,7 @@ Instead, use the globally exported `registerPlugin` method:
 window.registerPlugin('my-plugin', new MyPlugin());
 ```
 
-#### Externalizing Dependencies
+#### Externalize dependencies
 
 The plugins beta suggested relying on the global export of common libraries from the web app:
 
@@ -186,7 +184,7 @@ const React = window.react;
 
 While this remains supported, it is more natural to leverage Webpack [Externals](https://webpack.js.org/configuration/externals/). Configure this in your `.webpack.config.js`:
 
-```
+```js
 module.exports = {
     // ...
     externals: {
@@ -204,15 +202,15 @@ import React from 'react';
 
 Note however that the exported variables have changed to the following:
 
-| Prior to Mattermost 5.2 | Mattermost 5.2 |
-| --- | --- |
-| window.react | window.React |
-| window['react-dom'] | window.ReactDom |
-| window.redux | window.Redux |
-| window['react-redux'] | window.ReactRedux |
+| Prior to Mattermost 5.2   | Mattermost 5.2        |
+|---------------------------|-----------------------|
+| window.react              | window.React          |
+| window['react-dom']       | window.ReactDom       |
+| window.redux              | window.Redux          |
+| window['react-redux']     | window.ReactRedux     |
 | window['react-bootstrap'] | window.ReactBootstrap |
-| window['post-utils'] | window.PostUtils |
-| _N/A_ | window.PropTypes |
+| window['post-utils']      | window.PostUtils      |
+| _N/A_                     | window.PropTypes      |
 
 #### Initialization
 

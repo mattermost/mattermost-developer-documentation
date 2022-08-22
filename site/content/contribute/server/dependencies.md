@@ -1,7 +1,7 @@
 ---
 title: "Dependencies"
-heading: "Managing Dependencies in Mattermost"
-description: "The Mattermost server uses go modules to manage dependencies. To manage dependencies you must have modules enabled."
+heading: "Manage dependencies in Mattermost"
+description: "The Mattermost Server uses go modules to manage dependencies. To manage dependencies you must have modules enabled."
 date: 2019-03-27T16:00:00-0700
 weight: 5
 ---
@@ -9,7 +9,7 @@ weight: 5
 
 The Mattermost server uses [Go modules](https://github.com/golang/go/wiki/Modules) to manage dependencies.
 
-## Adding or updating a new dependency
+## Add or update a new dependency
 
 Adding a dependency is easy. All you have to do is import the dependency in the code and recompile. The dependency will be automatically added for you. Updating uses the same procedure.
 
@@ -24,7 +24,7 @@ go mod vendor
 
 If you just want whatever the latest version is, you can leave off the `@version` tag.
 
-## Removing a dependency
+## Remove a dependency
 
 Be sure you have enabled go modules support. After removing all references to the dependency in the code, you run:
 ```bash

@@ -1,6 +1,6 @@
 ---
-title: "Slash Commands"
-heading: "Getting Started with Mattermost Slash Commands"
+title: "Slash commands"
+heading: "Get started with Mattermost slash commands"
 description: "There are some slash commands available on GitHub that can be implemented via Mattermod. Learn more about what they are."
 weight: 30
 ---

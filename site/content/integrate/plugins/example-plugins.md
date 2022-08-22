@@ -1,25 +1,26 @@
 ---
-title: "Example Plugins"
-heading: "Example Plugins in Mattermost"
+title: "Example plugins"
+heading: "Example plugins in Mattermost"
 description: "To get started extending server-side functionality with plugins, take a look at our server “Hello, world!” tutorial."
 date: 2018-07-10T00:00:00-05:00
 weight: 90
-aliases: [/extend/plugins/example-plugins/]
+aliases:
+  - /extend/plugins/example-plugins/
 ---
 
 ## Server "Hello, world!"
 
 To get started extending server-side functionality with plugins, take a look at our [server "Hello, world!" tutorial]({{< ref "/integrate/plugins/components/server/hello-world" >}}).
 
-## Web App "Hello, world!"
+## Web app "Hello, world!"
 
 To get started extending browser-side functionality with plugins, take a look at our [web app "Hello, world!" tutorial]({{< ref "/integrate/plugins/components/webapp/hello-world" >}}).
 
-## Demo Plugin
+## Demo plugin
 
 To see a demonstration of all server-side hooks and webapp components, take a look at our [demo plugin](https://github.com/mattermost/mattermost-plugin-demo).
 
-## Sample Plugin
+## Sample plugin
 
 To see a stripped down version of the demo plugin with just the build scripts and templates to get started, take a look at our [plugin starter template](https://github.com/mattermost/mattermost-plugin-starter-template).
 
@@ -50,7 +51,7 @@ Topics demonstrated:
 * Implements tests using the [plugin/plugintest](https://godoc.org/github.com/mattermost/mattermost-server/v6/plugin/plugintest) package.
 * Compiles and publishes releases for multiple platforms using Travis-CI.
 
-## Profanity Filter
+## Profanity filter
 
 The [profanity filter plugin for Mattermost](https://github.com/mattermost/mattermost-plugin-profanity-filter) automatically detects restricted words in posts and censors them prior to writing to the database. For more use cases, [see this forum post](https://forum.mattermost.com/t/coming-soon-apiv4-mattermost-post-intercept/4982).
 

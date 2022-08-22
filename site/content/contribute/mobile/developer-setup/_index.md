@@ -1,6 +1,6 @@
 ---
-title: "Developer Setup"
-heading: "Developer Setup for Mattermost Mobile Apps"
+title: "Developer setup"
+heading: "Developer setup for Mattermost mobile apps"
 description: "The following instructions apply to the mobile apps for iOS and Android built in React Native."
 date: 2017-08-20T11:35:32-04:00
 weight: 1
@@ -14,7 +14,7 @@ If you run into any issues getting your environment set up, check the [Troublesh
 
 A macOS computer is required to build the Mattermost iOS mobile app.
 
-## Environment Setup
+## Environment setup
 
 ### iOS and Android
 
@@ -104,23 +104,25 @@ Some distributions come with Git preinstalled but you'll most likely have to ins
 
 *  Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12) to build and run the app on iOS. The minimum required version is 11.0.
 
-#### Additional setup for iOS on m1 macs
+#### Additional setup for iOS on M1 macs
 
 1. Follow the [React Native environment setup](https://reactnative.dev/docs/environment-setup) docs until the `cocoapods` point, then stop. 
 2. Specify the correct version of Xcode in the terminal: `sudo xcode-select --switch /Applications/Xcode.app`
 3. In the Rosetta terminal, change to the `mattermost-mobile/ios` directory and run:
-```sh
-sudo arch -x86_64 gem install ffi
-sudo gem install cocoapods
-arch -x86_64 pod install
-```
+    ```sh
+    sudo arch -x86_64 gem install ffi
+    sudo gem install cocoapods
+    arch -x86_64 pod install
+    ```
 4. If you need to use the Xcode app (e.g., to build, sign, and transfer the app to an iOS device), be sure to start it in Rosetta mode.
 
 ### Additional setup for Android
 
-##### Download and install [Android Studio or the Android SDK command line tools](https://developer.android.com/studio/index.html#downloads).
+##### Download and install Android Studio or Android SDK CLI tools
 
-#### Environment Variables
+Download and install the [Android Studio app or the Android SDK command line tools](https://developer.android.com/studio/index.html#downloads)
+
+#### Environment variables
 
 Make sure you have the following ENV VARS configured:
 
@@ -159,7 +161,7 @@ Make sure you have the following ENV VARS configured:
     - Note that depending on the shell you're using, this might need to be put into a different file such as ```~/.zshrc```. Adjust this accordingly.
     - Also this documentation assumes you chose the default path for your Android SDK installation. If you chose a different path, adjust accordingly.
 
-### Installing the right SDKs and SDK Tools
+### Install the SDKs and SDK tools
 
 In the SDK Manager using Android Studio or the [Android SDK command line tool](https://developer.android.com/studio/command-line/sdkmanager.html), ensure the following are installed:
 
@@ -184,7 +186,7 @@ In the SDK Manager using Android Studio or the [Android SDK command line tool](h
         - Intel or Google Play Intel x86 Atom\_64 System Image
     - Any other API version that you want to test
 
-## Obtaining the Source Code
+## Obtain the source code
 
 In order to develop and build the Mattermost mobile apps, you'll need to get a copy of the source code. Forking the `mattermost-mobile` repository will also make it easy to contribute your work back to the project in the future.
 
@@ -204,13 +206,13 @@ In order to develop and build the Mattermost mobile apps, you'll need to get a c
 
 4.  Install the project dependencies with `npm install`
 
-## Environment Troubleshooting
+## Environment troubleshooting
 
-### `PhaseScriptExecution` Failure
+### `PhaseScriptExecution` failure
 
 When building `ios` targets and using `nvm` to manage `node`, you may encounter an error like:
 
-```sh
+```
 The following build commands failed:
     PhaseScriptExecution [CP-User]\ Generate\ Specs /Users/user/Library/Developer/Xcode/DerivedData/Mattermost-ahgfkbexhhzwuycanwlxiauwkxlt/Build/Intermediates.noindex/ArchiveIntermediates/Mattermost/IntermediateBuildFilesPath/Pods.build/Release-iphoneos/FBReactNativeSpec.build/Script-46EB2E0002D370.sh (in target 'FBReactNativeSpec' from project 'Pods')
 (1 failure)
@@ -221,6 +223,6 @@ Check the following things:
 
 * Ensure you are running the latest version of `nvm` using the [Upgrade Instructions](https://github.com/nvm-sh/nvm#install--update-script)
 * Ensure you have set your desired version of node in the file `~/.nvmrc`.  E.g.,
-```sh
-$echo v16.2.0 > ~/.nvmrc
-```
+    ```sh
+    $ echo v16.2.0 > ~/.nvmrc
+    ```

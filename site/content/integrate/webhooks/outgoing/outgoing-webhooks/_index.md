@@ -1,6 +1,6 @@
 ---
-title: "Outgoing Webhooks"
-heading: "Outgoing Webhooks at Mattermost"
+title: "Outgoing webhooks"
+heading: "Outgoing webhooks at Mattermost"
 description: "Outgoing webhooks let you receive an event as an HTTP POST when messages get posted into a Mattermost channel."
 date: "2017-08-19T12:01:23-04:00"
 weight: 30
@@ -9,7 +9,7 @@ aliases:
   - /integrate/outgoing-webhooks/
 ---
 
-### Basic Usage
+### Basic usage
 
 Follow [the admin guide](https://docs.mattermost.com/developer/webhooks-outgoing.html#create-an-outgoing-webhook) to create the webhook.
 
@@ -115,11 +115,11 @@ Content-Length: 755
 }
 ```
 
-### Slack Compatibility
+### Slack compatibility
 
 See the [admin guide's notes on Slack compatibility](https://docs.mattermost.com/developer/webhooks-outgoing.html#slack-compatibility).
 
-### Tips and Best Practices
+### Tips and best practices
 
 1. If the `text` is longer than the allowable character limit per post, the message is split into multiple consecutive posts, each within the character limit. Servers running Mattermost Server v5.0 or later [can support posts up to 16383 characters](https://docs.mattermost.com/upgrade/important-upgrade-notes.html).
 2. Your webhook integration may be written in any programming language as long as it supports handling HTTP POST requests.

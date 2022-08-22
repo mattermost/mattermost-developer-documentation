@@ -1,7 +1,7 @@
 ---
-title: "Frequently Asked Questions (FAQ)"
-heading: "Frequently Asked Questions (FAQ)"
-description: "Frequently Asked Questions"
+title: "Frequently asked questions (FAQ)"
+heading: "Frequently asked questions (FAQ)"
+description: "Frequently asked questions"
 weight: 80
 aliases:
   - /integrate/admin-guide/
@@ -61,7 +61,7 @@ Deployments that cannot create bot accounts via webhooks due to security reasons
 4. Have your integration use the email and password with an [`/api/v4/login`](https://api.mattermost.com/v4/#tag/authentication) endpoint to retrieve a session token. The session token is used to authenticate to the Mattermost system.
    - Set up your bot to make an HTTP POST to `your-mattermost-url.com/api/v4/users/login` with a JSON body, including the bot account's email and password.
   
-     ```
+     ```http request
      POST /api/v4/users/login HTTP/1.1
      Host: your-mattermost-url.com
      Content-Length: 66
@@ -73,7 +73,7 @@ Deployments that cannot create bot accounts via webhooks due to security reasons
      where we assume there is a Mattermost instance running at http://localhost:8065.
    - If successful, the response will contain a `Token` header and a user object in the body:
    
-     ```
+     ```http request
      HTTP/1.1 200 OK
      Set-Cookie: MMSID=hyr5dmb1mbb49c44qmx4whniso; Path=/; Max-Age=2592000; HttpOnly
      Token: hyr5dmb1mbb49c44qmx4whniso
@@ -91,22 +91,22 @@ Deployments that cannot create bot accounts via webhooks due to security reasons
      
     The bot should retrieve the session token from the `Token` header and store it in memory for use with future requests.
    
-**Note:** Each session token has an expiry time, set depending on the server's configuration. If the session token your bot is using expires, it will receive a `401 Unauthorized` response from requests using that token. When your bot receives this response, it should reapply the login logic (using the above steps) to get another session token. Then resend the request that received the `401` status code.
+   **Note:** Each session token has an expiry time, set depending on the server's configuration. If the session token your bot is using expires, it will receive a `401 Unauthorized` response from requests using that token. When your bot receives this response, it should reapply the login logic (using the    above steps) to get another session token. Then resend the request that received the `401` status code.
 
 5. Include the `Token` as part of the `Authorization` header on API requests from your integration.
    - To confirm the token works, you can have your bot make a simple `GET` request to `/api/v4/users/me` with the `Authorization: bearer <yourtokenhere>` in the header. If it returns a `200` with the bot's user object in the response, the API request was made successfully.
   
-  ```
+     ```http request
      GET /api/v4/users/me HTTP/1.1
      Authorization: bearer <yourtokenhere>
      Host: your-mattermost-url.com
-  ```
+     ```
 
 **Note:** The Mattermost development team is also working on an [API developer token](https://docs.google.com/document/d/1ey4eNQmwK410pNTvlnmMWTa1fqtj8MV4d9XkCumI384), which allows you to authenticate the bot account via the API token rather than retrieving a session token from a user account.
 
 ### How should I automate the install and upgrade of Mattermost when included in another application?
 
-Automating Mattermost installation within another application:
+Automate Mattermost installation within another application:
 
 1. Review the [Mattermost installation documentation](https://docs.mattermost.com/guides/install-deploy-upgrade-scale.html#install-mattermost) to understand configuration steps of the production deployment.
 2. Install Mattermost files to a dedicated `/opt/mattermost` directory by decompressing the `tar.gz` file of the latest release for your target platform (for example `linux-amd64`).
@@ -116,7 +116,7 @@ Automating Mattermost installation within another application:
 5. Test that your Mattermost server is running with your new configuration.
 6. Also, from the command line run `./bin/mattermost -version` to test that the command line interface is functioning properly.
 
-Automating Mattermost upgrade within another application:
+Automate Mattermost upgrade within another application:
 
 1. Review the [upgrade guide](https://docs.mattermost.com/upgrade/upgrading-mattermost-server.html) for an overview of the upgrade procedure.
 2. Create automation to upgrade to the next Mattermost versions:

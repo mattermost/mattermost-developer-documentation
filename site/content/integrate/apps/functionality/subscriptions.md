@@ -1,6 +1,6 @@
 ---
 title: "Subscriptions"
-description: "Interacting with Mattermost events"
+description: "Interact with Mattermost events"
 weight: 10
 aliases:
   - /integrate/apps/api/subscriptions/

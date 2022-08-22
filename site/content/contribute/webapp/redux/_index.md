@@ -18,7 +18,7 @@ https://github.com/mattermost/mattermost-webapp/tree/master/packages/mattermost-
 
 https://community.mattermost.com/core/channels/redux
 
-## Folder Structure
+## Folder structure
 
 mattermost-redux consists of the following folders:
 

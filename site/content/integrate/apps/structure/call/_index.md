@@ -1,17 +1,15 @@
 ---
 title: "Call"
 heading: "Call"
-description: "TODO"
 weight: 20
 aliases:
   - /integrate/apps/api/call/
 ---
 
-
 A call ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Call)) is the definition of an action. The values are:
 
 | Name     | Type   | Description                                                                                               |
-| :------- | :----- | :-------------------------------------------------------------------------------------------------------- |
+|:---------|:-------|:----------------------------------------------------------------------------------------------------------|
 | `path`   | string | The path of the call. For HTTP apps, the path is appended to the app's `RootURL`.                         |
 | `expand` | Expand | A definition of the information to expand to send to the app.                                             |
 | `state`  | Object | A set of elements to be interpreted by the app. Forms and slash commands will also populate these values. |
@@ -25,7 +23,7 @@ TODO: Define differences between all and summary
 The possible expansions are:
 
 | Name                       | Description                                           |
-| :------------------------- | :---------------------------------------------------- |
+|:---------------------------|:------------------------------------------------------|
 | `app`                      | Expands the app information.                          |
 | `acting_user`              | Expands the acting user information.                  |
 | `acting_user_access_token` | Include the user-level access token.                  |
@@ -48,7 +46,7 @@ When a call is performed, a POST request will be made to the endpoint defined in
 The call request ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallRequest)) will include:
 
 | Name             | Type    | Description                                                                                |
-| :--------------- | :------ | :----------------------------------------------------------------------------------------- |
+|:-----------------|:--------|:-------------------------------------------------------------------------------------------|
 | `values`         | Object  | The pairs of key values present in the call. Can be populated by forms and slash commands. |
 | `context`        | Context | The context of the call.                                                                   |
 | `raw_command`    | string  | The unparsed command for slash commands.                                                   |
@@ -59,7 +57,7 @@ The call request ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-pl
 The call type ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallType)) can be:
 
 | Type     | Meaning                              |
-| :------- | :----------------------------------- |
+|:---------|:-------------------------------------|
 | `submit` | Submit.                              |
 | `form`   | Request for a form.                  |
 | `cancel` | A form was canceled.                 |
@@ -70,7 +68,7 @@ The call type ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugi
 Depending on the location and expansions, calls will have different context. These are all the possible context ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context)) values.
 
 | Name                       | Type     | Description                                                                         |
-| :------------------------- | :------- | :---------------------------------------------------------------------------------- |
+|:---------------------------|:---------|:------------------------------------------------------------------------------------|
 | `app_id`                   | string   | The app ID.                                                                         |
 | `location`                 | Location | The location from which the call was performed.                                     |
 | `subject`                  | Subject  | Event subject.                                                                      |
@@ -101,7 +99,7 @@ Depending on the location and expansions, calls will have different context. The
 There are several types ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallResponseType)) of responses:
 
 | Value      | Description                        |
-| :--------- | :--------------------------------- |
+|:-----------|:-----------------------------------|
 | `ok`       | OK.                                |
 | `error`    | An error has occurred.             |
 | `form`     | Should open a form.                |
@@ -110,28 +108,28 @@ There are several types ([godoc](https://pkg.go.dev/github.com/mattermost/matter
 #### OK response
 
 | Name       | Type   | Description                                                                  |
-| :--------- | :----- | :--------------------------------------------------------------------------- |
+|:-----------|:-------|:-----------------------------------------------------------------------------|
 | `type`     | string | Use `ok`.                                                                    |
 | `markdown` | string | (Optional) Markdown text that will be sent to the user as an ephemeral post. |
 
 #### Error response
 
 | Name    | Type   | Description                                                       |
-| :------ | :----- | :---------------------------------------------------------------- |
+|:--------|:-------|:------------------------------------------------------------------|
 | `type`  | string | Use `error`.                                                      |
 | `error` | string | Markdown text that will be sent to the user as an ephemeral post. |
 
 #### Form response
 
 | Name   | Type   | Description   |
-| :----- | :----- | :------------ |
+|:-------|:-------|:--------------|
 | `type` | string | Use `form`.   |
 | `form` | form   | Form to open. |
 
 #### Navigate response
 
 | Name                   | Type   | Description                                                  |
-| :--------------------- | :----- | :----------------------------------------------------------- |
+|:-----------------------|:-------|:-------------------------------------------------------------|
 | `type`                 | string | Use `navigate`.                                              |
 | `navigate_to_url`      | string | URL to navigate to.                                          |
 | `use_external_browser` | bool   | Whether the navigation link wll open in an external browser. |

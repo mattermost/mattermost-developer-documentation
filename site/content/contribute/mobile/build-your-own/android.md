@@ -1,6 +1,6 @@
 ---
-title: "Build the Android App"
-heading: "How to Build a Mattermost Android app"
+title: "Build the Android mobile app"
+heading: "How to build a Mattermost Android mobile app"
 description: "At times, you may want to build your own Mattermost mobile app. Learn how you can go about doing it."
 date: 2018-05-20T11:35:32-04:00
 weight: 1
@@ -11,14 +11,14 @@ At times, you may want to build your own Mattermost mobile app. The most common 
 * To white label the Mattermost mobile app.
 * To use your own deployment of the Mattermost Push Notification Service (always required if you are building your own version of the mobile app).
 
-# Build Preparations
+# Build preparations
 
 ### 1. Package name and source files
 
 * Ensure the package ID of the mobile app remains the same as the one in the original [mattermost-mobile GitHub repository](https://github.com/mattermost/mattermost-mobile) in `com.mattermost.rnbeta`.
 * Source files for the main package remain under the `android/app/src/main/java/com/mattermost/rnbeta` folder.
 
-### 2. Generating a signing key
+### 2. Generate a signing key
 
 As Android requires all apps to be digitally signed with a certificate before they can be installed building the Android app for distribution requires the release APK to be signed.
 
@@ -42,7 +42,7 @@ The keystore contains a single key, valid for 10000 days. The alias is a name th
 
 Create a new application using the [Google Play console](https://play.google.com/console/developers). If you already have an app registered in the Google Play console you can skip this step.
 
-### 4. Setting up Gradle Variables {#gradle}
+### 4. Set up Gradle variables {#gradle}
 
 Now that we have created the keystore file we can tell the build process to use that file:
 
@@ -62,7 +62,7 @@ Now that we have created the keystore file we can tell the build process to use 
 ---
 **Important:**
 
-Once you publish the app on the Play Store, the app needs to be signed with the same key every time you want to distriibute a new build. If you lose this key, you will need to republish your app under a different package id (losing all downloads and ratings).
+Once you publish the app on the Play Store, the app needs to be signed with the same key every time you want to distribute a new build. If you lose this key, you will need to republish your app under a different package id (losing all downloads and ratings).
 
 ---
 
@@ -99,11 +99,11 @@ To configure your variables create the file `./mattermost-mobile/fastlane/.env` 
 
 ---
 
-### 6. Google Services
+### 6. Google services
 
 Replace the `google-services.json` file as instructed in the [Android Push Notification Guide]({{< ref "/contribute/mobile/push-notifications/android" >}}) before you build the app.
 
-## Building the App
+## Build the mobile app
 
 Once all the previous steps are done, execute the following command from within the project's directory:
 

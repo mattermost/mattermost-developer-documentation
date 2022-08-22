@@ -1,7 +1,7 @@
 ---
 title: "Lifecycle"
-heading: "The App Lifecycle"
-description: "The app lifecycle."
+heading: "The App lifecycle"
+description: "The App lifecycle"
 weight: 20
 aliases:
   - /integrate/apps/api/lifecycle/
@@ -26,7 +26,7 @@ Apps are installed with `/apps install`:
 
 A System Admin can uninstall an app using the `/uninstall` slash command. On uninstallation appropriate bot and an OAuth app are deleted, `OnUninstall` call is sent to the app as well. Worth mentioning that the current implementation is not deleting the user data.
 
-## Registering
+## Register
 
 Registering an app in a Mattermost installation means the app will be shown in the Marketplace of the installation, can be installed by the System Admin, and used by the users. On a totally new app registration or on a registration of the new version of the already registered app, a new version of the Apps Plugin is cut. The `manifests.json` file is updated and a new app is added in the listing. Later, the plugin is installed in the appropriate installations (using feature flags if necessary).
 

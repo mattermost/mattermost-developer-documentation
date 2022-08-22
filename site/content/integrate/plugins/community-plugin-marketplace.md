@@ -1,9 +1,10 @@
 ---
-title: Community Plugins in the Marketplace
-heading: "Community Plugins in the Marketplace"
+title: Community plugins in the Marketplace
+heading: "Community plugins in the Marketplace"
 description: "Once your plugin has reached a certain level of quality, you might consider submitting it to the Marketplace."
 weight: 110
-aliases: [/extend/plugins/community-plugin-marketplace/]
+aliases:
+  - /extend/plugins/community-plugin-marketplace/
 ---
 
 Once your plugin has reached a certain level of quality, you might consider submitting it to the Marketplace. The Marketplace is a platform that supports discovery, installation, and updates of plugins directly within Mattermost. It's a great way to get feedback on your plugin and help make it more popular. Once your plugin is accepted to the Marketplace, Mattermost will also send you swag!

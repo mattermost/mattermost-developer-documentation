@@ -1,7 +1,6 @@
 ---
 title: "HTTP"
-heading: "Admin's Guide to HTTP Apps"
-description: "TODO"
+heading: "Deploy HTTP Apps"
 weight: 10
 aliases:
   - /integrate/apps/deployment-http/

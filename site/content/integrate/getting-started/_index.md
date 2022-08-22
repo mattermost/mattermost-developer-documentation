@@ -1,6 +1,6 @@
 ---
-title: "Get Started"
-heading: "Integrate & Extend Mattermost"
+title: "Get started"
+heading: "Integrate and extend Mattermost"
 description: "Extend Mattermost with Apps, APIs, plugins, webhooks, and more."
 weight: 10
 aliases: 
@@ -44,7 +44,7 @@ Interact with users, channels, and everything else that happens on your Mattermo
 
 {{< newtabref href="https://api.mattermost.com" title="View the REST API Reference" >}}<br/>
 
-## Other Ways to Integrate & Extend
+## Other ways to integrate and extend
 
 * Embed - Learn how to use the Mattermost API to [embed Mattermost]({{< ref "/integrate/customization/embedding" >}}) into web browsers and web applications.
 * Customize - Modify the source code for the server or web app to make basic [changes and customization]({{< ref "/integrate/customization/customization" >}}).

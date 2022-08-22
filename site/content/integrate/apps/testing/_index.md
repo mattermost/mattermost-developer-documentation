@@ -1,8 +1,8 @@
 ---
-title: Testing
-description: Testing
+title: Tests
+description: Tests
 weight: 90
 ---
 
-### Coming Soon!
+### Coming soon!
 In the future this section will describe how to test an App including environment setup.

@@ -1,12 +1,12 @@
 ---
-title: "Packaging and Releasing"
-heading: "Packaging and Releasing the Desktop App"
-description: "Learn how to build, package and release the Desktop App"
+title: "Package and release"
+heading: "Package and release the desktop app"
+description: "Learn how to build, package and release the desktop app"
 date: 2019-01-22T00:00:00-05:00
 weight: 4
 ---
 
-## Building
+## Build
 
 You can build the Desktop App by running the following command:
 
@@ -22,7 +22,7 @@ A bundle is also generated for the E2E tests when needed.
 
 You can predefine certain variables in the app before building, by editing the build config under `src/common/config/buildConfig.ts`. For example, you can predefine servers, or disable server management.
 
-## Packaging
+## Package
 
 Our app uses `electron-builder` to package the app into a distributable format for release.  
 You can find the configuration for the builder in the `electron-builder.json` file in the root directory.
@@ -45,11 +45,11 @@ If you want to build the MSI installer for Windows, you need to run the `Makefil
 ./scripts/Makefile.ps1 build
 ```
 
-#### After Pack Script
+#### After pack script
 
 We include an `afterPack` script to run functions after the application is built into a binary. This is a good place to inject code and make any modifications to the binary after build.
 
-#### Code Signing
+#### Code sign
 
 In order to generate signed builds of the application for Windows and macOS, you'll need a certificate file for each of the operating systems.
 
@@ -61,7 +61,7 @@ For Windows, you'll need a valid `.pfx` file.
 
 More information on Code Signing can be found here: https://www.electron.build/code-signing
 
-## Releasing
+## Release
 
 Releasing a new version of the Desktop App can be done by running the shell script `release.sh` under the `scripts/` folder.  
 It will increment the version number in `package.json` for you, create a tag and generate a commit for you. It will also give you the `git` command to run to push all these changes to your repository.

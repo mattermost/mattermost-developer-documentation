@@ -1,8 +1,7 @@
 ---
-title: "Guide for Writing E2E Test"
+title: "Write E2E tests"
 date: 2018-12-04T11:35:32-04:00
 weight: 4
-subsection: End-to-End Testing
 ---
 
 ### Where should the new test go?
@@ -11,11 +10,11 @@ Inside `e2e/cypress/tests/integration` is where all of the tests live. Cypress i
 
 Inside the `integration` directory, there are subdirectories that roughly break up the tests by functional areas. If you see something that looks like it describes the functional area of your test, it should probably live inside that subdirectory. From there, look to see if there is already a `*_spec.js` file that may be similar to what you are testing, it can be very likely that you can add additional tests to a pre-existing file.
 
-### Writing Specs
+### Write specs
 
 1. See [which-query-to-use]({{< ref "/contribute/webapp/e2e/which-query-to-use" >}}) when selecting an element base on order of priority.
    - Use `camelCase` when assigning `data-testid` or element ID. Watch out for potential breaking changes in the snapshot of the unit testing.  Run `make test` to see if all are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot testing.
-2. Add custom commands to `/e2e/cypress/tests/support`. See Cypress documentation for more details about custom commands [[link](https://docs.cypress.io/api/cypress-api/custom-commands.html)].
+2. Add custom commands to `/e2e/cypress/tests/support`. See Cypress documentation for more details about custom commands: [Cypress custom commands](https://docs.cypress.io/api/cypress-api/custom-commands.html).
    - For ease of use, in-code documentation and discoverability, custom commands should have type definition added. See [declaration file](https://github.com/mattermost/mattermost-webapp/blob/master/e2e/cypress/tests/support/api/user.d.ts) for reference on how to include.
 3. Organize `/e2e/cypress/tests/integration` with a subfolder to group similar tests.
 4. Each test should have a corresponding test case in Zephyr. Therefore, the `describe` block should correspond to folder name in Zephyr (e.g. "Incoming webhook"), and `it` block should contain `Zephyr test case number` as `Test Key` and test title (e.g. "MM-T623 Lock to this channel on webhook configuration works"). In the spec file, it should be written as:
@@ -50,8 +49,7 @@ Inside the `integration` directory, there are subdirectories that roughly break 
 
    4. Link the failed test case/s to the Jira issue. In the Jira bug, select the **Zephyr Scale** tab. Select the **add an existing one** link, then select test case/s, and select **Add**.
 
-    
-    Conversely, remove the Jira issue key if the issue has been resolved and the test is passing.
+      Conversely, remove the Jira issue key if the issue has been resolved and the test is passing.
 
 6. Add check if a certain test requires server license.
     ```javascript
@@ -70,7 +68,7 @@ Inside the `integration` directory, there are subdirectories that roughly break 
 
 8. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/5891/files) as a guide on how to write and submit an end-to-end testing PR.
 
-### Adding Test Metadata on Spec Files
+### Add test metadata on spec files
 
 Test metadata is used to identify each spec file ahead of time before it is forwarded for Cypress run. Currently, supported test metadata are the following:
 

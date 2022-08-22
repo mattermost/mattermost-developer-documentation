@@ -1,6 +1,6 @@
 ---
-title: Web App Reference
-heading: "Mattermost Web App Reference"
+title: Web app reference
+heading: "Mattermost web app reference"
 description: "Learn how to implement the PluginClass interface used by the Mattermost web app to initialize and uninitialize your plugin."
 date: 2018-07-10T00:00:00-05:00
 weight: 10
@@ -9,7 +9,7 @@ aliases:
   - /integrate/plugins/webapp/reference/
 ---
 
-## Table of Contents:
+## Table of contents
 
 - [PluginClass](#pluginclass)
   * [Example](#example)
@@ -104,45 +104,45 @@ The colors are exposed via CSS variables as well.
 
 The theme object has the following properties:
 
-| Property | CSS Variable | Description |
-| -------- | ----------- | ----------- |
-| sidebarBg | --sidebar-bg | Background color of the left-hand sidebar |
-| sidebarText | --sidebar-text | Color of text in the left-hand sidebar |
-| sidebarUnreadText | --sidebar-unread-text | Color of text for unread channels in the left-hand sidebar |
-| sidebarTextHoverBg | --sidebar-text-hover-bg | Background color of channels when hovered in the left-hand sidebar |
-| sidebarTextActiveBorder | --sidebar-text-active-border | Color of the selected indicator channel indicator in the left-hand siebar|
-| sidebarTextActiveColor | --sidebar-text-active-color | Color of the text for the selected channel in the left-hand sidebar |
-| sidebarHeaderBg | --sidebar-header-bg | Background color of the left-hand sidebar header |
-| sidebarHeaderTextColor | --sidebar-header-text-color | Color of text in the left-hand sidebar header |
-| onlineIndicator | --online-indicator | Color of the online status indicator |
-| awayIndicator | --away-indicator | Color of the away status indicator |
-| dndIndicator | --dnd-indicator | Color of the do not disturb status indicator |
-| mentionBg | --mention-bg | Background color for mention jewels in the left-hand sidebar |
-| mentionColor | --mention-color | Color of text for mention jewels in the left-hand sidebar |
-| centerChannelBg | --center-channel-bg | Background color of channels, right-hand sidebar and modals/popovers |
-| centerChannelColor | --center-channel-color | Color of text in channels, right-hand sidebar and modals/popovers |
-| newMessageSeparator | --new-message-separator | Color of the new message separator in channels |
-| linkColor | --link-color | Color of text for links |
-| buttonBg | --button-bg | Background color of buttons |
-| buttonColor | --button-color | Color of text for buttons |
-| errorTextColor | --error-text | Color of text for errors |
-| mentionHighlightBg | --mention-highlight-bg | Background color of mention highlights in posts |
-| mentionHighlightLink | --mention-highlight-link | Color of text for mention links in posts |
-| codeTheme |NA | Code block theme, either 'github', 'monokai', 'solarized-dark' or 'solarized-light' |
+| Property                | CSS Variable                 | Description                                                                         |
+|-------------------------|------------------------------|-------------------------------------------------------------------------------------|
+| sidebarBg               | --sidebar-bg                 | Background color of the left-hand sidebar                                           |
+| sidebarText             | --sidebar-text               | Color of text in the left-hand sidebar                                              |
+| sidebarUnreadText       | --sidebar-unread-text        | Color of text for unread channels in the left-hand sidebar                          |
+| sidebarTextHoverBg      | --sidebar-text-hover-bg      | Background color of channels when hovered in the left-hand sidebar                  |
+| sidebarTextActiveBorder | --sidebar-text-active-border | Color of the selected indicator channel indicator in the left-hand siebar           |
+| sidebarTextActiveColor  | --sidebar-text-active-color  | Color of the text for the selected channel in the left-hand sidebar                 |
+| sidebarHeaderBg         | --sidebar-header-bg          | Background color of the left-hand sidebar header                                    |
+| sidebarHeaderTextColor  | --sidebar-header-text-color  | Color of text in the left-hand sidebar header                                       |
+| onlineIndicator         | --online-indicator           | Color of the online status indicator                                                |
+| awayIndicator           | --away-indicator             | Color of the away status indicator                                                  |
+| dndIndicator            | --dnd-indicator              | Color of the do not disturb status indicator                                        |
+| mentionBg               | --mention-bg                 | Background color for mention jewels in the left-hand sidebar                        |
+| mentionColor            | --mention-color              | Color of text for mention jewels in the left-hand sidebar                           |
+| centerChannelBg         | --center-channel-bg          | Background color of channels, right-hand sidebar and modals/popovers                |
+| centerChannelColor      | --center-channel-color       | Color of text in channels, right-hand sidebar and modals/popovers                   |
+| newMessageSeparator     | --new-message-separator      | Color of the new message separator in channels                                      |
+| linkColor               | --link-color                 | Color of text for links                                                             |
+| buttonBg                | --button-bg                  | Background color of buttons                                                         |
+| buttonColor             | --button-color               | Color of text for buttons                                                           |
+| errorTextColor          | --error-text                 | Color of text for errors                                                            |
+| mentionHighlightBg      | --mention-highlight-bg       | Background color of mention highlights in posts                                     |
+| mentionHighlightLink    | --mention-highlight-link     | Color of text for mention links in posts                                            |
+| codeTheme               | NA                           | Code block theme, either 'github', 'monokai', 'solarized-dark' or 'solarized-light' |
 
-## Exported Libraries and Functions
+## Exported libraries and functions
 
 The web app exposes a number of [exported libraries and functions](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js) on the `window` object for plugins to use. To avoid bloating your plugin, we recommend depending on these using [Webpack externals](https://webpack.js.org/configuration/externals/) or importing them manually from the window. Below is a list of the exposed libraries and functions:
 
-| Library | Exported Name | Description |
-| ------- | ------------- | ----------- |
-| react | window.React | [ReactJS](https://reactjs.org/) |
-| react-dom | window.ReactDOM | [ReactDOM](https://reactjs.org/docs/react-dom.html) |
-| redux | window.Redux | [Redux](https://redux.js.org/) |
-| react-redux | window.ReactRedux | [React bindings for Redux](https://github.com/reactjs/react-redux) |
-| react-bootstrap | window.ReactBootstrap | [Bootstrap for React](https://react-bootstrap.github.io/) |
-| prop-types | window.PropTypes | [PropTypes](https://www.npmjs.com/package/prop-types) |
-| post-utils | window.PostUtils | Mattermost post utility functions (see below) |
+| Library         | Exported Name         | Description                                                        |
+|-----------------|-----------------------|--------------------------------------------------------------------|
+| react           | window.React          | [ReactJS](https://reactjs.org/)                                    |
+| react-dom       | window.ReactDOM       | [ReactDOM](https://reactjs.org/docs/react-dom.html)                |
+| redux           | window.Redux          | [Redux](https://redux.js.org/)                                     |
+| react-redux     | window.ReactRedux     | [React bindings for Redux](https://github.com/reactjs/react-redux) |
+| react-bootstrap | window.ReactBootstrap | [Bootstrap for React](https://react-bootstrap.github.io/)          |
+| prop-types      | window.PropTypes      | [PropTypes](https://www.npmjs.com/package/prop-types)              |
+| post-utils      | window.PostUtils      | Mattermost post utility functions (see below)                      |
 
 **Note:** Some sets of functions like "Functions exposed on window for plugin to use" and "Components exposed on window for internal plugin use only" are not listed here. You can refer to [export.js](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js) file which contains all the exports.
 
@@ -178,11 +178,11 @@ Converts HTML to React components.
 * `images` - If set, markdown images are replaced with the PostMarkdown component. Defaults to true.
 * `latex` - If set, latex is replaced with the LatexBlock component. Defaults to true.
 
-##### Usage Example
+##### Usage example
 
 A short usage example of a `PostType` component using the post utility functions to format text.
 
-```javascript
+```jsx
 import React from 'react'; // accessed through webpack externals
 import PropTypes from 'prop-types';
 

@@ -1,6 +1,6 @@
 ---
-title: "Desktop App"
-heading: "Contribute to the Mattermost Desktop App"
+title: "Desktop app"
+heading: "Contribute to the Mattermost desktop app"
 description: "The Mattermost desktop app is an Electron wrapper around the web app project. It lives in the mattermost/desktop repository."
 date: 2018-01-02T10:36:34-05:00
 weight: 7
@@ -20,7 +20,7 @@ In order to facilitate communication between the two processes, there's a commun
 
 You can read more about the Process Model [here](https://www.electronjs.org/docs/latest/tutorial/process-model).
 
-#### Directory Structure
+#### Directory structure
 The directory structure is broken down into a few pieces to best organize the code:
 
 ```
@@ -39,7 +39,7 @@ Mattermost Desktop
     └── types/ - Common types for use between all of the individual modules
 ```
 
-## Desktop App Contributor Resources
+## Desktop app contributor resources
  - [GitHub Repository](https://github.com/mattermost/desktop) - Get the code, report issues, or submit PRs.
  - [Help Wanted](https://mattermost.com/pl/help-wanted-desktop) - This is a good place to start if you're looking for a way to contribute code. Many issues are labeled by difficulty level to make it easier to find ways to get involved.
  - [Developer Setup]({{< ref "/contribute/desktop/developer-setup" >}}) - Setup your development environment to start work on the desktop app.
@@ -52,6 +52,6 @@ Mattermost Desktop
  - [General Contributor Guidelines]({{< ref "/contribute/getting-started" >}}) - Everything you need to know about contributing code to Mattermost.
 
 
-## Where to Get Help
+## Where to get help
 
 If you have any questions related to development of the Desktop App, you can ask us in the [Developers: Desktop App](https://community.mattermost.com/core/channels/desktop-app) channel on our [community Mattermost](https://docs.mattermost.com/guides/community-chat.html). If you need help deploying, administering, or using Mattermost, refer to our [Get Help guide](https://docs.mattermost.com/guides/get-help.html) to find all of the resources that are availalbe to support your journey.

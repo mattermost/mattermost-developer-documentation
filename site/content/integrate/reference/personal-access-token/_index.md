@@ -1,47 +1,46 @@
 ---
-title: "Personal Access Tokens"
-heading: "Using personal access tokens"
-description: "Personal access tokens function similar to session tokens and can be used by integrations to [authenticate against the REST API](https://api.mattermost.com/#tag/authentication). It is the most commonly used type of token for integrations.
-"
+title: "Personal access tokens"
+heading: "Use personal access tokens"
+description: "Personal access tokens function similar to session tokens and can be used by integrations to [authenticate against the REST API](https://api.mattermost.com/#tag/authentication). It is the most commonly used type of token for integrations."
 weight: 20
 aliases:
   - /integrate/admin-guide/admin-personal-access-token/
 ---
 
-## Creating a Personal Access Token
+## Create a personal access token
 
 1. Enable personal access tokens in **Product menu > Integrations > Integration Management**.
 2. Identify the account you want to create a personal access token with. You may optionally create a new user account for your integration, such as for a bot account. By default, only System Admins have permissions to create a personal access token.
 3. To create an access token with a non-admin account, you must first give it the appropriate permissions. Go to **System Console > User Management > Users**, search for the user account, then select **Manage Roles** from the dropdown.
 
-![image](access_token_manage_roles.png)
+    ![image](access_token_manage_roles.png)
 
 4. Select **Allow this account to generate personal access tokens.**
 
-![image](access_tokens_additional_roles.png)
+    ![image](access_tokens_additional_roles.png)
 
-You may optionally allow the account to post to any channel in your Mattermost server, including direct messages by choosing the **post:all** role. **post:channels** role allows the account to post to any public channel in the Mattermost server.
+    You may optionally allow the account to post to any channel in your Mattermost server, including direct messages by choosing the **post:all** role. **post:channels** role allows the account to post to any public channel in the Mattermost server.
 
-Then select **Save**.
+    Then select **Save**.
 
 5. Sign in to the user account to create a personal access token.
 6. Go to **Settings > Security > Personal Access Tokens**, then select **Create New Token**.
 7. Enter a description for the token, so you remember what it's used for. Then select **Save**.
 
-**Note:** If you create a personal access token for a System Admin account, be extra careful who you share it with. The token enables a user to have full access to the account, including System Admin privileges. It's recommended to create a personal access token for non-admin accounts.
+    **Note:** If you create a personal access token for a System Admin account, be extra careful who you share it with. The token enables a user to have full access to the account, including System Admin privileges. It's recommended to create a personal access token for non-admin accounts.
   
 8. Copy the access token now for your integration and store it in a secure location. You won't be able to see it again!
 9. You're all set! You can now use the personal access token for integrations to interact with your Mattermost server and [authenticate against the Mattermost REST API](https://api.mattermost.com/#tag/authentication).
 
-![image](access_token_settings.png)
+    ![image](access_token_settings.png)
 
-## Revoking a Personal Access Token
+## Revoke a personal access token
 
 A personal access token can be revoked by deleting the token from either the user's profile settings or from the System Console. Once deleted, all sessions using the token are deleted, and any attempts to use the token to interact with the Mattermost server are blocked.
 
 Tokens can also be temporarily deactivated from the user's profile. Once deactivated, all sessions using the token are deleted, and any attempts to use the token to interact with the Mattermost server are blocked. However, the token can be reactivated at any time.
 
-### User's Profile
+### User's profile
 
 1. Sign in to the user account, select the user avatar, then select **Profile > Security > Personal Access Tokens**.
 2. Identify the access token you want to revoke, then select **Delete** and confirm the deletion.
@@ -51,7 +50,7 @@ Tokens can also be temporarily deactivated from the user's profile. Once deactiv
 1. Go to **System Console > User Management > Users**, search for the user account which the token belongs to, then select **Manage Tokens** from the dropdown.
 2. Identify the access token you want to revoke, then select **Delete** and confirm the deletion.
 
-## Frequently Asked Questions (FAQ)
+## Frequently asked questions (FAQ)
 
 ### How do personal access tokens differ from regular session tokens?
 

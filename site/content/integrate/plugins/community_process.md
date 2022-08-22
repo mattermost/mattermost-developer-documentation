@@ -1,12 +1,12 @@
 ---
-title: Process to Include Plugin on Community
-heading: "Process to Include Plugins on Community"
+title: Process to include plugin on community
+heading: "Process to include plugins on community"
 description: "Getting your project on the Community server is a great way to get valuable feedback from Mattermost users and staff."
 date: 2018-10-01T00:00:00-05:00
 weight: 120
-aliases: [/extend/plugins/community_process/]
+aliases:
+  - /extend/plugins/community_process/
 ---
-
 
 Getting your plugin onto our Community server https://community.mattermost.com is a valuable source of feedback. Whether you're a [core committer]({{< ref "/contribute/getting-started/core-committers" >}}) or anyone from the community, we want you to get feedback to improve your plugin. 
 
@@ -16,20 +16,20 @@ When you're ready to begin this process for your plugin, ask in the [Toolkit cha
 
 ## Checklist
 
-### Deploying to ci-extensions
+### Deploy to ci-extensions
 
 - [Basic Code Review](#basic-code-review) passed
 - [CI system setup](#ci-system-setup) to build master
 - Has a [compatible licence](#compatible-licence).
 
-### Deploying to ci-extensions-release
+### Deploy to ci-extensions-release
 
 - Complete code review by two core committers. One focused on security.
 - [QA pass](#qa-pass)
 - [PM/UX review](#pmux-review)
 - Release created and [CI system setup](#ci-system-setup) to build releases
 
-### Deploying to community.mattermost.com
+### Deploy to community.mattermost.com
 
 - QA pass on ci-extensions-release of the release to deploy.
 

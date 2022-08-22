@@ -1,6 +1,6 @@
 ---
-title: "Incoming Webhooks"
-heading: "Incoming Webhooks at Mattermost"
+title: "Incoming webhooks"
+heading: "Incoming webhooks at Mattermost"
 description: "Incoming webhooks let you post some data to a Mattermost endpoint to create a message in a channel."
 date: "2017-08-19T12:01:23-04:00"
 weight: 20
@@ -154,17 +154,17 @@ GitLab is the leading open-source alternative to GitHub and offers built-in inte
 3. Both `application/x-www-form-urlencoded` and `multipart/form-data` are supported `Content-Type` headers. If no `Content-Type` is provided, `application/json` is assumed.
 4. To send a message to a direct message channel, add an "@" symbol followed by the username to the channel parameter. You can add your own username to send the webhook posts to a direct message channel with yourself.
 
-```
-payload={"channel": "@username", "text": "Hello, this is some text\nThis is more text. :tada:"}
-```
-
-This will send a message from the account that has set up the incoming webhook to the username after the "@" symbol. For example, if you create a webhook with the user `alice` and send a direct message to `bob` using a webhook, it will show up as a direct message from `alice` to `bob` regardless of other settings such as username.
-
-To send a message to a different direct message channel between two other users, you can specify the channel with the user IDs for the users separated with two underscore (_) symbols. To find the user ID you can use [mmctl user search](https://docs.mattermost.com/manage/mmctl-command-line-tool.html#mmctl-user-search).
-
-```
-payload={"channel": "6w41z1q367dujfaxr1nrykr5oc__94dzjnkd8igafdraw66syi1cde", "text": "Hello, this is some text\nThis is more text. :tada:"}
-```
+    ```
+    payload={"channel": "@username", "text": "Hello, this is some text\nThis is more text. :tada:"}
+    ```
+    
+    This will send a message from the account that has set up the incoming webhook to the username after the "@" symbol. For example, if you create a webhook with the user `alice` and send a direct message to `bob` using a webhook, it will show up as a direct message from `alice` to `bob` regardless of other settings such as username.
+    
+    To send a message to a different direct message channel between two other users, you can specify the channel with the user IDs for the users separated with two underscore (_) symbols. To find the user ID you can use [mmctl user search](https://docs.mattermost.com/manage/mmctl-command-line-tool.html#mmctl-user-search).
+    
+    ```
+    payload={"channel": "6w41z1q367dujfaxr1nrykr5oc__94dzjnkd8igafdraw66syi1cde", "text": "Hello, this is some text\nThis is more text. :tada:"}
+    ```
 
 ### Troubleshooting
 
@@ -177,8 +177,8 @@ Some common error messages include:
 3. `Unable to parse incoming data`: Indicates that the request received is malformed. Try reviewing that the JSON payload is in a correct format and doesn't have typos such as extra `"`.
 4. `curl: (3) [globbing] unmatched close brace/bracket in column N`: Typically an error when using cURL on Windows, when:
 
-  - You have space around JSON separator colons, `payload={"Hello" : "test"}` or  
-  - You are using single quotes to wrap the `-d` data, `-d 'payload={"Hello":"test"}'`
+    - You have space around JSON separator colons, `payload={"Hello" : "test"}` or  
+    - You are using single quotes to wrap the `-d` data, `-d 'payload={"Hello":"test"}'`
 
 If your integration prints the JSON payload data instead of rendering the generated message, make sure your integration is returning the `application/json` content-type.
 
