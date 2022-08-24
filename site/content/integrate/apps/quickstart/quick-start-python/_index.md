@@ -15,13 +15,13 @@ This quick start guide will walk you through the basics of creating a hello worl
 
 ## Prerequisites
 
-Before you can start with your app, you first need to set up your environment by following the [developer setup guide]({{< ref "/integrate/apps/quickstart/quick-start-developer-setup" >}}).
+Before you can start with your app, you first need to set up your environment by following the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}).
 
 You also need [Python version 3 installed](https://www.python.org/downloads/).
 
 ## Download and start the app
 
-In the same [mattermost-app-examples repository](https://github.com/mattermost/mattermost-app-examples) you cloned via the [developer setup guide]({{< ref "/integrate/apps/quickstart/quick-start-developer-setup" >}}) above, navigate to the `python/hello-world` directory and start the Docker compose:
+In the same [mattermost-app-examples repository](https://github.com/mattermost/mattermost-app-examples) you cloned via the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}) above, navigate to the `python/hello-world` directory and start the Docker compose:
 
 ```sh
 cd python/hello-world
