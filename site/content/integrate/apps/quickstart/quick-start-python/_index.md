@@ -2,7 +2,7 @@
 title: "Hello World in Python"
 heading: "Create a Hello World Mattermost app in Python"
 description: "This quick start guide will walk you through the basics of creating a hello world Mattermost app in Python."
-weight: 20
+weight: 10
 aliases:
   - /integrate/apps/quick-start-python/
 ---

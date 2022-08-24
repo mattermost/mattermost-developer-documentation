@@ -64,7 +64,7 @@ The app has to provide a manifest, which declares the app's metadata required fo
 
 ### Bindings and locations
 
-This app adds a channel header button and a `/node-example send` command. In order to register these locations, there is a `POST` handler for the `/bindings` endpoint on your app's API.
+This app adds a channel header button and a `/node-example send` slash command. In order to register these locations, there is a `POST` handler for the `/bindings` endpoint on your app's API.
 
 ### Functions and forms
 

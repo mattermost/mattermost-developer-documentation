@@ -69,7 +69,7 @@ The app must provide a manifest, which declares app metadata. In this example, t
 
 Locations are named elements in the Mattermost user interface. Bindings specify how an app's calls should be displayed and invoked from these locations.
 
-The app creates a channel header button, and adds a `/helloworld send` command.
+The app creates a channel header button, and adds a `/helloworld send` slash command.
 
 ### Functions and forms
 
