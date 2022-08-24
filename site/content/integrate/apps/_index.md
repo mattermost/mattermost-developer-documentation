@@ -33,7 +33,7 @@ When you develop using the Apps Framework, your apps can:
 
 Apps are now generally available and we always appreciate your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost community instance.
 
-Read the [JavaScript start guide]({{< ref "quickstart/quick-start-js" >}}) or [Go quick start guide]({{< ref "quickstart/quick-start-go" >}}) to learn how to write your first App.
+Read the quick start guides for [Hello World in TypeScript]({{< ref "quickstart/quick-start-js" >}}) or [Hello World in Go]({{< ref "quickstart/quick-start-go" >}}) to learn how to write your first app.
 
 ## FAQ
 
@@ -45,7 +45,7 @@ The built-in [incoming webhook]({{< ref "/integrate/webhooks/incoming" >}}) is g
 
 A plugin should be used when you need to [directly alter the UI]({{< ref "integrate/plugins/components/webapp/best-practices" >}}) in Mattermost or you have a feature that requires low latency with the server (such as replacing characters in any message [before it is saved]({{< ref "integrate/plugins/components/server/reference#Hooks.MessageWillBePosted" >}})). Currently, plugins have several [UX hooks]({{< ref "integrate/plugins/components/server/reference#Hooks" >}}) that apps cannot access, however we plan to add/migrate more UX hooks into the Apps Framework over time. Please see the [plugin documentation]({{< ref "integrate/plugins" >}}) for more information.
 
-### What's the difference between the Apps framework and the plugin framework?
+### What's the difference between the Apps Framework and the plugin framework?
 
 The Apps Framework provides a few differences from plugins, including:
 
