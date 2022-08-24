@@ -15,7 +15,7 @@ This quick start guide will walk you through the basics of creating a hello worl
 
 ## Prerequisites
 
-Before you can start with your app, you first need to set up your environment by following the [developer setup guide]({{< ref "/integrate/apps/quick-start-developer-setup" >}}).
+Before you can start with your app, you first need to set up your environment by following the [developer setup guide]({{< ref "/integrate/apps/quickstart/quick-start-developer-setup" >}}).
 
 You also need an [LTS version of Node](https://nodejs.org/en/download/) installed with [npm](https://www.npmjs.com/).
 
