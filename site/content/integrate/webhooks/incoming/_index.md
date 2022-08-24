@@ -12,9 +12,9 @@ Let's learn how to create a simple incoming webhook that posts the following mes
 
 ![image](incoming_webhooks_create_simple.png)
 
-1. First, go to **Product menu > Integrations > Incoming Webhook**.
-    - If you don't have the **Integrations** option in your Main Menu, incoming webhooks may not be enabled on your Mattermost server or may be disabled for non-admins. They can be enabled by a System Admin from **System Console > Integrations > Integration Management**. Then continue with the steps below.
-2. Select **Add Incoming Webhook** and add name and description for the webhook. The description can be up to 500 characters.
+1. In Mattermost, go to **Product menu > Integrations > Incoming Webhook**.
+    - If you don't have the **Integrations** option, incoming webhooks may not be enabled on your Mattermost server or may be disabled for non-admins. They can be enabled by a System Admin from **System Console > Integrations > Integration Management**. Once incoming webhooks are enabled, continue with the steps below.
+2. Select **Add Incoming Webhook** and add a name and description for the webhook. The description can be up to 500 characters.
 3. Select the channel to receive webhook payloads, then select **Add** to create the webhook.
 
 You will end up with a webhook endpoint that looks like so:
@@ -63,7 +63,7 @@ Content-Length: 2
 ok
 ```
 
-All webhook posts will display a `BOT` indicator next to the username in Mattermost clients, to help prevent against [phishing attacks](https://en.wikipedia.org/wiki/Phishing).
+All webhook posts will display a `BOT` indicator next to the username in Mattermost clients to help prevent against [phishing attacks](https://en.wikipedia.org/wiki/Phishing).
 
 ### Parameters
 

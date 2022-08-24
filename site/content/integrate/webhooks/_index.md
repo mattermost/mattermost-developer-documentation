@@ -10,7 +10,7 @@ Mattermost supports webhooks to easily integrate external applications into the 
 
 ### Incoming webhooks
 
-Use incoming webhooks to post messages to Mattermost Public Channels, Private Channels, and Direct Messages. Messages are sent via an HTTP POST request to a Mattermost URL generated for each application and contain a specifically formatted JSON payload in the request body.
+Use incoming webhooks to post messages to Mattermost public channels, private channels, and direct messages. Messages are sent via an HTTP POST request to a Mattermost URL generated for each application and contain a specifically formatted JSON payload in the request body.
 
 [Create an incoming webhook]({{< ref "/integrate/webhooks/incoming" >}})
 
