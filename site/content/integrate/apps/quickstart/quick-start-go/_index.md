@@ -7,7 +7,7 @@ aliases:
   - /integrate/apps/quick-start-go/
 ---
 
-This quick start guide will walk you through the basics of creating a hello world Mattermost app in Go. In this guide you will build an app that:
+This quick start guide will walk you through the basics of creating a hello world Mattermost app in Go. In this guide you will review an app that:
 
 - Contains a `manifest.json`, declares itself an HTTP application that acts as a bot, and attaches to locations in the Mattermost interface.
 - Attaches the form `send-modal` in its `bindings` to a button in the channel header, and the form `send` to a `/helloworld` command.

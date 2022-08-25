@@ -7,12 +7,10 @@ aliases:
   - /integrate/apps/quick-start-jwt/
 ---
 
-This quick start guide will walk you through the basics of using [JSON Web Tokens (JWT)](https://jwt.io/) in a Mattermost app in Go. In this guide you will build an app that:
+This quick start guide will walk you through the basics of using [JSON Web Tokens (JWT)](https://jwt.io/) in a Mattermost app in Go. In this guide you will review an app that:
 
-- Contains a `manifest.json`, declares itself an HTTP application that acts as a bot, and attaches to locations in the Mattermost interface.
-- Attaches the form `send-modal` in its `bindings` to a button in the channel header, and the form `send` to a `/hello-jwt send` command.
-- Contains a `send` function that sends a parameterized message back to the user.
-- Contains a `send-modal` function that forces displaying the `send` form as a modal.
+- Contains a `manifest.json`, declares itself an HTTP application that acts as a bot and uses JWT, and attaches to locations in the Mattermost interface.
+- Attaches the `send` function to a `/hello-jwt` command and wraps it with an function to authenticate JWT.
 
 ## Prerequisites
 
@@ -38,7 +36,7 @@ Use "1234" as the app's JWT secret
 
 ## Install the app on Mattermost
 
-Next, access your development Mattermost server at [http://localhost:8065](http://localhost:8065) and use the `/apps install http http://mattermost-apps-golang-jwt:8084/manifest.json` slash command to install the hello world app. Select `Agree to grant the app access to APIs and Locations`, enter the JWT secret (1234), and click `Submit` to finish the installation.
+Next, access your development Mattermost server at [http://localhost:8065](http://localhost:8065) and use the `/apps install http http://mattermost-apps-golang-jwt:8084/manifest.json` slash command to install the JWT app. Select `Agree to grant the app access to APIs and Locations`, enter the JWT secret (1234), and click `Submit` to finish the installation.
 
 ## Use the app
 
@@ -56,8 +54,7 @@ The app must provide a manifest, which declares app metadata. In this example, t
 
 - Create posts as a bot.
 - Create slash commands.
-
-The manifest also declares that when it is deployed, it will use JWT.
+- Use JWT.
 
 ### Bindings and locations
 
@@ -67,9 +64,9 @@ The app creates a `/hello-jwt send` slash command that checks the validity of th
 
 ### Functions
 
-Functions handle user events and webhooks. The JWT app relies on one main functions:
+Functions handle user events and webhooks. The JWT app relies on one main function:
 
-- `/send` that services the command and modal. This function is wrapped with `withJWT` that requires JWT, which calls `checkJWT` to verify the provided token.
+- `send` that services the command and modal. This function is wrapped with `withJWT` that requires JWT, which calls `checkJWT` to verify the provided token.
 
 ### Assets
 

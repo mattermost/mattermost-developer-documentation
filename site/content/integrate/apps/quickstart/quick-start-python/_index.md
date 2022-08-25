@@ -7,7 +7,7 @@ aliases:
   - /integrate/apps/quick-start-python/
 ---
 
-This quick start guide will walk you through the basics of creating a hello world Mattermost app in Python. In this guide you will build an app that:
+This quick start guide will walk you through the basics of creating a hello world Mattermost app in Python. In this guide you will review an app that:
 
 - Contains a `manifest.json`, declares itself an HTTP application that acts as a bot, and attaches to locations in the user interface.
 - Contains a `form` with a `submit` function that can launch a modal (if applicable) and send an interpolated message back to the user.

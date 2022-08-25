@@ -32,7 +32,7 @@ Next, use the following command to bring your development environment online.
 docker compose up -d
 ```
 
-Once Mattermost is online, you can access the server at [http://localhost:8065](http://localhost:8065) and create your superuser account.
+Once Mattermost is online, you can access the server at [http://localhost:8065](http://localhost:8065) and create your superuser account. You can also add `127.0.0.1 mattermost` to your `/etc/hosts` file to be able to access Mattermost at [http://mattermost:8065](http://mattermost:8065), which is the value of `MM_SERVICESETTINGS_SITEURL` for Docker networking.
 
 To temporarily stop the container (and preserve your database), use the following command:
 
@@ -54,9 +54,11 @@ The following quick start guides can help you start developing a Mattermost app 
 
 | Language                | Guide                                                                                             |
 |-------------------------|---------------------------------------------------------------------------------------------------|
-| Golang                  | [Hello World in Go]({{< ref "/integrate/apps/quickstart/quick-start-go" >}})                       |
-| Golang                  | [Serverless on AWS or OpenFaaS]({{< ref "/integrate/apps/quickstart/quick-start-serverless" >}}) |
-| TypeScript              | [Hello World in TypeScript]({{< ref "/integrate/apps/quickstart/quick-start-js" >}})               |
-| Python                  | [Hello World in Python]({{< ref "/integrate/apps/quickstart/quick-start-python" >}})                   |
+| Golang                  | [Hello World in Go]({{< ref "/integrate/apps/quickstart/quick-start-go" >}})                      |
+| Golang                  | [JWT]({{< ref "/integrate/apps/quickstart/quick-start-jwt" >}})                                   |
+| Golang                  | [Serverless on AWS or OpenFaaS in Go]({{< ref "/integrate/apps/quickstart/quick-start-serverless" >}})  |
+| Golang                  | [Webhooks]({{< ref "/integrate/apps/quickstart/quick-start-webhooks" >}})                         |
+| TypeScript              | [Hello World in TypeScript]({{< ref "/integrate/apps/quickstart/quick-start-js" >}})              |
+| Python                  | [Hello World in Python]({{< ref "/integrate/apps/quickstart/quick-start-python" >}})              |
 
 More guides from community members are encouraged! Check out the [open issue](https://github.com/mattermost/mattermost-plugin-apps/issues/351) and our [contributing guide](https://developers.mattermost.com/contribute/getting-started/) for more details.
