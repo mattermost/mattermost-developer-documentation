@@ -22,7 +22,7 @@ You also need at least `go1.16` installed. Please follow the [official guide](ht
 
 ## Download and start the app
 
-In the same [mattermost-app-examples repository](https://github.com/mattermost/mattermost-app-examples) you cloned via the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}) above, navigate to the `golang/hello-world` directory and start the Docker compose:
+In the same [mattermost-app-examples repository](https://github.com/mattermost/mattermost-app-examples) you cloned via the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}) above, navigate to the [`golang/hello-world`](https://github.com/mattermost/mattermost-app-examples/tree/master/golang/hello-world) directory and start the Docker compose:
 
 ```sh
 cd golang/hello-world

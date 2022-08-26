@@ -21,7 +21,7 @@ You also need [Python version 3 installed](https://www.python.org/downloads/).
 
 ## Download and start the app
 
-In the same [mattermost-app-examples repository](https://github.com/mattermost/mattermost-app-examples) you cloned via the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}) above, navigate to the `python/hello-world` directory and start the Docker compose:
+In the same [mattermost-app-examples repository](https://github.com/mattermost/mattermost-app-examples) you cloned via the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}) above, navigate to the [`python/hello-world`](https://github.com/mattermost/mattermost-app-examples/tree/master/python/hello-world) directory and start the Docker compose:
 
 ```sh
 cd python/hello-world
