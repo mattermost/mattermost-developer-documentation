@@ -57,7 +57,6 @@ The following quick start guides can help you start developing a Mattermost app 
 | Golang                  | [Hello World in Go]({{< ref "/integrate/apps/quickstart/quick-start-go" >}})                      |
 | Golang                  | [JWT]({{< ref "/integrate/apps/quickstart/quick-start-jwt" >}})                                   |
 | Golang                  | [Serverless on AWS or OpenFaaS in Go]({{< ref "/integrate/apps/quickstart/quick-start-serverless" >}})  |
-| Golang                  | [Webhooks]({{< ref "/integrate/apps/quickstart/quick-start-webhooks" >}})                         |
 | TypeScript              | [Hello World in TypeScript]({{< ref "/integrate/apps/quickstart/quick-start-js" >}})              |
 | Python                  | [Hello World in Python]({{< ref "/integrate/apps/quickstart/quick-start-python" >}})              |
 
