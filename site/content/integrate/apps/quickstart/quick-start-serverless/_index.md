@@ -29,7 +29,7 @@ cd golang/serverless
 docker compose up
 ```
 
-The `docker-compose.yml` uses the [HTTP deployment]({{< ref "/integrate/apps/deployment-http/" >}}) of the serverless app for the sake of trying it out locally. You'll see Docker install the Go modules and then the app will come online and print the following message:
+The `docker-compose.yml` uses the [HTTP deployment]({{< ref "/integrate/apps/deploy/deploy-http/" >}}) of the serverless app for the sake of trying it out locally. You'll see Docker install the Go modules and then the app will come online and print the following message:
 
 ```
 Install via /apps install http http://mattermost-apps-golang-serverless:8080/manifest.json 
