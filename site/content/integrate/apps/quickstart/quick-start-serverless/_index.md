@@ -12,7 +12,7 @@ This quick start guide will walk you through the basics of using creating a serv
 - Contains a `manifest.json`, declares itself an HTTP application that acts as a bot, uses webhooks, and attaches to locations in the Mattermost interface.
 - Attaches `send` function to a `/hello-serverless` command, accepting an optional `message` argument.
 
-This app will focus on the functionality of the actual serverless app in this example. For more information about [how to package a Mattermost app for serverless deployments]({{< ref "/integrate/apps/package/" >}}), [how to deploy a Mattermost app to AWS]({{< ref "/integrate/apps/deployment-aws/" >}}), or [how to deploy a Mattermost app to OpenFaaS]({{< ref "/integrate/apps/deployment-openfaas/" >}}) please refer to the corresponding guides.
+This app will focus on the functionality of the actual serverless app in this example. For more information about [how to package a Mattermost app for serverless deployments]({{< ref "/integrate/apps/deploy/package-for-aws" >}}), [how to deploy a Mattermost app to AWS]({{< ref "/integrate/apps/deployment-aws/" >}}), or [how to deploy a Mattermost app to OpenFaaS]({{< ref "/integrate/apps/deployment-openfaas/" >}}) please refer to the corresponding guides.
 
 ## Prerequisites
 
