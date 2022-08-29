@@ -21,7 +21,7 @@ You also need an [LTS version of NodeJS](https://nodejs.org/en/download/).
 
 ## Download and start the App
 
-In the same [mattermost-app-examples repository](https://github.com/mattermost/mattermost-app-examples) you cloned via the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}) above, navigate to the [`typescript/hello-world`](https://github.com/mattermost/mattermost-app-examples/tree/master/typescript/hello-world) directory and start the Docker containers:
+In the same [mattermost-app-examples repository](https://github.com/mattermost/mattermost-app-examples) you cloned via the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}) above, navigate to the [`typescript/hello-world`](https://github.com/mattermost/mattermost-app-examples/tree/master/typescript/hello-world) directory and start the Docker container:
 
 ```sh
 cd typescript/hello-world
