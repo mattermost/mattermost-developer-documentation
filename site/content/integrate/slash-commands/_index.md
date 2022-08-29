@@ -107,7 +107,7 @@ See the [Slack compatibility]({{< ref "slack" >}}) page.
 
 Use [`CreatePost`]({{< ref "/integrate/plugins/components/server/reference#API.CreatePost" >}}) plugin API. Make sure to set the  `UserId` of the post to the `UserId` of the Bot Account. If you want to create an ephemeral post, use [`SendEphemeralPost`]({{< ref "/integrate/plugins/components/server/reference#API.SendEphemeralPost" >}}) plugin API instead.
 
-## Troubleshooting
+## Troubleshoot slash commands
 
 Join the [Mattermost user community](https://mattermost.com/pl/default-ask-mattermost-community) for help troubleshooting your slash command.
 

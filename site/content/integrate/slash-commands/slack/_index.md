@@ -21,8 +21,8 @@ Mattermost automatically translates the data coming from Slack:
 ## Known Slack compatibility issues
 
 1. Using `icon_emoji` to override the username is not supported.
-2. Referencing  channels using `<#CHANNEL_ID>` does not link to the channel.
+2. Referencing channels using `<#CHANNEL_ID>` does not link to the channel.
 3. `<!everyone>` and `<!group>` are not supported.
-4. Parameters "mrkdwn", "parse", and "link_names" are not supported (Mattermost always converts markdown and automatically links @mentions).
+4. Parameters `mrkdwn`, `parse`, and `link_names` are not supported (Mattermost always converts markdown and automatically links @mentions).
 5. Bold formatting supplied as `*bold*` is not supported (must be done as `**bold**`).
 6. Slack assumes default values for some fields if they are not specified by the integration, while Mattermost does not.

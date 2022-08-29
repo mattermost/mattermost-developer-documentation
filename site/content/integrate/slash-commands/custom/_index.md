@@ -8,31 +8,40 @@ Suppose you want to write an external application that is able to check the weat
 You can follow these general guidelines to set up a custom Mattermost slash command for your application.
 
 1. Open **Product menu > Integrations > Slash Commands**. If you don't have the **Integrations** option in your Main Menu, slash commands may not be enabled on your Mattermost Server or may be disabled for non-admins. Enable them from **System Console > Integrations > Integration Management** or ask your Mattermost System Admin to do so.
-2. Select **Add Slash Command** and add a name and description for the command.
-3. Set the **Command Trigger Word**. The trigger word must be unique and cannot begin with a slash or contain any spaces. It also cannot be one of the [built-in commands]({{< ref "/integrate/slash-commands/built-in" >}}).
-4. Set the **Request URL** and **Request Method**. The request URL is the endpoint that Mattermost hits to reach your application, and the request method is either `POST` or `GET` and specifies the type of request sent to the request URL.
-5. (Optional) Set the response username and icon the command will post messages as in Mattermost. If not set, the command will use your username and profile picture.
 
-   **Note:** [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames, and [similarly for profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons). Enable them from **System Console > Integrations > Integration Management** or ask your Mattermost System Admin.
+2. Select **Add Slash Command**; the **Add** dialog will appear. Use the following guidelines to configure the slash command:
 
-6. (Optional) Include the slash command in the command autocomplete list, displayed when typing ``/`` in an empty input box. Use it to make your command easier to discover by your teammates. You can also provide a hint listing the arguments of your command and a short description displayed in the autocomplete list.
-7. Select **Save**. On the next page, copy the **Token** value. This will be used in a later step.
+    - Set the **Title** and **Description** for the command.
+    - Set the **Command Trigger Word**. The trigger word must be unique and cannot begin with a slash or contain any spaces. It also cannot be one of the [built-in commands]({{< ref "/integrate/slash-commands/built-in" >}}).
+    - Set the **Request URL** and **Request Method**. The request URL is the endpoint that Mattermost hits to reach your application, and the request method is either `POST` or `GET` and specifies the type of request sent to the request URL.
+    - (_Optional_) Set the **Response Username** and **Response Icon** the command will post messages as in Mattermost. If not set, the command will use your username and profile picture.
+    - (_Optional_) Select the **Autocomplete** option to include the slash command in the command autocomplete list, displayed when typing ``/`` in an empty input box. Use it to make your command easier to discover by your teammates. You can also provide a hint listing the arguments of your command and a short description displayed in the autocomplete list.
+
+      {{<note "Note:">}}
+   [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the username is set to `webhook`.
+
+   Similarly, [Enable integrations to override profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons) must be set to `true` in `config.json` to override profile picture icons. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the icon of the creator of the webhook URL is used to post messages.
+      {{</note>}}
+
+3. Select **Save**. On the next page, copy the **Token** value. This will be used in a later step.
 
    ![image](slash_commands_token.png)
 
-8. Next, write your external application. Include a function which receives HTTP `POST` or HTTP `GET` requests from Mattermost. The request will look something like this:
+4. Next, write your external application. Include a function which receives HTTP `POST` or HTTP `GET` requests from Mattermost. The request will look something like this:
 
     ```http request
     POST /slash-command HTTP/1.1
     Host: example.com
-    User-Agent: Go-http-client/1.1
-    Content-Length: 313
     Accept: application/json
-    Authorization: Token okwexkjpe7ygb8eq1ww58t483w
-    Content-Type: application/x-www-form-urlencoded
     Accept-Encoding: gzip
+    Authorization: Token qzgakf1nx3yt9dr4n8585ihbxy
+    Content-Length: 313
+    Content-Type: application/x-www-form-urlencoded
+    User-Agent: Mattermost-Bot/1.1
     
     channel_id=jux16pkewjrkfj3ehep1psxyxc&
+    channel_mentions=["saepe-5", "aut-8"]&
+    channel_mentions_ids=["r3j6sby343fpfdxcbwqg95rfsa", "ehjj46yk7ifptr5bpfb966s6mc"]&
     channel_name=town-square&
     command=%2Ftest&
     response_url=http%3A%2F%2Flocalhost%3A8065%2Fhooks%2Fcommands%2Fxbrkb8p393gjpq5cawei7npije&
@@ -41,45 +50,39 @@ You can follow these general guidelines to set up a custom Mattermost slash comm
     text=asd&
     token=okwexkjpe7ygb8eq1ww58t483w&
     user_id=aoa1agao6t8fmx3ikt1j9w5ybw&
-    user_name=somename&
-    channel_mentions=["saepe-5", "aut-8"]&
-    channel_mentions_ids=["r3j6sby343fpfdxcbwqg95rfsa", "ehjj46yk7ifptr5bpfb966s6mc"]&
     user_mentions=["aaron.peterson", "aaron.medina"]&
     user_mentions_ids=["q5s3b7xzgprp5eid8h66j9epsy", "czwmumrmw7dfxecww7qibkkoor"]
+    user_name=somename&
     ```
 
    If your integration sends back a JSON response, make sure it returns the `application/json` content-type.
 
-9. Add a configurable *MATTERMOST_TOKEN* variable to your application and set it to the **Token** value from step 7. This value will be used by your application to confirm the HTTP `POST` or `GET` request came from Mattermost.
-10. To have your application post a message back to `town-square`, it can respond to the HTTP `POST` request with a JSON response such as:
+5. Add a configurable *MATTERMOST_TOKEN* variable to your application and set it to the **Token** value from step 7. This value will be used by your application to confirm the HTTP `POST` or `GET` request came from Mattermost.
+6. To have your application post a message back to `town-square`, it can respond to the HTTP `POST` request with a JSON response such as:
 
-    ```
-    {"response_type": "in_channel", "text": "
-      ---
-      #### Weather in Toronto, Ontario for the Week of February 16th, 2016
+   ```
+   {"response_type": "in_channel", "text": "
+     ---
+     #### Weather in Toronto, Ontario for the Week of February 16th, 2016
     
-      | Day                 | Description                      | High   | Low    |
-      |:--------------------|:---------------------------------|:-------|:-------|
-      | Monday, Feb. 15     | Cloudy with a chance of flurries | 3 °C   | -12 °C |
-      | Tuesday, Feb. 16    | Sunny                            | 4 °C   | -8 °C  |
-      | Wednesday, Feb. 17  | Partly cloudly                   | 4 °C   | -14 °C |
-      | Thursday, Feb. 18   | Cloudy with a chance of rain     | 2 °C   | -13 °C |
-      | Friday, Feb. 19     | Overcast                         | 5 °C   | -7 °C  |
-      | Saturday, Feb. 20   | Sunny with cloudy patches        | 7 °C   | -4 °C  |
-      | Sunday, Feb. 21     | Partly cloudy                    | 6 °C   | -9 °C  |
-      ---
-    "}
-    ```
+     | Day                 | Description                      | High   | Low    |
+     |:--------------------|:---------------------------------|:-------|:-------|
+     | Monday, Feb. 15     | Cloudy with a chance of flurries | 3 °C   | -12 °C |
+     | Tuesday, Feb. 16    | Sunny                            | 4 °C   | -8 °C  |
+     | Wednesday, Feb. 17  | Partly cloudly                   | 4 °C   | -14 °C |
+     | Thursday, Feb. 18   | Cloudy with a chance of rain     | 2 °C   | -13 °C |
+     | Friday, Feb. 19     | Overcast                         | 5 °C   | -7 °C  |
+     | Saturday, Feb. 20   | Sunny with cloudy patches        | 7 °C   | -4 °C  |
+     | Sunday, Feb. 21     | Partly cloudy                    | 6 °C   | -9 °C  |
+     ---
+   "}
+   ```
 
-    which would render in Mattermost as:
+   which would render in Mattermost as:
 
-    ![image](weatherBot.png)
+   ![image](weatherBot.png)
 
-11. You're all set! See [below](#parameters) for details on what parameters are supported by slash commands. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins]({{< ref "/integrate/plugins/using-and-managing-plugins" >}}). Messages with advanced formatting can be created by including an [attachment array]({{< ref "/integrate/reference/message-attachments" >}}) and [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}) in the JSON payload.
-
-**Note:** [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the username is set to `webhook`.
-
-Similarly, [Enable integrations to override profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons) must be set to `true` in `config.json` to override profile picture icons. Enable them from **System Console > Integrations > Integration Management**, or ask your System Admin to do so. If not enabled, the icon of the creator of the webhook URL is used to post messages.
+7. You're all set! See [below](#parameters) for details on what parameters are supported by slash commands. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins]({{< ref "/integrate/plugins" >}}). Messages with advanced formatting can be created by including an [attachment array]({{< ref "/integrate/reference/message-attachments" >}}) and [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}) in the JSON payload.
 
 ## Parameters
 
