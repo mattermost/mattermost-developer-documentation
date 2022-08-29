@@ -37,6 +37,6 @@ Each Mattermost installation comes with some built-in slash commands that are re
 | /status *{emoji_name}* *{descriptive status_message}* | Set a custom status that includes an optional emoji and a descriptive status message               | /status sick Feeling unwell and taking time off to recover |
 | /status clear                                         | Clear the current status                                                                           | /status clear                                              |
 
-**Note:** `/status` and `/status clear` slash commands listed above will be available in the Mattermost Mobile App in a future release.
+**Note:** `/status` and `/status clear` slash commands listed above will be available in the Mattermost Mobile app in a future release.
 
 To create a custom slash command, see the [Custom slash commands]({{< ref "/integrate/slash-commands/custom" >}}) page.

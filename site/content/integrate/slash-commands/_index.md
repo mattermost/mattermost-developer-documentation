@@ -20,8 +20,8 @@ You can also create [custom slash commands]({{< ref "custom" >}}).
 1. Slash commands are designed to easily allow you to post messages. For other actions such as channel creation, you must also use the {{< newtabref title="Mattermost APIs" href="https://api.mattermost.com" >}}.
 2. Posts size is limited to 16393 characters for servers running [Mattermost Server v5.0 or later](https://docs.mattermost.com/administration/important-upgrade-notes.html). Use the `extra_responses` field to reply to a triggered slash command with more than one post.
 3. You can restrict who can create slash commands in [System Console > Integrations > Integration Management](https://docs.mattermost.com/configure/configuration-settings.html#enable-custom-slash-commands).
-4. Mattermost [outgoing webhooks]({{< ref "/integrate/webhooks/outgoing" >}}) are Slack-compatible. You can copy-and-paste code used for a Slack outgoing webhook to create Mattermost integrations. Mattermost [automatically translates the Slack's proprietary JSON payload format]({{< ref "slack#translate-slacks-data-format-to-mattermost" >}}).
-5. The external application may be written in any programming language. It needs to provide a URL which receives the request sent by your Mattermost server and responds with in the required JSON format.
+4. Mattermost [outgoing webhooks]({{< ref "/integrate/webhooks/outgoing" >}}) are Slack-compatible. You can copy-and-paste code used for a Slack outgoing webhook to create Mattermost integrations. Mattermost [automatically translates Slack's proprietary JSON payload format]({{< ref "slack#translate-slacks-data-format-to-mattermost" >}}).
+5. The external application may be written in any programming language. It needs to provide a URL which receives the request sent by your Mattermost Server and responds with in the required JSON format.
 
 ## FAQ
 
@@ -71,7 +71,7 @@ Reply immediately with an `ephemeral` message to confirm response of the command
 
 By default, Mattermost prohibits outgoing connections that resolve to certain common IP ranges, including the loopback (`127.0.0.0/8`) and various private-use subnets.
 
-During development, you may override this behaviour by setting `ServiceSettings.AllowedUntrustedInternalConnections` to `"127.0.0.0/8"` in your `config.json` or via System Console **Advanced > Developer**. See the [admin guide's notes](https://docs.mattermost.com/configure/environment-configuration-settings.html#allow-untrusted-internal-connections) for more details.
+During development, you may override this behaviour by setting `ServiceSettings.AllowedUntrustedInternalConnections` to `"127.0.0.0/8"` in your `config.json` or via **System Console > Advanced > Developer**. See the [admin guide's notes](https://docs.mattermost.com/configure/environment-configuration-settings.html#allow-untrusted-internal-connections) for more details.
 
 ### Should I configure my slash command to use `POST` or `GET`?
 
@@ -79,9 +79,9 @@ Best practice suggests using `GET` only if a request is considered idempotent. T
 
 Ultimately, however, the choice is yours. If in doubt, configure your slash command to use a `POST` request.
 
-<div class="alert alert-warning" role="alert">
+{{<note "Mattermost releases prior to 5.0.0">}}
 Note that slash commands configured to use a <code>GET</code> request were broken prior to Mattermost release 5.0.0. The payload was incorrectly encoded in the body of the <code>GET</code> request instead of in the query string. While it was still technically possible to extract the payload, this was non-standard and broke some development stacks.
-</div>
+{{</note>}}
 
 ### Why does my slash command always fail with `returned an empty response`?
 
@@ -113,6 +113,6 @@ Join the [Mattermost user community](https://mattermost.com/pl/default-ask-matte
 
 ## Share your integration
 
-If you've built an integration for Mattermost, please consider [sharing your work]({{< ref "/integrate/getting-started" >}}) in our [app directory](https://mattermost.com/marketplace/).
+If you've built an integration for Mattermost, please consider [sharing your work]({{< ref "/integrate/getting-started" >}}) in our [Marketplace](https://mattermost.com/marketplace/).
 
-The [app directory](https://mattermost.com/marketplace/) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-hosted infrastructure.
+The [Marketplace](https://mattermost.com/marketplace/) lists open source integrations developed by the Mattermost community and are available for download, customization, and deployment to your private cloud or self-hosted infrastructure.

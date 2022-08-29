@@ -3,14 +3,14 @@ title: Custom commands
 heading: Custom slash commands
 weight: 20
 ---
-Suppose you want to write an external application that is able to check the weather for certain cities. By creating a custom slash command, and setting up the application to handle the HTTP POST or GET from the command, you can let your users check the weather in their city using your command, say `/weather toronto week`.
+Suppose you want to write an external application that is able to check the weather for certain cities. By creating a custom slash command and setting up the application to handle the HTTP `POST` or `GET` from the command, you can let your users check the weather in their city using your command, say `/weather toronto week`.
 
 You can follow these general guidelines to set up a custom Mattermost slash command for your application.
 
-1. Open **Product menu > Integrations > Slash Commands**. If you don't have the **Integrations** option in your Main Menu, slash commands may not be enabled on your Mattermost server or may be disabled for non-admins. Enable them from **System Console > Integrations > Integration Management** or ask your Mattermost System Admin to do so.
+1. Open **Product menu > Integrations > Slash Commands**. If you don't have the **Integrations** option in your Main Menu, slash commands may not be enabled on your Mattermost Server or may be disabled for non-admins. Enable them from **System Console > Integrations > Integration Management** or ask your Mattermost System Admin to do so.
 2. Select **Add Slash Command** and add a name and description for the command.
 3. Set the **Command Trigger Word**. The trigger word must be unique and cannot begin with a slash or contain any spaces. It also cannot be one of the [built-in commands]({{< ref "/integrate/slash-commands/built-in" >}}).
-4. Set the **Request URL** and **Request Method**. The request URL is the endpoint that Mattermost hits to reach your application, and the request method is either POST or GET and specifies the type of request sent to the request URL.
+4. Set the **Request URL** and **Request Method**. The request URL is the endpoint that Mattermost hits to reach your application, and the request method is either `POST` or `GET` and specifies the type of request sent to the request URL.
 5. (Optional) Set the response username and icon the command will post messages as in Mattermost. If not set, the command will use your username and profile picture.
 
    **Note:** [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames, and [similarly for profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons). Enable them from **System Console > Integrations > Integration Management** or ask your Mattermost System Admin.
@@ -20,9 +20,9 @@ You can follow these general guidelines to set up a custom Mattermost slash comm
 
    ![image](slash_commands_token.png)
 
-8. Next, write your external application. Include a function which receives HTTP POST or HTTP GET requests from Mattermost. The request will look something like this:
+8. Next, write your external application. Include a function which receives HTTP `POST` or HTTP `GET` requests from Mattermost. The request will look something like this:
 
-    ```
+    ```http request
     POST /slash-command HTTP/1.1
     Host: example.com
     User-Agent: Go-http-client/1.1
@@ -41,17 +41,17 @@ You can follow these general guidelines to set up a custom Mattermost slash comm
     text=asd&
     token=okwexkjpe7ygb8eq1ww58t483w&
     user_id=aoa1agao6t8fmx3ikt1j9w5ybw&
-    user_name=somename
-    channel_mentions=["saepe-5", "aut-8"]
-    channel_mentions_ids=["r3j6sby343fpfdxcbwqg95rfsa", "ehjj46yk7ifptr5bpfb966s6mc"]
-    user_mentions=["aaron.peterson", "aaron.medina"]
+    user_name=somename&
+    channel_mentions=["saepe-5", "aut-8"]&
+    channel_mentions_ids=["r3j6sby343fpfdxcbwqg95rfsa", "ehjj46yk7ifptr5bpfb966s6mc"]&
+    user_mentions=["aaron.peterson", "aaron.medina"]&
     user_mentions_ids=["q5s3b7xzgprp5eid8h66j9epsy", "czwmumrmw7dfxecww7qibkkoor"]
     ```
 
    If your integration sends back a JSON response, make sure it returns the `application/json` content-type.
 
-9. Add a configurable *MATTERMOST_TOKEN* variable to your application and set it to the **Token** value from step 7. This value will be used by your application to confirm the HTTP POST or GET request came from Mattermost.
-10. To have your application post a message back to `town-square`, it can respond to the HTTP POST request with a JSON response such as:
+9. Add a configurable *MATTERMOST_TOKEN* variable to your application and set it to the **Token** value from step 7. This value will be used by your application to confirm the HTTP `POST` or `GET` request came from Mattermost.
+10. To have your application post a message back to `town-square`, it can respond to the HTTP `POST` request with a JSON response such as:
 
     ```
     {"response_type": "in_channel", "text": "
@@ -109,7 +109,7 @@ Content-Length: 696
 {
     "response_type": "in_channel",
     "text": "\n#### Test results for July 27th, 2017\n@channel here are the requested test results.\n\n| Component  | Tests Run   | Tests Failed                                   |\n| ---------- | ----------- | ---------------------------------------------- |\n| Server     | 948         | :white_check_mark: 0                           |\n| Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |\n| iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |\n\t\t      ",
-    "username": "test-automation"
+    "username": "test-automation",
     "icon_url": "https://mattermost.com/wp-content/uploads/2022/02/icon.png",
     "props": {
         "test_data": {
