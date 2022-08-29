@@ -1,12 +1,10 @@
 ---
 title: Developer setup
-description: Developer setup and guides for quickly getting started building apps
+description: Developer setup and guides for quickly getting started building Apps
 weight: 10
-aliases:
-  - /integrate/apps/quick-start-developer-setup
 ---
 
-To get started making Mattermost Apps, the first thing you need to do is set up your development environment via the [mattermost-app-examples repository](https://github.com/mattermost/mattermost-app-examples). Then you can follow language-specific guides to get started with the Apps Framework, or just start tinkering on your own.
+To get started making Mattermost Apps, the first thing you need to do is set up your development environment via the [mattermost-app-examples repository](https://github.com/mattermost/mattermost-app-examples). Then you can follow language-specific guides to get started with the Apps framework, or just start tinkering on your own.
 
 ## Prerequisites
 
@@ -20,11 +18,11 @@ Clone and enter a local copy of the [mattermost-app-examples repository](https:/
 git clone https://github.com/mattermost/mattermost-app-examples && cd mattermost-app-examples
 ```
 
-When you're developing your own app, you need an actual Mattermost server to be running. The development environment accomplishes this by using a [`docker-compose.yml`](https://github.com/mattermost/mattermost-app-examples/blob/master/docker-compose.yml) with a network named `mattermost-apps-dev`. This compose has just two containers: the Mattermost server with a Postgres database. The Mattermost image itself is preconfigured with the ideal settings for app development. 
+When you're developing your own App, you need an actual Mattermost Server to be running. The development environment accomplishes this by using a [`docker-compose.yml`](https://github.com/mattermost/mattermost-app-examples/blob/master/docker-compose.yml) with a network named `mattermost-apps-dev`. This compose has just two containers: the Mattermost Server with a Postgres database. The Mattermost image itself is preconfigured with settings for local App development.
 
-Because they exist on a pre-defined network, other `docker-compose.yml` configurations can connect their containers to this development environment by specifying the same `mattermost-apps-dev` Docker network. Then the Mattermost server can be accessed at `http://mattermost:8065` by any other container on the `mattermost-apps-dev` network. Similarly, your own development apps can then be accessed by Mattermost via their service name (e.g., `http://mattermost-apps-typescript-hello-world:4000`). You can learn more about Docker networks on the [official documentation](https://docs.docker.com/network/).
+Because they exist on a pre-defined network, other `docker-compose.yml` configurations can connect their containers to this development environment by specifying the same `mattermost-apps-dev` Docker network. Then the Mattermost Server can be accessed at `http://mattermost:8065` by any other container on the `mattermost-apps-dev` network. Similarly, your own development Apps can then be accessed by Mattermost via their service name (e.g., `http://mattermost-apps-typescript-hello-world:4000`). You can learn more about Docker networks in the [official documentation](https://docs.docker.com/network/).
 
-To change the Mattermost Apps plugin or the Mattermost server versions, you can edit [`docker-compose.yml`](https://github.com/mattermost/mattermost-app-examples/blob/master/docker-compose.yml).
+To change the Mattermost Apps plugin or the Mattermost Server versions, you can edit [`docker-compose.yml`](https://github.com/mattermost/mattermost-app-examples/blob/master/docker-compose.yml).
 
 Next, use the following command to bring your development environment online.
 
@@ -32,7 +30,9 @@ Next, use the following command to bring your development environment online.
 docker compose up -d
 ```
 
-Once Mattermost is online, you can access the server at [http://localhost:8065](http://localhost:8065) and create your superuser account. You can also add `127.0.0.1 mattermost` to your `/etc/hosts` file to be able to access Mattermost at [http://mattermost:8065](http://mattermost:8065), which is the value of `MM_SERVICESETTINGS_SITEURL` for Docker networking.
+Once Mattermost is online, you can access the server at [http://localhost:8065](http://localhost:8065) and create your superuser account.
+
+**Tip:** You can also add `127.0.0.1 mattermost` to your `/etc/hosts` file to be able to access Mattermost at [http://mattermost:8065](http://mattermost:8065), which is the value of `MM_SERVICESETTINGS_SITEURL` for Docker networking.
 
 To temporarily stop the container (and preserve your database), use the following command:
 
@@ -46,18 +46,18 @@ To stop and clean up the database (for a fresh start), use the following command
 docker compose down
 ```
 
-Now you're fully equipped with the ideal environment to develop Mattermost apps locally! 
+Now you're fully equipped with an environment to develop Mattermost Apps locally!
 
 ## Quick start guides
 
-The following quick start guides can help you start developing a Mattermost app in different languages:
+The following quick start guides can help you start developing a Mattermost App in different languages:
 
-| Language                | Guide                                                                                             |
-|-------------------------|---------------------------------------------------------------------------------------------------|
-| Golang                  | [Hello World in Go]({{< ref "/integrate/apps/quickstart/quick-start-go" >}})                      |
-| Golang                  | [JWT in Go]({{< ref "/integrate/apps/quickstart/quick-start-jwt" >}})                                   |
-| Golang                  | [Serverless on AWS or OpenFaaS in Go]({{< ref "/integrate/apps/quickstart/quick-start-serverless" >}})  |
-| TypeScript              | [Hello World in TypeScript]({{< ref "/integrate/apps/quickstart/quick-start-js" >}})              |
-| Python                  | [Hello World in Python]({{< ref "/integrate/apps/quickstart/quick-start-python" >}})              |
+| Language   | Guide                                                                                                  |
+| ---------- | ------------------------------------------------------------------------------------------------------ |
+| Go         | [Hello World in Go]({{< ref "/integrate/apps/quickstart/quick-start-go" >}})                           |
+| Go         | [JWT in Go]({{< ref "/integrate/apps/quickstart/quick-start-jwt" >}})                                  |
+| Go         | [Serverless on AWS or OpenFaaS in Go]({{< ref "/integrate/apps/quickstart/quick-start-serverless" >}}) |
+| TypeScript | [Hello World in TypeScript]({{< ref "/integrate/apps/quickstart/quick-start-js" >}})                   |
+| Python     | [Hello World in Python]({{< ref "/integrate/apps/quickstart/quick-start-python" >}})                   |
 
-More guides from community members are encouraged! Check out the [open issue](https://github.com/mattermost/mattermost-plugin-apps/issues/351) and our [contributing guide](https://developers.mattermost.com/contribute/getting-started/) for more details.
+More guides from community members are encouraged! Check out the [open issue](https://github.com/mattermost/mattermost-plugin-apps/issues/351) and our [contributing guide]({{< ref "/contribute/getting-started" >}}) for more details.
