@@ -1,15 +1,16 @@
 ---
 title: "Personal access tokens"
-heading: "Use personal access tokens"
-description: "Personal access tokens function similar to session tokens and can be used by integrations to [authenticate against the REST API](https://api.mattermost.com/#tag/authentication). It is the most commonly used type of token for integrations."
+heading: "Personal access tokens"
+description: "Personal access tokens function similar to session tokens and can be used by integrations to authenticate against the Mattermost REST API. It is the most commonly used type of token for integrations."
 weight: 20
 aliases:
   - /integrate/admin-guide/admin-personal-access-token/
 ---
+Personal access tokens function similar to session tokens and can be used by integrations to {{< newtabref title="authenticate against the REST API." href="https://api.mattermost.com/#tag/authentication" >}} It is the most commonly used type of token for integrations.
 
 ## Create a personal access token
 
-1. Enable personal access tokens in **Product menu > Integrations > Integration Management**.
+1. Enable personal access tokens in **System Console > Integrations > Integration Management**.
 2. Identify the account you want to create a personal access token with. You may optionally create a new user account for your integration, such as for a bot account. By default, only System Admins have permissions to create a personal access token.
 3. To create an access token with a non-admin account, you must first give it the appropriate permissions. Go to **System Console > User Management > Users**, search for the user account, then select **Manage Roles** from the dropdown.
 
@@ -24,13 +25,13 @@ aliases:
     Then select **Save**.
 
 5. Sign in to the user account to create a personal access token.
-6. Go to **Settings > Security > Personal Access Tokens**, then select **Create New Token**.
+6. Go to **Profile > Security > Personal Access Tokens**, then select **Create Token**.
 7. Enter a description for the token, so you remember what it's used for. Then select **Save**.
 
     **Note:** If you create a personal access token for a System Admin account, be extra careful who you share it with. The token enables a user to have full access to the account, including System Admin privileges. It's recommended to create a personal access token for non-admin accounts.
   
 8. Copy the access token now for your integration and store it in a secure location. You won't be able to see it again!
-9. You're all set! You can now use the personal access token for integrations to interact with your Mattermost server and [authenticate against the Mattermost REST API](https://api.mattermost.com/#tag/authentication).
+9. You're all set! You can now use the personal access token for integrations to interact with your Mattermost server and {{< newtabref title="authenticate against the REST API" href="https://api.mattermost.com/#tag/authentication" >}}.
 
     ![image](access_token_settings.png)
 
@@ -54,7 +55,7 @@ Tokens can also be temporarily deactivated from the user's profile. Once deactiv
 
 ### How do personal access tokens differ from regular session tokens?
 
-- Personal access tokens do not expire. As a result, you can more easily integrate with Mattermost, bypassing the [session length limits set in the System Console](https://docs.mattermost.com/configure/configuration-settings.html#session-lengths).
+- Personal access tokens do not expire. As a result, you can more easily integrate with Mattermost, bypassing the [session length limits set in the System Console](https://docs.mattermost.com/configure/environment-configuration-settings.html#session-lengths).
 - Personal access tokens can be used to authenticate against the API more easily, including with AD/LDAP and SAML accounts.
 - You can optionally assign additional roles for the account creating personal access tokens. This lets the account post to any channel in Mattermost, including direct messages.
 
@@ -62,7 +63,7 @@ Besides the above differences, personal access tokens are exactly the same as re
 
 ### Can I set personal access tokens to expire?
 
-Not in Mattermost, but you can automate your integration to cycle its token [through the REST API](https://api.mattermost.com/#operation/CreateUserAccessToken).
+Not in Mattermost, but you can automate your integration to cycle its token {{< newtabref title="through the REST API" href="https://api.mattermost.com/#operation/CreateUserAccessToken" >}}.
 
 ### How do I identify a badly behaving personal access token?
 
