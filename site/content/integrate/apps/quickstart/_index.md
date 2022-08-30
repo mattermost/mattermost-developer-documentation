@@ -8,7 +8,7 @@ To get started making Mattermost Apps, the first thing you need to do is set up 
 
 ## Prerequisites
 
-You need [the latest version of Docker](https://docs.docker.com/get-docker/) installed.
+You need the latest version of [Docker Desktop](https://docs.docker.com/desktop/) (Windows, Mac, or Linux desktop application) or [Docker Engine](https://docs.docker.com/engine/) (CLI) installed.
 
 ## Set up your development environment
 
@@ -18,7 +18,7 @@ Clone and enter a local copy of the [mattermost-app-examples repository](https:/
 git clone https://github.com/mattermost/mattermost-app-examples && cd mattermost-app-examples
 ```
 
-When you're developing your own App, you need an actual Mattermost Server to be running. The development environment accomplishes this by using a [`docker-compose.yml`](https://github.com/mattermost/mattermost-app-examples/blob/master/docker-compose.yml) with a network named `mattermost-apps-dev`. This compose has just two containers: the Mattermost Server with a Postgres database. The Mattermost image itself is preconfigured with settings for local App development.
+When you're developing your own App, you need an actual Mattermost Server to be running. The development environment accomplishes this by using a [`docker-compose.yml`](https://github.com/mattermost/mattermost-app-examples/blob/master/docker-compose.yml) with a network named `mattermost-apps-dev`. This Docker Compose file has just two containers: the Mattermost Server and a Postgres database. The Mattermost image itself is preconfigured with settings for local App development.
 
 Because they exist on a pre-defined network, other `docker-compose.yml` configurations can connect their containers to this development environment by specifying the same `mattermost-apps-dev` Docker network. Then the Mattermost Server can be accessed at `http://mattermost:8065` by any other container on the `mattermost-apps-dev` network. Similarly, your own development Apps can then be accessed by Mattermost via their service name (e.g., `http://mattermost-apps-typescript-hello-world:4000`). You can learn more about Docker networks in the [official documentation](https://docs.docker.com/network/).
 

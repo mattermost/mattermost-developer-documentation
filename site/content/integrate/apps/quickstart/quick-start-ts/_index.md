@@ -1,8 +1,8 @@
 ---
 title: "Hello world in TypeScript"
-heading: "Create a wello world Mattermost App in TypeScript"
+heading: "Create a hello world Mattermost App in TypeScript"
 description: "This quick start guide will walk you through the basics of creating a hello world Mattermost App in TypeScript."
-weight: 20
+weight: 10
 aliases:
   - /integrate/apps/quick-start-js/
 ---
@@ -17,7 +17,7 @@ This quick start guide will walk you through the basics of creating a hello worl
 
 Before you can start with your App, you first need to set up your environment by following the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}).
 
-You also need an [LTS version of NodeJS](https://nodejs.org/en/download/).
+You also need [NodeJS v16 (Gallium) LTS](https://nodejs.org/en/download/).
 
 ## Download and start the App
 

@@ -33,7 +33,7 @@ When you develop using the App framework, your Apps can:
 
 Apps are now generally available and we always appreciate your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost community instance.
 
-Read the quick start guides for [Hello World in TypeScript]({{< ref "quickstart/quick-start-js" >}}) or [Hello World in Go]({{< ref "quickstart/quick-start-go" >}}) to learn how to write your first pp.
+Read the quick start guides for [Hello World in TypeScript]({{< ref "quickstart/quick-start-js" >}}) or [Hello World in Go]({{< ref "quickstart/quick-start-go" >}}) to learn how to write your first App.
 
 ## FAQ
 
@@ -41,7 +41,7 @@ Read the quick start guides for [Hello World in TypeScript]({{< ref "quickstart/
 
 That depends on your use case, as they each have benefits.
 
-The built-in [incoming webhook]({{< ref "/integrate/webhooks/incoming" >}}) is great for simple use cases. It requires the incoming payload to contain a valid {{< newtabref href="https://pkg.go.dev/github.com/nhannv/mattermost-server/model#Post" title="Post" >}} JSON object, but some external systems don't allow customization of the fields included in the webhook payload. Compared to built-in webhooks, an App or plugin can be customized to receive an HTTP webhook posting from another system, and can process the incoming data then augment it or make an actionable message in a channel.
+The built-in [incoming webhook]({{< ref "/integrate/webhooks/incoming" >}}) is great for simple use cases. It requires the incoming payload to contain a valid {{< newtabref href="https://pkg.go.dev/github.com/mattermost/mattermost-server/v6/model#Post" title="Post" >}} JSON object, but some external systems don't allow customization of the fields included in the webhook payload. Compared to built-in webhooks, an App or plugin can be customized to receive an HTTP webhook posting from another system, and can process the incoming data then augment it or make an actionable message in a channel.
 
 A plugin should be used when you need to [directly alter the UI]({{< ref "integrate/plugins/components/webapp/best-practices" >}}) in Mattermost or you have a feature that requires low latency with the server (such as replacing characters in any message [before it is saved]({{< ref "integrate/plugins/components/server/reference#Hooks.MessageWillBePosted" >}})). Currently, plugins have several [UX hooks]({{< ref "integrate/plugins/components/server/reference#Hooks" >}}) that Apps cannot access, however we plan to add/migrate more UX hooks into the Apps framework over time. Please see the [plugin documentation]({{< ref "integrate/plugins" >}}) for more information.
 

@@ -2,7 +2,7 @@
 title: "Serverless on AWS or OpenFaaS in Go"
 heading: "Create a serverless Mattermost App on AWS or OpenFaaS in Go"
 description: "This quick start guide will walk you through the basics of using creating a serverless Mattermost App in Go on AWS or OpenFaaS."
-weight: 10
+weight: 20
 aliases:
   - /integrate/apps/quick-start-serverless/
 ---

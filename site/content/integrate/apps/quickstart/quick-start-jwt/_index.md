@@ -2,7 +2,7 @@
 title: "JWT in Go"
 heading: "Use JWT in a Mattermost App in Go"
 description: "This quick start guide will walk you through the basics of using JWT in a Mattermost App in Go."
-weight: 10
+weight: 30
 ---
 
 This quick start guide will walk you through the basics of using [JSON Web Tokens (JWT)](https://jwt.io/) in a Mattermost App in Go. In this guide you will review an App that:
@@ -82,4 +82,4 @@ docker compose down
 
 ## Conclusion
 
-You now know how to create a Mattermost App in Go. If you have questions about building Apps or want to show off what you're building, join us on the [Integrations & Apps channel in the Mattermost Community server](https://community.mattermost.com/core/channels/integrations)!
+You now know how to create a Mattermost App in Go that uses JWTs. If you have questions about building Apps or want to show off what you're building, join us on the [Integrations & Apps channel in the Mattermost Community server](https://community.mattermost.com/core/channels/integrations)!

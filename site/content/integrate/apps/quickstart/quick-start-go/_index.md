@@ -96,4 +96,4 @@ docker compose down
 
 ## Conclusion
 
-You now know how to create a Mattermost App in Go. If you have questions about building apps or want to show off what you're building, join us on the [Integrations & Apps channel in the Mattermost Community server](https://community.mattermost.com/core/channels/integrations)!
+You now know how to create a Mattermost App in Go that can deploy to serverless environments. If you have questions about building Apps or want to show off what you're building, join us on the [Integrations & Apps channel in the Mattermost Community server](https://community.mattermost.com/core/channels/integrations)!
