@@ -57,7 +57,7 @@ The following quick start guides can help you start developing a Mattermost App 
 | Go         | [Hello World in Go]({{< ref "/integrate/apps/quickstart/quick-start-go" >}})                           |
 | Go         | [JWT in Go]({{< ref "/integrate/apps/quickstart/quick-start-jwt" >}})                                  |
 | Go         | [Serverless on AWS or OpenFaaS in Go]({{< ref "/integrate/apps/quickstart/quick-start-serverless" >}}) |
-| TypeScript | [Hello World in TypeScript]({{< ref "/integrate/apps/quickstart/quick-start-js" >}})                   |
+| TypeScript | [Hello World in TypeScript]({{< ref "/integrate/apps/quickstart/quick-start-ts" >}})                   |
 | Python     | [Hello World in Python]({{< ref "/integrate/apps/quickstart/quick-start-python" >}})                   |
 
 More guides from community members are encouraged! Check out the [open issue](https://github.com/mattermost/mattermost-plugin-apps/issues/351) and our [contributing guide]({{< ref "/contribute/getting-started" >}}) for more details.

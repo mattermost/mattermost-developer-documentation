@@ -33,7 +33,7 @@ When you develop using the App framework, your Apps can:
 
 Apps are now generally available and we always appreciate your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost community instance.
 
-Read the quick start guides for [Hello World in TypeScript]({{< ref "quickstart/quick-start-js" >}}) or [Hello World in Go]({{< ref "quickstart/quick-start-go" >}}) to learn how to write your first App.
+Read the quick start guides for [Hello World in TypeScript]({{< ref "quickstart/quick-start-ts" >}}) or [Hello World in Go]({{< ref "quickstart/quick-start-go" >}}) to learn how to write your first App.
 
 ## FAQ
 
