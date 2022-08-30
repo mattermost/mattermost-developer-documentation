@@ -5,32 +5,91 @@ description: "The App lifecycle"
 weight: 20
 aliases:
   - /integrate/apps/api/lifecycle/
+mermaid: true
 ---
 
 ## Install
 
-Installation of an App is a process when a System Admin installs already deployed apps, within their Mattermost installation. As mentioned above the list of the registered apps are in the memory of the Apps Plugin. Whenever the System Admin executes an `/install` slash command or selects **Install** in the Marketplace, appropriate permissions are requested and the app is installed. A bot and an OAuth app are created on installation, and an `OnInstall` call is also sent to the app and relevant lambda function (if applicable).
+Installation of an App is a process where a System Admin installs already deployed apps within their Mattermost installation.
+Whenever the System Admin executes an `/apps install` slash command or selects **Install** in the Marketplace, appropriate permissions are requested and the App is installed.
+A bot and an OAuth app are created on installation, and an `OnInstall` call is sent to the App if it was defined in the manifest.
 
-![Flow of installing an app in AWS](install-mm-aws-app.png)
+{{<mermaid>}}
+sequenceDiagram
+    actor Sysadmin
+    Sysadmin->>Mattermost Server: install app
+    Mattermost Server->>Apps Plugin: install app
+    Apps Plugin->>App: request manifest
+    App->>Apps Plugin: send manifest
+    Apps Plugin->>Sysadmin: request permissions
+    Sysadmin->>Apps Plugin: grant permissions
+    Apps Plugin->>Mattermost Server: create bot
+    Apps Plugin->>Mattermost Server: create OAuth app
+    Apps Plugin->>Apps Plugin: enable app
+    Apps Plugin->>App: call OnInstall if defined
+{{</mermaid>}}
 
-Apps are installed with `/apps install`:
+### `/apps install` parameters
 
-- Manifest > Installed app
-  - Consent to permissions, locations, OAuth app type
-  - Create Bot+Access Token, OAuth App
-  - HTTP: collect app’s JWT secret
-- Invoke “OnInstall” callback on the App, if defined in manifest
-- Also Uninstall/Enable/Disable per App
+The generic form of the `/apps install` command is:
+
+```
+/apps install <DeployMethod> <ManifestURL>
+```
+
+The `DeployMethod` specifies how the App is deployed. The supported values are:
+
+- `http`
+- `aws_lambda` (serverless)
+- `open_faas` (serverless)
+
+The `ManifestURL` is the URL to the App's `manifest.json` data.
+
+For example, to install an App that uses HTTP and is deployed at `http://my-app:8000`, the following command is used:
+
+```
+/apps install http http://my-app:8000/manifest.json
+```
 
 ## Uninstall
 
-A System Admin can uninstall an app using the `/uninstall` slash command. On uninstallation appropriate bot and an OAuth app are deleted, `OnUninstall` call is sent to the app as well. Worth mentioning that the current implementation is not deleting the user data.
+A System Admin can uninstall an App using the `/apps uninstall` slash command. On uninstallation appropriate bot and an OAuth app are deleted, and an `OnUninstall` call is sent to the App if it was defined in the manifest. User data is not deleted.
+
+{{<mermaid>}}
+sequenceDiagram
+    actor Sysadmin
+    Sysadmin->>Mattermost Server: uninstall app
+    Mattermost Server->>Apps Plugin: uninstall app
+    Apps Plugin->>App: call OnUninstall if defined
+    Apps Plugin->>Apps Plugin: disable app
+    Apps Plugin->>Mattermost Server: delete bot
+    Apps Plugin->>Mattermost Server: delete OAuth app
+{{</mermaid>}}
+
+## `/apps uninstall` parameters
+
+The generic form of the `/apps uninstall` command is:
+
+```
+/apps uninstall <AppName>
+```
+
+The `AppName` is the value of `AppID` in the App's manifest.
+
+For example, to uninstall an App with an `AppID` of `my-app`, the following command is used:
+
+```
+/apps uninstall my-app
+```
 
 ## Register
 
-Registering an app in a Mattermost installation means the app will be shown in the Marketplace of the installation, can be installed by the System Admin, and used by the users. On a totally new app registration or on a registration of the new version of the already registered app, a new version of the Apps Plugin is cut. The `manifests.json` file is updated and a new app is added in the listing. Later, the plugin is installed in the appropriate installations (using feature flags if necessary).
+Registering an App in a Mattermost installation means the App will be shown in the Marketplace of the installation, can be installed by the System Admin, and used by the users.
+When a new App is registered or a new version of an existing App is registered, the `manifest.json` data from the App updated and a new App is added in the Marketplace listing.
+Later, the plugin is installed in the appropriate installations, using feature flags if necessary.
 
-After the plugin update Apps Plugin synchronizes the list of the registered apps by downloading appropriate manifests from the S3 bucket and storing them in memory. The Marketplace shows renewed app listings and the System Admin can install a new app (or new version). It's worth mentioning here that Apps Plugin needs AWS credentials to download from S3 as well as to invoke lambda functions. Those credentials are read from the following environment variables:
+After registration, the Apps Plugin synchronizes the list of the registered Apps by downloading appropriate manifests from the S3 bucket and storing them in memory. The Marketplace shows renewed App listings and the System Admin can install a new App (or new version).
+Note that the Apps Plugin needs AWS credentials to download from S3 and to invoke lambda functions. Those credentials are read from the following environment variables:
 
 - `APPS_INVOKE_AWS_ACCESS_KEY`
 - `APPS_INVOKE_AWS_SECRET_KEY`

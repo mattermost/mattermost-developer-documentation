@@ -51,3 +51,7 @@
   crossorigin="anonymous"></script>
 <script src="{{ "js/tabs.js" | absURL }}"></script>
 <script src="{{ "js/main.js" | absURL }}"></script>
+{{ if (.Params.mermaid) }}
+<!-- MermaidJS support -->
+<script async src="https://unpkg.com/mermaid@9.1.6/dist/mermaid.min.js"></script>
+{{ end }}
