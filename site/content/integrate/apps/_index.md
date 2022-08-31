@@ -44,7 +44,7 @@ That depends on your use case, as they each have benefits.
 
 Each type of existing integration type is sort of a la carte, whereas the App framework is an all-in-one package that supports its own version of some of those out of the box. Meaning when you install an App, you don't need to go create a separate bot account, OAuth app, webhooks etc. Some pieces are reused, such as the bot account mechanism, but some pieces were remade and are not reused, such as webhooks.
 
-In the case of webhooks, the existing mechanism is only able to create posts, and only accepts an [incoming webhook]({{< ref "/integrate/webhooks/incoming" >}}) payload that matches a Mattermost post's data structure. It does not support other logic for handling arbitrary data structures from external systems.
+In the case of webhooks, the existing mechanism is only able to create posts, and only accepts an [incoming webhook]({{< ref "/integrate/webhooks/incoming" >}}) payload. It does not support other logic for handling arbitrary data structures from external systems.
 
 A plugin should be used when you need to [directly alter the UI]({{< ref "integrate/plugins/components/webapp/best-practices" >}}) in Mattermost or you have a feature that requires low latency with the server (such as replacing characters in any message [before it is saved]({{< ref "integrate/plugins/components/server/reference#Hooks.MessageWillBePosted" >}})). It should be noted that plugins have several [UX hooks]({{< ref "integrate/plugins/components/server/reference#Hooks" >}}) that Apps cannot access. Please see the [plugin documentation]({{< ref "integrate/plugins" >}}) for more information.
 
