@@ -7,12 +7,14 @@ weight: 30
 
 This quick start guide will walk you through the basics of using [JSON Web Tokens (JWT)](https://jwt.io/) in a Mattermost App in Go. In this guide you will review an App that:
 
-- Contains a `manifest.json`, declares itself an HTTP application that acts as a bot, uses JWT, and attaches to locations in the Mattermost interface.
+- Contains a `manifest.json`, declares itself an HTTP application that uses a bot account, uses JWT, and attaches UI elements to locations in the Mattermost interface.
 - Attaches the `send` function to a `/hello-jwt` command and wraps it with a function to authenticate JWT.
+
+Why you would want to use JWT for App development? Using a token, your App can validate the legitimacy of any request verify that this request is indeed coming from the Mattermost server we are expecting it to come from. Simply put, implementing JWT will enhance your App's security and functionality.
 
 ## Prerequisites
 
-Before you can start with your App, you first need to set up your environment by following the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}).
+Before you can start with your App, you should first set up your environment by following the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}).
 
 You also need Go v1.16 or later installed. Please follow the [official guide](https://golang.org/doc/install) to install the latest version.
 
@@ -27,10 +29,16 @@ docker compose up
 
 You'll see Docker install the Go modules and then the App will come online and print the following message:
 
+        Use '/apps install http http://mattermost-apps-golang-jwt:8084/manifest.json' to install the app
+        Use "1234" as the app's JWT secret
+
+The secret comes from this line in `hello.go`:
+
+```go
+var secret = []byte("1234")
 ```
-Use '/apps install http http://mattermost-apps-golang-jwt:8084/manifest.json' to install the app
-Use "1234" as the app's JWT secret
-```
+
+In a production app, you should generate the secret at random per App installation, and store on the App's end to identify the specific Mattermost server.
 
 ## Install the App on Mattermost
 
@@ -56,15 +64,15 @@ The App must provide a manifest, which declares App metadata. In this example, t
 
 ### Bindings and locations
 
-Locations are named elements in the Mattermost user interface. Bindings specify how an App's calls should be displayed and invoked from these locations.
+[Bindings]({{< ref "/integrate/apps/structure/bindings" >}}) specify how an App's calls should be displayed and invoked from these locations. Locations are named elements in the Mattermost user interface. 
 
 The App creates a `/hello-jwt send` slash command that checks the validity of the JWT.
 
-### Functions
+### Call handlers
 
-Functions handle user events and webhooks. The JWT App relies on one main function:
+Call handlers are functions that respond to user interactions and webhook events. The JWT App relies on one main call handler:
 
-- `send` that services the command and modal. This function is wrapped with `withJWT` that requires JWT, which calls `checkJWT` to verify the provided token.
+- `send` that services the command and modal form submissions. This function is wrapped with `withJWT` that requires JWT, which calls `checkJWT` to verify the provided token.
 
 ### Assets
 
@@ -82,4 +90,4 @@ docker compose down
 
 ## Conclusion
 
-You now know how to create a Mattermost App in Go that uses JWTs. If you have questions about building Apps or want to show off what you're building, join us on the [Integrations & Apps channel in the Mattermost Community server](https://community.mattermost.com/core/channels/integrations)!
+You now know how to create a Mattermost App in Go that uses JWTs. If you have questions about building Apps or want to show off what you're building, join us on the [Mattermost Apps channel in the Mattermost Community server](https://community.mattermost.com/core/channels/mattermost-apps)!

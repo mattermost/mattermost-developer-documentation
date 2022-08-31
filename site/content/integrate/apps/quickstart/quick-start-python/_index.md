@@ -7,13 +7,13 @@ weight: 10
 
 This quick start guide will walk you through the basics of creating a hello world Mattermost App in Python. In this guide you will review an App that:
 
-- Contains a `manifest.json`, declares itself an HTTP application that acts as a bot, and attaches to locations in the user interface.
+- Contains a `manifest.json`, declares itself an HTTP application that uses a bot account and attaches to locations in the user interface.
 - Contains a `form` with a `submit` function that can launch a modal (if applicable) and send an interpolated message back to the user.
 - Attaches an icon button to the channel header and creates `/first-command` and `/second-command` slash commands to provide functionality.
 
 ## Prerequisites
 
-Before you can start with your App, you first need to set up your environment by following the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}).
+Before you can start with your App, you should first set up your environment by following the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}).
 
 You also need [Python version 3 installed](https://www.python.org/downloads/).
 
@@ -66,11 +66,11 @@ The App has to provide a manifest, which declares the App's metadata required fo
 
 ### Bindings and locations
 
-This App adds a channel header button and slash commands. In order to register these locations, there is a `POST` handler for the `/bindings` endpoint in your App's API.
+[Bindings]({{< ref "/integrate/apps/structure/bindings" >}}) specify how an App's calls should be displayed and invoked from these locations. This App adds a channel header button and slash commands. In order to register these locations, there is a `POST` handler for the `/bindings` endpoint in your App's API.
 
-### Functions and forms
+### Call handlers and forms
 
-Forms handle user events on the bindings. This App provides a `form` before `POST`ing to the `/submit` function. In the case of a channel header, the form will launch a modal to collect its fields. In the case of a slash command, the form's fields will be collected as arguments from the user's command.
+Call handlers are functions that respond to user interactions and webhook events. Forms handle user events on the [bindings]({{< ref "/integrate/apps/structure/bindings" >}}). This App provides a `form` before `POST`ing to the `/submit` function. In the case of a channel header, the form will launch a modal to collect its fields. In the case of a slash command, the form's fields will be collected as arguments from the user's command.
 
 ### Assets
 
@@ -88,4 +88,4 @@ docker compose down
 
 ## Conclusion
 
-You now know how to create a Mattermost App in Python. If you have questions about building Apps or want to show off what you're building, join us on the [Integrations & Apps channel in the Mattermost Community server](https://community.mattermost.com/core/channels/integrations)!
+You now know how to create a Mattermost App in Python. If you have questions about building Apps or want to show off what you're building, join us on the [Mattermost Apps channel in the Mattermost Community server](https://community.mattermost.com/core/channels/mattermost-apps)!

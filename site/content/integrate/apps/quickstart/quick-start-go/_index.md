@@ -9,14 +9,14 @@ aliases:
 
 This quick start guide will walk you through the basics of creating a hello world Mattermost App in Go. In this guide you will review an App that:
 
-- Contains a `manifest.json`, declares itself an HTTP application that acts as a bot, and attaches to locations in the Mattermost interface.
+- Contains a `manifest.json`, declares itself an HTTP application that uses a bot account and attaches UI elements to locations in the Mattermost interface.
 - Attaches the form `send-modal` in its `bindings` to a button in the channel header, and the form `send` to a `/helloworld` command.
 - Contains a `send` function that sends a parameterized message back to the user.
 - Contains a `send-modal` function that forces displaying the `send` form as a modal.
 
 ## Prerequisites
 
-Before you can start with your App, you first need to set up your environment by following the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}).
+Before you can start with your App, you should first set up your environment by following the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}).
 
 You also need Go v1.16 or later installed. Please follow the [official guide](https://golang.org/doc/install) to install the latest version.
 
@@ -31,9 +31,7 @@ docker compose up
 
 You'll see Docker install the Go modules and then the App will come online and print the following message:
 
-```
-Use '/apps install http http://mattermost-apps-golang-hello-world:4000/manifest.json' to install the App
-```
+    Use '/apps install http http://mattermost-apps-golang-hello-world:4000/manifest.json' to install the App
 
 ## Install the App on Mattermost
 
@@ -61,24 +59,24 @@ To understand the App, examine the following elements:
 
 The App must provide a manifest, which declares App metadata. In this example, the following permissions are requested via the `/manifest.json` endpoint:
 
-- Create posts as a bot.
-- Render icons in the channel header that will communicate with your App when clicked.
-- Create slash commands.
+- Create posts as a bot (`act_as_bot`)
+- Render icons in the channel header (`/channel_header`)
+- Create slash commands (`/command`)
 
 ### Bindings and locations
 
-Locations are named elements in the Mattermost user interface. Bindings specify how an App's calls should be displayed and invoked from these locations.
+[Bindings]({{< ref "/integrate/apps/structure/bindings" >}}) specify what elements your App will show here, and how your App will receive calls when the user interacts with these elements. Locations are named elements in the Mattermost user interface.
 
 The App creates a channel header button, and adds a `/helloworld send` slash command.
 
-### Functions and forms
+### Call handlers and forms
 
-Functions handle user events and webhooks. The hello world App exposes two functions:
+Call handlers are functions that respond to user interactions and webhook events. The hello world App exposes two call handlers:
 
-- `/send` that services the command and modal.
+- `/send` that services the command and modal form submissions.
 - `/send-modal` that forces the modal to be displayed.
 
-The functions use a simple form with a text field named `message` and the form submits to `/send`.
+The call handlers use a simple form with a text field named `message` and the form submits to `/send`.
 
 ### Assets
 
@@ -96,4 +94,4 @@ docker compose down
 
 ## Conclusion
 
-You now know how to create a Mattermost App in Go that can deploy to serverless environments. If you have questions about building Apps or want to show off what you're building, join us on the [Integrations & Apps channel in the Mattermost Community server](https://community.mattermost.com/core/channels/integrations)!
+You now know how to create a Mattermost App in Go. If you have questions about building Apps or want to show off what you're building, join us on the [Mattermost Apps channel in the Mattermost Community server](https://community.mattermost.com/core/channels/mattermost-apps)!
