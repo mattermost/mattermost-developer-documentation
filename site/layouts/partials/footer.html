@@ -53,5 +53,22 @@
 <script src="{{ "js/main.js" | absURL }}"></script>
 {{ if (.Params.mermaid) }}
 <!-- MermaidJS support -->
-<script async src="https://unpkg.com/mermaid@9.1.6/dist/mermaid.min.js"></script>
+<script src="https://unpkg.com/mermaid@9.1.6/dist/mermaid.min.js"></script>
+<!-- MermaidJS initialization and configuration happen in the following block -->
+<script>
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+            fontFamily: "'Noto Sans','Helvetica Neue',Arial,sans-serif",
+            textColor: "#000",
+            primaryColor: "#32A4EC", // Cyan 400
+            primaryTextColor: "#FFF",
+            secondaryColor: "#6167BD", // Purple 400
+            tertiaryColor: "#1ADBDB", // Teal 500
+            // actorTextColor is the color of the text under an actor in a sequence diagram
+            actorTextColor: "#000"
+        }
+    });
+</script>
 {{ end }}
