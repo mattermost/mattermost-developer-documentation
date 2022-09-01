@@ -3,7 +3,7 @@ title: Custom commands
 heading: Custom slash commands
 weight: 20
 ---
-Suppose you want to write an external application that is able to check the weather for certain cities. By creating a custom slash command and setting up the application to handle the HTTP `POST` or `GET` from the command, you can let your users check the weather in their city using your command, say `/weather toronto week`.
+Suppose you want to write an external application that is able to check the weather for certain cities. By creating a custom slash command and setting up the application to handle the HTTP `POST` or `GET` from the command, you can let your users check the weather in their city for the week using your command, say `/weather toronto week`.
 
 You can follow these general guidelines to set up a custom Mattermost slash command for your application.
 
@@ -30,35 +30,37 @@ You can follow these general guidelines to set up a custom Mattermost slash comm
 4. Next, write your external application. Include a function which receives HTTP `POST` or HTTP `GET` requests from Mattermost. The request will look something like this:
 
     ```http request
-    POST /slash-command HTTP/1.1
-    Host: example.com
+    POST /weather HTTP/1.1
+    Host: weather-service:4000
     Accept: application/json
     Accept-Encoding: gzip
     Authorization: Token qzgakf1nx3yt9dr4n8585ihbxy
-    Content-Length: 313
+    Content-Length: 567
     Content-Type: application/x-www-form-urlencoded
     User-Agent: Mattermost-Bot/1.1
     
-    channel_id=jux16pkewjrkfj3ehep1psxyxc&
-    channel_mentions=["saepe-5", "aut-8"]&
-    channel_mentions_ids=["r3j6sby343fpfdxcbwqg95rfsa", "ehjj46yk7ifptr5bpfb966s6mc"]&
+    channel_id=fukxanjgjbnp7ng383at53k1sy&
     channel_name=town-square&
-    command=%2Ftest&
-    response_url=http%3A%2F%2Flocalhost%3A8065%2Fhooks%2Fcommands%2Fxbrkb8p393gjpq5cawei7npije&
-    team_domain=test&
-    team_id=carya1qs77bemjup96ff538snh&
-    text=asd&
-    token=okwexkjpe7ygb8eq1ww58t483w&
-    user_id=aoa1agao6t8fmx3ikt1j9w5ybw&
-    user_mentions=["aaron.peterson", "aaron.medina"]&
-    user_mentions_ids=["q5s3b7xzgprp5eid8h66j9epsy", "czwmumrmw7dfxecww7qibkkoor"]
-    user_name=somename&
+    command=%2Fweather&
+    response_url=http%3A%2F%2Flocalhost%3A8066%2Fhooks%2Fcommands%2Fi11f6nnfgfyk8eg56x9omc6dpa&
+    team_domain=team-awesome&
+    team_id=wx4zz8t4ttgmtxqiwfohijayzc&
+    text=toronto+week&
+    token=qzgakf1nx3yt9dr4n8585ihbxy&
+    trigger_id=ZWZ5ZjRndzR4YmJxOHJlZWh4MXpkaHozbnI6ZXJqNnFjazNyZmd0dWpzODZ3NXI2cmNremg6MTY2MjA0MTY5Njg5NjpNRVFDSUQ5cTZ3MkRHU1RaNjhyaDh1TGl1STlSVHh2R1czSXZ5aGVRYjhkWThuZnlBaUI2YnlPR2ZpWlczR1FmVkdIODlreEp4MmlVT0UxMm9LMjlkZ1d0RC8xbjZRPT0%3D&
+    user_id=erj6qck3rfgtujs86w5r6rckzh&
+    user_name=alan
     ```
 
    If your integration sends back a JSON response, make sure it returns the `application/json` content-type.
 
-5. Add a configurable *MATTERMOST_TOKEN* variable to your application and set it to the **Token** value from step 7. This value will be used by your application to confirm the HTTP `POST` or `GET` request came from Mattermost.
-6. To have your application post a message back to `town-square`, it can respond to the HTTP `POST` request with a JSON response such as:
+5. The HTTP `POST` or `GET` request will contain an `Authorization` header with a bearer token. The bearer token should match the **Token** value from step 3 for a request to be considered valid. 
+
+6. To have your application post a message back to `town-square`, it can respond to the HTTP `POST` or `GET` request with a JSON payload.
+   
+   Mattermost supports several [parameters](#response-parameters) in the response to fine-tune the user's experience. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins]({{< ref "/integrate/plugins" >}}). Messages with advanced formatting can be created by including an [attachment array]({{< ref "/integrate/reference/message-attachments" >}}) and [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}) in the response payload.
+
+   Our external weather application could respond with a JSON payload like so:
 
    ```
    {"response_type": "in_channel", "text": "
@@ -78,40 +80,35 @@ You can follow these general guidelines to set up a custom Mattermost slash comm
    "}
    ```
 
-   which would render in Mattermost as:
+   The JSON response would render in Mattermost as:
 
    ![image](weatherBot.png)
 
-7. You're all set! See [the parameters](#parameters) documentation below for details on what parameters are supported by slash commands. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins]({{< ref "/integrate/plugins" >}}). Messages with advanced formatting can be created by including an [attachment array]({{< ref "/integrate/reference/message-attachments" >}}) and [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}) in the JSON payload.
 
-## Parameters
+## Response parameters
 
 Slash command responses support more than just the `text` field. Here is a full list of supported parameters.
 
 | Parameter            | Description                                                                                                                                                                                                                                                                                                                                          | Required                         |
 |----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|
 | `text`               | [Markdown-formatted](https://docs.mattermost.com/messaging/formatting-text.html) message to display in the post.                                                                                                                                                                                                                                     | If `attachments` is not set, yes |
+| `attachments`        | [Message attachments]({{< ref "/integrate/reference/message-attachments" >}}) used for richer formatting options.                                                                                                                                                                                                                                    | If `text` is not set, yes        |
 | `response_type`      | Set to blank or `ephemeral` to reply with a message that only the user can see. <br/> Set to `in_channel` to create a regular message.<br/> Defaults to `ephemeral`.                                                                                                                                                                                 | No                               |
 | `username`           | Overrides the username the message posts as.<br/> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br/> Must be enabled [in the configuration](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames).                        | No                               |
 | `channel_id`         | Overrides the channel to which the message gets posted.<br/> Defaults to the channel in which the command was issued.                                                                                                                                                                                                                                | No                               |
 | `icon_url `          | Overrides the profile picture the message posts with.<br/> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br/> Must be enabled [in the configuration](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons). | No                               |
 | `goto_location`      | A URL to redirect the user to. Supports many protocols, including `http://`, `https://`, `ftp://`, `ssh://` and `mailto://`.                                                                                                                                                                                                                         | No                               |
-| `attachments`        | [Message attachments]({{< ref "/integrate/reference/message-attachments" >}}) used for richer formatting options.                                                                                                                                                                                                                                    | If `text` is not set, yes        |
 | `type`               | Sets the post `type`, mainly for use by plugins.<br/> If not blank, must begin with `custom_`. Passing `attachments` will ignore this field and set the type to `slack_attachment`.                                                                                                                                                                  | No                               |
 | `extra_responses`    | An array of responses used to send more than one post in your response. Each item in this array takes the shape of its own command response, so it can include any of the other parameters listed here, except `goto_location` and `extra_responses` itself. Available in Mattermost v5.6 and later.                                                 | No                               |
 | `skip_slack_parsing` | If set to `true` Mattermost will skip the [Slack compatibility]({{< ref "/integrate/slash-commands/slack" >}}) handling. Useful if the post contains text or code which is incorrectly handled by the Slack compatibility logic. Available in Mattermost v5.20 and later.                                                                            | No                               |
 | `props`              | Sets the post `props`, a JSON property bag for storing extra or meta data on the post. Mainly used by other integrations accessing posts through the {{< newtabref title="REST API" href="https://api.mattermost.com" >}}.<br/>The following keys are reserved: `from_webhook`, `override_username`, `override_icon_url` and `attachments`.          | No                               |
 
-An example request using some more parameters would look like this:
+An response payload using several parameters could look like this:
 
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 696
-
+```json
 {
     "response_type": "in_channel",
-    "text": "\n#### Test results for July 27th, 2017\n@channel here are the requested test results.\n\n| Component  | Tests Run   | Tests Failed                                   |\n| ---------- | ----------- | ---------------------------------------------- |\n| Server     | 948         | :white_check_mark: 0                           |\n| Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |\n| iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |\n\t\t      ",
+    "text": "\n#### Test results for July 27th, 2017\n@channel here are the requested test results.\n\n| Component  | Tests Run   | Tests Failed                                   |\n| ---------- | ----------- | ---------------------------------------------- |\n| Server     | 948         | :white_check_mark: 0                           |\n| Web Client | 123         | :warning: 2 [(see details)](https://linktologs) |\n| iOS Client | 78          | :warning: 3 [(see details)](https://linktologs) |\n\t\t      ",
     "username": "test-automation",
     "icon_url": "https://mattermost.com/wp-content/uploads/2022/02/icon.png",
     "props": {

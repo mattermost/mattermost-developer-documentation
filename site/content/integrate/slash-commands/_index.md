@@ -11,9 +11,8 @@ aliases:
 
 Slash commands are messages that begin with `/` and trigger an HTTP request to a web service that can in turn post one or more messages in response.
 
-Unlike [outgoing webhooks]({{< ref "/integrate/webhooks/outgoing" >}}), slash commands work in private channels and direct messages in addition to public channels, and can be configured to auto-complete when typing. Note that while Mattermost includes a number of [built-in slash commands]({{< ref "built-in" >}}), this document concerns itself only with the slash commands that can be configured as custom integrations.
-
-You can also create [custom slash commands]({{< ref "custom" >}}).
+Unlike [outgoing webhooks]({{< ref "/integrate/webhooks/outgoing" >}}), slash commands work in private channels and direct messages in addition to public channels, and can be configured to auto-complete when typing.
+Mattermost includes a number of [built-in slash commands]({{< ref "built-in" >}}). You can also create [custom slash commands]({{< ref "custom" >}}).
 
 ## Tips and best practices
 
