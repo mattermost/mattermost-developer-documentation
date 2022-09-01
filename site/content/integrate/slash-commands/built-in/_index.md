@@ -39,4 +39,4 @@ Each Mattermost installation comes with some built-in slash commands that are re
 
 **Note:** `/status` and `/status clear` slash commands listed above will be available in the Mattermost Mobile app in a future release.
 
-To create a custom slash command, see the [Custom slash commands]({{< ref "/integrate/slash-commands/custom" >}}) page.
+To create a custom slash command, see the [Custom slash commands]({{< ref "/integrate/slash-commands/custom" >}}) documentation.
