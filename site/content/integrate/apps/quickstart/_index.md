@@ -28,6 +28,8 @@ You can also access Mattermost from outside the Docker network via [http://local
 
 To change the Mattermost Apps plugin or the Mattermost Server versions, you can edit [`docker-compose.yml`](https://github.com/mattermost/mattermost-app-examples/blob/master/docker-compose.yml).
 
+Be sure to create a `.docker.env` file in the same directory as the `docker-compose.yml` file to store any secrets. Or you can rename and use [`.docker.env.example`](https://github.com/mattermost/mattermost-app-examples/blob/master/.docker.env.example) in the repository to see some example secrets you may use while building Apps.
+
 Next, use the following command to bring your development environment online.
 
 ```sh
