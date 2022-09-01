@@ -12,7 +12,7 @@ mermaid: true
 
 Installation of an App is a process where a System Admin installs already deployed apps within their Mattermost installation.
 Whenever the System Admin executes an `/apps install` slash command or selects **Install** in the Marketplace, appropriate permissions are requested and the App is installed.
-A bot and an OAuth app are created on installation, and an `OnInstall` call is sent to the App if it was defined in the manifest.
+A bot and an OAuth app are created on installation, and an `OnInstall` [callback]({{<ref "/integrate/apps/lifecycle/callbacks">}}) is sent to the App if it was defined in the manifest.
 
 {{<mermaid>}}
 sequenceDiagram
@@ -53,7 +53,7 @@ For example, to install an App that uses HTTP and is deployed at `http://my-app:
 
 ## Uninstall
 
-A System Admin can uninstall an App using the `/apps uninstall` slash command. On uninstallation appropriate bot and an OAuth app are deleted, and an `OnUninstall` call is sent to the App if it was defined in the manifest. User data is not deleted.
+A System Admin can uninstall an App using the `/apps uninstall` slash command. On uninstallation appropriate bot and an OAuth app are deleted, and an `OnUninstall` [callback]({{<ref "/integrate/apps/lifecycle/callbacks">}}) is sent to the App if it was defined in the manifest. User data is not deleted.
 
 {{<mermaid>}}
 sequenceDiagram
