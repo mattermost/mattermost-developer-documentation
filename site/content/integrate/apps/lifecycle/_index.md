@@ -8,11 +8,11 @@ aliases:
 mermaid: true
 ---
 
-## Install
+## Install an App
 
-Installation of an App is a process where a System Admin installs already deployed apps within their Mattermost installation.
-Whenever the System Admin executes an `/apps install` slash command or selects **Install** in the Marketplace, appropriate permissions are requested and the App is installed.
-A bot and an OAuth app are created on installation, and an `OnInstall` [callback]({{<ref "/integrate/apps/lifecycle/callbacks">}}) is sent to the App if it was defined in the manifest.
+App installation refers to the process of a System Admin installing deployed apps within their Mattermost installation.
+Whenever the System Admin executes an `/apps install` slash command, or selects **Install** in the Marketplace, appropriate permissions are requested and the App is installed.
+During an App installation, both a bot and an OAuth app are created, and an `OnInstall` [callback]({{<ref "/integrate/apps/lifecycle/callbacks">}}) is sent to the App if it's defined in the manifest.
 
 {{<mermaid>}}
 sequenceDiagram
@@ -37,7 +37,7 @@ The generic form of the `/apps install` command is:
 /apps install <DeployMethod> <ManifestURL>
 ```
 
-The `DeployMethod` specifies how the App is deployed. The supported values are:
+The `DeployMethod` specifies how the App is deployed. The following values are supported:
 
 - `http`
 - `aws_lambda` (serverless)
@@ -45,15 +45,15 @@ The `DeployMethod` specifies how the App is deployed. The supported values are:
 
 The `ManifestURL` is the URL to the App's `manifest.json` data.
 
-For example, to install an App that uses HTTP and is deployed at `http://my-app:8000`, the following command is used:
+For example, use the following command to install an App that uses HTTP and deploy it to `http://my-app:8000`:
 
 ```
 /apps install http http://my-app:8000/manifest.json
 ```
 
-## Uninstall
+## Uninstall an App
 
-A System Admin can uninstall an App using the `/apps uninstall` slash command. On uninstallation appropriate bot and an OAuth app are deleted, and an `OnUninstall` [callback]({{<ref "/integrate/apps/lifecycle/callbacks">}}) is sent to the App if it was defined in the manifest. User data is not deleted.
+A System Admin can uninstall an App using the `/apps uninstall` slash command. During the uninstallation process, both the bot and the OAuth app are deleted, and an `OnUninstall` [callback]({{<ref "/integrate/apps/lifecycle/callbacks">}}) is sent to the App if it's defined in the manifest. User data is not deleted.
 
 {{<mermaid>}}
 sequenceDiagram
@@ -76,15 +76,15 @@ The generic form of the `/apps uninstall` command is:
 
 The `AppName` is the value of `AppID` in the App's manifest.
 
-For example, to uninstall an App with an `AppID` of `my-app`, the following command is used:
+For example, use the following command to uninstall an App with an `AppID` of `my-app`:
 
 ```
 /apps uninstall my-app
 ```
 
-## Register
+## Register an App
 
-Registering an App in a Mattermost installation means the App will be shown in the Marketplace of the installation, can be installed by the System Admin, and used by the users.
+Registering an App in a Mattermost installation means the App is available in the product Marketplace, can be installed by the System Admin, and once installed, can be available to users.
 When a new App is registered or a new version of an existing App is registered, the `manifest.json` data from the App updated and a new App is added in the Marketplace listing.
 Later, the plugin is installed in the appropriate installations, using feature flags if necessary.
 

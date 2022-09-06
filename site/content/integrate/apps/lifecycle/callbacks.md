@@ -3,8 +3,8 @@ title: Callbacks
 description: Methods that the Apps plugin will invoke on the App
 weight: 10
 ---
-The App [manifest]({{<ref "/integrate/apps/structure/manifest">}}) defines a number of callback methods ([Calls]({{<ref "/integrate/apps/structure/call">}})) that are invoked by the Mattermost Server at various times. If a callback is not defined in the manifest, it will not be executed by the Mattermost Server.
-The supported callbacks are:
+The App [manifest]({{<ref "/integrate/apps/structure/manifest">}}) defines a number of callback methods ([Calls]({{<ref "/integrate/apps/structure/call">}})) that are invoked by the Mattermost Server at various times. If a callback isn't defined in the manifest, it won't be executed by the Mattermost Server.
+The following table lists supported callbacks:
 
 | Name                | Manifest Parameter       | Details                                                                                                                                                                                                                                                                                                                                                                                       |
 |---------------------|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
