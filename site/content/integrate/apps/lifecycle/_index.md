@@ -16,13 +16,13 @@ During an App installation, both a bot and an OAuth app are created, and an `OnI
 
 {{<mermaid>}}
 sequenceDiagram
-    actor Sysadmin
-    Sysadmin->>Mattermost Server: install app
+    actor System Admin
+    System Admin->>Mattermost Server: install app
     Mattermost Server->>Apps Plugin: install app
     Apps Plugin->>App: request manifest
     App->>Apps Plugin: send manifest
-    Apps Plugin->>Sysadmin: request permissions
-    Sysadmin->>Apps Plugin: grant permissions
+    Apps Plugin->>System Admin: request permissions
+    System Admin->>Apps Plugin: grant permissions
     Apps Plugin->>Mattermost Server: create bot
     Apps Plugin->>Mattermost Server: create OAuth app
     Apps Plugin->>Apps Plugin: enable app
@@ -43,7 +43,7 @@ The `DeployMethod` specifies how the App is deployed. The following values are s
 - `aws_lambda` (serverless)
 - `open_faas` (serverless)
 
-The `ManifestURL` is the URL to the App's `manifest.json` data.
+The `ManifestURL` is the URL to the App's [`manifest.json`]({{<ref "/integrate/apps/structure/manifest">}}) data.
 
 For example, use the following command to install an App that uses HTTP and deploy it to `http://my-app:8000`:
 
@@ -57,8 +57,8 @@ A System Admin can uninstall an App using the `/apps uninstall` slash command. D
 
 {{<mermaid>}}
 sequenceDiagram
-    actor Sysadmin
-    Sysadmin->>Mattermost Server: uninstall app
+    actor System Admin
+    System Admin->>Mattermost Server: uninstall app
     Mattermost Server->>Apps Plugin: uninstall app
     Apps Plugin->>App: call OnUninstall if defined
     Apps Plugin->>Apps Plugin: disable app
@@ -86,10 +86,11 @@ For example, use the following command to uninstall an App with an `AppID` of `m
 
 Registering an App in a Mattermost installation means the App is available in the product Marketplace, can be installed by the System Admin, and once installed, can be available to users.
 When a new App is registered or a new version of an existing App is registered, the `manifest.json` data from the App updated and a new App is added in the Marketplace listing.
-Later, the plugin is installed in the appropriate installations, using feature flags if necessary.
 
 After registration, the Apps Plugin synchronizes the list of the registered Apps by downloading appropriate manifests from the S3 bucket and storing them in memory. The Marketplace shows renewed App listings and the System Admin can install a new App (or new version).
-Note that the Apps Plugin needs AWS credentials to download from S3 and to invoke lambda functions. Those credentials are read from the following environment variables:
 
+{{<note "AWS credentials">}}
+The Apps Plugin needs AWS credentials to download from S3 and to invoke lambda functions. The credentials are read from the following environment variables:
 - `APPS_INVOKE_AWS_ACCESS_KEY`
 - `APPS_INVOKE_AWS_SECRET_KEY`
+{{</note>}}
