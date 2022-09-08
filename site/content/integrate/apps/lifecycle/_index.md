@@ -17,14 +17,14 @@ During an App installation, both a bot and an OAuth app are created, and an `OnI
 {{<mermaid>}}
 sequenceDiagram
     actor System Admin
-    System Admin->>Mattermost Server: install app
-    Mattermost Server->>Apps Plugin: install app
+    System Admin->>Mattermost server: install app
+    Mattermost server->>Apps Plugin: install app
     Apps Plugin->>App: request manifest
     App->>Apps Plugin: send manifest
     Apps Plugin->>System Admin: request permissions
     System Admin->>Apps Plugin: grant permissions
-    Apps Plugin->>Mattermost Server: create bot
-    Apps Plugin->>Mattermost Server: create OAuth app
+    Apps Plugin->>Mattermost server: create bot
+    Apps Plugin->>Mattermost server: create OAuth app
     Apps Plugin->>Apps Plugin: enable app
     Apps Plugin->>App: call OnInstall if defined
 {{</mermaid>}}
@@ -58,12 +58,12 @@ A System Admin can uninstall an App using the `/apps uninstall` slash command. D
 {{<mermaid>}}
 sequenceDiagram
     actor System Admin
-    System Admin->>Mattermost Server: uninstall app
-    Mattermost Server->>Apps Plugin: uninstall app
+    System Admin->>Mattermost server: uninstall app
+    Mattermost server->>Apps Plugin: uninstall app
     Apps Plugin->>App: call OnUninstall if defined
     Apps Plugin->>Apps Plugin: disable app
-    Apps Plugin->>Mattermost Server: delete bot
-    Apps Plugin->>Mattermost Server: delete OAuth app
+    Apps Plugin->>Mattermost server: delete bot
+    Apps Plugin->>Mattermost server: delete OAuth app
 {{</mermaid>}}
 
 ## `/apps uninstall` parameters
@@ -85,9 +85,9 @@ For example, use the following command to uninstall an App with an `AppID` of `m
 ## Register an App
 
 Registering an App in a Mattermost installation means the App is available in the product Marketplace, can be installed by the System Admin, and once installed, can be available to users.
-When a new App is registered or a new version of an existing App is registered, the `manifest.json` data from the App updated and a new App is added in the Marketplace listing.
+When a new App is registered or a new version of an existing App is registered, the `manifest.json` data from the App updated and a new App is added in the product Marketplace listing.
 
-After registration, the Apps Plugin synchronizes the list of the registered Apps by downloading appropriate manifests from the S3 bucket and storing them in memory. The Marketplace shows renewed App listings and the System Admin can install a new App (or new version).
+After registration, the Apps Plugin synchronizes the list of the registered Apps by downloading appropriate manifests from the S3 bucket and storing them in memory. The product Marketplace shows renewed App listings and the System Admin can install a new App (or new version).
 
 {{<note "AWS credentials">}}
 The Apps Plugin needs AWS credentials to download from S3 and to invoke lambda functions. The credentials are read from the following environment variables:
