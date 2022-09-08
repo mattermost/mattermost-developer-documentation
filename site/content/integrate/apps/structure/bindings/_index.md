@@ -17,8 +17,6 @@ Bindings ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-app
 
 **Note:** Bindings are fetched (and refreshed) on every channel switch. When the user moves to a different context (like opening a thread, or a post in a search view) new bindings may be fetched to provide the correct bindings for the thread/post context. Bindings are also fetched when an OAuth2 process is completed and when the application gets installed.
 
-One example bindings response is the one from the [Hello World!](https://github.com/mattermost/mattermost-plugin-apps/blob/master/examples/go/hello-world/bindings.json) app.
-
 The expected response should include the following:
 
 | Type   | Function | Description           |
