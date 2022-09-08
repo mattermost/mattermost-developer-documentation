@@ -17,5 +17,6 @@
 For machines using the M1 architecture:
 1. Enable [Rosetta](https://support.apple.com/en-us/HT211861)
 
-- Use the latest NodeJS@16 (>=v16.16)
+2. Use the latest NodeJS@16 (>=v16.16)
+
 - Update [xcode](https://developer.apple.com/xcode/) to latest version (>=v13.4.1)
