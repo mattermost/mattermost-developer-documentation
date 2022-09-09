@@ -1,5 +1,5 @@
 .PHONY: dist
-dist: plugin-data
+dist: plugin-data compass-icons
 	rm -rf ./dist
 	hugo -s site --destination ../dist/html
 
@@ -27,3 +27,10 @@ run:
 build:
 	rm -rf ./dist
 	hugo -s site --destination ../dist/html --printUnusedTemplates
+
+.PHONY: compass-icons
+compass-icons:
+	mkdir -p site/static/css
+	mkdir -p site/static/font
+	curl --no-progress-meter -o site/static/css/compass-icons.css https://mattermost.github.io/compass-icons/css/compass-icons.css
+	curl --no-progress-meter -o "site/static/font/compass-icons.#1" "https://mattermost.github.io/compass-icons/font/compass-icons.{eot,woff2,woff,ttf,svg}"

@@ -4,6 +4,8 @@
 /site/data/PluginGoDocs.json
 /site/data/PluginManifestDocs.json
 /site/data/PluginJSDocs.json
+/site/static/css/compass-icons.css
+/site/static/font/compass-icons.*
 /scripts/node_modules
 /scripts/mattermost-webapp
 /scripts/package-lock.json

@@ -10,31 +10,31 @@ aliases:
 All Apps should define a manifest ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Manifest">}}) as a JSON object.
 The fields of the manifest are:
 
-| Name                       | Type                        | Description                                                                                                                                             |
-|:---------------------------|:----------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `app_id`(*)                | string                      | ID for your App.                                                                                                                                        |
-| `homepage_url`(*)          | string                      | The App homepage. Used in the Marketplace and for OAuth purposes.                                                                                       |
-| `version`                  | string                      | The version of your App, formatted as `v00.00.0000`.                                                                                                    |
-| `display_name`             | string                      | The display name for your App.                                                                                                                          |
-| `description`              | string                      | The description for your App. Used in the product Marketplace. Provide examples of key functionality the App provides in a short paragraph.             |
-| `icon`                     | string                      | The icon for your App. Must be a relative path to a PNG image in the static assets folder. Used as the bot account icon and in the product Marketplace. |
-| `requested_permissions`    | [Permissions](#permissions) | List of permissions needed by the App.                                                                                                                  |
-| `requested_locations`      | [Locations](#locations)     | The list of top-level locations that the App intends to bind to.                                                                                        |
-| `bindings`                 | [Call]({{<ref "call">}})    | The call invoked to retrieve bindings. Default value: `/bindings`                                                                                       |
-| `on_install`               | [Call]({{<ref "call">}})    | The call invoked when the App is installed.                                                                                                             |
-| `on_uninstall`             | [Call]({{<ref "call">}})    | The call invoked when the App is uninstalled, before the App is removed.                                                                                |
-| `on_version_changed`       | [Call]({{<ref "call">}})    | The call invoked when the App needs to be upgraded or downgraded.                                                                                       |
-| `get_oauth2_connect_url`   | [Call]({{<ref "call">}})    | The call invoked with the App's "connect to third party" link is selected, to be redirected to the OAuth flow.                                          |
-| `on_oauth2_complete`       | [Call]({{<ref "call">}})    | The call invoked when the OAuth flow has successfully completed.                                                                                        |
-| `on_remote_webhook`        | [Call]({{<ref "call">}})    | The call invoked when an HTTP webhook is received from a remote system.                                                                                 |
-| `remote_webhook_auth_type` | string                      | Specifies how incoming webhook messages from remote systems should be authenticated by Mattermost.                                                      |
-| `aws_lambda`(*)            | [AWSLambda](#aws-lambda)    | Metadata for an App that can be deployed to AWS Lambda and S3 services, and is accessed using the AWS APIs.                                             |
-| `open_faas`(*)             | [OpenFAAS](#openfaas)       | Metadata for an App that can be deployed to OpenFAAS.                                                                                                   |
-| `http`(*)                  | [HTTP](#http)               | Metadata for an App that is already deployed externally and is accessed using HTTP.                                                                     |
+| Name                                       | Type                        | Description                                                                                                                                             |
+|:-------------------------------------------|:----------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `app_id`{{<compass-icon icon-star>}}       | string                      | ID for your App.                                                                                                                                        |
+| `homepage_url`{{<compass-icon icon-star>}} | string                      | The App homepage. Used in the Marketplace and for OAuth purposes.                                                                                       |
+| `version`                                  | string                      | The version of your App, formatted as `v00.00.0000`.                                                                                                    |
+| `display_name`                             | string                      | The display name for your App.                                                                                                                          |
+| `description`                              | string                      | The description for your App. Used in the product Marketplace. Provide examples of key functionality the App provides in a short paragraph.             |
+| `icon`                                     | string                      | The icon for your App. Must be a relative path to a PNG image in the static assets folder. Used as the bot account icon and in the product Marketplace. |
+| `requested_permissions`                    | [Permissions](#permissions) | List of permissions needed by the App.                                                                                                                  |
+| `requested_locations`                      | [Locations](#locations)     | The list of top-level locations that the App intends to bind to.                                                                                        |
+| `bindings`                                 | [Call]({{<ref "call">}})    | The call invoked to retrieve bindings. Default value: `/bindings`                                                                                       |
+| `on_install`                               | [Call]({{<ref "call">}})    | The call invoked when the App is installed.                                                                                                             |
+| `on_uninstall`                             | [Call]({{<ref "call">}})    | The call invoked when the App is uninstalled, before the App is removed.                                                                                |
+| `on_version_changed`                       | [Call]({{<ref "call">}})    | The call invoked when the App needs to be upgraded or downgraded.                                                                                       |
+| `get_oauth2_connect_url`                   | [Call]({{<ref "call">}})    | The call invoked with the App's "connect to third party" link is selected, to be redirected to the OAuth flow.                                          |
+| `on_oauth2_complete`                       | [Call]({{<ref "call">}})    | The call invoked when the OAuth flow has successfully completed.                                                                                        |
+| `on_remote_webhook`                        | [Call]({{<ref "call">}})    | The call invoked when an HTTP webhook is received from a remote system.                                                                                 |
+| `remote_webhook_auth_type`                 | string                      | Specifies how incoming webhook messages from remote systems should be authenticated by Mattermost.                                                      |
+| `aws_lambda`{{<compass-icon icon-star>}}   | [AWSLambda](#aws-lambda)    | Metadata for an App that can be deployed to AWS Lambda and S3 services, and is accessed using the AWS APIs.                                             |
+| `open_faas`{{<compass-icon icon-star>}}    | [OpenFAAS](#openfaas)       | Metadata for an App that can be deployed to OpenFAAS.                                                                                                   |
+| `http`{{<compass-icon icon-star>}}         | [HTTP](#http)               | Metadata for an App that is already deployed externally and is accessed using HTTP.                                                                     |
 
-{{<note "Mandatory values (*)">}}
+{{<note "Mandatory values" "icon-star">}}
 - The `app_id` and `homepage_url` values must be specified.
-- A deployment method - `aws_lambda`, `open_faas`, or `http` - must be specified.
+- One deployment method - `aws_lambda`, `open_faas`, or `http` - must be specified.
 {{</note>}}
 
 For example, a typical App manifest would look like the following:
@@ -112,19 +112,20 @@ Example:
 #### AWS Lambda
 
 Provides configuration for deploying an App onto the AWS Lambda and S3 services.
+All fields are mandatory ({{<compass-icon icon-star>}}).
 
-| Name           | Type                 | Description       |
-|:---------------|:---------------------|:------------------|
-| `functions`(*) | AWS Lambda functions | List of functions |
+| Name                                    | Type                 | Description       |
+|:----------------------------------------|:---------------------|:------------------|
+| `functions`{{<compass-icon icon-star>}} | AWS Lambda functions | List of functions |
 
 Each AWS Lambda function contains the following fields:
 
-| Name         | Description                                                                                                                                                                                         |
-|:-------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `path`(*)    | Root path of calls to be mapped to this function. For example: `"/"`                                                                                                                                |
-| `name`(*)    | Function's base name; used to compose the actual AWS Lambda name.                                                                                                                                   |
-| `handler`(*) | The name of the function handler.                                                                                                                                                                   |
-| `runtime`(*) | AWS Lambda runtime to use. See the {{<newtabref title="Lambda runtimes" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">}} documentation for a list of supported runtimes. |
+| Name                                  | Description                                                                                                                                                                                             |
+|:--------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `path`{{<compass-icon icon-star>}}    | Root path of calls to be mapped to this function. For example: `"/"`                                                                                                                                    |
+| `name`{{<compass-icon icon-star>}}    | Function's base name; used to compose the actual AWS Lambda name.                                                                                                                                       |
+| `handler`{{<compass-icon icon-star>}} | The name of the function handler.                                                                                                                                                                       |
+| `runtime`{{<compass-icon icon-star>}} | AWS Lambda runtime to use.<br/>See the {{<newtabref title="Lambda runtimes" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">}} documentation for a list of supported runtimes. |
 
 Example:
 ```json
@@ -145,17 +146,18 @@ Example:
 #### OpenFaaS
 
 Provides configuration for deploying an App onto OpenFaaS and `faasd` platforms.
+All fields are mandatory ({{<compass-icon icon-star>}}).
 
-| Name           | Type               | Description       |
-|:---------------|:-------------------|:------------------|
-| `functions`(*) | OpenFaaS functions | List of functions |
+| Name                                    | Type               | Description       |
+|:----------------------------------------|:-------------------|:------------------|
+| `functions`{{<compass-icon icon-star>}} | OpenFaaS functions | List of functions |
 
 Each function contains the following fields:
 
-| Name      | Description                                                                                                    |
-|:----------|:---------------------------------------------------------------------------------------------------------------|
-| `path`(*) | Root path of calls to be mapped to this function. For example: `"/"`                                           |
-| `name`(*) | Function's base name; used to compose the actual OpenFaaS function name, combined with the App ID and version. |
+| Name                               | Description                                                                                                        |
+|:-----------------------------------|:-------------------------------------------------------------------------------------------------------------------|
+| `path`{{<compass-icon icon-star>}} | Root path of calls to be mapped to this function. For example: `"/"`                                               |
+| `name`{{<compass-icon icon-star>}} | Function's base name.<br/>Used to compose the actual OpenFaaS function name, combined with the App ID and version. |
 
 Example:
 ```json

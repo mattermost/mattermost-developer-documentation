@@ -1,6 +1,7 @@
+{{- $icon := .Get 1 -}}
 <aside class="note">
     <div class="note-content">
-        <strong>{{ .Get 0 }}</strong><br>
+        <strong>{{ .Get 0 }}</strong>{{ if not (eq $icon "" ) }}<i class="{{ $icon }}"></i>{{ end }}<br/>
         {{ .Inner | markdownify }}
     </div>
 </aside>
