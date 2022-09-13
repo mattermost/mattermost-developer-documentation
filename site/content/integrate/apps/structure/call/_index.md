@@ -5,7 +5,7 @@ weight: 20
 aliases:
   - /integrate/apps/api/call/
 ---
-A call ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Call">}}) defines an App action that can be invoked.
+A Call defines an App action that can be invoked.
 
 {{<note "Note:">}}
 Content on this page refers to the Mattermost Apps framework and not to the Mattermost Calls functionality.
@@ -13,7 +13,7 @@ Content on this page refers to the Mattermost Apps framework and not to the Matt
 
 ## Data structure
 
-The data structure of a call is:
+The data structure of a call ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Call">}}) is:
 
 | Name     | Type                                | Description                                                                                                                      |
 |:---------|:------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------|
@@ -36,28 +36,36 @@ An example call looks like:
 
 ## Request
 
-When a call is performed, a POST request will be made to the endpoint defined in the call. The call will include a JWT in the `Mattermost-App-Authorization` header. The Acting User ID is included in the request by default.
+When a call is performed, a POST request will be made to the endpoint defined in the call. The call will include a JWT in the `Mattermost-App-Authorization` header. The Acting User's ID is included in the request by default.
 
 The data structure of call request ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallRequest">}}) is:
 
-| Name             | Type                | Description                                                                                |
-|:-----------------|:--------------------|:-------------------------------------------------------------------------------------------|
-| `values`         | map                 | The pairs of key values present in the call. Can be populated by forms and slash commands. |
-| `context`        | [Context](#context) | The context of the call.                                                                   |
-| `raw_command`    | string              | The unparsed command for slash commands.                                                   |
-| `selected_field` | string              | Used in lookups and form refresh to communicate what field.                                |
-| `query`          | string              | Used in lookups and form refresh what query strings is entered by the user.                |
+| Name             | Type                                | Description                                                                                |
+|:-----------------|:------------------------------------|:-------------------------------------------------------------------------------------------|
+| `path`           | string                              | (See above)                                                                                |
+| `expand`         | [Expand]({{<ref "call-metadata">}}) | (See above)                                                                                |
+| `state`          | map                                 | (See above)                                                                                |
+| `values`         | map                                 | The pairs of key values present in the call. Can be populated by forms and slash commands. |
+| `context`        | [Context](#context)                 | The context of the call.                                                                   |
+| `raw_command`    | string                              | The unparsed command for slash commands.                                                   |
+| `selected_field` | string                              | Used in lookups and form refresh to communicate what field.                                |
+| `query`          | string                              | Used in lookups and form refresh what query strings is entered by the user.                |
 
-An example call request looks like:
+An example call request looks like (some `context` fields omitted for brevity):
 
 ```json
 {
-    "values": {},
+    "path": "/send",
+    "expand": {},
     "context": {
-        "acting_user_id": "",
-        "subject": ""
+        "app_id": "hello-world",
+        "location": "/command/helloworld/send",
+        "acting_user": {
+            "id": "k86a9cy93f8azx7jjiy5xfq5jc"
+        },
+        "oauth2": {}
     },
-    "raw_command": "hello"
+    "raw_command": "/helloworld send"
 }
 ```
 
@@ -67,9 +75,7 @@ The request `context` field contains metadata about the request. The data struct
 
 | Name                                                           | Type                                                                                                                            | Description                                                                         |
 |:---------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------|
-| `acting_user_id`                                               | string                                                                                                                          | ID from the user performing the call.                                               |
 | `subject`                                                      | Subject (`string`)                                                                                                              | Event subject.                                                                      |
-| `user_id`                                                      | string                                                                                                                          | ID from the user which is the subject of the call.                                  |
 | `channel_id`                                                   | string                                                                                                                          | ID from the channel from within which the call was performed.                       |
 | `team_id`                                                      | string                                                                                                                          | ID from the team from within which the call was performed.                          |
 | `post_id`                                                      | string                                                                                                                          | ID from the post from within which the call was performed.                          |
@@ -105,8 +111,32 @@ An example context field looks like:
 
 ```json
 {
-    "context": {
-    
+    "context": {        
+        "app_id": "hello-world",
+        "location": "/command/helloworld/send",
+        "user_agent": "webapp",
+        "track_as_submit": true,
+        "mattermost_site_url": "http://localhost:8066",
+        "developer_mode": true,
+        "app_path": "/plugins/com.mattermost.apps/apps/hello-world",
+        "bot_user_id": "3sjcm1ztkbfhpnddz389ycq1pe",
+        "bot_access_token": "tt59irtaopd7fegi3taamd7dxw",
+        "acting_user": {
+            "id": "k86a9cy93f8azx7jjiy5xfq5jc",
+            "delete_at": 0,
+            "username": "",
+            "auth_service": "",
+            "email": "",
+            "nickname": "",
+            "first_name": "",
+            "last_name": "",
+            "position": "",
+            "roles": "",
+            "locale": "",
+            "timezone": null,
+            "disable_welcome_email": false
+        },
+        "oauth2": {}
     }
 }
 ```
@@ -122,7 +152,6 @@ The data structure of a call response is:
 | `data`                 | map                                                                                                           | Used by the `ok` response type to return additional data                                                                   |
 | `navigate_to_url`      | string                                                                                                        | Used by the `navigate` response type to redirect the user to a specified URL                                               |
 | `use_external_browser` | bool                                                                                                          | Used by the `navigate` response type to indicate the system web browser should be used when redirecting the user to an URL |
-| `call`                 | [Call](#data-structure)                                                                                       | Used by the `call` response type to specify a call to execute                                                              |
 | `form`                 | {{<newtabref title="Form" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form">}} | Used by the `form` response type to specify a form to display                                                              |
 
 An example call response looks like:
@@ -143,5 +172,4 @@ There are several types of responses ({{<newtabref title="godoc" href="https://p
 | `ok`       | The action completed successfully.  |
 | `error`    | An error has occurred.              |
 | `form`     | Should open a form.                 |
-| `call`     | Should execute a call.              |
 | `navigate` | Should navigate the user to an URL. |
