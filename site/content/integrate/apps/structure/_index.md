@@ -15,7 +15,8 @@ Apps consist of three kinds of assets:
 
 3. [Static assets]({{<ref "static-assets">}}) (e.g. images)
 
-To interact with users an App must [bind]({{< ref "bindings" >}}) a call handler to a location in the Mattermost user interface. These locations may be slash commands, toolbar and menu items, or embedded in posts.
+To interact with users an App must [bind]({{< ref "bindings" >}}) a call handler to a [location]({{<ref "manifest#locations">}}) in the Mattermost user interface. These locations may be slash commands, toolbar and menu items, or embedded in posts.
 
 A [Binding]({{< ref "bindings" >}}) may display a [Form]({{< ref "interactivity" >}}), or it may invoke a call that will return a form. Forms allow the user to input information with limited dynamic behavior, such as dynamically-populated pick lists, or form refreshes on field changes.
 
+![image](apps-calls_bindings_locations.svg)
