@@ -1,5 +1,5 @@
 .PHONY: dist
-dist: plugin-data compass-icons
+dist: plugin-data
 	rm -rf ./dist
 	hugo -s site --destination ../dist/html
 
