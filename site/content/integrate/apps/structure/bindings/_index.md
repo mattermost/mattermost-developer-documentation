@@ -5,32 +5,26 @@ weight: 30
 aliases:
   - /integrate/apps/api/bindings/
 ---
+Bindings ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding">}}) establish the relationship between [call]({{<ref "/integrate/apps/structure/call">}}) handlers and [locations]({{<ref "/integrate/apps/structure/manifest#locations">}}).
+Whenever the bindings call is executed the App provides a list of bindings based on the [request context]({{<ref "/integrate/apps/structure/call#context">}}).
 
-Bindings ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding)) are what establish the relationship between locations and calls. Whenever the bindings route is called, your app needs to provide the list of bindings available according to the context ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context)). Some fields included in the context:
+Bindings are refreshed when the App is installed, on every channel switch, and when an OAuth2 process has completed. Bindings may also be refreshed when the user moves to a different context, such as opening a thread or a post in a search view.
 
-- Your app's bot user access token
-- The Mattermost Site URL
-- The ID of the user requesting the bindings (acting user ID)
-- The ID of the team the user is currently focused on
-- The ID of the channel the user is currently focused on
-- The ID of the post the user is currently focused on (if applicable)
 
-**Note:** Bindings are fetched (and refreshed) on every channel switch. When the user moves to a different context (like opening a thread, or a post in a search view) new bindings may be fetched to provide the correct bindings for the thread/post context. Bindings are also fetched when an OAuth2 process is completed and when the application gets installed.
+## Top level bindings
 
-The expected response should include the following:
+Bindings are organized by top level [locations]({{<ref "/integrate/apps/structure/manifest#locations">}}). The data structure of a top level binding is:
 
-| Type   | Function | Description           |
-|:-------|:---------|:----------------------|
-| `data` | bindings | The list of bindings. |
+| Name       | Type                                                                                                                             | Description                             |
+|:-----------|:---------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------|
+| `location` | {{<newtabref title="Location" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Location">}} (`string`) | Top level location.                     |
+| `bindings` | {{<newtabref title="Binding" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding">}} (list)       | A list of bindings under this location. |
 
-Bindings are organized by top level locations. Top level bindings just need to define:
+{{<note "Note:">}}
+Bindings for `/in_post` locations should not be included in the response to the bindings call.
+{{</note>}}
 
-| Name       | Type     | Description                             |
-|:-----------|:---------|:----------------------------------------|
-| `location` | string   | Top level location.                     |
-| `bindings` | Bindings | A list of bindings under this location. |
-
-`/in_post` bindings don't need to be defined in this call.
+## Sub-location bindings
 
 ### `/post_menu` bindings
 
@@ -85,6 +79,52 @@ A leaf command must include:
 | `form`        | Form   | (Optional) Form representing the parameters the command can receive. If no form is provided, a form call will be made to the specified call. |
 
 The context of the call for these bindings will include the user ID, the post ID, the root post ID (if any), the channel ID, and the team ID. It will also include the raw command.
+
+### Bindings call response
+
+The response to the bindings call should take the form of an `ok` [call response]({{<ref "/integrate/apps/structure/call#response">}}) where the `data` field contains the bindings.
+
+For example:
+```json
+{
+	"type": "ok",
+	"data": [
+		{
+			"location": "/channel_header",
+			"bindings": [
+				{
+					"location": "send-button",
+					"icon": "icon.png",
+					"label":"send hello message",
+					"call": {
+						"path": "/send-modal"
+					}
+				}
+			]
+		},
+		{
+			"location": "/command",
+			"bindings": [
+				{
+					"icon": "icon.png",
+					"label": "helloworld",
+					"description": "Hello World app",
+					"hint": "[send]",
+					"bindings": [
+						{
+							"location": "send",
+							"label": "send",
+							"call": {
+								"path": "/send"
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
+```
 
 ## Example data flow
 

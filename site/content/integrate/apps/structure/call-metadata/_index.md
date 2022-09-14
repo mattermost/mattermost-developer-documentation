@@ -54,3 +54,7 @@ The following table details what sub-fields are included for each metadata field
 | `user`                                            | {{<newtabref title="User" href="https://pkg.go.dev/github.com/mattermost/mattermost-server/v6/model#User">}}                    | `bot_description`<br/>`delete_at`<br/>`email`<br/>`first_name`<br/>`id`<br/>`is_bot`<br/>`last_name`<br/>`locale`<br/>`nickname`<br/>`roles`<br/>`timezone`<br/>`username` | `id`          |
 | `oauth2_app`                                      | {{<newtabref title="OAuth2Context" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#OAuth2Context">}} | {{<newtabref title="OAuth2App" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#OAuth2App">}}<br/>`connect_url`<br/>`complete_url`               | no sub-fields |
 | `oauth2_user`                                     | _any_                                                                                                                           | all data stored in the {{<newtabref title="OAuth2Context.User" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#OAuth2Context">}} field          | no data       |
+
+{{<note "OAuth2 metadata:">}}
+Note that the metadata returned by the `oauth2_app` and `oauth2_user` metadata fields above will be contained in the `oauth2` field of the [request context]({{<ref "/integrate/apps/structure/call#context">}}).
+{{</note>}}
