@@ -3113,6 +3113,7 @@ a:hover {
 }
 
 code {
+    word-break: break-word;
     font-family: 'Fira Mono','Courier New',Courier,monospace;
 }
 

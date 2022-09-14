@@ -37,6 +37,10 @@ The generic form of the `/apps install` command is:
 /apps install <DeployMethod> <ManifestURL>
 ```
 
+{{<note "AWS Lambda deployments:">}}
+For AWS Lambda deployments, replace `ManifestURL` with `AppID` in the above command example. The `AppID` is defined in the App's [manifest]({{<ref "/integrate/apps/structure/manifest">}}).
+{{</note>}}
+
 The `DeployMethod` specifies how the App is deployed. The following values are supported:
 
 - `http`
@@ -45,7 +49,7 @@ The `DeployMethod` specifies how the App is deployed. The following values are s
 
 The `ManifestURL` is the URL to the App's [`manifest.json`]({{<ref "/integrate/apps/structure/manifest">}}) data.
 
-For example, use the following command to install an App that uses HTTP and deploy it to `http://my-app:8000`:
+For example, use the following command to install an App that was deployed via HTTP to `http://my-app:8000`:
 
 ```
 /apps install http http://my-app:8000/manifest.json
@@ -71,10 +75,10 @@ sequenceDiagram
 The generic form of the `/apps uninstall` command is:
 
 ```
-/apps uninstall <AppName>
+/apps uninstall <AppID>
 ```
 
-The `AppName` is the value of `AppID` in the App's manifest.
+The `AppID` is defined in the App's manifest.
 
 For example, use the following command to uninstall an App with an `AppID` of `my-app`:
 
