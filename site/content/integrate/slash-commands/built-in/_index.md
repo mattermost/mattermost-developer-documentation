@@ -39,7 +39,7 @@ Each Mattermost installation comes with some built-in slash commands that are re
 | /marketplace                                          | Open the Mattermost product Marketplace                                                           | /marketplace
 
 {{<note "Note:">}}
-`/status` and `/status clear` slash commands listed above will be available in the Mattermost Mobile app in a future release.
+`/status` and `/status clear` slash commands listed above will be available in the Mattermost Mobile App in a future release.
 {{</note>}}
 
 To create a custom slash command, see the [Custom slash commands]({{< ref "/integrate/slash-commands/custom" >}}) documentation.
