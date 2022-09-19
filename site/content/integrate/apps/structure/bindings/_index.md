@@ -28,18 +28,18 @@ Bindings for `/in_post` locations should not be included in the response to the 
 
 Sub-location bindings use the following data structure:
 
-| Name                                               | Type                                                                                                                       | Description                                                                                                           | Locations                                         |
-|----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
-| `location`                                         | string                                                                                                                     | The name of the binding location. Values must be unique within each top level binding.                                | all locations                                     |
-| `icon`                                             | string                                                                                                                     | The App icon to display, either a fully-qualified URL or a path to an App static asset. Required for web app support. | `/channel_header`<br/>`/post_menu`                |
-| `label`                                            | string                                                                                                                     | The primary text to display at the binding location; defaults to the value of the `location` field.                   | all locations                                     |
-| `hint`                                             | string                                                                                                                     | Secondary text to display at the binding location                                                                     | `/channel_header`<br/>`/command`                  |
-| `description`                                      | string                                                                                                                     | Extended help text used in modal forms and command autocomplete                                                       | `/command`                                        |
-| `submit` {{<compass-icon icon-radiobox-marked>}}   | Call                                                                                                                       | Executes an action associated with the binding                                                                        | all locations                                     |
-| `form` {{<compass-icon icon-radiobox-marked>}}     | Form                                                                                                                       | The modal form to display                                                                                             | `/channel_header`<br/>`/command`<br/>`/post_menu` |
-| `bindings` {{<compass-icon icon-radiobox-marked>}} | {{<newtabref title="Binding" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding">}} (list) | Additional sub-location bindings                                                                                      | all locations                                     |
+| Name                                    | Type                                                                                                                       | Description                                                                                                           | Locations                                         |
+|-----------------------------------------|----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
+| `location`                              | string                                                                                                                     | The name of the binding location. Values must be unique within each top level binding.                                | all locations                                     |
+| `icon`                                  | string                                                                                                                     | The App icon to display, either a fully-qualified URL or a path to an App static asset. Required for web app support. | `/channel_header`<br/>`/post_menu`                |
+| `label`                                 | string                                                                                                                     | The primary text to display at the binding location; defaults to the value of the `location` field.                   | all locations                                     |
+| `hint`                                  | string                                                                                                                     | Secondary text to display at the binding location                                                                     | `/channel_header`<br/>`/command`                  |
+| `description`                           | string                                                                                                                     | Extended help text used in modal forms and command autocomplete                                                       | `/command`                                        |
+| `submit` {{<compass-icon icon-star>}}   | Call                                                                                                                       | Executes an action associated with the binding                                                                        | all locations                                     |
+| `form` {{<compass-icon icon-star>}}     | Form                                                                                                                       | The modal form to display                                                                                             | `/channel_header`<br/>`/command`<br/>`/post_menu` |
+| `bindings` {{<compass-icon icon-star>}} | {{<newtabref title="Binding" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding">}} (list) | Additional sub-location bindings                                                                                      | all locations                                     |
 
-{{<note "Note" icon-radiobox-marked>}}
+{{<note "Note" icon-star>}}
 Only one of the `submit`, `form`, and `bindings` fields can be specified in a sub-location binding. Specifying more than one is treated as an error.
 {{</note>}}
 
@@ -52,40 +52,70 @@ The following request context fields will be available to calls invoked at each 
 | `/channel_header` | `user_id`<br/>`channel_id`<br/>`team_id`                                  |
 | `/command`        | `user_id`<br/>`root_post_id`<br/>`channel_id`<br/>`team_id`               |
 | `/post_menu`      | `user_id`<br/>`post_id`<br/>`root_post_id`<br/>`channel_id`<br/>`team_id` |
-| `/in_post`        | _TBD_                                                                     |
 
-### `/command` bindings
+### Slash command bindings
 
-For commands we can distinguish between leaf commands (executable subcommand) and partial commands.
+The slash command (`/command`) location allows the creation of multiple, nested slash commands.
+Each slash command can execute a call, display a form, or accept further parameters to trigger a nested command.
 
-A partial command must include:
+The `bindings` field for this location is used to specify nested commands. 
+If this field is specified, the `submit` and `form` fields can't also be specified; an error will occur.
 
-| Name          | Type     | Description                                                                                                               |
-|:--------------|:---------|:--------------------------------------------------------------------------------------------------------------------------|
-| `location`    | string   | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.             |
-| `label`       | string   | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level. |
-| `hint`        | string   | (Optional) Hint line on command autocomplete.                                                                             |
-| `description` | string   | (Optional) Description line on command autocomplete.                                                                      |
-| `bindings`    | Bindings | List of subcommands.                                                                                                      |
-| `call`        | Call     | (Optional) Call to be inherited by all its subcommands.                                                                   |
-| `form`        | Form     | (Optional) Form to be inherited by all its subcommands.                                                                   |
+For example, a slash command binding that returns one day or one week worth of weather information:
 
-A leaf command must include:
+```json
+{
+  "bindings": [
+    {
+      "location": "/command",
+      "bindings": [         
+        {
+          "location": "weather",
+          "label": "Weather conditions",
+          "description": "Show the weather conditions for today or the next week",
+          "hint": "[day|week]",
+          "bindings": [
+            {
+              "location": "day",
+              "label": "Weather for today",
+              "description": "Show the weather conditions for today",
+              "call": {
+                "path": "/weather/day"
+              }
+            },
+            {
+              "location": "week",
+              "label": "Weather for the next week",
+              "description": "Show the weather conditions for the next week",
+              "call": {
+                "path": "/weather/week"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
 
-| Name          | Type   | Description                                                                                                                                  |
-|:--------------|:-------|:---------------------------------------------------------------------------------------------------------------------------------------------|
-| `location`    | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.                                |
-| `label`       | string | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level.                    |
-| `hint`        | string | (Optional) Hint line on command autocomplete.                                                                                                |
-| `description` | string | (Optional) Description line on command autocomplete.                                                                                         |
-| `call`        | Call   | (Optional) Call to perform when executing the command. You must provide a call if there is no form, or the form itself does not have a call. |
-| `form`        | Form   | (Optional) Form representing the parameters the command can receive. If no form is provided, a form call will be made to the specified call. |
+In the Mattermost UI, typing `/weather` shows the details of the slash command:
 
-The context of the call for these bindings will include the user ID, the post ID, the root post ID (if any), the channel ID, and the team ID. It will also include the raw command.
+![image](command_location_weather.png)
+
+Typing `/weather week` shows the details of the nested command:
+
+![image](command_location_weather_week.png)
+
+A user could invoke the slash command using `/weather day` or `/weather week` to get weather conditions for one day or one week, respectively.
 
 ## Bindings call response
 
 The response to the bindings call should take the form of an `ok` [call response]({{<ref "/integrate/apps/structure/call#response">}}) where the `data` field contains the bindings.
+
+{{<note "Note:">}}
+Bindings for `/in_post` locations should not be included in the response.
+{{</note>}}
 
 For example:
 ```json
