@@ -36,7 +36,7 @@ Each Mattermost installation comes with some built-in slash commands that are re
 | /shrug *{message}*                                    | Add `¯\_(ツ)_/¯` to your message                                                                   | /shrug oh well                                             |
 | /status *{emoji_name}* *{descriptive status_message}* | Set a custom status that includes an optional emoji and a descriptive status message              | /status sick Feeling unwell and taking time off to recover |
 | /status clear                                         | Clear the current status                                                                          | /status clear
-| /marketplace                                          | Open the Mattermost Marketplace model                                                             | /marketplace
+| /marketplace                                          | Open the Mattermost product Marketplace                                                             | /marketplace
 
 {{<note "Note:">}}
 `/status` and `/status clear` slash commands listed above will be available in the Mattermost Mobile app in a future release.
