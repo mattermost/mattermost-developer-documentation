@@ -3120,7 +3120,8 @@ code {
     word-break: break-word;
 }
 
-td:first-child code {
+/* Ensure we don't break words in monospaced text of a table cell */
+td>code {
     word-break: normal;
 }
 

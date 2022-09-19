@@ -51,7 +51,7 @@ The data structure of call request ({{<newtabref title="godoc" href="https://pkg
 | `selected_field` | string                              | Used in lookups and form refresh to communicate what field.                                |
 | `query`          | string                              | Used in lookups and form refresh what query strings is entered by the user.                |
 
-An example call request looks like (some `context` fields omitted for brevity):
+An example call request looks like the following (some `context` fields omitted for brevity):
 
 ```json
 {

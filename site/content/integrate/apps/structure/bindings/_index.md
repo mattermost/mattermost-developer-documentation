@@ -26,30 +26,33 @@ Bindings for `/in_post` locations should not be included in the response to the 
 
 ## Sub-location bindings
 
-### `/post_menu` bindings
+Sub-location bindings use the following data structure:
 
-| Name       | Type   | Description                                                                                                       |
-|:-----------|:-------|:------------------------------------------------------------------------------------------------------------------|
-| `location` | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.     |
-| `icon`     | string | (Optional) Either a fully-qualified URL, or a path for an app's static asset.                                     |
-| `label`    | string | (Optional) Text to show in the item. Defaults to location. Must be unique in its level.                           |
-| `call`     | Call   | (Optional) Call to perform. You must provide a call if there is no form, or the form itself does not have a call. |
-| `form`     | Form   | (Optional) Modal form to open. You must provide a form with a call if there is no call defined in the binding.    |
+| Name                                               | Type                                                                                                                       | Description                                                                                                           | Locations                                         |
+|----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
+| `location`                                         | string                                                                                                                     | The name of the binding location. Values must be unique within each top level binding.                                | all locations                                     |
+| `icon`                                             | string                                                                                                                     | The App icon to display, either a fully-qualified URL or a path to an App static asset. Required for web app support. | `/channel_header`<br/>`/post_menu`                |
+| `label`                                            | string                                                                                                                     | The primary text to display at the binding location; defaults to the value of the `location` field.                   | all locations                                     |
+| `hint`                                             | string                                                                                                                     | Secondary text to display at the binding location                                                                     | `/channel_header`<br/>`/command`                  |
+| `description`                                      | string                                                                                                                     | Extended help text used in modal forms and command autocomplete                                                       | `/command`                                        |
+| `submit` {{<compass-icon icon-radiobox-marked>}}   | Call                                                                                                                       | Executes an action associated with the binding                                                                        | all locations                                     |
+| `form` {{<compass-icon icon-radiobox-marked>}}     | Form                                                                                                                       | The modal form to display                                                                                             | `/channel_header`<br/>`/command`<br/>`/post_menu` |
+| `bindings` {{<compass-icon icon-radiobox-marked>}} | {{<newtabref title="Binding" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding">}} (list) | Additional sub-location bindings                                                                                      | all locations                                     |
 
-The call for these bindings will include in the context the user ID, the post ID, the root post ID if any, the channel ID, and the team ID.
+{{<note "Note" icon-radiobox-marked>}}
+Only one of the `submit`, `form`, and `bindings` fields can be specified in a sub-location binding. Specifying more than one is treated as an error.
+{{</note>}}
 
-### `/channel_header` bindings
+## Call context data
 
-| Name       | Type   | Description                                                                                                                 |
-|:-----------|:-------|:----------------------------------------------------------------------------------------------------------------------------|
-| `location` | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.               |
-| `icon`     | string | (Optional/Web App required) Either a fully-qualified URL, or a path for an app's static asset.                              |
-| `label`    | string | (Optional) Text to show in the item on mobile and webapp collapsed view. Defaults to location. Must be unique in its level. |
-| `hint`     | string | (Optional/Web App required) Text to show in tooltip.                                                                        |
-| `call`     | Call   | (Optional) Call to perform. You must provide a call if there is no form, or the form itself does not have a call.           |
-| `form`     | Form   | (Optional) Modal form to open. You must provide a form with a call if there is no call defined in the binding.              |
+The following request context fields will be available to calls invoked at each binding location:
 
-The context of the call for these bindings will include the user ID, the channel ID, and the team ID.
+| Location          | Context fields                                                            |
+|-------------------|---------------------------------------------------------------------------|
+| `/channel_header` | `user_id`<br/>`channel_id`<br/>`team_id`                                  |
+| `/command`        | `user_id`<br/>`root_post_id`<br/>`channel_id`<br/>`team_id`               |
+| `/post_menu`      | `user_id`<br/>`post_id`<br/>`root_post_id`<br/>`channel_id`<br/>`team_id` |
+| `/in_post`        | _TBD_                                                                     |
 
 ### `/command` bindings
 
@@ -75,12 +78,12 @@ A leaf command must include:
 | `label`       | string | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level.                    |
 | `hint`        | string | (Optional) Hint line on command autocomplete.                                                                                                |
 | `description` | string | (Optional) Description line on command autocomplete.                                                                                         |
-| `call`        | Call   | (Optional) Call to perform when executing the command. You must provide a call if there is no form, or the form itself does not have a call. |  |
+| `call`        | Call   | (Optional) Call to perform when executing the command. You must provide a call if there is no form, or the form itself does not have a call. |
 | `form`        | Form   | (Optional) Form representing the parameters the command can receive. If no form is provided, a form call will be made to the specified call. |
 
 The context of the call for these bindings will include the user ID, the post ID, the root post ID (if any), the channel ID, and the team ID. It will also include the raw command.
 
-### Bindings call response
+## Bindings call response
 
 The response to the bindings call should take the form of an `ok` [call response]({{<ref "/integrate/apps/structure/call#response">}}) where the `data` field contains the bindings.
 
