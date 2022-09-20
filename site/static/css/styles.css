@@ -3129,6 +3129,16 @@ td>a {
     word-break: inherit;
 }
 
+/* Make the chevron size in the collapse toggle larger than normal */
+span.collapseToggle>[class^="icon-"]:before, [class*=" icon-"]:before {
+    font-size: 150%;
+}
+
+/* Add space between consecutive collapsable blocks */
+.collapseCard {
+    margin-bottom: 10px;
+}
+
 .container-fluid {
     max-width: 1140px;
 }
