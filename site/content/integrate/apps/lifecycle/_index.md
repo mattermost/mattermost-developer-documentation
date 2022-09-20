@@ -57,7 +57,7 @@ For example, use the following command to install an App that was deployed via H
 
 ## Uninstall an App
 
-A System Admin can uninstall an App using the `/apps uninstall` slash command. During the uninstallation process, both the bot and the OAuth app are deleted, and an `OnUninstall` [callback]({{<ref "/integrate/apps/lifecycle/callbacks">}}) is sent to the App if it's defined in the manifest. User data is not deleted.
+A System Admin can uninstall an App using the `/apps uninstall` slash command. During the uninstallation process, both the bot and the OAuth app are deleted, and an `OnUninstall` [callback]({{<ref "/integrate/apps/lifecycle/callbacks">}}) is sent to the App if it's defined in the manifest.
 
 {{<mermaid>}}
 sequenceDiagram
