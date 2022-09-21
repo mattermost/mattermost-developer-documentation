@@ -23,7 +23,7 @@ Set up your development environment for building, running, and testing the Matte
     mkdir -p mattermost-webapp/dist
     cd mattermost-server
     ln -nfs ../mattermost-webapp/dist client
-    cd ..
+    cd ../mattermost-webapp
     ```
 
 5. Install NVM and use it to install the required version of Node.js:
