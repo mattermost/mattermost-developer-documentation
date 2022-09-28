@@ -40,4 +40,4 @@ Currently there is no mobile app component of plugins but it is planned for the 
 
 ----
 
-If you'd like to better understand how plugins work, [see the contributor documentation on plugins]({{< ref "/contribute/server/plugins" >}}).
+If you'd like to better understand how plugins work, [see the contributor documentation on plugins]({{< ref "/contribute/more-info/server/plugins" >}}).
