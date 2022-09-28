@@ -100,6 +100,7 @@ The ID for a "server" as seen by Split is the Mattermost server's telemetry ID. 
 ```bash
 $ curl -s https://<your-workspace-url>/api/v4/config/client?format=old | jq ".TelemetryId"
 ```
+
 #### Target using the telemetry ID
 
 With the telemetry ID, go to your split and do the following:
@@ -113,7 +114,7 @@ Now your workspace will have its feature flag set according to this rule, regard
 
 ### Add or update a feature flag for community.mattermost.com
 
-Note that this will set the flag for community.mattermost.com, community-release.mattermost.com, and community-daily.mattermost.com. It is not possible to set a rule for only one via Split. It is possible to set the flags only for one version of community via environment variables. This will require manual configuration by the SRE team. You can ask for support for this on community.mattermost.com via the `@sresupport` mention.
+You can post in [Community Configuration channel](https://community.mattermost.com/core/channels/community-configuration)) with the feature flag name and what you want the admins to set it to.
 
 To set a flag via Split for community:
 
@@ -130,7 +131,7 @@ The feature flag is now set for community.mattermost.com.
 ### Environments
 
  - Cloud Test - All the Cloud test servers/workspaces, including those created on PRs and by the ``/cloud`` command.
- - Cloud Staging - Mainly community.mattermost.com, including community-release and community-daily. It's not possible to target those separately.
+ - Cloud Staging - Mainly community.mattermost.com.
  - Cloud Production - All our production Cloud workspaces.
 
 ### Split FAQ
@@ -164,7 +165,7 @@ Optionally the feature flag can be set to ``true`` in code if we are not yet rea
 
 Tests should be written to verify all states of the feature flag. Tests should cover any migrations that may take place in both directions (i.e., from "off" to "on" and from "on" to "off"). Ideally E2E tests should be written before the feature is merged, or at least before the feature flag is removed.
 
-# When to use
+## When to use
 
 There are no hard rules on when a feature flag should be used. It is left up to the best judgement of the responsible engineers to determine if a feature flag is required. The following are guidelines designed to help guide the determination:
 
@@ -202,26 +203,23 @@ Some [examples are here](https://github.com/mattermost/mattermost-server/blob/ma
      1. PR to server code to add the new feature flag. 
      2. PR to mobile to update the types and to actually use the feature flag.
 
-5. How do we enable a feature flag for testing on the community server?
-   - You can post in [Community Configuration channel](https://community.mattermost.com/core/channels/community-configuration)) with the feature flag name and what you want the admins to set it to.
-
-6. What is the environment variable to set a feature flag?
+5. What is the environment variable to set a feature flag?
    - It is `MM_FEATUREFLAG_<myflag>`.
 
-7. Can plugins use feature flags to enable small features aside of the version forcing feature flag?
+6. Can plugins use feature flags to enable small features aside of the version forcing feature flag?
    - Yes. You can create feature flags as if they were added for the core product, and they'll get included in the plugin through the config.
 
-8. Does it make sense to use feature flags for A/B testing?
+7. Does it make sense to use feature flags for A/B testing?
    - Yes, this is something we've started to do using split.io.
 
-9. Do feature flag changes require the server to be restarted?
+8. Do feature flag changes require the server to be restarted?
    - Feature flags don’t require a server restart unless the feature being flagged requires a restart itself.
 
-10. For features that are requested by self-hosted customers, why do we have to deploy to Cloud first, rather than having the customer who has the test case test it?
+9. For features that are requested by self-hosted customers, why do we have to deploy to Cloud first, rather than having the customer who has the test case test it?
     - Cloud is the way to validate the stability of the feature before it goes to self-hosted customers. In exceptional cases we can let the self-hosted customer know that they can use environment variables to enable the feature flag (but specify that the feature is experimental).
 
-11. How does the current process take into account bugs that may arise on self-hosted specifically?
+10. How does the current process take into account bugs that may arise on self-hosted specifically?
     - The process hasn’t changed much from the old release process: Features can still be tested on self-hosted servers once they have been rolled out to Cloud. The primary goal is that bugs are first identified on Cloud servers.
 
-12. How can self-hosted installations set feature flags?
+11. How can self-hosted installations set feature flags?
     - Self-hosted installations can set environment variables to set feature flag values. However, users should recognize that the feature is still considered "experimental" and should not be enabled on production servers.
