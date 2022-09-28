@@ -156,9 +156,7 @@ When the feature is rolled out to customers, logs will show if there are crashes
 
 ## Self-hosted releases
 
-For a feature-flagged feature to be included in a self-hosted release, the feature flag should be removed.
-
-Feature flags are generally off by default and self-hosted releases do not contact the management system. Therefore feature flags that are not ready for a self-hosted release will be automatically disabled for all self-hosted releases.
+For a feature-flagged feature to be included in a self-hosted release, the feature flag should be removed. Feature flags are generally off by default and self-hosted releases do not contact the management system. Therefore feature flags that are not ready for a self-hosted release will be automatically disabled for all self-hosted releases.
 
 Optionally the feature flag can be set to ``true`` in code if we are not yet ready to fully remove the feature flag. Some [examples are here](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
 
@@ -168,7 +166,7 @@ Tests should be written to verify all states of the feature flag. Tests should c
 
 # When to use
 
-There are no hard rules on when a feature flag should be used. It is left up to the best judgement of the responsible engineers to determine if a feature flag is required. The following are guidelines designed to help guide the determination.
+There are no hard rules on when a feature flag should be used. It is left up to the best judgement of the responsible engineers to determine if a feature flag is required. The following are guidelines designed to help guide the determination:
 
 - Any "substantial" feature should have a flag
 - Features that are probably substantial:
@@ -179,7 +177,7 @@ There are no hard rules on when a feature flag should be used. It is left up to 
     - Refactoring
     - Changes that are not user facing and can be completely verified by unit and E2E testing.
 
-In all cases, ask yourself: Why do I need to add a feature flag? If I don't add one, what options do I have to control the impact on application reliability and user experience (e.g. a config setting or System Console setting)?
+In all cases, ask yourself: Why do I need to add a feature flag? If I don't add one, what options do I have to control the impact on user experience (e.g. a config setting or System Console setting)?
 
 ## Examples of feature flags
 
