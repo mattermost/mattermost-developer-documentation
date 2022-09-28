@@ -45,16 +45,23 @@ Set up your development environment for building, running, and testing the Matte
 
     - On Linux-based operating systems, use your preferred package manager to install it.
 
-7. Test your environment:
+7. Ensure that the mattermost server [is running]({{< ref "/contribute/server/developer-setup" >}}). If it's not, open a new terminal session, navigate into the `mattermost-server` directory, and start the server:
+
+    ```sh
+    cd mattermost-server
+    make run-server
+    ```
+
+8. Test your environment:
 
     ```sh
     cd mattermost-webapp
     make test
     ```
 
-8. When tests pass, run the app:
+9. When tests pass, run the app:
 
-     ```sh
+    ```sh
     make run
     ```
 
