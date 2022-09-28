@@ -106,7 +106,7 @@ pygmentsStyle = "manni"
   [[params.intro.item]]
     title = "Contribute"
     description = "Join thousands of developers who contribute to the Mattermost open source project."
-    url = "contribute/getting-started/"
+    url = "contribute/"
     button = "Start Contributing"
     icon = "img/home/Contribute.svg"
     draft = false
