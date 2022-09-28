@@ -19,10 +19,10 @@ Each Mattermost installation comes with some built-in slash commands that are re
 | /invite *@{user}* *~{channel-name}*                   | Invite user to the channel                                                                        | /invite @john ~sampleChannel                               |
 | /purpose *{text}*                                     | Edit the channel purpose                                                                          | /purpose A channel to discuss bugs                         |
 | /rename *{text}*                                      | Rename the channel                                                                                | /rename Developers                                         |
-| /help                                                 | Open the Mattermost help page                                                                     | /help                                                      |
+| /help                                                 | Display Mattermost product documentation links                                                    | /help                                                      |
 | /invite *@{user}* *~{channel-name}*                   | Invite user to the channel                                                                        | /invite @john ~sampleChannel                               |
 | /invite_people *{name@domain.com ...}*                | Send an email invite to your Mattermost team                                                      | /invite_people john@example.com                            |
-| /kick (or /remove) *{@username}*                      | Remove a member from a Public or Private channel                                                  | /kick @alice                                               |
+| /kick (or /remove) *{@username}*                      | Remove a member from a public or private channel                                                  | /kick @alice                                               |
 | /join (or /open) *{channel-name}*                     | Join the given channel                                                                            | /join off-topic                                            |
 | /leave                                                | Leave the current channel                                                                         | /leave                                                     |
 | /mute                                                 | Turn off desktop, email and push notifications for the current channel or the [channel] specified | /mute ~[channel]                                           |
@@ -35,10 +35,11 @@ Each Mattermost installation comes with some built-in slash commands that are re
 | /shortcuts                                            | Display a list of keyboard shortcuts                                                              | /shortcuts                                                 |
 | /shrug *{message}*                                    | Add `¯\_(ツ)_/¯` to your message                                                                   | /shrug oh well                                             |
 | /status *{emoji_name}* *{descriptive status_message}* | Set a custom status that includes an optional emoji and a descriptive status message              | /status sick Feeling unwell and taking time off to recover |
-| /status clear                                         | Clear the current status                                                                          | /status clear                                              |
+| /status clear                                         | Clear the current status                                                                          | /status clear
+| /marketplace                                          | Open the Mattermost product Marketplace                                                           | /marketplace
 
 {{<note "Note:">}}
-`/status` and `/status clear` slash commands listed above will be available in the Mattermost Mobile app in a future release.
+`/status` and `/status clear` slash commands listed above will be available in the Mattermost Mobile App in a future release.
 {{</note>}}
 
 To create a custom slash command, see the [Custom slash commands]({{< ref "/integrate/slash-commands/custom" >}}) documentation.
