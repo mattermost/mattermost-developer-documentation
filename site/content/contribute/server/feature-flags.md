@@ -140,7 +140,7 @@ How long does it take for workspaces/servers to pick up on changes to feature fl
 
 ## Timelines for rollouts
 
-The feature flag is initially “off” and will be rolled out slowly. Individual teams should decide how they want to roll out their features as they are responsible for them and know them best. Once we have split.io access for 2-3 people per team, the feature teams can enable/disable feature flags at will without needing to ask the Cloud team. 
+The feature flag is initially “off” and will be rolled out slowly. Individual teams should decide how they want to roll out their features as they are responsible for them and know them best. The feature teams can enable/disable feature flags at will without needing to ask the Cloud team. 
 
 **Note:** The steps below are an initial guideline and will be iterated on over time.
 
@@ -179,14 +179,16 @@ There are no hard rules on when a feature flag should be used. It is left up to 
     - Refactoring
     - Changes that are not user facing and can be completely verified by unit and E2E testing.
 
+In all cases, ask yourself: Why do I need to add a feature flag? If I don't add one, what options do I have to control the impact on application reliability and user experience (e.g. a config setting or System Console setting)?
+
 ## Examples of feature flags
 
-< add some examples when we create them >
+Some [examples are here](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
 
 ## FAQ
 
 1. What is the expected default value for boolean feature flags? Is it `true` or `false`?
-   - Definitely `false`. The idea is to use them to slowly roll out a feature. When the code is deployed, the feature flag is not enabled yet. See more details on feature flag rollout timelines [here]({{< ref "/contribute/server/feature-flags#timelines-for-rollouts" >}}).
+   - Initially `false`. The idea is to use them to slowly roll out a feature. When the code is deployed, the feature flag is not enabled yet. See more details on feature flag rollout timelines [here]({{< ref "/contribute/server/feature-flags#timelines-for-rollouts" >}}).
 
 2. Is it possible to use a plugin feature flag such as `PluginIncidentManagement` to "prepackage" a plugin only on Cloud by only setting a plugin version to that flag on Cloud? Can self-hosted customers manually set that flag to install the said plugin?
    - Yes. If you leave the default "" then nothing will happen for self-hosted installations. You can ask the Cloud team to set ``split.io/environment`` to a specific version.
@@ -202,17 +204,17 @@ There are no hard rules on when a feature flag should be used. It is left up to 
      1. PR to server code to add the new feature flag. 
      2. PR to mobile to update the types and to actually use the feature flag.
 
-5. How do we enable a feature flag for testing on community-daily and on Cloud test servers?
-   - You can post in [~Developers: Cloud channel](https://community.mattermost.com/core/channels/cloud) with the feature flag name and what you want the Cloud team to set it to.
+5. How do we enable a feature flag for testing on the community server?
+   - You can post in [Community Configuration channel](https://community.mattermost.com/core/channels/community-configuration)) with the feature flag name and what you want the admins to set it to.
 
 6. What is the environment variable to set a feature flag?
-   - It is `MM_FEATUREFLAGS_<myflag>`.
+   - It is `MM_FEATUREFLAG_<myflag>`.
 
 7. Can plugins use feature flags to enable small features aside of the version forcing feature flag?
    - Yes. You can create feature flags as if they were added for the core product, and they'll get included in the plugin through the config.
 
 8. Does it make sense to use feature flags for A/B testing?
-   - This is something we're going to be evaluating using split.io. We've already implemented support for this in the server.
+   - Yes, this is something we've started to do using split.io.
 
 9. Do feature flag changes require the server to be restarted?
    - Feature flags don’t require a server restart unless the feature being flagged requires a restart itself.
