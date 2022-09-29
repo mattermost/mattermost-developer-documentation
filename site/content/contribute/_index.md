@@ -1,5 +1,5 @@
 ---
-title: "The contributor's guide"
+title: "Contributor guide"
 heading: "The contributor's guide"
 description: ""
 date: "2022-10-01T12:00:00-00:00"
