@@ -45,7 +45,7 @@ weight: 1
     5. The best place to discuss problems with us is in the [Documentation Working Group channel](https://community.mattermost.com/core/channels/dwg-documentation-working-group) where you can ping our technical writers with the hashtag #docsteam.
 3. If you’d like to contribute to our blog, website, or social media, you also have a few options:
     1. You can get paid to write technical content for developers through the Mattermost [community writing program](https://mattermost.com/blog/blog-announcing-community-writing-program/).
-    2. If you see a problem with any webpages, blog posts, or other content on [Mattermost.com](http://Mattermost.com), you can notify us via [the Content channel](https://community.mattermost.com/core/channels/mattermost-blog).
+    2. If you see a problem with any webpages, blog posts, or other content on [Mattermost.com](https://mattermost.com), you can notify us via [the Content channel](https://community.mattermost.com/core/channels/mattermost-blog).
     3. Share your contributor or user experience! Mention us when you promote work you do in our community and we’ll amplify the message through Mattermost social media profiles.
     4. Want to lead a social community? We can provide advice and resources to help you in the [Community channel](https://community.mattermost.com/core/channels/community-team).
 
