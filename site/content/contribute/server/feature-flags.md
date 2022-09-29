@@ -204,7 +204,7 @@ Some [examples are here](https://github.com/mattermost/mattermost-server/blob/ma
      2. PR to mobile to update the types and to actually use the feature flag.
 
 5. What is the environment variable to set a feature flag?
-   - It is `MM_FEATUREFLAG_<myflag>`.
+   - It is `MM_FEATUREFLAGS_<myflag>`.
 
 6. Can plugins use feature flags to enable small features aside of the version forcing feature flag?
    - Yes. You can create feature flags as if they were added for the core product, and they'll get included in the plugin through the config.
