@@ -157,9 +157,9 @@ When the feature is rolled out to customers, logs will show if there are crashes
 
 ## Self-hosted releases
 
-For a feature-flagged feature to be included in a self-hosted release, the feature flag should be removed. Feature flags are generally off by default and self-hosted releases do not contact the management system. Therefore feature flags that are not ready for a self-hosted release will be automatically disabled for all self-hosted releases.
+For a feature-flagged feature to be included in a self-hosted release, the feature flag should be either removed or set to ``true`` in code. The feature flag can be set to ``true`` in code if we are not yet ready to fully remove the feature flag. Some [examples are here](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75). 
 
-Optionally the feature flag can be set to ``true`` in code if we are not yet ready to fully remove the feature flag. Some [examples are here](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
+Features that are not yet ready to be shipped in a self-hosted release are automatically disabled if the flag is set to ``false`` in code.
 
 ## Tests
 
