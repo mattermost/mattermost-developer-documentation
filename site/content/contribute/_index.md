@@ -9,7 +9,7 @@ weight: 1
 This guide is a reference for all things contribution at Mattermost. Here is a brief summary to help you find what you're looking for:
 
 - Why and how to contribute
-	This section contains information on how to get started depending on the avenue you've chosen to contribute.
+	Information on how to get started contributing to Mattermost projects.
 
 - Section 2: Making good decisions
 	This section describes how to communicate and interact effectively, kindly, and inclusively with other members of the Mattermost community.
