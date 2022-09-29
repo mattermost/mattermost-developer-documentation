@@ -6,7 +6,7 @@ date: "2022-10-01T12:00:00-00:00"
 weight: 1
 ---
 
-This guide is the overarching reference for all things contribution at Mattermost. Here is a brief recap to help you find what you're looking for:
+This guide is a reference for all things contribution at Mattermost. Here is a brief summary to help you find what you're looking for:
 
 - Section 1: Why you might contribute
 	This section contains information on how to get started depending on the avenue you've chosen to contribute.
