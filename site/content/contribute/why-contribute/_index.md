@@ -65,7 +65,7 @@ weight: 1
     5. Build an app! Mattermost has a rich framework full of tools to help you add the features you want that don’t quite work as core additions to Mattermost.
         1. [Webhooks]({{< ref "/integrate/webhooks/" >}}) are the easiest type of app to create and enable you to integrate with the vast majority of modern web tools.
         2. [Slash commands]({{< ref "/integrate/slash-commands/" >}}) are apps that respond to triggers sent as messages inside Mattermost.
-        3. More complicated apps can be built as standard HTTP services in any programming language using a robust API. [Get started here]({{< ref "/integrate/apps/" >}}).
+        3. More complicated Apps can be built as standard HTTP services in any programming language using a robust API. [Get started here]({{< ref "/integrate/apps/" >}}).
         4. If you’re willing to deal with more complex development overhead, [plugins]({{< ref "/integrate/plugins/" >}}) enable you to alter every component of the Mattermost experience.
 
 ## Subsection 5 — You’re looking to practice your skills or give back to the community
