@@ -1,6 +1,6 @@
 ---
 title: "Contributor guide"
-heading: "The contributor's guide"
+heading: "Contributor guide"
 description: ""
 date: "2022-10-01T12:00:00-00:00"
 weight: 1
