@@ -3,15 +3,15 @@ title: "Making good decisions"
 heading: "Making good decisions"
 weight: 2
 ---
-We are a welcoming and open community and we’re happy to have you join us!
+We are a welcoming and open community and we’re excited to have you join us!
 
 To be an open, safe, and welcoming community, we strive to be inclusive, collaborative, considerate, and respectful. We all abide by the {{<newtabref title="Mattermost Code of Conduct (CoC)" href="https://handbook.mattermost.com/contributors/contributors/guidelines/contribution-guidelines">}}, and by joining our contributor community, **you agree to abide by it as well**.
 
 Learn more about our {{<newtabref title="company values" href="https://handbook.mattermost.com/company/about-mattermost#leadership-principles">}}, and how to become a successful member of the Mattermost community by learning and following our standard operational guidelines. Please read these sections carefully and let us know if you have any questions or concerns.
 
-**We are inclusive**
+## We're inclusive
 
-We welcome all people, but not all behavior.
+We welcome all people, **but not all behavior**.
 
 We are a diverse community who celebrate both our differences and the things that connect us. We treat each other with respect, and aim to treat others better than they wish to be treated.
 
@@ -19,16 +19,16 @@ We try our best to be clear and respectful. We remember that others may not spea
 
 We all try to be mindful of our differences when we communicate and collaborate. We’re aware that misunderstandings can happen. We try to resolve them by being respectful, understanding, and by using clear and simple language.
 
-**We are collaborative**
+## We're collaborative
   - We ask questions and consult others.
   - We work together and help each other.
   - We aim for clarity.
 
-**We are considerate**
+## We're considerate
   - We have patience with each other.
   - No one has all the answers, nor are they expected to.
 
-**We are respectful**
+## We're respectful
   - We offer thanks and we’re grateful.
   - We may occasionally disagree, but we resolve these disagreements in respectful ways, take breaks if things get heated, reassess, and consult others where appropriate.
   - We aim to be self-aware and we take responsibility for our impact through our words and actions.
