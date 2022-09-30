@@ -30,7 +30,7 @@ These are the Mattermost Core repos you can contribute to:
 
 1. Check in regularly with your Pull Request (PR) to review and respond to feedback. 
 2. Thoroughly document what you’re doing in your PR. This way, future contributors can pick up on your work (including you!). This is especially helpful if you need to step back from a PR.
-3. PRs should represent projects, both in code and in content. Keep unrelated tasks to different PRs.
+3. Each PR should represent a single project, both in code and in content. Keep unrelated tasks to different PRs.
 4. Make your PR titles and commit messages descriptive! Briefly describing the project in the PR title and in your commit messages often results in faster responses, less clarifying questions, and better feedback.
 
 ## Subsection 3 — While writing code
