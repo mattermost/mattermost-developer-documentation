@@ -45,7 +45,7 @@ See the Mattermost Handbook for additional details on [engaging the Mattermost T
 4. If your PR adds a new plugin API method or hook, please add an example to the [Plugin Starter Template](https://github.com/mattermost/mattermost-plugin-starter-template).
 5. If your code adds a new user interface string, include it in the proper localization file, either for [the server repo](https://github.com/mattermost/mattermost-server/blob/master/i18n/en.json), [the webapp repo](https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json), or [the mobile repo](https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json). In the webapp repository, run `make i18n-extract` to update the list of strings.
 
-## Subsection 4 — While writing content
+## Writing content
 
 1. Respect the time and intelligence of your audience.
     1. Be clear and concise without being blunt or curt.
