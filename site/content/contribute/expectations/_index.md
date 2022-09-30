@@ -35,7 +35,7 @@ These are the Mattermost Core repos you can contribute to:
 
 ## Writing code
 
-1. Always thoroughly test your contributions! Mattermost is a complex web of programs, so even insignificant changes have the potential to break big features. Here’s our guide on end-to-end testing.
+Thoroughly test your contributions! We recommend the following testing best practices for your contribution: 
 1. Detail exactly what you expect to happen in the product when others test your contributions.
 2. Identify updates to existing [product](https://docs.mattermost.com/), [developer](https://developers.mattermost.com/), and/or [API](https://api.mattermost.com/) documentation based on your contributions, and identify documentation gaps for new features or functionality. 
 
