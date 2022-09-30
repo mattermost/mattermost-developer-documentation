@@ -5,7 +5,7 @@ weight: 1
 ---
 This guide is a reference for all things contribution at Mattermost. Here is a brief summary to help you find what you're looking for:
 
-- [Why and how to contribute]({{<ref "why-contribute">}})
+- [Why and how to contribute]({{<ref "why-contribute">}}): 
 	Information on how to get started contributing to Mattermost projects.
 
 - [Making good decisions]({{<ref "good-decisions">}})
