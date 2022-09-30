@@ -3,15 +3,34 @@ title: "Making good decisions"
 heading: "Making good decisions"
 weight: 2
 ---
-## Subsection 1 — Be inclusive
+We are a welcoming and open community and we’re happy to have you join us!
 
-1. Hatred of any type is not welcome at Mattermost — harassment of any kind is grounds for immediate expulsion from this community.
-2. Bias can exist without hatred, so it’s always worth considering how to be more inclusive.
-    1. Depictions and representations of people should always be diverse in context. Where it’s possible, show people of different genders, races, and cultures. This also applies to choosing speakers at events. See the Mattermost Compass Design System's [Illustrations page](https://zeroheight.com/29be2c109/p/712d31-illustrations) for diversity examples.
-    2. Keep those with visual and auditory impairments in mind by using semantic and meaningful organization in documents, adding alternate text to images, and giving videos subtitles in American English.
-    3. Make sure not to accidentally discriminate by economic situation or physical location when making tooling, scheduling, and speaker management decisions.
-3. Everyone has the right to voice concerns about perceived discrimination, but be gentle even if the other person is not. Start with a kind private message to avoid embarrassment, but you can report the offender to whoever is in charge of the space in which the discrimination occurred. Be forgiving, especially if the person makes an effort to improve.
+To be an open, safe, and welcoming community, we strive to be inclusive, collaborative, considerate, and respectful. We all abide by the {{<newtabref title="Mattermost Code of Conduct (CoC)" href="https://handbook.mattermost.com/contributors/contributors/guidelines/contribution-guidelines">}}, and by joining our contributor community, **you agree to abide by it as well**.
 
-## Subsection 2 — Work together
+Learn more about our {{<newtabref title="company values" href="https://handbook.mattermost.com/company/about-mattermost#leadership-principles">}}, and how to become a successful member of the Mattermost community by learning and following our standard operational guidelines. Please read these sections carefully and let us know if you have any questions or concerns.
 
-The Mattermost {{<newtabref title="contribution guidelines and code of conduct" href="https://handbook.mattermost.com/contributors/contributors/guidelines/contribution-guidelines">}} are available in the Mattermost Handbook.
+**We are inclusive**
+
+We welcome all people, but not all behavior.
+
+We are a diverse community who celebrate both our differences and the things that connect us. We treat each other with respect, and aim to treat others better than they wish to be treated.
+
+We try our best to be clear and respectful. We remember that others may not speak the same language. We recognize that communication can be challenging, especially among a diverse group of people speaking many different languages and coming from many different cultures and backgrounds.
+
+We all try to be mindful of our differences when we communicate and collaborate. We’re aware that misunderstandings can happen. We try to resolve them by being respectful, understanding, and by using clear and simple language.
+
+**We are collaborative**
+  - We ask questions and consult others.
+  - We work together and help each other.
+  - We aim for clarity.
+
+**We are considerate**
+  - We have patience with each other.
+  - No one has all the answers, nor are they expected to.
+
+**We are respectful**
+  - We offer thanks and we’re grateful.
+  - We may occasionally disagree, but we resolve these disagreements in respectful ways, take breaks if things get heated, reassess, and consult others where appropriate.
+  - We aim to be self-aware and we take responsibility for our impact through our words and actions.
+  - We understand and acknowledge that {{<newtabref title="intent doesn’t equal impact" href="https://www.betterup.com/blog/intent-vs-impact">}}. We can have the best of intentions, but still cause negative impact to others by our words and actions. This can happen to all of us, so we practice openness and grace.
+
