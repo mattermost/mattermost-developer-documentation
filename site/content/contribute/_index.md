@@ -11,7 +11,7 @@ This guide is a reference for all things contribution at Mattermost. Here is a b
 - Why and how to contribute
 	Information on how to get started contributing to Mattermost projects.
 
-- Section 2: Making good decisions
+- Making good decisions
 	Information on how to communicate and interact effectively, respectfully, and inclusively with other members of the Mattermost community.
 
 - Contributor expectations
