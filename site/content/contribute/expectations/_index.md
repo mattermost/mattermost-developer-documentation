@@ -14,7 +14,7 @@ weight: 3
     - You can create lightweight external applications that don’t require customizations to the Mattermost user experience using [incoming]({{< ref "/integrate/webhooks/incoming" >}}) and [outgoing]({{< ref "/integrate/webhooks/outgoing" >}}) webhooks, or by using [the Mattermost API](https://api.mattermost.com/).
     - You can activate external functionality within Mattermost by creating custom [slash commands]({{< ref "/integrate/slash-commands/" >}}).
     - You can extend, modify, and deeply integrate with the Mattermost server, its apps, and its UI/UX by using [plugins]({{< ref "/integrate/plugins/" >}}). However, please note that plugin development comes with the highest level of overhead and must be written in Go and React.
-    - If you need to take Mattermost with you into another app, see our [embed guide]({{< ref "/integrate/customization/embedding/" >}}) for details.
+    - You can use Mattermost from other applications, by [embedding and launching]({{< ref "/integrate/customization/embedding/" >}}) Mattermost within other applications and mobile apps.
 3. Identify which repository you need to work in, then review the README located within the root of the repository to learn more about getting started with your contribution and any processes that may be unique to that repository.
 4. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the "Edit in Github" button in the top right of its respective published page. You can contribute to our [product](https://docs.mattermost.com/) and our [developer](https://developers.mattermost.com/) documentation. 
 
@@ -49,32 +49,3 @@ Thoroughly test your contributions! We recommend the following testing best prac
 When working within the webapp repository, additionally run `make i18n-extract` from a terminal to update the list of product strings with your changes.
 {{</note>}}
 
-## Writing content
-
-1. Always consider who will consume your content, and write directly to your target audience.
-    1. Write clearly and be concise. Write informally, in the present tense, and address the reader directly. See our [voice, tone, and writing style guidelines](https://handbook.mattermost.com/operations/operations/company-processes/publishing/publishing-guidelines/voice-tone-and-writing-style-guidelines), and the [Mattermost Documentation Style Guide](https://handbook.mattermost.com/operations/operations/company-processes/publishing/publishing-guidelines/voice-tone-and-writing-style-guidelines/documentation-style-guide) for details on general writing principles, syntax used to format content, and common terms used to describe product functionality.
-    2. Prefer proper or common nouns first, [then gender-neutral pronouns](https://apastyle.apa.org/style-grammar-guidelines/grammar/singular-they).
-    3. Give each page a general summary at the top, right under the first heading.
-    4. Treat every page like page one. It’s more likely that your audience found the content through a Google search than by flipping through the content repository where you’re writing.
-    5. Prefer short, single-point paragraphs. If they’re small enough once condensed and logically fit together, it might make sense to turn them into a bulleted list. Readers are going to skim your content, so organize your presentation to accommodate them.
-    6. Use technical terms where it’s warranted, as long as its still simple to understand for those who don’t already know the jargon.
-    7. Avoid cliches, especially those that don’t mean anything significant.
-    8. Don’t make assumptions about what readers find “easy” or “simple”.
-    9. Let the product speak for itself — avoid directly praising Mattermost.
-    10. Write for an international audience.
-2. Use tone, word choice, and grammar appropriate for the situation.
-    1. Use the active voice.
-    2. Negative sentences work best when used sparingly.
-    3. Prefer the second-person (”you”) to the first (”I” and “we”).
-    4. Use words for “zero” through “nine” and digits for 10 and up. [There are plenty of exceptions to this, though.](https://apastyle.apa.org/style-grammar-guidelines/numbers/numerals)
-    5. Use the Oxford comma (that’s the last comma before the conjunction in a list of at least three things).
-    6. Use sentence case everywhere.
-    7. Present the company, the staff, the community, and the product as friendly for developers, IT folks, and operations specialists.
-    8. American English is the standard here.
-    9. Be consistent within a single document or group of related documents.
-    10. Keep content modular. If document A and document B share content, it’s probably best to transfer what they both share to a new document that both A and B link to.
-3. Here are a few specific situations we’ve decided on here at Mattermost:
-    1. Prefer “can” and “might” to “may”.
-    2. Use “emojis” as the plural of “emoji”.
-    3. The phrases “log in”, “set up”, and “sign up” (with spaces) are verbs — the noun and adjective forms are “login”, “setup”, and “sign-up”.
-    4. “Single sign-on” is abbreviated to “SSO” whenever possible.

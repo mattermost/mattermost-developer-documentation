@@ -14,14 +14,4 @@ weight: 2
 
 ## Subsection 2 — Work together
 
-1. Use established escalation paths to avoid and resolve debates. 
-2. Always aim for clarity and conciseness. Plain, professional, and descriptive language solves many communication issues and avoids excluding those with learning disabilities, with different learning styles, and with less experience in this industry.
-    1. Don’t confuse conciseness with under-explaining. Give all of the context that your audience needs to have an informed opinion.
-3. Emphasize similarities over differences. The “yes, and…” attitude can turn disagreements into productive dialogue.
-4. Don’t abuse goodwill. Time is a valuable resource like money, so ask for it only after doing your own due diligence.
-5. This isn’t the place for controversy.
-6. None of us have all the answers, all the time. Crave feedback, and make a habit of giving it regularly and kindly.
-7. Be grateful. A simple “thank you” can validate much expended effort.
-8. Respect the time of others by setting reasonable and flexible deadlines.
-9. Ask questions. Sometimes context is lost when communicating through text, so it’s often worth asking what influenced the decisions we don’t understand.
-10. Protect the personal information of yourself and others. Do what you can and escalate if necessary to remove IP addresses, passwords, and API keys from public forums, channels, and open-source code.
+The Mattermost {{<newtabref title="contribution guidelines and code of conduct" href="https://handbook.mattermost.com/contributors/contributors/guidelines/contribution-guidelines">}} are available in the Mattermost Handbook.
