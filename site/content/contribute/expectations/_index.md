@@ -18,7 +18,7 @@ weight: 3
 3. Identify which repository you need to work in, then review the README located within the root of the repository to learn more about getting started with your contribution and any processes that may be unique to that repo.
 4. Figure out which repo you need to be working in. With content, you should be able to click the Edit in GitHub button on the published page to find the right repo, but with code it can be somewhat more difficult. You might even have to contribute to multiple repos, likely starting in the server repo. Here are the core repos:
     - [Server]({{< ref "/contribute/more-info/server/" >}}): Highly-scalable Mattermost installation written in Go.
-    - [Web App]({{< ref "/contribute/more-info/webapp/" >}}) - JavaScript client app built on React and Redux
+    - [Web App]({{< ref "/contribute/more-info/webapp/" >}}): JavaScript client app built on React and Redux.
     - [Mobile Apps]({{< ref "/contribute/more-info/mobile/" >}}) - JavaScript client apps for Android and iOS built on React Native
     - [Desktop App]({{< ref "/contribute/more-info/desktop/" >}}) - An Electron wrapper around the web app project that runs on Windows, Linux, and macOS
     - [Core Plugins]({{< ref "/contribute/more-info/plugins/" >}}) - A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
