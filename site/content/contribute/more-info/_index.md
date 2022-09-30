@@ -6,7 +6,7 @@ date: "2022-10-01T12:00:00-00:00"
 weight: 4
 ---
 
-## Subsection 1 — From Mattermost
+## Mattermost resources
 
 Here are a few links to Mattermost content that you might find helpful depending on the specific area where you’ll be contributing. All of these documents have the same authority as this guide:
 
