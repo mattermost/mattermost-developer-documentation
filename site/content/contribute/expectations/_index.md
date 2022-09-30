@@ -36,7 +36,7 @@ These are the Mattermost Core repos you can contribute to:
 ## Writing code
 
 1. Always thoroughly test your contributions! Mattermost is a complex web of programs, so even insignificant changes have the potential to break big features. Here’s our guide on end-to-end testing.
-2. Detail exactly what should happen when others test your contributions.
+1. Detail exactly what you expect to happen in the product when others test your contributions.
 3. Adjust the documentation to match any changes to documented functionality. Reviewers should never pass a change that outdates documentation without the accompanying fix.
 4. If your PR adds a new plugin API method or hook, please add an example to the [Plugin Starter Template](https://github.com/mattermost/mattermost-plugin-starter-template).
 5. If your code adds a new user interface string, include it in the proper localization file, either for [the server repo](https://github.com/mattermost/mattermost-server/blob/master/i18n/en.json), [the webapp repo](https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json), or [the mobile repo](https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json). In the webapp repository, run `make i18n-extract` to update the list of strings.
