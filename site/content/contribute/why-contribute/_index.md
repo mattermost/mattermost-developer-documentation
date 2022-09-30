@@ -36,7 +36,7 @@ weight: 1
         Inactive contributions are eligible to be picked up by another community member.
     - After 30 days of inactivity, a contribution becomes orphaned, the `lifecycle/3:orphaned` label is added to the now-closed PR. The associated `Help Wanted` ticket is given back its `Up For Grabs` status so others can pick up the issue.
 
-## Subsection 2 — You want to help with content
+## You want to help with content
 
 1. Good content is just as important as good code! If you notice and fix a content error in the documentation or in another open source article describing Mattermost, we consider you to be a valued member of our contributor community just like if you had added a feature to the core code.
 2. If you see a problem with Mattermost [developer](https://developers.mattermost.com/) or [product](https://docs.mattermost.com/) documentation, you have a few options:
