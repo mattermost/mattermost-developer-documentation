@@ -1,6 +1,6 @@
 ---
 title: "Where to find more information?"
-heading: "Section 4 — Where to find more info"
+heading: "Where to find more information?"
 description: ""
 date: "2022-10-01T12:00:00-00:00"
 weight: 4
