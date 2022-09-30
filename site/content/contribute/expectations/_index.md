@@ -20,7 +20,7 @@ weight: 3
     - [Server]({{< ref "/contribute/more-info/server/" >}}): Highly-scalable Mattermost installation written in Go.
     - [Web App]({{< ref "/contribute/more-info/webapp/" >}}): JavaScript client app built on React and Redux.
     - [Mobile Apps]({{< ref "/contribute/more-info/mobile/" >}}) - JavaScript client apps for Android and iOS built on React Native
-    - [Desktop App]({{< ref "/contribute/more-info/desktop/" >}}) - An Electron wrapper around the web app project that runs on Windows, Linux, and macOS
+    - [Desktop App]({{< ref "/contribute/more-info/desktop/" >}}): An Electron wrapper around the web app project that runs on Windows, Linux, and macOS.
     - [Core Plugins]({{< ref "/contribute/more-info/plugins/" >}}) - A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
     - Core Integrations - Major Mattermost features including [Focalboard]({{< ref "/contribute/more-info/focalboard/" >}}) and [Playbooks](https://github.com/mattermost/mattermost-plugin-playbooks).
 
