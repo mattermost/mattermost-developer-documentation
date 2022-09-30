@@ -14,7 +14,7 @@ This guide is a reference for all things contribution at Mattermost. Here is a b
 - [Contributor expectations]({{<ref "expectations">}})
 	Information on what is expected of contributors throughout the whole contribution process, including guidelines to follow when producing new code and content.
 
-- [Where to find more information]({{<ref "more-info">}})
+- [Where to find more information]({{<ref "more-info">}}): 
 	Information on where to find more information on the contribution process beyond the guidance offered in this guide.
 
 Please use this guide as an official reference you can consult when contributing at Mattermost.
