@@ -4,6 +4,8 @@ heading: "White label"
 description: "Learn how to white label the Mattermost Mobile app, and how to replace and override the assets used for your Mattermost deployment."
 date: 2018-05-20T11:35:32-04:00
 weight: 3
+aliases:
+  - /contribute/mobile/build-your-own/white-label
 ---
 
 We've made it easy to white label the mobile app and to replace and override the assets used, however, you have to [Build Your Own App]({{< ref "/contribute/more-info/mobile/build-your-own" >}}) from source.

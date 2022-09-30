@@ -4,6 +4,8 @@ heading: "Use make i18n-extract at Mattermost"
 description: "This command used for localization allows you to validate that your strings have been successfully extracted from your source code."
 date: 2020-04-20T08:31:17-04:00
 weight: 7
+aliases:
+  - /contribute/webapp/using-i18n-extract
 ---
 
 `make i18n-extract` is a command used for localization. It allows you to validate that your strings have been successfully extracted from your source code before you continue.

@@ -4,6 +4,8 @@ heading: "Sign unsigned Android builds"
 description: "Learn the steps needed to modify and sign the Mattermost mobile app so it can be distributed and installed on Android devices."
 date: 2018-05-20T11:35:32-04:00
 weight: 1
+aliases:
+- /contribute/mobile/unsigned/android
 ---
 
 With every Mattermost mobile app release, we publish the Android unsigned apk in in the [GitHub Releases](https://github.com/mattermost/mattermost-mobile/releases) page. This guide describes the steps needed to modify and sign the app, so it can be distributed and installed on Android devices.

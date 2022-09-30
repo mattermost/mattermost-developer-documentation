@@ -2,6 +2,8 @@
 title: "Which query to use?"
 date: 2018-12-04T11:35:32-04:00
 weight: 5
+aliases:
+  - /contribute/webapp/e2e/which-query-to-use
 ---
 
 We love [Testing Library](https://testing-library.com/) as it encourages writing maintainable tests, to develop with confidence, and to ensure web application is accessible by default. Fortunately, there is `@testing-library/cypress` which provides simple and complete custom Cypress commands and utilities that encourage such good testing practices.

@@ -3,9 +3,11 @@ title: "Product menu"
 date: 2020-12-11T00:00
 weight: 4
 subsection: Cypress cheatsheet
+aliases:
+  - /contribute/webapp/e2e-cheatsheet/product-menu
 ---
 
-![image](/contribute/webapp/e2e-cheatsheet/product-menu.png)
+![image](product-menu.png)
 
 ***
 

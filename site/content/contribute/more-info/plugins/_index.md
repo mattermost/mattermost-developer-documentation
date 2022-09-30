@@ -4,6 +4,8 @@ heading: "Mattermost Plugins"
 description: "Mattermost plugins are isolated pieces of code written in Go and/or React. They’re separate from the main repositories."
 date: "2018-03-19T12:01:23-04:00"
 weight: 10
+aliases:
+  - /contribute/plugins
 ---
 
 Mattermost plugins are isolated pieces of code written in Go and/or React. They're separate from the main repositories and are used to extend the functionality of the Mattermost server and webapp. 

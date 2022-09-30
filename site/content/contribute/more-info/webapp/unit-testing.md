@@ -4,6 +4,8 @@ heading: "Unit tests at Mattermost"
 description: "Review our guidelines for unit testing for your Mattermost webapp, including a guide on how to do component testing."
 date: 2018-11-20T11:35:32-04:00
 weight: 5
+aliases:
+  - /contribute/webapp/unit-testing
 ---
 
 ## Component and utility files

@@ -4,6 +4,8 @@ heading: "Plugins at Mattermost"
 description: "Mattermost supports plugins to extend and integrate server and web/desktop apps. Learn about our plugin infrastructure and how to contribute."
 date: 2017-08-20T11:35:32-04:00
 weight: 5
+aliases:
+  - /contribute/server/plugins
 ---
 
 Mattermost supports plugins that offer powerful features for extending and deeply integrating with both the server and web/desktop apps.

@@ -4,6 +4,8 @@ heading: "Run the Mattermost mobile app"
 description: "Mattermost provides a set of scripts to help you run the app for different platforms. Learn about them here."
 date: 2018-05-20T11:35:32-04:00
 weight: 2
+aliases:
+  - /contribute/mobile/developer-setup/run
 ---
 
 We provide a set of scripts to help you run the app for the different platforms that are executed with `npm`:

@@ -4,6 +4,8 @@ heading: "Redux actions"
 description: "An explanation of Redux actions and how they're used in Mattermost"
 date: 2017-08-20T11:35:32-04:00
 weight: 4
+aliases:
+  - /contribute/webapp/redux/actions
 ---
 
 In Redux, actions represent an operation either performed by the user or the server that cause a change to the state of the web app which is stored in the Redux store. It's generally represented as a plain JavaScript object with a constant `type` string with other data stored in fields such as `data`.

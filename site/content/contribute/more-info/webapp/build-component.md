@@ -4,6 +4,8 @@ heading: "How to build a component in Mattermost"
 description: "This page describes how to build a new React component in the Mattermost webapp and the requirements it must meet."
 date: 2017-08-20T11:35:32-04:00
 weight: 4
+aliases:
+  - /contribute/webapp/build-component
 ---
 
 This page describes how to build a new React component in the Mattermost webapp. A new component must meet the following requirements:

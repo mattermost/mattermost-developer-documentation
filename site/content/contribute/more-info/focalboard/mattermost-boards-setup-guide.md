@@ -4,6 +4,8 @@ heading: "Mattermost Boards plugin guide"
 description: "Learn how to build the Mattermost Boards plugin."
 date: 2022-03-24T00:40:23-07:00
 weight: 2
+aliases:
+  - /contribute/focalboard/mattermost-boards-setup-guide
 ---
 
 **[Mattermost Boards](https://mattermost.com/boards/)** is the Mattermost plugin version of Focalboard that combines project management tools with messaging and collaboration for teams of all sizes. It is installed and enabled by default in Mattermost v6.0 and later. For working with Focalboard as a standalone application, please refer to the [Personal Server Setup Guide]({{< ref "/contribute/more-info/focalboard/personal-server-setup-guide" >}}).
@@ -51,5 +53,5 @@ Instead of following the steps above, you can also set up a `mattermost-server` 
       * Set `PluginSettings > EnableUploads` to `true` ([docs]({{< ref "/integrate/plugins/using-and-managing-plugins#custom-plugins" >}}))
   * In this terminal window, add an environmental variable to your bash via `MM_SERVICESETTINGS_SITEURL='http://localhost:8065'` ([docs](https://developers.mattermost.com/blog/subpath/#using-subpaths-in-development))
   * Build and run the server via `make run-server`
-* Follow the [steps above](#building-the-plugin) to install the dependencies.
+* Follow the [steps above](#build-the-plugin) to install the dependencies.
 * Run `make deploy` in the `mattermost-plugin` folder to automatically deploy your plugin to your local Mattermost server.

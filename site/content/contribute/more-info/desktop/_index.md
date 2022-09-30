@@ -4,6 +4,8 @@ heading: "Contribute to the Mattermost desktop app"
 description: "The Mattermost desktop app is an Electron wrapper around the web app project. It lives in the mattermost/desktop repository."
 date: 2018-01-02T10:36:34-05:00
 weight: 7
+aliases:
+  - /contribute/desktop
 ---
 
 The Mattermost Desktop App is an [Electron](https://electronjs.org/) wrapper around the [web app]({{< ref "/contribute/more-info/webapp" >}}) project. It lives in the [mattermost/desktop](https://github.com/mattermost/desktop) repository. The desktop app runs on Windows, Linux, and macOS.

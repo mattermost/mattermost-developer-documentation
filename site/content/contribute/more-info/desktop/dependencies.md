@@ -4,6 +4,8 @@ heading: "Manage dependencies in the desktop app"
 description: "Work with other libraries in the desktop app"
 date: 2019-01-22T00:00:00-05:00
 weight: 3
+aliases:
+  - /contribute/desktop/dependencies
 ---
 
 The Desktop App uses `npm` to manage its dependencies.

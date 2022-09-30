@@ -4,6 +4,8 @@ heading: "Manage inactive contributions at Mattermost"
 description: "This process describes how inactive contributions are managed at Mattermost, inspired by the Kubernetes project."
 date: 2017-08-20T12:33:36-04:00
 weight: 3
+aliases:
+  - /contribute/getting-started/inactive-contributions
 ---
 
 This process describes how inactive contributions are managed at Mattermost, inspired by the [Kubernetes project](https://github.com/kubernetes/kubernetes):

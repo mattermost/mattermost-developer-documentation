@@ -4,6 +4,8 @@ heading: "Code review at Mattermost"
 description: "All changes to the Mattermost product must be reviewed. Learn about how Mattermost reviews product updates."
 date: 2018-03-06T00:00:00-04:00
 weight: 5
+aliases:
+  - /contribute/getting-started/code-review
 ---
 
 All changes to the product should be reviewed. Every team will have its own workflow, but in general:

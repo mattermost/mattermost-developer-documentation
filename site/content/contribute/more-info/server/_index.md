@@ -4,6 +4,8 @@ heading: "Contribute to the Mattermost Server"
 description: "The server, which is written in Go and compiles on a single binary, is the highly scalable backbone of the Mattermost project."
 date: "2018-04-19T12:01:23-04:00"
 weight: 2
+aliases:
+  - /contribute/server
 ---
 
 The server is the highly scalable backbone of the Mattermost project. Written in Go it compiles to a single, standalone binary. It's generally stateless except for the WebSocket connections and some in-memory caches.

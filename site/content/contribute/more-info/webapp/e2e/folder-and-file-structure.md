@@ -2,6 +2,8 @@
 title: "Folder and file structure"
 date: 2018-12-04T11:35:32-04:00
 weight: 2
+aliases:
+  - /contribute/webapp/e2e/folder-and-file-structure
 ---
 
 The folder structure is mostly based on the [Cypress scaffold](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Folder-Structure) which was created on initial run.  Folders and files are:

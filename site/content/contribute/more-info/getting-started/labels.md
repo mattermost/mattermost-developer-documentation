@@ -4,6 +4,8 @@ heading: "Use labels to track issues and PRs at Mattermost"
 description: "We leverage GitHub labels to track the details and lifecycle of issues and pull requests. Learn what our labels mean."
 date: 2018-03-06T00:00:00-04:00
 weight: 7
+aliases:
+  - /contribute/getting-started/labels
 ---
 
 We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to track the details and lifecycle of issues and pull requests.

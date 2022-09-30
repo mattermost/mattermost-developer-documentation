@@ -4,6 +4,8 @@ heading: "Android push notifications at Mattermost"
 description: "Learn how Android push notifications work using Mattermost and Firebase Cloud Messaging."
 date: 2015-05-20T11:35:32-04:00
 weight: 1
+aliases:
+  - /contribute/mobile/push-notifications/android
 ---
 
 Push notifications on Android are managed and dispatched using [Firebase Cloud Messaging (FCM)](http://firebase.google.com/docs/cloud-messaging/)
@@ -11,13 +13,13 @@ Push notifications on Android are managed and dispatched using [Firebase Cloud M
 - Create a Firebase project within the [Firebase Console](https://console.firebase.google.com).
 
 - Click **Add Project**
-![image](/img/mobile/firebase_console.png)
+   ![image](/img/mobile/firebase_console.png)
 
 - Enter the project name, project ID and Country
 
 - Click **CREATE PROJECT**
 
-    ![image](/img/mobile/firebase_project.png)
+   ![image](/img/mobile/firebase_project.png)
 
 Once the project is created you'll be redirected to the Firebase project
 dashboard
@@ -31,9 +33,9 @@ dashboard
 - Once the app has been registered, download the **google-services.json** file which will be used later
 
 - Click **CONTINUE** and then **FINISH**
-![image](/img/mobile/firebase_register_app.png)
-![image](/img/mobile/firebase_google_services.png)
-![image](/img/mobile/firebase_sdk.png)
+   ![image](/img/mobile/firebase_register_app.png)
+   ![image](/img/mobile/firebase_google_services.png)
+   ![image](/img/mobile/firebase_sdk.png)
 
 Now that you have created the Firebase project and the app and
 downloaded the *google-services.json* file, you need to make some

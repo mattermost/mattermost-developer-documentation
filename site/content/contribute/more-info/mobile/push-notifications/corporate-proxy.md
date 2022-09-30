@@ -4,6 +4,8 @@ heading: "Push notification service with corporate proxy"
 description: "Receive mobile push notifications in Mattermost if the use of a corporate proxy server is required by your IT policy."
 date: 2020-03-09T11:35:32
 weight: 4
+aliases:
+  - /contribute/mobile/push-notifications/corporate-proxy
 ---
 
 When your IT policy requires a corporate proxy to scan and audit all outbound traffic the following options are available:

@@ -4,6 +4,8 @@ heading: "Mattermost-Redux"
 description: "mattermost-redux is a library that contains logic for loading and working with data from the Mattermost server."
 date: "2020-04-01T12:00:00-04:00"
 weight: 8
+aliases:
+  - /contribute/webapp/redux
 ---
 
 [mattermost-redux](https://github.com/mattermost/mattermost-webapp/tree/master/packages/mattermost-redux) is a library that contains logic for loading and working with data from the Mattermost server. It's currently used primarily by the Mattermost web app and by some plugins, and it was previously used by the Mattermost mobile app.

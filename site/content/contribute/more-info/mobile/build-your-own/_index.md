@@ -4,6 +4,8 @@ heading: "Build your own Mattermost mobile app"
 description: "Learn how to build your own Mattermost mobile app and distribute it within your team."
 date: 2018-05-20T11:35:32-04:00
 weight: 2
+aliases:
+  - /contribute/mobile/build-your-own
 ---
 
 You can build the app from source and distribute it within your team or company either using the App Stores, Enterprise App Stores or EMM providers, or another way of your choosing.

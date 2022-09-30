@@ -2,6 +2,8 @@
 title: "Write E2E tests"
 date: 2018-12-04T11:35:32-04:00
 weight: 4
+aliases:
+  - /contribute/webapp/e2e/guide-for-writing
 ---
 
 ### Where should the new test go?

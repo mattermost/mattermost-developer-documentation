@@ -1,6 +1,8 @@
 ---
 title: "Google Summer of Code"
 description: "Ideas list for Google Summer of Code"
+aliases:
+  - /contribute/gsoc
 ---
 This page outlines everything you need to know about contributing to Mattermost for Google Summer of Code (GSoC).
 

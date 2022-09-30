@@ -7,6 +7,7 @@ subsection: Web App
 weight: 6
 aliases:
   - /contribute/webapp/end-to-end-tests/
+  - /contribute/webapp/e2e
 ---
 
 This page describes the steps to run the End-to-End (E2E) tests and to build tests for a section or page of the Mattermost web application. Under the hood, we are using [Cypress](https://www.cypress.io/) which is "fast, easy and reliable testing for anything that runs in a browser."

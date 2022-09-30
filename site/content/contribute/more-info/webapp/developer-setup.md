@@ -3,13 +3,15 @@ title: "Developer setup"
 description: "Find out how to configure your development environment to build, run, and test the Mattermost web app."
 date: 2017-08-20T11:35:32-04:00
 weight: 2
+aliases:
+  - /contribute/webapp/developer-setup
 ---
 
 Set up your development environment for building, running, and testing the Mattermost web app.
 
 1. Set up your [development environment for the Mattermost server]({{< ref "/contribute/more-info/server/developer-setup" >}}).
 
-2. Fork https://github.com/mattermost/mattermost-webapp
+2. Fork `https://github.com/mattermost/mattermost-webapp`
 
 3. Clone the Mattermost source code from your fork next to your mattermost-server directory:
 

@@ -2,6 +2,8 @@
 title: "Troubleshooting"
 date: 2018-12-04T11:35:32-04:00
 weight: 6
+aliases:
+  - /contribute/webapp/e2e/troubleshooting
 ---
 
 ### Cypress failed to start after running `npm run cypress:run`

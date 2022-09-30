@@ -2,6 +2,8 @@
 title: "Run E2E tests"
 date: 2018-12-04T11:35:32-04:00
 weight: 3
+aliases:
+  - /contribute/webapp/e2e/running-e2e
 ---
 
 ### Environment variables

@@ -4,6 +4,8 @@ heading: "Set up your development environment"
 description: "Find out how to set up your development environment for building, running, and testing the Mattermost desktop app."
 date: 2020-02-01T19:50:32-04:00
 weight: 1
+aliases:
+  - /contribute/desktop/developer-setup
 ---
 
 Set up your development environment for building, running, and testing the Mattermost Desktop App.

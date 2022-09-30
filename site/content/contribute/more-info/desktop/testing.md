@@ -4,6 +4,8 @@ heading: "Tests in the desktop app"
 description: "A guide to writing automated tests for the desktop app"
 date: 2019-01-22T00:00:00-05:00
 weight: 4
+aliases:
+  - /contribute/desktop/testing
 ---
 
 For most changes to the Desktop App, we should consider writing an automated test to ensure that the change or fix is maintained in the codebase. 

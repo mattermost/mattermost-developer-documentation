@@ -4,6 +4,8 @@ heading: "Contribute to Focalboard"
 description: "Learn how to contribute to the Focalboard repository."
 date: 2022-03-24T00:40:23-07:00
 weight: 9
+aliases:
+  - /contribute/focalboard
 ---
 
 The [Focalboard](https://www.focalboard.com) / [Mattermost Boards](https://mattermost.com/boards) project is written in [TypeScript](https://www.typescriptlang.org/) and [Go](https://go.dev/).

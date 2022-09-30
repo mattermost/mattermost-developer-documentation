@@ -4,6 +4,8 @@ heading: "Test guidelines for every pull request"
 description: "Test guidelines for every pull request"
 date: 2022-03-30T00:00:00+08:00
 weight: 6
+aliases:
+  - /contribute/getting-started/test-guideline
 ---
 
 We write tests to be __confident__ that our product works as expected when used by our customers. As developers, we write tests as a gift to our future selves or to be __confident__ that changes will not cause regressions or unintended behaviors.

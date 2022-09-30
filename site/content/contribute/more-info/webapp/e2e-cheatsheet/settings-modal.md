@@ -3,9 +3,11 @@ title: "Settings modal"
 date: 2020-12-11T00:00
 weight: 2
 subsection: Cypress cheatsheet
+aliases:
+  - /contribute/webapp/e2e-cheatsheet/settings-modal
 ---
 
-![image](/contribute/webapp/e2e-cheatsheet/settings-modal.png)
+![image](settings-modal.png)
 
 ***
 

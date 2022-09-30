@@ -4,6 +4,8 @@ heading: "Package and release the desktop app"
 description: "Learn how to build, package and release the desktop app"
 date: 2019-01-22T00:00:00-05:00
 weight: 4
+aliases:
+  - /contribute/desktop/packaging-and-releasing
 ---
 
 ## Build

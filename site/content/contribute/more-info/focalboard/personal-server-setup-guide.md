@@ -4,6 +4,8 @@ heading: "Personal server setup guide"
 description: "Learn how to build the Focalboard personal server."
 date: 2022-03-24T00:40:23-07:00
 weight: 1
+aliases:
+  - /contribute/focalboard/personal-server-setup-guide
 ---
 
 This guide will help you configure your developer environment for the Focalboard **Personal Server**. For most features, this is the easiest way to get started working against code that ships across editions. For working with **Mattermost Boards** (Focalboard as a plugin), please refer to the [Mattermost Boards Plugin Guide]({{< ref "/contribute/more-info/focalboard/mattermost-boards-setup-guide" >}}).

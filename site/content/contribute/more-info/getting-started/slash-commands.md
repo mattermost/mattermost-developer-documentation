@@ -3,6 +3,8 @@ title: "Slash commands"
 heading: "Get started with Mattermost slash commands"
 description: "There are some slash commands available on GitHub that can be implemented via Mattermod. Learn more about what they are."
 weight: 30
+aliases:
+  - /contribute/getting-started/slash-commands
 ---
 
 There are a couple of slash-commands available on GitHub which are implemented via [Mattermod](https://github.com/mattermost/mattermost-mattermod). They only work on PRs.

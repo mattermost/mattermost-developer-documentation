@@ -4,6 +4,8 @@ heading: "The Mattermost System Console"
 description: "Find out how to add fields, expose settings, and make settings available for non-admins in the System Console."
 date: 2022-03-15T13:38:26-04:00
 weight: 5
+aliases:
+  - /contribute/server/system_console
 ---
 
 ## Add fields to the configuration

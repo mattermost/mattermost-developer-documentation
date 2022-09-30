@@ -4,6 +4,8 @@ heading: "CLI commands and mmctl"
 description: "Mattermost provides a CLI tool (mmctl) to to enable access to Mattermost Server from the command line."
 date: 2022-03-15T18:40:32-04:00
 weight: 5
+aliases:
+  - /contribute/server/cli-commands
 ---
 
 As of 6.0, Mattermost CLI has been replaced by [mmctl](https://github.com/mattermost/mmctl). `mmctl` is built to enable access to Mattermost server from the command line. The tool leverages the public API so that administrator and user tasks can be performed.

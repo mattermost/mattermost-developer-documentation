@@ -4,6 +4,8 @@ heading: "Pull request test servers"
 description: "Leverage our cloud infrastructure we can spin up full environments on demand to test code submitted in a PR."
 date: 2022-01-28T00:00:00-04:00
 weight: 8
+aliases:
+  - /contribute/getting-started/test-servers
 ---
 
 As part of the pull request review process, reviewers may need to test and verify proposed changes. Leveraging our Cloud infrastructure, we can spin up full environments on demand to test code submitted in PRs.

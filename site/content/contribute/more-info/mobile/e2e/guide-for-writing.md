@@ -4,6 +4,8 @@ heading: "Guide for writing E2E tests at Mattermost"
 description: "Interested in writing an end-to-end testing script? Follow this guide to learn what needs to be done."
 date: 2020-09-01T09:00:00-00:00
 weight: 5
+aliases:
+  - /contribute/mobile/e2e/guide-for-writing
 ---
 
 Before writing a script, ensure that it has a corresponding test case in Zephyr. All test cases may be found in this [link](https://mattermost.atlassian.net/projects/MM?selectedItem=com.atlassian.plugins.atlassian-connect-plugin%3Acom.kanoah.test-manager__main-project-page#!/design?projectId=10302). If test case is not available, feel free to prompt the QA team who will either search from an existing Zephyr entry or if it's a new one, it will be created for you.

@@ -4,6 +4,8 @@ heading: "Information about the Mattermost REST API"
 description: "The REST API is a JSON web service that facilitates communication between Mattermost clients, as well as integrations, and the server."
 date: 2017-08-20T11:35:32-04:00
 weight: 4
+aliases:
+  - /contribute/server/rest-api
 ---
 
 The REST API is a JSON web service that facilitates communication between Mattermost clients, as well as integrations, and the server.
@@ -12,17 +14,17 @@ The server is currently on API version 4.
 
 ## Reference
 
-Looking for the API reference? That can be found here: https://api.mattermost.com.
+Looking for the API reference? That can be found here: {{<newtabref title="https://api.mattermost.com" href="https://api.mattermost.com">}}.
 
 ## Add an endpoint
 
 To add an endpoint to API version 4, each item on the following checklist must be completed:
 
-- [Document the endpoint](#documenting-the-endpoint)
-- [Implement the API handler on the server](#implementing-the-api-handler)
-- [Add a function to the Go driver](#updating-the-go-driver)
-- [Write a unit test](#writing-a-unit-test)
-- [Submit your implementation!](#submitting-your-pull-request)
+- [Document the endpoint](#document-the-endpoint)
+- [Implement the API handler on the server](#implement-the-api-handler)
+- [Add a function to the Go driver](#update-the-golang-driver)
+- [Write a unit test](#write-a-unit-test)
+- [Submit your implementation!](#submit-your-pull-request)
 
 A full example can be found through these two pull requests:
 
@@ -79,7 +81,7 @@ To implement the API handler you'll first need to [setup your developer environm
     - For examples, see the [updateUser()](https://github.com/mattermost/mattermost-server/tree/master/api4/user.go#L86) and the [getUser()](https://github.com/mattermost/mattermost-server/tree/master/api4/user.go#L58) handlers.
 
 3.  Run the server using `make run-server` to check for syntax errors.
-4.  (Optional) Use `curl` or [Postman](https://www.getpostman.com/) to test the basics of your endpoint. The endpoint will also be tested [through a unit test](#writing-a-unit-test), so this step is optional.
+4.  (Optional) Use `curl` or [Postman](https://www.getpostman.com/) to test the basics of your endpoint. The endpoint will also be tested [through a unit test](#write-a-unit-test), so this step is optional.
 
 ### Update the Golang driver
 

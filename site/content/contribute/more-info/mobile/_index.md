@@ -4,6 +4,8 @@ heading: "Mattermost mobile apps"
 description: "The Mattermost mobile apps are written in JavaScript using React Native. Learn more about our mobile app repo, community channel and more."
 date: "2022-03-15T12:01:23-04:00"
 weight: 4
+aliases:
+  - /contribute/mobile
 ---
 
 The Mattermost mobile apps are written in [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) using [React Native](https://facebook.github.io/react-native/).

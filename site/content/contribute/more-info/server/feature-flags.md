@@ -4,6 +4,8 @@ heading: "Feature flags and Mattermost Cloud"
 description: "Feature flags allow us to be more confident in shipping features continuously to Mattermost Cloud. Find out why."
 date: 2020-10-15T16:00:00-0700
 weight: 3
+aliases:
+  - /contribute/server/feature-flags
 ---
 Feature flags allow us to be more confident in shipping features continuously to Mattermost Cloud. Feature flags also allow us to control which features are enabled on a cluster level.
 

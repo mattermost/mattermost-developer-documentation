@@ -2,9 +2,11 @@
 title: "Channel menu"
 date: 2020-12-11T00:00
 weight: 3
+aliases:
+  - /contribute/webapp/e2e-cheatsheet/channel-menu
 ---
 
-![image](/contribute/webapp/e2e-cheatsheet/channel-menu.png)
+![image](channel-menu.png)
 
 ***
 

@@ -4,6 +4,8 @@ heading: "Environment variables at Mattermost"
 description: "At Mattermost, we use several environment variables for Detox testing. Find out the two main reasons why."
 date: 2020-10-06T09:00:00-00:00
 weight: 7
+aliases:
+  - /contribute/mobile/e2e/environment-vars
 ---
 
 We use several environment variables for Detox testing in order to:

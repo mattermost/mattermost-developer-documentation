@@ -4,6 +4,8 @@ heading: "Sign unsigned builds with Mattermost"
 description: "Mattermost publishes an unsigned build of the mobile app in the GitHub Releases page with every version that gets released."
 date: 2018-05-20T11:35:32-04:00
 weight: 4
+aliases:
+  - /contribute/mobile/unsigned
 ---
 
 Mattermost publishes an unsigned build of the mobile app in the [GitHub Releases](https://github.com/mattermost/mattermost-mobile/releases) page with every version that gets released.

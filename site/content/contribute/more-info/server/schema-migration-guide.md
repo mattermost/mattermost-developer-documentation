@@ -3,6 +3,8 @@ title: "DB migration guide"
 heading: "DB migration guide"
 date: 2021-10-05T16:00:00-0700
 weight: 3
+aliases:
+  - /contribute/server/schema-migration-guide
 ---
 
 ### Background
