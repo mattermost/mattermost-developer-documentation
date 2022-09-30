@@ -26,7 +26,7 @@ Here are a few links to Mattermost content that you might find helpful depending
 14. [Focalboard](https://developers.mattermost.com/contribute/focalboard/)
 15. [Playbooks](https://github.com/mattermost/mattermost-plugin-playbooks)
 
-## Subsection 2 — External documents
+## External resources
 
 1. [How ICU syntax works](https://formatjs.io/docs/core-concepts/icu-syntax/)
 2. [Use gender-neutral language in communications and in content](https://apastyle.apa.org/style-grammar-guidelines/grammar/singular-they)
