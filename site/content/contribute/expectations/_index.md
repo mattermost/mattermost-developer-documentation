@@ -1,5 +1,5 @@
 ---
-title: "Section 3 — Contributor expectations"
+title: "Contributor expectations"
 heading: "Section 3 — Contributor expectations"
 description: ""
 date: "2022-10-01T12:00:00-00:00"
