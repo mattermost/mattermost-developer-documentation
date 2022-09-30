@@ -47,7 +47,7 @@ See the Mattermost Handbook for additional details on [engaging the Mattermost T
 
 ## Writing content
 
-1. Respect the time and intelligence of your audience.
+1. Always consider who will consume your content, and write directly to your target audience.
     1. Be clear and concise without being blunt or curt.
     2. Prefer proper or common nouns first, [then gender-neutral pronouns](https://apastyle.apa.org/style-grammar-guidelines/grammar/singular-they).
     3. Give each page a general summary at the top, right under the first heading.
