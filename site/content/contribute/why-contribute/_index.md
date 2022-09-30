@@ -52,7 +52,7 @@ weight: 1
     3. Share your contributor or user experience! Mention us when you promote work you do in our community and we’ll amplify the message through Mattermost social media profiles.
     4. Want to lead a social community? We can provide advice and resources to help you in the [Community channel](https://community.mattermost.com/core/channels/community-team).
 
-## Subsection 3 — You’d like to make something more inclusive or accessible
+## You’d like to make something more inclusive or accessible
 
 1. Accessibility is one of the most overlooked yet most important features of modern software development, and we’re eager to improve on the accessibility of the features in our open source project and its documentation.
 2. Problems with the accessibility or the inclusivity of both features in the codebase and pieces of content describing Mattermost are bugs, so we treat them as such in our development process. See subsections 1 and 2 for the description on how you can submit your contribution.
