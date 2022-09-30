@@ -15,7 +15,7 @@ weight: 3
     - You can activate external functionality within Mattermost by creating custom [slash commands]({{< ref "/integrate/slash-commands/" >}}).
     - You can extend, modify, and deeply integrate with the Mattermost server, its apps, and its UI/UX by using [plugins]({{< ref "/integrate/plugins/" >}}). However, please note that plugin development comes with the highest level of overhead and must be written in Go and React.
     - If you need to take Mattermost with you into another app, see our [embed guide]({{< ref "/integrate/customization/embedding/" >}}) for details.
-3. Identify which repository you need to work in, then review the README located within the root of the repository to learn more about getting started with your contribution and any processes that may be unique to that repo.
+3. Identify which repository you need to work in, then review the README located within the root of the repository to learn more about getting started with your contribution and any processes that may be unique to that repository.
 4. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the "Edit in Github" button in the top right of its respective published page. You can contribute to our [product](https://docs.mattermost.com/) and our [developer](https://developers.mattermost.com/) documentation. 
 
 These are the Mattermost Core repos you can contribute to:
