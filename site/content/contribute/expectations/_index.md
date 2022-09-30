@@ -52,3 +52,8 @@ Thoroughly test your contributions! We recommend the following testing best prac
 When working within the webapp repository, additionally run `make i18n-extract` from a terminal to update the list of product strings with your changes.
 {{</note>}}
 
+# Writing content
+
+Always consider who will consume your content, and write directly to your target audience.
+
+Write clearly and be concise. Write informally, in the present tense, and address the reader directly. See our [voice, tone, and writing style guidelines](https://handbook.mattermost.com/operations/operations/company-processes/publishing/publishing-guidelines/voice-tone-and-writing-style-guidelines), and the [Mattermost Documentation Style Guide])https://handbook.mattermost.com/operations/operations/company-processes/publishing/publishing-guidelines/voice-tone-and-writing-style-guidelines/documentation-style-guide) for details on general writing principles, syntax used to format content, and common terms used to describe product functionality.
