@@ -6,7 +6,7 @@ date: "2022-10-01T12:00:00-00:00"
 weight: 3
 ---
 
-## Subsection 1 — Before contributing
+## Before contributing
 
 1. If you’re working on code or documentation, sign the [Contributor License Agreement](https://mattermost.com/mattermost-contributor-agreement/) so you can be added to the Mattermost [Approved Contributor List](https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true). If you’ve included your mailing address in the signed agreement, you might receive a [Limited Edition Mattermost Mug](https://forum.mattermost.com/t/limited-edition-mattermost-mugs/143) as a thank you gift after your first pull request is merged.
 2. For features that don’t belong as part of a core Mattermost repository:
