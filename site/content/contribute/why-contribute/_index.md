@@ -58,7 +58,7 @@ weight: 1
 2. Problems with the accessibility or the inclusivity of both features in the codebase and pieces of content describing Mattermost are bugs, so we treat them as such in our development process. See subsections 1 and 2 for the description on how you can submit your contribution.
 3. When you contribute a change that incorporates an adjustment based on the principles of accessibility and inclusivity, please use this guide to back you up in the PR, ticket, or post.
 
-## Subsection 4 — You have a feature idea
+## You have a feature idea
 
 1. Thank you for your enthusiasm! You can act on feature ideas in a few ways:
 
