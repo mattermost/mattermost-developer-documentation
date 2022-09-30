@@ -26,4 +26,4 @@ run:
 .PHONY: build
 build:
 	rm -rf ./dist
-	hugo -s site --destination ../dist/html --printUnusedTemplates
+	hugo -s site --verbose --destination ../dist/html --printUnusedTemplates --printPathWarnings --gc
