@@ -8,7 +8,7 @@ weight: 1
 
 1. If the bug fix that you’re proposing would be larger than 20 lines of code, [create a GitHub issue](https://github.com/mattermost/mattermost-server/issues).
 
-    1. You can speed up the process by asking about the issue in the  [Contributors](https://community.mattermost.com/core/channels/tickets) or  [Developers](https://community.mattermost.com/core/channels/developers) channels.
+    - You can speed up the process by asking about the issue in the  [Contributors](https://community.mattermost.com/core/channels/tickets) or  [Developers](https://community.mattermost.com/core/channels/developers) channels on the Mattermost Community Server.
     2. [Here’s a good example of a contribution](https://github.com/mattermost/mattermost-mobile/pull/364/commits/7a97451b62fee4022edac4c0395ad0a5cbf1bb66) that is small enough to not need a ticket while still being incredibly helpful.
 2. If you’ve volunteered to take the ticket once its active, or if your fix is too small to warrant the ticket, fork the applicable repo and start making your changes.
 3. Create a PR on the `master` branch of the applicable repo. If there is an associated [Jira](https://mattermost.atlassian.net/issues/?jql=) or GitHub issue, your PR should begin with the issue ID (e.g.  `[MM-394]` or  `[GH-394]`). Our GitHub PR template will walk you through the creation of your PR.
