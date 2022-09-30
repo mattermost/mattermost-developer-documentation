@@ -22,7 +22,7 @@ weight: 3
     - [Mobile Apps]({{< ref "/contribute/more-info/mobile/" >}}): JavaScript client apps for Android and iOS built on React Native.
     - [Desktop App]({{< ref "/contribute/more-info/desktop/" >}}): An Electron wrapper around the web app project that runs on Windows, Linux, and macOS.
     - [Core Plugins]({{< ref "/contribute/more-info/plugins/" >}}): A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
-    - Core Integrations - Major Mattermost features including [Focalboard]({{< ref "/contribute/more-info/focalboard/" >}}) and [Playbooks](https://github.com/mattermost/mattermost-plugin-playbooks).
+    - Core Integrations: Mattermost product verticals including [Boards]({{< ref "/contribute/more-info/focalboard/" >}}) and [Playbooks](https://github.com/mattermost/mattermost-plugin-playbooks).
 
 ## Subsection 2 — During the contribution process
 
