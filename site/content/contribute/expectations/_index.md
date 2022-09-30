@@ -19,7 +19,7 @@ There are many ways to contribute to Mattermost beyond a core Mattermost reposit
 
 To get started:
 
-1. Identify which repository you need to work in, then review the README located within the root of the repository to learn more about getting started with your contribution and any processes that may be unique to that repository.
+1. Identify which repository you need to work in (see point below), then review the README located within the root of the repository to learn more about getting started with your contribution and any processes that may be unique to that repository.
 2. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the **Edit in Github** button in the top right of its respective published page. You can contribute to our [product](https://docs.mattermost.com/) and our [developer](https://developers.mattermost.com/) documentation. 
 
     These are the Mattermost Core repositories you can contribute to:
