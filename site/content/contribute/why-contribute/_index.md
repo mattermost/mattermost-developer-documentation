@@ -31,7 +31,7 @@ There are many reasons you might be motivated to contribute to Mattermost:
     
     - **A milestone or a `cherry-pick` label may be added to your PR**. Many PRs don’t need this step, and will simply ship once merged. However, if there are upcoming milestones, some reviewers are going to prioritize reviews attached to those milestones. Adding a milestone is mandatory for bug fixes that must be cherry-picked.
     
-    - In many cases, you'll know whose code you’re changing and can **assign the appropriate Product Manager, Designer, or Technical Writer to review your PR** from a UI/UX perspective. When in doubt, somebody is better than nobody, as reviewers can always reassign. Once reviwers approve your PR, the the `1: UX Review` label will be removed.
+    - In many cases, you'll know whose code you’re changing and can **assign the appropriate Product Manager, Designer, or Technical Writer to review your PR** from a UI/UX perspective. When in doubt, somebody is better than nobody, as reviewers can always reassign. Once reviewers approve your PR, the `1: UX Review` label will be removed.
     
     - **Request two core committers to review your PR**  — one with experience solving that particular or in that particular language, and another with expertise in the domain of your changes. Don’t request the same people over and over again unless they’re the only people with the necessary expertise. Once they give their approval, the `2: Dev Review` label will be removed.
     
