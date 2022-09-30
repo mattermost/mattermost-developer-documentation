@@ -83,7 +83,7 @@ Good product and developer documentation content is as important as good code! I
 Accessibility is one of the most overlooked yet most important features of modern software development, and we’re eager to improve on the accessibility of the features in our open source project and its documentation.
 
 - Problems with the accessibility or the inclusivity of both features in the codebase, and pieces of content describing Mattermost, are bugs, so we treat them as such in our development process. 
-- When you contribute a change that incorporates an adjustment based on the principles of accessibility and inclusivity, please use this guide to back you up in the PR, ticket, or post.
+- When you contribute a change that incorporates an adjustment based on the principles of accessibility and inclusivity, please circle back to this guide to back you up in the PR, ticket, or post.
 
 ## You have a feature idea
 
