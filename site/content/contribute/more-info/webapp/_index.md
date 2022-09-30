@@ -12,6 +12,7 @@ The Mattermost web app is written in JavaScript using [React](https://facebook.g
 
 It is powered by [mattermost-redux]({{< ref "/contribute/more-info/webapp/redux" >}}) which handles the majority of the logic, client-side storage and server communication.
 
+Please note that issues associated with the Mattermost web app are found only in the [Mattermost Server repo](https://github.com/mattermost/mattermost-server)
 ## Repository
 
 https://github.com/mattermost/mattermost-webapp
