@@ -6,7 +6,9 @@ weight: 3
 
 ## Before contributing
 
-1. If you’re working on code or documentation, you must sign the [Contributor License Agreement](https://mattermost.com/mattermost-contributor-agreement/). This adds you our list of [Mattermost Approved Contributors](https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true). When you provide your mailing address in the signed agreement, you'll receive a [Limited Edition Mattermost Mug](https://forum.mattermost.com/t/limited-edition-mattermost-mugs/143) as a thank you gift after your first pull request is merged.
+1. If you’re working on code or documentation, you must sign the [Contributor License Agreement](https://mattermost.com/mattermost-contributor-agreement/). This adds you to our list of [Mattermost Approved Contributors](https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true). 
+
+**Note:** If you choose to provide us with your mailing address in the signed agreement, you'll receive a [Limited Edition Mattermost Mug](https://forum.mattermost.com/t/limited-edition-mattermost-mugs/143) as a thank you gift after your first pull request is merged.
 2. There are many ways to contribute to Mattermost beyond a core Mattermost repository:
     1. You can [create an app integration]({{< ref "/integrate/apps/" >}}), which connects to Mattermost’s functionality that's hosted elsewhere.
     2. Lightweight external applications that don’t require customizations to the Mattermost user experience, can be integrated by creating [incoming]({{< ref "/integrate/webhooks/incoming" >}}) and [outgoing]({{< ref "/integrate/webhooks/outgoing" >}}) webhooks or by using [the Mattermost API](https://api.mattermost.com/).
