@@ -11,7 +11,7 @@ weight: 3
 **Note:** If you choose to provide us with your mailing address in the signed agreement, you'll receive a [Limited Edition Mattermost Mug](https://forum.mattermost.com/t/limited-edition-mattermost-mugs/143) as a thank you gift after your first pull request is merged.
 2. There are many ways to contribute to Mattermost beyond a core Mattermost repository:
     - You can [create an app integration]({{< ref "/integrate/apps/" >}}), which connects to Mattermost’s functionality that's hosted elsewhere.
-    - Lightweight external applications that don’t require customizations to the Mattermost user experience, can be integrated by creating [incoming]({{< ref "/integrate/webhooks/incoming" >}}) and [outgoing]({{< ref "/integrate/webhooks/outgoing" >}}) webhooks or by using [the Mattermost API](https://api.mattermost.com/).
+    - You can create lightweight external applications that don’t require customizations to the Mattermost user experience using [incoming]({{< ref "/integrate/webhooks/incoming" >}}) and [outgoing]({{< ref "/integrate/webhooks/outgoing" >}}) webhooks, or by using [the Mattermost API](https://api.mattermost.com/).
     3. You can activate external functionality within Mattermost by creating custom [slash commands]({{< ref "/integrate/slash-commands/" >}}).
     4. You can extend, modify, and deeply integrate with the Mattermost server, its apps, and its UI/UX by using [plugins]({{< ref "/integrate/plugins/" >}}). However please note that plugin development comes with the highest level of overhead and must be written in Go and React.
     5. If you need to take Mattermost with you into another app, perhaps you’re looking for [the embed guide]({{< ref "/integrate/customization/embedding/" >}}).
