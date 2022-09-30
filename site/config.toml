@@ -34,17 +34,17 @@ pygmentsStyle = "manni"
   [[params.sidebar.item]]
     name = "contribute"
     displayName = "Contribute"
-    draft = true
+    draft = false
 
   [[params.sidebar.item]]
     name = "integrate"
     displayName = "Integrate & Extend"
-    draft = true
-
-  [[params.sidebar.item]]
-    name = "extend"
-    displayName = "Extend"
     draft = false
+
+#  [[params.sidebar.item]]
+#    name = "extend"
+#    displayName = "Extend"
+#    draft = true
 
   [[params.sidebar.item]]
     name = "internal"
@@ -67,7 +67,7 @@ pygmentsStyle = "manni"
 
     # postpended links
     [[menu.postpend]]
-      url = "/contribute/getting-started/"
+      url = "/contribute/"
       name = "Contribute"
       weight = 1
 
@@ -106,7 +106,7 @@ pygmentsStyle = "manni"
   [[params.intro.item]]
     title = "Contribute"
     description = "Join thousands of developers who contribute to the Mattermost open source project."
-    url = "contribute/getting-started/"
+    url = "contribute/"
     button = "Start Contributing"
     icon = "img/home/Contribute.svg"
     draft = false
