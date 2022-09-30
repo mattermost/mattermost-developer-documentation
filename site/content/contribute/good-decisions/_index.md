@@ -16,7 +16,7 @@ weight: 2
 
 ## Subsection 2 — Work together
 
-1. Use established authorities to avoid and resolve debates. This guide contains numbered lines so that you can explicitly refer to the sections that show your opinion is in line with Mattermost’s principles.
+1. Use established escalation paths to avoid and resolve debates. 
 2. Always aim for clarity and conciseness. Plain, professional, and descriptive language solves many communication issues and avoids excluding those with learning disabilities, with different learning styles, and with less experience in this industry.
     1. Don’t confuse conciseness with under-explaining. Give all of the context that your audience needs to have an informed opinion.
 3. Emphasize similarities over differences. The “yes, and…” attitude can turn disagreements into productive dialogue.
