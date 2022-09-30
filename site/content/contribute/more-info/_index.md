@@ -8,7 +8,7 @@ weight: 4
 
 Here are a few links to Mattermost content that you might find helpful depending on the specific area where you’ll be contributing. All of these documents have the same authority as this guide:
 
-1. Specific localization guides
+1. Specific localization guides (coming soon!)
 2. {{<newtabref title="Mattermost contributor agreement" href="https://mattermost.com/mattermost-contributor-agreement/">}}
 3. {{<newtabref title="Approved contributor list" href="https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true">}}
 4. [Making an app]({{<ref "/integrate/apps">}})
