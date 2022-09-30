@@ -43,7 +43,9 @@ Thoroughly test your contributions! We recommend the following testing best prac
 
 See the Mattermost Handbook for additional details on [engaging the Mattermost Technical Writing team](https://handbook.mattermost.com/operations/research-and-development/product/technical-writing-team-handbook/work-with-us#how-to-engage-with-us), and for [submitting documentation with your PR](https://handbook.mattermost.com/operations/research-and-development/product/technical-writing-team-handbook/writing-community-documentation#submit-documentation-with-your-pr).
 4. If your PR adds a new plugin API method or hook, please add an example to the [Plugin Starter Template](https://github.com/mattermost/mattermost-plugin-starter-template).
-5. If your code adds a new user interface string, include it in the proper localization file, either for [the server repo](https://github.com/mattermost/mattermost-server/blob/master/i18n/en.json), [the webapp repo](https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json), or [the mobile repo](https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json). In the webapp repository, run `make i18n-extract` to update the list of strings.
+5. If your code adds a new user interface string, include it in the proper localization file, either for [the server repo](https://github.com/mattermost/mattermost-server/blob/master/i18n/en.json), [the webapp repo](https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json), or [the mobile repo](https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json). 
+
+**Note:** When working within the webapp repository, additionally run `make i18n-extract` from a terminal to update the list of product strings with your changes.
 
 ## Writing content
 
