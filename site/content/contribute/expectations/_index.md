@@ -44,6 +44,7 @@ Thoroughly test your contributions! We recommend the following testing best prac
    **Note:** Contributors and reviewers are strongly encouraged to work with the Mattermost Technical Writing team via the [Documentation Working Group channel](https://community.mattermost.com/core/channels/dwg-documentation-working-group) on the Mattermost Community Server before approving community contributions. 
 
    See the Mattermost Handbook for additional details on [engaging the Mattermost Technical Writing team](https://handbook.mattermost.com/operations/research-and-development/product/technical-writing-team-handbook/work-with-us#how-to-engage-with-us), and for [submitting documentation with your PR](https://handbook.mattermost.com/operations/research-and-development/product/technical-writing-team-handbook/writing-community-documentation#submit-documentation-with-your-pr).
+
 3. If your PR adds a new plugin API method or hook, please add an example to the [Plugin Starter Template](https://github.com/mattermost/mattermost-plugin-starter-template).
 4. If your code adds a new user interface string, include it in the proper localization file, either for [the server repository](https://github.com/mattermost/mattermost-server/blob/master/i18n/en.json), [the webapp repository](https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json), or [the mobile repository](https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json). 
 
