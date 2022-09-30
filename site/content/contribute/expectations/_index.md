@@ -15,7 +15,7 @@ weight: 3
     c. You can activate external functionality within Mattermost by creating custom [slash commands]({{< ref "/integrate/slash-commands/" >}}).
     4. [Plugins]({{< ref "/integrate/plugins/" >}}) enable you to modify the fabric of the Mattermost UI/UX completely but come with the highest level of development overhead and must be written in Go and React.
     5. If you need to take Mattermost with you into another app, perhaps you’re looking for [the embed guide]({{< ref "/integrate/customization/embedding/" >}}).
-3. Read the Markdown files in the root of the repo you’re working in to learn about processes unique to that repo.
+3. Identify which repository you need to work in, then review the README located within the root of the repository to learn more about getting started with your contribution and any processes that may be unique to that repo.
 4. Figure out which repo you need to be working in. With content, you should be able to click the Edit in GitHub button on the published page to find the right repo, but with code it can be somewhat more difficult. You might even have to contribute to multiple repos, likely starting in the server repo. Here are the core repos:
     - [Server]({{< ref "/contribute/more-info/server/" >}}) - Highly-scalable Mattermost installation written in Go
     - [Web App]({{< ref "/contribute/more-info/webapp/" >}}) - JavaScript client app built on React and Redux
