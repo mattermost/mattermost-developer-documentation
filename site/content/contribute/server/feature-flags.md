@@ -114,7 +114,7 @@ Now your workspace will have its feature flag set according to this rule, regard
 
 ### Add or update a feature flag for community.mattermost.com
 
-You can post in [Community Configuration channel](https://community.mattermost.com/core/channels/community-configuration)) with the feature flag name and what you want the admins to set it to.
+You can post in the [Community Configuration channel](https://community.mattermost.com/core/channels/community-configuration)) with the feature flag name and what you want the admins to set it to.
 
 To set a flag via Split for community:
 
