@@ -23,7 +23,7 @@ To get started:
 2. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the **Edit in Github** button in the top right of its respective published page. You can contribute to our [product](https://docs.mattermost.com/) and our [developer](https://developers.mattermost.com/) documentation. 
 
     These are the Mattermost Core repositories you can contribute to:
-     - [Server]({{< ref "/contribute/more-info/server/" >}}): Highly-scalable Mattermost installation written in Go.
+     - [Server]({{< ref "/contribute/more-info/server/" >}}): Highly-scalable Mattermost server written in Go.
      - [Web App]({{< ref "/contribute/more-info/webapp/" >}}): JavaScript client app built on React and Redux.
      - [Mobile Apps]({{< ref "/contribute/more-info/mobile/" >}}): JavaScript client apps for Android and iOS built on React Native.
      - [Desktop App]({{< ref "/contribute/more-info/desktop/" >}}): An Electron wrapper around the web app project that runs on Windows, Linux, and macOS.
