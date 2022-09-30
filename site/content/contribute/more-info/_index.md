@@ -4,9 +4,9 @@ heading: "Where to find more information?"
 weight: 4
 ---
 
-## Mattermost resources
+Here are a few links to Mattermost content that you might find helpful depending on the specific area where you’ll be contributing. 
 
-Here are a few links to Mattermost content that you might find helpful depending on the specific area where you’ll be contributing. All of these documents have the same authority as this guide:
+## Mattermost resources
 
 1. Specific localization guides (coming soon!)
 2. {{<newtabref title="Mattermost contributor agreement" href="https://mattermost.com/mattermost-contributor-agreement/">}}

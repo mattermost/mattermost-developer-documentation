@@ -27,25 +27,25 @@ There are many reasons you might be motivated to contribute to Mattermost:
     Generally the process works like you’d expect: they’ll make suggestions, you’ll implement them, and together you'll discuss changes in PR comments. If you’re having trouble getting a reviewer to be assigned to your PR, take a look at GitHub’s suggested reviewers and reach out to them in the [Community workspace](http://community.mattermost.com).
 5. Here is an overview of how our review process works listed in the order in which things happen. If you’re a core contributor, you can manage the process yourself.
 
-    **Labels will be added to your PR**, such as  `1: UX Review`,  `2: Dev Review`, and  `3: QA Review`, as applicable. See [the list of labels]({{< ref "/contribute/more-info/getting-started/labels" >}}) for details.
+    - **Labels will be added to your PR**, such as  `1: UX Review`,  `2: Dev Review`, and  `3: QA Review`, as applicable. See [the list of labels]({{< ref "/contribute/more-info/getting-started/labels" >}}) for details.
     
-    **A milestone or a `cherry-pick` label may be added to your PR**. Many PRs don’t need this step, and will simply ship once merged. However, if there are upcoming milestones, some reviewers are going to prioritize reviews attached to those milestones. Adding a milestone is mandatory for bug fixes that must be cherry-picked.
+    - **A milestone or a `cherry-pick` label may be added to your PR**. Many PRs don’t need this step, and will simply ship once merged. However, if there are upcoming milestones, some reviewers are going to prioritize reviews attached to those milestones. Adding a milestone is mandatory for bug fixes that must be cherry-picked.
     
-    In many cases, you'll know whose code you’re changing and can **assign the appropriate Product Manager, Designer, or Technical Writer to review your PR** from a UI/UX perspective. When in doubt, somebody is better than nobody, as reviewers can always reassign. Once reviwers approve your PR, the the `1: UX Review` label will be removed.
+    - In many cases, you'll know whose code you’re changing and can **assign the appropriate Product Manager, Designer, or Technical Writer to review your PR** from a UI/UX perspective. When in doubt, somebody is better than nobody, as reviewers can always reassign. Once reviwers approve your PR, the the `1: UX Review` label will be removed.
     
-    **Request two core committers to review your PR**  — one with experience solving that particular or in that particular language, and another with expertise in the domain of your changes. Don’t request the same people over and over again unless they’re the only people with the necessary expertise. Once they give their approval, the `2: Dev Review` label will be removed.
+    - **Request two core committers to review your PR**  — one with experience solving that particular or in that particular language, and another with expertise in the domain of your changes. Don’t request the same people over and over again unless they’re the only people with the necessary expertise. Once they give their approval, the `2: Dev Review` label will be removed.
     
-    **Request a QA tester** from the team that owns the code that you’re changing. They’ll decide the necessary scope of testing. Make sure you’ve defined what the expected results are so they know when their tests are successful. Once they give their approval, the `3: QA Review` label will be removed. The QA tester may add the `QA Review Done` label as well.
+    - **Request a QA tester** from the team that owns the code that you’re changing. They’ll decide the necessary scope of testing. Make sure you’ve defined what the expected results are so they know when their tests are successful. Once they give their approval, the `3: QA Review` label will be removed. The QA tester may add the `QA Review Done` label as well.
 
     **Tip:** We recommend that you generally avoid doing QA testing yourself, unless it’s obvious that it’s not necessary. The best way to help Mattermost QA is to clearly explain your changes and expected outcomes in the PR.
     
-    Once all outstanding requests are completed, and all involved have approved of the PR, **the `4: Reviews Complete` label will be added** which signals Mattermost core committers to merge the PR into `master`, and delete the old branch. If your pull request depends on other pull requests, note this as a PR comment so that the  `Do Not Merge/Awaiting PR`  label can be added to avoid merging prematurely.
+    - Once all outstanding requests are completed, and all involved have approved of the PR, **the `4: Reviews Complete` label will be added** which signals Mattermost core committers to merge the PR into `master`, and delete the old branch. If your pull request depends on other pull requests, note this as a PR comment so that the  `Do Not Merge/Awaiting PR`  label can be added to avoid merging prematurely.
     
-    If this is a cherry-picked PR, **automated processes should handle everything from here on out**. If the automated cherry-pick fails, the PR will be cherry-picked manually back to the appropriate releases. If the release branches have not been cut yet, labels are left as-is and the PR is cherry-picked once the branch has been cut. The release manager will provide reminders to finish cherry-picks. The  `CherryPick/Done`  label is applied the end of a cherry-pick process.
+    - If this is a cherry-picked PR, **automated processes should handle everything from here on out**. If the automated cherry-pick fails, the PR will be cherry-picked manually back to the appropriate releases. If the release branches have not been cut yet, labels are left as-is and the PR is cherry-picked once the branch has been cut. The release manager will provide reminders to finish cherry-picks. The  `CherryPick/Done`  label is applied the end of a cherry-pick process.
     
-    **Update the appropriate Jira ticket** so everybody knows where the project stands. Resolve the ticket for QA from the **Ready for QA** button, and include QA test steps, or note **No Testing Required** if no QA testing is needed.
+    - **Update the appropriate Jira ticket** so everybody knows where the project stands. Resolve the ticket for QA from the **Ready for QA** button, and include QA test steps, or note **No Testing Required** if no QA testing is needed.
     
-    If you need to test your changes on a test server, an [appropriate label]({{< ref "/contribute/more-info/getting-started/labels.md)" >}}) can be added to the PR. **Request this label as a comment in your PR to create a test server**. After about three to five minutes, a test server is created, and a bot will send a link and credentials in the form of a comment on the PR. The test server is destroyed when the label is removed.
+    - If you need to test your changes on a test server, an [appropriate label]({{< ref "/contribute/more-info/getting-started/labels.md)" >}}) can be added to the PR. **Request this label as a comment in your PR to create a test server**. After about three to five minutes, a test server is created, and a bot will send a link and credentials in the form of a comment on the PR. The test server is destroyed when the label is removed.
 
 6. Once you address suggestions a reviewer has made, re-request a review from them. Their initial review was technically completed, so it’s no longer in a reviewer's queue until you re-request.
 
@@ -115,9 +115,13 @@ Each localization community is going to have specific guidelines on how to maint
 - [French](https://github.com/wget/mattermost-localization-french-translation-rules)
 - [Dutch](https://github.com/ctlaltdieliet/mattermost-localization-dutch-translation-rules)
 
-1. The first step for new translators is to join [the translation server](http://translate.mattermost.com/) and [the localization community channel](https://community.mattermost.com/core/channels/localization) on the Mattermost Community Server.
-   a. If your preferred language already exists on the translation server, you can start making translations or translation suggestions immediately *there on the translation server*. Don’t try to do this manually through GitHub.
-   b. If your language is absent from the translation server, ask on the localization community channel for it to be added.
+To get started:
+
+1. Join [the Mattermost translation server](http://translate.mattermost.com/) and [the localization community channel](https://community.mattermost.com/core/channels/localization) on the Mattermost Community Server.
+
+   - If your preferred language already exists on the translation server, you can start making translations or translation suggestions immediately *there on the translation server*. Don’t try to do this manually through GitHub.
+
+   - If your language is absent from the translation server, ask on the localization community channel for it to be added.
 2. Each language in whole is assigned one quality level, and with each release cycle, it can be upgraded or downgraded if necessary.
     - **Official** — 100% of the language’s translations are verified both by a Mattermost functionality expert and by a expert speaker of the target language. The language has at least one official reviewer who updates all of the strings that have changed in the English source text, and they have successfully kept all of the translated strings updated since the last release cycle. The language has been in use for at least three full release cycles.
     - **Beta** — At least 90% of the language’s translations are verified by at least one Mattermost functionality expert who is fluent in the target language. If a language is at risk for ongoing maintenance, _____ can raise the threshold closer to 100%. Up to 10% of the translations may not be synced with the latest English source text.
