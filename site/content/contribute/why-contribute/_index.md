@@ -34,7 +34,7 @@ weight: 1
     - After 20 days of inactivity, a contribution becomes inactive, and a bot will add the `lifecycle/2:inactive` label to the PR. The Community Coordinator warns everybody involved how much time they have before the contribution is closed and again tries to reach out to the blocking party to help. The Community Coordinator also ensures that it’s not the reviewers taking the PR to this point — contributions should only ever be inactive because of no response from the contributor.
         When contributions are inactive, but there's a good reason (for example, when the team is actively discussing a major design decision but they haven’t decided on anything yet), `lifecycle/frozen` would be a better label.
         Inactive contributions are eligible to be picked up by another community member.
-    3. After 30 days of inactivity, a contribution becomes orphaned, and they’ll add the `lifecycle/3:orphaned` label to the now-closed PR. The associated `Help Wanted` ticket is given back its `Up For Grabs` status so others can pick up on the issue.
+    - After 30 days of inactivity, a contribution becomes orphaned, the `lifecycle/3:orphaned` label is added to the now-closed PR. The associated `Help Wanted` ticket is given back its `Up For Grabs` status so others can pick up the issue.
 
 ## Subsection 2 — You want to help with content
 
