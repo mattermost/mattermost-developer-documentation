@@ -10,7 +10,9 @@ aliases:
 
 Set up your development environment for building, running, and testing the Mattermost server.
 
-**Note:** If you're developing plugins, see the plugin [developer setup]({{< ref "/integrate/plugins/developer-setup" >}}) documentation.
+{{<note "Note:">}}
+If you're developing plugins, see the plugin [developer setup]({{< ref "/integrate/plugins/developer-setup" >}}) documentation.
+{{</note>}}
 
 For minimum software requirements, see the following table:
 

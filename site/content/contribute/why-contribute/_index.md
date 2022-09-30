@@ -1,34 +1,32 @@
 ---
-title: "Section 1 — Why you might contribute"
-heading: "Section 1 — Why you might contribute"
-description: ""
-date: "2022-10-01T12:00:00-00:00"
+title: "Why you might contribute"
+heading: "Why you might contribute"
 weight: 1
 ---
 
 ## Subsection 1 — You’ve found a bug
 
 1. If the bug fix that you’re proposing would be larger than 20 lines of code, [create a GitHub issue](https://github.com/mattermost/mattermost-server/issues).
-    1. You can speed up the process by asking about the issue in the [Contributors](https://community.mattermost.com/core/channels/tickets) or [Developers](https://community.mattermost.com/core/channels/developers) channels.
+    1. You can speed up the process by asking about the issue in the  [Contributors](https://community.mattermost.com/core/channels/tickets) or  [Developers](https://community.mattermost.com/core/channels/developers) channels.
     2. [Here’s a good example of a contribution](https://github.com/mattermost/mattermost-mobile/pull/364/commits/7a97451b62fee4022edac4c0395ad0a5cbf1bb66) that is small enough to not need a ticket while still being incredibly helpful.
 2. If you’ve volunteered to take the ticket once its active, or if your fix is too small to warrant the ticket, fork the applicable repo and start making your changes.
-3. Create a PR on the `master` branch of the applicable repo. If there is an associated [Jira](https://mattermost.atlassian.net/issues/?jql=) or GitHub issue, your PR should begin with the issue ID (e.g. `[MM-394]` or `[GH-394]`). Our GitHub PR template will walk you through the creation of your PR.
+3. Create a PR on the `master` branch of the applicable repo. If there is an associated [Jira](https://mattermost.atlassian.net/issues/?jql=) or GitHub issue, your PR should begin with the issue ID (e.g.  `[MM-394]` or  `[GH-394]`). Our GitHub PR template will walk you through the creation of your PR.
 4. If you’re a community contributor, the team at Mattermost will handle most of the review process for you. You can wait for a reviewer to be assigned and for them to review your work. Generally the process works like you’d expect: they’ll make suggestions, you’ll implement them and discuss it in the PR comments. If you’re having trouble getting a reviewer to be assigned to your PR, take a look at GitHub’s suggested reviewers and reach out to them in the [Community workspace](http://community.mattermost.com).
 5. Here is an overview of how our review process works. If you’re a core contributor, you can manage the process yourself.
-    1. Start by adding the `1: UX Review`, `2: Dev Review`, and `3: QA Review` labels, as well as whichever are applicable from [the list of labels]({{< ref "/contribute/more-info/getting-started/labels" >}}).
+    1. Start by adding the  `1: UX Review`,  `2: Dev Review`, and  `3: QA Review`  labels, as well as whichever are applicable from [the list of labels]({{< ref "/contribute/more-info/getting-started/labels" >}}).
     2. Add a milestone or a cherry-picking label if the PR needs it. Most don’t and will simply ship once merged, but if there are upcoming milestones, some reviewers are going to prioritize reviews attached to those milestones. Note that adding a milestone is mandatory for bug fixes that must be cherry-picked.
     3. Likely you know whose code you’re changing, so assign the appropriate PM or Designer first for a UX review. When in doubt, somebody is better than anybody, as they can always reassign. Once they give the OK, remove the `1: UX Review` label.
     4. Request two core committers to review — one with experience solving that particular or in that particular language, and another with expertise in the domain of your changes. Don’t request the same people over and over again unless they’re the only people with the necessary expertise. Once they give the OK, remove the `2: Dev Review` label.
     5. Request a QA tester from the team that owns the code that you’re changing. They’ll decide the necessary scope of testing. Make sure you’ve defined what the expected results are so they know when their tests are successful. Once they give the OK, remove the `3: QA Review` label.
         1. Generally avoid doing QA testing yourself, unless it’s obvious that it’s not necessary. In any case, it likely won’t be obvious to onlookers, so clearly explain the rationale in the comments on the PR.
-    6. Once all outstanding requests are completed and all involved have approved of the PR, add the `4: Reviews Complete` if it hasn’t been already, merge the PR into `master`, and delete the old branch. If your pull request depends on other pull requests, consider assigning the `Do Not Merge/Awaiting PR` label to avoid merging prematurely.
-    7. If this is a cherry-picked PR, the automation should handle everything from here on out. If the automated cherry-pick fails, you will need to cherry-pick the PR manually. Cherry-pick the master commit back to the appropriate releases. If the release branches have not been cut yet, leave the labels as-is and cherry-pick once the branch has been cut. The release manager will remind you to finish your cherry-pick. Set the `CherryPick/Done` label when you’re done with this process.
+    6. Once all outstanding requests are completed and all involved have approved of the PR, add the `4: Reviews Complete` if it hasn’t been already, merge the PR into `master`, and delete the old branch. If your pull request depends on other pull requests, consider assigning the  `Do Not Merge/Awaiting PR`  label to avoid merging prematurely.
+    7. If this is a cherry-picked PR, the automation should handle everything from here on out. If the automated cherry-pick fails, you will need to cherry-pick the PR manually. Cherry-pick the master commit back to the appropriate releases. If the release branches have not been cut yet, leave the labels as-is and cherry-pick once the branch has been cut. The release manager will remind you to finish your cherry-pick. Set the  `CherryPick/Done`  label when you’re done with this process.
     8. Update the appropriate Jira ticket so everybody knows where the project stands. Resolve the ticket for QA from “Ready for QA” button with QA test steps, or with “No Testing Required” if no QA testing is needed.
     9. If you need to test your changes on a test server, you can add the appropriate label to the PR and wait 3-5 minutes for the server to be created (see [the labels page]({{< ref "/contribute/more-info/getting-started/labels.md)" >}}). A bot will send you your link and credentials in the form of a comment on the PR. Remove the label when you’re done to destroy the test server.
 6. Once you address suggestions a reviewer has made, re-request a review from them. Their initial review was technically completed, so it’s no longer in their queue until you re-request.
     1. Give reviewers time — they have long queues and different schedules. If you’ve been assigned a reviewer but haven’t heard from them in 5 business days, politely mention them in a PR comment.
 7. Mattermost has a system to categorize the inactivity of contributions. Invalid PRs don’t need to go through this cycle at the Community Coordinator’s discretion.
-    1. After 10 days of inactivity, a contribution becomes stale, and a bot will add the `lifecycle/1:stale` label to the PR. It’s on the Community Coordinator to nudge the right people to get a stale PR active again, even if that means clarifying requests so the contributor has more information to go off of.
+    1. After 10 days of inactivity, a contribution becomes stale, and a bot will add the  `lifecycle/1:stale`  label to the PR. It’s on the Community Coordinator to nudge the right people to get a stale PR active again, even if that means clarifying requests so the contributor has more information to go off of.
     2. After 20 days of inactivity, a contribution becomes inactive, and a bot will add the `lifecycle/2:inactive` label to the PR. The Community Coordinator warns everybody involved how much time they have before the contribution is closed and again tries to reach out to the blocking party to help. They’re also going to make sure that it’s not the reviewers taking the PR to this point — contributions should only ever be inactive because of no response from the contributor.
         1. When contributions are inactive but for good reason (for example, when the team is actively discussing a major design decision but they haven’t decided on anything yet), `lifecycle/frozen` would be a better label.
         2. Inactive contributions are eligible to be picked up by another community member.
@@ -37,7 +35,7 @@ weight: 1
 ## Subsection 2 — You want to help with content
 
 1. Good content is just as important as good code! If you notice and fix a content error in the documentation or in another open source article describing Mattermost, we consider you to be a valued member of our contributor community just like if you had added a feature to the core code.
-2. If you see a problem with Mattermost [developer](https://developers.mattermost.com/) or [user](https://docs.mattermost.com/) documentation, you have a few options:
+2. If you see a problem with Mattermost [developer](https://developers.mattermost.com/) or [product](https://docs.mattermost.com/) documentation, you have a few options:
     1. If you have time to fix the mistake and it only affects a single page, navigate to the applicable page and click “Edit in GitHub” at the top right.  It’ll walk you through the process of creating a fork so that you can then follow the steps under section 1, subsection 1 of this guide, “You’ve found a bug”.
     2. If you don’t have time to fix the mistake, copy the file path you’re on and create a GitHub issue about the problem you found. Make sure to include the file path and fill out the issue template completely to maximize clarity.
     3. If you’re not up for creating a GitHub issue right now, that’s alright too! In the bottom right corner of every docs page is the question “Did you find what you were looking for?” Use this to quickly provide direct feedback about any page you’re viewing.
@@ -63,15 +61,14 @@ weight: 1
     3. [Participate in a survey](https://portal.productboard.com/mattermost/33-what-matters-to-you/tabs/115-help-us-learn-more-through-surveys) to help us better understand how to meet the needs of our users.
     4. Discuss your idea with our community in the [Feature Proposals channel](https://community.mattermost.com/core/channels/feature-ideas).
     5. Build an app! Mattermost has a rich framework full of tools to help you add the features you want that don’t quite work as core additions to Mattermost.
-        1. [Webhooks]({{< ref "/integrate/webhooks/" >}}) are the easiest type of app to create and enable you to integrate with the vast majority of modern web tools.
-        2. [Slash commands]({{< ref "/integrate/slash-commands/" >}}) are apps that respond to triggers sent as messages inside Mattermost.
-        3. More complicated Apps can be built as standard HTTP services in any programming language using a robust API. [Get started here]({{< ref "/integrate/apps/" >}}).
-        4. If you’re willing to deal with more complex development overhead, [plugins]({{< ref "/integrate/plugins/" >}}) enable you to alter every component of the Mattermost experience.
+        1. [Webhooks]({{< ref "/integrate/webhooks" >}}) are the easiest type of app to create and enable you to integrate with the vast majority of modern web tools.
+        2. [Slash commands]({{< ref "/integrate/slash-commands" >}}) are apps that respond to triggers sent as messages inside Mattermost.
+        3. More complicated Apps can be built as standard HTTP services in any programming language using a robust API. [Get started here]({{< ref "/integrate/apps" >}}).
+        4. If you’re willing to deal with more complex development overhead, [plugins]({{< ref "/integrate/plugins" >}}) enable you to alter every component of the Mattermost experience.
 
 ## Subsection 5 — You’re looking to practice your skills or give back to the community
 
-1. We love developers who are passionate about open-source. If you’re looking to tackle an interesting problem, we’ve got you covered! Feel free to check out [the help wanted tickets on GitHub](https://github.com/search?utf8=%E2%9C%93&q=is%3Aopen+archived%3Afalse+org%3Amattermost+label%3A%22Help+Wanted%22++label%3A%22Up+For+Grabs%22). To take one on, just comment on the issue and follow the process outlined in article 1.1 of this guide.
-2. Here are the technologies we use and where:
+We love developers who are passionate about open-source. If you’re looking to tackle an interesting problem, we’ve got you covered! Feel free to check out [the help wanted tickets on GitHub](https://github.com/search?utf8=%E2%9C%93&q=is%3Aopen+archived%3Afalse+org%3Amattermost+label%3A%22Help+Wanted%22++label%3A%22Up+For+Grabs%22). To take one on, just comment on the issue and follow the process outlined in article 1.1 of this guide.
 
 ## Subsection 6 — You can help with translation
 
