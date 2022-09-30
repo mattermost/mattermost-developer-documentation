@@ -15,7 +15,7 @@ This guide is a reference for all things contribution at Mattermost. Here is a b
 	Information on how to communicate and interact effectively, respectfully, and inclusively with other members of the Mattermost community.
 
 - Contributor expectations
-	This section explains how we're expected to act through the whole contribution process, including the typical guidelines to follow while producing new code and content.
+	Information on what is expected of contributors throughout the whole contribution process, including guidelines to follow when producing new code and content.
 
 - Section 4: Where to find more information
 	This section lists the places in Mattermost's internal material and on external sites where you can find more specific information on parts of the contribution process not general enough to include in this guide.
