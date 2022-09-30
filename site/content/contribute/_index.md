@@ -18,6 +18,6 @@ This guide is a reference for all things contribution at Mattermost. Here is a b
 	Information on what is expected of contributors throughout the whole contribution process, including guidelines to follow when producing new code and content.
 
 - Where to find more information
-	This section lists the places in Mattermost's internal material and on external sites where you can find more specific information on parts of the contribution process not general enough to include in this guide.
+	Information on where to find more information on the contribution process beyond the guidance offered in this guide.
 
 Please use this guide as the authority to consult and reference when making decisions at Mattermost.
