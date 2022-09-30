@@ -16,7 +16,9 @@ weight: 3
     4. You can extend, modify, and deeply integrate with the Mattermost server, its apps, and its UI/UX by using [plugins]({{< ref "/integrate/plugins/" >}}). However please note that plugin development comes with the highest level of overhead and must be written in Go and React.
     5. If you need to take Mattermost with you into another app, perhaps you’re looking for [the embed guide]({{< ref "/integrate/customization/embedding/" >}}).
 3. Identify which repository you need to work in, then review the README located within the root of the repository to learn more about getting started with your contribution and any processes that may be unique to that repo.
-4. Figure out which repo you need to be working in. With content, you should be able to click the Edit in GitHub button on the published page to find the right repo, but with code it can be somewhat more difficult. You might even have to contribute to multiple repos, likely starting in the server repo. Here are the core repos:
+4. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the "Edit in Github" button in the top right of its respective published page. You can contribute to our [product](https://docs.mattermost.com/) and our [developer](https://developers.mattermost.com/) documentation. 
+
+These are the Mattermost Core repos you can contribute to:
     - [Server]({{< ref "/contribute/more-info/server/" >}}): Highly-scalable Mattermost installation written in Go.
     - [Web App]({{< ref "/contribute/more-info/webapp/" >}}): JavaScript client app built on React and Redux.
     - [Mobile Apps]({{< ref "/contribute/more-info/mobile/" >}}): JavaScript client apps for Android and iOS built on React Native.
