@@ -27,7 +27,7 @@ weight: 1
     i. If you need to test your changes on a test server, you can add the appropriate label to the PR and wait 3-5 minutes for the server to be created (see [the labels page]({{< ref "/contribute/more-info/getting-started/labels.md)" >}}). A bot will send you your link and credentials in the form of a comment on the PR. Remove the label when you’re done to destroy the test server.
 6. Once you address suggestions a reviewer has made, re-request a review from them. Their initial review was technically completed, so it’s no longer in their queue until you re-request.
 
-    1. Give reviewers time — they may have long queues and different schedules. If you’ve been assigned a reviewer but haven’t heard from them in 5 business days, politely mention them in a PR comment.
+    **Tip:** Give reviewers time — they may have long queues and different schedules. If you’ve been assigned a reviewer but haven’t heard from them in five business days, you can politely bring focus back to your PR by mentioning them in a PR comment.
 7. Mattermost has a system to categorize the inactivity of contributions. Invalid PRs don’t need to go through this cycle at the Community Coordinator’s discretion.
 
     1. After 10 days of inactivity, a contribution becomes stale, and a bot will add the  `lifecycle/1:stale`  label to the PR. It’s on the Community Coordinator to nudge the right people to get a stale PR active again, even if that means clarifying requests so the contributor has more information to go off of.
