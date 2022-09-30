@@ -24,12 +24,12 @@ weight: 3
     - [Core Plugins]({{< ref "/contribute/more-info/plugins/" >}}): A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
     - Core Integrations: Mattermost product verticals including [Boards]({{< ref "/contribute/more-info/focalboard/" >}}) and [Playbooks](https://github.com/mattermost/mattermost-plugin-playbooks).
 
-## Subsection 2 — During the contribution process
+## During the contribution process
 
-1. Check in regularly with your PR — it’d be unfortunate if your hard work was shelved because of a lost notification.
-2. Thoroughly document what you’re doing. This way, future contributors will be easily able to pick up on your work (including yourself). This is especially helpful if you need to step back from a PR — in that case, just tell your supervisor how the next contributor can find your documentation.
+1. Check in regularly with your PR to review and respond to feedback. 
+2. Thoroughly document what you’re doing in your PR. This way, future contributors can pick up on your work (including you!). This is especially helpful if you need to step back from a PR.
 3. PRs should represent projects, both in code and in content. Keep unrelated tasks to different PRs.
-4. Make your PR titles and commit messages descriptive! If you make reviewer’s lives easier by briefly describing the project in the PR title and in your commit messages, you’ll likely get faster responses, less clarifying questions, and better advice.
+4. Make your PR titles and commit messages descriptive! Briefly describing the project in the PR title and in your commit messages often results in faster responses, less clarifying questions, and better feedback.
 
 ## Subsection 3 — While writing code
 
