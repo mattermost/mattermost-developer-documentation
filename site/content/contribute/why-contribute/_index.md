@@ -4,7 +4,7 @@ heading: "Why you might contribute"
 weight: 1
 ---
 
-## Subsection 1 — You’ve found a bug
+## You’ve found a bug
 
 1. If the bug fix that you’re proposing would be larger than 20 lines of code, [create a GitHub issue](https://github.com/mattermost/mattermost-server/issues).
 
