@@ -1,5 +1,5 @@
 ---
-title: "Section 2 — Making good decisions"
+title: "Making good decisions"
 heading: "Section 2 — Making good decisions"
 description: ""
 date: "2022-10-01T12:00:00-00:00"
