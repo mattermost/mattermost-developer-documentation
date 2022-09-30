@@ -33,7 +33,7 @@ There are many reasons you might be motivated to contribute to Mattermost:
     
     - In many cases, you'll know whose code you’re changing and can **assign the appropriate Product Manager, Designer, or Technical Writer to review your PR** from a UI/UX perspective. When in doubt, somebody is better than nobody, as reviewers can always reassign. Once reviewers approve your PR, the `1: UX Review` label will be removed.
     
-    - **Request two core committers to review your PR**  — one with experience solving that particular or in that particular language, and another with expertise in the domain of your changes. Don’t request the same people over and over again unless they’re the only people with the necessary expertise. Once they give their approval, the `2: Dev Review` label will be removed.
+    - **Request two core committers to review your PR**  — one with experience solving that particular type of issue or in that particular language, and another with expertise in the domain of your changes. Don’t request the same people over and over again unless they’re the only people with the necessary expertise. Once they give their approval, the `2: Dev Review` label will be removed.
     
     - **Request a QA tester** from the team that owns the code that you’re changing. They’ll decide the necessary scope of testing. Make sure you’ve defined what the expected results are so they know when their tests are successful. Once they give their approval, the `3: QA Review` label will be removed. The QA tester may add the `QA Review Done` label as well.
 
