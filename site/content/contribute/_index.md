@@ -14,7 +14,7 @@ This guide is a reference for all things contribution at Mattermost. Here is a b
 - Section 2: Making good decisions
 	Information on how to communicate and interact effectively, respectfully, and inclusively with other members of the Mattermost community.
 
-- Section 3: Contributor expectations
+- Contributor expectations
 	This section explains how we're expected to act through the whole contribution process, including the typical guidelines to follow while producing new code and content.
 
 - Section 4: Where to find more information
