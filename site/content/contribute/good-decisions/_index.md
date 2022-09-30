@@ -7,7 +7,7 @@ We are a welcoming and open community and we’re excited to have you join us!
 
 To be an open, safe, and welcoming community, we strive to be inclusive, collaborative, considerate, and respectful. We all abide by the {{<newtabref title="Mattermost Code of Conduct (CoC)" href="https://handbook.mattermost.com/contributors/contributors/guidelines/contribution-guidelines">}}, and by joining our contributor community, **you agree to abide by it as well**.
 
-Learn more about our {{<newtabref title="company values" href="https://handbook.mattermost.com/company/about-mattermost#leadership-principles">}}, and how to become a successful member of the Mattermost community by learning and following our standard operational guidelines. Please read these sections carefully and let us know if you have any questions or concerns.
+Learn more about our {{<newtabref title="company values" href="https://handbook.mattermost.com/company/about-mattermost#leadership-principles">}}, and how to become a successful member of the Mattermost community by learning and following our standard operational guidelines below. Please read these sections below carefully and let us know if you have any questions or concerns.
 
 ## We're inclusive
 
