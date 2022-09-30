@@ -33,7 +33,7 @@ These are the Mattermost Core repos you can contribute to:
 3. Each PR should represent a single project, both in code and in content. Keep unrelated tasks to different PRs.
 4. Make your PR titles and commit messages descriptive! Briefly describing the project in the PR title and in your commit messages often results in faster responses, less clarifying questions, and better feedback.
 
-## Subsection 3 — While writing code
+## Writing code
 
 1. Always thoroughly test your contributions! Mattermost is a complex web of programs, so even insignificant changes have the potential to break big features. Here’s our guide on end-to-end testing.
 2. Detail exactly what should happen when others test your contributions.
