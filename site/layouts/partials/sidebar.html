@@ -9,6 +9,9 @@
             {{ range .Pages.ByWeight }}
                 {{ $active := (eq $ .) }}
                 {{ $expanded := or ($.IsDescendant .) (eq $ .) }}
+                {{ if (eq .Section "contribute") }}
+                    {{ $expanded = true }}
+                {{ end }}
 
                 {{ $icon :=  "fa-plus-square-o" }}
                 {{ if $expanded }}
@@ -16,7 +19,7 @@
                 {{ end }}
 
                 {{ $iconstyle := "" }}
-                {{if not .Pages }}
+                {{ if not .Pages }}
                     {{ $iconstyle = "display: none" }}
                 {{ end }}
 
