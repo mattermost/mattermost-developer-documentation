@@ -38,10 +38,12 @@ button.highlight-copy-button svg {
 }
 
 .highlight:hover button.highlight-copy-button {
+    cursor: pointer;
     opacity: 1;
 }
 
 .highlight button.highlight-copy-button:hover {
+    cursor: pointer;
     background-color: rgb(235, 235, 235);
 }
 
