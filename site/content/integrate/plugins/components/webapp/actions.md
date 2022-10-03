@@ -21,7 +21,7 @@ When building web app plugins, it's common to perform actions or access the stat
 
 ## Prerequisites
 
-It's assumed you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide]({{< ref "integrate/plugins/components/webapp/hello-world" >}}).
+It's assumed you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide]({{< ref "/integrate/plugins/components/webapp/hello-world" >}}).
 
 ## Basic example
 
@@ -199,7 +199,7 @@ Registers a reducer against the Redux store. It will be accessible in Redux stat
 
 When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients.
 
-Here we'll show how to use Redux actions with a plugin. To learn more about these actions, see the [contributor documentation]({{< ref "/contribute/webapp/redux/actions" >}}).
+Here we'll show how to use Redux actions with a plugin. To learn more about these actions, see the [contributor documentation]({{< ref "/contribute/more-info/webapp/redux/actions" >}}).
 
 ## Prerequisites
 
@@ -227,7 +227,7 @@ mkdir -p src/components/action_example
 cd src/components/action_example
 ```
 
-In there, create two files: `index.js` and `action_example.jsx`. If you're not familiar with why we're creating these directories and files, [read the contributor documentation on using React with Redux]({{< ref "/contribute/webapp/redux/react-redux" >}}).
+In there, create two files: `index.js` and `action_example.jsx`. If you're not familiar with why we're creating these directories and files, [read the contributor documentation on using React with Redux]({{< ref "/contribute/more-info/webapp/redux/react-redux" >}}).
 
 Open up `action_example.jsx` and add the following:
 
