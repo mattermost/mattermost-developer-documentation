@@ -11,7 +11,7 @@ In addition to the {{<newtabref title="Mattermost REST APIs" href="https://api.m
 
 - [Calling other Apps]({{< ref "mattermost-api#apps-api" >}}) - use the Call API to invoke other Apps (experimental).
 
-- [Subscriptions]({{< ref "subscriptions" >}}) covers how to subscribe to notifications about Mattermost events. Examples of a subscription include having your App notified whenever a message is posted in a channel that mentions your @bot account.
+- [Subscriptions]({{< ref "subscriptions" >}}) learn how to subscribe to notifications about Mattermost events. For example: have your App notified whenever a message is posted in a channel that mentions your @bot account.
 
 - [External webhooks]({{< ref "external-webhooks" >}}) learn how to subscribe to webhooks from third-party systems.
 
