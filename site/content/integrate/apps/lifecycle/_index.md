@@ -91,7 +91,7 @@ For example, use the following command to uninstall an App with an `AppID` of `m
 Registering an App in a Mattermost installation means the App is available in the product Marketplace, can be installed by the System Admin, and once installed, can be available to users.
 When a new App is registered, or a new version of an existing App is registered, the `manifest.json` data from the App is updated, and a new App is added to the product Marketplace.
 
-After registration, the Mattermost server synchronizes the list of the registered Apps by downloading appropriate manifests from the S3 bucket and storing them in memory. The product Marketplace shows updated App listings and the System Admin can install the App or new version of the App.
+After registration, the Mattermost server synchronizes the list of the registered Apps by downloading appropriate manifests from the file store and storing them in memory. The product Marketplace shows updated App listings and the System Admin can install the App or new version of the App.
 
 {{<note "AWS credentials">}}
 The Apps Plugin needs AWS credentials to download from S3 and to invoke lambda functions. The credentials are read from the following environment variables:
