@@ -57,7 +57,6 @@ describe('Change to Functional Group', () => {
   - `cy.shouldHavePluginUploadEnabled()`
   - `cy.shouldHaveElasticsearchDisabled()`
   - `cy.requireWebhookServer()`
-  - `cy.requireStorybookServer()`
 
 ##### License requirement
 - Possible values:
