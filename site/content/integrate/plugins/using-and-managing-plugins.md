@@ -1,6 +1,6 @@
 ---
-title: "Using and Managing Plugins"
-heading: "Using plugins with Mattermost"
+title: "Use and manage plugins"
+heading: "Use plugins with Mattermost"
 description: "Mattermost supports plugins to customize and extend the platform."
 weight: 50
 aliases:
@@ -43,11 +43,11 @@ Plugins labeled as "Experimental" are still being tested. These should not be ru
 
 Plugins identified as "Partner" are created and maintained by a Mattermost partner.
 
-### Installing a plugin
+### Install a plugin
 
 When a new plugin becomes available on the Marketplace, it's listed with an option to **Install**. Select **Install** to download and install the latest plugin binary from its respective GitHub repository. If there's a cluster present, the plugin will be distributed to each server automatically.
 
-### Configuring and enabling a plugin
+### Configure and enable a plugin
 
 Once a plugin is installed (or pre-installed if shipped with Mattermost binary release):
 
@@ -56,11 +56,11 @@ Once a plugin is installed (or pre-installed if shipped with Mattermost binary r
 3. Set **Enable Plugin** setting to **True**. If this flag is not enabled, the plugin will not become active.
 4. Test out the plugin as needed.
 
-### Upgrading plugins
+### Upgrade plugins
 
 Upgrade a plugin on demand when a new version becomes available. New versions of plugins that you have already installed will display a link to easily install the upgraded plugins. Some plugin versions may have breaking changes; please check the release notes if you're performing a major version change.
 
-### Upgrading plugins (prior to v5.18)
+### Upgrade plugins (prior to v5.18)
 
 In v5.16 and v5.17 the Marketplace only supports the installation of new plugins. To upgrade a plugin, you need to manually update it by downloading the binary file from the GitHub repository and then upload it in **System Console > Plugin Management**.
 
@@ -160,7 +160,7 @@ Public and private key pairs are needed to sign and verify plugins. The private 
 
 Key size should be at least 3072 bits.
 
-### Exporting the private key
+### Export the private key
 
 Find the ID of your private key first. The ID is a hexadecimal number.
 
@@ -170,7 +170,7 @@ This is your private key and should be kept secret. Your hexadecimal key ID will
 
 `gpg --export-secret-keys F3FACE45E0DE642C8BD6A8E64C7C6562C192CC1F > ./my-priv-key`
 
-### Exporting the public key
+### Export the public key
 
 Find the ID of your public key first. The ID is a hexadecimal number.
 
@@ -185,7 +185,7 @@ If you already have a public and private key pair, you can import them to the GP
 `gpg --import ./my-priv-gpg-key`
 `gpg --import ./my-pub-gpg-key`
 
-## Running plugin signing
+## Sign the plugin
 
 For plugin signing, you have to know the hexadecimal ID of the private key. Let's assume you want to sign `com.mattermost.demo-plugin-0.1.0.tar.gz` file, run:
 
@@ -246,13 +246,13 @@ Custom plugins may also be installed via the [command line interface](https://do
 
 While no longer recommended, plugins may also be installed manually by unpacking the plugin bundle inside the `plugins` directory of a Mattermost installation.
 
-### Plugin uploads in High Availability mode
+### Plugin uploads in high availability mode
 
 Prior to Mattermost 5.14, Mattermost servers configured for [High Availability mode](https://docs.mattermost.com/deployment/cluster.html) required plugins to be installed manually. As of Mattermost 5.14, plugins uploaded via the System Console or the CLI are persisted to the configured file store and automatically installed on all servers that join the cluster.
 
 Manually installed plugins remain supported, but must be individually installed on each server in the cluster.
 
-## Frequently Asked Questions
+## Frequently asked questions
 
 ### Where can I share feedback on plugins?
 

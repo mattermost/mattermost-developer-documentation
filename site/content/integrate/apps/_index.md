@@ -19,17 +19,17 @@ When you develop using the Apps Framework, your apps can:
 
 - Create slash commands
 
-![image](app-slash-command-zoomed-in.png)
+  ![image](app-slash-command-zoomed-in.png)
 
 - Post messages to channels
 
-![image](app-bot.png)
+  ![image](app-bot.png)
 
 - Add buttons to channel headers and post menus
 
-![image](app-channel-header-zoomed-in.png)
+  ![image](app-channel-header-zoomed-in.png)
 
-![image](app-action-zoomed-in.png)
+  ![image](app-action-zoomed-in.png)
 
 Apps are now generally available and we always appreciate your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost community instance.
 
@@ -41,11 +41,11 @@ Read the [JavaScript start guide]({{< ref "quickstart/quick-start-js" >}}) or [G
 
 That depends on your use case, as they each have benefits.
 
-The built-in [incoming webhook]({{< ref "/integrate/webhooks/incoming/incoming-webhooks" >}}) is great for simple use cases. It requires the incoming payload to contain a valid {{< newtabref href="https://pkg.go.dev/github.com/nhannv/mattermost-server/model#Post" title="Post" >}} JSON object - but some external systems don't allow the customization of the fields included in the webhook payload. Compared to built-in webhooks, an App or plugin can be customized to receive an HTTP webhook posting from another system, and can process the incoming data then augment it or make an actionable message in a channel.
+The built-in [incoming webhook]({{< ref "/integrate/webhooks/incoming" >}}) is great for simple use cases. It requires the incoming payload to contain a valid {{< newtabref href="https://pkg.go.dev/github.com/nhannv/mattermost-server/model#Post" title="Post" >}} JSON object, but some external systems don't allow customization of the fields included in the webhook payload. Compared to built-in webhooks, an App or plugin can be customized to receive an HTTP webhook posting from another system, and can process the incoming data then augment it or make an actionable message in a channel.
 
 A plugin should be used when you need to [directly alter the UI]({{< ref "integrate/plugins/components/webapp/best-practices" >}}) in Mattermost or you have a feature that requires low latency with the server (such as replacing characters in any message [before it is saved]({{< ref "integrate/plugins/components/server/reference#Hooks.MessageWillBePosted" >}})). Currently, plugins have several [UX hooks]({{< ref "integrate/plugins/components/server/reference#Hooks" >}}) that apps cannot access, however we plan to add/migrate more UX hooks into the Apps Framework over time. Please see the [plugin documentation]({{< ref "integrate/plugins" >}}) for more information.
 
-### What's the difference between the Apps Framework and the plugin framework?
+### What's the difference between the Apps framework and the plugin framework?
 
 The Apps Framework provides a few differences from plugins, including:
 

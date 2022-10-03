@@ -1,7 +1,7 @@
 ---
 title: "Mattermost API"
-heading: "Using Mattermost REST APIs with Apps"
-description: "An app can use the Mattermost server REST API, as well as new App Services APIs offered specifically to Mattermost Apps."
+heading: "Use Mattermost REST APIs with Apps"
+description: "An App can use the Mattermost server REST API, as well as new App services APIs offered specifically to Mattermost Apps."
 weight: 20
 aliases:
   - /integrate/apps/using-mattermost-api/

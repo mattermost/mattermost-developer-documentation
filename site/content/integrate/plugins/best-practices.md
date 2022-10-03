@@ -1,9 +1,10 @@
 ---
-title: "Best Practices"
-heading: "Best Practices for Plugins"
+title: "Best practices"
+heading: "Best practices for plugins"
 description: "Learn more about best practices for using Mattermost plugins to better extend and integrate your Mattermost server and apps."
 weight: 100
-aliases: [/extend/plugins/best-practices/]
+aliases:
+  - /extend/plugins/best-practices/
 ---
 
 See here for [server-specific best practices for plugins]({{< ref "/integrate/plugins/components/server/best-practices" >}}). Webapp-specific best practices are incoming.
@@ -20,17 +21,17 @@ A plugin could define its own type of setting with a corresponding custom user i
 
 1. Define a `type: custom` setting in the plugins manifest `settings_schema`
 
-```diff
-"settings_schema": {
-    "settings": [{
-        "key": "NormalSetting",
-        "type": "text",
-+    }, {
-+        "key": "CustomSetting",
-+        "type": "custom"
-    }]
-}
-```
+    ```diff
+    "settings_schema": {
+        "settings": [{
+            "key": "NormalSetting",
+            "type": "text",
+    +    }, {
+    +        "key": "CustomSetting",
+    +        "type": "custom"
+        }]
+    }
+    ```
 
 2. In the plugin's web app code, define a custom component to manage the plugin's custom setting and register it in the web app with [`registerAdminConsoleCustomSetting`]({{< ref "/integrate/plugins/components/webapp/reference#registerAdminConsoleCustomSetting" >}}). This component will be instantiated in the System Console with the following `props` passed in:
 
@@ -49,27 +50,25 @@ A plugin could define its own type of setting with a corresponding custom user i
 
 3. On initialization of the custom component, the current value of the custom setting is passed in the `props.value` in a json format as read from the config. This value can be processed as necessary to display in your custom UI and ready to be modified by the end user. In the example below, it processes the initial `props.value` and sets it in a local state for the component to use as needed:
 
-```
-constructor(props) {
+    ```js
+    constructor(props) {
         super(props);
-
+    
         this.state = {
             attributes: this.initAttributes(props.value),
         }
     }
-```
-
+    ```
 
 4. When a user makes a change in the UI, the `OnChange` handler sends back the current value of the setting as a json. Additionally, `setSaveNeeded` should be called to enable the `Save` button in order for the changes to be saved.
 
-```
-handleChange = () => {
-    ...
-
-    this.props.onChange(this.props.id,  Array.from(this.state.attributes.values()));
-    this.props.setSaveNeeded()
-};
-```
+    ```js
+    handleChange = () => {
+        // ...
+        this.props.onChange(this.props.id,  Array.from(this.state.attributes.values()));
+        this.props.setSaveNeeded()
+    };
+    ```
 
 5. Once the user saves the changes, any handler that was registered with `registerSaveAction` will be executed to perform any additional custom actions the plugin may require, such as calling an additional endpoint within the plugin. 
 
@@ -83,33 +82,33 @@ For this, it is useful to create a PR with only the commits you added. Follow th
 
 1. First of all, you need to obtain the identifier of the oldest commit that should be reviewed. You can review your history with `git log --oneline`, where you need to look for the very first commit that you added. Imagine that the output is something like the following:
 
-```
-f7d89b8 (HEAD -> master, origin/master) Lint code
-fa99500 Fix bug
-0b3b5bd Add feature
-8f6aef3 My first commit to the plugin
-...
-... rest of commits from mattermost-plugin-starter-template
-...
-```
+    ```
+    f7d89b8 (HEAD -> master, origin/master) Lint code
+    fa99500 Fix bug
+    0b3b5bd Add feature
+    8f6aef3 My first commit to the plugin
+    ...
+    ... rest of commits from mattermost-plugin-starter-template
+    ...
+    ```
 
-In this case, the identifier that we need to copy is `8f6aef3`.
+    In this case, the identifier that we need to copy is `8f6aef3`.
 
 2. Create a new branch without the commits that you added. Using the SHA that you copied, create the branch `base` and push it:
 
-```
-git branch base 8f6aef3~1
-git push origin base
-```
+    ```shell
+    git branch base 8f6aef3~1
+    git push origin base
+    ```
 
-Note that `8f6aef3~1` means _the parent commit of `8f6aef3`_, effectively selecting all the commits in the branch except the ones that you added.
+    Note that `8f6aef3~1` means _the parent commit of `8f6aef3`_, effectively selecting all the commits in the branch except the ones that you added.
 
 3. Create a branch with all the commits, included the ones that you added, and push it. This branch, `compare`, will be an exact copy of `master`:
 
-```sh
-git branch compare master
-git push origin compare
-```
+    ```sh
+    git branch compare master
+    git push origin compare
+    ```
 
 4. Now you have two new branches in the repository: `base` and `compare`. In Github, create a new PR in your repository, setting the _base_ branch to `base` and the _compare_ branch to `compare`.
 
@@ -117,15 +116,15 @@ git push origin compare
 
 For future changes, you can always repeat this process, making sure to identify the first commit you want to be reviewed. You can also consider the more common scenario of creating a feature branch (using something like `git checkout -b my.feature.branch`) and opening a PR whenever you want to merge the changes into `master`. It's up to you!
 
-## When to write a new API method? New hook?
+## When to write a new API method or hook?
 
 Don't be afraid to extend the API or hooks to support brand new functionality. Consider accepting an options struct instead of a list of parameters to simplify extending the API in the future:
 
 ```go
-	// GetUsers a list of users based on search options.
-	//
-	// Minimum server version: 5.10
-	GetUsers(options *model.UserGetOptions) ([]*model.User, *model.AppError)
+// GetUsers a list of users based on search options.
+//
+// Minimum server version: 5.10
+GetUsers(options *model.UserGetOptions) ([]*model.User, *model.AppError)
 ```
 
 Old servers won't do anything with new, unrecognized fields, but also won't break if they are present.

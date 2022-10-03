@@ -1,7 +1,7 @@
 ---
 title: "Quick start guide (Go)"
-heading: "Writing a Mattermost app in Go"
-description: "This quick start guide will walk you through the basics of writing a Mattermost app in Go."
+heading: "Write a Mattermost app in Go"
+description: "This quick start guide will walk you through the basics of writing a Mattermost App in Go."
 weight: 10
 aliases:
   - /integrate/apps/quick-start-go/
@@ -16,7 +16,7 @@ This quick start guide explains the basics of writing a Mattermost app. In this 
 
 ## Prerequisites
 
-Before you can start with your app, you first need to set up a local developer environment following the [server]({{< ref "/contribute/server/developer-setup" >}}) and [webapp]({{< ref "/contribute/webapp/developer-setup" >}}) setup guides. You must enable the apps feature flag before starting the Mattermost server by setting the environment variable `MM_FEATUREFLAGS_AppsEnabled` to `true` by e.g. adding `export MM_FEATUREFLAGS_AppsEnabled=true` to your `.bashrc` or using `make run-server MM_FEATUREFLAGS_AppsEnabled=true`.
+Before you can start with your app, you first need to set up a local developer environment following the [server]({{< ref "/contribute/more-info/server/developer-setup" >}}) and [webapp]({{< ref "/contribute/more-info/webapp/developer-setup" >}}) setup guides. You must enable the apps feature flag before starting the Mattermost server by setting the environment variable `MM_FEATUREFLAGS_AppsEnabled` to `true` by e.g. adding `export MM_FEATUREFLAGS_AppsEnabled=true` to your `.bashrc` or using `make run-server MM_FEATUREFLAGS_AppsEnabled=true`.
 
 In the System Console, ensure that the following are set to **true**:
 
@@ -42,7 +42,7 @@ make dist
 
 Then upload it to your local Mattermost server via the System Console.
 
-## Building the app
+## Build the app
 
 Start building your app by creating a directory for the code and setting up a new go module:
 
@@ -173,7 +173,7 @@ Download an example icon using:
 curl https://github.com/mattermost/mattermost-plugin-apps/raw/master/examples/go/hello-world/icon.png -o icon.png
 ```
 
-### Serving the data
+### Serve the data
 
 Finally, add the application logic that gets executed when either the slash command is run or the modal submitted by creating a file named `main.go` with the following content:
 
@@ -248,7 +248,7 @@ func send(w http.ResponseWriter, req *http.Request) {
 
 The app is a simple HTTP server that serves the files you created above. The only application logic is in `send`, which takes the received `"message"` field and sends a message back to the user as the bot. Also, an ephemeral message is posted in the current channel.
 
-## Installing the app
+## Install the App
 
 Run your app using:
 
@@ -264,7 +264,7 @@ Then run the following slash commands on your Mattermost server:
 
 Confirm the installation in the modal that pops up. You can leave the **App secret** field blank, the app does not require one.
 
-## Using the app
+## Use the App
 
 Select the "Hello World" channel header button in Mattermost, which brings up a modal:
 
@@ -279,7 +279,7 @@ You can also use the `/helloworld send` command by typing `/helloworld send --me
 ![image](command.png)
 
 
-## Uninstalling the app
+## Uninstall the App
 
 Uninstall the app using:
 

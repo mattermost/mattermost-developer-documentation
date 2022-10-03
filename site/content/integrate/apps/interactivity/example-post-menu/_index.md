@@ -1,6 +1,6 @@
 ---
-title: "Post Menu Example"
-heading: "Post Menu Example"
+title: "Post menu example"
+heading: "Post menu example"
 description: "In this example, the bindings specify to expand the post the user clicks on."
 weight: 70
 ---

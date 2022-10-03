@@ -1,7 +1,7 @@
 ---
 title: "Quick start guide (Node.js)"
-heading: "Writing a Mattermost app in Node.js with TypeScript"
-description: "This quick start guide will walk you through the basics of writing a Mattermost app in Node.js with TypeScript."
+heading: "Write a Mattermost App in Node.js with TypeScript"
+description: "This quick start guide will walk you through the basics of writing a Mattermost App in Node.js with TypeScript."
 weight: 20
 aliases:
   - /integrate/apps/quick-start-js/
@@ -32,7 +32,7 @@ docker-compose up
 
 After everything comes online, you can navigate to [http://localhost:8065/](http://localhost:8065/) to see your local Mattermost server that's configured for building apps locally.
 
-## Building the app
+## Build the App
 
 By using `docker-compose up` in the [dev](https://github.com/mattermost/mattermost-plugin-apps/tree/master/dev) folder, you will automatically bring your `app.ts` file online and watch for changes (hot reloading) via [nodemon](https://www.npmjs.com/package/nodemon). In the file, you can see the relevant lines for creating a simple HTTP server. This is the core of your Mattermost app, which is implemented with a RESTful API:
 
@@ -50,7 +50,7 @@ app.listen(port, () => {
 });
 ```
 
-### Providing a manifest
+### Provide a manifest
 
 Your app has to provide a manifest, which declares the app's metadata required for installation. In this example, the following permissions and locations are requested:
 - Create posts as a bot (`act_as_bot`)
@@ -135,7 +135,7 @@ app.post('/bindings', (req, res) => {
 });
 ```
 
-### Providing a form
+### Provide a form
 
 Forms handle user events on the bindings. This app provides a `form` before `POST`ing to the `/submit` function. In the case of a channel header, the form will launch a modal to collect its fields. In the case of a slash command, the form's fields will be collected as arguments from the user's command.
 
@@ -157,7 +157,7 @@ const form: AppForm = {
 };
 ```
 
-### Serving data
+### Serve the data
 
 Finally, you can see the application logic that is executed when either the slash command is sent or the channel header's modal is submitted. It collects the user's input, interpolates it with a string, and DMs that string in a message back to the user:
 
@@ -217,7 +217,7 @@ app.post('/submit', async (req, res) => {
 });
 ```
 
-## Serving static assets
+## Serve static assets
 
 Apps may include static assets (e.g., `icon.png`). Static assets must be served under the `static` path. For example, there is a `icon.png` file in the `dev/node_app/static` directory that this app serves:
 
@@ -226,7 +226,7 @@ Apps may include static assets (e.g., `icon.png`). Static assets must be served 
 app.use('/static', express.static('./static'));
 ```
 
-## Installing your app in Mattermost
+## Install your App in Mattermost
 
 Since we used `docker-compose up` in the [dev](https://github.com/mattermost/mattermost-plugin-apps/tree/master/dev) folder, your `app.ts` file is already online and watching for changes (hot reloading), allowing for rapid prototyping and development. Use the following slash command on your Mattermost server to install your new web app:
 
@@ -244,7 +244,7 @@ Now your app is installed!
 
 ![image](install-confirmation.png)
 
-## Using the app
+## Use the App
 
 Select your app's channel header button in Mattermost, which brings up a modal asking for input:
 
@@ -256,7 +256,7 @@ Type `testing` and click the Submit button to receive a DM from your app:
 
 You can also use the slash command by typing `/node-example send testing` to achieve the same effect. In this case, you're not presented with a modal because the slash command captured your input directly.
 
-## Uninstalling the app
+## Uninstall the App
 
 You can uninstall the app using `/apps uninstall node-example`. Alternatively, you can use `/apps debug clean` slash command to remove all apps for the sake of rapid prototyping and testing.
 

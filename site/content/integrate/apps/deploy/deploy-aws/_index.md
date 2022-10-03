@@ -1,7 +1,6 @@
 ---
 title: "AWS"
-heading: "Admin's Guide to Deploying Apps to AWS"
-description: "TODO"
+heading: "Deploy Apps to AWS"
 weight: 20
 aliases:
   - /integrate/apps/deployment-aws/
@@ -22,7 +21,7 @@ For details on how to develop and package apps for AWS see [Package / AWS]({{< r
 There are three steps required to enable AWS applications on a self-managed
 Mattermost instance.
 
-### 1. Initialize the AWS environment.
+### 1. Initialize the AWS environment
 
 #### Set up AWS S3 bucket
 
@@ -96,7 +95,7 @@ To enable AWS Apps installation and use, the Mattermost server must be
   (once!) in the command's output.
 - `MM_APPS_AWS_SECRET_KEY` The Secret Key for the access key above.
 - `MM_APPS_AWS_REGION` The AWS region to use.
-- `MM_APPS_S3_BUCKET` The name of the AWS bucet for static assets and manifests.
+- `MM_APPS_S3_BUCKET` The name of the AWS bucket for static assets and manifests.
 
 Restart the Mattermost server to complete your Mattermost and AWS setup. You can
 now deploy an app to AWS.
@@ -104,7 +103,7 @@ now deploy an app to AWS.
 
 ### 3. Deploy apps to AWS
 
-#### Deploying an app to AWS
+#### Deploy an app to AWS
 
 To deploy AWS Apps from a bundle use `appsctl aws deploy {aws-bundle.zip}`
 command. It will deploy all necessary resources to AWS, update the invoke policy

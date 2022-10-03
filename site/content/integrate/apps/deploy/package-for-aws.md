@@ -1,7 +1,6 @@
 ---
-title: "Packaging for AWS"
-heading: "Packaging apps for AWS Lambda"
-description: "TODO"
+title: "Package Apps for AWS"
+heading: "Package Apps for AWS Lambda"
 weight: 30
 aliases:
   - /integrate/apps/package/
@@ -10,7 +9,7 @@ aliases:
 
 Developers must prepare apps for deployment to AWS which includes creating an app bundle and making the app runnable as an AWS Lamda function.
 
-## App Bundle
+## App bundle
 
 An app bundle is a convenient way to deliver an app to the Mattermost ecosystem. It provides a way to organize code and resources needed for an app to run. An app bundle is created by the developer of the app. Mattermost uses app bundles to deploy and install/uninstall apps.
 
@@ -31,7 +30,7 @@ A language library is used to emulate an HTTP to your app. For go you might use 
 Finally you need to define the AWS function in the manifest of your app by adding `aws_lambda` to it which has the following fields:
 
 | Name      | Description                                                                                                              |
-| :-------- | :----------------------------------------------------------------------------------------------------------------------- |
+|:----------|:-------------------------------------------------------------------------------------------------------------------------|
 | `path`    | The lambda function with its path being the longest-matching prefix of the call's path which will be invoked for a call. |
 | `name`    | A human-readable name.                                                                                                   |
 | `handler` | The name of the handler function.                                                                                        |

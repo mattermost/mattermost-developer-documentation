@@ -1,15 +1,17 @@
 ---
-title: "Message Attachments"
-heading: "Using message attachments"
+title: "Message attachments"
+heading: "Use message attachments"
 description: "A wide range of rich text formatting options, including bold, italic, headings, in-line images, and tables, can be used in integrations. For more information about formatting, see [formatting text](https://docs.mattermost.com/help/messaging/formatting-text.html)."
 weight: 40
+aliases:
+  - /integrate/admin-guide/admin-message-attachments/
 ---
 
 For additional formatting options, and for compatibility with Slack non-markdown integrations, an `attachments` array can be sent by integrations and rendered by Mattermost.
 
 You can also add interactive message buttons as part of attachments. They help make your integrations richer by completing common tasks inside Mattermost conversations, increasing user engagement and productivity. For more information, see [documentation]({{< ref "/integrate/plugins/interactive-messages" >}}).
 
-## Attachment Options
+## Attachment options
 
 When sending an attachment, you can use any of the following to format how you want the posted message to look.
 
@@ -27,7 +29,7 @@ When sending an attachment, you can use any of the following to format how you w
 
 ![image](attachments-text.png)
 
-### Author Details
+### Author details
 
 `author_name`: An optional name used to identify the author. It will be included in a small section at the top of the attachment.
 
@@ -69,51 +71,49 @@ Large images are resized to a maximum width of 400px or a maximum height of 300p
 
 ![image](attachments-thumb.png)
 
-## Example Message Attachment
+## Example message attachment
 
 Here is an example message attachment:
 
-```
-  :linenos:
-
-  {
+```json
+{
     "attachments": [
-      {
-        "fallback": "test",
-        "color": "#FF8000",
-        "pretext": "This is optional pretext that shows above the attachment.",
-        "text": "This is the text of the attachment. It should appear just above an image of the Mattermost logo. The left border of the attachment should be colored orange, and below the image it should include additional fields that are formatted in columns. At the top of the attachment, there should be an author name followed by a bolded title. Both the author name and the title should be hyperlinks.",
-        "author_name": "Mattermost",
-        "author_icon": "https://mattermost.com/wp-content/uploads/2022/02/icon_WS.png",
-        "author_link": "https://mattermost.org/",
-        "title": "Example Attachment",
-        "title_link": "https://developers.mattermost.com/integrate/reference/message-attachments/",
-        "fields": [
-          {
-            "short":false,
-            "title":"Long Field",
-            "value":"Testing with a very long piece of text that will take up the whole width of the table. And then some more text to make it extra long."
-          },
-          {
-            "short":true,
-            "title":"Column One",
-            "value":"Testing"
-          },
-          {
-            "short":true,
-            "title":"Column Two",
-            "value":"Testing"
-          },
-          {
-            "short":false,
-            "title":"Another Field",
-            "value":"Testing"
-          }
-        ],
-        "image_url": "https://mattermost.com/wp-content/uploads/2022/02/icon_WS.png"
-      }
+        {
+            "fallback": "test",
+            "color": "#FF8000",
+            "pretext": "This is optional pretext that shows above the attachment.",
+            "text": "This is the text of the attachment. It should appear just above an image of the Mattermost logo. The left border of the attachment should be colored orange, and below the image it should include additional fields that are formatted in columns. At the top of the attachment, there should be an author name followed by a bolded title. Both the author name and the title should be hyperlinks.",
+            "author_name": "Mattermost",
+            "author_icon": "https://mattermost.com/wp-content/uploads/2022/02/icon_WS.png",
+            "author_link": "https://mattermost.org/",
+            "title": "Example Attachment",
+            "title_link": "https://developers.mattermost.com/integrate/reference/message-attachments/",
+            "fields": [
+                {
+                    "short":false,
+                    "title":"Long Field",
+                    "value":"Testing with a very long piece of text that will take up the whole width of the table. And then some more text to make it extra long."
+                },
+                {
+                    "short":true,
+                    "title":"Column One",
+                    "value":"Testing"
+                },
+                {
+                    "short":true,
+                    "title":"Column Two",
+                    "value":"Testing"
+                },
+                {
+                    "short":false,
+                    "title":"Another Field",
+                    "value":"Testing"
+                }
+            ],
+            "image_url": "https://mattermost.com/wp-content/uploads/2022/02/icon_WS.png"
+        }
     ]
-  }
+}
 ```
 
 And here is how it renders in Mattermost:
@@ -128,12 +128,12 @@ And here is how it renders in Mattermost:
 
 ![image](attachments-footer.png)
 
-## Known Issues
+## Known issues
 
 1. The footer timestamp field (`ts`) is not yet supported.
 2. Message Attachment contents do not show up in search.
 
-## Frequently Asked Questions
+## Frequently asked questions
 
 ### Can I send a message attachment via the API?
 
@@ -145,13 +145,13 @@ You need to add an "attachment" key to the post's props JSON field. The value is
 
 Below is an example HTTP request:
 
-```
-  POST /posts HTTP/1.1
-  Host: {your-mattermost-site}
-  User-Agent: curl/7.63.0
-  Accept: */*
-  Content-Type: application/json
-  Content-Length: 192
+```http request
+POST /posts HTTP/1.1
+Host: {your-mattermost-site}
+User-Agent: curl/7.63.0
+Accept: */*
+Content-Type: application/json
+Content-Length: 192
 
-  {"channel_id":"qmd5oqtwoibz8cuzxzg5ekshgr", "message":"Test message #testing", "props":{"attachments": [{"pretext": "This is the attachment pretext.","text": "This is the attachment text."}]}}
+{"channel_id":"qmd5oqtwoibz8cuzxzg5ekshgr", "message":"Test message #testing", "props":{"attachments": [{"pretext": "This is the attachment pretext.","text": "This is the attachment text."}]}}
 ```

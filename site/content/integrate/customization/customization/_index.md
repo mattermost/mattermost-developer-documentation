@@ -1,6 +1,6 @@
 ---
-title: "Customizing Mattermost"
-heading: "Customizing Mattermost: An Introduction"
+title: "Customize Mattermost"
+heading: "Customize Mattermost"
 description: "Learn more about customizing Mattermost to create a more personalized experience depending on the needs of your deployment."
 weight: 50
 aliases: 
@@ -12,7 +12,7 @@ Mattermost allows for a variety of customization options and modifications, maki
 
 There are a few limitations regarding [how the re-branding of Mattermost](https://mattermost.com/trademark-standards-of-use/) must be handled, such as the fact that changes to the Enterprise Edition's source code isn't supported. However these limitations can be overcome with the utilization of [Plugins]({{< ref "/integrate/plugins" >}}).
 
-# Customizable Components
+# Customizable components
 
 ## Server (Team Edition only)
 
@@ -26,6 +26,6 @@ Some parts of server-side customizations don't require changes to the source cod
 
 Note: Modifications to server files can be utilized in both Team Edition and Enterprise Editions.
 
-## Web App
+## Web app
 
 Mattermost's web application runs on React, and [its codebase](https://github.com/mattermost/mattermost-webapp) has been open-sourced (regardless of which edition your server uses). You can view details on how to customize the web app in [here]({{< ref "/integrate/customization/customization/webapp" >}}). Keep in mind, however, that some changes to the web app can also leverage the [Plugin]({{< ref "/integrate/plugins/components/webapp" >}}) framework, which can help reduce the necessity of rebasing your custom client to each Mattermost release.

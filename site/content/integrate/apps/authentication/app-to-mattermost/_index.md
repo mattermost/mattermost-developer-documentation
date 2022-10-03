@@ -1,7 +1,6 @@
 ---
 title: "To Mattermost"
-heading: "Authenticating with Mattermost"
-description: "TODO"
+heading: "Authenticate with Mattermost"
 weight: 10
 ---
 
@@ -40,5 +39,5 @@ a System Admin, and the call's `expand` contained
 `admin_access_token=all`, the call receives `admin_access_token` in the request
 `context`. Otherwise, `admin_access_token` is empty.
 
-See [here]({{< ref "manifest#permissions">}}) to learn more about the available
+See [here]({{< ref "/integrate/apps/structure/manifest#permissions" >}}) to learn more about the available
 permissions

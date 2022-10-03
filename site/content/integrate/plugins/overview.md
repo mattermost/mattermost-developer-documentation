@@ -1,10 +1,11 @@
 ---
 title: Overview
-heading: "An Overview of Mattermost Plugins"
+heading: "An overview of Mattermost Plugins"
 description: "Plugins are defined by a manifest file and contain at least a server or web app component, or both. Learn more in our overview of plugins."
 date: 2018-07-10T00:00:00-05:00
 weight: 10
-aliases: [/extend/plugins/overview/]
+aliases:
+  - /extend/plugins/overview/
 ---
 
 Plugins are defined by a manifest file and contain at least a server or web app component, or both.
@@ -25,7 +26,7 @@ The sample plugin implements this simply in [plugin.go](https://github.com/matte
 
 Read more about the server-side of plugins [here]({{< ref "/integrate/plugins/components/server" >}}).
 
-### Web/Desktop App
+### Web/desktop app
 The web app component of a plugin is written in JavaScript with [React](https://reactjs.org) and [Redux](https://redux.js.org/). The plugin's bundled JavaScript is included on the page and runs alongside the web app code as a [PluginClass]({{< ref "/integrate/plugins/components/webapp/reference#pluginclass" >}}) that has initialize and deinitialize methods available for implementation. The initialize function is passed through the [registry]({{< ref "/integrate/plugins/components/webapp/reference#registry" >}}) which allows the plugin to register React components, actions and hooks to modify and interact with the Mattermost web app.
 
 The sample plugin has a [shell of an implemented PluginClass](https://github.com/mattermost/mattermost-plugin-starter-template/blob/master/webapp/src/index.js), while the demo plugin [contains a more complete example](https://github.com/mattermost/mattermost-plugin-demo/blob/master/webapp/src/plugin.jsx).
@@ -34,10 +35,9 @@ The desktop app is a shim of the web app, meaning any plugin that works in the w
 
 Read more about the web app component of plugins [here]({{< ref "/integrate/plugins/components/webapp" >}}).
 
-### Mobile App
+### Mobile app
 Currently there is no mobile app component of plugins but it is planned for the near term.
-
 
 ----
 
-If you'd like to better understand how plugins work, [see the contributor documentation on plugins]({{< ref "/contribute/server/plugins" >}}).
+If you'd like to better understand how plugins work, [see the contributor documentation on plugins]({{< ref "/contribute/more-info/server/plugins" >}}).

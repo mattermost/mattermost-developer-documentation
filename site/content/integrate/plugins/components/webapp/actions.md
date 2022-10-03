@@ -1,6 +1,6 @@
 ---
-title: Redux Actions
-heading: "Redux Actions for Web App Plugins"
+title: Redux actions
+heading: "Redux actions for web app plugins"
 description: "Mattermost-redux is a library of shared code between Mattermost JavaScript clients. Learn how to use Redux actions with a plugin."
 date: 2018-07-10T00:00:00-05:00
 weight: 11
@@ -21,7 +21,7 @@ When building web app plugins, it's common to perform actions or access the stat
 
 ## Prerequisites
 
-It's assumed you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide]({{< ref "integrate/plugins/components/webapp/hello-world" >}}).
+It's assumed you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide]({{< ref "/integrate/plugins/components/webapp/hello-world" >}}).
 
 ## Basic example
 
@@ -189,7 +189,7 @@ Executes the specified command with the arguments provided and fetches the respo
 
 Get the client options to make requests to the server. Use this to create your own custom requests.
 
-    ## Custom reducers and actions
+## Custom reducers and actions
 
 Reducers in Redux are pure functions that describe how the data in the store changes after any given action. Reducers will always produce the same resulting state for a given state and action. You can register a custom reducer for your plugin against the Redux store with the `registerReducer` function.
 
@@ -199,7 +199,7 @@ Registers a reducer against the Redux store. It will be accessible in Redux stat
 
 When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients.
 
-Here we'll show how to use Redux actions with a plugin. To learn more about these actions, see the [contributor documentation]({{< ref "/contribute/webapp/redux/actions" >}}).
+Here we'll show how to use Redux actions with a plugin. To learn more about these actions, see the [contributor documentation]({{< ref "/contribute/more-info/webapp/redux/actions" >}}).
 
 ## Prerequisites
 
@@ -216,7 +216,7 @@ npm install mattermost-redux
 
 That will add `mattermost-redux` as a dependency in your `package.json` file, allowing it to be imported into any of your plugin's JavaScript files.
 
-## Use an Action
+## Use an action
 
 Actions are used as part of components. To give components access to these actions, we pass them in as React props from the component's container `index.js` file. To demonstrate this, we'll create a new component.
 
@@ -227,11 +227,11 @@ mkdir -p src/components/action_example
 cd src/components/action_example
 ```
 
-In there, create two files: `index.js` and `action_example.jsx`. If you're not familiar with why we're creating these directories and files, [read the contributor documentation on using React with Redux]({{< ref "/contribute/webapp/redux/react-redux" >}}).
+In there, create two files: `index.js` and `action_example.jsx`. If you're not familiar with why we're creating these directories and files, [read the contributor documentation on using React with Redux]({{< ref "/contribute/more-info/webapp/redux/react-redux" >}}).
 
 Open up `action_example.jsx` and add the following:
 
-```javascript
+```jsx
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -301,6 +301,6 @@ Now we can use `this.props.patchUser()` to update a user. The example component 
 
 To use our component in our plugin we would then use the registry in the initialization function of the plugin to register the component somewhere in the Mattermost UI. That is beyond the scope of this guide, but you can [read more about that here]({{< ref "/integrate/plugins/components/webapp/reference" >}}).
 
-## Available Actions
+## Available actions
 
 The actions that are available for your plugin to import can be [found in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/actions).

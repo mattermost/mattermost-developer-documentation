@@ -1,6 +1,6 @@
 ---
-title: "Interactive Messages: Buttons and Menus"
-heading: "Using Buttons and Menus"
+title: "Interactive messages"
+heading: "Interactive messages"
 description: "Mattermost supports interactive message buttons and menus for incoming and outgoing webhooks, custom slash commands, and plugins via actions. They help make your integrations richer by completing common tasks inside Mattermost conversations, increasing user engagement and productivity."
 weight: 80
 aliases:
@@ -21,13 +21,13 @@ To try it out, you can use this [Matterpoll plugin](https://github.com/matterpol
 
 ![image](poll.png)
 
-## Message Buttons
+## Message buttons
 
 Add message buttons as `actions` in your integration [message attachments](https://docs.mattermost.com/developer/message-attachments.html).
 
 The following payload gives an example that uses message buttons.
 
-```
+```json
 {
   "attachments": [
     {
@@ -61,7 +61,7 @@ The following payload gives an example that uses message buttons.
 
 In the HTTP response for this request, the integration can choose to update the original post, and/or respond with an ephemeral message:
 
-```
+```json
 {
   "update": {
     "message": "Updated!",
@@ -79,7 +79,7 @@ Button actions support a style parameter to change the color of the button. The 
 
 The actions used in the previous example include the following:
 
-```
+```json
 [
   {
     "id": "vote0",
@@ -114,7 +114,7 @@ The actions used in the previous example include the following:
 ]
 ```
 
-## Message Menus
+## Message menus
 
 Similar to buttons, add message menus as `actions` in your integration [message attachments]({{< ref "/integrate/reference/message-attachments" >}}).
 
@@ -122,7 +122,7 @@ Similar to buttons, add message menus as `actions` in your integration [message 
 
 The following payload gives an example that uses message menus.
 
-```
+```json
 {
   "attachments": [
     {
@@ -140,18 +140,18 @@ The following payload gives an example that uses message menus.
           },
           "type": "select",
           "options": [
-                  {
-                      "text": "Option1",
-                      "value": "opt1"
-                  },
-                  {
-                      "text": "Option2",
-                      "value": "opt2"
-                  },
-                  {
-                      "text": "Option3",
-                      "value": "opt3"
-                  }
+            {
+              "text": "Option1",
+              "value": "opt1"
+            },
+            {
+              "text": "Option2",
+              "value": "opt2"
+            },
+            {
+              "text": "Option3",
+              "value": "opt3"
+            }
           ]
         }
       ]
@@ -162,7 +162,7 @@ The following payload gives an example that uses message menus.
 
 The integration can respond with an update to the original post, or with an ephemeral message:
 
-```
+```json
 {
   "update": {
     "message": "Updated!",
@@ -172,13 +172,13 @@ The integration can respond with an update to the original post, or with an ephe
 }
 ```
 
-### Message Menus for Channels
+### Message menus for channels
 
 You can provide a list of channels for message menus for users to select from. Users can only select from public channels in their teams.
 
 Specify `channels` as your action's `data_source` as follows:
 
-```
+```json
 {
   "attachments": [
     {
@@ -203,13 +203,13 @@ Specify `channels` as your action's `data_source` as follows:
 }
 ```
 
-### Message Menus for Users
+### Message menus for users
 
 Similar to channels, you can also provide a list of users for message menus. The user can choose the user who is part of the Mattermost system.
 
 Specify `users` as your action's `data_source` as follows:
 
-```
+```json
 {
   "attachments": [
     {
@@ -238,116 +238,116 @@ Specify `users` as your action's `data_source` as follows:
 
 Below is a brief description of each parameter to help you customize the interactive message button and menu in Mattermost. For more information on message attachments, [see our documentation](https://docs.mattermost.com/developer/message-attachments.html).
 
-ID
-  A per post unique identifier.
+**ID**<br/>
+A per post unique identifier.
 
-Name
-  Give your action a descriptive name.
+**Name**<br/>
+Give your action a descriptive name.
 
-URL
-  The actions are backed by an integration that handles HTTP POST requests when users select the message button. The URL parameter determines where this action is sent. The request contains an `application/json` JSON string. As of 5.14, relative URLs are accepted, simplifying the workflow when a plugin handles the action.
+**URL**<br/>
+The actions are backed by an integration that handles HTTP POST requests when users select the message button. The URL parameter determines where this action is sent. The request contains an `application/json` JSON string. As of 5.14, relative URLs are accepted, simplifying the workflow when a plugin handles the action.
 
-Context
-  The requests sent to the specified URL contain the user ID, post ID, channel ID, team ID, and any context that was provided in the action definition. If the post was of type `Message Menus`, then context also contains the `selected_option` field with the user-selected option value. The post ID can be used to, for example, delete or edit the post after selecting a message button.
+**Context**<br/>
+The requests sent to the specified URL contain the user ID, post ID, channel ID, team ID, and any context that was provided in the action definition. If the post was of type `Message Menus`, then context also contains the `selected_option` field with the user-selected option value. The post ID can be used to, for example, delete or edit the post after selecting a message button.
   
-  A simple example of a request is given below:
+A simple example of a request is given below:
 
-```
-  {
-  "user_id": "rd49ehbqyjytddasoownkuqrxe",
-  "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
-  "channel_id": "j6j53p28k6urx15fpcgsr20psq",
-  "team_id": "5xxzt146eax4tul69409opqjlf",
-  "context": {
-    "action": "do_something"
+```json
+{
+    "user_id": "rd49ehbqyjytddasoownkuqrxe",
+    "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
+    "channel_id": "j6j53p28k6urx15fpcgsr20psq",
+    "team_id": "5xxzt146eax4tul69409opqjlf",
+    "context": {
+        "action": "do_something"
     }
-  }
+}
 ```
 
 In most cases, your integration will do one or both of these things:
   
   1. **Identifying which action was triggered**. For example, a GitHub integration might store something like this in the context:
 
-```
-    {
-    "user_id": "rd49ehbqyjytddasoownkuqrxe",
-    "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
-    "channel_id": "j6j53p28k6urx15fpcgsr20psq",
-    "team_id": "5xxzt146eax4tul69409opqjlf",
-    "context": {
-      "repo": "mattermost/mattermost-server"
-      "pr": 1234,
-      "action": "merge"
-      }
-    }
-```   
+     ```json
+     {
+         "user_id": "rd49ehbqyjytddasoownkuqrxe",
+         "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
+         "channel_id": "j6j53p28k6urx15fpcgsr20psq",
+         "team_id": "5xxzt146eax4tul69409opqjlf",
+         "context": {
+             "repo": "mattermost/mattermost-server",
+             "pr": 1234,
+             "action": "merge"
+         }
+     }
+     ```   
 
-In the example above, when the message button is selected, your integration sends a request to the specified URL with the intention to merge the pull request identified by the context.
+     In the example above, when the message button is selected, your integration sends a request to the specified URL with the intention to merge the pull request identified by the context.
 
   2. **Authenticating the server**. An important property of the context parameter is that it's kept confidential. If your integration is not behind a firewall, you could add a token to your context without users ever being able to see it:
 
-```
-    {
-    "user_id": "rd49ehbqyjytddasoownkuqrxe",
-    "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
-    "channel_id": "j6j53p28k6urx15fpcgsr20psq",
-    "team_id": "5xxzt146eax4tul69409opqjlf",
-    "context": {
-      "repo": "mattermost/mattermost-server"
-      "pr": 1234,
-      "action": "merge",
-      "token": "somerandomlygeneratedsecret"
-      }
-    }
-```
+     ```json
+     {
+         "user_id": "rd49ehbqyjytddasoownkuqrxe",
+         "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
+         "channel_id": "j6j53p28k6urx15fpcgsr20psq",
+         "team_id": "5xxzt146eax4tul69409opqjlf",
+         "context": {
+             "repo": "mattermost/mattermost-server",
+             "pr": 1234,
+             "action": "merge",
+             "token": "somerandomlygeneratedsecret"
+         }
+     }
+     ```
 
-Then, when your integration receives the request, it can verify that the token matches one that you previously generated and know that the request is legitimately coming from the Mattermost server and is not forged.
+     Then, when your integration receives the request, it can verify that the token matches one that you previously generated and know that the request is legitimately coming from the Mattermost server and is not forged.
 
-Depending on the application, integrations can also perform authentication statelessly with cryptographic signatures such as:
+     Depending on the application, integrations can also perform authentication statelessly with cryptographic signatures such as:
 
-```
-    {
-    "user_id": "rd49ehbqyjytddasoownkuqrxe",
-    "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
-    "channel_id": "j6j53p28k6urx15fpcgsr20psq",
-    "team_id": "5xxzt146eax4tul69409opqjlf",
-    "context": {
-      "repo": "mattermost/mattermost-server"
-      "pr": 1234,
-      "action": "merge",
-      "signature": "mycryptographicsignature"
-      }
-    }
-```
+     ```json
+     {
+         "user_id": "rd49ehbqyjytddasoownkuqrxe",
+         "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
+         "channel_id": "j6j53p28k6urx15fpcgsr20psq",
+         "team_id": "5xxzt146eax4tul69409opqjlf",
+         "context": {
+             "repo": "mattermost/mattermost-server",
+             "pr": 1234,
+             "action": "merge",
+             "signature": "mycryptographicsignature"
+         }
+     }
+     ```
 
-It's also possible for integrations to do both of these things with a single token and use something like this as context:
+     It's also possible for integrations to do both of these things with a single token and use something like this as context:
 
-```
-    {
-    "user_id": "rd49ehbqyjytddasoownkuqrxe",
-    "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
-    "channel_id": "j6j53p28k6urx15fpcgsr20psq",
-    "team_id": "5xxzt146eax4tul69409opqjlf",
-    "context": {
-      "action_id": "someunguessableactionid"
-      }
-    }
-```
+     ```json
+     {
+         "user_id": "rd49ehbqyjytddasoownkuqrxe",
+         "post_id": "gqrnh3675jfxzftnjyjfe4udeh",
+         "channel_id": "j6j53p28k6urx15fpcgsr20psq",
+         "team_id": "5xxzt146eax4tul69409opqjlf",
+         "context": {
+             "action_id": "someunguessableactionid"
+         }
+     }
+     ```
 
-Then, when the integration receives the request, it can act based on the action ID.
+     Then, when the integration receives the request, it can act based on the action ID.
 
-Tips and Best Practices
+## Tips and best practices
 
 1. The external application may be written in any programming language. It needs to provide a URL which receives the request sent by your Mattermost server and responds within the required JSON format.
-2. To get started, you can use this `sample plugin <https://github.com/matterpoll/matterpoll>`__ to add polling to Mattermost channels via a `/poll` slash command.
+2. To get started, you can use this [sample plugin](https://github.com/matterpoll/matterpoll) to add polling to Mattermost channels via a `/poll` slash command.
 
-## Share Your Integration
+## Share your integration
 
 If you've built an integration for Mattermost, please consider sharing your work in our [app directory](https://integrations.mattermost.com).
 
 The [app directory](https://integrations.mattermost.com) lists open source integrations developed by the Mattermost community and are available for download, customization, and deployment to your private cloud or self-hosted infrastructure.
 
-## Slack Compatibility
+## Slack compatibility
 
 Like Slack, actions are specified in an **Actions** list within the message attachment. Moreover, your integrations can react with ephemeral messages or message updates similar to Slack.
 
@@ -355,7 +355,7 @@ However, the schema for these objects is slightly different given Slack requires
 
 If your `ephemeral_text` gets incorrectly handled by the Slack-compatibility logic, send `"skip_slack_parsing":true` along your `ephemeral_text` to bypass it.
 
-```
+```json
 {
   "update": {
     "message": "Updated!"
@@ -365,7 +365,7 @@ If your `ephemeral_text` gets incorrectly handled by the Slack-compatibility log
 }
 ```
 
-## Frequently Asked Questions
+## Frequently asked questions
 
 ### Are message buttons and menus supported in ephemeral messages?
 

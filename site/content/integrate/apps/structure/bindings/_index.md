@@ -1,7 +1,6 @@
 ---
 title: "Bindings"
 heading: "Bindings"
-description: "TODO"
 weight: 30
 aliases:
   - /integrate/apps/api/bindings/
@@ -23,13 +22,13 @@ One example bindings response is the one from the [Hello World!](https://github.
 The expected response should include the following:
 
 | Type   | Function | Description           |
-| :----- | :------- | :-------------------- |
+|:-------|:---------|:----------------------|
 | `data` | bindings | The list of bindings. |
 
 Bindings are organized by top level locations. Top level bindings just need to define:
 
 | Name       | Type     | Description                             |
-| :--------- | :------- | :-------------------------------------- |
+|:-----------|:---------|:----------------------------------------|
 | `location` | string   | Top level location.                     |
 | `bindings` | Bindings | A list of bindings under this location. |
 
@@ -38,7 +37,7 @@ Bindings are organized by top level locations. Top level bindings just need to d
 ### `/post_menu` bindings
 
 | Name       | Type   | Description                                                                                                       |
-| :--------- | :----- | :---------------------------------------------------------------------------------------------------------------- |
+|:-----------|:-------|:------------------------------------------------------------------------------------------------------------------|
 | `location` | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.     |
 | `icon`     | string | (Optional) Either a fully-qualified URL, or a path for an app's static asset.                                     |
 | `label`    | string | (Optional) Text to show in the item. Defaults to location. Must be unique in its level.                           |
@@ -50,7 +49,7 @@ The call for these bindings will include in the context the user ID, the post ID
 ### `/channel_header` bindings
 
 | Name       | Type   | Description                                                                                                                 |
-| :--------- | :----- | :-------------------------------------------------------------------------------------------------------------------------- |
+|:-----------|:-------|:----------------------------------------------------------------------------------------------------------------------------|
 | `location` | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.               |
 | `icon`     | string | (Optional/Web App required) Either a fully-qualified URL, or a path for an app's static asset.                              |
 | `label`    | string | (Optional) Text to show in the item on mobile and webapp collapsed view. Defaults to location. Must be unique in its level. |
@@ -67,7 +66,7 @@ For commands we can distinguish between leaf commands (executable subcommand) an
 A partial command must include:
 
 | Name          | Type     | Description                                                                                                               |
-| :------------ | :------- | :------------------------------------------------------------------------------------------------------------------------ |
+|:--------------|:---------|:--------------------------------------------------------------------------------------------------------------------------|
 | `location`    | string   | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.             |
 | `label`       | string   | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level. |
 | `hint`        | string   | (Optional) Hint line on command autocomplete.                                                                             |
@@ -79,7 +78,7 @@ A partial command must include:
 A leaf command must include:
 
 | Name          | Type   | Description                                                                                                                                  |
-| :------------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------- |
+|:--------------|:-------|:---------------------------------------------------------------------------------------------------------------------------------------------|
 | `location`    | string | Name of this location. The whole path of locations will be added in the context. Must be unique in its level.                                |
 | `label`       | string | The label to use to define the command. Cannot include spaces or tabs. Defaults to location. Must be unique in its level.                    |
 | `hint`        | string | (Optional) Hint line on command autocomplete.                                                                                                |
