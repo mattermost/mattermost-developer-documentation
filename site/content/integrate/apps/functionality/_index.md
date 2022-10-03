@@ -13,6 +13,6 @@ In addition to the {{<newtabref title="Mattermost REST APIs" href="https://api.m
 
 - [Subscriptions]({{< ref "subscriptions" >}}) covers how to subscribe to notifications about Mattermost events. Examples of a subscription include having your App notified whenever a message is posted in a channel that mentions your @bot account.
 
-- [External webhooks]({{< ref "external-webhooks" >}}) covers subscribing to webhooks from third-party systems.
+- [External webhooks]({{< ref "external-webhooks" >}}) learn how to subscribe to webhooks from third-party systems.
 
 See [Authenticating with Mattermost]({{< ref "/integrate/apps/authentication/app-to-mattermost" >}}) to learn how to authenticate to all these services.
