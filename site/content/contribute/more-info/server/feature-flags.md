@@ -9,7 +9,7 @@ aliases:
 ---
 Feature flags allow us to be more confident in shipping features continuously to Mattermost Cloud. Feature flags also allow us to control which features are enabled on a cluster level.
 
-# How to use
+# How to use feature flags
 
 ## Add the feature flag in code
 
