@@ -9,13 +9,13 @@ aliases:
 
 Apps consist of three kinds of assets:
 
-1. A [manifest]({{< ref "manifest" >}}), which contains App details such as name, version, requested permissions, and deployment methods
+1. A [manifest]({{< ref "manifest" >}}), which contains App details such as name, version, requested permissions, and deployment methods.
 
-2. [Call]({{< ref "call" >}}) handlers, which are functions that handle incoming requests from the Mattermost server
+2. [Call]({{< ref "call" >}}) handlers, which are functions that handle incoming requests from the Mattermost server.
 
-3. [Static assets]({{<ref "static-assets">}}), such as images
+3. [Static assets]({{<ref "static-assets">}}), such as images.
 
-To interact with users an App must [bind]({{< ref "bindings" >}}) a call handler to a [location]({{<ref "manifest#locations">}}) in the Mattermost user interface. These locations may be slash commands, toolbar and menu items, or embedded in posts.
+To interact with users, an App must [bind]({{< ref "bindings" >}}) a call handler to a [location]({{<ref "manifest#locations">}}) in the Mattermost user interface. These locations may be slash commands, toolbar and menu items, or embedded in posts.
 
 ![image](apps-calls_bindings_locations_v2.svg)
 

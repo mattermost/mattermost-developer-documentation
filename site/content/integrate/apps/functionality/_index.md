@@ -15,4 +15,4 @@ In addition to the {{<newtabref title="Mattermost REST APIs" href="https://api.m
 
 - [External webhooks]({{< ref "external-webhooks" >}}) covers subscribing to webhooks from third-party systems.
 
-See [Authenticating with Mattermost]({{< ref "/integrate/apps/authentication/app-to-mattermost" >}}) for how to authenticate to all these services.
+See [Authenticating with Mattermost]({{< ref "/integrate/apps/authentication/app-to-mattermost" >}}) to learn how to authenticate to all these services.
