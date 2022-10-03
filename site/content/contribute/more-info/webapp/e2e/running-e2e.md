@@ -26,7 +26,6 @@ Environment variables are [defined in cypress.config.ts](https://github.com/matt
 | CYPRESS\_ldapPort         | Port of LDAP server.<br><br>Default: `389`                                                                                                                                                                                      |
 | CYPRESS\_runLDAPSync      | Option to run LDAP sync.<br><br>Default: `true`<br>Valid values: `true` or `false`                                                                                                                                              |
 | CYPRESS\_resetBeforeTest  | When set to `true`, it deletes all teams and their channels where `sysadmin` is a member except `eligendi` team and its channels.<br><br>Default: `false`<br>Valid values: `true` or `false`                                    |
-                                                                           |
 | CYPRESS\_webhookBaseUrl   | A server used for testing webhook integration.<br><br>Default: `http://localhost:3000` when initiated `npm run start:webhook`.                                                                                                  |
 
 ### On your local development machine
