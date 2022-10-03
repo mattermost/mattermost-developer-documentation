@@ -36,7 +36,7 @@ An example call looks like this:
 
 ## Request
 
-When a call is performed, a POST request will be made to the endpoint defined in the call. The call will include a JWT in the `Mattermost-App-Authorization` header. The Acting User's ID is included in the request by default.
+When a call is performed, a POST request will be made to the endpoint defined in the call. The call will include a JSON Web Token (JWT) in the `Mattermost-App-Authorization` header. The Acting User's ID is included in the request by default.
 
 The data structure of a call request ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallRequest">}}) is described in the following table:
 
@@ -48,8 +48,8 @@ The data structure of a call request ({{<newtabref title="godoc" href="https://p
 | `values`         | map                                 | The pairs of key values present in the call. Can be populated by forms and slash commands. |
 | `context`        | [Context](#context)                 | The context of the call.                                                                   |
 | `raw_command`    | string                              | The unparsed command for slash commands.                                                   |
-| `selected_field` | string                              | Used in lookups and form refresh to communicate what field.                                |
-| `query`          | string                              | Used in lookups and form refresh what query strings is entered by the user.                |
+| `selected_field` | string                              | Specifies the field name to use for lookups and refreshes.                                 |
+| `query`          | string                              | The user-supplied query string to use for lookups and refreshes.                           |
 
 An example call request looks like the following (some `context` fields omitted for brevity):
 
@@ -145,14 +145,14 @@ An example context field looks like this:
 
 The data structure of a call response is described in the following table:
 
-| Name                   | Type                                                                                                          | Description                                                                                                                |
-|------------------------|---------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| `type`                 | [CallResponseType](#call-response-types)                                                                      | The type of response being returned                                                                                        |
-| `text`                 | string                                                                                                        | Used by the `ok` and `error` response types to return a markdown message that is sent to the user as an ephemeral post     |
-| `data`                 | map                                                                                                           | Used by the `ok` response type to return additional data                                                                   |
-| `navigate_to_url`      | string                                                                                                        | Used by the `navigate` response type to redirect the user to a specified URL                                               |
-| `use_external_browser` | bool                                                                                                          | Used by the `navigate` response type to indicate the system web browser should be used when redirecting the user to an URL |
-| `form`                 | {{<newtabref title="Form" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form">}} | Used by the `form` response type to specify a form to display                                                              |
+| Name                   | Type                                                                                                          | Description                                                                                                                 |
+|------------------------|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| `type`                 | [CallResponseType](#call-response-types)                                                                      | The type of response being returned.                                                                                        |
+| `text`                 | string                                                                                                        | Used by the `ok` and `error` response types to return a markdown message that is sent to the user as an ephemeral post.     |
+| `data`                 | map                                                                                                           | Used by the `ok` response type to return additional data.                                                                   |
+| `navigate_to_url`      | string                                                                                                        | Used by the `navigate` response type to redirect the user to a specified URL.                                               |
+| `use_external_browser` | bool                                                                                                          | Used by the `navigate` response type to indicate the system web browser should be used when redirecting the user to an URL. |
+| `form`                 | {{<newtabref title="Form" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form">}} | Used by the `form` response type to specify a form to display.                                                              |
 
 An example call response looks like this:
 
