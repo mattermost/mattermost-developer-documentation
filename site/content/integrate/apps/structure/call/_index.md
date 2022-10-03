@@ -8,12 +8,12 @@ aliases:
 A Call defines an App action that can be invoked.
 
 {{<note "Note:">}}
-Content on this page refers to the Mattermost Apps framework and not to the Mattermost Calls functionality.
+Content on this page refers to the Mattermost Apps framework and not to the Mattermost Calls product functionality.
 {{</note>}}
 
 ## Data structure
 
-The data structure of a call ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Call">}}) is:
+The data structure of a call ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Call">}}) is described in the following table:
 
 | Name     | Type                                | Description                                                                                                                      |
 |:---------|:------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------|
@@ -21,7 +21,7 @@ The data structure of a call ({{<newtabref title="godoc" href="https://pkg.go.de
 | `expand` | [Expand]({{<ref "call-metadata">}}) | Specifies [additional metadata]({{<ref "call-metadata">}}) to include in the call request, such as channel and post information. |
 | `state`  | map                                 | A set of elements to be interpreted by the App. Forms and slash commands will also populate these values.                        |
 
-An example call looks like:
+An example call looks like this:
 
 ```json
 {
@@ -38,7 +38,7 @@ An example call looks like:
 
 When a call is performed, a POST request will be made to the endpoint defined in the call. The call will include a JWT in the `Mattermost-App-Authorization` header. The Acting User's ID is included in the request by default.
 
-The data structure of call request ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallRequest">}}) is:
+The data structure of a call request ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallRequest">}}) is described in the following table:
 
 | Name             | Type                                | Description                                                                                |
 |:-----------------|:------------------------------------|:-------------------------------------------------------------------------------------------|
@@ -71,7 +71,7 @@ An example call request looks like the following (some `context` fields omitted 
 
 ### Context
 
-The request `context` field contains metadata about the request. The data structure of the context ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context">}}) field is:
+The request `context` field contains metadata about the request. The data structure of the context ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context">}}) field is described in the following table:
 
 | Name                                                   | Type                                                                                                                            | Description                                                                         |
 |:-------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------|
@@ -107,7 +107,7 @@ The request `context` field contains metadata about the request. The data struct
 The data in these fields will not be populated by default. For more information on expanding metadata in the request context, see the [Call metadata]({{<ref "call-metadata">}}) page.
 {{</note>}}
 
-An example context field looks like:
+An example context field looks like this:
 
 ```json
 {
@@ -143,7 +143,7 @@ An example context field looks like:
 
 ## Response
 
-The data structure of a call response is:
+The data structure of a call response is described in the following table:
 
 | Name                   | Type                                                                                                          | Description                                                                                                                |
 |------------------------|---------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
@@ -154,7 +154,7 @@ The data structure of a call response is:
 | `use_external_browser` | bool                                                                                                          | Used by the `navigate` response type to indicate the system web browser should be used when redirecting the user to an URL |
 | `form`                 | {{<newtabref title="Form" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form">}} | Used by the `form` response type to specify a form to display                                                              |
 
-An example call response looks like:
+An example call response looks like this:
 
 ```json
 {
@@ -165,7 +165,7 @@ An example call response looks like:
 
 ### Call response types
 
-There are several types of responses ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallResponseType">}}):
+There are several types of supported responses ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallResponseType">}}):
 
 | Value      | Description                         |
 |:-----------|:------------------------------------|

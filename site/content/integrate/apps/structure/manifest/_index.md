@@ -8,7 +8,7 @@ aliases:
 ---
 
 All Apps should define a manifest ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Manifest">}}) as a JSON object.
-The fields of the manifest are:
+The fields of the manifest are described in the following table:
 
 | Name                                       | Type                        | Description                                                                                                                                             |
 |:-------------------------------------------|:----------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -67,7 +67,7 @@ For example, a typical App manifest would look like the following:
 Apps need to request permissions from the System Admin who is installing them. After an App is installed and available to end users, each user in Mattermost will need to "authenticate" with your App.
 Using the `act_as_user` permission, your App will be performing an API call on behalf of each authenticated user.
 
-Below are the supported permissions ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Permission">}}) an app can request:
+The following table lists the supported permissions ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Permission">}}) an app can request:
 
 | Name                               | Description                                                                                                                                 |
 |:-----------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------|
@@ -79,12 +79,12 @@ Below are the supported permissions ({{<newtabref title="godoc" href="https://pk
 
 ### Locations
 
-Locations ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Location">}}) are spaces in the UI where an app can add interactions. Locations in the App framework are supported on the mobile, desktop, and web app clients unless otherwise noted. This list of locations will grow over time as the App framework expands.
+Locations ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Location">}}) are spaces in the UI where an App can add interactions. Locations in the App framework are supported on the mobile, desktop, and web app clients unless otherwise noted. This list of locations will grow over time as the App framework expands.
 
 | Name              | Description                                                                                                                                                                                                                                                                                                                                                          |
 |:------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `/post_menu`      | An item in a Mattermost post's dropdown menu (a.k.a. Message Action) where the user can leverage message content as part of the App's action.<br/><br/>For example, someone reports a bug in a channel with some details, then using the "post-menu" button the message's content could be used to create a new "bug" object in a tracking system.                   |
-| `/channel_header` | A button in the channel header on desktop app or the web app, and an item in the channel menu on the mobile app. This is used for actions that take place at the channel level.<br/><br/>For example, a button for the user to set up a notification subscription for all new tickets in system XYZ to be posted to the current channel                              |
+| `/post_menu`      | An item in a Mattermost post's dropdown menu (e.g., Message Action) where the user can leverage message content as part of the App's action.<br/><br/>For example, someone reports a bug in a channel with some details, then using the "post-menu" button, the message's content could be used to create a new "bug" object in a tracking system.                   |
+| `/channel_header` | A button in the channel header on the desktop app or the web app, and an item in the channel menu on the mobile app. This is used for actions that take place at the channel level.<br/><br/>For example, a button for the user to set up a notification subscription for all new tickets in system XYZ to be posted to the current channel.                             |
 | `/command`        | A slash command accessed by typing `/` at the beginning of any new message in Mattermost.<br/><br/>For example, a slash command `/ticketing --name "test Ticket" --priority high` can capture two fields and create a ticket in an external system. The options for the `priority` field could be displayed to the user in a pick list to reduce their need to type. |
 | `/in_post`        | A form that is embedded within a message in Mattermost. Used to interact with users without switching context to an interactive dialog.<br/><br/>For example, confirming simple things like "Did you complete your OKR review yet? (Yes/No)" options can be presented to the user and they can simply check off a box.                                               |
 
