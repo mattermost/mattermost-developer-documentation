@@ -7,9 +7,27 @@ weight: 3
 aliases:
   - /contribute/server/feature-flags
 ---
-Feature flags allow us to be more confident in shipping features continuously to Mattermost Cloud. Feature flags also allow us to control which features are enabled on a cluster level.
+
+# What are feature flags
+
+Feature flag is a software development technique that turns functionality on and off without deploying new code. Feature flags allow us to be more confident in shipping features continuously to Mattermost Cloud. Feature flags also allow us to control which features are enabled on a cluster level.
 
 # How to use feature flags
+
+## When to use
+
+There are no hard rules on when a feature flag should be used. It is left up to the best judgement of the responsible engineers to determine if a feature flag is required. The following are guidelines designed to help guide the determination:
+
+- Any "substantial" feature should have a flag
+- Features that are probably substantial:
+    - Features with new UI or changes to existing UI
+    - Features with a risk of regression
+- Features that are probably not substantial:
+    - Small bug fixes
+    - Refactoring
+    - Changes that are not user facing and can be completely verified by unit and E2E testing.
+
+In all cases, ask yourself: Why do I need to add a feature flag? If I don't add one, what options do I have to control the impact on user experience (e.g. a config setting or System Console setting)?
 
 ## Add the feature flag in code
 
@@ -116,7 +134,7 @@ Now your workspace will have its feature flag set according to this rule, regard
 
 ### Add or update a feature flag for community.mattermost.com
 
-You can post in the [Community Configuration channel](https://community.mattermost.com/core/channels/community-configuration)) with the feature flag name and what you want the admins to set it to.
+You can post in the [Community Configuration channel](https://community.mattermost.com/core/channels/community-configuration) with the feature flag name and what you want the admins to set it to.
 
 To set a flag via Split for community:
 
@@ -143,7 +161,7 @@ How long does it take for workspaces/servers to pick up on changes to feature fl
 
 ## Timelines for rollouts
 
-The feature flag is initially “off” and will be rolled out slowly. Individual teams should decide how they want to roll out their features as they are responsible for them and know them best. The feature teams can enable/disable feature flags at will without needing to ask the Cloud team.
+The feature flag is initially “off”. Individual teams should decide how they want to roll out their features as they are responsible for them and know them best. The feature teams can enable/disable feature flags at will without needing to ask the Cloud team.
 
 **Note:** The steps below are an initial guideline and will be iterated on over time.
 
@@ -159,28 +177,13 @@ When the feature is rolled out to customers, logs will show if there are crashes
 
 ## Self-hosted releases
 
-For a feature-flagged feature to be included in a self-hosted release, the feature flag should be either removed or set to ``true`` in code. The feature flag can be set to ``true`` in code if we are not yet ready to fully remove the feature flag. Some [examples are here](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
+For a feature-flagged feature to be included in a self-hosted release, the feature flag should be either removed or set to ``true`` in code. The feature flag shouldn't be set to ``true`` in code if we're not yet ready to fully remove the feature flag. Some [examples are here](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
 
 ## Tests
 
 Tests should be written to verify all states of the feature flag. Tests should cover any migrations that may take place in both directions (i.e., from "off" to "on" and from "on" to "off"). Ideally E2E tests should be written before the feature is merged, or at least before the feature flag is removed.
 
 Features that are not yet ready to be shipped in a self-hosted release are automatically disabled if the flag is set to ``false`` in code.
-
-## When to use
-
-There are no hard rules on when a feature flag should be used. It is left up to the best judgement of the responsible engineers to determine if a feature flag is required. The following are guidelines designed to help guide the determination:
-
-- Any "substantial" feature should have a flag
-- Features that are probably substantial:
-    - Features with new UI or changes to existing UI
-    - Features with a risk of regression
-- Features that are probably not substantial:
-    - Small bug fixes
-    - Refactoring
-    - Changes that are not user facing and can be completely verified by unit and E2E testing.
-
-In all cases, ask yourself: Why do I need to add a feature flag? If I don't add one, what options do I have to control the impact on user experience (e.g. a config setting or System Console setting)?
 
 ## Examples of feature flags
 
