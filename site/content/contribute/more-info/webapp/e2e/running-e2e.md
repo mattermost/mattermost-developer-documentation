@@ -13,7 +13,7 @@ We use several environment variables for Cypress testing in order to:
 - Easily change when running in CI.
 - Cater to different values across developer machines.
 
-Environment variables are [defined in cypress.json](https://github.com/mattermost/mattermost-webapp/blob/master/e2e/cypress/cypress.json) under the `env` key. In most cases you don't need to change the values, because it makes use of the default local developer setup. If you do need to make changes, the easiest method is to override by exporting `CYPRESS_*`, where `*` is the key of the variable, for example: `CYPRESS_adminUsername`. See [Cypress documentation](https://docs.cypress.io/guides/guides/environment-variables.html#Setting) for details.
+Environment variables are [defined in cypress.config.ts](https://github.com/mattermost/mattermost-webapp/blob/master/e2e/cypress/cypress.config.ts) under the `env` key. In most cases you don't need to change the values, because it makes use of the default local developer setup. If you do need to make changes, the easiest method is to override by exporting `CYPRESS_*`, where `*` is the key of the variable, for example: `CYPRESS_adminUsername`. See [Cypress documentation](https://docs.cypress.io/guides/guides/environment-variables.html#Setting) for details.
 
 | Variable                  | Description                                                                                                                                                                                                                     |
 |---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -26,7 +26,6 @@ Environment variables are [defined in cypress.json](https://github.com/mattermos
 | CYPRESS\_ldapPort         | Port of LDAP server.<br><br>Default: `389`                                                                                                                                                                                      |
 | CYPRESS\_runLDAPSync      | Option to run LDAP sync.<br><br>Default: `true`<br>Valid values: `true` or `false`                                                                                                                                              |
 | CYPRESS\_resetBeforeTest  | When set to `true`, it deletes all teams and their channels where `sysadmin` is a member except `eligendi` team and its channels.<br><br>Default: `false`<br>Valid values: `true` or `false`                                    |
-| CYPRESS\_storybookUrl     | Host for common components or widget testing. <br><br> Default: `http://localhost:6006/` when initiated `npm run storybook` from the root folder.                                                                               |
 | CYPRESS\_webhookBaseUrl   | A server used for testing webhook integration.<br><br>Default: `http://localhost:3000` when initiated `npm run start:webhook`.                                                                                                  |
 
 ### On your local development machine
@@ -34,7 +33,7 @@ Environment variables are [defined in cypress.json](https://github.com/mattermos
 1.  Launch a local Mattermost instance by running `make run` in the `mattermost-server` directory. Confirm that the Mattermost instance has started successfully.
     - Run `make test-data` to preload your server instance with initial seed data.
     - Each test case should handle the required system or user settings, but in case you encounter an unexpected error while testing, you may want to run the server with default config based on `mattermost-server/config/default.json`.
-    - In another terminal, in the `mattermost-webapp` directory, run `npm run storybook`. This is required for the Cypress tests which run against the Storybook widgets to pass.
+
 2.  Change directory to `mattermost-webapp/e2e/cypress`, and install npm dependencies by running `npm i`.
     - Initiate `npm run cypress:run` in the command line to start full E2E testing. This excludes the specs in the `/cypress/tests/integration/enterprise` folder as they require an Enterprise license to run successfully.
     - Initiate `npm run cypress:open` in the command line to start partial testing depending on which spec is selected via Cypress's desktop app.
