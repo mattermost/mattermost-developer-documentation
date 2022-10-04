@@ -31,8 +31,8 @@ pygmentsStyle = "manni"
 
   [params.notification]
     enable = true
-    url = ""
-    text = "We're improving your developer experience."
+    url = "https://mattermost.com/hacktoberfest/"
+    text = "Join us for Hacktoberfest 2022!"
 
   [params.search]
     enable = false
