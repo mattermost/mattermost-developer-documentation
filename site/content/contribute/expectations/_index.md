@@ -20,7 +20,6 @@ There are many ways to contribute to Mattermost beyond a core Mattermost reposit
 To get started:
 
 1. Identify which repository you need to work in (see point below), then review the README located within the root of the repository to learn more about getting started with your contribution and any processes that may be unique to that repository.
-2. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the **Edit in Github** button in the top right of its respective published page. You can contribute to our [product](https://docs.mattermost.com/) and our [developer](https://developers.mattermost.com/) documentation. 
 
     These are the Mattermost Core repositories you can contribute to:
      - [Server]({{< ref "/contribute/more-info/server/" >}}): Highly-scalable Mattermost server written in Go.
@@ -30,12 +29,21 @@ To get started:
      - [Core Plugins]({{< ref "/contribute/more-info/plugins/" >}}): A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
      - [Boards]({{< ref "/contribute/more-info/focalboard/" >}}) and [Playbooks](https://github.com/mattermost/mattermost-plugin-playbooks) core integrations.
 
+2. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the **Edit in Github** button in the top right of its respective published page. You can contribute to the following Mattermost documentation sites: 
+
+    - [Product documentation](https://github.com/mattermost/docs)
+    - [Developer documentation](https://github.com/mattermost/mattermost-developer-documentation)
+    - [API reference documentation](https://github.com/mattermost/mattermost-api-reference)
+    - [Handbook documentation](https://github.com/mattermost/mattermost-handbook)
+
 ## During the contribution process
 
 1. Check in regularly with your Pull Request (PR) to review and respond to feedback. 
 2. Thoroughly document what you’re doing in your PR. This way, future contributors can pick up on your work (including you!). This is especially helpful if you need to step back from a PR.
-3. Each PR should represent a single project, both in code and in content. Keep unrelated tasks to different PRs.
+3. Each PR should represent a single project, both in code and in content. Keep unrelated tasks in separate  PRs.
 4. Make your PR titles and commit messages descriptive! Briefly describing the project in the PR title and in your commit messages often results in faster responses, less clarifying questions, and better feedback.
+
+**Tip:** If you need to take a break from an assigned issue during the Hacktoberfest project, please commit any completed work to date in a PR, and note that you're stepping away in the issue itself. These two steps help ensure that your contributions are counted and outstanding work on a given ticket can be made available to other contributors. 
 
 ## Writing code
 
