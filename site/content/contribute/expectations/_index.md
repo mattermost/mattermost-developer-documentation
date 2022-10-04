@@ -43,7 +43,7 @@ To get started:
 3. Each PR should represent a single project, both in code and in content. Keep unrelated tasks in separate  PRs.
 4. Make your PR titles and commit messages descriptive! Briefly describing the project in the PR title and in your commit messages often results in faster responses, less clarifying questions, and better feedback.
 
-**Tip:** If you need to take a break from an assigned issue during the Hacktoberfest project, please commit any completed work to date in a PR, and note that you're stepping away in the issue itself. These two steps help ensure that your contributions are counted and outstanding work on a given ticket can be made available to other contributors. 
+**Tip:** If you need to take a break from an assigned issue during, for example, the Hacktoberfest project, please commit any completed work to date in a PR, and note that you're stepping away in the issue itself. These two steps help ensure that your contributions are counted and outstanding work on a given ticket can be made available to other contributors. 
 
 ## Writing code
 
