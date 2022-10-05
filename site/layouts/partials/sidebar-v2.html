@@ -1,0 +1,13 @@
+<div class="col-lg-3 sidebar">
+    <div class="sidebar__menu-toggle">
+        {{ .Title }}
+        <i class="fa fa-bars pull-right"></i>
+    </div>
+    <div class="row sidebar__links">
+{{- range .Site.Sections -}}
+    {{- if (eq $.Section .Section) -}}
+        {{ partial "sidebar-v2-recurse.html" (dict "pages" .Pages.ByWeight "root" $ "section" .) }}
+    {{- end -}}
+{{- end -}}
+    </div>
+</div>
