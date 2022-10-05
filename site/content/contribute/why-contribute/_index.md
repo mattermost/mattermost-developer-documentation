@@ -1,6 +1,6 @@
 ---
-title: "Why you might contribute"
-heading: "Why you might contribute"
+title: "Why and how to contribute"
+heading: "Why and how to contribute"
 weight: 1
 ---
 
