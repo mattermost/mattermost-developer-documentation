@@ -1,6 +1,6 @@
 ---
-title: "Making good decisions"
-heading: "Making good decisions"
+title: "Community Expectations"
+heading: "Community Expectations"
 weight: 2
 ---
 We are a welcoming and open community and we’re excited to have you join us!
@@ -9,26 +9,26 @@ To be an open, safe, and welcoming community, we strive to be inclusive, collabo
 
 Learn more about our {{<newtabref title="company values" href="https://handbook.mattermost.com/company/about-mattermost#leadership-principles">}}, and how to become a successful member of the Mattermost community by learning and following our standard operational guidelines below. Please read these sections below carefully and let us know if you have any questions or concerns.
 
-## We're inclusive
+## We are inclusive
 
 We welcome all people, **but not all behavior**.
 
 We are a diverse community who celebrate both our differences and the things that connect us. We treat each other with respect, and aim to treat others better than they wish to be treated.
 
-We try our best to be clear and respectful. We remember that others may not speak the same language. We recognize that communication can be challenging, especially among a diverse group of people speaking many different languages and coming from many different cultures and backgrounds.
+We try our best to be clear and respectful. We remember that others may not communicate in the same language with the same fluency. We recognize that communication can be challenging, especially among a diverse group of people communicating in many different languages and coming from many different cultures and backgrounds.
 
 We all try to be mindful of our differences when we communicate and collaborate. We’re aware that misunderstandings can happen. We try to resolve them by being respectful, understanding, and by using clear and simple language.
 
-## We're collaborative
+## We are collaborative
   - We ask questions and consult others.
   - We work together and help each other.
   - We aim for clarity.
 
-## We're considerate
+## We are considerate
   - We have patience with each other.
   - No one has all the answers, nor are they expected to.
 
-## We're respectful
+## We are respectful
   - We offer thanks and we’re grateful.
   - We may occasionally disagree, but we resolve these disagreements in respectful ways, take breaks if things get heated, reassess, and consult others where appropriate.
   - We aim to be self-aware and we take responsibility for our impact through our words and actions.
