@@ -1,8 +1,7 @@
 ---
 title: "To Mattermost"
-heading: "Authenticating with Mattermost"
-description: "TODO"
-weight: 100
+heading: "Authenticate with Mattermost"
+weight: 10
 ---
 
 An app declares in its `Manifest` the `Locations` that it will be binding to,
@@ -40,5 +39,5 @@ a System Admin, and the call's `expand` contained
 `admin_access_token=all`, the call receives `admin_access_token` in the request
 `context`. Otherwise, `admin_access_token` is empty.
 
-See [here]({{< ref "manifest#permissions">}}) to learn more about the available
+See [here]({{< ref "/integrate/apps/structure/manifest#permissions" >}}) to learn more about the available
 permissions

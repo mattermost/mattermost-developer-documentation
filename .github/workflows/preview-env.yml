@@ -7,29 +7,26 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - uses: actions/checkout@v2
-        if: github.event.pull_request.head.repo.full_name == github.repository
         with:
           submodules: true
           fetch-depth: 0
 
       - name: Setup Hugo
-        if: github.event.pull_request.head.repo.full_name == github.repository
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.92.1'
+          hugo-version: 0.101.0
           extended: true
 
       - name: Build Previews
-        if: github.event.pull_request.head.repo.full_name == github.repository
         run: |
           rm -rf ./dist
           hugo -F -s site --baseURL http://mattermost-dev-docs-preview-pulls.s3-website-us-east-1.amazonaws.com/${{ github.event.number }}/ --destination ../dist/html
 
       - uses: shallwefootball/s3-upload-action@master
         name: Upload Preview Env
-        if: github.event.pull_request.head.repo.full_name == github.repository
         with:
           aws_key_id: ${{ secrets.AWS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -38,7 +35,6 @@ jobs:
           destination_dir: ${{ github.event.number }}
 
       - name: Add comment to PR
-        if: github.event.pull_request.head.repo.full_name == github.repository
         uses: peter-evans/create-or-update-comment@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

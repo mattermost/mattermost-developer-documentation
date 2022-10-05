@@ -1,8 +1,9 @@
 ---
 title: "HTTP"
-heading: "Admin's Guide to HTTP Apps"
-description: "TODO"
-weight: 100
+heading: "Deploy HTTP Apps"
+weight: 10
+aliases:
+  - /integrate/apps/deployment-http/
 ---
 
 External service providers can offer "remote" apps already deployed as HTTP

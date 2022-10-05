@@ -1,10 +1,11 @@
 ---
-title: "Developer Workflow"
-heading: "Developer Workflow for Mattermost Plugins"
+title: "Developer workflow"
+heading: "Developer workflow for Mattermost Plugins"
 description: "Read about developer workflows and learn how work with plugins and debug them in Mattermost."
 date: 2020-07-11T23:00:00-04:00
-weight: 3
-aliases: [/extend/plugins/developer-workflow/]
+weight: 30
+aliases:
+  - /extend/plugins/developer-workflow/
 ---
 
 ### Common `make` commands for working with plugins
@@ -22,11 +23,11 @@ aliases: [/extend/plugins/developer-workflow/]
 
 You can run the development build of the plugin by setting the environment variable `MM_DEBUG=1`, or prefixing the variable at the beginning of the `make` command. For example, `MM_DEBUG=1 make deploy` will deploy the development build of the plugin to your server, allowing you to have a more fluid debugging experience. To use the production build of the plugin instead, unset the `MM_DEBUG` environment variable before running the `make` commands.
 
-### Developing in the plugin's webapp folder
+### Develop in the plugin's webapp folder
 
 In order for your IDE to know the root directory of the plugin's webapp code, it is advantageous to open the IDE in the webapp folder itself when working on the webapp portion of the plugin. This way, the IDE is aware of files such as `webpack.config.js` and `tsconfig.json`.
 
-### Exposing the Mattermost server using `ngrok`
+### Expose the Mattermost server using `ngrok`
 
 When a plugin integrates with an external service, webhooks and/or authentication redirects are necessary, which requires your local server to be available on the web. In order for your Mattermost server to be available to process webhook requests, it needs to expose its port to an external address. A common way to do this is to use the command line tool [ngrok](https://ngrok.com). Follow these steps to set up `ngrok` with your server:
 
@@ -41,9 +42,9 @@ If you're using a free ngrok account, the URL given by the output of the `ngrok 
 
 With this setup, many integrations require you to be logged into Mattermost using your ngrok URL. After logging into your ngrok URL pointed to your Mattermost server, in most cases you can continue using your `localhost` address in your browser for quicker network requests to your server. If you receive an error like `unauthorized` or `enable third-party cookies` when connecting to an external service, make sure you're logged into your ngrok URL in the same browser.
 
-##### Using [localhost.run](https://localhost.run) instead of ngrok
+##### Use `localhost.run` instead of `ngrok`
 
-If you would like to avoid using ngrok, there is another free option that you can run from your terminal, called `localhost.run`. Use this command to expose your server:
+If you would like to avoid using ngrok, there is another free option that you can run from your terminal, called [`localhost.run`](https://localhost.run). Use this command to expose your server:
 
 ```sh
 ssh -R 80:localhost:8065 ssh.localhost.run
@@ -52,7 +53,7 @@ ssh -R 80:localhost:8065 ssh.localhost.run
 An `http` URL pointing to your server should show in the terminal. The `https` version of this same URL should also work, which is what you will want to use for your webhook URLs. One disadvantage of using `localhost.run` is there is no request/response logging dasboard that is available with ngrok.
 
 
-### Debugging server-side plugins using `delve`
+### Debug server-side plugins using `delve`
 
 Using the `make attach-headless` command will allow you to use a debugger and step through the plugin's server code. A [delve](https://github.com/go-delve/delve) process will be created and attach to your plugin. You can then use an IDE or debug console to connect to the `delve` process. If you're using VSCode, you can use this `launch.json` configuration to connect.
 
@@ -76,10 +77,10 @@ In order to be able to pause the debugger for more than 5 seconds, two modificat
 
 2. The `go-plugin`'s RPC client needs to be configured with a larger timeout duration. You can change the code at [mattermost-server/vendor/github.com/hashicorp/rpc_client.go](https://github.com/mattermost/mattermost-server/blob/bf03f391e635b0b9b129768cec5ea13c571744fa/vendor/github.com/hashicorp/go-plugin/rpc_client.go#L63) to increase the duration. Here's the change you can make to extend the timeout to 5 minutes:
 
-```go
-sessionConfig := yamux.DefaultConfig()
-sessionConfig.EnableKeepAlive = true
-sessionConfig.ConnectionWriteTimeout = time.Minute * 5
-
-mux, err := yamux.Client(conn, sessionConfig)
-```
+    ```go
+    sessionConfig := yamux.DefaultConfig()
+    sessionConfig.EnableKeepAlive = true
+    sessionConfig.ConnectionWriteTimeout = time.Minute * 5
+    
+    mux, err := yamux.Client(conn, sessionConfig)
+    ```

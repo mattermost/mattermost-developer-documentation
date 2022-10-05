@@ -1,8 +1,9 @@
 ---
-title: "Deployment (admin)"
-heading: "Admin's Guide to Deploying Apps"
-description: "TODO"
-weight: 1000
+title: "Deployment"
+heading: "App deployment"
+weight: 80
+aliases:
+  - /integrate/apps/devenv/
 ---
 
 - In **Mattermost Cloud**, all apps are deployed to the Marketplace by Mattermost
@@ -10,7 +11,7 @@ weight: 1000
   install listed` command. No special configuration is required, the `/apps
   install` command should be enabled and functional by default.
 
-- **Self-Managed Mattermost** installations can use external Apps as HTTP services
+- **Self-managed Mattermost** installations can use external Apps as HTTP services
   that have already been deployed, or can deploy App bundles on self-managed
   hosting or serverless platforms. Currently, [AWS Lambda]({{< relref "deploy-aws"
   >}}), [OpenFaaS]({{< relref "deploy-openfaas" >}}), and Kubeless deployments are

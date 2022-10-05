@@ -24,8 +24,8 @@ pygmentsStyle = "manni"
 
   [params.notification]
     enable = true
-    url = "https://mattermost.com/careers"
-    text = "We're hiring!"
+    url = "https://mattermost.com/hacktoberfest/"
+    text = "Join us for Hacktoberfest 2022!"
 
   [params.search]
     enable = false
@@ -34,17 +34,17 @@ pygmentsStyle = "manni"
   [[params.sidebar.item]]
     name = "contribute"
     displayName = "Contribute"
-    draft = true
+    draft = false
 
   [[params.sidebar.item]]
     name = "integrate"
     displayName = "Integrate & Extend"
-    draft = true
-
-  [[params.sidebar.item]]
-    name = "extend"
-    displayName = "Extend"
     draft = false
+
+#  [[params.sidebar.item]]
+#    name = "extend"
+#    displayName = "Extend"
+#    draft = true
 
   [[params.sidebar.item]]
     name = "internal"
@@ -67,7 +67,7 @@ pygmentsStyle = "manni"
 
     # postpended links
     [[menu.postpend]]
-      url = "/contribute/getting-started/"
+      url = "/contribute/"
       name = "Contribute"
       weight = 1
 
@@ -106,25 +106,17 @@ pygmentsStyle = "manni"
   [[params.intro.item]]
     title = "Contribute"
     description = "Join thousands of developers who contribute to the Mattermost open source project."
-    url = "contribute/getting-started/"
+    url = "contribute/"
     button = "Start Contributing"
     icon = "img/home/Contribute.svg"
     draft = false
 
   [[params.intro.item]]
     title = "Integrate & Extend"
-    description = "Integrate with Mattermost via Apps, APIs, webhooks, and more."
+    description = "Integrate with Mattermost via webhooks, slash commands, Apps, and more."
     url = "integrate/getting-started/"
     button = "Integrate Today"
     icon = "img/home/IntegrateExtend.svg"
-    draft = false
-
-  [[params.intro.item]]
-    title = "Development Guides"
-    description = "Learn how to build Mattermost integrations via demos, example code, and guided content."
-    url = "/integrate/admin-guide/"
-    button = "Build Now"
-    icon = "img/home/AdminGuide.svg"
     draft = false
 
   #[params.intro.video]
