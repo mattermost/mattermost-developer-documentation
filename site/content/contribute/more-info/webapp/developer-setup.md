@@ -69,7 +69,7 @@ Set up your development environment for building, running, and testing the Matte
 
     Refreshing http://localhost:8065 should now load the UI.
 
-    If you would like the webapp to automatically refresh as you edit the source code you can install and enable the live reload script injection extension for your web browser ([Chrome](https://chrome.google.com/webstore/detail/remotelivereload/jlppknnillhjgiengoigajegdpieppei/related?hl=en) | [Firefox](https://addons.mozilla.org/en-US/firefox/addon/livereload-web-extension/)). Then, before running webpack run:
+    If you would like the webapp to automatically refresh as you edit the source code you can install and enable the live reload script injection extension for your web browser [![Chrome](https://img.shields.io/badge/Chrome-navy?\&style=plastic\&logo=googlechrome\&logoColor=4285F4)](https://chrome.google.com/webstore/detail/remotelivereload/jlppknnillhjgiengoigajegdpieppei/related?hl=en) | [![Firefox](https://img.shields.io/badge/Firefox-navy?\&style=plastic\&logo=firefoxbrowser\&logoColor=FF7139)](https://addons.mozilla.org/en-US/firefox/addon/livereload-web-extension/). Then, before running webpack run:
 
     ```sh
     export MM_LIVE_RELOAD=true
