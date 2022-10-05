@@ -30,31 +30,14 @@ See complete source code of the example [here](https://github.com/mattermost/mat
 
 ## Prerequisites
 
-Before you can start with your app, you first need to set up a local developer environment following the [server]({{< ref "/contribute/more-info/server/developer-setup" >}}) and [webapp]({{< ref "/contribute/more-info/webapp/developer-setup" >}}) setup guides. You must enable the apps feature flag before starting the Mattermost server by setting the environment variable `MM_FEATUREFLAGS_AppsEnabled` to `true` by e.g. adding `export MM_FEATUREFLAGS_AppsEnabled=true` to your `.bashrc` or using `make run-server MM_FEATUREFLAGS_AppsEnabled=true`.
+Before you can start with your app, you first need to set up a local developer environment following the [server]({{< ref "/contribute/more-info/server/developer-setup" >}}) and [webapp]({{< ref "/contribute/more-info/webapp/developer-setup" >}}) setup guides.
 
-In the System Console, ensure that the following are set to **true**:
+Once set up, open the System Console and ensure that the following are set to **true**:
 
 - `Enable Bot Account Creation`
 - `Enable OAuth 2.0 Service Provider`
 
 You also need at least `go1.16` installed. Please follow the guide [here](https://golang.org/doc/install) to install the latest version.
-
-### Install the Apps plugin
-
-The [apps plugin](https://github.com/mattermost/mattermost-plugin-apps) is a communication bridge between your app and the Mattermost server. To install it on your local server, start by cloning the code in a directory of your choice run:
-
-```bash
-git clone https://github.com/mattermost/mattermost-plugin-apps.git
-```
-
-Then build the plugin using:
-
-```bash
-cd mattermost-plugin-apps
-make dist
-```
-
-Then upload it to your local Mattermost server via the System Console.
 
 ## Build the App
 
