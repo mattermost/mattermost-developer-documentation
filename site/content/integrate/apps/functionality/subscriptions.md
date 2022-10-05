@@ -34,13 +34,14 @@ An App can subscribe to one or more of the following event subjects:
 An example of an App subscribing to an event with the [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) would look like the following:
 
 ```go
-err := client.Subscribe(&apps.Subscription{
+subscription := &apps.Subscription{
     Subject: "user_joined_channel",
     ChannelID: "hoan6o9ws7rp5xj7wu9rmysrte",
     Call: apps.Call{
         Path: "/user-joined-channel",
     },
-})
+}
+err := client.Subscribe(subscription)
 if err != nil {
     // handle the error
 }
@@ -48,7 +49,21 @@ if err != nil {
 
 ### Unsubscribe from an event
 
-_TBD_
+An example of an App unsubscribing to an event with the [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) would look like the following:
+
+```go
+subscription := &apps.Subscription{
+    Subject: "user_joined_channel",
+    ChannelID: "hoan6o9ws7rp5xj7wu9rmysrte",
+    Call: apps.Call{
+        Path: "/user-joined-channel",
+    },
+}
+err := client.Unsubscribe(subscription)
+if err != nil {
+    // handle the error
+}
+```
 
 ##### Previous content
 
