@@ -51,6 +51,10 @@
   crossorigin="anonymous"></script>
 <script src="{{ "js/tabs.js" | absURL }}"></script>
 <script src="{{ "js/main.js" | absURL }}"></script>
+<!-- If there is at least one <pre> block on this page, include the code copy button script -->
+{{- if (findRE "<pre" .Content 1) -}}
+<script src="{{ "js/code-copy-button.js" | absURL }}"></script>
+{{- end -}}
 {{ if (.Params.mermaid) }}
 <!-- MermaidJS support -->
 <script src="https://unpkg.com/mermaid@9.1.6/dist/mermaid.min.js"></script>
