@@ -26,7 +26,7 @@ We all try to be mindful of our differences when we communicate and collaborate.
 
 ## We are considerate
   - We have patience with each other.
-  - No one has all the answers, nor are they expected to.
+  - We understand that no one has all the answers, nor are they expected to.
 
 ## We are respectful
   - We offer thanks and we’re grateful.
