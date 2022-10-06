@@ -12,7 +12,7 @@ You need the latest version of [Docker Desktop](https://docs.docker.com/desktop/
 
 ## Set up your development environment
 
-Clone and enter a local copy of the [mattermost-app-examples repository](https://github.com/mattermost/mattermost-app-examples) with the following command:
+Clone a local copy of the [mattermost-app-examples repository](https://github.com/mattermost/mattermost-app-examples) with the following command:
 
 ```sh
 git clone https://github.com/mattermost/mattermost-app-examples && cd mattermost-app-examples
@@ -20,7 +20,7 @@ git clone https://github.com/mattermost/mattermost-app-examples && cd mattermost
 
 When you're developing your own App, you need an actual Mattermost Server to be running. The development environment accomplishes this by using a [`docker-compose.yml`](https://github.com/mattermost/mattermost-app-examples/blob/master/docker-compose.yml) with a network named `mattermost-apps-dev`. This Docker Compose file has just two containers: the Mattermost Server and a Postgres database.
 
-The Mattermost image itself is preconfigured with settings for local App development but you can customize them. For example, the `MM_SERVICESETTINGS_SITEURL` environment variable is set to `http://mattermost:8065` on the Mattermost container, but you could change this to be any URL, like one from [ngrok](https://ngrok.com/) or [Gitpod](https://gitpod.io/).
+The Mattermost image itself is preconfigured with settings for local App development but you can customize them. For example, the `MM_SERVICESETTINGS_SITEURL` environment variable is set to `http://mattermost:8065` on the Mattermost container, but you could change this to be any URL, like one from {{<newtabref title="ngrok" href="https://ngrok.com/">}} or {{<newtabref title="Gitpod" href="https://gitpod.io/">}}.
 
 Because they exist on a pre-defined network, other `docker-compose.yml` configurations can connect their containers to this development environment by specifying the same `mattermost-apps-dev` Docker network. Then the Mattermost Server can be accessed at `http://mattermost:8065` by any other container on the `mattermost-apps-dev` network. Similarly, your own development Apps can then be accessed by Mattermost via their service name (e.g., `http://mattermost-apps-typescript-hello-world:4000`). You can learn more about Docker networks in the [official documentation](https://docs.docker.com/network/).
 
@@ -28,7 +28,9 @@ You can also access Mattermost from outside the Docker network via [http://local
 
 To change the Mattermost Apps plugin or the Mattermost Server versions, you can edit [`docker-compose.yml`](https://github.com/mattermost/mattermost-app-examples/blob/master/docker-compose.yml).
 
-You'll need to create a `.docker.env` file in the same directory as the `docker-compose.yml` file in order to complete the Docker Compose configuration. Use this file to store any secrets or any other environment variables you wish to use with the Mattermost server. Check out the [`.docker.env.example`](https://github.com/mattermost/mattermost-app-examples/blob/master/.docker.env.example) file in the examples repository to see some secrets you may want to use while building Apps. The `.docker.env` file is ignored in the repository's `.gitignore` file, so these secrets won't be committed to the repository if you make any edits.
+To complete the Docker Compose configuration, you'll need to create a `.docker.env` file in the same directory as the `docker-compose.yml` file. This file is used to store any secrets or other environment variables you wish to use with the Mattermost server. To complete configuration without storing secrets or other environment variables, create an empty `.docker.env` file. The `.docker.env` file is ignored in the repository's `.gitignore` file, so it won't be committed to the repository if you make any edits.
+
+An example of this file, {{<newtabref title=".docker.env.example" href="https://github.com/mattermost/mattermost-app-examples/blob/master/.docker.env.example">}}, can be found in the examples repository.
 
 Next, use the following command to bring your development environment online.
 

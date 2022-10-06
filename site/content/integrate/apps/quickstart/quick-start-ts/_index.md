@@ -86,4 +86,4 @@ docker compose down
 
 ## Conclusion
 
-You now know how to create a Mattermost App in TypeScript. If you have questions about building Apps or want to show off what you're building, join us on the [Mattermost Apps channel in the Mattermost Community server](https://community.mattermost.com/core/channels/mattermost-apps)!
+You now know how to create a Mattermost App in TypeScript. If you have questions about building Apps or want to show off what you're building, join us on the {{<newtabref title="Mattermost Apps" href="https://community.mattermost.com/core/channels/mattermost-apps">}} channel in the Mattermost Community server!

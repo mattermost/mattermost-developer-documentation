@@ -22,7 +22,7 @@ When you develop using the Apps framework, your Apps can:
 
   ![image](app-slash-command-zoomed-in.png)
 
-- Post messages to channels (and anything else possible with [Mattermost's API](https://api.mattermost.com/))
+- Post messages to channels (and anything else possible with {{<newtabref title="Mattermost's API" href="https://api.mattermost.com/">}})
 
   ![image](app-bot.png)
 
@@ -42,11 +42,15 @@ We have quick start guides for [TypeScript]({{< ref "quickstart/quick-start-ts" 
 
 That depends on your use case, as they each have benefits.
 
-Each type of existing integration type is sort of a la carte, whereas the App framework is an all-in-one package that supports its own version of some of those out of the box. Meaning when you install an App, you don't need to go create a separate bot account, OAuth app, webhooks etc. Some pieces are reused, such as the bot account mechanism, but some pieces were remade and are not reused, such as webhooks.
+Each type of existing integration is sort of a la carte, whereas the App framework is an all-in-one package that supports its own version of some of those out of the box. Meaning when you install an App, you don't need to go create a separate bot account, OAuth app, webhooks etc. Some pieces are reused, such as the bot account mechanism, but some pieces were remade and are not reused, such as webhooks.
 
 In the case of webhooks, the existing mechanism is only able to create posts, and only accepts an [incoming webhook]({{< ref "/integrate/webhooks/incoming" >}}) payload. It does not support other logic for handling arbitrary data structures from external systems.
 
-A plugin should be used when you need to [directly alter the UI]({{< ref "integrate/plugins/components/webapp/best-practices" >}}) in Mattermost or you have a feature that requires low latency with the server (such as replacing characters in any message [before it is saved]({{< ref "integrate/plugins/components/server/reference#Hooks.MessageWillBePosted" >}})). It should be noted that plugins have several [UX hooks]({{< ref "integrate/plugins/components/server/reference#Hooks" >}}) that Apps cannot access. Please see the [plugin documentation]({{< ref "integrate/plugins" >}}) for more information.
+A plugin should be used when you need to [directly alter the UI]({{< ref "integrate/plugins/components/webapp/best-practices" >}}) in Mattermost or you have a feature that requires low latency with the server (such as replacing characters in any message [before it is saved]({{< ref "integrate/plugins/components/server/reference#Hooks.MessageWillBePosted" >}})).
+
+{{<note "Note:">}}
+Plugins have several [UX hooks]({{< ref "integrate/plugins/components/server/reference#Hooks" >}}) that Apps cannot access. Please see the [plugin documentation]({{< ref "integrate/plugins" >}}) for more information.
+{{</note>}}
 
 ### What's the difference between the Apps framework and the plugin framework?
 
@@ -57,7 +61,7 @@ The Apps framework provides a few differences from plugins, including:
 
 ### What language should I use to write Apps?
 
-Any language you want. We currently have an [official driver for Go](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps).
+Any language you want. We currently have an {{<newtabref title="official driver for Go" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps">}}.
 
 ### How and where will my App be hosted?
 
@@ -66,7 +70,7 @@ Any language you want. We currently have an [official driver for Go](https://pkg
    deployed as AWS Lambda functions, and their usage is included in the service.
    You can find more information about the Marketplace [here](https://mattermost.com/marketplace/). Example AWS Lambda Apps can be
    found
-   [here](https://github.com/mattermost/mattermost-app-examples/tree/master/golang/serverless)
+   {{<newtabref title="here" href="https://github.com/mattermost/mattermost-app-examples/tree/master/golang/serverless">}}
    (Go).
 2. **External** (HTTP) Apps. Apps can be hosted as publicly (or privately) available HTTP
    services, the choice of hosting provider is yours. A self-managed Mattermost
