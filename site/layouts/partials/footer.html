@@ -51,3 +51,27 @@
   crossorigin="anonymous"></script>
 <script src="{{ "js/tabs.js" | absURL }}"></script>
 <script src="{{ "js/main.js" | absURL }}"></script>
+<!-- If there is at least one <pre> block on this page, include the code copy button script -->
+{{- if (findRE "<pre" .Content 1) -}}
+<script src="{{ "js/code-copy-button.js" | absURL }}"></script>
+{{- end -}}
+{{ if (.Params.mermaid) }}
+<!-- MermaidJS support -->
+<script src="https://unpkg.com/mermaid@9.1.6/dist/mermaid.min.js"></script>
+<!-- MermaidJS initialization and configuration happen in the following block -->
+<script>
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        themeVariables: {
+            fontFamily: "'Noto Sans','Helvetica Neue',Arial,sans-serif",
+            textColor: "#000", // Black
+            primaryColor: "#A2D6F6", // Cyan 100
+            secondaryColor: "#B7BAE1", // Purple 100
+            tertiaryColor: "#A4F4F4", // Teal 100
+            // actorTextColor is the color of the text under an actor in a sequence diagram
+            actorTextColor: "#000" // Black
+        }
+    });
+</script>
+{{ end }}
