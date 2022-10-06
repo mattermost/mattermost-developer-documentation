@@ -1,6 +1,6 @@
 ---
 title: "Community expectations"
-heading: "Community Expectations"
+heading: "Community expectations"
 weight: 2
 ---
 We are a welcoming and open community and we’re excited to have you join us!
