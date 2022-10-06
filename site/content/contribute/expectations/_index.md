@@ -30,7 +30,7 @@ To get started:
      - [Core Plugins]({{< ref "/contribute/more-info/plugins/" >}}): A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
      - [Boards]({{< ref "/contribute/more-info/focalboard/" >}}) and [Playbooks](https://github.com/mattermost/mattermost-plugin-playbooks) core integrations.
 
-2. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the **Edit in Github** button in the top right of its respective published page. You can contribute to the following Mattermost documentation sites: 
+2. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the **Edit in Github** button in the top right of its respective published page. You can read more about this process on the [why and how to contribute page]({{< ref "/contribute/why-contribute/#you-want-to-help-with-content" >}}). You can contribute to the following Mattermost documentation sites: 
 
     - [Product documentation](https://github.com/mattermost/docs)
     - [Developer documentation](https://github.com/mattermost/mattermost-developer-documentation)
