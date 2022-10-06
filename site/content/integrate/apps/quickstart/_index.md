@@ -68,4 +68,4 @@ The following quick start guides can help you start developing a Mattermost App 
 | TypeScript | [Hello World in TypeScript]({{< ref "/integrate/apps/quickstart/quick-start-ts" >}})                   |
 | Python     | [Hello World in Python]({{< ref "/integrate/apps/quickstart/quick-start-python" >}})                   |
 
-More guides from community members are encouraged! Check out the [open issue](https://github.com/mattermost/mattermost-plugin-apps/issues/351) and our [contributing guide]({{< ref "/contribute/getting-started" >}}) for more details.
+More guides from community members are encouraged! Check out the [open issue](https://github.com/mattermost/mattermost-plugin-apps/issues/351) and our [contributing guide]({{< ref "/contribute/more-info/getting-started" >}}) for more details.
