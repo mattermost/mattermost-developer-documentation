@@ -35,4 +35,4 @@ We all try to be mindful of our differences when we communicate and collaborate.
   - We understand and acknowledge that {{<newtabref title="intent doesn’t equal impact" href="https://www.betterup.com/blog/intent-vs-impact">}}. We can have the best of intentions, but still cause negative impact to others by our words and actions. This can happen to all of us, so we practice openness and grace.
 
 ### Attribution
-This document was heavily inspired on and adapted from the work of the [Drupal Community and its Code of Conduct](https://www.drupal.org/dcoc) and its [Values and Principles](https://www.drupal.org/about/values-and-principles) documents.
+This document was heavily inspired by and adapted from the work of the [Drupal Community and its Code of Conduct](https://www.drupal.org/dcoc) and its [Values and Principles](https://www.drupal.org/about/values-and-principles) documents.
