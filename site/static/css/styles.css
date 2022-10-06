@@ -3114,9 +3114,11 @@ a:hover {
 
 code {
     word-break: break-word;
+    font-family: 'Fira Mono','Courier New',Courier,monospace;
 }
 
-td:first-child code {
+/* Ensure words are not broken for monospaced text in a table cell */
+td>code {
     word-break: normal;
 }
 
