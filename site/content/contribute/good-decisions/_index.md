@@ -1,5 +1,5 @@
 ---
-title: "Community Expectations"
+title: "Community expectations"
 heading: "Community Expectations"
 weight: 2
 ---
