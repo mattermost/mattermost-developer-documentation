@@ -32,7 +32,7 @@ To complete the Docker Compose configuration, you'll need to create a `.docker.e
 
 An example of this file, {{<newtabref title=".docker.env.example" href="https://github.com/mattermost/mattermost-app-examples/blob/master/.docker.env.example">}}, can be found in the examples repository.
 
-Next, use the following command to bring your development environment online.
+Next, use the following command to bring your development environment online:
 
 ```sh
 docker compose up -d
@@ -53,6 +53,8 @@ docker compose down
 ```
 
 Now you're fully equipped with an environment to develop Mattermost Apps locally!
+
+**Tip:** If you are using [Docker Engine](https://docs.docker.com/engine/) with the [docker-compose plugin](https://docs.docker.com/compose/install/) instead of [Docker Desktop](https://docs.docker.com/desktop/) (recommended), then use hyphenated versions of the commands above (e.g., `docker-compose up -d`).
 
 ## Quick start guides
 

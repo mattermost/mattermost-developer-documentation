@@ -4,7 +4,7 @@ heading: "Create a hello world Mattermost App in TypeScript"
 description: "This quick start guide will walk you through the basics of creating a hello world Mattermost App in TypeScript."
 weight: 10
 aliases:
-  - /integrate/apps/quick-start-js/
+  - /integrate/apps/quick-start-ts/
 ---
 
 This quick start guide will walk you through the basics of creating a hello world Mattermost App in TypeScript. In this guide you will review an App that:

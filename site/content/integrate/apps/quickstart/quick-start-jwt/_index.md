@@ -10,7 +10,7 @@ This quick start guide will walk you through the basics of using [JSON Web Token
 - Contains a `manifest.json`, declares itself an HTTP application that uses a bot account, uses JWT, and attaches UI elements to locations in the Mattermost interface.
 - Attaches the `send` function to a `/hello-jwt` command and wraps it with a function to authenticate JWT.
 
-Why you would want to use JWT for App development? Using a token, your App can validate the legitimacy of any request verify that this request is indeed coming from the Mattermost server we are expecting it to come from. Simply put, implementing JWT will enhance your App's security and functionality.
+Why you would want to use JWT for App development? Using a token, your App can validate the legitimacy of any request by ensuring it's coming from the expected Mattermost server. Simply put, implementing JWT will enhance your App's security and functionality via a handshake.
 
 ## Prerequisites
 
