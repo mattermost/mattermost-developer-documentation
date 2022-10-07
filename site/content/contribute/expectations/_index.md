@@ -5,13 +5,14 @@ weight: 3
 ---
 
 To contribute to Mattermost, you must sign the [Contributor License Agreement](https://mattermost.com/mattermost-contributor-agreement/). Doing so adds you to our list of [Mattermost Approved Contributors](https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true). 
+Please also read our [community expectations]({{< ref "/contribute/good-decisions/" >}}) and note that we all abide by the [Mattermost Code of Conduct (CoC)](https://handbook.mattermost.com/contributors/contributors/guidelines/contribution-guidelines), and by joining our contributor community, you agree to abide by it as well.
 
 **Tip:** Love swag? If you choose to provide us with your mailing address in the signed agreement, you'll receive a [Limited Edition Mattermost Mug](https://forum.mattermost.com/t/limited-edition-mattermost-mugs/143) as a thank you gift after your first pull request is merged.
 
 ## Before contributing
 
 There are many ways to contribute to Mattermost beyond a core Mattermost repository:
-- You can [create an app integration]({{< ref "/integrate/apps/" >}}), which connects to Mattermost’s functionality that's hosted elsewhere.
+- You can create [app integrations]({{< ref "/integrate/apps/" >}}) for Mattermost to provide additional functionality and host them anywhere.
 - You can create lightweight external applications that don’t require customizations to the Mattermost user experience by using [incoming]({{< ref "/integrate/webhooks/incoming" >}}) and [outgoing]({{< ref "/integrate/webhooks/outgoing" >}}) webhooks, or by using [the Mattermost API](https://api.mattermost.com/).
 - You can activate external functionality within Mattermost by creating custom [slash commands]({{< ref "/integrate/slash-commands/" >}}).
 - You can extend, modify, and deeply integrate with the Mattermost server, its apps, and its UI/UX by using [plugins]({{< ref "/integrate/plugins/" >}}). However, please note that plugin development comes with the highest level of overhead and must be written in Go and React.
@@ -29,7 +30,7 @@ To get started:
      - [Core Plugins]({{< ref "/contribute/more-info/plugins/" >}}): A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
      - [Boards]({{< ref "/contribute/more-info/focalboard/" >}}) and [Playbooks](https://github.com/mattermost/mattermost-plugin-playbooks) core integrations.
 
-2. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the **Edit in Github** button in the top right of its respective published page. You can contribute to the following Mattermost documentation sites: 
+2. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the **Edit in Github** button in the top right of its respective published page. You can read more about this process on the [why and how to contribute page]({{< ref "/contribute/why-contribute/#you-want-to-help-with-content" >}}). You can contribute to the following Mattermost documentation sites: 
 
     - [Product documentation](https://github.com/mattermost/docs)
     - [Developer documentation](https://github.com/mattermost/mattermost-developer-documentation)

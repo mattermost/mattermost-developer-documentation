@@ -8,7 +8,7 @@ This guide is your reference for all Mattermost contributions. The following is 
 - **[Why and how to contribute]({{<ref "why-contribute">}})**: 
 	How to get started contributing to Mattermost projects.
 
-- **[Making good decisions]({{<ref "good-decisions">}})**: 
+- **[Community expectations]({{<ref "good-decisions">}})**: 
 	How to communicate and interact effectively, respectfully, and inclusively with other members of the Mattermost community.
 
 - **[Contributor expectations]({{<ref "expectations">}})**: 
