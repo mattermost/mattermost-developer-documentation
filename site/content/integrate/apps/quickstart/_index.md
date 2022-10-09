@@ -54,7 +54,9 @@ docker compose down
 
 Now you're fully equipped with an environment to develop Mattermost Apps locally!
 
-**Tip:** If you are using [Docker Engine](https://docs.docker.com/engine/) with the [docker-compose plugin](https://docs.docker.com/compose/install/) instead of [Docker Desktop](https://docs.docker.com/desktop/) (recommended), then use hyphenated versions of the commands above (e.g., `docker-compose up -d`).
+{{<note "Tip:">}}
+If you are using [Docker Engine](https://docs.docker.com/engine/) with the [docker-compose plugin](https://docs.docker.com/compose/install/) instead of [Docker Desktop](https://docs.docker.com/desktop/) (recommended), then use hyphenated versions of the commands above (e.g., `docker-compose up -d`).
+{{</note>}}
 
 ## Quick start guides
 

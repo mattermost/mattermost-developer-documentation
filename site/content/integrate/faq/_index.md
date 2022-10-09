@@ -20,9 +20,9 @@ A slash command is similar to an outgoing webhook, but instead of listening to a
 
 ### What does Slack-compatible mean?
 
-Slack compatible means that Mattermost accepts integrations that have a payload in the same format as Slack.  
+Slack compatible means that Mattermost accepts integrations that have a payload in the same format as Slack.
 
-If you have a Slack integration, you should be able to set it up in Mattermost without changing the format.   
+If you have a Slack integration, you should be able to set it up in Mattermost without changing the format.
 
 ### What if I have a webhook from somewhere other than Slack?
 
@@ -40,7 +40,7 @@ We currently don't support the ability to attach files to a post made by an inte
 
 [Visit our app directory](https://mattermost.com/marketplace/) for dozens of open source integrations to common tools like Jira, Jenkins, GitLab, Trac, Redmine, and Bitbucket, along with interactive bot applications (Hubot, mattermost-bot), and other communication tools (Email, IRC, XMPP, Threema) that are freely available for use and customization.
 
-### Where should I install my integrations? 
+### Where should I install my integrations?
 
 For self-hosted deployments in small setups you might host integrations on the same server on which Mattermost is installed. For larger deployments you can setup a separate server for integrations, or add them to the server on which the external application is hosted - for example, if you're self-hosting a Jira server you could deploy a Jira integration on the Jira server itself.
 
@@ -60,19 +60,19 @@ Deployments that cannot create bot accounts via webhooks due to security reasons
 3. Provide the email and password to your integration, and store it in a secure location with restricted access.
 4. Have your integration use the email and password with an [`/api/v4/login`](https://api.mattermost.com/v4/#tag/authentication) endpoint to retrieve a session token. The session token is used to authenticate to the Mattermost system.
    - Set up your bot to make an HTTP POST to `your-mattermost-url.com/api/v4/users/login` with a JSON body, including the bot account's email and password.
-  
+
      ```http request
      POST /api/v4/users/login HTTP/1.1
      Host: your-mattermost-url.com
      Content-Length: 66
      Content-Type: application/json
-     
+
      {"login_id":"someone@nowhere.com","password":"thisisabadpassword"}
      ```
-  
+
      where we assume there is a Mattermost instance running at http://localhost:8065.
    - If successful, the response will contain a `Token` header and a user object in the body:
-   
+
      ```http request
      HTTP/1.1 200 OK
      Set-Cookie: MMSID=hyr5dmb1mbb49c44qmx4whniso; Path=/; Max-Age=2592000; HttpOnly
@@ -85,24 +85,28 @@ Deployments that cannot create bot accounts via webhooks due to security reasons
      Date: Fri, 11 Sep 2015 13:21:14 GMT
      Content-Length: 657
      Content-Type: application/json; charset=utf-8
-     
+
      {{user object as json}}
      ```
-     
+
     The bot should retrieve the session token from the `Token` header and store it in memory for use with future requests.
-   
-   **Note:** Each session token has an expiry time, set depending on the server's configuration. If the session token your bot is using expires, it will receive a `401 Unauthorized` response from requests using that token. When your bot receives this response, it should reapply the login logic (using the    above steps) to get another session token. Then resend the request that received the `401` status code.
+
+   {{<note "Note:">}}
+   Each session token has an expiry time, set depending on the server's configuration. If the session token your bot is using expires, it will receive a `401 Unauthorized` response from requests using that token. When your bot receives this response, it should reapply the login logic (using the    above steps) to get another session token. Then resend the request that received the `401` status code.
+   {{</note>}}
 
 5. Include the `Token` as part of the `Authorization` header on API requests from your integration.
    - To confirm the token works, you can have your bot make a simple `GET` request to `/api/v4/users/me` with the `Authorization: bearer <yourtokenhere>` in the header. If it returns a `200` with the bot's user object in the response, the API request was made successfully.
-  
+
      ```http request
      GET /api/v4/users/me HTTP/1.1
      Authorization: bearer <yourtokenhere>
      Host: your-mattermost-url.com
      ```
 
-**Note:** The Mattermost development team is also working on an [API developer token](https://docs.google.com/document/d/1ey4eNQmwK410pNTvlnmMWTa1fqtj8MV4d9XkCumI384), which allows you to authenticate the bot account via the API token rather than retrieving a session token from a user account.
+{{<note "Note:">}}
+The Mattermost development team is also working on an [API developer token](https://docs.google.com/document/d/1ey4eNQmwK410pNTvlnmMWTa1fqtj8MV4d9XkCumI384), which allows you to authenticate the bot account via the API token rather than retrieving a session token from a user account.
+{{</note>}}
 
 ### How should I automate the install and upgrade of Mattermost when included in another application?
 

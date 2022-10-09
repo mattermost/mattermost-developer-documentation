@@ -73,7 +73,8 @@ Now that all requirements are met, it's time to sign the Mattermost app for Andr
 Once the code sign is complete you should have a signed APK in the working directory with the name **MyApp-signed.apk**.
 
 ---
-**Note:**
+{{<note "Note:">}}
 The app name can be anything but be sure to use double quotes if the name includes white spaces. If you are using a `Google Services` JSON file, you need to specify a `package identifier` that has a corresponding client in the JSON configuration file.
+{{</note>}}
 
 ---

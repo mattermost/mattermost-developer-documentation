@@ -35,9 +35,11 @@ The above command prompts you for passwords for the keystore and key (make sure 
 The keystore contains a single key, valid for 10000 days. The alias is a name that you will use later when signing your app, so remember to take a note of the alias.
 
 ---
-**Note:**
+{{<note "Note:">}}
 * Replace `<my-release-key>` with the filename you want to specify.
 * Remember to keep your keystore file private and never commit it to version control.
+{{</note>}}
+
 ---
 
 ### 3. Create a new app in Google Play
@@ -57,9 +59,11 @@ Now that we have created the keystore file we can tell the build process to use 
     MATTERMOST_RELEASE_PASSWORD=*****
     ```
 ---
-**Note:**
+{{<note "Note:">}}
 * Replace `/full/path/to/directory/containing/my-release-key.keystore` with the full path to the actual keystore file and `********` with the actual keystore password.
 * Back up your keystore and don't forget the password.
+{{</note>}}
+
 ---
 ---
 **Important:**
@@ -96,8 +100,9 @@ To make it easier to customize your build, we've defined a few environment varia
 | `SUPPLY_JSON_KEY`                      | The path to the service account `json` file used to authenticate with Google.<br><br>See the [Supply documentation]( https://docs.fastlane.tools/actions/supply/#setup) to learn more.                                                                                                           |                            | Yes      |
 
 ---
-**Note:**
+{{<note "Note:">}}
 To configure your variables create the file `./mattermost-mobile/fastlane/.env` where `.env` is the filename. You can find the sample file `env_vars_example` [here](https://github.com/mattermost/mattermost-mobile/blob/master/fastlane/env_vars_example).
+{{</note>}}
 
 ---
 
