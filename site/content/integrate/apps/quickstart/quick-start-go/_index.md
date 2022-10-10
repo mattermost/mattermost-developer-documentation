@@ -20,7 +20,7 @@ Before you can start with your app, you first need to set up a local developer e
 
 Once set up, in the Mattermost System Console, ensure that the following are set to **true**:
 
-- `Enable Bot Account Creation`
+- **Integrations > Enable Bot Account Creation**
 - `Enable OAuth 2.0 Service Provider`
 
 You also need at least `go1.16` installed. Please follow the guide [here](https://golang.org/doc/install) to install the latest version.
