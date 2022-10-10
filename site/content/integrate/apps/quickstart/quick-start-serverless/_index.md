@@ -37,7 +37,7 @@ Once set up, open the System Console and ensure that the following are set to **
 - `Enable Bot Account Creation`
 - `Enable OAuth 2.0 Service Provider`
 
-You also need at least `go1.16` installed. Please follow the guide [here](https://golang.org/doc/install) to install the latest version.
+You also need at least `go1.18` installed. Please follow the guide [here](https://golang.org/doc/install) to install the latest version.
 
 ## Build the App
 
