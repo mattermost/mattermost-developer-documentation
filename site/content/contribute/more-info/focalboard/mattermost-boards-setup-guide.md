@@ -12,17 +12,16 @@ aliases:
 
 ## Build the plugin
 
-Fork the [Focalboard repository](https://github.com/mattermost/focalboard) and clone it locally.
-
-To install the dependencies:
+1. Fork the [Focalboard repository](https://github.com/mattermost/focalboard) and clone it locally.
+2. Define an environment variable ``EXCLUDE_ENTERPRISE`` with a value of 1
+3. To install the dependencies:
 ```
 cd mattermost-plugin/webapp
 npm install --no-optional
 cd ../..
 make prebuild
 ```
-
-To build the plugin:
+4. To build the plugin:
 ```
 make webapp
 cd mattermost-plugin
