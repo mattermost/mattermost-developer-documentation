@@ -71,7 +71,6 @@ The following table lists the supported permissions ({{<newtabref title="godoc" 
 
 | Name                               | Description                                                                                                                                 |
 |:-----------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------|
-| `user_joined_channel_notification` | Be notified when users join channels.                                                                                                       |
 | `act_as_bot`                       | Use Mattermost REST API as the app's bot user.                                                                                              |
 | `act_as_user`                      | Use Mattermost REST API as a connected user.                                                                                                |
 | `remote_oauth2`                    | Use remote (third-party) OAuth2 support, and store secrets and tokens to third-party system(s) within the Mattermost server.                |
