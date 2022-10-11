@@ -34,7 +34,7 @@ The fields of the manifest are described in the following table:
 
 {{<note "Mandatory values" "icon-star" "Mandatory Value">}}
 - The `app_id` and `homepage_url` values must be specified.
-- One deployment method - `aws_lambda`, `open_faas`, or `http` - must be specified.
+At least one deployment method - `aws_lambda`, `open_faas`, or `http` - must be specified.
 {{</note>}}
 
 For example, a typical App manifest would look like the following:
