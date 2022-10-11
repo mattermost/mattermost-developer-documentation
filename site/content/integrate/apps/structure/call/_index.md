@@ -5,7 +5,7 @@ weight: 20
 aliases:
   - /integrate/apps/api/call/
 ---
-A Call defines an App action that can be invoked.
+A Call defines an App action that can be invoked, or a request for App data.
 
 {{<note "Note:">}}
 Content on this page refers to the Mattermost Apps framework and not to the Mattermost Calls product functionality.
