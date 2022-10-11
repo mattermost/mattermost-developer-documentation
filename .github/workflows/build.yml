@@ -30,9 +30,3 @@ jobs:
 
       - name: Run build
         run: make dist
-
-      - name: Check HTML
-        uses: anishathalye/proof-html@v1
-        with:
-          directory: './dist/html'
-          empty_alt_ignore: true

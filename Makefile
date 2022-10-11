@@ -27,3 +27,7 @@ run:
 build:
 	rm -rf ./dist
 	hugo -s site --verbose --destination ../dist/html --printUnusedTemplates --printPathWarnings --gc
+
+.PHONY: test
+test:
+	docker run -v $(PWD)/dist/html/:/mnt 18fgsa/html-proofer mnt --ignore_empty_alt
