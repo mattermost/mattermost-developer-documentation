@@ -9,7 +9,7 @@ aliases:
 
 You can create "zaps" that contain a trigger and an action for a task that you want to perform repeatedly. Zapier regularly checks your trigger for new data and automatically performs the action for you.
 
-Using Zapier you can integrate over 700 apps into Mattermost, including [Email](https://zapier.com/apps/email-parser/integrations), [GitHub](https://zapier.com/apps/github/integrations), [Jira](https://zapier.com/zapbook/jira), [Wufoo](https://zapier.com/zapbook/wufoo), [Salesforce](https://zapier.com/zapbook/salesforce), [Twitter](https://zapier.com/zapbook/twitter), [Gmail](https://zapier.com/zapbook/gmail), and [many more](https://zapier.com/zapbook).
+Using Zapier you can integrate over 700 apps into Mattermost, including [Email](https://zapier.com/apps/email-parser/integrations), [GitHub](https://zapier.com/apps/github/integrations), [Jira](https://zapier.com/apps/jira/integrations), [Wufoo](https://zapier.com/zapbook/wufoo), [Salesforce](https://zapier.com/zapbook/salesforce), [Twitter](https://zapier.com/zapbook/twitter), [Gmail](https://zapier.com/zapbook/gmail), and [many more](https://zapier.com/zapbook).
 
 ## Zapier setup guide
 
