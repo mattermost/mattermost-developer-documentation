@@ -9,7 +9,7 @@ aliases:
 Subscriptions provide a way for an App to be notified about events sent by the Mattermost Server. The Mattermost Server notifies an App of an event by invoking a [call]({{<ref "/integrate/apps/structure/call">}}).
 
 {{<note "Note:">}}
-App subscription functionality requires the use of a [driver]({{<ref "/integrate/apps/drivers">}}).
+It is recommended to use a [driver]({{<ref "/integrate/apps/drivers">}}) when implementing subscriptions.
 {{</note>}}
 
 ### Subscribe to an event
@@ -40,13 +40,17 @@ An example of an App subscribing to an event with the [Golang driver]({{<ref "/i
 ```go
 subscription := &apps.Subscription{
     Subject: "user_joined_channel",
-    ChannelID: "hoan6o9ws7rp5xj7wu9rmysrte",
+    ChannelID: "9a44ckeqytd3bftn3c3y53968o",
+    TeamID: "hoan6o9ws7rp5xj7wu9rmysrte",
     Call: apps.Call{
         Path: "/user-joined-channel",
+        Expand: &apps.Expand{
+            // optionally expand call metadata fields
+        },
     },
 }
 err := client.Subscribe(subscription)
-if err != nil {
+if err != nil {   
     // handle the error
 }
 ```
@@ -55,8 +59,29 @@ if err != nil {
 
 The request data for an event notification call looks like the following:
 
-```json
-{ }
+```http request
+POST /event-handler HTTP/1.1
+Host: my-app:4000
+Accept-Encoding: gzip
+Content-Length: 396
+Content-Type: application/json
+User-Agent: Mattermost-Bot/1.1
+
+{
+    "path":"/event",
+    "context":{
+        "user_id":"7q7kaakokfdsdycy3pr9ctkc5r",
+        "subject":"user_joined_channel",
+        "channel_id":"9a44ckeqytd3bftn3c3y53968o",
+        "app_id":"my-app",
+        "mattermost_site_url":"http://localhost:8066",
+        "developer_mode":true,
+        "app_path":"/plugins/com.mattermost.apps/apps/my-app",
+        "bot_user_id":"mgbd1czngjbbdx6eqruqabdeie",
+        "bot_access_token":"ix8gsdqudfgupyf3qsh8y9j81w",
+        "oauth2":{}
+    }
+}
 ```
 
 ### Unsubscribe from an event
@@ -68,9 +93,13 @@ An example of an App unsubscribing from an event with the [Golang driver]({{<ref
 ```go
 subscription := &apps.Subscription{
     Subject: "user_joined_channel",
-    ChannelID: "hoan6o9ws7rp5xj7wu9rmysrte",
+    ChannelID: "9a44ckeqytd3bftn3c3y53968o",
+    TeamID: "hoan6o9ws7rp5xj7wu9rmysrte",
     Call: apps.Call{
         Path: "/user-joined-channel",
+        Expand: &apps.Expand{
+            // optionally expand call metadata fields
+        },
     },
 }
 err := client.Unsubscribe(subscription)
