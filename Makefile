@@ -30,4 +30,4 @@ build:
 
 .PHONY: test
 test:
-	docker run -v $(PWD)/dist/html/:/mnt 18fgsa/html-proofer mnt --ignore_empty_alt
+	htmlproofer ./dist/html --ignore_empty_alt
