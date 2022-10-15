@@ -51,15 +51,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
     document.getElementById('navigation').classList.toggle('active');
   });
 
-  //All external links to target=_blank
-  const content = document.querySelector('body');
-  const links = content.getElementsByTagName("a");
+  // //All external links to target=_blank
+  // const content = document.querySelector('body');
+  // const links = content.getElementsByTagName("a");
 
-  for (let link of links) {
-    if (link.hostname != window.location.hostname) {
-      link.target = '_blank';
-    }
-  }
+  // for (let link of links) {
+  //   if (link.hostname != window.location.hostname) {
+  //     link.target = '_blank';
+  //   }
+  // }
 
 });
 
