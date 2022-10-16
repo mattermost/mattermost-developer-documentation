@@ -11,11 +11,11 @@ github: lieut-data
 community: jesse.hallam
 ---
 
-Go is an extremely opinionated programming language. `import` something in a file that's not used? It won't compile, and there's no flag to override. While there are [workarounds](https://godoc.org/golang.org/x/tools/cmd/goimports), the end result remains the same: Go files are never cluttered by unused imports. This is true for all Go code everywhere, making every Go project more accessible.
+Go is an extremely opinionated programming language. `import` something in a file that's not used? It won't compile, and there's no flag to override. While there are {{< newtabref href="https://godoc.org/golang.org/x/tools/cmd/goimports" title="workarounds" >}}, the end result remains the same: Go files are never cluttered by unused imports. This is true for all Go code everywhere, making every Go project more accessible.
 
-Not all Go opinions are enforced by the compiler. Some are documented in [Effective Go](https://golang.org/doc/effective_go.html), and yet others are reflected only in the coding style of the Go [standard library](https://golang.org/pkg/). This body of opinions defines idiomatic Go: the natural way to write Go code.
+Not all Go opinions are enforced by the compiler. Some are documented in {{< newtabref href="https://golang.org/doc/effective_go.html" title="Effective Go" >}}, and yet others are reflected only in the coding style of the Go {{< newtabref href="https://golang.org/pkg/" title="standard library" >}}. This body of opinions defines idiomatic Go: the natural way to write Go code.
 
-Here at Mattermost, we're in the midst of an [epic](https://mattermost.atlassian.net/browse/MM-12535) to make our error handling code more idiomatic and thus ultimately more accessible. The changes are simple, and best summarized by a section on the [Effective Go](https://golang.org/doc/effective_go.html#if) document:
+Here at Mattermost, we're in the midst of an {{< newtabref href="https://mattermost.atlassian.net/browse/MM-12535" title="epic" >}} to make our error handling code more idiomatic and thus ultimately more accessible. The changes are simple, and best summarized by a section on the {{< newtabref href="https://golang.org/doc/effective_go.html#if" title="Effective Go" >}} document:
 
 > In the Go libraries, you'll find that when an if statement doesn't flow into the next statement—that is, the body ends in break, continue, goto, or return—the unnecessary else is omitted.
 
@@ -44,7 +44,7 @@ codeUsing(f, d)
 
 ### Real-life Example
 
-Here's a block of code [handling notifications](https://github.com/jespino/platform/blob/a257d501df3d0624f9cc52efb602e7d9d2a4dc07/app/notification.go#L38-L43) before it was changed:
+Here's a block of code {{< newtabref href="https://github.com/jespino/platform/blob/a257d501df3d0624f9cc52efb602e7d9d2a4dc07/app/notification.go#L38-L43" title="handling notifications" >}} before it was changed:
 ```go
 var profileMap map[string]*model.User
 if result := <-pchan; result.Err != nil {
@@ -54,7 +54,7 @@ if result := <-pchan; result.Err != nil {
 }
 ```
 
-Notice the `if` statement ending in a `return`, making the `else` unnecessary. Here's the code [written idiomatically](https://github.com/jespino/platform/blob/2ab1b82d18af545f8483daa1f22af057eb37b879/app/notification.go#L38-L42):
+Notice the `if` statement ending in a `return`, making the `else` unnecessary. Here's the code {{< newtabref href="https://github.com/jespino/platform/blob/2ab1b82d18af545f8483daa1f22af057eb37b879/app/notification.go#L38-L42" title="written idiomatically" >}}:
 ```go
 result := <-pchan
 if result.Err != nil {
@@ -67,14 +67,14 @@ Eliminating the `else` condition required pre-declaring `result` instead of defi
 
 ### Is it ok to still declare variables inline to a conditional?
 
-Idiomatic go still allows for variables declared inline with the conditional. Only variables that need to be used outside the conditional should be pre-declared. Here's a correct [example](https://github.com/mattermost/mattermost-server/blob/ebd540d5fbc10bdc504f7349acbb90ddc4b5e826/app/scheme.go#L13-L15) of writing idiomatic Go code using a single inline variable:
+Idiomatic go still allows for variables declared inline with the conditional. Only variables that need to be used outside the conditional should be pre-declared. Here's a correct {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/ebd540d5fbc10bdc504f7349acbb90ddc4b5e826/app/scheme.go#L13-L15" title="example" >}} of writing idiomatic Go code using a single inline variable:
 ```go
 if err := a.IsPhase2MigrationCompleted(); err != nil {
     return nil, err
 }
 ```
 
-and a correct [example](https://github.com/mattermost/mattermost-server/blob/5d6d4502992af4120fed19a9db43960d6269b871/store/local_cache_supplier.go#L69-L76) using multiple inline variables:
+and a correct {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/5d6d4502992af4120fed19a9db43960d6269b871/store/local_cache_supplier.go#L69-L76" title="example" >}} using multiple inline variables:
 ```go
 if cacheItem, ok := cache.Get(key); ok {
     if s.metrics != nil {
@@ -88,4 +88,4 @@ if cacheItem, ok := cache.Get(key); ok {
 
 ### Contributing
 
-Interested in helping us complete these changes? Find an unclaimed [ticket](https://mattermost.atlassian.net/browse/MM-12535), and join us on [community.mattermost.com](https://community.mattermost.com/core/channels/developers) to discuss further.
+Interested in helping us complete these changes? Find an unclaimed {{< newtabref href="https://mattermost.atlassian.net/browse/MM-12535" title="ticket" >}}, and join us on {{< newtabref href="https://community.mattermost.com/core/channels/developers" title="community.mattermost.com" >}} to discuss further.
