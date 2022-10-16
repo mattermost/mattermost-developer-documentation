@@ -58,8 +58,8 @@ To solve this problem, we used structure embedding which is a tool provided by G
 the behavior of a struct based on another struct. I prefer to not
 use the term inheritance here because it is not correct; it is embedding, not
 inheritance. If you want to dive deeper into this concept, take a look at
-the video of the talk [Embedding in go](https://www.youtube.com/watch?v=-LzYjMzfGDQ)
-from [Sean Kelly](https://twitter.com/StabbyCutyou), he explains it better than
+the video of the talk {{< newtabref href="https://www.youtube.com/watch?v=-LzYjMzfGDQ" title="Embedding in go" >}}
+from {{< newtabref href="https://twitter.com/StabbyCutyou" title="Sean Kelly" >}}, he explains it better than
 I can.
 
 As an example I'm going to create a small, simplified version of what we have,
