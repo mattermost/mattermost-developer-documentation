@@ -142,4 +142,4 @@ For customers using the Mattermost Operator directly in most cases, the migratio
 
 The migration went fairly smooth with some minor bumps along the way, but nothing that caused any downtime to customers or any headaches to us.
 
-The `ClusterInstallation` CR will still be supported by the Operator until version `2.0` but new features are not added there. If you manage your Mattermost with Mattermost Operator and still use `ClusterInstallation` check out [this guide on how to migrate](https://github.com/mattermost/mattermost-operator/blob/master/docs/migration.md).
+The `ClusterInstallation` CR will still be supported by the Operator until version `2.0` but new features are not added there. If you manage your Mattermost with Mattermost Operator and still use `ClusterInstallation` check out {{< newtabref href="https://github.com/mattermost/mattermost-operator/blob/master/docs/migration.md" title="this guide on how to migrate" >}}.
