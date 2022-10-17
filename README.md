@@ -83,12 +83,16 @@ Each page that uses a Mermaid diagram must also have a `mermaid: true` property 
 {{<mermaid>}}
 sequenceDiagram
     actor System Admin
-    System Admin->>Mattermost server: uninstall app
-    Mattermost server->>Apps framework: uninstall app
-    Apps framework->>App: call OnUninstall if defined
-    Apps framework->>Apps framework: disable app
-    Apps framework->>Mattermost server: delete bot
-    Apps framework->>Mattermost server: delete OAuth app
+    System Admin->>Mattermost server: install app
+    Mattermost server->>Apps framework: install app
+    Apps framework->>App: request manifest
+    App->>Apps framework: send manifest
+    Apps framework->>System Admin: request permissions
+    System Admin->>Apps framework: grant permissions
+    Apps framework->>Mattermost server: create bot
+    Apps framework->>Mattermost server: create OAuth app
+    Apps framework->>Apps framework: enable app
+    Apps framework->>App: call OnInstall if defined
 {{</mermaid>}}
 ```
 
