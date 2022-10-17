@@ -28,6 +28,14 @@ build:
 	rm -rf ./dist
 	hugo -s site --verbose --destination ../dist/html --printUnusedTemplates --printPathWarnings --gc
 
+
 .PHONY: test
 test:
 	htmlproofer ./dist/html --ignore_empty_alt
+
+.PHONY: compass-icons
+compass-icons:
+	mkdir -p site/static/css
+	mkdir -p site/static/font
+	curl --no-progress-meter -o site/static/css/compass-icons.css https://mattermost.github.io/compass-icons/css/compass-icons.css
+	curl --no-progress-meter -o "site/static/font/compass-icons.#1" "https://mattermost.github.io/compass-icons/font/compass-icons.{eot,woff2,woff,ttf,svg}"
