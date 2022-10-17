@@ -7,8 +7,8 @@ In addition to the {{<newtabref title="Mattermost REST APIs" href="https://api.m
 
 - [Subscriptions]({{<ref "subscriptions">}}) - learn how to subscribe to notifications about Mattermost events. For example, have your App notified whenever a message is posted in a channel that mentions your `@bot` account.
 
-- [Key-Value Store]({{<ref "kv-store">}}) - a simple key-value store for App-specific data.
+- [Key-value store]({{<ref "kv-store">}}) - a simple key-value store for App-specific data.
 
-- [External webhooks]({{<ref "external-webhooks">}}) - learn how to subscribe to webhooks from third-party systems.
+- [App webhooks]({{<ref "external-webhooks">}}) - learn how to subscribe to webhooks from third-party systems.
 
 - [Mattermost API]({{<ref "mattermost-api">}}) - learn how to use the Mattermost REST API client to interact with the Mattermost server.
