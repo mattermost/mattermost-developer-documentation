@@ -2,7 +2,7 @@
 title: "External webhooks"
 heading: "External webhooks"
 description: "In this example, the http app will demonstrate connect webhooks"
-weight: 800
+weight: 30
 aliases:
   - /integrate/apps/api/third-party-webhooks/
   - /integrate/apps/using-third-party-api/
