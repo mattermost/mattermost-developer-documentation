@@ -1,7 +1,7 @@
 ---
 title: "Bindings"
 heading: "Bindings"
-weight: 30
+weight: 50
 aliases:
   - /integrate/apps/api/bindings/
 ---

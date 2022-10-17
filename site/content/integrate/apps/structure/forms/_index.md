@@ -1,28 +1,44 @@
 ---
-title: "Interactivity"
-heading: "Interactivity"
+title: Forms
+heading: Forms
 weight: 40
 aliases:
   - /integrate/apps/api/interactivity/
+  - /integrate/apps/interactivity/
 ---
+Mattermost Apps use a single data structure for user input: the {{<newtabref title="Form" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form">}}. A form gets input from a modal dialog or from slash command arguments.
 
-### Modal Forms
+### Modal dialogs
 
-Modal Forms ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form)) open as a modal on the user interface as a result of a Form call response. One example is the `send` form in the [Hello World!](https://github.com/mattermost/mattermost-plugin-apps/blob/master/examples/go/hello-world/send_form.json) app.
+Forms in a modal dialog open on the user interface as a result of a call response.
 
-They are defined by:
+The structure of a form is defined in the following table:
 
-| Name             | Type   | Description                                                                                    |
-|:-----------------|:-------|:-----------------------------------------------------------------------------------------------|
-| `title`          | string | Title of the form, shown in the modal.                                                         |
-| `header`         | string | (Optional) Text used as introduction in the form.                                              |
-| `footer`         | string | (Optional) Text used at the end of the modal.                                                  |
-| `icon`           | string | (Optional) Either a fully-qualified URL, or a path for an app's static asset.                  |
-| `call`           | Call   | Call to perform for this form.                                                                 |
-| `submit_buttons` | string | (Optional) Key of the field to be used as the submit buttons. Must be of type `static_select`. |
-| `fields`         | Fields | List of fields in the form.                                                                    |
+| Name             | Type                     | Description                                                                                    |
+|:-----------------|:-------------------------|:-----------------------------------------------------------------------------------------------|
+| `title`          | string                   | Title of the form, shown in the modal.                                                         |
+| `header`         | string                   | (Optional) Text used as introduction in the form.                                              |
+| `footer`         | string                   | (Optional) Text used at the end of the modal.                                                  |
+| `icon`           | string                   | (Optional) Either a fully-qualified URL, or a path for an app's static asset.                  |
+| `call`           | [Call]({{<ref "call">}}) | Call to perform for this form.                                                                 |
+| `submit_buttons` | string                   | (Optional) Key of the field to be used as the submit buttons. Must be of type `static_select`. |
+| `fields`         | [Fields](#form-fields)   | List of fields in the form.                                                                    |
 
-The types of fields are:
+#### Form fields
+
+The structure of a form field ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field">}}) is defined in the following table:
+
+| Name          | Type               | Description                                                                         |
+|:--------------|:-------------------|:------------------------------------------------------------------------------------|
+| `name`        | string             | Key to use in the values field of the call. Cannot include spaces nor tabs.         |
+| `type`        | FieldType (string) | The type of the field.                                                              |
+| `is_required` | bool               | (Optional) Whether the field needs to be filled.                                    |
+| `multiselect` | bool               | (Optional) Whether a select field allows multiple values to be selected.            |
+| `value`       | _any_              | (Optional) Default value.                                                           |
+| `description` | string             | (Optional) Text to show below the field describing it.                              |
+| `modal_label` | string             | (Optional) Label to name the field in the modal. Defaults to `name` if not defined. |
+
+The types of form fields are:
 
 | Name             | Description                                              |
 |:-----------------|:---------------------------------------------------------|
@@ -34,19 +50,7 @@ The types of fields are:
 | `channel`        | A dropdown to select channels.                           |
 | `markdown`       | Only visible on modal forms. An arbitrary markdown text. |
 
-Markdown fields are a special field that allows you to better format your form. They will not generate any value in the form submission sent to the app. The content is defined in the field description.
-
-All fields include ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field)):
-
-| Name          | Type      | Description                                                                                  |
-|:--------------|:----------|:---------------------------------------------------------------------------------------------|
-| `name`        | string    | Key to use in the values field of the call. Cannot include spaces nor tabs.                  |
-| `type`        | FieldType | The type of the field.                                                                       |
-| `is_required` | bool      | (Optional) Whether the field needs to be filled.                                             |
-| `multiselect` | bool      | (Optional) Whether a select field allows multiple values to be selected.                     |
-| `value`       | value     | (Optional) Default value.                                                                    |
-| `description` | string    | (Optional) Text to show below the field describing it.                                       |
-| `modal_label` | string    | (Optional) Label to name the field in the modal. Defaults to `label` (if defined) or `name`. |
+##### Text fields
 
 Text fields may include:
 
@@ -55,6 +59,8 @@ Text fields may include:
 | `subtype`    | string | (Optional) The type of text that will be shown. Available types are one of input, textarea, email, number, password, tel, or URL. |
 | `min_length` | int    | (Optional) Validate the field length before performing the call.                                                                  |
 | `max_length` | int    | (Optional) Validate the field length before performing the call.                                                                  |
+
+##### Static select fields
 
 Static select fields include:
 
@@ -76,6 +82,8 @@ All select also include:
 | `refresh`     | bool | (Optional) Allows the form to be refreshed when the value of a dropdown is changed. |
 | `multiselect` | bool | (Optional) You can select more than one element in this field.                      |
 
+##### Dynamic select fields
+
 A modal form performs a lookup call to the call endpoint any time a dynamic dropdown is selected. The lookup call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form. The expected response is error or the following:
 
 | Name | Type    | Item    | Description                  |
@@ -87,9 +95,13 @@ If any select has the refresh value set as `true`, a form call to the call endpo
 
 On submit, the submit call to the call endpoint will be sent. The submit call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form.
 
-## Commands as forms
+##### Markdown fields
 
-Commands arguments are treated as forms. When a leaf command is typed, the arguments of the command are fetched. If the command binding has a form attached, those will be used. If not, a form call will be made to the command call. The call will include in the context the app ID, user ID, the post ID, the root post ID (if any), the channel ID, and the team ID. The call will expect a form response.
+Markdown fields are a special field that allows you to better format your form. They will not generate any value in the form submission sent to the app. The content is defined in the field description.
+
+### Slash command arguments
+
+Slash command arguments are treated as forms. When a leaf command is typed, the arguments of the command are fetched. If the command binding has a form attached, those will be used. If not, a form call will be made to the command call. The call will include in the context the app ID, user ID, the post ID, the root post ID (if any), the channel ID, and the team ID. The call will expect a form response.
 
 During autocomplete, the user can open the form as a Modal form to finish completing the command. Any fields not supported by commands (like markdown fields) or form attributes not visible in commands (like the title) will be shown when opened as a Modal form.
 
@@ -113,7 +125,6 @@ All fields include:
 | `hint`        | string    | Text to show on the hint line on autocomplete.                                                                                                                     |
 | `label`       | string    | Label to name the field in autocomplete. Defaults to `name`. Must be unique.                                                                                       |
 | `position`    | int       | (Optional) Positional argument (can be provided without a --flag). `If >0`, indicates the position this field is in. `If =-1`, it is considered the last argument. |
-
 
 Options are defined as:
 
@@ -174,8 +185,6 @@ Options bindings include:
 | `form`     | Form   | (Optional) Form to open in a modal form when the option is selected. You must provide a Form with a Call if there is no Call defined in the Binding. |
 
 Whenever a button is clicked or a select field is selected, a submit call is performed to the corresponding call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID.
-
-## [Post menu example]({{< ref example-post-menu >}})
 
 ## Example data flows
 
