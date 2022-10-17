@@ -31,4 +31,4 @@ You can run the type checker by running the following command:
 
 #### Submitting great PRs
 
-Jesse Hallam has written an excellent blog post entitled "Submitting Great PRs" that can be found [here](https://mattermost.com/blog/submitting-great-prs/)
+Jesse Hallam has written an excellent blog post entitled "Submitting Great PRs" that can be found {{< newtabref href="https://mattermost.com/blog/submitting-great-prs/" title="here" >}}

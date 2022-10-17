@@ -17,5 +17,5 @@
 For machines using the M1 architecture:
 1. Use the latest NodeJS@16 (>=v16.16)
 
-2. Update [Xcode](https://developer.apple.com/xcode/) to latest version (>=v13.4.1)
+2. Update {{< newtabref href="https://developer.apple.com/xcode/" title="Xcode" >}} to latest version (>=v13.4.1)
 

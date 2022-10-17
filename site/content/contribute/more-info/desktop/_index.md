@@ -8,7 +8,7 @@ aliases:
   - /contribute/desktop
 ---
 
-The Mattermost Desktop App is an [Electron](https://electronjs.org/) wrapper around the [web app]({{< ref "/contribute/more-info/webapp" >}}) project. It lives in the [mattermost/desktop](https://github.com/mattermost/desktop) repository. The desktop app runs on Windows, Linux, and macOS.
+The Mattermost Desktop App is an {{< newtabref href="https://electronjs.org/" title="Electron" >}} wrapper around the [web app]({{< ref "/contribute/more-info/webapp" >}}) project. It lives in the {{< newtabref href="https://github.com/mattermost/desktop" title="mattermost/desktop" >}} repository. The desktop app runs on Windows, Linux, and macOS.
 
 #### Electron
 The Desktop App, like all Electron apps, is broken into two pieces: the **main** process and the **renderer** process.
@@ -20,7 +20,7 @@ The **renderer** processes are Chromium instances that perform different functio
 
 In order to facilitate communication between the two processes, there's a communication layer in which information can be sent between. We expose *ONLY* the communication API to the renderer process so that we don't allow any malicious server to wreak havoc on a user's computer.
 
-You can read more about the Process Model [here](https://www.electronjs.org/docs/latest/tutorial/process-model).
+You can read more about the Process Model {{< newtabref href="https://www.electronjs.org/docs/latest/tutorial/process-model" title="here" >}}.
 
 #### Directory structure
 The directory structure is broken down into a few pieces to best organize the code:
@@ -42,8 +42,8 @@ Mattermost Desktop
 ```
 
 ## Desktop app contributor resources
- - [GitHub Repository](https://github.com/mattermost/desktop) - Get the code, report issues, or submit PRs.
- - [Help Wanted](https://mattermost.com/pl/help-wanted-desktop) - This is a good place to start if you're looking for a way to contribute code. Many issues are labeled by difficulty level to make it easier to find ways to get involved.
+ - {{< newtabref href="https://github.com/mattermost/desktop" title="GitHub Repository" >}} - Get the code, report issues, or submit PRs.
+ - {{< newtabref href="https://mattermost.com/pl/help-wanted-desktop" title="Help Wanted" >}} - This is a good place to start if you're looking for a way to contribute code. Many issues are labeled by difficulty level to make it easier to find ways to get involved.
  - [Developer Setup]({{< ref "/contribute/more-info/desktop/developer-setup" >}}) - Setup your development environment to start work on the desktop app.
  - [Build and CLI Commands]({{< ref "/contribute/more-info/desktop/build-commands" >}}) - Useful commands to help build, debug, test, and modify the desktop app on your local machine.
  - [Debugging]({{< ref "/contribute/more-info/desktop/debugging" >}}) - Identify issues in the desktop app and debug the rendering process.
@@ -56,4 +56,4 @@ Mattermost Desktop
 
 ## Where to get help
 
-If you have any questions related to development of the Desktop App, you can ask us in the [Developers: Desktop App](https://community.mattermost.com/core/channels/desktop-app) channel on our [community Mattermost](https://docs.mattermost.com/guides/community-chat.html). If you need help deploying, administering, or using Mattermost, refer to our [Get Help guide](https://docs.mattermost.com/guides/get-help.html) to find all of the resources that are availalbe to support your journey.
+If you have any questions related to development of the Desktop App, you can ask us in the {{< newtabref href="https://community.mattermost.com/core/channels/desktop-app" title="Developers: Desktop App" >}} channel on our {{< newtabref href="https://docs.mattermost.com/guides/community-chat.html" title="community Mattermost" >}}. If you need help deploying, administering, or using Mattermost, refer to our {{< newtabref href="https://docs.mattermost.com/guides/get-help.html" title="Get Help guide" >}} to find all of the resources that are availalbe to support your journey.
