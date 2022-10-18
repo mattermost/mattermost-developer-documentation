@@ -13,15 +13,16 @@ Forms in a modal dialog open on the user interface as a result of a [call]({{<re
 
 The structure of a form ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form">}}) is defined in the following table:
 
-| Name                                                   | Type                     | Description                                                                                     |
-|:-------------------------------------------------------|:-------------------------|:------------------------------------------------------------------------------------------------|
-| `title`{{<compass-icon icon-star "Mandatory Value">}}  | string                   | Title of the form, shown in modal dialogs.                                                      |
-| `call`{{<compass-icon icon-star "Mandatory Value">}}   | [Call]({{<ref "call">}}) | Call to perform for this form.                                                                  |
-| `fields`{{<compass-icon icon-star "Mandatory Value">}} | [Fields](#fields)        | List of fields in the form.                                                                     |
-| `header`                                               | string                   | Text used as introduction in modal dialogs.                                                     |
-| `footer`                                               | string                   | Text used at the end of modal dialogs.                                                          |
-| `icon`                                                 | string                   | Either a fully-qualified URL, or a path for an app's [static asset]({{<ref "static-assets">}}). |
-| `submit_buttons`                                       | string                   | Key of the field to be used as the submit buttons. Must be of type `static_select`.             |
+| Name                                                   | Type                     | Description                                                                                                                                                   |
+|:-------------------------------------------------------|:-------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `title`{{<compass-icon icon-star "Mandatory Value">}}  | string                   | Title of the form, shown in modal dialogs.                                                                                                                    |
+| `submit`{{<compass-icon icon-star "Mandatory Value">}} | [Call]({{<ref "call">}}) | Call to perform when the form is submitted or the slash command is executed.                                                                                  |
+| `fields`{{<compass-icon icon-star "Mandatory Value">}} | [Fields](#fields)        | List of fields in the form.                                                                                                                                   |
+| `source`                                               | [Call]({{<ref "call">}}) | Call to perform when a form's fields are not defined or when the form needs to be refreshed.                                                                  |
+| `header`                                               | string                   | Text used as introduction in modal dialogs.                                                                                                                   |
+| `footer`                                               | string                   | Text used at the end of modal dialogs.                                                                                                                        |
+| `icon`                                                 | string                   | Either a fully-qualified URL, or a path for an app's [static asset]({{<ref "static-assets">}}).                                                               |
+| `submit_buttons`                                       | string                   | Name of the form field to be used as the list of submit buttons. Must be a `static_select` or `dynamic_select` field. Default value is a single button: `OK`. |
 
 {{<note "Mandatory values">}}
 Fields with mandatory values are marked by a {{<compass-icon icon-star "Mandatory Value">}}.
@@ -31,39 +32,41 @@ Fields with mandatory values are marked by a {{<compass-icon icon-star "Mandator
 
 The structure of a form field ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field">}}) is defined in the following table:
 
-| Name                                                 | Type                               | Description                                                                   |
-|:-----------------------------------------------------|:-----------------------------------|:------------------------------------------------------------------------------|
-| `name`{{<compass-icon icon-star "Mandatory Value">}} | string                             | Key to use in the values field of the call. Cannot include spaces or tabs.    |
-| `type`{{<compass-icon icon-star "Mandatory Value">}} | [FieldType](#field-types) (string) | The type of the field.                                                        |
-| `is_required`                                        | bool                               | Whether the field has a mandatory value.                                      |
-| `multiselect`                                        | bool                               | Whether a select field allows multiple values to be selected.                 |
-| `value`                                              | _any_                              | The field's default value.                                                    |
-| `description`                                        | string                             | Short description of the field, displayed beneath the field in modal dialogs. |
-| `modal_label`                                        | string                             | Label of the field in modal dialogs. Defaults to `name` if not defined.       |
+| Name                                                 | Type                                              | Description                                                                                                                                           |
+|:-----------------------------------------------------|:--------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`{{<compass-icon icon-star "Mandatory Value">}} | string                                            | Key to use in the values field of the call. Cannot include spaces or tabs.                                                                            |
+| `type`{{<compass-icon icon-star "Mandatory Value">}} | [FieldType](#field-types) (string)                | The type of the field.                                                                                                                                |
+| `is_required`                                        | bool                                              | Whether the field has a mandatory value.                                                                                                              |
+| `readonly`                                           | bool                                              | Whether a field's value is read-only.                                                                                                                 |
+| `value`                                              | _any_                                             | The field's default value.                                                                                                                            |
+| `description`                                        | string                                            | Short description of the field, displayed beneath the field in modal dialogs.                                                                         |
+| `label`                                              | string                                            | The label of the flag parameter; used with autocomplete. Ignored for positional parameters.                                                           |
+| `hint`                                               | string                                            | The hint text for the field; used with autocomplete.                                                                                                  |
+| `position`                                           | int                                               | The index of the positional argument. A value greater than zero indicates the position this field is in. A value of `-1` indicates the last argument. |
+| `multiselect`                                        | bool                                              | Whether a select field allows multiple values to be selected.                                                                                         |
+| `modal_label`                                        | string                                            | Label of the field in modal dialogs. Defaults to `label` if not defined.                                                                              |
+| `refresh`                                            | bool                                              | Allows the form to be refreshed when the value of the field has changed.                                                                              |
+| `options`                                            | [SelectOption](#static-select-options)            | A list of options for static select fields.                                                                                                           |
+| `lookup`                                             | [Call]({{<ref "call">}})                          | A call that returns a list of options for dynamic select fields.                                                                                      |
+| `subtype`                                            | [TextFieldSubtype](#text-field-subtypes) (string) | The subtype of `text` field that will be shown.                                                                                                       |
+| `min_length`                                         | int                                               | The minimum length of `text` field input.                                                                                                             |
+| `max_length`                                         | int                                               | The maximum length of `text` field input.                                                                                                             |
 
 ### Field types
 
 The types of form fields are:
 
-| Name                               | Description                                              |
-|:-----------------------------------|:---------------------------------------------------------|
-| [`text`](#text-fields)             | A plain text field.                                      |
-| [`static_select`](#select-fields)  | A dropdown select with static elements.                  |
-| [`dynamic_select`](#select-fields) | A dropdown select that loads the elements dynamically.   |
-| `bool`                             | A boolean selector represented as a checkbox.            |
-| `user`                             | A dropdown to select users.                              |
-| `channel`                          | A dropdown to select channels.                           |
-| [`markdown`](#markdown-fields)     | An arbitrary markdown text. Only visible on modal forms. |
+| Name                      | Description                                                |
+|:--------------------------|:-----------------------------------------------------------|
+| `text`                    | A plain text field.                                        |
+| `static_select`           | A dropdown select with static elements.                    |
+| `dynamic_select`          | A dropdown select that loads the elements dynamically.     |
+| `bool`                    | A boolean selector represented as a checkbox.              |
+| `user`                    | A dropdown to select users.                                |
+| `channel`                 | A dropdown to select channels.                             |
+| `markdown`                | An arbitrary markdown text. Only visible in modal dialogs. |
 
 #### Text fields
-
-The following fields can be included for `text` fields:
-
-| Name         | Type                                              | Description                                                      |
-|:-------------|:--------------------------------------------------|:-----------------------------------------------------------------|
-| `subtype`    | [TextFieldSubtype](#text-field-subtypes) (string) | The type of text field that will be shown.                       |
-| `min_length` | int                                               | The minimum length of text for the input to be considered valid. |
-| `max_length` | int                                               | The maximum length of text for the input to be considered valid. |
 
 ##### Text field subtypes
 
@@ -79,15 +82,9 @@ The following fields can be included for `text` fields:
 
 #### Select fields
 
-Select fields have the following additional configuration:
-
-| Name                                                    | Type                                   | Description                                                              |
-|:--------------------------------------------------------|:---------------------------------------|:-------------------------------------------------------------------------|
-| `options`{{<compass-icon icon-star "Mandatory Value">}} | [SelectOption](#static-select-options) | List of options for the dropdown.                                        |
-| `refresh`                                               | bool                                   | Allows the form to be refreshed when the value of a dropdown is changed. |
-| `multiselect`                                           | bool                                   | You can select more than one element in this field.                      |
-
 ##### Static select options
+
+The data structure of an option (`SelectOption`) in a static select field is defined by the following table:
 
 | Name                                                  | Type   | Description                                                               |
 |:------------------------------------------------------|:-------|:--------------------------------------------------------------------------|
@@ -113,9 +110,12 @@ Markdown fields are a special field that allows you to better format your form. 
 
 ## Slash command arguments
 
-Slash command arguments are treated as forms. When a leaf command is typed, the arguments of the command are fetched. If the command binding has a form attached, those will be used. If not, a form call will be made to the command call. The call will include in the context the app ID, user ID, the post ID, the root post ID (if any), the channel ID, and the team ID. The call will expect a form response.
+Slash command arguments and flags are defined by form fields. When a slash command is typed, the command arguments are retrieved from the command's form.
+If a form was not included with the command binding, the binding's [call]({{<ref "call">}}) will be invoked to provide a form response.
+The call will include the App, user, post, root post (if any), channel, and team IDs in the context.
 
-During autocomplete, the user can open the form as a Modal form to finish completing the command. Any fields not supported by commands (like markdown fields) or form attributes not visible in commands (like the title) will be shown when opened as a Modal form.
+During [autocomplete]({{<ref "/integrate/slash-commands">}}), the user can open the form in a modal dialog to finish entering command arguments.
+Any fields not supported by commands, such as markdown fields, or form attributes not visible in commands, such as the title, will be shown when the form is opened as a modal dialog.
 
 A command form is defined as:
 
@@ -146,12 +146,6 @@ Options are defined as:
 | `value`     | string | Machine-facing value.                |
 | `icon_data` | string | URL to icon to show on autocomplete. |
 
-All select also include:
-
-| Name          | Type | Description                                                    |
-|:--------------|:-----|:---------------------------------------------------------------|
-| `multiselect` | bool | (Optional) You can select more than one element in this field. |
-
 When the command is executed, a submit call will be performed on the call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID, and the team ID.
 
 ## Embedded bindings
@@ -164,7 +158,6 @@ Posts can be embedded with bindings. These are used for asynchronous interaction
 | `title`    | string  | Title of the attachment.   |
 | `text`     | string  | Text of the attachment.    |
 | `bindings` | Binding | List of embedded bindings. |
-
 
 Bindings are of two types, buttons or selects.
 
