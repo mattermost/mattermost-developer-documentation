@@ -1,10 +1,9 @@
 ---
 title: Call metadata
-heading: Call metadata
+heading: Expand call metadata
 weight: 30
 ---
-Calls can be configured to include additional metadata in the `context` field of the [request payload]({{<ref "call#request">}}). The call's `expand` ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Expand">}}) field contains a list of the available metadata and how much of that data should be included.
-No additional metadata is included with the request by default.
+Calls can be configured to expand additional metadata into the `context` field of the [request payload]({{<ref "call#request">}}). The call's `expand` ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Expand">}}) field contains a list of the available metadata and how much of that data should be expanded. Metadata is not expanded by default.
 
 The `expand` value contains the following fields:
 
