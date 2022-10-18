@@ -26,13 +26,13 @@ $ xcode-select --install
 ### 2. Bundle ID and entitlements
 
 * Follow the steps 1, 2, and 3 for [Run on iOS Devices]({{< ref "/contribute/more-info/mobile/developer-setup/run#run-on-ios-devices" >}}) in the Developer Setup.
-* After configuring the app in the previous step, **ensure** the bundle ID for each target of the mobile app remains the same as the one in the original [mattermost-mobile GitHub repository](https://github.com/mattermost/mattermost-mobile) (`com.mattermost.rnbeta`, `com.mattermost.rnbeta.MattermostShare`, and `com.mattermost.rnbeta.NotificationService`).
+* After configuring the app in the previous step, **ensure** the bundle ID for each target of the mobile app remains the same as the one in the original {{< newtabref href="https://github.com/mattermost/mattermost-mobile" title="mattermost-mobile GitHub repository" >}} (`com.mattermost.rnbeta`, `com.mattermost.rnbeta.MattermostShare`, and `com.mattermost.rnbeta.NotificationService`).
 
 ### 3. Code sign
 
 Apple requires all apps to be digitally signed with a certificate before they can be installed.
 
-The build script will make use of [Match](https://docs.fastlane.tools/actions/match/) to sync your provisioning profiles (the profiles will be created for you if needed). The provisioning profiles will be created based on the environment variables.
+The build script will make use of {{< newtabref href="https://docs.fastlane.tools/actions/match/" title="Match" >}} to sync your provisioning profiles (the profiles will be created for you if needed). The provisioning profiles will be created based on the environment variables.
 
 ### 4. Configure environment variables
 
@@ -73,7 +73,7 @@ To make it easier to customize your build, we've defined a few environment varia
 ---
 **Note:**
 
-To configure your variables create the file `./mattermost-mobile/fastlane/.env` where `.env` is the filename. You can find the sample file `env_vars_example` [here](https://github.com/mattermost/mattermost-mobile/blob/master/fastlane/env_vars_example).
+To configure your variables create the file `./mattermost-mobile/fastlane/.env` where `.env` is the filename. You can find the sample file `env_vars_example` {{< newtabref href="https://github.com/mattermost/mattermost-mobile/blob/master/fastlane/env_vars_example" title="here" >}}.
 
 ---
 
