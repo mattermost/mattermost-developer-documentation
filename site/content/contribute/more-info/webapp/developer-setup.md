@@ -46,7 +46,7 @@ Set up your development environment for building, running, and testing the Matte
         ```
 
         {{<note "Note:">}}
-If you are working with an [Apple Silicon Mac](https://support.apple.com/en-us/HT211814) you may need to install rosetta for dependencies not ready to work in an ARM machine to work properly:
+If you are working with an {{<newtabref title="Apple Silicon Mac" href="https://support.apple.com/en-us/HT211814">}} you may need to install rosetta for dependencies not ready to work in an ARM machine to work properly:
 
 ```sh
 softwareupdate --install-rosetta
