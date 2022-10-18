@@ -45,6 +45,14 @@ Set up your development environment for building, running, and testing the Matte
         brew install libpng
         ```
 
+        {{<note "Note:">}}
+If you are working with an [Apple Silicon Mac](https://support.apple.com/en-us/HT211814) you may need to install rosetta for dependencies not ready to work in an ARM machine to work properly:
+
+```sh
+softwareupdate --install-rosetta
+```
+        {{</note>}}
+
     - On Linux-based operating systems, use your preferred package manager to install it.
 
 7. Ensure that the mattermost server [is running]({{< ref "/contribute/more-info/server/developer-setup" >}}). If it's not, open a new terminal session, navigate into the `mattermost-server` directory, and start the server:
