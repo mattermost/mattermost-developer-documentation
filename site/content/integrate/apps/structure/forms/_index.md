@@ -47,7 +47,7 @@ The structure of a form field ({{<newtabref title="godoc" href="https://pkg.go.d
 | `multiselect`                                        | bool                                              | Whether a select field allows multiple values to be selected.                                                                                         |
 | `modal_label`                                        | string                                            | Label of the field in modal dialogs. Defaults to `label` if not defined.                                                                              |
 | `refresh`                                            | bool                                              | Allows the form to be refreshed when the value of the field has changed.                                                                              |
-| `options`                                            | [SelectOption](#static-select-options)            | A list of options for static select fields.                                                                                                           |
+| `options`                                            | [SelectOption](#select-options)                   | A list of options for static select fields.                                                                                                           |
 | `lookup`                                             | [Call]({{<ref "call">}})                          | A call that returns a list of options for dynamic select fields.                                                                                      |
 | `subtype`                                            | [TextFieldSubtype](#text-field-subtypes) (string) | The subtype of `text` field that will be shown.                                                                                                       |
 | `min_length`                                         | int                                               | The minimum length of `text` field input.                                                                                                             |
@@ -85,9 +85,9 @@ The `text` field subtypes, except `textarea`, map to the types of the HTML `inpu
 
 #### Select fields
 
-##### Static select options
+##### Select options
 
-The data structure of an option (`SelectOption`) in a static select field is defined by the following table:
+The data structure of an option (`SelectOption`) in a select field is defined by the following table:
 
 | Name                                                  | Type   | Description                                                               |
 |:------------------------------------------------------|:-------|:--------------------------------------------------------------------------|
@@ -98,7 +98,7 @@ The data structure of an option (`SelectOption`) in a static select field is def
 ##### Dynamic select options
 
 A dynamic select field gets its options by performing the `lookup` call. The [call request]({{<ref "call#request">}}) will include the App, user, channel, and team IDs in the context.
-The [call response]({{<ref "call#response">}}) is expected to contain the list of select field options in the `items` key of the `data` map. Each option is of the type [SelectOption](#static-select-options).
+The [call response]({{<ref "call#response">}}) is expected to contain the list of select field options in the `items` key of the `data` map. Each option is of the type [SelectOption](#select-options).
 
 Example `lookup` call response:
 
@@ -217,20 +217,21 @@ The call request will include the App, user, post, root post (if any), channel, 
 During [autocomplete]({{<ref "/integrate/slash-commands">}}), the user can open the form in a modal dialog to finish entering command arguments.
 Any fields not supported by commands, such as markdown fields, or form attributes not visible in commands, such as the title, will be shown when the form is opened as a modal dialog.
 
-![Screenshot of autocomplete](slash-command-autocomplete.png)
+![Screenshot of slash command autocomplete](slash-command-autocomplete.png)
 
-![Screenshot of modal dialog](slash-command-autocomplete-modal-dialog.png)
+![Screenshot of autocomplete modal dialog](slash-command-autocomplete-modal-dialog.png)
 
-When the command is executed, a submit call will be performed on the call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID, and the team ID.
+When the slash command is executed, the form's `submit` call will be performed. The call request will include the App, user, post, root post (if any), channel, and team IDs in the context.
 
-## Example data flows
+## End-to-end examples
 
 ### Click channel header
 
-<details><summary>Client Submit Request</summary>
+{{<collapse id="click_channel_header-client_submit_request" title="Client submit request">}}
+```http request
+POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
+Content-Type: application/json
 
-`POST /plugins/com.mattermost.apps/api/v1/call`
-```json
 {
     "path": "/send-modal/submit",
     "context": {
@@ -243,12 +244,12 @@ When the command is executed, a submit call will be performed on the call endpoi
     "expand": {}
 }
 ```
-</details>
+{{</collapse>}}
+{{<collapse id="click_channel_header-mm_submit_request" title="MM submit request">}}
+```http request
+POST /plugins/com.mattermost.apps/example/hello/send-modal/submit HTTP/1.1
+Content-Type: application/json
 
-<details><summary>MM Submit Request</summary>
-
-`POST /plugins/com.mattermost.apps/example/hello/send-modal/submit`
-```json
 {
     "path": "/send-modal/submit",
     "expand": {},
@@ -265,10 +266,8 @@ When the command is executed, a submit call will be performed on the call endpoi
     }
 }
 ```
-</details>
-
-<details><summary>App Form Response</summary>
-
+{{</collapse>}}
+{{<collapse id="click_channel_header-app_form_response" title="App form response">}}
 ```json
 {
     "type": "form",
@@ -299,18 +298,15 @@ When the command is executed, a submit call will be performed on the call endpoi
     }
 }
 ```
-</details>
-
+{{</collapse>}}
 
 ### Selected user in modal
 
-`refresh: true` is used to tell the client to notify the server when a value is selected from this field
+{{<collapse id="selected_user_modal-client_form_request" title="Client form request">}}
+```http request
+POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
+Content-Type: application/json
 
-<details><summary>Client Form Request</summary>
-
-`POST /plugins/com.mattermost.apps/api/v1/call`
-
-```json
 {
     "path": "/send/form",
     "expand": {},
@@ -336,12 +332,12 @@ When the command is executed, a submit call will be performed on the call endpoi
     "selected_field": "user"
 }
 ```
-</details>
+{{</collapse>}}
+{{<collapse id="selected_user_modal-mm_form_request" title="MM form request">}}
+```http request
+POST /plugins/com.mattermost.apps/hello/send/form HTTP/1.1
+Content-Type: application/json
 
-<details><summary>MM Form Request</summary>
-
-`POST /plugins/com.mattermost.apps/hello/send/form`
-```json
 {
     "path": "/send/form",
     "expand": {},
@@ -367,10 +363,8 @@ When the command is executed, a submit call will be performed on the call endpoi
     "selected_field": "user"
 }
 ```
-</details>
-
-<details><summary>App Form Response</summary>
-
+{{</collapse>}}
+{{<collapse id="selected_user_modal-app_form_response" title="App form response">}}
 ```json
 {
     "type": "form",
@@ -401,8 +395,10 @@ When the command is executed, a submit call will be performed on the call endpoi
     }
 }
 ```
-</details>
-
+{{<note>}}
+`"refresh": true` is used to tell the client to notify the server when a value is selected from this field
+{{</note>}}
+{{</collapse>}}
 
 ## Dynamic lookup
 
@@ -602,7 +598,7 @@ When the command is executed, a submit call will be performed on the call endpoi
 ```
 </details>
 
-### Returning a main error and errors for specific fields (includes picture)
+### Returning a main error and errors for specific fields
 
 <details><summary>Main Error and Field-specific Error Response</summary>
 
@@ -617,5 +613,4 @@ When the command is executed, a submit call will be performed on the call endpoi
     }
 }
 ```
-![modal-errors.png](error3.png)
 </details>
