@@ -18,14 +18,15 @@ The structure of a form ({{<newtabref title="godoc" href="https://pkg.go.dev/git
 | `title`{{<compass-icon icon-star "Mandatory Value">}}  | string                   | Title of the form, shown in modal dialogs.                                                                                                                    |
 | `submit`{{<compass-icon icon-star "Mandatory Value">}} | [Call]({{<ref "call">}}) | Call to perform when the form is submitted or the slash command is executed.                                                                                  |
 | `fields`{{<compass-icon icon-star "Mandatory Value">}} | [Fields](#fields)        | List of fields in the form.                                                                                                                                   |
-| `source`                                               | [Call]({{<ref "call">}}) | Call to perform when a form's fields are not defined or when the form needs to be refreshed.                                                                  |
+| `source`{{<compass-icon icon-star "Mandatory Value">}} | [Call]({{<ref "call">}}) | Call to perform when a form's fields are not defined or when the form needs to be refreshed.                                                                  |
 | `header`                                               | string                   | Text used as introduction in modal dialogs.                                                                                                                   |
 | `footer`                                               | string                   | Text used at the end of modal dialogs.                                                                                                                        |
 | `icon`                                                 | string                   | Either a fully-qualified URL, or a path for an app's [static asset]({{<ref "static-assets">}}).                                                               |
 | `submit_buttons`                                       | string                   | Name of the form field to be used as the list of submit buttons. Must be a `static_select` or `dynamic_select` field. Default value is a single button: `OK`. |
 
 {{<note "Mandatory values">}}
-Fields with mandatory values are marked by a {{<compass-icon icon-star "Mandatory Value">}}.
+- Fields with mandatory values are marked by a {{<compass-icon icon-star "Mandatory Value">}}.
+- At least one of `fields` or `source` must be defined.
 {{</note>}}
 
 ### Fields
@@ -56,29 +57,31 @@ The structure of a form field ({{<newtabref title="godoc" href="https://pkg.go.d
 
 The types of form fields are:
 
-| Name                      | Description                                                |
-|:--------------------------|:-----------------------------------------------------------|
-| `text`                    | A plain text field.                                        |
-| `static_select`           | A dropdown select with static elements.                    |
-| `dynamic_select`          | A dropdown select that loads the elements dynamically.     |
-| `bool`                    | A boolean selector represented as a checkbox.              |
-| `user`                    | A dropdown to select users.                                |
-| `channel`                 | A dropdown to select channels.                             |
-| `markdown`                | An arbitrary markdown text. Only visible in modal dialogs. |
+| Name                      | Description                                                           |
+|:--------------------------|:----------------------------------------------------------------------|
+| `text`                    | A plain text field.                                                   |
+| `static_select`           | A dropdown select with static elements.                               |
+| `dynamic_select`          | A dropdown select that loads the elements dynamically.                |
+| `bool`                    | A boolean selector represented as a checkbox.                         |
+| `user`                    | A dropdown to select users.                                           |
+| `channel`                 | A dropdown to select channels.                                        |
+| `markdown`                | An arbitrary markdown text; only visible in modal dialogs. Read-only. |
 
 #### Text fields
 
 ##### Text field subtypes
 
-| Name       | Description |
-|------------|-------------|
-| `input`    |             |
-| `textarea` |             |
-| `email`    |             |
-| `number`   |             |
-| `password` |             |
-| `tel`      |             |
-| `url`      |             |
+The `text` field subtypes, except `textarea`, map to the types of the HTML `input` form element. The available subtypes are listed in the following table:
+
+| Subtype Name                                                                                                     | Description                                                      |
+|------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| {{<newtabref title="input" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text">}}        | A single-line text input field.                                  |
+| {{<newtabref title="textarea" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea">}}       | A multi-line text input field; uses the HTML `textarea` element. |
+| {{<newtabref title="email" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email">}}       | A field for editing an email address.                            |
+| {{<newtabref title="number" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number">}}     | A field for entering a number; includes a spinner component.     |
+| {{<newtabref title="password" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password">}} | A single-line text input field whose value is obscured.          |
+| {{<newtabref title="tel" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel">}}           | A field for entering a telephone number.                         |
+| {{<newtabref title="url" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/url">}}           | A field for entering a URL.                                      |
 
 #### Select fields
 
@@ -93,26 +96,48 @@ The data structure of an option (`SelectOption`) in a static select field is def
 
 ##### Dynamic select options
 
-A form in a modal dialog performs a lookup [call]({{<ref "call">}}) to the call endpoint any time a dynamic dropdown option is selected. The lookup call will include the App, user, channel, and team IDs in the context. The values will be populated with the current values of the form. The expected response is error or the following:
+A dynamic select field gets its options by performing the `lookup` [call]({{<ref "call">}}). The call request will include the App, user, channel, and team IDs in the context.
+The [call response]({{<ref "call#response">}}) is expected to contain the list of select field options in the `items` key of the `data` map. Each option is of the type [SelectOption](#static-select-options).
 
-| Name | Type    | Item                                   | Description                  |
-|:-----|:--------|:---------------------------------------|:-----------------------------|
-| data |         |                                        |                              |
-| -    | `items` | [SelectOption](#static-select-options) | The list of options to show. |
+Example `lookup` call response:
 
-If any select has the refresh value set as `true`, a form call to the call endpoint happens any time the select changes value. The form call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form. The expected response is a form response. The whole form will be updated with the new form.
+```json
+{
+    "type": "ok",
+    "data": {
+        "items": [
+            {
+                "label": "Option One",
+                "value": "option_1"
+            },
+            {
+                "label": "Option Two",
+                "value": "option_2"
+            }
+        ]
+    }
+}
+```
 
-On submit, the submit call to the call endpoint will be sent. The submit call will include in the context the app ID, the user ID, the channel ID, and the team ID. The values will be populated with the current values of the form.
+##### Select field refresh
+
+If the `refresh` value is set to `true`, the [xxxxx]() call is performed any time the field's value changes. The call request will include the App, user, channel, and team IDs in the context; the current values of the form are also included.
+The call response is expected to contain a full, updated form definition.
 
 #### Markdown fields
 
-Markdown fields are a special field that allows you to better format your form. They will not generate any value in the form submission sent to the app. The content is defined in the field description.
+Markdown fields are a special field that allows you to better format your form. They will not generate any value in the form submission sent to the App. The content is defined in the `description` property of the field.
+
+### Form submission
+
+When the form is submitted, either by executing a slash command or clicking a submit button, the form's `submit` call will be performed.
+The call request will include the App, user, channel, and team IDs in the context; the current values of the form are also included.
 
 ## Slash command arguments
 
 Slash command arguments and flags are defined by form fields. When a slash command is typed, the command arguments are retrieved from the command's form.
 If a form was not included with the command binding, the binding's [call]({{<ref "call">}}) will be invoked to provide a form response.
-The call will include the App, user, post, root post (if any), channel, and team IDs in the context.
+The call request will include the App, user, post, root post (if any), channel, and team IDs in the context.
 
 During [autocomplete]({{<ref "/integrate/slash-commands">}}), the user can open the form in a modal dialog to finish entering command arguments.
 Any fields not supported by commands, such as markdown fields, or form attributes not visible in commands, such as the title, will be shown when the form is opened as a modal dialog.
