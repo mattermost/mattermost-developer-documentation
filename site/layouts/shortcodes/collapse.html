@@ -5,7 +5,7 @@
 {{- $title := .Get "title" -}}
 <div class="card collapseCard">
     <div class="card-header" style="" id="{{ $collapseHeaderId }}">
-        <span id="{{ $collapseToggleId }}" class="{{ .Site.Params.collapse.toggleClass }} {{ .Site.Params.collapse.collapsedIcon }}" role="img" title="Expand / collapse" aria-label="Expand / collapse" onclick="doToggle('{{ $collapseBodyId }}','{{ $collapseToggleId }}')"></span>
+        <span id="{{ $collapseToggleId }}" class="{{ .Site.Params.collapse.toggleClass }} {{ .Site.Params.collapse.collapsedIcon }}" style="cursor: pointer;" role="img" title="Expand / collapse" aria-label="Expand / collapse" onclick="doToggle('{{ $collapseBodyId }}','{{ $collapseToggleId }}')"></span>
         <span>{{ $title }}</span>
     </div>
     <div class="collapse" aria-labelledby="{{ $collapseHeaderId }}" id="{{ $collapseBodyId }}">

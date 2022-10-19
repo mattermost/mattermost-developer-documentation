@@ -93,10 +93,11 @@ The data structure of an option (`SelectOption`) in a static select field is def
 |:------------------------------------------------------|:-------|:--------------------------------------------------------------------------|
 | `label`{{<compass-icon icon-star "Mandatory Value">}} | string | User-facing string. Defaults to `value` and must be unique on this field. |
 | `value`{{<compass-icon icon-star "Mandatory Value">}} | string | Machine-facing value. Must be unique on this field.                       |
+| `icon_data`                                           | string | URL to icon to show on autocomplete.                                      |
 
 ##### Dynamic select options
 
-A dynamic select field gets its options by performing the `lookup` [call]({{<ref "call">}}). The call request will include the App, user, channel, and team IDs in the context.
+A dynamic select field gets its options by performing the `lookup` call. The [call request]({{<ref "call#request">}}) will include the App, user, channel, and team IDs in the context.
 The [call response]({{<ref "call#response">}}) is expected to contain the list of select field options in the `items` key of the `data` map. Each option is of the type [SelectOption](#static-select-options).
 
 Example `lookup` call response:
@@ -136,85 +137,54 @@ The call request will include the App, user, channel, and team IDs in the contex
 ## Slash command arguments
 
 Slash command arguments and flags are defined by form fields. When a slash command is typed, the command arguments are retrieved from the command's form.
-If a form was not included with the command binding, the binding's [call]({{<ref "call">}}) will be invoked to provide a form response.
+If a form was not included with the command binding, the binding's call will be invoked to provide a form response.
 The call request will include the App, user, post, root post (if any), channel, and team IDs in the context.
+
+{{<collapse id="slash-command-flags-example" title="Example form with flag arguments">}}
+```json
+{
+    "location": "sub",
+    "label": "sub",
+    "description": "Subscribe to an event",
+    "form": {
+        "fields": [
+            {
+                "name": "eventname",
+                "label": "eventname",
+                "type": "text",
+                "subtype": "input",
+                "description": "The name of the event to subscribe to",
+                "is_required": true
+            },
+            {
+                "name": "teamid",
+                "label": "teamid",
+                "type": "text",
+                "subtype": "input",
+                "description": "The ID of the team"
+            },
+            {
+                "name": "channelid",
+                "label": "channelid",
+                "type": "text",
+                "subtype": "input",
+                "description": "The ID of the channel"
+            }
+        ]
+    }
+}
+```
+{{</collapse>}}
+{{<collapse id="slash-command-positional-example" title="Example form with positional arguments">}}
+[EXAMPLE FORM WITH POSITIONAL ARGUMENTS]
+{{</collapse>}}
 
 During [autocomplete]({{<ref "/integrate/slash-commands">}}), the user can open the form in a modal dialog to finish entering command arguments.
 Any fields not supported by commands, such as markdown fields, or form attributes not visible in commands, such as the title, will be shown when the form is opened as a modal dialog.
 
-A command form is defined as:
-
-| Name     | Type   | Description                                                                                                                    |
-|:---------|:-------|:-------------------------------------------------------------------------------------------------------------------------------|
-| `fields` | Fields | List of fields in the form.                                                                                                    |
-| `call`   | Call   | (Optional) Call to perform on all actions form related (including submit). If not provided, will use the command binding call. |
-
-The type of fields is the same as for Modal forms.
-
-All fields include:
-
-| Name          | Type      | Description                                                                                                                                                        |
-|:--------------|:----------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`        | string    | Key to use in the values field of the call, and as part of the command. Cannot include spaces nor tabs.                                                            |
-| `type`        | FieldType | The type of the field.                                                                                                                                             |
-| `is_required` | bool      | Whether the field needs to be filled.                                                                                                                              |
-| `description` | string    | Text to show on the description line on autocomplete.                                                                                                              |
-| `hint`        | string    | Text to show on the hint line on autocomplete.                                                                                                                     |
-| `label`       | string    | Label to name the field in autocomplete. Defaults to `name`. Must be unique.                                                                                       |
-| `position`    | int       | (Optional) Positional argument (can be provided without a --flag). `If >0`, indicates the position this field is in. `If =-1`, it is considered the last argument. |
-
-Options are defined as:
-
-| Name        | Type   | Description                          |
-|:------------|:-------|:-------------------------------------|
-| `label`     | string | User-facing string.                  |
-| `value`     | string | Machine-facing value.                |
-| `icon_data` | string | URL to icon to show on autocomplete. |
+[SCREENSHOT OF AUTOCOMPLETE]
 
 When the command is executed, a submit call will be performed on the call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID, and the team ID.
-
-## Embedded bindings
-
-Posts can be embedded with bindings. These are used for asynchronous interaction with the user. In order to add an embedded binding you need to add an `app_bindings` property with a list of `EmbeddedBindings`. An `EmbeddedBinding` includes:
-
-| Name       | Type    | Description                |
-|:-----------|:--------|:---------------------------|
-| `app_id`   | string  | The app ID.                |
-| `title`    | string  | Title of the attachment.   |
-| `text`     | string  | Text of the attachment.    |
-| `bindings` | Binding | List of embedded bindings. |
-
-Bindings are of two types, buttons or selects.
-
-Buttons include:
-
-| Name       | Type   | Description                                                                                                                                         |
-|:-----------|:-------|:----------------------------------------------------------------------------------------------------------------------------------------------------|
-| `location` | string | Location name. The whole location path will be provided in the context.                                                                             |
-| `label`    | string | Label that will show in the button. Defaults to location. Must be unique in its level.                                                              |
-| `call`     | Call   | (Optional) Call to be made when the button is selected. You must provide a call if there is no form, or the form itself does not have a call.       |
-| `form`     | Form   | (Optional) Form to open in a modal form when the button is clicked. You must provide a form with a call if there is no call defined in the binding. |
-
-Selects include:
-
-| Name       | Type    | Description                                                             |
-|:-----------|:--------|:------------------------------------------------------------------------|
-| `location` | string  | Location name. The whole location path will be provided in the context. |
-| `label`    | string  | Label that will show in the button.                                     |
-| `call`     | Call    | (Optional) Call to be made inherited by the options.                    |
-| `form`     | Form    | (Optional) Form to be inherited by the options.                         |
-| `bindings` | Binding | Options for the select.                                                 |
-
-Options bindings include:
-
-| Name       | Type   | Description                                                                                                                                          |
-|:-----------|:-------|:-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| `location` | string | Option name. The whole location path will be provided in the context.                                                                                |
-| `label`    | string | User-facing string. Defaults to location. Must be unique in its level.                                                                               |
-| `call`     | Call   | (Optional) Call to perform when the option is selected. You must provide a call if there is no form, or the form itself does not have a call.        |
-| `form`     | Form   | (Optional) Form to open in a modal form when the option is selected. You must provide a Form with a Call if there is no Call defined in the Binding. |
-
-Whenever a button is clicked or a select field is selected, a submit call is performed to the corresponding call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID.
 
 ## Example data flows
 
