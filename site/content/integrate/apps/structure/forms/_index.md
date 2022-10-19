@@ -150,7 +150,7 @@ The call request will include the App, user, post, root post (if any), channel, 
         "fields": [
             {
                 "name": "eventname",
-                "label": "eventname",
+                "label": "event-name",
                 "type": "text",
                 "subtype": "input",
                 "description": "The name of the event to subscribe to",
@@ -158,14 +158,14 @@ The call request will include the App, user, post, root post (if any), channel, 
             },
             {
                 "name": "teamid",
-                "label": "teamid",
+                "label": "team-id",
                 "type": "text",
                 "subtype": "input",
                 "description": "The ID of the team"
             },
             {
                 "name": "channelid",
-                "label": "channelid",
+                "label": "channel-id",
                 "type": "text",
                 "subtype": "input",
                 "description": "The ID of the channel"
@@ -176,13 +176,50 @@ The call request will include the App, user, post, root post (if any), channel, 
 ```
 {{</collapse>}}
 {{<collapse id="slash-command-positional-example" title="Example form with positional arguments">}}
-[EXAMPLE FORM WITH POSITIONAL ARGUMENTS]
+```json
+{
+    "location": "sub",
+    "label": "sub",
+    "description": "Subscribe to an event",
+    "form": {
+        "fields": [
+            {
+                "name": "eventname",
+                "label": "event-name",
+                "type": "text",
+                "subtype": "input",
+                "description": "The name of the event to subscribe to",
+                "is_required": true,
+                "position": 1
+            },
+            {
+                "name": "teamid",
+                "label": "team-id",
+                "type": "text",
+                "subtype": "input",
+                "description": "The ID of the team",
+                "position": 2
+            },
+            {
+                "name": "channelid",
+                "label": "channel-id",
+                "type": "text",
+                "subtype": "input",
+                "description": "The ID of the channel",
+                "position": 3
+            }
+        ]
+    }
+}
+```
 {{</collapse>}}
 
 During [autocomplete]({{<ref "/integrate/slash-commands">}}), the user can open the form in a modal dialog to finish entering command arguments.
 Any fields not supported by commands, such as markdown fields, or form attributes not visible in commands, such as the title, will be shown when the form is opened as a modal dialog.
 
-[SCREENSHOT OF AUTOCOMPLETE]
+![Screenshot of autocomplete](slash-command-autocomplete.png)
+
+![Screenshot of modal dialog](slash-command-autocomplete-modal-dialog.png)
 
 When the command is executed, a submit call will be performed on the call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID, and the team ID.
 

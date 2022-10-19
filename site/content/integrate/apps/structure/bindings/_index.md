@@ -165,9 +165,7 @@ For example:
 {{</collapse>}}
 
 {{<collapse id="mm_bindings_request" title="Server requests bindings from App">}}
-
 `POST /plugins/com.mattermost.apps/example/hello/bindings`
-
 ```json
 {
     "path": "/bindings",
