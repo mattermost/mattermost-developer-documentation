@@ -147,10 +147,13 @@ The call request will include the App, user, post, root post (if any), channel, 
     "label": "sub",
     "description": "Subscribe to an event",
     "form": {
+        "title": "Subscribe to an event",
+        "header": "Subscribe to a Mattermost Server event",
+        "icon": "icon.png",
         "fields": [
             {
                 "name": "eventname",
-                "label": "event-name",
+                "label": "eventname",
                 "type": "text",
                 "subtype": "input",
                 "description": "The name of the event to subscribe to",
@@ -158,19 +161,22 @@ The call request will include the App, user, post, root post (if any), channel, 
             },
             {
                 "name": "teamid",
-                "label": "team-id",
+                "label": "teamid",
                 "type": "text",
                 "subtype": "input",
                 "description": "The ID of the team"
             },
             {
                 "name": "channelid",
-                "label": "channel-id",
+                "label": "channelid",
                 "type": "text",
                 "subtype": "input",
                 "description": "The ID of the channel"
             }
-        ]
+        ],
+        "submit": {
+            "path": "/sub",
+        }
     }
 }
 ```
@@ -182,10 +188,13 @@ The call request will include the App, user, post, root post (if any), channel, 
     "label": "sub",
     "description": "Subscribe to an event",
     "form": {
+        "title": "Subscribe to an event",
+        "header": "Subscribe to a Mattermost Server event",
+        "icon": "icon.png",
         "fields": [
             {
                 "name": "eventname",
-                "label": "event-name",
+                "label": "eventname",
                 "type": "text",
                 "subtype": "input",
                 "description": "The name of the event to subscribe to",
@@ -194,7 +203,7 @@ The call request will include the App, user, post, root post (if any), channel, 
             },
             {
                 "name": "teamid",
-                "label": "team-id",
+                "label": "teamid",
                 "type": "text",
                 "subtype": "input",
                 "description": "The ID of the team",
@@ -202,13 +211,16 @@ The call request will include the App, user, post, root post (if any), channel, 
             },
             {
                 "name": "channelid",
-                "label": "channel-id",
+                "label": "channelid",
                 "type": "text",
                 "subtype": "input",
                 "description": "The ID of the channel",
                 "position": 3
             }
-        ]
+        ],
+        "submit": {
+            "path": "/sub",
+        }
     }
 }
 ```
@@ -233,38 +245,45 @@ POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
 Content-Type: application/json
 
 {
-    "path": "/send-modal/submit",
-    "context": {
-        "app_id": "helloworld",
-        "location": "send-button",
-        "channel_id": "ytqokpzzcinszf7ywrbdfitusw",
-        "team_id": "t35b8k7hginoujwn76tfatue5e",
-        "user_agent": "webapp"
+    "path":"/send",
+    "context":{
+        "app_id":"hello-world",
+        "location":"/channel_header/send-button",
+        "channel_id":"zot5mcxxcfbqddgif88sji6ziy",
+        "team_id":"143qpkqxfiy5xqqf33w51w8abe",
+        "track_as_submit":true,
+        "user_agent":"webapp"
     },
-    "expand": {}
+    "expand":{}
 }
 ```
 {{</collapse>}}
 {{<collapse id="click_channel_header-mm_submit_request" title="MM submit request">}}
 ```http request
-POST /plugins/com.mattermost.apps/example/hello/send-modal/submit HTTP/1.1
+POST /send HTTP/1.1
 Content-Type: application/json
 
 {
-    "path": "/send-modal/submit",
+    "path": "/send",
     "expand": {},
     "context": {
-        "app_id": "helloworld",
-        "location": "send-button",
-        "bot_user_id": "i4wzxbk1hbbufq8rnecso96oxr",
-        "acting_user_id": "81bqom3kjjbo7bcjcnzs6dc8uh",
-        "team_id": "t35b8k7hginoujwn76tfatue5e",
-        "channel_id": "ytqokpzzcinszf7ywrbdfitusw",
-        "mattermost_site_url": "http://localhost:8065",
+        "app_id": "hello-world",
+        "location": "/channel_header/send-button",
         "user_agent": "webapp",
-        "bot_access_token": "sqo3nwt377ys3co78jzye3cwmw"
+        "track_as_submit": true,
+        "mattermost_site_url": "http://mattermost:8066",
+        "developer_mode": true,
+        "app_path": "/plugins/com.mattermost.apps/apps/hello-world",
+        "bot_user_id": "mgbd1czngjbbdx6eqruqabdeie",
+        "bot_access_token": "fpbrjjnp5if59fazjjn794f3zy",
+        "acting_user": {
+            "id": "7q7kaakokfdsdycy3pr9ctkc5r"
+            // additional fields omitted for brevity
+        },
+        "oauth2": {}
     }
 }
+
 ```
 {{</collapse>}}
 {{<collapse id="click_channel_header-app_form_response" title="App form response">}}
@@ -278,18 +297,27 @@ Content-Type: application/json
             {
                 "type": "text",
                 "name": "message",
-                "label": "message"
+                "label": "Message"
             },
             {
                 "type": "user",
                 "name": "user",
-                "label": "user",
-                "refresh": true
+                "label": "User"
             },
             {
-                "type": "dynamic_select",
-                "name": "lookup",
-                "label": "lookup"
+                "type": "static_select",
+                "name": "option",
+                "label": "Option",
+                "options": [
+                    {
+                        "label": "Option One",
+                        "value": "option_1"
+                    },
+                    {
+                        "label": "Option Two",
+                        "value": "option_2"
+                    }
+                ]
             }
         ],
         "call": {
@@ -298,6 +326,7 @@ Content-Type: application/json
     }
 }
 ```
+![Screenshot of form](click-channel-header-response-form.png)
 {{</collapse>}}
 
 ### Select from a user field in a modal dialog
