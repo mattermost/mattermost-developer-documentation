@@ -89,11 +89,11 @@ The `text` field subtypes, except `textarea`, map to the types of the HTML `inpu
 
 The data structure of an option (`SelectOption`) in a select field is defined by the following table:
 
-| Name                                                  | Type   | Description                                                               |
-|:------------------------------------------------------|:-------|:--------------------------------------------------------------------------|
-| `label`{{<compass-icon icon-star "Mandatory Value">}} | string | User-facing string. Defaults to `value` and must be unique on this field. |
-| `value`{{<compass-icon icon-star "Mandatory Value">}} | string | Machine-facing value. Must be unique on this field.                       |
-| `icon_data`                                           | string | URL to icon to show on autocomplete.                                      |
+| Name                                                  | Type   | Description                                                                                     |
+|:------------------------------------------------------|:-------|:------------------------------------------------------------------------------------------------|
+| `label`{{<compass-icon icon-star "Mandatory Value">}} | string | User-facing string. Defaults to `value` and must be unique on this field.                       |
+| `value`{{<compass-icon icon-star "Mandatory Value">}} | string | Machine-facing value. Must be unique on this field.                                             |
+| `icon_data`                                           | string | Either a fully-qualified URL, or a path for an app's [static asset]({{<ref "static-assets">}}). |
 
 ##### Dynamic select options
 
@@ -225,7 +225,7 @@ When the slash command is executed, the form's `submit` call will be performed. 
 
 ## End-to-end examples
 
-### Click channel header
+### Click a button in the channel header
 
 {{<collapse id="click_channel_header-client_submit_request" title="Client submit request">}}
 ```http request
@@ -300,7 +300,7 @@ Content-Type: application/json
 ```
 {{</collapse>}}
 
-### Selected user in modal
+### Select from a user field in a modal dialog
 
 {{<collapse id="selected_user_modal-client_form_request" title="Client form request">}}
 ```http request
@@ -400,7 +400,7 @@ Content-Type: application/json
 {{</note>}}
 {{</collapse>}}
 
-### Dynamic lookup
+### Dynamic select field lookup
 
 {{<collapse id="dynamic_lookup-client_lookup_request" title="Client lookup request">}}
 ```http request
@@ -489,7 +489,7 @@ Content-Type: application/json
 ```
 {{</collapse>}}
 
-### Submitted modal
+### Submit a form from a modal dialog
 
 {{<collapse id="submitted_modal-client_submit_request" title="Client submit request">}}
 ```http request
@@ -567,8 +567,9 @@ Content-Type: application/json
 ```
 {{</collapse>}}
 
+## Example error responses
 
-### Returning a single error
+### Single error
 
 ```json
 {
@@ -577,7 +578,7 @@ Content-Type: application/json
 }
 ```
 
-### Returning errors for specific fields
+### Errors for specific fields
 
 ```json
 {
@@ -590,7 +591,7 @@ Content-Type: application/json
 }
 ```
 
-### Returning a main error and errors for specific fields
+### A root error and specific field errors
 ```json
 {
     "type":"error",
