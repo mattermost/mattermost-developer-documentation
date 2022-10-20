@@ -122,7 +122,7 @@ Example `lookup` call response:
 
 ##### Select field refresh
 
-If the `refresh` value is set to `true`, the [xxxxx]() call is performed any time the field's value changes. The call request will include the App, user, channel, and team IDs in the context; the current values of the form are also included.
+If the `refresh` value is set to `true`, the form's `source` call is performed any time the field's value changes. The call request will include the App, user, channel, and team IDs in the context; the current values of the form are also included.
 The call response is expected to contain a full, updated form definition.
 
 #### Markdown fields
@@ -131,7 +131,7 @@ Markdown fields are a special field that allows you to better format your form. 
 
 ### Form submission
 
-When the form is submitted, either by executing a slash command or clicking a submit button, the form's `submit` call will be performed.
+When the form is submitted, either by executing a slash command or clicking a submit button, the form's `submit` call is performed.
 The call request will include the App, user, channel, and team IDs in the context; the current values of the form are also included.
 
 ## Slash command arguments
@@ -400,12 +400,13 @@ Content-Type: application/json
 {{</note>}}
 {{</collapse>}}
 
-## Dynamic lookup
+### Dynamic lookup
 
-<details><summary>Client Lookup Request</summary>
+{{<collapse id="dynamic_lookup-client_lookup_request" title="Client lookup request">}}
+```http request
+POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
+Content-Type: application/json
 
-`POST /plugins/com.mattermost.apps/api/v1/call`
-```json
 {
     "path": "/send/lookup",
     "context": {
@@ -431,12 +432,12 @@ Content-Type: application/json
     "selected_field": "lookup"
 }
 ```
-</details>
+{{</collapse>}}
+{{<collapse id="dynamic_lookup-mm_lookup_request" title="MM lookup request">}}
+```http request
+POST /plugins/com.mattermost.apps/example/hello/send/lookup HTTP/1.1
+Content-Type: application/json
 
-<details><summary>MM Lookup Request</summary>
-
-`POST /plugins/com.mattermost.apps/example/hello/send/lookup`
-```json
 {
     "path": "/send/lookup",
     "expand": {},
@@ -465,10 +466,8 @@ Content-Type: application/json
     "query": "o"
 }
 ```
-</details>
-
-<details><summary>App Lookup Response</summary>
-
+{{</collapse>}}
+{{<collapse id="dynamic_lookup-app_lookup_response" title="App lookup response">}}
 ```json
 {
     "type": "ok",
@@ -488,14 +487,15 @@ Content-Type: application/json
     }
 }
 ```
-</details>
+{{</collapse>}}
 
 ### Submitted modal
 
-<details><summary>Client Submit Request</summary>
+{{<collapse id="submitted_modal-client_submit_request" title="Client submit request">}}
+```http request
+POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
+Content-Type: application/json
 
-`POST /plugins/com.mattermost.apps/api/v1/call`
-```json
 {
     "path": "/send/submit",
     "context": {
@@ -522,12 +522,12 @@ Content-Type: application/json
     "raw_command": "/helloworld send"
 }
 ```
-</details>
+{{</collapse>}}
+{{<collapse id="submitted_modal-mm_submit_request" title="MM submit request">}}
+```http request
+POST /plugins/com.mattermost.apps/example/hello/send/submit HTTP/1.1
+Content-Type: application/json
 
-<details><summary>MM Submit Request</summary>
-
-`POST /plugins/com.mattermost.apps/example/hello/send/submit`
-```json
 {
     "path": "/send/submit",
     "expand": {},
@@ -557,22 +557,18 @@ Content-Type: application/json
     "raw_command": "/helloworld send"
 }
 ```
-</details>
-
-<details><summary>App Submit Response</summary>
-
+{{</collapse>}}
+{{<collapse id="submitted_modal-app_submit_response" title="App submit response">}}
 ```json
 {
     "type":"ok",
     "markdown":"Sent survey to mickmister."
 }
 ```
-</details>
+{{</collapse>}}
 
 
 ### Returning a single error
-
-<details><summary>Main Error Response</summary>
 
 ```json
 {
@@ -580,11 +576,8 @@ Content-Type: application/json
     "error":"This is the error."
 }
 ```
-</details>
 
 ### Returning errors for specific fields
-
-<details><summary>Field-specific Error Response</summary>
 
 ```json
 {
@@ -596,12 +589,8 @@ Content-Type: application/json
     }
 }
 ```
-</details>
 
 ### Returning a main error and errors for specific fields
-
-<details><summary>Main Error and Field-specific Error Response</summary>
-
 ```json
 {
     "type":"error",
@@ -613,4 +602,3 @@ Content-Type: application/json
     }
 }
 ```
-</details>
