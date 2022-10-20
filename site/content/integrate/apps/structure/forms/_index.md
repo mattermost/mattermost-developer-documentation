@@ -337,58 +337,59 @@ POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
 Content-Type: application/json
 
 {
-    "path": "/send/form",
-    "expand": {},
-    "values": {
-        "message": "This is great!",
-        "user": {
-            "label": "mickmister",
-            "value": "81bqom3kjjbo7bcjcnzs6dc8uh"
-        }
-    },
+    "path": "/send-form-source",
     "context": {
-        "app_id": "helloworld",
-        "location": "/command",
-        "bot_user_id": "i4wzxbk1hbbufq8rnecso96oxr",
-        "acting_user_id": "81bqom3kjjbo7bcjcnzs6dc8uh",
-        "team_id": "t35b8k7hginoujwn76tfatue5e",
-        "channel_id": "f45uwdqsejdnzjtyy19ysqr44w",
-        "mattermost_site_url": "http://localhost:8065",
-        "user_agent": "webapp",
-        "bot_access_token": "gcn6r3ac178zbxwiw5pc38e8zc"
+        "app_id": "hello-world",
+        "location": "/channel_header/send-button",
+        "channel_id": "9a44ckeqytd3bftn3c3y53968o",
+        "team_id": "143qpkqxfiy5xqqf33w51w8abe",
+        "track_as_submit": false,
+        "user_agent": "webapp"
     },
-    "raw_command": "/helloworld send",
+    "values": {
+        "message": null,
+        "user": {
+            "label": "hello-world",
+            "value": "mgbd1czngjbbdx6eqruqabdeie"
+        },
+        "option": null
+    },
+    "expand": {},
     "selected_field": "user"
 }
 ```
 {{</collapse>}}
 {{<collapse id="selected_user_modal-mm_form_request" title="MM form request">}}
 ```http request
-POST /plugins/com.mattermost.apps/hello/send/form HTTP/1.1
+POST /send-form-source HTTP/1.1
 Content-Type: application/json
 
 {
-    "path": "/send/form",
+    "path": "/send-form-source",
     "expand": {},
     "values": {
-        "message": "This is great!",
+        "message": null,
+        "option": null,
         "user": {
-            "label": "mickmister",
-            "value": "81bqom3kjjbo7bcjcnzs6dc8uh"
+            "label": "hello-world",
+            "value": "mgbd1czngjbbdx6eqruqabdeie"
         }
     },
     "context": {
-        "app_id": "helloworld",
-        "location": "/command",
-        "bot_user_id": "i4wzxbk1hbbufq8rnecso96oxr",
-        "acting_user_id": "81bqom3kjjbo7bcjcnzs6dc8uh",
-        "team_id": "t35b8k7hginoujwn76tfatue5e",
-        "channel_id": "f45uwdqsejdnzjtyy19ysqr44w",
-        "mattermost_site_url": "http://localhost:8065",
+        "app_id": "hello-world",
+        "location": "/channel_header/send-button",
         "user_agent": "webapp",
-        "bot_access_token": "gcn6r3ac178zbxwiw5pc38e8zc"
+        "mattermost_site_url": "http://localhost:8066",
+        "developer_mode": true,
+        "app_path": "/plugins/com.mattermost.apps/apps/hello-world",
+        "bot_user_id": "mgbd1czngjbbdx6eqruqabdeie",
+        "bot_access_token": "omppotxyt3ddbdczsjddzxuqro",
+        "acting_user": {
+            "id": "7q7kaakokfdsdycy3pr9ctkc5r"
+            // additional fields omitted for brevity
+        },
+        "oauth2": {}
     },
-    "raw_command": "/helloworld send",
     "selected_field": "user"
 }
 ```
@@ -398,29 +399,46 @@ Content-Type: application/json
 {
     "type": "form",
     "form": {
+        "source": {
+            "path": "/send-form-source"
+        },
         "title": "Hello, world!",
         "icon": "icon.png",
+        "submit": {
+            "path": "/modal-submit"
+        },
         "fields": [
             {
-				"type": "text",
-				"name": "message",
-				"label": "message"
-			},
-			{
-				"type": "user",
-				"name": "user",
-				"label": "user",
-				"refresh": true
-			},
-			{
-				"type": "dynamic_select",
-				"name": "lookup",
-				"label": "lookup"
-			}
-        ],
-        "call": {
-            "path": "/send"
-        }
+                "name": "message",
+                "type": "text",
+                "label": "Message"
+            },
+            {
+                "name": "user",
+                "type": "user",
+                "value": {
+                    "label": "hello-world",
+                    "value": "mgbd1czngjbbdx6eqruqabdeie"
+                },
+                "label": "User",
+                "refresh": true
+            },
+            {
+                "name": "option",
+                "type": "static_select",
+                "label": "Option",
+                "options": [
+                    {
+                        "label": "Option One",
+                        "value": "option_1"
+                    },
+                    {
+                        "label": "Option Two",
+                        "value": "option_2"
+                    }
+                ]
+            }
+        ]
     }
 }
 ```
@@ -431,68 +449,84 @@ Content-Type: application/json
 
 ### Dynamic select field lookup
 
+{{<collapse id="dynamic_lookup-form" title="Initial form response">}}
+```http request
+POST /send-dynamic-form HTTP/1.1
+Content-Type: application/json
+
+{
+    "type": "form",
+    "form": {
+        "title": "Dynamic field test",
+        "icon": "icon-info.png",
+        "submit": {
+            "path": "/dynamic-form-submit"
+        },
+        "fields": [
+            {
+                "name": "option",
+                "type": "dynamic_select",
+                "label": "Option",
+                "lookup": {
+                    "path": "/dynamic-form-lookup"
+                }
+            }
+        ]
+    }
+}
+```
+{{</collapse>}}
 {{<collapse id="dynamic_lookup-client_lookup_request" title="Client lookup request">}}
 ```http request
 POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
 Content-Type: application/json
 
 {
-    "path": "/send/lookup",
+    "path": "/dynamic-form-lookup",
     "context": {
-        "app_id": "helloworld",
-        "location": "/command",
-        "root_id": "",
-        "channel_id": "f45uwdqsejdnzjtyy19ysqr44w",
-        "team_id": "t35b8k7hginoujwn76tfatue5e",
+        "app_id": "hello-world",
+        "location": "/channel_header/info-button",
+        "channel_id": "9a44ckeqytd3bftn3c3y53968o",
+        "team_id": "143qpkqxfiy5xqqf33w51w8abe",
+        "track_as_submit": false,
         "user_agent": "webapp"
     },
     "values": {
-        "message": null,
-        "user": null,
-        "lookup": {
-            "icon_data": "",
-            "label": "Option 1",
-            "value": "option1"
-        }
+        "option": null
     },
     "expand": {},
-    "raw_command": "/helloworld send",
-    "query": "o",
-    "selected_field": "lookup"
+    "selected_field": "option",
+    "query": ""
 }
 ```
 {{</collapse>}}
 {{<collapse id="dynamic_lookup-mm_lookup_request" title="MM lookup request">}}
 ```http request
-POST /plugins/com.mattermost.apps/example/hello/send/lookup HTTP/1.1
+POST /dynamic-form-lookup HTTP/1.1
 Content-Type: application/json
 
 {
-    "path": "/send/lookup",
+    "path": "/dynamic-form-lookup",
     "expand": {},
     "values": {
-        "lookup": {
-            "icon_data": "",
-            "label": "Option 1",
-            "value": "option1"
-        },
-        "message": null,
-        "user": null
+        "option": null
     },
     "context": {
-        "app_id": "helloworld",
-        "location": "/command",
-        "bot_user_id": "i4wzxbk1hbbufq8rnecso96oxr",
-        "acting_user_id": "81bqom3kjjbo7bcjcnzs6dc8uh",
-        "team_id": "t35b8k7hginoujwn76tfatue5e",
-        "channel_id": "f45uwdqsejdnzjtyy19ysqr44w",
-        "mattermost_site_url": "http://localhost:8065",
+        "app_id": "hello-world",
+        "location": "/channel_header/info-button",
         "user_agent": "webapp",
-        "bot_access_token": "gcn6r3ac178zbxwiw5pc38e8zc"
+        "mattermost_site_url": "http://localhost:8066",
+        "developer_mode": true,
+        "app_path": "/plugins/com.mattermost.apps/apps/hello-world",
+        "bot_user_id": "mgbd1czngjbbdx6eqruqabdeie",
+        "bot_access_token": "fqez47d1jtnbzcty3xnydjoq6h",
+        "acting_user": {
+            "id": "7q7kaakokfdsdycy3pr9ctkc5r"
+            // additional fields omitted for brevity
+        },
+        "oauth2": {}
     },
-    "raw_command": "/helloworld send",
-    "selected_field": "lookup",
-    "query": "o"
+    "selected_field": "option"
 }
 ```
 {{</collapse>}}
@@ -503,14 +537,12 @@ Content-Type: application/json
     "data": {
         "items": [
             {
-                "label": "Option 1",
-                "value": "option1",
-                "icon_data": ""
+                "label": "Option One",
+                "value": "option_1"
             },
             {
-                "label": "Option 2",
-                "value": "option2",
-                "icon_data": ""
+                "label": "Option Two",
+                "value": "option_2"
             }
         ]
     }
@@ -518,80 +550,126 @@ Content-Type: application/json
 ```
 {{</collapse>}}
 
-### Submit a form from a modal dialog
+### Submit from a modal dialog
 
+{{<collapse is="submitted_modal-form" title="Initial form response">}}
+```json
+{
+    "type": "form",
+    "form": {
+        "source": {
+            "path": "/send-form-source"
+        },
+        "title": "Hello, world!",
+        "icon": "icon.png",
+        "submit": {
+            "path": "/modal-submit"
+        },
+        "fields": [
+            {
+                "name": "message",
+                "type": "text",
+                "label": "Message"
+            },
+            {
+                "name": "user",
+                "type": "user",
+                "label": "User",
+                "refresh": true
+            },
+            {
+                "name": "option",
+                "type": "static_select",
+                "label": "Option",
+                "options": [
+                    {
+                        "label": "Option One",
+                        "value": "option_1"
+                    },
+                    {
+                        "label": "Option Two",
+                        "value": "option_2"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+{{</collapse>}}
 {{<collapse id="submitted_modal-client_submit_request" title="Client submit request">}}
 ```http request
 POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
 Content-Type: application/json
 
 {
-    "path": "/send/submit",
+    "path": "/modal-submit",
     "context": {
-        "app_id": "helloworld",
-        "location": "/command",
-        "root_id": "",
-        "channel_id": "qxb1zg7eqjn1ixwuwhwtgmt55o",
-        "team_id": "t35b8k7hginoujwn76tfatue5e",
+        "app_id": "hello-world",
+        "location": "/channel_header/send-button",
+        "channel_id": "9a44ckeqytd3bftn3c3y53968o",
+        "team_id": "143qpkqxfiy5xqqf33w51w8abe",
+        "track_as_submit": true,
         "user_agent": "webapp"
     },
     "values": {
-        "message": "the message",
+        "message": "hello!",
         "user": {
-            "label": "mickmister",
-            "value": "81bqom3kjjbo7bcjcnzs6dc8uh"
+            "label": "hello-world",
+            "value": "mgbd1czngjbbdx6eqruqabdeie"
         },
-        "lookup": {
-            "icon_data": "",
-            "label": "Option 1",
-            "value": "option1"
+        "option": {
+            "label": "Option Two",
+            "value": "option_2"
         }
     },
-    "expand": {},
-    "raw_command": "/helloworld send"
+    "expand": {}
 }
 ```
 {{</collapse>}}
 {{<collapse id="submitted_modal-mm_submit_request" title="MM submit request">}}
 ```http request
-POST /plugins/com.mattermost.apps/example/hello/send/submit HTTP/1.1
+POST /modal-submit HTTP/1.1
 Content-Type: application/json
 
 {
-    "path": "/send/submit",
+    "path": "/modal-submit",
     "expand": {},
     "values": {
-        "lookup": {
-            "icon_data": "",
-            "label": "Option 1",
-            "value": "option1"
+        "message": "hello!",
+        "option": {
+            "label": "Option Two",
+            "value": "option_2"
         },
-        "message": "the message",
         "user": {
-            "label": "mickmister",
-            "value": "81bqom3kjjbo7bcjcnzs6dc8uh"
+            "label": "hello-world",
+            "value": "mgbd1czngjbbdx6eqruqabdeie"
         }
     },
     "context": {
-        "app_id": "helloworld",
-        "location": "/command",
-        "bot_user_id": "i4wzxbk1hbbufq8rnecso96oxr",
-        "acting_user_id": "81bqom3kjjbo7bcjcnzs6dc8uh",
-        "team_id": "t35b8k7hginoujwn76tfatue5e",
-        "channel_id": "qxb1zg7eqjn1ixwuwhwtgmt55o",
-        "mattermost_site_url": "http://localhost:8065",
+        "app_id": "hello-world",
+        "location": "/channel_header/send-button",
         "user_agent": "webapp",
-        "bot_access_token": "gcn6r3ac178zbxwiw5pc38e8zc"
-    },
-    "raw_command": "/helloworld send"
+        "track_as_submit": true,
+        "mattermost_site_url": "http://localhost:8066",
+        "developer_mode": true,
+        "app_path": "/plugins/com.mattermost.apps/apps/hello-world",
+        "bot_user_id": "mgbd1czngjbbdx6eqruqabdeie",
+        "bot_access_token": "gqouzbhrb3rw9n9qr43nykyuoy",
+        "acting_user": {
+            "id": "7q7kaakokfdsdycy3pr9ctkc5r"
+           // additional fields omitted for brevity
+        },
+        "oauth2": {}
+    }
 }
 ```
 {{</collapse>}}
 {{<collapse id="submitted_modal-app_submit_response" title="App submit response">}}
 ```json
 {
-    "type":"ok",
-    "markdown":"Sent survey to mickmister."
+    "type": "ok",
+    "text": "## Form values\n- message: \"hello!\"\n- option: {\"label\":\"Option Two\", \"value\":\"option_2\"}\n- user: {\"label\":\"hello-world\", \"value\":\"mgbd1czngjbbdx6eqruqabdeie\"}\n"
 }
 ```
 {{</collapse>}}
@@ -602,8 +680,8 @@ Content-Type: application/json
 
 ```json
 {
-    "type":"error",
-    "error":"This is the error."
+    "type": "error",
+    "error": "This is the error."
 }
 ```
 
@@ -611,10 +689,10 @@ Content-Type: application/json
 
 ```json
 {
-    "type":"error",
+    "type": "error",
     "data": {
-        "errors":{
-            "somefield": "This field seems to have an invalid value."
+        "errors": {
+            "field_name": "This field seems to have an invalid value."
         }
     }
 }
@@ -623,11 +701,11 @@ Content-Type: application/json
 ### A root error and specific field errors
 ```json
 {
-    "type":"error",
-    "error":"This is the error.",
+    "type": "error",
+    "error": "This is the root error.",
     "data": {
-        "errors":{
-            "somefield": "This field seems to have an invalid value."
+        "errors": {
+            "field_name": "This field seems to have an invalid value."
         }
     }
 }
