@@ -75,3 +75,20 @@
     });
 </script>
 {{ end }}
+<!-- Collapsable blocks -->
+<script>
+    const COLLAPSE_ICON = '{{ .Site.Params.collapse.collapsedIcon }}';
+    const COLLAPSE_SHOW_ICON = '{{ .Site.Params.collapse.expandedIcon }}';
+    const COLLAPSE_SHOW_CLASS = '{{ .Site.Params.collapse.collapseShowClass }}';
+    const doToggle = (id, toggleId) => {
+        const el = document.getElementById(id);
+        const toggle = document.getElementById(toggleId);
+        if (el.classList.contains(COLLAPSE_SHOW_CLASS)) {
+            el.classList.remove(COLLAPSE_SHOW_CLASS);
+            toggle.classList.replace(COLLAPSE_SHOW_ICON, COLLAPSE_ICON);
+        } else {
+            el.classList.add(COLLAPSE_SHOW_CLASS);
+            toggle.classList.replace(COLLAPSE_ICON, COLLAPSE_SHOW_ICON);
+        }
+    };
+</script>
