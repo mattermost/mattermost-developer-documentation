@@ -12,7 +12,7 @@ We use several environment variables for Detox testing in order to:
 - Easily change when running in CI.
 - Cater to different values across developer machines.
 
-Test configurations are [defined at test_config.js](https://github.com/mattermost/mattermost-mobile/blob/master/detox/e2e/support/test_config.js) and environment variables are used to override default values. In most cases you don't need to change the values, because it makes use of the default local developer setup. If you do need to make changes, you may override by exporting, e.g. `export SITE_URL=<site_url>`.
+Test configurations are {{< newtabref href="https://github.com/mattermost/mattermost-mobile/blob/master/detox/e2e/support/test_config.js" title="defined at test_config.js" >}} and environment variables are used to override default values. In most cases you don't need to change the values, because it makes use of the default local developer setup. If you do need to make changes, you may override by exporting, e.g. `export SITE_URL=<site_url>`.
 
 | Variable       | Description                                                                                                         |
 |----------------|---------------------------------------------------------------------------------------------------------------------|

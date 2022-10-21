@@ -75,17 +75,17 @@ $ npm run android
 ---
 **Note:**
 
-If you don't see a green bar at the top loading the JavaScript code then it's possible that the device is not connected to the development server. See [Using adb reverse](http://reactnative.dev/docs/running-on-device.html#method-1-using-adb-reverse-recommended).
+If you don't see a green bar at the top loading the JavaScript code then it's possible that the device is not connected to the development server. See {{< newtabref href="http://reactnative.dev/docs/running-on-device.html#method-1-using-adb-reverse-recommended" title="Using adb reverse" >}}.
 
 ---
 
 #### Run on iOS devices
 
-To be able to run the app on an iOS device you'll need to have [Xcode](https://developer.apple.com/xcode/) installed on a Mac computer and follow this steps:
+To be able to run the app on an iOS device you'll need to have {{< newtabref href="https://developer.apple.com/xcode/" title="Xcode" >}} installed on a Mac computer and follow this steps:
 
 ##### 1. Get an Apple Developer account
 
-The apps that run on an iOS device must be signed. To sign it, you'll need a set of provisioning profiles. If you already have an Apple Developer account enrolled in the Apple Developer program you can skip this step. If you don't have an account yet you'll need to [create one](https://appleid.apple.com/account?appId=632&returnUrl=https%3A%2F%2Fdeveloper.apple.com%2Faccount%2F#!&page=create) and enroll in the [Apple Developer Program](https://developer.apple.com/programs/).
+The apps that run on an iOS device must be signed. To sign it, you'll need a set of provisioning profiles. If you already have an Apple Developer account enrolled in the Apple Developer program you can skip this step. If you don't have an account yet you'll need to {{< newtabref href="https://appleid.apple.com/account?appId=632&returnUrl=https%3A%2F%2Fdeveloper.apple.com%2Faccount%2F#!&page=create" title="create one" >}} and enroll in the {{< newtabref href="https://developer.apple.com/programs/" title="Apple Developer Program" >}}.
 
 ##### 2. Open the project in Xcode
 
@@ -95,10 +95,10 @@ Navigate to the `ios` folder in your `mattermost-mobile` project, then open the 
 
 Select the **Mattermost** project in the Xcode Project Navigator, then select the **Mattermost** target. Look for the **Signing & Capabilities** tab.
 
-* Go to the **Signing** section and make sure your Apple developer account or team is selected under the Team dropdown and change the [Bundle Identifier](https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids). Xcode will register your provisioning profiles in your account for the Bundle Identifier you've entered if it doesn't exist.
-* Go to the **App Groups** section and change the [App Groups](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups?language=objc). Xcode will register your AppGroupId and update the provision profile.
-* Go to the **iCloud** section and change the [Containers](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_icloud-container-identifiers?language=objc). Xcode will register your iCloud container and update the provision profile.
-* Go to the **Keychain Sharing** section and change the [Keychain Groups](https://developer.apple.com/documentation/bundleresources/entitlements/keychain-access-groups?language=objc). Xcode will register your Keychain access groups and update the provision profile.
+* Go to the **Signing** section and make sure your Apple developer account or team is selected under the Team dropdown and change the {{< newtabref href="https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids" title="Bundle Identifier" >}}. Xcode will register your provisioning profiles in your account for the Bundle Identifier you've entered if it doesn't exist.
+* Go to the **App Groups** section and change the {{< newtabref href="https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups?language=objc" title="App Groups" >}}. Xcode will register your AppGroupId and update the provision profile.
+* Go to the **iCloud** section and change the {{< newtabref href="https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_icloud-container-identifiers?language=objc" title="Containers" >}}. Xcode will register your iCloud container and update the provision profile.
+* Go to the **Keychain Sharing** section and change the {{< newtabref href="https://developer.apple.com/documentation/bundleresources/entitlements/keychain-access-groups?language=objc" title="Keychain Groups" >}}. Xcode will register your Keychain access groups and update the provision profile.
 
 ---
 **Important:**
@@ -119,7 +119,7 @@ As an alternative you can select the targeted device by opening the **Product** 
 
 ---
 **Note:**
-If you run into any issues, please take a look at Apple's [Launching Your App on a Device](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/LaunchingYourApponDevices/LaunchingYourApponDevices.html#//apple_ref/doc/uid/TP40012582-CH27-SW4) documentation.
+If you run into any issues, please take a look at Apple's {{< newtabref href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/LaunchingYourApponDevices/LaunchingYourApponDevices.html#//apple_ref/doc/uid/TP40012582-CH27-SW4" title="Launching Your App on a Device" >}} documentation.
 
 If the app fails to build, you can try the following before trying to build the app again:
 
