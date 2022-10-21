@@ -22,7 +22,9 @@ You can follow these general guidelines to set up a Mattermost outgoing webhook 
 
     In our example, we would set the channel to `town-square` and specify `#build` as the trigger word.
 
-    **Note:** If you leave the channel field blank, the webhook will respond to trigger words in all public channels of your team. Similarly, if you don't specify trigger words, then the webhook will respond to all messages in the selected public channel.
+   {{<note "Note:">}}
+   If you leave the channel field blank, the webhook will respond to trigger words in all public channels of your team. Similarly, if you don't specify trigger words, then the webhook will respond to all messages in the selected public channel.
+   {{</note>}}
 
 5. If you specified one or more trigger words on the previous step, choose when to trigger the outgoing webhook.
 
@@ -122,6 +124,8 @@ The response would produce a message like the following:
 
 Messages with advanced formatting can be created by including an [attachment array]({{< ref "/integrate/reference/message-attachments" >}}) and [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}) in the JSON payload.
 
-**Note:** [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin. If not enabled, the username is set to `webhook`.
+{{<note "Note:">}}
+[Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin. If not enabled, the username is set to `webhook`.
+{{</note>}}
 
 Similarly, [Enable integrations to override profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin. If not enabled, the icon of the creator of the webhook URL is used to post messages.

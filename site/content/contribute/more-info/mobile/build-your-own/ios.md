@@ -71,9 +71,9 @@ To make it easier to customize your build, we've defined a few environment varia
 | `PILOT_SKIP_WAITING_<br>FOR_BUILD_PROCESSING` | Do not wait until TestFlight finishes processing the app.<br><br>Valid values are: `true`, `false`                                                                                                                                                                                                                              | `true`                                                                                                                                | No       |
 
 ---
-**Note:**
-
+{{<note "Note:">}}
 To configure your variables create the file `./mattermost-mobile/fastlane/.env` where `.env` is the filename. You can find the sample file `env_vars_example` [here](https://github.com/mattermost/mattermost-mobile/blob/master/fastlane/env_vars_example).
+{{</note>}}
 
 ---
 
