@@ -10,7 +10,7 @@ aliases:
 
 Let's learn how to create a simple incoming webhook that posts the following message to Mattermost.
 
-![image](incoming_webhooks_create_simple.png)
+![An incoming webhook that posts `Hello, this is some text. This is some more text.](incoming_webhooks_create_simple.png)
 
 1. In Mattermost, go to **Product menu > Integrations > Incoming Webhook**.
     - If you don't have the **Integrations** option, incoming webhooks may not be enabled on your Mattermost server or may be disabled for non-admins. They can be enabled by a System Admin from **System Console > Integrations > Integration Management**. Once incoming webhooks are enabled, continue with the steps below.
@@ -98,7 +98,7 @@ Content-Length: 630
 
 This content will be displayed in the Town Square channel:
 
-![image](incoming_webhooks_full_example.png)
+![`test-automation` bot showing test results](incoming_webhooks_full_example.png)
 
 An example request displaying additional data in the right-hand side panel, by passing Markdown text into the `card` field of the `props` object would look like this:
 
@@ -119,7 +119,7 @@ Content-Type: application/json
 
 When there is a `props` object with a `card` property attached to the webhook payload, the posted message displays a small info icon next to the timestamp. Clicking this icon expands the right-hand side panel to display the Markdown included in the `card` property:
 
-![image](https://user-images.githubusercontent.com/915956/64055959-ec0cfe80-cb44-11e9-8ee3-b64d47c86032.png)
+![Clicking the info icon opens a right-hand side panel to display Markdown of the `card` property](https://user-images.githubusercontent.com/915956/64055959-ec0cfe80-cb44-11e9-8ee3-b64d47c86032.png)
 
 ### Slack compatibility
 
