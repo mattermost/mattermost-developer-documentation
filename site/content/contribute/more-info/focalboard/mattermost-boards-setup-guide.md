@@ -13,7 +13,7 @@ aliases:
 ## Build the plugin
 
 1. Fork the [Focalboard repository](https://github.com/mattermost/focalboard) and clone it locally.
-2. Define an environment variable ``EXCLUDE_ENTERPRISE`` with a value of 1
+2. Define an environment variable ``EXCLUDE_ENTERPRISE`` with a value of ``1``.
 3. To install the dependencies:
 ```
 cd mattermost-plugin/webapp
