@@ -44,7 +44,7 @@ This is an unofficial guide. Community testing, feedback, and improvements are w
     sudo chmod +x /usr/local/bin/docker-compose
     ```
 
-3. Install Go using bash (modify installation to latest Go version from https://golang.org/dl/):
+3. Install Go using bash (modify installation to latest Go version from https://go.dev/dl/):
 
     ```sh
     sudo apt-get install -y build-essential
