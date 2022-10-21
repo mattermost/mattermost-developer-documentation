@@ -111,7 +111,7 @@ Select the **Mattermost** project in the Xcode Project Navigator, then select th
 
 Plug in your iOS device in any available USB port in your development computer.
 
-If everything is set up correctly, your device will be listed as the build target in the Xcode toolbar, and it will also appear in the Devices Pane (⇧⌘2). You can press the **Build and run** button (⌘R) or select **Run** from the Product menu to run the app.
+If everything is set up correctly, your device will be listed as the build target in the Xcode toolbar, and it will also appear in the Devices Pane (<kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>2</kbd></kbd>). You can press the **Build and run** button (<kbd><kbd>⌘</kbd><kbd>R</kbd></kbd>) or select **Run** from the Product menu to run the app.
 
 ![image](/img/mobile/running_ios.png)
 
