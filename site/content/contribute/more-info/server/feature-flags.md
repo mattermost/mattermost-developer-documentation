@@ -27,15 +27,15 @@ Feature flags allow us to be more confident in shipping features continuously to
 
 ## Split
 
-[Split](https://split.io) is the feature flag management service we use for internal testing and for our production Cloud service. It enables us to create and control feature flags for multiple servers and environments as well as gives us the ability to run A/B split tests.
+{{< newtabref href="https://split.io" title="Split" >}} is the feature flag management service we use for internal testing and for our production Cloud service. It enables us to create and control feature flags for multiple servers and environments as well as gives us the ability to run A/B split tests.
 
-We've used Split's SDK to integrate with the Mattermost server. You can find the [Split documentation here](https://help.split.io/hc/en-us).
+We've used Split's SDK to integrate with the Mattermost server. You can find the {{< newtabref href="https://help.split.io/hc/en-us" title="Split documentation here" >}}.
 
 ### Who has access to Split?
 
 We currently have a limited number of seats for our Split account, so not everyone gets access. Currently, two people per each engineering team plus some PM/UX folk have access. If you need to manage some feature flags, ask your team lead who has access and can help you out. It's up to each team to determine who has access.
 
-You can request access to Split from @daniel.sischy in [the Systems channel](https://community.mattermost.com/private-core/channels/systems) on the Staff team.
+You can request access to Split from @daniel.sischy in {{< newtabref href="https://community.mattermost.com/private-core/channels/systems" title="the Systems channel" >}} on the Staff team.
 
 ### How do I log in?
 
@@ -162,7 +162,7 @@ For a feature-flagged feature to be included in a self-hosted release, the featu
 
 Feature flags are generally off by default and self-hosted releases do not contact the management system. Therefore feature flags that are not ready for a self-hosted release will be automatically disabled for all self-hosted releases.
 
-Optionally the feature flag can be set to ``true`` in code if we are not yet ready to fully remove the feature flag. Some [examples are here](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
+Optionally the feature flag can be set to ``true`` in code if we are not yet ready to fully remove the feature flag. Some {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75" title="examples are here" >}}.
 
 ## Tests
 
@@ -205,7 +205,7 @@ There are no hard rules on when a feature flag should be used. It is left up to 
      2. PR to mobile to update the types and to actually use the feature flag.
 
 5. How do we enable a feature flag for testing on community-daily and on Cloud test servers?
-   - You can post in [~Developers: Cloud channel](https://community.mattermost.com/core/channels/cloud) with the feature flag name and what you want the Cloud team to set it to.
+   - You can post in {{< newtabref href="https://community.mattermost.com/core/channels/cloud" title="~Developers: Cloud channel" >}} with the feature flag name and what you want the Cloud team to set it to.
 
 6. What is the environment variable to set a feature flag?
    - It is `MM_FEATUREFLAGS_<myflag>`.

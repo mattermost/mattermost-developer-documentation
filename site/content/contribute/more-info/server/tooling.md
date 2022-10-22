@@ -10,19 +10,19 @@ aliases:
 
 ## Mattermost Server
 
-In the [mattermost-server repository](https://github.com/mattermost/mattermost-server) we are using [Docker](https://www.docker.com/) images and [Docker Compose](https://docs.docker.com/compose/) to set up the development enviroment. The following are required images:
+In the {{< newtabref href="https://github.com/mattermost/mattermost-server" title="mattermost-server repository" >}} we are using {{< newtabref href="https://www.docker.com/" title="Docker" >}} images and {{< newtabref href="https://docs.docker.com/compose/" title="Docker Compose" >}} to set up the development enviroment. The following are required images:
 
-- [MySQL](https://www.mysql.com/)
-- [PostgreSQL](https://www.postgresql.org/)
-- [MinIO](https://min.io/)
-- [Inbucket](https://www.inbucket.org/)
-- [OpenLDAP](https://www.openldap.org/)
-- [Elasticsearch](https://www.elastic.co)
+- {{< newtabref href="https://www.mysql.com/" title="MySQL" >}}
+- {{< newtabref href="https://www.postgresql.org/" title="PostgreSQL" >}}
+- {{< newtabref href="https://min.io/" title="MinIO" >}}
+- {{< newtabref href="https://www.inbucket.org/" title="Inbucket" >}}
+- {{< newtabref href="https://www.openldap.org/" title="OpenLDAP" >}}
+- {{< newtabref href="https://www.elastic.co" title="Elasticsearch" >}}
 
 We also have added optional tools to help with your development:
 
 ### Dejavu
 
-[Dejavu](https://opensource.appbase.io/dejavu/) is a user interface for Elasticsearch when no UI is provided to visualize or modify the data you're storing inside Elasticsearch.
+{{< newtabref href="https://opensource.appbase.io/dejavu/" title="Dejavu" >}} is a user interface for Elasticsearch when no UI is provided to visualize or modify the data you're storing inside Elasticsearch.
 
 To use Dejavu, execute `docker-compose up -d dejavu`. It will run at `http://localhost:1358`.

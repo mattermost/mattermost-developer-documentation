@@ -28,18 +28,18 @@ To add an endpoint to API version 4, each item on the following checklist must b
 
 A full example can be found through these two pull requests:
 
-- Documenting the `POST /teams` endpoint: [mattermost-api-reference#72](https://github.com/mattermost/mattermost-api-reference/pull/72)
-- Implementing the `POST /teams` endpoint: [mattermost-server#5220](https://github.com/mattermost/mattermost-server/pull/5220)
+- Documenting the `POST /teams` endpoint: {{< newtabref href="https://github.com/mattermost/mattermost-api-reference/pull/72" title="mattermost-api-reference#72" >}}
+- Implementing the `POST /teams` endpoint: {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/5220" title="mattermost-server#5220" >}}
 
 ### Document the endpoint
 
-At Mattermost we use the [OpenAPI specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md) for API documentation. That documentation lives in the [mattermost-api-reference](https://github.com/mattermost/mattermost-api-reference) repository. To document an endpoint, follow these steps:
+At Mattermost we use the {{< newtabref href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md" title="OpenAPI specification" >}} for API documentation. That documentation lives in the {{< newtabref href="https://github.com/mattermost/mattermost-api-reference" title="mattermost-api-reference" >}} repository. To document an endpoint, follow these steps:
 
-1. Fork [mattermost-api-reference](https://github.com/mattermost/mattermost-api-reference)
+1. Fork {{< newtabref href="https://github.com/mattermost/mattermost-api-reference" title="mattermost-api-reference" >}}
 and create a branch for your changes.
-2. Find the `.yaml` file in the [/source/v4](https://github.com/mattermost/mattermost-api-reference/tree/master/v4/source) directory that fits your endpoint.
-    - For example, if you were adding the `GET /users/{user_id}` endpoint you would be looking for [users.yaml](https://github.com/mattermost/mattermost-api-reference/blob/master/v4/source/users.yaml)
-    - If the file doesn't exist yet, you might need to create it and update the [Makefile](https://github.com/mattermost/mattermost-api-reference/tree/master/Makefile) to include it
+2. Find the `.yaml` file in the {{< newtabref href="https://github.com/mattermost/mattermost-api-reference/tree/master/v4/source" title="/source/v4" >}} directory that fits your endpoint.
+    - For example, if you were adding the `GET /users/{user_id}` endpoint you would be looking for {{< newtabref href="https://github.com/mattermost/mattermost-api-reference/blob/master/v4/source/users.yaml" title="users.yaml" >}}
+    - If the file doesn't exist yet, you might need to create it and update the {{< newtabref href="https://github.com/mattermost/mattermost-api-reference/tree/master/Makefile" title="" >}} to include it
 
 3. Copy an existing endpoint from the same or a different file.
 4. Update the documention you copied with the correct information for your endpoint, including:
@@ -49,17 +49,17 @@ and create a branch for your changes.
     - Permissions - The permission required
     - Parameters - The URL and body parameters
     - Responses - The success and error responses
-5.  Confirm you don't have any syntax errors by running `make build-v4` and copying `/html/static/mattermost-openapi-v4.yaml` into the [Swagger editor](http://editor.swagger.io).
-6.  Commit your changes and submit a pull request to [mattermost-api-reference](https://github.com/mattermost/mattermost-api-reference).
+5.  Confirm you don't have any syntax errors by running `make build-v4` and copying `/html/static/mattermost-openapi-v4.yaml` into the {{< newtabref href="http://editor.swagger.io" title="Swagger editor" >}}.
+6.  Commit your changes and submit a pull request to {{< newtabref href="https://github.com/mattermost/mattermost-api-reference" title="mattermost-api-reference" >}}.
 
-If you're looking for examples, see [users.yaml](https://github.com/mattermost/mattermost-api-reference/blob/master/v4/source/users.yaml).
+If you're looking for examples, see {{< newtabref href="https://github.com/mattermost/mattermost-api-reference/blob/master/v4/source/users.yaml" title="users.yaml" >}}.
 
 ### Implement the API handler
 
 To implement the API handler you'll first need to [setup your developer environment]({{< ref "/contribute/more-info/server/developer-setup" >}}), then follow these steps:
 
 1.  Add the declaration for your endpoint.
-    - For an example, see [/api4/user.go](https://github.com/mattermost/mattermost-server/tree/master/api4/user.go)
+    - For an example, see {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/api4/user.go" title="/api4/user.go" >}}
 
 2.  Implement the handler for your endpoint.
     - The general pattern for handlers is
@@ -78,18 +78,18 @@ To implement the API handler you'll first need to [setup your developer environm
         }
         ```
 
-    - For examples, see the [updateUser()](https://github.com/mattermost/mattermost-server/tree/master/api4/user.go#L86) and the [getUser()](https://github.com/mattermost/mattermost-server/tree/master/api4/user.go#L58) handlers.
+    - For examples, see the {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/api4/user.go#L86" title="updateUser()" >}} and the {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/api4/user.go#L58" title="getUser()" >}} handlers.
 
 3.  Run the server using `make run-server` to check for syntax errors.
-4.  (Optional) Use `curl` or [Postman](https://www.getpostman.com/) to test the basics of your endpoint. The endpoint will also be tested [through a unit test](#write-a-unit-test), so this step is optional.
+4.  (Optional) Use `curl` or {{< newtabref href="https://www.getpostman.com/" title="Postman" >}} to test the basics of your endpoint. The endpoint will also be tested [through a unit test](#write-a-unit-test), so this step is optional.
 
 ### Update the Golang driver
 
-The Go driver for APIv4 is in [/model/client4.go](https://github.com/mattermost/mattermost-server/tree/master/model/client4.go).
+The Go driver for APIv4 is in {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/model/client4.go" title="/model/client4.go" >}}.
 
 To add a function to support your new endpoint:
 
-1.  Copy an existing driver function, such as [CreateUser](https://github.com/mattermost/mattermost-server/tree/master/model/client4.go#L186).
+1.  Copy an existing driver function, such as {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/model/client4.go#L186" title="CreateUser" >}}.
 2.  Paste the function into the section for your endpoint.
     - For example, `POST /teams` would go in the Teams section
 
@@ -103,10 +103,10 @@ That's it, you'll be able to test your function in the next section.
 The most important part of this process is to make sure your endpoint works correctly. Follow these steps to write a test:
 
 1.  Open the test Go file related to your endpoint.
-    - For example, if you put your handler in [/api4/user.go](https://github.com/mattermost/mattermost-server/tree/master/api4/user.go) your test will go in [/api4/user\_test.go](https://github.com/mattermost/mattermost-server/tree/master/api4/user_test.go)
+    - For example, if you put your handler in {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/api4/user.go" title="/api4/user.go" >}} your test will go in {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/api4/user_test.go" title="/api4/user\_test.go" >}}
 
 2.  Write your test based on the other tests in your file
-    - There are several helper functions in [/api4/apitestlib.go](https://github.com/mattermost/mattermost-server/tree/master/api4/apitestlib.go) that you may use
+    - There are several helper functions in {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/api4/apitestlib.go" title="/api4/apitestlib.go" >}} that you may use
 
 3.  Make sure your test covers the following:
     - All combinations of correct inputs to your endpoint
@@ -116,10 +116,10 @@ The most important part of this process is to make sure your endpoint works corr
     - Requests with insufficient permissions return a **403 Forbidden** status code (for endpoints requiring a permission)
     - Requests to non-existent resources or URLs return a **404 Not Found** status code
 
-Returning the correct error code might require investigation in the [app](https://github.com/mattermost/mattermost-server/tree/master/app) or [store](https://github.com/mattermost/mattermost-server/tree/master/store) packages to find the source of errors. Status codes on errors should be set at the creation of the error.
+Returning the correct error code might require investigation in the {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/app" title="app" >}} or {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/store" title="store" >}} packages to find the source of errors. Status codes on errors should be set at the creation of the error.
 
-When completing this step, please make sure to use the new `model.NewAppError()` function ([see example](https://github.com/mattermost/mattermost-server/blob/master/store/sqlstore/user_store.go)).
+When completing this step, please make sure to use the new `model.NewAppError()` function ({{< newtabref href="https://github.com/mattermost/mattermost-server/blob/master/store/sqlstore/user_store.go" title="see example" >}}).
 
 ### Submit your pull request
 
-Please submit a pull request against the [mattermost/mattermost-server](https://github.com/mattermost/mattermost-server) repository by [following these instructions]({{< ref "/contribute/more-info/server/developer-workflow" >}}).
+Please submit a pull request against the {{< newtabref href="https://github.com/mattermost/mattermost-server" title="mattermost/mattermost-server" >}}[]() repository by [following these instructions]({{< ref "/contribute/more-info/server/developer-workflow" >}}).
