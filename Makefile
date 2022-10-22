@@ -31,7 +31,7 @@ build:
 
 .PHONY: test
 test:
-	htmlproofer ./dist/html --ignore_empty_alt
+	html-validate "dist/html/**/*.html"
 
 .PHONY: compass-icons
 compass-icons:
