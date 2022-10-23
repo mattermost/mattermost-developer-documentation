@@ -30,7 +30,7 @@ function selectChannel(channelId: string) {
 
 This action is later received by the Redux store's reducers which will know how to read the contents of the action and modify the store accordingly.
 
-Because we use the [Thunk middleware](https://github.com/reduxjs/redux-thunk) for Redux, we have the ability to use more powerful action creators that can read the state of the store, perform asynchronous actions like network requests, and dispatch multiple actions when needed. Instead of returning a plain object, these action creators return a function that takes the Redux store's `dispatch` and `getState` to be able to dispatch actions as needed.
+Because we use the {{< newtabref href="https://github.com/reduxjs/redux-thunk" title="Thunk middleware" >}} for Redux, we have the ability to use more powerful action creators that can read the state of the store, perform asynchronous actions like network requests, and dispatch multiple actions when needed. Instead of returning a plain object, these action creators return a function that takes the Redux store's `dispatch` and `getState` to be able to dispatch actions as needed.
 
 ```typescript
 function loadAndSelectChannel(channelId: string) {
@@ -64,11 +64,11 @@ const store = createReduxStore();
 store.dispatch(loadAndSelectChannel(channelId));
 ```
 
-Typically, you won't have direct access to the store to get its `dispatch` method. Instead, you'll receive it from either [React Redux](https://react-redux.js.org/) or [Redux Thunk](https://github.com/reduxjs/redux-thunk) depending on what part of the code you're working on.
+Typically, you won't have direct access to the store to get its `dispatch` method. Instead, you'll receive it from either {{< newtabref href="https://react-redux.js.org/" title="React Redux" >}} or {{< newtabref href="https://github.com/reduxjs/redux-thunk" title="Redux Thunk" >}} depending on what part of the code you're working on.
 
 ### Dispatch actions from a component
 
-[React Redux](https://react-redux.js.org/) provides two ways of accessing dispatch, and you'll see both used throughout Mattermost.
+{{< newtabref href="https://react-redux.js.org/" title="React Redux" >}} provides two ways of accessing dispatch, and you'll see both used throughout Mattermost.
 
 The first is by its `connect` higher order component. Its second parameter `mapDispatchToProps` is used to wrap action creators so that they will automatically be dispatched when called.
 
@@ -275,12 +275,12 @@ If your action is corresponds to an API call, there are a few extra steps requir
 
 ### Unit tests
 
-Tests for both actions and action creators are written using [Jest](https://jestjs.io/) and will often focus on seeing how dispatching an action affects the stored state in Redux. It'll often look similar to testing a reducer except you'll be looking at the whole store state instead of a single part of it.
+Tests for both actions and action creators are written using {{< newtabref href="https://jestjs.io/" title="Jest" >}} and will often focus on seeing how dispatching an action affects the stored state in Redux. It'll often look similar to testing a reducer except you'll be looking at the whole store state instead of a single part of it.
 
 There are a few different ways of testing Redux actions used throughout Mattermost, but the most common way involves:
 
 1. Setting up an initial store state for the test case.
-2. Optionally mocking any external operations that may be required for the action. This includes API requests which are mocked using [Nock](https://github.com/nock/nock).
+2. Optionally mocking any external operations that may be required for the action. This includes API requests which are mocked using {{< newtabref href="https://github.com/nock/nock" title="Nock" >}}.
 3. Dispatching the result of the action creator.
 4. Looking at the resulting store state to ensure the required changes are made.
 
