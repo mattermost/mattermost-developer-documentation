@@ -33,4 +33,4 @@ NOTE: These steps apply for the `mattermost-webapp` repository only.
 
 NOTE: Be aware that when you use the `"t"` function, only the translation id is extracted. You have to add the translation string in the `i18n/en.json` file manually.
 
-For further discussion about translations or to ask for help, refer to the following Mattermost channels: [Localization](https://community.mattermost.com/core/channels/localization) and [Contributors](https://community.mattermost.com/core/channels/tickets).
+For further discussion about translations or to ask for help, refer to the following Mattermost channels: {{< newtabref href="https://community.mattermost.com/core/channels/localization" title="Localization" >}} and {{< newtabref href="https://community.mattermost.com/core/channels/tickets" title="Contributors" >}}.

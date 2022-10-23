@@ -15,16 +15,16 @@ There are many reasons you might be motivated to contribute to Mattermost:
 
 ## You’ve found a bug
 
-1. If the bug fix that you’re proposing would be larger than 20 lines of code, [create a GitHub issue](https://github.com/mattermost/mattermost-server/issues).
+1. If the bug fix that you’re proposing would be larger than 20 lines of code, {{< newtabref href="https://github.com/mattermost/mattermost-server/issues" title="create a GitHub issue" >}}.
 
-    - You can speed up the process by asking about the issue in the  [Contributors](https://community.mattermost.com/core/channels/tickets) or  [Developers](https://community.mattermost.com/core/channels/developers) channels on the Mattermost Community Server.
-    - [Here’s a good example of a contribution](https://github.com/mattermost/mattermost-mobile/pull/364/commits/7a97451b62fee4022edac4c0395ad0a5cbf1bb66) that is small enough to not need a ticket while still being incredibly helpful.
+    - You can speed up the process by asking about the issue in the  {{< newtabref href="https://community.mattermost.com/core/channels/tickets" title="Contributors" >}} or  {{< newtabref href="https://community.mattermost.com/core/channels/developers" title="Developers" >}} channels on the Mattermost Community Server.
+    - {{< newtabref href="https://github.com/mattermost/mattermost-mobile/pull/364/commits/7a97451b62fee4022edac4c0395ad0a5cbf1bb66" title="Here’s a good example of a contribution" >}} that is small enough to not need a ticket while still being incredibly helpful.
 
 2. If you’ve volunteered to take the ticket once it's active, or if your fix is too small to warrant the ticket, fork the applicable repository, and start making your changes.
-3. Create a PR on the `master` branch of the applicable repository. If there is an associated [Jira](https://mattermost.atlassian.net/issues/?jql=) or GitHub issue, your PR should begin with the issue ID (e.g.  `[MM-394]` or  `[GH-394]`). Our GitHub PR template will walk you through the creation of your PR.
+3. Create a PR on the `master` branch of the applicable repository. If there is an associated {{< newtabref href="https://mattermost.atlassian.net/issues/?jql=" title="Jira" >}} or GitHub issue, your PR should begin with the issue ID (e.g.  `[MM-394]` or  `[GH-394]`). Our GitHub PR template will walk you through the creation of your PR.
 4. If you’re a community contributor, the team at Mattermost will handle most of the review process for you. You can wait for a reviewer to be assigned and for them to review your work. 
 
-    Generally the process works like you’d expect: they’ll make suggestions, you’ll implement them, and together you'll discuss changes in PR comments. If you’re having trouble getting a reviewer to be assigned to your PR, take a look at GitHub’s suggested reviewers and reach out to them in the [Community workspace](http://community.mattermost.com).
+    Generally the process works like you’d expect: they’ll make suggestions, you’ll implement them, and together you'll discuss changes in PR comments. If you’re having trouble getting a reviewer to be assigned to your PR, take a look at GitHub’s suggested reviewers and reach out to them in the {{< newtabref href="http://community.mattermost.com" title="Community workspace" >}}.
 5. Here is an overview of how our review process works listed in the order in which things happen. If you’re a core contributor, you can manage the process yourself.
 
     - **Labels will be added to your PR**, such as  `1: UX Review`,  `2: Dev Review`, and  `3: QA Review`, as applicable. See [the list of labels]({{< ref "/contribute/more-info/getting-started/labels" >}}) for details.
@@ -66,22 +66,22 @@ There are many reasons you might be motivated to contribute to Mattermost:
 
 Good product and developer documentation content is as important as good code! If you notice and fix a content error in the documentation, in a repository README, or in another open source article describing Mattermost, we consider you to be as valued a member of our contributor community as those who contribute to core code.
 
-1. If you see a problem with Mattermost [developer](https://developers.mattermost.com/) or [product](https://docs.mattermost.com/) documentation, you have a few options:
+1. If you see a problem with Mattermost [developer](https://developers.mattermost.com/) or {{< newtabref href="https://docs.mattermost.com/" title="product" >}} documentation, you have a few options:
 
     - If you have time to fix the mistake and it only affects a single page, navigate to the applicable page and select **Edit in GitHub** at the top right. You'll be walked through the process of creating a fork so that you can then follow the steps under the section titled [“You’ve found a bug”]({{< ref "/contribute/why-contribute/#youve-found-a-bug" >}}) in this guide.
     - If you don’t have time to fix the mistake, copy the file path you’re on, and create a GitHub issue about the problem you found on the applicable repository. Make sure to include the file path and fill out the issue template completely to maximize clarity.
     - If you’re not up for creating a GitHub issue right now, that’s alright too! In the bottom-right corner of every product documentation page is the question “Did you find what you were looking for?” Use this to quickly provide direct feedback about any page you’re viewing.
-    - If you want to fix a larger problem that affects multiple pages or the structure of the docs, you should first report it as an issue on the appropriate GitHub repository, and follow the steps under  [“You’ve found a bug”]({{< ref "/contribute/why-contribute/#youve-found-a-bug" >}}). The [developer](https://developers.mattermost.com/) and [product](https://docs.mattermost.com/) documentation repositories contain instructions on how to build and modify the sites locally so you can test larger changes more efficiently.
+    - If you want to fix a larger problem that affects multiple pages or the structure of the docs, you should first report it as an issue on the appropriate GitHub repository, and follow the steps under  [“You’ve found a bug”]({{< ref "/contribute/why-contribute/#youve-found-a-bug" >}}). The [developer](https://developers.mattermost.com/) and {{< newtabref href="https://docs.mattermost.com/" title="product" >}} documentation repositories contain instructions on how to build and modify the sites locally so you can test larger changes more efficiently.
     - Find a list of the Mattermost documentation specific repos on the [Contributor expectations page]({{< ref "/contribute/expectations/#before-contributing" >}}) of this guide.
 
-        **Tip:** The best place to discuss problems with the writing team is in the [Documentation Working Group channel](https://community.mattermost.com/core/channels/dwg-documentation-working-group) where you can ping our technical writers with the group `@docsteam`.
+        **Tip:** The best place to discuss problems with the writing team is in the {{< newtabref href="https://community.mattermost.com/core/channels/dwg-documentation-working-group" title="Documentation Working Group channel" >}} where you can ping our technical writers with the group `@docsteam`.
 
 2. If you’d like to contribute to our blog, website, or social media content, you also have a few options:
-    -  You can get paid to write technical content for developers through the Mattermost [community writing program](https://mattermost.com/blog/blog-announcing-community-writing-program/).
+    -  You can get paid to write technical content for developers through the Mattermost {{< newtabref href="https://mattermost.com/blog/blog-announcing-community-writing-program/" title="community writing program" >}}.
   
-    - If you see a problem with any webpages, blog posts, or other content on [Mattermost.com](https://mattermost.com), you can notify us via [the Content channel](https://community.mattermost.com/core/channels/mattermost-blog) on the Mattermost Community Server.
+    - If you see a problem with any webpages, blog posts, or other content on {{< newtabref href="https://mattermost.com" title="Mattermost.com" >}}, you can notify us via {{< newtabref href="https://community.mattermost.com/core/channels/mattermost-blog" title="the Content channel" >}} on the Mattermost Community Server.
     - Share your contributor or user experience! Mention us when you promote your work within our community, and we’ll amplify the message through Mattermost social media platforms.
-    - Want to lead a social community? We can provide advice and resources to help you in the [Community channel](https://community.mattermost.com/core/channels/community-team) on the Mattermost Community Server.
+    - Want to lead a social community? We can provide advice and resources to help you in the {{< newtabref href="https://community.mattermost.com/core/channels/community-team" title="Community channel" >}} on the Mattermost Community Server.
 
 ## You want to make something more inclusive or accessible
 
@@ -95,10 +95,10 @@ Accessibility is one of the most overlooked yet most important features of moder
 
 Thank you for your enthusiasm! You can act on feature ideas in a few ways:
 
-1. Take a look at our [product roadmap](https://mattermost.com/roadmap/). There’s a chance we might already be building the thing you want.
-2. [Provide input on features](https://portal.productboard.com/mattermost/33-what-matters-to-you/tabs/117-potential-future-offerings) we’re considering to let us know what matters the most to you.
-3. [Participate in a survey](https://portal.productboard.com/mattermost/33-what-matters-to-you/tabs/115-help-us-learn-more-through-surveys) to help us better understand how to meet the needs of our users.
-4. Discuss your idea with our community in the [Feature Proposals channel](https://community.mattermost.com/core/channels/feature-ideas).
+1. Take a look at our {{< newtabref href="https://mattermost.com/roadmap/" title="product roadmap" >}}. There’s a chance we might already be building the thing you want.
+2. {{< newtabref href="https://portal.productboard.com/mattermost/33-what-matters-to-you/tabs/117-potential-future-offerings" title="Provide input on features" >}} we’re considering to let us know what matters the most to you.
+3. {{< newtabref href="https://portal.productboard.com/mattermost/33-what-matters-to-you/tabs/115-help-us-learn-more-through-surveys" title="Participate in a survey" >}} to help us better understand how to meet the needs of our users.
+4. Discuss your idea with our community in the {{< newtabref href="https://community.mattermost.com/core/channels/feature-ideas" title="Feature Proposals channel" >}}.
 5. Build an app! Mattermost has a rich framework full of tools to help you add the features you want that don’t quite work as core additions to Mattermost.
     - [Webhooks]({{< ref "/integrate/webhooks" >}}) are the easiest type of app to create and enable you to integrate with the vast majority of modern web tools.
   
@@ -110,17 +110,17 @@ Thank you for your enthusiasm! You can act on feature ideas in a few ways:
 
 We love developers who are passionate about open-source! 
 
-If you’re looking to tackle an interesting problem, we’ve got you covered! Feel free to check out [the help wanted tickets on GitHub](https://github.com/search?utf8=%E2%9C%93&q=is%3Aopen+archived%3Afalse+org%3Amattermost+label%3A%22Help+Wanted%22++label%3A%22Up+For+Grabs%22). To take one on, just comment on the issue, and follow the process outlined in [You've found a bug](#youve-found-a-bug) of this guide. You can find a list of the Mattermost repos on the [Contributor expectations page]({{< ref "/contribute/expectations/#before-contributing" >}}) of this guide.
+If you’re looking to tackle an interesting problem, we’ve got you covered! Feel free to check out {{< newtabref href="https://github.com/search?utf8=%E2%9C%93&q=is%3Aopen+archived%3Afalse+org%3Amattermost+label%3A%22Help+Wanted%22++label%3A%22Up+For+Grabs%22" title="the help wanted tickets on GitHub" >}}. To take one on, just comment on the issue, and follow the process outlined in [You've found a bug](#youve-found-a-bug) of this guide. You can find a list of the Mattermost repos on the [Contributor expectations page]({{< ref "/contribute/expectations/#before-contributing" >}}) of this guide.
 
 ## You want to help with product translation
 
 We’re honored that you’d like to help people use Mattermost in their native language, so we treat all translators as full-fledged contributors alongside engineers and authors.
 
-Each localization community is going to have specific guidelines on how to maintain Mattermost’s distinctive voice across language barriers. Read these guides thoroughly before starting to translate [German](https://gist.github.com/der-test/6e04bff8a173e053811cb93e08838ca2), [French](https://github.com/wget/mattermost-localization-french-translation-rules), or [Dutch](https://github.com/ctlaltdieliet/mattermost-localization-dutch-translation-rules).
+Each localization community is going to have specific guidelines on how to maintain Mattermost’s distinctive voice across language barriers. Read these guides thoroughly before starting to translate {{< newtabref href="https://gist.github.com/der-test/6e04bff8a173e053811cb93e08838ca2" title="German" >}}, {{< newtabref href="https://github.com/wget/mattermost-localization-french-translation-rules" title="French" >}}, or {{< newtabref href="https://github.com/ctlaltdieliet/mattermost-localization-dutch-translation-rules" title="Dutch" >}}.
 
 To get started:
 
-1. Join [the Mattermost translation server](http://translate.mattermost.com/) and [the localization community channel](https://community.mattermost.com/core/channels/localization) on the Mattermost Community Server.
+1. Join {{< newtabref href="http://translate.mattermost.com/" title="the Mattermost translation server" >}} and {{< newtabref href="https://community.mattermost.com/core/channels/localization" title="the localization community channel" >}} on the Mattermost Community Server.
 
    - If your preferred language already exists on the translation server, you can start making translations or translation suggestions immediately *there on the translation server*. Don’t try to do this manually through GitHub.
 
@@ -132,14 +132,14 @@ To get started:
     - **Alpha** — The language does not meet the qualifications for the Beta level.
 
 3. Every Monday, PRs gets opened for all updates. These PRs will be checked for unexpected character insertions and security problems. Reviewers should always “merge commit” or “rebase and merge” into the PR, but never, ever “squash and commit”. Once approved, PRs are merged into the proper repositories.
-4. Every contribution will be written with the ICU syntax. Please read [this guide](https://formatjs.io/docs/core-concepts/icu-syntax/) so you can get familiar with how it works, and focus especially on how plural terms are handled since that topic comes up quite often.
-5. Don’t hesitate to use tools like the [Online ICU Message Editor](https://format-message.github.io/icu-message-format-for-translators/editor.html), which can help you see how your string will look in context.
-6. If you’re not sure how to translate a technical term, you can search for it elsewhere in your language on the translation server, check [how Microsoft has translated it](https://www.microsoft.com/en-us/language/Search), and feel free to ask for additional string context in the localization channel.
+4. Every contribution will be written with the ICU syntax. Please read {{< newtabref href="https://formatjs.io/docs/core-concepts/icu-syntax/" title="this guide" >}} so you can get familiar with how it works, and focus especially on how plural terms are handled since that topic comes up quite often.
+5. Don’t hesitate to use tools like the {{< newtabref href="https://format-message.github.io/icu-message-format-for-translators/editor.html" title="Online ICU Message Editor" >}}, which can help you see how your string will look in context.
+6. If you’re not sure how to translate a technical term, you can search for it elsewhere in your language on the translation server, check {{< newtabref href="https://www.microsoft.com/en-us/language/Search" title="how Microsoft has translated it" >}}, and feel free to ask for additional string context in the localization channel.
 
 ## You want to help test new features
 
 The QA team keeps all contributions up to Mattermost’s high standards. That big responsibility earns QA reviewers the same status as all other contributors.
 
-- If you’d like to earn some prizes, join our weekly bug bashes run on the [QA Contributors channel](https://community.mattermost.com/core/channels/qa-contributors) on the Mattermost Community Server.
+- If you’d like to earn some prizes, join our weekly bug bashes run on the {{< newtabref href="https://community.mattermost.com/core/channels/qa-contributors" title="QA Contributors channel" >}} on the Mattermost Community Server.
 
-- Standalone [exploratory testing](https://github.com/mattermost/quality-assurance/issues/2) is highly encouraged too! Remember to report your findings in the [QA Contributors channel](https://community.mattermost.com/core/channels/qa-contributors).
+- Standalone {{< newtabref href="https://github.com/mattermost/quality-assurance/issues/2" title="exploratory testing" >}} is highly encouraged too! Remember to report your findings in the {{< newtabref href="https://community.mattermost.com/core/channels/qa-contributors" title="QA Contributors channel" >}}.
