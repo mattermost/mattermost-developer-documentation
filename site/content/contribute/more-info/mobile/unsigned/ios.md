@@ -88,8 +88,8 @@ $ ./sign-ios Mattermost-unsigned.ipa -c "Apple Distribution: XXXXXX. (XXXXXXXXXX
 Once the code sign is complete you should have a signed IPA in the working directory with the name **MyApp-signed.ipa**.
 
 ---
-**Note:**
-
+{{<note "Note:">}}
 The app name can be anything but be sure to use double quotes if the name includes white spaces. The name of the `certificate` should match the name in the macOS Keychain.
+{{</note>}}
 
 ---

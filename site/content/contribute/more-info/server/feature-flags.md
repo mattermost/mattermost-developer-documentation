@@ -142,14 +142,16 @@ How long does it take for workspaces/servers to pick up on changes to feature fl
 
 ## Timelines for rollouts
 
-The feature flag is initially “off” and will be rolled out slowly. Individual teams should decide how they want to roll out their features as they are responsible for them and know them best. Once we have split.io access for 2-3 people per team, the feature teams can enable/disable feature flags at will without needing to ask the Cloud team. 
+The feature flag is initially “off” and will be rolled out slowly. Individual teams should decide how they want to roll out their features as they are responsible for them and know them best. Once we have split.io access for 2-3 people per team, the feature teams can enable/disable feature flags at will without needing to ask the Cloud team.
 
-**Note:** The steps below are an initial guideline and will be iterated on over time.
+{{<note "Note:">}}
+The steps below are an initial guideline and will be iterated on over time.
 
  - 1st week after feature is merged (T-30): 10% rollout; only to test servers, no rollout to customers.
  - 2nd week (T-22): 50% rollout; rollout to some customers (excluding big customers and newly signed-up customers); no major bugs in test servers.
- - 3rd week (T-15): 100% rollout; no major bugs from customers or test servers. 
+ - 3rd week (T-15): 100% rollout; no major bugs from customers or test servers.
  - End of 3rd week (T-8): Remove flag. Feature is production ready and not experimental.
+{{</note>}}
 
 For smaller, non-risky features, the above process can be more fast tracked as needed, such as starting with a 10% rollout to test servers, then 100%.
 Features have to soak on Cloud for at least two weeks for testing. Focus is on severity and number of bugs found; if there are major bugs found at any stage, the feature flag can be turned off to roll back the feature.
@@ -194,14 +196,14 @@ There are no hard rules on when a feature flag should be used. It is left up to 
    - Yes. If you leave the default "" then nothing will happen for self-hosted installations. You can ask the Cloud team to set ``split.io/environment`` to a specific version.
 
 3. How do feature flags work on webapp?
-   - To add a feature flag that affects frontend, the following is needed: 
-     1. PR to server code to add the new feature flag. 
-     2. PR to redux to update the types. 
+   - To add a feature flag that affects frontend, the following is needed:
+     1. PR to server code to add the new feature flag.
+     2. PR to redux to update the types.
      3. PR to webapp to actually use the feature flag.
 
 4. How do feature flags work on mobile?
-   - To add a feature flag that affects mobile, the following is needed: 
-     1. PR to server code to add the new feature flag. 
+   - To add a feature flag that affects mobile, the following is needed:
+     1. PR to server code to add the new feature flag.
      2. PR to mobile to update the types and to actually use the feature flag.
 
 5. How do we enable a feature flag for testing on community-daily and on Cloud test servers?
