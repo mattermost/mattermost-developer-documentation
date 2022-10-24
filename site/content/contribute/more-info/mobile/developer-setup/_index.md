@@ -12,7 +12,9 @@ The following instructions apply to the mobile apps for iOS and Android built in
 
 If you run into any issues getting your environment set up, check the [Troubleshooting](https://docs.mattermost.com/deploy/mobile-troubleshoot.html) section in the left sidebar for common solutions.
 
-**Note: This guide describes how to set up the development environment on macOS or Linux.**
+{{<note "Note:">}}
+**This guide describes how to set up the development environment on macOS or Linux.**
+{{</note>}}
 
 A macOS computer is required to build the Mattermost iOS mobile app.
 
@@ -62,7 +64,7 @@ The minimum required version is 4.9.0.
     ```sh
     $ brew install watchman
     ```
-    
+
 ##### Linux
 
 - On Linux you have to build Watchman yourself. See the official [Watchman guide](https://facebook.github.io/watchman/docs/install.html#installing-from-source).
@@ -108,7 +110,7 @@ Some distributions come with Git preinstalled but you'll most likely have to ins
 
 #### Additional setup for iOS on M1 macs
 
-1. Follow the [React Native environment setup](https://reactnative.dev/docs/environment-setup) docs until the `cocoapods` point, then stop. 
+1. Follow the [React Native environment setup](https://reactnative.dev/docs/environment-setup) docs until the `cocoapods` point, then stop.
 2. Specify the correct version of Xcode in the terminal: `sudo xcode-select --switch /Applications/Xcode.app`
 3. In the Rosetta terminal, change to the `mattermost-mobile/ios` directory and run:
     ```sh
@@ -144,7 +146,7 @@ Make sure you have the following ENV VARS configured:
     ```sh
     source ~/.bash_profile
     ```
-    
+
 ##### Linux
 
 -   On Linux the home folder is located under `/home/<username>` which results in a slightly different path:
@@ -154,7 +156,7 @@ Make sure you have the following ENV VARS configured:
     export PATH=$ANDROID_HOME/platform-tools:$PATH
     export PATH=$ANDROID_HOME/tools:$PATH
     ```
-    
+
 - Then reload your configuration
 
     ```sh

@@ -98,7 +98,7 @@ An instance of the plugin registry is passed to each plugin via the `initialize`
 
 In Mattermost, users are able to set custom themes that change the color scheme of the UI. It's important that plugins have access to a user's theme so that they can set their styling to match and not look out of place.
 
-Every pluggable component in the web app will have the theme object as a prop. 
+Every pluggable component in the web app will have the theme object as a prop.
 
 The colors are exposed via CSS variables as well.
 
@@ -144,7 +144,9 @@ The web app exposes a number of [exported libraries and functions](https://githu
 | prop-types      | window.PropTypes      | [PropTypes](https://www.npmjs.com/package/prop-types)              |
 | post-utils      | window.PostUtils      | Mattermost post utility functions (see below)                      |
 
-**Note:** Some sets of functions like "Functions exposed on window for plugin to use" and "Components exposed on window for internal plugin use only" are not listed here. You can refer to [export.js](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js) file which contains all the exports.
+{{<note "Note:">}}
+Some sets of functions like "Functions exposed on window for plugin to use" and "Components exposed on window for internal plugin use only" are not listed here. You can refer to [export.js](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js) file which contains all the exports.
+{{</note>}}
 
 #### post-utils
 
