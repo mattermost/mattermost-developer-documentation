@@ -156,8 +156,9 @@ To view the log file, use:
 ```bash
 $ sudo tail -n 1000 /var/log/upstart/mattermost-push-proxy.log
 ```
-**Note:**
+{{<note "Note:">}}
 Note that device IDs can change somewhat frequently, as they are tied to a device session. If you're having trouble, double-check the latest device IDs by re-running the above queries.
+{{</note>}}
 
 ### Troubleshooting
 

@@ -222,7 +222,9 @@ To manage plugins, go to **System Console > Plugins > Plugin Management**. From 
  - Enable or disable pre-packaged plugins.
  - Install and manage custom plugins.
 
-**Note:** In versions prior to 5.16, go to **System Console > Plugins (Beta) > Configuration**.
+{{<note "Note:">}}
+In versions prior to 5.16, go to **System Console > Plugins (Beta) > Configuration**.
+{{</note>}}
 
 ### Pre-packaged plugins
 
@@ -238,9 +240,10 @@ To enable plugin uploads, manually set `PluginSettings > EnableUploads` to `true
 
 With plugin uploads enabled, navigate to **System Console > Plugins > Management** and upload a plugin bundle. Plugin bundles are `*.tar.gz` files containing the server executables and web app resources for the plugin. You can also specify a URL to install a plugin bundle from a remote source.
 
-**Note:**
+{{<note "Note:">}}
 1. When `RequirePluginSignature` is `true`, plugin uploads cannot be enabled, and may only be installed via the Marketplace (which verifies Plugin Code Signatures).
-2. `EnableRemoteMarketplaceURL` also remains disabled as long as `EnableUploads` is disabled. 
+2. `EnableRemoteMarketplaceURL` also remains disabled as long as `EnableUploads` is disabled.
+{{</note>}}
 
 Custom plugins may also be installed via the [command line interface](https://docs.mattermost.com/administration/command-line-tools.html#mattermost-plugin).
 

@@ -73,9 +73,9 @@ $ npm run android
 ```
 
 ---
-**Note:**
-
+{{<note "Note:">}}
 If you don't see a green bar at the top loading the JavaScript code then it's possible that the device is not connected to the development server. See [Using adb reverse](http://reactnative.dev/docs/running-on-device.html#method-1-using-adb-reverse-recommended).
+{{</note>}}
 
 ---
 
@@ -111,18 +111,19 @@ Select the **Mattermost** project in the Xcode Project Navigator, then select th
 
 Plug in your iOS device in any available USB port in your development computer.
 
-If everything is set up correctly, your device will be listed as the build target in the Xcode toolbar, and it will also appear in the Devices Pane (⇧⌘2). You can press the **Build and run** button (⌘R) or select **Run** from the Product menu to run the app.
+If everything is set up correctly, your device will be listed as the build target in the Xcode toolbar, and it will also appear in the Devices Pane (<kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>2</kbd></kbd>). You can press the **Build and run** button (<kbd><kbd>⌘</kbd><kbd>R</kbd></kbd>) or select **Run** from the Product menu to run the app.
 
 ![image](/img/mobile/running_ios.png)
 
 As an alternative you can select the targeted device by opening the **Product** menu in Xcode menu bar, then go to **Destination** and look for your device to select from the list.
 
 ---
-**Note:**
+{{<note "Note:">}}
 If you run into any issues, please take a look at Apple's [Launching Your App on a Device](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/LaunchingYourApponDevices/LaunchingYourApponDevices.html#//apple_ref/doc/uid/TP40012582-CH27-SW4) documentation.
 
 If the app fails to build, you can try the following before trying to build the app again:
 
 - Go to the **Product** menu and select **Clean Build Folder**
+{{</note>}}
 
 ---
