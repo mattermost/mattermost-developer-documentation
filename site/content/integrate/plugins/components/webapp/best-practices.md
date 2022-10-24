@@ -64,14 +64,14 @@ You can additionally [register a slash command]({{< ref "/integrate/plugins/comp
   ![popover user attribute component](/img/extend/bp-user-attributes.png)
 
 ### Actions related to emoji and GIFs
-- Recommendation: Have your plugin add a component to the emoji picker. This is not yet supported, but some [work had previously started](https://github.com/mattermost/mattermost-server/issues/10412#issuecomment-481776595) with the issue currently opened as Help Wanted.
+- Recommendation: Have your plugin add a component to the emoji picker. This is not yet supported, but some {{< newtabref href="https://github.com/mattermost/mattermost-server/issues/10412#issuecomment-481776595" title="work had previously started" >}} with the issue currently opened as Help Wanted.
 - Examples: Bitmoji plugin; GIFs via Giphy or Gfycat
 
 ## Set up the plugin to properly communicate with the Mattermost Server
 
 ### Use the Mattermost Server's `SiteURL` in your web app plugin
 
-In order to make sure your plugin has full compatibility with your Mattermost server, you should use the server's configured SiteURL in each API call you send to the server from the webapp. Here's an [example](https://github.com/mattermost/mattermost-plugin-jira/blob/19a9c2442817132b4eee5c77e259b80a40188a6a/webapp/src/selectors/index.js#L13-L26) of how to compute the SiteURL:
+In order to make sure your plugin has full compatibility with your Mattermost server, you should use the server's configured SiteURL in each API call you send to the server from the webapp. Here's an {{< newtabref href="https://github.com/mattermost/mattermost-plugin-jira/blob/19a9c2442817132b4eee5c77e259b80a40188a6a/webapp/src/selectors/index.js#L13-L26" title="example" >}} of how to compute the SiteURL:
 
 ```js
 export const getPluginServerRoute = (state) => {
@@ -92,7 +92,7 @@ export const getPluginServerRoute = (state) => {
 
 ### Include the server's CSRF token in your web app plugin's requests
 
-The Mattermost server can be configured to require a CSRF token to be present in HTTP requests sent from the webapp. In order to include the token in each request, you can use the `mattermost-redux` library's `Client4.getOptions` function to add the token to your `fetch` request. Here's an [example](https://github.com/mattermost/mattermost-plugin-jira/blob/19a9c2442817132b4eee5c77e259b80a40188a6a/webapp/src/client/index.js#L14) of how to include the CSRF token.
+The Mattermost server can be configured to require a CSRF token to be present in HTTP requests sent from the webapp. In order to include the token in each request, you can use the `mattermost-redux` library's `Client4.getOptions` function to add the token to your `fetch` request. Here's an {{< newtabref href="https://github.com/mattermost/mattermost-plugin-jira/blob/19a9c2442817132b4eee5c77e259b80a40188a6a/webapp/src/client/index.js#L14" title="example" >}} of how to include the CSRF token.
 
 ```js
 const response = await fetch(url, Client4.getOptions(options));

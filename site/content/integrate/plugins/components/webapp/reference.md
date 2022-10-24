@@ -132,19 +132,19 @@ The theme object has the following properties:
 
 ## Exported libraries and functions
 
-The web app exposes a number of [exported libraries and functions](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js) on the `window` object for plugins to use. To avoid bloating your plugin, we recommend depending on these using [Webpack externals](https://webpack.js.org/configuration/externals/) or importing them manually from the window. Below is a list of the exposed libraries and functions:
+The web app exposes a number of {{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js" title="exported libraries and functions" >}} on the `window` object for plugins to use. To avoid bloating your plugin, we recommend depending on these using {{< newtabref href="https://webpack.js.org/configuration/externals/" title="Webpack externals" >}} or importing them manually from the window. Below is a list of the exposed libraries and functions:
 
 | Library         | Exported Name         | Description                                                        |
 |-----------------|-----------------------|--------------------------------------------------------------------|
-| react           | window.React          | [ReactJS](https://reactjs.org/)                                    |
-| react-dom       | window.ReactDOM       | [ReactDOM](https://reactjs.org/docs/react-dom.html)                |
-| redux           | window.Redux          | [Redux](https://redux.js.org/)                                     |
-| react-redux     | window.ReactRedux     | [React bindings for Redux](https://github.com/reactjs/react-redux) |
-| react-bootstrap | window.ReactBootstrap | [Bootstrap for React](https://react-bootstrap.github.io/)          |
-| prop-types      | window.PropTypes      | [PropTypes](https://www.npmjs.com/package/prop-types)              |
+| react           | window.React          | {{< newtabref href="https://reactjs.org/" title="ReactJS" >}}                                    |
+| react-dom       | window.ReactDOM       | {{< newtabref href="https://reactjs.org/docs/react-dom.html" title="ReactDOM" >}}                |
+| redux           | window.Redux          | {{< newtabref href="https://redux.js.org/" title="Redux" >}}                                     |
+| react-redux     | window.ReactRedux     | {{< newtabref href="https://github.com/reactjs/react-redux" title="React bindings for Redux" >}} |
+| react-bootstrap | window.ReactBootstrap | {{< newtabref href="https://react-bootstrap.github.io/" title="Bootstrap for React" >}}          |
+| prop-types      | window.PropTypes      | {{< newtabref href="https://www.npmjs.com/package/prop-types" title="PropTypes" >}}              |
 | post-utils      | window.PostUtils      | Mattermost post utility functions (see below)                      |
 
-**Note:** Some sets of functions like "Functions exposed on window for plugin to use" and "Components exposed on window for internal plugin use only" are not listed here. You can refer to [export.js](https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js) file which contains all the exports.
+**Note:** Some sets of functions like "Functions exposed on window for plugin to use" and "Components exposed on window for internal plugin use only" are not listed here. You can refer to {{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js" title="export.js" >}} file which contains all the exports.
 
 #### post-utils
 

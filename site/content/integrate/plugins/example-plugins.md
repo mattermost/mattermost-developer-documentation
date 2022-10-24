@@ -18,15 +18,15 @@ To get started extending browser-side functionality with plugins, take a look at
 
 ## Demo plugin
 
-To see a demonstration of all server-side hooks and webapp components, take a look at our [demo plugin](https://github.com/mattermost/mattermost-plugin-demo).
+To see a demonstration of all server-side hooks and webapp components, take a look at our {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo" title="demo plugin" >}}.
 
 ## Sample plugin
 
-To see a stripped down version of the demo plugin with just the build scripts and templates to get started, take a look at our [plugin starter template](https://github.com/mattermost/mattermost-plugin-starter-template).
+To see a stripped down version of the demo plugin with just the build scripts and templates to get started, take a look at our {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="plugin starter template" >}}.
 
 ## Zoom
 
-The [Zoom plugin for Mattermost](https://github.com/mattermost/mattermost-plugin-zoom) adds UI elements that allow users to easily create and join Zoom meetings:
+The {{< newtabref href="https://github.com/mattermost/mattermost-plugin-zoom" title="Zoom plugin for Mattermost" >}} adds UI elements that allow users to easily create and join Zoom meetings:
 
 <img src="/img/extend/zoom-plugin-screenshot.png" width="445" height="295" />
 
@@ -34,13 +34,13 @@ Topics demonstrated:
 
 * Uses a custom HTTP handler to integrate with external systems.
 * Defines a settings schema, allowing system administrators to configure the plugin via system console UI.
-* Implements tests using the [plugin/plugintest](https://godoc.org/github.com/mattermost/mattermost-server/v6/plugin/plugintest) package.
+* Implements tests using the {{< newtabref href="https://godoc.org/github.com/mattermost/mattermost-server/v6/plugin/plugintest" title="plugin/plugintest" >}} package.
 * Creates rich posts using custom post types.
 * Extends existing webapp components to add elements to the UI.
 
 ## JIRA
 
-The [JIRA plugin for Mattermost](https://github.com/mattermost/mattermost-plugin-jira) creates a webhook that your JIRA server can use to post messages to Mattermost when issues are created:
+The {{< newtabref href="https://github.com/mattermost/mattermost-plugin-jira" title="JIRA plugin for Mattermost" >}} creates a webhook that your JIRA server can use to post messages to Mattermost when issues are created:
 
 <img src="/img/extend/jira-plugin-screenshot.png" width="445" height="263" />
 
@@ -48,12 +48,12 @@ Topics demonstrated:
 
 * Uses a custom HTTP handler to integrate with external systems.
 * Defines a settings schema, allowing system administrators to configure the plugin via system console UI.
-* Implements tests using the [plugin/plugintest](https://godoc.org/github.com/mattermost/mattermost-server/v6/plugin/plugintest) package.
+* Implements tests using the {{< newtabref href="https://godoc.org/github.com/mattermost/mattermost-server/v6/plugin/plugintest" title="plugin/plugintest" >}} package.
 * Compiles and publishes releases for multiple platforms using Travis-CI.
 
 ## Profanity filter
 
-The [profanity filter plugin for Mattermost](https://github.com/mattermost/mattermost-plugin-profanity-filter) automatically detects restricted words in posts and censors them prior to writing to the database. For more use cases, [see this forum post](https://forum.mattermost.com/t/coming-soon-apiv4-mattermost-post-intercept/4982).
+The {{< newtabref href="https://github.com/mattermost/mattermost-plugin-profanity-filter" title="profanity filter plugin for Mattermost" >}} automatically detects restricted words in posts and censors them prior to writing to the database. For more use cases, {{< newtabref href="https://forum.mattermost.com/t/coming-soon-apiv4-mattermost-post-intercept/4982" title="see this forum post" >}}.
 
 Topics demonstrated:
 
@@ -62,7 +62,7 @@ Topics demonstrated:
 
 ## Memes
 
-The [Memes plugin for Mattermost](https://github.com/mattermost/mattermost-plugin-memes) creates a slash command that can be used to create dank memes:
+The {{< newtabref href="https://github.com/mattermost/mattermost-plugin-memes" title="Memes plugin for Mattermost" >}} creates a slash command that can be used to create dank memes:
 
 <img src="/img/extend/memes-plugin-screenshot.png" width="445" height="325" />
 

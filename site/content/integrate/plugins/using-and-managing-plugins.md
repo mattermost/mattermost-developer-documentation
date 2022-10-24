@@ -7,7 +7,7 @@ aliases:
   - /integrate/admin-guide/admin-plugins-beta/
 ---
 
-See our [demo plugin](https://github.com/mattermost/mattermost-plugin-demo) that illustrates the potential for a Mattermost plugin. To start writing your own plugin, consult our [starter template](https://github.com/mattermost/mattermost-plugin-starter-template).
+See our {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo" title="demo plugin" >}} that illustrates the potential for a Mattermost plugin. To start writing your own plugin, consult our {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="starter template" >}}.
 
 Consider using a plugin in the following scenarios:
 
@@ -73,24 +73,24 @@ There are two settings in **System Console > Plugin Management**:
 - **Enable Marketplace:** Turns the Marketplace user interface on or off for System Admins (end users cannot see the Marketplace).
 - **Marketplace URL:** The location of the Marketplace server to query for new plugins. Mattermost hosts a Marketplace for the community and this is the default value for this field. You can also set up your own Marketplace server.
 
-When you first access the Marketplace, your Mattermost server will attempt to contact the Mattermost Marketplace server and return a list of available plugins that are appropriate based on the server version that is currently running. Only your server version and search query is passed over to the Mattermost Marketplace; we retain an anonymized record for product analytics whenever a new plugin is installed, unless you have opted out of [Telemetry](https://docs.mattermost.com/manage/telemetry.html).
+When you first access the Marketplace, your Mattermost server will attempt to contact the Mattermost Marketplace server and return a list of available plugins that are appropriate based on the server version that is currently running. Only your server version and search query is passed over to the Mattermost Marketplace; we retain an anonymized record for product analytics whenever a new plugin is installed, unless you have opted out of {{< newtabref href="https://docs.mattermost.com/manage/telemetry.html" title="Telemetry" >}}.
 
-The [Marketplace server code](https://github.com/mattermost/mattermost-marketplace) is available as an open source project and can be used to set up your own private Marketplace if desired.
+The {{< newtabref href="https://github.com/mattermost/mattermost-marketplace" title="Marketplace server code" >}} is available as an open source project and can be used to set up your own private Marketplace if desired.
 
 ### Mattermost Marketplace
 
-The [Mattermost Marketplace](https://github.com/mattermost/mattermost-marketplace) is a service run by Mattermost that contains listings of plugins that we have reviewed and, in many cases, built. In the future, we plan to include community-developed plugins that will be labeled separately to Mattermost-developed plugins. as well as settings that would restrict which types of plugins you can install. Comments in our forum are welcome as we develop this feature further.
+The {{< newtabref href="https://github.com/mattermost/mattermost-marketplace" title="Mattermost Marketplace" >}} is a service run by Mattermost that contains listings of plugins that we have reviewed and, in many cases, built. In the future, we plan to include community-developed plugins that will be labeled separately to Mattermost-developed plugins. as well as settings that would restrict which types of plugins you can install. Comments in our forum are welcome as we develop this feature further.
 
 ## Mattermost integration directory
 
-There are many ways to integrate Mattermost aside from plugins, and we have created a directory of integration "recipes", some of which are scripts, plugins, or instructions on how to connect Mattermost with your Enterprise systems. Many are sourced from our community of customers. You can browse the directory at [https://integrations.mattermost.com](https://integrations.mattermost.com).
+There are many ways to integrate Mattermost aside from plugins, and we have created a directory of integration "recipes", some of which are scripts, plugins, or instructions on how to connect Mattermost with your Enterprise systems. Many are sourced from our community of customers. You can browse the directory at {{< newtabref href="https://integrations.mattermost.com" title="https://integrations.mattermost.com" >}}.
 
 ## About plugins
 
 Plugins may have one or both of the following parts:
 
- - **Web App plugins:** Customize the Mattermost user interface by adding buttons to the channel header, overriding the `RHS`, or even rendering a custom post type within the center channel. All this is possible without having to fork the source code and rebase on every Mattermost release. For a sample plugin, see [our Zoom plugin](https://github.com/mattermost/mattermost-plugin-zoom).
- - **Server plugins:** Run a Go process alongside the server, filtering messages, or integrating with third-party systems such as Jira, GitLab, or Jenkins. For a sample plugin, see [our Jira plugin](https://github.com/mattermost/mattermost-plugin-jira).
+ - **Web App plugins:** Customize the Mattermost user interface by adding buttons to the channel header, overriding the `RHS`, or even rendering a custom post type within the center channel. All this is possible without having to fork the source code and rebase on every Mattermost release. For a sample plugin, see {{< newtabref href="https://github.com/mattermost/mattermost-plugin-zoom" title="our Zoom plugin" >}}.
+ - **Server plugins:** Run a Go process alongside the server, filtering messages, or integrating with third-party systems such as Jira, GitLab, or Jenkins. For a sample plugin, see {{< newtabref href="https://github.com/mattermost/mattermost-plugin-jira" title="our Jira plugin" >}}.
 
 ## Security
 
@@ -104,7 +104,7 @@ You should only install custom plugins from sources you trust to avoid compromis
 
 The Marketplace allows System Admins to download and install plugins from a central repository. Plugins installed via the Marketplace must be signed by a public key certificate trusted by the local Mattermost server.
 
-While the server ships with a default certificate used to verify plugins from the default Mattermost Marketplace, the server can be configured to trust different certificates and point at a different plugin marketplace. This document outlines the steps for generating a public key certificate and signing plugins for use with a custom plugin marketplace. It assumes access to the [GNU Privacy Guard (GPG)](https://gnupg.org) tool.
+While the server ships with a default certificate used to verify plugins from the default Mattermost Marketplace, the server can be configured to trust different certificates and point at a different plugin marketplace. This document outlines the steps for generating a public key certificate and signing plugins for use with a custom plugin marketplace. It assumes access to the {{< newtabref href="https://gnupg.org" title="GNU Privacy Guard (GPG)" >}} tool.
 
 ### Configuration
 
@@ -213,7 +213,7 @@ To delete public key(s) from your Mattermost server, use:
 
 ### Implementation
 
-See the [implementation document](https://docs.google.com/document/d/1qABE7VEx4k_ZAeh6Ydn4pGbu6BQfZt65x68i2s65MOQ) for more information.
+See the {{< newtabref href="https://docs.google.com/document/d/1qABE7VEx4k_ZAeh6Ydn4pGbu6BQfZt65x68i2s65MOQ" title="implementation document" >}} for more information.
 
 ## Set up guide
 
@@ -242,13 +242,13 @@ With plugin uploads enabled, navigate to **System Console > Plugins > Management
 1. When `RequirePluginSignature` is `true`, plugin uploads cannot be enabled, and may only be installed via the Marketplace (which verifies Plugin Code Signatures).
 2. `EnableRemoteMarketplaceURL` also remains disabled as long as `EnableUploads` is disabled. 
 
-Custom plugins may also be installed via the [command line interface](https://docs.mattermost.com/administration/command-line-tools.html#mattermost-plugin).
+Custom plugins may also be installed via the {{< newtabref href="https://docs.mattermost.com/administration/command-line-tools.html#mattermost-plugin" title="command line interface" >}}.
 
 While no longer recommended, plugins may also be installed manually by unpacking the plugin bundle inside the `plugins` directory of a Mattermost installation.
 
 ### Plugin uploads in high availability mode
 
-Prior to Mattermost 5.14, Mattermost servers configured for [High Availability mode](https://docs.mattermost.com/deployment/cluster.html) required plugins to be installed manually. As of Mattermost 5.14, plugins uploaded via the System Console or the CLI are persisted to the configured file store and automatically installed on all servers that join the cluster.
+Prior to Mattermost 5.14, Mattermost servers configured for {{< newtabref href="https://docs.mattermost.com/deployment/cluster.html" title="High Availability mode" >}} required plugins to be installed manually. As of Mattermost 5.14, plugins uploaded via the System Console or the CLI are persisted to the configured file store and automatically installed on all servers that join the cluster.
 
 Manually installed plugins remain supported, but must be individually installed on each server in the cluster.
 
@@ -256,11 +256,11 @@ Manually installed plugins remain supported, but must be individually installed 
 
 ### Where can I share feedback on plugins?
 
-Join our community server discussion in the [Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit).
+Join our community server discussion in the {{< newtabref href="https://community.mattermost.com/core/channels/developer-toolkit" title="Toolkit channel" >}}.
 
 ## Troubleshooting
 
-Please see common questions below. For further assistance, review the [Troubleshooting forum](https://forum.mattermost.com/c/trouble-shoot) for previously reported errors, or [join the Mattermost user community for troubleshooting help](https://mattermost.com/pl/default-ask-mattermost-community).
+Please see common questions below. For further assistance, review the {{< newtabref href="https://forum.mattermost.com/c/trouble-shoot" title="Troubleshooting forum" >}} for previously reported errors, or {{< newtabref href="https://mattermost.com/pl/default-ask-mattermost-community" title="join the Mattermost user community for troubleshooting help" >}.
 
 ### Plugin uploads fail even though uploads are enabled
 
@@ -286,4 +286,4 @@ To fix this, set the `AppDirectory` of your service using `nssm set mattermost A
 
 If you're seeing `x509: certificate signed by unknown authority` in your server logs, it usually means that the CA for a self-signed certificate for a server your plugin is trying to access has not been added to your local trust store of the machine the Mattermost server is running on.
 
-You can add one in Linux [following instructions in this StackExchange article](https://unix.stackexchange.com/questions/90450/adding-a-self-signed-certificate-to-the-trusted-list), or set up a load balancer like NGINX per [production install guide](https://docs.mattermost.com/config-ssl-http2-nginx.html) to resolve the issue.
+You can add one in Linux {{< newtabref href="https://unix.stackexchange.com/questions/90450/adding-a-self-signed-certificate-to-the-trusted-list" title="following instructions in this StackExchange article" >}}, or set up a load balancer like NGINX per {{< newtabref href="https://docs.mattermost.com/config-ssl-http2-nginx.html" title="production install guide" >}} to resolve the issue.

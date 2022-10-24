@@ -29,14 +29,14 @@ In order for your IDE to know the root directory of the plugin's webapp code, it
 
 ### Expose the Mattermost server using `ngrok`
 
-When a plugin integrates with an external service, webhooks and/or authentication redirects are necessary, which requires your local server to be available on the web. In order for your Mattermost server to be available to process webhook requests, it needs to expose its port to an external address. A common way to do this is to use the command line tool [ngrok](https://ngrok.com). Follow these steps to set up `ngrok` with your server:
+When a plugin integrates with an external service, webhooks and/or authentication redirects are necessary, which requires your local server to be available on the web. In order for your Mattermost server to be available to process webhook requests, it needs to expose its port to an external address. A common way to do this is to use the command line tool {{< newtabref href="https://ngrok.com" title="ngrok" >}}. Follow these steps to set up `ngrok` with your server:
 
-- Download the ngrok tool from [here](https://ngrok.com/download).
+- Download the ngrok tool from {{< newtabref href="https://ngrok.com/download" title="here" >}}.
 - Put the executable somewhere within your shell's `PATH`.
 - With your Mattermost server already running, use the command `ngrok http 8065` to make your Mattermost server available for webhook requests.
 - Visit the `https` URL from the `ngrok` command's output, and log into Mattermost.
-- Set your Mattermost server's [Site URL](http://localhost:8065/admin_console/environment/web_server) to the `https` address given from the `ngrok` command output.
-- Monitor incoming webhook requests with ngrok's request inspector. Visit [http://localhost:4040](http://localhost:4040) once you have your tunnel open. You can analyze the contents of the HTTP request from the external service, and the response from your plugin.
+- Set your Mattermost server's {{< newtabref href="http://localhost:8065/admin_console/environment/web_server" title="Site URL" >}} to the `https` address given from the `ngrok` command output.
+- Monitor incoming webhook requests with ngrok's request inspector. Visit {{< newtabref href="http://localhost:4040" title="http://localhost:4040" >}} once you have your tunnel open. You can analyze the contents of the HTTP request from the external service, and the response from your plugin.
 
 If you're using a free ngrok account, the URL given by the output of the `ngrok http` command will be different each time you run the command. As a result, you'll need to adjust the webhook URL on Mattermost's side and the external service's side (e.g. GitHub) each time you run the command.
 
@@ -55,7 +55,7 @@ An `http` URL pointing to your server should show in the terminal. The `https` v
 
 ### Debug server-side plugins using `delve`
 
-Using the `make attach-headless` command will allow you to use a debugger and step through the plugin's server code. A [delve](https://github.com/go-delve/delve) process will be created and attach to your plugin. You can then use an IDE or debug console to connect to the `delve` process. If you're using VSCode, you can use this `launch.json` configuration to connect.
+Using the `make attach-headless` command will allow you to use a debugger and step through the plugin's server code. A {{< newtabref href="https://github.com/go-delve/delve" title="delve" >}} process will be created and attach to your plugin. You can then use an IDE or debug console to connect to the `delve` process. If you're using VSCode, you can use this `launch.json` configuration to connect.
 
 ```json
 {
@@ -75,7 +75,7 @@ In order to be able to pause the debugger for more than 5 seconds, two modificat
 
 1. The plugin health check job needs to be disabled. This can be done by setting the server config setting `PluginSettings.EnableHealthCheck` to `false`. Note that if your plugin crashes, you'll need to restart it, using `make reset` for example. This command will also kill any currently running `delve` process. If you want to continue debugging with `delve`, you'll need to run `make attach-headless` again after restarting the plugin.
 
-2. The `go-plugin`'s RPC client needs to be configured with a larger timeout duration. You can change the code at [mattermost-server/vendor/github.com/hashicorp/rpc_client.go](https://github.com/mattermost/mattermost-server/blob/bf03f391e635b0b9b129768cec5ea13c571744fa/vendor/github.com/hashicorp/go-plugin/rpc_client.go#L63) to increase the duration. Here's the change you can make to extend the timeout to 5 minutes:
+2. The `go-plugin`'s RPC client needs to be configured with a larger timeout duration. You can change the code at {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/bf03f391e635b0b9b129768cec5ea13c571744fa/vendor/github.com/hashicorp/go-plugin/rpc_client.go#L63" title="mattermost-server/vendor/github.com/hashicorp/rpc_client.go" >}} to increase the duration. Here's the change you can make to extend the timeout to 5 minutes:
 
     ```go
     sessionConfig := yamux.DefaultConfig()

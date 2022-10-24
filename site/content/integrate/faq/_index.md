@@ -38,7 +38,7 @@ We currently don't support the ability to attach files to a post made by an inte
 
 ### Where can I find existing integrations?
 
-[Visit our app directory](https://mattermost.com/marketplace/) for dozens of open source integrations to common tools like Jira, Jenkins, GitLab, Trac, Redmine, and Bitbucket, along with interactive bot applications (Hubot, mattermost-bot), and other communication tools (Email, IRC, XMPP, Threema) that are freely available for use and customization.
+{{< newtabref href="https://mattermost.com/marketplace/" title="Visit our app directory" >}} for dozens of open source integrations to common tools like Jira, Jenkins, GitLab, Trac, Redmine, and Bitbucket, along with interactive bot applications (Hubot, mattermost-bot), and other communication tools (Email, IRC, XMPP, Threema) that are freely available for use and customization.
 
 ### Where should I install my integrations? 
 
@@ -58,7 +58,7 @@ Deployments that cannot create bot accounts via webhooks due to security reasons
 2. Manually add the account to all teams and channels it needs access to. If your deployment has a lot of teams or channels, you may create a CLI script to automate the process.
    - In a testing environment, you may also make the bot account a System Admin, giving the bot permissions to post to any channel. Not recommended in production due to potential security vulnerabilities.
 3. Provide the email and password to your integration, and store it in a secure location with restricted access.
-4. Have your integration use the email and password with an [`/api/v4/login`](https://api.mattermost.com/v4/#tag/authentication) endpoint to retrieve a session token. The session token is used to authenticate to the Mattermost system.
+4. Have your integration use the email and password with an {{< newtabref href="https://api.mattermost.com/v4/#tag/authentication" title="`/api/v4/login`" >}} endpoint to retrieve a session token. The session token is used to authenticate to the Mattermost system.
    - Set up your bot to make an HTTP POST to `your-mattermost-url.com/api/v4/users/login` with a JSON body, including the bot account's email and password.
   
      ```http request
@@ -102,15 +102,15 @@ Deployments that cannot create bot accounts via webhooks due to security reasons
      Host: your-mattermost-url.com
      ```
 
-**Note:** The Mattermost development team is also working on an [API developer token](https://docs.google.com/document/d/1ey4eNQmwK410pNTvlnmMWTa1fqtj8MV4d9XkCumI384), which allows you to authenticate the bot account via the API token rather than retrieving a session token from a user account.
+**Note:** The Mattermost development team is also working on an {{< newtabref href="https://docs.google.com/document/d/1ey4eNQmwK410pNTvlnmMWTa1fqtj8MV4d9XkCumI384" title="API developer token" >}}, which allows you to authenticate the bot account via the API token rather than retrieving a session token from a user account.
 
 ### How should I automate the install and upgrade of Mattermost when included in another application?
 
 Automate Mattermost installation within another application:
 
-1. Review the [Mattermost installation documentation](https://docs.mattermost.com/guides/install-deploy-upgrade-scale.html#install-mattermost) to understand configuration steps of the production deployment.
+1. Review the {{< newtabref href="https://docs.mattermost.com/guides/install-deploy-upgrade-scale.html#install-mattermost" title="Mattermost installation documentation" >}} to understand configuration steps of the production deployment.
 2. Install Mattermost files to a dedicated `/opt/mattermost` directory by decompressing the `tar.gz` file of the latest release for your target platform (for example `linux-amd64`).
-3. Review [Configuration Settings](https://docs.mattermost.com/configure/configuration-settings.html) in `config.json` and set your automation to customize your Mattermost deployment based on your requirements.
+3. Review {{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html" title="Configuration Settings" >}} in `config.json` and set your automation to customize your Mattermost deployment based on your requirements.
 4. For directory locations defined in `config.json`, such as the location of the local file storage directory (`./data/`) or logs directory (`./logs`), you can redefine those locations in your `config.json` settings and move the directories.
    - All other directories should remain as they are in `/mattermost`.
 5. Test that your Mattermost server is running with your new configuration.
@@ -118,14 +118,14 @@ Automate Mattermost installation within another application:
 
 Automate Mattermost upgrade within another application:
 
-1. Review the [upgrade guide](https://docs.mattermost.com/upgrade/upgrading-mattermost-server.html) for an overview of the upgrade procedure.
+1. Review the {{< newtabref href="https://docs.mattermost.com/upgrade/upgrading-mattermost-server.html" title="upgrade guide" >}} for an overview of the upgrade procedure.
 2. Create automation to upgrade to the next Mattermost versions:
     - Back up the `config.json` file to preserve any settings a user may have made.
     - Back up the `./data` directory if local storage is used for files.
     - Replace the contents of `/mattermost` directory with the decompressed contents of the latest release.
     - Restore `config.json` and `./data` to their previous locations (which may have been overwritten).
-    - If you need to overwrite any `config.json` parameters use a [`sed` command](https://stackoverflow.com/questions/20568515/how-to-use-sed-to-replace-a-config-files-variable) or similar tool to update `config.json`
+    - If you need to overwrite any `config.json` parameters use a {{< newtabref href="https://stackoverflow.com/questions/20568515/how-to-use-sed-to-replace-a-config-files-variable" title="`sed` command" >}} or similar tool to update `config.json`
     - Starting the Mattermost server to upgrade the database, `config.json` file, and `./data` as necessary.
 3. Optionally the upgrade procedure can be chained so users can upgrade across an arbitrary number of Mattermost versions rather than to just the latest release.
 
-Come [join our Contributors community channel](https://community.mattermost.com/core/channels/tickets) on our daily build server, where you can discuss questions with community members and the Mattermost core team. Join our [Developers channel](https://community.mattermost.com/core/channels/developers) for technical discussions and our [Integrations channel](https://community.mattermost.com/core/channels/integrations) for all integrations and plugins discussions.
+Come {{< newtabref href="https://community.mattermost.com/core/channels/tickets" title="join our Contributors community channel" >}} on our daily build server, where you can discuss questions with community members and the Mattermost core team. Join our {{< newtabref href="https://community.mattermost.com/core/channels/developers" title="Developers channel" >}} for technical discussions and our {{< newtabref href="https://community.mattermost.com/core/channels/integrations" title="Integrations channel" >}} for all integrations and plugins discussions.

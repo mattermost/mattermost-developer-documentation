@@ -17,13 +17,13 @@ Use interactive messages to simplify complex workflows by allowing users to take
 - Conduct a customer survey or a poll.
 - Initiate a command to merge a branch into a release.
 
-To try it out, you can use this [Matterpoll plugin](https://github.com/matterpoll/matterpoll) to add polling to Mattermost channels via a `/poll` slash command.
+To try it out, you can use this {{< newtabref href="https://github.com/matterpoll/matterpoll" title="Matterpoll plugin" >}} to add polling to Mattermost channels via a `/poll` slash command.
 
 ![image](poll.png)
 
 ## Message buttons
 
-Add message buttons as `actions` in your integration [message attachments](https://docs.mattermost.com/developer/message-attachments.html).
+Add message buttons as `actions` in your integration {{< newtabref href="https://docs.mattermost.com/developer/message-attachments.html" title="message attachments" >}}.
 
 The following payload gives an example that uses message buttons.
 
@@ -236,7 +236,7 @@ Specify `users` as your action's `data_source` as follows:
 
 ### Parameters
 
-Below is a brief description of each parameter to help you customize the interactive message button and menu in Mattermost. For more information on message attachments, [see our documentation](https://docs.mattermost.com/developer/message-attachments.html).
+Below is a brief description of each parameter to help you customize the interactive message button and menu in Mattermost. For more information on message attachments, {{< newtabref href="https://docs.mattermost.com/developer/message-attachments.html" title="see our documentation" >}}.
 
 **ID**<br/>
 A per post unique identifier.
@@ -339,13 +339,13 @@ In most cases, your integration will do one or both of these things:
 ## Tips and best practices
 
 1. The external application may be written in any programming language. It needs to provide a URL which receives the request sent by your Mattermost server and responds within the required JSON format.
-2. To get started, you can use this [sample plugin](https://github.com/matterpoll/matterpoll) to add polling to Mattermost channels via a `/poll` slash command.
+2. To get started, you can use this {{< newtabref href="https://github.com/matterpoll/matterpoll" title="sample plugin" >}} to add polling to Mattermost channels via a `/poll` slash command.
 
 ## Share your integration
 
-If you've built an integration for Mattermost, please consider sharing your work in our [app directory](https://integrations.mattermost.com).
+If you've built an integration for Mattermost, please consider sharing your work in our {{< newtabref href="https://integrations.mattermost.com" title="app directory" >}}.
 
-The [app directory](https://integrations.mattermost.com) lists open source integrations developed by the Mattermost community and are available for download, customization, and deployment to your private cloud or self-hosted infrastructure.
+The {{< newtabref href="https://integrations.mattermost.com" title="app directory" >}} lists open source integrations developed by the Mattermost community and are available for download, customization, and deployment to your private cloud or self-hosted infrastructure.
 
 ## Slack compatibility
 
@@ -377,7 +377,7 @@ As an advanced feature, you can also use plugins to update the contents of an ep
 
 It is likely for one of three reasons:
 
-1. Mattermost wasn't able to connect to the integration. If the integration is on your internal infrastructure, it'll need to be whitelisted (see ["AllowedUntrustedInternalConnections" config.json setting](https://docs.mattermost.com/configure/configuration-settings.html#allow-untrusted-internal-connections-to)). The log will include the text `err=address forbidden` in the error message.
+1. Mattermost wasn't able to connect to the integration. If the integration is on your internal infrastructure, it'll need to be whitelisted (see {{< newtabref href="" title="https://docs.mattermost.com/configure/configuration-settings.html#allow-untrusted-internal-connections-to"AllowedUntrustedInternalConnections" config.json setting" >}}). The log will include the text `err=address forbidden` in the error message.
 2. The integration didn't return HTTP status 200. The log will include the text `status=XXX` in the error message.
 3. The integration didn't return a valid JSON response. The log will include the text `err=some json error message` in the error message.
 
