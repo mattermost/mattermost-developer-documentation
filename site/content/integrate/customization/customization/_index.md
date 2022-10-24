@@ -3,7 +3,7 @@ title: "Customize Mattermost"
 heading: "Customize Mattermost"
 description: "Learn more about customizing Mattermost to create a more personalized experience depending on the needs of your deployment."
 weight: 50
-aliases: 
+aliases:
   - /extend/customization/
   - /integrate/other-integrations/customization/
 ---
@@ -24,7 +24,9 @@ It's recommended that you attempt to meet such customizations by leveraging the 
 
 Some parts of server-side customizations don't require changes to the source code. View more details on which server files may be customized in [here]({{< ref "/integrate/customization/customization/server-files" >}}).
 
-Note: Modifications to server files can be utilized in both Team Edition and Enterprise Editions.
+{{<note "Note:">}}
+Modifications to server files can be utilized in both Team Edition and Enterprise Editions.
+{{</note>}}
 
 ## Web app
 
