@@ -22,7 +22,9 @@ Test categories
 2. __Integration test__ - verify that several units work together in harmony.
 3. __End-to-end test__ - exercises most of the parts of a large application.
 
-Note: Wisdom and definition mostly taken from (a) https://martinfowler.com/testing/ and (b) https://kentcdodds.com/.
+{{<note "Note:">}}
+Wisdom and definition mostly taken from (a) https://martinfowler.com/testing/ and (b) https://kentcdodds.com/.
+{{</note>}}
 
 Not all test types are required in a single pull request. Only write whichever test types are most effective and appropriate.
 
