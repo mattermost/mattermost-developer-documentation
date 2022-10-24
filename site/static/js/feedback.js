@@ -44,10 +44,19 @@ $('body').on('click', '.c-thermometer-modal__footer .btn', function () {
     }
 });
 
-$(".c-thermometer-modal__container textarea").on('keyup', function (event) {
-    const currentString = $(this).val();
-    $(".c-thermometer-modal__counter span").html(currentString.length);
-});
+/**
+ * Update the textarea length display with the current length of the textarea.
+ * @param event The DOM event; unused
+ */
+const cThermometerUpdateTextLength = (event) => {
+    const textareaEl = document.getElementById("c-thermometer-modal__textarea");
+    if (textareaEl) {
+        const counterSpanEl = document.getElementById("c-thermometer-modal__counter-span");
+        if (counterSpanEl) {
+            counterSpanEl.innerText = String(textareaEl.textLength);
+        }
+    }
+};
 
 $('body').on('click', function () {
     $('.c-thermometer__popup').hide();
@@ -76,8 +85,6 @@ $('body').on('click', '.c-thermometer__emojis a.rate-this-page-action', function
     // Prepare DataLayer Vars
     rating = click_elem.attr('data-rating');
 
-    console.log(rating);
-
     switch (rating) {
         case 'Yes':
             eventValue = 3;
@@ -88,5 +95,15 @@ $('body').on('click', '.c-thermometer__emojis a.rate-this-page-action', function
         case 'No':
             eventValue = 1;
             break;
+    }
+});
+
+// install textarea text length handler
+document.addEventListener("DOMContentLoaded", (event) => {
+    const textareaEl = document.getElementById("c-thermometer-modal__textarea");
+    if (textareaEl) {
+        textareaEl.addEventListener("input", cThermometerUpdateTextLength);
+    } else {
+        console.error("Feedback widget: could not attach event handler to textarea; feedback text counter will not function.");
     }
 });
