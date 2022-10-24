@@ -69,14 +69,18 @@ Select bindings contain the following fields:
 
 ##### Select options
 
-Options bindings include:
+Select options contain the following fields:
 
-| Name       | Type                                                | Description                                                                                                                                            |
-|:-----------|:----------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `location` | string                                              | Option name. The whole location path will be provided in the context.                                                                                  |
-| `label`    | string                                              | User-facing string. Defaults to location. Must be unique in its level.                                                                                 |
-| `call`     | [Call]({{<ref "/integrate/apps/structure/call">}})  | (_Optional_) Call to perform when the option is selected. You must provide a call if there is no form, or the form itself does not have a call.        |
-| `form`     | [Form]({{<ref "/integrate/apps/structure/forms">}}) | (_Optional_) Form to open in a modal form when the option is selected. You must provide a Form with a Call if there is no Call defined in the Binding. |
+| Name                                                                              | Type                                                | Description                                                                                                                                            |
+|:----------------------------------------------------------------------------------|:----------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `location`                                                                        | string                                              | Option name. The whole location path will be provided in the context.                                                                                  |
+| `label`                                                                           | string                                              | User-facing string. Defaults to location. Must be unique in its level.                                                                                 |
+| `submit`{{<compass-icon icon-star "At least one of submit or form is required">}} | [Call]({{<ref "/integrate/apps/structure/call">}})  | (_Optional_) Call to perform when the option is selected. You must provide a call if there is no form, or the form itself does not have a call.        |
+| `form`{{<compass-icon icon-star "At least one of submit or form is required">}}   | [Form]({{<ref "/integrate/apps/structure/forms">}}) | (_Optional_) Form to open in a modal form when the option is selected. You must provide a Form with a Call if there is no Call defined in the Binding. |
+
+{{<note "Note:" icon-star "At least one of submit or form is required">}}
+At least one of the `submit` or `form` fields must be specified for each embedded select option.
+{{</note>}}
 
 The following [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) example shows an embedded binding that contains a select field:
 
