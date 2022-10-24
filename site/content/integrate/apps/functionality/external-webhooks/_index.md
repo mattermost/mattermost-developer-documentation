@@ -9,7 +9,7 @@ aliases:
   - /integrate/apps/using-third-party-api/hello-webhooks/
 ---
 
-This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-webhooks)), written in Go and runnable on `http://localhost:8081`.
+This is an example of an HTTP app ({{< newtabref href="https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-webhooks" title="source" >}}), written in Go and runnable on `http://localhost:8081`.
 
 - It contains a `manifest.json`, declares itself an HTTP application, requests permissions, and binds itself to locations in the Mattermost user interface.
 - In its `bindings` function it declares two commands: `info` and `send`.

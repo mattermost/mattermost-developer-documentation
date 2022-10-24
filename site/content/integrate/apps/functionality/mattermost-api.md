@@ -12,10 +12,10 @@ See [here]({{< ref "/integrate/apps/authentication/app-to-mattermost" >}}) to le
 
 ## Apps API
 
-The go driver [`appclient.Client`](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/appclient#Client) support method for KV Get/Set/Delete.
+The go driver {{< newtabref href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/appclient#Client" title="`appclient.Client`" >}} support method for KV Get/Set/Delete.
 
 The KV APIs require the use of the bot account Token, and will fail if a user token is provided.
 
 ## Mattermost REST API
 
-[`appclient.Client`](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/appclient#Client) does includes the [`model.Client4`](https://pkg.go.dev/github.com/mattermost/mattermost-server/v5/model#Client4) Mattermost REST API client, pre-initialized with the auth token.
+{{< newtabref href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps/appclient#Client" title="`appclient.Client`" >}} does includes the {{< newtabref href="https://pkg.go.dev/github.com/mattermost/mattermost-server/v5/model#Client4" title="`model.Client4`" >}} Mattermost REST API client, pre-initialized with the auth token.

@@ -8,7 +8,7 @@ aliases:
 
 ### Modal Forms
 
-Modal Forms ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form)) open as a modal on the user interface as a result of a Form call response. One example is the `send` form in the [Hello World!](https://github.com/mattermost/mattermost-plugin-apps/blob/master/examples/go/hello-world/send_form.json) app.
+Modal Forms ({{< newtabref href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form" title="godoc" >}}) open as a modal on the user interface as a result of a Form call response. One example is the `send` form in the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-apps/blob/master/examples/go/hello-world/send_form.json" title="Hello World!" >}} app.
 
 They are defined by:
 
@@ -36,7 +36,7 @@ The types of fields are:
 
 Markdown fields are a special field that allows you to better format your form. They will not generate any value in the form submission sent to the app. The content is defined in the field description.
 
-All fields include ([godoc](https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field)):
+All fields include ({{< newtabref href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Field" title="godoc" >}}):
 
 | Name          | Type      | Description                                                                                  |
 |:--------------|:----------|:---------------------------------------------------------------------------------------------|
