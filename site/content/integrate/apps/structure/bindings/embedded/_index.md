@@ -2,48 +2,120 @@
 title: Embedded bindings
 heading: Embedded bindings
 ---
-Posts can be embedded with bindings. These are used for asynchronous interaction with the user. In order to add an embedded binding you need to add an `app_bindings` property with a list of `EmbeddedBindings`. An `EmbeddedBinding` includes:
+Posts can be embedded with bindings which display form-like components to the user for asynchronous interaction.
 
-| Name       | Type    | Description                |
-|:-----------|:--------|:---------------------------|
-| `app_id`   | string  | The app ID.                |
-| `title`    | string  | Title of the attachment.   |
-| `text`     | string  | Text of the attachment.    |
-| `bindings` | Binding | List of embedded bindings. |
+{{<note "Note:">}}
+It is recommended to use a [driver]({{<ref "/integrate/apps/drivers">}}) when implementing embedded bindings.
+{{</note>}}
 
-[EXAMPLE POST PAYLOAD WITH EMBEDDED BINDINGS]
+A post property, `app_bindings`, defines the embedded bindings. These bindings take the same form as other [App bindings]({{<ref "/integrate/apps/structure/bindings">}}).
+The following [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) example shows how to embed a simple button into a post:
 
-[SCREENSHOT OF POST WITH EMBEDDED BINDINGS]
+```go
+post := &models.Post{
+    ChannelID: callRequest.Context.Channel.ID,
+}
+// NOTE: apps.PropAppBindings == "app_bindings"
+post.AddProp(apps.PropAppBindings, []apps.Binding{
+    Location:    "embedded",
+    AppID:       appManifest.AppID,
+    Description: "Embedded bindings in a post",
+    Bindings: []apps.Binding{
+        Location: "click-me",
+        Label:    "Click me!",
+        Submit:   apps.NewCall("/submit-click"),
+    },
+})
+client := appclient.AsBot(callRequest.Context)
+created_post, err := client.CreatePost(post)
+if err != nil {
+    // handle the error
+}
+```
 
-Bindings are of two types, buttons or selects.
+![Screenshot of post with embedded bindings](embedded-binding-example.png)
 
-Buttons include:
+### Embedded binding elements
 
-| Name       | Type   | Description                                                                                                                                         |
-|:-----------|:-------|:----------------------------------------------------------------------------------------------------------------------------------------------------|
-| `location` | string | Location name. The whole location path will be provided in the context.                                                                             |
-| `label`    | string | Label that will show in the button. Defaults to location. Must be unique in its level.                                                              |
-| `call`     | Call   | (Optional) Call to be made when the button is selected. You must provide a call if there is no form, or the form itself does not have a call.       |
-| `form`     | Form   | (Optional) Form to open in a modal form when the button is clicked. You must provide a form with a call if there is no call defined in the binding. |
+Embedded bindings can use two types of form elements: buttons and selects. When a button is clicked or a select is changed, the binding element's `submit` call is performed.
+The call will include the App, user, post, root post (if any), channel, and team IDs.
 
-Selects include:
+#### Buttons
 
-| Name       | Type    | Description                                                             |
-|:-----------|:--------|:------------------------------------------------------------------------|
-| `location` | string  | Location name. The whole location path will be provided in the context. |
-| `label`    | string  | Label that will show in the button.                                     |
-| `call`     | Call    | (Optional) Call to be made inherited by the options.                    |
-| `form`     | Form    | (Optional) Form to be inherited by the options.                         |
-| `bindings` | Binding | Options for the select.                                                 |
+Button bindings contain the following fields:
+
+| Name                                                                              | Type                                                | Description                                                                                                                              |
+|:----------------------------------------------------------------------------------|:----------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------|
+| `location`                                                                        | string                                              | Location name. The whole location path will be provided in the context.                                                                  |
+| `label`                                                                           | string                                              | Label that will show in the button. Defaults to location. Must be unique in its level.                                                   |
+| `submit`{{<compass-icon icon-star "At least one of submit or form is required">}} | [Call]({{<ref "/integrate/apps/structure/call">}})  | Call to be made when the button is selected. You must provide a call if there is no form, or the form itself does not have a call.       |
+| `form`{{<compass-icon icon-star "At least one of submit or form is required">}}   | [Form]({{<ref "/integrate/apps/structure/forms">}}) | Form to open in a modal form when the button is clicked. You must provide a form with a call if there is no call defined in the binding. |
+
+{{<note "Note:" icon-star "At least one of submit or form is required">}}
+At least one of the `submit` or `form` fields must be specified for an embedded button binding.
+{{</note>}}
+
+#### Selects
+
+Select bindings contain the following fields:
+
+| Name       | Type                                                             | Description                                                             |
+|:-----------|:-----------------------------------------------------------------|:------------------------------------------------------------------------|
+| `location` | string                                                           | Location name. The whole location path will be provided in the context. |
+| `label`    | string                                                           | Placeholder text displayed when there has been no selection.            |
+| `submit`   | [Call]({{<ref "/integrate/apps/structure/call">}})               | (_Optional_) Call to be made inherited by the options.                  |
+| `form`     | [Form]({{<ref "/integrate/apps/structure/forms">}})              | (_Optional_) Form to be inherited by the options.                       |
+| `bindings` | [Binding]({{<ref "/integrate/apps/structure/bindings">}}) (list) | Options for the select.                                                 |
+
+##### Select options
 
 Options bindings include:
 
-| Name       | Type   | Description                                                                                                                                          |
-|:-----------|:-------|:-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| `location` | string | Option name. The whole location path will be provided in the context.                                                                                |
-| `label`    | string | User-facing string. Defaults to location. Must be unique in its level.                                                                               |
-| `call`     | Call   | (Optional) Call to perform when the option is selected. You must provide a call if there is no form, or the form itself does not have a call.        |
-| `form`     | Form   | (Optional) Form to open in a modal form when the option is selected. You must provide a Form with a Call if there is no Call defined in the Binding. |
+| Name       | Type                                                | Description                                                                                                                                            |
+|:-----------|:----------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `location` | string                                              | Option name. The whole location path will be provided in the context.                                                                                  |
+| `label`    | string                                              | User-facing string. Defaults to location. Must be unique in its level.                                                                                 |
+| `call`     | [Call]({{<ref "/integrate/apps/structure/call">}})  | (_Optional_) Call to perform when the option is selected. You must provide a call if there is no form, or the form itself does not have a call.        |
+| `form`     | [Form]({{<ref "/integrate/apps/structure/forms">}}) | (_Optional_) Form to open in a modal form when the option is selected. You must provide a Form with a Call if there is no Call defined in the Binding. |
 
-Whenever a button is clicked or a select field is selected, a submit call is performed to the corresponding call endpoint. The call will include in the context the app ID, user ID, the post ID, the root post ID if any, the channel ID and the team ID.
+The following [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) example shows an embedded binding that contains a select field:
 
+```go
+post := &models.Post{
+    ChannelID: callRequest.Context.Channel.ID,
+}
+// NOTE: apps.PropAppBindings == "app_bindings"
+post.AddProp(apps.PropAppBindings, []apps.Binding{
+    Location:    "embedded",
+    AppID:       appManifest.AppID,
+    Description: "Select your favourite coffee roast",
+    Bindings: []apps.Binding{
+        Location: "coffee-roast",
+        Label:    "Coffee roast",
+        Bindings: []apps.Binding{
+            {
+                Location: "dark-roast",
+                Label:    "Dark roast",
+                Submit:   apps.NewCall("/submit-coffee-roast"),
+            },
+            {
+                Location: "medium-roast",
+                Label:    "Medium roast",
+                Submit:   apps.NewCall("/submit-coffee-roast"),
+            },
+            {
+                Location: "light-roast",
+                Label:    "Light roast",
+                Submit:   apps.NewCall("/submit-coffee-roast"),
+            },
+        },
+    },
+})
+client := appclient.AsBot(callRequest.Context)
+created_post, err := client.CreatePost(post)
+if err != nil {
+    // handle the error
+}
+```
+
+![Screenshot of embedded select example](embedded-binding-select-example.png)
