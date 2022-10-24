@@ -28,8 +28,9 @@ Personal access tokens function similar to session tokens and can be used by int
 6. Go to **Profile > Security > Personal Access Tokens**, then select **Create Token**.
 7. Enter a description for the token, so you remember what it's used for. Then select **Save**.
 
-    **Note:** If you create a personal access token for a System Admin account, be extra careful who you share it with. The token enables a user to have full access to the account, including System Admin privileges. It's recommended to create a personal access token for non-admin accounts.
-  
+    {{<note "Note:">}} If you create a personal access token for a System Admin account, be extra careful who you share it with. The token enables a user to have full access to the account, including System Admin privileges. It's recommended to create a personal access token for non-admin accounts.
+    {{</note>}}
+
 8. Copy the access token now for your integration and store it in a secure location. You won't be able to see it again!
 9. You're all set! You can now use the personal access token for integrations to interact with your Mattermost server and {{< newtabref title="authenticate against the REST API" href="https://api.mattermost.com/#tag/authentication" >}}.
 
