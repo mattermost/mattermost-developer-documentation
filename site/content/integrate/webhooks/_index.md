@@ -23,6 +23,8 @@ Outgoing webhooks will send an HTTP POST request to a web service and process a 
 
 Outgoing webhooks are supported in public channels only. If you need a trigger that works in a private channel or a direct message, consider using a [slash command]({{< ref "/integrate/slash-commands" >}}) instead.
 
-**Note:** To prevent malicious users from trying to perform [phishing attacks](https://en.wikipedia.org/wiki/Phishing) a **BOT** indicator appears next to posts coming from webhooks regardless of what username is specified.
+{{<note "Note:">}}
+To prevent malicious users from trying to perform [phishing attacks](https://en.wikipedia.org/wiki/Phishing) a **BOT** indicator appears next to posts coming from webhooks regardless of what username is specified.
+{{</note>}}
 
 [Create an outgoing webhook]({{< ref "/integrate/webhooks/outgoing" >}})
