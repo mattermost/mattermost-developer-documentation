@@ -23,7 +23,7 @@ This is an unofficial guide. Community testing, feedback, and improvements are w
         * You should end up with the Docker client running on Linux (WSL) sending commands to your Docker Engine daemon installed on Windows.
     * Go to **Docker Desktop > Settings > Resources > File Sharing** and make sure you check the drives where you are going to run `mattermost-server` from.
 
-    **Note:** {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/10872" title="MM-9791" >}} introduced using {{< newtabref href="https://docs.docker.com/compose/" title="docker-compose" >}} to manage containers. To preserve your data on upgrade, execute the following steps.
+    **Note:** {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/10872" title="MM-7971" >}} introduced using {{< newtabref href="https://docs.docker.com/compose/" title="docker-compose" >}} to manage containers. To preserve your data on upgrade, execute the following steps.
 
 
     First, backup from any existing containers:
@@ -45,7 +45,7 @@ This is an unofficial guide. Community testing, feedback, and improvements are w
     sudo chmod +x /usr/local/bin/docker-compose
     ```
 
-3. Install Go using bash (modify installation to latest Go version from <https://golang.org/dl/>):
+3. Install Go using bash (modify installation to latest Go version from {{< newtabref href="https://go.dev/dl/" title="here" >}}):
 
     ```sh
     sudo apt-get install -y build-essential

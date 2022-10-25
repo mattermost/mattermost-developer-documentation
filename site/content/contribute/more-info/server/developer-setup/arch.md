@@ -7,7 +7,7 @@
      newgrp docker
      ```
 
-    **Note:** {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/10872" title="MM-9791" >}} introduced using {{< newtabref href="https://docs.docker.com/compose/" title="docker-compose" >}} to manage containers. To preserve your data on upgrade, execute the following steps.
+    **Note:** {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/10872" title="MM-7971" >}} introduced using {{< newtabref href="https://docs.docker.com/compose/" title="docker-compose" >}} to manage containers. To preserve your data on upgrade, execute the following steps.
 
 
     First, backup from any existing containers:
