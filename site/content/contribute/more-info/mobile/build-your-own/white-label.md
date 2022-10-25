@@ -25,9 +25,9 @@ For example, to override `assets/base/images/logo.png` you would replace your ow
 To replace an image, copy the image to `assets/override/images/` with the same location and file name as in the `base` folder.
 
 ---
-**Note:**
-
+{{<note "Note:">}}
 Make sure the images have the same height, width, and DPI as the images that you are overriding.
+{{</note>}}
 
 ---
 
@@ -42,9 +42,9 @@ The splash screen's background color is white by default and the image is center
 Splash screen and launch icons assets are replaced at build time when the environment variable `REPLACE_ASSETS` is set to true (default is false).
 
 ---
-**Note:**
-
+{{<note "Note:">}}
 Make sure the images have the same height, width, and DPI as the images that you are overriding.
+{{</note>}}
 
 ---
 
@@ -61,8 +61,8 @@ For example, if you want the app to automatically provide a server URL and skip 
 }
 ```
 ---
-**Note:**
-
+{{<note "Note:">}}
 The above key/value pairs are taken from the original `config.json` file. Since we don’t need to change anything else, we only included these two settings.
+{{</note>}}
 
 ---

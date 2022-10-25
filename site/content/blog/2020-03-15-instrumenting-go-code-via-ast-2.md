@@ -19,7 +19,7 @@ In this post I'll discuss a rather common problem that comes up while working wi
 
 ## Problem: A `struct` with no `interface`
 
-Let's say you are working on a large code base that was not built with `interfaces` in mind, meaning, there are `structs` and methods attached to those `structs`, but there is no `interface` describing it. This is a perfectly valid approach when you don't need to mock/stub the method implementations provided by that `struct`, or there's only one implementation of the same 'contract'. 
+Let's say you are working on a large code base that was not built with `interfaces` in mind, meaning, there are `structs` and methods attached to those `structs`, but there is no `interface` describing it. This is a perfectly valid approach when you don't need to mock/stub the method implementations provided by that `struct`, or there's only one implementation of the same 'contract'.
 
 However, when these things are required we need to provide an `interface`.
 
@@ -46,7 +46,7 @@ func (a Animal) Hello() string {
 func main() {
 	p := Person{Name: "Fred"}
 	a := Animal{Legs: 4}
-	// ...	
+	// ...
 }
 ```
 
@@ -79,7 +79,9 @@ Let's break down the task at hand into smaller, digestable parts:
 1. ...
 1. Profit?
 
-**Note:** Usually the `interface` doesn't contain all of the `struct` methods, but we'll leave the topics of abstraction and better code organization for another blog post.
+{{<note "Note:">}}
+Usually the `interface` doesn't contain all of the `struct` methods, but we'll leave the topics of abstraction and better code organization for another blog post.
+{{</note>}}
 
 
 ### Scanning the source code for all `struct` methods
@@ -124,7 +126,7 @@ for _, file := range appPkg.Files {
 }
 ```
 
-Steps 1 and 2 are pretty straightforward, the interesting bits start at step 3: For each file in the package, we execute `ast.Inspect` to get all the AST nodes. For every node that is actually a function (checked by `n.(*ast.FuncDecl)`), we check if that function is:  
+Steps 1 and 2 are pretty straightforward, the interesting bits start at step 3: For each file in the package, we execute `ast.Inspect` to get all the AST nodes. For every node that is actually a function (checked by `n.(*ast.FuncDecl)`), we check if that function is:
 
 * Exported (we are not interested in private methods)
 * Has a receiver (it's bound to a `struct`)
@@ -167,7 +169,7 @@ err = t.Execute(out, map[string]interface{}{
 	"Name":    ifName,
 	"Package": pkgName,
 })
-```	
+```
 
 We're almost done! Our `interface` file is ready, but it's missing a crucial part - `imports`. Luckily, there is a package for that™ - https://pkg.go.dev/golang.org/x/tools/imports.
 
@@ -179,7 +181,7 @@ if err != nil {
 	log.Panic(err)
 }
 err = ioutil.WriteFile(outputFile, formatted, 0644)
-```	
+```
 
 Voila! You have an `interface` file that contains all the methods implemented on the `struct`.
 

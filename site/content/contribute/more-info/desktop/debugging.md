@@ -21,7 +21,8 @@ The renderer processes are controller by Chrome instances, so each of them will 
 You can access these instances by going to the **View** menu (under the 3-dot menu on Windows/Linux, and in the top bar on macOS) and selecting:
 - **Developer Tools for Application Wrapper** for anything involving the top bar.
 - **Developer Tools for Current Tab** for anything involving the Mattermost view or the preload script.
-    - **Note:** For this one, make sure you're currently on the tab where you want to load the Developer Tools. You can have instances open for tabs you aren't currently viewing, but to open them in the first place requires it to be opened.
+    {{<note "Note:">}} For this one, make sure you're currently on the tab where you want to load the Developer Tools. You can have instances open for tabs you aren't currently viewing, but to open them in the first place requires it to be opened.
+    {{</note>}}
 
 There are other `BrowserViews` that are governed seperately from the main application wrapper, including:
 - Dropdown Menu
@@ -43,7 +44,8 @@ There are other `BrowserViews` that are governed seperately from the main applic
         ```js
         urlView.webContents.openDevTools({mode: 'detach'});
         ```
-    - **Note:** This view is ephemeral and based on whether a link is hovered with the mouse, so it might be best to use some logging instead here.
+        {{<note "Note:">}} This view is ephemeral and based on whether a link is hovered with the mouse, so it might be best to use some logging instead here.
+        {{</note>}}
 
 ## Debug the Mattermost Server/webapp
 

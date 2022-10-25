@@ -79,6 +79,7 @@ softwareupdate --install-rosetta
 
     If you would like the webapp to automatically refresh as you edit the source code you can install and enable the live reload script injection extension for your web browser ({{< newtabref href="https://chrome.google.com/webstore/detail/remotelivereload/jlppknnillhjgiengoigajegdpieppei/related?hl=en" title="Chrome" >}} | {{< newtabref href="https://addons.mozilla.org/en-US/firefox/addon/livereload-web-extension/" title="Firefox" >}}). Then, before running webpack run:
 
+
     ```sh
     export MM_LIVE_RELOAD=true
     ```

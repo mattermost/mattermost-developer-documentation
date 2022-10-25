@@ -9,6 +9,7 @@
 
     **Note:** {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/10872" title="MM-9791" >}} introduced using {{< newtabref href="https://docs.docker.com/compose/" title="docker-compose" >}} to manage containers. To preserve your data on upgrade, execute the following steps.
 
+
     First, backup from any existing containers:
     ```sh
     mysqldump -h 127.0.0.1 --column-statistics=0 -u mmuser -p mattermost_test > mm_mysql_backup.sql

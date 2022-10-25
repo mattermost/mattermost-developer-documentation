@@ -7,7 +7,7 @@ aliases:
   - /integrate/admin-guide/admin-interactive-dialogs/
 ---
 
-Integrations open dialogs by sending an `HTTP POST`, containing some data in the request body, to an endpoint on the Mattermost server. Integrations can use this endpoint to open dialogs when users [click message buttons or select an option from a menu]({{< ref "/integrate/plugins/interactive-messages" >}}), or use a 
+Integrations open dialogs by sending an `HTTP POST`, containing some data in the request body, to an endpoint on the Mattermost server. Integrations can use this endpoint to open dialogs when users [click message buttons or select an option from a menu]({{< ref "/integrate/plugins/interactive-messages" >}}), or use a
 [custom slash command]({{< ref "/integrate/slash-commands" >}}).
 
 Moreover, [plugins]({{< ref "/integrate/plugins/using-and-managing-plugins" >}}) can trigger a dialog based on user actions. For instance, if a plugin adds a button in the channel header, clicking that button may open a dialog.
@@ -33,9 +33,9 @@ Interactive dialogs support the following parameters:
 | `elements`          | Array   | Up to 5 elements allowed per dialog. See below for more details on elements. If none are supplied the dialog box acts as a simple confirmation.                                    |
 | `url`               | String  | The URL to send the submitted dialog payload to.                                                                                                                                   |
 | `icon_url`          | String  | (Optional) The URL of the icon used for your dialog. If none specified, no icon is displayed.                                                                                      |
-| `submit_label`      | String  | (Optional) Label of the button to complete the dialog. Default is `Submit`.                                                                                                        | 
-| `notify_on_cancel`  | Boolean | (Optional) When `true`, sends an event back to the integration whenever there's a user-induced dialog cancellation. No other data is sent back with the event. Default is `false`. | 
-| `state`             | String  | (Optional) String provided by the integration that will be echoed back with dialog submission. Default is the empty string.                                                        | 
+| `submit_label`      | String  | (Optional) Label of the button to complete the dialog. Default is `Submit`.                                                                                                        |
+| `notify_on_cancel`  | Boolean | (Optional) When `true`, sends an event back to the integration whenever there's a user-induced dialog cancellation. No other data is sent back with the event. Default is `false`. |
+| `state`             | String  | (Optional) String provided by the integration that will be echoed back with dialog submission. Default is the empty string.                                                        |
 
 Sample JSON is given below. Form submissions are sent back to the URL defined by the integration. You must also include the trigger ID you received from the slash command or interactive message.
 
@@ -96,11 +96,11 @@ The full list of supported fields is included below:
 | `type`         | String  | Set this value to `text` for a text element.                                                                                                                                                     |
 | `subtype`      | String  | (Optional) One of `text`, `email`, `number`, `password` (as of v5.14), `tel`, or `url`. Default is `text`. Use this to set which keypad is presented to users on mobile when entering the field. |
 | `min_length`   | Integer | (Optional) Minimum input length allowed for an element. Default is 0.                                                                                                                            |
-| `max_length`   | Integer | (Optional) Maximum input length allowed for an element. Default is 150. If you expect the input to be greater 150 characters, consider using a `textarea` type element instead.                  | 
+| `max_length`   | Integer | (Optional) Maximum input length allowed for an element. Default is 150. If you expect the input to be greater 150 characters, consider using a `textarea` type element instead.                  |
 | `optional`     | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                                                                               |
-| `help_text`    | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                                                                                          | 
+| `help_text`    | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                                                                                          |
 | `default`      | String  | (Optional) Set a default value for this form element. Maximum 150 characters.                                                                                                                    |
-| `placeholder`  | String  | (Optional) A string displayed to help guide users in completing the element. Maximum 150 characters.                                                                                             | 
+| `placeholder`  | String  | (Optional) A string displayed to help guide users in completing the element. Maximum 150 characters.                                                                                             |
 
 ### Textarea elements
 
@@ -127,11 +127,11 @@ The list of supported fields is the same as for the `textarea` type element.
 | `type`         | String  | Set this value to `texareat` for a textarea element.                                                                                                                                             |
 | `subtype`      | String  | (Optional) One of `text`, `email`, `number`, `password` (as of v5.14), `tel`, or `url`. Default is `text`. Use this to set which keypad is presented to users on mobile when entering the field. |
 | `min_length`   | Integer | (Optional) Minimum input length allowed for an element. Default is 0.                                                                                                                            |
-| `max_length`   | Integer | (Optional) Maximum input length allowed for an element. Default is 3000.                                                                                                                         | 
+| `max_length`   | Integer | (Optional) Maximum input length allowed for an element. Default is 3000.                                                                                                                         |
 | `optional`     | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                                                                               |
-| `help_text`    | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                                                                                          | 
+| `help_text`    | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                                                                                          |
 | `default`      | String  | (Optional) Set a default value for this form element. Maximum 3000 characters.                                                                                                                   |
-| `placeholder`  | String  | (Optional) A string displayed to help guide users in completing the element. Maximum 3000 characters.                                                                                            | 
+| `placeholder`  | String  | (Optional) A string displayed to help guide users in completing the element. Maximum 3000 characters.                                                                                            |
 
 ### Select elements
 
@@ -200,8 +200,8 @@ The list of supported fields for the `select` type element is included below:
 | `optional`     | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
 | `options`      | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
 | `help_text`    | Array   | (Optional) An array of options for the select element. Not applicable for `users` or `channels` data sources.                      |
-| `default`      | String  | (Optional) (Optional) Set a default value for this form element. Maximum 3,000 characters.                                         | 
-| `placeholder`  | String  | (Optional) A string displayed to help guide users in completing the element. Maximum 3,000 characters.                             | 
+| `default`      | String  | (Optional) (Optional) Set a default value for this form element. Maximum 3,000 characters.                                         |
+| `placeholder`  | String  | (Optional) A string displayed to help guide users in completing the element. Maximum 3,000 characters.                             |
 
 
 ### Checkbox element
@@ -228,8 +228,8 @@ The full list of supported fields is included below:
 | `type`         | String  | Set this value to `bool` for a checkbox element.                                                                                   |
 | `optional`     | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
 | `help_text`    | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
-| `default`      | String  | (Optional) Set a default value for this form element. `true` or `false`.                                                           | 
-| `placeholder`  | String  | (Optional) A string displayed to include a label besides the checkbox. Maximum 150 characters.                                     | 
+| `default`      | String  | (Optional) Set a default value for this form element. `true` or `false`.                                                           |
+| `placeholder`  | String  | (Optional) A string displayed to include a label besides the checkbox. Maximum 150 characters.                                     |
 
 ### Radio element
 
@@ -270,7 +270,7 @@ The full list of supported fields are included below:
 | `type`         | String | Set this value to `radio` for a radio element.                                                                                     |
 | `options`      | Array  | (Optional) An array of options for the radio element.                                                                              |
 | `help_text`    | String | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
-| `default`      | String | (Optional) Set a default value for this form element.                                                                              | 
+| `default`      | String | (Optional) Set a default value for this form element.                                                                              |
 
 ## Dialog submission
 
@@ -285,7 +285,7 @@ The submission payload sent to the integration is:
 {
     "type": "dialog_submission",
     "callback_id": "<callback ID provided by the integration>",
-    "state": "<state provided by the integration>", 
+    "state": "<state provided by the integration>",
     "user_id": "<user ID of the user who submitted the dialog>",
     "channel_id": "<channel ID the user was in when submitting the dialog>",
     "team_id": "<team ID the user was on when submitting the dialog>",
@@ -315,7 +315,9 @@ Support for generic error messages was added in Mattermost v5.18.
 
 Finally, once the request is submitted, we recommend that the integration responds with a system message or an ephemeral message confirming the submission. This should be a separate request back to Mattermost once the service has received and responded to a submission request from a dialog. This can be done either via {{< newtabref href="https://api.mattermost.com/#tag/posts%2Fpaths%2F~1posts~1ephemeral%2Fpost" title="the REST API" >}}, or via the [Plugin API]({{< ref "/integrate/plugins/components/server/reference#API.SendEphemeralPost" >}}) if you're developing a plugin.
 
-**Note:** If the dialog is closed by clicking **Cancel** or **X**, no data will be submitted. If a user clicks away from the dialog, the dialog won’t close. This is to prevent accidentally losing any answers they've made to an unsubmitted dialog.
+{{<note "Note:">}}
+If the dialog is closed by clicking **Cancel** or **X**, no data will be submitted. If a user clicks away from the dialog, the dialog won’t close. This is to prevent accidentally losing any answers they've made to an unsubmitted dialog.
+{{</note>}}
 
 ## Example
 

@@ -12,7 +12,9 @@ Bindings are refreshed when the App is installed, on every channel switch, and w
 
 ## Top level bindings
 
-Bindings are organized by top level [locations]({{<ref "/integrate/apps/structure/manifest#locations">}}). The data structure of a top level binding is:
+{{<note "Note:">}}
+Bindings are fetched (and refreshed) on every channel switch. When the user moves to a different context (like opening a thread, or a post in a search view) new bindings may be fetched to provide the correct bindings for the thread/post context. Bindings are also fetched when an OAuth2 process is completed and when the application gets installed.
+{{</note>}}
 
 | Name       | Type                                                                                                                             | Description                             |
 |:-----------|:---------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------|

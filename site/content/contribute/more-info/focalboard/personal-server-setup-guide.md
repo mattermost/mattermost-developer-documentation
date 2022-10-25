@@ -100,8 +100,8 @@ Cross-compilation currently isn't fully supported, so please build on the approp
 * Run `cd webapp && npm run watchdev` to automatically rebuild the web app when files are changed. It also includes source maps from JavaScript to TypeScript.
 * Install the {{< newtabref href="https://marketplace.visualstudio.com/items?itemName=golang.Go" title="Go" >}} and {{< newtabref href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint" title="ESLint" >}} VS Code extensions (if you haven't already).
 * Launch the server:
-    * **Windows**: `Ctrl+P`, type `debug`, press the `Space` key, and select `Go: Launch Server`.
-    * **Mac**: `Cmd+P`, type `debug`, press the `Space` key, and select `Go: Launch Server`.
+    * **Windows**: <kbd><kbd>Ctrl</kbd>+<kbd>P</kbd></kbd>, type `debug`, press the <kbd>Space</kbd> key, and select `Go: Launch Server`.
+    * **Mac**: <kbd><kbd>Cmd</kbd>+<kbd>P</kbd></kbd>, type `debug`, press the <kbd>Space</kbd> key, and select `Go: Launch Server`.
     * *If you do not see `Go: Launch Server` as an option, check your `./.vscode/launch.json` file and make sure you are not using a VS Code workspace.*
 * Navigate a browser to `http://localhost:8000`
 

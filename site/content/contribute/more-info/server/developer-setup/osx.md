@@ -1,4 +1,4 @@
-1. Install and configure Docker CE: https://docs.docker.com/docker-for-mac/.
+1. Install and configure Docker CE: https://docs.docker.com/desktop/install/mac-install/.
 
     **Note:** {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/10872" title="MM-9791" >}} introduced using {{< newtabref href="https://docs.docker.com/compose/" title="docker-compose" >}} to manage containers. To preserve your data on upgrade, execute the following steps.
 
@@ -43,7 +43,7 @@
     ```
 
     **Note:** If you see lot of `nc: bad address 'elasticsearch'` messages, eventually exiting with the message `Service elasticsearch:9200 did not start within 300 seconds. Aborting...`,  increase the memory available for the Docker Engine by going to {{< newtabref href="https://docs.docker.com/docker-for-mac/#advanced" title="Docker's preferences -> Advanced" >}}.
-    
+
     **Note:** If you see an error which says `Failed to ping DB`, it's probably due to a conflict between the PostgreSQL service in Docker and the one which is running system-wide. You can stop the system-wide server temporarily by running `brew services stop postgres` in your terminal, then restart the Docker service.
 
 8. Test your environment:

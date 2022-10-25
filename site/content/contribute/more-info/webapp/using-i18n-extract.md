@@ -12,9 +12,11 @@ aliases:
 
 This page demonstrates how to review your results and to verify if your extraction was successful or not. If the extraction was not successful this page also provides a workaround to correct for this.
 
-NOTE: These steps apply for the `mattermost-webapp` repository only.
+{{<note "NOTE:">}}
+These steps apply for the `mattermost-webapp` repository only.
+{{</note>}}
 
-1. After you execute `make i18n-extract` you will need to review the results and validate that the strings were either added or removed in the `i18n/en.json` file. 
+1. After you execute `make i18n-extract` you will need to review the results and validate that the strings were either added or removed in the `i18n/en.json` file.
 2. Run  `git diff` and determine if your strings were added or removed in the `i18n/en.json` file correctly. If this was a successful extraction you will have output similar to below:
 
     ![image](/img/i18n-extract-1.jpg)
@@ -31,6 +33,8 @@ NOTE: These steps apply for the `mattermost-webapp` repository only.
 
     ![image](/img/i18n-extract-4.jpg)
 
-NOTE: Be aware that when you use the `"t"` function, only the translation id is extracted. You have to add the translation string in the `i18n/en.json` file manually.
+{{<note "NOTE:">}}
+Be aware that when you use the `"t"` function, only the translation id is extracted. You have to add the translation string in the `i18n/en.json` file manually.
+{{</note>}}
 
 For further discussion about translations or to ask for help, refer to the following Mattermost channels: {{< newtabref href="https://community.mattermost.com/core/channels/localization" title="Localization" >}} and {{< newtabref href="https://community.mattermost.com/core/channels/tickets" title="Contributors" >}}.

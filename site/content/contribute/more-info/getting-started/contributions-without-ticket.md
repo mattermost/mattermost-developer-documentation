@@ -18,8 +18,13 @@ All pull requests submitted without a corresponding ticket will first be reviewe
 - {{< newtabref href="https://github.com/mattermost/mattermost-mobile/pull/364" title="Fix Android app crashing when saving user notification settings" >}}
 - {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/5878" title="Fix recent mentions search not working" >}}
 
-**Note:** For pull requests greater than 20 lines of code, a `Help Wanted` ticket should be opened by the core team. This helps ensure that everything going into the project aligns with a unified vision. Core committers who review the PR are entitled to reject it if there isn't a `Help Wanted` ticket and feel it significantly changes behavior or user expectations.
+{{<note "Note:">}}
+For pull requests greater than 20 lines of code, a `Help Wanted` ticket should be opened by the core team. This helps ensure that everything going into the project aligns with a unified vision. Core committers who review the PR are entitled to reject it if there isn't a `Help Wanted` ticket and feel it significantly changes behavior or user expectations.
+{{</note>}}
 
-**Note:** Please use {{< newtabref href="https://translate.mattermost.com" title="our translation server" >}} to correct errors in translation.
+{{<note "Note:">}}
+Please use {{< newtabref href="https://translate.mattermost.com" title="our translation server" >}} to correct errors in translation.
+{{</note>}}
+
 
 The best way to discuss opening a `Help Wanted` ticket with the core team is by {{< newtabref href="https://mattermost.uservoice.com/forums/306457-general" title="starting a conversation in the feature idea forum" >}} or {{< newtabref href="https://github.com/mattermost/mattermost-server/issues/new" title="opening an issue in the GitHub repository" >}}. Alternatively, don't hesitate to come chat about it in the {{< newtabref href="https://community.mattermost.com/core/channels/tickets" title="Contributors" >}} or {{< newtabref href="https://community.mattermost.com/core/channels/developers" title="Developers" >}} channels.

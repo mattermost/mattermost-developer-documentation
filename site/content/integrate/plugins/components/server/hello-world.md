@@ -4,7 +4,7 @@ heading: "Write a Mattermost Plugin"
 description: "This tutorial will walk you through the basics of writing a Mattermost plugin with a server component."
 date: 2018-07-10T00:00:00-05:00
 weight: -10
-aliases: 
+aliases:
   - /extend/plugins/server/hello-world/
   - /integrate/plugins/server/hello-world/
 ---
@@ -53,7 +53,9 @@ Build the executable that will be distributed with your plugin:
 go build -o plugin.exe plugin.go
 ```
 
-**Note:** Your executable is platform specific! If you're building the plugin for a server running on a different operating system, you'll need to use a slightly different command. For example, if you're developing the plugin from MacOS and deploying to a Linux server, you'll need to use this command:
+{{<note "Note:">}}
+Your executable is platform specific! If you're building the plugin for a server running on a different operating system, you'll need to use a slightly different command. For example, if you're developing the plugin from MacOS and deploying to a Linux server, you'll need to use this command:
+{{</note>}}
 
 ```bash
 GOOS=linux GOARCH=amd64 go build -o plugin.exe plugin.go

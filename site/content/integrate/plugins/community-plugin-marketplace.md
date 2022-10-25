@@ -25,7 +25,10 @@ Every community plugin must fulfill the following checklist to be added to the M
 
 **Technical requirements (checked by the relevant development team)**
 
-1. The plugin works for 60k concurrent connections and in a High Availability deployment. **Note:** There are currently no publicly-available tools to verify these properties. As such, they are checked during code review by a developer.
+1. The plugin works for 60k concurrent connections and in a High Availability deployment.
+  {{<note "Note:">}}
+  There are currently no publicly-available tools to verify these properties. As such, they are checked during code review by a developer.
+  {{</note>}}
 2. The plugin logs important events on appropriate log levels to allow System Admins to troubleshoot issues.
 
 **Security requirements (checked by a member of the Security team)**
