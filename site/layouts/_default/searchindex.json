@@ -1,0 +1,6 @@
+{{- /* This file generates a raw search index which is later parsed by lunr.js */ -}}
+{{- $.Scratch.Add "index" slice -}}
+{{- range .Site.RegularPages -}}
+{{- $.Scratch.Add "index" (dict "title" .Title "tags" .Params.tags "categories" .Params.categories "contents" .Plain "permalink" .Permalink) -}}
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}
