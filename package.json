@@ -1,15 +1,16 @@
 {
-  "name": "mattermost-plugin-docs",
+  "name": "mattermost-developer-documentation",
   "version": "0.0.1",
   "description": "Generate webapp plugin docs from Mattermost source code comments",
   "main": "plugin-jsdocs.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-html": "html-validate \"dist/html/**/*.html\""
   },
   "author": "Joram Wilander",
   "license": "MIT",
   "dependencies": {
     "espree": "^7.0.0",
+    "html-validate": "^7.7.1",
     "sync-fetch": "^0.4.1"
   }
 }

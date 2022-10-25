@@ -31,7 +31,8 @@ build:
 
 .PHONY: test
 test:
-	html-validate "dist/html/**/*.html"
+	npm install
+	npm run test-html
 
 .PHONY: compass-icons
 compass-icons:
