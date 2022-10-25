@@ -72,9 +72,13 @@ function search(query) {
     // Our result:
     //  {title:"Page1", href:"/section/page1", ...}
     return lunrIndex.search(query).map(function (result) {
-        return pagesIndex.filter(function (page) {
+        const pageResult = pagesIndex.filter(function (page) {
             return page.permalink === result.ref;
         })[0];
+        return {
+            score: result.score,
+            page: pageResult
+        };
     });
 }
 
@@ -88,15 +92,21 @@ function renderResults(results) {
         return;
     }
 
-    // Only show the fifty first results
+    // Only show the first fifty results
     $results = document.getElementById("results");
     results.slice(0, 50).forEach(function (result) {
-        const li = document.createElement('li');
-        const ahref = document.createElement('a');
-        ahref.href = result.permalink;
-        ahref.text = "» " + result.title;
-        li.append(ahref);
-        $results.appendChild(li);
+        if (result.page.title && result.page.title !== "") {
+            const li = document.createElement('li');
+            const ahref = document.createElement('a');
+            ahref.href = result.page.permalink;
+            ahref.text = "» " + result.page.title;
+            li.append(ahref);
+            li.append(document.createElement("br"));
+            const descSpan = document.createElement('span');
+            descSpan.textContent = "[" + result.score + "] " + result.page.contents.substring(0, 64) + "...";
+            li.append(descSpan);
+            $results.appendChild(li);
+        }
     });
 }
 
