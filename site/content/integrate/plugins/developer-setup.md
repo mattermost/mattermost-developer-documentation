@@ -10,7 +10,9 @@ aliases:
 
 Once you have your [server]({{< ref "/contribute/more-info/server/developer-setup" >}}) and [webapp]({{< ref "/contribute/more-info/webapp/developer-setup" >}}) set up, you can start developing on plugins.
 
-**Note:** Plugin development doesn't require a development build of Mattermost. Development builds of Mattermost are only required if you want to develop for Mattermost internally.
+{{<note "Note:">}}
+Plugin development doesn't require a development build of Mattermost. Development builds of Mattermost are only required if you want to develop for Mattermost internally.
+{{</note>}}
 
 For developing on Mattermost-managed plugins, each plugin's setup instructions can be found in the plugin repository's README. Some plugins do not have external dependencies and require little to no setup, like the [Todo Plugin](https://github.com/mattermost/mattermost-plugin-todo) while others require an external service to be set up, like the [Jira Plugin](https://github.com/mattermost/mattermost-plugin-jira) and [GitHub Plugin](https://github.com/mattermost/mattermost-plugin-github).
 
@@ -18,7 +20,9 @@ For developing on Mattermost-managed plugins, each plugin's setup instructions c
 
 ### Deploy with local mode
 
-**Note:** Deploying with local mode will only work for plugins that have been updated with the functionality from the [Plugin Starter Template](https://github.com/mattermost/mattermost-plugin-starter-template).
+{{<note "Note:">}}
+Deploying with local mode will only work for plugins that have been updated with the functionality from the [Plugin Starter Template](https://github.com/mattermost/mattermost-plugin-starter-template).
+{{</note>}}
 
 If your Mattermost server is running locally, you can enable [local mode](https://docs.mattermost.com/manage/mmctl-command-line-tool.html#local-mode) and [plugin uploads](https://docs.mattermost.com/configure/configuration-settings.html#enable-plugin-uploads) to streamline deploying your plugin. Edit your server configuration as follows:
 

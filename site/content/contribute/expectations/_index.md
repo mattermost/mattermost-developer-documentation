@@ -4,10 +4,12 @@ heading: "Contributor expectations"
 weight: 3
 ---
 
-To contribute to Mattermost, you must sign the [Contributor License Agreement](https://mattermost.com/mattermost-contributor-agreement/). Doing so adds you to our list of [Mattermost Approved Contributors](https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true). 
+To contribute to Mattermost, you must sign the [Contributor License Agreement](https://mattermost.com/mattermost-contributor-agreement/). Doing so adds you to our list of [Mattermost Approved Contributors](https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true).
 Please also read our [community expectations]({{< ref "/contribute/good-decisions/" >}}) and note that we all abide by the [Mattermost Code of Conduct (CoC)](https://handbook.mattermost.com/contributors/contributors/guidelines/contribution-guidelines), and by joining our contributor community, you agree to abide by it as well.
 
-**Tip:** Love swag? If you choose to provide us with your mailing address in the signed agreement, you'll receive a [Limited Edition Mattermost Mug](https://forum.mattermost.com/t/limited-edition-mattermost-mugs/143) as a thank you gift after your first pull request is merged.
+{{<note "Tip:">}}
+Love swag? If you choose to provide us with your mailing address in the signed agreement, you'll receive a [Limited Edition Mattermost Mug](https://forum.mattermost.com/t/limited-edition-mattermost-mugs/143) as a thank you gift after your first pull request is merged.
+{{</note>}}
 
 ## Before contributing
 
@@ -30,7 +32,7 @@ To get started:
      - [Core Plugins]({{< ref "/contribute/more-info/plugins/" >}}): A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
      - [Boards]({{< ref "/contribute/more-info/focalboard/" >}}) and [Playbooks](https://github.com/mattermost/mattermost-plugin-playbooks) core integrations.
 
-2. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the **Edit in Github** button in the top right of its respective published page. You can read more about this process on the [why and how to contribute page]({{< ref "/contribute/why-contribute/#you-want-to-help-with-content" >}}). You can contribute to the following Mattermost documentation sites: 
+2. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the **Edit in Github** button in the top right of its respective published page. You can read more about this process on the [why and how to contribute page]({{< ref "/contribute/why-contribute/#you-want-to-help-with-content" >}}). You can contribute to the following Mattermost documentation sites:
 
     - [Product documentation](https://github.com/mattermost/docs)
     - [Developer documentation](https://github.com/mattermost/mattermost-developer-documentation)
@@ -39,23 +41,27 @@ To get started:
 
 ## During the contribution process
 
-1. Check in regularly with your Pull Request (PR) to review and respond to feedback. 
+1. Check in regularly with your Pull Request (PR) to review and respond to feedback.
 2. Thoroughly document what you’re doing in your PR. This way, future contributors can pick up on your work (including you!). This is especially helpful if you need to step back from a PR.
 3. Each PR should represent a single project, both in code and in content. Keep unrelated tasks in separate  PRs.
 4. Make your PR titles and commit messages descriptive! Briefly describing the project in the PR title and in your commit messages often results in faster responses, less clarifying questions, and better feedback.
 
-**Tip:** If you need to take a break from an assigned issue during, for example, the Hacktoberfest project, please commit any completed work to date in a PR, and note that you're stepping away in the issue itself. These two steps help ensure that your contributions are counted and outstanding work on a given ticket can be made available to other contributors. 
+{{<note "Tip:">}}
+If you need to take a break from an assigned issue during, for example, the Hacktoberfest project, please commit any completed work to date in a PR, and note that you're stepping away in the issue itself. These two steps help ensure that your contributions are counted and outstanding work on a given ticket can be made available to other contributors.
+{{</note>}}
 
 ## Writing code
 
-Thoroughly test your contributions! We recommend the following testing best practices for your contribution: 
+Thoroughly test your contributions! We recommend the following testing best practices for your contribution:
 1. Detail exactly what you expect to happen in the product when others test your contributions.
-2. Identify updates to existing [product](https://docs.mattermost.com/), [developer](https://developers.mattermost.com/), and/or [API](https://api.mattermost.com/) documentation based on your contributions, and identify documentation gaps for new features or functionality. 
+2. Identify updates to existing [product](https://docs.mattermost.com/), [developer](https://developers.mattermost.com/), and/or [API](https://api.mattermost.com/) documentation based on your contributions, and identify documentation gaps for new features or functionality.
 
-   **Note:** Contributors and reviewers are strongly encouraged to work with the Mattermost Technical Writing team via the [Documentation Working Group channel](https://community.mattermost.com/core/channels/dwg-documentation-working-group) on the Mattermost Community Server before approving community contributions. See the Mattermost Handbook for additional details on [engaging the Mattermost Technical Writing team](https://handbook.mattermost.com/operations/research-and-development/product/technical-writing-team-handbook/work-with-us#how-to-engage-with-us), and for [submitting documentation with your PR](https://handbook.mattermost.com/operations/research-and-development/product/technical-writing-team-handbook/writing-community-documentation#submit-documentation-with-your-pr).
+   {{<note "Note:">}}
+   Contributors and reviewers are strongly encouraged to work with the Mattermost Technical Writing team via the [Documentation Working Group channel](https://community.mattermost.com/core/channels/dwg-documentation-working-group) on the Mattermost Community Server before approving community contributions. See the Mattermost Handbook for additional details on [engaging the Mattermost Technical Writing team](https://handbook.mattermost.com/operations/research-and-development/product/technical-writing-team-handbook/work-with-us#how-to-engage-with-us), and for [submitting documentation with your PR](https://handbook.mattermost.com/operations/research-and-development/product/technical-writing-team-handbook/writing-community-documentation#submit-documentation-with-your-pr).
+   {{</note>}}
 
 3. If your PR adds a new plugin API method or hook, please add an example to the [Plugin Starter Template](https://github.com/mattermost/mattermost-plugin-starter-template).
-4. If your code adds a new user interface string, include it in the proper localization file, either for [the server repository](https://github.com/mattermost/mattermost-server/blob/master/i18n/en.json), [the webapp repository](https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json), or [the mobile repository](https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json). 
+4. If your code adds a new user interface string, include it in the proper localization file, either for [the server repository](https://github.com/mattermost/mattermost-server/blob/master/i18n/en.json), [the webapp repository](https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json), or [the mobile repository](https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json).
 
 {{<note "Note:">}}
 When working within the webapp repository, additionally run `make i18n-extract` from a terminal to update the list of product strings with your changes.
