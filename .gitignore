@@ -1,5 +1,3 @@
-node_modules
-
 # build artifacts
 /dist
 /site/.hugo_build.lock
@@ -16,3 +14,6 @@ node_modules
 
 # IDE artifacts
 .idea/
+
+# node
+node_modules
