@@ -1,14 +1,28 @@
 <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Mattermost Developer Documentation - Site search</title>
+    {{ partial "head.html" .}}
 </head>
 <body>
-    <label for="search">Query: </label><input id="search" type="text">
-    <button id="search-button">Search</button><br/>
-    Results:
-    <ul id="results"></ul>
+    {{ partial "gtm-body-noscript.html" }}
+    {{ partial "nav2.html" .}}
+    <div id="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-9 doc-content">
+                    <label for="search">Query:</label>&nbsp;<input id="search" type="text">
+                    <button id="search-button">Search</button><br/>
+                    <h1 class="mt-0 doc-title">Search results</h1><br/>
+                    <ul id="results"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ partial "footer.html" .}}
     <script src="https://unpkg.com/lunr@2.3.9/lunr.min.js"></script>
     <script src="{{ "js/search.js" | absURL }}"></script>
 </body>
