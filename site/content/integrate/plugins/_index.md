@@ -4,7 +4,8 @@ heading: "Plugins in Mattermost"
 description: "Mattermost supports plugins that offer powerful features for extending and deeply integrating with both the Server and Web/Desktop Apps."
 date: 2017-07-10T00:00:00-05:00
 weight: 40
-aliases: [/extend/plugins/]
+aliases:
+  - /extend/plugins/
 ---
 
 Mattermost supports plugins that offer powerful features for extending and deeply integrating with both the Server and Web/Desktop Apps.
@@ -27,6 +28,6 @@ Extend the Mattermost REST API with custom endpoints for use by Web App plugins 
 
 ### Simple development and installation
 
-Using the [server]({{< ref "/integrate/plugins/server/hello-world" >}}) and [web app]({{< ref "/integrate/plugins/webapp/hello-world" >}}) quick start guides, it's simple to set up a plugin development environment. You can also base your implementation off of [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template), complete with build scripts and templates. Once bundled as a gzipped .tar file, upload your plugin to a Mattermost server through the [System Console](https://developers.mattermost.com/integrate/admin-guide/admin-plugins-beta/) or via the [API](https://api.mattermost.com/#tag/plugins).
+Using the [server]({{< ref "/integrate/plugins/components/server/hello-world" >}}) and [web app]({{< ref "/integrate/plugins/components/webapp/hello-world" >}}) quick start guides, it's simple to set up a plugin development environment. You can also base your implementation off of [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template), complete with build scripts and templates. Once bundled as a gzipped .tar file, upload your plugin to a Mattermost server through the [System Console]({{< ref "/integrate/plugins/using-and-managing-plugins" >}}) or via the [API](https://api.mattermost.com/#tag/plugins).
 
 Read the plugins [overview]({{< ref "/integrate/plugins/overview" >}}) to learn more.

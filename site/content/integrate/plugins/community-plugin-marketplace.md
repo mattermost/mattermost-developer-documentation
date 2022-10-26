@@ -1,9 +1,10 @@
 ---
-title: Community Plugins in the Marketplace
-heading: "Community Plugins in the Marketplace"
+title: Community plugins in the Marketplace
+heading: "Community plugins in the Marketplace"
 description: "Once your plugin has reached a certain level of quality, you might consider submitting it to the Marketplace."
-weight: 60
-aliases: [/extend/plugins/community-plugin-marketplace/]
+weight: 110
+aliases:
+  - /extend/plugins/community-plugin-marketplace/
 ---
 
 Once your plugin has reached a certain level of quality, you might consider submitting it to the Marketplace. The Marketplace is a platform that supports discovery, installation, and updates of plugins directly within Mattermost. It's a great way to get feedback on your plugin and help make it more popular. Once your plugin is accepted to the Marketplace, Mattermost will also send you swag!
@@ -24,7 +25,10 @@ Every community plugin must fulfill the following checklist to be added to the M
 
 **Technical requirements (checked by the relevant development team)**
 
-1. The plugin works for 60k concurrent connections and in a High Availability deployment. **Note:** There are currently no publicly-available tools to verify these properties. As such, they are checked during code review by a developer.
+1. The plugin works for 60k concurrent connections and in a High Availability deployment.
+  {{<note "Note:">}}
+  There are currently no publicly-available tools to verify these properties. As such, they are checked during code review by a developer.
+  {{</note>}}
 2. The plugin logs important events on appropriate log levels to allow System Admins to troubleshoot issues.
 
 **Security requirements (checked by a member of the Security team)**
@@ -39,7 +43,7 @@ Every community plugin must fulfill the following checklist to be added to the M
 
 **Documentation requirements (checked by a Technical Writer)**
 
-1 The plugin must include detailed usage documentation with at least one screenshot of the plugin in action, list of features, and a development guide. This is typically a `README` file or a landing page on the web. The link to the documentation is set as `homepage_url` in the manifest. A great example is the [`README` of the GitHub plugin](https://github.com/mattermost/mattermost-plugin-github/blob/master/README.md). Typical components of documentation include:
+1. The plugin must include detailed usage documentation with at least one screenshot of the plugin in action, list of features, and a development guide. This is typically a `README` file or a landing page on the web. The link to the documentation is set as `homepage_url` in the manifest. A great example is the [`README` of the GitHub plugin](https://github.com/mattermost/mattermost-plugin-github/blob/master/README.md). Typical components of documentation include:
 
     * Requirements/Prerequisites
     * Installation steps
@@ -88,11 +92,11 @@ All community plugins are assigned an _owner_ to guide you through the review pr
 
 ### Beta plugins
 
-If a community plugin doesn’t make it through the review process, it may still be added to the Marketplace and marked as “Beta”. The reviewers decide whether the quality of a plugin is sophisticated enough to be added to the Marketplace on a case-by-case basis. Security and functional reviews and items 1, 2, 3, and 5 from the [Product Requirements Checklist](#requirements-for-adding-community-plugin-to-the-marketplace) must be fulfilled for Beta plugins.
+If a community plugin doesn’t make it through the review process, it may still be added to the Marketplace and marked as “Beta”. The reviewers decide whether the quality of a plugin is sophisticated enough to be added to the Marketplace on a case-by-case basis. Security and functional reviews and items 1, 2, 3, and 5 from the [Product Requirements Checklist](#requirements-for-adding-a-community-plugin-to-the-marketplace) must be fulfilled for Beta plugins.
 
 ### Security issues
 
-Any security issues found in the plugin should be reported by email to `responsibledisclosure@mattermost.com` or sent directly to a member of the [Security team](https://developers.mattermost.com/internal/rd-teams/#security-team) on the [Community Server](https://community.mattermost.com/).
+Any security issues found in the plugin should be reported by email to `responsibledisclosure@mattermost.com` or sent directly to a member of the [Security team]({{< ref "/internal/rd-teams#security-team" >}}) on the [Community Server](https://community.mattermost.com/).
 
 ### Take down policy
 

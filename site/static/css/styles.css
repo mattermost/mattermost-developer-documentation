@@ -11,8 +11,12 @@
 
 @font-face {
     font-family: 'FontAwesome';
-    src: url("../fonts/fontawesome-webfont.eot?v=4.7.0");
-    src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
+    src: url("../font/fontawesome-webfont.eot?v=4.7.0");
+    src: url("../font/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"),
+         url("../font/fontawesome-webfont.woff2?v=4.7.0") format("woff2"),
+         url("../font/fontawesome-webfont.woff?v=4.7.0") format("woff"),
+         url("../font/fontawesome-webfont.ttf?v=4.7.0") format("truetype"),
+         url("../font/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
     font-weight: normal;
     font-style: normal;
 }
@@ -3114,10 +3118,26 @@ a:hover {
 
 code {
     word-break: break-word;
+    font-family: 'Fira Mono','Courier New',Courier,monospace;
 }
 
-td:first-child code {
+/* Ensure words are not broken for monospaced text in a table cell */
+td>code {
     word-break: normal;
+}
+
+td>a {
+    word-break: inherit;
+}
+
+/* Make the chevron size in the collapse toggle larger than normal */
+span.collapseToggle>[class^="icon-"]:before, [class*=" icon-"]:before {
+    font-size: 150%;
+}
+
+/* Add space between consecutive collapsable blocks */
+.collapseCard {
+    margin-bottom: 10px;
 }
 
 .container-fluid {
@@ -3291,6 +3311,18 @@ h2 {
 
 h3 {
     font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+h6 {
+    font-size: 0.75rem;
 }
 
 h1:first-child,
@@ -4536,8 +4568,13 @@ ol > li + li {
 
 /* 2021 Reskin Global */
 .mm-container {
-    max-width: 1100px;
+    /* 2 cards of equal width + 40px space between the cards + 20px left padding + 20px right padding */
+    max-width: 760px;
     margin: 0 auto;
+}
+
+.mm-grid-col-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .mm-grid-col-3 {
@@ -4567,20 +4604,20 @@ ol > li + li {
         background-repeat: no-repeat;
         background-position: top left;
         background-size: 18vw;
-    }    
+    }
 }
 
 @media (min-width: 1280px) {
     .homepage-wrapper {
         background-size: 290px;
-    }    
+    }
 }
 
 @media (min-width: 768px) {
     .homepage__marquee {
         text-align: center;
         padding-bottom: 40px;
-    }    
+    }
 }
 
 .mm-h1 {
@@ -4617,7 +4654,7 @@ ol > li + li {
     .homepage-card {
         min-height: 400px;
         margin-bottom: 0;
-    }  
+    }
 }
 
 .homepage-card img {

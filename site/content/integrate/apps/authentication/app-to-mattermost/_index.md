@@ -1,8 +1,7 @@
 ---
 title: "To Mattermost"
-heading: "Authenticating with Mattermost"
-description: "TODO"
-weight: 100
+heading: "Authenticate with Mattermost"
+weight: 10
 ---
 
 An app declares in its `Manifest` the `Locations` that it will be binding to,
@@ -15,8 +14,10 @@ Each app when installed into Mattermost gets an OAuth2 Client ID and a secret
 may receive a combination of `bot_access_token`, `acting_user_access_token`, and
 `admin_access_token` as applicable.
 
-**Note: OAuth2 to Mattermost is not yet implemented, for now session tokens are
+{{<note "Note:">}}
+**OAuth2 to Mattermost is not yet implemented, for now session tokens are
 passed in as ActingUserAccessToken**
+{{</note>}}
 
 Each call request sent to the app includes Mattermost site URL, and optionally
 one or more access tokens the app can use. The app then authenticates its
@@ -40,5 +41,5 @@ a System Admin, and the call's `expand` contained
 `admin_access_token=all`, the call receives `admin_access_token` in the request
 `context`. Otherwise, `admin_access_token` is empty.
 
-See [here]({{< ref "manifest#permissions">}}) to learn more about the available
+See [here]({{< ref "/integrate/apps/structure/manifest#permissions" >}}) to learn more about the available
 permissions
