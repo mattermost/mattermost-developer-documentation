@@ -1,16 +1,5 @@
 'use strict';
 
-/**
- * Get the search terms from the input field and redirect the user to the search page
- */
-const performSearch = () => {
-    const searchQuery = document.getElementById("search-query");
-    const redirectURL = new URL(window.location.pathname + "search/", window.location.origin);
-    redirectURL.searchParams.set("q", searchQuery.value);
-    console.log("performSearch(): redirectURL=" + redirectURL.toString());
-    window.location.href = redirectURL.toString();
-};
-
 $(document).ready(function(){
     $('.header__menu-toggle, .sidebar__menu-toggle').on('click', function(){
         $(this).next().slideToggle();
@@ -63,8 +52,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.body.classList.toggle('nav-open');
         document.getElementById('navigation').classList.toggle('active');
     });
-
-    // Hook up the search button with the performSearch method
-    const searchButton = document.getElementById("search-button");
-    searchButton.addEventListener("click", performSearch);
 });

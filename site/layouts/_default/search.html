@@ -14,9 +14,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-9 doc-content">
-                    <label for="search">Query:</label>&nbsp;<input id="search" type="text">
+                    <label for="search"></label><input id="search" type="text" placeholder="Search developer documentation">
                     <button id="search-button">Search</button><br/>
-                    <h1 class="mt-0 doc-title">Search results</h1><br/>
+                    <h1 class="mt-0 doc-title">{{ .Title }}</h1><br/>
                     <ul id="results"></ul>
                 </div>
             </div>

@@ -5,22 +5,19 @@
 <!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
 <html>
     <head>
-        {{ partial "head.html" .}}
+        {{ partial "head.html" . }}
     </head>
     <body class="homepage">
         {{ partial "gtm-body-noscript.html" }}
-        {{ partial "nav.html" .}}
-
+        {{ partial "nav.html" . }}
         <div class="homepage-wrapper">
-            {{ partial "hero.html" .}}
-
+            {{ partial "hero.html" . }}
             <div class="container-fluid">
-                {{ partial "intro.html" .}}
-
-                {{ partial "mailinglist.html" .}}
+                {{ partial "intro.html" . }}
+                {{ partial "mailinglist.html" . }}
             </div>
         </div>
-
-        {{ partial "footer.html" .}}
+        {{ partial "footer.html" . }}
+        <script src="{{ "js/search-page.js" | absURL }}"></script>
     </body>
 </html>
