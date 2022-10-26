@@ -5,8 +5,10 @@
  */
 const performSearch = () => {
     const searchQuery = document.getElementById("search-query");
-    const redirectURL = new URL("/search/", window.location.origin);
+    console.log("window.location: " + JSON.stringify(window.location));
+    const redirectURL = new URL(window.location.pathname + "search/", window.location.origin);
     redirectURL.searchParams.set("q", searchQuery.value);
+    console.log("performSearch(): redirectURL=" + redirectURL.toString());
     window.location.href = redirectURL.toString();
 };
 
