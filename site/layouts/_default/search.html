@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Site search</title>
+    <title>Mattermost Developer Documentation - Site search</title>
 </head>
 <body>
-    <label for="search"><input id="search" type="text"></label>
-    <br/>Results:
-    <ul id="results">
-    </ul>
+    <label for="search">Query: </label><input id="search" type="text">
+    <button id="search-button">Search</button><br/>
+    Results:
+    <ul id="results"></ul>
     <script src="https://unpkg.com/lunr@2.3.9/lunr.min.js"></script>
     <script src="{{ "js/search.js" | absURL }}"></script>
 </body>
