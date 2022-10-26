@@ -3573,6 +3573,11 @@ table>tbody>tr:nth-of-type(odd) {
     max-width: 850px;
 }
 
+.homepage-search__row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .homepage-search__input {
     position: relative;
 }

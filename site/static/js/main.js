@@ -1,3 +1,15 @@
+'use strict';
+
+/**
+ * Get the search terms from the input field and redirect the user to the search page
+ */
+const performSearch = () => {
+    const searchQuery = document.getElementById("search-query");
+    const redirectURL = new URL("/search/", window.location.origin);
+    redirectURL.searchParams.set("q", searchQuery.value);
+    window.location.href = redirectURL.toString();
+};
+
 $(document).ready(function(){
     $('.header__menu-toggle, .sidebar__menu-toggle').on('click', function(){
         $(this).next().slideToggle();
@@ -21,11 +33,11 @@ $(document).ready(function(){
             $("header").removeClass("with-notification-bar");
         }
         document.cookie = 'hideBanner=true'
-    }); 
+    });
 });
 
 // 2021 Redesign - Navigation
-document.addEventListener("DOMContentLoaded", function(event) {     
+document.addEventListener("DOMContentLoaded", function(event) {
     const hamburger = document.getElementById('hamburger');
     const subMenus = document.querySelectorAll('.site-nav__hassubnav a');
 
@@ -50,4 +62,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.body.classList.toggle('nav-open');
         document.getElementById('navigation').classList.toggle('active');
     });
+
+    // Hook up the search button with the performSearch method
+    const searchButton = document.getElementById("search-button");
+    searchButton.addEventListener("click", performSearch);
 });
