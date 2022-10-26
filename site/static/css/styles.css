@@ -3773,6 +3773,9 @@ ol > li + li {
     .sidebar+.doc-content {
         padding-left: 40px;
     }
+    .homepage-search__button {
+        margin-bottom: 50px;
+    }
 }
 
 @media (max-width: 400px) {
