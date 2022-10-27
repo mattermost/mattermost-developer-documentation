@@ -241,27 +241,6 @@ When the slash command is executed, the form's `submit` call will be performed.
 
 ### Click a button in the channel header
 
-{{<collapse id="click_channel_header-client_submit_request" title="Client submit request">}}
-
-```http request
-POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
-Content-Type: application/json
-
-{
-    "path":"/send",
-    "context":{
-        "app_id":"hello-world",
-        "location":"/channel_header/send-button",
-        "channel_id":"zot5mcxxcfbqddgif88sji6ziy",
-        "team_id":"143qpkqxfiy5xqqf33w51w8abe",
-        "track_as_submit":true,
-        "user_agent":"webapp"
-    },
-    "expand":{}
-}
-```
-
-{{</collapse>}}
 {{<collapse id="click_channel_header-mm_submit_request" title="MM submit request">}}
 
 ```http request
@@ -340,36 +319,6 @@ Content-Type: application/json
 
 ### Select from a user field in a modal dialog
 
-{{<collapse id="selected_user_modal-client_form_request" title="Client form request">}}
-
-```http request
-POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
-Content-Type: application/json
-
-{
-    "path": "/send-form-source",
-    "context": {
-        "app_id": "hello-world",
-        "location": "/channel_header/send-button",
-        "channel_id": "9a44ckeqytd3bftn3c3y53968o",
-        "team_id": "143qpkqxfiy5xqqf33w51w8abe",
-        "track_as_submit": false,
-        "user_agent": "webapp"
-    },
-    "values": {
-        "message": null,
-        "user": {
-            "label": "hello-world",
-            "value": "mgbd1czngjbbdx6eqruqabdeie"
-        },
-        "option": null
-    },
-    "expand": {},
-    "selected_field": "user"
-}
-```
-
-{{</collapse>}}
 {{<collapse id="selected_user_modal-mm_form_request" title="MM form request">}}
 
 ```http request
@@ -493,32 +442,6 @@ Content-Type: application/json
 ```
 
 {{</collapse>}}
-{{<collapse id="dynamic_lookup-client_lookup_request" title="Client lookup request">}}
-
-```http request
-POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
-Content-Type: application/json
-
-{
-    "path": "/dynamic-form-lookup",
-    "context": {
-        "app_id": "hello-world",
-        "location": "/channel_header/info-button",
-        "channel_id": "9a44ckeqytd3bftn3c3y53968o",
-        "team_id": "143qpkqxfiy5xqqf33w51w8abe",
-        "track_as_submit": false,
-        "user_agent": "webapp"
-    },
-    "values": {
-        "option": null
-    },
-    "expand": {},
-    "selected_field": "option",
-    "query": ""
-}
-```
-
-{{</collapse>}}
 {{<collapse id="dynamic_lookup-mm_lookup_request" title="MM lookup request">}}
 
 ```http request
@@ -622,38 +545,6 @@ Content-Type: application/json
 ```
 
 {{</collapse>}}
-{{<collapse id="submitted_modal-client_submit_request" title="Client submit request">}}
-
-```http request
-POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
-Content-Type: application/json
-
-{
-    "path": "/modal-submit",
-    "context": {
-        "app_id": "hello-world",
-        "location": "/channel_header/send-button",
-        "channel_id": "9a44ckeqytd3bftn3c3y53968o",
-        "team_id": "143qpkqxfiy5xqqf33w51w8abe",
-        "track_as_submit": true,
-        "user_agent": "webapp"
-    },
-    "values": {
-        "message": "hello!",
-        "user": {
-            "label": "hello-world",
-            "value": "mgbd1czngjbbdx6eqruqabdeie"
-        },
-        "option": {
-            "label": "Option Two",
-            "value": "option_2"
-        }
-    },
-    "expand": {}
-}
-```
-
-{{</collapse>}}
 {{<collapse id="submitted_modal-mm_submit_request" title="MM submit request">}}
 
 ```http request
@@ -712,7 +603,7 @@ Content-Type: application/json
 ```json
 {
     "type": "error",
-    "error": "This is the error."
+    "text": "This is the error."
 }
 ```
 
@@ -733,7 +624,7 @@ Content-Type: application/json
 ```json
 {
     "type": "error",
-    "error": "This is the root error.",
+    "text": "This is the root error.",
     "data": {
         "errors": {
             "field_name": "This field seems to have an invalid value."
