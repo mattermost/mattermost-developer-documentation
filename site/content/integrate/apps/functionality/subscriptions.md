@@ -95,12 +95,6 @@ subscription := &apps.Subscription{
     Subject: "user_joined_channel",
     ChannelID: "9a44ckeqytd3bftn3c3y53968o",
     TeamID: "hoan6o9ws7rp5xj7wu9rmysrte",
-    Call: apps.Call{
-        Path: "/user-joined-channel",
-        Expand: &apps.Expand{
-            // optionally expand call metadata fields
-        },
-    },
 }
 err := client.Unsubscribe(subscription)
 if err != nil {
