@@ -6,6 +6,7 @@
 /site/data/PluginJSDocs.json
 /scripts/mattermost-webapp
 /scripts/package-lock.json
+/package-lock.json
 
 # os artifacts
 *.swp
