@@ -163,11 +163,15 @@ For example:
 ## Example request and response
 
 {{<collapse id="client_bindings_request" title="Client requests bindings from server">}}
+
 `GET /plugins/com.mattermost.apps/api/v1/bindings?user_id=ws4o4macctyn5ko8uhkkxmgfur&channel_id=qphz13bzbf8c7j778tdnaw3huc&scope=webapp`
+
 {{</collapse>}}
 
 {{<collapse id="mm_bindings_request" title="Server requests bindings from App">}}
+
 `POST /plugins/com.mattermost.apps/example/hello/bindings`
+
 ```json
 {
     "path": "/bindings",
@@ -184,9 +188,11 @@ For example:
     }
 }
 ```
+
 {{</collapse>}}
 
 {{<collapse id="app_binding_response" title="Bindings response from App">}}
+
 ```json
 {
     "type": "ok",
@@ -242,4 +248,5 @@ For example:
     ]
 }
 ```
+
 {{</collapse>}}

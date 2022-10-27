@@ -141,6 +141,7 @@ If a form was not included with the command binding, the binding's call will be 
 The call request will include the App, user, post, root post (if any), channel, and team IDs in the context.
 
 {{<collapse id="slash-command-flags-example" title="Example form with flag arguments">}}
+
 ```json
 {
     "location": "sub",
@@ -180,8 +181,10 @@ The call request will include the App, user, post, root post (if any), channel, 
     }
 }
 ```
+
 {{</collapse>}}
 {{<collapse id="slash-command-positional-example" title="Example form with positional arguments">}}
+
 ```json
 {
     "location": "sub",
@@ -224,6 +227,7 @@ The call request will include the App, user, post, root post (if any), channel, 
     }
 }
 ```
+
 {{</collapse>}}
 
 During [autocomplete]({{<ref "/integrate/slash-commands">}}), the user can open the form in a modal dialog to finish entering command arguments.
@@ -240,6 +244,7 @@ When the slash command is executed, the form's `submit` call will be performed. 
 ### Click a button in the channel header
 
 {{<collapse id="click_channel_header-client_submit_request" title="Client submit request">}}
+
 ```http request
 POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
 Content-Type: application/json
@@ -257,8 +262,10 @@ Content-Type: application/json
     "expand":{}
 }
 ```
+
 {{</collapse>}}
 {{<collapse id="click_channel_header-mm_submit_request" title="MM submit request">}}
+
 ```http request
 POST /send HTTP/1.1
 Content-Type: application/json
@@ -285,8 +292,10 @@ Content-Type: application/json
 }
 
 ```
+
 {{</collapse>}}
 {{<collapse id="click_channel_header-app_form_response" title="App form response">}}
+
 ```json
 {
     "type": "form",
@@ -326,12 +335,15 @@ Content-Type: application/json
     }
 }
 ```
+
 ![Screenshot of form](click-channel-header-response-form.png)
+
 {{</collapse>}}
 
 ### Select from a user field in a modal dialog
 
 {{<collapse id="selected_user_modal-client_form_request" title="Client form request">}}
+
 ```http request
 POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
 Content-Type: application/json
@@ -358,8 +370,10 @@ Content-Type: application/json
     "selected_field": "user"
 }
 ```
+
 {{</collapse>}}
 {{<collapse id="selected_user_modal-mm_form_request" title="MM form request">}}
+
 ```http request
 POST /send-form-source HTTP/1.1
 Content-Type: application/json
@@ -393,8 +407,10 @@ Content-Type: application/json
     "selected_field": "user"
 }
 ```
+
 {{</collapse>}}
 {{<collapse id="selected_user_modal-app_form_response" title="App form response">}}
+
 ```json
 {
     "type": "form",
@@ -445,11 +461,13 @@ Content-Type: application/json
 {{<note>}}
 `"refresh": true` is used to tell the client to notify the server when a value is selected from this field
 {{</note>}}
+
 {{</collapse>}}
 
 ### Dynamic select field lookup
 
 {{<collapse id="dynamic_lookup-form" title="Initial form response">}}
+
 ```http request
 POST /send-dynamic-form HTTP/1.1
 Content-Type: application/json
@@ -475,8 +493,10 @@ Content-Type: application/json
     }
 }
 ```
+
 {{</collapse>}}
 {{<collapse id="dynamic_lookup-client_lookup_request" title="Client lookup request">}}
+
 ```http request
 POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
 Content-Type: application/json
@@ -499,8 +519,10 @@ Content-Type: application/json
     "query": ""
 }
 ```
+
 {{</collapse>}}
 {{<collapse id="dynamic_lookup-mm_lookup_request" title="MM lookup request">}}
+
 ```http request
 POST /dynamic-form-lookup HTTP/1.1
 Content-Type: application/json
@@ -529,8 +551,10 @@ Content-Type: application/json
     "selected_field": "option"
 }
 ```
+
 {{</collapse>}}
 {{<collapse id="dynamic_lookup-app_lookup_response" title="App lookup response">}}
+
 ```json
 {
     "type": "ok",
@@ -548,11 +572,13 @@ Content-Type: application/json
     }
 }
 ```
+
 {{</collapse>}}
 
 ### Submit from a modal dialog
 
 {{<collapse is="submitted_modal-form" title="Initial form response">}}
+
 ```json
 {
     "type": "form",
@@ -596,8 +622,10 @@ Content-Type: application/json
     }
 }
 ```
+
 {{</collapse>}}
 {{<collapse id="submitted_modal-client_submit_request" title="Client submit request">}}
+
 ```http request
 POST /plugins/com.mattermost.apps/api/v1/call HTTP/1.1
 Content-Type: application/json
@@ -626,8 +654,10 @@ Content-Type: application/json
     "expand": {}
 }
 ```
+
 {{</collapse>}}
 {{<collapse id="submitted_modal-mm_submit_request" title="MM submit request">}}
+
 ```http request
 POST /modal-submit HTTP/1.1
 Content-Type: application/json
@@ -664,14 +694,17 @@ Content-Type: application/json
     }
 }
 ```
+
 {{</collapse>}}
 {{<collapse id="submitted_modal-app_submit_response" title="App submit response">}}
+
 ```json
 {
     "type": "ok",
     "text": "## Form values\n- message: \"hello!\"\n- option: {\"label\":\"Option Two\", \"value\":\"option_2\"}\n- user: {\"label\":\"hello-world\", \"value\":\"mgbd1czngjbbdx6eqruqabdeie\"}\n"
 }
 ```
+
 {{</collapse>}}
 
 ## Example error responses
