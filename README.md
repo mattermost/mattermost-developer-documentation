@@ -4,6 +4,13 @@ Website for Mattermost developer documentation, built using [Hugo](https://gohug
 
 ## Contribute
 
+### Prerequisites
+
+- Golang v1.18+ [(_download_)](https://go.dev/dl)
+- NodeJS v14+ [(_download_)](https://nodejs.org/en/download/)
+- cURL [(_download_)](https://curl.se/download.html)
+  - (_optional_) Used to update Compass Icons
+
 ### Set up your environment
 
 1. Follow the [Hugo documentation](https://gohugo.io/getting-started/installing/) to install Hugo. This repo uses Hugo v0.101.0 to build the docs.
@@ -19,10 +26,11 @@ Website for Mattermost developer documentation, built using [Hugo](https://gohug
     go install github.com/gohugoio/hugo@v0.101.0
     ```
 
-2. Fork the repository and clone the fork to your machine.
+2. Fork the repository and clone the fork to your machine. Change directories to the cloned repo when it has finished.
 
     ```shell
     git clone git@github.com:<yourgithubname>/mattermost-developer-documentation.git
+    cd mattermost-developer-documentation
     ```
 
 3. Generate JSON plugin docs; this must be done at least once.
