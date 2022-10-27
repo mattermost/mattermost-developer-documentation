@@ -123,3 +123,30 @@ if err != nil {
 ```
 
 ![Screenshot of embedded select example](embedded-binding-select-example.png)
+
+The `Call` payload from selecting an option looks like the following:
+
+```json
+{
+    "path": "/set-roast-preference",
+    "expand": {},
+    "context": {
+        "app_id": "hello-world",
+        "location": "/in_post/embedded/coffee-roast/medium-roast",
+        "user_agent": "webapp",
+        "track_as_submit": true,
+        "mattermost_site_url": "http://mattermost:8066",
+        "developer_mode": true,
+        "app_path": "/plugins/com.mattermost.apps/apps/hello-world",
+        "bot_user_id": "mgbd1czngjbbdx6eqruqabdeie",
+        "bot_access_token": "pb7g98amypdkiymcwr9f7qtqdw",
+        "acting_user": {
+            "id": "7q7kaakokfdsdycy3pr9ctkc5r"
+            // additional fields omitted for brevity
+        },
+        "oauth2": {}
+    }
+}
+```
+
+The value of the `location` context field indicates which option was selected by the user.
