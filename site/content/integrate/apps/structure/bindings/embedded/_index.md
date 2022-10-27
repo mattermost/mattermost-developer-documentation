@@ -27,7 +27,7 @@ post.AddProp(apps.PropAppBindings, []apps.Binding{
     },
 })
 client := appclient.AsBot(callRequest.Context)
-created_post, err := client.CreatePost(post)
+createdPost, err := client.CreatePost(post)
 if err != nil {
     // handle the error
 }
@@ -116,7 +116,7 @@ post.AddProp(apps.PropAppBindings, []apps.Binding{
     },
 })
 client := appclient.AsBot(callRequest.Context)
-created_post, err := client.CreatePost(post)
+createdPost, err := client.CreatePost(post)
 if err != nil {
     // handle the error
 }
