@@ -3133,6 +3133,7 @@ td>a {
 /* Make the chevron size in the collapse toggle larger than normal */
 span.collapseToggle>[class^="icon-"]:before, [class*=" icon-"]:before {
     font-size: 150%;
+    cursor: pointer;
 }
 
 /* Add space between consecutive collapsable blocks */
