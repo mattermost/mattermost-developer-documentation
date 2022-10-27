@@ -14,10 +14,13 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-9 doc-content">
-                    <label for="search"></label><input id="search" type="text" placeholder="Search developer documentation">
-                    <button id="search-button">Search</button><br/>
+                    <label for="search-query"></label><input id="search-query" class="search__input" type="text" placeholder="Search developer documentation">
+                    <button id="search-button" class="search__button">Search</button>
+                    <span id="search-status" class="search__span_status badge badge-secondary"></span>
+                    <br/><br/>
                     <h1 class="mt-0 doc-title">{{ .Title }}</h1><br/>
-                    <ul id="results"></ul>
+                    <span id="search-result-count" class="search__span_result-count"></span>
+                    <ul id="results" class="search__results"></ul>
                 </div>
             </div>
         </div>

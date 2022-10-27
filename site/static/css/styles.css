@@ -4709,3 +4709,17 @@ ol > li + li {
     fill: #7E96C8;
     fill: #1D315C;
 }
+
+/* Search results page */
+.search__results_result-link {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.search__results_result-description {
+    color: #363A45;
+}
+
+.search__results_result-score {
+    margin-left: 5px;
+}

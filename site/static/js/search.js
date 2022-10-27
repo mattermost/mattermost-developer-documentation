@@ -38,10 +38,10 @@ class LunrSearch {
     static buildIndex(data) {
         return lunr((builder) => {
             // Note that each of the fields referenced below also exists in the SearchIndexPage object
-            builder.field('title');
-            builder.field('tags');
-            builder.field('categories');
-            builder.field('contents');
+            builder.field('title', {boost: 1}); // Boost score for matches on the title by 1
+            builder.field('tags', {boost: 2}); // Boost score for matches on tags by 2
+            builder.field('categories', {boost: 0}); // Don't boost score for matches on categories
+            builder.field('contents', {boost: 0.5}); // Boost score for matches on content by 0.5
             builder.ref('permalink');
             for (const page of data) {
                 builder.add(page);
@@ -52,19 +52,22 @@ class LunrSearch {
     constructor() {
         // Initialize ourselves after the page has loaded
         document.addEventListener("DOMContentLoaded", () => {
+            this.getSearchData();
             this.initUI();
-            this.initLunrV2();
         });
         // Look for a query parameter and execute the search if the index is loaded
         this.checkLocationQuery();
     }
 
-    initLunrV2() {
+    getSearchData() {
+        this.updateStatus("Loading...");
         fetch('searchindex/index.json')
             .then((response) => response.json())
             .then((data) => {
                 this.setIndexPages(data);
+                this.updateStatus("Building index...");
                 this.setIndex(LunrSearch.buildIndex(data));
+                this.updateStatus("");
                 this.checkDeferredQuery();
             });
     }
@@ -73,12 +76,16 @@ class LunrSearch {
      * Hook up an event handler on the button
      */
     initUI() {
-        const searchFunc = () => {
-            const self = this;
-            self.doManualSearch();
-        };
         const searchButton = document.getElementById("search-button");
-        searchButton.addEventListener("click", searchFunc);
+        searchButton.addEventListener("click", (event) => {
+            this.search();
+        });
+        const searchInput = document.getElementById("search-query");
+        searchInput.addEventListener("keyup", (event) => {
+            if (event.key === "Enter") {
+                this.search();
+            }
+        });
     }
 
     setIndexPages(pages) {
@@ -99,11 +106,11 @@ class LunrSearch {
             const queryParam = location.searchParams.get("q").trim();
             if (queryParam !== "") {
                 // Put the query into the input field
-                const $search = document.getElementById("search");
-                $search.value = queryParam;
+                const searchEl = document.getElementById("search-query");
+                searchEl.value = queryParam;
                 // Execute the search if the index is loaded, otherwise defer the search
                 if (this.isIndexLoaded()) {
-                    this.doManualSearch();
+                    this.search();
                 } else {
                     this.deferredQuery = queryParam;
                 }
@@ -114,44 +121,59 @@ class LunrSearch {
     checkDeferredQuery() {
         // If there is a deferred query, execute the search
         if (this.deferredQuery !== "") {
-            const $search = document.getElementById("search");
-            $search.value = this.deferredQuery;
-            this.doManualSearch();
+            const searchEl = document.getElementById("search-query");
+            searchEl.value = this.deferredQuery;
+            this.search();
             this.deferredQuery = "";
+        } else {
+            this.updateStatus("");
         }
     }
 
     clearResults() {
-        const $results = document.getElementById("results");
-        if ($results.hasChildNodes()) {
-            while ($results.firstChild) {
-                $results.removeChild($results.firstChild);
+        const resultsEl = document.getElementById("results");
+        if (resultsEl.hasChildNodes()) {
+            while (resultsEl.firstChild) {
+                resultsEl.removeChild(resultsEl.firstChild);
             }
         }
     }
 
-    doManualSearch() {
+    updateStatus(message) {
+        const statusEl = document.getElementById("search-status");
+        statusEl.innerText = message;
+    }
+
+    updateResultCount(numberOfResults) {
+        const resultCountEl = document.getElementById("search-result-count");
+        resultCountEl.innerText = numberOfResults > 0 ? numberOfResults + " results found." : "";
+    }
+
+    search() {
         // If there is no index, we don't want to search
         if (!this.isIndexLoaded()) {
-            console.error("search index has not been loaded; unable to search");
+            console.error("search(): search index has not been loaded; unable to search");
             return;
         }
         // Only trigger a search when 2 chars. at least have been provided
-        const $search = document.getElementById("search");
-        const query = $search.value;
+        const searchEl = document.getElementById("search-query");
+        const query = searchEl.value;
         if (query.length < 2) {
-            console.error("query must be at least 2 characters in length");
+            console.error("search(): query must be at least 2 characters in length");
             return;
         }
         // Clear the existing search results
         this.clearResults();
+        // Update the status
+        this.updateStatus("Searching...");
         // add some fuzzyness to the string matching to help with spelling mistakes.
         const fuzzLength = Math.round(Math.min(Math.max(query.length / 4, 1), 3));
         const fuzzyQuery = query + '~' + fuzzLength;
         // Perform the search and display the results
-        const results = this.search(fuzzyQuery);
-        console.log("doManualSearch(): search returned " + results.length + " results");
+        const results = this.lunrSearch(fuzzyQuery);
+        this.updateResultCount(results.length);
         this.renderResults(results);
+        this.updateStatus("");
     }
 
     /**
@@ -160,49 +182,67 @@ class LunrSearch {
      * @param  {string} query The search query
      * @return {Array<SearchResult>} The results of the search
      */
-    search(query) {
+    lunrSearch(query) {
         // Find the item in our index corresponding to the lunr one to have more info
         // Lunr result:
         //  {ref: "/section/page1", score: 0.2725657778206127}
         // Our result:
         //  {title:"Page1", permalink:"/section/page1", ...}
-        const rawResults = this.lunrIndex.search(query);
-        return rawResults.map((result) => {
-            const pageRef = this.pagesIndex.filter((indexPage) => indexPage.permalink === result.ref);
-            if (pageRef.length > 1) {
-                console.log("*** search(): ref " + result.ref + " matches multiple pages: " + JSON.stringify(pageRef));
-            }
-            return {
-                score: result.score,
-                page: pageRef[0]
-            };
-        })
+        return this.lunrIndex
+            .search(query)
+            .map((result) => {
+                const pageRef = this.pagesIndex.filter(
+                    (indexPage) => indexPage.permalink === result.ref
+                );
+                if (pageRef.length > 1) {
+                    // If a permalink, for some reason, matches more than one page then we should know about it somehow
+                    console.error(
+                        "lunrSearch(): ref " + result.ref + " matches multiple pages: " + JSON.stringify(pageRef)
+                    );
+                }
+                return {
+                    score: result.score,
+                    page: pageRef[0]
+                };
+            });
     }
 
     /**
-     * Display the first 50 results
+     * Display the results
      *
      * @param {Array<SearchResult>} results the search results to display
      */
     renderResults(results) {
         if (!results.length) {
-            console.error("renderResults(): no results specified");
             return;
         }
         // Only show the first fifty results
-        const $results = document.getElementById("results");
-        results.slice(0, 50).forEach((result) => {
+        const resultsEl = document.getElementById("results");
+        results.forEach((result) => {
             if (result.page && result.page.title && result.page.title !== "") {
+                // Each result is a <li>
                 const li = document.createElement('li');
+                // Results have:
+                // A link to the page associated with the result
                 const ahref = document.createElement('a');
                 ahref.href = result.page.permalink;
-                ahref.text = "» " + result.page.title;
+                ahref.text = result.page.title;
+                ahref.classList.add("search__results_result-link");
                 li.append(ahref);
+                // The result score
+                const scoreBadge = document.createElement('span');
+                scoreBadge.classList.add("search__results_result-score", "badge", "badge-secondary");
+                scoreBadge.innerText = String(result.score);
+                li.append(scoreBadge);
+                // (next line)
                 li.append(document.createElement("br"));
+                // A description of the page associated with the result; uses the first 240 characters
                 const descSpan = document.createElement('span');
-                descSpan.textContent = "[" + result.score + "] " + result.page.contents.substring(0, 64) + "...";
+                descSpan.textContent = result.page.contents.substring(0, 240) + "...";
+                descSpan.classList.add("search__results_result-description");
                 li.append(descSpan);
-                $results.appendChild(li);
+                // Append the result to the end of the results list
+                resultsEl.appendChild(li);
             }
         });
     }
