@@ -97,7 +97,7 @@ The data structure of an option (`SelectOption`) in a select field is defined by
 
 ##### Dynamic select options
 
-A dynamic select field gets its options by performing the `lookup` call. The [call request]({{<ref "call#request">}}) will include the App, user, channel, and team IDs in the context.
+A dynamic select field gets its options by performing the `lookup` call.
 The [call response]({{<ref "call#response">}}) is expected to contain the list of select field options in the `items` key of the `data` map. Each option is of the type [SelectOption](#select-options).
 
 Example `lookup` call response:
@@ -122,7 +122,7 @@ Example `lookup` call response:
 
 ##### Select field refresh
 
-If the `refresh` value is set to `true`, the form's `source` call is performed any time the field's value changes. The call request will include the App, user, channel, and team IDs in the context; the current values of the form are also included.
+If the `refresh` value is set to `true`, the form's `source` call is performed any time the field's value changes. The call request will include the current values of the form.
 The call response is expected to contain a full, updated form definition.
 
 #### Markdown fields
@@ -132,13 +132,11 @@ Markdown fields are a special field that allows you to better format your form. 
 ### Form submission
 
 When the form is submitted, either by executing a slash command or clicking a submit button, the form's `submit` call is performed.
-The call request will include the App, user, channel, and team IDs in the context; the current values of the form are also included.
 
 ## Slash command arguments
 
 Slash command arguments and flags are defined by form fields. When a slash command is typed, the command arguments are retrieved from the command's form.
 If a form was not included with the command binding, the binding's call will be invoked to provide a form response.
-The call request will include the App, user, post, root post (if any), channel, and team IDs in the context.
 
 {{<collapse id="slash-command-flags-example" title="Example form with flag arguments">}}
 
@@ -237,7 +235,7 @@ Any fields not supported by commands, such as markdown fields, or form attribute
 
 ![Screenshot of autocomplete modal dialog](slash-command-autocomplete-modal-dialog.png)
 
-When the slash command is executed, the form's `submit` call will be performed. The call request will include the App, user, post, root post (if any), channel, and team IDs in the context.
+When the slash command is executed, the form's `submit` call will be performed.
 
 ## End-to-end examples
 
