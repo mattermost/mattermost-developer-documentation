@@ -8,6 +8,7 @@ aliases:
   - /integrate/apps/using-third-party-api/hello-webhooks/
 ---
 The Apps framework offers the ability to directly integrate with webhooks. An App webhook is executed through a special endpoint on the Mattermost Server and requires an authentication secret.
+The App manifest needs to request the `remote_webhooks` permission to use webhooks.
 
 The App webhook URL has the following format:
 
@@ -44,6 +45,7 @@ appManifest = apps.Manifest{
     DisplayName: "Hello, world!",
     RequestedPermissions: apps.Permissions{
         apps.PermissionActAsBot,
+        apps.PermissionRemoteWebhooks,
     },
     RequestedLocations: apps.Locations{
         apps.LocationChannelHeader,
