@@ -1,5 +1,5 @@
 ---
-title: "When A Merged PR Results In A Bug"
+title: "When a merged PR results in a bug"
 heading: "When A Merged PR Results In A Bug"
 weight: 2
 ---
