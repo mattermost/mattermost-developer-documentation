@@ -18,7 +18,7 @@ A low impact PR might mean that it affected:
 
 If this is the case, do the following:
 
-1. Create an issue for this
+1. Capture details in an issue.
 2. Mark it according to it's priority
 3. Would be best to assign it to the person who introduced the issue in the first place
 
