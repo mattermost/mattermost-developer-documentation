@@ -30,7 +30,7 @@ If this is the case, there are two scenarios:
 1. The feature introduced in the PR is handled by a feature flag 
 2. The feature introduced in the PR is **not** handled by a feature flag 
 
-For scenario 1, if it is not affecting other functionality, turn that feature flag off so the feature will be disabled.
+For scenario 1, if it's not affecting other functionality, turn that feature flag off to disable the feature.
 
 For scenario 2:
 
