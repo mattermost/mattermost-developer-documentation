@@ -1,6 +1,6 @@
 ---
-title: "Merged PR Scenario"
-heading: "Merged PR Scenario"
+title: "When A Merged PR Results In A Bug"
+heading: "When A Merged PR Results In A Bug"
 weight: 2
 ---
 
