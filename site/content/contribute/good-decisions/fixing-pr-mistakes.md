@@ -14,7 +14,7 @@ Question is, what should we, as a community, do? That depends on the scope of th
 ## Low Impact
 A low impact PR might mean that it affected:
 - Some non-critical functionality
-- It does not affect users in a substantial way 
+- It doesn't affect users in a substantial way 
 
 If this is the case, do the following:
 
