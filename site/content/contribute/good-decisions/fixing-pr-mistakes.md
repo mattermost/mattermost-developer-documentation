@@ -22,7 +22,7 @@ If this is the case, do the following:
 2. Mark it according to its priority.
 3. Would be best to assign it to the person who introduced the issue in the first place.
 
-## High Impact
+## High impact issues
 A high impact PR represents something that has or will result in a customer incident.
 
 If this is the case, there are two scenarios:
