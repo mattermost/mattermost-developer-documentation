@@ -1,16 +1,17 @@
-const espree = require('espree');
+const { parse } = require('@typescript-eslint/typescript-estree');
 const fetch = require('sync-fetch');
 
 // Parse the registry and extract the class methods, parameters and leading comments.
-const registryContent = fetch('https://raw.githubusercontent.com/mattermost/mattermost-webapp/master/plugins/registry.js').text();
-const registryParsed = espree.parse(registryContent, { comment: true, loc: true, sourceType: 'module', ecmaVersion: 10 });
+const registryContent = fetch('https://raw.githubusercontent.com/mattermost/mattermost-webapp/master/plugins/registry.ts').text();
+const registryParsed = parse(registryContent, { comment: true, loc: true });
 
 const pluginRegistryClassMethods = registryParsed.body.find(statement =>
     statement.type === "ExportDefaultDeclaration" &&
     statement.declaration.id.name === "PluginRegistry"
 ).declaration.body.body.filter(statement =>
-    statement.type === "MethodDefinition" &&
-    statement.key.name !== "constructor"
+    statement.value !== null &&
+        (statement.type === "MethodDefinition" || (statement.type === "PropertyDefinition" && statement.value.type === "CallExpression")) &&
+        statement.key.name !== "constructor"
 )
 
 // Group all adjacent comments in commentBlocks.
@@ -46,9 +47,26 @@ commentBlocks.forEach(block => {
 // its parameters and its preceding comment block.
 const methodsOutput = pluginRegistryClassMethods.map((statement) => {
     const commentBlock = lineToPrecedingBlock[statement.loc.start.line];
+    let params = [];
+    if (statement.type === "PropertyDefinition" && "arguments" in statement.value) {
+        const funcExpr = statement.value.arguments.filter(
+            s => s.type === "ArrowFunctionExpression"
+        );
+        if (funcExpr && funcExpr[0]) {
+            params = funcExpr[0].params.map(param => {
+                return param.properties.map(prop => {
+                    return prop.key.name;
+                });
+            });
+        }
+    } else {
+        if (statement.value.params) {
+            params = statement.value.params.map(param => param.name);
+        }
+    }
     return {
         Name: statement.key.name,
-        Parameters: statement.value.params.map(param => param.name),
+        Parameters: params,
         Comments: commentBlock ? commentBlock : [],
     }
 });
