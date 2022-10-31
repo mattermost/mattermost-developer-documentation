@@ -36,4 +36,4 @@ For scenario 2:
 
 1. Revert the changes introduced in the original PR
 2. Let the original person who worked on the PR know this so they can work on a proper fix for their PR
-3. Reintroduce the change and have it go through the regular PR cycle
+3. Reintroduce the change through the regular PR cycle
