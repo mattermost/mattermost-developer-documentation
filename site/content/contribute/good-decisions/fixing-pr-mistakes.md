@@ -11,7 +11,7 @@ This page describes the process to follow when someone notices a mistake in a me
 
 Question is, what should we, as a community, do? That depends on the scope of the changes in the PR that was merged.
 
-## Low Impact
+## Low impact issues
 A low impact PR might mean that it affected:
 - Some non-critical functionality.
 - It doesn't affect users in a substantial way.
