@@ -4,7 +4,7 @@ heading: "When A Merged PR Results In A Bug"
 weight: 2
 ---
 
-This document's aim is to explain what process should be in place in the following scenario:
+This page describes the process to follow when someone notices a mistake in a merged pull request (PR).
 
 1. A contributor (either staff or community member) submits a PR, it is reviewed and merged into the codebase
 2. Sometime later, the community notices a mistake with the PR
