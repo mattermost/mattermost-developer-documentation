@@ -9,7 +9,7 @@
   "author": "Joram Wilander",
   "license": "MIT",
   "dependencies": {
-    "espree": "^7.0.0",
+    "@typescript-eslint/typescript-estree": "5.41.0",
     "sync-fetch": "^0.4.1"
   }
 }

@@ -1,7 +1,7 @@
 ---
 title: Static assets
 description: Static assets
-weight: 40
+weight: 60
 ---
 An App's static assets include resources such as images and JSON data. 
 
