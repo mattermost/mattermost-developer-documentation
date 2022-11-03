@@ -87,7 +87,6 @@
 /* Thermometer Modal */
 
 .c-thermometer-modal__container {
-    display: none;
     position: fixed;
     left: 0;
     top: 0;
@@ -95,6 +94,17 @@
     height: 100%;
     z-index: 9999;
     background: rgb(0 0 0 / 50%);
+}
+
+.c-thermometer-modal__container.show {
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+.c-thermometer-modal__container.hide {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 500ms;
 }
 
 .c-thermometer-modal__container > div {
@@ -196,14 +206,23 @@
     border: 1px solid rgba(61, 60, 64, 0.08);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12);
     padding: 16px 40px 24px;
-    display: none;
     text-align: center;
     max-width: 210px;
     position: absolute;
     right: 0;
-    top: -120px;
+    bottom: 150px;
     background: white;
     z-index: 9;
+}
+
+.c-thermometer-popup.show {
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+.c-thermometer-popup.hide {
+    opacity: 0;
+    transition: opacity 500ms;
 }
 
 .c-thermometer-popup h5 {
