@@ -103,8 +103,8 @@ The request `context` field contains metadata about the request. The data struct
 | `mentioned`{{<compass-icon icon-star "Field will not be populated by default">}}                | {{<newtabref title="User" href="https://pkg.go.dev/github.com/mattermost/mattermost-server/v6/model#User">}} (list)             | (Expansion)                                                                         |
 | `oauth2`{{<compass-icon icon-star "Field will not be populated by default">}}                   | {{<newtabref title="OAuth2Context" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#OAuth2Context">}} | (Expansion)                                                                         |
 
-{{<note "Expanded metadata fields" "icon-star" "Fields will not be populated by default">}}
-The data in these fields will not be populated by default. The originating call's `expand` values, and the call session's permissions determine what fields are populated.
+{{<note "Expanded metadata fields" "icon-star" "Fields will not be expanded by default">}}
+The data in these fields will not be expanded by default. The originating call's `expand` values, and the call session's permissions determine what fields are expanded.
 For more information on expanding metadata in the request context, see the [Call metadata]({{<ref "call-metadata">}}) page.
 {{</note>}}
 
