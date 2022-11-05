@@ -1,7 +1,7 @@
 ---
 title: "Message attachments"
 heading: "Use message attachments"
-description: "A wide range of rich text formatting options, including bold, italic, headings, in-line images, and tables, can be used in integrations. For more information about formatting, see {{< newtabref href="https://docs.mattermost.com/help/messaging/formatting-text.html" title="formatting text" >}}."
+description: "A wide range of rich text formatting options, including bold, italic, headings, in-line images, and tables, can be used in integrations. For more information about formatting, see [formatting text](https://docs.mattermost.com/help/messaging/formatting-text.html)."
 weight: 40
 aliases:
   - /integrate/admin-guide/admin-message-attachments/
