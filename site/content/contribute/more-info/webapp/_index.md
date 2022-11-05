@@ -8,7 +8,7 @@ aliases:
   - /contribute/webapp
 ---
 
-The Mattermost web app is written in JavaScript using {{< newtabref href="https://facebook.github.io/react/" title="React" >}} and {{< newtabref href="https://redux.js.org/" title=""Redux >}}.
+The Mattermost web app is written in JavaScript using {{< newtabref href="https://facebook.github.io/react/" title="React" >}} and {{< newtabref href="https://redux.js.org/" title="Redux" >}}.
 
 It is powered by [mattermost-redux]({{< ref "/contribute/more-info/webapp/redux" >}}) which handles the majority of the logic, client-side storage and server communication.
 

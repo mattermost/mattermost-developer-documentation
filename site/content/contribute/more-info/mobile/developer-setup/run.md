@@ -122,7 +122,6 @@ As an alternative you can select the targeted device by opening the **Product** 
 
 {{<note "Note:">}}
 If you run into any issues, please take a look at Apple's {{< newtabref href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/LaunchingYourApponDevices/LaunchingYourApponDevices.html#//apple_ref/doc/uid/TP40012582-CH27-SW4" title="Launching Your App on a Device" >}} documentation.
-{{</note>}}
 
 If the app fails to build, you can try the following before trying to build the app again:
 

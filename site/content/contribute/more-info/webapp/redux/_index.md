@@ -8,7 +8,7 @@ aliases:
   - /contribute/webapp/redux
 ---
 
-{{< newtabref href="https://github.com/mattermost/mattermost-webapp/tree/master/packages/mattermost-redux" title="mattermost-redux" >} is a library that contains logic for loading and working with data from the Mattermost server. It's currently used primarily by the Mattermost web app and by some plugins, and it was previously used by the Mattermost mobile app.
+{{< newtabref href="https://github.com/mattermost/mattermost-webapp/tree/master/packages/mattermost-redux" title="mattermost-redux" >}} is a library that contains logic for loading and working with data from the Mattermost server. It's currently used primarily by the Mattermost web app and by some plugins, and it was previously used by the Mattermost mobile app.
 
 {{<note "Note:">}}
 As part of our current effort to turn {{< newtabref href="https://github.com/mattermost/mattermost-webapp" title="the mattermost-webapp repository" >}} into a monorepo, we are also re-evaluating the purpose of mattermost-redux and how we can better expose its functionality for use in third party integrations. The structure of the library and what it exposes for integrations may change over time because of this.

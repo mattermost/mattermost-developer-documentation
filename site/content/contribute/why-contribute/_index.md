@@ -22,8 +22,7 @@ There are many reasons you might be motivated to contribute to Mattermost:
 
 2. If you’ve volunteered to take the ticket once it's active, or if your fix is too small to warrant the ticket, fork the applicable repository, and start making your changes.
 3. Create a PR on the `master` branch of the applicable repository. If there is an associated {{< newtabref href="https://mattermost.atlassian.net/issues/?jql=" title="Jira" >}} or GitHub issue, your PR should begin with the issue ID (e.g.  `[MM-394]` or  `[GH-394]`). Our GitHub PR template will walk you through the creation of your PR.
-4. If you’re a community contributor, the team at Mattermost will handle most of the review process for you. You can wait for a reviewer to be assigned and for them to review your work. 
-
+4. If you’re a community contributor, the team at Mattermost will handle most of the review process for you. You can wait for a reviewer to be assigned and for them to review your work.
 
     Generally the process works like you’d expect: they’ll make suggestions, you’ll implement them, and together you'll discuss changes in PR comments. If you’re having trouble getting a reviewer to be assigned to your PR, take a look at GitHub’s suggested reviewers and reach out to them in the {{< newtabref href="http://community.mattermost.com" title="Community workspace" >}}.
 5. Here is an overview of how our review process works listed in the order in which things happen. If you’re a core contributor, you can manage the process yourself.
@@ -78,13 +77,12 @@ Good product and developer documentation content is as important as good code! I
     - Find a list of the Mattermost documentation specific repos on the [Contributor expectations page]({{< ref "/contribute/expectations/#before-contributing" >}}) of this guide.
 
         {{<note "Tip:">}} The best place to discuss problems with the writing team is in the {{< newtabref href="https://community.mattermost.com/core/channels/dwg-documentation-working-group" title="Documentation Working Group channel" >}} where you can ping our technical writers with the group `@docsteam`.
+        {{</note>}}
 
-        {{<note "Tip:">}}
 2. If you’d like to contribute to our blog, website, or social media content, you also have a few options:
     -  You can get paid to write technical content for developers through the Mattermost {{< newtabref href="https://mattermost.com/blog/blog-announcing-community-writing-program/" title="community writing program" >}}.
-  
-    - If you see a problem with any webpages, blog posts, or other content on {{< newtabref href="https://mattermost.com" title="Mattermost.com" >}}, you can notify us via {{< newtabref href="https://community.mattermost.com/core/channels/mattermost-blog" title="the Content channel" >}} on the Mattermost Community Server.
 
+    - If you see a problem with any webpages, blog posts, or other content on {{< newtabref href="https://mattermost.com" title="Mattermost.com" >}}, you can notify us via {{< newtabref href="https://community.mattermost.com/core/channels/mattermost-blog" title="the Content channel" >}} on the Mattermost Community Server.
     - Share your contributor or user experience! Mention us when you promote your work within our community, and we’ll amplify the message through Mattermost social media platforms.
     - Want to lead a social community? We can provide advice and resources to help you in the {{< newtabref href="https://community.mattermost.com/core/channels/community-team" title="Community channel" >}} on the Mattermost Community Server.
 
@@ -148,3 +146,4 @@ The QA team keeps all contributions up to Mattermost’s high standards. That bi
 - If you’d like to earn some prizes, join our weekly bug bashes run on the {{< newtabref href="https://community.mattermost.com/core/channels/qa-contributors" title="QA Contributors channel" >}} on the Mattermost Community Server.
 
 - Standalone {{< newtabref href="https://github.com/mattermost/quality-assurance/issues/2" title="exploratory testing" >}} is highly encouraged too! Remember to report your findings in the {{< newtabref href="https://community.mattermost.com/core/channels/qa-contributors" title="QA Contributors channel" >}}.
+

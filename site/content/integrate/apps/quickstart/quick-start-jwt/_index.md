@@ -20,7 +20,7 @@ You also need Go v1.16 or later installed. Please follow the {{< newtabref href=
 
 ## Download and start the App
 
-In the same {{< newtabref href="https://github.com/mattermost/mattermost-app-examples" title="mattermost-app-examples repository" >} you cloned via the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}) above, navigate to the {{< newtabref href="https://github.com/mattermost/mattermost-app-examples/tree/master/golang/jwt" title="`golang/jwt`" >}} directory and start the Docker container:
+In the same {{< newtabref href="https://github.com/mattermost/mattermost-app-examples" title="mattermost-app-examples repository" >}} you cloned via the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}) above, navigate to the {{< newtabref href="https://github.com/mattermost/mattermost-app-examples/tree/master/golang/jwt" title="`golang/jwt`" >}} directory and start the Docker container:
 
 ```sh
 cd golang/jwt

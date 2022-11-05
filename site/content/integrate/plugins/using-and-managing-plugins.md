@@ -263,7 +263,7 @@ Join our community server discussion in the {{< newtabref href="https://communit
 
 ## Troubleshooting
 
-Please see common questions below. For further assistance, review the {{< newtabref href="https://forum.mattermost.com/c/trouble-shoot" title="Troubleshooting forum" >}} for previously reported errors, or {{< newtabref href="https://mattermost.com/pl/default-ask-mattermost-community" title="join the Mattermost user community for troubleshooting help" >}.
+Please see common questions below. For further assistance, review the {{< newtabref href="https://forum.mattermost.com/c/trouble-shoot" title="Troubleshooting forum" >}} for previously reported errors, or {{< newtabref href="https://mattermost.com/pl/default-ask-mattermost-community" title="join the Mattermost user community for troubleshooting help" >}}.
 
 ### Plugin uploads fail even though uploads are enabled
 
