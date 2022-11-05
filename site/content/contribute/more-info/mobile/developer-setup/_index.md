@@ -38,7 +38,7 @@ We recommend using npm version 7 (with either Node 15 or 16). To make switching 
 - To install using Homebrew open a terminal and execute:
 
 ```sh
-    $ brew install nvm
+    brew install nvm
 ```
 
 ##### Linux
@@ -62,7 +62,7 @@ The minimum required version is 4.9.0.
 - To install using Homebrew open a terminal and execute:
 
     ```sh
-    $ brew install watchman
+      brew install watchman
     ```
 
 ##### Linux
@@ -76,7 +76,7 @@ The minimum required version is 4.9.0.
 #### Install `react-native-cli` tools
 
 ```sh
-$ npm -g install react-native-cli
+  npm -g install react-native-cli
 ```
 #### Install Ruby
 ##### Windows 10
@@ -88,7 +88,7 @@ $ npm -g install react-native-cli
 #### Install `bundler --version 2.0.2` gem
 
 ```sh
-$ gem install bundler --version 2.0.2
+  gem install bundler --version 2.0.2
 ```
 #### Obtaining the source code
 
@@ -97,7 +97,7 @@ We use GitHub to host the source code so we recommend that you install {{< newta
 ##### macOS
 
 ```sh
-$ brew install git
+  brew install git
 ```
 
 ##### Linux
@@ -228,5 +228,5 @@ Check the following things:
 * Ensure you are running the latest version of `nvm` using the {{< newtabref href="https://github.com/nvm-sh/nvm#install--update-script" title="Upgrade Instructions" >}}
 * Ensure you have set your desired version of node in the file `~/.nvmrc`.  E.g.,
     ```sh
-    $ echo v16.2.0 > ~/.nvmrc
+      echo v16.2.0 > ~/.nvmrc
     ```

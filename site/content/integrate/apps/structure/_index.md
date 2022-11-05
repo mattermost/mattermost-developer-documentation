@@ -20,4 +20,3 @@ Apps consist of four kinds of assets:
 To interact with users, an App must [bind]({{<ref "bindings">}}) a call handler to a [location]({{<ref "manifest#locations">}}) in the Mattermost user interface. These locations may be slash commands, toolbar and menu items, or embedded in posts.
 
 ![image](apps-calls_bindings_locations_v2.svg)
-
