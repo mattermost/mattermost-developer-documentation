@@ -31,7 +31,7 @@ You can follow these general guidelines to set up a Mattermost outgoing webhook 
     - If the first word of a message matches one of the trigger words exactly, or
     - If the first word of a message starts with one of the trigger words.
 
-6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a [trusted internal connection](https://docs.mattermost.com/configure/configuration-settings.html).
+6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a {{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html" title="trusted internal connection" >}}.
 7. On the next page, copy the **Token** value. This will be used in a later step.
 
     ![Dialog box showing `Setup Successful` message and `Token` in the description message](/integrate/faq/images/outgoing_webhooks_token.png)
@@ -88,11 +88,11 @@ Outgoing webhooks support more than just the `text` field. Here is a full list o
 
 | Parameter | Description | Required |
 |---|---|---|
-| `text` | [Markdown-formatted](https://docs.mattermost.com/messaging/formatting-text.html) message to display in the post.<br> To trigger notifications, use `@<username>`, `@channel`, and `@here` like you would in other Mattermost messages. | If `attachments` is not set, yes |
+| `text` | {{< newtabref href="https://docs.mattermost.com/messaging/formatting-text.html" title="Markdown-formatted" >}} message to display in the post.<br> To trigger notifications, use `@<username>`, `@channel`, and `@here` like you would in other Mattermost messages. | If `attachments` is not set, yes |
 | `response_type` | Set to "`comment`" to reply to the message that triggered it.<br> Set to blank or "post" to create a regular message.<br> Defaults to "post". | No |
-| `username` | Overrides the username the message posts as.<br> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames). | No |
-| `icon_url` | Overrides the profile picture the message posts with.<br> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons). | No |
-| `attachments` | [Message attachments](https://docs.mattermost.com/developer/message-attachments.html) used for richer formatting options. | If `text` is not set, yes |
+| `username` | Overrides the username the message posts as.<br> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br> Must be enabled {{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames" title="in the configuration" >}}. | No |
+| `icon_url` | Overrides the profile picture the message posts with.<br> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br> Must be enabled {{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons" title="in the configuration" >}}. | No |
+| `attachments` | {{< newtabref href="https://docs.mattermost.com/developer/message-attachments.html" title="Message attachments" >}} used for richer formatting options. | If `text` is not set, yes |
 | `type` | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with "`custom_`". Passing `attachments` will ignore this field and set the type to `slack_attachment`. | No |
 | `props` | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br> Mainly used by other integrations accessing posts through the REST API.<br> The following keys are reserved: "from\_webhook", "override\_username", "override\_icon\_url", "webhook\_display\_name" and "attachments". | No |
 
@@ -125,7 +125,7 @@ The response would produce a message like the following:
 Messages with advanced formatting can be created by including an [attachment array]({{< ref "/integrate/reference/message-attachments" >}}) and [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}) in the JSON payload.
 
 {{<note "Note:">}}
-[Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin. If not enabled, the username is set to `webhook`.
+{{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames" title="Enable integrations to override usernames" >}} must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin. If not enabled, the username is set to `webhook`.
 {{</note>}}
 
-Similarly, [Enable integrations to override profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin. If not enabled, the icon of the creator of the webhook URL is used to post messages.
+Similarly, {{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons" title="Enable integrations to override profile picture icons" >}} must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin. If not enabled, the icon of the creator of the webhook URL is used to post messages.
