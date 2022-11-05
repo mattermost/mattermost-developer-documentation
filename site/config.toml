@@ -31,8 +31,8 @@ pygmentsStyle = "manni"
 
   [params.notification]
     enable = true
-    url = "https://mattermost.com/hacktoberfest/"
-    text = "Join us for Hacktoberfest 2022!"
+    url = "https://mattermost.com/webinar/build-team-processes-with-playbooks/"
+    text = "See Playbooks in action live on November 16th. Save your spot!"
 
   [params.search]
     enable = false
