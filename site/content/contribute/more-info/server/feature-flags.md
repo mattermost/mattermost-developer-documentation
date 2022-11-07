@@ -191,8 +191,11 @@ Some [examples are here](https://github.com/mattermost/mattermost-server/blob/ma
 
 ## FAQ
 
-1. What is the expected default value for boolean feature flags? Is it `true` or `false`?
-   - Initially `false` for Cloud releases. The idea is to use them to slowly roll out a feature. When the code is deployed, the feature flag is not enabled yet. See more details on feature flag rollout timelines [here]({{< ref "/contribute/more-info/server/feature-flags#timelines-for-rollouts" >}}).
+1. What are the expected values for boolean feature flags?
+   - Normally ``true`` or ``false``, but this may not always equate to enabled/disabled. A feature flag that introduces three new sorting algorithms can also be written:
+       - "selection" (default, the existing strategy in production)
+       - "bubble"
+       - "quick"
 
 2. Is it possible to use a plugin feature flag such as `PluginIncidentManagement` to "prepackage" a plugin only on Cloud by only setting a plugin version to that flag on Cloud? Can self-hosted customers manually set that flag to install the said plugin?
    - Yes. If you leave the default "" then nothing will happen for self-hosted installations. You can ask the Cloud team to set ``split.io/environment`` to a specific version.
