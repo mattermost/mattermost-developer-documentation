@@ -25,6 +25,8 @@ There are many reasons you might be motivated to contribute to Mattermost:
 4. If you’re a community contributor, the team at Mattermost will handle most of the review process for you. You can wait for a reviewer to be assigned and for them to review your work.
 
     Generally the process works like you’d expect: they’ll make suggestions, you’ll implement them, and together you'll discuss changes in PR comments. If you’re having trouble getting a reviewer to be assigned to your PR, take a look at GitHub’s suggested reviewers and reach out to them in the [Community workspace](http://community.mattermost.com).
+
+![Contribute](contribute.png)
 5. Here is an overview of how our review process works listed in the order in which things happen. If you’re a core contributor, you can manage the process yourself.
 
     - **Labels will be added to your PR**, such as  `1: UX Review`,  `2: Dev Review`, and  `3: QA Review`, as applicable. See [the list of labels]({{< ref "/contribute/more-info/getting-started/labels" >}}) for details.
@@ -48,6 +50,7 @@ There are many reasons you might be motivated to contribute to Mattermost:
 
     - If you need to test your changes on a test server, an [appropriate label]({{< ref "/contribute/more-info/getting-started/labels.md)" >}}) can be added to the PR. **Request this label as a comment in your PR to create a test server**. After about three to five minutes, a test server is created, and a bot will send a link and credentials in the form of a comment on the PR. The test server is destroyed when the label is removed.
 
+![Review-process](review.png)
 6. Once you address suggestions a reviewer has made, re-request a review from them. Their initial review was technically completed, so it’s no longer in a reviewer's queue until you re-request.
 
     {{<note "Tip:">}} Give reviewers time — they may have long queues and different schedules. If you’ve been assigned a reviewer but haven’t heard from them in five business days, you can politely bring focus back to your PR by mentioning them in a PR comment.
@@ -63,6 +66,8 @@ There are many reasons you might be motivated to contribute to Mattermost:
       - When contributions are inactive, but there's a good reason (for example, when the team is actively discussing a major design decision but they haven’t decided on anything yet), `lifecycle/frozen` would be a better label.
       - Inactive contributions are eligible to be picked up by another community member.
     - **After 30 days of inactivity**: A contribution becomes orphaned, the `lifecycle/3:orphaned` label is added to the now-closed PR. The associated `Help Wanted` ticket is given back its `Up For Grabs` status so others can pick up the issue.
+
+![Inactivity](inactivity.png)
 
 ## You want to help with content
 
