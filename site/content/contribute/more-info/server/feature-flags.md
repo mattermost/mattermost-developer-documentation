@@ -185,8 +185,6 @@ For self-hosted releases, typically a flagged feature will be released in an ena
 
 Tests should be written to verify all states of the feature flag. Tests should cover any migrations that may take place in both directions (i.e., from "off" to "on" and from "on" to "off"). Ideally E2E tests should be written before the feature is merged, or at least before the feature flag is removed.
 
-Features that are not yet ready to be shipped in a self-hosted release are automatically disabled if the flag is set to ``false`` in code.
-
 ## Examples of feature flags
 
 Some [examples are here](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
