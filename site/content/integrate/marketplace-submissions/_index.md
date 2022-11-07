@@ -11,7 +11,7 @@ The {{<newtabref title="Mattermost Web Marketplace" href="https://mattermost.com
 
 All contributions are eligible following a review from our team. Apps and plugins that have been thoroughly reviewed by Mattermost will be eligible for our in-product marketplace as well with some additional requirements. Our in-product Marketplace enables customers to install and manage their apps and plugins directly within the product.
 
-## Types of integrations to submit to the web marketplace
+## Types of integrations to submit to the web Marketplace
 
 - [Apps]({{<ref "/integrate/apps">}})
 - [Plugins]({{<ref "/integrate/plugins">}})
