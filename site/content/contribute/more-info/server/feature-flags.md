@@ -16,7 +16,7 @@ Feature flag is a software development technique that turns functionality on and
 
 ## When to use
 
-There are no hard rules on when a feature flag should be used. It is left up to the best judgement of the responsible engineers to determine if a feature flag is required. The following are guidelines designed to help guide the determination:
+There are no hard rules on when a feature flag should be used. It is left up to the best judgement of the responsible engineers to determine if a feature flag is required. The following are guidelines designed to help the determination:
 
 - Any "substantial" feature should have a flag
 - Features that are probably substantial:
