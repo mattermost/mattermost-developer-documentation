@@ -7,7 +7,7 @@ aliases:
   - /extend/plugins/community-plugin-marketplace/s
 ---
 
-The {{<newtabref title="Mattermost Web Marketplace" href="https://mattermost.com/marketplace/">}} supports discovery, installation, and updates of extensions of the Mattermost platform. If you have built a plugin, app, playbook, integration, or tool that helps other users get more from Mattermost, the web Marketplace is a great way to get feedback on your contribution and help make it more popular. Once your submission is accepted to the Web Marketplace, Mattermost will also send you swag!
+The {{<newtabref title="Mattermost web Marketplace" href="https://mattermost.com/marketplace/">}} supports discovery, installation, and updates of extensions of the Mattermost platform. If you have built a plugin, app, playbook, integration, or tool that helps other users get more from Mattermost, the web Marketplace is a great way to get feedback on your contribution and help make it more popular. Once your submission is accepted to the web Marketplace, Mattermost will also send you swag!
 
 All contributions are eligible following a review from our team. Apps and plugins that have been thoroughly reviewed by Mattermost will be eligible for our in-product marketplace as well with some additional requirements. Our in-product Marketplace enables customers to install and manage their apps and plugins directly within the product.
 
