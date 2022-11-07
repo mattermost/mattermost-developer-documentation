@@ -134,7 +134,7 @@ Now your workspace will have its feature flag set according to this rule, regard
 
 ### Add or update a feature flag for community.mattermost.com
 
-You can post in the [Community Configuration channel](https://community.mattermost.com/core/channels/community-configuration) with the feature flag name and what you want the admins to set it to.
+Post the flag name and value in the [Community Configuration channel](https://community.mattermost.com/core/channels/community-configuration).
 
 To set a flag via Split for community:
 
@@ -161,7 +161,7 @@ How long does it take for workspaces/servers to pick up on changes to feature fl
 
 ## Timelines for rollouts
 
-The feature flag is initially “off”. Individual teams should decide how they want to roll out their features as they are responsible for them and know them best. The feature teams can enable/disable feature flags at will without needing to ask the Cloud team.
+Typically feature flag will initially disable the feature. It's a good idea to test the feature during a safe time or on a subset of instances. Each team can decide what's best and there's no need to request the flag value changes from the Cloud team. If you think there might be a performance impact there's no harm in communicating your plan beforehand.
 
 {{<note "Note:">}}
 The steps below are an initial guideline and will be iterated on over time.
@@ -179,7 +179,7 @@ When the feature is rolled out to customers, logs will show if there are crashes
 
 ## Self-hosted releases
 
-For a feature-flagged feature to be released in a self-hosted release, the feature flag should be either removed or set to ``true`` in code. The feature flag can be left as ``false`` in code if we're not yet ready to expose the feature for customers. Some [examples are here](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
+For self-hosted releases, typically a flagged feature will be released in an enabled state. That said, you can release a feature to self-hosted disabled, [it's not unprecedented](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
 
 ## Tests
 
