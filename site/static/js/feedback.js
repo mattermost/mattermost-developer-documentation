@@ -95,7 +95,6 @@ const submitThermometerModal = (event) => {
     if (textareaEl) {
         currentString = textareaEl.value;
     }
-    // console.log(`submitThermometerModal(): currentString=${currentString}, eventValue=${eventValue}`);
     if (currentString !== "" && eventValue > 0) {
         // Submit DataLayer Event
         const dataLayer = window.dataLayer || [];
@@ -141,7 +140,7 @@ const addModalButtons = () => {
  * Update the textarea length display with the current length of the textarea.
  * @param event The DOM event; unused
  */
-const cThermometerUpdateTextLength = (event) => {
+const updateThermometerTextareaLength = (event) => {
     const textareaEl = document.getElementById("c-thermometer-modal__textarea");
     if (textareaEl) {
         const counterSpanEl = document.getElementById("c-thermometer-modal__counter-span");
@@ -158,16 +157,18 @@ const addDocumentClick = () => {
         hideThermometerModal();
         resetEmojiStates();
     });
+    // Also hide visible modals or confirmation popups if the user presses the Escape key
+    document.addEventListener('keyup', (e) => {
+        if (e.key === "Escape") {
+            hideConfirmationPopup();
+            hideThermometerModal();
+            resetEmojiStates();
+        }
+    });
 };
 
-document.addEventListener("DOMContentLoaded", (event) => {
-    // Add a handler to the textarea which updates the character count display
-    const textareaEl = document.getElementById("c-thermometer-modal__textarea");
-    if (textareaEl) {
-        textareaEl.addEventListener("input", cThermometerUpdateTextLength);
-    }
-    // Stop the propagation of click events for particular divs. This allows the modal to remain visible
-    // when clicking inside it.
+/** Stop the propagation of click events for particular divs. This allows the modal to remain visible when clicking inside it. */
+const addEventPropagationHandlers = () => {
     const modalContentEls = document.getElementsByClassName("c-thermometer-modal__content");
     if (modalContentEls.length > 0) {
         modalContentEls[0].addEventListener('click', e => e.stopImmediatePropagation());
@@ -180,6 +181,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
     if (popupEls.length > 0) {
         popupEls[0].addEventListener('click', e => e.stopImmediatePropagation());
     }
+};
+
+// Initialize the feedback widget when the document has finished loading
+document.addEventListener("DOMContentLoaded", (event) => {
+    // Add a handler to the textarea which updates the character count display
+    const textareaEl = document.getElementById("c-thermometer-modal__textarea");
+    if (textareaEl) {
+        textareaEl.addEventListener("input", updateThermometerTextareaLength);
+    }
+    addEventPropagationHandlers();
     addEmojiClick();
     addDocumentClick();
     addModalButtons();
