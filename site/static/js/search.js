@@ -38,12 +38,24 @@ class LunrSearch {
     static buildIndex(data) {
         return lunr((builder) => {
             // Note that each of the fields referenced below also exists in the SearchIndexPage object
+            builder.ref('permalink');
             builder.field('title', {boost: 1}); // Boost score for matches on the title by 1
             builder.field('tags', {boost: 2}); // Boost score for matches on tags by 2
             builder.field('categories', {boost: 0}); // Don't boost score for matches on categories
             builder.field('contents', {boost: 0.5}); // Boost score for matches on content by 0.5
-            builder.ref('permalink');
             for (const page of data) {
+                // Skip this record if there is no title
+                if ("title" in page && page["title"] === "") {
+                    continue;
+                }
+                // Check if there is contents; warn if there isn't
+                if (!("contents" in page)) {
+                    console.error(`buildIndex(): missing 'contents' key in index record; page=${JSON.stringify(page)}`);
+                }
+                if (page["contents"] === "") {
+                    console.error(`buildIndex(): empty 'contents' in index record; page=${JSON.stringify(page)}`);
+                }
+                // Add the page to the lunr search index
                 builder.add(page);
             }
         });
@@ -146,7 +158,11 @@ class LunrSearch {
 
     updateResultCount(numberOfResults) {
         const resultCountEl = document.getElementById("search-result-count");
-        resultCountEl.innerText = numberOfResults > 0 ? numberOfResults + " results found." : "";
+        let countText = "Search finished, no pages match the search query.";
+        if (numberOfResults > 0) {
+            countText = `Search finished, found ${numberOfResults} page(s) matching the search query. Results are sorted by relevance.`;
+        }
+        resultCountEl.innerText = countText;
     }
 
     search() {
@@ -229,13 +245,6 @@ class LunrSearch {
                 ahref.text = result.page.title;
                 ahref.classList.add("search__results_result-link");
                 li.append(ahref);
-                // The result score
-                const scoreBadge = document.createElement('span');
-                scoreBadge.classList.add("search__results_result-score", "badge", "badge-secondary");
-                scoreBadge.innerText = String(result.score);
-                li.append(scoreBadge);
-                // (next line)
-                li.append(document.createElement("br"));
                 // A description of the page associated with the result; uses the first 240 characters
                 const descSpan = document.createElement('span');
                 descSpan.textContent = result.page.contents.substring(0, 240) + "...";

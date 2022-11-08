@@ -3575,7 +3575,7 @@ table>tbody>tr:nth-of-type(odd) {
 }
 
 .homepage-search__row {
-    display: flex;
+    display: flex !important;
     flex-wrap: wrap;
 }
 
@@ -4712,15 +4712,39 @@ ol > li + li {
 }
 
 /* Search results page */
+.search__results_title {
+    margin-bottom: 12px;
+}
+
+.search__results li:first-child {
+    border-top: 1px solid #e1e4e5;
+    padding-top: 24px;
+}
+
+.search__results li {
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e1e4e5;
+    padding-bottom: 24px;
+}
+
 .search__results_result-link {
-    font-size: 18px;
+    font-size: 120%;
     font-weight: bold;
+    margin-bottom: 12px;
+    display: block;
 }
 
 .search__results_result-description {
-    color: #363A45;
+    color: grey;
+    font-size: 90%;
+    word-break: break-word;
 }
 
-.search__results_result-score {
-    margin-left: 5px;
+span.search__span_result-count {
+    margin-bottom: 12px;
+}
+
+.search__form {
+    line-height: normal;
+    margin-bottom: 12px;
 }
