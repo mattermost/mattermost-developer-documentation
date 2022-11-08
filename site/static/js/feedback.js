@@ -105,6 +105,7 @@ const submitThermometerModal = (event) => {
             eventFeedback: currentString
         });
         // Submit Rudderstack event if possible
+        // NOTE: Rudderstack support is included by Google Tag Manager
         if (typeof (rudderanalytics) !== 'undefined') {
             rudderanalytics.track("feedback_submitted", {
                 label: rating,
