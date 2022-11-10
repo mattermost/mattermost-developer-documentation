@@ -1,15 +1,15 @@
 ---
 title: "Contribute to the Marketplace"
 heading: "Contribute to the Marketplace"
-description: "If you’ve built an integration, playbook, or tool which extends Mattermost functionality, consider sharing it with the community on the Mattermost Web Marketplace."
+description: "If you’ve built an integration, playbook, or tool which extends Mattermost functionality, consider sharing it with the community on the Mattermost web Marketplace."
 weight: 100
 aliases: 
-  - /extend/plugins/community-plugin-marketplace/s
+  - /extend/plugins/community-plugin-marketplace/
 ---
 
 The {{<newtabref title="Mattermost web Marketplace" href="https://mattermost.com/marketplace/">}} supports discovery, installation, and updates of extensions of the Mattermost platform. If you have built a plugin, app, playbook, integration, or tool that helps other users get more from Mattermost, the web Marketplace is a great way to get feedback on your contribution and help make it more popular. Once your submission is accepted to the web Marketplace, Mattermost will also send you swag!
 
-All contributions are eligible following a review from our team. Apps and plugins that have been thoroughly reviewed by Mattermost will be eligible for our in-product marketplace as well with some additional requirements. Our in-product Marketplace enables customers to install and manage their apps and plugins directly within the product.
+All contributions are eligible following a review from our team. Apps and plugins that have been thoroughly reviewed by Mattermost will be eligible for our in-product Marketplace as well with some additional requirements. Our in-product Marketplace enables customers to install and manage their apps and plugins directly within the product.
 
 ## Types of integrations to submit to the web Marketplace
 
@@ -19,11 +19,11 @@ All contributions are eligible following a review from our team. Apps and plugin
 - Playbook templates
 - Utility tools, such as importers, command line interfaces, and scripts
 
-## Submit your contribution for the Web Marketplace
+## Submit your contribution for the web Marketplace
 
 Please fill out the information in {{<newtabref title="this form" href="https://forms.gle/PE8kmfSuneP9GWnq8">}} to be reviewed by a member of the Mattermost team.
 
-Every contribution goes through the following checklist before being added to the Web Marketplace at {{<newtabref title="mattermost.com/marketplace" href="https://mattermost.com/marketplace">}}:
+Every contribution goes through the following checklist before being added to the web Marketplace at {{<newtabref title="mattermost.com/marketplace" href="https://mattermost.com/marketplace">}}:
 
 1. There is a link to the contribution so we can test it out.
 2. There is documentation to support people installing, configuring, and using the contribution. We also recommend including screenshots to give users a better understanding of the workflow and user experience.
@@ -31,17 +31,13 @@ Every contribution goes through the following checklist before being added to th
 
 We will also reach out to you to learn more about the integration, your experience developing with Mattermost, and to coordinate postings for social media.
 
-## Submit your contribution for the in-product marketplace
+## Submit your contribution for the in-product Marketplace
 
-There are additional functional, technical, and security requirements for apps and plugins to be considered for the in-product marketplace. These requirements are documented in the {{<newtabref title="mattermost-marketplace issue template" href="https://github.com/mattermost/mattermost-marketplace/blob/master/.github/ISSUE_TEMPLATE/add_plugin.md">}}. You can check off these items when you submit your contributions by opening an {{<newtabref title="issue in our in-product marketplace repository" href="https://github.com/mattermost/mattermost-marketplace/issues/new?assignees=hanzei&labels=Plugin%2FNew&template=add_plugin.md&title=Add+%24REPOSITORY_NAME+to+Marketplace">}}.
-
-{{<note "Note:">}}
-Mattermost reserves the right to reject any plugin submission from the Marketplace.
-{{</note>}}
+There are additional functional, technical, and security requirements for apps and plugins to be considered for the in-product Marketplace. These requirements are documented in the {{<newtabref title="mattermost-marketplace issue template" href="https://github.com/mattermost/mattermost-marketplace/blob/master/.github/ISSUE_TEMPLATE/add_plugin.md">}}. You can check off these items when you submit your contributions by opening an {{<newtabref title="issue in our in-product Marketplace repository" href="https://github.com/mattermost/mattermost-marketplace/issues/new?assignees=hanzei&labels=Plugin%2FNew&template=add_plugin.md&title=Add+%24REPOSITORY_NAME+to+Marketplace">}}.
 
 ## Security issues
 
-Any security issues found in contributions in the Web and in-product marketplace should be reported by email to `responsibledisclosure@mattermost.com`, or sent directly to a member of the [Security team](https://handbook.mattermost.com/operations/security#where-to-find-us) on the [Community Server](https://community.mattermost.com/).
+Any security issues found in contributions in the web and in-product Marketplace should be reported by email to [`responsibledisclosure@mattermost.com`](mailto:responsibledisclosure@mattermost.com), or sent directly to a member of the [Security team](https://handbook.mattermost.com/operations/security#where-to-find-us) on the [Community Server](https://community.mattermost.com/).
 
 ## Takedown policy
 
