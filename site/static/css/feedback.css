@@ -96,6 +96,17 @@
     background: rgb(0 0 0 / 50%);
 }
 
+.c-thermometer-modal__content::before {
+    content: "×";
+    color: #818698; /* Black/03 */
+    display: flex;
+    align-items: baseline;
+    flex-direction: row;
+    justify-content: flex-end;
+    font-size: 200%;
+    cursor: pointer;
+}
+
 .c-thermometer-modal__container.show {
     opacity: 1;
     transition: opacity 500ms;
@@ -122,12 +133,12 @@
 .c-thermometer-modal__content {
     background: #fff;
     border-radius: 10px;
-    padding: 24px;
+    padding: 22px 45px 45px;
     max-width: 368px;
     width: 100%;
 }
 
-.c-thermometer-modal__content h3 {
+.c-thermometer-modal__content > h2 {
     color: var(--center-channel-text);
     margin-bottom: 12px;
 }
@@ -145,26 +156,28 @@
 }
 
 .c-thermometer-modal__counter {
-    color: var(--center-channel-text-64);
     text-align: right;
+    color: #818698; /* Black/03 */
 }
 
 .c-thermometer-modal__content p {
-    font-size: 14px;
-    line-height: 17px;
-    margin-bottom: 1rem;
-    color: var(--center-channel-text-64);
+    font-size: 15px;
+    line-height: 22px;
+    margin-bottom: 5px;
+    color: #363A45; /* Black/05 */
 }
 
 .c-thermometer-modal__content textarea {
     border-radius: 4px;
     height: 142px;
     width: 100%;
-    padding: 14px;
-    font-size: 16px;
+    padding: 15px;
+    font-size: 15px;
     resize: none;
     border: 1px solid rgba(61, 60, 64, 0.16);
     box-shadow: none;
+    margin-top: 24px;
+    color: #363A45; /* Black/05 */
 }
 
 .c-thermometer-modal__content textarea:focus {
@@ -173,20 +186,20 @@
 
 .c-thermometer-modal__footer {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     padding-top: 20px;
 }
 
 .c-thermometer-modal__footer .btn {
-    border-radius: 4px;
-    height: 40px;
-    padding: 0 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
+    background: #FFBC1F;
+    border-radius: 30px;
+    color: black;
     font-size: 14px;
-    border: none;
+    line-height: 1;
+    font-weight: bold;
+    padding: 15px 25px;
+    display: inline-block;
+    transition: all 0.3s ease;
 }
 
 .c-thermometer-modal__footer .btn-primary {

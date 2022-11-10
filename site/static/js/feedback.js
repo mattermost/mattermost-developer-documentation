@@ -127,14 +127,20 @@ const submitThermometerModal = (event) => {
 
 /** Add click handlers to the buttons in the feedback modal */
 const addModalButtons = () => {
-    const cancelButtonEl = document.getElementById("c-thermometer-modal__footer-cancel");
-    if (cancelButtonEl) {
-        cancelButtonEl.addEventListener("click", cancelThermometerModal);
-    }
+    // const cancelButtonEl = document.getElementById("c-thermometer-modal__footer-cancel");
+    // if (cancelButtonEl) {
+    //     cancelButtonEl.addEventListener("click", cancelThermometerModal);
+    // }
     const submitButtonEl = document.getElementById("c-thermometer-modal__footer-submit");
     if (submitButtonEl) {
         submitButtonEl.addEventListener("click", submitThermometerModal);
     }
+    // const closeButtonEls = document.getElementsByClassName("c-thermometer-modal__content::before");
+    // if (closeButtonEls && closeButtonEls.length > 0) {
+    //     closeButtonEls[0].addEventListener("click", (e) => {
+    //         hideThermometerModal();
+    //     });
+    // }
 };
 
 /**
