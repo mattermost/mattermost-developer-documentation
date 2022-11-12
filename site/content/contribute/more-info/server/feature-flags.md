@@ -7,9 +7,27 @@ weight: 3
 aliases:
   - /contribute/server/feature-flags
 ---
-Feature flags allow us to be more confident in shipping features continuously to Mattermost Cloud. Feature flags also allow us to control which features are enabled on a cluster level.
 
-# How to use
+# What are feature flags
+
+Feature flag is a software development technique that turns functionality on and off without deploying new code. Feature flags allow us to be more confident in shipping features continuously to Mattermost Cloud. Feature flags also allow us to control which features are enabled on a cluster level.
+
+# How to use feature flags
+
+## When to use
+
+There are no hard rules on when a feature flag should be used. It is left up to the best judgement of the responsible engineers to determine if a feature flag is required. The following are guidelines designed to help the determination:
+
+- Any "substantial" feature should have a flag
+- Features that are probably substantial:
+    - Features with new UI or changes to existing UI
+    - Features with a risk of regression
+- Features that are probably not substantial:
+    - Small bug fixes
+    - Refactoring
+    - Changes that are not user facing and can be completely verified by unit and E2E testing.
+
+In all cases, ask yourself: Why do I need to add a feature flag? If I don't add one, what options do I have to control the impact on user experience (e.g. a config setting or System Console setting)?
 
 ## Add the feature flag in code
 
@@ -102,6 +120,7 @@ The ID for a "server" as seen by Split is the Mattermost server's telemetry ID. 
 ```bash
 $ curl -s https://<your-workspace-url>/api/v4/config/client?format=old | jq ".TelemetryId"
 ```
+
 #### Target using the telemetry ID
 
 With the telemetry ID, go to your split and do the following:
@@ -115,7 +134,7 @@ Now your workspace will have its feature flag set according to this rule, regard
 
 ### Add or update a feature flag for community.mattermost.com
 
-Note that this will set the flag for community.mattermost.com, community-release.mattermost.com, and community-daily.mattermost.com. It is not possible to set a rule for only one via Split. It is possible to set the flags only for one version of community via environment variables. This will require manual configuration by the SRE team. You can ask for support for this on community.mattermost.com via the `@sresupport` mention.
+Post the flag name and value in the [Community Configuration channel](https://community.mattermost.com/core/channels/community-configuration).
 
 To set a flag via Split for community:
 
@@ -132,7 +151,7 @@ The feature flag is now set for community.mattermost.com.
 ### Environments
 
  - Cloud Test - All the Cloud test servers/workspaces, including those created on PRs and by the ``/cloud`` command.
- - Cloud Staging - Mainly community.mattermost.com, including community-release and community-daily. It's not possible to target those separately.
+ - Cloud Staging - Mainly community.mattermost.com.
  - Cloud Production - All our production Cloud workspaces.
 
 ### Split FAQ
@@ -142,7 +161,7 @@ How long does it take for workspaces/servers to pick up on changes to feature fl
 
 ## Timelines for rollouts
 
-The feature flag is initially “off” and will be rolled out slowly. Individual teams should decide how they want to roll out their features as they are responsible for them and know them best. Once we have split.io access for 2-3 people per team, the feature teams can enable/disable feature flags at will without needing to ask the Cloud team.
+Typically feature flag will initially disable the feature. It's a good idea to test the feature during a safe time or on a subset of instances. Each team can decide what's best and there's no need to request the flag value changes from the Cloud team. If you think there might be a performance impact there's no harm in communicating your plan beforehand.
 
 {{<note "Note:">}}
 The steps below are an initial guideline and will be iterated on over time.
@@ -160,37 +179,23 @@ When the feature is rolled out to customers, logs will show if there are crashes
 
 ## Self-hosted releases
 
-For a feature-flagged feature to be included in a self-hosted release, the feature flag should be removed.
-
-Feature flags are generally off by default and self-hosted releases do not contact the management system. Therefore feature flags that are not ready for a self-hosted release will be automatically disabled for all self-hosted releases.
-
-Optionally the feature flag can be set to ``true`` in code if we are not yet ready to fully remove the feature flag. Some {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75" title="examples are here" >}}.
+For self-hosted releases, typically a flagged feature will be released in an enabled state. That said, you can release a feature to self-hosted disabled, {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75" title="it's not unprecedented" >}}.
 
 ## Tests
 
 Tests should be written to verify all states of the feature flag. Tests should cover any migrations that may take place in both directions (i.e., from "off" to "on" and from "on" to "off"). Ideally E2E tests should be written before the feature is merged, or at least before the feature flag is removed.
 
-# When to use
-
-There are no hard rules on when a feature flag should be used. It is left up to the best judgement of the responsible engineers to determine if a feature flag is required. The following are guidelines designed to help guide the determination.
-
-- Any "substantial" feature should have a flag
-- Features that are probably substantial:
-    - Features with new UI or changes to existing UI
-    - Features with a risk of regression
-- Features that are probably not substantial:
-    - Small bug fixes
-    - Refactoring
-    - Changes that are not user facing and can be completely verified by unit and E2E testing.
-
 ## Examples of feature flags
 
-< add some examples when we create them >
+Some [examples are here](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
 
 ## FAQ
 
-1. What is the expected default value for boolean feature flags? Is it `true` or `false`?
-   - Definitely `false`. The idea is to use them to slowly roll out a feature. When the code is deployed, the feature flag is not enabled yet. See more details on feature flag rollout timelines [here](#timelines-for-rollouts).
+1. What are the expected values for boolean feature flags?
+   - Normally ``true`` or ``false``, but this may not always equate to enabled/disabled. A feature flag that introduces three new sorting algorithms can also be written:
+       - "selection" (default, the existing strategy in production)
+       - "bubble"
+       - "quick"
 
 2. Is it possible to use a plugin feature flag such as `PluginIncidentManagement` to "prepackage" a plugin only on Cloud by only setting a plugin version to that flag on Cloud? Can self-hosted customers manually set that flag to install the said plugin?
    - Yes. If you leave the default "" then nothing will happen for self-hosted installations. You can ask the Cloud team to set ``split.io/environment`` to a specific version.
@@ -206,26 +211,23 @@ There are no hard rules on when a feature flag should be used. It is left up to 
      1. PR to server code to add the new feature flag.
      2. PR to mobile to update the types and to actually use the feature flag.
 
-5. How do we enable a feature flag for testing on community-daily and on Cloud test servers?
-   - You can post in {{< newtabref href="https://community.mattermost.com/core/channels/cloud" title="~Developers: Cloud channel" >}} with the feature flag name and what you want the Cloud team to set it to.
-
-6. What is the environment variable to set a feature flag?
+5. What is the environment variable to set a feature flag?
    - It is `MM_FEATUREFLAGS_<myflag>`.
 
-7. Can plugins use feature flags to enable small features aside of the version forcing feature flag?
+6. Can plugins use feature flags to enable small features aside of the version forcing feature flag?
    - Yes. You can create feature flags as if they were added for the core product, and they'll get included in the plugin through the config.
 
-8. Does it make sense to use feature flags for A/B testing?
-   - This is something we're going to be evaluating using split.io. We've already implemented support for this in the server.
+7. Does it make sense to use feature flags for A/B testing?
+   - Yes, this is something we've started to do using split.io.
 
-9. Do feature flag changes require the server to be restarted?
+8. Do feature flag changes require the server to be restarted?
    - Feature flags don’t require a server restart unless the feature being flagged requires a restart itself.
 
-10. For features that are requested by self-hosted customers, why do we have to deploy to Cloud first, rather than having the customer who has the test case test it?
+9. For features that are requested by self-hosted customers, why do we have to deploy to Cloud first, rather than having the customer who has the test case test it?
     - Cloud is the way to validate the stability of the feature before it goes to self-hosted customers. In exceptional cases we can let the self-hosted customer know that they can use environment variables to enable the feature flag (but specify that the feature is experimental).
 
-11. How does the current process take into account bugs that may arise on self-hosted specifically?
+10. How does the current process take into account bugs that may arise on self-hosted specifically?
     - The process hasn’t changed much from the old release process: Features can still be tested on self-hosted servers once they have been rolled out to Cloud. The primary goal is that bugs are first identified on Cloud servers.
 
-12. How can self-hosted installations set feature flags?
+11. How can self-hosted installations set feature flags?
     - Self-hosted installations can set environment variables to set feature flag values. However, users should recognize that the feature is still considered "experimental" and should not be enabled on production servers.
