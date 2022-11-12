@@ -39,7 +39,7 @@ At Mattermost we use the {{< newtabref href="https://github.com/OAI/OpenAPI-Spec
 and create a branch for your changes.
 2. Find the `.yaml` file in the {{< newtabref href="https://github.com/mattermost/mattermost-api-reference/tree/master/v4/source" title="/source/v4" >}} directory that fits your endpoint.
     - For example, if you were adding the `GET /users/{user_id}` endpoint you would be looking for {{< newtabref href="https://github.com/mattermost/mattermost-api-reference/blob/master/v4/source/users.yaml" title="users.yaml" >}}
-    - If the file doesn't exist yet, you might need to create it and update the {{< newtabref href="https://github.com/mattermost/mattermost-api-reference/tree/master/Makefile" title="" >}} to include it
+    - If the file doesn't exist yet, you might need to create it and update the {{< newtabref href="https://github.com/mattermost/mattermost-api-reference/tree/master/Makefile" title="Makefile" >}} to include it
 
 3. Copy an existing endpoint from the same or a different file.
 4. Update the documention you copied with the correct information for your endpoint, including:

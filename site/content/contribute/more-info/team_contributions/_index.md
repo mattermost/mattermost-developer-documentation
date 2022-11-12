@@ -8,7 +8,7 @@ aliases:
 
 Mattermost is an open source Slack-alternative that helps teams stay in sync, with messaging and file sharing across PCs and phones, with archiving and search, and a growing community of integrations, bots and applications.
 
-The project is developed by a global community of contributors and is maintained and supported by a distributed company, {{< newtabref href="https://mattermost.com/about-us/" title="" >}}, based in Palo Alto, California.
+The project is developed by a global community of contributors and is maintained and supported by a distributed company, {{< newtabref href="https://mattermost.com/about-us/" title="Mattermost Inc." >}}, based in Palo Alto, California.
 
 If you notice an error or omission in the list, please email community[at]mattermost.com so we can correct the issue.
 
