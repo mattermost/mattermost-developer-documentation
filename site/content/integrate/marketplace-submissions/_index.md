@@ -33,7 +33,8 @@ We will also reach out to you to learn more about the integration, your experien
 
 ## Submit your contribution for the in-product Marketplace
 
-There are additional functional, technical, and security requirements for apps and plugins to be considered for the in-product Marketplace. These requirements are documented in the {{<newtabref title="mattermost-marketplace issue template" href="https://github.com/mattermost/mattermost-marketplace/blob/master/.github/ISSUE_TEMPLATE/add_plugin.md">}}. You can check off these items when you submit your contributions by opening an {{<newtabref title="issue in our in-product Marketplace repository" href="https://github.com/mattermost/mattermost-marketplace/issues/new?assignees=hanzei&labels=Plugin%2FNew&template=add_plugin.md&title=Add+%24REPOSITORY_NAME+to+Marketplace">}}.
+There are additional functional, technical, and security requirements for apps and plugins to be considered for the in-product Marketplace. The additional requirements are documented here: [Community plugins in the Marketplace]({{<ref "/integrate/plugins/community-plugin-marketplace">}}).
+You can check off these items when you submit your contributions by opening an {{<newtabref title="issue in our in-product Marketplace repository" href="https://github.com/mattermost/mattermost-marketplace/issues/new?assignees=hanzei&labels=Plugin%2FNew&template=add_plugin.md&title=Add+%24REPOSITORY_NAME+to+Marketplace">}}.
 
 ## Security issues
 
