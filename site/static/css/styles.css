@@ -3274,7 +3274,8 @@ header.with-notification-bar {
 }
 
 footer {
-    padding: 100px 0;
+    /* Remove padding so there's no extra space between the footer and the feedback widget */
+    /*padding: 100px 0;*/
 }
 
 .footer__copyright {
