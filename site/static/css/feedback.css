@@ -111,6 +111,7 @@
 }
 
 .c-thermometer-modal__container.show {
+    visibility: visible;
     opacity: 1;
     transition: opacity 500ms;
 }
@@ -126,9 +127,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /*position: fixed;*/
-    /*left: 0;*/
-    /*top: 0;*/
     width: 100%;
     height: 100%;
     padding: 0 24px;
@@ -153,11 +151,15 @@
 }
 
 .c-thermometer-modal__close {
+    cursor: pointer;
+}
+
+#c-thermometer-modal__close-x {
     color: #818698; /* Black/03 */
-    font-size: 2em;
+    font-size: 3em;
     font-weight: bold;
     text-align: center;
-    cursor: pointer;
+    line-height: 45px;
 }
 
 .c-thermometer-modal__textarea-footer {
@@ -255,11 +257,17 @@
 .c-thermometer-popup.show {
     opacity: 1;
     transition: opacity 500ms;
+    height: unset;
+    position: absolute;
+    bottom: 150px;
 }
 
 .c-thermometer-popup.hide {
     opacity: 0;
     transition: opacity 500ms;
+    height: 0;
+    position: absolute;
+    bottom: 0;
 }
 
 .c-thermometer-popup > svg {
@@ -295,6 +303,14 @@
         padding: 24px;
         position: absolute;
         bottom: 1rem;
+    }
+    .c-thermometer-popup.show {
+        position: absolute;
+        bottom: 1rem;
+    }
+    .c-thermometer-popup.hide {
+        position: absolute;
+        bottom: 0;
     }
     .c-thermometer-popup > svg {
         width: 42px;

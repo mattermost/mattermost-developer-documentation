@@ -1,14 +1,5 @@
 <script src="{{ "js/feedback.js" | absURL }}"></script>
 <div class="thermometer-container">
-    <div class='c-thermometer-popup show'>
-        <svg viewBox="0 0 33 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11.0204 29L11.0051 28.9843L10.9898 29L0 17.4016L5.5217 11.6298L11.0013 17.4173L27.5051 0L33 5.79921L11.0204 29Z" fill="#339970"/>
-        </svg>
-        <div class="c-thermometer-popup__text">
-            <span class="c-thermometer-popup__title ff--trade-gothic">Thank you!</span>
-            <span class="c-thermometer-popup__message ff--trade-gothic">We appreciate your feedback.</span>
-        </div>
-    </div>
     <div class='c-thermometer'>
         <div class='c-thermometer__trigger'>
             <p class='c-thermometer__paragraph'>Did you find what you were looking for?</p>
@@ -26,6 +17,15 @@
                     <p>No!</p>
                 </a>
             </div>
+        </div>
+    </div>
+    <div class='c-thermometer-popup hide'>
+        <svg viewBox="0 0 33 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.0204 29L11.0051 28.9843L10.9898 29L0 17.4016L5.5217 11.6298L11.0013 17.4173L27.5051 0L33 5.79921L11.0204 29Z" fill="#339970"/>
+        </svg>
+        <div class="c-thermometer-popup__text">
+            <span class="c-thermometer-popup__title ff--trade-gothic">Thank you!</span>
+            <span class="c-thermometer-popup__message ff--trade-gothic">We appreciate your feedback.</span>
         </div>
     </div>
 </div>
