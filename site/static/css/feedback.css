@@ -120,7 +120,7 @@
 }
 
 .c-thermometer-modal__content {
-    background: #fff;
+    background: white;
     border-radius: 10px;
     padding: 22px 45px 45px;
     max-width: 368px;
@@ -203,20 +203,17 @@
     display: inline-block;
     transition: all 0.3s ease;
 }
-
 /* Thermometer Modal Ends */
 
 /* Thermometer Confirmation Popup */
-
 .c-thermometer-popup {
-    border-radius: 8px;
-    border: 1px solid rgba(61, 60, 64, 0.08);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12);
-    padding: 16px 40px 24px;
+    border-radius: 5px;
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.15);
+    padding: 25px;
     text-align: center;
-    max-width: 210px;
+    width: 280px;
     position: absolute;
-    right: 0;
+    right: 32px;
     bottom: 150px;
     background: white;
     z-index: 9;
@@ -244,26 +241,4 @@
     text-align: center;
     margin: 0;
 }
-
-.c-thermometer-popup__close {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    color: rgba(61, 60, 64, 0.72);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    right: 8px;
-    top: 8px;
-    font-size: 22px;
-    cursor: pointer;
-    font-family: sans-serif;
-    font-weight: 300;
-}
-
-.c-thermometer-popup__close:hover {
-    color: var(--center-channel-text);
-}
-
 /* Thermometer Confirmation Popup Ends */
