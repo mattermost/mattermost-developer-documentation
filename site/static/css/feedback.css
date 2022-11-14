@@ -236,6 +236,10 @@
 
 /* Thermometer Confirmation Popup */
 .c-thermometer-popup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border-radius: 5px;
     box-shadow: 0 4px 40px rgba(0, 0, 0, 0.15);
     padding: 25px;
@@ -244,30 +248,58 @@
     background: white;
     z-index: 9;
     margin-right: 14px;
+    position: absolute;
+    bottom: 150px;
 }
 
 .c-thermometer-popup.show {
-    height: auto;
     opacity: 1;
     transition: opacity 500ms;
 }
 
 .c-thermometer-popup.hide {
-    height: 0;
     opacity: 0;
     transition: opacity 500ms;
 }
 
-.c-thermometer-popup h5 {
-    font-size: 14px;
-    margin: 8px 0;
-    color: var(--center-channel-text);
+.c-thermometer-popup > svg {
+    width: 33px;
+    height: 29px;
+    margin-bottom: 11px;
 }
 
-.c-thermometer-popup p {
-    font-size: 12px;
-    line-height: 1.5;
-    text-align: center;
-    margin: 0;
+.c-thermometer-popup__text {
+    display: flex;
+    flex-direction: column;
+}
+
+.c-thermometer-popup__title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 150%;
+}
+
+.c-thermometer-popup__message {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 150%;
+}
+
+@media (max-width: 420px) {
+    .c-thermometer-popup {
+        flex-direction: row;
+        justify-content: unset;
+        align-items: center;
+        text-align: initial;
+        width: 90%;
+        padding: 24px;
+        position: absolute;
+        bottom: 1rem;
+    }
+    .c-thermometer-popup > svg {
+        width: 42px;
+        height: 37px;
+        margin-right: 24px;
+    }
 }
 /* Thermometer Confirmation Popup Ends */
