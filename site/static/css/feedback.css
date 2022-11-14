@@ -96,17 +96,6 @@
     background: rgb(0 0 0 / 50%);
 }
 
-.c-thermometer-modal__content::before {
-    content: "×";
-    color: #818698; /* Black/03 */
-    display: flex;
-    align-items: baseline;
-    flex-direction: row;
-    justify-content: flex-end;
-    font-size: 200%;
-    cursor: pointer;
-}
-
 .c-thermometer-modal__container.show {
     opacity: 1;
     transition: opacity 500ms;
@@ -141,6 +130,19 @@
 .c-thermometer-modal__content > h2 {
     color: var(--center-channel-text);
     margin-bottom: 12px;
+}
+
+.c-thermometer-modal__header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.c-thermometer-modal__close {
+    color: #818698; /* Black/03 */
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
 }
 
 .c-thermometer-modal__textarea-footer {
@@ -191,7 +193,7 @@
 }
 
 .c-thermometer-modal__footer .btn {
-    background: #FFBC1F;
+    background: #FFBC1F; /* Marigold/03 Core */
     border-radius: 30px;
     color: black;
     font-size: 14px;
@@ -200,14 +202,6 @@
     padding: 15px 25px;
     display: inline-block;
     transition: all 0.3s ease;
-}
-
-.c-thermometer-modal__footer .btn-primary {
-    background: #166DE0;
-}
-
-.c-thermometer-modal__footer .btn-primary:hover, .c-thermometer-modal__footer .btn-primary:focus, .c-thermometer-modal__footer .btn-primary:active {
-    background: rgb(19, 93, 190);
 }
 
 /* Thermometer Modal Ends */
