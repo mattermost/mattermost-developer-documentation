@@ -3079,19 +3079,19 @@ readers do not read off random characters that represent icons
 }
 
 * {
-    /* border: 1px solid red; */
+     /*border: 1px solid red;*/
 }
 
 body {
     display: flex;
     flex-direction: column;
-    /* font-family: 'Open Sans', sans-serif; */
     font-size: 15px;
     min-height: 100vh;
     font-family: 'Noto Sans','Helvetica Neue',Arial,sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: #363A45;
+    position: relative;
 }
 
 .sidebar {
@@ -3274,7 +3274,8 @@ header.with-notification-bar {
 }
 
 footer {
-    padding: 100px 0;
+    /* Remove padding so there's no extra space between the footer and the feedback widget */
+    /*padding: 100px 0;*/
 }
 
 .footer__copyright {
