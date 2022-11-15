@@ -3,8 +3,8 @@ title: "Why and how to contribute"
 heading: "Why and how to contribute"
 weight: 1
 ---
-
 There are many reasons you might be motivated to contribute to Mattermost:
+
 - [You've found a bug](#youve-found-a-bug)
 - [You want to help with content](#you-want-to-help-with-content)
 - [You want to make something more inclusive or accessible](#you-want-to-make-something-more-inclusive-or-accessible)
@@ -27,7 +27,8 @@ There are many reasons you might be motivated to contribute to Mattermost:
 
     Generally the process works like you’d expect: they’ll make suggestions, you’ll implement them, and together you'll discuss changes in PR comments. If you’re having trouble getting a reviewer to be assigned to your PR, take a look at GitHub’s suggested reviewers and reach out to them in the [Community workspace](http://community.mattermost.com).
 
-![Contribute](contribute.png)
+   ![Contribute](contribute.png)
+   
 5. Here is an overview of how our review process works listed in the order in which things happen. If you’re a core contributor, you can manage the process yourself.
 
     - **Labels will be added to your PR**, such as  `1: UX Review`,  `2: Dev Review`, and  `3: QA Review`, as applicable. See [the list of labels]({{< ref "/contribute/more-info/getting-started/labels" >}}) for details.
@@ -40,8 +41,9 @@ There are many reasons you might be motivated to contribute to Mattermost:
 
     - **Request a QA tester** from the team that owns the code that you’re changing. They’ll decide the necessary scope of testing. Make sure you’ve defined what the expected results are so they know when their tests are successful. Once they give their approval, the `3: QA Review` label will be removed. The QA tester may add the `QA Review Done` label as well.
 
-    {{<note "Tip:">}} We recommend that you generally avoid doing QA testing yourself, unless it’s obvious that it’s not necessary. The best way to help Mattermost QA is to clearly explain your changes and expected outcomes in the PR.
-    {{</note>}}
+      {{<note "Tip:">}}
+We recommend that you generally avoid doing QA testing yourself, unless it’s obvious that it’s not necessary. The best way to help Mattermost QA is to clearly explain your changes and expected outcomes in the PR.
+      {{</note>}}
 
     - Once all outstanding requests are completed, and all involved have approved of the PR, **the `4: Reviews Complete` label will be added** which signals Mattermost core committers to merge the PR into `master`, and delete the old branch. If your pull request depends on other pull requests, note this as a PR comment so that the  `Do Not Merge/Awaiting PR`  label can be added to avoid merging prematurely.
 
@@ -49,13 +51,15 @@ There are many reasons you might be motivated to contribute to Mattermost:
 
     - **Update the appropriate Jira ticket** so everybody knows where the project stands. Resolve the ticket for QA from the **Ready for QA** button, and include QA test steps, or note **No Testing Required** if no QA testing is needed.
 
-    - If you need to test your changes on a test server, an [appropriate label]({{< ref "/contribute/more-info/getting-started/labels.md)" >}}) can be added to the PR. **Request this label as a comment in your PR to create a test server**. After about three to five minutes, a test server is created, and a bot will send a link and credentials in the form of a comment on the PR. The test server is destroyed when the label is removed.
+    - If you need to test your changes on a test server, an [appropriate label]({{< ref "/contribute/more-info/getting-started/labels.md" >}}) can be added to the PR. **Request this label as a comment in your PR to create a test server**. After about three to five minutes, a test server is created, and a bot will send a link and credentials in the form of a comment on the PR. The test server is destroyed when the label is removed.
 
-![Review-process](review.png)
+   ![Review-process](review.png)
+
 6. Once you address suggestions a reviewer has made, re-request a review from them. Their initial review was technically completed, so it’s no longer in a reviewer's queue until you re-request.
 
-    {{<note "Tip:">}} Give reviewers time — they may have long queues and different schedules. If you’ve been assigned a reviewer but haven’t heard from them in five business days, you can politely bring focus back to your PR by mentioning them in a PR comment.
-    {{</note>}}
+   {{<note "Tip:">}}
+Give reviewers time — they may have long queues and different schedules. If you’ve been assigned a reviewer but haven’t heard from them in five business days, you can politely bring focus back to your PR by mentioning them in a PR comment.
+   {{</note>}}
 
 7. Mattermost has a system to categorize the inactivity of contributions. Invalid PRs don’t need to go through this cycle at the Community Coordinator’s discretion.
 
@@ -68,7 +72,7 @@ There are many reasons you might be motivated to contribute to Mattermost:
       - Inactive contributions are eligible to be picked up by another community member.
     - **After 30 days of inactivity**: A contribution becomes orphaned, the `lifecycle/3:orphaned` label is added to the now-closed PR. The associated `Help Wanted` ticket is given back its `Up For Grabs` status so others can pick up the issue.
 
-![Inactivity](inactivity.png)
+   ![Inactivity](inactivity.png)
 
 ## You want to help with content
 
@@ -76,23 +80,25 @@ Good product and developer documentation content is as important as good code! I
 
 1. If you see a problem with Mattermost [developer](https://developers.mattermost.com/) or {{< newtabref href="https://docs.mattermost.com/" title="product" >}} documentation, you have a few options:
 
-    - If you have time to fix the mistake and it only affects a single page, navigate to the applicable page and select **Edit in GitHub** at the top right. You'll be walked through the process of creating a fork so that you can then follow the steps under the section titled [“You’ve found a bug”]({{< ref "/contribute/why-contribute/#youve-found-a-bug" >}}) in this guide.
+    - If you have time to fix the mistake and it only affects a single page, navigate to the applicable page and select **Edit in GitHub** at the top right. You'll be walked through the process of creating a fork so that you can then follow the steps under the section titled [You’ve found a bug](#youve-found-a-bug) in this guide.
     - If you don’t have time to fix the mistake, copy the file path you’re on, and create a GitHub issue about the problem you found on the applicable repository. Make sure to include the file path and fill out the issue template completely to maximize clarity.
     - If you’re not up for creating a GitHub issue right now, that’s alright too! In the bottom-right corner of every product documentation page is the question “Did you find what you were looking for?” Use this to quickly provide direct feedback about any page you’re viewing.
     - If you want to fix a larger problem that affects multiple pages or the structure of the docs, you should first report it as an issue on the appropriate GitHub repository, and follow the steps under  [“You’ve found a bug”]({{< ref "/contribute/why-contribute/#youve-found-a-bug" >}}). The [developer](https://developers.mattermost.com/) and {{< newtabref href="https://docs.mattermost.com/" title="product" >}} documentation repositories contain instructions on how to build and modify the sites locally so you can test larger changes more efficiently.
     - Find a list of the Mattermost documentation specific repos on the [Contributor expectations page]({{< ref "/contribute/expectations/#before-contributing" >}}) of this guide.
 
-        {{<note "Tip:">}} The best place to discuss problems with the writing team is in the {{< newtabref href="https://community.mattermost.com/core/channels/dwg-documentation-working-group" title="Documentation Working Group channel" >}} where you can ping our technical writers with the group `@docsteam`.
+        {{<note "Tip:">}} 
+        The best place to discuss problems with the writing team is in the {{< newtabref href="https://community.mattermost.com/core/channels/dwg-documentation-working-group" title="Documentation Working Group channel" >}} where you can ping our technical writers with the group `@docsteam`.
         {{</note>}}
 
 2. If you’d like to contribute to our blog, website, or social media content, you also have a few options:
+    
     -  You can get paid to write technical content for developers through the Mattermost {{< newtabref href="https://mattermost.com/blog/blog-announcing-community-writing-program/" title="community writing program" >}}.
-
     - If you see a problem with any webpages, blog posts, or other content on {{< newtabref href="https://mattermost.com" title="Mattermost.com" >}}, you can notify us via {{< newtabref href="https://community.mattermost.com/core/channels/mattermost-blog" title="the Content channel" >}} on the Mattermost Community Server.
+
     - Share your contributor or user experience! Mention us when you promote your work within our community, and we’ll amplify the message through Mattermost social media platforms.
     - Want to lead a social community? We can provide advice and resources to help you in the {{< newtabref href="https://community.mattermost.com/core/channels/community-team" title="Community channel" >}} on the Mattermost Community Server.
 
-## You want to make something more inclusive or accessible
+## You want to make something morDropdowne inclusive or accessible
 
 Accessibility is one of the most overlooked yet most important features of modern software development, and we’re eager to improve on the accessibility of the features in our open source project and its documentation.
 
@@ -109,8 +115,8 @@ Thank you for your enthusiasm! You can act on feature ideas in a few ways:
 3. {{< newtabref href="https://portal.productboard.com/mattermost/33-what-matters-to-you/tabs/115-help-us-learn-more-through-surveys" title="Participate in a survey" >}} to help us better understand how to meet the needs of our users.
 4. Discuss your idea with our community in the {{< newtabref href="https://community.mattermost.com/core/channels/feature-ideas" title="Feature Proposals channel" >}}.
 5. Build an app! Mattermost has a rich framework full of tools to help you add the features you want that don’t quite work as core additions to Mattermost.
-    - [Webhooks]({{< ref "/integrate/webhooks" >}}) are the easiest type of app to create and enable you to integrate with the vast majority of modern web tools.
 
+    - [Webhooks]({{< ref "/integrate/webhooks" >}}) are the easiest type of app to create and enable you to integrate with the vast majority of modern web tools.
     - [Slash commands]({{< ref "/integrate/slash-commands" >}}) are apps that respond to triggers sent as messages inside Mattermost.
     - More complicated Apps can be built as standard HTTP services in any programming language using a robust API. [Get started here]({{< ref "/integrate/apps" >}}).
     - If you’re willing to deal with more complex development overhead, [plugins]({{< ref "/integrate/plugins" >}}) enable you to alter every component of the Mattermost experience.
@@ -132,11 +138,11 @@ To get started:
 1. Join {{< newtabref href="http://translate.mattermost.com/" title="the Mattermost translation server" >}} and {{< newtabref href="https://community.mattermost.com/core/channels/localization" title="the localization community channel" >}} on the Mattermost Community Server.
 
    - If your preferred language already exists on the translation server, you can start making translations or translation suggestions immediately *there on the translation server*. Don’t try to do this manually through GitHub.
-
    - If your language is absent from the translation server, ask on the localization community channel for it to be added.
-2. Each language in whole is assigned one quality level, and with each release cycle, it can be upgraded or downgraded if necessary.
-    - **Official** — 100% of the language’s translations are verified both by a Mattermost functionality expert and by an expert speaker of the target language. Officially supported languages have at least one official reviewer who updates all of the strings that have changed in the English source text, and they have successfully kept all of the translated strings updated since the last release cycle. The language has been in use for at least three full release cycles.
 
+2. Each language in whole is assigned one quality level, and with each release cycle, it can be upgraded or downgraded if necessary.
+
+    - **Official** — 100% of the language’s translations are verified both by a Mattermost functionality expert and by an expert speaker of the target language. Officially supported languages have at least one official reviewer who updates all of the strings that have changed in the English source text, and they have successfully kept all of the translated strings updated since the last release cycle. The language has been in use for at least three full release cycles.
     - **Beta** — At least 90% of the language’s translations are verified by at least one Mattermost functionality expert who is fluent in the target language. If a language is at risk for ongoing maintenance, Mattermost can raise the threshold closer to 100%. Up to 10% of the translations may not be synchronized with the latest English source text.
     - **Alpha** — The language does not meet the qualifications for the Beta level.
 
@@ -150,6 +156,4 @@ To get started:
 The QA team keeps all contributions up to Mattermost’s high standards. That big responsibility earns QA reviewers the same status as all other contributors.
 
 - If you’d like to earn some prizes, join our weekly bug bashes run on the {{< newtabref href="https://community.mattermost.com/core/channels/qa-contributors" title="QA Contributors channel" >}} on the Mattermost Community Server.
-
 - Standalone {{< newtabref href="https://github.com/mattermost/quality-assurance/issues/2" title="exploratory testing" >}} is highly encouraged too! Remember to report your findings in the {{< newtabref href="https://community.mattermost.com/core/channels/qa-contributors" title="QA Contributors channel" >}}.
-
