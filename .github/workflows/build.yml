@@ -30,3 +30,6 @@ jobs:
 
       - name: Run build
         run: make dist
+
+      - name: Check HTML
+        run: make test
