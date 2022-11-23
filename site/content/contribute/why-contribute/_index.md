@@ -98,7 +98,7 @@ Good product and developer documentation content is as important as good code! I
     - Share your contributor or user experience! Mention us when you promote your work within our community, and we’ll amplify the message through Mattermost social media platforms.
     - Want to lead a social community? We can provide advice and resources to help you in the {{< newtabref href="https://community.mattermost.com/core/channels/community-team" title="Community channel" >}} on the Mattermost Community Server.
 
-## You want to make something morDropdowne inclusive or accessible
+## You want to make something more inclusive or accessible
 
 Accessibility is one of the most overlooked yet most important features of modern software development, and we’re eager to improve on the accessibility of the features in our open source project and its documentation.
 
