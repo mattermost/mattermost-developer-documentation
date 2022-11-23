@@ -28,6 +28,12 @@ build:
 	rm -rf ./dist
 	hugo -s site --verbose --destination ../dist/html --printUnusedTemplates --printPathWarnings --gc
 
+
+.PHONY: test
+test:
+	npm install
+	npm run test-html
+
 .PHONY: compass-icons
 compass-icons:
 	mkdir -p site/static/css
