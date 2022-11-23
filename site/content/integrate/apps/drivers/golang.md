@@ -7,7 +7,7 @@ The following sections assume you've created a new, empty Golang project.
 
 ## Installation
 
-Install the driver using `go get`. The version number - `v1.1.0` in the command below - can be updated to reference newer releases.
+Install the driver using `go get`. The version number `v1.1.0` in the command below  can be updated to reference newer releases.
 
 ```shell
 go get github.com/mattermost/mattermost-plugin-apps@v1.1.0
