@@ -15,7 +15,7 @@ The main activity of Guilds is a regular meeting. These meetings are public, and
 The Web Platform Guild covers all areas related to front-end web development and Electron desktop app development at Mattermost.
 
 - **Guild Lead:** Harrison Healey
-- **Guild channel:** [~Developers: WebApp](https://community.mattermost.com/core/channels/webapp)
+- **Guild channel:** {{< newtabref href="https://community.mattermost.com/core/channels/webapp" title="~Developers: WebApp" >}}
 - **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
 ## Mobile guild
@@ -23,7 +23,7 @@ The Web Platform Guild covers all areas related to front-end web development and
 The Mobile Guild covers all areas related to mobile application development and React Native.
 
 - **Guild Lead:** Elias Nahum
-- **Guild channel:** [~Developers: Mobile](https://community.mattermost.com/core/channels/native-mobile-apps)
+- **Guild channel:** {{< newtabref href="https://community.mattermost.com/core/channels/native-mobile-apps" title="~Developers: Mobile" >}}
 - **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
 ## Server guild
@@ -31,7 +31,7 @@ The Mobile Guild covers all areas related to mobile application development and 
 The Server Guild covers all areas related to our server codebase and general Go development at Mattermost.
 
 - **Guild Lead:** Agniva De Sarker
-- **Guild channel:** [~Developers: Server](https://community.mattermost.com/core/channels/developers-server)
+- **Guild channel:** {{< newtabref href="https://community.mattermost.com/core/channels/developers-server" title="~Developers: Server" >}}
 - **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 
 ## QA guild
@@ -39,6 +39,6 @@ The Server Guild covers all areas related to our server codebase and general Go 
 The QA Guild covers all areas related to Quality Assurance and automated testing infrastructure at Mattermost.
 
 - **Guild Lead:** Saturnino Abril
-- **Guild channel:** [~QA: Weekly Meetings](https://community.mattermost.com/core/channels/qa-weekly-meetings)
+- **Guild channel:** {{< newtabref href="https://community.mattermost.com/core/channels/qa-weekly-meetings" title="~QA: Weekly Meetings" >}}
 - **Guild meeting time:** *(see header of Guild channel for meeting invite)*
 

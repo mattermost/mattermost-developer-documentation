@@ -9,23 +9,23 @@ github: lieut-data
 community: jesse.hallam
 ---
 
-I recently acquired a copy of [Charles](https://www.charlesproxy.com), the well-known Web Debugging Proxy Application. I've actually stumbled across this product on multiple occasions, but never bothered to actually try it... almost exclusively because I thought the website looked a little dated. In trying to suss out the root cause behind [MM-19091](https://mattermost.atlassian.net/browse/MM-19091), I needed a way to debug against our [community](https://community.mattermost.com) servers but running with my local copy of the [mattermost webapp](https://github.com/mattermost/mattermost-webapp). This would allow me to insert `console.log` debugging statements and even use the [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) without the minified component names.
+I recently acquired a copy of {{< newtabref href="https://www.charlesproxy.com" title="Charles" >}}, the well-known Web Debugging Proxy Application. I've actually stumbled across this product on multiple occasions, but never bothered to actually try it... almost exclusively because I thought the website looked a little dated. In trying to suss out the root cause behind {{< newtabref href="https://mattermost.atlassian.net/browse/MM-19091" title="MM-19091" >}}, I needed a way to debug against our {{< newtabref href="https://community.mattermost.com" title="community" >}} servers but running with my local copy of the {{< newtabref href="https://github.com/mattermost/mattermost-webapp" title="mattermost webapp" >}}. This would allow me to insert `console.log` debugging statements and even use the {{< newtabref href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en" title="React Developer Tools" >}} without the minified component names.
 
 What follows is a brief how-to guide for replicating this setup on macOS. Charles is also available for Windows and Linux, but I imagine the configuration steps should be similar. Note too that unrestricted use of Charles requires a paid license, but if you want to experiment with these steps, the application will run for 30 minutes at a time for up to 30 days with all features enabled.
 
 ## Setting up Charles
 
-Start by [downloading Charles](https://www.charlesproxy.com/download/). After you copy the tool to your Applications directory and run it, Charles will automatically start proxying:
+Start by {{< newtabref href="https://www.charlesproxy.com/download/" title="downloading Charles" >}}. After you copy the tool to your Applications directory and run it, Charles will automatically start proxying:
 
 ![image](/blog/2019-10-21-debugging-using-charles/proxying.png)
 
 Notice, however, that the contents of any SSL connections are initially opaque. The real power of Charles comes from being able to install root certificates and effectively man-in-the-middle your SSL connections.
 
-Follow the help documentation to configure [SSL Certificates](https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/), then open the `Proxy` menu and choose `SSL Proxying Settings...`. Select `Enable SSL Proxying` and configure a wildcard to match our three community servers. Charles even proxies websocket connections!
+Follow the help documentation to configure {{< newtabref href="https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/" title="SSL Certificates" >}}, then open the `Proxy` menu and choose `SSL Proxying Settings...`. Select `Enable SSL Proxying` and configure a wildcard to match our three community servers. Charles even proxies websocket connections!
 
 ![image](/blog/2019-10-21-debugging-using-charles/configure-ssl-proxying.png)
 
-After saving these settings and restarting your browser, you should be able to inspect all the traffic to and from [community.mattermost.com](https://community.mattermost.com) (running our last stable release), [community-release.mattermost.com](https://community-release.mattermost.com) (running our upcoming stable release), and [community-daily.mattermost.com](https://community-daily.mattermost.com) (running master):
+After saving these settings and restarting your browser, you should be able to inspect all the traffic to and from {{< newtabref href="https://community.mattermost.com" title="community.mattermost.com" >}} (running our last stable release), {{< newtabref href="https://community-release.mattermost.com" title="community-release.mattermost.com" >}} (running our upcoming stable release), and {{< newtabref href="https://community-daily.mattermost.com" title="community-daily.mattermost.com" >}} (running master):
 
 ![image](/blog/2019-10-21-debugging-using-charles/proxying-community.png)
 
@@ -92,4 +92,4 @@ There are a shortcomings with this configuration:
 
 The configuration above is only the tip of the iceberg when it comes to using Charles for debugging. Think of Charles like an external `Network` tab from the Chrome Developer Tools, but spanning all your tabs across all your applications. Should you run into any networking problems, or just want to stop using Charles altogether, it's easy to turn off the proxy altogether by selecting the `Proxy` menu and unchecking `macOS Proxy`.
 
-If anyone has suggestions on this topic, please feel free to continue the [conversation on this topic](https://community.mattermost.com/core/pl/tmetoow5cpgmbg8ftok4tr6scy). I'd love to find a way to optimize the Charles configuration, and even find a way to enable proxying using open source tooling alone.
+If anyone has suggestions on this topic, please feel free to continue the {{< newtabref href="https://community.mattermost.com/core/pl/tmetoow5cpgmbg8ftok4tr6scy" title="conversation on this topic" >}}. I'd love to find a way to optimize the Charles configuration, and even find a way to enable proxying using open source tooling alone.

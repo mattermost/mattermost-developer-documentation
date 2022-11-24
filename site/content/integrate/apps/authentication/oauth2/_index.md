@@ -9,7 +9,7 @@ aliases:
 
 The authorization allows:
 
-- Users with an account on a Mattermost server to sign in to third-party applications. You can find a [sample OAuth2 Client Application for Mattermost here](https://github.com/enahum/mattermost-oauth2-client-sample) to test the functionality.
+- Users with an account on a Mattermost server to sign in to third-party applications. You can find a {{< newtabref href="https://github.com/enahum/mattermost-oauth2-client-sample" title="sample OAuth2 Client Application for Mattermost here" >}} to test the functionality.
 - A Mattermost server to authenticate requests to a third-party API. One popular application is Zapier integration which allows you to integrate more than 700 applications with Mattermost through OAuth 2.0. See our [Zapier documentation]({{< ref "/integrate/zapier-integration" >}}) to learn more.
 
 ## Register your application in Mattermost
@@ -24,9 +24,9 @@ OAuth 2.0 applications are off by default and can be enabled by the System Admin
 
 1. Log in to your Mattermost server as the System Administrator.
 2. Go to **System Console > Integrations > Integration Management**.
-3. Set [Enable OAuth 2.0 Service Provider](https://docs.mattermost.com/administration/config-settings.html#enable-oauth-2-0-service-provider) to **True**.
-4. (Optional) If you'd like to allow external applications to post with customizable usernames and profile pictures, then set [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) and [Enable integrations to override profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons) to **true**.
-5. (Optional) If you'd like to allow users on your system who are not System Admins to create OAuth 2.0 applications, then set [Restrict managing integrations to Admins](https://docs.mattermost.com/administration/config-settings.html#restrict-managing-integrations-to-admins) to **False**.
+3. Set {{< newtabref href="https://docs.mattermost.com/administration/config-settings.html#enable-oauth-2-0-service-provider" title="Enable OAuth 2.0 Service Provider" >}} to **True**.
+4. (Optional) If you'd like to allow external applications to post with customizable usernames and profile pictures, then set {{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames" title="Enable integrations to override usernames" >}} and {{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons" title="Enable integrations to override profile picture icons" >}} to **true**.
+5. (Optional) If you'd like to allow users on your system who are not System Admins to create OAuth 2.0 applications, then set {{< newtabref href="https://docs.mattermost.com/administration/config-settings.html#restrict-managing-integrations-to-admins" title="Restrict managing integrations to Admins" >}} to **False**.
 
 ### Register an OAuth 2.0 application
 
@@ -74,7 +74,7 @@ Users can view a list of authorized apps from **Settings > Security > OAuth 2.0 
 
 ## Supported OAuth flows
 
-We support the [authorization code](https://oauth.net/2/grant-types/authorization-code/) and [implicit](https://oauth.net/2/grant-types/implicit/) grant flows for OAuth 2.0 applications.
+We support the {{< newtabref href="https://oauth.net/2/grant-types/authorization-code/" title="authorization code" >}} and {{< newtabref href="https://oauth.net/2/grant-types/implicit/" title="implicit" >}} grant flows for OAuth 2.0 applications.
 
 ## OAuth endpoints
 

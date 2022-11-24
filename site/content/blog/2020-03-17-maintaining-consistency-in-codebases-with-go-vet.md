@@ -41,7 +41,7 @@ follow to present data in the logs.
 Let's dive deeper into the topic, and I will try my best to explain how we extended the `go
 vet` tool by adding our own specific checks.
 
-A good starting point is the [check](https://github.com/mattermost/mattermost-govet/blob/master/structuredLogging/structuredLogging.go)
+A good starting point is the {{< newtabref href="https://github.com/mattermost/mattermost-govet/blob/master/structuredLogging/structuredLogging.go" title="check" >}}
 we added so that we could avoid any string building with `fmt.Sprintf` calls as
 part of the calls to our logging library. With that check implemented we were able
 to detect all the cases in the code where we were not doing structured logging
@@ -50,15 +50,15 @@ added that check to our CI pipeline to ensure that the pattern was not
 reintroduced accidentally by us or by any contributor.
 
 Another interesting example is our approach to improve the consistency of test
-assertions. We use the [Testify](https://github.com/stretchr/testify) library
+assertions. We use the {{< newtabref href="https://github.com/stretchr/testify" title="Testify" >}} library
 to include more semantic assertions, but at the same time, we were using
 `t.Fatalf` calls in certain places. The `t.Fatalf` method of failing tests was
 less semantic because the test's error itself is not necessarily related to the
-assertion. We created a [check to avoid the use of `t.Fatalf`](https://github.com/mattermost/mattermost-govet/blob/master/tFatal/tFatal.go) in our tests.
+assertion. We created a {{< newtabref href="https://github.com/mattermost/mattermost-govet/blob/master/tFatal/tFatal.go" title="check to avoid the use of `t.Fatalf`" >}} in our tests.
 
 Once we had that, we discovered that we have some incorrectly defined
 assertions. For example, we were using `require.Equal(t, 5, len(x))` which is
-less semantic than `require.Len(t, x, 5)`. We created a [check for semantic length assertions](https://github.com/mattermost/mattermost-govet/blob/master/equalLenAsserts/equalLenAsserts.go),
+less semantic than `require.Len(t, x, 5)`. We created a {{< newtabref href="https://github.com/mattermost/mattermost-govet/blob/master/equalLenAsserts/equalLenAsserts.go" title="check for semantic length assertions" >}},
 adding a suggestion in the error message to replace it with the
 correct assertion. We kept digging there, and we discovered that sometimes we
 were checking `require.Len(t, x, 0)` which can be more semantically written as
@@ -67,8 +67,8 @@ the case for `require.Equal(t, 0, len(x))` suggesting in both cases to use
 `require.Empty(t, x)`.
 
 Other checks have been made for other purposes. For example, checking the
-[consistency and existence of the license in the header of our files](https://github.com/mattermost/mattermost-govet/blob/master/license/license.go), or
-checking for the [consistency in the receiver variable name of the methods for the same structure](https://github.com/mattermost/mattermost-govet/tree/master/inconsistentReceiverName).
+{{< newtabref href="https://github.com/mattermost/mattermost-govet/blob/master/license/license.go" title="consistency and existence of the license in the header of our files" >}}, or
+checking for the {{< newtabref href="https://github.com/mattermost/mattermost-govet/tree/master/inconsistentReceiverName" title="consistency in the receiver variable name of the methods for the same structure" >}}.
 
 Extending `go vet` is a really easy task, you only need some knowledge about the
 Go AST because almost anything else is already handled by the `go vet` tool. As
@@ -180,7 +180,7 @@ that using the `go vet` tool is an excellent opportunity to improve your code. I
 addition, extending it allows you to define your own patterns and maintain the
 consistency of your code. With our open source culture you can find our
 implementations at our
-[mattermost-govet](https://github.com/mattermost/mattermost-govet) repository.
+{{< newtabref href="https://github.com/mattermost/mattermost-govet" title="mattermost-govet" >}} repository.
 If you see yourself asking for the same changes in PRs all the time, you
 can probably consider using `go vet` to detect the issues automatically.
 

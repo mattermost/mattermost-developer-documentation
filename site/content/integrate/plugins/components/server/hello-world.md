@@ -11,13 +11,13 @@ aliases:
 
 This tutorial will walk you through the basics of writing a Mattermost plugin with a server component.
 
-Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration]({{< ref "/integrate/plugins/migration" >}}) document to upgrade older plugins.
+Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="mattermost-plugin-starter-template" >}} for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration]({{< ref "/integrate/plugins/migration" >}}) document to upgrade older plugins.
 
 ## Prerequisites
 
-Mattermost plugins extend the server using a Go API. In the future, gRPC may be supported, allowing you to write plugins in any language. For now, you'll need a functioning Go environment, so follow [Go's Getting Started](https://golang.org/doc/install) guide if needed.
+Mattermost plugins extend the server using a Go API. In the future, gRPC may be supported, allowing you to write plugins in any language. For now, you'll need a functioning Go environment, so follow {{< newtabref href="https://golang.org/doc/install" title="Go's Getting Started" >}} guide if needed.
 
-You'll also need a Mattermost server to install and test the plugin. This server must have [Enable](https://docs.mattermost.com/administration/config-settings.html#enable-plugins) set to true in the [PluginSettings](https://docs.mattermost.com/administration/config-settings.html#plugins-beta) section of its config file. If you want to upload plugins via the System Console or API, you'll also need to set [EnableUploads](https://docs.mattermost.com/administration/config-settings.html#enable-plugin-uploads) to true in the same section.
+You'll also need a Mattermost server to install and test the plugin. This server must have {{< newtabref href="https://docs.mattermost.com/administration/config-settings.html#enable-plugins" title="Enable" >}} set to true in the {{< newtabref href="https://docs.mattermost.com/administration/config-settings.html#plugins-beta" title="PluginSettings" >}} section of its config file. If you want to upload plugins via the System Console or API, you'll also need to set {{< newtabref href="https://docs.mattermost.com/administration/config-settings.html#enable-plugin-uploads" title="EnableUploads" >}} to true in the same section.
 
 ## Build the plugin
 
@@ -61,7 +61,7 @@ Your executable is platform specific! If you're building the plugin for a server
 GOOS=linux GOARCH=amd64 go build -o plugin.exe plugin.go
 ```
 
-Also note that the ".exe" extension is required if you'd like your plugin to run on Windows, but is otherwise optional. Consider referencing [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) for helpful build scripts.
+Also note that the ".exe" extension is required if you'd like your plugin to run on Windows, but is otherwise optional. Consider referencing {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="mattermost-plugin-starter-template" >}} for helpful build scripts.
 
 Now, we'll need to define the required manifest describing your plugin's entry point. Create a file named `plugin.json` with the following contents:
 

@@ -38,11 +38,11 @@ Now that we have an idea on how we set up and execute E2E tests with Cypress, le
 
 ### 1. Reset before test
 
-This is true both for server and user settings. In the past, we used to prepare test requirements in the test file only. During that time, changes in settings are easy to track and have minimal UI effect. However, it didn’t work well as we developed features and added more and more, and we were bitten many times by it. With that, we made sure in the global `before` hook ([source](https://github.com/mattermost/mattermost-webapp/blob/277a5cafac5385b1e283952a0881f459cffcbe94/e2e/cypress/support/index.js#L94-L164)) that the server and user, specifically *sysadmin*, are in a predetermined state before testing.
+This is true both for server and user settings. In the past, we used to prepare test requirements in the test file only. During that time, changes in settings are easy to track and have minimal UI effect. However, it didn’t work well as we developed features and added more and more, and we were bitten many times by it. With that, we made sure in the global `before` hook ({{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/277a5cafac5385b1e283952a0881f459cffcbe94/e2e/cypress/support/index.js#L94-L164" title="source" >}}) that the server and user, specifically *sysadmin*, are in a predetermined state before testing.
 
 ### 2. Isolate test
 
-When using known test data like users, teams, and channels, test cases are making changes to those test data and it is fine. However, it caused a lot of pain to prepare the state for the next test, so we decided to prevent sharing test data per test file by using a convenient custom command: `cy.apiInitSetup` ([source](https://github.com/mattermost/mattermost-webapp/blob/277a5cafac5385b1e283952a0881f459cffcbe94/e2e/cypress/support/api/setup.js#L4-L30)). Such command automatically creates test data with the typical use of:
+When using known test data like users, teams, and channels, test cases are making changes to those test data and it is fine. However, it caused a lot of pain to prepare the state for the next test, so we decided to prevent sharing test data per test file by using a convenient custom command: `cy.apiInitSetup` ({{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/277a5cafac5385b1e283952a0881f459cffcbe94/e2e/cypress/support/api/setup.js#L4-L30" title="source" >}}). Such command automatically creates test data with the typical use of:
 
 ```javascript
 cy.apiInitSetup({loginAfter: true}).then(({team}) => {
@@ -52,11 +52,11 @@ cy.apiInitSetup({loginAfter: true}).then(({team}) => {
 
 ### 3. Organize custom commands
 
-[Cypress custom commands](https://docs.cypress.io/api/cypress-api/custom-commands.html#Syntax) are beneficial for automating a workflow that is repeated in tests over and over again. You may use it to override or extend the behaviour of built-in commands or to create a new one and take advantage of Cypress internals it comes with. However, it can get easily out of control, hard to discover, and hard to avoid adding similar or duplicate commands. As of this writing, we have almost [200 commands](https://github.com/mattermost/mattermost-webapp/tree/master/e2e/cypress/support) and the following guidelines helped us level up organizing properly:
+{{< newtabref href="https://docs.cypress.io/api/cypress-api/custom-commands.html#Syntax" title="Cypress custom commands" >}} are beneficial for automating a workflow that is repeated in tests over and over again. You may use it to override or extend the behaviour of built-in commands or to create a new one and take advantage of Cypress internals it comes with. However, it can get easily out of control, hard to discover, and hard to avoid adding similar or duplicate commands. As of this writing, we have almost {{< newtabref href="https://github.com/mattermost/mattermost-webapp/tree/master/e2e/cypress/support" title="200 commands" >}} and the following guidelines helped us level up organizing properly:
 - Do specific things as the name suggests.
-- Organize by folder and file - especially with the bulk of [API commands](https://github.com/mattermost/mattermost-webapp/tree/master/e2e/cypress/support/api) where we structured based on how the [API reference](https://api.mattermost.com/) is set up.
+- Organize by folder and file - especially with the bulk of {{< newtabref href="https://github.com/mattermost/mattermost-webapp/tree/master/e2e/cypress/support/api" title="API commands" >}} where we structured based on how the {{< newtabref href="https://api.mattermost.com/" title="API reference" >}} is set up.
 - Standard naming convention - by adding prefix to denote something. Ex. `cy.apiLogin(user)` means user login is done directly via REST API, or `cy.uiChangeMessageDisplaySetting(display)` means changing message display setting is done via UI workflow.
-- Make it discoverable through autocompletion and intellisense - by adding [type definitions](https://github.com/mattermost/mattermost-webapp/blob/277a5cafac5385b1e283952a0881f459cffcbe94/e2e/cypress/support/api/user.d.ts#L21-L31) for each custom commands with comments for in-code documentation.
+- Make it discoverable through autocompletion and intellisense - by adding {{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/277a5cafac5385b1e283952a0881f459cffcbe94/e2e/cypress/support/api/user.d.ts#L21-L31" title="type definitions" >}} for each custom commands with comments for in-code documentation.
 ![autocompletion gif](/blog/2020-07-27-automated-ui-testing-with-cypress/autocompletion_and_intellisense.gif)
 
 ### 4. Be explicit in the test block
@@ -65,7 +65,7 @@ Classic examples are user login or URL redirection which were previously done in
 
 ### 5. Avoid dependency of test block from another test block
 
-In cases where a test file has several test blocks, each test block or `it()` should be independent from each other. Appending exclusivity (`.only()`) or inclusivity (`.skip`) should work normally and should not rely on state generated from other tests. It will make individual test verification faster and deterministic. Cypress has a [section that explains](https://docs.cypress.io/guides/references/best-practices.html#Having-tests-rely-on-the-state-of-previous-tests) it in detail.
+In cases where a test file has several test blocks, each test block or `it()` should be independent from each other. Appending exclusivity (`.only()`) or inclusivity (`.skip`) should work normally and should not rely on state generated from other tests. It will make individual test verification faster and deterministic. Cypress has a {{< newtabref href="https://docs.cypress.io/guides/references/best-practices.html#Having-tests-rely-on-the-state-of-previous-tests" title="section that explains" >}} it in detail.
 
 ### 6. Avoid nested blocks
 
@@ -107,7 +107,7 @@ One option to avoid this and still maintain test grouping is to break into sever
 
 ### 7. Avoid unnecessary waiting
 
-Cypress has a [section that explains](https://docs.cypress.io/guides/references/best-practices.html#Unnecessary-Waiting) it in detail and lists workarounds when you find yourself needing it. Explicit `wait` makes the test flaky or longer than usual. On top of what was explained, we’re using [cypress-wait-until](https://www.npmjs.com/package/cypress-wait-until) under the hood that makes it easier to wait for a certain subject. You’ll find custom commands like `cy.uiWaitUntilMessagePostedIncludes` ([source](https://github.com/mattermost/mattermost-webapp/blob/277a5cafac5385b1e283952a0881f459cffcbe94/e2e/cypress/support/ui_commands.js#L124-L140)) which is sometimes used to wait for a system message to get posted before making an assertion. 
+Cypress has a {{< newtabref href="https://docs.cypress.io/guides/references/best-practices.html#Unnecessary-Waiting" title="section that explains" >}} it in detail and lists workarounds when you find yourself needing it. Explicit `wait` makes the test flaky or longer than usual. On top of what was explained, we’re using {{< newtabref href="https://www.npmjs.com/package/cypress-wait-until" title="cypress-wait-until" >}} under the hood that makes it easier to wait for a certain subject. You’ll find custom commands like `cy.uiWaitUntilMessagePostedIncludes` ({{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/277a5cafac5385b1e283952a0881f459cffcbe94/e2e/cypress/support/ui_commands.js#L124-L140" title="source" >}}) which is sometimes used to wait for a system message to get posted before making an assertion. 
 
 ### 8. Add comments for each action and verification
 

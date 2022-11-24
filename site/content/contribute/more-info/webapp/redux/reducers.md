@@ -25,7 +25,7 @@ function myValue(state = myValueDefault, action) {
 }
 ```
 
-Most reducers used by Mattermost Redux are simple like the one above in that they only affect a single part of the store. These can be easily composed using Redux's [`combineReducers`](https://redux.js.org/api-reference/combinereducers) function to make a more complex data store.
+Most reducers used by Mattermost Redux are simple like the one above in that they only affect a single part of the store. These can be easily composed using Redux's {{< newtabref href="https://redux.js.org/api-reference/combinereducers" title="`combineReducers`" >}} function to make a more complex data store.
 
 ```javascript
 function myStringValue(state = '', action) {

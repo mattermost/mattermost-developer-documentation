@@ -7,7 +7,7 @@ aliases:
   - /integrate/admin-guide/admin-bot-accounts/
 ---
 
-Bot accounts access the Mattermost [RESTful API](https://api.mattermost.com) on behalf of a bot through the use of the [personal access tokens feature]({{< ref "/integrate/reference/personal-access-token" >}}). Bot accounts are just like user accounts, except they:
+Bot accounts access the Mattermost {{< newtabref href="https://api.mattermost.com" title="RESTful API" >}} on behalf of a bot through the use of the [personal access tokens feature]({{< ref "/integrate/reference/personal-access-token" >}}). Bot accounts are just like user accounts, except they:
 
   - Can't be logged into.
   - Can't be used to create other bot accounts.
@@ -27,7 +27,7 @@ Note that currently:
   - Only user accounts can create and configure webhooks and slash commands.
   - In Mattermost Enterprise Edition, service accounts without an email address pulled from LDAP or SAML systems are not yet supported.
 
-If you would like to see improvements to bot accounts, [let us know in the Feature Proposal Forum](https://mattermost.uservoice.com).
+If you would like to see improvements to bot accounts, {{< newtabref href="https://mattermost.uservoice.com" title="let us know in the Feature Proposal Forum" >}}.
 
 ## Configuration settings
 
@@ -61,7 +61,7 @@ Below are different ways to create bot accounts. After the bot account is create
 
 Use the RESTful API `POST /bots` to create a bot. You must have permissions to create bots.
 
-See our [API documentation](https://api.mattermost.com/#tag/bots) to learn more about creating and managing bots through the API.
+See our {{< newtabref href="https://api.mattermost.com/#tag/bots" title="API documentation" >}} to learn more about creating and managing bots through the API.
 
 To authorize your bot via RESTful API use `curl -i -H 'authorization: Bearer <Access Token>' http://localhost:8065/api/v4/users/me`. **Access Token** is not the `Token ID` and won't be visible again once created.
 
@@ -79,7 +79,7 @@ Bot accounts which were converted from user accounts will have their authenticat
 
 ### Plugins
 
-Plugins can create bot accounts through an `EnsureBot` helper function. For an example, see [the Demo Plugin](https://github.com/mattermost/mattermost-plugin-demo/blob/master/server/configuration.go#L210-L217).
+Plugins can create bot accounts through an `EnsureBot` helper function. For an example, see {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo/blob/master/server/configuration.go#L210-L217" title="the Demo Plugin" >}}.
 
 Bots created by a plugin use the plugin's ID as the creator, unless otherwise specified by the plugin.
 
@@ -114,7 +114,7 @@ For your webhook and slash command integrations, you cannot migrate them to use 
 
 ### What happens if a plugin is using a bot account that already exists as a user account?
 
-For a concrete example, suppose you enable the [Mattermost GitHub plugin](https://github.com/mattermost/mattermost-plugin-github), which uses a `github` bot account, while an existing `github` user account was created for webhook integrations.
+For a concrete example, suppose you enable the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-github" title="Mattermost GitHub plugin" >}}, which uses a `github` bot account, while an existing `github` user account was created for webhook integrations.
 
 Once the plugin is enabled, the plugin posts as the `github` account but without a `BOT` tag. An error message is logged to the server logs recommending the System Admin to convert the `github` user to a bot account by running `mattermost user convert <username> --bot` in the CLI.
 
@@ -145,10 +145,10 @@ Replace the following parameters:
 ### Do bot access tokens expire?
 
 No, but you can automate your integration to cycle its token through the REST API:
-1. Use [GetUserAccessTokensForUser](https://api.mattermost.com/#operation/GetUserAccessTokensForUser) to list the existing tokens for the `bot` user.
-2. Use [CreateUserAccessToken](https://api.mattermost.com/#operation/CreateUserAccessToken) to generate a new token.
+1. Use {{< newtabref href="https://api.mattermost.com/#operation/GetUserAccessTokensForUser" title="GetUserAccessTokensForUser" >}} to list the existing tokens for the `bot` user.
+2. Use {{< newtabref href="https://api.mattermost.com/#operation/CreateUserAccessToken" title="CreateUserAccessToken" >}} to generate a new token.
 3. Update the services that leverage the token with the new `token` value from step 1.
-4. Use [RevokeUserAccessToken](https://api.mattermost.com/#operation/RevokeUserAccessToken) to revoke the old token based on the `token_id`.
+4. Use {{< newtabref href="https://api.mattermost.com/#operation/RevokeUserAccessToken" title="RevokeUserAccessToken" >}} to revoke the old token based on the `token_id`.
 
 For more information about access tokens, see [the personal access tokens documentation]({{< ref "/integrate/reference/personal-access-token" >}}).
 
@@ -176,7 +176,7 @@ Yes. By default, bot accounts can update their own posts.
 If you find yourself unable to edit posts as a bot, check the following:
 
 1. Instead of using a slash command to respond directly, use an an API call for the initial interaction with a user to enable message edits.
-2. If your system is using [advanced permissions](https://docs.mattermost.com/onboard/advanced-permissions.html), then post edits could be disabled for users.
+2. If your system is using {{< newtabref href="https://docs.mattermost.com/onboard/advanced-permissions.html" title="advanced permissions" >}}, then post edits could be disabled for users.
 
 If neither of the above help resolve your issue, you also have the option to choose what role the bot account has. If System Admin is chosen, then the bot can update any posts in the system. Note that giving the System Admin role to a bot account enables the bot with other System Admin privileges so this should be done with care.
 
@@ -184,7 +184,7 @@ If neither of the above help resolve your issue, you also have the option to cho
 
 When AD/LDAP or SAML synchronization is enabled, you can create bot accounts using the steps outlined above. These bot accounts won't require an email address.
 
-If you need to sync service accounts from AD/LDAP or SAML to Mattermost and use them as bot accounts, [please reach out to us](https://mattermost.com/contact-us) to discuss in detail. You may not need to sync service accounts and use them as bot accounts to meet your use case.
+If you need to sync service accounts from AD/LDAP or SAML to Mattermost and use them as bot accounts, {{< newtabref href="https://mattermost.com/contact-us" title="please reach out to us" >}} to discuss in detail. You may not need to sync service accounts and use them as bot accounts to meet your use case.
 
 ### How are bot accounts identified in compliance exports?
 

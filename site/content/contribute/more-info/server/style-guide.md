@@ -8,11 +8,11 @@ aliases:
 
 Golang ("go") is a more opinionated language than many others when it comes to coding style. The compiler enforces some basic stylistic elements, such as the removal of unused variables and imports. Many others are enforced by the `gofmt` tool, such as usage of white-space, semicolons, indentation, and alignment. The `gofmt` tool is run over all code in the Mattermost Server CI pipeline. Any code which is not consistent with the formatting enforced by `gofmt` will not be accepted into the repository.
 
-Despite this, there are still many areas of coding style which are not dictated by these tools. Rather than reinventing the wheel, we are adopting [Effective Go](https://golang.org/doc/effective_go.html) as a basis for our style guide. On top of that, we also follow the guidelines laid out by the Go project at [CodeReviewComments](https://github.com/golang/go/wiki/CodeReviewComments).
+Despite this, there are still many areas of coding style which are not dictated by these tools. Rather than reinventing the wheel, we are adopting {{< newtabref href="https://golang.org/doc/effective_go.html" title="Effective Go" >}} as a basis for our style guide. On top of that, we also follow the guidelines laid out by the Go project at {{< newtabref href="https://github.com/golang/go/wiki/CodeReviewComments" title="CodeReviewComments" >}}.
 
 However, at present, some of the guidelines from these sources come into conflict with existing patterns that are present in our codebase which cannot immediately be corrected due to the need to maintain backward compatibility.
 
-This document, which should be read in conjunction with [Effective Go](https://golang.org/doc/effective_go.html) and [CodeReviewComments](https://github.com/golang/go/wiki/CodeReviewComments), outlines the small number of exceptions we make to maintain backward compatibility, as well as a number of additional stylistic rules we have adopted on top of those external recommendations.
+This document, which should be read in conjunction with {{< newtabref href="https://golang.org/doc/effective_go.html" title="Effective Go" >}} and {{< newtabref href="https://github.com/golang/go/wiki/CodeReviewComments" title="CodeReviewComments" >}}, outlines the small number of exceptions we make to maintain backward compatibility, as well as a number of additional stylistic rules we have adopted on top of those external recommendations.
 
 ### Application of guidelines
 
@@ -77,7 +77,7 @@ Do not create new `ToJSON` methods for model structs. Instead, just use `json.Ma
 - It avoids bugs due to the suppression of the JSON error which happens with `ToJSON` methods (we've had a number of bugs caused by this).
 - It's a common pattern to pass the output to something (like a network call) which accepts a byte-slice, leading to a double conversion from byte-slice to string to a byte-slice again if `ToJSON` methods are used.
 
-#### [Interfaces](https://github.com/golang/go/wiki/CodeReviewComments#interfaces)
+#### {{< newtabref href="https://github.com/golang/go/wiki/CodeReviewComments#interfaces" title="Interfaces" >}}
 
 - Return structs, accept interfaces.
 - Interface names should end with “-er”. This is not a strict rule. Just a guideline which indicates the fact that interface functionalities are designed around the concept of “doing” something.
@@ -85,13 +85,13 @@ Do not create new `ToJSON` methods for model structs. Instead, just use `json.Ma
 
 As an example, if you're trying to integrate with a third-party service, it's tempting to create an interface and use that in the code so that it can be easily mocked in the test. This is an anti-pattern and masks real bugs. Instead, you should try to use the real implementation via a docker container or if that's not feasible, mock the network response coming from the external process.
 
-Another common pattern is to preemptively declare the interface in the source package itself, so that the consumer can just directly import the interface. Instead, try to declare the interface in the package which is going to consume the functionality. Often, different packages have non-overlapping set of functionalities to consume. If you do find several consumers of the package, remember that interfaces can be composed. So define small chunks of functionalities in different interfaces, and let consumers compose them as needed. Take a look at the set of interfaces in the [io](https://golang.org/pkg/io/) package.
+Another common pattern is to preemptively declare the interface in the source package itself, so that the consumer can just directly import the interface. Instead, try to declare the interface in the package which is going to consume the functionality. Often, different packages have non-overlapping set of functionalities to consume. If you do find several consumers of the package, remember that interfaces can be composed. So define small chunks of functionalities in different interfaces, and let consumers compose them as needed. Take a look at the set of interfaces in the {{< newtabref href="https://golang.org/pkg/io/" title="io" >}} package.
 
 These are just guidelines and not strict rules. Understand your use case and apply them appropriately.
 
 ### Stylistic
 
-#### [CamelCase variables/constants](https://github.com/golang/go/wiki/CodeReviewComments#mixed-caps)
+#### {{< newtabref href="https://github.com/golang/go/wiki/CodeReviewComments#mixed-caps" title="CamelCase variables/constants" >}}
 
 We use CamelCase names like WebsocketEventPostEdited, not WEBSOCKET_EVENT_POST_EDITED.
 
@@ -99,7 +99,7 @@ We use CamelCase names like WebsocketEventPostEdited, not WEBSOCKET_EVENT_POST_E
 
 Use `foo == ""` to check for empty strings, not `len(foo) == 0`.
 
-#### [Reduce indentation](https://github.com/golang/go/wiki/CodeReviewComments#indent-error-flow)
+#### {{< newtabref href="https://github.com/golang/go/wiki/CodeReviewComments#indent-error-flow" title="Reduce indentation" >}}
 
 If there are multiple return statements in an if-else statement, remove the else block and outdent it.
 
@@ -130,11 +130,11 @@ if !ok || d != '{' {
 }
 ```
 
-#### [Initialisms](https://github.com/golang/go/wiki/CodeReviewComments#initialisms)
+#### {{< newtabref href="https://github.com/golang/go/wiki/CodeReviewComments#initialisms" title="Initialisms" >}}
 
 Use `userID` rather than `userId`. Same for abbreviations; `HTTP` is preferred over `Http` or `http`.
 
-#### [Receiver names](https://github.com/golang/go/wiki/CodeReviewComments#receiver-names)
+#### {{< newtabref href="https://github.com/golang/go/wiki/CodeReviewComments#receiver-names" title="Receiver names" >}}
 
 The name of a method's receiver should be a reflection of its identity; often a one or two letter abbreviation of its type suffices (such as "c" or "cl" for "Client"). Don't use generic names such as "me", "this", or "self" identifiers typical of object-oriented languages that give the variable a special meaning.
 
@@ -247,7 +247,7 @@ func (worker *Worker) Run() {
 
 ### Performance sensitive areas
 
-Any PR that can potentially have a performance impact on the `mattermost-server` codebase is encouraged to have a performance review. For more information, please see this [link](https://docs.google.com/document/d/1Uzt3XHyKhDKipkuCmESkHoPio7vz7VYS4N_5_9ffgNU/edit). The following is a brief list of indicators that should to undergo a performance review:
+Any PR that can potentially have a performance impact on the `mattermost-server` codebase is encouraged to have a performance review. For more information, please see this {{< newtabref href="https://docs.google.com/document/d/1Uzt3XHyKhDKipkuCmESkHoPio7vz7VYS4N_5_9ffgNU/edit" title="link" >}}. The following is a brief list of indicators that should to undergo a performance review:
 
 - New features that might require benchmarks and/or are missing load-test coverage.
 - PRs touching performance of critical parts of the codebase (e.g. `Hub`/`WebConn`).
@@ -263,15 +263,15 @@ Any PR that can potentially have a performance impact on the `mattermost-server`
 
 ### Generics
 
-Generics is a new feature coming in Go 1.18. This is a significant language feature which is yet to be used widely and the patterns around it are unknown. Following the Go team's [recommendation](https://groups.google.com/g/golang-dev/c/iuB22_G9Kbo/m/7B1jd1I3BQAJ), it's advised not to use these features in the main server unless we have more experience from the broader community in using them and some clear patterns emerge.
+Generics is a new feature coming in Go 1.18. This is a significant language feature which is yet to be used widely and the patterns around it are unknown. Following the Go team's {{< newtabref href="https://groups.google.com/g/golang-dev/c/iuB22_G9Kbo/m/7B1jd1I3BQAJ" title="recommendation" >}}, it's advised not to use these features in the main server unless we have more experience from the broader community in using them and some clear patterns emerge.
 
-You are welcome to use it in small tools under the Mattermost org, but usage in the main server [repo](https://github.com/mattermost/mattermost-server) is not advised for now.
+You are welcome to use it in small tools under the Mattermost org, but usage in the main server {{< newtabref href="https://github.com/mattermost/mattermost-server" title="repo" >}} is not advised for now.
 
 ## Propose a new rule
 
 To propose a new rule, follow the process below:
 
-- Add it to the agenda in the [Server](https://community.mattermost.com/core/channels/developers-server) Guild meeting, and propose it.
+- Add it to the agenda in the {{< newtabref href="https://community.mattermost.com/core/channels/developers-server" title="Server" >}} Guild meeting, and propose it.
 - If it gets accepted, create a go-vet rule (if possible), or a golangci-lint rule to prevent new regressions from creeping in.
 - Fix all existing issues.
 - Add it to this guide.

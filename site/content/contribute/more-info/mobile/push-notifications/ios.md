@@ -8,7 +8,7 @@ aliases:
   - /contribute/mobile/push-notifications/ios
 ---
 
-Push notifications on iOS are managed and dispatched using [Apple's Push Notification Service](https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html). You must have a **Paid Apple Developer account** to create certificates needed to send notifications using this service.
+Push notifications on iOS are managed and dispatched using {{< newtabref href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html" title="Apple's Push Notification Service" >}}. You must have a **Paid Apple Developer account** to create certificates needed to send notifications using this service.
 
 - Generate a Certificate from Keychain Access
     - Launch the **Keychain Access application** in your Mac and select **KeyChain Access -\Certificate Assistant -\Request a Certificate From a Certificate Authority...**
@@ -20,7 +20,7 @@ Push notifications on iOS are managed and dispatched using [Apple's Push Notific
     - Save the certificate request
         ![image](/img/mobile/ios_keychain_save_cert_request.png)
 
-- Log in to [Apple developer account](https://developer.apple.com/account) and click **Certificates, Identifiers and Profiles**
+- Log in to {{< newtabref href="https://developer.apple.com/account" title="Apple developer account" >}} and click **Certificates, Identifiers and Profiles**
 ![image](/img/mobile/ios_account.png)
 
 - Select the plus icon to create a new certificate
