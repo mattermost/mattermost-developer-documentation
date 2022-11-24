@@ -7,7 +7,7 @@ aliases:
   - /extend/plugins/source-available-license/
 ---
 
-Some plugins authored by Mattermost are licensed under the [Mattermost Source Available License](https://docs.mattermost.com/overview/faq.html#mattermost-source-available-license). This document outlines how to apply the license in various situations.
+Some plugins authored by Mattermost are licensed under the {{< newtabref href="https://docs.mattermost.com/overview/faq.html#mattermost-source-available-license" title="Mattermost Source Available License" >}}. This document outlines how to apply the license in various situations.
 
 ## How do I apply the license to an enterprise-only plugin?
 
@@ -19,7 +19,7 @@ An Enterprise-only plugin is a plugin that requires a valid Mattermost Enterpris
     ```md
     ## License
     
-    This repository is licensed under the [Mattermost Source Available License](LICENSE) and requires a valid Enterprise E20 license. See [Mattermost Source Available License](https://docs.mattermost.com/overview/faq.html#mattermost-source-available-license) to learn more.
+    This repository is licensed under the [Mattermost Source Available License](LICENSE) and requires a valid Enterprise E20 license. See {{< newtabref href="https://docs.mattermost.com/overview/faq.html#mattermost-source-available-license" title="Mattermost Source Available License" >}} to learn more.
     ```
 
 ## How do I apply the license to a mixed-license plugin?
@@ -34,5 +34,5 @@ A mixed-license plugin includes components that require a valid Mattermost Enter
     ```md
     ## License
     
-    This repository is licensed under the Apache 2.0 License, except for the [server/enterprise](server/enterprise) directory which is licensed under the [Mattermost Source Available License](LICENSE.enterprise). See [Mattermost Source Available License](https://docs.mattermost.com/overview/faq.html#mattermost-source-available-license) to learn more.
+    This repository is licensed under the Apache 2.0 License, except for the [server/enterprise](server/enterprise) directory which is licensed under the [Mattermost Source Available License](LICENSE.enterprise). See {{< newtabref href="https://docs.mattermost.com/overview/faq.html#mattermost-source-available-license" title="Mattermost Source Available License" >}} to learn more.
     ```

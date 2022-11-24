@@ -13,11 +13,11 @@ community: joram
 
 A reminder that Mattermost will be separating the `/platform` repo into two repositories on September 6th, 2017:
 
-* a new repository for webapp client code, hosted at github.com/mattermost/mattermost-webapp
+* a new repository for webapp client code, hosted at {{< newtabref href="github.com/mattermost/mattermost-webapp" title="github.com/mattermost/mattermost-webapp" >}}
 * existing repository (`/platform`) renamed to `/mattermost-server`, containing the server code.
 
 ### Why the change?
-Separates PRs for client and server with better naming conventions. This is similar to [React Native](https://github.com/mattermost/mattermost-mobile) and [Redux](https://github.com/mattermost/mattermost-redux) repositories and helps us:
+Separates PRs for client and server with better naming conventions. This is similar to {{< newtabref href="https://github.com/mattermost/mattermost-mobile" title="React Native" >}} and {{< newtabref href="https://github.com/mattermost/mattermost-redux" title="Redux" >}} repositories and helps us:
 
 * work on one part of the system (webapp/server) without worrying about the other.
 * review PRs more easily as the webapp/server code is logically separated.
@@ -32,4 +32,4 @@ Those running private forks would need to separate their server and webapp code 
 Finally, those with work-in-progress PRs on September 6th may need to re-submit their pull request after the separation. For instance, PRs changing the UI would need to be re-submitted to the new `mattermost-webapp` repository.
 
 ### Questions?
-Respond to our [forum post](https://forum.mattermost.com/t/mattermost-separating-platform-into-two-repositories-on-september-6th/3708) or to our [post in the Developers channel](https://community.mattermost.com/core/pl/e9d7rjq993yptryesd5ppe37sa).
+Respond to our {{< newtabref href="https://forum.mattermost.com/t/mattermost-separating-platform-into-two-repositories-on-september-6th/3708" title="forum post" >}} or to our {{< newtabref href="https://community.mattermost.com/core/pl/e9d7rjq993yptryesd5ppe37sa" title="post in the Developers channel" >}}.

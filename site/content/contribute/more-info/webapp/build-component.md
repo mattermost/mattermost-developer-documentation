@@ -21,7 +21,7 @@ If none of those make any sense to you or you're new to React and Redux, then ch
 - https://facebook.github.io/react/tutorial/tutorial.html
 - http://redux.js.org/
 
-The components for the webapp currently live in the `components/` directory in the [mattermost-webapp repository](https://github.com/mattermost/mattermost-webapp).
+The components for the webapp currently live in the `components/` directory in the {{< newtabref href="https://github.com/mattermost/mattermost-webapp" title="mattermost-webapp repository" >}}.
 
 These requirements are discussed in more detail in the following sections.
 

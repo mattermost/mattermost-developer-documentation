@@ -9,7 +9,7 @@ aliases:
 ---
 
 
-The Mattermost server uses [Go modules](https://github.com/golang/go/wiki/Modules) to manage dependencies.
+The Mattermost server uses {{< newtabref href="https://github.com/golang/go/wiki/Modules" title="Go modules" >}} to manage dependencies.
 
 ## Add or update a new dependency
 

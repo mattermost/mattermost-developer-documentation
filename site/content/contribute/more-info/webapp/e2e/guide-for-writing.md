@@ -16,8 +16,8 @@ Inside the `integration` directory, there are subdirectories that roughly break 
 
 1. See [which-query-to-use]({{< ref "/contribute/more-info/webapp/e2e/which-query-to-use" >}}) when selecting an element base on order of priority.
    - Use `camelCase` when assigning `data-testid` or element ID. Watch out for potential breaking changes in the snapshot of the unit testing.  Run `make test` to see if all are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot testing.
-2. Add custom commands to `/e2e/cypress/tests/support`. See Cypress documentation for more details about custom commands: [Cypress custom commands](https://docs.cypress.io/api/cypress-api/custom-commands.html).
-   - For ease of use, in-code documentation and discoverability, custom commands should have type definition added. See [declaration file](https://github.com/mattermost/mattermost-webapp/blob/master/e2e/cypress/tests/support/api/user.d.ts) for reference on how to include.
+2. Add custom commands to `/e2e/cypress/tests/support`. See Cypress documentation for more details about custom commands: {{< newtabref href="https://docs.cypress.io/api/cypress-api/custom-commands.html" title="Cypress custom commands" >}}.
+   - For ease of use, in-code documentation and discoverability, custom commands should have type definition added. See {{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/master/e2e/cypress/tests/support/api/user.d.ts" title="declaration file" >}} for reference on how to include.
 3. Organize `/e2e/cypress/tests/integration` with a subfolder to group similar tests.
 4. Each test should have a corresponding test case in Zephyr. Therefore, the `describe` block should correspond to folder name in Zephyr (e.g. "Incoming webhook"), and `it` block should contain `Zephyr test case number` as `Test Key` and test title (e.g. "MM-T623 Lock to this channel on webhook configuration works"). In the spec file, it should be written as:
 
@@ -68,7 +68,7 @@ Inside the `integration` directory, there are subdirectories that roughly break 
 
 7. Run the test in isolation using a convenient custom command of `cy.apiInitSetup()`. This command creates a new team, channel, and user which can only be used by the spec file itself.
 
-8. Refer to [this pull request](https://github.com/mattermost/mattermost-webapp/pull/5891/files) as a guide on how to write and submit an end-to-end testing PR.
+8. Refer to {{< newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5891/files" title="this pull request" >}} as a guide on how to write and submit an end-to-end testing PR.
 
 ### Add test metadata on spec files
 

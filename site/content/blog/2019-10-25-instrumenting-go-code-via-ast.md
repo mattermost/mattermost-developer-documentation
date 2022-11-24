@@ -12,9 +12,9 @@ community: eli.yukelzon
 ---
 
 We've been working on integrating call tracing in the server to provide exact measurements of all API and DB calls.
-We've picked [OpenTracing](https://github.com/opentracing/opentracing-go) - a lovely open source project that allows you to setup trace reporting and enables you to support [Distributed tracing](https://opentracing.io/docs/overview/what-is-tracing/).
+We've picked {{< newtabref href="https://github.com/opentracing/opentracing-go" title="OpenTracing" >}} - a lovely open source project that allows you to setup trace reporting and enables you to support {{< newtabref href="https://opentracing.io/docs/overview/what-is-tracing/" title="Distributed tracing" >}}.
 
-Instrumenting your API handler in Go is very straightforward - setup a connection to a collection server supporting the OpenTracing spec (we've decided to use [Jaeger](https://www.jaegertracing.io/)) and wrap your code in spans.
+Instrumenting your API handler in Go is very straightforward - setup a connection to a collection server supporting the OpenTracing spec (we've decided to use {{< newtabref href="https://www.jaegertracing.io/" title="Jaeger" >}}) and wrap your code in spans.
 
 To simplify this, we've added a simple tracing module:
 ```go
@@ -93,7 +93,7 @@ The problem is that we have a rather large API surface (around 300+ handlers) an
 
 ## Go AST
 
-So what is an AST really? Well, to quote [Wikipedia](https://www.wikiwand.com/en/Abstract_syntax_tree):
+So what is an AST really? Well, to quote {{< newtabref href="https://www.wikiwand.com/en/Abstract_syntax_tree" title="Wikipedia" >}}:
 
 > In computer science, an abstract syntax tree (AST), or just syntax tree, is a tree representation of the abstract syntactic structure of source code written in a programming language. Each node of the tree denotes a construct occurring in the source code.
 
@@ -234,7 +234,7 @@ First of all - we need to take care of imports. We are using the 'tracing' modul
 astutil.AddImport(fset, file, "github.com/mattermost/mattermost-server/services/tracing")
 ```
 Now we are ready to inject the code. To do that, we need to convert it from its textual representation into a set of AST nodes.
-To help us do that, we can feed that code to [http://goast.yuroyoro.net/](http://goast.yuroyoro.net/) to receive the parsed tree. With that in hand, we are ready to write our instrumentation code:
+To help us do that, we can feed that code to {{< newtabref href="http://goast.yuroyoro.net/" title="http://goast.yuroyoro.net/" >}} to receive the parsed tree. With that in hand, we are ready to write our instrumentation code:
 
 ```go
 // first statement is the assignment:
@@ -308,9 +308,9 @@ And that's it! We have our custom refactoring/instrumentation tool that we can t
 
 ## Go2AST
 
-Since the process of writing AST code by hand based on `go/printer` or [http://goast.yuroyoro.net/](http://goast.yuroyoro.net/) is rather tedious, I've taken the code of `go/printer` and converted it into a reusable CLI command that does all the work for you! Just feed it some Go code and it'll spit out a ready-to-paste AST tree. 
+Since the process of writing AST code by hand based on `go/printer` or {{< newtabref href="http://goast.yuroyoro.net/" title="http://goast.yuroyoro.net/" >}} is rather tedious, I've taken the code of `go/printer` and converted it into a reusable CLI command that does all the work for you! Just feed it some Go code and it'll spit out a ready-to-paste AST tree. 
 
-Take a look here: [https://github.com/reflog/go2ast](https://github.com/reflog/go2ast).
+Take a look here: {{< newtabref href="https://github.com/reflog/go2ast" title="https://github.com/reflog/go2ast" >}}.
 
 ## Conclusion
 

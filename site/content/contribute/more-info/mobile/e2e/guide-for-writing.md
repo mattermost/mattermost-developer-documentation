@@ -8,12 +8,12 @@ aliases:
   - /contribute/mobile/e2e/guide-for-writing
 ---
 
-Before writing a script, ensure that it has a corresponding test case in Zephyr. All test cases may be found in this [link](https://mattermost.atlassian.net/projects/MM?selectedItem=com.atlassian.plugins.atlassian-connect-plugin%3Acom.kanoah.test-manager__main-project-page#!/design?projectId=10302). If test case is not available, feel free to prompt the QA team who will either search from an existing Zephyr entry or if it's a new one, it will be created for you.
+Before writing a script, ensure that it has a corresponding test case in Zephyr. All test cases may be found in this {{< newtabref href="https://mattermost.atlassian.net/projects/MM?selectedItem=com.atlassian.plugins.atlassian-connect-plugin%3Acom.kanoah.test-manager__main-project-page#!/design?projectId=10302" title="link" >}}. If test case is not available, feel free to prompt the QA team who will either search from an existing Zephyr entry or if it's a new one, it will be created for you.
 
 1. Create a test file based on [folder and file structure]({{< ref "/contribute/more-info/mobile/e2e/file-structure" >}}).
 2. Include Zephyr identification (ID) and title in the test description, following the format of `it('[Zephyr_id] [title]')` or `it('[Zephyr_id]_[step] [title]')` if the test case has multiple steps.
 
-   For test case "[MM-T109 RN apps: User can't send the same message repeatedly](https://mattermost.atlassian.net/projects/MM?selectedItem=com.atlassian.plugins.atlassian-connect-plugin%3Acom.kanoah.test-manager__main-project-page#!/testCase/MM-T109)", it should be:
+   For test case "{{< newtabref href="https://mattermost.atlassian.net/projects/MM?selectedItem=com.atlassian.plugins.atlassian-connect-plugin%3Acom.kanoah.test-manager__main-project-page#!/testCase/MM-T109" title="MM-T109 RN apps: User can't send the same message repeatedly" >}}", it should be:
     ```javascript
     describe('Messaging', () => {
         it('MM-T109 User can\'t send the same message repeatedly', () => {
@@ -40,7 +40,7 @@ Before writing a script, ensure that it has a corresponding test case in Zephyr.
    4. Link the failed test cases to the Jira issue. In the Jira bug, select the **Zephyr Scale** tab. Select the **add an existing one** link, then select test cases, and select **Add**.
 
     Conversely, remove the Jira issue key if the issue has been resolved and the test is passing.
-4. Target an element using available [matchers](https://github.com/wix/Detox/blob/master/docs/APIRef.Matchers.md#matchers). For best results, it is recommended to match elements by unique identifiers using `testID`. The identifier should follow the following format to avoid duplication.
+4. Target an element using available {{< newtabref href="https://github.com/wix/Detox/blob/master/docs/APIRef.Matchers.md#matchers" title="matchers" >}}. For best results, it is recommended to match elements by unique identifiers using `testID`. The identifier should follow the following format to avoid duplication.
     ```
     <location>.<modifier>.<element>.<identifier>
     ```
@@ -59,7 +59,7 @@ Before writing a script, ensure that it has a corresponding test case in Zephyr.
 5. Prefix each comment line with appropriate indicator. Each line in a multi-line comment should be prefixed accordingly. Separate and group test step comments and assertion comments for better readability.
     - `#` indicates a test step (e.g. `// # Go to a screen`)
     - `*` indicates an assertion (e.g. `// * Check the title`)
-6. Simulate user interaction using available [actions](https://github.com/wix/Detox/blob/master/docs/APIRef.ActionsOnElement.md).
-7. Verify user interface (UI) expectation using [expect](https://github.com/wix/Detox/blob/master/docs/APIRef.Expect.md).
+6. Simulate user interaction using available {{< newtabref href="https://github.com/wix/Detox/blob/master/docs/APIRef.ActionsOnElement.md" title="actions" >}}.
+7. Verify user interface (UI) expectation using {{< newtabref href="https://github.com/wix/Detox/blob/master/docs/APIRef.Expect.md" title="expect" >}}.
 8. When using `action`, `match`, or another API specific to particular platform, verify that the equivalent logic is applied so that the API does not impact the other platform. Always run tests in both platforms.
-9. See Detox [documentation](https://github.com/wix/Detox/tree/master/docs) for reference.
+9. See Detox {{< newtabref href="https://github.com/wix/Detox/tree/master/docs" title="documentation" >}} for reference.

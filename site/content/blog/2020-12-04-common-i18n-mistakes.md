@@ -14,7 +14,7 @@ Languages are complicated, and every language is complicated in different ways t
 
 Thanks to a tremendous contribution long ago from then-community member Elias Nahum, we have full support for translation throughout Mattermost, and thanks to our community of translators, Mattermost is used in a variety of different languages.
 
-Because we support so many languages, we have to be aware of how to keep our applications properly translatable. There are many easy mistakes you can make when writing an application in one language that can make it difficult to translate into others. We use [React Intl](https://formatjs.io/docs/react-intl/) in our client-side applications and [go-i18n](https://github.com/nicksnyder/go-i18n) on the server which both offer a range of features to help with this, but we can still cause problems if we're not careful when using translated text. Here are a few examples of common problems that we've run into and how to solve them.
+Because we support so many languages, we have to be aware of how to keep our applications properly translatable. There are many easy mistakes you can make when writing an application in one language that can make it difficult to translate into others. We use {{< newtabref href="https://formatjs.io/docs/react-intl/" title="React Intl" >}} in our client-side applications and {{< newtabref href="https://github.com/nicksnyder/go-i18n" title="go-i18n" >}} on the server which both offer a range of features to help with this, but we can still cause problems if we're not careful when using translated text. Here are a few examples of common problems that we've run into and how to solve them.
 
 ## Mistake 1: Not translating something
 
@@ -163,7 +163,7 @@ Since "pendiente" for "remaining" changes based on the number of remaining email
 
 This last mistake is one we encounter more often, and it's one that's a bit harder to solve because it requires using some more complicated techniques that even we haven't adopted everywhere yet. It also takes a bit longer to describe the problem we can encounter here.
 
-Suppose you have a popup which contains some helpful information as well as a link to further documentation. It probably ends with the sentence "[Click here](https://mattermost.com) for more information." where "Click here" is a link. You might just write this as follows:
+Suppose you have a popup which contains some helpful information as well as a link to further documentation. It probably ends with the sentence "{{< newtabref href="https://mattermost.com" title="Click here" >}} for more information." where "Click here" is a link. You might just write this as follows:
 
 ```typescript
 return (

@@ -9,7 +9,7 @@ aliases:
   - /integrate/plugins/server/ha/
 ---
 
-Mattermost Enterprise Edition servers with an E20 license have the ability to run in [High Availability (HA)](https://docs.mattermost.com/deployment/cluster.html) mode, meaning a cluster of Mattermost app servers running together as a single Mattermost deployment.
+Mattermost Enterprise Edition servers with an E20 license have the ability to run in {{< newtabref href="https://docs.mattermost.com/deployment/cluster.html" title="High Availability (HA)" >}} mode, meaning a cluster of Mattermost app servers running together as a single Mattermost deployment.
 
 It is important that all plugins consider HA environments when being built.
 
@@ -31,7 +31,7 @@ The proper way to deal with this case would be for the plugin to store the trigg
 
 ## Run a scheduled job in high availability mode
 
-Using the [mattermost-plugin-api/cluster](https://github.com/mattermost/mattermost-plugin-api/blob/37eccf0f0f3e9e0737d017b555ef3e2e720b3021/cluster/job.go#L112) package, we can schedule jobs to perform background activity at regular intervals, without having to explicitly coordinate with other instances of the same plugin. Here's an example from the [Demo Plugin](https://github.com/mattermost/mattermost-plugin-demo/blob/d647f1ed7fdc384f5bc163a6bba689ab4293704e/server/activate_hooks.go#L72):
+Using the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-api/blob/37eccf0f0f3e9e0737d017b555ef3e2e720b3021/cluster/job.go#L112" title="mattermost-plugin-api/cluster" >}} package, we can schedule jobs to perform background activity at regular intervals, without having to explicitly coordinate with other instances of the same plugin. Here's an example from the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo/blob/d647f1ed7fdc384f5bc163a6bba689ab4293704e/server/activate_hooks.go#L72" title="Demo Plugin" >}}:
 
 ```go
 job, cronErr := cluster.Schedule(

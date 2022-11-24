@@ -12,17 +12,17 @@ This guide will help you configure your developer environment for the Focalboard
 
 ## Install prerequisites
 ### All
-* [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (if using Windows, see below)
-* [Go](https://golang.org/doc/install)
-* [Node.js](https://nodejs.org/en/download/) (v10+)
-* [npm](https://www.npmjs.com/get-npm)
+* {{< newtabref href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" title="Git" >}} (if using Windows, see below)
+* {{< newtabref href="https://golang.org/doc/install" title="Go" >}}
+* {{< newtabref href="https://nodejs.org/en/download/" title="Node.js" >}} (v10+)
+* {{< newtabref href="https://www.npmjs.com/get-npm" title="npm" >}}
 
 ### Windows
-* Install [MinGW-w64](https://chocolatey.org/packages/mingw) via [Chocolatey](https://chocolatey.org/)
-* Install [Git for Windows](https://gitforwindows.org/) and use the `git-bash` terminal shell
+* Install {{< newtabref href="https://chocolatey.org/packages/mingw" title="MinGW-w64" >}} via {{< newtabref href="https://chocolatey.org/" title="Chocolatey" >}}
+* Install {{< newtabref href="https://gitforwindows.org/" title="Git for Windows" >}} and use the `git-bash` terminal shell
 
 ### Mac
-* Install [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12) (v12+)
+* Install {{< newtabref href="https://apps.apple.com/us/app/xcode/id497799835?mt=12" title="Xcode" >}} (v12+)
 * Install the Xcode Command Line Tools via `xcode-select --install`
 
 ### Linux
@@ -32,7 +32,7 @@ This guide will help you configure your developer environment for the Focalboard
 
 ## Fork the project repository
 
-Fork the [Focalboard GitHub repository](https://github.com/mattermost/focalboard) and clone it locally.
+Fork the {{< newtabref href="https://github.com/mattermost/focalboard" title="Focalboard GitHub repository" >}} and clone it locally.
 
 ## Build via the terminal
 
@@ -49,16 +49,16 @@ To run the server:
  ./bin/focalboard-server
 ```
 
-Then navigate your browser to [`http://localhost:8000`](http://localhost:8000) to access your Focalboard server. The port is configured in `config.json`.
+Then navigate your browser to {{< newtabref href="http://localhost:8000" title="`http://localhost:8000`" >}} to access your Focalboard server. The port is configured in `config.json`.
 
 Once the server is running, you can rebuild just the web app via `make webapp` in a separate terminal window. Reload your browser to see the changes.
 
 ## Build and run standalone desktop apps
 
-You can build standalone apps that package the server to run locally against [SQLite](https://www.sqlite.org/index.html):
+You can build standalone apps that package the server to run locally against {{< newtabref href="https://www.sqlite.org/index.html" title="SQLite" >}}:
 
 * **Windows**:
-    * *Requires Windows 10, [Windows 10 SDK](https://developer.microsoft.com/en-us/windows/downloads/sdk-archive/) 10.0.19041.0, and .NET 4.8 developer pack*
+    * *Requires Windows 10, {{< newtabref href="https://developer.microsoft.com/en-us/windows/downloads/sdk-archive/" title="Windows 10 SDK" >}} 10.0.19041.0, and .NET 4.8 developer pack*
     * Open a `git-bash` prompt.
     * Run `make prebuild`
     * The above prebuild step needs to be run only when you make changes to or want to install your npm dependencies, etc.
@@ -95,10 +95,10 @@ Cross-compilation currently isn't fully supported, so please build on the approp
 
 ## Set up VS Code
 
-* Open a [VS Code](https://code.visualstudio.com/) terminal window in the project folder.
+* Open a {{< newtabref href="https://code.visualstudio.com/" title="VS Code" >}} terminal window in the project folder.
 * Run `make prebuild` to install packages. *Do this whenever dependencies change in `webapp/package.json`.*
 * Run `cd webapp && npm run watchdev` to automatically rebuild the web app when files are changed. It also includes source maps from JavaScript to TypeScript.
-* Install the [Go](https://marketplace.visualstudio.com/items?itemName=golang.Go) and [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) VS Code extensions (if you haven't already).
+* Install the {{< newtabref href="https://marketplace.visualstudio.com/items?itemName=golang.Go" title="Go" >}} and {{< newtabref href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint" title="ESLint" >}} VS Code extensions (if you haven't already).
 * Launch the server:
     * **Windows**: <kbd><kbd>Ctrl</kbd>+<kbd>P</kbd></kbd>, type `debug`, press the <kbd>Space</kbd> key, and select `Go: Launch Server`.
     * **Mac**: <kbd><kbd>Cmd</kbd>+<kbd>P</kbd></kbd>, type `debug`, press the <kbd>Space</kbd> key, and select `Go: Launch Server`.
@@ -134,7 +134,7 @@ Run `make ci`, which is similar to the `.gitlab-ci.yml` workflow and includes:
 
 Are you interested in influencing the future of the Focalboard open source project? Please read the [Focalboard Contribution Guide]({{< ref "/contribute/more-info/focalboard" >}}). We welcome everyone and appreciate any feedback. ❤️ There are several ways you can get involved:
 
-* **Changes**: See the [CHANGELOG](https://github.com/mattermost/focalboard/blob/main/CHANGELOG.md) for the latest updates
-* **GitHub Discussions**: Join the [Developer Discussion](https://github.com/mattermost/focalboard/discussions) board
-* **Bug Reports**: [File a bug report](https://github.com/mattermost/focalboard/issues/new?assignees=&labels=bug&template=bug_report.md&title=)
-* **Chat**: Join the [Focalboard community channel](https://community.mattermost.com/core/channels/focalboard)
+* **Changes**: See the {{< newtabref href="https://github.com/mattermost/focalboard/blob/main/CHANGELOG.md" title="CHANGELOG" >}} for the latest updates
+* **GitHub Discussions**: Join the {{< newtabref href="https://github.com/mattermost/focalboard/discussions" title="Developer Discussion" >}} board
+* **Bug Reports**: {{< newtabref href="https://github.com/mattermost/focalboard/issues/new?assignees=&labels=bug&template=bug_report.md&title=" title="File a bug report" >}}
+* **Chat**: Join the {{< newtabref href="https://community.mattermost.com/core/channels/focalboard" title="Focalboard community channel" >}}

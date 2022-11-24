@@ -48,11 +48,11 @@ These tools are not only useful for our team but for the wider community, as the
 
 #### Resources
 
-- [Add rotation ability to mattermost-cloud provisioner](https://github.com/mattermost/mattermost-cloud/pull/423)
-- [Rotator Library](https://github.com/mattermost/rotator)
+- {{< newtabref href="https://github.com/mattermost/mattermost-cloud/pull/423" title="Add rotation ability to mattermost-cloud provisioner" >}}
+- {{< newtabref href="https://github.com/mattermost/rotator" title="Rotator Library" >}}
 
-- [Rotator CLI](https://github.com/mattermost/rotatorctl)
+- {{< newtabref href="https://github.com/mattermost/rotatorctl" title="Rotator CLI" >}}
 
 #### References
 
-- [Eliminating Toil](https://sre.google/sre-book/eliminating-toil/)
+- {{< newtabref href="https://sre.google/sre-book/eliminating-toil/" title="Eliminating Toil" >}}

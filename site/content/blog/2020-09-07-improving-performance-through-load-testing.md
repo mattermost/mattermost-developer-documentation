@@ -40,7 +40,7 @@ As you can see, running load tests can guard your software against problems of d
 
 ## How are we doing it?
 
-There are plenty of high quality load testing frameworks available; some of the best are free and open source ([JMeter](https://jmeter.apache.org/), [Gatling](https://gatling.io/), [k6](https://k6.io/) to name a few). In our case, after a thorough examination, we decided to develop a custom, in-house tool. We accepted trading implementation time and complexity for improved simulation and finer control over the entire process. We've recently released [version 1.0](https://github.com/mattermost/mattermost-load-test-ng/releases/tag/v1.0.0) and we're quite happy with the choice we made. While the tool itself is not designed for general purpose use, it can still serve as a good example of how we tackled the problem of designing and developing a custom load testing engine.
+There are plenty of high quality load testing frameworks available; some of the best are free and open source ({{< newtabref href="https://jmeter.apache.org/" title="JMeter" >}}, {{< newtabref href="https://gatling.io/" title="Gatling" >}}, {{< newtabref href="https://k6.io/" title="k6" >}} to name a few). In our case, after a thorough examination, we decided to develop a custom, in-house tool. We accepted trading implementation time and complexity for improved simulation and finer control over the entire process. We've recently released {{< newtabref href="https://github.com/mattermost/mattermost-load-test-ng/releases/tag/v1.0.0" title="version 1.0" >}} and we're quite happy with the choice we made. While the tool itself is not designed for general purpose use, it can still serve as a good example of how we tackled the problem of designing and developing a custom load testing engine.
 
 ### Simulating the load
 
@@ -59,7 +59,7 @@ In such an example, the chance of a user switching a channel will be double the 
 
 Now that we have a simulation in place, we come back to the original question of this blog post: how can we make our load testing software tell us how many concurrently active users our target application can support?
 
-Instead of relying on [magic formulas](https://en.wikipedia.org/wiki/Magic_number_(programming)) which are hard to explain (and sometime defend) or on endless and error-prone manual testing, we thought of picking an idea out of [control theory](https://en.wikipedia.org/wiki/Control_theory) that could give us both automation and precision at the same time: it's called a **feedback loop**.
+Instead of relying on {{< newtabref href="https://en.wikipedia.org/wiki/Magic_number_(programming)" title="magic formulas" >}} which are hard to explain (and sometime defend) or on endless and error-prone manual testing, we thought of picking an idea out of {{< newtabref href="https://en.wikipedia.org/wiki/Control_theory" title="control theory" >}} that could give us both automation and precision at the same time: it's called a **feedback loop**.
 
 ![feedback-loop](/blog/2020-09-07-improving-performance-through-load-testing/feedback-loop.png)
 
@@ -76,9 +76,9 @@ In response to such an event, the load testing engine starts to lower the number
 
 ## Wrapping up
 
-The success of a software system greatly depends on its performance, especially in today's cloud-oriented world. A small outage can have a serious impact on your customers and eventually affect your company's revenue, especially when a [service level agreement](https://en.wikipedia.org/wiki/Service_level_agreement) is in place.
+The success of a software system greatly depends on its performance, especially in today's cloud-oriented world. A small outage can have a serious impact on your customers and eventually affect your company's revenue, especially when a {{< newtabref href="https://en.wikipedia.org/wiki/Service_level_agreement" title="service level agreement" >}} is in place.
 
 Load testing is a precious tool that can help your team to improve both the overall quality and stability of your system by preventing performance issues and application bugs while improving scalability and minimizing the risk of down times.
 
 Stay tuned for a follow-up article including an in depth technical discussion on the internals of our custom engine plus a full section on how to interpret and leverage load testing results.
-If you'd like to know more about this particular topic or discuss performance in general, you can reach us in the [Developers: Performance](https://community.mattermost.com/core/channels/developers-performance) channel.
+If you'd like to know more about this particular topic or discuss performance in general, you can reach us in the {{< newtabref href="https://community.mattermost.com/core/channels/developers-performance" title="Developers: Performance" >}} channel.

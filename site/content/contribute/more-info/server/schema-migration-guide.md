@@ -20,7 +20,7 @@ From Mattermost release v6.4, we have started using a schema-based migration sys
 
 A file naming convention is used to determine the order in which the migrations should be applied that appends `up|down.sql` suffix to the migration name. We were using a database version before the new migration system which is why the versions exist in the migration file name in the example. Going forward, using version identifiers for future next migration files is not mandatory. A developer can add any information to the name if they think it's going to be helpful.
 
-We are using [morph](https://github.com/go-morph/morph) for the migration engine. The tool has a library and also a CLI. Mattermost server imports the library to have programmatic access to morph functions. A developer can use the morph CLI tool to test whether their migrations are working properly. Please follow instructions in the morph documentation to use the morph CLI tool.
+We are using {{< newtabref href="https://github.com/go-morph/morph" title="morph" >}} for the migration engine. The tool has a library and also a CLI. Mattermost server imports the library to have programmatic access to morph functions. A developer can use the morph CLI tool to test whether their migrations are working properly. Please follow instructions in the morph documentation to use the morph CLI tool.
 
 If your migration will take more time on a larger data set, check if it is possible to extract it as a separate SQL query for the customer to run off-hours on their DB. This is usually possible with new indexes/columns. As a result, when the application is upgraded, the migration is a no-op because those columns/indexes are already added.
 
@@ -52,7 +52,7 @@ Answer the following two questions:
 
 If the answer to 2. is yes, then it should be pretty simple. In that case, if the answer to 1 is also yes, then please extract the raw SQL query to be run and add it in the release notes for customers who want to run it in off-hours to speed up upgrade time.
 
-However, If the answer to the second question above is "no", then contact the [performance team](https://community.mattermost.com/core/channels/developers-performance) to discuss a solution.
+However, If the answer to the second question above is "no", then contact the {{< newtabref href="https://community.mattermost.com/core/channels/developers-performance" title="performance team" >}} to discuss a solution.
 
 ### Inform SRE team
 
