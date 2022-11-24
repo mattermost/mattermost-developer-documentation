@@ -123,7 +123,7 @@ Thank you for your enthusiasm! You can act on feature ideas in a few ways:
 
 We love developers who are passionate about open-source!
 
-If you’re looking to tackle an interesting problem, we’ve got you covered! Feel free to check out the {{<newtabref title="help wanted tickets on GitHub" href="https://github.com/search?utf8=%E2%9C%93&q=is%3Aopen+archived%3Afalse+org%3Amattermost+label%3A%22Help+Wanted%22++label%3A%22Up+For+Grabs%22">}}. To take one on, just comment on the issue, and follow the process outlined in {{<newtabref title="You've found a bug" href="#youve-found-a-bug">}} of this guide. You can find a list of the Mattermost repositories on the {{<newtabref title="Contributor expectations page" ref="/contribute/expectations/#before-contributing" >}} of this guide.
+If you’re looking to tackle an interesting problem, we’ve got you covered! Feel free to check out the {{<newtabref title="help wanted tickets on GitHub" href="https://github.com/search?utf8=%E2%9C%93&q=is%3Aopen+archived%3Afalse+org%3Amattermost+label%3A%22Help+Wanted%22++label%3A%22Up+For+Grabs%22">}}. To take one on, just comment on the issue, and follow the process outlined in [You've found a bug](#youve-found-a-bug) of this guide. You can find a list of the Mattermost repositories on the [Contributor expectations page]({{< ref "/contribute/expectations/#before-contributing" >}}) of this guide.
 
 ## You want to help with product translation
 
