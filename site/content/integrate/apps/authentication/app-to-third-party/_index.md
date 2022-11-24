@@ -7,7 +7,7 @@ aliases:
   - /integrate/apps/using-third-party-api/hello-oauth2/
 ---
 
-This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-oauth2)), written in Go and runnable on `http://localhost:8082`.
+This is an example of an HTTP app ({{< newtabref href="https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-oauth2" title="source" >}}), written in Go and runnable on `http://localhost:8082`.
 
 - It contains a `manifest.json`, declares itself an HTTP application, requests permissions, and binds itself to locations in the Mattermost user interface.
 - In its `bindings` function it declares three commands: `configure`, `connect`, and `send`.
@@ -33,7 +33,7 @@ Run the following Mattermost slash command:
 
 ### Configure
 
-You need to configure your [Google API Credentials](https://console.cloud.google.com/apis/credentials) for the app. Use `$MATTERMOST_SITE_URL$/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete` for the `Authorized redirect URIs` field. After configuring the credentials, in the Mattermost Desktop app, run:
+You need to configure your {{< newtabref href="https://console.cloud.google.com/apis/credentials" title="Google API Credentials" >}} for the app. Use `$MATTERMOST_SITE_URL$/com.mattermost.apps/apps/hello-oauth2/oauth2/remote/complete` for the `Authorized redirect URIs` field. After configuring the credentials, in the Mattermost Desktop app, run:
 
 ```
 /hello-oauth2 configure --client-id $CLIENT_ID --client-secret $CLIENT_SECRET
@@ -174,7 +174,7 @@ func configure(w http.ResponseWriter, req *http.Request) {
 - Invoke `oauth2Connect` to generate the remote URL that starts the flow.
 - Redirect the user's browser there.
 
-Note `expand.oauth2_app="all"` in the form definition, it includes the app's OAuth2 Mattermost-hosted callback URL in the request context. This command should soon be provided by the framework, see [MM-34561](https://mattermost.atlassian.net/browse/MM-34561).
+Note `expand.oauth2_app="all"` in the form definition, it includes the app's OAuth2 Mattermost-hosted callback URL in the request context. This command should soon be provided by the framework, see {{< newtabref href="https://mattermost.atlassian.net/browse/MM-34561" title="MM-34561" >}}.
 
 ```json
 {

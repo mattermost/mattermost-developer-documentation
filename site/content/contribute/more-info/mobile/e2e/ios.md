@@ -10,7 +10,7 @@ aliases:
 
 #### Local setup
 
-1. Install [applesimutils](https://github.com/wix/AppleSimulatorUtils):
+1. Install {{< newtabref href="https://github.com/wix/AppleSimulatorUtils" title="applesimutils" >}}:
    ```
    brew tap wix/brew
    brew install applesimutils

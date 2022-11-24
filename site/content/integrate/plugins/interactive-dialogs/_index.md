@@ -313,7 +313,7 @@ The integration may also return a generic error message to the user that is not 
 
 Support for generic error messages was added in Mattermost v5.18.
 
-Finally, once the request is submitted, we recommend that the integration responds with a system message or an ephemeral message confirming the submission. This should be a separate request back to Mattermost once the service has received and responded to a submission request from a dialog. This can be done either via [the REST API](https://api.mattermost.com/#tag/posts%2Fpaths%2F~1posts~1ephemeral%2Fpost), or via the [Plugin API]({{< ref "/integrate/plugins/components/server/reference#API.SendEphemeralPost" >}}) if you're developing a plugin.
+Finally, once the request is submitted, we recommend that the integration responds with a system message or an ephemeral message confirming the submission. This should be a separate request back to Mattermost once the service has received and responded to a submission request from a dialog. This can be done either via {{< newtabref href="https://api.mattermost.com/#tag/posts%2Fpaths%2F~1posts~1ephemeral%2Fpost" title="the REST API" >}}, or via the [Plugin API]({{< ref "/integrate/plugins/components/server/reference#API.SendEphemeralPost" >}}) if you're developing a plugin.
 
 {{<note "Note:">}}
 If the dialog is closed by clicking **Cancel** or **X**, no data will be submitted. If a user clicks away from the dialog, the dialog won’t close. This is to prevent accidentally losing any answers they've made to an unsubmitted dialog.
@@ -455,9 +455,9 @@ Below is a full example of a JSON payload that creates an interactive dialog in 
 
 ## Share your integration
 
-If you've built an integration for Mattermost, please consider [sharing your work]({{< ref "/integrate/getting-started" >}}) in our [app directory](https://mattermost.com/marketplace/).
+If you've built an integration for Mattermost, please consider [sharing your work]({{< ref "/integrate/getting-started" >}}) in our {{< newtabref href="https://mattermost.com/marketplace/" title="app directory" >}}.
 
-The [app directory](https://mattermost.com/marketplace/) lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-hosted infrastructure.
+The {{< newtabref href="https://mattermost.com/marketplace/" title="app directory" >}} lists open source integrations developed by the Mattermost community and are available for download, customization and deployment to your private cloud or self-hosted infrastructure.
 
 ## Slack compatibility
 

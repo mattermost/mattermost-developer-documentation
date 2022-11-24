@@ -31,7 +31,8 @@ You can follow these general guidelines to set up a Mattermost outgoing webhook 
     - If the first word of a message matches one of the trigger words exactly, or
     - If the first word of a message starts with one of the trigger words.
 
-6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a {{<newtabref title="trusted internal connection" href="https://docs.mattermost.com/configure/configuration-settings.html">}}.
+6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a {{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html" title="trusted internal connection" >}}.
+
 7. On the next page, copy the **Token** value. This will be used in a later step.
 
     ![Dialog box showing `Setup Successful` message and `Token` in the description message](/integrate/faq/images/outgoing_webhooks_token.png)
@@ -85,6 +86,7 @@ You're all set!
 ## Parameters
 
 Outgoing webhooks support more than just the `text` field. Here is a full list of supported parameters.
+
 
 | Parameter       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Required                         |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|

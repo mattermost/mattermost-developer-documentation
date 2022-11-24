@@ -25,6 +25,7 @@ The App webhook URL has the following format:
 
 Using the above example values, the webhook URL will look like this:
 
+
 `http://my-mattermost-server/plugins/com.mattermost.apps/apps/my-apps/webhook/my-endpoint?secret=9a44ckeqytd3bftn3c3y53968o`
 
 ### Retrieve the secret key
@@ -87,5 +88,6 @@ The `context` of the call request will look like the following:
 ```
 
 ### Example
+
 
 An example of implementing App webhooks can be found in the {{<newtabref title="Mattermost apps examples repo" href="https://github.com/mattermost/mattermost-app-examples/tree/master/golang/webhooks">}}.

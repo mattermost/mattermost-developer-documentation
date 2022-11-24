@@ -7,7 +7,7 @@ aliases:
   - /contribute/getting-started/slash-commands
 ---
 
-There are a couple of slash-commands available on GitHub which are implemented via [Mattermod](https://github.com/mattermost/mattermost-mattermod). They only work on PRs.
+There are a couple of slash-commands available on GitHub which are implemented via {{< newtabref href="https://github.com/mattermost/mattermost-mattermod" title="Mattermod" >}}. They only work on PRs.
 
 The commands are:
 

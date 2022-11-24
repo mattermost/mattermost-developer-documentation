@@ -27,13 +27,13 @@ For the monitoring tooling, we selected a combination of the open source Prometh
 
 Grafana offers an easy to read interface that can be easily deployed and managed in a Kubernetes cluster. By supporting multiple datasources (Prometheus, MySQL, AWS CloudWatch, etc.), it can be used to monitor the whole infrastructure.
 
-Prometheus collects metrics by scraping data from the clusters and we selected it for its simplicity and support, as well as its Prometheus Federation service, which can be used to scale to hundreds of clusters. [Prometheus federation](https://prometheus.io/docs/prometheus/latest/federation/) is a Prometheus server that can scrape data from other Prometheus servers. It supports hierarchical federation, which in our case resembles a tree.
+Prometheus collects metrics by scraping data from the clusters and we selected it for its simplicity and support, as well as its Prometheus Federation service, which can be used to scale to hundreds of clusters. {{< newtabref href="https://prometheus.io/docs/prometheus/latest/federation/" title="Prometheus federation" >}} is a Prometheus server that can scrape data from other Prometheus servers. It supports hierarchical federation, which in our case resembles a tree.
 
 At Mattermost, a default version of the Prometheus server is installed in each one of our clusters and a Prometheus federation server is deployed together with Grafana in a central monitoring cluster. Prometheus federation scrapes data from all the other Prometheus servers that run in our clusters. For future expansion, a central Prometheus federation can be used to scrape data from multiple Prometheus federation servers that scrape data from groups of tens of clusters.
 
 {{< figure src="/blog/2019-12-18-cloud-monitoring/prometheus_federate.png" alt="Prometheus Federate">}}
 
-Both of the tools are deployed in a central command and control cluster using [Helm](https://helm.sh/) and [Terraform](https://www.terraform.io/). More information on the Terraform deployment code can be found [here](https://github.com/mattermost/mattermost-cloud-monitoring/tree/master/terraform/aws/modules/cluster-post-installation). For testing purposes the default version of Prometheus server can be installed by running:
+Both of the tools are deployed in a central command and control cluster using {{< newtabref href="https://helm.sh/" title="Helm" >}} and {{< newtabref href="https://www.terraform.io/" title="Terraform" >}}. More information on the Terraform deployment code can be found {{< newtabref href="https://github.com/mattermost/mattermost-cloud-monitoring/tree/master/terraform/aws/modules/cluster-post-installation" title="here" >}}. For testing purposes the default version of Prometheus server can be installed by running:
 
 ```bash
 helm install stable/prometheus
@@ -82,7 +82,7 @@ static_configs:
 
 The use of labels makes the identification of the clusters easier in the Grafana dashboards and panels.
 
-Having the ability to add and remove targets in an automated way is really important when a new Prometheus server is registered or deregistered with Route 53. This is why we developed a [Lambda function](https://github.com/mattermost/mattermost-cloud-monitoring/tree/master/prometheus-dns-registration-service) that handles the updates of the Prometheus server configmap when a new Route 53 record is created/deleted.
+Having the ability to add and remove targets in an automated way is really important when a new Prometheus server is registered or deregistered with Route 53. This is why we developed a {{< newtabref href="https://github.com/mattermost/mattermost-cloud-monitoring/tree/master/prometheus-dns-registration-service" title="Lambda function" >}} that handles the updates of the Prometheus server configmap when a new Route 53 record is created/deleted.
 
 #### Data Transfer Cost and DNS Resolution
 

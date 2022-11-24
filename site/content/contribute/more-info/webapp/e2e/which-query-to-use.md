@@ -6,11 +6,11 @@ aliases:
   - /contribute/webapp/e2e/which-query-to-use
 ---
 
-We love [Testing Library](https://testing-library.com/) as it encourages writing maintainable tests, to develop with confidence, and to ensure web application is accessible by default. Fortunately, there is `@testing-library/cypress` which provides simple and complete custom Cypress commands and utilities that encourage such good testing practices.
+We love {{< newtabref href="https://testing-library.com/" title="Testing Library" >}} as it encourages writing maintainable tests, to develop with confidence, and to ensure web application is accessible by default. Fortunately, there is `@testing-library/cypress` which provides simple and complete custom Cypress commands and utilities that encourage such good testing practices.
 
 #### With that, which query should I use when writing Cypress tests?
 
-There is a dedicated page from `testing-library` that helps answering the question. Read the said [article](https://testing-library.com/docs/guide-which-query/) to learn more. The following is a short summary of the recommended order of priority:
+There is a dedicated page from `testing-library` that helps answering the question. Read the said {{< newtabref href="https://testing-library.com/docs/guide-which-query/" title="article" >}} to learn more. The following is a short summary of the recommended order of priority:
 
 __Queries Accessible to Everyone__ reflect the experience of visual/mouse users as well as those that use assistive technology.
 
@@ -48,16 +48,16 @@ cy.get('.class-name').should('be.visible').within(() => {
 
 __Query Variants__
 
-Note that `cy.findBy*` are shown but other variants are `cy.findAllBy*`, `cy.queryBy*`, and `cy.queryAllBy*`. See [Queries](https://testing-library.com/docs/dom-testing-library/api-queries) section from `testing-library`.
+Note that `cy.findBy*` are shown but other variants are `cy.findAllBy*`, `cy.queryBy*`, and `cy.queryAllBy*`. See {{< newtabref href="https://testing-library.com/docs/dom-testing-library/api-queries" title="Queries" >}} section from `testing-library`.
 
 #### Which query should I not use?
 `Xpath` such as descendant selector, e.g. `ul > li` and order selector, e.g. `ul > li:nth-child(2)`. If the element can only be queried with this approach, then you may modify the application codebase, improve and make it "accessible to everyone".
 
 #### Do you still have problems knowing how to use Testing Library queries?
 
-There is a very cool Chrome extension named [Testing Playground](https://chrome.google.com/webstore/detail/testing-playground/hejbmebodbijjdhflfknehhcgaklhano/related), and it helps you find the best queries to select elements. It allows you to inspect the element hierarchies in the Chrome Developer Tools, and provides you with suggestions on how to select them, while encouraging good testing practices.
+There is a very cool Chrome extension named {{< newtabref href="https://chrome.google.com/webstore/detail/testing-playground/hejbmebodbijjdhflfknehhcgaklhano/related" title="Testing Playground" >}}, and it helps you find the best queries to select elements. It allows you to inspect the element hierarchies in the Chrome Developer Tools, and provides you with suggestions on how to select them, while encouraging good testing practices.
 
 References:
-- [Testing Library](https://testing-library.com/)
-- [Cypress Testing Library](https://github.com/testing-library/cypress-testing-library#readme)
-- [Which query should I use? (from Testing Library)](https://testing-library.com/docs/guide-which-query/)
+- {{< newtabref href="https://testing-library.com/" title="Testing Library" >}}
+- {{< newtabref href="https://github.com/testing-library/cypress-testing-library#readme" title="Cypress Testing Library" >}}
+- {{< newtabref href="https://testing-library.com/docs/guide-which-query/" title="Which query should I use? (from Testing Library)" >}}

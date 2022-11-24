@@ -40,7 +40,7 @@ You will need to create an S3 bucket within AWS or use an existing bucket.
 
 #### Create a privileged IAM user access key and secret
 
-You will need an access key and secret so that `appsctl` can deploy the app. These credentials can come from creating an IAM user, using a privileged IAM user, or even using the AWS account owners personal access key. Please follow the instructions [provided by AWS](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/) to complete these steps and save the `Access key ID` and `Secret access key` values.
+You will need an access key and secret so that `appsctl` can deploy the app. These credentials can come from creating an IAM user, using a privileged IAM user, or even using the AWS account owners personal access key. Please follow the instructions {{< newtabref href="https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/" title="provided by AWS" >}} to complete these steps and save the `Access key ID` and `Secret access key` values.
 
 #### Set AWS_DEPLOY_ environment variables
 
@@ -151,7 +151,7 @@ The `manifest.json` file of an app is stored in the same S3 bucket as the key - 
 
 # Deployment in Mattermost Cloud
 
-In order to be deployed in Mattermost Cloud an app bundle is uploaded to the specific S3 bucket. On a new app release, a bundle is created by GitLab CI and uploaded to S3. The [Mattermost apps cloud deployer](https://github.com/mattermost/mattermost-apps-cloud-deployer), running as a k8s cron job every hour, detects the S3 upload, and creates appropriate lambda functions, assets, and manifest the same way the **appsclt** does for the third-party accounts.
+In order to be deployed in Mattermost Cloud an app bundle is uploaded to the specific S3 bucket. On a new app release, a bundle is created by GitLab CI and uploaded to S3. The {{< newtabref href="https://github.com/mattermost/mattermost-apps-cloud-deployer" title="Mattermost apps cloud deployer" >}}, running as a k8s cron job every hour, detects the S3 upload, and creates appropriate lambda functions, assets, and manifest the same way the **appsclt** does for the third-party accounts.
 
 The deployer needs lambda function names, asset keys, and the manifest key to deploy the app. It calls the `aws.GetProvisionDataFromFile(/PATH/TO/THE/APP/BUNDLE)` from the Apps Plugin to get the deploy data. Same data can be generated using the command:
 

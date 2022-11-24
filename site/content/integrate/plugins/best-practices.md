@@ -72,11 +72,11 @@ A plugin could define its own type of setting with a corresponding custom user i
 
 5. Once the user saves the changes, any handler that was registered with `registerSaveAction` will be executed to perform any additional custom actions the plugin may require, such as calling an additional endpoint within the plugin. 
 
-For examples of custom settings see: Demo Plugin [`CustomSetting`](https://github.com/mattermost/mattermost-plugin-demo/blob/master/webapp/src/components/admin_settings/custom_setting.jsx) and Custom Attributes Plugin [implementation](https://github.com/mattermost/mattermost-plugin-custom-attributes/pull/18).
+For examples of custom settings see: Demo Plugin {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo/blob/master/webapp/src/components/admin_settings/custom_setting.jsx" title="`CustomSetting`" >}} and Custom Attributes Plugin {{< newtabref href="https://github.com/mattermost/mattermost-plugin-custom-attributes/pull/18" title="implementation" >}}.
 
 ## How can I review the entire code base of a plugin?
 
-Sometimes, you have been working on a personal repository for a new plugin, most probably based on the [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template/) repo. As it was a personal project, you may have pushed all of your commits directly to `master`. And now that it's functional, you need a reviewer to take a look at the whole thing.
+Sometimes, you have been working on a personal repository for a new plugin, most probably based on the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template/" title="mattermost-plugin-starter-template" >}} repo. As it was a personal project, you may have pushed all of your commits directly to `master`. And now that it's functional, you need a reviewer to take a look at the whole thing.
 
 For this, it is useful to create a PR with only the commits you added. Follow these steps to do so:
 

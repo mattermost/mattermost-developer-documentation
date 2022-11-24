@@ -13,10 +13,10 @@ Now that the app can receive push notifications, we need to make sure that the M
 ### Requirements
 
 - A Linux box server with at least 1GB of memory.
-- A copy of the [Mattermost Push Notification Service](https://github.com/mattermost/mattermost-push-proxy/releases).
+- A copy of the {{< newtabref href="https://github.com/mattermost/mattermost-push-proxy/releases" title="Mattermost Push Notification Service" >}}.
 - [Custom Android and/or iOS]({{< ref "/contribute/more-info/mobile/build-your-own" >}}) Mattermost mobile apps.
-- Private and public keys obtained from the [Apple Developer Program](https://developer.apple.com/account/ios/certificate/).
-- A Firebase Cloud Messaging Server key obtained from the [Firebase Console](https://console.firebase.google.com).
+- Private and public keys obtained from the {{< newtabref href="https://developer.apple.com/account/ios/certificate/" title="Apple Developer Program" >}}.
+- A Firebase Cloud Messaging Server key obtained from the {{< newtabref href="https://console.firebase.google.com" title="Firebase Console" >}}.
 
 ## Install and upgrade
 
@@ -26,7 +26,7 @@ For the sake of making this guide simple we located the files at `/home/ubuntu/m
 
     `wget https://github.com/mattermost/mattermost-push-proxy/releases/download/vX.X.X/mattermost-push-proxy.tar.gz` (`mattermost-push-proxy-X.X.X.tar.gz` for releases earlier than v5.9)
 
-    In this command, `vX.X.X` refers to the release version you want to download. See [Mattermost Push Notification Service releases](https://github.com/mattermost/mattermost-push-proxy/releases).
+    In this command, `vX.X.X` refers to the release version you want to download. See {{< newtabref href="https://github.com/mattermost/mattermost-push-proxy/releases" title="Mattermost Push Notification Service releases" >}}.
 
 2. If you're upgrading a previous version of the Mattermost Push Notification Service make sure to back up your `mattermost-push-proxy.json` file before continuing.
 
@@ -55,7 +55,7 @@ For the sake of making this guide simple we located the files at `/home/ubuntu/m
 
 ### Set up Mattermost push notification service to send Android push notifications
 
-- Go to the [Firebase Console](https://console.firebase.google.com) and select the project you've created. Once in the dashboard, go to the project settings and select **CLOUD MESSAGING**.
+- Go to the {{< newtabref href="https://console.firebase.google.com" title="Firebase Console" >}} and select the project you've created. Once in the dashboard, go to the project settings and select **CLOUD MESSAGING**.
 ![image](/img/mobile/firebase_settings.png)
 ![image](/img/mobile/firebase_cloud_messaging.png)
 
@@ -101,7 +101,7 @@ For the sake of making this guide simple we located the files at `/home/ubuntu/m
 
     ![image](/img/mobile/proxy-config.png)
 
-In the [mattermost-push-proxy project](https://github.com/mattermost/mattermost-push-proxy/tree/master/cmd/renew_apple_cert) there are some scripts to ease the process involved for updating the iOS notification certificates. Please check the README.md for further details.
+In the {{< newtabref href="https://github.com/mattermost/mattermost-push-proxy/tree/master/cmd/renew_apple_cert" title="mattermost-push-proxy project" >}} there are some scripts to ease the process involved for updating the iOS notification certificates. Please check the README.md for further details.
 
 ### Configure the Mattermost Server to use the Mattermost push notification service
 
@@ -170,7 +170,7 @@ Follow these instructions if you run into an error like below:
 panic: Failed to load the apple pem cert err=failed to parse PKCS1 private key for type=apple_rn
 ```
 
-1. Follow the directions at [developer.apple.com](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/DistributingEnterpriseProgramApps/DistributingEnterpriseProgramApps.html#//apple_ref/doc/uid/TP40012582-CH33-SW4) to generate an Apple Push Notification service SSL Certificate, this should give you an `aps_production.cer`
+1. Follow the directions at {{< newtabref href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/DistributingEnterpriseProgramApps/DistributingEnterpriseProgramApps.html#//apple_ref/doc/uid/TP40012582-CH33-SW4" title="developer.apple.com" >}} to generate an Apple Push Notification service SSL Certificate, this should give you an `aps_production.cer`
 2. Convert the certificate format to .pem:
    - `openssl x509 -in aps.cer -inform DER -out aps_production.pem`
 3. Double click `aps_production.cer` to install it into the keychain tool
@@ -194,7 +194,7 @@ This could also be because you generated a certificate for the wrong bundle ID. 
 
 ##### *TLS: Unknown Certificate Authority* error
 
-**For iOS / Apple Push Notifications**: If you see a message in the push proxy log that includes `tls: unknown certificate authority` for iOS devices, it's likely Apple has invalidated your client certificate, or you're using a client certificate without [the correct certificate authority.](https://developer.apple.com/news/?id=7gx0a2lp) To resolve this, follow [these instructions to generate a new certificate]({{< ref "/contribute/more-info/mobile/push-notifications/ios" >}}), and then [upload it to your push proxy server](#set-up-mattermost-push-notification-service-to-send-ios-push-notifications).
+**For iOS / Apple Push Notifications**: If you see a message in the push proxy log that includes `tls: unknown certificate authority` for iOS devices, it's likely Apple has invalidated your client certificate, or you're using a client certificate without {{< newtabref href="https://developer.apple.com/news/?id=7gx0a2lp" title="the correct certificate authority." >}} To resolve this, follow [these instructions to generate a new certificate]({{< ref "/contribute/more-info/mobile/push-notifications/ios" >}}), and then [upload it to your push proxy server](#set-up-mattermost-push-notification-service-to-send-ios-push-notifications).
 
 ### Reporting issues
 

@@ -18,11 +18,11 @@ This App will focus on the functionality of the actual serverless App in this ex
 
 Before you can start with your App, you should first set up your environment by following the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}).
 
-You also need Go v1.16 or later installed. Please follow the [official guide](https://golang.org/doc/install) to install the latest version.
+You also need Go v1.16 or later installed. Please follow the {{< newtabref href="https://golang.org/doc/install" title="official guide" >}} to install the latest version.
 
 ## Download and start the App
 
-In the same [mattermost-app-examples repository](https://github.com/mattermost/mattermost-app-examples) you cloned via the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}) above, navigate to the [`golang/serverless`](https://github.com/mattermost/mattermost-app-examples/tree/master/golang/serverless) directory and start the Docker container:
+In the same {{< newtabref href="https://github.com/mattermost/mattermost-app-examples" title="mattermost-app-examples repository" >}} you cloned via the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}) above, navigate to the {{< newtabref href="https://github.com/mattermost/mattermost-app-examples/tree/master/golang/serverless" title="`golang/serverless`" >}} directory and start the Docker container:
 
 ```sh
 cd golang/serverless
@@ -35,7 +35,7 @@ The `docker-compose.yml` uses the [HTTP deployment]({{< ref "/integrate/apps/dep
 
 ## Install the App on Mattermost
 
-Next, access your development Mattermost Server at [http://localhost:8065](http://localhost:8065) and use the `/apps install http http://mattermost-apps-golang-serverless:8080/manifest.json ` slash command to install the App. Select `Agree to grant the app access to APIs and Locations` and click `Submit` to finish the installation.
+Next, access your development Mattermost Server at {{< newtabref href="http://localhost:8065" title="http://localhost:8065" >}} and use the `/apps install http http://mattermost-apps-golang-serverless:8080/manifest.json ` slash command to install the App. Select `Agree to grant the app access to APIs and Locations` and click `Submit` to finish the installation.
 
 ## Use the App
 
