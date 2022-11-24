@@ -12,7 +12,6 @@ There are many reasons you might be motivated to contribute to Mattermost:
 - [You're looking to practice your skills or give back to the community](#youre-looking-to-practice-your-skills-or-give-back-to-the-community)
 - [You want to help with product translation](#you-want-to-help-with-product-translation)
 - [You want to help test new features](#you-want-to-help-test-new-features)
-- [You want to write a test](#you-want-to-write-a-test)
 
 ## You’ve found a bug
 
@@ -181,25 +180,6 @@ The QA team keeps all contributions up to Mattermost’s high standards. That bi
 
 - Standalone [exploratory testing](https://github.com/mattermost/quality-assurance/issues/2) is highly encouraged too! Remember to report your findings in the [QA Contributors channel](https://community.mattermost.com/core/channels/qa-contributors).
 
-## You want to write a test
-Test-writing is a valuable part of the development process, and is a great way to start contributing to the Mattermost project.
+Test-writing is also a valuable part of the development process, and is a great way to start contributing to the Mattermost project.
 
-- For an overview of our testing ethos and the categories of tests that exist, as well as situations where tests should and should not be made, check out the [Test guidelines]({{<ref "/contribute/more-info/getting-started/test-guideline">}}) page.
-
-- **Writing tests for the Mattermost server**: see the [Server workflow]({{<ref "/contribute/more-info/server/developer-workflow">}}) page. If you're planning on adding a new endpoint to the Mattermost REST API, see the [REST API]({{<ref "/contribute/more-info/server/rest-api">}}) page which has a section about creating unit tests.
-
-- **Writing tests for the Mattermost web application**: depending on the context for which you're making a test, there are different pages in the Mattermost developer documentation to look at:
-
-    - *unit tests for components in general*: see [Unit tests]({{<ref "contribute/more-info/webapp/unit-testing">}})
-    
-    - *end to end (e2e) tests in general*: see the [End-to-End tests]({{<ref "/contribute/more-info/webapp/e2e/">}}) section, and the [Cypress cheatsheet]({{<ref "/contribute/more-info/webapp/e2e-cheatsheet/">}}) section
-
-    - *unit and e2e tests for Redux components*: see the [Redux]({{<ref "/contribute/more-info/webapp/redux/">}}) section
-
-- **Writing tests for the Mattermost mobile applications**: see the [Mobile end-to-end tests]({{<ref "contribute/more-info/mobile/e2e/">}}) section, which has sub-pages for both the iOS and Android versions
-
-- **Writing tests for the Mattermost desktop application**: see [Automated tests]({{<ref "/contribute/more-info/desktop/testing">}})
-
-- **Writing tests for Focalboard**:
-
-- **Writing tests for Mattermost "Apps"**:
+- Get started by learning about our testing ethos, the categories of tests that exist, situations where tests should and should not be made, and how to write tests on the [Test guidelines]({{<ref "/contribute/more-info/getting-started/test-guideline">}}) page.

@@ -16,6 +16,8 @@ Join the [Developers community channel](https://community.mattermost.com/core/ch
 
 Here's a general workflow for a Mattermost developer working on the [mattermost-server](https://github.com/mattermost/mattermost-server) repository:
 
+#### Making code changes
+
 1. Review the repository structure to familiarize yourself with the project
     * [./api4/](https://github.com/mattermost/mattermost-server/tree/master/api4) holds all API and application related code.
     * [./model/](https://github.com/mattermost/mattermost-server/tree/master/model) holds all data model definitions and the Go driver.
@@ -23,19 +25,32 @@ Here's a general workflow for a Mattermost developer working on the [mattermost-
     * [./utils/](https://github.com/mattermost/mattermost-server/tree/master/utils) holds all utilities, such as the mail utility.
     * [./i18n/](https://github.com/mattermost/mattermost-server/tree/master/i18n) holds all localization files for the server.
 2. On your fork, create a feature branch for your changes. Name it `MM-$NUMBER_$DESCRIPTION` where `$NUMBER` is the [Jira](https://mattermost.atlassian.net) ticket number you are working on and `$DESCRIPTION` is a short description of your changes. Example branch names are `MM-18150_plugin-panic-log` and `MM-22037_uppercase-email`.
-3. Make the code changes required to complete your ticket, ensuring that unit tests are written or modified where appropriate. Please use [testify](https://github.com/stretchr/testify) for new tests.
-4. If you made changes to the store, run `make store-mocks` and `make store-layers` to update test mocks and timing layer.
-5. To test your changes, run `make run-server` from the root directory of the server respository. This will start up the server at `http://localhost:8065`. To get changes to the server it must be restarted with `make restart-server`. If you want to test with the web app, you may also run `make run` which will start the server and a watcher for changes to the web app.
-6. Once everything works to meet the ticket requirements, stop Mattermost by running `make stop` in the server repository, then run `make check-style` to check your syntax.
-7. Run the tests using one or more of the following options:
+3. Make the code changes required to complete your ticket.
+
+#### Running and writing tests
+4. Ensure that unit tests are written or modified where appropriate. Please use {{<newtabref title="testify" href="https://github.com/stretchr/testify">}} for new tests.
+5. If you made changes to the store, run `make store-mocks` and `make store-layers` to update test mocks and timing layer.
+6. To test your changes, run `make run-server` from the root directory of the server repository. This will start up the server at `http://localhost:8065`. To get changes to the server it must be restarted with `make restart-server`. If you want to test with the web app, you may also run `make run` which will start the server and a watcher for changes to the web app.
+7. Once everything works to meet the ticket requirements, stop Mattermost by running `make stop` in the server repository, then run `make check-style` to check your syntax.
+8. Run the tests using one or more of the following options:
      * Run `make test` to run all the tests in the project. This may take a long time and provides very little feedback while it's running.
      * Run individual tests by name executing `go test -run "TestName" ./<directory>`.
      * Run all the tests in a package where changes were made executing `go test app`.
      * Create a draft PR with your changes and let our CI servers run the tests for you.
-8. If you added or changed any localization strings you will need to run `make i18n-extract` to generate the new/updated strings.
-9. Commit your changes, push your branch, and [create a pull request]({{< ref "/contribute/more-info/getting-started/contribution-checklist" >}}).
-10. Once a PR is submitted it's best practice to avoid rebasing on the base branch or force-pushing. Jesse, a developer at Mattermost, mentions this in his blog article [Submitting Great PRs](https://mattermost.com/blog/submitting-great-prs/). When the PR is merged, all the PR's commits are automatically squashed into one commit, so you don't need to worry about having multiple commits on the PR.
-11. That's it! Rejoice that you've helped make Mattermost better.
+9. Running every single unit test takes a lot of time while making changes, so you can run a subset of the serverside unit tests by using the following:
+    ```
+    go test -v -run='<test name or regex>' ./<package containing test>
+    ```
+    For example, if you want to run `TestUpdatePost` in `app/post_test.go`, you would execute the following:
+
+    ```
+    go test -v -run='TestUpdatePost' ./app
+    ```
+10. If you added or changed any localization strings you will need to run `make i18n-extract` to generate the new/updated strings.
+#### Creating a pull request (PR)
+11. Commit your changes, push your branch, and [create a pull request]({{< ref "/contribute/more-info/getting-started/contribution-checklist" >}}).
+12. Once a PR is submitted it's best practice to avoid rebasing on the base branch or force-pushing. Jesse, a developer at Mattermost, mentions this in his blog article  [Submitting Great PRs](https://mattermost.com/blog/submitting-great-prs/). When the PR is merged, all the PR's commits are automatically squashed into one commit, so you don't need to worry about having multiple commits on the PR.
+13. That's it! Rejoice that you've helped make Mattermost better.
 
 ### Useful Server makefile commands
 
@@ -53,20 +68,6 @@ Some useful `make` commands:
 * `make package` creates packages for distributing your builds and puts them in the `./dist` directory. First you will need to run `make build` and `make build-client`.
 
 If you would like to run the development environment without Docker you can set the `MM_NO_DOCKER` environment variable. If you do this, you will need to set up your own database and any of the other services needed to run Mattermost.
-
-### Run only specific Server unit tests
-
-Running every single unit test takes a lot of time while making changes, so you can run a subset of the serverside unit tests by using the following:
-
-```
-go test -v -run='<test name or regex>' ./<package containing test>
-```
-
-For example, if you want to run `TestUpdatePost` in `app/post_test.go`, you would execute the following:
-
-```
-go test -v -run='TestUpdatePost' ./app
-```
 
 ### Useful Mattermost commands
 
