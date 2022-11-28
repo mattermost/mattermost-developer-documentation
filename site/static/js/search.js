@@ -261,8 +261,12 @@ class LunrSearch {
                 sectSpan.classList.add("search__results_result-section");
                 listItemEl.append(sectSpan, document.createElement('br'));
                 // A description of the page associated with the result; uses the first 240 characters
+                let descText = result.page.contents.substring(0, 240);
+                if (result.page.contents.length > 240) {
+                    descText += "...";
+                }
                 const descSpan = document.createElement('span');
-                descSpan.textContent = result.page.contents.substring(0, 240) + "...";
+                descSpan.textContent = descText;
                 descSpan.classList.add("search__results_result-description");
                 listItemEl.append(descSpan);
                 // Display the score and match data for debugging
