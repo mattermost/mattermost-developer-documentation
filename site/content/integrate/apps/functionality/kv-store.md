@@ -34,7 +34,7 @@ The `<mattermost_site_url>` value can be obtained from a [call request context](
 
 #### Authorization
 
-A valid acting user token is required when invoking HTTP REST endpoints of the key-value store. The token must be set in the `Authorization` header as a bearer token.
+An authorization token is required when invoking HTTP REST endpoints of the key-value store. The token must be set in the `Authorization` header as a bearer token.
 The acting user token can be obtained from a call request context where the `acting_user_access_token` expand field is set to `all`.
 The `acting_user_access_token` field of the call request context will contain the token.
 
@@ -76,6 +76,8 @@ Authorization: Bearer xxxxxxxxxxxxxx
 
 ### Get a value with a driver
 
+Example [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) code to get the value of the key `my-key`:
+
 ```go
 // Create an instance of the REST API client, acting as a bot (vs. a user)
 client := appclient.AsBot(callRequest.Context)
@@ -90,7 +92,7 @@ if err != nil {
 
 ### Set a value with a driver
 
-For example, using the [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) to store a string value would look like the following:
+Example [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) code to set the value of the key `my-key`:
 
 ```go
 // Create an instance of the REST API client, acting as a bot (vs. a user)
@@ -105,7 +107,7 @@ if err != nil {
 
 #### Store complex data
 
-Complex and nested data can also be stored:
+Example [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) code to store complex and nested data:
 
 ```go
 type TeamData struct {
@@ -142,6 +144,8 @@ Retrieving nested data is the same as any other data:
 myData := NestedData{
     Team: TeamData{},
 }
+// Create an instance of the REST API client, acting as a bot (vs. a user)
+client := appclient.AsBot(callRequest.Context)
 // Retrieve the value of the key `my-key` into `myData`
 err := client.KVGet("my-app", "my-key", &myData)
 if err != nil {
@@ -151,7 +155,11 @@ if err != nil {
 
 ### Delete a key with a driver
 
+Example [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) code to delete the key `my-key`:
+
 ```go
+// Create an instance of the REST API client, acting as a bot (vs. a user)
+client := appclient.AsBot(callRequest.Context)
 // Delete the key `my-key`
 err := client.KVDelete("my-app", "my-key")
 if err != nil {
