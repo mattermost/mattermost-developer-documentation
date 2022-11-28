@@ -45,15 +45,15 @@ In all cases, ask yourself: Why do I need to add a feature flag? If I don't add 
 
 ## Split
 
-[Split](https://split.io) is the feature flag management service we use for internal testing and for our production Cloud service. It enables us to create and control feature flags for multiple servers and environments as well as gives us the ability to run A/B split tests.
+{{< newtabref href="https://split.io" title="Split" >}} is the feature flag management service we use for internal testing and for our production Cloud service. It enables us to create and control feature flags for multiple servers and environments as well as gives us the ability to run A/B split tests.
 
-We've used Split's SDK to integrate with the Mattermost server. You can find the [Split documentation here](https://help.split.io/hc/en-us).
+We've used Split's SDK to integrate with the Mattermost server. You can find the {{< newtabref href="https://help.split.io/hc/en-us" title="Split documentation here" >}}.
 
 ### Who has access to Split?
 
 We currently have a limited number of seats for our Split account, so not everyone gets access. Currently, two people per each engineering team plus some PM/UX folk have access. If you need to manage some feature flags, ask your team lead who has access and can help you out. It's up to each team to determine who has access.
 
-You can request access to Split from @daniel.sischy in [the Systems channel](https://community.mattermost.com/private-core/channels/systems) on the Staff team.
+You can request access to Split from @daniel.sischy in {{< newtabref href="https://community.mattermost.com/private-core/channels/systems" title="the Systems channel" >}} on the Staff team.
 
 ### How do I log in?
 
@@ -179,7 +179,7 @@ When the feature is rolled out to customers, logs will show if there are crashes
 
 ## Self-hosted releases
 
-For self-hosted releases, typically a flagged feature will be released in an enabled state. That said, you can release a feature to self-hosted disabled, [it's not unprecedented](https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75).
+For self-hosted releases, typically a flagged feature will be released in an enabled state. That said, you can release a feature to self-hosted disabled, {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/master/model/feature_flags.go#L75" title="it's not unprecedented" >}}.
 
 ## Tests
 

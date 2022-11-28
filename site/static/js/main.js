@@ -10,7 +10,7 @@ $(document).ready(function(){
         $(this).toggleClass('fa-plus-square-o fa-minus-square-o');
     });
 
-    let hideBannerExist = document.cookie.split(';').filter(item => { return item.indexOf('hideBanner=') >= 0}).length
+    let hideBannerExist = document.cookie.split(';').filter(item => { return item.indexOf('hideBanner=') >= 0}).length;
 
     if(hideBannerExist){
         $(".notification-bar").addClass("closed");
@@ -18,12 +18,12 @@ $(document).ready(function(){
     }
 
     $('.notification-bar__close').on('click', function(){
-        if(!hideBannerExist){
+        if (!hideBannerExist) {
             $(".notification-bar").addClass("closed");
             $("header").removeClass("with-notification-bar");
         }
-        document.cookie = 'hideBanner=true'
-    });
+        document.cookie = 'hideBanner=true';
+    }); 
 });
 
 // 2021 Redesign - Navigation
@@ -35,11 +35,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         events.forEach(ev => {
             elem.addEventListener(ev, handler, typeof(use_capture) === 'undefined' ? false : use_capture);
         });
-    }
+    };
 
     let clickTouch = (elem, handler, use_capture) => {
         multiEventSingleHandler(elem, ['click', 'touch'], handler, typeof(use_capture) === 'undefined' ? false : use_capture);
-    }
+    };
 
     subMenus.forEach(snav => {
         clickTouch(snav, () => {
@@ -53,3 +53,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.getElementById('navigation').classList.toggle('active');
     });
 });
+

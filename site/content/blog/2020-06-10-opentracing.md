@@ -13,13 +13,13 @@ canonicalUrl: https://developers.mattermost.com/blog/open-tracing/
 ## What is distributed tracing?
 
 Large-scale cloud applications are usually built using interconnected services that can be rather hard to troubleshoot. When a service is scaled, simple logging doesn't cut it anymore and a more in-depth view into system's flow is required.
-That's where [distributed tracing](https://opentracing.io/docs/overview/what-is-tracing/) comes into play; it allows developers and SREs to get a detailed view of a request as it travels through the system of services. With distributed tracing you can:
+That's where {{< newtabref href="https://opentracing.io/docs/overview/what-is-tracing/" title="distributed tracing" >}} comes into play; it allows developers and SREs to get a detailed view of a request as it travels through the system of services. With distributed tracing you can:
 
 1. Trace the execution path of a single request as it goes through a complicated path inside the distributed system
 2. Pinpoint bottlenecks and measure latency of specific parts of the execution path
 3. Record and analyze system behavior
 
-[OpenTracing](https://opentracing.io) is an open standard describing how distributed tracing works.
+{{< newtabref href="https://opentracing.io" title="OpenTracing" >}} is an open standard describing how distributed tracing works.
 
 There are a few key terms used in tracing:
 
@@ -32,7 +32,7 @@ A trace recording usually looks something like this:
 
 ![trace image](/blog/2020-06-10-opentracing/trace.png) 
 
-We've previously explored an OpenTracing implementation in the [first post of this series]({{< relref "./2019-10-25-instrumenting-go-code-via-ast.md" >}}). Next, we want to add distributed tracing capabilities to [mattermost-server](https://github.com/mattermost/mattermost-server). For this, we've picked [OpenTracing Go](https://github.com/opentracing/opentracing-go). 
+We've previously explored an OpenTracing implementation in the [first post of this series]({{< relref "./2019-10-25-instrumenting-go-code-via-ast.md" >}}). Next, we want to add distributed tracing capabilities to {{< newtabref href="https://github.com/mattermost/mattermost-server" title="mattermost-server" >}}. For this, we've picked {{< newtabref href="https://github.com/opentracing/opentracing-go" title="OpenTracing Go" >}}. 
 
 In this article we'll discuss all the nitty-gritty details of implementing a tracing system in your Go application without littering your code with repetitive, boilerplate tracing code.
 
@@ -40,7 +40,7 @@ In this article we'll discuss all the nitty-gritty details of implementing a tra
 
 So what are we actually working on? We want to make sure that every API request that's being handled by our server will get recorded into a trace, together with context information. This gives us the ability to dive deep into the execution and allow easy problem analysis.
 
-The resulting system trace will look like this (using [Jaeger](https://www.jaegertracing.io/) web-ui visualization):
+The resulting system trace will look like this (using {{< newtabref href="https://www.jaegertracing.io/" title="Jaeger" >}} web-ui visualization):
 ![jaeger view](/blog/2020-06-10-opentracing/result.png) 
 
 ## Straightforward tracing implementation
@@ -143,7 +143,7 @@ In simpler terms, let's say we have an object called `Cow` that has some methods
 
 ![cow undecorated](/blog/2020-06-10-opentracing/cowundecorated.png) 
 
-We want to introduce additional functionality on top of what `Cow` already does, without modifying the actual code of the `Cow` object. For example, we want to measure performance of each method and log the parameters that are being passed to each method. Here's how it would look if we apply the [decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern):
+We want to introduce additional functionality on top of what `Cow` already does, without modifying the actual code of the `Cow` object. For example, we want to measure performance of each method and log the parameters that are being passed to each method. Here's how it would look if we apply the {{< newtabref href="https://en.wikipedia.org/wiki/Decorator_pattern" title="decorator pattern" >}}:
 
 ![cow decorated](/blog/2020-06-10-opentracing/cowdecorated.png) 
 
@@ -167,7 +167,7 @@ console.log(cow.feed(20))
 console.log(cow.speak(3))
 ```
 
-We can wrap it in a [proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy):
+We can wrap it in a {{< newtabref href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy" title="proxy" >}}:
 
 ```javascript
 const tracerHandler = {
@@ -216,7 +216,7 @@ The implementation of the decorator pattern we chose involved three parts:
 
 ### Struct embedding
 
-Quoting [Go FAQ](https://golang.org/doc/faq#Is_Go_an_object-oriented_language)
+Quoting {{< newtabref href="https://golang.org/doc/faq#Is_Go_an_object-oriented_language" title="Go FAQ" >}}
 > Although Go has types and methods and allows an object-oriented style of programming, there is no type hierarchy. The concept of "interface" in Go provides a different approach that we believe is easy to use and in some ways more general. There are also ways to embed types in other types to provide something analogous **but not identical** to subclassing.
 
 ```go

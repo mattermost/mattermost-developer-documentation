@@ -65,7 +65,8 @@ Content-Length: 2
 ok
 ```
 
-All webhook posts will display a `BOT` indicator next to the username in Mattermost clients to help prevent against {{<newtabref title="phishing attacks" href="https://en.wikipedia.org/wiki/Phishing">}}.
+All webhook posts will display a `BOT` indicator next to the username in Mattermost clients to help prevent against {{< newtabref href="https://en.wikipedia.org/wiki/Phishing" title="phishing attacks" >}}.
+
 
 ### Parameters
 
@@ -160,6 +161,7 @@ GitLab is the leading open-source alternative to GitHub and offers built-in inte
 
 ### Tips and best practices
 
+
 1. If the `text` is longer than the allowable character limit per post, the message is split into multiple consecutive posts, each within the character limit. From Mattermost Server v5.0,  {{<newtabref title="posts up to 16383 characters are supported" href="https://docs.mattermost.com/upgrade/important-upgrade-notes.html">}}.
 2. Your webhook integration may be written in any programming language as long as it supports sending an HTTP POST request.
 3. Both `application/x-www-form-urlencoded` and `multipart/form-data` are supported `Content-Type` headers. If no `Content-Type` is provided, `application/json` is assumed.
@@ -171,7 +173,8 @@ GitLab is the leading open-source alternative to GitHub and offers built-in inte
 
    This will send a message from the account that has set up the incoming webhook to the username after the "@" symbol. For example, if you create a webhook with the user `alice` and send a direct message to `bob` using a webhook, it will show up as a direct message from `alice` to `bob` regardless of other settings such as username.
 
-   To send a message to a different direct message channel between two other users, you can specify the channel with the user IDs for the users separated with two underscore (_) symbols. To find the user ID you can use {{<newtabref title="mmctl user search" href="https://docs.mattermost.com/manage/mmctl-command-line-tool.html#mmctl-user-search">}}.
+   To send a message to a different direct message channel between two other users, you can specify the channel with the user IDs for the users separated with two underscore (_) symbols. To find the user ID you can use {{< newtabref href="https://docs.mattermost.com/manage/mmctl-command-line-tool.html#mmctl-user-search" title="mmctl user search" >}}.
+
 
     ```
     payload={"channel": "6w41z1q367dujfaxr1nrykr5oc__94dzjnkd8igafdraw66syi1cde", "text": "Hello, this is some text\nThis is more text. :tada:"}
@@ -193,4 +196,5 @@ Some common error messages include:
 
 If your integration prints the JSON payload data instead of rendering the generated message, make sure your integration is returning the `application/json` content-type.
 
-For further assistance, review the {{<newtabref title="Troubleshooting forum" href="https://forum.mattermost.org/t/how-to-use-the-troubleshooting-forum/150">}} for previously reported errors, or {{<newtabref title="join the Mattermost user community" href="https://mattermost.com/pl/default-ask-mattermost-community/">}} for troubleshooting help.
+For further assistance, review the {{< newtabref href="https://forum.mattermost.org/t/how-to-use-the-troubleshooting-forum/150" title="Troubleshooting forum" >}} for previously reported errors, or {{< newtabref href="https://mattermost.com/pl/default-ask-mattermost-community/" title="join the Mattermost user community" >}} for troubleshooting help.
+

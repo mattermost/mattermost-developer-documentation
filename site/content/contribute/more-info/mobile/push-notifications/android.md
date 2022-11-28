@@ -8,9 +8,9 @@ aliases:
   - /contribute/mobile/push-notifications/android
 ---
 
-Push notifications on Android are managed and dispatched using [Firebase Cloud Messaging (FCM)](http://firebase.google.com/docs/cloud-messaging/)
+Push notifications on Android are managed and dispatched using {{< newtabref href="http://firebase.google.com/docs/cloud-messaging/" title="Firebase Cloud Messaging (FCM)" >}}
 
-- Create a Firebase project within the [Firebase Console](https://console.firebase.google.com).
+- Create a Firebase project within the {{< newtabref href="https://console.firebase.google.com" title="Firebase Console" >}}.
 
 - Click **Add Project**
    ![image](/img/mobile/firebase_console.png)

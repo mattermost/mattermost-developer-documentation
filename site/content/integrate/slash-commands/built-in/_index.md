@@ -3,7 +3,7 @@ title: Built-in commands
 heading: Built-in slash commands
 weight: 10
 ---
-Each Mattermost installation comes with some built-in slash commands that are ready to use. These commands are available in the [latest Mattermost release](https://mattermost.com/download):
+Each Mattermost installation comes with some built-in slash commands that are ready to use. These commands are available in the {{< newtabref href="https://mattermost.com/download" title="latest Mattermost release" >}}:
 
 | Command                                               | Description                                                                                       | Example                                                    |
 |:------------------------------------------------------|:--------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|

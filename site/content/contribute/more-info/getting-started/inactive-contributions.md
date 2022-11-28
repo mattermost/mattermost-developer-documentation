@@ -8,7 +8,7 @@ aliases:
   - /contribute/getting-started/inactive-contributions
 ---
 
-This process describes how inactive contributions are managed at Mattermost, inspired by the [Kubernetes project](https://github.com/kubernetes/kubernetes):
+This process describes how inactive contributions are managed at Mattermost, inspired by the {{< newtabref href="https://github.com/kubernetes/kubernetes" title="Kubernetes project" >}}:
 
 1. After 10 days of inactivity, a contribution becomes stale and a bot will add the `lifecycle/1:stale` label to the contribution.
     - If action is required from submitter, Community Coordinator asks if the team can help clarify previous feedback or provide guidance on next steps.

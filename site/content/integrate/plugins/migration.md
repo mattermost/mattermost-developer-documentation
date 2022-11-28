@@ -32,7 +32,7 @@ func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Req
 }
 ```
 
-Writing to `Greeting` while the plugin may be concurrently reading from same could result in a corrupted read or write. The [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) and [mattermost-plugin-demo](https://github.com/mattermost/mattermost-plugin-demo) have both been updated with more complete examples, but the general idea is to manually handle the `OnConfigurationChange` hook and synchronize access to these variables. One such way is with a [sync.RWMutex](https://golang.org/pkg/sync/#RWMutex):
+Writing to `Greeting` while the plugin may be concurrently reading from same could result in a corrupted read or write. The {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="mattermost-plugin-starter-template" >}} and {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo" title="mattermost-plugin-demo" >}} have both been updated with more complete examples, but the general idea is to manually handle the `OnConfigurationChange` hook and synchronize access to these variables. One such way is with a {{< newtabref href="https://golang.org/pkg/sync/#RWMutex" title="sync.RWMutex" >}}:
 
 ```go
 type Plugin struct {
@@ -67,13 +67,13 @@ func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Req
 }
 ```
 
-Unfortunately, this adds a fair bit of extra complexity. You may wish to base your updated implementation off of [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) or [mattermost-plugin-demo](https://github.com/mattermost/mattermost-plugin-demo) to simplify your code.
+Unfortunately, this adds a fair bit of extra complexity. You may wish to base your updated implementation off of {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="mattermost-plugin-starter-template" >}} or {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo" title="mattermost-plugin-demo" >}} to simplify your code.
 
 ## Migrate plugins from Mattermost 5.1 and earlier
 
 Mattermost 5.2 introduces breaking changes to the plugins beta. This page documents the changes necessary to migrate your existing plugins to be compatible with Mattermost 5.2 and later.
 
-See [mattermost-plugin-zoom](https://github.com/mattermost/mattermost-plugin-zoom/compare/98eca6653e1a62c6b758e39b24d6ea075905c210...master) for an example migration involving both a server and web app component.
+See {{< newtabref href="https://github.com/mattermost/mattermost-plugin-zoom/compare/98eca6653e1a62c6b758e39b24d6ea075905c210...master" title="mattermost-plugin-zoom" >}} for an example migration involving both a server and web app component.
 
 ### Server changes
 
@@ -139,7 +139,7 @@ func (p *MyPlugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.R
 }
 ```
 
-Any standard error from your plugin will now be captured in the server logs, including output from the standard [log](https://golang.org/pkg/log/) package, but there are also explicit API methods for emitting structured logs:
+Any standard error from your plugin will now be captured in the server logs, including output from the standard {{< newtabref href="https://golang.org/pkg/log/" title="log" >}} package, but there are also explicit API methods for emitting structured logs:
 
 ```go
 func (p *MyPlugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Request) {
@@ -182,7 +182,7 @@ The plugins beta suggested relying on the global export of common libraries from
 const React = window.react;
 ```
 
-While this remains supported, it is more natural to leverage Webpack [Externals](https://webpack.js.org/configuration/externals/). Configure this in your `.webpack.config.js`:
+While this remains supported, it is more natural to leverage Webpack {{< newtabref href="https://webpack.js.org/configuration/externals/" title="Externals" >}}. Configure this in your `.webpack.config.js`:
 
 ```js
 module.exports = {

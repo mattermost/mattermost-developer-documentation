@@ -32,7 +32,7 @@ When you develop using the Apps framework, your Apps can:
 
   ![image](app-action-zoomed-in.png)
 
-Apps are now generally available and we always appreciate your feedback! Share constructive feedback in the [Mattermost Apps channel](https://community.mattermost.com/core/channels/mattermost-apps) on our Mattermost community instance.
+Apps are now generally available and we always appreciate your feedback! Share constructive feedback in the {{< newtabref href="https://community.mattermost.com/core/channels/mattermost-apps" title="Mattermost Apps channel" >}} on our Mattermost community instance.
 
 We have quick start guides for [TypeScript]({{< ref "quickstart/quick-start-ts" >}}), [Go]({{< ref "quickstart/quick-start-go" >}}), and [Python]({{< ref "quickstart/quick-start-python" >}}) to learn how to write your first App.
 
@@ -65,10 +65,10 @@ Any language you want. We currently have an {{<newtabref title="official driver 
 
 ### How and where will my App be hosted?
 
-1. **[Mattermost Cloud](https://mattermost.com/mattermost-cloud/)** Apps. Cloud
+1. **{{< newtabref href="https://mattermost.com/mattermost-cloud/" title="Mattermost Cloud" >}}** Apps. Cloud
    customers can use Apps from Mattermost Marketplace. Marketplace Apps are
    deployed as AWS Lambda functions, and their usage is included in the service.
-   You can find more information about the Marketplace [here](https://mattermost.com/marketplace/). Example AWS Lambda Apps can be
+   You can find more information about the Marketplace {{< newtabref href="https://mattermost.com/marketplace/" title="here" >}}. Example AWS Lambda Apps can be
    found
    {{<newtabref title="here" href="https://github.com/mattermost/mattermost-app-examples/tree/master/golang/serverless">}}
    (Go).
@@ -77,9 +77,8 @@ Any language you want. We currently have an {{<newtabref title="official driver 
    customer would be able to install your App from a URL. External Apps are not
    currently accepted in the Mattermost Marketplace.
 3. **Customer-deployable** Apps. An App can be packaged as a bundle, deployable
-   by the customer in their own hosting environment. Currently, [AWS
-   Lambda](https://aws.amazon.com/lambda/),
-   [OpenFaaS](https://www.openfaas.com/), and [Kubeless](https://kubeless.io/)
+   by the customer in their own hosting environment. Currently, {{< newtabref href="https://aws.amazon.com/lambda/" title="AWS Lambda" >}},
+   {{< newtabref href="https://www.openfaas.com/" title="OpenFaaS" >}}, and {{< newtabref href="https://kubeless.io/" title="Kubeless" >}}
    are supported, with plans for more serverless platforms, Kubernetes, and
    docker compose. Customer-deployable Apps are not yet distributed via the
    Mattermost Marketplace.

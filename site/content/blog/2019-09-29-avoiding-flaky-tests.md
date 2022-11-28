@@ -31,7 +31,7 @@ With developers often on a deadline, it's not always realistic to context switch
 
 ### 2) Avoid using `time.Sleep` to wait for asynchronous results
 
-Consider the following simplified test based on a [reported flaky test](https://mattermost.atlassian.net/browse/MM-17314):
+Consider the following simplified test based on a {{< newtabref href="https://mattermost.atlassian.net/browse/MM-17314" title="reported flaky test" >}}:
 
 ```go
 // TestHTTPTimeout verifies that the HTTP service is configured with the requested timeout.
@@ -51,13 +51,13 @@ func TestHTTPTimeout(t *testing.T) {
 
 By waiting for 101 milliseconds -- 1 millisecond longer than the configured timeout -- the test hoped to verify the timeout handling behaviour of the http service.
 
-Unfortunately, the underlying service implementation effectively deferred to `http.Client`, which was itself relying on a `time.Timer`. The [corresponding documentation](https://golang.org/pkg/time/#NewTimer) for `time.Timer` makes it clear -- with added emphasis:
+Unfortunately, the underlying service implementation effectively deferred to `http.Client`, which was itself relying on a `time.Timer`. The {{< newtabref href="https://golang.org/pkg/time/#NewTimer" title="corresponding documentation" >}} for `time.Timer` makes it clear -- with added emphasis:
 
 > NewTimer creates a new Timer that will send the current time on its channel after **at least** duration d.
 
 That is, this particular timeout is guaranteed to wait at least 100 milliseconds, but makes no promise how soon thereafter it will fire. Simply put, waiting just 101 milliseconds sometimes isn't enough.
 
-The best solution is to avoid using `time.Sleep` altogether in this case. We ended up [rewriting](https://github.com/mattermost/mattermost-server/pull/11712) the flaky test as something like:
+The best solution is to avoid using `time.Sleep` altogether in this case. We ended up {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/11712" title="rewriting" >}} the flaky test as something like:
 
 ```go
 func TestHTTPTimeout(t *testing.T) {
@@ -127,7 +127,7 @@ func TestTimeDelta(t *testing.T) {
 
 ### 4) MySQL is surprising
 
-So much could be written about oddities within MySQL. One [issue](https://mattermost.atlassian.net/browse/MM-16838) we encountered turned out to have the same underlying cause as above, but manifested in a new way:
+So much could be written about oddities within MySQL. One {{< newtabref href="https://mattermost.atlassian.net/browse/MM-16838" title="issue" >}} we encountered turned out to have the same underlying cause as above, but manifested in a new way:
 
 ```go
 s1, err := ss.Scheme().Save(s1)
@@ -153,13 +153,13 @@ Note the duplicate call to `ss.Scheme().Save(s1)`. The implementation of `Save` 
 	}
 ```
 
-As the [fix discovered](https://github.com/mattermost/mattermost-server/pull/11701), MySQL will only return `rowsChanged == 1` if the row it found actually changes, not just if it found a row matching the constraints. The test would thus fail with an unexpected error whenever two consecutive `Save` operations occurred in the same millisecond.
+As the {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/11701" title="fix discovered" >}}, MySQL will only return `rowsChanged == 1` if the row it found actually changes, not just if it found a row matching the constraints. The test would thus fail with an unexpected error whenever two consecutive `Save` operations occurred in the same millisecond.
 
 This actually deserved a more holistic fix at the store layer to avoid tripping over MySQL's unique `rowsChanged` semantics, but in practice this kind of event was considered unlikely in a production environment.
 
 ### 5) Keep in mind that random sometimes doesn't seem like it
 
-In addition to a number of [length and character checks](https://github.com/mattermost/mattermost-server/blob/e5ba0a0a1808660d4885ef04888da437c2a5b6a0/model/team.go#L137-L196), the Mattermost server [rejects certain prefixes](https://github.com/mattermost/mattermost-server/blob/969c032a1e9cb2ce0ef2c59143c071dbf78cdcb1/model/utils.go#L360) to avoid team names like `signup` or `LOGIN21`.
+In addition to a number of {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/e5ba0a0a1808660d4885ef04888da437c2a5b6a0/model/team.go#L137-L196" title="length and character checks" >}}, the Mattermost server {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/969c032a1e9cb2ce0ef2c59143c071dbf78cdcb1/model/utils.go#L360" title="rejects certain prefixes" >}} to avoid team names like `signup` or `LOGIN21`.
 
 When unit testing, we often rely on `model.NewId` to generate random, UUID version 4 Guid values for testing:
 
@@ -173,9 +173,9 @@ When unit testing, we often rely on `model.NewId` to generate random, UUID versi
 	require.Nil(t, err)
 ```
 
-Every so often, a test would fail claiming that [the team name was invalid](https://mattermost.atlassian.net/browse/MM-17053). It turned out that, from to time, some of those reserved prefixes would be randomly selected for the start of a `model.NewId`, e.g. `APICE0E9143C...`. Random? Yes! Invalid? Yes! Expected? No.
+Every so often, a test would fail claiming that {{< newtabref href="https://mattermost.atlassian.net/browse/MM-17053" title="the team name was invalid" >}}. It turned out that, from to time, some of those reserved prefixes would be randomly selected for the start of a `model.NewId`, e.g. `APICE0E9143C...`. Random? Yes! Invalid? Yes! Expected? No.
 
-The [fix](https://github.com/mattermost/mattermost-server/pull/11705) was simple, and replicated the pattern used in most other tests to prefix the team name:
+The {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/11705" title="fix" >}} was simple, and replicated the pattern used in most other tests to prefix the team name:
 
 ```go
 	t1 := model.Team{}
@@ -189,17 +189,17 @@ The [fix](https://github.com/mattermost/mattermost-server/pull/11705) was simple
 
 ### 6) Avoid remote dependencies.
 
-We [vendor](https://golang.org/cmd/go/#hdr-Vendor_Directories) all Go dependencies to ensure a reliable build. This strategy also greatly speeds up [git bisect](https://git-scm.com/docs/git-bisect) when your Go cache doesn't already have dependencies from an older branch.
+We {{< newtabref href="https://golang.org/cmd/go/#hdr-Vendor_Directories" title="vendor" >}} all Go dependencies to ensure a reliable build. This strategy also greatly speeds up {{< newtabref href="https://git-scm.com/docs/git-bisect" title="git bisect" >}} when your Go cache doesn't already have dependencies from an older branch.
 
-Unfortunately, for some plugin tests, our compilation strategy involved using a temporary directory outside of our `vendor` scope. This went undiscovered until some upstream resource couldn't be fetched and the CI build failed accordingly. This became especially problematic when [git.apache.org](https://blogs.apache.org/infra/entry/subversion-to-git-service-git) went down and took many Go build pipelines along with it.
+Unfortunately, for some plugin tests, our compilation strategy involved using a temporary directory outside of our `vendor` scope. This went undiscovered until some upstream resource couldn't be fetched and the CI build failed accordingly. This became especially problematic when {{< newtabref href="https://blogs.apache.org/infra/entry/subversion-to-git-service-git" title="git.apache.org" >}} went down and took many Go build pipelines along with it.
 
-We've since fixed the compilation issue for plugin tests, and even applied this strategy to [other flaky tests](https://github.com/mattermost/mattermost-server/pull/12365) to avoid connecting to remote dependencies outside of our control.
+We've since fixed the compilation issue for plugin tests, and even applied this strategy to {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/12365" title="other flaky tests" >}} to avoid connecting to remote dependencies outside of our control.
 
 ### 7) Don't assume the test is actually flaky!
 
-One danger of having flaky tests is conditioning developers to believe that **any** unexpected test failure is likely to be flaky. As an example, we had received [multiple reports](https://mattermost.atlassian.net/browse/MM-16479) of a flaky unit test concerning the `FileWillBeUploaded` plugin hook.  Much effort was spent statically analyzing the code and attempting to reproduce locally. Even with the test repeated 100x, it always succeeded locally. Given the ongoing impact to developers with unrelated changes, we were contemplating disabling the test altogether.
+One danger of having flaky tests is conditioning developers to believe that **any** unexpected test failure is likely to be flaky. As an example, we had received {{< newtabref href="https://mattermost.atlassian.net/browse/MM-16479" title="multiple reports" >}} of a flaky unit test concerning the `FileWillBeUploaded` plugin hook.  Much effort was spent statically analyzing the code and attempting to reproduce locally. Even with the test repeated 100x, it always succeeded locally. Given the ongoing impact to developers with unrelated changes, we were contemplating disabling the test altogether.
 
-Fastforward a few weeks, and a community member [reported](https://community.mattermost.com/core/pl/oficg6nb9bb6igzz87fpumgxuo) a mysterious issue: sometimes files processed by a plugin using `FileWillBeUploaded` wouldn't successfully update. One of our newest staff members took a look, and immediately [spotted](https://community.mattermost.com/core/pl/5p9fjcqk3tdw7brjpfm1f3poza) a race condition in the related code. The [resulting fix](https://github.com/mattermost/mattermost-server/pull/12249) addressed both the community member's issue and our longstanding "flaky" test.
+Fastforward a few weeks, and a community member {{< newtabref href="https://community.mattermost.com/core/pl/oficg6nb9bb6igzz87fpumgxuo" title="reported" >}} a mysterious issue: sometimes files processed by a plugin using `FileWillBeUploaded` wouldn't successfully update. One of our newest staff members took a look, and immediately {{< newtabref href="https://community.mattermost.com/core/pl/5p9fjcqk3tdw7brjpfm1f3poza" title="spotted" >}} a race condition in the related code. The {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/12249" title="resulting fix" >}} addressed both the community member's issue and our longstanding "flaky" test.
 
 ## Conclusion
 

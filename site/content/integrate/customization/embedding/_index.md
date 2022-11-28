@@ -47,9 +47,9 @@ Save the below HTML code in a file called `mattermost-button-example.html` then 
 
 ## Embed Mattermost in web apps using an &lt;iframe&gt;
 
-Any web application embedded into another using an [&lt;iframe&gt;](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) is at risk of security exploits, since the outer application intercepts all user input into the embedded application, an exploit known as [Click-Jacking](https://en.wikipedia.org/wiki/Clickjacking). By default, Mattermost disables embedding. If you choose to embed Mattermost we highly recommend it is done only on a private network that you control.
+Any web application embedded into another using an {{< newtabref href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe" title="&lt;iframe&gt;" >}} is at risk of security exploits, since the outer application intercepts all user input into the embedded application, an exploit known as {{< newtabref href="https://en.wikipedia.org/wiki/Clickjacking" title="Click-Jacking" >}}. By default, Mattermost disables embedding. If you choose to embed Mattermost we highly recommend it is done only on a private network that you control.
 
-See [this recipe](hhttps://forum.mattermost.com/t/recipe-embedding-mattermost-in-web-applications-using-an-iframe-unsupported-recipe/10233) for details.
+See {{< newtabref href="https://forum.mattermost.com/t/recipe-embedding-mattermost-in-web-applications-using-an-iframe-unsupported-recipe/10233" title="this recipe" >}} for details.
 
 ## Embed Mattermost in mobile apps
 
