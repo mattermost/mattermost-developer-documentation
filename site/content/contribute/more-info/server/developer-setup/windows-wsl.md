@@ -3,7 +3,8 @@ This is an unofficial guide. Community testing, feedback, and improvements are w
 1. Install the Windows Subsystem for Linux: https://learn.microsoft.com/en-us/windows/wsl/install.
 
       **Note:** Docker for Windows expects path to have the format `/c/foo/bar`, but WSL uses `/mnt/c/foo/bar` instead.
-      
+      **Note:** If installing WSL2, follow the instructions from https://docs.docker.com/desktop/windows/wsl/ instead of following steps 1 and 2, and continue to step 3 after.
+
       Run `winver` and check which version of Windows you have. If you are using `1803` or higher, then you need to create a file `/etc/wsl.conf` with the following content to make sure your drives are mounted at the root rather than inside `/mnt`:
       
        [automount]
@@ -125,3 +126,6 @@ This is an unofficial guide. Community testing, feedback, and improvements are w
     If that's the case, `postgresql.conf` is probably a directory rather than a file, which means the volume wasn't mounted properly, so you are most likely missing some of the configuration changes from step 1 (Linux Subsystem Installation).
     
 4. If you see an error like `ERROR: for mattermost-postgres. Cannot create container for service postgres: status code not OK but 500: {"Message":"Unhandled exception: Drive has not been shared"}`, make sure you enabled file sharing for the drive that contains the `mattermost-server` project.
+
+5. If you see an error like `go: could not create module cache: mkdir /home/<Linux User>/go: file exists
+Top-level object must be a mapping`, rename the workspace from step 5 part 2 to not be "go".
