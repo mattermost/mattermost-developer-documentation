@@ -9,6 +9,8 @@
  * @property {string} tags List of document tags
  * @property {string} categories List of document categories
  * @property {string} contents The raw text contents of the document
+ * @property {string} section The name of the site section that the document lives in
+ * @property {string|null} subsection The name of the document subsection, if defined
  */
 
 /**
@@ -16,6 +18,7 @@
  * @type {object}
  * @property {number} score The result score
  * @property {SearchIndexPage} page The metadata of the result document
+ * @property {Record<string, any>} matchData Result match metadata
  */
 
 /**
@@ -39,10 +42,12 @@ class LunrSearch {
         return lunr((builder) => {
             // Note that each of the fields referenced below also exists in the SearchIndexPage object
             builder.ref('permalink');
-            builder.field('title', {boost: 1}); // Boost score for matches on the title by 1
-            builder.field('tags', {boost: 2}); // Boost score for matches on tags by 2
-            builder.field('categories', {boost: 0}); // Don't boost score for matches on categories
-            builder.field('contents', {boost: 0.5}); // Boost score for matches on content by 0.5
+            builder.field('title', {boost: 0.5});
+            builder.field('tags', {boost: 0.5});
+            builder.field('categories', {boost: 0.5});
+            builder.field('contents', {boost: 2});
+            builder.field('section', {boost: 0.5});
+            builder.field('subsection', {boost: 1});
             for (const page of data) {
                 // Skip this record if there is no title
                 if ("title" in page && page["title"] === "") {
@@ -182,11 +187,11 @@ class LunrSearch {
         this.clearResults();
         // Update the status
         this.updateStatus("Searching...");
-        // add some fuzzyness to the string matching to help with spelling mistakes.
-        const fuzzLength = Math.round(Math.min(Math.max(query.length / 4, 1), 3));
-        const fuzzyQuery = query + '~' + fuzzLength;
+        // Optional: add some fuzzyness to the string matching to help with spelling mistakes.
+        // const fuzzLength = Math.round(Math.min(Math.max(query.length / 4, 1), 3));
+        // const fuzzyQuery = query + '~' + fuzzLength;
         // Perform the search and display the results
-        const results = this.lunrSearch(fuzzyQuery);
+        const results = this.lunrSearch(query);
         this.updateResultCount(results.length);
         this.renderResults(results);
         this.updateStatus("");
@@ -201,7 +206,7 @@ class LunrSearch {
     lunrSearch(query) {
         // Find the item in our index corresponding to the lunr one to have more info
         // Lunr result:
-        //  {ref: "/section/page1", score: 0.2725657778206127}
+        //  {ref: "/section/page1", score: 0.2725657778206127, matchData: {}}
         // Our result:
         //  {title:"Page1", permalink:"/section/page1", ...}
         return this.lunrIndex
@@ -218,7 +223,8 @@ class LunrSearch {
                 }
                 return {
                     score: result.score,
-                    page: pageRef[0]
+                    page: pageRef[0],
+                    matchData: result.matchData,
                 };
             });
     }
@@ -237,21 +243,34 @@ class LunrSearch {
         results.forEach((result) => {
             if (result.page && result.page.title && result.page.title !== "") {
                 // Each result is a <li>
-                const li = document.createElement('li');
+                const listItemEl = document.createElement('li');
                 // Results have:
                 // A link to the page associated with the result
                 const ahref = document.createElement('a');
                 ahref.href = result.page.permalink;
                 ahref.text = result.page.title;
                 ahref.classList.add("search__results_result-link");
-                li.append(ahref);
+                listItemEl.append(ahref);
+                // Display the section and subsection
+                let sectText = result.page.section;
+                if (result.page.subsection) {
+                    sectText += " > " + result.page.subsection;
+                }
+                const sectSpan = document.createElement('span');
+                sectSpan.textContent = "(" + sectText + ")";
+                sectSpan.classList.add("search__results_result-section");
+                listItemEl.append(sectSpan, document.createElement('br'));
                 // A description of the page associated with the result; uses the first 240 characters
                 const descSpan = document.createElement('span');
                 descSpan.textContent = result.page.contents.substring(0, 240) + "...";
                 descSpan.classList.add("search__results_result-description");
-                li.append(descSpan);
+                listItemEl.append(descSpan);
+                // Display the score and match data for debugging
+                const scoreSpan = document.createElement('span');
+                scoreSpan.textContent = String(result.score) + " " + JSON.stringify(result.matchData);
+                listItemEl.append(document.createElement('br'), scoreSpan);
                 // Append the result to the end of the results list
-                resultsEl.appendChild(li);
+                resultsEl.appendChild(listItemEl);
             }
         });
     }
