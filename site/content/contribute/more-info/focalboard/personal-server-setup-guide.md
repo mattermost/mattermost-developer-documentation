@@ -30,9 +30,9 @@ This guide will help you configure your developer environment for the Focalboard
 * `sudo apt-get install libwebkit2gtk-4.0-dev`
 * `sudo apt-get install autoconf dh-autoreconf`
 
-## Fork the project repository
+## Fork the project repositories
 
-Fork the {{< newtabref href="https://github.com/mattermost/focalboard" title="Focalboard GitHub repository" >}} and clone it locally.
+Fork the {{< newtabref href="https://github.com/mattermost/focalboard" title="Focalboard GitHub repository" >}} and {{< newtabref href="https://github.com/mattermost/mattermost-server" title="Mattermost Server GitHub repository" >}}. Clone both repositories locally in sibling directories.
 
 ## Build via the terminal
 
