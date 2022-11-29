@@ -27,7 +27,15 @@
         </div>
     </div>
     {{ partial "footer.html" .}}
+    <!-- Search engine -->
     <script src="https://unpkg.com/lunr@2.3.9/lunr.min.js"></script>
+    <!-- Text highlight functionality -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.es6.min.js"
+        integrity="sha512-jZSRKDD86PmExf0ZoXQEMxhtxvLtOxo2xMJwgnx3VE/5VT5c8LCsnvut4wK3fIdFyO4szlbz/2tpg+xulnJDyQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <!-- Search implementation -->
     <script src="{{ "js/search.js" | absURL }}"></script>
 </body>
 </html>

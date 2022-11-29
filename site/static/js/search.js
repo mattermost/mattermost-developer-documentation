@@ -53,12 +53,12 @@ class LunrSearch {
                 if ("title" in page && page["title"] === "") {
                     continue;
                 }
-                // Check if there is contents; warn if there isn't
+                // Check if there is contents; skip the record if there isn't
                 if (!("contents" in page)) {
-                    console.error(`buildIndex(): missing 'contents' key in index record; page=${JSON.stringify(page)}`);
+                    continue;
                 }
                 if (page["contents"] === "") {
-                    console.error(`buildIndex(): empty 'contents' in index record; page=${JSON.stringify(page)}`);
+                    continue;
                 }
                 // Add the page to the lunr search index
                 builder.add(page);
@@ -256,23 +256,33 @@ class LunrSearch {
                 if (result.page.subsection) {
                     sectText += " > " + result.page.subsection;
                 }
-                const sectSpan = document.createElement('span');
-                sectSpan.textContent = "(" + sectText + ")";
-                sectSpan.classList.add("search__results_result-section");
-                listItemEl.append(sectSpan, document.createElement('br'));
+                const sectPara = document.createElement('p');
+                sectPara.textContent = "(" + sectText + ")";
+                sectPara.classList.add("search__results_result-section");
+                listItemEl.append(sectPara);
                 // A description of the page associated with the result; uses the first 240 characters
                 let descText = result.page.contents.substring(0, 240);
                 if (result.page.contents.length > 240) {
                     descText += "...";
                 }
-                const descSpan = document.createElement('span');
-                descSpan.textContent = descText;
-                descSpan.classList.add("search__results_result-description");
-                listItemEl.append(descSpan);
+                const descPara = document.createElement('p');
+                descPara.textContent = descText;
+                descPara.classList.add("search__results_result-description");
+                listItemEl.append(descPara);
+                // Highlight keyword matches in the page description
+                if (result.matchData && "metadata" in result.matchData) {
+                    const keywords = Object.keys(result.matchData.metadata);
+                    if (keywords.length > 0) {
+                        const mark = new Mark(descPara);
+                        for (const keyword of keywords) {
+                            mark.mark(keyword);
+                        }
+                    }
+                }
                 // Display the score and match data for debugging
                 const scoreSpan = document.createElement('span');
                 scoreSpan.textContent = String(result.score) + " " + JSON.stringify(result.matchData);
-                listItemEl.append(document.createElement('br'), scoreSpan);
+                listItemEl.append(scoreSpan);
                 // Append the result to the end of the results list
                 resultsEl.appendChild(listItemEl);
             }

@@ -4749,3 +4749,8 @@ span.search__span_result-count {
     line-height: normal;
     margin-bottom: 12px;
 }
+
+/* Search result keyword highlight colour */
+mark {
+    background: #F1C40F;
+}
