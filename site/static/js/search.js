@@ -45,7 +45,7 @@ class LunrSearch {
             builder.field('title', {boost: 0.5});
             builder.field('tags', {boost: 0.5});
             builder.field('categories', {boost: 0.5});
-            builder.field('contents', {boost: 2});
+            builder.field('contents', {boost: 1});
             builder.field('section', {boost: 0.5});
             builder.field('subsection', {boost: 1});
             for (const page of data) {
@@ -64,6 +64,21 @@ class LunrSearch {
                 builder.add(page);
             }
         });
+    }
+
+    /**
+     * Capitalizes the first letter of the string
+     * @param {string} str The string to operate on
+     * @returns {string} The input string with the first letter capitalized
+     */
+    static capitalizeFirstLetter(str) {
+        if (str.length === 0) {
+            return str;
+        }
+        if (str.length === 1) {
+            return str.toUpperCase();
+        }
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
     constructor() {
@@ -245,21 +260,24 @@ class LunrSearch {
                 // Each result is a <li>
                 const listItemEl = document.createElement('li');
                 // Results have:
-                // A link to the page associated with the result
+                // A link "section", which contains:
+                const linkDiv = document.createElement('div');
+                linkDiv.classList.add("search__results_result-link-div");
+                // 1) A link to the page associated with the result
                 const ahref = document.createElement('a');
                 ahref.href = result.page.permalink;
                 ahref.text = result.page.title;
                 ahref.classList.add("search__results_result-link");
-                listItemEl.append(ahref);
-                // Display the section and subsection
-                let sectText = result.page.section;
+                // 2) The section and subsection of the result page
+                let sectText = LunrSearch.capitalizeFirstLetter(result.page.section);
                 if (result.page.subsection) {
-                    sectText += " > " + result.page.subsection;
+                    sectText += " > " + LunrSearch.capitalizeFirstLetter(result.page.subsection);
                 }
                 const sectPara = document.createElement('p');
                 sectPara.textContent = "(" + sectText + ")";
                 sectPara.classList.add("search__results_result-section");
-                listItemEl.append(sectPara);
+                linkDiv.append(ahref, sectPara);
+                listItemEl.appendChild(linkDiv);
                 // A description of the page associated with the result; uses the first 240 characters
                 let descText = result.page.contents.substring(0, 240);
                 if (result.page.contents.length > 240) {
@@ -281,7 +299,7 @@ class LunrSearch {
                 }
                 // Display the score and match data for debugging
                 const scoreSpan = document.createElement('span');
-                scoreSpan.textContent = String(result.score) + " " + JSON.stringify(result.matchData);
+                scoreSpan.textContent = String(result.score) + " " + JSON.stringify(result.matchData.metadata);
                 listItemEl.append(scoreSpan);
                 // Append the result to the end of the results list
                 resultsEl.appendChild(listItemEl);

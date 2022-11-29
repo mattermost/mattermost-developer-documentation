@@ -4728,11 +4728,21 @@ ol > li + li {
     padding-bottom: 24px;
 }
 
+.search__results_result-link-div {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
 .search__results_result-link {
     font-size: 120%;
     font-weight: bold;
     margin-bottom: 12px;
-    display: block;
+}
+
+.search__results_result-section {
+    color: grey;
+    margin-left: 12px;
 }
 
 .search__results_result-description {
