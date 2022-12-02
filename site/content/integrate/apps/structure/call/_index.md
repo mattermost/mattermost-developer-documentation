@@ -154,6 +154,7 @@ The data structure of a call response is described in the following table:
 | `navigate_to_url`      | string                                                                                                        | Used by the `navigate` response type to redirect the user to a specified URL.                                               |
 | `use_external_browser` | bool                                                                                                          | Used by the `navigate` response type to indicate the system web browser should be used when redirecting the user to an URL. |
 | `form`                 | {{<newtabref title="Form" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form">}} | Used by the `form` response type to specify a form to display.                                                              |
+| `refresh_bindings`     | bool                                                                                                          | If set, forces the bindings to be refreshed on all of the user's agents (webapp, mobile).                                                              |
 
 An example call response looks like this:
 

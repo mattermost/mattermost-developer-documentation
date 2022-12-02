@@ -10,6 +10,8 @@ Whenever the bindings call is executed the App provides a list of bindings based
 
 Bindings are refreshed when the App is installed, on every channel switch, and when an OAuth2 process with a third party has completed. Bindings may also be refreshed when the user moves to a different context, such as opening a thread or a post in a search view.
 
+An app can trigger a bindings refresh for a specific user by setting `"refresh_bindings":true` in its CallResponse.
+
 ## Top level bindings
 
 {{<note "Note:">}}
