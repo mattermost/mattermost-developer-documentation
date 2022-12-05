@@ -146,14 +146,15 @@ An example context field looks like this:
 
 The data structure of a call response is described in the following table:
 
-| Name                   | Type                                                                                                          | Description                                                                                                                 |
-|------------------------|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| `type`                 | [CallResponseType](#call-response-types)                                                                      | The type of response being returned.                                                                                        |
-| `text`                 | string                                                                                                        | Used by the `ok` and `error` response types to return a markdown message that is sent to the user as an ephemeral post.     |
-| `data`                 | map                                                                                                           | Used by the `ok` response type to return additional data.                                                                   |
-| `navigate_to_url`      | string                                                                                                        | Used by the `navigate` response type to redirect the user to a specified URL.                                               |
-| `use_external_browser` | bool                                                                                                          | Used by the `navigate` response type to indicate the system web browser should be used when redirecting the user to an URL. |
-| `form`                 | {{<newtabref title="Form" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form">}} | Used by the `form` response type to specify a form to display.                                                              |
+| Name                   | Type                                                                                                          | Description                                                                                                                    |
+|------------------------|---------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| `type`                 | [CallResponseType](#call-response-types)                                                                      | The type of response being returned.                                                                                           |
+| `text`                 | string                                                                                                        | Used by the `ok` and `error` response types to return a markdown message that is sent to the user as an ephemeral post.        |
+| `data`                 | map                                                                                                           | Used by the `ok` response type to return additional data.                                                                      |
+| `navigate_to_url`      | string                                                                                                        | Used by the `navigate` response type to redirect the user to a specified URL.                                                  |
+| `use_external_browser` | bool                                                                                                          | Used by the `navigate` response type to indicate the system web browser should be used when redirecting the user to an URL.    |
+| `form`                 | {{<newtabref title="Form" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form">}} | Used by the `form` response type to specify a form to display.                                                                 |
+| `refresh_bindings`     | bool                                                                                                          | If `true`, forces App bindings to be refreshed immediately. Does not apply to error responses or responses for bindings calls. |
 
 An example call response looks like this:
 
