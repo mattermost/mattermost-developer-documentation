@@ -8,8 +8,11 @@ aliases:
 ---
 
 This reference guide documents /apps debug command that can be used to display
-and modify apps' bindings, KV store records, and other data. This command is
-available exclusively in developer mode **TODO** link.
+and modify apps' bindings, KV store records, and other data.
+
+To use this command you need to have both **Developer Mode** and **Settings Command** set to `true`.
+
+![Screenshot 2022-12-05 at 12 49 43](https://user-images.githubusercontent.com/488556/205630553-0d5be216-1f9d-4817-8180-c537356cd349.png)
 
 The following subcommands are available:
 - `bindings` fetches and displays an app's bindings, in the command's context, and any errors associated with it.
