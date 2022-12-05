@@ -94,6 +94,10 @@ class LunrSearch {
     getSearchData() {
         this.updateStatus("Loading...");
         fetch('searchindex/index.json')
+            .catch((e) => {
+                console.error(e);
+                this.updateStatus("");
+            })
             .then((response) => response.json())
             .then((data) => {
                 this.setIndexPages(data);
@@ -109,15 +113,19 @@ class LunrSearch {
      */
     initUI() {
         const searchButton = document.getElementById("search-button");
-        searchButton.addEventListener("click", (event) => {
-            this.search();
-        });
-        const searchInput = document.getElementById("search-query");
-        searchInput.addEventListener("keyup", (event) => {
-            if (event.key === "Enter") {
+        if (searchButton) {
+            searchButton.addEventListener("click", (event) => {
                 this.search();
-            }
-        });
+            });
+        }
+        const searchInput = document.getElementById("search-query");
+        if (searchInput) {
+            searchInput.addEventListener("keyup", (event) => {
+                if (event.key === "Enter") {
+                    this.search();
+                }
+            });
+        }
     }
 
     setIndexPages(pages) {
@@ -139,12 +147,14 @@ class LunrSearch {
             if (queryParam !== "") {
                 // Put the query into the input field
                 const searchEl = document.getElementById("search-query");
-                searchEl.value = queryParam;
-                // Execute the search if the index is loaded, otherwise defer the search
-                if (this.isIndexLoaded()) {
-                    this.search();
-                } else {
-                    this.deferredQuery = queryParam;
+                if (searchEl) {
+                    searchEl.value = queryParam;
+                    // Execute the search if the index is loaded, otherwise defer the search
+                    if (this.isIndexLoaded()) {
+                        this.search();
+                    } else {
+                        this.deferredQuery = queryParam;
+                    }
                 }
             }
         }
@@ -154,17 +164,19 @@ class LunrSearch {
         // If there is a deferred query, execute the search
         if (this.deferredQuery !== "") {
             const searchEl = document.getElementById("search-query");
-            searchEl.value = this.deferredQuery;
-            this.search();
-            this.deferredQuery = "";
-        } else {
-            this.updateStatus("");
+            if (searchEl) {
+                searchEl.value = this.deferredQuery;
+                this.search();
+                this.deferredQuery = "";
+            }
+            return;
         }
+        this.updateStatus("");
     }
 
     clearResults() {
         const resultsEl = document.getElementById("results");
-        if (resultsEl.hasChildNodes()) {
+        if (resultsEl && resultsEl.hasChildNodes()) {
             while (resultsEl.firstChild) {
                 resultsEl.removeChild(resultsEl.firstChild);
             }
@@ -173,16 +185,20 @@ class LunrSearch {
 
     updateStatus(message) {
         const statusEl = document.getElementById("search-status");
-        statusEl.innerText = message;
+        if (statusEl) {
+            statusEl.innerText = message;
+        }
     }
 
     updateResultCount(numberOfResults) {
         const resultCountEl = document.getElementById("search-result-count");
-        let countText = "Search finished, no pages match the search query.";
-        if (numberOfResults > 0) {
-            countText = `Search finished, found ${numberOfResults} page(s) matching the search query. Results are sorted by relevance.`;
+        if (resultCountEl) {
+            let countText = "Search finished, no pages match the search query.";
+            if (numberOfResults > 0) {
+                countText = `Search finished, found ${numberOfResults} page(s) matching the search query. Results are sorted by relevance.`;
+            }
+            resultCountEl.innerText = countText;
         }
-        resultCountEl.innerText = countText;
     }
 
     search() {
@@ -191,9 +207,12 @@ class LunrSearch {
             console.error("search(): search index has not been loaded; unable to search");
             return;
         }
-        // Only trigger a search when 2 chars. at least have been provided
+        let query = "";
         const searchEl = document.getElementById("search-query");
-        const query = searchEl.value;
+        if (searchEl) {
+            query = searchEl.value;
+        }
+        // Only trigger a search when 2 chars. at least have been provided
         if (query.length < 2) {
             console.error("search(): query must be at least 2 characters in length");
             return;
@@ -255,6 +274,10 @@ class LunrSearch {
         }
         // Only show the first fifty results
         const resultsEl = document.getElementById("results");
+        // If we can't find the results element, then there's nothing to do
+        if (!resultsEl) {
+            return;
+        }
         results.forEach((result) => {
             if (result.page && result.page.title && result.page.title !== "") {
                 // Each result is a <li>
