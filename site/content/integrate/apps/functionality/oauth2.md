@@ -34,11 +34,16 @@ When the user has completed their authentication with the remote provider, they 
 {{<mermaid>}}
 graph TD
     A[User invokes an App call<br/>using a slash command] --> B[Call returns URL to start<br/>authentication flow]
-    B -->|User follows URL| C[Mattermost redirects user to<br/>App /oauth2/connect endpoint]
+    B -->|User clicks URL<br/>Mattermost client opens browser| C[Mattermost redirects user to<br/>App /oauth2/connect endpoint]
     C --> D[App returns redirect URL<br/>to OAuth2 provider]
     D -->|User authenticates with provider| E[Provider redirects to<br/>App /oauth2/complete endpoint]
-    E --> F[App stores user's token]
+    E --> F[App exchanges authentication<br/>code for token]
+    F --> G[App stores user's token]
 {{</mermaid>}}
+
+{{<note "App OAuth2 endpoints:">}}
+The `/oauth2/connect` and `/oauth2/complete` calls can be customized using the `get_oauth2_connect_url` and `on_oauth2_complete` parameters of the App's manifest, respectively.
+{{</note>}}
 
 ## Use HTTP REST endpoints
 
@@ -114,6 +119,150 @@ Example response:
 
 ### Register a remote OAuth2 provider with a driver
 
+Example [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) code to register the OAuth2 provider client ID and client secret:
+
+```go
+// configure is the App call invoked by the system administrator to register OAuth2 provider details.
+// The call should be configured to accept two values: client_id and client_secret.
+func configure(w http.ResponseWriter, req *http.Request) {
+    // Decode the call request data
+	callRequest := new(apps.CallRequest)
+	err := json.NewDecoder(req.Body).Decode(callRequest)
+	if err != nil {
+		// handle the error
+	}
+	// Read the client_id and client_secret values from the call request
+	clientIDIntf, ok := callRequest.Values["client_id"]
+	if !ok {
+		// handle the error
+	}
+	clientID, ok := clientIDIntf.(string)
+	if !ok {
+		// handle the error
+	}
+	clientSecretIntf, ok := callRequest.Values["client_secret"]
+	if !ok {
+		// handle the error
+	}
+	clientSecret, ok := clientSecretIntf.(string)
+	if !ok {
+		// handle the error
+	}
+	// Get an instance of the API client as the acting user
+	client := appclient.AsActingUser(callRequest.Context)
+	// Register the OAuth2 provider's details (client ID and client secret)
+	err = client.StoreOAuth2App(apps.OAuth2App{
+		ClientID:     clientID,
+		ClientSecret: clientSecret,
+	})
+	if err != nil {
+		// handle the error
+	}
+	// Respond with a success message
+	err = json.NewEncoder(w).Encode(
+		apps.NewTextResponse("updated OAuth client credentials"),
+	)
+	if err != nil {
+		// handle the error
+	}
+}
+```
+
 ### Set or update a user access token with a driver
 
+Example [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) code to set a user access token:
+
+```go
+// oauth2Complete is the App call invoked at the end of an OAuth2 authorization flow
+func oauth2Complete(w http.ResponseWriter, req *http.Request) {
+	// Decode the call request data
+	callRequest := new(apps.CallRequest)
+	err := json.NewDecoder(req.Body).Decode(callRequest)
+	if err != nil {
+		// handle the error
+	}
+	// Read the authorization code from the call request values
+	authCodeIntf, ok := callRequest.Values["code"]
+	if !ok {
+		// handle the error
+	}
+	authCode, ok := authCodeIntf.(string)
+	if !ok {
+		// handle the error
+	}
+	// Exchange the authorization code for a token
+	token, err := oauth2Config(callRequest).Exchange(context.Background(), authCode)
+	if err != nil {
+		// handle the error
+	}
+	// Get an instance of the API client as the acting user
+	client := appclient.AsActingUser(callRequest.Context)
+	// Store the OAuth2 token for the acting user
+	err = client.StoreOAuth2User(token)
+	if err != nil {
+		// handle the error
+	}
+	// Return a success response
+	err = httputils.WriteJSON(w, apps.NewDataResponse(nil))
+	if err != nil {
+		// handle the error
+	}
+}
+```
+
+#### OAuth2 configuration
+
+The Golang `oauth2Config` function referenced in the example above is responsible for creating a `oauth2.Config` ({{<newtabref title="godoc" href="https://pkg.go.dev/golang.org/x/oauth2#Config">}}) struct which contains the necessary information to exchange an authorization code for a token.
+
+Example Golang code for the `oauth2Config` function referencing a Google OAuth2 provider:
+
+```go
+func oauth2Config(creq *apps.CallRequest) *oauth2.Config {
+    return &oauth2.Config{
+        ClientID:     creq.Context.OAuth2.ClientID,
+        ClientSecret: creq.Context.OAuth2.ClientSecret,
+        Endpoint:     google.Endpoint,
+        RedirectURL:  creq.Context.OAuth2.CompleteURL,
+        Scopes: []string{
+            "https://www.googleapis.com/auth/calendar",
+            "https://www.googleapis.com/auth/userinfo.profile",
+            "https://www.googleapis.com/auth/userinfo.email",
+        },
+    }
+}
+```
+
 ### Get a user access token with a driver
+
+Example [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) code to get a user access token:
+
+```go
+func useRemoteService(w http.ResponseWriter, req *http.Request) {
+	// Decode the call request data
+	callRequest := new(apps.CallRequest)
+	err := json.NewDecoder(req.Body).Decode(callRequest)
+	if err != nil {
+		// handle the error
+	}
+	// Get an instance of the API client as the acting user
+	client := appclient.AsActingUser(callRequest.Context)
+	// Get the user's token
+	var userToken string
+	err = client.GetOAuth2User(&userToken)
+	if err != nil {
+		// handle the error
+	}
+	// Use the token
+	// ...
+	// Return a success response
+	err = httputils.WriteJSON(w, apps.NewDataResponse(nil))
+	if err != nil {
+		// handle the error
+	}
+}
+```
+
+{{<note>}}
+The user's access token can also be obtained from the call request context `oauth2_user` field. The call must be configured to expand the `oauth2_user` context field.
+{{</note>}}
+
