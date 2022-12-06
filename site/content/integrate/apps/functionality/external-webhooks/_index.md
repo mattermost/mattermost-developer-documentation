@@ -25,15 +25,18 @@ The App webhook URL has the following format:
 
 Using the above example values, the webhook URL will look like this:
 
+`http://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-endpoint?secret=9a44ckeqytd3bftn3c3y53968o`
 
-`http://my-mattermost-server/plugins/com.mattermost.apps/apps/my-apps/webhook/my-endpoint?secret=9a44ckeqytd3bftn3c3y53968o`
+When the external integration sends a `HTTP POST` request to this endpoint, your App will receive the request at the endpoint `/webhook/my-endpoint`. The same webhook URL can be used to process `HTTP HEAD` requests, in case the external integration requires this for webhook validation. The `/my-endpoint` part of the above URL is optional, and it can be defined as any string value.
 
-### Retrieve the secret key
+### Webhook Secret
 
-When the App is first installed, the `OnInstall` [call]({{<ref "/integrate/apps/structure/call">}}) handler will receive a context value of `app.webhook_secret` in the request. This value should be persisted by the App for authenticating incoming webhook requests.
+When the App is first installed, the App framework creates a secret to use for authenticating incoming webhook requests. Any incoming requests will be automatically validated by the framework. Only correctly authenticated requests will be sent to your App.
+
+When the App is first installed, the `OnInstall` [call]({{<ref "/integrate/apps/structure/call">}}) handler will receive a context value of `app.webhook_secret` in the request. You can use this secret to construct your webhook URL.
 
 {{<note>}}
-The `OnInstall` call must have the `app` expand field set to `summary` for the generated secret key to be populated in the call request.
+The `OnInstall` call must have the `app` expand field set to `all` for the generated webhook secret key to be populated in the call request.
 {{</note>}}
 
 For example, an Golang App's [manifest]({{<ref "/integrate/apps/structure/manifest">}}) would define an `OnInstall` call to get the secret like this:
@@ -61,7 +64,7 @@ appManifest = apps.Manifest{
     OnInstall: &apps.Call{
         Path: "/installed",
         Expand: &apps.Expand{
-            App: apps.ExpandSummary,
+            App: apps.ExpandAll,
         },
     },
 }
