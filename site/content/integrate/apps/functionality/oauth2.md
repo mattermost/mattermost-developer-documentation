@@ -4,7 +4,9 @@ heading: OAuth2 authentication
 description: How to authenticate to remote services using OAuth2 from your App
 weight: 50
 mermaid: true
-# TODO: add alias for /integrate/apps/authentication/oauth2 and its aliases
+aliases:
+  - /integrate/apps/using-third-party-api/hello-oauth2/
+  - /integrate/apps/authentication/app-to-third-party/
 ---
 The App framework provides support for authenticating with remote services using OAuth2, including storage of app secrets and user tokens.
 
@@ -265,4 +267,3 @@ func useRemoteService(w http.ResponseWriter, req *http.Request) {
 {{<note>}}
 The user's access token can also be obtained from the call request context `oauth2_user` field. The call must be configured to expand the `oauth2_user` context field.
 {{</note>}}
-
