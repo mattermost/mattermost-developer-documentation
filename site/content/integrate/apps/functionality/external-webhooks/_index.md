@@ -25,15 +25,14 @@ The App webhook URL has the following format:
 
 Using the above example values, the webhook URL will look like this:
 
-
-`http://my-mattermost-server/plugins/com.mattermost.apps/apps/my-apps/webhook/my-endpoint?secret=9a44ckeqytd3bftn3c3y53968o`
+`http://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-endpoint?secret=9a44ckeqytd3bftn3c3y53968o`
 
 ### Retrieve the secret key
 
 When the App is first installed, the `OnInstall` [call]({{<ref "/integrate/apps/structure/call">}}) handler will receive a context value of `app.webhook_secret` in the request. This value should be persisted by the App for authenticating incoming webhook requests.
 
 {{<note>}}
-The `OnInstall` call must have the `app` expand field set to `summary` for the generated secret key to be populated in the call request.
+The `OnInstall` call must have the `app` expand field set to `summary` or `all` for the generated secret key to be populated in the call request.
 {{</note>}}
 
 For example, an Golang App's [manifest]({{<ref "/integrate/apps/structure/manifest">}}) would define an `OnInstall` call to get the secret like this:
@@ -88,6 +87,5 @@ The `context` of the call request will look like the following:
 ```
 
 ### Example
-
 
 An example of implementing App webhooks can be found in the {{<newtabref title="Mattermost apps examples repo" href="https://github.com/mattermost/mattermost-app-examples/tree/master/golang/webhooks">}}.
