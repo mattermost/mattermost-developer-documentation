@@ -7,7 +7,7 @@ The Apps framework provides access to a simple key-value store for App-specific 
 Keys are simple strings and values are any data that can be expressed in JSON.
 
 {{<note "Note:">}}
-It is not recommended to store App configuration in the key-value store as an acting user access token is required to access it.
+It is not recommended to store App configuration in the key-value store as an access token, either a user or bot token, is required to access it.
 {{</note>}}
 
 There are three operations that can be performed against the key-value store:
@@ -20,6 +20,10 @@ The key-value store can be accessed in two ways:
 
 - Using HTTP REST endpoints
 - Using a [driver]({{<ref "/integrate/apps/drivers">}})
+
+{{<note "Unique keys:">}}
+Keys in the Key-value store are unique to the user or bot token used. One user's data will not overwrite another user's data. 
+{{</note>}}
 
 ## Use HTTP REST endpoints
 
