@@ -7,6 +7,8 @@ aliases:
   - /integrate/apps/using-mattermost-api/
   - /integrate/apps/api/mattermost-api/
 ---
+Apps frequently need to call the Mattermost API in order to perform actions as the Bot User or to act as the current user accessing the App.
+
 The Apps framework exposes the Mattermost REST API, both directly through HTTP calls and for Golang developers via a [driver]({{<ref "/integrate/apps/drivers">}}) that makes interacting with the Mattermost server easier and more convenient.
 
 For example, the Mattermost REST API documentation shows how to call [Mattermost AddChannelMember API here](https://api.mattermost.com/#tag/channels/operation/AddChannelMember)
