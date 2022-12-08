@@ -27,7 +27,7 @@ To use the OAuth2 functions in an App, the [manifest]({{<ref "/integrate/apps/st
 
 ## OAuth2 authentication flow
 
-The OAuth2 authentication flow is initiated by the user invoking an App call, usually from a slash command or form. The call requires that the `oauth2_app`  and `oauth2_user` context fields are expanded.
+The OAuth2 authentication flow is initiated by the user invoking an App call, usually from a slash command or form. The call requires that the `oauth2_app`  and `oauth2_user` context fields are expanded with expand level `all`.
 
 The App returns a URL that redirects the user to the App's `/oauth2/connect` endpoint, where a URL to the OAuth2 provider is returned, redirecting the user to continue the flow.
 
@@ -44,7 +44,7 @@ graph TD
 {{</mermaid>}}
 
 {{<note "App OAuth2 endpoints:">}}
-The `/oauth2/connect` and `/oauth2/complete` calls can be customized using the `get_oauth2_connect_url` and `on_oauth2_complete` parameters of the App's manifest, respectively.
+The `/oauth2/connect` and `/oauth2/complete` calls can be customized using the `get_oauth2_connect_url` and `on_oauth2_complete` properties of the App's manifest, respectively.
 {{</note>}}
 
 ## Use HTTP REST endpoints
