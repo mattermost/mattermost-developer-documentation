@@ -36,7 +36,7 @@ When the App is first installed, the App framework creates a secret to use for a
 When the App is first installed, the `OnInstall` [call]({{<ref "/integrate/apps/structure/call">}}) handler will receive a context value of `app.webhook_secret` in the request. You can use this secret to construct your webhook URL.
 
 {{<note>}}
-The `OnInstall` call must have the `app` expand field set to `all` for the generated webhook secret key to be populated in the call request.
+The `OnInstall` call must have the `app` expand field set to `all` for the generated webhook secret key to be populated in the call request. You can set this expand field for any other call as well, and your App will receive the webhook secret if the current user is a system admin.
 {{</note>}}
 
 For example, an Golang App's [manifest]({{<ref "/integrate/apps/structure/manifest">}}) would define an `OnInstall` call to get the secret like this:
