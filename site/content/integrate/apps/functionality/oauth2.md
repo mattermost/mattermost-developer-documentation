@@ -127,33 +127,25 @@ Example [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) code to regi
 // configure is the App call invoked by the system administrator to register OAuth2 provider details.
 // The call should be configured to accept two values: client_id and client_secret.
 func configure(w http.ResponseWriter, req *http.Request) {
-    // Decode the call request data
-	callRequest := new(apps.CallRequest)
-	err := json.NewDecoder(req.Body).Decode(callRequest)
+	// Decode the call request data
+	creq := new(apps.CallRequest)
+	err := json.NewDecoder(req.Body).Decode(creq)
 	if err != nil {
 		// handle the error
 	}
-	// Read the client_id and client_secret values from the call request
-	clientIDIntf, ok := callRequest.Values["client_id"]
+	// Read the client_id and client_secret values from the request
+	clientID, ok := creq.Values["client_id"].(string)
 	if !ok {
 		// handle the error
 	}
-	clientID, ok := clientIDIntf.(string)
-	if !ok {
-		// handle the error
-	}
-	clientSecretIntf, ok := callRequest.Values["client_secret"]
-	if !ok {
-		// handle the error
-	}
-	clientSecret, ok := clientSecretIntf.(string)
+	clientSecret, ok := creq.Values["client_secret"].(string)
 	if !ok {
 		// handle the error
 	}
 	// Get an instance of the API client as the acting user
-	client := appclient.AsActingUser(callRequest.Context)
+	asUser := appclient.AsActingUser(creq.Context)
 	// Register the OAuth2 provider's details (client ID and client secret)
-	err = client.StoreOAuth2App(apps.OAuth2App{
+	err = asUser.StoreOAuth2App(apps.OAuth2App{
 		ClientID:     clientID,
 		ClientSecret: clientSecret,
 	})
@@ -184,11 +176,7 @@ func oauth2Complete(w http.ResponseWriter, req *http.Request) {
 		// handle the error
 	}
 	// Read the authorization code from the call request values
-	authCodeIntf, ok := callRequest.Values["code"]
-	if !ok {
-		// handle the error
-	}
-	authCode, ok := authCodeIntf.(string)
+	authCode, ok := callRequest.Values["code"].(string)
 	if !ok {
 		// handle the error
 	}

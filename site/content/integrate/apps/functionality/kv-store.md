@@ -6,10 +6,6 @@ weight: 20
 The Apps framework provides access to a simple key-value store for App-specific data.
 Keys are simple strings and values are any data that can be expressed in JSON.
 
-{{<note "Note:">}}
-It is not recommended to store App configuration in the key-value store as an access token, either a user or bot token, is required to access it.
-{{</note>}}
-
 There are three operations that can be performed against the key-value store:
 
 1. Get the value of a key

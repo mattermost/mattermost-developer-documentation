@@ -8,7 +8,7 @@ aliases:
   - /integrate/apps/using-third-party-api/hello-webhooks/
 ---
 The Apps framework offers the ability to directly integrate with webhooks. An App webhook is executed through a special endpoint on the Mattermost Server and can require an authentication secret.
-The App manifest needs to request the `remote_webhooks` permission to use webhooks.
+The App [manifest]({{<ref "/integrate/apps/structure/manifest">}}) needs to request the `remote_webhooks` permission to use webhooks.
 
 The App webhook URL has the following format:
 
@@ -32,65 +32,73 @@ The `/webhook` call is made every time an App webhook is accessed. The `sub_path
 
 App webhooks support an API key-like authentication method. A Mattermost server-generated `webhook_secret` is provided during App installation and is used by the implementer to validate a webhook request.
 
-### Retrieve the secret key
+There are two steps to enable this authentication method:
 
-When the App is first installed, the `OnInstall` [call]({{<ref "/integrate/apps/structure/call">}}) handler will receive a context value of `app.webhook_secret` in the request. This value should be persisted by the App for authenticating incoming webhook requests. The App key-value store is suitable for storing the secret.
+1. Set the `remote_webhook_auth_type` property of the App manifest to `secret`.
+2. Define an `on_install` [call]({{<ref "/integrate/apps/structure/call">}}) in the App manifest with the `app` expand property set to `summary` or `all`.
+   The `webhook_secret` property of the `app` context field in the call request contains the webhook secret.
 
 {{<note>}}
-The `OnInstall` call must have the `app` expand field set to `summary` or `all` for the generated secret key to be populated in the call request.
+The webhook secret should be stored by the App for authenticating incoming webhook requests. The App [key-value store]({{<ref "/integrate/apps/functionality/kv-store">}}) is suitable for storing the webhook secret. 
 {{</note>}}
 
-For example, an Golang App's [manifest]({{<ref "/integrate/apps/structure/manifest">}}) would define an `OnInstall` call to get the secret like this:
+When this authentication method is enabled, webhook requests will contain a parameter named `secret` which should be verified against the known webhook secret. If the secrets don't match, the webhook request can be considered invalid.
 
-```go
-appManifest = apps.Manifest{
-    AppID:       apps.AppID("hello-world"),
-    Version:     apps.AppVersion("0.1.0"),
-    HomepageURL: "https://my-site/my-repo",
-    DisplayName: "Hello, world!",
-    RequestedPermissions: apps.Permissions{
-        apps.PermissionActAsBot,
-        apps.PermissionRemoteWebhooks,
-    },
-    RequestedLocations: apps.Locations{
-        apps.LocationChannelHeader,
-        apps.LocationCommand,
-        apps.LocationPostMenu,
-    },
-    Deploy: apps.Deploy{
-        HTTP: &apps.HTTP{
-            RootURL: "http://my-site:4000",
-        },
-    },
-    OnInstall: &apps.Call{
-        Path: "/installed",
-        Expand: &apps.Expand{
-            App: apps.ExpandSummary,
-        },
-    },
+Using the example from the previous section, the webhook URL will look like this:
+
+`http://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-webhook-path?secret=xxxxxxxxxxxxxxxx`
+
+An App's [manifest]({{<ref "/integrate/apps/structure/manifest">}}) would define an `on_install` call to get the secret like this:
+
+```json
+{
+	"app_id": "hello-world",
+    "version": "0.1.0",
+	"display_name": "Hello, world!",
+	"icon": "icon.png",
+	"homepage_url": "https://my-site/my-repo",
+	"requested_permissions": [
+		"act_as_bot",
+		"remote_webhooks"
+	],
+	"requested_locations": [
+		"/channel_header",
+		"/command",
+		"/post_menu"
+	],
+	"http": {
+		"root_url": "http://localhost:4000"
+	},
+	"remote_webhook_auth_type": "secret",
+	"on_install": {
+        "path": "/installed",
+        "expand": {
+            "app": "all"
+        }
+	}
 }
 ```
 
-The `context` of the call request will look like the following:
+The `context` of the `on_install` call request will look like the following:
 
 ```json
 {
     "path": "/installed",
     "context": {
-        "app_id": "my-app",
+        "app_id": "hello-world",
         "developer_mode": true,
         "app": {
             "app_id": "my-app",
             "version": "0.1.0",
             "webhook_secret": "9a44ckeqytd3bftn3c3y53968o",
             "bot_user_id": "7q7kaakokfdsdycy3pr9ctkc5r",
-            "bot_username": "my-app"
+            "bot_username": "hello-world"
         },
         "oauth2": {}
     }
 }
 ```
 
-### Example
+## Example
 
 An example of implementing App webhooks can be found in the {{<newtabref title="Mattermost apps examples repo" href="https://github.com/mattermost/mattermost-app-examples/tree/master/golang/webhooks">}}.

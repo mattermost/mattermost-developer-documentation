@@ -3,9 +3,15 @@ title: Golang
 description: The golang App driver
 weight: 10
 ---
-The following sections assume you've created a new, empty Golang project. 
-
 ## Installation
+
+Create a new directory for your App, and then create a new Golang module `go mod init`:
+
+```shell
+mkdir my-app
+cd my-app
+go mod init github.com/MY_USERNAME/MY_APP_REPO
+```
 
 Install the driver using `go get`. The version number `v1.1.0` in the command below  can be updated to reference newer releases.
 
@@ -55,6 +61,7 @@ var (
 		HomepageURL: "https://github.com/MY_USERNAME/MY_APP_REPO",
 		DisplayName: "Hello world!",
 		Description: "Example Golang App for Mattermost",
+		Icon:        "icon.png",
 		RequestedPermissions: apps.Permissions{
 			apps.PermissionActAsBot,
 		},
@@ -80,6 +87,8 @@ func main() {
     // ...
 }
 ```
+
+The `httputils` package can be referenced by adding `"github.com/mattermost/mattermost-plugin-apps/utils/httputils"` to the import statement.
 
 ## Bindings and forms
 
@@ -171,12 +180,9 @@ func submitHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Construct the response message using the input form's `message` value
 	message := "Hello, world!"
-	submittedMessageIntf, ok := callRequest.Values["message"]
+	submittedMessage, ok := callRequest.Values["message"].(string)
 	if ok {
-		submittedMessage, ok := submittedMessageIntf.(string)
-		if ok {
-			message += " ...and " + submittedMessage + "!"
-		}
+		message += " ...and " + submittedMessage + "!"
 	}
 
 	// Create an instance of the API Client
@@ -237,6 +243,10 @@ func main() {
 }
 ```
 
+{{<note>}}
+When referencing a static asset in a manifest, binding, or form, a prefix of `/static/` is implicitly added to the asset name.
+{{</note>}}
+
 ## Example
 
 {{<collapse id="golang-full-example" title="Full example code">}}
@@ -262,6 +272,7 @@ var (
 		HomepageURL: "https://github.com/MY_USERNAME/MY_APP_REPO",
 		DisplayName: "Hello world!",
 		Description: "Example Golang App for Mattermost",
+		Icon:        "icon.png",
 		RequestedPermissions: apps.Permissions{
 			apps.PermissionActAsBot,
 		},
@@ -344,12 +355,9 @@ func submitHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Construct the response message using the input form's `message` value
 	message := "Hello, world!"
-	submittedMessageIntf, ok := callRequest.Values["message"]
+	submittedMessage, ok := callRequest.Values["message"].(string)
 	if ok {
-		submittedMessage, ok := submittedMessageIntf.(string)
-		if ok {
-			message += " ...and " + submittedMessage + "!"
-		}
+		message += " ...and " + submittedMessage + "!"
 	}
 
 	// Create an instance of the API Client
