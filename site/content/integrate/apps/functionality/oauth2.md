@@ -253,5 +253,5 @@ func useRemoteService(w http.ResponseWriter, req *http.Request) {
 ```
 
 {{<note>}}
-The user's access token can also be obtained from the call request context `oauth2_user` field. The call must be configured to expand the `oauth2_user` context field.
+The user's access token can also be obtained from the call request context `oauth2_user` field. The call must be configured to expand the `oauth2_user` context field at the `summary` or `all` level.
 {{</note>}}
