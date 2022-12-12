@@ -21,7 +21,7 @@ The data structure of a call ({{<newtabref title="godoc" href="https://pkg.go.de
 | `expand` | [Expand]({{<ref "call-metadata">}}) | Specifies [additional metadata]({{<ref "call-metadata">}}) to include in the call request, such as channel and post information. |
 | `state`  | map                                 | A set of elements to be interpreted by the App. Forms and slash commands will also populate these values.                        |
 
-An example call looks like this:
+An example call looks like this:]
 
 ```json
 {

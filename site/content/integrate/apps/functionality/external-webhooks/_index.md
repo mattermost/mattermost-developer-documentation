@@ -35,7 +35,7 @@ App webhooks support an API key-like authentication method. A Mattermost server-
 There are two steps to enable this authentication method:
 
 1. Set the `remote_webhook_auth_type` property of the App manifest to `secret`.
-2. Define an `on_install` [call]({{<ref "/integrate/apps/structure/call">}}) in the App manifest with the `app` expand property set to `summary` or `all`.
+2. Define an `on_install` [call]({{<ref "/integrate/apps/structure/call">}}) in the App manifest with the `app` expand property set to `all`.
    The `webhook_secret` property of the `app` context field in the call request contains the webhook secret.
 
 {{<note>}}

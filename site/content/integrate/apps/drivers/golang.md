@@ -3,6 +3,9 @@ title: Golang
 description: The golang App driver
 weight: 10
 ---
+The Golang driver is a package which wraps HTTP REST calls, making it more convenient to access the Apps API and the Mattermost REST API.
+Use this package if you do not want to make HTTP REST calls yourself.
+
 ## Installation
 
 Create a new directory for your App, and then create a new Golang module `go mod init`:
