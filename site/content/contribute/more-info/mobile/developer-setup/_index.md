@@ -10,97 +10,104 @@ aliases:
 
 The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version {{< newtabref href="https://apps.apple.com/us/app/mattermost/id1257222717" title="here" >}} and the Android version {{< newtabref href="https://play.google.com/store/apps/details?id=com.mattermost.rn" title="here" >}}. Source code can be found at the {{< newtabref href="https://github.com/mattermost/mattermost-mobile" title="GitHub Mattermost Mobile app repository" >}}.
 
-If you run into any issues getting your environment set up, check the {{< newtabref href="https://docs.mattermost.com/deploy/mobile-troubleshoot.html" title="Troubleshooting" >}} section in the left sidebar for common solutions.
+If you run into any issues getting your environment set up, check the {{< newtabref href="https://docs.mattermost.com/deploy/mobile-troubleshoot.html" title="Troubleshooting" >}} section of the product docs for common solutions.
 
-{{<note "Note:">}}
-**This guide describes how to set up the development environment on macOS or Linux.**
+{{<note>}}
+- This guide describes how to set up the development environment on macOS or Linux.
+- A macOS computer is required to build the Mattermost iOS mobile app.
 {{</note>}}
-
-A macOS computer is required to build the Mattermost iOS mobile app.
 
 ## Environment setup
 
-### iOS and Android
+The following instructions apply to both iOS and Android mobile apps.
+On macOS, we recommend using {{< newtabref href="https://brew.sh" title="Homebrew" >}} as a package manager.
 
-Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using {{< newtabref href="https://brew.sh" title="Homebrew" >}} as a package manager.
+### Install Cygwin (Windows only)
 
-#### Node and NPM
-We recommend using npm version 7 (with either Node 15 or 16). To make switching easier, many of our team use {{< newtabref href="https://github.com/nvm-sh/nvm" title="nvm" >}} to manage the npm and node versions.
-
-#### Install Cygwin (Windows only)
-##### Windows 10
 - {{< newtabref href="https://cygwin.com/faq/faq.html#faq.what.supported" title="Which versions of Windows does Cygwin support" >}}?
 - Install Cygwin from {{< newtabref href="https://www.cygwin.com/" title="here" >}}.
-- Make sure to install `make` and `patch` while installing Cygwin.
+- Make sure to install the `make` and `patch` packages while installing Cygwin.
 
-##### macOS
+### Install NodeJS and NPM
 
-- To install using Homebrew open a terminal and execute:
+We recommend using NodeJS v18 and npm v8. Many of our team use {{< newtabref href="https://github.com/nvm-sh/nvm" title="nvm" >}} to manage npm and NodeJS versions.
 
-```sh
-    brew install nvm
-```
-
-##### Linux
-
--	Install using your distribution's package manager (Note that different distros provide different node versions, check that it is a supported [NodeJS version](#node-and-npm))
-
-Other installation options:
-
--   Using NVM by following the instructions {{< newtabref href="https://github.com/creationix/nvm#install-script" title="here" >}}.
--   Download and install the package from the {{< newtabref href="https://nodejs.org/en" title="NodeJS website" >}}.
-
-##### Windows 10
--   Download and install the package from the {{< newtabref href="https://nodejs.org/en/" title="NodeJS website" >}}
-
-#### Install {{< newtabref href="https://facebook.github.io/watchman" title="Watchman" >}}
-
-The minimum required version is 4.9.0.
-
-##### macOS
-
-- To install using Homebrew open a terminal and execute:
-
-    ```sh
-      brew install watchman
-    ```
-
-##### Linux
-
-- On Linux you have to build Watchman yourself. See the official {{< newtabref href="https://facebook.github.io/watchman/docs/install.html#installing-from-source" title="Watchman guide" >}}.
-   - Note that you need to increase your `inotify` limits for Watchman to work properly.
-   - If you encounter a warning about a missing C++ compiler you need to install the C++ extension from your distro's package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++).
-
-##### Windows 10
-- Download the latest package from {{< newtabref href="https://github.com/facebook/watchman/releases/tag/v2020.07.27.00" title="here" >}}. Note that it's currently in Beta.
-#### Install `react-native-cli` tools
+{{<tabs "node-npm-mac,macOS;node-npm-linux,Linux;node-npm-windows,Windows" "node-npm-mac">}}
+{{<tab "node-npm-mac" "display: block;">}}
+To install using Homebrew open a terminal and execute:
 
 ```sh
-  npm -g install react-native-cli
+brew install node@18
 ```
-#### Install Ruby
-##### Windows 10
+{{</tab>}}
+{{<tab "node-npm-linux">}}
+There are three available options for installing NodeJS on Linux:
+
+- Install using your distribution's package manager.
+- Using NVM by following the instructions {{< newtabref href="https://github.com/creationix/nvm#install-script" title="here" >}}.
+- Download and install the package from the {{< newtabref href="https://nodejs.org/en" title="NodeJS website" >}}.
+{{<note>}}
+The version of NodeJS that your distribution's package manager supports may not be the recommended version to build Mattermost mobile apps.
+Please make sure that NodeJS installed by the package manager is at the recommended version.
+{{</note>}}
+{{</tab>}}
+{{<tab "node-npm-windows">}}
+Download and install the package from the {{< newtabref href="https://nodejs.org/en/" title="NodeJS website" >}}
+{{</tab>}}
+
+### Install Watchman
+
+{{<newtabref href="https://facebook.github.io/watchman" title="Watchman">}} is a file watching program. When a file changes, Watchman triggers an action.
+For example, re-run a build command if a source file has changed.
+
+The minimum required version of Watchman is 4.9.0.
+
+{{<tabs "watchman-mac,macOS;watchman-linux,Linux;watchman-windows,Windows" "watchman-mac">}}
+{{<tab "watchman-mac" "display: block;">}}
+To install using Homebrew open a terminal and execute:
+
+```sh
+brew install watchman
+```
+{{</tab>}}
+{{<tab "watchman-linux">}}
+On Linux you have to build Watchman yourself. See the official {{< newtabref href="https://facebook.github.io/watchman/docs/install.html#installing-from-source" title="Watchman guide" >}}.
+
+If you encounter a warning about a missing C++ compiler you need to install the C++ extension using your distribution's package manager (Ubuntu: `g++`, RHEL/Fedora: `gcc-g++`).
+{{<note "Inotify limits">}}
+Note that you need to increase your `inotify` limits for Watchman to work properly.
+{{</note>}}
+{{</tab>}}
+{{<tab "watchman-windows">}}
+Download the latest package from {{< newtabref href="https://github.com/facebook/watchman/releases/tag/v2020.07.27.00" title="here" >}}. Note that it's currently in Beta.
+{{</tab>}}
+
+### Install `react-native-cli` tools
+
+```sh
+npm -g install react-native-cli
+```
+
+### Install Ruby
+#### Windows 10
 - Install Ruby from {{< newtabref href="https://rubyinstaller.org/" title="here" >}}
-#### Install Git
-##### Windows 10
+
+### Install `bundler --version 2.0.2` gem
+
+```sh
+gem install bundler --version 2.0.2
+```
+### Install Git
+#### Windows 10
 - Install git from {{< newtabref href="https://git-scm.com/download/win" title="here" >}}
 
-#### Install `bundler --version 2.0.2` gem
+#### macOS
 
 ```sh
-  gem install bundler --version 2.0.2
-```
-#### Obtaining the source code
-
-We use GitHub to host the source code so we recommend that you install {{< newtabref href="https://git-scm.com/" title="Git" >}}. Optionally, you can also contribute by submitting {{< newtabref href="https://help.github.com/articles/creating-a-pull-request" title="pull requests" >}}. If you do not have Git installed you can do so with Homebrew by opening a terminal and executing:
-
-##### macOS
-
-```sh
-  brew install git
+brew install git
 ```
 
-##### Linux
+#### Linux
 
 Some distributions come with Git preinstalled but you'll most likely have to install it yourself. For most distributions the package is simply called `git`.
 
@@ -113,11 +120,11 @@ Some distributions come with Git preinstalled but you'll most likely have to ins
 1. Follow the {{< newtabref href="https://reactnative.dev/docs/environment-setup" title="React Native environment setup" >}} docs until the `cocoapods` point, then stop. 
 2. Specify the correct version of Xcode in the terminal: `sudo xcode-select --switch /Applications/Xcode.app`
 3. In the Rosetta terminal, change to the `mattermost-mobile/ios` directory and run:
-    ```sh
-    sudo arch -x86_64 gem install ffi
-    sudo gem install cocoapods
-    arch -x86_64 pod install
-    ```
+   ```sh
+   sudo arch -x86_64 gem install ffi
+   sudo gem install cocoapods
+   arch -x86_64 pod install
+   ```
 4. If you need to use the Xcode app (e.g., to build, sign, and transfer the app to an iOS device), be sure to start it in Rosetta mode.
 
 ### Additional setup for Android

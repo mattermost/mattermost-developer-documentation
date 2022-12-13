@@ -1,0 +1,15 @@
+{{- $tabconfig := .Get 0 | default "" -}}
+{{- $defaulttabid := .Get 1 | default "" -}}
+{{- $tabdefs := split $tabconfig ";" -}}
+<div class="tab">
+{{- range $tabdefs -}}
+    {{- $tabdefparts := split . "," -}}
+    {{- $tabid := index $tabdefparts 0 | default "" -}}
+    {{- $tabname := index $tabdefparts 1 | default "" -}}
+    {{- $buttonclass := "tablinks" -}}
+    {{- if (eq $tabid $defaulttabid) -}}
+        {{- $buttonclass = "tablinks active" -}}
+    {{- end -}}
+    <button class="{{ $buttonclass }}" onclick="openTab(event, '{{ $tabid }}')">{{ $tabname }}</button>
+{{- end -}}
+</div>
