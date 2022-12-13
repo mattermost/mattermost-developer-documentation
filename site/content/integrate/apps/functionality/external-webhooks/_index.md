@@ -29,7 +29,7 @@ Using the above example values, the webhook URL will look like this:
 
 When the external integration sends a `HTTP POST` request to this endpoint, your App will receive the request at the endpoint `/webhook/my-endpoint`. The same webhook URL can be used to process `HTTP HEAD` requests, in case the external integration requires this for webhook validation. The `/my-endpoint` part of the above URL is optional, and it can be defined as any string value.
 
-### Webhook Secret
+### Webhook secret
 
 When the App is first installed, the App framework creates a secret to use for authenticating incoming webhook requests. Any incoming requests will be automatically validated by the framework. Only correctly authenticated requests will be sent to your App.
 
