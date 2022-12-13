@@ -38,10 +38,6 @@ There are two steps to enable this authentication method:
 2. Define an `on_install` [call]({{<ref "/integrate/apps/structure/call">}}) in the App manifest with the `app` expand property set to `all`.
    The `webhook_secret` property of the `app` context field in the call request contains the webhook secret.
 
-{{<note>}}
-The webhook secret should be stored by the App for authenticating incoming webhook requests. The App [key-value store]({{<ref "/integrate/apps/functionality/kv-store">}}) is suitable for storing the webhook secret. 
-{{</note>}}
-
 When this authentication method is enabled, webhook requests will contain a parameter named `secret` which should be verified against the known webhook secret. If the secrets don't match, the webhook request can be considered invalid.
 
 Using the example from the previous section, the webhook URL will look like this:

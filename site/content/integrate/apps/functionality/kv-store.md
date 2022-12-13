@@ -21,7 +21,7 @@ The key-value store can be accessed in two ways:
 Keys in the Key-value store are unique to the user or bot token used. One user's data will not overwrite another user's data. 
 {{</note>}}
 
-## Use HTTP REST endpoints
+## Access the key-value store with HTTP REST calls
 
 ### Endpoint URL
 
@@ -72,7 +72,7 @@ DELETE /plugins/com.mattermost.apps/api/v1/kv/my-key HTTP/1.1
 Authorization: Bearer xxxxxxxxxxxxxx
 ```
 
-## Use a driver
+## Access the key-value store with a driver
 
 ### Get a value with a driver
 
