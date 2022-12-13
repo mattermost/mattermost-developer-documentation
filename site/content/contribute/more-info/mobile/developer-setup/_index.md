@@ -8,7 +8,9 @@ aliases:
   - /contribute/mobile/developer-setup
 ---
 
-The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version {{< newtabref href="https://apps.apple.com/us/app/mattermost/id1257222717" title="here" >}} and the Android version {{< newtabref href="https://play.google.com/store/apps/details?id=com.mattermost.rn" title="here" >}}. Source code can be found at the {{< newtabref href="https://github.com/mattermost/mattermost-mobile" title="GitHub Mattermost Mobile app repository" >}}.
+The following instructions apply to the mobile apps for iOS and Android built in React Native.
+Download the iOS version {{< newtabref href="https://apps.apple.com/us/app/mattermost/id1257222717" title="here" >}} and the Android version {{< newtabref href="https://play.google.com/store/apps/details?id=com.mattermost.rn" title="here" >}}.
+Source code can be found at the {{< newtabref href="https://github.com/mattermost/mattermost-mobile" title="GitHub Mattermost Mobile app repository" >}}.
 
 If you run into any issues getting your environment set up, check the {{< newtabref href="https://docs.mattermost.com/deploy/mobile-troubleshoot.html" title="Troubleshooting" >}} section of the product docs for common solutions.
 
@@ -34,7 +36,7 @@ We recommend using NodeJS v18 and npm v8. Many of our team use {{< newtabref hre
 
 {{<tabs "node-npm-mac,macOS;node-npm-linux,Linux;node-npm-windows,Windows" "node-npm-mac">}}
 {{<tab "node-npm-mac" "display: block;">}}
-To install using Homebrew open a terminal and execute:
+To install NodeJS using Homebrew, open a terminal and execute:
 
 ```sh
 brew install node@18
@@ -44,7 +46,7 @@ brew install node@18
 There are three available options for installing NodeJS on Linux:
 
 - Install using your distribution's package manager.
-- Using NVM by following the instructions {{< newtabref href="https://github.com/creationix/nvm#install-script" title="here" >}}.
+- Using NVM by following the instructions {{< newtabref href="https://github.com/nvm-sh/nvm#install-script" title="here" >}}.
 - Download and install the package from the {{< newtabref href="https://nodejs.org/en" title="NodeJS website" >}}.
 {{<note>}}
 The version of NodeJS that your distribution's package manager supports may not be the recommended version to build Mattermost mobile apps.
@@ -64,7 +66,7 @@ The minimum required version of Watchman is 4.9.0.
 
 {{<tabs "watchman-mac,macOS;watchman-linux,Linux;watchman-windows,Windows" "watchman-mac">}}
 {{<tab "watchman-mac" "display: block;">}}
-To install using Homebrew open a terminal and execute:
+To install Watchman using Homebrew, open a terminal and execute:
 
 ```sh
 brew install watchman
@@ -89,33 +91,46 @@ npm -g install react-native-cli
 ```
 
 ### Install Ruby
-#### Windows 10
-- Install Ruby from {{< newtabref href="https://rubyinstaller.org/" title="here" >}}
 
-### Install `bundler --version 2.0.2` gem
+{{<tabs "ruby-mac,macOS;ruby-linux,Linux;ruby-windows,Windows" "ruby-mac">}}
+{{<tab "ruby-mac" "display: block;">}}
+An installation of Ruby is automatically installed on macOS.
+{{</tab>}}
+{{<tab "ruby-linux">}}
+Install Ruby using your distribution's package manager.
+{{</tab>}}
+{{<tab "ruby-windows">}}
+Install Ruby from {{< newtabref href="https://rubyinstaller.org/" title="here" >}}.
+{{</tab>}}
+
+### Install the Ruby `bundler` gem
 
 ```sh
 gem install bundler --version 2.0.2
 ```
-### Install Git
-#### Windows 10
-- Install git from {{< newtabref href="https://git-scm.com/download/win" title="here" >}}
 
-#### macOS
+### Install Git
+
+{{<tabs "git-mac,macOS;git-linux,Linux;git-windows,Windows" "git-mac">}}
+{{<tab "git-mac" "display: block;">}}
+To install Git using Homebrew, open a terminal and execute:
 
 ```sh
 brew install git
 ```
-
-#### Linux
-
+{{</tab>}}
+{{<tab "git-linux">}}
 Some distributions come with Git preinstalled but you'll most likely have to install it yourself. For most distributions the package is simply called `git`.
+{{</tab>}}
+{{<tab "git-windows">}}
+Install git from {{< newtabref href="https://git-scm.com/download/win" title="here" >}}
+{{</tab>}}
 
-### Additional setup for iOS
+## Additional setup for iOS
 
-*  Install {{< newtabref href="https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12" title="Xcode" >}} to build and run the app on iOS. The minimum required version is 11.0.
+Install {{< newtabref href="https://apps.apple.com/us/app/xcode/id497799835?ls=1&mt=12" title="Xcode" >}} to build and run the app on iOS. The minimum required version is 11.0.
 
-#### Additional setup for iOS on M1 macs
+### Additional setup for iOS on M1 macs
 
 1. Follow the {{< newtabref href="https://reactnative.dev/docs/environment-setup" title="React Native environment setup" >}} docs until the `cocoapods` point, then stop. 
 2. Specify the correct version of Xcode in the terminal: `sudo xcode-select --switch /Applications/Xcode.app`
@@ -127,50 +142,62 @@ Some distributions come with Git preinstalled but you'll most likely have to ins
    ```
 4. If you need to use the Xcode app (e.g., to build, sign, and transfer the app to an iOS device), be sure to start it in Rosetta mode.
 
-### Additional setup for Android
+## Additional setup for Android
 
-##### Download and install Android Studio or Android SDK CLI tools
+### Download and install Android Studio or Android SDK CLI tools
 
 Download and install the {{< newtabref href="https://developer.android.com/studio/index.html#downloads" title="Android Studio app or the Android SDK command line tools" >}}
 
+{{<note "Default paths">}}
+This documentation assumes you chose the default path for your Android SDK installation. If you chose a different path, adjust the environment variables below accordingly.
+{{</note>}}
+
 #### Environment variables
 
-Make sure you have the following ENV VARS configured:
+Make sure you have the following environment variables configured for your platform:
 
-    - `ANDROID_HOME` to where Android SDK is located (likely `/Users/<username>/Library/Android/sdk` or `/home/<username>/Android/Sdk`)
-    - Make sure your `PATH` includes `ANDROID_HOME/tools` and `ANDROID_HOME/platform-tools`
+{{<tabs "droid-common,All platforms;droid-mac,macOS;droid-linux,Linux" "droid-common">}}
+{{<tab "droid-common" "display: block;">}}
+- Set `ANDROID_HOME` to where Android SDK is located (likely `/Users/<username>/Library/Android/sdk` or `/home/<username>/Android/Sdk`)
+- Make sure your `PATH` includes `ANDROID_HOME/tools` and `ANDROID_HOME/platform-tools`
+{{</tab>}}
+{{<tab "droid-mac">}}
+On Mac, this usually requires adding the following lines to your `~/.bash_profile` file:
 
-##### macOS
+```sh
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$PATH
+```
 
--   On Mac, this usually requires adding the following lines to your `~/.bash_profile` file:
+Then reload your bash configuration:
 
-    ```sh
-    export ANDROID_HOME=$HOME/Library/Android/sdk
-    export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$PATH
-    ```
-- Then reload your bash configuration:
+```sh
+source ~/.bash_profile
+```
 
-    ```sh
-    source ~/.bash_profile
-    ```
+{{<note>}}
+Depending on the shell you're using, this might need to be put into a different file such as `~/.zshrc`. Adjust this accordingly.
+{{</note>}}
+{{</tab>}}
+{{<tab "droid-linux">}}
+On Linux the home folder is located under `/home/<username>` which results in a slightly different path:
 
-##### Linux
+```sh
+export ANDROID_HOME=/home/<username>/Android/Sdk
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+export PATH=$ANDROID_HOME/tools:$PATH
+```
 
--   On Linux the home folder is located under `/home/<username>` which results in a slightly different path:
+Then reload your configuration
 
-    ```sh
-    export ANDROID_HOME=/home/<username>/Android/Sdk
-    export PATH=$ANDROID_HOME/platform-tools:$PATH
-    export PATH=$ANDROID_HOME/tools:$PATH
-    ```
+```sh
+source ~/.bash_profile
+```
 
-- Then reload your configuration
-
-    ```sh
-    source ~/.bash_profile
-    ```
-    - Note that depending on the shell you're using, this might need to be put into a different file such as ```~/.zshrc```. Adjust this accordingly.
-    - Also this documentation assumes you chose the default path for your Android SDK installation. If you chose a different path, adjust accordingly.
+{{<note>}}
+Depending on the shell you're using, this might need to be put into a different file such as `~/.zshrc`. Adjust this accordingly.
+{{</note>}}
+{{</tab>}}
 
 ### Install the SDKs and SDK tools
 
@@ -201,16 +228,20 @@ In the SDK Manager using Android Studio or the {{< newtabref href="https://devel
 
 In order to develop and build the Mattermost mobile apps, you'll need to get a copy of the source code. Forking the `mattermost-mobile` repository will also make it easy to contribute your work back to the project in the future.
 
-1.  Fork the {{< newtabref href="https://github.com/mattermost/mattermost-mobile" title="mattermost-mobile" >}} repository on GitHub.
+1. Fork the {{< newtabref href="https://github.com/mattermost/mattermost-mobile" title="mattermost-mobile" >}} repository on GitHub.
 
 2. Clone your fork locally:
-    - Open a terminal
-    - Change to a directory you want to hold your local copy
-    - Run `git clone https://github.com/<username>/mattermost-mobile.git` if you want to use HTTPS, or `git clone git@github.com:<username>/mattermost-mobile.git` if you want to use SSH
 
-    **`<username>` refers to the username or organization in GitHub that forked the repository**
+   - Open a terminal
+   - Change to a directory you want to hold your local copy
+   - Run `git clone https://github.com/<username>/mattermost-mobile.git` if you want to use HTTPS, or `git clone git@github.com:<username>/mattermost-mobile.git` if you want to use SSH
+
+   {{<note>}}
+`<username>` refers to the username or organization in GitHub that forked the repository
+   {{</note>}}
 
 3.  Change the directory to `mattermost-mobile`.
+
     ```sh
     cd mattermost-mobile
     ```
@@ -234,6 +265,6 @@ Check the following things:
 
 * Ensure you are running the latest version of `nvm` using the {{< newtabref href="https://github.com/nvm-sh/nvm#install--update-script" title="Upgrade Instructions" >}}
 * Ensure you have set your desired version of node in the file `~/.nvmrc`.  E.g.,
-    ```sh
-      echo v16.2.0 > ~/.nvmrc
-    ```
+  ```sh
+  echo v16.2.0 > ~/.nvmrc
+  ```
