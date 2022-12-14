@@ -37,8 +37,9 @@ npx react-native run-android --help
 
 ## Run on a device
 
-By default, running the app will launch an Android emulator (if you created one) or an iOS simulator, but if you want to test the performance of the app or if you want to make a contribution it is always a good idea to run the app on an actual device.
+By default, running the app will launch an Android emulator (if you created one) or an iOS simulator.
 
+If you want to test the performance of the app or if you want to make a contribution it is always a good idea to run the app on an actual device.
 This will let you ensure that the app is working correctly and in a performant way before submitting a pull request.
 
 {{<tabs "mobile" "mobile-android,Android;mobile-ios,iOS" "mobile-android">}}
