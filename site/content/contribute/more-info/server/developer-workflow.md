@@ -10,11 +10,11 @@ aliases:
 
 If you haven't [set up your developer environment]({{< ref "/contribute/more-info/server/developer-setup" >}}), please do so before continuing with this section.
 
-Join the [Developers community channel](https://community.mattermost.com/core/channels/developers) to ask questions from community members and the Mattermost core team.
+Join the {{< newtabref href="https://community.mattermost.com/core/channels/developers" title="Developers community channel" >}} to ask questions from community members and the Mattermost core team.
 
 ### Workflow
 
-Here's a general workflow for a Mattermost developer working on the [mattermost-server](https://github.com/mattermost/mattermost-server) repository:
+Here's a general workflow for a Mattermost developer working on the {{< newtabref href="https://github.com/mattermost/mattermost-server" title="mattermost-server" >}} repository:
 
 #### Making code changes
 1. Review the repository structure to familiarize yourself with the project:

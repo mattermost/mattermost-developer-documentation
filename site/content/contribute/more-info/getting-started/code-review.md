@@ -14,7 +14,7 @@ All changes to the product should be reviewed. Every team will have its own work
 * Code changes should be reviewed by at least two core committers.
 * Documentation changes should be reviewed by a product manager or technical writer.
 
-Staff should consult the internal [organization chart](https://docs.google.com/spreadsheets/d/1lH8QIjQGEoGospDUdVs_LQ_i2b82I1ce6W7z18vhPTQ/edit#gid=1730823498) as needed when finding the right reviewer.
+Staff should consult the internal {{< newtabref href="https://docs.google.com/spreadsheets/d/1lH8QIjQGEoGospDUdVs_LQ_i2b82I1ce6W7z18vhPTQ/edit#gid=1730823498" title="organization chart" >}} as needed when finding the right reviewer.
 
 If you are a community member seeking a review
 ----------------------------------------------
@@ -24,16 +24,16 @@ If you are a community member seeking a review
 2. Wait for a reviewer to be assigned.
     * Product managers are on the lookout for new pull requests and usually handle this for you automatically.
     * If you have been working alongside a core committer, feel free to message them for help.
-    * When in doubt, ask for help in the [Developers](https://community.mattermost.com/core/channels/developers) channel on our community server.
-    * If you are still stuck, message Jason Blais ([@jasonblais](https://github.com/jasonblais) on GitHub) or Jason Frerich ([@jfrerich](https://github.com/jfrerich) on GitHub).
+    * When in doubt, ask for help in the {{< newtabref href="https://community.mattermost.com/core/channels/developers" title="Developers" >}} channel on our community server.
+    * If you are still stuck, message Jason Blais ({{< newtabref href="https://github.com/jasonblais" title="@jasonblais" >}} on GitHub) or Jason Frerich ({{< newtabref href="https://github.com/jfrerich" title="@jfrerich" >}} on GitHub).
 3. [Wait for a review](#if-you-are-awaiting-a-review).
-    * Expect some interaction with at least one reviewer within 5 business days. (Business days are typically Monday to Friday, excluding [statutory holidays](https://handbook.mattermost.com/operations/workplace/people/working-at-mattermost/paid-time-off#typical-public-holidays-in-canada-germany-uk-us).)
+    * Expect some interaction with at least one reviewer within 5 business days. (Business days are typically Monday to Friday, excluding {{< newtabref href="https://handbook.mattermost.com/operations/workplace/people/working-at-mattermost/paid-time-off#typical-public-holidays-in-canada-germany-uk-us" title="statutory holidays" >}}.)
     * Keep in mind that core committers are geographically distributed around the world and likely in a different time zone than your own.
     * If no interaction has occurred after 5 business days, at-mention a reviewer with a comment on your PR.
 4. Make any necessary changes.
     * If a reviewer requests changes, your pull request will disappear from their queue of reviews.
     * Once you've addressed the concerns, re-request a review from any reviewer requesting changes.
-    * [Avoid force pushing](https://mattermost.com/blog/submitting-great-prs/#4-avoid-force-pushing).
+    * {{< newtabref href="https://mattermost.com/blog/submitting-great-prs/#4-avoid-force-pushing" title="Avoid force pushing" >}}.
 5. Wait for your code to be merged.
     * Larger pull requests may require more time to review.
     * Once all reviewers have approved your changes, they will handle merging your code.
@@ -61,7 +61,7 @@ If you are a core committer seeking a review
         - If in doubt, assign any Product Manager or Designer and comment about the uncertainty. They may reassign as appropriate.
     * [Wait](#if-you-are-awaiting-a-review) for their review to complete before continuing so as to avoid churn if changes are requested.
     * Remove the `1: UX Review` label only when these reviews are done and they accept the changes.
-        - Product Managers and Designers ensure the changes meet [user experience guidelines](https://docs.mattermost.com/developer/fx-guidelines.html).
+        - Product Managers and Designers ensure the changes meet {{< newtabref href="https://docs.mattermost.com/developer/fx-guidelines.html" title="user experience guidelines" >}}.
     * If your changes do not affect the user experience, you may remove `1: UX Review` immediately.
 6. After UX review, request a review from two core committers.
     * The choice of core committers is up to you.

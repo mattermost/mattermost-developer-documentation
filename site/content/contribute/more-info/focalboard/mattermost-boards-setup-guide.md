@@ -8,11 +8,12 @@ aliases:
   - /contribute/focalboard/mattermost-boards-setup-guide
 ---
 
-**[Mattermost Boards](https://mattermost.com/boards/)** is the Mattermost plugin version of Focalboard that combines project management tools with messaging and collaboration for teams of all sizes. It is installed and enabled by default in Mattermost v6.0 and later. For working with Focalboard as a standalone application, please refer to the [Personal Server Setup Guide]({{< ref "/contribute/more-info/focalboard/personal-server-setup-guide" >}}).
+**{{< newtabref href="https://mattermost.com/boards/" title="Mattermost Boards" >}}** is the Mattermost plugin version of Focalboard that combines project management tools with messaging and collaboration for teams of all sizes. It is installed and enabled by default in Mattermost v6.0 and later. For working with Focalboard as a standalone application, please refer to the [Personal Server Setup Guide]({{< ref "/contribute/more-info/focalboard/personal-server-setup-guide" >}}).
 
 ## Build the plugin
 
-1. Fork the [Focalboard repository](https://github.com/mattermost/focalboard) and clone it locally.
+
+1. Fork the {{< newtabref href="https://github.com/mattermost/focalboard" title="Focalboard repository" >}} and clone it locally.
 2. Define an environment variable ``EXCLUDE_ENTERPRISE`` with a value of ``1``.
 3. To install the dependencies:
 ```
@@ -28,7 +29,7 @@ cd mattermost-plugin
 make dist
 ```
 
-Refer to the [dev-release.yml](https://github.com/mattermost/focalboard/blob/main/.github/workflows/dev-release.yml#L168) workflow for the up-to-date commands that are run as part of CI.
+Refer to the {{< newtabref href="https://github.com/mattermost/focalboard/blob/main/.github/workflows/dev-release.yml#L168" title="dev-release.yml" >}} workflow for the up-to-date commands that are run as part of CI.
 
 ## Upload and install the plugin
 
@@ -47,8 +48,8 @@ Instead of following the steps above, you can also set up a `mattermost-server` 
   * Make sure Docker is running.
   * Run `make config-reset` to generate the `config/config.json` file:
     * Edit `config/config.json`:
-      * Set `ServiceSettings > SiteURL` to `http://localhost:8065` ([docs](https://docs.mattermost.com/configure/configuration-settings.html#site-url))
-      * Set `ServiceSettings > EnableLocalMode` to `true` ([docs](https://docs.mattermost.com/configure/configuration-settings.html#enable-local-mode))
+      * Set `ServiceSettings > SiteURL` to `http://localhost:8065` ({{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html#site-url" title="docs" >}})
+      * Set `ServiceSettings > EnableLocalMode` to `true` ({{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html#enable-local-mode" title="docs" >}})
       * Set `PluginSettings > EnableUploads` to `true` ([docs]({{< ref "/integrate/plugins/using-and-managing-plugins#custom-plugins" >}}))
   * In this terminal window, add an environmental variable to your bash via `MM_SERVICESETTINGS_SITEURL='http://localhost:8065'` ([docs](https://developers.mattermost.com/blog/subpath/#using-subpaths-in-development))
   * Build and run the server via `make run-server`

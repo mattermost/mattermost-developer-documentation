@@ -26,8 +26,8 @@ To add an endpoint to API version 4, all of the following must be completed:
 
 A full example of the process can be found through these two pull requests:
 
-- Documenting the `POST /teams` endpoint: [mattermost-api-reference#72](https://github.com/mattermost/mattermost-api-reference/pull/72)
-- Implementing the `POST /teams` endpoint: [mattermost-server#5220](https://github.com/mattermost/mattermost-server/pull/5220)
+- Documenting the `POST /teams` endpoint: {{< newtabref href="https://github.com/mattermost/mattermost-api-reference/pull/72" title="mattermost-api-reference#72" >}}
+- Implementing the `POST /teams` endpoint: {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/5220" title="mattermost-server#5220" >}}
 
 #### Document the endpoint
 At Mattermost, the [OpenAPI specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md) is used for API documentation. The API documentation lives in the [mattermost-api-reference](https://github.com/mattermost/mattermost-api-reference) repository. To document an endpoint, follow these steps:
@@ -85,7 +85,7 @@ The most important part of this process is to make sure the new endpoint works c
     - Requests with insufficient permissions return a **403 Forbidden** status code (for endpoints requiring permission).
     - Requests to non-existent resources or URLs return a **404 Not Found** status code.
 
-Returning the correct error code might require investigation in the [app](https://github.com/mattermost/mattermost-server/tree/master/app) or [store](https://github.com/mattermost/mattermost-server/tree/master/store) packages to find the source of errors. Status codes on errors should be set at the creation of the error.
+Returning the correct error code might require investigation in the {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/app" title="app" >}} or {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/store" title="store" >}} packages to find the source of errors. Status codes on errors should be set at the creation of the error.
 
 When completing this step, please make sure to use the new `model.NewAppError()` function ([see example](https://github.com/mattermost/mattermost-server/blob/master/store/sqlstore/user_store.go)).
 #### Submit your pull request (PR)

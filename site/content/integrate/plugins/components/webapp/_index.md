@@ -21,7 +21,7 @@ Want the web app plugin reference doc? [Find it here]({{< ref "/integrate/plugin
 
 Register your own React components to be added to the channel header, sidebars, user details popover, main menu and other supported components. Multiple plugins can add to the same component simultaneously. This API focuses on ease of use and maintaining compatibility with future Mattermost releases.
 
-For example, the [Mattermost Zoom Plugin](https://github.com/mattermost/mattermost-plugin-zoom) registers a button in the channel header to trigger a Zoom call and post a link to the call in the current channel.
+For example, the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-zoom" title="Mattermost Zoom Plugin" >}} registers a button in the channel header to trigger a Zoom call and post a link to the call in the current channel.
 
 #### Add new root components
 

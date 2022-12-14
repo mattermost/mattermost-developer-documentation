@@ -17,11 +17,11 @@ This quick start guide will walk you through the basics of creating a hello worl
 
 Before you can start with your App, you should first set up your environment by following the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}).
 
-You also need [NodeJS v16 (Gallium) LTS](https://nodejs.org/en/download/).
+You also need {{< newtabref href="https://nodejs.org/en/download/" title="NodeJS v16 (Gallium) LTS" >}}.
 
 ## Download and start the App
 
-In the same [mattermost-app-examples repository](https://github.com/mattermost/mattermost-app-examples) you cloned via the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}) above, navigate to the [`typescript/hello-world`](https://github.com/mattermost/mattermost-app-examples/tree/master/typescript/hello-world) directory and start the Docker container:
+In the same {{< newtabref href="https://github.com/mattermost/mattermost-app-examples" title="mattermost-app-examples repository" >}} you cloned via the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}) above, navigate to the {{< newtabref href="https://github.com/mattermost/mattermost-app-examples/tree/master/typescript/hello-world" title="`typescript/hello-world`" >}} directory and start the Docker container:
 
 ```sh
 cd typescript/hello-world
@@ -36,7 +36,7 @@ app listening on port 4000
 
 ## Install the App on Mattermost
 
-Next, access your development Mattermost Server at [http://localhost:8065](http://localhost:8065) and use the `/apps install http http://mattermost-apps-typescript-hello-world:4000/manifest.json` slash command to install the hello world App. Select `Agree to grant the app access to APIs and Locations` and click `Submit` to finish the installation.
+Next, access your development Mattermost Server at {{< newtabref href="http://localhost:8065" title="http://localhost:8065" >}} and use the `/apps install http http://mattermost-apps-typescript-hello-world:4000/manifest.json` slash command to install the hello world App. Select `Agree to grant the app access to APIs and Locations` and click `Submit` to finish the installation.
 
 ## Use the App
 

@@ -12,7 +12,7 @@ weight: 40
 OpenFaaS makes it relatively simple to deploy both serverless functions and
 existing code in stateless containers on Kubernetes or directly on Linux hosts,
 on any public or private cloud. Learn more at
-[OpenFaas.com](https://www.openfaas.com/)
+{{< newtabref href="https://www.openfaas.com/" title="OpenFaas.com" >}}
 
 ### Package an App for OpenFaaS
 
@@ -25,11 +25,11 @@ An App designed and bundled for OpenFaaS can be deployed to the customer's own
 OpenFaaS or faasd environments, and then installed on a self-managed ("on-prem")
 Mattermost server, using the `appsctl openfaas deploy` command.
 
-This command requires that [faas-cli](https://github.com/openfaas/faas-cli) is
+This command requires that {{< newtabref href="https://github.com/openfaas/faas-cli" title="faas-cli" >}} is
 installed and configured, with credentials sufficiently privileged to deploy
 functions.
 
-OpenFaaS requires a [docker registry](https://docs.docker.com/registry/) to pass
+OpenFaaS requires a {{< newtabref href="https://docs.docker.com/registry/" title="docker registry" >}} to pass
 the images that it builds to the function instances, so `docker` must have been
 configured, and `docker login` done, with sufficient credentials to push to the
 registry of choice.

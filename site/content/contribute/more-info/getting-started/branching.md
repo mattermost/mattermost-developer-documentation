@@ -8,7 +8,7 @@ aliases:
   - /contribute/getting-started/branching
 ---
 
-The self-managed releases are cut based off of the Mattermost Cloud release tags (e.g Mattermost Server v6.3 release was based off of ``cloud-2021-12-08-1`` Cloud release tag) in the server, webapp, enterprise, and api-reference repos. See [the Handbook release process](https://handbook.mattermost.com/operations/research-and-development/product/release-process/release-overview#cloud-release-branch-processes) for more details.
+The self-managed releases are cut based off of the Mattermost Cloud release tags (e.g Mattermost Server v6.3 release was based off of ``cloud-2021-12-08-1`` Cloud release tag) in the server, webapp, enterprise, and api-reference repos. See {{< newtabref href="https://handbook.mattermost.com/operations/research-and-development/product/release-process/release-overview#cloud-release-branch-processes" title="the Handbook release process" >}} for more details.
 
 The Mobile and Desktop app release branches are based off of ``master`` branch.
 

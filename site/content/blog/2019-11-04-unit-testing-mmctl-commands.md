@@ -9,11 +9,11 @@ github: mgdelacroix
 community: miguel.delacruz
 ---
 
-Mattermost is starting a new Open Source campaign, this time around increasing the unit test coverage for [the `mmctl` tool](https://github.com/mattermost/mmctl).
+Mattermost is starting a new Open Source campaign, this time around increasing the unit test coverage for {{< newtabref href="https://github.com/mattermost/mmctl" title="the `mmctl` tool" >}}.
 
 The `mmctl` tool is a CLI application that mimics the commands and features of the current Mattermost CLI tool and uses the Mattermost REST API to communicate with the server. Using the tool, you can control and manage several Mattermost servers without having to access the specific machine on which the server is running. If you can reach a Mattermost instance over the network, you can use `mmctl` to run commands on it.
 
-The goal of the campaign is to create unit tests for the different `mmctl` commands. These tests should be centered around how the tool reacts to different inputs and server responses. We'll be using [the `gomock` mocking framework](https://github.com/golang/mock) to simulate whatever response we want from the server, and to ensure that the command is performing the requests we expect quickly and accurately.
+The goal of the campaign is to create unit tests for the different `mmctl` commands. These tests should be centered around how the tool reacts to different inputs and server responses. We'll be using {{< newtabref href="https://github.com/golang/mock" title="the `gomock` mocking framework" >}} to simulate whatever response we want from the server, and to ensure that the command is performing the requests we expect quickly and accurately.
 
 # The Client Interface
 
@@ -23,7 +23,7 @@ First, let's take a look at the signature of a typical `mmctl` command:
 func userSearchCmdF(c client.Client, cmd *cobra.Command, args []string) error { }
 ```
 
-We use [the awesome Cobra library](https://github.com/spf13/cobra) to create our commands, and on top of the required cobra arguments (`cmd` and `args`), every command that needs to interact with the server will receive [a `Client` instance](https://github.com/mattermost/mmctl/blob/master/client/client.go). This client represents our connection with the server, and at the time we call the command function, it is already logged in with a server and ready to run requests. During testing, this is the interface that we will be simulating and where we will make sure that the command is performing the requests we expect.
+We use {{< newtabref href="https://github.com/spf13/cobra" title="the awesome Cobra library" >}} to create our commands, and on top of the required cobra arguments (`cmd` and `args`), every command that needs to interact with the server will receive {{< newtabref href="https://github.com/mattermost/mmctl/blob/master/client/client.go" title="a `Client` instance" >}}. This client represents our connection with the server, and at the time we call the command function, it is already logged in with a server and ready to run requests. During testing, this is the interface that we will be simulating and where we will make sure that the command is performing the requests we expect.
 
 # Testing a Use Case
 
@@ -57,7 +57,7 @@ Let's split the test and go through each one of its parts.
 
 So first things first, we need to create the test function for our command. We use one function per command and then we separate the different test cases with `s.Run` blocks.
 
-Our tests are part of a [`testify` suite](https://godoc.org/github.com/stretchr/testify/suite) that prepares the environment for us and generates the mocked client so we can easily use it inside our tests. To add a new test function to the suite, we just need to define it on the suite struct:
+Our tests are part of a {{< newtabref href="https://godoc.org/github.com/stretchr/testify/suite" title="`testify` suite" >}} that prepares the environment for us and generates the mocked client so we can easily use it inside our tests. To add a new test function to the suite, we just need to define it on the suite struct:
 
 ```go
 func (s *MmctlUnitTestSuite) TestSearchUserCmd() {
@@ -96,7 +96,7 @@ During our test run, if the client's method is called with the arguments that we
 
 After mocking the server interactions, all that's left to do is run the command and check the outputs. There are two things that we can use to check that the command behaved as we expected: the command's return value and whatever was printed during its execution.
 
-To perform these assertions we can use the suite itself for [assertions](https://godoc.org/github.com/stretchr/testify/assert) or `s.Require()` for [requires](https://godoc.org/github.com/stretchr/testify/require). Both implement the same helpers to check that our values meet our expectations. The difference between the two is that a failed check with `require` will mark the test as failed and will stop it right after, and a failed check with `assert` will mark the test as failed too, but it will continue running it.
+To perform these assertions we can use the suite itself for {{< newtabref href="https://godoc.org/github.com/stretchr/testify/assert" title="assertions" >}} or `s.Require()` for {{< newtabref href="https://godoc.org/github.com/stretchr/testify/require" title="requires" >}}. Both implement the same helpers to check that our values meet our expectations. The difference between the two is that a failed check with `require` will mark the test as failed and will stop it right after, and a failed check with `assert` will mark the test as failed too, but it will continue running it.
 
 The rule of thumb here is to use `assert` when you can still get valuable information from the following assertions of your test, and use `require` if, after an error, the following checks won't make sense. For example, if we get an error opening a file, it doesn't make sense to check the file contents.
 
@@ -142,6 +142,6 @@ func (s *MmctlUnitTestSuite) TestMyCommandCmd() {
 
 And that's it! That's how you write a unit test for an `mmctl` command.
 
-If you are interested in contributing to this Open Source campaign, take a look at the [Up for Grabs tickets for `mmctl`](https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+label%3A%22Up+For+Grabs%22+label%3AArea%2Fmmctl) on the `mattermost-server` repository, or just check [all the Up for Grabs tickets](https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+label%3A%22Up+For+Grabs%22) of the project to find tickets related to the Mattermost fronted, the documentation, the Plugin system and any other Open Source campaign we might be running. If you see a ticket that you would like to work on, just leave a comment asking for it to be assigned to you.
+If you are interested in contributing to this Open Source campaign, take a look at the {{< newtabref href="https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+label%3A%22Up+For+Grabs%22+label%3AArea%2Fmmctl" title="Up for Grabs tickets for `mmctl`" >}} on the `mattermost-server` repository, or just check {{< newtabref href="https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+label%3A%22Up+For+Grabs%22" title="all the Up for Grabs tickets" >}} of the project to find tickets related to the Mattermost fronted, the documentation, the Plugin system and any other Open Source campaign we might be running. If you see a ticket that you would like to work on, just leave a comment asking for it to be assigned to you.
 
-Check out the [getting started documentation](https://developers.mattermost.com/contribute/getting-started/) to find out how to set up the project on your machine and read about [the project's development workflow](https://developers.mattermost.com/contribute/server/developer-workflow/). You can go to the [Mattermost community server](https://community.mattermost.com/) and join the `Developers` channel to ask any question you may have. Hope to see you there!
+Check out the [getting started documentation](https://developers.mattermost.com/contribute/getting-started/) to find out how to set up the project on your machine and read about [the project's development workflow](https://developers.mattermost.com/contribute/server/developer-workflow/). You can go to the {{< newtabref href="https://community.mattermost.com/" title="Mattermost community server" >}} and join the `Developers` channel to ask any question you may have. Hope to see you there!

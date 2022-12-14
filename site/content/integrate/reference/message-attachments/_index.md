@@ -25,7 +25,7 @@ When sending an attachment, you can use any of the following to format how you w
 
 ![image](attachments-pretext.png)
 
-`text`: The text to be included in the attachment. It can be formatted using [Markdown](https://docs.mattermost.com/help/messaging/formatting-text.html). For long texts, the message is collapsed and a “Show More” link is added to expand the message.
+`text`: The text to be included in the attachment. It can be formatted using {{< newtabref href="https://docs.mattermost.com/help/messaging/formatting-text.html" title="Markdown" >}}. For long texts, the message is collapsed and a “Show More” link is added to expand the message.
 
 ![image](attachments-text.png)
 
@@ -53,7 +53,7 @@ Fields can be included as an optional array within `attachments`, and are used t
 
 `title`: A title shown in the table above the `value`.  As of v5.14 a title will render emojis properly.
 
-`value`: The text value of the field. It can be formatted using [Markdown](https://docs.mattermost.com/help/messaging/formatting-text.html).
+`value`: The text value of the field. It can be formatted using {{< newtabref href="https://docs.mattermost.com/help/messaging/formatting-text.html" title="Markdown" >}}.
 
 `short`: Optionally set to true or false (boolean) to indicate whether the `value` is short enough to be displayed beside other values.
 
@@ -137,7 +137,7 @@ And here is how it renders in Mattermost:
 
 ### Can I send a message attachment via the API?
 
-Yes, you can use the [create post RESTful API](https://api.mattermost.com/#operation/CreatePost).
+Yes, you can use the {{< newtabref href="https://api.mattermost.com/#operation/CreatePost" title="create post RESTful API" >}}.
 
 You need to add an "attachment" key to the post's props JSON field. The value is an array of message attachments you want attached to the post. See below for an example curl command.
 

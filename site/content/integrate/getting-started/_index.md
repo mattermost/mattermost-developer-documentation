@@ -26,8 +26,8 @@ Slash commands are messages that begin with `/` and trigger an HTTP request to a
 
 Apps are lightweight, interactive add-ons that can be written in any programming
 language and run on any HTTP-compatible hosting service or several serverless
-providers like [AWS Lambda](https://aws.amazon.com/lambda/) or
-[OpenFaaS](https://www.openfaas.com/). They’re for developers who want the most
+providers like {{< newtabref href="https://aws.amazon.com/lambda/" title="AWS Lambda" >}} or
+{{< newtabref href="https://www.openfaas.com/" title="OpenFaaS" >}}. They’re for developers who want the most
 effective way to build Mattermost customizations and improvements efficiently.
 
 [Build your App now]({{< ref "/integrate/apps" >}})
@@ -48,4 +48,4 @@ Interact with users, channels, and everything else that happens on your Mattermo
 
 * Embed - Learn how to use the Mattermost API to [embed Mattermost]({{< ref "/integrate/customization/embedding" >}}) into web browsers and web applications.
 * Customize - Modify the source code for the server or web app to make basic [changes and customization]({{< ref "/integrate/customization/customization" >}}).
-* Interactive Messages - Create messages that include [interactive functionality](https://docs.mattermost.com/developer/interactive-messages.html).
+* Interactive Messages - Create messages that include {{< newtabref href="https://docs.mattermost.com/developer/interactive-messages.html" title="interactive functionality" >}}.

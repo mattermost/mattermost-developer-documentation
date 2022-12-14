@@ -109,7 +109,7 @@ Fortunately, Jens Axboe, the creator of `io_uring` has created a wrapper library
 
 ### Wrapping io_uring in Go
 
-This was a lot of theory to digest. There's even more of it which I have deliberately skipped for the sake of brevity. Now let's get back to writing some code in Go and take this for a spin. For simplicity and safety we will use the `liburing` library, which means we will need to use CGo. That's fine because this is just a toy, and the right way would be have [native support](https://github.com/golang/go/issues/31908) in the Go runtime. As a result of that, we will unfortunately have to use callbacks. In native Go, the running goroutine would be put to sleep by the runtime, and then woken up when the data would be available in the completion queue.
+This was a lot of theory to digest. There's even more of it which I have deliberately skipped for the sake of brevity. Now let's get back to writing some code in Go and take this for a spin. For simplicity and safety we will use the `liburing` library, which means we will need to use CGo. That's fine because this is just a toy, and the right way would be have {{< newtabref href="https://github.com/golang/go/issues/31908" title="native support" >}} in the Go runtime. As a result of that, we will unfortunately have to use callbacks. In native Go, the running goroutine would be put to sleep by the runtime, and then woken up when the data would be available in the completion queue.
 
 Let's name our package `frodo` (and just like that I have knocked out one of the two hardest problems in computer science). We will just have a very simple API to read and write files. And two more functions to setup and cleanup the ring when done.
 
@@ -302,13 +302,13 @@ if err != nil {
 ```
 
 
-Feel free to check out the [source](https://github.com/agnivade/frodo) to get into the nitty-gritties of the implementation.
+Feel free to check out the {{< newtabref href="https://github.com/agnivade/frodo" title="source" >}} to get into the nitty-gritties of the implementation.
 
 ### Performance
 
 No blog post is complete without some performance numbers. However, proper benchmark comparison of I/O engines would probably require another blog post in itself. For the sake of completeness, I will just post results from a short and unscientific test on my laptop. Don't read too much into it because any manner of benchmarks are highly dependent on the workload, queue parameters, hardware, time of the day, and the color of your shirt.
 
-We will use [fio](https://github.com/axboe/fio) which is a nifty tool written by Jens himself to benchmark several I/O engines with different workloads, supporting both `io_uring` and `libaio`. There are far too many knobs to change. But we will perform a very simple experiment using a workload of random read/writes with a ratio of 75/25, using a 1GiB file, and varying block sizes of 16KiB, 32KiB and 1MiB. And then we repeat the entire experiment with queue sizes of 8, 16, and 32.
+We will use {{< newtabref href="https://github.com/axboe/fio" title="fio" >}} which is a nifty tool written by Jens himself to benchmark several I/O engines with different workloads, supporting both `io_uring` and `libaio`. There are far too many knobs to change. But we will perform a very simple experiment using a workload of random read/writes with a ratio of 75/25, using a 1GiB file, and varying block sizes of 16KiB, 32KiB and 1MiB. And then we repeat the entire experiment with queue sizes of 8, 16, and 32.
 
 ![image](/blog/2020-05-20-hands-on-iouring-go/depth_8.png)
 ![image](/blog/2020-05-20-hands-on-iouring-go/depth_16.png)
@@ -326,7 +326,7 @@ Each new version of the kernel gets new features of the API, and more and more s
 
 Below are some of the resources that I have used to prepare for this post. Please do check them out if you want to know more.
 
-And lastly, I would like to thank my colleagues [Ibrahim](https://github.com/isacikgoz) and [Claudio](https://github.com/streamer45) for proof-reading and correcting my horrible C code.
+And lastly, I would like to thank my colleagues {{< newtabref href="https://github.com/isacikgoz" title="Ibrahim" >}} and {{< newtabref href="https://github.com/streamer45" title="Claudio" >}} for proof-reading and correcting my horrible C code.
 
 Resources:
 
@@ -336,6 +336,6 @@ Resources:
 - https://lwn.net/Articles/776703/
 - https://github.com/axboe/liburing
 
-HN discussion is [here](https://news.ycombinator.com/item?id=23451468).
+HN discussion is {{< newtabref href="https://news.ycombinator.com/item?id=23451468" title="here" >}}.
 
-This blog post is now available in Russian on Softdroid at [Начало работы с io_uring с помощью Go](https://softdroid.net/nachalo-raboty-s-iouring-s-pomoshchyu-go).
+This blog post is now available in Russian on Softdroid at {{< newtabref href="https://softdroid.net/nachalo-raboty-s-iouring-s-pomoshchyu-go" title="Начало работы с io_uring с помощью Go" >}}.
