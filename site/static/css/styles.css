@@ -4703,3 +4703,8 @@ ol > li + li {
     fill: #7E96C8;
     fill: #1D315C;
 }
+
+/* GoAT (Go Ascii Tool) */
+.goat svg {
+    font-family: 'Fira Mono','Courier New',Courier,monospace;
+}
