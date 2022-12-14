@@ -14,9 +14,8 @@ Source code can be found at the {{< newtabref href="https://github.com/mattermos
 
 If you run into any issues getting your environment set up, check the {{< newtabref href="https://docs.mattermost.com/deploy/mobile-troubleshoot.html" title="Troubleshooting" >}} section of the product docs for common solutions.
 
-{{<note>}}
-- This guide describes how to set up the development environment on macOS or Linux.
-- A macOS computer is required to build the Mattermost iOS mobile app.
+{{<note "iOS mobile app">}}
+A macOS computer is required to build the Mattermost iOS mobile app.
 {{</note>}}
 
 ## Environment setup
@@ -34,7 +33,7 @@ On macOS, we recommend using {{< newtabref href="https://brew.sh" title="Homebre
 
 We recommend using NodeJS v18 and npm v8. Many of our team use {{< newtabref href="https://github.com/nvm-sh/nvm" title="nvm" >}} to manage npm and NodeJS versions.
 
-{{<tabs "node-npm-mac,macOS;node-npm-linux,Linux;node-npm-windows,Windows" "node-npm-mac">}}
+{{<tabs "node-npm" "node-npm-mac,macOS;node-npm-linux,Linux;node-npm-windows,Windows" "node-npm-mac">}}
 {{<tab "node-npm-mac" "display: block;">}}
 To install NodeJS using Homebrew, open a terminal and execute:
 
@@ -54,17 +53,19 @@ Please make sure that NodeJS installed by the package manager is at the recommen
 {{</note>}}
 {{</tab>}}
 {{<tab "node-npm-windows">}}
-Download and install the package from the {{< newtabref href="https://nodejs.org/en/" title="NodeJS website" >}}
+There are two available options for installing NodeJS on Windows:
+- Download and install the package from the {{< newtabref href="https://nodejs.org/en/" title="NodeJS website" >}}
+- Using {{<newtabref title="NVM for Windows" href="https://github.com/coreybutler/nvm-windows">}}
 {{</tab>}}
 
 ### Install Watchman
 
-{{<newtabref href="https://facebook.github.io/watchman" title="Watchman">}} is a file watching program. When a file changes, Watchman triggers an action.
-For example, re-run a build command if a source file has changed.
+{{<newtabref href="https://facebook.github.io/watchman" title="Watchman">}} is a file watching program.
+When a file changes, Watchman triggers an action, such as re-running a build command if a source file has changed.
 
 The minimum required version of Watchman is 4.9.0.
 
-{{<tabs "watchman-mac,macOS;watchman-linux,Linux;watchman-windows,Windows" "watchman-mac">}}
+{{<tabs "watchman" "watchman-mac,macOS;watchman-linux,Linux;watchman-windows,Windows" "watchman-mac">}}
 {{<tab "watchman-mac" "display: block;">}}
 To install Watchman using Homebrew, open a terminal and execute:
 
@@ -73,15 +74,13 @@ brew install watchman
 ```
 {{</tab>}}
 {{<tab "watchman-linux">}}
-On Linux you have to build Watchman yourself. See the official {{< newtabref href="https://facebook.github.io/watchman/docs/install.html#installing-from-source" title="Watchman guide" >}}.
-
-If you encounter a warning about a missing C++ compiler you need to install the C++ extension using your distribution's package manager (Ubuntu: `g++`, RHEL/Fedora: `gcc-g++`).
+Download the latest package from {{< newtabref href="https://github.com/facebook/watchman/releases" title="here" >}}.
 {{<note "Inotify limits">}}
 Note that you need to increase your `inotify` limits for Watchman to work properly.
 {{</note>}}
 {{</tab>}}
 {{<tab "watchman-windows">}}
-Download the latest package from {{< newtabref href="https://github.com/facebook/watchman/releases/tag/v2020.07.27.00" title="here" >}}. Note that it's currently in Beta.
+Download the latest package from {{< newtabref href="https://github.com/facebook/watchman/releases" title="here" >}}.
 {{</tab>}}
 
 ### Install `react-native-cli` tools
@@ -92,9 +91,9 @@ npm -g install react-native-cli
 
 ### Install Ruby
 
-{{<tabs "ruby-mac,macOS;ruby-linux,Linux;ruby-windows,Windows" "ruby-mac">}}
+{{<tabs "ruby" "ruby-mac,macOS;ruby-linux,Linux;ruby-windows,Windows" "ruby-mac">}}
 {{<tab "ruby-mac" "display: block;">}}
-An installation of Ruby is automatically installed on macOS.
+A version of Ruby is automatically installed on macOS.
 {{</tab>}}
 {{<tab "ruby-linux">}}
 Install Ruby using your distribution's package manager.
@@ -111,7 +110,7 @@ gem install bundler --version 2.0.2
 
 ### Install Git
 
-{{<tabs "git-mac,macOS;git-linux,Linux;git-windows,Windows" "git-mac">}}
+{{<tabs "git" "git-mac,macOS;git-linux,Linux;git-windows,Windows" "git-mac">}}
 {{<tab "git-mac" "display: block;">}}
 To install Git using Homebrew, open a terminal and execute:
 
@@ -156,7 +155,7 @@ This documentation assumes you chose the default path for your Android SDK insta
 
 Make sure you have the following environment variables configured for your platform:
 
-{{<tabs "droid-common,All platforms;droid-mac,macOS;droid-linux,Linux" "droid-common">}}
+{{<tabs "droid" "droid-common,All platforms;droid-mac,macOS;droid-linux,Linux" "droid-common">}}
 {{<tab "droid-common" "display: block;">}}
 - Set `ANDROID_HOME` to where Android SDK is located (likely `/Users/<username>/Library/Android/sdk` or `/home/<username>/Android/Sdk`)
 - Make sure your `PATH` includes `ANDROID_HOME/tools` and `ANDROID_HOME/platform-tools`
@@ -203,26 +202,32 @@ Depending on the shell you're using, this might need to be put into a different 
 
 In the SDK Manager using Android Studio or the {{< newtabref href="https://developer.android.com/studio/command-line/sdkmanager.html" title="Android SDK command line tool" >}}, ensure the following are installed:
 
-- SDK Tools (you may have to click "Show Package Details" to expand packages)
-    ![image](/img/mobile/sdk_tools.png)
-    - Android SDK Build-Tools 29.0.2
-    - Android Emulator
-    - Android SDK Platform-Tools
-    - Android SDK Tools
-    - Google Play services
-    - Intel x86 Emulator Accelerator (HAXM installer)
-    - Support Repository
-        -   Android Support Repository
-        -   Google Repository
+- SDK Tools (you may have to click "Show Package Details" to expand packages):
+  - Android SDK Build-Tools 29.0.2
+  - Android Emulator
+  - Android SDK Platform-Tools
+  - Android SDK Tools
+  - Google Play services
+  - Intel x86 Emulator Accelerator (HAXM installer)
+  - Support Repository
+    - Android Support Repository
+    - Google Repository
+
+  ![image](sdk_tools.png)
 
 - SDK Platforms (you may have to click "Show Package Details" to expand packages)
-    ![image](/img/mobile/sdk_platforms.png)
-    - Android 7 (Nougat) or above ({{< newtabref href="https://github.com/mattermost/mattermost-mobile/issues/2480" title="We've dropped Android 5/6 Support since December 2018, you may still continue to use 1.14 for Android 5/6 devices" >}})
-        - Google APIs
-        - SDK Platform
-            - For Android Q or above > Android SDK Platform 29 or above
-        - Intel or Google Play Intel x86 Atom\_64 System Image
-    - Any other API version that you want to test
+  - Android 7 (Nougat) or above
+    - Google APIs
+    - SDK Platform
+      - For Android Q or above > Android SDK Platform 29 or above
+    - Intel or Google Play Intel x86 Atom\_64 System Image
+  - Any other API version that you want to test
+
+  ![image](sdk_platforms.png)
+
+{{<note "Android 5/6 support">}}
+We've dropped Android 5/6 Support since December 2018; you may still continue to use 1.14 for Android 5/6 devices. See the following GitHub issue for more information: {{<newtabref href="https://github.com/mattermost/mattermost-mobile/issues/2480" title="Android 5/6 support">}}
+{{</note>}}
 
 ## Obtain the source code
 
@@ -236,17 +241,17 @@ In order to develop and build the Mattermost mobile apps, you'll need to get a c
    - Change to a directory you want to hold your local copy
    - Run `git clone https://github.com/<username>/mattermost-mobile.git` if you want to use HTTPS, or `git clone git@github.com:<username>/mattermost-mobile.git` if you want to use SSH
 
-   {{<note>}}
+     {{<note>}}
 `<username>` refers to the username or organization in GitHub that forked the repository
-   {{</note>}}
+     {{</note>}}
 
-3.  Change the directory to `mattermost-mobile`.
+3. Change the directory to `mattermost-mobile`.
 
-    ```sh
-    cd mattermost-mobile
-    ```
+   ```sh
+   cd mattermost-mobile
+   ```
 
-4.  Install the project dependencies with `npm install`
+4. Install the project dependencies with `npm install`
 
 ## Environment troubleshooting
 
@@ -263,7 +268,7 @@ The following build commands failed:
 
 Check the following things:
 
-* Ensure you are running the latest version of `nvm` using the {{< newtabref href="https://github.com/nvm-sh/nvm#install--update-script" title="Upgrade Instructions" >}}
+* Ensure you are running the latest version of `nvm` using the {{< newtabref href="https://github.com/nvm-sh/nvm#install--update-script" title="upgrade instructions" >}}.
 * Ensure you have set your desired version of node in the file `~/.nvmrc`.  E.g.,
   ```sh
   echo v16.2.0 > ~/.nvmrc
