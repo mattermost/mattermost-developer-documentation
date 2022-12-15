@@ -20,9 +20,9 @@ To install "Hello, OAuth2" on a locally-running instance of Mattermost follow th
 Make sure you have followed the Quick Start Guide [prerequisite steps]({{< ref quick-start-go >}}).
 
 ```sh
-git clone https://github.com/mattermost/mattermost-plugin-apps.git
-cd mattermost-plugin-apps/examples/go/hello-oauth2
-go run
+git clone https://github.com/mattermost/mattermost-app-examples.git
+cd mattermost-app-examples/golang/oauth2
+go run hello.go
 ```
 
 Run the following Mattermost slash command:
@@ -52,7 +52,7 @@ Hello OAuth2! is an HTTP app, it requests the *permissions* to act as a System A
 	"display_name": "Hello, OAuth2!",
 	"app_type": "http",
 	"icon": "icon.png",
-	"homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/examples/go/hello-oauth2",
+	"homepage_url": "https://github.com/mattermost/mattermost-app-examples/golang/oauth2",
 	"requested_permissions": [
 		"act_as_user",
 		"remote_oauth2"
