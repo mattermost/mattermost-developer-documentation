@@ -8,92 +8,154 @@ aliases:
   - /integrate/apps/using-third-party-api/hello-webhooks/
 ---
 The Apps framework offers the ability to directly integrate with webhooks. An App webhook is executed through a special endpoint on the Mattermost Server and can require an authentication secret.
-The App [manifest]({{<ref "/integrate/apps/structure/manifest">}}) needs to request the `remote_webhooks` permission to use webhooks.
+The App [manifest]({{<ref "/integrate/apps/structure/manifest">}}) must request the `remote_webhooks` permission to use webhooks.
+
+## Webhook URL
 
 The App webhook URL has the following format:
 
 ```
-<mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook/<sub_path>
+<mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/<webhook_path>/<sub_path>
 ```
 
-| Parameter name        | Description                                                                             | Example value                   |
-|-----------------------|-----------------------------------------------------------------------------------------|---------------------------------|
-| `mattermost_site_url` | The base URL of the Mattermost server.                                                  | `https://my-mattermost-server/` |
-| `app_id`              | The App's ID as found in the [manifest]({{<ref "/integrate/apps/structure/manifest">}}) | `my-app`                        |
-| `sub_path`            | An arbitrary path defined by the App                                                    | `my-webhook-path`               |
+| Parameter name        | Description                                                                                            | Example value                   |
+|-----------------------|--------------------------------------------------------------------------------------------------------|---------------------------------|
+| `mattermost_site_url` | The base URL of the Mattermost server.                                                                 | `https://my-mattermost-server/` |
+| `app_id`              | The App's ID as found in the [manifest]({{<ref "/integrate/apps/structure/manifest">}}).               | `my-app`                        |
+| `webhook_path`        | The path of the `on_remote_webhook` call as defined in the manifest. Default value is `/webhook`.      | `/webhook`                      |
+| `sub_path`            | (_Optional_) The webhook sub-path. See the [URL sub-path](#url-sub-path) section for more information. | `my-sub-path`                   |
 
 Using the above example values, the webhook URL will look like this:
 
-`http://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-webhook-path`
+`https://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-sub-path`
 
-The `/webhook` call is made every time an App webhook is accessed. The `sub_path` of the webhook URL can be obtained from the `path` property of the call request.
+### URL sub-path
 
-## Webhook authentication
+The `sub_path` of a webhook URL is optional. When it is defined, the call that is executed changes; the call path will be different.
 
-App webhooks support an API key-like authentication method. A Mattermost server-generated `webhook_secret` is provided during App installation and is used by the implementer to validate a webhook request.
+Examples:
 
-There are two steps to enable this authentication method:
+1. If `on_remote_webhook` is not defined in the manifest and `sub_path` is also not defined, the call path will be `/webhook` and the webhook URL will be:
 
-1. Set the `remote_webhook_auth_type` property of the App manifest to `secret`.
-2. Define an `on_install` [call]({{<ref "/integrate/apps/structure/call">}}) in the App manifest with the `app` expand property set to `all`.
-   The `webhook_secret` property of the `app` context field in the call request contains the webhook secret.
+   ```
+   <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook
+   ```
 
-When this authentication method is enabled, webhook requests will contain a parameter named `secret` which should be verified against the known webhook secret. If the secrets don't match, the webhook request can be considered invalid.
+2. If the `on_remote_webhook` call path is defined as `my-webhooks` in the manifest but `sub_path` is not defined, the call path will be `/my-webhooks` and the webhook URL will be:
+
+   ```
+   <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/my-webhooks
+   ```
+
+3. If `on_remote_webhook` is not defined in the manifest but `sub_path` is defined as `my-sub-path`, the call path will be `/webhook/my-sub-path` and the webhook URL will be:
+
+   ```
+   <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook/my-sub-path
+   ```
+
+4. If the `on_remote_webhook` call path is defined as `my-webhooks` in the manifest and the `sub_path` is defined as `my-sub-path`, the call path will be `/my-webhooks/my-sub-path` and the webhook URL will be:
+
+   ```
+   <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/my-webhooks/my-sub-path
+   ```
+
+## Call request
+
+The [call]({{<ref "/integrate/apps/structure/call">}}) executed for an App webhook will include additional information in the `values` field of the request:
+
+| Name         | Data type | Description                                                                                                                  |
+|--------------|-----------|------------------------------------------------------------------------------------------------------------------------------|
+| `headers`    | map       | The HTTP headers used in the request.                                                                                        |
+| `data`       | _any_     | The contents of the call request body.<br/>JSON bodies are automatically unmarshalled, otherwise the body is returned as-is. |
+| `httpMethod` | string    | The HTTP method used in the request. e.g. `POST`, `GET`.                                                                     |
+| `rawQuery`   | string    | Encoded URL query values, without the `?`.                                                                                   |
+
+An example webhook call request looks like the following:
+
+```json
+{}
+```
+
+## Authentication
+
+App webhooks support an API key-like authentication method that is enabled by default. A Mattermost server-generated secret named `webhook_secret` is provided in a call context where the `app` expand field is set to `all`.
+The secret is expected to be appended to the webhook URL as a query value named `secret`.
 
 Using the example from the previous section, the webhook URL will look like this:
 
-`http://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-webhook-path?secret=xxxxxxxxxxxxxxxx`
+`http://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-sub-path?secret=xxxxxxxxxxxxxxxx`
 
-An App's [manifest]({{<ref "/integrate/apps/structure/manifest">}}) would define an `on_install` call to get the secret like this:
+The Mattermost server will authenticate incoming webhook requests by comparing the `secret` URL query value with the App's `webhook_secret`.
+If an incoming webhook request does not include the correct secret, the request will be denied with an HTTP 401 response.
+
+### Get the webhook secret
+
+A simple way to get the App's webhook secret is to use a slash command that executes a [call]({{<ref "/integrate/apps/structure/call" >}}) with the `app` expand field set to `all`.
+
+For example, the following bindings create a slash command that will provide the webhook secret to its call:
 
 ```json
-{
-	"app_id": "hello-world",
-    "version": "0.1.0",
-	"display_name": "Hello, world!",
-	"icon": "icon.png",
-	"homepage_url": "https://my-site/my-repo",
-	"requested_permissions": [
-		"act_as_bot",
-		"remote_webhooks"
-	],
-	"requested_locations": [
-		"/channel_header",
-		"/command",
-		"/post_menu"
-	],
-	"http": {
-		"root_url": "http://localhost:4000"
-	},
-	"remote_webhook_auth_type": "secret",
-	"on_install": {
-        "path": "/installed",
-        "expand": {
-            "app": "all"
-        }
-	}
-}
+[
+    {
+        "location": "/command",
+        "bindings": [
+            {
+                "location": "configure",
+                "label": "configure",
+                "description": "Configure the app",
+                "submit": {
+                    "path": "/configure",
+                    "expand": {
+                        "app": "all"
+                    }
+                }
+            }
+        ]
+    }
+]
 ```
 
-The `context` of the `on_install` call request will look like the following:
+The call request would look like this:
 
 ```json
 {
-    "path": "/installed",
+    "path": "/configure",
+    "expand": {
+        "app": "all"
+    },
     "context": {
         "app_id": "hello-world",
+        "location": "/command/configure",
+        "user_agent": "webapp",
+        "track_as_submit": true,
+        "mattermost_site_url": "http://mattermost:8066",
         "developer_mode": true,
+        "app_path": "/plugins/com.mattermost.apps/apps/hello-world",
+        "bot_user_id": "mgbd1czngjbbdx6eqruqabdeie",
+        "bot_access_token": "q8idzs7dspf8ugra9sb7dkgxwe",
         "app": {
-            "app_id": "my-app",
+            "app_id": "hello-world",
             "version": "0.1.0",
-            "webhook_secret": "9a44ckeqytd3bftn3c3y53968o",
-            "bot_user_id": "7q7kaakokfdsdycy3pr9ctkc5r",
-            "bot_username": "hello-world"
+            "webhook_secret": "cwsjhrdqebyf8qrnabtxio7k7r",
+            "bot_user_id": "mgbd1czngjbbdx6eqruqabdeie",
+            "bot_username": "hello-world",
+            "remote_oauth2": {}
+        },
+        "acting_user": {
+            "id": "7q7kaakokfdsdycy3pr9ctkc5r"
+            // Additional fields removed for brevity
         },
         "oauth2": {}
-    }
+    },
+    "raw_command": "/configure "
 }
 ```
+
+The webhook secret can be found in the `context.app.webhook_secret` field.
+
+Using the webhook secret above, a webhook URL for an App would look like:
+
+`http://mattermost:8066/plugins/com.mattermost.apps/apps/hello-world/webhook/coffee-roast?secret=cwsjhrdqebyf8qrnabtxio7k7r`
 
 ## Example
 
