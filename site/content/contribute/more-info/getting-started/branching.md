@@ -35,6 +35,35 @@ When your PR is required on a release branch (e.g. for a dot release or to fix a
 If the PR needs to go to other release branches, you can run the command `/cherry-pick release-x.yz` in the PR comments and it will try to cherry-pick it to the branch you specified.
 {{</note>}}
 
+### Manual cherry-pick
+
+If conflicts appear between your pull request and the cherry pick target branch, the automated cherry-pick process will fail and let you know that you need to do a manual cherry-pick. Here are the steps to do so:
+
+1) Pull your original main branch. If your pull request has been merged in master, execute the following command:
+```sh
+git checkout master
+git pull
+```
+2) Repeat the above step for the branch where you want to cherry pick to:
+```sh
+git checkout release-[VERSION]
+git pull
+```
+4) Create a new branch from it
+```sh
+git checkout -b manual-cherry-pick-pr-[PR_NUMBER]
+```
+5) Find the SHA of the Pull Request merge commit, and cherry pick this commit in your new branch
+```sh
+git cherry-pick [SHA]
+```
+6) You're likely to face the conflict that prevented the automated cherry pick now. Fix the conflict, and then run the following:
+```go
+git add [path/to/conflicted/files]
+git cherry-pick --continue
+```
+7) Finally, push your new branch and create a PR. Make sure you select `release-[VERSION]` as the base branch, and not the default (master).
+
 ## Reviewer process
 
 If you are the second reviewer reviewing a PR that needs to be cherry-picked, do not merge the PR. If the submitter is a core team member, you should set the `Reviews Complete` label and assign it to the submitter to cherry-pick. If the submitter is a community member who is not available to cherry-pick their PR or can not do it themselves, you should follow the cherry-pick process above.
