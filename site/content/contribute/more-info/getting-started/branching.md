@@ -57,7 +57,7 @@ git checkout -b manual-cherry-pick-pr-[PR_NUMBER]
 ```sh
 git cherry-pick [SHA]
 ```
-6) You're likely to face the conflict that prevented the automated cherry-pick now. Fix the conflict, and then run the following:
+6. You're likely to face the conflict that prevented the automated cherry-pick now. Fix the conflict, and then run the following:
 ```go
 git add [path/to/conflicted/files]
 git cherry-pick --continue
