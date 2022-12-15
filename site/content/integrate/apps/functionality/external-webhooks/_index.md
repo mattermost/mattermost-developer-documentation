@@ -88,6 +88,11 @@ Using the example from the previous section, the webhook URL will look like this
 The Mattermost server will authenticate incoming webhook requests by comparing the `secret` URL query value with the App's `webhook_secret`.
 If an incoming webhook request does not include the correct secret, the request will be denied with an HTTP 401 response.
 
+{{<note "Disable authentication:">}}
+It is possible to disable webhook authentication by setting the `remote_webhook_auth_type` App manifest field to `none`.
+The Mattermost server will not generate a webhook secret and will not perform any authentication against the call request.
+{{</note>}}
+
 ### Get the webhook secret
 
 A simple way to get the App's webhook secret is to use a slash command that executes a [call]({{<ref "/integrate/apps/structure/call" >}}) with the `app` expand field set to `all`.
