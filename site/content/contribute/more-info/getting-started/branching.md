@@ -39,30 +39,28 @@ If the PR needs to go to other release branches, you can run the command `/cherr
 
 If conflicts appear between your pull request (PR) and the cherry-pick target branch, the automated cherry-pick process will fail and will let you know that you need to do a manual cherry-pick. Here are the steps to do so:
 
-1. Pull your original main branch. If your pull request has been merged into master, execute the following command:
+1. Fetch the latest updates from origin:
 ```sh
-git checkout master
-git pull
+git fetch origin
 ```
-2. Repeat the above step for the branch where you want to cherry-pick to:
+2. Create a new branch starting at the release branch on origin.
 ```sh
-git checkout release-[VERSION]
-git pull
+git checkout -b manual-cherry-pick-pr-[PR_NUMBER] origin/release-[VERSION]
 ```
-4. Create a new branch from it:
+3. Find the SHA of the pull request merge commit, and cherry-pick this commit in your new branch:
 ```sh
-git checkout -b manual-cherry-pick-pr-[PR_NUMBER]
-```
-5. Find the SHA of the pull request merge commit, and cherry-pick this commit in your new branch:
-```sh
+git log origin/master
 git cherry-pick [SHA]
 ```
-6. You're likely to face the conflict that prevented the automated cherry-pick now. Fix the conflict, and then run the following:
-```go
+4. You're likely to face the conflict that prevented the automated cherry-pick now. Fix the conflict, and then run the following:
+```sh
 git add [path/to/conflicted/files]
 git cherry-pick --continue
 ```
-7. Finally, push your new branch and create a PR. Make sure you select `release-[VERSION]` as the base branch, and not the default (master).
+5. Finally, push your new branch as usual and create a PR. Make sure you select `release-[VERSION]` as the base branch, and not the default (master).
+```sh
+git push -u origin
+```
 
 ## Reviewer process
 
