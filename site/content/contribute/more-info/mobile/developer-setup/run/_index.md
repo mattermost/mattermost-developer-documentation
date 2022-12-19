@@ -17,8 +17,8 @@ We provide a set of scripts to help you run the app for the different platforms 
 {{<note>}}
 To speed up development, only compile and run the apps in the following cases:
 - You have not deployed the app to a device or simulator with the `npm run <platform>` command.
-- You have made changes in the native code.
-- You have added a new library that has native code.
+- There have been changes in the native code.
+- A new library has been added or updated that has native code.
 
 If none of the above cases apply, you could just simply start the React Native packager with `npm start` and launch the app you have already deployed to the device or simulator.
 {{</note>}}

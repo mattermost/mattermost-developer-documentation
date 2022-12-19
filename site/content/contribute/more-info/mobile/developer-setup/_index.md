@@ -202,7 +202,7 @@ Depending on the shell you're using, this might need to be put into a different 
 
 In the SDK Manager using Android Studio or the {{< newtabref href="https://developer.android.com/studio/command-line/sdkmanager.html" title="Android SDK command line tool" >}}, ensure the following are installed:
 
-- SDK Tools (you may have to click "Show Package Details" to expand packages):
+- SDK Tools (you may have to select **Show Package Details** to expand packages):
   - Android SDK Build-Tools 29.0.2
   - Android Emulator
   - Android SDK Platform-Tools
@@ -215,7 +215,7 @@ In the SDK Manager using Android Studio or the {{< newtabref href="https://devel
 
   ![image](sdk_tools.png)
 
-- SDK Platforms (you may have to click "Show Package Details" to expand packages)
+- SDK Platforms (you may have to select **Show Package Details** to expand packages)
   - Android 7 (Nougat) or above
     - Google APIs
     - SDK Platform
