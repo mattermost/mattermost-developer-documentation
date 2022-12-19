@@ -15,19 +15,20 @@ The App [manifest]({{<ref "/integrate/apps/structure/manifest">}}) must request 
 The App webhook URL has the following format:
 
 ```
-<mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/<webhook_path>/<sub_path>
+<mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/<webhook_path>/<sub_path>?secret=<authentication_secret>
 ```
 
-| Parameter name        | Description                                                                                            | Example value                   |
-|-----------------------|--------------------------------------------------------------------------------------------------------|---------------------------------|
-| `mattermost_site_url` | The base URL of the Mattermost server.                                                                 | `https://my-mattermost-server/` |
-| `app_id`              | The App's ID as found in the [manifest]({{<ref "/integrate/apps/structure/manifest">}}).               | `my-app`                        |
-| `webhook_path`        | The path of the `on_remote_webhook` call as defined in the manifest. Default value is `/webhook`.      | `/webhook`                      |
-| `sub_path`            | (_Optional_) The webhook sub-path. See the [URL sub-path](#url-sub-path) section for more information. | `my-sub-path`                   |
+| Parameter name          | Description                                                                                                               | Example value                   |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------------|---------------------------------|
+| `mattermost_site_url`   | The base URL of the Mattermost server.                                                                                    | `https://my-mattermost-server/` |
+| `app_id`                | The App's ID as found in the [manifest]({{<ref "/integrate/apps/structure/manifest">}}).                                  | `my-app`                        |
+| `webhook_path`          | The path of the `on_remote_webhook` call as defined in the manifest. Default value is `/webhook`.                         | `/webhook`                      |
+| `sub_path`              | (_Optional_) The webhook sub-path. See the [URL sub-path](#url-sub-path) section for more information.                    | `my-sub-path`                   |
+| `authentication_secret` | The webhook secret; used to authenticate the webhook request. See [Authentication](#authentication) for more information. | `cwsjhrdqebyf8qrnabtxio7k7r`    |
 
 Using the above example values, the webhook URL will look like this:
 
-`https://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-sub-path`
+`https://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-sub-path?secret=cwsjhrdqebyf8qrnabtxio7k7r`
 
 ### URL sub-path
 
@@ -83,7 +84,7 @@ The secret is expected to be appended to the webhook URL as a query value named 
 
 Using the example from the previous section, the webhook URL will look like this:
 
-`http://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-sub-path?secret=xxxxxxxxxxxxxxxx`
+`http://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-sub-path?secret=cwsjhrdqebyf8qrnabtxio7k7r`
 
 The Mattermost server will authenticate incoming webhook requests by comparing the `secret` URL query value with the App's `webhook_secret`.
 If an incoming webhook request does not include the correct secret, the request will be denied with an HTTP 401 response.
