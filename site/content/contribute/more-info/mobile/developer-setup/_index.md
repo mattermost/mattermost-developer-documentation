@@ -102,12 +102,6 @@ Install Ruby using your distribution's package manager.
 Install Ruby from {{< newtabref href="https://rubyinstaller.org/" title="here" >}}.
 {{</tab>}}
 
-### Install the Ruby `bundler` gem
-
-```sh
-gem install bundler --version 2.0.2
-```
-
 ### Install Git
 
 {{<tabs "git" "git-mac,macOS;git-linux,Linux;git-windows,Windows" "git-mac">}}
@@ -203,7 +197,7 @@ Depending on the shell you're using, this might need to be put into a different 
 In the SDK Manager using Android Studio or the {{< newtabref href="https://developer.android.com/studio/command-line/sdkmanager.html" title="Android SDK command line tool" >}}, ensure the following are installed:
 
 - SDK Tools (you may have to select **Show Package Details** to expand packages):
-  - Android SDK Build-Tools 29.0.2
+  - Android SDK Build-Tools 31
   - Android Emulator
   - Android SDK Platform-Tools
   - Android SDK Tools
@@ -225,10 +219,6 @@ In the SDK Manager using Android Studio or the {{< newtabref href="https://devel
 
   ![image](sdk_platforms.png)
 
-{{<note "Android 5/6 support">}}
-We've dropped Android 5/6 Support since December 2018; you may still continue to use 1.14 for Android 5/6 devices. See the following GitHub issue for more information: {{<newtabref href="https://github.com/mattermost/mattermost-mobile/issues/2480" title="Android 5/6 support">}}
-{{</note>}}
-
 ## Obtain the source code
 
 In order to develop and build the Mattermost mobile apps, you'll need to get a copy of the source code. Forking the `mattermost-mobile` repository will also make it easy to contribute your work back to the project in the future.
@@ -237,9 +227,11 @@ In order to develop and build the Mattermost mobile apps, you'll need to get a c
 
 2. Clone your fork locally:
 
-   - Open a terminal
-   - Change to a directory you want to hold your local copy
-   - Run `git clone https://github.com/<username>/mattermost-mobile.git` if you want to use HTTPS, or `git clone git@github.com:<username>/mattermost-mobile.git` if you want to use SSH
+   a. Open a terminal
+
+   b. Change to a directory you want to hold your local copy
+
+   c. Run `git clone https://github.com/<username>/mattermost-mobile.git` if you want to use HTTPS, or `git clone git@github.com:<username>/mattermost-mobile.git` if you want to use SSH
 
      {{<note>}}
 `<username>` refers to the username or organization in GitHub that forked the repository
@@ -252,24 +244,3 @@ In order to develop and build the Mattermost mobile apps, you'll need to get a c
    ```
 
 4. Install the project dependencies with `npm install`
-
-## Environment troubleshooting
-
-### `PhaseScriptExecution` failure
-
-When building `ios` targets and using `nvm` to manage `node`, you may encounter an error like:
-
-```
-The following build commands failed:
-    PhaseScriptExecution [CP-User]\ Generate\ Specs /Users/user/Library/Developer/Xcode/DerivedData/Mattermost-ahgfkbexhhzwuycanwlxiauwkxlt/Build/Intermediates.noindex/ArchiveIntermediates/Mattermost/IntermediateBuildFilesPath/Pods.build/Release-iphoneos/FBReactNativeSpec.build/Script-46EB2E0002D370.sh (in target 'FBReactNativeSpec' from project 'Pods')
-(1 failure)
-[08:00:31]: Exit status: 65
-```
-
-Check the following things:
-
-* Ensure you are running the latest version of `nvm` using the {{< newtabref href="https://github.com/nvm-sh/nvm#install--update-script" title="upgrade instructions" >}}.
-* Ensure you have set your desired version of node in the file `~/.nvmrc`.  E.g.,
-  ```sh
-  echo v16.2.0 > ~/.nvmrc
-  ```

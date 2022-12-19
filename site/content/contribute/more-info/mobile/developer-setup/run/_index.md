@@ -71,7 +71,7 @@ To be able to run the app on an Android device you'll need to follow these steps
    ```
 
 {{<note "Note:">}}
-If you don't see a green bar at the top loading the JavaScript code then it's possible that the device is not connected to the development server. See {{< newtabref href="http://reactnative.dev/docs/running-on-device.html#method-1-using-adb-reverse-recommended" title="Using adb reverse" >}}.
+If you don't see a bar at the top loading the JavaScript code then it's possible that the device is not connected to the development server. See {{< newtabref href="http://reactnative.dev/docs/running-on-device.html#method-1-using-adb-reverse-recommended" title="Using adb reverse" >}}.
 {{</note>}}
 {{</tab>}}
 {{<tab "mobile-ios">}}
