@@ -210,10 +210,10 @@ In the SDK Manager using Android Studio or the {{< newtabref href="https://devel
   ![image](sdk_tools.png)
 
 - SDK Platforms (you may have to select **Show Package Details** to expand packages)
-  - Android 7 (Nougat) or above
+  - Android 12  or above
     - Google APIs
     - SDK Platform
-      - For Android Q or above > Android SDK Platform 29 or above
+      - Android SDK Platform 31 or above
     - Intel or Google Play Intel x86 Atom\_64 System Image
   - Any other API version that you want to test
 
