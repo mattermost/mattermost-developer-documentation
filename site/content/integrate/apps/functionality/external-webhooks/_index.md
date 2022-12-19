@@ -148,7 +148,7 @@ The call request would look like this:
         },
         "acting_user": {
             "id": "7q7kaakokfdsdycy3pr9ctkc5r"
-            // Additional fields removed for brevity
+            // additional fields omitted for brevity
         },
         "oauth2": {}
     },
@@ -158,7 +158,7 @@ The call request would look like this:
 
 The webhook secret can be found in the `context.app.webhook_secret` field.
 
-Using the webhook secret above, a webhook URL for an App would look like:
+Using the webhook secret above, a webhook URL for an App would look like the following:
 
 `http://mattermost:8066/plugins/com.mattermost.apps/apps/hello-world/webhook/coffee-roast?secret=cwsjhrdqebyf8qrnabtxio7k7r`
 
