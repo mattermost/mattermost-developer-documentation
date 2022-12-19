@@ -90,7 +90,8 @@ If an incoming webhook request does not include the correct secret, the request 
 
 {{<note "Disable authentication:">}}
 It is possible to disable webhook authentication by setting the `remote_webhook_auth_type` App manifest field to `none`.
-The Mattermost server will not generate a webhook secret and will not perform any authentication against the call request.
+The Mattermost server will not generate a webhook secret, will not perform any authentication against the call request, and will pass all webhook calls to the appropriate App call handlers.
+This may have security and hosting cost implications.
 {{</note>}}
 
 ### Get the webhook secret
