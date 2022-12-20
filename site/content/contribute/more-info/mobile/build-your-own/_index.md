@@ -17,7 +17,7 @@ As an alternative we've also created a set of **scripts** to help automate build
 ---
 {{<note "Note:">}}
 **Note:** By using the **scripts**, {{< newtabref href="https://docs.fastlane.tools/#choose-your-installation-method" title="Fastlane" >}} and other dependencies will be installed in your system.
-{{<note "Note:">}}
+{{</note>}}
 
 ---
 
