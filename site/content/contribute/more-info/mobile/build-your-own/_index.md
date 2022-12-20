@@ -18,7 +18,7 @@ As an alternative we've also created a set of **scripts** to help automate build
 **Note:** By using the **scripts**, {{< newtabref href="https://docs.fastlane.tools/#choose-your-installation-method" title="Fastlane" >}} and other dependencies will be installed in your system.
 {{</note>}}
 
----
+
 
 - [Build the Android app]({{< ref "/contribute/more-info/mobile/build-your-own/android" >}})
 - [Build the iOS app]({{< ref "/contribute/more-info/mobile/build-your-own/ios" >}})
