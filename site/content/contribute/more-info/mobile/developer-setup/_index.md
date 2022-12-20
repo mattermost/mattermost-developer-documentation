@@ -23,39 +23,34 @@ A macOS computer is required to build the Mattermost iOS mobile app.
 The following instructions apply to both iOS and Android mobile apps.
 On macOS, we recommend using {{< newtabref href="https://brew.sh" title="Homebrew" >}} as a package manager.
 
-### Install Cygwin (Windows only)
-
-- {{< newtabref href="https://cygwin.com/faq/faq.html#faq.what.supported" title="Which versions of Windows does Cygwin support" >}}?
-- Install Cygwin from {{< newtabref href="https://www.cygwin.com/" title="here" >}}.
-- Make sure to install the `make` and `patch` packages while installing Cygwin.
-
 ### Install NodeJS and NPM
 
 We recommend using NodeJS v18 and npm v8. Many of our team use {{< newtabref href="https://github.com/nvm-sh/nvm" title="nvm" >}} to manage npm and NodeJS versions.
 
-{{<tabs "node-npm" "node-npm-mac,macOS;node-npm-linux,Linux;node-npm-windows,Windows" "node-npm-mac">}}
+{{<tabs "node-npm" "node-npm-mac,macOS;node-npm-linux,Linux" "node-npm-mac">}}
 {{<tab "node-npm-mac" "display: block;">}}
-To install NodeJS using Homebrew, open a terminal and execute:
+To install NVM using Homebrew, open a terminal and execute:
 
 ```sh
-brew install node@18
+brew install nvm
+```
+
+To install NodeJS v18 LTS using NVM, open a new terminal and execute:
+
+```shell
+nvm install --lts=hydrogen
 ```
 {{</tab>}}
 {{<tab "node-npm-linux">}}
 There are three available options for installing NodeJS on Linux:
 
-- Install using your distribution's package manager.
 - Using NVM by following the instructions {{< newtabref href="https://github.com/nvm-sh/nvm#install-script" title="here" >}}.
+- Install using your distribution's package manager.
 - Download and install the package from the {{< newtabref href="https://nodejs.org/en" title="NodeJS website" >}}.
 {{<note>}}
 The version of NodeJS that your distribution's package manager supports may not be the recommended version to build Mattermost mobile apps.
 Please make sure that NodeJS installed by the package manager is at the recommended version.
 {{</note>}}
-{{</tab>}}
-{{<tab "node-npm-windows">}}
-There are two available options for installing NodeJS on Windows:
-- Download and install the package from the {{< newtabref href="https://nodejs.org/en/" title="NodeJS website" >}}
-- Using {{<newtabref title="NVM for Windows" href="https://github.com/coreybutler/nvm-windows">}}
 {{</tab>}}
 
 ### Install Watchman
@@ -65,7 +60,7 @@ When a file changes, Watchman triggers an action, such as re-running a build com
 
 The minimum required version of Watchman is 4.9.0.
 
-{{<tabs "watchman" "watchman-mac,macOS;watchman-linux,Linux;watchman-windows,Windows" "watchman-mac">}}
+{{<tabs "watchman" "watchman-mac,macOS;watchman-linux,Linux" "watchman-mac">}}
 {{<tab "watchman-mac" "display: block;">}}
 To install Watchman using Homebrew, open a terminal and execute:
 
@@ -79,9 +74,6 @@ Download the latest package from {{< newtabref href="https://github.com/facebook
 Note that you need to increase your `inotify` limits for Watchman to work properly.
 {{</note>}}
 {{</tab>}}
-{{<tab "watchman-windows">}}
-Download the latest package from {{< newtabref href="https://github.com/facebook/watchman/releases" title="here" >}}.
-{{</tab>}}
 
 ### Install `react-native-cli` tools
 
@@ -91,20 +83,17 @@ npm -g install react-native-cli
 
 ### Install Ruby
 
-{{<tabs "ruby" "ruby-mac,macOS;ruby-linux,Linux;ruby-windows,Windows" "ruby-mac">}}
+{{<tabs "ruby" "ruby-mac,macOS;ruby-linux,Linux" "ruby-mac">}}
 {{<tab "ruby-mac" "display: block;">}}
 A version of Ruby is automatically installed on macOS.
 {{</tab>}}
 {{<tab "ruby-linux">}}
 Install Ruby using your distribution's package manager.
 {{</tab>}}
-{{<tab "ruby-windows">}}
-Install Ruby from {{< newtabref href="https://rubyinstaller.org/" title="here" >}}.
-{{</tab>}}
 
 ### Install Git
 
-{{<tabs "git" "git-mac,macOS;git-linux,Linux;git-windows,Windows" "git-mac">}}
+{{<tabs "git" "git-mac,macOS;git-linux,Linux" "git-mac">}}
 {{<tab "git-mac" "display: block;">}}
 To install Git using Homebrew, open a terminal and execute:
 
@@ -114,9 +103,6 @@ brew install git
 {{</tab>}}
 {{<tab "git-linux">}}
 Some distributions come with Git preinstalled but you'll most likely have to install it yourself. For most distributions the package is simply called `git`.
-{{</tab>}}
-{{<tab "git-windows">}}
-Install git from {{< newtabref href="https://git-scm.com/download/win" title="here" >}}
 {{</tab>}}
 
 ## Additional setup for iOS
