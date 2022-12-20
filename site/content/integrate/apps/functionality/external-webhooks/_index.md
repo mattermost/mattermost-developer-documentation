@@ -15,24 +15,26 @@ The App [manifest]({{<ref "/integrate/apps/structure/manifest">}}) must request 
 The App webhook URL has the following format:
 
 ```
-<mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/<webhook_path>/<sub_path>?secret=<authentication_secret>
+<mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook/<sub_path>?secret=<authentication_secret>
 ```
 
 | Parameter name          | Description                                                                                                               | Example value                   |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------|---------------------------------|
 | `mattermost_site_url`   | The base URL of the Mattermost server.                                                                                    | `https://my-mattermost-server/` |
 | `app_id`                | The App's ID as found in the [manifest]({{<ref "/integrate/apps/structure/manifest">}}).                                  | `my-app`                        |
-| `webhook_path`          | The path of the `on_remote_webhook` call as defined in the manifest. Default value is `/webhook`.                         | `/webhook`                      |
-| `sub_path`              | (_Optional_) The webhook sub-path. See the [URL sub-path](#url-sub-path) section for more information.                    | `my-sub-path`                   |
+| `sub_path`              | (_Optional_) The webhook sub-path. See the [Webhook call path](#webhook-call-path) section for more information.          | `my-sub-path`                   |
 | `authentication_secret` | The webhook secret; used to authenticate the webhook request. See [Authentication](#authentication) for more information. | `cwsjhrdqebyf8qrnabtxio7k7r`    |
 
 Using the above example values, the webhook URL will look like this:
 
 `https://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-sub-path?secret=cwsjhrdqebyf8qrnabtxio7k7r`
 
-### URL sub-path
+### Webhook call path
 
-The `sub_path` of a webhook URL is optional. When it is defined, the call that is executed changes; the call path will be different.
+The App [manifest]({{<ref "/integrate/apps/structure/manifest">}}) contains an optional property `on_remote_webhook` which defines the base [call]({{<ref "/integrate/apps/structure/call">}}) path for incoming App webhooks.
+This property only affects the call path in the App; it does not affect the URL that an end user or system uses to execute the webhook.
+
+The `sub_path` of a webhook URL is also optional. When it is defined, the call that is executed changes; the call path will be different.
 
 Examples:
 
@@ -42,10 +44,10 @@ Examples:
    <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook
    ```
 
-2. If the `on_remote_webhook` call path is defined as `my-webhooks` in the manifest but `sub_path` is not defined, the call path will be `/my-webhooks` and the webhook URL will be:
+2. If the `on_remote_webhook` call path is defined as `/my-webhooks` in the manifest but `sub_path` is not defined, the call path will be `/my-webhooks` and the webhook URL will be:
 
    ```
-   <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/my-webhooks
+   <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook
    ```
 
 3. If `on_remote_webhook` is not defined in the manifest but `sub_path` is defined as `my-sub-path`, the call path will be `/webhook/my-sub-path` and the webhook URL will be:
@@ -54,10 +56,10 @@ Examples:
    <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook/my-sub-path
    ```
 
-4. If the `on_remote_webhook` call path is defined as `my-webhooks` in the manifest and the `sub_path` is defined as `my-sub-path`, the call path will be `/my-webhooks/my-sub-path` and the webhook URL will be:
+4. If the `on_remote_webhook` call path is defined as `/my-webhooks` in the manifest and the `sub_path` is defined as `my-sub-path`, the call path will be `/my-webhooks/my-sub-path` and the webhook URL will be:
 
    ```
-   <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/my-webhooks/my-sub-path
+   <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook/my-sub-path
    ```
 
 ## Call request
@@ -73,8 +75,37 @@ The [call]({{<ref "/integrate/apps/structure/call">}}) executed for an App webho
 
 An example webhook call request looks like the following:
 
-```json
-{}
+```http request
+POST /webhook HTTP/1.1
+Content-Type: application/json
+
+{
+    "path": "/webhook",
+    "values": {
+        "data": "",
+        "headers": {
+            "Accept": "*/*",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Connection": "keep-alive",
+            "Content-Length": "0",
+            "Mattermost-Session-Id": "",
+            "User-Agent": "PostmanRuntime/7.30.0"
+        },
+        "httpMethod": "POST",
+        "rawQuery": "secret=pszhs89rspyrje41khqouwbhce"
+    },
+    "context": {
+        "acting_user_id": "mgbd1czngjbbdx6eqruqabdeie",
+        "app_id": "hello-world",
+        "mattermost_site_url": "http://mattermost:8066",
+        "developer_mode": true,
+        "app_path": "/plugins/com.mattermost.apps/apps/hello-world",
+        "bot_user_id": "mgbd1czngjbbdx6eqruqabdeie",
+        "bot_access_token": "nr7ne5p8oprkimkmt7xra67xjy",
+        "acting_user_access_token": "nr7ne5p8oprkimkmt7xra67xjy",
+        "oauth2": {}
+    }
+}
 ```
 
 ## Authentication
