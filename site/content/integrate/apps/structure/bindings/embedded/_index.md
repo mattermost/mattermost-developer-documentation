@@ -74,119 +74,53 @@ Content-Type: application/json
     }
 }
 ```
+![Screenshot of post with embedded bindings](embedded-binding-coffee-roast-example.png)
 {{</collapse>}}
 
 ## Embedded bindings using Golang
-
-{{<collapse id="golang-rest-example" title="Golang HTTP REST example">}}
-```go
-// Construct the post message with embedded bindings using Golang maps and slices
-post := map[string]any{
-    "channel_id": callRequest.Context.Channel.Id,
-    "props": map[string]any{
-        "app_bindings": []any{
-            map[string]any{
-                "app_id":      appManifest.AppID,
-                "location":    "embedded",
-                "description": "Select your favourite coffee roast",
-                "bindings": []any{
-                    map[string]any{
-                        "location": "coffee-roast",
-                        "label":    "Coffee roast",
-                        "bindings": []any{
-                            map[string]any{
-                                "location": "dark-roast",
-                                "label":    "Dark roast",
-                                "submit": map[string]any{
-                                    "path": "/set-roast-preference",
-                                },
-                            },
-                            map[string]any{
-                                "location": "medium-roast",
-                                "label":    "Medium roast",
-                                "submit": map[string]any{
-                                    "path": "/set-roast-preference",
-                                },
-                            },
-                            map[string]any{
-                                "location": "light-roast",
-                                "label":    "Light roast",
-                                "submit": map[string]any{
-                                    "path": "/set-roast-preference",
-                                },
-                            },
-                        },
-                    },
-                    map[string]any{
-                        "location": "i-dont-like-coffee",
-						"label": "I don't like coffee",
-						"submit": {
-						    "path": "/set-roast-preference",
-						},
-                    },
-                },
-            },
-        },
-    },
-}
-// Marshal the post into JSON
-postBody, err := json.Marshal(post)
-if err != nil {
-    sendErrorResponse(w, err)
-    return
-}
-// Construct the REST URL: <mattermost_server_url>/api/v4/posts
-postUrl := fmt.Sprintf("%s/api/v4/posts", callRequest.Context.MattermostSiteURL)
-// Create a new HTTP client with a 5 second timeout
-httpClient := http.Client{
-    Timeout: 5 * time.Second,
-}
-// Create a new HTTP POST request to send the post
-req, err := http.NewRequest(http.MethodPost, postUrl, bytes.NewReader(postBody))
-if err != nil {
-    sendErrorResponse(w, err)
-    return
-}
-// Set the authorization header using the bot access token
-req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", callRequest.Context.BotAccessToken))
-// Set the content type to JSON
-req.Header.Set("Content-Type", "application/json")
-// Send the post
-resp, err := httpClient.Do(req)
-if err != nil {
-    sendErrorResponse(w, err)
-    return
-}
-// Ensure the response body is closed
-defer func() {
-    err = resp.Body.Close()
-    if err != nil {
-        log.Printf("error closing response body: %s\n", err)
-    }
-}()
-```
-{{</collapse>}}
 
 {{<collapse id="golang-driver" title="Golang driver example">}}
 ```go
 post := &models.Post{
     ChannelID: callRequest.Context.Channel.ID,
 }
-// NOTE: apps.PropAppBindings == "app_bindings"
-post.AddProp(apps.PropAppBindings, []apps.Binding{
+postAppBindings := []apps.Binding{
     {
         Location:    "embedded",
         AppID:       appManifest.AppID,
-        Description: "Embedded bindings in a post",
+        Description: "Select your favourite coffee roast",
         Bindings: []apps.Binding{
             {
-                Location: "click-me",
-                Label:    "Click me!",
-                Submit:   apps.NewCall("/submit-click"),
+                Location: "coffee-roast",
+                Label:    "Coffee roast",
+                Bindings: []apps.Binding{
+                    {
+                        Location: "dark-roast",
+                        Label:    "Dark roast",
+                        Submit:   apps.NewCall("/set-roast-preference"),
+                    },
+                    {
+                        Location: "medium-roast",
+                        Label:    "Medium roast",
+                        Submit:   apps.NewCall("/set-roast-preference"),
+                    },
+                    {
+                        Location: "light-roast",
+                        Label:    "Light roast",
+                        Submit:   apps.NewCall("/set-roast-preference"),
+                    },
+                },
+            },
+            {
+                Location: "i-dont-like-coffee",
+                Label:    "I don't like coffee",
+                Submit:   apps.NewCall("/set-roast-preference"),
             },
         },
     },
-})
+}
+// NOTE: apps.PropAppBindings == "app_bindings"
+post.AddProp(apps.PropAppBindings, postAppBindings)
 client := appclient.AsBot(callRequest.Context)
 createdPost, err := client.CreatePost(post)
 if err != nil {
@@ -194,7 +128,7 @@ if err != nil {
 }
 ```
 
-![Screenshot of post with embedded bindings](embedded-binding-example.png)
+![Screenshot of post with embedded bindings](embedded-binding-coffee-roast-example.png)
 {{</collapse>}}
 
 ## Call request
