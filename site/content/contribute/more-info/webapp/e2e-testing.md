@@ -76,7 +76,7 @@ Test metadata is used to identify each `spec` file before it is forwarded for a 
 
 * **Stage** - Indicates the environment for testing; valid values for this include `@prod`, `@smoke`, `@pull_request`. "Stage" metadata in `spec` files are owned and controlled by the Quality Assurance (QA) team who carefully analyze the stability of tests and promote/demote them into certain stages. This is not required when submitting a `spec` file and it should be removed when modifying an existing `spec` file.
 
-* **Group** - Indicates test group or category, which is primarily based on functional areas and existing release testing groups. Valid values for this include: `@settings` for Settings, `@playbooks` for Playbooks, etc. This is required when submitting a `spec` file.
+* **Group** - Indicates test group or category, which is primarily based on functional areas and existing release testing groups. Valid values for this include: `@settings` for Settings, `@playbooks` for Playbooks, etc. This is required when submitting a `spec` file. 
 
 * **Skip** - This is a way to skip running a `spec` file depending on the capabilities of the test environment. This is required when submitting a `spec` file if there is a test that has certain limitations or requirements. Forms of capabilities include:
   - **Platform-related**: valid values include - `@darwin` for Mac, `@linux` for Linux flavors like Ubuntu, `@win32` for Windows, etc.
@@ -115,7 +115,9 @@ For those writing E2E from Help Wanted tickets with `Area/E2E Tests` label, the 
 
 #### Using Cypress Hooks
 
-Before writing the main body of the test in the `it` block, it can help to write some setup code for test isolation using {{<newtabref href="https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests#Hooks" title="hooks">}}. In a `before()` hook, you can run tests in isolation using the custom command `cy.apiInitSetup()`. This command creates a new team, channel, and user which can only be used by the spec file itself. For `attachment_does_not_collapse_spec.ts` for example:
+Before writing the main body of the test in the `it` block, it can help to write some setup code for test isolation using {{<newtabref href="https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests#Hooks" title="hooks">}}. In a `before()` hook, you can run tests in isolation using the custom command `cy.apiInitSetup()`. This command creates a new team, channel, and user which can only be used by the spec file itself. Make use of the `cy.apiInitSetup()` function as much as possible, as it is recommended to log in as a new user and visit the generate team and/or channel. Avoid the use of `sysadmin` user or default `ad-1` team if possible.
+
+For `attachment_does_not_collapse_spec.ts` for example:
   ```javascript
   let incomingWebhook;
   let testChannel;
@@ -140,13 +142,91 @@ Before writing the main body of the test in the `it` block, it can help to write
       });
   });
   ```
-The `before()` hook is also a good place to add checks if a test requires a certain kind of server license. If test(s) require a certain licensed feature, use the function `cy.apiRequireLicenseForFeature('<feature name>')`. To check if the server has a license in general, use `cy.apiRequireLicense()`. For more information on custom commands and how to select elements, check out the [End-to-End (E2E) cheatsheets]({{<relref "contribute/more-info/webapp/e2e-cheatsheets.md">}}).
+The `before()` hook is also a good place to add checks if a test requires a certain kind of server license. If test(s) require a certain licensed feature, use the function `cy.apiRequireLicenseForFeature('<feature name>')`. To check if the server has a license in general, use `cy.apiRequireLicense()`. You can also add hard requirements in the `before()` hook, such as: `cy.shouldNotRunOnCloudEdition()`, `cy.shouldRunOnTeamEdition()`, `cy.shouldHavePluginUploadEnabled()`, `cy.shouldHaveElasticsearchDisabled()`, and `cy.requireWebhookServer()`. For more information on custom commands and how to select elements, check out the [End-to-End (E2E) cheatsheets]({{<relref "contribute/more-info/webapp/e2e-cheatsheets.md">}}).
+
+Putting what you've gone through so far all together, you should have code that looks similar to this template:
+
+```javascript
+// Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
+// See LICENSE.txt for license information.
+
+// **********************************************************************
+// - Use [#] in comment to indicate a test step (e.g. # Go to a page)
+// - Use [*] in comment to indicate an assertion (e.g. * Check the title)
+// - Query an element with @testing-library/cypress as much as possible
+// **********************************************************************
+
+// Group: @change_group
+
+describe('Change to Functional Group', () => {
+    before(() => {
+        // Add hard requirement(s) to immediately fail and throw a descriptive error if not met
+        // cy.shouldNotRunOnCloudEdition();
+
+        // Add license requirement(s)
+        // cy.apiRequireLicense();
+
+        // Init basic setup for test isolation
+        cy.apiInitSetup({loginAfter: true}).then(({team, channel, user}) => {
+            // Assign return values to variable/s
+            // Visit a channel
+            // Do other setup per test data preconditions
+        });
+    });
+
+    // Add a title of "[Zephyr_id] - [Zephyr title]" for test case with single step,
+    // or "[Zephyr_id]_[step_number] - [Zephyr title]" for test case with multiple steps
+    it('[Zephyr_id] - [Zephyr title]', () => {
+        // Put test steps and assertions here
+    });
+});
+```
 
 #### Main body of the test
 
 {{<note "NOTE:">}}
 Use `camelCase` when assigning to `data-testid` or element ID. Also, watch out for potential breaking changes in the snapshot from [unit testing]({{<ref "">}}).  Run `make test` to see if all unit tests are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot tests.
 {{</note>}}
+
+Now, inside the body of the `it` block , we will write in code the "Steps" part of the E2E issue. The following steps and code are from {{<newtabref href="https://github.com/mattermost/mattermost-server/issues/18184" title=`Write Webapp E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}}. Check out the complete file at: {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/11231/files" title="`attachment_does_not_collapse_spec.ts`">}}.
+
+  * **Create an incoming webhook and send it through POST with attachment**:
+    ```javascript
+    // # Post the incoming webhook with a text attachment
+    const content = '[very long lorem ipsum test text]';
+    const payload = {
+      channel: testChannel.name,
+      attachments: [{fallback: 'testing attachment does not collapse', pretext: 'testing attachment does not collapse', text: content}],
+    };
+    cy.postIncomingWebhook({url: incomingWebhook.url, data: payload, waitFor: 'attachment-pretext'});
+    ```
+  * **View the webhook post that has the attachment**: you are already in the channel that has the attachment post, as specified by the line `cy.visit('/${team.name}/channels/${channel.name}')`; from the setup section of the code.
+
+  * **Type /collapse and press Enter**: 
+    ```javascript
+    // * Check "show more" button is visible and click
+    cy.getLastPostId().then((postId) => {
+      const postMessageId = `#${postId}_message`;
+      cy.get(postMessageId).within(() => {
+        cy.get('#showMoreButton').scrollIntoView().should('be.visible').and('have.text', 'Show more').click();
+      });
+    });
+    // # Type /collapse and press Enter
+    const collapseCommand = 'collapse';
+    cy.uiGetPostTextBox().type(`/${collapseCommand} {enter}`);
+    ```
+
+  * **Observe the integration post with the Message Attachment**: where you ascertain what is expected of the test.
+    ```javascript
+    cy.getNthPostId(-2).then((postId) => {
+    const postMessageId = `#${postId}_message`;
+    cy.get(postMessageId).within(() => {
+      // * Verify "show more" button says "Show less"
+      cy.get('#showMoreButton').scrollIntoView().should('be.visible').and('have.text', 'Show less');
+      // * Verify gradient
+      cy.get('#collapseGradient').should('not.be.visible');
+    });
+    ```
 
 ### Running E2E Tests
 #### On your local development machine / Gitpod
@@ -158,7 +238,7 @@ Use `camelCase` when assigning to `data-testid` or element ID. Also, watch out f
 
     - **Running all E2E tests**: `npm run cypress:run`. This does not include the `spec` files in the `/cypress/tests/integration/enterprise` folder because they need an Enterprise license to run successfully.
     - **Running tests selectively based on `spec` metadata**: For example, if you want to run all the tests in a specific group, such as those in "accessibility", the command would be: `node run_tests.js --group='@accessibility'`.
-    - **Using the Cypress desktop app**: `npm run cypress:open`. This will start up the Cypress desktop app, where you will be able to do partial testing depending on the `spec` selected in the app.
+    - **Using the Cypress desktop app**: `npm run cypress:open`. This will start up the Cypress desktop app, where you will be able to do partial testing depending on the `spec` selected in the app. If you are using Gitpod, the Cypress app will open up in the VNC desktop, which is accessible at port `6080`.
 4. Don't forget to check your coding styles! See the [Web app workflow]({{<ref "/contribute/more-info/webapp/developer-workflow">}}) page for helpful commands to run.
 
 #### In a Continuous Integration (CI) pipeline

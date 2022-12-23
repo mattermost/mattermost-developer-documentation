@@ -26,16 +26,16 @@ Here's a general workflow for a Mattermost developer working on the {{< newtabre
     * {{< newtabref href="https://github.com/mattermost/mattermost-webapp/tree/master/utils" title="./utils/" >}} holds many widely-used utility functions.
 2. On your fork, create a feature branch for your changes. Name it `MM-$NUMBER_$DESCRIPTION` where `$NUMBER` is the {{< newtabref href="https://mattermost.atlassian.net" title="Jira" >}} ticket number you are working on and `$DESCRIPTION` is a short description of your changes. Example branch names are `MM-18150_plugin-panic-log` and `MM-22037_uppercase-email`. You can also use the name `GH-$NUMBER_$DESCRIPTION` for tickets come from {{< newtabref href="https://github.com/mattermost/mattermost-server/issues" title="GitHub Issues in the server repo" >}}.
 3. Make the code changes required to complete your ticket, making sure to write or modify unit tests where appropriate. Use `make test` to run the unit tests.
-4. To run your changes locally, you'll need to run both the client and server locally.
-    
-    The server and client can either be run together or separately as follows:
-
+4. To run your changes locally, you'll need to run both the client and server locally. The server and client can either be run together or separately as follows:
     * You can run both together by using `make run` from the server directory. Both server and web app will be run together and can be stopped by using `make stop`. If you run into problems getting the server running this way, you may want to consider running them separately in case the output from one is hiding errors from the other.
+
     * You can run the server independently by running `make run-server` from its directory and, using another terminal, you can run the web app by running `make run` from the web app directory. Each can be stopped by running `make stop-server` or `make stop` from their respective directories.
 
     Once you've done either of those, your server will be available at `http://localhost:8065` by default. Changes to the web app will be built automatically, but changes to the server will only be applied if you restart the server by running `make restart-server` from the server directory.
+
 5. If you added or changed any strings you will need to run `make i18n-extract` to update `i18n/en.json`. Remember to double check that any newly added strings have the correct values in case they weren't detected correctly.
-6. Before submitting a PR, make sure to check your coding style and run the automated tests on your changes. This can be done by using `make check-style` to check the code style, `make check-types` to run the type checker, and `make test` to run the unit tests.
+6. Before submitting a PR, make sure to check your coding style and run the automated tests on your changes. Run the following commands in the `mattermost-webapp` directory (root of the repository): `make check-style`/`npm run check` to check the code style, `make check-types` to run the type checker, and `make test` to run the unit tests. If there are any problems, you can either fix them manually in the file itself, or use the `npm run fix` command. This is an important step because if any code is not formatted properly, one of the checks that run when you create a pull request for your branch will fail, and may block merging.
+
 7. Commit your changes, push your branch and {{< newtabref href="https://developers.mattermost.com/blog/submitting-great-prs/" title="create a pull request" >}}.
 8. Respond to feedback on your pull request and make changes as necessary by committing to your branch and pushing it. Your branch should be kept roughly up to date by {{< newtabref href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging#_basic_merging" title="merging" >}} master into it periodically. This can either be done using {{< newtabref href="https://git-scm.com/docs/git-merge" title="`git merge`" >}} or, as long as there are no conflicts, by commenting `/update-branch` on the PR.
 9. That's it! Rejoice that you've helped make Mattermost better.
