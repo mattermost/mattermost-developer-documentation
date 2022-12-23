@@ -10,7 +10,9 @@ aliases:
 
 ### Unit Tests for Component and Utility Files
 
-The last required step in building a web app component is to test it. {{<newtabref href="https://jestjs.io/en/" title="Jest">}}and {{<newtabref href="https://airbnb.io/enzyme/" title="Enzyme">}}are the main frameworks/testing utilities used in unit testing components and utility files of the `mattermost-webapp` repository. Please visit their respective documentation for detailed information on how to get started, best practices, and updates. Enzyme is used to render and interact with React components in isolation, while Jest is used to perform snapshot testing against these components. 
+The last required step in building a web app component is to test it. {{<newtabref href="https://jestjs.io/en/" title="Jest">}}and {{<newtabref href="https://airbnb.io/enzyme/" title="Enzyme">}}are the main frameworks/testing utilities used in unit testing components and utility files of the `mattermost-webapp` repository. Please visit their respective documentation for detailed information on how to get started, best practices, and updates. Enzyme is used to render and interact with React components in isolation, while Jest is used to perform snapshot testing against these components.
+
+If you need to unit test something related to Redux, please check out [Redux Unit and E2E Testing]({{<relref "/contribute/more-info/webapp/redux/testing.md">}}).
 
 #### Writing unit tests
 Below is a brief guide on how to do component testing:

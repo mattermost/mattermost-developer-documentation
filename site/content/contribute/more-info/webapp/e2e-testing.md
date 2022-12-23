@@ -9,9 +9,11 @@ aliases:
   - contribute/webapp/e2e
 ---
 
-End-to-end tests for the Mattermost webapp use {{<newtabref href="https://www.cypress.io/" title="Cypress">}} and {{<newtabref href="" title="Playwright">}}. If you're not familiar with Cypress, check out the Cypress {{<newtabref href="https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell" title="Developer Guide">}} and {{<newtabref href="https://docs.cypress.io/api/api/table-of-contents.html" title="API Reference">}}. Feel free to also join the {{< newtabref href="https://community.mattermost.com/core/channels/ui-test-automation" title="UI Test Automation" >}} Mattermost channel if you'd like to ask questions and collaborate with us!
+End-to-end tests for the Mattermost webapp in general use {{<newtabref href="https://www.cypress.io/" title="Cypress">}} and {{<newtabref href="https://playwright.dev/" title="Playwright">}}. If you're not familiar with Cypress, check out the Cypress {{<newtabref href="https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell" title="Developer Guide">}} and {{<newtabref href="https://docs.cypress.io/api/api/table-of-contents.html" title="API Reference">}}. Feel free to also join the {{< newtabref href="https://community.mattermost.com/core/channels/ui-test-automation" title="UI Test Automation" >}} Mattermost channel if you'd like to ask questions and collaborate with us!
 {{<note "NOTE:">}}
-Playwright is a new framework getting added to Mattermost repositories for test automation (and is currently being used for visual tests). Documentation about Playwright is in development, so all other content about E2E testing will be related to Cypress.
+Playwright is a new framework getting added to `mattermost-webapp` for test automation (and is currently being used for visual tests). Documentation about Playwright in the web app is in development, so all other content about E2E testing will be related to Cypress.
+
+If you're looking for information related to E2E tests and Redux, please check out [Redux Unit and E2E Testing]({{<relref "/contribute/more-info/webapp/redux/testing.md">}}).
 {{</note>}}
 
 ### What requires an E2E test?
@@ -185,7 +187,7 @@ describe('Change to Functional Group', () => {
 #### Main body of the test
 
 {{<note "NOTE:">}}
-Use `camelCase` when assigning to `data-testid` or element ID. Also, watch out for potential breaking changes in the snapshot from [unit testing]({{<ref "">}}).  Run `make test` to see if all unit tests are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot tests.
+Use `camelCase` when assigning to `data-testid` or element ID. Also, watch out for potential breaking changes in the snapshot from [unit testing]({{<ref "/contribute/more-info/webapp/unit-testing">}}).  Run `make test` to see if all unit tests are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot tests.
 {{</note>}}
 
 Now, inside the body of the `it` block , we will write in code the "Steps" part of the E2E issue. The following steps and code are from {{<newtabref href="https://github.com/mattermost/mattermost-server/issues/18184" title=`Write Webapp E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}}. Check out the complete file at: {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/11231/files" title="`attachment_does_not_collapse_spec.ts`">}}.
@@ -270,7 +272,7 @@ Environment variables are {{< newtabref href="https://github.com/mattermost/matt
 
 ### Submitting your pull request (PR)
 
-Refer to {{< newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5891/files" title="this pull request" >}} as a guide on how to write and submit an end-to-end testing PR.
+Check out the PR for {{<newtabref href="https://github.com/mattermost/mattermost-server/issues/18184" title=`Write Webapp E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}} at: {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/11231" title=" MM-T642: Attachment does not collapse - Cypress Webapp E2E Test #11231">}}. You can also refer to {{< newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5891/files" title="this pull request" >}} as a guide on how to write and submit an end-to-end testing PR.
 
 ### Troubleshooting
 #### Test(s) failing due to a known issue
