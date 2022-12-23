@@ -1,6 +1,6 @@
 ---
 title: "Unit tests"
-heading: "Unit tests for the Mattermost Webapp"
+heading: "Unit tests for the Mattermost Web app"
 description: "Review our guidelines for unit testing for your Mattermost webapp, including a guide on how to do component testing."
 date: 2018-11-20T11:35:32-04:00
 weight: 5
@@ -10,7 +10,7 @@ aliases:
 
 ### Unit Tests for Component and Utility Files
 
-The last required step in building a webapp component is to test it. {{<newtabref href="https://jestjs.io/en/" title="Jest">}}and {{<newtabref href="https://airbnb.io/enzyme/" title="Enzyme">}}are the main frameworks/testing utilities used in unit testing components and utility files of the `mattermost-webapp` repository. Please visit their respective documentation for detailed information on how to get started, best practices, and updates. Enzyme is used to render and interact with React components in isolation, while Jest is used to perform snapshot testing against these components. 
+The last required step in building a web app component is to test it. {{<newtabref href="https://jestjs.io/en/" title="Jest">}}and {{<newtabref href="https://airbnb.io/enzyme/" title="Enzyme">}}are the main frameworks/testing utilities used in unit testing components and utility files of the `mattermost-webapp` repository. Please visit their respective documentation for detailed information on how to get started, best practices, and updates. Enzyme is used to render and interact with React components in isolation, while Jest is used to perform snapshot testing against these components. 
 
 #### Writing unit tests
 Below is a brief guide on how to do component testing:

@@ -56,7 +56,7 @@ For writing and running unit tests in general, see the [Unit tests]({{<ref "cont
 ### End-to-End (E2E) tests
 
 #### Web App
-For writing and running E2E tests in general, see the [End-to-End tests]({{<ref "/contribute/more-info/webapp/e2e/">}}) section, and the [Cypress cheatsheet]({{<ref "/contribute/more-info/webapp/e2e-cheatsheet/">}}) section. For writing and running E2E (and unit) tests for Redux components, see the [Redux]({{<ref "/contribute/more-info/webapp/redux/">}}) section.
+For writing and running E2E tests in general, see the [End-to-End tests]({{<ref "contribute/more-info/webapp/e2e-testing/">}}) section, and the [Cypress cheatsheet]() section. For writing and running E2E (and unit) tests for Redux components, see the [Redux]({{<ref "/contribute/more-info/webapp/redux/">}}) section.
  
 - **Writing tests for the Mattermost mobile applications**: see the [Mobile end-to-end tests]({{<ref "contribute/more-info/mobile/e2e/">}}) section, which has sub-pages for both the iOS and Android versions
  
