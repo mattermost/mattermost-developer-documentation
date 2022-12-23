@@ -19,13 +19,13 @@ If you need more help, check out the {{< newtabref href="https://chrome.google.c
 
 The following is a short summary of the recommended order of priority for queries:
 
-#### Queries Accessible to Everyone
+#### :white_check_mark: Queries Accessible to Everyone
 These reflect the experience of visual/mouse users as well as those that use assistive technology. Examples include: `cy.findByRole`, `cy.findByLabelText`, `cy.findByPlaceholderText`, `cy.findByText`, and `cy.findByDisplayValue`.
 
-#### Semantic Queries
+#### :white_check_mark: Semantic Queries
 These use HTML5 and ARIA–compliant selectors. Note that the user experience of interacting with these attributes varies greatly across browsers and assistive technology. Some examples include: `cy.findByAltText` and `cy.findByTitle`.
 
-#### Base Queries
+#### :warning: Base Queries
 These are considered part of implementation details and are discouraged to be used. You will still find base queries in the codebase but it they will be replaced soon. Therefore, please refrain from reusing the existing base query patterns. However, you may want to use them only to limit the scope of selection. Examples include: `cy.get('#elementId')` and `cy.get('.class-name')`. Below is an acceptable use case of base queries:
 
 ```javascript
@@ -39,18 +39,126 @@ cy.get('.class-name').should('be.visible').within(() => {
 });
 ```
 
-#### Query Variants
+#### :white_check_mark: Query Variants
 
 Note that `cy.findBy*` are shown but other variants are `cy.findAllBy*`, `cy.queryBy*`, and `cy.queryAllBy*`. See the {{< newtabref href="https://testing-library.com/docs/dom-testing-library/api-queries" title="Queries" >}} section from `testing-library`.
 
-#### Off-limits Queries
+#### :x: Off-limits Queries
 Please do not use any `Xpath` selectors such as the descendant selector. Do not use the `ul > li` and order selectors either, like `ul > li:nth-child(2)`. If an element can only be queried with this approach, then you may modify the application codebase, improve it, and make it "accessible to everyone".
 _____
 ### Settings Modal
-![image](../../../../img/e2e/settings-modal.png)
+![settings modal image](../../../../img/e2e/settings-modal.png)
+
+#### Opening the settings modal
+The function `cy.uiOpenSettingsModal(section)` opens the settings modal when viewing a channel. `section` is of the 
+< <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type">string</a> > type. Possible values for `section` are: `'Notifications'`, `'Display'`, `'Sidebar'`, and `'Advanced'`.
+
+  * **Open 'Settings' modal and view the default 'General Settings'**: `cy.uiOpenSettingsModal();`
+  * **Open the Settings modal and view a specific section (like the 'Advanced' section)**: `cy.uiOpenSettingsModal('Advanced');`
+  * **Open the Settings modal, view a specific section, and change a setting**: 
+    ```javascript
+    // # Open 'Advanced' section of 'Settings' modal
+    cy.uiOpenSettingsModal('Advanced').within(() => {
+      // # Open 'Enable Join/Leave Messages' and turn it off
+      cy.findByRole('heading', {name: 'Enable Join/Leave Messages'}).click();
+      cy.findByRole('radio', {name: 'Off'}).click();
+      // # Save and close the modal
+      cy.uiSave();
+      cy.uiClose();
+    });
+    ```
+
+#### Selecting a section's button within a modal
+Use the function `cy.findByRoleExtended('button', {name})`. `name` is of the < <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type">string</a> > type. Possible values for `name` are: `'Notifications'`, `'Display'`, `'Sidebar'`, and `'Advanced'`.
+
+  * **Clicking a button within the Settings modal**:
+    ```javascript
+    // # Open 'Advanced' section of 'Settings' modal
+    cy.uiOpenSettingsModal().within(() => {
+      // # Click 'Notifications' button
+      cy.findByRoleExtended('button', {name: 'Notifications'}).should('be.visible').click();
+    });
+    ```
+#### Select a section's setting within a modal via the name of the section
+Use the function `cy.findByRole('heading', {name})`. `name` is of the < <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type">string</a> > type. Possible values for `name` are: `'Full Name'`, `'Username'`, and others depending on the sections in the modal.
+
+  * **Open a section within the Settings modal**:
+    ```javascript
+    // # Open 'Notifications' of 'Settings' modal
+    cy.uiOpenSettingsModal('Notifications').within(() => {
+      // # Open 'Words That Trigger Mentions' setting
+      cy.findByRole('heading', {name: 'Words That Trigger Mentions'}).should('be.visible').click();
+    });
+    ```
+
+#### Select a section's setting within a modal via role
+Use the function `cy.findByRole(role, {name})`. `role` is of the < <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type">string</a> > type. Possible values for `role` are: `'textbox'`, `'radio'`, `'checkbox'` and other <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles">roles</a>. `name` is of the < <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type">string</a> > type. Possible values for `name` are: `'On'`, `'Off'`, and others depending on a section's settings.
+  * **Change value of a section's setting in the Settings modal**: 
+    ```javascript
+    // # Open 'Notifications' of 'Settings' modal
+    cy.uiOpenSettingsModal('Notifications').within(() => {
+      // # Open 'Words That Trigger Mentions' setting
+      cy.findByRole('heading', {name: 'Words That Trigger Mentions'}).should('be.visible').click();
+      // # Check channel-wide mentions
+      cy.findByRole('checkbox', {name: 'Channel-wide mentions "@channel", "@all", "@here"'}).click();
+    });
+    ```
+
+#### Saving and closing a modal
+`cy.uiSave` and `cy.uiClose` are common functions that can be used to save things and close modals.
+
+  * **Saving and closing in the Settings modal**:
+    ```javascript
+    // # Open 'Notifications' of 'Settings' modal
+    cy.uiOpenSettingsModal('Notifications').within(() => {
+      // # Open 'Words That Trigger Mentions' setting
+      cy.findByRole('heading', {name: 'Words That Trigger Mentions'}).should('be.visible').click();
+      // # Check channel-wide mentions
+      cy.findByRole('checkbox', {name: 'Channel-wide mentions "@channel", "@all", "@here"'}).click();
+      // # Save then close the modal
+      cy.uiSave();
+      cy.uiClose();
+    });
+    ```
 _____
 ### Channel Menu
+![channel menu image](../../../../img/e2e/channel-menu.png)
+
+#### Opening the channel menu
+Use the function `cy.uiOpenChannelMenu(item)`. This will open the channel menu by clicking the channel header title or dropdown icon when viewing a channel. `item` is of the type < <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type">string</a> >. Possible values for `item` are: `'View Info'`, `'Move to...'`,`'Notification Preferences'`, `'Mute Channel'`, `'Add Members'`, `'Manage Members'`,`'Edit Channel Header'`, `'Edit Channel Purpose'`, `'Rename Channel'`, and `'Convert to Private Channel'`, `'Archive Channel'`, and `'Leave Channel'`.
+
+  * **Open the channel menu normally**:
+    ```javascript
+    // # Open 'Channel Menu'
+    cy.uiOpenChannelMenu();
+    ```
+  * **Open the channel menu and click on a specific item**:
+    ```javascript
+    // # Open 'Advanced' section of 'Settings' modal
+    cy.uiOpenChannelMenu('View Info');
+    ```
+#### Closing the channel menu
+Use the function `cy.uiCloseChannelMenu()`. This will close the channel menu by clicking the channel header title or dropdown icon again at the center channel view, given that the menu is already open.
+
+#### Get the DOM elements of the channel menu
+Use the function `cy.uiGetChannelMenu()`.
 _____
 ### Product Menu
+![product menu image](../../../../img/e2e/product-menu.png)
 
+#### Opening the product menu
+Use the function `cy.uiOpenProductMenu(item)`. `item` is of the type < <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type">string</a> >. Possible values for `item` are: `'Channels'`, `'Boards'`, `'Playbooks'`, `'System Console'`, `'Integrations'`, `'Marketplace'`, `'Download Apps'`, and `'About Mattermost'`.
 
+* **Open the product menu normally**:
+  ```javascript
+  // # Open 'Product menu'
+  cy.uiOpenProductMenu();
+  ```
+* **Open the product menu and click on a specific item**:
+  ```javascript
+  // # Open 'Integrations' section of 'Product Menu' modal
+  cy.uiOpenProductMenu('Integrations');
+  ```
+#### Get the DOM elements of the product menu
+Use the function `cy.uiGetProductMenu()`.
+_____
