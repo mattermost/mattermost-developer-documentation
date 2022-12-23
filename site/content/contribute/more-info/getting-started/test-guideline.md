@@ -43,25 +43,16 @@ When is it fine not to have tests?
 
 How to run and write tests
 ------------------
-### Unit tests
+### Server
+For writing and running **unit tests** in general, see the [Server workflow]({{<ref "/contribute/more-info/server/developer-workflow">}}) page. If you have written a new endpoint or changed an endpoint for the Mattermost REST API, check out the [REST API]({{<ref "/contribute/more-info/server/rest-api">}}) page.
 
-#### Server
-For writing and running unit tests in general, see the [Server workflow]({{<ref "/contribute/more-info/server/developer-workflow">}}) page. If you have written a new endpoint or changed an endpoint for the Mattermost REST API, check out the [REST API]({{<ref "/contribute/more-info/server/rest-api">}}) page.
+### Web App
+For writing and running **unit tests** in general, see the [Unit tests]({{<ref "contribute/more-info/webapp/unit-testing">}}) page. For writing and running **E2E tests** in general, see the [End-to-End testing]({{<relref "contribute/more-info/webapp/e2e-testing.md">}}) section, and the [End-to-End cheatsheets]({{<relref "contribute/more-info/webapp/e2e-cheatsheets.md">}}) section. 
 
-#### Web App
-For writing and running unit tests in general, see the [Unit tests]({{<ref "contribute/more-info/webapp/unit-testing">}}) page.
+For writing and running **E2E (and unit) tests for Redux** components, see the [Redux Unit and E2E Testing]({{<relref "contribute/more-info/webapp/redux/testing.md">}}) page.
 
-### Integration tests
+### Mobile Apps
+For writing and running **E2E tests** for both Android and iOS systems, take a look at the [Mobile End-to-end (E2E) Tests]({{<ref "/contribute/more-info/mobile/e2e">}}) page.
 
-### End-to-End (E2E) tests
-
-#### Web App
-For writing and running E2E tests in general, see the [End-to-End testing]({{<relref "contribute/more-info/webapp/e2e-testing.md">}}) section, and the [End-to-End cheatsheets]({{<relref "contribute/more-info/webapp/e2e-cheatsheets.md">}}) section. For writing and running E2E (and unit) tests for Redux components, see the [Redux]({{<ref "/contribute/more-info/webapp/redux/">}}) section.
- 
-- **Writing tests for the Mattermost mobile applications**: see the [Mobile end-to-end tests]({{<ref "/contribute/more-info/mobile/e2e">}}) section, which has sub-pages for both the iOS and Android versions
- 
-- **Writing tests for the Mattermost desktop application**: see [Automated tests]({{<ref "/contribute/more-info/desktop/testing">}})
- 
-- **Writing tests for Focalboard**:
- 
-- **Writing tests for Mattermost "Apps"**:
+### Desktop App
+For writing and running **unit and E2E tests** for the desktop app, check out the [Unit and End-to-End (E2E) Tests in the desktop app]({{<ref "/contribute/more-info/desktop/testing">}}) page.
