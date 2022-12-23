@@ -145,20 +145,21 @@ Thank you for your enthusiasm! You can act on feature ideas in a few ways:
 
 We love developers who are passionate about open-source!
 
-If you’re looking to tackle an interesting problem, we’ve got you covered! Feel free to check out {{< newtabref href="https://github.com/search?utf8=%E2%9C%93&q=is%3Aopen+archived%3Afalse+org%3Amattermost+label%3A%22Help+Wanted%22++label%3A%22Up+For+Grabs%22" title="the help wanted tickets on GitHub" >}}. To take one on, just comment on the issue, and follow the process outlined in [You've found a bug](#youve-found-a-bug) of this guide. You can find a list of the Mattermost repos on the [Contributor expectations page]({{< ref "/contribute/expectations/#before-contributing" >}}) of this guide.
+If you’re looking to tackle an interesting problem, we’ve got you covered! Feel free to check out the {{<newtabref title="help wanted tickets on GitHub" href="https://github.com/search?utf8=%E2%9C%93&q=is%3Aopen+archived%3Afalse+org%3Amattermost+label%3A%22Help+Wanted%22++label%3A%22Up+For+Grabs%22">}}. To take one on, just comment on the issue, and follow the process outlined in [You've found a bug](#youve-found-a-bug) of this guide. You can find a list of the Mattermost repositories on the [Contributor expectations page]({{< ref "/contribute/expectations/#before-contributing" >}}) of this guide.
 
 ## You want to help with product translation
 
 We’re honored that you’d like to help people use Mattermost in their native language, so we treat all translators as full-fledged contributors alongside engineers and authors.
 
-Each localization community is going to have specific guidelines on how to maintain Mattermost’s distinctive voice across language barriers. Read these guides thoroughly before starting to translate {{< newtabref href="https://gist.github.com/der-test/6e04bff8a173e053811cb93e08838ca2" title="German" >}}, {{< newtabref href="https://github.com/wget/mattermost-localization-french-translation-rules" title="French" >}}, or {{< newtabref href="https://github.com/ctlaltdieliet/mattermost-localization-dutch-translation-rules" title="Dutch" >}}.
+Each localization community is going to have specific guidelines on how to maintain Mattermost’s distinctive voice across language barriers. Read these guides thoroughly before starting to translate {{<newtabref title="German" href="https://gist.github.com/der-test/6e04bff8a173e053811cb93e08838ca2">}}, {{<newtabref title="French" href="https://github.com/wget/mattermost-localization-french-translation-rules">}}, or {{<newtabref title="Dutch" href="https://github.com/ctlaltdieliet/mattermost-localization-dutch-translation-rules">}}.
 
 To get started:
 
-1. Join {{< newtabref href="http://translate.mattermost.com/" title="the Mattermost translation server" >}} and {{< newtabref href="https://community.mattermost.com/core/channels/localization" title="the localization community channel" >}} on the Mattermost Community Server.
+1. Join {{<newtabref title="Mattermost translation server" href="https://translate.mattermost.com/">}} and the {{<newtabref title="localization community channel" href="https://community.mattermost.com/core/channels/localization">}} on the Mattermost Community Server.
 
    - If your preferred language already exists on the translation server, you can start making translations or translation suggestions immediately *there on the translation server*. Don’t try to do this manually through GitHub.
-   - If your language is absent from the translation server, ask on the localization community channel for it to be added.
+   - If your language is absent from the translation server, ask on the {{<newtabref title="localization community channel" href="https://community.mattermost.com/core/channels/localization">}} for it to be added.
+   - Visit the {{<newtabref title="Mattermost Handbook" href="https://handbook.mattermost.com/contributors/join-us/localization">}} to learn more about getting started with product translation at Mattermost.
 
 2. Each language in whole is assigned one quality level, and with each release cycle, it can be upgraded or downgraded if necessary.
 

@@ -28,29 +28,29 @@ With that in mind, customizing and deploying your Mattermost Web App can be done
    
 3. Perform customization tasks by replacing image assets, changing strings, altering the UI, and whatever else may be necessary. Be mindful not to violate any of the {{< newtabref href="guidelines on trademark use" title="guidelines on trademark use" >}} during this process.
 
-4. Once customization has been completed, build the files that will be used in your deployment.
+4. Once customization has been completed, build the files that will be used in your deployment and generate `mattermost-webapp.tar.gz` containing them.
 
     ```shell
-    make build
+    make dist
     ```
 
-5. Create a tarball or zip the files __within__ the `dist` directory.
-
-    ```shell
-    cd dist
-    tar -cvf dist.tar *
-    ```
-
-6. In a Mattermost deployment, remove all files seen in the `client` directory (assuming Mattermost was deployed in the `$HOME` directory).
+5. In a Mattermost deployment, rename `client` (assuming Mattermost was deployed in the `$HOME` directory).
    
     ```shell
-    cd ~/mattermost/client && rm -rf *
+    cd ~/mattermost
+    mv client client-original
     ```
 
-7. Transfer compressed `dist` files inside Mattermost's `client` directory, and decompress it.
+6. Transfer compressed `dist` files inside Mattermost's `client` directory, and decompress it.
 
     ```shell
-    tar -xvf dist.tar
+    tar -xvf mattermost-webapp.tar.gz
+    ```
+
+7. Copy the `products` subdirectory from the original deployment into the customized one.
+
+    ```shell
+    cp -R client-original/products client/products
     ```
 
 ## Rebasing to latest version
