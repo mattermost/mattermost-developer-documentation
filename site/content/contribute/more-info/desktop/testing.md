@@ -24,7 +24,7 @@ We use a combination of two technologies to facilitate E2E testing in the deskto
 - **{{<newtabref href="https://playwright.dev/" title="Playwright">}}:** A testing framework similar to Cypress or Selenium that acts as a Chromium driver for testing. It's used to simulate interactions with the various web environments that make up the Desktop App, including the top bar (servers and tabs) and the individual Mattermost views.
 - **{{<newtabref href="https://robotjs.io/" title="RobotJS">}}:** A multi-platform OS level automation framework written in NodeJS, used for simulating arbitrary keyboard and mouse inputs. It's generally used to mock actions involving keyboard shortcuts and the Electron menu, as those are not web environments.
 
-To build the app and run the E2E tests, you can run the following command: `npm run test:e2e`. You can also run this command to build the tests without rebuilding the app with this command: `npm run test:e2e:nobuild`. You can also run subsets of the tests by filtering using `grep`, for example: `npm run test:e2e:run -- --grep back_button`. 
+To build the app and run the E2E tests, you can run the following command: `npm run test:e2e`. You can also run this command to build the tests without rebuilding the app: `npm run test:e2e:nobuild`. You can also run subsets of the tests by filtering using `grep`, for example: `npm run test:e2e:run -- --grep back_button`. 
 
 E2E tests are usually written to cover parts of the `renderer` module and should generally cover complete workflows, such as creating/editing a server. You will generally need a combination of both Playwright and RobotJS APIs to test most workflows.
 

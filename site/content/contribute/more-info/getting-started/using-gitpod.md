@@ -8,7 +8,7 @@ aliases:
 ---
 
 ### What is Gitpod?
-{{<newtabref href="https://www.gitpod.io/" title="Gitpod">}} is a cloud development environment. The following instructions have been adapted from comments on this issue: {{<newtabref href="https://github.com/mattermost/mattermost-gitpod-config/issues/18" title="Document general usage of Gitpod #18 ">}}.
+{{<newtabref href="https://www.gitpod.io/" title="Gitpod">}} is a cloud development environment. The following instructions have been adapted from comments on this issue: {{<newtabref href="https://github.com/mattermost/mattermost-gitpod-config/issues/18" title="Document general usage of Gitpod #18 ">}}. You can also check out these videos to learn how to work with Gitpod (and write an E2E test): {{<newtabref href="https://www.youtube.com/watch?v=LgQ2Z_GelYQ" title="How to set up a developer environment for Mattermost with Gitpod">}} and {{<newtabref href="https://www.youtube.com/watch?v=mLbzKSGZv4A" title="Writing your first E2E test for Mattermost">}}.
 
 #### :cyclone: Spinning up an environment
 
