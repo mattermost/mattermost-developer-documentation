@@ -5,7 +5,8 @@ description: "This page describes how to run End-to-End (E2E) testing and to bui
 date: "2018-03-19T12:01:23-04:00"
 weight: 6
 aliases:
-  - contribute/webapp/e2e-testing/
+  - contribute/webapp/e2e-testing
+  - contribute/webapp/e2e
 ---
 
 End-to-end tests for the Mattermost webapp use {{<newtabref href="https://www.cypress.io/" title="Cypress">}} and {{<newtabref href="" title="Playwright">}}. If you're not familiar with Cypress, check out the Cypress {{<newtabref href="https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell" title="Developer Guide">}} and {{<newtabref href="https://docs.cypress.io/api/api/table-of-contents.html" title="API Reference">}}. Feel free to also join the {{< newtabref href="https://community.mattermost.com/core/channels/ui-test-automation" title="UI Test Automation" >}} Mattermost channel if you'd like to ask questions and collaborate with us!
@@ -139,7 +140,7 @@ Before writing the main body of the test in the `it` block, it can help to write
       });
   });
   ```
-The `before()` hook is also a good place to add checks if a test requires a certain kind of server license. If test(s) require a certain licensed feature, use the function `cy.apiRequireLicenseForFeature('<feature name>')`. To check if the server has a license in general, use `cy.apiRequireLicense()`. For more information on custom commands and how to select elements, check out the [End-to-End (E2E) cheatsheets]().
+The `before()` hook is also a good place to add checks if a test requires a certain kind of server license. If test(s) require a certain licensed feature, use the function `cy.apiRequireLicenseForFeature('<feature name>')`. To check if the server has a license in general, use `cy.apiRequireLicense()`. For more information on custom commands and how to select elements, check out the [End-to-End (E2E) cheatsheets]({{<relref "contribute/more-info/webapp/e2e-cheatsheets.md">}}).
 
 #### Main body of the test
 
