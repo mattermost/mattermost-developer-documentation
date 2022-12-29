@@ -4712,6 +4712,22 @@ ol > li + li {
     fill: #1D315C;
 }
 
+/* MermaidJS also uses the 'label' class. We unset line-height to ensure text renders properly. */
+div.mermaid .label {
+    line-height: unset;
+}
+
+/* Unset the opacity of text blocks between nodes in MermaidJS flowchart. */
+div.mermaid .edgeLabel rect {
+    opacity: unset !important;
+}
+
+/* Center MermaidJS diagrams in their containing div. */
+div.mermaid {
+    display: flex;
+    justify-content: center;
+}
+
 /* Search results page */
 .search__results_title {
     margin-bottom: 12px;
