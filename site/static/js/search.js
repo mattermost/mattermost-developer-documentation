@@ -296,25 +296,25 @@ class LunrSearch {
                 if (result.page.subsection) {
                     sectText += " > " + LunrSearch.capitalizeFirstLetter(result.page.subsection);
                 }
-                const sectPara = document.createElement('p');
-                sectPara.textContent = "(" + sectText + ")";
-                sectPara.classList.add("search__results_result-section");
-                linkDiv.append(ahref, sectPara);
+                const sectSpan = document.createElement('span');
+                sectSpan.textContent = "(" + sectText + ")";
+                sectSpan.classList.add("search__results_result-section");
+                linkDiv.append(ahref, sectSpan);
                 listItemEl.appendChild(linkDiv);
                 // A description of the page associated with the result; uses the first 240 characters
                 let descText = result.page.contents.substring(0, 240);
                 if (result.page.contents.length > 240) {
                     descText += "...";
                 }
-                const descPara = document.createElement('p');
-                descPara.textContent = descText;
-                descPara.classList.add("search__results_result-description");
-                listItemEl.append(descPara);
+                const descSpan = document.createElement('span');
+                descSpan.textContent = descText;
+                descSpan.classList.add("search__results_result-description");
+                listItemEl.append(descSpan);
                 // Highlight keyword matches in the page description
                 if (result.matchData && "metadata" in result.matchData) {
                     const keywords = Object.keys(result.matchData.metadata);
                     if (keywords.length > 0) {
-                        const mark = new Mark(descPara);
+                        const mark = new Mark(descSpan);
                         for (const keyword of keywords) {
                             if (keyword.length > 1) {
                                 mark.mark(keyword);
@@ -325,7 +325,11 @@ class LunrSearch {
                 // Display the score and match data for debugging
                 const scoreSpan = document.createElement('span');
                 scoreSpan.textContent = String(result.score) + " " + JSON.stringify(result.matchData.metadata);
-                listItemEl.append(scoreSpan);
+                scoreSpan.classList.add("search__results_result-debug");
+                listItemEl.append(
+                    document.createElement('br'),
+                    scoreSpan,
+                );
                 // Append the result to the end of the results list
                 resultsEl.appendChild(listItemEl);
             }

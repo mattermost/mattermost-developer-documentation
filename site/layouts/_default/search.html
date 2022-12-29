@@ -14,13 +14,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12 doc-content">
-                    <p>
-                        <label for="search-query"></label><input id="search-query" class="search__input" type="text" placeholder="What are you looking for?"/>
+                    <div class="search__input">
+                        <label for="search-query"></label><input id="search-query" class="search__query-input ff--trade-gothic" type="text" placeholder="What are you looking for?"/>
                         <button id="search-button" class="search__button">Search</button>
                         <span id="search-status" class="search__span_status badge badge-secondary"></span>
-                    </p>
-                    <h1 class="mt-0 doc-title search__title">{{ .Title }}</h1><br/>
-                    <p><span id="search-result-count" class="search__span_result-count"></span></p>
+                    </div>
+                    <div class="search__heading">
+                        <h2 class="doc-title search__title">{{ .Title }}</h2>
+                        <span id="search-result-count" class="search__span_result-count"></span>
+                    </div>
                     <ul id="results" class="search__results"></ul>
                 </div>
             </div>
