@@ -1,19 +1,20 @@
-<div class="col-lg-3 sidebar">
-    <div class="sidebar__menu-toggle">
-        {{ .Title }}
-        <i class="fa fa-bars pull-right"></i>
-    </div>
-    <div class="row sidebar__search">
-        <div class="col search__form">
-            <label for="search-query"></label><input id="search-query" class="search__input" type="text" placeholder="Search developer documentation">
-            <button id="search-button" class="search__button">Search</button>
+<div class="col-lg-3">
+    <div class="sidebar__search">
+        <div class="sidebar__search-form">
+            <label for="search-query"></label><input id="search-query" class="sidebar__search-input ff--trade-gothic" type="text" placeholder="What are you looking for?">
         </div>
     </div>
-    <div class="row sidebar__links">
+    <div class="sidebar">
+        <div class="sidebar__menu-toggle">
+            <span>{{ .Title }}</span>
+            <i class="fa fa-bars pull-right"></i>
+        </div>
+        <div class="row sidebar__links">
 {{- range .Site.Sections -}}
     {{- if (eq $.Section .Section) -}}
         {{ partial "sidebar-v2-recurse.html" (dict "pages" .Pages.ByWeight "root" $ "section" .) }}
     {{- end -}}
 {{- end -}}
+        </div>
     </div>
 </div>

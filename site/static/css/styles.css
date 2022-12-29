@@ -3386,7 +3386,7 @@ h6:first-child {
 
 .sidebar {
     line-height: 40px;
-    margin: 50px 0;
+    padding-top: 20px;
 }
 
 .sidebar .item {
@@ -3432,9 +3432,10 @@ h6:first-child {
     display: none;
     height: 50px;
     line-height: 50px;
-    margin: 0 -15px;
+    margin: 0 -20px;
     opacity: .6;
     padding: 0 15px;
+    justify-content: space-between;
 }
 
 .sidebar__menu-toggle .fa {
@@ -3442,6 +3443,26 @@ h6:first-child {
     margin-top: 15px;
 }
 
+.sidebar__search {
+    display: flex;
+    border: 1px solid #BABEC9;
+    margin-top: 25px;
+    margin-left: -24px;
+    margin-right: -24px;
+}
+
+.sidebar__search-form {
+    display: flex;
+}
+
+.sidebar__search-input {
+    display: flex;
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: 12px;
+    padding: 7px 12px;
+}
 
 table {
     width: 100%;
@@ -3698,13 +3719,14 @@ ol > li + li {
 
 @media (max-width: 992px) {
     .sidebar__menu-toggle {
-        display: block;
+        display: flex;
+        justify-content: space-between;
     }
 
     .sidebar {
         border-radius: 3px;
         border: 1px solid #ddd;
-        margin: 50px 40px 0;
+        padding: 0 20px;
     }
 
     .sidebar__links {
@@ -3771,6 +3793,17 @@ ol > li + li {
         width: 100%;
         margin-bottom: 30px;
     }
+
+    .sidebar__search {
+        width: unset;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .sidebar__links {
+        margin: 0 -20px !important;
+    }
 }
 
 @media (max-width: 576px) {
@@ -3779,6 +3812,9 @@ ol > li + li {
     }
     .sidebar+.doc-content {
         padding-left: 40px;
+    }
+    .sidebar__search-form {
+        width: unset;
     }
 }
 
@@ -4098,7 +4134,8 @@ ol > li + li {
 }
 @media (max-width: 1100px) {
     .site-header__col--menu {
-        padding: 0;
+        padding-left: 10px;
+        padding-right: 30px;
     }
 }
 @media (min-width: 992px) {
@@ -4114,6 +4151,11 @@ ol > li + li {
 @media (min-width: 992px) {
     .site-header__mobile-menu {
         display: none;
+    }
+}
+@media (max-width: 991.98px) {
+    .site-header__mobile-menu.is-active {
+        text-align: center;
     }
 }
 .site-header__mobile-menu .hamburger-close,
@@ -4770,11 +4812,6 @@ div.mermaid {
 }
 
 span.search__span_result-count {
-    margin-bottom: 12px;
-}
-
-.search__form {
-    line-height: normal;
     margin-bottom: 12px;
 }
 
