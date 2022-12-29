@@ -2,16 +2,14 @@
     <div class="container-fluid">
         <h1 class="mm-h1">Mattermost for Developers</h1>
         <p class="mm-subhead ff--trade-gothic">All your Mattermost development needs.</p>
-        <div class="homepage-search homepage-search__row">
+        <div class="homepage-search">
+            <div class="homepage-search__row">
             {{ if .Site.Params.search.enable }}
-            <div class="homepage-search__input col-sm-9">
-                <img src="{{ "img/search-icon.svg" | absURL }}" width="24px" height="24px" alt="Search icon">
-                <label for="search-query"></label><input id="search-query" type="text" class="transparent" placeholder="Search developer documentation">
-            </div>
-            <div class="homepage-search__button col-sm-3">
-                <input id="search-button" type="button" class="btn btn-white btn-shadow form-control" value="Get Started">
+            <div class="homepage-search__input">
+                <label for="search-query"></label><input id="search-query" type="text" class="transparent ff--trade-gothic" placeholder="What are you looking for?">
             </div>
             {{ end }}
+            </div>
         </div>
     </div>
 </div>

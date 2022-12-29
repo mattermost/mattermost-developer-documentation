@@ -3279,6 +3279,7 @@ footer {
 }
 
 .footer__copyright {
+    margin-top: 2em;
     margin-bottom: 2em;
     font-size: 12px;
     line-height: 130%;
@@ -3571,57 +3572,56 @@ table>tbody>tr:nth-of-type(odd) {
 }
 
 .homepage-search {
-    margin: 4em auto 0;
-    max-width: 850px;
+    display: flex;
+    justify-content: center;
 }
 
 .homepage-search__row {
-    display: flex !important;
-    flex-wrap: wrap;
+    display: flex;
+    background: white;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    height: 82px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 
 .homepage-search__input {
-    position: relative;
-}
-
-.homepage-search__input img {
-    left: 35px;
-    position: absolute;
-    top: 18px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid #BABEC9;
+    width: 605px;
+    margin: 16px;
 }
 
 .homepage-search__input input {
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.15);
-    border: none;
-    color: #fff;
-    font-weight: 300;
-    height: 58px;
+    color: #818698;
+    font-weight: 400;
+    font-size: 18px;
     outline: none;
-    padding-left: 4em;
+    /*border: 1px solid red;*/
+    border: none;
+    margin-right: 10px;
+    margin-left: 10px;
     width: 100%;
 }
 
 .homepage-search__input ::-webkit-input-placeholder {
-    color: #fff;
+    color: #818698;
 }
 
 .homepage-search__input :-moz-placeholder {
-    color: #fff;
+    color: #818698;
 }
 
 .homepage-search__input ::-moz-placeholder {
-    color: #fff;
+    color: #818698;
 }
 
 .homepage-search__input :-ms-input-placeholder {
-    color: #fff;
-}
-
-.homepage-search__button input {
-    height: 100%;
+    color: #818698;
 }
 
 .homepage-boxes {
@@ -3766,6 +3766,11 @@ ol > li + li {
         display: block;
         margin-top: 1.5rem;
     }
+
+    .homepage-search__row {
+        width: 100%;
+        margin-bottom: 30px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -3774,9 +3779,6 @@ ol > li + li {
     }
     .sidebar+.doc-content {
         padding-left: 40px;
-    }
-    .homepage-search__button {
-        margin-bottom: 50px;
     }
 }
 

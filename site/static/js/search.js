@@ -316,7 +316,9 @@ class LunrSearch {
                     if (keywords.length > 0) {
                         const mark = new Mark(descPara);
                         for (const keyword of keywords) {
-                            mark.mark(keyword);
+                            if (keyword.length > 1) {
+                                mark.mark(keyword);
+                            }
                         }
                     }
                 }
