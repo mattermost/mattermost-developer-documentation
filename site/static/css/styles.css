@@ -3735,11 +3735,8 @@ ol > li + li {
 }
 
 @media (max-width: 768px) {
-    /* header {
-        padding: 0 20px;
-    } */
-
     .doc-content {
+        margin-top: 25px;
         padding: 0 20px;
     }
 
@@ -4773,12 +4770,17 @@ div.mermaid {
 
 /* Search results page */
 .search__input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     margin-bottom: 12px;
 }
 
 .search__query-input {
     outline: none;
-    border: 1px solid #BABEC9;
+    border: 2px solid #BABEC9;
+    padding: 6px 10px;
+    width: 605px;
 }
 
 .search__heading {
@@ -4792,14 +4794,11 @@ div.mermaid {
 }
 
 .search__results li {
-    /*margin-bottom: 24px;*/
     border-bottom: 1px solid #e1e4e5;
-    /*padding-bottom: 24px;*/
     padding: 24px 0;
 }
 .search__results li:first-child {
     border-top: 1px solid #e1e4e5;
-    /*padding-top: 24px;*/
 }
 
 .search__results_result-link-div {
