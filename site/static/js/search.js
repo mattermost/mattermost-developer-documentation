@@ -119,22 +119,26 @@ class LunrSearch {
     }
 
     /**
-     * Hook up an event handler on the button
+     * Hook up an event handler on the input field
      */
     initUI() {
-        const searchButton = document.getElementById("search-button");
-        if (searchButton) {
-            searchButton.addEventListener("click", (_) => {
-                this.search();
-            });
-        }
         const searchInput = document.getElementById("search-query");
         if (searchInput) {
-            searchInput.addEventListener("keyup", (event) => {
-                if (event.key === "Enter") {
-                    this.search();
-                }
-            });
+            // If we already added an event listener to the search input field via `search-page.js`, remove it
+            if (performSidebarSearch) {
+                searchInput.removeEventListener("keyup", performSidebarSearch);
+            }
+            searchInput.addEventListener("keyup", this.searchInputWasSubmitted);
+        }
+    }
+
+    /**
+     * Perform a search if the `Enter` key was pressed
+     * @param {KeyboardEvent} event The KeyboardEvent associated with the search event
+     */
+    searchInputWasSubmitted(event) {
+        if (event.key === "Enter") {
+            this.search();
         }
     }
 

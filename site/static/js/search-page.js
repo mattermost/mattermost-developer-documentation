@@ -11,19 +11,20 @@ const performSearch = () => {
     }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Hook up the search button with the performSearch method
-    const searchButton = document.getElementById("search-button");
-    if (searchButton) {
-        searchButton.addEventListener("click", performSearch);
+/**
+ * Perform a search from the page sidebar
+ * @param {KeyboardEvent} evt The KeyboardEvent associated with the search event
+ */
+const performSidebarSearch = (evt) => {
+    if (evt.key === "Enter") {
+        performSearch();
     }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
     // Hook up the input field with the performSearch method
     const searchInput = document.getElementById("search-query");
     if (searchInput) {
-        searchInput.addEventListener("keyup", (event) => {
-            if (event.key === "Enter") {
-                performSearch();
-            }
-        });
+        searchInput.addEventListener("keyup", performSidebarSearch);
     }
 });
