@@ -325,7 +325,7 @@ class LunrSearch {
         }
         // Only show the first fifty results
         const resultsEl = document.getElementById("results");
-        // If we can't find the results element, then there's nothing to do
+        // If we can't find the `results` element, then there's nothing to do
         if (!resultsEl) {
             return;
         }
@@ -369,13 +369,13 @@ class LunrSearch {
                     }
                 }
                 // Display the score and match data for debugging
-                const scoreSpan = document.createElement('span');
-                scoreSpan.textContent = "score: " + String(result.score);
-                scoreSpan.classList.add("search__results_result-debug");
-                listItemEl.append(
-                    document.createElement('br'),
-                    scoreSpan,
-                );
+                // const scoreSpan = document.createElement('span');
+                // scoreSpan.textContent = "score: " + String(result.score);
+                // scoreSpan.classList.add("search__results_result-debug");
+                // listItemEl.append(
+                //     document.createElement('br'),
+                //     scoreSpan,
+                // );
                 // Append the result to the end of the results list
                 resultsEl.appendChild(listItemEl);
             }
