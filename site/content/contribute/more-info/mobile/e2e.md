@@ -6,6 +6,11 @@ date: 2020-09-01T09:00:00-00:00
 weight: 5
 aliases:
   - /contribute/mobile/e2e
+  - /contribute/more-info/mobile/e2e/android/
+  - /contribute/more-info/mobile/e2e/ios/
+  - /contribute/more-info/mobile/e2e/guide-for-writing/
+  - /contribute/more-info/mobile/e2e/environment-vars/
+  - /contribute/more-info/mobile/e2e/file-structure/
 ---
 
 This page describes how to write and run End-to-End (E2E) testing for Mobile Apps for both iOS and Android. Mobile products use {{< newtabref href="https://github.com/wix/Detox" title="Detox" >}}, which is a "gray box end-to-end testing and automation library for mobile apps." See its {{< newtabref href="https://github.com/wix/Detox/tree/master/docs" title="documentation" >}} to learn more.
