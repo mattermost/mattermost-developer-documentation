@@ -11,7 +11,7 @@ aliases:
 The Mattermost mobile apps are written in {{< newtabref href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" title="JavaScript" >}} using {{< newtabref href="https://facebook.github.io/react-native/" title="React Native" >}}.
 
 ## Repository
-Further explanation of the file structure can be found in [the Developer Setup]({{< ref "/contribute/more-info/mobile/developer-setup/structure" >}}). For more information about E2E testing on the Android and iOS apps, check out [Mobile End-to-End (E2E) tests]({<ref "/contribute/more-info/mobile/e2e">})
+Further explanation of the file structure can be found in [the Developer Setup]({{< ref "/contribute/more-info/mobile/developer-setup/structure" >}}). For more information about E2E testing on the Android and iOS apps, check out [Mobile End-to-End (E2E) tests]({{<ref "/contribute/more-info/mobile/e2e">}})
 
 ## Mobile app contributor resources
  - {{< newtabref href="https://github.com/mattermost/mattermost-mobile" title="GitHub Repository" >}} - Get the code, report issues, or submit PRs.
