@@ -18,24 +18,11 @@ If you're looking for information related to E2E tests and Redux, please check o
 
 ### What requires an E2E test?
 
-* **Test cases that are defined in {{<newtabref href="https://github.com/mattermost/mattermost-server/issues?q=label%3A%22Area%2FE2E+Tests%22+label%3A%22Up+For+Grabs%22+is%3Aopen+is%3Aissue+" title="help-wanted E2E issues">}}**.
-  * Look for {{<newtabref href="https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+e2e" title="issues in the mattermost-server">}} repository that have the `Up For Grabs` label and either the `Area/E2E Tests` label or something related to E2E in the issue title.
-  * Once you find an issue you would like to work on (for example, {{<newtabref href="https://github.com/mattermost/mattermost-server/issues/18184" title=`Write Webapp E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}}), comment on the issue to claim it. This linked issue will also be referred to in other examples on writing an E2E test.
-  * Each issue is filled with specific test steps and verifications that need to be accomplished as a minimum requirement.  Additional steps and assertions for robust test implementation are very welcome. The contents of an E2E issue follow this general format:
-    * **Steps**: What the code in the test should do and/or emulate.
-    * **Expected**: What the results of the test should be.
-    * **Test Folder**: Where the file that holds the test code should be located.
-    * **Test code arrangement**: Starter code for the test.
-    * **Notes**: comments on what to add and not to add to the test file, plus resources for contributions, asking questions, etc.
-  * Another example to check out is this issue ({{<newtabref href="https://github.com/mattermost/mattermost-server/issues/14078" title=`Cypress test: "CTRL/CMD+K - Open private channel using arrow keys and Enter" #14078`>}}) and the pull request (PR) made for the issue ({{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5857" title=`[MM-23358] Cypress test for "CTRL/CMD+K - Open private channel using arrow keys and Enter" #5857 `>}}) which deals with opening a private channel through keyboard navigation using the <kbd><kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd></kbd>, <kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd><kbd>←</kbd></kbd> and <kbd>Enter</kbd> keys. On PRs in GitHub, to view the code added and changed, navigate to the `Files Changed` tab.
-  <br><br/>
-
-* **New features and stories** - For example, check out {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/4243" title="MM-19922 Add E2E tests for Mark as Unread #4243">}} which contains E2E tests for the `Mark As Unread` feature. 
-
-* **Bug fixes** - For example, see {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5908" title="MM-26751: Fix highlighting of at-mentions of self #5908">}}, which fixes a highlighting issue and adds a related test.
-
-* **Test cases from {{<newtabref href="https://support.smartbear.com/zephyr-scale-cloud/docs/" title="Zephyr">}}** - For example, see {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5850" title="Added Cypress tests MM-T1410, MM-T1415 and MM-T1419 #5850">}} which adds automated tests for `Guest Accounts`. 
-
+* Test cases that are defined in {{<newtabref href="https://github.com/mattermost/mattermost-server/issues?q=label%3A%22Area%2FE2E+Tests%22+label%3A%22Help+Wanted%22+is%3Aopen+is%3Aissue+" title="help-wanted E2E issues">}}.
+* New features and stories - For example, check out {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/4243" title="MM-19922 Add E2E tests for Mark as Unread #4243">}} which contains E2E tests for the `Mark As Unread` feature. 
+* Bug fixes - For example, see {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5908" title="MM-26751: Fix highlighting of at-mentions of self #5908">}}, which fixes a highlighting issue and adds a related test.
+* Test cases from {{<newtabref href="https://support.smartbear.com/zephyr-scale-cloud/docs/" title="Zephyr">}} - For example, see {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5850" title="Added Cypress tests MM-T1410, MM-T1415 and MM-T1419 #5850">}} which adds automated tests for `Guest Accounts`. 
+    
 ### File Structure for E2E Testing
 The file structure is mostly based on the {{<newtabref href="https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests#Folder-Structure" title="Cypress scaffold">}}. Here is an overview of some important folders and files:
 
@@ -272,7 +259,7 @@ Environment variables are {{< newtabref href="https://github.com/mattermost/matt
 
 ### Submitting your pull request (PR)
 
-Check out the PR for {{<newtabref href="https://github.com/mattermost/mattermost-server/issues/18184" title=`Write Webapp E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}} at: {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/11231" title=" MM-T642: Attachment does not collapse - Cypress Webapp E2E Test #11231">}}. You can also refer to {{< newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5891/files" title="this pull request" >}} as a guide on how to write and submit an end-to-end testing PR.
+Review the [Test Guidelines]({{<ref "/contribute/more-info/getting-started/test-guideline">}}) for details on how to submit your PR
 
 ### Troubleshooting
 #### Test(s) failing due to a known issue
