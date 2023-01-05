@@ -8,7 +8,7 @@ aliases:
   - /contribute/getting-started/test-guideline
 ---
 
-At Mattermost, we write tests to be __confident__ that our product works as expected when used by our customers. As developers, we write tests as a gift to our future selves or to be __confident__ that changes will not cause regressions or unintended behaviors. We value test-writing as much as a feature or a bug fix, and it's integrated in our core development workflows. It's not an afterthought and definitely not a follow-up action.
+At Mattermost, we write tests because we want to be onfident that our product works as expected for our users. As developers, we write tests as a gift to our future selves or to be confident that changes won't cause regressions or unintended behaviors. We value contributors who write tests as much as any others, and we want the process to be integrated in our core development workflow rather than being an afterthought or follow-up action.
 
 This page stresses the importance of tests, including for every pull request being submitted. It is the foundation of our test guidelines, and serves as a reference on why we do not merge code without tests. This is not to meet higher code coverage but rather to write effective and well-planned use cases depending on the changes being made. But of course, there's always an exception. If it isn't possible to make a test for some reason, let the reviewers know by writing a description to start a discussion and to fully understand the situation you are facing.
 
