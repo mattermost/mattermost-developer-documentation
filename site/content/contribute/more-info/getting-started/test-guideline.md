@@ -56,3 +56,20 @@ For writing and running **E2E tests** for both Android and iOS systems, take a l
 
 ### Desktop App
 For writing and running **unit and E2E tests** for the desktop app, check out the [Unit and End-to-End (E2E) Tests in the desktop app]({{<ref "/contribute/more-info/desktop/testing">}}) page.
+    
+# How to Contribute E2E Tests
+If you're looking to improve your development skills or improve your familiarity with the Mattermost code base, issues for E2E tests that are marked Help Wanted are a great place to start.
+    
+* Look for {{<newtabref href="[https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+e2e](https://github.com/mattermost/mattermost-server/issues?q=label%3A%22Area%2FE2E+Tests%22+label%3A%22Help+Wanted%22+is%3Aopen+is%3Aissue+)" title="issues in the mattermost-server">}} repository that have the `Help Wanted` label and either the `Area/E2E Tests` label or something related to E2E in the issue title.
+  * Once you find an issue you would like to work on, comment on the issue to claim it.
+* Each issue is filled with specific test steps and verifications that need to be accomplished as a minimum requirement.  Additional steps and assertions for robust test implementation are very welcome. The contents of an E2E issue follow this general format:
+  * **Steps**: What the code in the test should do and/or emulate.
+  * **Expected**: What the results of the test should be.
+  * **Test Folder**: Where the file that holds the test code should be located.
+  * **Test code arrangement**: Starter code for the test.
+  * **Notes**: comments on what to add and not to add to the test file, plus resources for contributions, asking questions, etc.
+    
+If you'd like to see an example of an ideal E2E test contribution, please view these issues and their associated PRs:
+    * [Write Webapp E2E with Cypress: "MM-T642 Attachment does not collapse"](https://github.com/mattermost/mattermost-server/issues/18184)
+    * [Cypress test: "CTRL/CMD+K - Open private channel using arrow keys and Enter"](https://github.com/mattermost/mattermost-server/issues/14078)
+
