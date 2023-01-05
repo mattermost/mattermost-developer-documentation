@@ -6,6 +6,7 @@ date: 2022-03-30T00:00:00+08:00
 weight: 6
 aliases:
   - /contribute/getting-started/test-guideline
+  - /contribute/more-info/webapp/e2e/interested-in-contributing
 ---
 
 At Mattermost, we write tests because we want to be onfident that our product works as expected for our users. As developers, we write tests as a gift to our future selves or to be confident that changes won't cause regressions or unintended behaviors. We value contributors who write tests as much as any others, and we want the process to be integrated in our core development workflow rather than being an afterthought or follow-up action.
