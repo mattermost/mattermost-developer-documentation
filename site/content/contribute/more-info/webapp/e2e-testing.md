@@ -7,6 +7,10 @@ weight: 6
 aliases:
   - contribute/webapp/e2e-testing
   - contribute/webapp/e2e
+  - contribute/more-info/webapp/e2e/folder-and-file-structure
+  - contribute/more-info/webapp/e2e/guide-for-writing
+  - contribute/more-info/webapp/e2e/running-e2e
+  - contribute/more-info/webapp/e2e/troubleshooting
 ---
 
 End-to-end tests for the Mattermost webapp in general use {{<newtabref href="https://www.cypress.io/" title="Cypress">}} and {{<newtabref href="https://playwright.dev/" title="Playwright">}}. If you're not familiar with Cypress, check out the Cypress {{<newtabref href="https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell" title="Developer Guide">}} and {{<newtabref href="https://docs.cypress.io/api/api/table-of-contents.html" title="API Reference">}}. Feel free to also join the {{< newtabref href="https://community.mattermost.com/core/channels/ui-test-automation" title="UI Test Automation" >}} Mattermost channel if you'd like to ask questions and collaborate with us!
