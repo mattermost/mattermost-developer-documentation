@@ -5,6 +5,10 @@ weight: 7
 description: "This page describes custom commands and useful functions for  End-to-End (E2E) testing regarding the Mattermost web application."
 aliases:
   - contribute/webapp/e2e-cheatsheets/
+  - contribute/more-info/webapp/e2e-cheatsheet/basic-code-structure/
+  - contribute/more-info/webapp/e2e-cheatsheet/channel-menu/
+  - contribute/more-info/webapp/e2e-cheatsheet/product-menu/
+  - contribute/more-info/webapp/e2e-cheatsheet/settings-modal/
 ---
 
 This page compiles all Cypress custom commands based on specific sections of the web app, as well as other general examples. The examples provided showcase the best and conventions on how to write great automated test scripts.
