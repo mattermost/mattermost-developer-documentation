@@ -32,7 +32,7 @@ An example of an E2E test PR is {{<newtabref href="https://github.com/mattermost
 
 #### Notes
 
-There are many interactions (ie. things that integrate with the operating system), such as notifications, that cannot be adequately testing using the automation frameworks we have. If this is the case, we will generally create a script to test in {{<newtabref href="https://handbook.mattermost.com/operations/research-and-development/quality/rainforest-process" title="Rainforest">}}, our crowd-sourced QA platform to perform these tests manually.
+There are many interactions (ie. things that integrate with the operating system), such as notifications, that cannot be adequately tested using the automation frameworks we have. If this is the case, we will generally create a script to test in {{<newtabref href="https://handbook.mattermost.com/operations/research-and-development/quality/rainforest-process" title="Rainforest">}}, our crowd-sourced QA platform to perform these tests manually.
 
 Check out the page on [web app unit testing]({{<ref "/contribute/more-info/webapp/unit-testing">}}) to see more of Jest in action. For other CLI commands related to testing, go to [Build and CLI commands]({{<ref "/contribute/more-info/desktop/build-commands">}}).
 
