@@ -9,9 +9,9 @@ aliases:
   - /contribute/more-info/webapp/e2e/interested-in-contributing
 ---
 
-At Mattermost, we write tests because we want to be onfident that our product works as expected for our users. As developers, we write tests as a gift to our future selves or to be confident that changes won't cause regressions or unintended behaviors. We value contributors who write tests as much as any others, and we want the process to be integrated in our core development workflow rather than being an afterthought or follow-up action.
+At Mattermost, we write tests because we want to be confident that our product works as expected for our users. As developers, we write tests as a gift to our future selves or to be confident that changes won't cause regressions or unintended behaviors. We value contributors who write tests as much as any others, and we want the process to be integrated in our core development workflow rather than being an afterthought or follow-up action.
 
-This page stresses the importance of tests, including for every pull request being submitted. It is the foundation of our test guidelines, and serves as a reference on why we do not merge code without tests. This is not to meet higher code coverage but rather to write effective and well-planned use cases depending on the changes being made. But of course, there's always an exception. If it isn't possible to make a test for some reason, let the reviewers know by writing a description to start a discussion and to fully understand the situation you are facing.
+This page stresses the importance of tests, including for every pull request being submitted. It is the foundation of our test guidelines, and serves as a reference on why we do not merge code without tests. This is not to meet higher code coverage but rather to write effective and well-planned use cases depending on the changes being made. But of course, there's always an exception. If, for some reason, it isn't possible to write a test, let the reviewers know by writing a description to start a discussion and to fully understand the situation you are facing.
 
 Test categories
 ---------------
@@ -37,7 +37,7 @@ When is it fine not to have tests?
 - Tests should be made at the most effective and lowest possible level, but if it requires too much effort or complicated setup to accomplish at a unit test level, it would be best to skip and assess feasibility on the next level such as integration or end-to-end testing.
 - Mocks and test helpers.
 - Types only.
-- Interfaces only or interfaces to other repositories, such as with private Enterprise via “einterfaces”.
+- Interfaces only or interfaces to other repositories, such as with private Enterprise via “interfaces”.
 - End-to-end tests codebase.
 - Automatically generated code for database migrations, store layers, etc.
 - External dependencies, modules, imports, or vendors.
