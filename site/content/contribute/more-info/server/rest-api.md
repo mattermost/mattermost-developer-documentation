@@ -12,7 +12,7 @@ The REST API is a JSON web service that facilitates communication between Matter
 
 ### Reference
 
-Looking for the API reference? You can find that here: {{<newtabref title="https://api.mattermost.com" href="https://api.mattermost.com">}}.
+Looking for the API reference? You can find it here: {{<newtabref title="https://api.mattermost.com" href="https://api.mattermost.com">}}.
 
 ### Add an endpoint
 
