@@ -86,7 +86,7 @@ This is the typical flow for local development and test writing:
 2. Open a second terminal window and:
     * Change directory to `/detox` folder.
     * Install npm packages by `npm install`.
-    * Build the app together with the androidTest using `npm run e2e:android-build`.
+    * Build the app together with the android test using `npm run e2e:android-build`.
     * Run the test using `npm run e2e:android-test`.
     * For running a single test, follow this example command: `npm run e2e:android-test -- connect_to_server.e2e.ts`. 
 
