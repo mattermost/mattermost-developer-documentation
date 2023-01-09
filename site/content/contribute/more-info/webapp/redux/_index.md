@@ -25,4 +25,4 @@ The `mattermost-redux` project consists of the following folders:
     - `src/selectors` contains the selectors used to compute data from the store or to just access it more easily.
     - `src/store` contains the setup code for the Redux store that can be extended by applications that use this library.
     - `src/utils` contains utility functions.
-- `test` contains unit testing utilities. Actual unit tests are located in the same folder of the file being tested. For more information on unit and E2E tests concerning Redux, check out [Redux Unit and E2E Testing]({{<relref "/contribute/more-info/webapp/redux/testing.md">}}).
+- `test` contains unit testing utilities. Actual unit tests are located in the same folder as the file being tested. For more information on unit and E2E tests concerning Redux, check out [Redux Unit and E2E Testing]({{<relref "/contribute/more-info/webapp/redux/testing.md">}}).
