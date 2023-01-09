@@ -1,7 +1,7 @@
 ---
 title: "Using Gitpod"
 heading: "Using Gitpod"
-description: "How to work on Mattermost repositories on Gitpod."
+description: "How to work on Mattermost repositories with Gitpod."
 weight: 6
 aliases:
   - /contribute/getting-started/gitpod
@@ -62,7 +62,7 @@ aliases:
  
 #### :mag: Creating a Pull Request (PR)
  
-16. You'll get taken to Github, to the fork of the repository you've worked on in your account instead of the main one in the Mattermost organization. Navigate to the branch you've made on your fork if you're not there already.
+16. You'll get taken to GitHub, to the fork of the repository you've worked on in your account instead of the main one in the Mattermost organization. Navigate to the branch you've made on your fork if you're not there already.
  
     * Near the top of the page will be a bar mentioning how many commits ahead/behind your branch is from the `master`/`main` branch of the main repository. There will also be two buttons: "contribute" and "sync fork". Click on the "contribute" button, and in the dropdown that appears, click the "open pull request" button.
 ![mattermost-gitpod-create-PR-on-GitHub](https://user-images.githubusercontent.com/43153413/194468644-8c625663-17d4-4187-92be-171b683d298f.jpeg)
@@ -73,10 +73,10 @@ aliases:
     * The first section of the page compares whether the branches (your branch on your fork - the "head repository" vs. the master/main branch on the main repository - the "base repository") can be merged automatically.
     * The second section of the page will show other PRs that are based on your same branch, if any.
     * The third section is where you create a write-up for your pull request - giving it a title, and filling out the template. At the bottom of this section is a "Create pull request" button. This button will be faded out until you make a title for the PR.
-        * If you haven't already, give Mattermost's [Contribution Checklist](https://developers.mattermost.com/contribute/more-info/getting-started/contribution-checklist/) a read. An important takeaway is that you will need to sign the [Contributor License Agreement](https://mattermost.com/mattermost-contributor-agreement/) - this will be another check on the pull request and if you haven't signed it it will also block merging.
+        * If you haven't already, give Mattermost's [Contribution Checklist](https://developers.mattermost.com/contribute/more-info/getting-started/contribution-checklist/) a read. An important takeaway is that you will need to sign the [Contributor License Agreement](https://mattermost.com/mattermost-contributor-agreement/) - this will be another check on the pull request and if you haven't signed it, this will also block merging.
         * Also check out this blog post about [Submitting Great PRs](https://developers.mattermost.com/blog/2019-01-24-submitting-great-prs), and other repository specific information [here](https://developers.mattermost.com/contribute).
         * **Parts of a PR body**:
-            * _Title_: a good title will refer back to the issue; and it should begin with the related Jira or Github ticket ID (e.g. [MM-394] or [GH-394]). In the context of the E2E issue example: `MM-T642: Attachment does not collapse - Cypress Webapp E2E Test`.
+            * _Title_: a good title will refer back to the issue; and it should begin with the related Jira or GitHub ticket ID (e.g. [MM-394] or [GH-394]). In the context of the E2E issue example: `MM-T642: Attachment does not collapse - Cypress Webapp E2E Test`.
             * _Summary_: description of what the PR does, as well as QA test steps (if applicable and if not already added to the Jira ticket). For example: `Verifies that attachments on posts do not collapse after entering the slash command collapse`.
             * _Ticket Link_: Either link the relevant Jira ticket or if you picked up an issue/ticket with a `Helped Wanted` label, link to the GitHub issue. For example: [Write Webapp E2E with Cypress: "MM-T642 Attachment does not collapse" #18184](https://github.com/mattermost/mattermost-server/issues/18184).
             * _Related Pull Requests_: Link other PRs here if they are related to this PR.
@@ -92,11 +92,11 @@ aliases:
                 * Bug fixes and fixes of previous known issues.
                 * Deprecation warnings, breaking changes, or compatibility notes.
                 <br><br/>
-                If no release notes are required, write NONE. Use past-tense. For E2E tests, having `NONE` as a release note suffices. If you do not end up writing a release note at all; you'll get a warning on your PR like this: `Adding the "do-not-merge/release-note-label-needed" label [to the PR] because no release-note block was detected, please follow our release note process to remove it.` If this happens, you can just edit the body of the PR, and add it back in.
+                If no release notes are required, write NONE. Use past-tense. For E2E tests, having `NONE` as a release note suffices. If you do not end up writing a release note at all, you'll get a warning on your PR like this: `Adding the "do-not-merge/release-note-label-needed" label [to the PR] because no release-note block was detected, please follow our release note process to remove it.` If this happens, you can just edit the body of the PR, and add it back in.
  
     * The last section details the code changes on your branch, including information on the commits on the branch, the files changed, and the contributors.
  
-18. Once you've created your pull request, you'll get taken to it's page, like this one: {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/11231" title="MM-T642: Attachment does not collapse - Cypress Webapp E2E Test #11231">}}. Below your initial body text of the PR will be a list of commits and other comments. At the end of this list is a checklist which notes the status of reviews required for the pull request, and the checks that the pull request must pass, plus a place to write your own additional comments.
+18. Once you've created your pull request, you'll get taken to its page, like this one: {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/11231" title="MM-T642: Attachment does not collapse - Cypress Webapp E2E Test #11231">}}. Below your initial body text of the PR will be a list of commits and other comments. At the end of this list is a checklist which notes the status of reviews required for the pull request, and the checks that the pull request must pass, plus a place to write your own additional comments.
 ![mattermost-gitpod-real-PR-1](https://user-images.githubusercontent.com/43153413/194468726-afddf66f-eaf1-4dab-a6bf-7ddf39db78bf.jpeg)
  
 19. if you need to make any changes to your PR, you can return to Gitpod and stage and commit your changes from there onto your branch; and this will be reflected in GitHub.
