@@ -14,9 +14,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12 doc-content">
-                    <div class="search__input">
-                        <label for="search-query"></label><input id="search-query" class="search__query-input ff--trade-gothic" type="text" placeholder="What are you looking for?">
-                    </div>
+                    <form role="search" class="search__form" id="search-form">
+                        <div class="search__input">
+                            <input id="search-query" class="search__query-input ff--trade-gothic" type="search" placeholder="What are you looking for?" aria-label="search">
+                        </div>
+                    </form>
                     <span id="search-status" class="search__span_status badge badge-secondary"></span>
                     <div class="search__heading">
                         <h2 class="doc-title search__title">{{ .Title }}</h2>
