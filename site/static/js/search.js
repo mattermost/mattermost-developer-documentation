@@ -128,17 +128,11 @@ class LunrSearch {
             if (performSidebarSearch) {
                 searchInput.removeEventListener("keyup", performSidebarSearch);
             }
-            searchInput.addEventListener("keyup", this.searchInputWasSubmitted);
-        }
-    }
-
-    /**
-     * Perform a search if the `Enter` key was pressed
-     * @param {KeyboardEvent} event The KeyboardEvent associated with the search event
-     */
-    searchInputWasSubmitted(event) {
-        if (event.key === "Enter") {
-            this.search();
+            searchInput.addEventListener("keyup", (event) => {
+                if (event.key === "Enter") {
+                    this.search();
+                }
+            });
         }
     }
 
