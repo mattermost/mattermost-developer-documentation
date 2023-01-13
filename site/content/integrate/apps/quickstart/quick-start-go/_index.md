@@ -26,7 +26,7 @@ In the same {{< newtabref href="https://github.com/mattermost/mattermost-app-exa
 
 ```sh
 cd golang/hello-world
-docker compose up
+docker-compose up
 ```
 
 You'll see Docker install the Go modules and then the App will come online and print the following message:
