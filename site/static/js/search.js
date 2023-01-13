@@ -124,26 +124,50 @@ class LunrSearch {
     initUI() {
         const searchInput = document.getElementById("search-query");
         if (searchInput) {
-            // If we already added an event listener to the search input field via `search-page.js`, remove it
-            if (performSidebarSearch) {
-                searchInput.removeEventListener("keyup", performSidebarSearch);
+            // If we have not already added an event listener to the search input field, add one.
+            // The `search-page.js` script defines `performSidebarSearch`.
+            if (!performSidebarSearch) {
+                searchInput.addEventListener("keyup", (event) => {
+                    if (event.key === "Enter") {
+                        this.searchUsingPageRedirect();
+                    }
+                });
             }
-            searchInput.addEventListener("keyup", (event) => {
-                if (event.key === "Enter") {
-                    this.search();
-                }
-            });
         }
     }
 
+    /**
+     * Perform a search by redirecting the user to the search result page with their query.
+     */
+    searchUsingPageRedirect() {
+        const searchQuery = document.getElementById("search-query");
+        if (searchQuery && searchQuery.value.length > 1) {
+            const redirectURL = new URL("search/", BASE_URL);
+            redirectURL.searchParams.set("q", searchQuery.value);
+            window.location.href = redirectURL.toString();
+        }
+    }
+
+    /**
+     * Set the array of pages to index for searching
+     * @param pages {Array<SearchIndexPage>} The pages to index
+     */
     setIndexPages(pages) {
         this.pagesIndex = pages;
     }
 
+    /**
+     * Explicitly set the Lunr index to be used for searching.
+     * @param index {lunr.Index} The Lunr index to use for searching
+     */
     setIndex(index) {
         this.lunrIndex = index;
     }
 
+    /**
+     * Determines if the Lunr search index has been built.
+     * @returns {boolean}
+     */
     isIndexLoaded() {
         return this.lunrIndex !== null;
     }

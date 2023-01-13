@@ -2,9 +2,9 @@
 /**
  * Get the search terms from the input field and redirect the user to the search page
  */
-const performSearch = () => {
+const performSearchUsingPageRedirect = () => {
     const searchQuery = document.getElementById("search-query");
-    if (searchQuery) {
+    if (searchQuery && searchQuery.value.length > 1) {
         const redirectURL = new URL("search/", BASE_URL);
         redirectURL.searchParams.set("q", searchQuery.value);
         window.location.href = redirectURL.toString();
@@ -17,7 +17,7 @@ const performSearch = () => {
  */
 const performSidebarSearch = (evt) => {
     if (evt.key === "Enter") {
-        performSearch();
+        performSearchUsingPageRedirect();
     }
 };
 
