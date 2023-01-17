@@ -4,6 +4,9 @@ description: Webhooks
 weight: 20
 aliases:
   - /integrate/webhooks/golang-webhook/
+subsection: webhooks
+cascade:
+  - subsection: webhooks
 ---
 
 Mattermost supports webhooks to easily integrate external applications into the server.
