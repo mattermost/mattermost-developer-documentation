@@ -35,7 +35,7 @@ pygmentsStyle = "manni"
     text = "We're improving your developer experience."
 
   [params.search]
-    enable = false
+    enable = true
 
   [params.sidebar]
   [[params.sidebar.item]]

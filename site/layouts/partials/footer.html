@@ -50,6 +50,11 @@
   crossorigin="anonymous"></script>
 <script src="{{ "js/tabs.js" | absURL }}"></script>
 <script src="{{ "js/main.js" | absURL }}"></script>
+<!-- Set the BASE_URL constant for site search -->
+<script>
+    const BASE_URL = "{{ site.BaseURL }}";
+</script>
+<script src="{{ "js/search-page.js" | absURL }}"></script>
 <!-- If there is at least one <pre> block on this page, include the code copy button script -->
 {{- if (findRE "<pre" .Content 1) -}}
 <script src="{{ "js/code-copy-button.js" | absURL }}"></script>
