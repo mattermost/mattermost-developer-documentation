@@ -1,178 +1,200 @@
 ---
-title: "External webhooks"
-heading: "External webhooks"
-description: "In this example, the http app will demonstrate connect webhooks"
-weight: 800
+title: Webhooks
+heading: App webhooks
+weight: 30
 aliases:
   - /integrate/apps/api/third-party-webhooks/
   - /integrate/apps/using-third-party-api/
   - /integrate/apps/using-third-party-api/hello-webhooks/
 ---
+The Apps framework offers the ability to directly integrate with webhooks. An App webhook is executed through a special endpoint on the Mattermost Server and can require an authentication secret.
+The App [manifest]({{<ref "/integrate/apps/structure/manifest">}}) must request the `remote_webhooks` permission to use webhooks.
 
-This is an example of an HTTP app ([source](https://github.com/mattermost/mattermost-plugin-apps/tree/master/examples/go/hello-webhooks)), written in Go and runnable on `http://localhost:8081`.
+## Webhook URL
 
-- It contains a `manifest.json`, declares itself an HTTP application, requests permissions, and binds itself to locations in the Mattermost user interface.
-- In its `bindings` function it declares two commands: `info` and `send`.
-- The `info` command will post an ephemeral message containing a valid `send` command.
-- The `send` command sends a webhook message to the apps plugin which in turn sends the webhook request to the `Hello, webhooks!` app
-- The hello app receives the webhook, via it's `/webhook` endpoint, and responds with an ephemeral message when the webhook is received.
-
-### Install
-
-To install "Hello, Webhooks" on a locally-running instance of Mattermost follow these steps (go 1.16 is required):
-
-Make sure you have followed the Quick Start Guide [prerequisite steps]({{< ref quick-start-go >}}).
-
-```sh
-git clone https://github.com/mattermost/mattermost-plugin-apps.git
-cd mattermost-plugin-apps/examples/go/hello-webhooks
-go run .
-```
-
-Run the following Mattermost slash command:
+The App webhook URL has the following format:
 
 ```
-/apps install http http://localhost:8081/manifest.json
+<mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook/<sub_path>?secret=<authentication_secret>
 ```
 
-### Manifest
+| Parameter name          | Description                                                                                                               | Example value                   |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------------|---------------------------------|
+| `mattermost_site_url`   | The base URL of the Mattermost server.                                                                                    | `https://my-mattermost-server/` |
+| `app_id`                | The App's ID as found in the [manifest]({{<ref "/integrate/apps/structure/manifest">}}).                                  | `my-app`                        |
+| `sub_path`              | (_Optional_) The webhook sub-path. See the [Webhook call path](#webhook-call-path) section for more information.          | `my-sub-path`                   |
+| `authentication_secret` | The webhook secret; used to authenticate the webhook request. See [Authentication](#authentication) for more information. | `cwsjhrdqebyf8qrnabtxio7k7r`    |
 
-`Hello, Webhooks!` is an HTTP app. It requests the *permissions* to act as a System Admin and bot to access the Mattermost REST API. It also requests permissions to receive third-party webhook messages. It binds itself to `/` commands.
+Using the above example values, the webhook URL will look like this:
 
-```json
+`https://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-sub-path?secret=cwsjhrdqebyf8qrnabtxio7k7r`
+
+### Webhook call path
+
+The App [manifest]({{<ref "/integrate/apps/structure/manifest">}}) contains an optional property `on_remote_webhook` which defines the base [call]({{<ref "/integrate/apps/structure/call">}}) path for incoming App webhooks.
+This property only affects the call path in the App; it does not affect the URL that an end user or system uses to execute the webhook.
+
+The `sub_path` of a webhook URL is also optional. When it is defined, the call that is executed changes; the call path will be different.
+
+Examples:
+
+1. If `on_remote_webhook` is not defined in the manifest and `sub_path` is also not defined, the call path will be `/webhook` and the webhook URL will be:
+
+   ```
+   <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook
+   ```
+
+2. If the `on_remote_webhook` call path is defined as `/my-webhooks` in the manifest but `sub_path` is not defined, the call path will be `/my-webhooks` and the webhook URL will be:
+
+   ```
+   <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook
+   ```
+
+3. If `on_remote_webhook` is not defined in the manifest but `sub_path` is defined as `my-sub-path`, the call path will be `/webhook/my-sub-path` and the webhook URL will be:
+
+   ```
+   <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook/my-sub-path
+   ```
+
+4. If the `on_remote_webhook` call path is defined as `/my-webhooks` in the manifest and the `sub_path` is defined as `my-sub-path`, the call path will be `/my-webhooks/my-sub-path` and the webhook URL will be:
+
+   ```
+   <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook/my-sub-path
+   ```
+
+## Call request
+
+The [call]({{<ref "/integrate/apps/structure/call">}}) executed for an App webhook will include additional information in the `values` field of the request:
+
+| Name         | Data type | Description                                                                                                                  |
+|--------------|-----------|------------------------------------------------------------------------------------------------------------------------------|
+| `headers`    | map       | The HTTP headers used in the request.                                                                                        |
+| `data`       | _any_     | The contents of the call request body.<br/>JSON bodies are automatically unmarshalled, otherwise the body is returned as-is. |
+| `httpMethod` | string    | The HTTP method used in the request. e.g. `POST`, `GET`.                                                                     |
+| `rawQuery`   | string    | Encoded URL query values, without the `?`.                                                                                   |
+
+An example webhook call request looks like the following:
+
+```http request
+POST /webhook HTTP/1.1
+Content-Type: application/json
+
 {
-    "app_id": "hello-webhooks",
-	"version": "0.8.0",
-	"display_name": "Hello, Webhooks!",
-	"app_type": "http",
-	"icon": "icon.png",
-	"homepage_url": "https://github.com/mattermost/mattermost-plugin-apps/examples/go/hello-webhooks",
-	"requested_permissions": [
-		"act_as_bot",
-		"remote_webhooks"
-	],
-	"requested_locations": [
-		"/command"
-	],
-	"on_install": {
-		"path": "/install",
-		"expand": {
-			"admin_access_token": "all"
-		}
-	},
-	"http": {
-		"root_url": "http://localhost:8081"
-	}
+    "path": "/webhook",
+    "values": {
+        "data": "",
+        "headers": {
+            "Accept": "*/*",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Connection": "keep-alive",
+            "Content-Length": "0",
+            "Mattermost-Session-Id": "",
+            "User-Agent": "PostmanRuntime/7.30.0"
+        },
+        "httpMethod": "POST",
+        "rawQuery": "secret=pszhs89rspyrje41khqouwbhce"
+    },
+    "context": {
+        "acting_user_id": "mgbd1czngjbbdx6eqruqabdeie",
+        "app_id": "hello-world",
+        "mattermost_site_url": "http://mattermost:8066",
+        "developer_mode": true,
+        "app_path": "/plugins/com.mattermost.apps/apps/hello-world",
+        "bot_user_id": "mgbd1czngjbbdx6eqruqabdeie",
+        "bot_access_token": "nr7ne5p8oprkimkmt7xra67xjy",
+        "acting_user_access_token": "nr7ne5p8oprkimkmt7xra67xjy",
+        "oauth2": {}
+    }
 }
 ```
 
-### Bindings and locations
+## Authentication
 
-The `Hello Webhooks!` app creates two commands: `/hello-webhooks info | send`.
+App webhooks support an API key-like authentication method that is enabled by default. A Mattermost server-generated secret named `webhook_secret` is provided in a call context where the `app` expand field is set to `all`.
+The secret is expected to be appended to the webhook URL as a query value named `secret`.
+
+Using the example from the previous section, the webhook URL will look like this:
+
+`http://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-sub-path?secret=cwsjhrdqebyf8qrnabtxio7k7r`
+
+The Mattermost server will authenticate incoming webhook requests by comparing the `secret` URL query value with the App's `webhook_secret`.
+If an incoming webhook request does not include the correct secret, the request will be denied with an HTTP 401 response.
+
+{{<note "Disable authentication:">}}
+It is possible to disable webhook authentication by setting the `remote_webhook_auth_type` App manifest field to `none`.
+The Mattermost server will not generate a webhook secret, will not perform any authentication against the call request, and will pass all webhook calls to the appropriate App call handlers.
+This may have security and hosting cost implications.
+{{</note>}}
+
+### Get the webhook secret
+
+A simple way to get the App's webhook secret is to use a slash command that executes a [call]({{<ref "/integrate/apps/structure/call" >}}) with the `app` expand field set to `all`.
+
+For example, the following bindings create a slash command that will provide the webhook secret to its call:
 
 ```json
-{
-    "type": "ok",
-    "data": [
-        {
-            "location": "/command",
-            "bindings": [
-                {
-                    "icon": "icon.png",
-                    "label": "hello-webhooks",
-                    "description": "Hello Webhooks App",
-                    "hint": "[ send ]",
-                    "bindings": [
-                        {
-                            "location": "send",
-                            "label": "send",
-                            "call": {
-                                "path": "/send"
-                            }
-                        },
-                        {
-                            "location": "info",
-                            "label": "info",
-                            "call": {
-                                "path": "/info"
-                            }
-                        }
-                    ]
+[
+    {
+        "location": "/command",
+        "bindings": [
+            {
+                "location": "configure",
+                "label": "configure",
+                "description": "Configure the app",
+                "submit": {
+                    "path": "/configure",
+                    "expand": {
+                        "app": "all"
+                    }
                 }
-            ]
-        }
-    ]
+            }
+        ]
+    }
+]
+```
+
+The call request would look like this:
+
+```json
+{
+    "path": "/configure",
+    "expand": {
+        "app": "all"
+    },
+    "context": {
+        "app_id": "hello-world",
+        "location": "/command/configure",
+        "user_agent": "webapp",
+        "track_as_submit": true,
+        "mattermost_site_url": "http://mattermost:8066",
+        "developer_mode": true,
+        "app_path": "/plugins/com.mattermost.apps/apps/hello-world",
+        "bot_user_id": "mgbd1czngjbbdx6eqruqabdeie",
+        "bot_access_token": "q8idzs7dspf8ugra9sb7dkgxwe",
+        "app": {
+            "app_id": "hello-world",
+            "version": "0.1.0",
+            "webhook_secret": "cwsjhrdqebyf8qrnabtxio7k7r",
+            "bot_user_id": "mgbd1czngjbbdx6eqruqabdeie",
+            "bot_username": "hello-world",
+            "remote_oauth2": {}
+        },
+        "acting_user": {
+            "id": "7q7kaakokfdsdycy3pr9ctkc5r"
+            // additional fields omitted for brevity
+        },
+        "oauth2": {}
+    },
+    "raw_command": "/configure "
 }
 ```
 
-### Display the webhook command
+The webhook secret can be found in the `context.app.webhook_secret` field.
 
-`/hello-webhooks info` displays a valid `/hello-webhooks send` command constructed with your mattermost-site-url, the path to the hello app webhook endpoint, and a secret.
+Using the webhook secret above, a webhook URL for an App would look like the following:
 
-```go
-func info(w http.ResponseWriter, req *http.Request) {
-    creq := apps.CallRequest{}
-    json.NewDecoder(req.Body).Decode(&creq)
+`http://mattermost:8066/plugins/com.mattermost.apps/apps/hello-world/webhook/coffee-roast?secret=cwsjhrdqebyf8qrnabtxio7k7r`
 
-    json.NewEncoder(w).Encode(apps.CallResponse{
-        Markdown: md.Markdownf("Try `/hello-webhooks send %s`",
-            creq.Context.MattermostSiteURL+creq.Context.AppPath+apps.PathWebhook+
-                "/hello"+
-                "?secret="+creq.Context.App.WebhookSecret),
-    })
-}
-```
+## Example
 
-### Send a webhook command
-
-The `/hello-webhooks send` command from the `info` command response will send a webhook message to the apps plugin which verifies the secret and forwards the request to the hello app. The `Hello, Webhooks!` app receives the webhook and posts an ephemeral message in Mattermost.
-
-```go
-func send(w http.ResponseWriter, req *http.Request) {
-    creq := apps.CallRequest{}
-    json.NewDecoder(req.Body).Decode(&creq)
-    url, _ := creq.Values["url"].(string)
-
-    http.Post(
-        url,
-        "application/json",
-        bytes.NewReader([]byte(`"Hello from a webhook!"`)))
-
-    json.NewEncoder(w).Encode(apps.CallResponse{
-        Markdown: "posted a Hello webhook message",
-    })
-}
-```
-
-The following image shows the displayed confirmation message after the webhook is sent using the `/hello-webhooks send` command.
-![webhookSent message](sent-webhook.png)
-
-### Webhook call handler
-
-```go
-// Webhook handler
-http.HandleFunc("/webhook/", webhookReceived)
-```
-
-`webhookReceived` receives the webhook message and posts a confirmation message in the channel.
-
-```go
-func webhookReceived(w http.ResponseWriter, req *http.Request) {
-    creq := apps.CallRequest{}
-    json.NewDecoder(req.Body).Decode(&creq)
-
-    asBot := appclient.AsBot(creq.Context)
-    channelID := ""
-    asBot.KVGet("channel_id", "", &channelID)
-
-    asBot.CreatePost(&model.Post{
-        ChannelId: channelID,
-        Message:   fmt.Sprintf("received webhook, path `%s`, data: `%v`", creq.Path, creq.Values["data"]),
-    })
-
-    json.NewEncoder(w).Encode(apps.CallResponse{Type: apps.CallResponseTypeOK})
-}
-```
-
-The following image shows the displayed confirmation message after the webhook is received.
-![webhookReceived message](received-webhook.png)
+An example of implementing App webhooks can be found in the {{<newtabref title="Mattermost apps examples repo" href="https://github.com/mattermost/mattermost-app-examples/tree/master/golang/webhooks">}}.

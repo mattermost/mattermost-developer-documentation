@@ -12,7 +12,7 @@ Getting your plugin onto our Community server https://community.mattermost.com i
 
 However we must ensure that our Community server remains stable for everyone. This document outlines the process of getting your plugin onto the Community server and some of these steps are required to get your plugin into the [Marketplace]({{< ref "/integrate/plugins/community-plugin-marketplace" >}}). 
 
-When you're ready to begin this process for your plugin, ask in the [Toolkit channel](https://community.mattermost.com/core/channels/developer-toolkit) on the Community server. The PM, or someone else from the Integrations team, will help you start the process.
+When you're ready to begin this process for your plugin, ask in the {{< newtabref href="https://community.mattermost.com/core/channels/developer-toolkit" title="Toolkit channel" >}} on the Community server. The PM, or someone else from the Integrations team, will help you start the process.
 
 ## Checklist
 
@@ -39,13 +39,13 @@ When you're ready to begin this process for your plugin, ask in the [Toolkit cha
 
 Basic code review of an experimental plugin involves a quick review by a [core committer]({{< ref "/contribute/more-info/getting-started/core-committers" >}}) to verify that the plugin does what it says it does and to provide any guidance and feedback. To make it easier to provide feedback, a PR can be made that contains all the code of the plugin that isn't the boilerplate from mattermost-plugin-starter-template.
 
-- When you are ready for your plugin to start this process, post an introduction in the [Integrations and Apps channel](https://community.mattermost.com/core/channels/integrations) on the Community server. Here is [an example](https://community.mattermost.com/core/pl/6dci1ssexjrh9rmdzt4pdpb9zy).
+- When you are ready for your plugin to start this process, post an introduction in the {{< newtabref href="https://community.mattermost.com/core/channels/integrations" title="Integrations and Apps channel" >}} on the Community server. Here is {{< newtabref href="https://community.mattermost.com/core/pl/6dci1ssexjrh9rmdzt4pdpb9zy" title="an example" >}}.
 
 ### CI system setup
 
 Setting up the CI system for your plugin will allow continuous testing of your master branch and releases on our testing servers. Master branch testing is done on https://ci-extensions.azure.k8s.mattermost.com/ and release testing is done on https://ci-extensions-release.azure.k8s.mattermost.com/.
 
-In order to set this up, the plugin creator needs to provide a URL that hosts latest master build, which we can pull on a nightly basis. Once that exists you can make a request in the [Integrations and Apps](https://community.mattermost.com/core/channels/integrations) channel.
+In order to set this up, the plugin creator needs to provide a URL that hosts latest master build, which we can pull on a nightly basis. Once that exists you can make a request in the {{< newtabref href="https://community.mattermost.com/core/channels/integrations" title="Integrations and Apps" >}} channel.
 
 ### Compatible licence
 
@@ -56,7 +56,7 @@ Recommended licences:
 - BSD 2-clause
 - BSD 3-clause
 
-[More info](https://www.apache.org/legal/resolved.html#category-a)
+{{< newtabref href="https://www.apache.org/legal/resolved.html#category-a" title="More info" >}}
 
 ### Complete code review
 

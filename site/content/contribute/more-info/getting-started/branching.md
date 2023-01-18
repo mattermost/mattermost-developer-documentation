@@ -8,7 +8,7 @@ aliases:
   - /contribute/getting-started/branching
 ---
 
-The self-managed releases are cut based off of the Mattermost Cloud release tags (e.g Mattermost Server v6.3 release was based off of ``cloud-2021-12-08-1`` Cloud release tag) in the server, webapp, enterprise, and api-reference repos. See [the Handbook release process](https://handbook.mattermost.com/operations/research-and-development/product/release-process/release-overview#cloud-release-branch-processes) for more details.
+The self-managed releases are cut based off of the Mattermost Cloud release tags (e.g Mattermost Server v6.3 release was based off of ``cloud-2021-12-08-1`` Cloud release tag) in the server, webapp, enterprise, and api-reference repos. See {{< newtabref href="https://handbook.mattermost.com/operations/research-and-development/product/release-process/release-overview#cloud-release-branch-processes" title="the Handbook release process" >}} for more details.
 
 The Mobile and Desktop app release branches are based off of ``master`` branch.
 
@@ -34,6 +34,33 @@ When your PR is required on a release branch (e.g. for a dot release or to fix a
 {{<note "Note:">}}
 If the PR needs to go to other release branches, you can run the command `/cherry-pick release-x.yz` in the PR comments and it will try to cherry-pick it to the branch you specified.
 {{</note>}}
+
+### Manual cherry-pick
+
+If conflicts appear between your pull request (PR) and the cherry-pick target branch, the automated cherry-pick process will fail and will let you know that you need to do a manual cherry-pick. Here are the steps to do so:
+
+1. Fetch the latest updates from origin:
+```sh
+git fetch origin
+```
+2. Create a new branch starting at the release branch on origin.
+```sh
+git checkout -b manual-cherry-pick-pr-[PR_NUMBER] origin/release-[VERSION]
+```
+3. Find the SHA of the pull request merge commit, and cherry-pick this commit in your new branch:
+```sh
+git log origin/master
+git cherry-pick [SHA]
+```
+4. You're likely to face the conflict that prevented the automated cherry-pick now. Fix the conflict, and then run the following:
+```sh
+git add [path/to/conflicted/files]
+git cherry-pick --continue
+```
+5. Finally, push your new branch as usual and create a PR. Make sure you select `release-[VERSION]` as the base branch, and not the default (master).
+```sh
+git push -u origin
+```
 
 ## Reviewer process
 

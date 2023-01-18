@@ -1,6 +1,6 @@
 This is an unofficial guide. Community testing, feedback, and improvements are welcome and greatly appreciated.
 
-1. Install the Windows Subsystem for Linux: https://docs.microsoft.com/en-us/windows/wsl/install-win10.
+1. Install the Windows Subsystem for Linux: https://learn.microsoft.com/en-us/windows/wsl/install.
 
       **Note:** Docker for Windows expects path to have the format `/c/foo/bar`, but WSL uses `/mnt/c/foo/bar` instead.
       
@@ -14,16 +14,17 @@ This is an unofficial guide. Community testing, feedback, and improvements are w
        sudo mkdir /c
        sudo mount --bind /mnt/c /c
 
-      For more on how to properly set up Docker for Windows and WSL see [here](https://web.archive.org/web/20200402131133/https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly).
+      For more on how to properly set up Docker for Windows and WSL see {{< newtabref href="https://web.archive.org/web/20200402131133/https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly" title="here" >}}.
 
 2. Install and set up Docker:
 
-    * Install Docker for Windows: https://docs.docker.com/docker-for-windows/.
+    * Install Docker for Windows: https://docs.docker.com/desktop/install/windows-install/.
     * Link Windows Subsystem for Linux to Docker for Windows: https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4.
         * You should end up with the Docker client running on Linux (WSL) sending commands to your Docker Engine daemon installed on Windows.
     * Go to **Docker Desktop > Settings > Resources > File Sharing** and make sure you check the drives where you are going to run `mattermost-server` from.
 
-    **Note:** [MM-9791](https://github.com/mattermost/mattermost-server/pull/10872) introduced using [docker-compose](https://docs.docker.com/compose/) to manage containers. To preserve your data on upgrade, execute the following steps.
+    **Note:** {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/10872" title="MM-7971" >}} introduced using {{< newtabref href="https://docs.docker.com/compose/" title="docker-compose" >}} to manage containers. To preserve your data on upgrade, execute the following steps.
+
 
     First, backup from any existing containers:
     ```sh
@@ -44,7 +45,7 @@ This is an unofficial guide. Community testing, feedback, and improvements are w
     sudo chmod +x /usr/local/bin/docker-compose
     ```
 
-3. Install Go using bash (modify installation to latest Go version from https://golang.org/dl/):
+3. Install Go using bash (modify installation to latest Go version from {{< newtabref href="https://go.dev/dl/" title="here" >}}):
 
     ```sh
     sudo apt-get install -y build-essential

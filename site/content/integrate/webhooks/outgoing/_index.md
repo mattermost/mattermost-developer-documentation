@@ -3,8 +3,8 @@ title: Outgoing webhooks
 description: Outgoing webhooks
 weight: 20
 aliases:
-  - /integrate/webhooks/outgoing/outgoing-webhooks/
-  - /integrate/webhooks/outgoing/using-outgoing-webhooks/
+    - /integrate/webhooks/outgoing/outgoing-webhooks/
+    - /integrate/webhooks/outgoing/using-outgoing-webhooks/
 ---
 
 ## Create an outgoing webhook
@@ -20,19 +20,22 @@ You can follow these general guidelines to set up a Mattermost outgoing webhook 
     - If `application/json` is chosen, the server will format the request body as JSON.
 4. Select the public channel to receive webhook responses, or specify one or more trigger words that send an HTTP POST request to your application. You may configure either the channel or the trigger words for the outgoing webhook, or both. If both are specified, then the message must match both values.
 
-   In our example, we would set the channel to `town-square` and specify `#build` as the trigger word.
+    In our example, we would set the channel to `town-square` and specify `#build` as the trigger word.
 
-   **Note:** If you leave the channel field blank, the webhook will respond to trigger words in all public channels of your team. Similarly, if you don't specify trigger words, then the webhook will respond to all messages in the selected public channel.
+   {{<note "Note:">}}
+   If you leave the channel field blank, the webhook will respond to trigger words in all public channels of your team. Similarly, if you don't specify trigger words, then the webhook will respond to all messages in the selected public channel.
+   {{</note>}}
 
 5. If you specified one or more trigger words on the previous step, choose when to trigger the outgoing webhook.
 
     - If the first word of a message matches one of the trigger words exactly, or
     - If the first word of a message starts with one of the trigger words.
 
-6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a [trusted internal connection](https://docs.mattermost.com/configure/configuration-settings.html).
+6. Finally, set one or more callback URLs that HTTP POST requests will be sent to, then select **Save**. If the URL is private, add it as a {{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html" title="trusted internal connection" >}}.
+
 7. On the next page, copy the **Token** value. This will be used in a later step.
 
-   ![image](/integrate/faq/images/outgoing_webhooks_token.png)
+    ![Dialog box showing `Setup Successful` message and `Token` in the description message](/integrate/faq/images/outgoing_webhooks_token.png)
 
 ## Use an outgoing webhook
 
@@ -45,7 +48,7 @@ You can follow these general guidelines to set up a Mattermost outgoing webhook 
     Host: localhost:5000
     Accept: application/json
     Content-Type: application/x-www-form-urlencoded
-    
+
     channel_id=hawos4dqtby53pd64o4a4cmeoo&
     channel_name=town-square&
     team_domain=someteam&
@@ -59,7 +62,7 @@ You can follow these general guidelines to set up a Mattermost outgoing webhook 
     user_name=somename
     ```
 
-   If your integration sends back a JSON response, make sure it returns the `application/json` content-type.
+    If your integration sends back a JSON response, make sure it returns the `application/json` content-type.
 
 2. Add a configurable *MATTERMOST_TOKEN* variable to your application and set it to the **Token** value from step 7. This value will be used by your application to confirm the HTTP POST request came from Mattermost.
 3. To have your application post a message back to `town-square`, it can respond to the HTTP POST request with a JSON response such as:
@@ -76,7 +79,7 @@ You can follow these general guidelines to set up a Mattermost outgoing webhook 
 
     which would render in Mattermost as:
 
-    ![image](/integrate/faq/images/webhooksTable.png)
+    ![Test results for Server, Web Client and iOS client](/integrate/faq/images/webhooksTable.png)
 
 You're all set!
 
@@ -84,15 +87,16 @@ You're all set!
 
 Outgoing webhooks support more than just the `text` field. Here is a full list of supported parameters.
 
-| Parameter | Description | Required |
-|---|---|---|
-| `text` | [Markdown-formatted](https://docs.mattermost.com/messaging/formatting-text.html) message to display in the post.<br> To trigger notifications, use `@<username>`, `@channel`, and `@here` like you would in other Mattermost messages. | If `attachments` is not set, yes |
-| `response_type` | Set to "`comment`" to reply to the message that triggered it.<br> Set to blank or "post" to create a regular message.<br> Defaults to "post". | No |
-| `username` | Overrides the username the message posts as.<br> Defaults to the username set during webhook creation or the webhook creator's username if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames). | No |
-| `icon_url` | Overrides the profile picture the message posts with.<br> Defaults to the URL set during webhook creation or the webhook creator's profile picture if the former was not set.<br> Must be enabled [in the configuration](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons). | No |
-| `attachments` | [Message attachments](https://docs.mattermost.com/developer/message-attachments.html) used for richer formatting options. | If `text` is not set, yes |
-| `type` | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with "`custom_`". Passing `attachments` will ignore this field and set the type to `slack_attachment`. | No |
-| `props` | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br> Mainly used by other integrations accessing posts through the REST API.<br> The following keys are reserved: "from\_webhook", "override\_username", "override\_icon\_url", "webhook\_display\_name" and "attachments". | No |
+
+| Parameter       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Required                         |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|
+| `text`          | {{<newtabref title="Markdown-formatted" href="https://docs.mattermost.com/messaging/formatting-text.html">}} message to display in the post.<br/>To trigger notifications, use `@<username>`, `@channel`, and `@here` like you would in other Mattermost messages.                                                                                                                                                                                                                                                        | If `attachments` is not set, yes |
+| `response_type` | Set to `comment` to reply to the message that triggered it.<br/>Set to blank or `post` to create a regular message.<br/>Defaults to `post`.                                                                                                                                                                                                                                                                                                                                                                               | No                               |
+| `username`      | Overrides the username the message posts as.<br/>Defaults to the username set during webhook creation; if no username was set during creation, `webhook` is used.<br/>The {{<newtabref title="Enable integrations to override usernames" href="https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames">}} configuration setting must be enabled for the username override to take effect.                                                                            | No                               |
+| `icon_url`      | Overrides the profile picture the message posts with.<br/>Defaults to the URL set during webhook creation; if no icon was set during creation, the standard webhook icon ({{<compass-icon icon-webhook>}}) is displayed.<br/>The {{<newtabref title="Enable integrations to override profile picture icons" href="https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons">}} configuration setting must be enabled for the icon override to take effect. | No                               |
+| `attachments`   | [Message attachments]({{<ref "/integrate/reference/message-attachments">}}) used for richer formatting options.                                                                                                                                                                                                                                                                                                                                                                                                           | If `text` is not set, yes        |
+| `type`          | Sets the post `type`, mainly for use by plugins.<br/>If not blank, must begin with "`custom_`".<br/>Specifying a value for the `attachments` property will cause this field to be ignored, and the `type` value set to `slack_attachment`.                                                                                                                                                                                                                                                                                | No                               |
+| `props`         | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br/>Mainly used by other integrations accessing posts through the REST API.<br/>The following keys are reserved: `from_webhook`, `override_username`, `override_icon_url`, `webhook_display_name`, and `attachments`.                                                                                                                                                                                                              | No                               |
 
 An example response using more parameters would look like this:
 
@@ -118,10 +122,6 @@ Content-Length: 755
 
 The response would produce a message like the following:
 
-![image](outgoing_webhooks_full_example.png)
+![`test-automation` bot showing test results](outgoing_webhooks_full_example.png)
 
 Messages with advanced formatting can be created by including an [attachment array]({{< ref "/integrate/reference/message-attachments" >}}) and [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}) in the JSON payload.
-
-**Note:** [Enable integrations to override usernames](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-usernames) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin. If not enabled, the username is set to `webhook`.
-
-Similarly, [Enable integrations to override profile picture icons](https://docs.mattermost.com/configure/configuration-settings.html#enable-integrations-to-override-profile-picture-icons) must be set to `true` in `config.json` to override usernames. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin. If not enabled, the icon of the creator of the webhook URL is used to post messages.

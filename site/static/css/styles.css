@@ -11,8 +11,12 @@
 
 @font-face {
     font-family: 'FontAwesome';
-    src: url("../fonts/fontawesome-webfont.eot?v=4.7.0");
-    src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
+    src: url("../font/fontawesome-webfont.eot?v=4.7.0");
+    src: url("../font/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"),
+         url("../font/fontawesome-webfont.woff2?v=4.7.0") format("woff2"),
+         url("../font/fontawesome-webfont.woff?v=4.7.0") format("woff"),
+         url("../font/fontawesome-webfont.ttf?v=4.7.0") format("truetype"),
+         url("../font/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
     font-weight: normal;
     font-style: normal;
 }
@@ -3075,19 +3079,19 @@ readers do not read off random characters that represent icons
 }
 
 * {
-    /* border: 1px solid red; */
+     /*border: 1px solid red;*/
 }
 
 body {
     display: flex;
     flex-direction: column;
-    /* font-family: 'Open Sans', sans-serif; */
     font-size: 15px;
     min-height: 100vh;
     font-family: 'Noto Sans','Helvetica Neue',Arial,sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: #363A45;
+    position: relative;
 }
 
 .sidebar {
@@ -3114,10 +3118,27 @@ a:hover {
 
 code {
     word-break: break-word;
+    font-family: 'Fira Mono','Courier New',Courier,monospace;
 }
 
-td:first-child code {
+/* Ensure words are not broken for monospaced text in a table cell */
+td>code {
     word-break: normal;
+}
+
+td>a {
+    word-break: inherit;
+}
+
+/* Make the chevron size in the collapse toggle larger than normal */
+span.collapseToggle>[class^="icon-"]:before, [class*=" icon-"]:before {
+    font-size: 150%;
+    cursor: pointer;
+}
+
+/* Add space between consecutive collapsable blocks */
+.collapseCard {
+    margin-bottom: 10px;
 }
 
 .container-fluid {
@@ -3253,10 +3274,12 @@ header.with-notification-bar {
 }
 
 footer {
-    padding: 100px 0;
+    /* Remove padding so there's no extra space between the footer and the feedback widget */
+    /*padding: 100px 0;*/
 }
 
 .footer__copyright {
+    margin-top: 2em;
     margin-bottom: 2em;
     font-size: 12px;
     line-height: 130%;
@@ -3291,6 +3314,18 @@ h2 {
 
 h3 {
     font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+h6 {
+    font-size: 0.75rem;
 }
 
 h1:first-child,
@@ -3351,7 +3386,7 @@ h6:first-child {
 
 .sidebar {
     line-height: 40px;
-    margin: 50px 0;
+    padding-top: 20px;
 }
 
 .sidebar .item {
@@ -3397,9 +3432,10 @@ h6:first-child {
     display: none;
     height: 50px;
     line-height: 50px;
-    margin: 0 -15px;
+    margin: 0 -20px;
     opacity: .6;
     padding: 0 15px;
+    justify-content: space-between;
 }
 
 .sidebar__menu-toggle .fa {
@@ -3407,6 +3443,24 @@ h6:first-child {
     margin-top: 15px;
 }
 
+.sidebar__search {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.sidebar-search__form {
+    width: -webkit-fill-available;
+    margin-left: -1.5rem;
+}
+
+.sidebar__search-input {
+    display: flex;
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: 12px;
+    padding: 7px 12px;
+}
 
 table {
     width: 100%;
@@ -3537,52 +3591,55 @@ table>tbody>tr:nth-of-type(odd) {
 }
 
 .homepage-search {
-    margin: 4em auto 0;
-    max-width: 850px;
+    display: flex;
+    justify-content: center;
+}
+
+.homepage-search__row {
+    display: flex;
+    background: white;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    height: 82px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 
 .homepage-search__input {
-    position: relative;
-}
-
-.homepage-search__input img {
-    left: 35px;
-    position: absolute;
-    top: 18px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid #BABEC9;
+    width: 605px;
+    margin: 16px;
 }
 
 .homepage-search__input input {
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.15);
-    border: none;
-    color: #fff;
-    font-weight: 300;
-    height: 58px;
+    color: black;
+    font-weight: 400;
+    font-size: 18px;
     outline: none;
-    padding-left: 4em;
+    border: none;
+    margin-right: 10px;
+    margin-left: 10px;
     width: 100%;
 }
 
 .homepage-search__input ::-webkit-input-placeholder {
-    color: #fff;
+    color: #818698;
 }
 
 .homepage-search__input :-moz-placeholder {
-    color: #fff;
+    color: #818698;
 }
 
 .homepage-search__input ::-moz-placeholder {
-    color: #fff;
+    color: #818698;
 }
 
 .homepage-search__input :-ms-input-placeholder {
-    color: #fff;
-}
-
-.homepage-search__button input {
-    height: 100%;
+    color: #818698;
 }
 
 .homepage-boxes {
@@ -3659,13 +3716,14 @@ ol > li + li {
 
 @media (max-width: 992px) {
     .sidebar__menu-toggle {
-        display: block;
+        display: flex;
+        justify-content: space-between;
     }
 
     .sidebar {
         border-radius: 3px;
         border: 1px solid #ddd;
-        margin: 50px 40px 0;
+        padding: 0 20px;
     }
 
     .sidebar__links {
@@ -3675,11 +3733,8 @@ ol > li + li {
 }
 
 @media (max-width: 768px) {
-    /* header {
-        padding: 0 20px;
-    } */
-
     .doc-content {
+        margin-top: 25px;
         padding: 0 20px;
     }
 
@@ -3727,6 +3782,22 @@ ol > li + li {
         display: block;
         margin-top: 1.5rem;
     }
+
+    .homepage-search__row {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .sidebar__search {
+        width: unset;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .sidebar__links {
+        margin: 0 -20px !important;
+    }
 }
 
 @media (max-width: 576px) {
@@ -3735,6 +3806,9 @@ ol > li + li {
     }
     .sidebar+.doc-content {
         padding-left: 40px;
+    }
+    .sidebar__search-form {
+        width: unset;
     }
 }
 
@@ -4054,7 +4128,8 @@ ol > li + li {
 }
 @media (max-width: 1100px) {
     .site-header__col--menu {
-        padding: 0;
+        padding-left: 10px;
+        padding-right: 30px;
     }
 }
 @media (min-width: 992px) {
@@ -4070,6 +4145,11 @@ ol > li + li {
 @media (min-width: 992px) {
     .site-header__mobile-menu {
         display: none;
+    }
+}
+@media (max-width: 991.98px) {
+    .site-header__mobile-menu.is-active {
+        text-align: center;
     }
 }
 .site-header__mobile-menu .hamburger-close,
@@ -4668,4 +4748,91 @@ ol > li + li {
 .footer__icons li:hover svg path {
     fill: #7E96C8;
     fill: #1D315C;
+}
+
+/* MermaidJS also uses the 'label' class. We unset line-height to ensure text renders properly. */
+div.mermaid .label {
+    line-height: unset;
+}
+
+/* Unset the opacity of text blocks between nodes in MermaidJS flowchart. */
+div.mermaid .edgeLabel rect {
+    opacity: unset !important;
+}
+
+/* Center MermaidJS diagrams in their containing div. */
+div.mermaid {
+    display: flex;
+    justify-content: center;
+}
+
+/* Search results page */
+.search__input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.search__query-input {
+    outline: none;
+    border: 2px solid #BABEC9;
+    padding: 6px 10px;
+    width: 605px;
+}
+
+.search__heading {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.search__results_title {
+    margin-bottom: 12px;
+}
+
+.search__results li {
+    border-bottom: 1px solid #e1e4e5;
+    padding: 24px 0;
+}
+.search__results li:first-child {
+    border-top: 1px solid #e1e4e5;
+}
+
+.search__results_result-link-div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-bottom: 6px;
+}
+
+.search__results_result-link {
+    font-size: 120%;
+}
+
+.search__results_result-section {
+    color: grey;
+    margin-left: 12px;
+}
+
+.search__results_result-description {
+    color: grey;
+    font-size: 90%;
+    word-break: break-word;
+}
+
+.search__results_result-debug {
+    color: grey;
+    font-size: 75%;
+}
+
+.search__span_result-count {
+    margin-top: 6px;
+    margin-bottom: 12px;
+}
+
+/* Search result keyword highlight colour */
+mark {
+    background: #F1C40F;
 }

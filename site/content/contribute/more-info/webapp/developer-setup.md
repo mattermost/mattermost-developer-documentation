@@ -30,7 +30,7 @@ Set up your development environment for building, running, and testing the Matte
 
 5. Install NVM and use it to install the required version of Node.js:
 
-    - First, install [NVM](https://github.com/nvm-sh/nvm) by following [these instructions](https://github.com/nvm-sh/nvm#installing-and-updating).
+    - First, install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
 
     - Then, use NVM to install the correct version of Node.js for the Mattermost web app:
         ```sh
@@ -39,11 +39,19 @@ Set up your development environment for building, running, and testing the Matte
 
 6. If you don't have it already, install libpng:
 
-    - On Mac, use [Homebrew](https://brew.sh/) to install it:
+    - On Mac, use {{< newtabref href="https://brew.sh/" title="Homebrew" >}} to install it:
 
         ```sh
         brew install libpng
         ```
+
+        {{<note "Note:">}}
+If you are working with an {{<newtabref title="Apple Silicon Mac" href="https://support.apple.com/en-us/HT211814">}} you may need to install rosetta for dependencies not ready to work in an ARM machine to work properly:
+
+```sh
+softwareupdate --install-rosetta
+```
+        {{</note>}}
 
     - On Linux-based operating systems, use your preferred package manager to install it.
 
@@ -69,7 +77,8 @@ Set up your development environment for building, running, and testing the Matte
 
     Refreshing http://localhost:8065 should now load the UI.
 
-    If you would like the webapp to automatically refresh as you edit the source code you can install and enable the live reload script injection extension for your web browser ([Chrome](https://chrome.google.com/webstore/detail/remotelivereload/jlppknnillhjgiengoigajegdpieppei/related?hl=en) | [Firefox](https://addons.mozilla.org/en-US/firefox/addon/livereload-web-extension/)). Then, before running webpack run:
+    If you would like the webapp to automatically refresh as you edit the source code you can install and enable the live reload script injection extension for your web browser ({{< newtabref href="https://chrome.google.com/webstore/detail/remotelivereload/jlppknnillhjgiengoigajegdpieppei/related?hl=en" title="Chrome" >}} | {{< newtabref href="https://addons.mozilla.org/en-US/firefox/addon/livereload-web-extension/" title="Firefox" >}}). Then, before running webpack run:
+
 
     ```sh
     export MM_LIVE_RELOAD=true

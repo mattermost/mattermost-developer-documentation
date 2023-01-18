@@ -64,7 +64,7 @@ But a reviewer doesn't need to see that commit history. As a reviewer myself, I'
 
 Put that variable name fix in its own commit, commit your feature change on top of it, and add a note to your PR's description. Your reviewers can then use the commits tab in GitHub to review those changes independently.
 
-Maybe you're the kind of developer that writes a pristine commit history the first time, but most of us rely on `git rebase`. If you aren't familiar with rebasing, it might seem terrifying or magical, but it doesn't need to be: play with it, master it, and use it often. If you need help getting started here, check out Atlassian's excellent [tutorial on git rebase](https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase).
+Maybe you're the kind of developer that writes a pristine commit history the first time, but most of us rely on `git rebase`. If you aren't familiar with rebasing, it might seem terrifying or magical, but it doesn't need to be: play with it, master it, and use it often. If you need help getting started here, check out Atlassian's excellent {{< newtabref href="https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase" title="tutorial on git rebase" >}}.
 
 Keep in mind though that rebasing is something to do before you submit your pull request, not after, and this leads to my last point:
 

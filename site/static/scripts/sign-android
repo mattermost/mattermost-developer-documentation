@@ -43,7 +43,7 @@ fi
 if ! command -v xmlstarlet &> /dev/null; then
     echo ""
     echo "XMLStarlet not available."
-    echo "See installation instructions at http://xmlstar.sourceforge.net/doc/UG/xmlstarlet-ug.html"
+    echo "See installation instructions at https://xmlstar.sourceforge.net/doc/UG/xmlstarlet-ug.html"
     echo ""
     exit 1
 fi

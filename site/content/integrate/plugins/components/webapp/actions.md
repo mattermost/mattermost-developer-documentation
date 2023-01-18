@@ -9,23 +9,23 @@ aliases:
   - /integrate/plugins/webapp/actions/
 ---
 
-When building web app plugins, it's common to perform actions or access the state that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), which is our library of shared code between Mattermost JavaScript clients. The `mattermost-redux` library exports types and functions that are imported by the web application. These functions can be imported by plugins and used the same way. There are a few different kinds of functions exported by the library:
+When building web app plugins, it's common to perform actions or access the state that web and mobile apps already support. The majority of these actions exist in {{< newtabref href="https://github.com/mattermost/mattermost-redux" title="mattermost-redux" >}}, which is our library of shared code between Mattermost JavaScript clients. The `mattermost-redux` library exports types and functions that are imported by the web application. These functions can be imported by plugins and used the same way. There are a few different kinds of functions exported by the library:
 
-* [actions](https://github.com/mattermost/mattermost-redux/tree/master/src/actions): Actions perform API requests and can change the state of Mattermost.
-* [client](https://github.com/mattermost/mattermost-redux/tree/master/src/client): The client package can be used to instantiate a Client4 object to interact with the Mattermost API directly. This is useful in plugins as well as JavaScript server applications communicating with Mattermost.
-* [constants](https://github.com/mattermost/mattermost-redux/tree/master/src/constants): An assortment of constants within Mattermost's data model.
-* [selectors](https://github.com/mattermost/mattermost-redux/tree/master/src/selectors): Selectors return certain data from the Redux store, such as getPost which allows you get a post by id.
-* [store](https://github.com/mattermost/mattermost-redux/tree/master/src/store): Functions related to the Redux store itself.
-* [types](https://github.com/mattermost/mattermost-redux/tree/master/src/types): Various types of objects in Mattermost's data model. These are useful for plugins written in Typescript.
-* [utils](https://github.com/mattermost/mattermost-redux/tree/master/src/utils): Various utility functions shared across the web application.
+* {{< newtabref href="https://github.com/mattermost/mattermost-redux/tree/master/src/actions" title="actions" >}}: Actions perform API requests and can change the state of Mattermost.
+* {{< newtabref href="https://github.com/mattermost/mattermost-redux/tree/master/src/client" title="client" >}}: The client package can be used to instantiate a Client4 object to interact with the Mattermost API directly. This is useful in plugins as well as JavaScript server applications communicating with Mattermost.
+* {{< newtabref href="https://github.com/mattermost/mattermost-redux/tree/master/src/constants" title="constants" >}}: An assortment of constants within Mattermost's data model.
+* {{< newtabref href="https://github.com/mattermost/mattermost-redux/tree/master/src/selectors" title="selectors" >}}: Selectors return certain data from the Redux store, such as getPost which allows you get a post by id.
+* {{< newtabref href="https://github.com/mattermost/mattermost-redux/tree/master/src/store" title="store" >}}: Functions related to the Redux store itself.
+* {{< newtabref href="https://github.com/mattermost/mattermost-redux/tree/master/src/types" title="types" >}}: Various types of objects in Mattermost's data model. These are useful for plugins written in Typescript.
+* {{< newtabref href="https://github.com/mattermost/mattermost-redux/tree/master/src/utils" title="utils" >}}: Various utility functions shared across the web application.
 
 ## Prerequisites
 
-It's assumed you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide]({{< ref "/integrate/plugins/components/webapp/hello-world" >}}).
+It's assumed you have already set up your plugin development environment for web app plugins to match {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="mattermost-plugin-starter-template" >}}. If not, follow the README instructions of that repository first, or [see the Hello, World! guide]({{< ref "/integrate/plugins/components/webapp/hello-world" >}}).
 
 ## Basic example
 
-Here's an [example](https://github.com/mattermost/mattermost-plugin-jira/blob/master/webapp/src/components/modals/create_issue/index.ts) of a web app plugin making use of [mattermost-redux's](https://github.com/mattermost/mattermost-redux) functions:
+Here's an {{< newtabref href="https://github.com/mattermost/mattermost-plugin-jira/blob/master/webapp/src/components/modals/create_issue/index.ts" title="example" >}} of a web app plugin making use of {{< newtabref href="https://github.com/mattermost/mattermost-redux" title="mattermost-redux's" >}} functions:
 
 ```javascript
 import {connect} from 'react-redux';
@@ -65,127 +65,127 @@ export default connect(mapStateToProps, mapDispatchToProps)(CreateIssue);
 
 ## Some common actions
 
-We've listed out some of the commonly-used actions that you can use in your web app plugin. You can find all the actions are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/actions).
+We've listed out some of the commonly-used actions that you can use in your web app plugin. You can find all the actions are available for your plugin to import {{< newtabref href="https://github.com/mattermost/mattermost-redux/tree/master/src/actions" title="in the source code for mattermost-redux" >}}.
 
-* ### [createChannel(channel: Channel, userId: string)](https://github.com/mattermost/mattermost-redux/blob/3d1028034d7677adfda58e91b9a5dcaf1bc0ff99/src/actions/channels.ts#L47)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/3d1028034d7677adfda58e91b9a5dcaf1bc0ff99/src/actions/channels.ts#L47" title="createChannel(channel: Channel, userId: string)" >}}
 
 Dispatch this action to create a new channel.
 
 
-* ### [getCustomEmoji(emojiId: string)](https://github.com/mattermost/mattermost-redux/blob/3d1028034d7677adfda58e91b9a5dcaf1bc0ff99/src/actions/emojis.ts#L32)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/3d1028034d7677adfda58e91b9a5dcaf1bc0ff99/src/actions/emojis.ts#L32" title="getCustomEmoji(emojiId: string)" >}}
 
 Dispatch this action to fetch a specific emoji associated with the `emojiId` provided.
 
 
-* ### [createPost(post: Post, files: any[] = [])](https://github.com/mattermost/mattermost-redux/blob/3d1028034d7677adfda58e91b9a5dcaf1bc0ff99/src/actions/posts.ts#L162)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/3d1028034d7677adfda58e91b9a5dcaf1bc0ff99/src/actions/posts.ts#L162" title="createPost(post: Post, files: any[] = [])" >}}
 
 Dispatch this action to create a new post.
 
 
-* ### [getMyTeams()](https://github.com/mattermost/mattermost-redux/blob/3d1028034d7677adfda58e91b9a5dcaf1bc0ff99/src/actions/teams.ts#L67)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/3d1028034d7677adfda58e91b9a5dcaf1bc0ff99/src/actions/teams.ts#L67" title="getMyTeams()" >}}
 
 Dispatch this action to fetch all the team types associated with the current user.
 
 
-* ### [createUser(user: UserProfile, token: string, inviteId: string, redirect: string)](https://github.com/mattermost/mattermost-redux/blob/3d1028034d7677adfda58e91b9a5dcaf1bc0ff99/src/actions/users.ts#L53)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/3d1028034d7677adfda58e91b9a5dcaf1bc0ff99/src/actions/users.ts#L53" title="createUser(user: UserProfile, token: string, inviteId: string, redirect: string)" >}}
 
 Dispatch this action to create a new user profile.
 
 
 ## Some common selectors
 
-We've listed out some of the commonly-used selectors you can use in your web app plugin. You can find all the selectors that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/selectors).
+We've listed out some of the commonly-used selectors you can use in your web app plugin. You can find all the selectors that are available for your plugin to import {{< newtabref href="https://github.com/mattermost/mattermost-redux/tree/master/src/selectors" title="in the source code for mattermost-redux" >}}.
 
-* ### [getCurrentUserId(state)](https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/common.ts#L46)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/common.ts#L46" title="getCurrentUserId(state)" >}}
 
 Retrieves the `userId` of the current user from the `Redux store`.
 
 
-* ### [getCurrentUser(state: GlobalState): UserProfile](https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/common.ts#L42)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/common.ts#L42" title="getCurrentUser(state: GlobalState): UserProfile" >}}
 
 Retrieves the user profile of the current user from the `Redux store`.
 
 
-* ### [getUsers(state: GlobalState): IDMappedObjects<UserProfile>](https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/common.ts#L50)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/common.ts#L50" title="getUsers(state: GlobalState): IDMappedObjects<UserProfile>" >}}
 
 Retrieves all user profiles from the `Redux store`.
 
 
-* ### [getChannel(state: GlobalState, id: string)](https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/channels.ts#L218)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/channels.ts#L218" title="getChannel(state: GlobalState, id: string)" >}}
 
 Retrieves a channel as it exists in the store without filling in any additional details such as the `display_name` for Direct Messages/Group Messages.
 
 
-* ### [getCurrentChannelId(state: GlobalState)](https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/common.ts#L14)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/common.ts#L14" title="getCurrentChannelId(state: GlobalState)" >}}
 
 Retrieves the channel ID of the current channel from the `Redux store`.
 
 
-* ### [getCurrentChannel: (state: GlobalState)](https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/channels.ts#L235)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/channels.ts#L235" title="getCurrentChannel: (state: GlobalState)" >}}
 
 Retrieves the complete channel info of the current channel from the `Redux store`.
 
 
-* ### [getPost(state: GlobalState, postId: $ID<Post>)](https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/posts.ts#L46)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/posts.ts#L46" title="getPost(state: GlobalState, postId: $ID<Post>)" >}}
 
 Retrieves the specific post associated with the supplied `postID` from the `Redux store`.
 
 
-* ### [getCurrentTeamId(state: GlobalState)](https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/teams.ts#L20)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/teams.ts#L20" title="getCurrentTeamId(state: GlobalState)" >}}
 
 Retrieves the `teamId` of the current team from the `Redux store`.
 
 
-* ### [getCurrentTeam: (state: GlobalState)](https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/teams.ts#L57)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/teams.ts#L57" title="getCurrentTeam: (state: GlobalState)" >}}
 
 Retrieves the team info of the current team from the `Redux store`.
 
 
-* ### [getCustomEmojisByName: (state: GlobalState)](https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/emojis.ts#L37)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/emojis.ts#L37" title="getCustomEmojisByName: (state: GlobalState)" >}}
 
 Retrieves the the specific emoji associated with the supplied `customEmojiName` from the `Redux store`.
 
 
 ## Some common client functions
 
-We've listed out some of the commonly-used client functions you can use in your web app plugin. You can find all the client functions that are available for your plugin to import [in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts).
+We've listed out some of the commonly-used client functions you can use in your web app plugin. You can find all the client functions that are available for your plugin to import {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts" title="in the source code for mattermost-redux" >}}.
 
-* ### [getUser = (userId: string)](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L846)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L846" title="getUser = (userId: string)" >}}
 
 Routes to the user profile of the specified `userId` from the `Mattermost Server`.
 
 
-* ### [getUserByUsername = (username: string)](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L853)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L853" title="getUserByUsername = (username: string)" >}}
 
 Routes to the user profile of the specified `username` from the `Mattermost Server`.
 
 
-* ### [getChannel = (channelId: string)](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L1600)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L1600" title="getChannel = (channelId: string)" >}}
 
 Routes to the channel of the specified `channelId` from the `Mattermost Server`.
 
 
-* ### [getChannelByName = (teamId: string, channelName: string, includeDeleted = false)](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L1609)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L1609" title="getChannelByName = (teamId: string, channelName: string, includeDeleted = false)" >}}
 
 Routes to the channel of the specified `channelName` from the `Mattermost Server`.
 
 
-* ### [getTeam = (teamId: string)](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L1192)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L1192" title="getTeam = (teamId: string)" >}}
 
 Routes to the team of the specified `teamId` from the `Mattermost Server`.
 
 
-* ### [getTeamByName = (teamName: string)](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L1199)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L1199" title="getTeamByName = (teamName: string)" >}}
 
 Routes to the team of the specified `teamName` from the `Mattermost Server`.
 
 
-* ### [executeCommand = (command: string, commandArgs: CommandArgs)](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L2463)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L2463" title="executeCommand = (command: string, commandArgs: CommandArgs)" >}}
 
 Executes the specified command with the arguments provided and fetches the response.
 
 
-* ### [getOptions(options: Options) {const newOptions: Options = {...options}](https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L440)
+* ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/client/client4.ts#L440" title="getOptions(options: Options) {const newOptions: Options = {...options}" >}}
 
 Get the client options to make requests to the server. Use this to create your own custom requests.
 
@@ -197,13 +197,13 @@ Reducers in Redux are pure functions that describe how the data in the store cha
 
 Registers a reducer against the Redux store. It will be accessible in Redux state under `state['plugins-<yourpluginid>']`. It generally accepts a reducer and returns undefined.
 
-When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in [mattermost-redux](https://github.com/mattermost/mattermost-redux), our library of shared code between Mattermost JavaScript clients.
+When building web app plugins, it is common to perform actions that web and mobile apps already support. The majority of these actions exist in {{< newtabref href="https://github.com/mattermost/mattermost-redux" title="mattermost-redux" >}}, our library of shared code between Mattermost JavaScript clients.
 
 Here we'll show how to use Redux actions with a plugin. To learn more about these actions, see the [contributor documentation]({{< ref "/contribute/more-info/webapp/redux/actions" >}}).
 
 ## Prerequisites
 
-This guide assumes you have already set up your plugin development environment for web app plugins to match [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template). If not, follow the README instructions of that repository first, or [see the Hello, World! guide]({{< ref "/integrate/plugins/components/webapp/hello-world" >}}).
+This guide assumes you have already set up your plugin development environment for web app plugins to match {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="mattermost-plugin-starter-template" >}}. If not, follow the README instructions of that repository first, or [see the Hello, World! guide]({{< ref "/integrate/plugins/components/webapp/hello-world" >}}).
 
 ## Import mattermost-redux
 
@@ -268,7 +268,7 @@ export default class ActionExample extends React.PureComponent {
 
 This component will display a user's first name and then, when the link is clicked, use an action to update that user's first name to "Jim".
 
-The action `patchUser` is from mattermost-redux. It takes in a subset of a user object and updates the user on the server, [using the `PUT /users/{user_id}/patch` endpoint](https://api.mattermost.com/#tag/users%2Fpaths%2F~1users~1%7Buser_id%7D~1patch%2Fput).
+The action `patchUser` is from mattermost-redux. It takes in a subset of a user object and updates the user on the server, {{< newtabref href="https://api.mattermost.com/#tag/users%2Fpaths%2F~1users~1%7Buser_id%7D~1patch%2Fput" title="using the `PUT /users/{user_id}/patch` endpoint" >}}.
 
 We must now use our container to import this action and pass it our component. Open up the `index.js` file and add:
 
@@ -303,4 +303,4 @@ To use our component in our plugin we would then use the registry in the initial
 
 ## Available actions
 
-The actions that are available for your plugin to import can be [found in the source code for mattermost-redux](https://github.com/mattermost/mattermost-redux/tree/master/src/actions).
+The actions that are available for your plugin to import can be {{< newtabref href="https://github.com/mattermost/mattermost-redux/tree/master/src/actions" title="found in the source code for mattermost-redux" >}}.

@@ -1,11 +1,9 @@
-# This run in the mattermost gitlab internal instace
+# This run in the mattermost gitlab internal instance
 
 variables:
-  AWS_DEFAULT_REGION: "us-east-1"
-
-  IMAGE_BUILD: cimg/go:1.17-node
+  AWS_DEFAULT_REGION: us-east-1
+  IMAGE_BUILD: cimg/go:1.18-node
   IMAGE_AWS_CI: $CI_REGISTRY/images/aws-ci:2.1.1-1
-
 
 stages:
   - build
@@ -15,7 +13,7 @@ build-package:
   stage: build
   image: $IMAGE_BUILD
   before_script:
-    - CGO_ENABLED=1 go install --tags extended github.com/gohugoio/hugo@v0.92.1
+    - CGO_ENABLED=1 go install --tags extended github.com/gohugoio/hugo@v0.101.0
   script:
     - make dist
   artifacts:

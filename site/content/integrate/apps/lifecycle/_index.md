@@ -5,32 +5,96 @@ description: "The App lifecycle"
 weight: 20
 aliases:
   - /integrate/apps/api/lifecycle/
+mermaid: true
 ---
 
-## Install
+## Install an App
 
-Installation of an App is a process when a System Admin installs already deployed apps, within their Mattermost installation. As mentioned above the list of the registered apps are in the memory of the Apps Plugin. Whenever the System Admin executes an `/install` slash command or selects **Install** in the Marketplace, appropriate permissions are requested and the app is installed. A bot and an OAuth app are created on installation, and an `OnInstall` call is also sent to the app and relevant lambda function (if applicable).
+App installation refers to the process of a System Admin installing deployed apps within their Mattermost installation.
+Whenever the System Admin executes an `/apps install` slash command, or selects **Install** in the Marketplace, appropriate permissions are requested and the App is installed.
+During an App installation, both a bot and an OAuth app are created, and an `OnInstall` [callback]({{<ref "/integrate/apps/lifecycle/callbacks">}}) is sent to the App if it's defined in the manifest.
 
-![Flow of installing an app in AWS](install-mm-aws-app.png)
+{{<mermaid>}}
+sequenceDiagram
+    actor System Admin
+    System Admin->>Mattermost server: install app
+    Mattermost server->>Apps framework: install app
+    Apps framework->>App: request manifest
+    App->>Apps framework: send manifest
+    Apps framework->>System Admin: request permissions
+    System Admin->>Apps framework: grant permissions
+    Apps framework->>Mattermost server: create bot
+    Apps framework->>Mattermost server: create OAuth app
+    Apps framework->>Apps framework: enable app
+    Apps framework->>App: call OnInstall if defined
+{{</mermaid>}}
 
-Apps are installed with `/apps install`:
+### `/apps install` parameters
 
-- Manifest > Installed app
-  - Consent to permissions, locations, OAuth app type
-  - Create Bot+Access Token, OAuth App
-  - HTTP: collect app’s JWT secret
-- Invoke “OnInstall” callback on the App, if defined in manifest
-- Also Uninstall/Enable/Disable per App
+The generic form of the `/apps install` command is:
 
-## Uninstall
+```
+/apps install <DeployMethod> <ManifestURL>
+```
 
-A System Admin can uninstall an app using the `/uninstall` slash command. On uninstallation appropriate bot and an OAuth app are deleted, `OnUninstall` call is sent to the app as well. Worth mentioning that the current implementation is not deleting the user data.
+{{<note "AWS Lambda deployments:">}}
+For AWS Lambda deployments, replace `ManifestURL` with `AppID` in the above command example. The `AppID` is defined in the App's [manifest]({{<ref "/integrate/apps/structure/manifest">}}).
+{{</note>}}
 
-## Register
+The `DeployMethod` specifies how the App is deployed. The following values are supported:
 
-Registering an app in a Mattermost installation means the app will be shown in the Marketplace of the installation, can be installed by the System Admin, and used by the users. On a totally new app registration or on a registration of the new version of the already registered app, a new version of the Apps Plugin is cut. The `manifests.json` file is updated and a new app is added in the listing. Later, the plugin is installed in the appropriate installations (using feature flags if necessary).
+- `http`
+- `aws_lambda` (serverless)
+- `open_faas` (serverless)
 
-After the plugin update Apps Plugin synchronizes the list of the registered apps by downloading appropriate manifests from the S3 bucket and storing them in memory. The Marketplace shows renewed app listings and the System Admin can install a new app (or new version). It's worth mentioning here that Apps Plugin needs AWS credentials to download from S3 as well as to invoke lambda functions. Those credentials are read from the following environment variables:
+The `ManifestURL` is the URL to the App's [`manifest.json`]({{<ref "/integrate/apps/structure/manifest">}}) data.
 
+For example, use the following command to install an App that was deployed via HTTP to `http://my-app:8000`:
+
+```
+/apps install http http://my-app:8000/manifest.json
+```
+
+## Uninstall an App
+
+A System Admin can uninstall an App using the `/apps uninstall` slash command. During the uninstallation process, both the bot and the OAuth app are deleted, and an `OnUninstall` [callback]({{<ref "/integrate/apps/lifecycle/callbacks">}}) is sent to the App if it's defined in the manifest.
+
+{{<mermaid>}}
+sequenceDiagram
+    actor System Admin
+    System Admin->>Mattermost server: uninstall app
+    Mattermost server->>Apps framework: uninstall app
+    Apps framework->>App: call OnUninstall if defined
+    Apps framework->>Apps framework: disable app
+    Apps framework->>Mattermost server: delete bot
+    Apps framework->>Mattermost server: delete OAuth app
+{{</mermaid>}}
+
+## `/apps uninstall` parameters
+
+The generic form of the `/apps uninstall` command is:
+
+```
+/apps uninstall <AppID>
+```
+
+The `AppID` is defined in the App's manifest.
+
+For example, use the following command to uninstall an App with an `AppID` of `my-app`:
+
+```
+/apps uninstall my-app
+```
+
+## Register an App
+
+Registering an App in a Mattermost installation means the App is available in the product Marketplace, can be installed by the System Admin, and once installed, can be available to users.
+When a new App is registered, or a new version of an existing App is registered, the `manifest.json` data from the App is updated, and a new App is added to the product Marketplace.
+
+After registration, the Mattermost server synchronizes the list of the registered Apps by downloading appropriate manifests from the file store and storing them in memory. The product Marketplace shows updated App listings and the System Admin can install the App or new version of the App.
+
+{{<note "AWS credentials">}}
+The Apps Plugin needs AWS credentials to download from S3 and to invoke lambda functions. The credentials are read from the following environment variables:
 - `APPS_INVOKE_AWS_ACCESS_KEY`
 - `APPS_INVOKE_AWS_SECRET_KEY`
+{{</note>}}

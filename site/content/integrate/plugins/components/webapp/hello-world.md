@@ -11,13 +11,13 @@ aliases:
 
 This tutorial will walk you through the basics of extending the Mattermost web app.
 
-Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing [mattermost-plugin-starter-template](https://github.com/mattermost/mattermost-plugin-starter-template) for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration]({{< ref "/integrate/plugins/migration" >}}) document to upgrade older plugins.
+Note that the steps below are intentionally very manual to explain all of the pieces fitting together. In practice, we recommend referencing {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="mattermost-plugin-starter-template" >}} for helpful build scripts. Also, the plugin API changed in Mattermost 5.2. Consult the [migration]({{< ref "/integrate/plugins/migration" >}}) document to upgrade older plugins.
 
 ## Prerequisites
 
-Plugins, just like the Mattermost web app itself, are built using [ReactJS](https://reactjs.org/) with [Redux](https://redux.js.org/). Make sure to install [npm](https://www.npmjs.com/get-npm) to manage your JavaScript dependencies.
+Plugins, just like the Mattermost web app itself, are built using {{< newtabref href="https://reactjs.org/" title="ReactJS" >}} with {{< newtabref href="https://redux.js.org/" title="Redux" >}}. Make sure to install {{< newtabref href="https://www.npmjs.com/get-npm" title="npm" >}} to manage your JavaScript dependencies.
 
-You'll also need a Mattermost server to install and test the plugin. This server must have [Enable](https://docs.mattermost.com/administration/config-settings.html#enable-plugins) set to true in the [PluginSettings](https://docs.mattermost.com/administration/config-settings.html#plugins-beta) section of its config file. If you want to upload plugins via the System Console or API, you'll also need to set [EnableUploads](https://docs.mattermost.com/administration/config-settings.html#enable-plugin-uploads) to true in the same section.
+You'll also need a Mattermost server to install and test the plugin. This server must have {{< newtabref href="https://docs.mattermost.com/administration/config-settings.html#enable-plugins" title="Enable" >}} set to true in the {{< newtabref href="https://docs.mattermost.com/administration/config-settings.html#plugins-beta" title="PluginSettings" >}} section of its config file. If you want to upload plugins via the System Console or API, you'll also need to set {{< newtabref href="https://docs.mattermost.com/administration/config-settings.html#enable-plugin-uploads" title="EnableUploads" >}} to true in the same section.
 
 ## Set up the workspace
 
@@ -86,7 +86,7 @@ module.exports = {
 };
 ```
 
-Observe that `react` is specified as an external library. This allows you to test your code locally (e.g. with [jest](https://jestjs.io/) and snapshots) but leverage the version of React shipped with Mattermost to avoid bloating your plugin.
+Observe that `react` is specified as an external library. This allows you to test your code locally (e.g. with {{< newtabref href="https://jestjs.io/" title="jest" >}} and snapshots) but leverage the version of React shipped with Mattermost to avoid bloating your plugin.
 
 Now create the entry point file and output directory:
 ```bash

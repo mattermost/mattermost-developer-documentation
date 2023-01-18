@@ -19,16 +19,23 @@ pygmentsStyle = "manni"
   email = ""
   ghrepo = "https://github.com/mattermost/mattermost-developer-documentation/"
 
+  # Parameters controlling collapsable blocks
+  [params.collapse]
+    collapsedIcon = "icon-chevron-right"  # Icon to show when the block is collapsed
+    expandedIcon = "icon-chevron-down"    # Icon to show when the block is expanded
+    collapseShowClass = "show"            # CSS class to add when expanding the block
+    toggleClass = "collapseToggle"        # CSS class to control icon attributes (e.g. size)
+
   [params.mailinglist]
     enable = false
 
   [params.notification]
     enable = true
-    url = "https://mattermost.com/hacktoberfest/"
-    text = "Join us for Hacktoberfest 2022!"
+    url = ""
+    text = "We're improving your developer experience."
 
   [params.search]
-    enable = false
+    enable = true
 
   [params.sidebar]
   [[params.sidebar.item]]

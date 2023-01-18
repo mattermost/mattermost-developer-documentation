@@ -17,7 +17,7 @@ At times, you may want to build your own Mattermost mobile app. The most common 
 
 ### 1. Package name and source files
 
-* Ensure the package ID of the mobile app remains the same as the one in the original [mattermost-mobile GitHub repository](https://github.com/mattermost/mattermost-mobile) in `com.mattermost.rnbeta`.
+* Ensure the package ID of the mobile app remains the same as the one in the original {{< newtabref href="https://github.com/mattermost/mattermost-mobile" title="mattermost-mobile GitHub repository" >}} in `com.mattermost.rnbeta`.
 * Source files for the main package remain under the `android/app/src/main/java/com/mattermost/rnbeta` folder.
 
 ### 2. Generate a signing key
@@ -35,14 +35,16 @@ The above command prompts you for passwords for the keystore and key (make sure 
 The keystore contains a single key, valid for 10000 days. The alias is a name that you will use later when signing your app, so remember to take a note of the alias.
 
 ---
-**Note:**
+{{<note "Note:">}}
 * Replace `<my-release-key>` with the filename you want to specify.
 * Remember to keep your keystore file private and never commit it to version control.
+{{</note>}}
+
 ---
 
 ### 3. Create a new app in Google Play
 
-Create a new application using the [Google Play console](https://play.google.com/console/developers). If you already have an app registered in the Google Play console you can skip this step.
+Create a new application using the {{< newtabref href="https://play.google.com/console/developers" title="Google Play console" >}}. If you already have an app registered in the Google Play console you can skip this step.
 
 ### 4. Set up Gradle variables {#gradle}
 
@@ -57,9 +59,11 @@ Now that we have created the keystore file we can tell the build process to use 
     MATTERMOST_RELEASE_PASSWORD=*****
     ```
 ---
-**Note:**
+{{<note "Note:">}}
 * Replace `/full/path/to/directory/containing/my-release-key.keystore` with the full path to the actual keystore file and `********` with the actual keystore password.
 * Back up your keystore and don't forget the password.
+{{</note>}}
+
 ---
 ---
 **Important:**
@@ -93,11 +97,13 @@ To make it easier to customize your build, we've defined a few environment varia
 | `SUBMIT_ANDROID_TO_<br>GOOGLE_PLAY`    | Should the app be submitted to the Play Store once it finishes building, use along with `SUPPLY_TRACK`.<br><br>Valid values are: `true`, `false`                                                                                                                                                 | `false`                    | Yes      |
 | `SUPPLY_TRACK`                         | The track of the application to use when submitting the app to Google Play Store. Valid values are: `alpha`, `beta`, `production` <br><br>**RIt is not recommended to submit the app to production. First try any of the other tracks and then promote your app using the Google Play console**. | `alpha`                    | Yes      |
 | `SUPPLY_PACKAGE_NAME`                  | The package Id of your application, make sure it matches `MAIN_APP_IDENTIFIER`.                                                                                                                                                                                                                  |                            | Yes      |
-| `SUPPLY_JSON_KEY`                      | The path to the service account `json` file used to authenticate with Google.<br><br>See the [Supply documentation]( https://docs.fastlane.tools/actions/supply/#setup) to learn more.                                                                                                           |                            | Yes      |
+| `SUPPLY_JSON_KEY`                      | The path to the service account `json` file used to authenticate with Google.<br><br>See the {{< newtabref href=" https://docs.fastlane.tools/actions/supply/#setup" title="Supply documentation" >}} to learn more.                                                                                                           |                            | Yes      |
 
 ---
-**Note:**
-To configure your variables create the file `./mattermost-mobile/fastlane/.env` where `.env` is the filename. You can find the sample file `env_vars_example` [here](https://github.com/mattermost/mattermost-mobile/blob/master/fastlane/env_vars_example).
+{{<note "Note:">}}
+To configure your variables create the file `./mattermost-mobile/fastlane/.env` where `.env` is the filename. You can find the sample file `env_vars_example` {{< newtabref href="https://github.com/mattermost/mattermost-mobile/blob/master/fastlane/env_vars_example" title="here" >}}.
+{{</note>}}
+
 
 ---
 

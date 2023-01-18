@@ -11,7 +11,8 @@
     * https://docs.docker.com/install/linux/docker-ce/centos/
     * https://docs.docker.com/install/linux/linux-postinstall/
 
-    **Note:** [MM-9791](https://github.com/mattermost/mattermost-server/pull/10872) introduced using [docker-compose](https://docs.docker.com/compose/) to manage containers. To preserve your data on upgrade, execute the following steps.
+    **Note:** {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/10872" title="MM-7971" >}} introduced using {{< newtabref href="https://docs.docker.com/compose/" title="docker-compose" >}} to manage containers. To preserve your data on upgrade, execute the following steps.
+
 
     First, backup from any existing containers:
     ```sh
@@ -32,7 +33,7 @@
     sudo chmod +x /usr/local/bin/docker-compose
     ```
 
-3. Install Go (modify installation to latest Go version from https://golang.org/dl/):
+3. Install Go (modify installation to latest Go version from {{< newtabref href="https://golang.org/dl/" title="here" >}}):
 
     ```sh
     sudo yum group install "Development Tools"
