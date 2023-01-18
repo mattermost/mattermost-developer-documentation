@@ -6,6 +6,9 @@ date: 2017-07-10T00:00:00-05:00
 weight: 40
 aliases:
   - /extend/plugins/
+subsection: plugins
+cascade:
+  - subsection: plugins
 ---
 
 Mattermost supports plugins that offer powerful features for extending and deeply integrating with both the Server and Web/Desktop Apps.

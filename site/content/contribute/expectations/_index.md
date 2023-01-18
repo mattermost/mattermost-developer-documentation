@@ -2,6 +2,9 @@
 title: "Contributor expectations"
 heading: "Contributor expectations"
 weight: 3
+subsection: contributor expectations
+cascade:
+  - subsection: contributor expectations
 ---
 
 To contribute to Mattermost, you must sign the {{< newtabref href="https://mattermost.com/mattermost-contributor-agreement/" title="Contributor License Agreement" >}}. Doing so adds you to our list of {{< newtabref href="https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true" title="Mattermost Approved Contributors" >}}. 

@@ -2,6 +2,9 @@
 title: "Why and how to contribute"
 heading: "Why and how to contribute"
 weight: 1
+subsection: contribute
+cascade:
+  - subsection: contribute
 ---
 There are many reasons you might be motivated to contribute to Mattermost:
 
