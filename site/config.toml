@@ -31,8 +31,8 @@ pygmentsStyle = "manni"
 
   [params.notification]
     enable = true
-    url = ""
-    text = "We're improving your developer experience."
+    url = "https://mattermost.com/webinar/streamline-incident-response-with-servicenow/"
+    text = "Streamline incident response with Mattermost and ServiceNow on February 16th. Save your spot!"
 
   [params.search]
     enable = true
