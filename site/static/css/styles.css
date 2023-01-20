@@ -3378,7 +3378,7 @@ h6:first-child {
     line-height: 1;
     color: #fff;
     text-align: center;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     vertical-align: baseline;
     border-radius: .25em;
     background: #999;
@@ -3596,7 +3596,6 @@ table>tbody>tr:nth-of-type(odd) {
 }
 
 .homepage-search__row {
-    display: flex;
     background: white;
     margin-top: 24px;
     margin-bottom: 24px;
@@ -3611,8 +3610,14 @@ table>tbody>tr:nth-of-type(odd) {
     justify-content: flex-start;
     align-items: center;
     border: 2px solid #BABEC9;
-    width: 605px;
+    width: calc(100% - 2rem);
     margin: 16px;
+}
+
+@media (min-width: 992px) {
+    .homepage-search__input {
+        width: 605px;
+    }
 }
 
 .homepage-search__input input {
