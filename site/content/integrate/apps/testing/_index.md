@@ -12,7 +12,7 @@ This page describes how to test changes made to the App Framework.
 To run end-to-end testing with Cypress you need to do the following:
 
 - Clone the [Mattermost app examples](https://github.com/mattermost/mattermost-app-examples) repository
-- Launch the mattermost server
+- Launch the Mattermost server
 
 ```bash
 cd mattermost-app-examples
