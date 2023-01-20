@@ -11,21 +11,29 @@ This page describes how to test changes made to the App Framework.
 
 To run end-to-end testing with Cypress you need to do the following:
 
-- Clone the [Mattermost app examples](https://github.com/mattermost/mattermost-app-examples) repository
-- Launch the Mattermost server
+1. Clone and enter the [`mattermost-app-examples`](https://github.com/mattermost/mattermost-app-examples) repository:
 
 ```bash
+git clone https://github.com/mattermost/mattermost-app-examples
 cd mattermost-app-examples
+```
+
+2. Launch the provided Mattermost server
+
+```bash
 docker compose up
 ```
 
-Once you have it up and running:
-
-- Go to the cloned [Mattermost Apps](https://github.com/mattermost/mattermost-plugin-apps) repository
-- Then run the E2E testing
+3. Clone and enter the [`mattermost-plugin-apps`](https://github.com/mattermost/mattermost-plugin-apps) repository's `/test/e2e/` directory:
 
 ```bash
+git clone https://github.com/mattermost/mattermost-plugin-apps
 cd mattermost-plugin-apps/test/e2e
+```
+
+4. Run the E2E testing:
+
+```bash
 npm install
 npm run test
 ```
