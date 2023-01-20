@@ -2,7 +2,7 @@
 title: "Testing"
 heading: "Apps testing"
 description: "How to test the App framework"
-weight: 31
+weight: 81
 ---
 
 This page describes how to test changes made to the App Framework.
