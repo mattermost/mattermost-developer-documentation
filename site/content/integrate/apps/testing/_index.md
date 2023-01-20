@@ -22,7 +22,7 @@ docker compose up
 Once you have it up and running:
 
 - Go to the cloned [Mattermost Apps](https://github.com/mattermost/mattermost-plugin-apps) repository
-- Then run the e2e testing
+- Then run the E2E testing
 
 ```bash
 cd mattermost-plugin-apps/test/e2e
