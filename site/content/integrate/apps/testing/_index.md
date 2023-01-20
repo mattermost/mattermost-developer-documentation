@@ -9,7 +9,7 @@ This page describes how to test changes made to the App Framework.
 
 ## E2E Testing
 
-To run end-2-end testing with cypress you need to do the following:
+To run end-to-end testing with Cypress you need to do the following:
 
 - Clone the [Mattermost app examples](https://github.com/mattermost/mattermost-app-examples) repository
 - Launch the mattermost server
