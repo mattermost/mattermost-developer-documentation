@@ -13,7 +13,7 @@ aliases:
 ## Build the plugin
 
 
-1. Fork the {{< newtabref href="https://github.com/mattermost/focalboard" title="Focalboard repository" >}} and clone it locally.
+1. Fork the {{< newtabref href="https://github.com/mattermost/focalboard" title="Focalboard repository" >}} and clone it locally. Clone {{< newtabref href="https://github.com/mattermost/mattermost-server" title="Mattermost-server repository" >}} in a sibling directory.
 2. Define an environment variable ``EXCLUDE_ENTERPRISE`` with a value of ``1``.
 3. To install the dependencies:
 ```
