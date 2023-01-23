@@ -3614,7 +3614,7 @@ table>tbody>tr:nth-of-type(odd) {
     margin: 16px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 769px) {
     .homepage-search__input {
         width: 605px;
     }
@@ -4783,7 +4783,13 @@ div.mermaid {
     outline: none;
     border: 2px solid #BABEC9;
     padding: 6px 10px;
-    width: 605px;
+    width: 100%;
+}
+
+@media (min-width: 769px) {
+    .search__query-input {
+        width: 605px;
+    }
 }
 
 .search__heading {
