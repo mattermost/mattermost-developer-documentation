@@ -2,7 +2,7 @@
 title: "Navigation"
 heading: "Navigation"
 description: "Explains how the Desktop App does navigation wrt. Mattermost"
-date: 2019-01-22T00:00:00-05:00
+date: 2023-01-24T00:00:00-05:00
 weight: 1
 aliases:
   - /contribute/desktop/architecture/navigation
