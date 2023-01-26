@@ -8,49 +8,69 @@ aliases:
   - /contribute/desktop/architecture/navigation
 ---
 
-Clicking on a routed link in Mattermost:
-- Instead of calling `browserHistory.push`, we send a message with the route information up to the Desktop App
-- The information is received at the method `WindowManager.handleBrowserHistoryPush`, where we:
-	- Clean the path name by removing any part of the server's subpath pathname
-	- Get the view matching the path name
-		- eg. for server `http://server-1.com/mattermost`, if the pathname is `/mattermost/boards/board1`, we would get the Boards view matching the server.
-	- If it's closed, we open it and load the corresponding URL
-	- We then explicitly display the new view if it's not currently in focus
-	- We then check if we're redirecting to the root of the application, since commonly the app will want to do that on login, causing an unnecessary refresh. If we're doing that, we stop the redirect
-	- Otherwise, we send the pathname back to the view that it corresponds to and let the application continue on normally
-- None of these links should ever trigger any navigation that needs to be handled by Electron itself, we handle it ourselves
+The Desktop App exercises relatively strict control over the user's ability to navigate through the web. This is done for a few main reasons:
+- **Security:** Since we expose certain Electron (and therefore NodeJS) APIs to the front-end application, we want to be in control of what scripts are run in the front-end. We make a considerable effort to lock down the exposed APIs to only what is necessary, but to avoid any privacy or security breaches it is best to avoid allowing the user to navigate to any page that is not explicitly trusted.
+- **User Experience:** Our application is ONLY designed to work with the Mattermost Web App and thus allowing the user to navigate to other places that are not the Web App is not a supported use case, and could create some undesirable effects.
 
-Clicking on a link marked `target=_blank`
-- This should normally trigger the `new-window` event on the webContents (represents a Chromium process)
-- We listen for this in the `webContentEvents` module, where we attach a `setWindowOpenHandler` that allows us to `allow` or `deny` the opening of the window
-- Our handler checks the following and will deny the opening of a new Electron for any of the following:
-    - If the URL is malformed or invalid in some way (eg. some kind of injection or spoofing). Depending on the case, it will outright ignore it (if the URL could not be parsed) or it will open the user's default browser if it is somehow invalid in another way.
-    - If the URL does not match an allowed protocol (allowed protocols include `http`, `https` and any other protocol that was explicitly allowed by the user). In this case, it will pop the dialog to ask the user if the protocol should be allowed, and if so will open the URL in the users default application that corresponds to that protocol.
-    - If the URL does not match the root of a configured server, it will always try to open the link in the users default browser.
+![Navigation diagram](navigation-diagram.png)
+
+### Internal navigation within the Mattermost Web App
+  
+The Mattermost Web App is mostly very self-contained, with the majority of links provided by `react-router` and thus most navigation is handled by that module. However, in the Desktop App, we have a major feature that allows users to navigate between distinct tabs bound to the same server. Two ways that this style of navigation happens in the Web App are:
+- Clicking on a link provided by the `react-router` `Link` component
+- Calling `browserHistory.push` directly within the Web App
+Both of these methods will make use of the `browserHistory` module within the Web App.
+
+When one of the above methods is used, normally the Web App would update the browser's URL and change the state of the page. In the Desktop App, we instead send the arguments of the call to `browserHistory.push` up to the Electron Main Process. The information is received at the method `WindowManager.handleBrowserHistoryPush`, where we perform the following actions:
+- **Clean the path name by removing any part of the server's subpath pathname.** 
+    - When the arguments are sent up to the Desktop App, it includes the subpath of the server hosting it. 
+    - If the server URL is `http://server-1.com/mattermost`, any path that is received will start with `/mattermost` and we will need to remove that component.
+- **Retrieve the view matching the path name**
+    - After removing the leading subpath (if applicable), we check to see if a portion of the path matches one of the other tabs, signally that we will need to switch to that tab.
+    - For server `http://server-1.com/mattermost`, if the pathname is `/mattermost/boards/board1`, we would get the *Boards* view matching the server.
+- **Display the correct view and send the cleaned path to its renderer process**
+    - We then explicitly display the new view if it's not currently in focus. If it's closed, we open it and load the corresponding URL with the provided path.
+    - *Exception*: If we're redirecting to the root of the application and the user is not logged in, it will generate an unnecessary refresh. In this case, we do not send the path name down.
+
+### External Navigation
+
+For the cases where a user wants to navigate away from the Web App to an external site, we generally want to direct the user outside of the Desktop App and have them open their default web browser and use the external site in that application.
+
+In order to achieve this, we need to explicitly handle every other link and method of navigation that is available to an Electron renderer process. Fortunately, Electron provides a few listeners that help us with that:
+- **will-navigate** is an event that fires when the URL is changed for a given renderer process. Attaching a listener for this event allows us to prevent the navigation if desired.
+    - NOTE: The event will not fire for in-page navigations or updating `window.location.hash`.
+- **did-start-navigation** is another renderer process event that will fire once the page has started navigating. We can use this event to perform any actions when a certain URL is visited.
+- **new-window** is an event that will fire when the user tries to open a new window or tab. This commonly will fire when the user clicks on a link marked `target=_blank`. We attach this listener using the `setWindowOpenHandler` and will allow us to `allow` or `deny` the opening as we desire.
+
+In our application, we define all of these listeners in the `webContentEvents` module, and we attach them whenever a new `webContents` object is create to make sure that all renderer processes are correctly secured and set up correctly.
+
+#### Handling New Windows
+Our new window handler will *deny* the opening of a new Electron window if any of the following cases are true:
+- **Malformed URL:** Depending on the case, it will outright ignore it (if the URL could not be parsed) or it will open the user's default browser if it is somehow invalid in another way.
+- **Untrusted Protocol:** If the URL does not match an allowed protocol (allowed protocols include `http`, `https` and any other protocol that was explicitly allowed by the user). 
+    - In this case, it will pop the dialog to ask the user if the protocol should be allowed, and if so will open the URL in the users default application that corresponds to that protocol.
+- **Unknown Site:** If the URL does not match the root of a configured server, it will always try to open the link in the users default browser.
     - If the URL DOES match the root of a configured server, we still will deny the window opening for a few cases:
         - If the URL matches the public files route (`/api/v4/public/files/*`)
         - If the URL matches the image proxy route (`/api/v4/image/*`)
         - If the URL matches the help route (`/help/*`)
-    - If the URL doesn't match any of the above route, but is still a valid configured server, we will generally treat is as the deep link cause and will instead attempt to show the correct tab and navigate to the corresponding URL within the app.
-- There are two cases where we do allow the application to open a new window:
-    - If the URL matches the `devtools:` protocol, so that we can open the Chrome Developer Tools
-    - If the URL is a valid configured server URL that corresponds to the plugins route (`/plugins/*`). In these cases we allow a single popup per tab to be opened for certain plugins to do things like OAuth (eg. GitHub, JIRA)
-- Any other case will be automatically denied for security reasons.
+    - For these cases, we will open the link in the user's browser.
+- **Deep Link Case**: If the URL doesn't match any of the above routes, but is still a valid configured server, we will generally treat is as the deep link cause and will instead attempt to show the correct tab and navigate to the corresponding URL within the app.
 
-Clicking on any other link not marked `target=_blank`:
-- By default, the Mattermost app marks any link external to its application as `target=_blank` so that the application doesn't try to open it in the same window.
-- If we have any other in-product links that simply call `window.location.href` or are simple `<a href>` links, we will first emit the `will-navigate` event, which allows us to deny the navigation if necessary.
-- In our app, we deny any sort of in-window navigation with the following exceptions:
-    - If the link matches a pattern that we can confirm is within the app
-    - If the link is a `mailto:` link (which always opens the default mail program)
-    - If we are in the custom login flow
+There are two cases where we do allow the application to open a new window:
+- If the URL matches the `devtools:` protocol, so that we can open the Chrome Developer Tools.
+- If the URL is a valid configured server URL that corresponds to the plugins route (`/plugins/*`). In these cases we allow a single popup per tab to be opened for certain plugins to do things like OAuth (eg. GitHub, JIRA)
 
-Custom Login flow:
-- In order to facilitate logging into to the app using an external provider in the same way that one would in the browser, we add an exception to the navigation flow that bypasses the `will-navigate` check
-- When a user clicks on a login link that redirects them to a matching URL scheme (listed here: https://github.com/mattermost/desktop/blob/master/src/common/utils/constants.ts#L48), we will activate the custom login flow
-    - NOTE: the URL MUST still be internal to the application before we activate this flow, or any URL matching this pattern would allow the app to circumvent the navigation protection
-- While the current window is in the custom login flow, all links that emit the `will-navigate` event will be allowed. Anything that opens a new window will still be restricted based on the rules for new windows
-- We leave the custom login flow once the app has navigated back to an URL internal to the application
+Any other case will be automatically denied for security reasons.
 
-`did-start-navigation` also fires on every clicked route change
-`will-navigate` will fire on any links that are not `target=_blank`
+#### Links within the same window
+By default, the Mattermost app marks any link external to its application as `target=_blank` so that the application doesn't try to open it in the same window. Any other links should therefore be internal to the application.
+
+In our app, we *deny* any sort of in-window navigation with the following exceptions: if the link is a `mailto:` link (which always opens the default mail program) OR if we are in the custom login flow.
+
+#### Custom Login flow
+In order to facilitate logging into to the app using an external provider (eg. Okta) in the same way that one would in the browser, we add an exception to the navigation flow that bypasses the `will-navigate` check.
+
+When a user clicks on a login link that redirects them to a matching URL scheme (listed [here](https://github.com/mattermost/desktop/blob/master/src/common/utils/constants.ts#L48)), we will activate the custom login flow. The URL *MUST* still be internal to the application before we activate this flow, or any URL matching this pattern would allow the app to circumvent the navigation protection.
+
+While the current window is in the custom login flow, all links that emit the `will-navigate` event will be allowed. Anything that opens a new window will still be restricted based on the rules for new windows. We leave the custom login flow once the app has navigated back to an URL internal to the application
