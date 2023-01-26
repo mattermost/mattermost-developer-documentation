@@ -4790,6 +4790,9 @@ div.mermaid {
     .search__query-input {
         width: 605px;
     }
+    .sidebar__search .search__query-input {
+        width: 100%;
+    }
 }
 
 .search__heading {
