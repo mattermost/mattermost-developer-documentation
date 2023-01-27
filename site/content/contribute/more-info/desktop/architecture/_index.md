@@ -11,7 +11,7 @@ aliases:
 #### Electron
 The Desktop App, like all Electron apps, is broken into two pieces: the **main** process and the **renderer** process.
 
-The **main** process is a NodeJS process that has access to operating system functions, and governs the creation and management of several renderer processes.  
+- The **main** process is a NodeJS process that has access to operating system functions, and governs the creation and management of several renderer processes.  
 - The **renderer** processes are Chromium instances that perform different functions. In our app, each Mattermost server is its own renderer process.
 
 ![Process diagram](process-diagram.png)
