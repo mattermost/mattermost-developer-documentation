@@ -18,7 +18,7 @@ The Desktop App exercises relatively strict control over the user's ability to n
   
 The Mattermost Web App is self-contained, with the majority of links provided by `react-router` and thus most navigation is handled by that module. However, in the Desktop App, we have a major feature that allows users to navigate between distinct tabs bound to the same server. There are two ways that this style of navigation happens in the Web App:
 - A user clicks on a link provided by the `react-router` `Link` component
-- Calling `browserHistory.push` directly within the Web App
+- The application calls `browserHistory.push` directly within the Web App based on the user action
 Both of these methods will make use of the `browserHistory` module within the Web App.
 
 When one of the above methods is used, normally the Web App would update the browser's URL and change the state of the page. In the Desktop App, we instead send the arguments of the call to `browserHistory.push` up to the Electron Main Process. The information is received at the method `WindowManager.handleBrowserHistoryPush`, where we perform the following actions:
