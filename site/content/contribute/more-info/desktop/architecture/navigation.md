@@ -17,7 +17,7 @@ The Desktop App exercises relatively strict control over the user's ability to n
 ### Internal navigation
   
 The Mattermost Web App is self-contained, with the majority of links provided by `react-router` and thus most navigation is handled by that module. However, in the Desktop App, we have a major feature that allows users to navigate between distinct tabs bound to the same server. There are two ways that this style of navigation happens in the Web App:
-- Clicking on a link provided by the `react-router` `Link` component
+- A user clicks on a link provided by the `react-router` `Link` component
 - Calling `browserHistory.push` directly within the Web App
 Both of these methods will make use of the `browserHistory` module within the Web App.
 
@@ -44,7 +44,7 @@ In order to achieve this, we need to explicitly handle every other link and meth
 
 In our application, we define all of these listeners in the `webContentEvents` module, and we attach them whenever a new `webContents` object is create to make sure that all renderer processes are correctly secured and set up correctly.
 
-#### Handling new windows
+#### New window handling
 Our new window handler will *deny* the opening of a new Electron window if any of the following cases are true:
 - **Malformed URL:** Depending on the case, it will outright ignore it (if the URL could not be parsed), or it will open the user's default browser if it is somehow invalid in another way.
 - **Untrusted Protocol:** If the URL does not match an allowed protocol (allowed protocols include `http`, `https`, and any other protocol that was explicitly allowed by the user). 
@@ -64,7 +64,7 @@ There are two cases where we do allow the application to open a new window:
 Any other case will be automatically denied for security reasons.
 
 #### Links within the same window
-By default, the Mattermost app marks any link external to its application as `target=_blank`, so that the application doesn't try to open it in the same window. Any other links should therefore be internal to the application.
+By default, the Mattermost Web App marks any link external to its application as `target=_blank`, so that the application doesn't try to open it in the same window. Any other links should therefore be internal to the application.
 
 We *deny* any sort of in-window navigation with the following exceptions: if the link is a `mailto:` link (which always opens the default mail program), OR if we are in the custom login flow.
 
