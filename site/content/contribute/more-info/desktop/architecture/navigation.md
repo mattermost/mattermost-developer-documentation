@@ -8,15 +8,15 @@ aliases:
   - /contribute/desktop/architecture/navigation
 ---
 
-The Desktop App exercises relatively strict control over the user's ability to navigate through the web. This is done for a few main reasons:
-- **Security:** Since we expose certain Electron (and therefore NodeJS) APIs to the front-end application, we want to be in control of what scripts are run in the front-end. We make a considerable effort to lock down the exposed APIs to only what is necessary, but to avoid any privacy or security breaches it is best to avoid allowing the user to navigate to any page that is not explicitly trusted.
+The Desktop App exercises relatively strict control over the user's ability to navigate through the web. This is done for a few reasons:
+- **Security:** Since we expose certain Electron (and therefore NodeJS) APIs to the front-end application, we want to be in control of what scripts are run in the front-end. We make a concerted effort to lock down the exposed APIs to only what is necessary; however, to avoid any privacy or security breaches, it's best to avoid allowing the user to navigate to any page that isn't explicitly trusted.
 - **User Experience:** Our application is ONLY designed to work with the Mattermost Web App and thus allowing the user to navigate to other places that are not the Web App is not a supported use case, and could create some undesirable effects.
 
 ![Navigation diagram](navigation-diagram.png)
 
-### Internal navigation within the Mattermost Web App
+### Internal navigation
   
-The Mattermost Web App is mostly very self-contained, with the majority of links provided by `react-router` and thus most navigation is handled by that module. However, in the Desktop App, we have a major feature that allows users to navigate between distinct tabs bound to the same server. Two ways that this style of navigation happens in the Web App are:
+The Mattermost Web App is self-contained, with the majority of links provided by `react-router` and thus most navigation is handled by that module. However, in the Desktop App, we have a major feature that allows users to navigate between distinct tabs bound to the same server. There are two ways that this style of navigation happens in the Web App:
 - Clicking on a link provided by the `react-router` `Link` component
 - Calling `browserHistory.push` directly within the Web App
 Both of these methods will make use of the `browserHistory` module within the Web App.
@@ -32,7 +32,7 @@ When one of the above methods is used, normally the Web App would update the bro
     - We then explicitly display the new view if it's not currently in focus. If it's closed, we open it and load the corresponding URL with the provided path.
     - *Exception*: If we're redirecting to the root of the application and the user is not logged in, it will generate an unnecessary refresh. In this case, we do not send the path name down.
 
-### External Navigation
+### External navigation
 
 For the cases where a user wants to navigate away from the Web App to an external site, we generally want to direct the user outside of the Desktop App and have them open their default web browser and use the external site in that application.
 
@@ -44,32 +44,32 @@ In order to achieve this, we need to explicitly handle every other link and meth
 
 In our application, we define all of these listeners in the `webContentEvents` module, and we attach them whenever a new `webContents` object is create to make sure that all renderer processes are correctly secured and set up correctly.
 
-#### Handling New Windows
+#### Handling new windows
 Our new window handler will *deny* the opening of a new Electron window if any of the following cases are true:
-- **Malformed URL:** Depending on the case, it will outright ignore it (if the URL could not be parsed) or it will open the user's default browser if it is somehow invalid in another way.
-- **Untrusted Protocol:** If the URL does not match an allowed protocol (allowed protocols include `http`, `https` and any other protocol that was explicitly allowed by the user). 
-    - In this case, it will pop the dialog to ask the user if the protocol should be allowed, and if so will open the URL in the users default application that corresponds to that protocol.
-- **Unknown Site:** If the URL does not match the root of a configured server, it will always try to open the link in the users default browser.
+- **Malformed URL:** Depending on the case, it will outright ignore it (if the URL could not be parsed), or it will open the user's default browser if it is somehow invalid in another way.
+- **Untrusted Protocol:** If the URL does not match an allowed protocol (allowed protocols include `http`, `https`, and any other protocol that was explicitly allowed by the user). 
+    - In this case, it will ask the user whether the protocol should be allowed, and if so will open the URL in the user's default application that corresponds to that protocol.
+- **Unknown Site:** If the URL does not match the root of a configured server, it will always try to open the link in the user's default browser.
     - If the URL DOES match the root of a configured server, we still will deny the window opening for a few cases:
         - If the URL matches the public files route (`/api/v4/public/files/*`)
         - If the URL matches the image proxy route (`/api/v4/image/*`)
         - If the URL matches the help route (`/help/*`)
     - For these cases, we will open the link in the user's browser.
-- **Deep Link Case**: If the URL doesn't match any of the above routes, but is still a valid configured server, we will generally treat is as the deep link cause and will instead attempt to show the correct tab and navigate to the corresponding URL within the app.
+- **Deep Link Case**: If the URL doesn't match any of the above routes, but is still a valid configured server, we will generally treat is as the deep link cause, and will instead attempt to show the correct tab as well as navigate to the corresponding URL within the app.
 
 There are two cases where we do allow the application to open a new window:
 - If the URL matches the `devtools:` protocol, so that we can open the Chrome Developer Tools.
-- If the URL is a valid configured server URL that corresponds to the plugins route (`/plugins/*`). In these cases we allow a single popup per tab to be opened for certain plugins to do things like OAuth (eg. GitHub, JIRA)
+- If the URL is a valid configured server URL that corresponds to the plugins route (`/plugins/*`). In these cases we allow a single popup per tab to be opened for certain plugins to do things like OAuth (e.g. GitHub or JIRA).
 
 Any other case will be automatically denied for security reasons.
 
 #### Links within the same window
-By default, the Mattermost app marks any link external to its application as `target=_blank` so that the application doesn't try to open it in the same window. Any other links should therefore be internal to the application.
+By default, the Mattermost app marks any link external to its application as `target=_blank`, so that the application doesn't try to open it in the same window. Any other links should therefore be internal to the application.
 
-In our app, we *deny* any sort of in-window navigation with the following exceptions: if the link is a `mailto:` link (which always opens the default mail program) OR if we are in the custom login flow.
+We *deny* any sort of in-window navigation with the following exceptions: if the link is a `mailto:` link (which always opens the default mail program), OR if we are in the custom login flow.
 
-#### Custom Login flow
-In order to facilitate logging into to the app using an external provider (eg. Okta) in the same way that one would in the browser, we add an exception to the navigation flow that bypasses the `will-navigate` check.
+#### Custom login flow
+In order to facilitate logging into to the app using an external provider (e.g. Okta) in the same way that one would in the browser, we add an exception to the navigation flow that bypasses the `will-navigate` check.
 
 When a user clicks on a login link that redirects them to a matching URL scheme (listed [here](https://github.com/mattermost/desktop/blob/master/src/common/utils/constants.ts#L48)), we will activate the custom login flow. The URL *MUST* still be internal to the application before we activate this flow, or any URL matching this pattern would allow the app to circumvent the navigation protection.
 
