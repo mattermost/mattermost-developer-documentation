@@ -5,7 +5,7 @@ description: "Test guidelines"
 date: 2022-03-30T00:00:00+08:00
 weight: 6
 aliases:
-  - /contribute/getting-started/test-guideline
+  - /contribute/more-info/getting-started/test-guideline
   - /contribute/more-info/webapp/e2e/interested-in-contributing
 ---
 
