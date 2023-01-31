@@ -1,15 +1,17 @@
 .notification-bar {
 	color: #1B1D22;
-    text-align: center;
-    /* display: none; */
     width: 100%;
     align-items: center;
     justify-content: center;
     height: 45px;
-    white-space: nowrap;
 	background-color: #FFBC1F;
-    /* position: fixed; */
     z-index: 99;
+}
+
+@media (min-width: 992px) {
+    .notification-bar {
+        text-align: center;
+    }
 }
 
 .notification-bar.closed {
@@ -37,9 +39,6 @@
 }
 
 .notification-bar__content > div {
-	overflow: hidden;
-    text-overflow: ellipsis;
-	display: flex;
 	align-items: center;
 }
 
@@ -71,7 +70,7 @@
 @media (max-width: 768px) {
     .notification-bar__close {
         line-height: 50px;
-        left: -5px;
+        left: 15px;
     }
 }
 
