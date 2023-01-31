@@ -2,7 +2,7 @@
 title: "End-to-End (E2E) cheatsheets"
 date: 2020-12-11T00:00
 weight: 7
-description: "This page describes custom commands and useful functions for  End-to-End (E2E) testing regarding the Mattermost web application."
+description: "This page describes custom commands and useful functions for End-to-End (E2E) testing with the Mattermost web application."
 aliases:
   - contribute/webapp/e2e-cheatsheets/
   - contribute/more-info/webapp/e2e-cheatsheet/basic-code-structure/
