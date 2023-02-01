@@ -42,7 +42,7 @@ In order to achieve this, we need to explicitly handle every other link and meth
 - **did-start-navigation** is another renderer process event that will fire once the page has started navigating. We can use this event to perform any actions when a certain URL is visited.
 - **new-window** is an event that will fire when the user tries to open a new window or tab. This commonly will fire when the user clicks on a link marked `target=_blank`. We attach this listener using the `setWindowOpenHandler` and will allow us to `allow` or `deny` the opening as we desire.
 
-In our application, we define all of these listeners in the `webContentEvents` module, and we attach them whenever a new `webContents` object is create to make sure that all renderer processes are correctly secured and set up correctly.
+In our application, we define all of these listeners in the `webContentEvents` module, and we attach them whenever a new [webContents](https://www.electronjs.org/docs/latest/api/web-contents) object is create to make sure that all renderer processes are correctly secured and set up correctly.
 
 #### New window handling
 Our new window handler will *deny* the opening of a new Electron window if any of the following cases are true:
