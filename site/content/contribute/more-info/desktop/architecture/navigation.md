@@ -24,7 +24,7 @@ Both of these methods will make use of the `browserHistory` module within the We
 When one of the above methods is used, normally the Web App would update the browser's URL and change the state of the page. In the Desktop App, we instead send the arguments of the call to `browserHistory.push` up to the Electron Main Process. The information is received at the method `WindowManager.handleBrowserHistoryPush`, where we perform the following actions:
 - **Clean the path name by removing any part of the server's subpath pathname.** 
     - When the arguments are sent up to the Desktop App, it includes the subpath of the server hosting it. 
-    - If the server URL is `http://server-1.com/mattermost`, any path that is received will start with `/mattermost` and we will need to remove that component.
+    - As an example, if the server URL is `http://server-1.com/mattermost`, any path that is received will start with `/mattermost` and we will need to remove that component. The same would be true for any other path following the origin `http://server-1.com`.
 - **Retrieve the view matching the path name**
     - After removing the leading subpath (if applicable), we check to see if a portion of the path matches one of the other tabs, signally that we will need to switch to that tab.
     - For server `http://server-1.com/mattermost`, if the pathname is `/mattermost/boards/board1`, we would get the *Boards* view matching the server.
