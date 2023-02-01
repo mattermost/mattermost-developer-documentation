@@ -37,10 +37,10 @@ When one of the above methods is used, normally the Web App would update the bro
 For the cases where a user wants to navigate away from the Web App to an external site, we generally want to direct the user outside of the Desktop App and have them open their default web browser and use the external site in that application.
 
 In order to achieve this, we need to explicitly handle every other link and method of navigation that is available to an Electron renderer process. Fortunately, Electron provides a few listeners that help us with that:
-- **will-navigate** is an event that fires when the URL is changed for a given renderer process. Attaching a listener for this event allows us to prevent the navigation if desired.
+- [**will-navigate**](https://www.electronjs.org/docs/latest/api/web-contents#event-will-navigate) is an event that fires when the URL is changed for a given renderer process. Attaching a listener for this event allows us to prevent the navigation if desired.
     - NOTE: The event will not fire for in-page navigations or updating `window.location.hash`.
-- **did-start-navigation** is another renderer process event that will fire once the page has started navigating. We can use this event to perform any actions when a certain URL is visited.
-- **new-window** is an event that will fire when the user tries to open a new window or tab. This commonly will fire when the user clicks on a link marked `target=_blank`. We attach this listener using the `setWindowOpenHandler` and will allow us to `allow` or `deny` the opening as we desire.
+- [**did-start-navigation**](https://www.electronjs.org/docs/latest/api/web-contents#event-did-start-navigation) is another renderer process event that will fire once the page has started navigating. We can use this event to perform any actions when a certain URL is visited.
+- [**new-window**](https://www.electronjs.org/docs/latest/breaking-changes#removed-webcontents-new-window-event) is an event that will fire when the user tries to open a new window or tab. This commonly will fire when the user clicks on a link marked `target=_blank`. We attach this listener using the `setWindowOpenHandler` and will allow us to `allow` or `deny` the opening as we desire.
 
 In our application, we define all of these listeners in the `webContentEvents` module, and we attach them whenever a new [webContents](https://www.electronjs.org/docs/latest/api/web-contents) object is create to make sure that all renderer processes are correctly secured and set up correctly.
 
