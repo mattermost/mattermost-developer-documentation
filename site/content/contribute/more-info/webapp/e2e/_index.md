@@ -19,7 +19,7 @@ Not familiar with Cypress? Here is some documentation that will help you get sta
 
 ## What requires an E2E test?
 
-1. Test cases defined in help-wanted E2E issues - for example, see {{< newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5857/files" title="link" >}} that opens a private channel using keyboard navigation with <kbd><kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd></kbd>, <kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd><kbd>←</kbd></kbd> and <kbd>Enter</kbd> keys. keys.
+1. Test cases defined in help-wanted E2E issues - for example, see {{< newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5857/files" title="link" >}} that opens a private channel using keyboard navigation with <kbd><kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>K</kbd></kbd>, <kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd><kbd>←</kbd></kbd> and <kbd>Enter</kbd> keys.
 2. New features or stories - for example, see {{< newtabref href="https://github.com/mattermost/mattermost-webapp/pull/4243/files" title="link" >}} for `Mark As Unread` feature.
 3. Bug fixes - for example, see {{< newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5908/files#diff-dcfea130d9ceb044f5959134a2d220d9R56-R84" title="link" >}} that fixes mention highlight to self.
 4. Test cases from Zephyr - for example, see {{< newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5850/files" title="link" >}} which adds automated tests for `Guest Accounts`. 
