@@ -4862,3 +4862,8 @@ div.mermaid {
 mark {
     background: #F1C40F;
 }
+
+/* GoAT (Go Ascii Tool) */
+.goat svg {
+    font-family: 'Fira Mono','Courier New',Courier,monospace;
+}
