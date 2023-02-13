@@ -14,7 +14,7 @@ aliases:
 
 1. Create a new workspace for a ticket/issue that you've claimed by going to the {{<newtabref href="https://github.com/mattermost/mattermost-gitpod-config/tree/master" title="mattermost-gitpod-config">}} repository and clicking the "Open in Gitpod" badge.
 
-    * You can also use the Gitpod extension to open up a repository in Gitpod, or manually prefix GitHub repository URLs with `gitpod.io/#`. What the extension does is add a green Gitpod button to repository pages on GitHub, and clicking it spins up a new environment for the repository on Gitpod.
+    * You can also use the [Gitpod browser extension](https://www.gitpod.io/docs/configure/user-settings/browser-extension) to open up a repository in Gitpod, or manually prefix GitHub repository URLs with `gitpod.io/#`. What the extension does is add a green Gitpod button to repository pages on GitHub, and clicking it spins up a new environment for the repository on Gitpod.
     ![mattermost-gitpod-config-repo](https://user-images.githubusercontent.com/43153413/194467192-675a6b15-bb3b-4a4d-be05-f1df0fbdd524.jpeg)
 
 2. You may need to sign in (through GitHub) to access the workspace on Gitpod. Once Gitpod has done loading, the user interface presented is that of VSCode.
