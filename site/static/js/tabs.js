@@ -18,3 +18,40 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
+/**
+ * Click handler that activates a tab in a group of tabs
+ * @param {Event} evt The click event metadata
+ * @param {string} tabGroupName The id of the tab group to activate a tab in
+ * @param {string} tabName The id of the tab to activate
+ */
+const openTabV2 = (evt, tabGroupName, tabName) => {
+    // Get the <div> with id matching tabGroupName
+    const tabgroupdiv = document.getElementById(tabGroupName);
+    if (tabgroupdiv) {
+        // Get the tabs (<div class="tabcontent" id="tabGroupName-xxxxx">) and hide them
+        const tabGroupPrefix = `${tabGroupName}-`;
+        const tabs = document.getElementsByClassName("tabcontent");
+        for (const tab of tabs) {
+            if (tab.id.startsWith(tabGroupPrefix)) {
+                // Hide the tab
+                tab.style.display = "none";
+            }
+        }
+        // Get the tab links and remove the `active` class
+        const tablinks = tabgroupdiv.getElementsByClassName("tablinks");
+        for (const tablink of tablinks) {
+            tablink.className = tablink.className.replace(" active", "");
+        }
+        // Show the desired tab and activate its tab link
+        const desiredTab = document.getElementById(tabName);
+        if (desiredTab) {
+            desiredTab.style.display = "block";
+        } else {
+            console.error(`openTabV2(): cannot find desired tab with id '${tabName}'`);
+        }
+        evt.currentTarget.className += " active";
+    } else {
+        console.error(`openTabV2(): cannot find a div element with id '${tabGroupName}'`);
+    }
+};

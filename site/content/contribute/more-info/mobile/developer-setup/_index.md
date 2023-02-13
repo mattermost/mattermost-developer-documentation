@@ -8,225 +8,225 @@ aliases:
   - /contribute/mobile/developer-setup
 ---
 
-The following instructions apply to the mobile apps for iOS and Android built in React Native. Download the iOS version {{< newtabref href="https://apps.apple.com/us/app/mattermost/id1257222717" title="here" >}} and the Android version {{< newtabref href="https://play.google.com/store/apps/details?id=com.mattermost.rn" title="here" >}}. Source code can be found at the {{< newtabref href="https://github.com/mattermost/mattermost-mobile" title="GitHub Mattermost Mobile app repository" >}}.
+The following instructions apply to the mobile apps for iOS and Android built in React Native.
+Download the iOS version {{< newtabref href="https://apps.apple.com/us/app/mattermost/id1257222717" title="here" >}} and the Android version {{< newtabref href="https://play.google.com/store/apps/details?id=com.mattermost.rn" title="here" >}}.
+Source code can be found at the {{< newtabref href="https://github.com/mattermost/mattermost-mobile" title="GitHub Mattermost Mobile app repository" >}}.
 
-If you run into any issues getting your environment set up, check the {{< newtabref href="https://docs.mattermost.com/deploy/mobile-troubleshoot.html" title="Troubleshooting" >}} section in the left sidebar for common solutions.
+If you run into any issues getting your environment set up, check the {{< newtabref href="https://docs.mattermost.com/deploy/mobile-troubleshoot.html" title="Troubleshooting" >}} section of the product docs for common solutions.
 
-{{<note "Note:">}}
-**This guide describes how to set up the development environment on macOS or Linux.**
-{{</note>}}
-
+{{<note "iOS mobile app">}}
 A macOS computer is required to build the Mattermost iOS mobile app.
+{{</note>}}
 
 ## Environment setup
 
-### iOS and Android
+The following instructions apply to both iOS and Android mobile apps.
+On macOS, we recommend using {{< newtabref href="https://brew.sh" title="Homebrew" >}} as a package manager.
 
-Install the following prerequisite software to develop and build the iOS or Android apps. For macOS, we recommend using {{< newtabref href="https://brew.sh" title="Homebrew" >}} as a package manager.
+### Install NodeJS and NPM
 
-#### Node and NPM
-We recommend using npm version 7 (with either Node 15 or 16). To make switching easier, many of our team use {{< newtabref href="https://github.com/nvm-sh/nvm" title="nvm" >}} to manage the npm and node versions.
+We recommend using NodeJS v18 and npm v8. Many of our team use {{< newtabref href="https://github.com/nvm-sh/nvm" title="nvm" >}} to manage npm and NodeJS versions.
 
-#### Install Cygwin (Windows only)
-##### Windows 10
-- {{< newtabref href="https://cygwin.com/faq/faq.html#faq.what.supported" title="Which versions of Windows does Cygwin support" >}}?
-- Install Cygwin from {{< newtabref href="https://www.cygwin.com/" title="here" >}}.
-- Make sure to install `make` and `patch` while installing Cygwin.
-
-##### macOS
-
-- To install using Homebrew open a terminal and execute:
+{{<tabs "node-npm" "node-npm-mac,macOS;node-npm-linux,Linux" "node-npm-mac">}}
+{{<tab "node-npm-mac" "display: block;">}}
+To install NVM using Homebrew, open a terminal and execute:
 
 ```sh
-    brew install nvm
+brew install nvm
 ```
 
-##### Linux
+To install NodeJS v18 LTS using NVM, open a new terminal and execute:
 
--	Install using your distribution's package manager (Note that different distros provide different node versions, check that it is a supported [NodeJS version](#node-and-npm))
+```shell
+nvm install --lts=hydrogen
+```
+{{</tab>}}
+{{<tab "node-npm-linux">}}
+There are three available options for installing NodeJS on Linux:
 
-Other installation options:
+- Using NVM by following the instructions {{< newtabref href="https://github.com/nvm-sh/nvm#install-script" title="here" >}}.
+- Install using your distribution's package manager.
+- Download and install the package from the {{< newtabref href="https://nodejs.org/en" title="NodeJS website" >}}.
+{{<note>}}
+The version of NodeJS that your distribution's package manager supports may not be the recommended version to build Mattermost mobile apps.
+Please make sure that NodeJS installed by the package manager is at the recommended version.
+{{</note>}}
+{{</tab>}}
 
--   Using NVM by following the instructions {{< newtabref href="https://github.com/creationix/nvm#install-script" title="here" >}}.
--   Download and install the package from the {{< newtabref href="https://nodejs.org/en" title="NodeJS website" >}}.
+### Install Watchman
 
-##### Windows 10
--   Download and install the package from the {{< newtabref href="https://nodejs.org/en/" title="NodeJS website" >}}
+{{<newtabref href="https://facebook.github.io/watchman" title="Watchman">}} is a file watching program.
+When a file changes, Watchman triggers an action, such as re-running a build command if a source file has changed.
 
-#### Install {{< newtabref href="https://facebook.github.io/watchman" title="Watchman" >}}
+The minimum required version of Watchman is 4.9.0.
 
-The minimum required version is 4.9.0.
-
-##### macOS
-
-- To install using Homebrew open a terminal and execute:
-
-    ```sh
-      brew install watchman
-    ```
-
-##### Linux
-
-- On Linux you have to build Watchman yourself. See the official {{< newtabref href="https://facebook.github.io/watchman/docs/install.html#installing-from-source" title="Watchman guide" >}}.
-   - Note that you need to increase your `inotify` limits for Watchman to work properly.
-   - If you encounter a warning about a missing C++ compiler you need to install the C++ extension from your distro's package manager (Ubuntu: g++, RHEL/Fedora: gcc-g++).
-
-##### Windows 10
-- Download the latest package from {{< newtabref href="https://github.com/facebook/watchman/releases/tag/v2020.07.27.00" title="here" >}}. Note that it's currently in Beta.
-#### Install `react-native-cli` tools
+{{<tabs "watchman" "watchman-mac,macOS;watchman-linux,Linux" "watchman-mac">}}
+{{<tab "watchman-mac" "display: block;">}}
+To install Watchman using Homebrew, open a terminal and execute:
 
 ```sh
-  npm -g install react-native-cli
+brew install watchman
 ```
-#### Install Ruby
-##### Windows 10
-- Install Ruby from {{< newtabref href="https://rubyinstaller.org/" title="here" >}}
-#### Install Git
-##### Windows 10
-- Install git from {{< newtabref href="https://git-scm.com/download/win" title="here" >}}
+{{</tab>}}
+{{<tab "watchman-linux">}}
+Download the latest package from {{< newtabref href="https://github.com/facebook/watchman/releases" title="here" >}}.
+{{<note "Inotify limits">}}
+Note that you need to increase your `inotify` limits for Watchman to work properly.
+{{</note>}}
+{{</tab>}}
 
-#### Install `bundler --version 2.0.2` gem
+### Install `react-native-cli` tools
 
 ```sh
-  gem install bundler --version 2.0.2
+npm -g install react-native-cli
 ```
-#### Obtaining the source code
 
-We use GitHub to host the source code so we recommend that you install {{< newtabref href="https://git-scm.com/" title="Git" >}}. Optionally, you can also contribute by submitting {{< newtabref href="https://help.github.com/articles/creating-a-pull-request" title="pull requests" >}}. If you do not have Git installed you can do so with Homebrew by opening a terminal and executing:
+### Install Ruby
 
-##### macOS
+{{<tabs "ruby" "ruby-mac,macOS;ruby-linux,Linux" "ruby-mac">}}
+{{<tab "ruby-mac" "display: block;">}}
+A version of Ruby is automatically installed on macOS.
+{{</tab>}}
+{{<tab "ruby-linux">}}
+Install Ruby using your distribution's package manager.
+{{</tab>}}
+
+### Install Git
+
+{{<tabs "git" "git-mac,macOS;git-linux,Linux" "git-mac">}}
+{{<tab "git-mac" "display: block;">}}
+To install Git using Homebrew, open a terminal and execute:
 
 ```sh
-  brew install git
+brew install git
 ```
-
-##### Linux
-
+{{</tab>}}
+{{<tab "git-linux">}}
 Some distributions come with Git preinstalled but you'll most likely have to install it yourself. For most distributions the package is simply called `git`.
+{{</tab>}}
 
-### Additional setup for iOS
+## Additional setup for iOS
 
-*  Install {{< newtabref href="https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12" title="Xcode" >}} to build and run the app on iOS. The minimum required version is 11.0.
+Install {{< newtabref href="https://apps.apple.com/us/app/xcode/id497799835?ls=1&mt=12" title="Xcode" >}} to build and run the app on iOS. The minimum required version is 11.0.
 
-#### Additional setup for iOS on M1 macs
+### Additional setup for iOS on M1 macs
 
 1. Follow the {{< newtabref href="https://reactnative.dev/docs/environment-setup" title="React Native environment setup" >}} docs until the `cocoapods` point, then stop. 
 2. Specify the correct version of Xcode in the terminal: `sudo xcode-select --switch /Applications/Xcode.app`
 3. In the Rosetta terminal, change to the `mattermost-mobile/ios` directory and run:
-    ```sh
-    sudo arch -x86_64 gem install ffi
-    sudo gem install cocoapods
-    arch -x86_64 pod install
-    ```
+   ```sh
+   sudo arch -x86_64 gem install ffi
+   sudo gem install cocoapods
+   arch -x86_64 pod install
+   ```
 4. If you need to use the Xcode app (e.g., to build, sign, and transfer the app to an iOS device), be sure to start it in Rosetta mode.
 
-### Additional setup for Android
+## Additional setup for Android
 
-##### Download and install Android Studio or Android SDK CLI tools
+### Download and install Android Studio or Android SDK CLI tools
 
 Download and install the {{< newtabref href="https://developer.android.com/studio/index.html#downloads" title="Android Studio app or the Android SDK command line tools" >}}
 
+{{<note "Default paths">}}
+This documentation assumes you chose the default path for your Android SDK installation. If you chose a different path, adjust the environment variables below accordingly.
+{{</note>}}
+
 #### Environment variables
 
-Make sure you have the following ENV VARS configured:
+Make sure you have the following environment variables configured for your platform:
 
-    - `ANDROID_HOME` to where Android SDK is located (likely `/Users/<username>/Library/Android/sdk` or `/home/<username>/Android/Sdk`)
-    - Make sure your `PATH` includes `ANDROID_HOME/tools` and `ANDROID_HOME/platform-tools`
+{{<tabs "droid" "droid-common,All platforms;droid-mac,macOS;droid-linux,Linux" "droid-common">}}
+{{<tab "droid-common" "display: block;">}}
+- Set `ANDROID_HOME` to where Android SDK is located (likely `/Users/<username>/Library/Android/sdk` or `/home/<username>/Android/Sdk`)
+- Make sure your `PATH` includes `ANDROID_HOME/tools` and `ANDROID_HOME/platform-tools`
+{{</tab>}}
+{{<tab "droid-mac">}}
+On Mac, this usually requires adding the following lines to your `~/.bash_profile` file:
 
-##### macOS
+```sh
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$PATH
+```
 
--   On Mac, this usually requires adding the following lines to your `~/.bash_profile` file:
+Then reload your bash configuration:
 
-    ```sh
-    export ANDROID_HOME=$HOME/Library/Android/sdk
-    export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$PATH
-    ```
-- Then reload your bash configuration:
+```sh
+source ~/.bash_profile
+```
 
-    ```sh
-    source ~/.bash_profile
-    ```
+{{<note>}}
+Depending on the shell you're using, this might need to be put into a different file such as `~/.zshrc`. Adjust this accordingly.
+{{</note>}}
+{{</tab>}}
+{{<tab "droid-linux">}}
+On Linux the home folder is located under `/home/<username>` which results in a slightly different path:
 
-##### Linux
+```sh
+export ANDROID_HOME=/home/<username>/Android/Sdk
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+export PATH=$ANDROID_HOME/tools:$PATH
+```
 
--   On Linux the home folder is located under `/home/<username>` which results in a slightly different path:
+Then reload your configuration
 
-    ```sh
-    export ANDROID_HOME=/home/<username>/Android/Sdk
-    export PATH=$ANDROID_HOME/platform-tools:$PATH
-    export PATH=$ANDROID_HOME/tools:$PATH
-    ```
+```sh
+source ~/.bash_profile
+```
 
-- Then reload your configuration
-
-    ```sh
-    source ~/.bash_profile
-    ```
-    - Note that depending on the shell you're using, this might need to be put into a different file such as ```~/.zshrc```. Adjust this accordingly.
-    - Also this documentation assumes you chose the default path for your Android SDK installation. If you chose a different path, adjust accordingly.
+{{<note>}}
+Depending on the shell you're using, this might need to be put into a different file such as `~/.zshrc`. Adjust this accordingly.
+{{</note>}}
+{{</tab>}}
 
 ### Install the SDKs and SDK tools
 
 In the SDK Manager using Android Studio or the {{< newtabref href="https://developer.android.com/studio/command-line/sdkmanager.html" title="Android SDK command line tool" >}}, ensure the following are installed:
 
-- SDK Tools (you may have to click "Show Package Details" to expand packages)
-    ![image](/img/mobile/sdk_tools.png)
-    - Android SDK Build-Tools 29.0.2
-    - Android Emulator
-    - Android SDK Platform-Tools
-    - Android SDK Tools
-    - Google Play services
-    - Intel x86 Emulator Accelerator (HAXM installer)
-    - Support Repository
-        -   Android Support Repository
-        -   Google Repository
+- SDK Tools (you may have to select **Show Package Details** to expand packages):
+  - Android SDK Build-Tools 31
+  - Android Emulator
+  - Android SDK Platform-Tools
+  - Android SDK Tools
+  - Google Play services
+  - Intel x86 Emulator Accelerator (HAXM installer)
+  - Support Repository
+    - Android Support Repository
+    - Google Repository
 
-- SDK Platforms (you may have to click "Show Package Details" to expand packages)
-    ![image](/img/mobile/sdk_platforms.png)
-    - Android 7 (Nougat) or above ({{< newtabref href="https://github.com/mattermost/mattermost-mobile/issues/2480" title="We've dropped Android 5/6 Support since December 2018, you may still continue to use 1.14 for Android 5/6 devices" >}})
-        - Google APIs
-        - SDK Platform
-            - For Android Q or above > Android SDK Platform 29 or above
-        - Intel or Google Play Intel x86 Atom\_64 System Image
-    - Any other API version that you want to test
+  ![image](sdk_tools.png)
+
+- SDK Platforms (you may have to select **Show Package Details** to expand packages)
+  - Android 12  or above
+    - Google APIs
+    - SDK Platform
+      - Android SDK Platform 31 or above
+    - Intel or Google Play Intel x86 Atom\_64 System Image
+  - Any other API version that you want to test
+
+  ![image](sdk_platforms.png)
 
 ## Obtain the source code
 
 In order to develop and build the Mattermost mobile apps, you'll need to get a copy of the source code. Forking the `mattermost-mobile` repository will also make it easy to contribute your work back to the project in the future.
 
-1.  Fork the {{< newtabref href="https://github.com/mattermost/mattermost-mobile" title="mattermost-mobile" >}} repository on GitHub.
+1. Fork the {{< newtabref href="https://github.com/mattermost/mattermost-mobile" title="mattermost-mobile" >}} repository on GitHub.
 
 2. Clone your fork locally:
-    - Open a terminal
-    - Change to a directory you want to hold your local copy
-    - Run `git clone https://github.com/<username>/mattermost-mobile.git` if you want to use HTTPS, or `git clone git@github.com:<username>/mattermost-mobile.git` if you want to use SSH
 
-    **`<username>` refers to the username or organization in GitHub that forked the repository**
+   a. Open a terminal
 
-3.  Change the directory to `mattermost-mobile`.
-    ```sh
-    cd mattermost-mobile
-    ```
+   b. Change to a directory you want to hold your local copy
 
-4.  Install the project dependencies with `npm install`
+   c. Run `git clone https://github.com/<username>/mattermost-mobile.git` if you want to use HTTPS, or `git clone git@github.com:<username>/mattermost-mobile.git` if you want to use SSH
 
-## Environment troubleshooting
+     {{<note>}}
+`<username>` refers to the username or organization in GitHub that forked the repository
+     {{</note>}}
 
-### `PhaseScriptExecution` failure
+3. Change the directory to `mattermost-mobile`.
 
-When building `ios` targets and using `nvm` to manage `node`, you may encounter an error like:
+   ```sh
+   cd mattermost-mobile
+   ```
 
-```
-The following build commands failed:
-    PhaseScriptExecution [CP-User]\ Generate\ Specs /Users/user/Library/Developer/Xcode/DerivedData/Mattermost-ahgfkbexhhzwuycanwlxiauwkxlt/Build/Intermediates.noindex/ArchiveIntermediates/Mattermost/IntermediateBuildFilesPath/Pods.build/Release-iphoneos/FBReactNativeSpec.build/Script-46EB2E0002D370.sh (in target 'FBReactNativeSpec' from project 'Pods')
-(1 failure)
-[08:00:31]: Exit status: 65
-```
-
-Check the following things:
-
-* Ensure you are running the latest version of `nvm` using the {{< newtabref href="https://github.com/nvm-sh/nvm#install--update-script" title="Upgrade Instructions" >}}
-* Ensure you have set your desired version of node in the file `~/.nvmrc`.  E.g.,
-    ```sh
-      echo v16.2.0 > ~/.nvmrc
-    ```
+4. Install the project dependencies with `npm install`
