@@ -2,6 +2,9 @@
 title: "Contributor expectations"
 heading: "Contributor expectations"
 weight: 3
+subsection: contributor expectations
+cascade:
+  - subsection: contributor expectations
 ---
 
 To contribute to Mattermost, you must sign the {{< newtabref href="https://mattermost.com/mattermost-contributor-agreement/" title="Contributor License Agreement" >}}. Doing so adds you to our list of {{< newtabref href="https://docs.google.com/spreadsheets/d/1NTCeG-iL_VS9bFqtmHSfwETo5f-8MQ7oMDE5IUYJi_Y/pubhtml?gid=0&single=true" title="Mattermost Approved Contributors" >}}. 
@@ -33,7 +36,7 @@ To get started:
      - [Core Plugins]({{< ref "/contribute/more-info/plugins/" >}}): A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
      - [Boards]({{< ref "/contribute/more-info/focalboard/" >}}) and [Playbooks](https://github.com/mattermost/mattermost-plugin-playbooks) core integrations.
 
-2. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the **Edit in Github** button in the top right of its respective published page. You can read more about this process on the [why and how to contribute page]({{< ref "/contribute/why-contribute/#you-want-to-help-with-content" >}}). You can contribute to the following Mattermost documentation sites:
+2. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the **Edit on GitHub** button in the top right of its respective published page. You can read more about this process on the [why and how to contribute page]({{< ref "/contribute/why-contribute/#you-want-to-help-with-content" >}}). You can contribute to the following Mattermost documentation sites:
 
     - {{< newtabref href="https://github.com/mattermost/docs" title="Product documentation" >}}
     - {{< newtabref href="https://github.com/mattermost/mattermost-developer-documentation" title="Developer documentation" >}}

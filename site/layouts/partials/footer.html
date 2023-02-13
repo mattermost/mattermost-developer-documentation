@@ -1,6 +1,6 @@
 <footer class="text-center">
     <div class="container-fluid">
-        <div class="footer__copyright ff--trade-gothic"><span class="footer__copyright-text">© Mattermost, Inc. 2022.</span> <a href="https://mattermost.com/terms-of-use/">Terms of Use</a> <span>|</span> <a href="https://mattermost.com/privacy-policy/">Privacy Policy</a> <span>|</span> <a href="https://mattermost.com/privacy-policy/cookies/">Cookie Policy</a></div>
+        <div class="footer__copyright ff--trade-gothic"><span class="footer__copyright-text">© Mattermost, Inc. 2023.</span> <a href="https://mattermost.com/terms-of-use/">Terms of Use</a> <span>|</span> <a href="https://mattermost.com/privacy-policy/">Privacy Policy</a> <span>|</span> <a href="https://mattermost.com/privacy-policy/cookies/">Cookie Policy</a></div>
         <ul class="footer__icons">
 			<li>
 				<a href="{{ .Site.Params.footer.github }}" target="_blank" rel="noopener noreferrer">
@@ -50,6 +50,11 @@
   crossorigin="anonymous"></script>
 <script src="{{ "js/tabs.js" | absURL }}"></script>
 <script src="{{ "js/main.js" | absURL }}"></script>
+<!-- Set the BASE_URL constant for site search -->
+<script>
+    const BASE_URL = "{{ site.BaseURL }}";
+</script>
+<script src="{{ "js/search-page.js" | absURL }}"></script>
 <!-- If there is at least one <pre> block on this page, include the code copy button script -->
 {{- if (findRE "<pre" .Content 1) -}}
 <script src="{{ "js/code-copy-button.js" | absURL }}"></script>

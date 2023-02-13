@@ -2,6 +2,9 @@
 title: "Community expectations"
 heading: "Community expectations"
 weight: 2
+subsection: community expectations
+cascade:
+  - subsection: community expectations
 ---
 We are a welcoming and open community and we’re excited to have you join us!
 

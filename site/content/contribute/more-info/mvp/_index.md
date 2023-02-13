@@ -14,6 +14,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 | Version | Release date       | MVP                                                                               |
 |---------|--------------------|-----------------------------------------------------------------------------------|
+| 7.7     | January 16, 2023   | {{< newtabref href="https://github.com/jufab" title="Julien Fabre" >}}                                          |
 | 7.5     | November 16, 2022  | {{< newtabref href="https://github.com/ayrotideysarkar" title="Ayroti Dey Sarkar" >}}  
 | 7.4     | October 16, 2022   | {{< newtabref href="https://github.com/sridhar02" title="Sridhar" >}}                                           |
 | 7.3     | September 16, 2022 | {{< newtabref href="https://github.com/VishakhaPoonia" title="Vishakha Poonia" >}}                              |
