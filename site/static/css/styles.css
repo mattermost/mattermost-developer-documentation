@@ -4786,9 +4786,24 @@ div.mermaid {
     width: 100%;
 }
 
+@media (max-width: 768px) {
+    .sidebar__search .search__query-input {
+        width: calc(100% - 4rem);
+    }
+}
+
+@media (max-width: 1200px) {
+    .sidebar-search__form {
+        margin-left: 0;
+    }
+}
+
 @media (min-width: 769px) {
     .search__query-input {
         width: 605px;
+    }
+    .sidebar__search .search__query-input {
+        width: 100%;
     }
 }
 
@@ -4846,4 +4861,9 @@ div.mermaid {
 /* Search result keyword highlight colour */
 mark {
     background: #F1C40F;
+}
+
+/* GoAT (Go Ascii Tool) */
+.goat svg {
+    font-family: 'Fira Mono','Courier New',Courier,monospace;
 }
