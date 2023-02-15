@@ -2,6 +2,9 @@
 title: "Where to find more information?"
 heading: "Where to find more information?"
 weight: 4
+subsection: more info
+cascade:
+  - subsection: more info
 ---
 
 Here are a few links to Mattermost content that you might find helpful depending on the specific area where you’ll be contributing. 

@@ -8,6 +8,7 @@ languageCode = "en-us"
 publishDir = "../docs"
 pygmentsCodeFences = true
 pygmentsStyle = "manni"
+enableEmoji=true
 
 [taxonomies]
   category = "categories"
@@ -31,11 +32,11 @@ pygmentsStyle = "manni"
 
   [params.notification]
     enable = true
-    url = ""
-    text = "We're improving your developer experience."
+    url = "https://mattermost.com/webinar/streamline-incident-response-with-servicenow/"
+    text = "Learn how to streamline incident response with Mattermost & ServiceNow on February 16th »"
 
   [params.search]
-    enable = false
+    enable = true
 
   [params.sidebar]
   [[params.sidebar.item]]

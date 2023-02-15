@@ -7,6 +7,9 @@ weight: 30
 aliases:
   - /integrate/other-integrations/slash-commands/
   - /integrate/slash-commands/using-slash-commands/
+subsection: slash commands
+cascade:
+  - subsection: slash commands
 ---
 
 Slash commands are messages that begin with `/` and trigger an HTTP request to a web service that can in turn post one or more messages in response.
