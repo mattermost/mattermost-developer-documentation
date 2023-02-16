@@ -3,8 +3,6 @@ title: "Settings"
 heading: "Configure the Apps Framework"
 weight: 1
 ---
-
-
 The Apps framework includes a built-in slash command, `/apps settings`, that allows for the configuration of system wide settings.
 
 ### Configuration settings
