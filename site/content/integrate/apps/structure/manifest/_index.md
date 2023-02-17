@@ -33,7 +33,7 @@ The fields of the manifest are described in the following table:
 | `http`{{<compass-icon icon-star "Mandatory Value">}}         | [HTTP](#http)               | Metadata for an App that is already deployed externally and is accessed using HTTP.                                                                                                                                                                                                           |
 
 {{<note "Mandatory values" "icon-star" "Mandatory Value">}}
-- The `app_id` and `homepage_url` values must be specified.
+- The `app_id`, `display_name` and `homepage_url` values must be specified.
 - At least one deployment method - `aws_lambda`, `open_faas`, or `http` - must be specified.
 {{</note>}}
 
