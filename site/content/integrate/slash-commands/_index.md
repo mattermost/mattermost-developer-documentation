@@ -17,7 +17,7 @@ Slash commands are messages that begin with `/` and trigger an HTTP request to a
 Slash commands have an additional feature, **autocomplete**, that displays a list of possible commands based on what has been typed in the message box. Typing `/` in an empty message box will display a list of all slash commands. As the slash command is typed in the message box, autocomplete will also display possible arguments and flags for the command.
 
 Unlike [outgoing webhooks]({{< ref "/integrate/webhooks/outgoing" >}}), slash commands work in private channels and direct messages in addition to public channels, and can be configured to auto-complete when typing.
-Mattermost includes a number of [built-in slash commands]({{< ref "built-in" >}}). You can also create [custom slash commands]({{< ref "custom" >}}).
+Mattermost includes a number of [built-in slash commands](https://docs.mattermost.com/channels/interact-with-channels.html). You can also create [custom slash commands]({{< ref "custom" >}}).
 
 ## Tips and best practices
 

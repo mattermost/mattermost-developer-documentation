@@ -29,16 +29,17 @@ Using the above example values, the webhook URL will look like this:
 
 `https://my-mattermost-server/plugins/com.mattermost.apps/apps/my-app/webhook/my-sub-path?secret=cwsjhrdqebyf8qrnabtxio7k7r`
 
+When the external integration sends a `HTTP POST` request to this endpoint, your App will receive the request at the endpoint `/webhook/my-sub-path`. The same webhook URL can be used to process `HTTP HEAD` requests, in case the external integration requires this for webhook validation. The `/my-sub-path` part of the above URL is optional, and it can be defined as any string value.
+
 ### Webhook call path
 
-The App [manifest]({{<ref "/integrate/apps/structure/manifest">}}) contains an optional property `on_remote_webhook` which defines the base [call]({{<ref "/integrate/apps/structure/call">}}) path for incoming App webhooks.
-This property only affects the call path in the App; it does not affect the URL that an end user or system uses to execute the webhook.
+The App [manifest]({{<ref "/integrate/apps/structure/manifest">}}) contains an optional property `on_remote_webhook` which defines the base [call]({{<ref "/integrate/apps/structure/call">}}) for incoming App webhooks.
 
 The `sub_path` of a webhook URL is also optional. When it is defined, the call that is executed changes; the call path will be different.
 
 Examples:
 
-1. If `on_remote_webhook` is not defined in the manifest and `sub_path` is also not defined, the call path will be `/webhook` and the webhook URL will be:
+1. If the `on_remote_webhook` call path is not defined in the manifest and `sub_path` is also not defined, the call path will be `/webhook` and the webhook URL will be:
 
    ```
    <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook
@@ -50,7 +51,7 @@ Examples:
    <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook
    ```
 
-3. If `on_remote_webhook` is not defined in the manifest but `sub_path` is defined as `my-sub-path`, the call path will be `/webhook/my-sub-path` and the webhook URL will be:
+3. If the `on_remote_webhook` call path is not defined in the manifest but `sub_path` is defined as `my-sub-path`, the call path will be `/webhook/my-sub-path` and the webhook URL will be:
 
    ```
    <mattermost_site_url>/plugins/com.mattermost.apps/apps/<app_id>/webhook/my-sub-path
