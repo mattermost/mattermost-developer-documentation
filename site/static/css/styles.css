@@ -4479,6 +4479,11 @@ ol > li + li {
     text-align: center;
     width: 30px
 }
+
+.site-header__col--menu .site-nav__hassubnav .sub-menu__links--icon img {
+    max-width: 100%;
+}
+
 .site-header__col--menu .site-nav__hassubnav .sub-menu__promo {
     padding: 30px 24px;
     background: #e2e8f5;
