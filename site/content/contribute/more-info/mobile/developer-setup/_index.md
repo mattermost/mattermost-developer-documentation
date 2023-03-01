@@ -18,6 +18,10 @@ If you run into any issues getting your environment set up, check the {{< newtab
 A macOS computer is required to build the Mattermost iOS mobile app.
 {{</note>}}
 
+{{<note "Android mobile app">}}
+JDK11 is required to develop the Mattermost Android mobile app. You can download the latest OpenJDK release of Java from Oracle, for free, under an open source license.
+{{</note>}}
+
 ## Environment setup
 
 The following instructions apply to both iOS and Android mobile apps.
