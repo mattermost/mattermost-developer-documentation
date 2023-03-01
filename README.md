@@ -6,7 +6,7 @@ Website for Mattermost developer documentation, built using [Hugo](https://gohug
 
 ### Prerequisites
 
-- Golang v1.18+ [(_download_)](https://go.dev/dl)
+- Golang v1.19+ [(_download_)](https://go.dev/dl)
 - NodeJS v14+ [(_download_)](https://nodejs.org/en/download/)
 - cURL [(_download_)](https://curl.se/download.html)
   - (_optional_) Used to update Compass Icons
