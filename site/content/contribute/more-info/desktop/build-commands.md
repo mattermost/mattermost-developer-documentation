@@ -25,7 +25,7 @@ Here's a list of all the commands used by the Desktop App. These can all be foun
     * `clean-dist` - Only removes the built code
 * `watch` - Runs the app, but watches for code changes and re-compiles on the fly when a file is changed
     * `watch:main` - Same as above, but only for the main module
-    `watch:renderer` - Same as above, but only for the renderer module
+    * `watch:renderer` - Same as above, but only for the renderer module
 * `test` - Builds and runs all of the automated tests for the Desktop App
     * `test:e2e` - Builds and runs the E2E tests for the Desktop App
         * `test:e2e:nobuild` - Runs the E2E tests without rebuilding the entire app
