@@ -17,7 +17,7 @@ If you need to unit test something related to Redux, please check out [Redux Uni
 #### Writing unit tests
 Below is a brief guide on how to do component testing:
 
-1. Match snapshots using default or expected props. Use shallow rendering to render just the component itself, and not any of it's child components. Note that while using snapshots is convenient, do not rely solely on this for every test case, as changes can be easily overlooked when using the command `jest -updateSnapshot` to update multiple snapshots at once. For example:
+1. Match snapshots using default or expected props. Use shallow rendering to render just the component itself, and not any of its child components. Note that while using snapshots is convenient, do not rely solely on this for every test case, as changes can be easily overlooked when using the command `jest -updateSnapshot` to update multiple snapshots at once. For example:
     ```javascript
     const baseProps = {
         active: true,
