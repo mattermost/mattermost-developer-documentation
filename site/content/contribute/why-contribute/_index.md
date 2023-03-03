@@ -186,7 +186,7 @@ To get started:
 
 The QA team keeps all contributions up to Mattermost’s high standards. That big responsibility earns QA reviewers the same status as all other contributors.
 
-- If you’d like to earn some prizes, join our weekly bug bashes run on the [QA Contributors channel](https://community.mattermost.com/core/channels/qa-contributors) on the Mattermost Community Server.
+- If you’d like to earn some prizes, join our periodic bug bashes run on the [QA Contributors channel](https://community.mattermost.com/core/channels/qa-contributors) on the Mattermost Community Server.
 
 - Standalone [exploratory testing](https://github.com/mattermost/quality-assurance/issues/2) is highly encouraged too! Remember to report your findings in the [QA Contributors channel](https://community.mattermost.com/core/channels/qa-contributors).
 
