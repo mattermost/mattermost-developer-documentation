@@ -8,7 +8,7 @@ aliases:
   - /contribute/desktop/testing
 ---
 
-For most changes that happen to the desktop app, consider writing an automated test to ensure that the change or fix is maintained in the codebase. Depending on the nature of the change, you will write either a unit test, or an E2E test.
+For most changes that happen to the desktop app, consider writing an automated test to ensure that the change or fix is maintained in the codebase. Depending on the nature of the change, you will write either a unit test or an E2E test.
 
 ### Unit tests
 The {{<newtabref href="https://jestjs.io/en/" title="Jest">}} test runner is used to run unit tests in the desktop app. You can run the following command to run the tests: `npm run test:unit`. You can also run subsets of the tests by filtering using `testNamePattern` or `testPathPattern` on the `spec` files.
