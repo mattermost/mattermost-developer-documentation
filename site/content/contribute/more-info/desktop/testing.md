@@ -26,7 +26,7 @@ We use a combination of two technologies to facilitate E2E testing in the deskto
 
 To build the app and run the E2E tests, you can run the following command: `npm run test:e2e`. You can also run this command to build the tests without rebuilding the app: `npm run test:e2e:nobuild`. You can also run subsets of the tests by filtering using `grep`, for example: `npm run test:e2e:run -- --grep back_button`. 
 
-E2E tests are usually written to cover parts of the `renderer` module and should generally cover complete workflows, such as creating/editing a server. You will generally need a combination of both Playwright and RobotJS APIs to test most workflows.
+E2E tests are usually written to cover parts of the `renderer` module and should generally cover complete workflows, such as creating and editing a server. You will generally need a combination of both Playwright and RobotJS APIs to test most workflows.
 
 An example of an E2E test PR is {{<newtabref href="https://github.com/mattermost/desktop/pull/1843" title=" [MM-39680] E2E Test for Deep Linking #1843">}}.
 
