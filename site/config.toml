@@ -31,9 +31,9 @@ enableEmoji=true
     enable = false
 
   [params.notification]
-    enable = true
-    url = "https://mattermost.com/webinar/release-management-with-gitlab/"
-    text = "Learn how to streamline and standardize your release processes with Mattermost and GitLab on March 2nd »"
+    enable = false
+    url = ""
+    text = ""
 
   [params.search]
     enable = true
