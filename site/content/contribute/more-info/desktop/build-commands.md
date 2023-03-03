@@ -24,7 +24,7 @@ Here's a list of all the commands used by the Desktop App. These can all be foun
     * `clean-install` - Same as above, but then runs npm install to reinstall the Node modules
     * `clean-dist` - Only removes the built code
 * `watch` - Runs the app, but watches for code changes and re-compiles on the fly when a file is changed
-    `watch:main` - Same as above, but only for the main module
+    * `watch:main` - Same as above, but only for the main module
     `watch:renderer` - Same as above, but only for the renderer module
 * `test` - Builds and runs all of the automated tests for the Desktop App
     * `test:e2e` - Builds and runs the E2E tests for the Desktop App
