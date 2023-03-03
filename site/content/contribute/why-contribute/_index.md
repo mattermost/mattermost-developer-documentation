@@ -137,7 +137,6 @@ Thank you for your enthusiasm! You can act on feature ideas in a few ways:
 
     - [Webhooks]({{< ref "/integrate/webhooks" >}}) are the easiest type of app to create and enable you to integrate with the vast majority of modern web tools.
 
-    - [Webhooks]({{< ref "/integrate/webhooks" >}}) are the easiest type of app to create and enable you to integrate with the vast majority of modern web tools.
     - [Slash commands]({{< ref "/integrate/slash-commands" >}}) are apps that respond to triggers sent as messages inside Mattermost.
 
     - More complicated Apps can be built as standard HTTP services in any programming language using a robust API. [Get started here]({{< ref "/integrate/apps" >}}).
