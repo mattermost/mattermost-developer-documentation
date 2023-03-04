@@ -1,7 +1,7 @@
 ---
 title: "Selectors"
 heading: "How to use selectors - Mattermost"
-description: "Find out what selectors are and how to use, add, and test them in Mattermost."
+description: "Find out what selectors are, and how to use and add them in Mattermost."
 date: 2017-08-20T11:35:32-04:00
 weight: 6
 aliases:
@@ -85,9 +85,3 @@ export function makeGetUser() {
 Note that when we make a selector that takes arguments, we typically wrap it in a factory function so that we can create multiple instances of the selector that are each memoized separately. This is because having a single instance of the above `getUser` selector and calling it with different user IDs would prevent any memoization since it would be constantly called with different IDs leading it to recalculate on each call.
 
 This may sound unnecessary if you're writing a one-off selector, but if you think of something like a `getPost` selector in the Mattermost app, we will frequently be rendering 100+ post components each with their own copy of the `getPost` selector. With only a single copy of that selector, it would be constantly recalculating, but with 100+ copies, each only recalculates and rerenders when their specific post changes.
-
-### Test a selector
-
-Unit tests for selectors are located in the same directory, adjacent to the file being tested. Example, for `src/selectors/admin.js`, test is located at `src/selectors/admin.test.js`. These tests are written using {{< newtabref href="https://jestjs.io/" title="Jest Testing Framework" >}}. In that folder, there are many examples of how those tests should look. Most follow the same general pattern of:
-1. Construct the initial test state. Note that this doesn't need to be shared between tests as it is in many other cases.
-2. Pass the state into the selector and check the results. The tests for some more complicated selectors do this multiple times while changing different parts of the store to ensure that the memoization is working correctly since it can be very important in certain areas of the app.

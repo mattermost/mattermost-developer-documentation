@@ -130,9 +130,11 @@ Run `make ci`, which is similar to the `.gitlab-ci.yml` workflow and includes:
 * **Web app unit tests**: `cd webapp; npm run test`
 * **Web app UI tests**: `cd webapp; npm run cypress:ci`
 
+Unit tests for Focalboard are similar to the [web app and server testing]({{< ref "/contribute/more-info/getting-started/test-guideline" >}}) requirements.
+
 ## Staying informed
 
-Are you interested in influencing the future of the Focalboard open source project? Please read the [Focalboard Contribution Guide]({{< ref "/contribute/more-info/focalboard" >}}). We welcome everyone and appreciate any feedback. ❤️ There are several ways you can get involved:
+Are you interested in influencing the future of the Focalboard open source project? Please read the [Focalboard Contribution Guide]({{< ref "/contribute/more-info/focalboard/" >}}). We welcome everyone and appreciate any feedback. ❤️ There are several ways you can get involved:
 
 * **Changes**: See the {{< newtabref href="https://github.com/mattermost/focalboard/blob/main/CHANGELOG.md" title="CHANGELOG" >}} for the latest updates
 * **GitHub Discussions**: Join the {{< newtabref href="https://github.com/mattermost/focalboard/discussions" title="Developer Discussion" >}} board

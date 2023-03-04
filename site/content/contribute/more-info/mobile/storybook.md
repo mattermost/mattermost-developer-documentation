@@ -3,6 +3,7 @@ title: "Storybook"
 heading: "Storybook for mobile"
 description: "Using Storybook to develop components"
 date: 2021-02-25T11:17:44+05:30
+weight: 6
 aliases:
   - /contribute/mobile/storybook
 ---

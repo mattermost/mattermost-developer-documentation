@@ -18,7 +18,7 @@ The Mattermost Desktop App is an {{< newtabref href="https://electronjs.org/" ti
  - [Debugging]({{< ref "/contribute/more-info/desktop/debugging" >}}) - Identify issues in the desktop app and debug the rendering process.
  - [Dependencies]({{< ref "/contribute/more-info/desktop/dependencies" >}}) - Information about including dependencies in the desktop app.
  - [Style and Code Quality]({{< ref "/contribute/more-info/desktop/style-and-code-quality" >}}) - Information about linting, type checking, and submitting great PRs
- - [Automated Testing]({{< ref "/contribute/more-info/desktop/testing" >}}) - Find out how we incorporate unit and end-to-end testing into the desktop app development process.
+ - [Unit and End-to-End (E2E) Tests]({{< ref "/contribute/more-info/desktop/testing" >}}) - Find out how we incorporate unit and end-to-end testing into the desktop app development process.
  - [Packaging for Release]({{< ref "/contribute/more-info/desktop/packaging-and-releasing" >}}) - Build and package the app into a distributable version.
  - [General Contributor Guidelines]({{< ref "/contribute/more-info/getting-started" >}}) - Everything you need to know about contributing code to Mattermost.
 

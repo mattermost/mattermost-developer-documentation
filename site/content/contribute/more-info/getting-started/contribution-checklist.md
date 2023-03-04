@@ -18,7 +18,7 @@ Follow this checklist for submitting a pull request (PR):
     - If you've included your mailing address in the signed {{< newtabref href="https://mattermost.com/mattermost-contributor-agreement/" title="Contributor License Agreement" >}}, you may receive a {{< newtabref href="https://forum.mattermost.com/t/limited-edition-mattermost-mugs/143" title="Limited Edition Mattermost Mug" >}} as a thank you gift after your first pull request is merged.
 2. Your ticket is a Help Wanted GitHub issue for the Mattermost project you're contributing to.
     - If not, follow the process [here]({{< ref "/contribute/more-info/getting-started/contributions-without-ticket" >}}).
-3. Your code is thoroughly tested, including appropriate unit tests, [end-to-end tests for webapp]({{< ref "/contribute/more-info/webapp/e2e" >}}), and manual testing.
+3. Your code is thoroughly tested, including appropriate [unit, end-to-end, and integration tests for webapp]({{<ref "/contribute/more-info/getting-started/test-guideline">}}).
 4. If applicable, user interface strings are included in localization files:
     - {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/master/i18n/en.json" title="../mattermost-server../en.json" >}}
     - {{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json" title="../mattermost-webapp../en.json" >}}
