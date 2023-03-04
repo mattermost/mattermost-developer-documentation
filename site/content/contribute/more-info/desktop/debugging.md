@@ -12,6 +12,8 @@ aliases:
 
 The simplest way to debug the main process is to simply insert logging statements wherever needed and have the application output logs of whatever is necessary.
 
+For already built applications (or bugs that only appear in the packaged version of the application), you can view the Logs by going to Help > Show Logs in the 3-dot menu, which will open a file manager window showing the location of the log file.
+
 If you'd like to make use of better debugging tools, you can use the Chrome Dev Tools or the debugger in VSCode by following the steps here: https://www.electronjs.org/docs/latest/tutorial/debugging-main-process
 
 ## Debug the renderer process
