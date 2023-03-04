@@ -1,6 +1,6 @@
 ---
 title: "Mobile End-to-End (E2E) Tests"
-heading: "Mobile End-to-end (E2E) tests at Mattermost"
+heading: "Mobile End-to-End (E2E) tests at Mattermost"
 description: "This page describes how to write and run End-to-End (E2E) testing for Mobile Apps for both iOS and Android."
 date: 2020-09-01T09:00:00-00:00
 weight: 5
