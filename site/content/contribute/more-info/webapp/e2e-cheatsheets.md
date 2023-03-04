@@ -31,7 +31,7 @@ These reflect the experience of visual/mouse users as well as those that use ass
 These use HTML5 and ARIA–compliant selectors. Note that the user experience of interacting with these attributes varies greatly across browsers and assistive technology. Some examples include: `cy.findByAltText` and `cy.findByTitle`.
 
 #### :warning: Base Queries
-These are considered part of implementation details and are discouraged to be used. You will still find base queries in the codebase but it they will be replaced soon. Therefore, please refrain from reusing the existing base query patterns. However, you may want to use them only to limit the scope of selection. Examples include: `cy.get('#elementId')` and `cy.get('.class-name')`. Below is an acceptable use case of base queries:
+These are considered part of implementation details and are discouraged to be used. You will still find base queries in the codebase but they will be replaced soon. Therefore, please refrain from reusing the existing base query patterns. However, you may want to use them only to limit the scope of selection. Examples include: `cy.get('#elementId')` and `cy.get('.class-name')`. Below is an acceptable use case of base queries:
 
 ```javascript
 // limit the scope but chained with recommended query

@@ -22,7 +22,7 @@ To add an endpoint to API version 4, all of the following must be completed:
 - [Implement the API handler on the server](#implement-the-api-handler)
 - [Add a function to the Go driver](#update-the-golang-driver)
 - [Write a unit test](#write-a-unit-test)
-- [Submit your implementation!](#submit-your-pull-request)
+- [Submit your implementation!](#submit-your-pull-request-pr)
 
 A full example of the process can be found through these two pull requests:
 

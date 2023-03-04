@@ -13,7 +13,7 @@ aliases:
   - contribute/more-info/webapp/e2e/troubleshooting
 ---
 
-End-to-end tests for the Mattermost webapp in general use {{<newtabref href="https://www.cypress.io/" title="Cypress">}} and {{<newtabref href="https://playwright.dev/" title="Playwright">}}. If you're not familiar with Cypress, check out the Cypress {{<newtabref href="https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell" title="Developer Guide">}} and {{<newtabref href="https://docs.cypress.io/api/api/table-of-contents.html" title="API Reference">}}. Feel free to also join the {{< newtabref href="https://community.mattermost.com/core/channels/ui-test-automation" title="UI Test Automation" >}} Mattermost channel if you'd like to ask questions and collaborate with us!
+End-to-end tests for the Mattermost webapp in general use {{<newtabref href="https://www.cypress.io/" title="Cypress">}} and {{<newtabref href="https://playwright.dev/" title="Playwright">}}. If you're not familiar with Cypress, check out the Cypress {{<newtabref href="https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell" title="Developer Guide">}} and {{<newtabref href="https://docs.cypress.io/api/api/table-of-contents.html" title="API Reference">}}. Feel free to also join us on the Mattermost Community server if you'd like to ask questions and collaborate with us!
 {{<note "NOTE:">}}
 Playwright is a new framework getting added to `mattermost-webapp` for test automation (and is currently being used for visual tests). Documentation about Playwright in the web app is in development, so all other content about E2E testing will be related to Cypress.
 
@@ -60,7 +60,7 @@ The file structure is mostly based on the {{<newtabref href="https://docs.cypres
 
 #### Where should a new test go?
 You will need to either add the new test to an existing `spec` file, or create a new file. Sometimes, you will be informed (for example through issue descriptions) of the specific folder the test file should go in, or the actual test file being amended. As aforementioned, the `e2e/cypress/tests/integration` folder is where all of the tests live, with subdirectories that roughly divide the tests by functional areas. Cypress is configured to look for and run tests that match the pattern of `*_spec.ts`, so a good new test file name for an issue like {{<newtabref href="https://github.com/mattermost/mattermost-server/issues/18184" title=`Write Webapp E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}} would be `attachment_does_not_collapse_spec.ts`, to ensure that it gets picked up.
-> *Note*: There may be some JavaScript `spec` files, but new tests should be written in TypeScript - if you are adding a test to an existing `spec` file, convert that file to TypeScript if necessary.
+> *Note*: There may be some JavaScript `spec` files, but new tests should be written in TypeScript. If you are adding a test to an existing `spec` file, convert that file to TypeScript if necessary.
 
 If you don't know where a test should go, first check the names of the subdirectories, and select a folder that describes the functional area of the test best. From there, look to see if there is already a `spec` file that may be similar to what you are testing; if there is one, it would be possible to add the test to the pre-existing file.
 
@@ -108,7 +108,7 @@ For those writing E2E from Help Wanted tickets with `Area/E2E Tests` label, the 
 
 #### Using Cypress Hooks
 
-Before writing the main body of the test in the `it` block, it can help to write some setup code for test isolation using {{<newtabref href="https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests#Hooks" title="hooks">}}. In a `before()` hook, you can run tests in isolation using the custom command `cy.apiInitSetup()`. This command creates a new team, channel, and user which can only be used by the spec file itself. Make use of the `cy.apiInitSetup()` function as much as possible, as it is recommended to log in as a new user and visit the generate team and/or channel. Avoid the use of `sysadmin` user or default `ad-1` team if possible.
+Before writing the main body of the test in the `it` block, it can help to write some setup code for test isolation using {{<newtabref href="https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests#Hooks" title="hooks">}}. In a `before()` hook, you can run tests in isolation using the custom command `cy.apiInitSetup()`. This command creates a new team, channel, and user which can only be used by the spec file itself. Make use of the `cy.apiInitSetup()` function as much as possible, as it is recommended to log in as a new user and visit the generated team and/or channel. Avoid the use of `sysadmin` user or default `ad-1` team if possible.
 
 For `attachment_does_not_collapse_spec.ts` for example:
   ```javascript
@@ -162,7 +162,7 @@ describe('Change to Functional Group', () => {
         // Init basic setup for test isolation
         cy.apiInitSetup({loginAfter: true}).then(({team, channel, user}) => {
             // Assign return values to variable/s
-            // Visit a channel
+            // # Visit a channel
             // Do other setup per test data preconditions
         });
     });

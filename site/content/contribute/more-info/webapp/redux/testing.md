@@ -93,7 +93,7 @@ Some unit tests found throughout the web app may also test the actions dispatche
 
 #### Unit Testing for Selectors
 
-Unit tests for selectors are located in the same directory, adjacent to the file being tested. Example, for `src/selectors/admin.js`, test is located at `src/selectors/admin.test.js`. These tests are written using {{< newtabref href="https://jestjs.io/" title="Jest Testing Framework" >}}. In that folder, there are many examples of how those tests should look. Most follow the same general pattern of:
+Unit tests for selectors are located in the same directory, adjacent to the file being tested. For example, the test for `src/selectors/admin.js` is located at `src/selectors/admin.test.js`. These tests are written using {{< newtabref href="https://jestjs.io/" title="Jest Testing Framework" >}}. In that folder, there are many examples of how those tests should look. Most follow the same general pattern of:
 1. Construct the initial test state. Note that this doesn't need to be shared between tests as it is in many other cases.
 2. Pass the state into the selector and check the results. The tests for some more complicated selectors do this multiple times while changing different parts of the store to ensure that the memoization is working correctly since it can be very important in certain areas of the app.
 

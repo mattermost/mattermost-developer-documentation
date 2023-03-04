@@ -17,7 +17,7 @@ This page describes how to write and run End-to-End (E2E) testing for Mobile App
 
 ### File Structure
 
-The folder structure is mostly based on the {{< newtabref href="https://github.com/wix/Detox/blob/master/docs/Guide.Jest.md" title="Detox scaffold" >}}, which was created on the initial run. The folders and files are:
+The folder structure is as follows:
 ```
 |-- detox
   |-- e2e
@@ -32,11 +32,11 @@ The folder structure is mostly based on the {{< newtabref href="https://github.c
   |-- package.json
 ```
 
-* `/detox/e2e/support` or {{< newtabref href="https://github.com/wix/Detox/blob/master/docs/Guide.Jest.md#2-set-up-test-code-scaffolds-building_construction" title="Support Files" >}}: This is the support folder, which is a place to put reusable behavior such as Server API and UI commands, or global overrides that should be available to all test files.
-* `/detox/e2e/test` or {{< newtabref href="https://github.com/wix/Detox/blob/master/docs/APIRef.TestLifecycle.md" title="Test Files" >}}: To start writing tests, create a new file (e.g. `login.e2e.js`) in the `/detox/e2e/test` folder.
+* `/detox/e2e/support` is the support folder, which is a place to put reusable behavior such as Server API and UI commands, or global overrides that should be available to all test files.
+* `/detox/e2e/test`: To start writing tests, create a new file (e.g. `login.e2e.js`) in the `/detox/e2e/test` folder.
     - The subfolder naming convention depends on the test grouping, which is usually based on the general functional area (e.g. `/detox/e2e/test/messaging/` for "Messaging").
     - Test cases that require an Enterprise license should fall under `/detox/e2e/test/enterprise/`. This is to easily identify license requirements, both during local development and production testing for Enterprise features.
-* `/detox/.detoxrc.json`: for Detox {{< newtabref href="https://github.com/wix/Detox/blob/master/docs/APIRef.Configuration.md" title="configuration" >}}.
+* `/detox/.detoxrc.json`: for Detox configuration.
 * `/detox/package.json` : for all dependencies related to Detox end-to-end testing.
 
 ### Writing an E2E Test
@@ -52,7 +52,7 @@ Before writing a script, ensure that it has a corresponding test case in Zephyr.
         }
     }
     ```
-4. Target an element using available {{< newtabref href="https://github.com/wix/Detox/blob/master/docs/APIRef.Matchers.md#matchers" title="matchers" >}}. For best results, it is recommended to match elements by unique identifiers using `testID`. The identifier should follow the following format to avoid duplication, `<location>.<modifier>.<element>.<identifier>`, where:
+4. Target an element using available matchers. For best results, it is recommended to match elements by unique identifiers using `testID`. The identifier should follow the following format to avoid duplication, `<location>.<modifier>.<element>.<identifier>`, where:
   {{<note "NOTE:">}}
   Not all fields are required. When assigning a `testID`, carefully inspect the actual render structure and pick up the minimum fields combination to create a unique value. Some examples include: `send.button` and `post.<post-id>`. 
   {{</note>}}
@@ -65,7 +65,7 @@ Before writing a script, ensure that it has a corresponding test case in Zephyr.
 5. Prefix each comment line with appropriate indicator. Each line in a multi-line comment should be prefixed accordingly. Separate and group test step comments and assertion comments for better readability.
     - `#` indicates a test step (e.g. `// # Go to a screen`)
     - `*` indicates an assertion (e.g. `// * Check the title`)
-6. Simulate user interaction using available {{< newtabref href="https://github.com/wix/Detox/blob/master/docs/APIRef.ActionsOnElement.md" title="actions" >}}, and verify user interface (UI) expectations using {{< newtabref href="https://github.com/wix/Detox/blob/master/docs/APIRef.Expect.md" title="expect" >}}. When using `action`, `match`, or another API specific to particular platform, verify that the equivalent logic is applied so that the API does not impact the other platform. Always run tests in both platforms.
+6. Simulate user interaction using available actions, and verify user interface (UI) expectations using `expect`. When using `action`, `match`, or another API specific to a particular platform, verify that the equivalent logic is applied so that the API does not impact other platforms. Always run tests in applicable platforms.
 
 ### Running E2E Tests
 #### Testing Android Locally
