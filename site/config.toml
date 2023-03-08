@@ -31,9 +31,9 @@ enableEmoji = true
     enable = false
 
   [params.notification]
-    enable = false
-    url = ""
-    text = ""
+    enable = true
+    url = "https://mattermost.com/solutions/mattermost-for-microsoft-teams/"
+    text = "Learn more about Mattermost for Microsoft Teams »"
 
   [params.search]
     enable = true
