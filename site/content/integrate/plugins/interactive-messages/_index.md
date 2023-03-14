@@ -120,7 +120,7 @@ Similar to buttons, add message menus as `actions` in your integration [message 
 
 ![image](message-menus.png)
 
-The following payload gives an example that uses message menus.
+The following payload gives an example that uses message menus (where id in the actions array may only consist of letters and numbers, no other characters are allowed):
 
 ```json
 {
@@ -130,10 +130,10 @@ The following payload gives an example that uses message menus.
       "text": "This is the attachment text.",
       "actions": [
         {
-          "id": "action_options",
+          "id": "actionoptions",
           "name": "Select an option...",
           "integration": {
-            "url": "http://127.0.0.1:7357/action_options",
+            "url": "http://127.0.0.1:7357/actionoptions",
             "context": {
               "action": "do_something"
             }
@@ -186,10 +186,10 @@ Specify `channels` as your action's `data_source` as follows:
       "text": "This is the attachment text.",
       "actions": [
         {
-          "id": "action_options",
+          "id": "actionoptions",
           "name": "Select an option...",
           "integration": {
-            "url": "http://127.0.0.1:7357/action_options",
+            "url": "http://127.0.0.1:7357/actionoptions",
             "context": {
               "action": "do_something"
             }
@@ -213,14 +213,14 @@ Specify `users` as your action's `data_source` as follows:
 {
   "attachments": [
     {
-      "id": "action_options",
+      "id": "actionoptions",
       "pretext": "This is the attachment pretext.",
       "text": "This is the attachment text.",
       "actions": [
         {
           "name": "Select an option...",
           "integration": {
-            "url": "http://127.0.0.1:7357/action_options",
+            "url": "http://127.0.0.1:7357/actionoptions",
             "context": {
               "action": "do_something"
             }
