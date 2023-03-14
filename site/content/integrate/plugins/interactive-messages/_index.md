@@ -120,7 +120,7 @@ Similar to buttons, add message menus as `actions` in your integration [message 
 
 ![image](message-menus.png)
 
-The following payload gives an example that uses message menus (please note that the id in the actions array may only consist of letters and numbers, no other characters are allowed!):
+The following payload gives an example that uses message menus (where id in the actions array may only consist of letters and numbers, no other characters are allowed):
 
 ```json
 {
