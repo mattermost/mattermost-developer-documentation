@@ -16,6 +16,10 @@ During the move to the monorepo, these instructions will be in flux. Follow http
 {{</note>}}
 
 {{<note "Note:">}}
+If you're migrating from before the monorepo see the [migration notes]({{< ref "/contribute/monorepo-migration-notes" >}}).
+{{</note>}}
+
+{{<note "Note:">}}
 If you're developing plugins, see the plugin [developer setup]({{< ref "/integrate/plugins/developer-setup" >}}) documentation.
 {{</note>}}
 
@@ -25,7 +29,7 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
 
 1. Install [Go](https://go.dev/).
 
-1. Increse the number of available file descriptors. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`), and add the following:
+1. Increase the number of available file descriptors. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`), and add the following:
 
     ```sh
     ulimit -n 8096
@@ -42,7 +46,7 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
 1. Start the server:
 
     ```sh
-    cd mattermost-server/server
+    cd server
     make run-server
     ```
 
@@ -75,23 +79,6 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
 
 # Setup the Mattermost webapp
 
-1. Fork https://github.com/mattermost/mattermost-webapp.
-
-1. Clone the Mattermost source code from your fork:
-
-    ```sh
-    git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost-webapp.git
-    ```
-
-1. Link the `client` directory in your server with the `dist` directory in your webapp:
-
-    ```sh
-    mkdir -p mattermost-webapp/dist
-    cd mattermost-server
-    ln -nfs ../mattermost-webapp/dist client
-    cd ../mattermost-webapp
-    ```
-
 1. Install NVM and use it to install the required version of Node.js:
 
     - First, install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
@@ -105,14 +92,8 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
 
 1. Ensure the Mattermost server is running from the steps above.
 
-1. Run the app:
+1. Run the webapp and watch:
 
     ```sh
     make run
-    ```
-
-1. Stop the app:
-
-    ```sh
-    make stop
     ```
