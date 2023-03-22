@@ -11,10 +11,6 @@ aliases:
 
 Set up your development environment for building, running, and testing Mattermost.
 
-{{<note "Warning" "icon-alert-outline">}}
-During the move to the monorepo, these instructions will be in flux. Follow https://github.com/mattermost/mattermost-server/issues/22420 for updates.
-{{</note>}}
-
 {{<note "Note:">}}
 If you're migrating from before the monorepo see the [migration notes]({{< ref "/contribute/monorepo-migration-notes" >}}).
 {{</note>}}
@@ -34,6 +30,16 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
     ```sh
     ulimit -n 8096
     ```
+1. Install NVM and use it to install the required version of Node.js:
+
+    - First, install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
+
+    - Then, use NVM to install the correct version of Node.js for the Mattermost web app:
+        ```sh
+        nvm install
+        ```
+
+1. If you don't have it already, install libpng with your preferred package manager.
 
 1. Fork https://github.com/mattermost/mattermost-server.
 
@@ -50,6 +56,7 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
     make run-server
     ```
 
+
 1. Test your environment:
 
     ```sh
@@ -59,6 +66,12 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
     If successful, the `curl` step will return a JSON object:
     ```json
     {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
+    ```
+
+1. Run the webapp and watch:
+
+    ```sh
+    make run
     ```
 
 1. Stop the server:
@@ -76,24 +89,3 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
 1. Set your options:
 
     Some behaviors can be customized such as running the server in the foreground as described in the `config.mk` file in the server directory. See that file for details.
-
-# Setup the Mattermost webapp
-
-1. Install NVM and use it to install the required version of Node.js:
-
-    - First, install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
-
-    - Then, use NVM to install the correct version of Node.js for the Mattermost web app:
-        ```sh
-        nvm install
-        ```
-
-1. If you don't have it already, install libpng with your preferred package manager.
-
-1. Ensure the Mattermost server is running from the steps above.
-
-1. Run the webapp and watch:
-
-    ```sh
-    make run
-    ```
