@@ -8,7 +8,7 @@ aliases:
   - /contribute/webapp/developer-workflow
 ---
 
-If you haven't [set up your developer environment]({{< ref "/contribute/more-info/webapp/developer-setup" >}}), please do so before continuing with this section.
+If you haven't [set up your developer environment]({{< ref "/contribute/developer-setup" >}}), please do so before continuing with this section.
 
 ### Workflow
 
