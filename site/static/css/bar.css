@@ -67,6 +67,11 @@
     line-height: 35px;
 }
 
+.notification-bar__wrapper {
+    display: flex;
+    align-items: center;
+}
+
 @media (max-width: 768px) {
     .notification-bar__close {
         line-height: 50px;
@@ -78,6 +83,15 @@
     .notification-bar__close {
         right: 0px;
     }
+}
+
+@media (min-width: 991.98px) {
+    .notification-bar__content > div img {
+		display: inline-block;
+		margin-right: 10px;
+        height: 25px;
+        width: auto;
+	}
 }
 
 html {
