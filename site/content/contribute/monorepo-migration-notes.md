@@ -5,7 +5,7 @@ description: "Migration notes for the monorepo move"
 weight: 2
 ---
 
-If you are transitioning from the non-monorepo mattermost-server to the monorepo the easiest way to do so is to move the old mattermost server folder to something like mattermost-server-old then re-clone mattermost-server.
+If you are transitioning from the non-monorepo ``mattermost-server`` to the monorepo, the easiest way to do so is to move the old mattermost server folder to something like ``mattermost-server-old`` then re-clone mattermost-server.
 Then:
 
 1. Copy over your old config
