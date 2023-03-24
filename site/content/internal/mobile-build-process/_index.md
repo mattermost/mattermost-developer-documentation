@@ -17,7 +17,7 @@ The Fastlane scripts rely heavily on environment variables. In order to manage t
 The first time you run this, you will need to install fastlane. On the fastlane folder (`PROJECT_DIR/fastlane/`) run `bundle install`.
 
 ## 2. Build and version bump
-For build bump, we recommend to use the following set of environment variables:
+To bump the build number, we recommend using the following set of environment variables:
 ```
 export INCREMENT_BUILD_NUMBER=true
 export BUILD_NUMBER=X
@@ -62,13 +62,5 @@ Fastlane forces me to update it, and now the version won't bump because the bran
 You can set the `COMMIT_CHANGES_TO_GIT` environment variable to `false`. That will remove the clean check, but you will need to commit the changes yourself.
 
 # 5. Environment variables
-- `VERSION_NUMBER`: The version number to set.
-- `BUILD_NUMBER`: The build number to set. Defaults to the build number defined on iOS + 1.
-- `INCREMENT_BUILD_NUMBER`: Determines whether it should increase the build number. Can be `true` or `false`. 
-- `COMMIT_CHANGES_TO_GIT`: Determines whether it should commit the changes to git, and checks for the clean status of the git repository. Can be `true` or `false`. 
-- `BRANCH_TO_BUILD`: Ensures we are putting the changes on top of the specified branch.
-- `GIT_LOCAL_BRANCH`: Local branch where changes are committed.
-- `RESET_GIT_BRANCH`:
-- MAIN_APP_IDENTIFIER: (defaults to `com.mattermost.rnbeta`) If your app identifier is different, you can set it with this environment variable.
-- `INCREMENT_VERSION_NUMBER_MESSAGE`: The commit message when incrementing the version number. Will be appended to the version number. Defaults to `Bump app version number to`.
-- `INCREMENT_BUILD_NUMBER_MESSAGE`: The commit message when incrementing the build number. Will be appended to the build number. Defaults to `Bump app build number to`. 
+- [Android](https://developers.mattermost.com/contribute/more-info/mobile/build-your-own/android/#5-configure-environment-variables)
+- [iOS](https://developers.mattermost.com/contribute/more-info/mobile/build-your-own/ios/#4-configure-environment-variables)
