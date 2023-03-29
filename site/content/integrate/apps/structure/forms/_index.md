@@ -174,7 +174,7 @@ If a form was not included with the command binding, the binding's call will be 
             }
         ],
         "submit": {
-            "path": "/sub",
+            "path": "/sub"
         }
     }
 }
@@ -220,7 +220,7 @@ If a form was not included with the command binding, the binding's call will be 
             }
         ],
         "submit": {
-            "path": "/sub",
+            "path": "/sub"
         }
     }
 }
