@@ -8,7 +8,7 @@ aliases:
   - /contribute/server/developer-workflow
 ---
 
-If you haven't [set up your developer environment]({{< ref "/contribute/more-info/server/developer-setup" >}}), please do so before continuing with this section.
+If you haven't [set up your developer environment]({{< ref "/contribute/developer-setup" >}}), please do so before continuing with this section.
 
 Join the {{< newtabref href="https://community.mattermost.com/core/channels/developers" title="Developers community channel" >}} to ask questions from community members and the Mattermost core team.
 

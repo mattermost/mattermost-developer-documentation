@@ -47,7 +47,7 @@ At Mattermost, the [OpenAPI specification](https://github.com/OAI/OpenAPI-Specif
 5.  Confirm you don't have any syntax errors by running `make build-v4` and copying `/html/static/mattermost-openapi-v4.yaml` into the {{<newtabref title="Swagger editor" href="http://editor.swagger.io">}}.
 6.  Commit your changes and submit a pull request to the [mattermost-api-reference](https://github.com/mattermost/mattermost-api-reference) repository.
 #### Implement the API handler
-To implement the API handler, you'll first need to [setup your developer environment]({{< ref "/contribute/more-info/server/developer-setup" >}}), and then follow these steps:
+To implement the API handler, you'll first need to [setup your developer environment]({{< ref "/contribute/developer-setup" >}}), and then follow these steps:
 
 1.  Add the declaration for your endpoint. For an example, check out the [/api4/user.go](https://github.com/mattermost/mattermost-server/tree/master/api4/user.go) file.
 

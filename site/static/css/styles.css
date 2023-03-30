@@ -3860,10 +3860,6 @@ ol > li + li {
 	}
 }
 @media (min-width: 991.98px) {
-    .notification-bar__content > div img {
-		display: inline-block;
-		margin-right: 10px;
-	}
 	.site-header--not-home .nav-container {
 		padding-left: 50px;
 		padding-right: 50px;

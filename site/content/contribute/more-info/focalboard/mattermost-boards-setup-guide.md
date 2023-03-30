@@ -41,10 +41,10 @@ Refer to the {{< newtabref href="https://github.com/mattermost/focalboard/blob/m
 
 Instead of following the steps above, you can also set up a `mattermost-server` in local mode and automatically deploy `mattermost-plugin` via `make deploy`.
 
-* Follow the steps in the [`mattermost-webapp` developer setup guide]({{< ref "/contribute/more-info/webapp/developer-setup" >}}) and then:
+* Follow the steps in the [`mattermost-webapp` developer setup guide]({{< ref "/contribute/developer-setup" >}}) and then:
   * Open a new terminal window. In this terminal window, add an environmental variable to your bash via `MM_SERVICESETTINGS_SITEURL='http://localhost:8065'` ([docs](https://developers.mattermost.com/blog/subpath/#using-subpaths-in-development))
   * Build the web app via `make build`
-* Follow the steps in the [`mattermost-server` developer setup guide]({{< ref "/contribute/more-info/server/developer-setup" >}}) and then:
+* Follow the steps in the [`mattermost-server` developer setup guide]({{< ref "/contribute/developer-setup" >}}) and then:
   * Make sure Docker is running.
   * Run `make config-reset` to generate the `config/config.json` file:
     * Edit `config/config.json`:
