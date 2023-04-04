@@ -68,6 +68,7 @@ Some useful `make` commands include:
 * `make run-server` runs only the server and not the client.
 * `make debug-server` will run the server in the `delve` debugger.
 * `make stop-server` stops only the server.
+* `make update-docker` stops and updates your Docker images. This is needed if any changes are made to `docker-compose.yaml`.
 * `make clean-docker` stops and removes your Docker images and is a good way to wipe your database.
 * `make clean` cleans your local environment of temporary files.
 * `make config-reset` resets the `config/config.json` file to the default.
