@@ -22,7 +22,7 @@ Then:
     cp ../../mattermost-server-old/config.override.mk ./
     ```
 
-1. Update your development Docker containers for the new location of the server folder
+1. Update your development Docker containers for the new location of the server folder:
 
     ```sh
     cd server
