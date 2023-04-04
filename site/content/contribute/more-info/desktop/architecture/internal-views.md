@@ -3,7 +3,7 @@ title: "Internal Views"
 heading: "Internal Views"
 description: "Outlines the renderer processes that are local to the Desktop App."
 date: 2023-04-03T00:00:00-05:00
-weight: 2
+weight: 3
 aliases:
   - /contribute/desktop/architecture/internal-views
 ---
