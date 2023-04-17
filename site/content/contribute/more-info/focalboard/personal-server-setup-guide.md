@@ -8,7 +8,7 @@ aliases:
   - /contribute/focalboard/personal-server-setup-guide
 ---
 
-This guide will help you configure your developer environment for the Focalboard **Personal Server**. For most features, this is the easiest way to get started working against code that ships across editions. For working with **Mattermost Boards** (Focalboard as a plugin), please refer to the [Mattermost Boards Plugin Guide]({{< ref "/contribute/more-info/focalboard/mattermost-boards-setup-guide" >}}).
+This guide will help you configure your developer environment for the Focalboard **Personal Server**. For most features, this is the easiest way to get started working against code that ships across editions.
 
 ## Install prerequisites
 ### All
@@ -21,7 +21,7 @@ This guide will help you configure your developer environment for the Focalboard
 * Install {{< newtabref href="https://chocolatey.org/packages/mingw" title="MinGW-w64" >}} via {{< newtabref href="https://chocolatey.org/" title="Chocolatey" >}}
 * Install {{< newtabref href="https://gitforwindows.org/" title="Git for Windows" >}} and use the `git-bash` terminal shell
 
-### Mac
+### macOS
 * Install {{< newtabref href="https://apps.apple.com/us/app/xcode/id497799835?mt=12" title="Xcode" >}} (v12+)
 * Install the Xcode Command Line Tools via `xcode-select --install`
 
