@@ -174,7 +174,7 @@ To get started:
 
 3. Every Monday, PRs gets opened for all updates. These PRs will be checked for unexpected character insertions and security problems. Reviewers should always “merge commit” or “rebase and merge” into the PR, but never, ever “squash and commit”. Once approved, PRs are merged into the proper repositories.
 
-4. Every contribution will be written with the ICU syntax. Please read [this guide](https://formatjs.io/docs/core-concepts/icu-syntax/) so you can get familiar with how it works, and focus especially on how plural terms are handled since that topic comes up quite often.
+4. Every contribution will be written with the ICU syntax. Please read [this guide](https://formatjs.io/docs/core-concepts/icu-syntax/) so you can get familiar with how it works, and focus especially on how plural terms are handled since that topic comes up quite often. See the [Mattermost Handbook's Localization page](https://handbook.mattermost.com/contributors/join-us/localization#message-syntax) for best practice recommendations on working with ICU syntax.
 
 5. Don’t hesitate to use tools like the [Online ICU Message Editor](https://format-message.github.io/icu-message-format-for-translators/editor.html), which can help you see how your string will look in context.
 
