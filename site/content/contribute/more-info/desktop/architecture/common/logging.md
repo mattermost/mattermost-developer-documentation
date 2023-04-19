@@ -3,9 +3,9 @@ title: "Logging"
 heading: "Logging"
 description: "Describes the logging module"
 date: 2023-04-03T00:00:00-05:00
-weight: 5
+weight: 2
 aliases:
-  - /contribute/desktop/architecture/logging
+  - /contribute/desktop/architecture/common/logging
 ---
 
 Our application uses the `electron-log` module to do most of our logging. It facilitates both file and console logging.

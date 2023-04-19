@@ -56,7 +56,7 @@ For writing and running **E2E (and unit) tests for Redux** components, see the [
 For writing and running **E2E tests** for both Android and iOS systems, take a look at the [Mobile End-to-End (E2E) Tests]({{<ref "/contribute/more-info/mobile/e2e">}}) page.
 
 ### Desktop App
-For writing and running **unit and E2E tests** for the desktop app, check out the [Unit and End-to-End (E2E) Tests in the desktop app]({{<ref "/contribute/more-info/desktop/testing">}}) page.
+For writing and running **unit and E2E tests** for the desktop app, check out the [Unit and End-to-End (E2E) Tests in the desktop app]({{<ref "/contribute/more-info/desktop/setup-and-development/testing">}}) page.
     
 # How to Contribute E2E Tests
 If you're looking to improve your development skills or improve your familiarity with the Mattermost code base, issues for E2E tests that are marked Help Wanted are a great place to start.

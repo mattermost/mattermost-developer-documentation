@@ -13,13 +13,13 @@ The Mattermost Desktop App is an {{< newtabref href="https://electronjs.org/" ti
 ## Desktop app contributor resources
  - {{< newtabref href="https://github.com/mattermost/desktop" title="GitHub Repository" >}} - Get the code, report issues, or submit PRs.
  - {{< newtabref href="https://mattermost.com/pl/help-wanted-desktop" title="Help Wanted" >}} - This is a good place to start if you're looking for a way to contribute code. Many issues are labeled by difficulty level to make it easier to find ways to get involved.
- - [Developer Setup]({{< ref "/contribute/more-info/desktop/developer-setup" >}}) - Setup your development environment to start work on the desktop app.
- - [Build and CLI Commands]({{< ref "/contribute/more-info/desktop/build-commands" >}}) - Useful commands to help build, debug, test, and modify the desktop app on your local machine.
- - [Debugging]({{< ref "/contribute/more-info/desktop/debugging" >}}) - Identify issues in the desktop app and debug the rendering process.
- - [Dependencies]({{< ref "/contribute/more-info/desktop/dependencies" >}}) - Information about including dependencies in the desktop app.
- - [Style and Code Quality]({{< ref "/contribute/more-info/desktop/style-and-code-quality" >}}) - Information about linting, type checking, and submitting great PRs
- - [Unit and End-to-End (E2E) Tests]({{< ref "/contribute/more-info/desktop/testing" >}}) - Find out how we incorporate unit and end-to-end testing into the desktop app development process.
- - [Packaging for Release]({{< ref "/contribute/more-info/desktop/packaging-and-releasing" >}}) - Build and package the app into a distributable version.
+ - [Developer Setup]({{< ref "/contribute/more-info/desktop/setup-and-development" >}}) - Setup your development environment to start work on the desktop app.
+ - [Build and CLI Commands]({{< ref "/contribute/more-info/desktop/setup-and-development/build-commands" >}}) - Useful commands to help build, debug, test, and modify the desktop app on your local machine.
+ - [Debugging]({{< ref "/contribute/more-info/desktop/setup-and-development/debugging" >}}) - Identify issues in the desktop app and debug the rendering process.
+ - [Dependencies]({{< ref "/contribute/more-info/desktop/setup-and-development/dependencies" >}}) - Information about including dependencies in the desktop app.
+ - [Style and Code Quality]({{< ref "/contribute/more-info/desktop/setup-and-development/style-and-code-quality" >}}) - Information about linting, type checking, and submitting great PRs
+ - [Unit and End-to-End (E2E) Tests]({{< ref "/contribute/more-info/desktop/setup-and-development/testing" >}}) - Find out how we incorporate unit and end-to-end testing into the desktop app development process.
+ - [Packaging for Release]({{< ref "/contribute/more-info/desktop/setup-and-development/packaging-and-releasing" >}}) - Build and package the app into a distributable version.
  - [General Contributor Guidelines]({{< ref "/contribute/more-info/getting-started" >}}) - Everything you need to know about contributing code to Mattermost.
 
 

@@ -5,7 +5,7 @@ description: "The electron app itself can be inspected using the developer tools
 date: 2019-01-22T00:00:00-05:00
 weight: 3
 aliases:
-  - /contribute/desktop/debugging
+  - /contribute/desktop/setup-and-development/debugging
 ---
 
 ## Debug the main process

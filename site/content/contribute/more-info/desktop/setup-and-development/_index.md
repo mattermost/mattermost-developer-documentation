@@ -1,11 +1,11 @@
 ---
-title: "Developer setup"
+title: "Setup and Development"
 heading: "Set up your development environment"
 description: "Find out how to set up your development environment for building, running, and testing the Mattermost desktop app."
 date: 2020-02-01T19:50:32-04:00
 weight: 1
 aliases:
-  - /contribute/desktop/developer-setup
+  - /contribute/desktop/setup-and-development
 ---
 
 Set up your development environment for building, running, and testing the Mattermost Desktop App.
@@ -21,26 +21,28 @@ Set up your development environment for building, running, and testing the Matte
 </div>
 
 <div id="mac" class="tabcontent" style="display: block;">
-    {{% content "contribute/more-info/desktop/developer-setup/macos.md" %}}
+    {{% content "contribute/more-info/desktop/setup-and-development/developer-setup/macos.md" %}}
 </div>
 
 <div id="ubuntu" class="tabcontent">
-    {{% content "contribute/more-info/desktop/developer-setup/ubuntu.md" %}}
+    {{% content "contribute/more-info/desktop/setup-and-development/developer-setup/ubuntu.md" %}}
 </div>
 
 <div id="windows" class="tabcontent">
-    {{% content "contribute/more-info/desktop/developer-setup/windows.md" %}}
+    {{% content "contribute/more-info/desktop/setup-and-development/developer-setup/windows.md" %}}
 </div>
 
 <div id="archlinux" class="tabcontent">
-    {{% content "contribute/more-info/desktop/developer-setup/arch.md" %}}
+    {{% content "contribute/more-info/desktop/setup-and-development/developer-setup/arch.md" %}}
 </div>
 
 <div id="redhat" class="tabcontent">
-    {{% content "contribute/more-info/desktop/developer-setup/redhat.md" %}}
+    {{% content "contribute/more-info/desktop/setup-and-development/developer-setup/redhat.md" %}}
 </div>
 
-#### Mattermost Server
+<p>
+
+### Mattermost Server
 
 To develop with the Desktop App, we recommend that you setup a Mattermost server and webapp instance specifically for this purpose. This lets you customize it as needed in cases where there are specific integration requirements needed for testing.
 

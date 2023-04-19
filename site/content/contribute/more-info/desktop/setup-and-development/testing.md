@@ -5,7 +5,7 @@ description: "A guide to writing automated tests for the desktop app"
 date: 2019-01-22T00:00:00-05:00
 weight: 4
 aliases:
-  - /contribute/desktop/testing
+  - /contribute/desktop/setup-and-development/testing
 ---
 
 For most changes that happen to the desktop app, consider writing an automated test to ensure that the change or fix is maintained in the codebase. Depending on the nature of the change, you will write either a unit test or an E2E test.
@@ -34,5 +34,5 @@ An example of an E2E test PR is {{<newtabref href="https://github.com/mattermost
 
 There are many interactions (i.e. things that integrate with the operating system), such as notifications, that cannot be adequately tested using the automation frameworks we have. If this is the case, we will generally create a script to test in {{<newtabref href="https://handbook.mattermost.com/operations/research-and-development/quality/rainforest-process" title="Rainforest">}}, our crowd-sourced QA platform to perform these tests manually.
 
-Check out the page on [web app unit testing]({{<ref "/contribute/more-info/webapp/unit-testing">}}) to see more of Jest in action. For other CLI commands related to testing, go to [Build and CLI commands]({{<ref "/contribute/more-info/desktop/build-commands">}}).
+Check out the page on [web app unit testing]({{<ref "/contribute/more-info/webapp/unit-testing">}}) to see more of Jest in action. For other CLI commands related to testing, go to [Build and CLI commands]({{<ref "/contribute/more-info/desktop/setup-and-development/build-commands">}}).
 

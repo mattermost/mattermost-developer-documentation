@@ -3,9 +3,9 @@ title: "Navigation"
 heading: "Navigation"
 description: "Explains how the Desktop App does navigation wrt. Mattermost"
 date: 2023-01-24T00:00:00-05:00
-weight: 2
+weight: 1
 aliases:
-  - /contribute/desktop/architecture/navigation
+  - /contribute/desktop/architecture/main/security/navigation
 ---
 
 The Desktop App exercises relatively strict control over the user's ability to navigate through the web. This is done for a few reasons:

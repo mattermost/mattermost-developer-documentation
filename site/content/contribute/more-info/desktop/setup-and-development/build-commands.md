@@ -5,7 +5,7 @@ description: "Some useful build commands for the desktop app"
 date: 2019-01-22T00:00:00-05:00
 weight: 2
 aliases:
-  - /contribute/desktop/build-commands
+  - /contribute/desktop/setup-and-development/build-commands
 ---
 
 ## Build

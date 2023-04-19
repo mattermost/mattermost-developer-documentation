@@ -5,7 +5,7 @@ description: "Good code quality is important to maintaining the desktop app"
 date: 2019-01-22T00:00:00-05:00
 weight: 3
 aliases:
-  - /contribute/desktop/style-and-code-quality
+  - /contribute/desktop/setup-and-development/style-and-code-quality
 ---
 
 We run automated style and type-checking against every new PR that is created and the new code must pass before it can be merged.  
