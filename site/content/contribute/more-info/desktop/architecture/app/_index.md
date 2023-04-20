@@ -8,6 +8,10 @@ aliases:
   - /contribute/desktop/architecture/app
 ---
 
+The **app** (or application) module is responsible for handling the Main module side of the applications view state. This module includes controllers for the various **BrowserWindows** and **BrowserViews** that make up the application, modules for facilitating communication between the main and renderer process, and management modules for general view state.
+
+The **renderer** module contains a set of React components, styles and other front-end specific code that will be executed in an Electron renderer process (effectively a Chrome tab).
+
 ### Internal Views
 
 There are several renderer processes that make up the internal interface of the Desktop App. These are all represented by singleton objects that reside in the Main Module. These classes are in charge of holding the corresponding `BrowserWindow` or `BrowserView` object, initializing any handlers specific to that view, and exposing any special functionality that other modules may need to either read or affect the view.

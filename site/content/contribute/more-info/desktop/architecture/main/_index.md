@@ -8,6 +8,8 @@ aliases:
   - /contribute/desktop/architecture/main
 ---
 
+The **main** module is responsible for hooking into **Electron** (our application framework) and setting up the functionality required for a desktop application. It also holds more general, but non view state functionality that our app provides (eg. notifications, download management, security).
+
 ### Electron
 An Electron application consists of two pieces: the **main** process and the **renderer** process.
 
