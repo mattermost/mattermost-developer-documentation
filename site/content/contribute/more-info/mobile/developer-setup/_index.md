@@ -85,16 +85,6 @@ Note that you need to increase your `inotify` limits for Watchman to work proper
 npm -g install react-native-cli
 ```
 
-### Install Ruby
-
-{{<tabs "ruby" "ruby-mac,macOS;ruby-linux,Linux" "ruby-mac">}}
-{{<tab "ruby-mac" "display: block;">}}
-A version of Ruby is automatically installed on macOS.
-{{</tab>}}
-{{<tab "ruby-linux">}}
-Install Ruby using your distribution's package manager.
-{{</tab>}}
-
 ### Install Git
 
 {{<tabs "git" "git-mac,macOS;git-linux,Linux" "git-mac">}}
@@ -109,21 +99,42 @@ brew install git
 Some distributions come with Git preinstalled but you'll most likely have to install it yourself. For most distributions the package is simply called `git`.
 {{</tab>}}
 
-## Additional setup for iOS
+## Additional setup for iOS (macOS)
+
+### Install XCode
 
 Install {{< newtabref href="https://apps.apple.com/us/app/xcode/id497799835?ls=1&mt=12" title="Xcode" >}} to build and run the app on iOS. The minimum required version is 11.0.
 
-### Additional setup for iOS on M1 macs
+### Install Ruby
 
-1. Follow the {{< newtabref href="https://reactnative.dev/docs/environment-setup" title="React Native environment setup" >}} docs until the `cocoapods` point, then stop. 
-2. Specify the correct version of Xcode in the terminal: `sudo xcode-select --switch /Applications/Xcode.app`
-3. In the Rosetta terminal, change to the `mattermost-mobile/ios` directory and run:
-   ```sh
-   sudo arch -x86_64 gem install ffi
-   sudo gem install cocoapods
-   arch -x86_64 pod install
-   ```
-4. If you need to use the Xcode app (e.g., to build, sign, and transfer the app to an iOS device), be sure to start it in Rosetta mode.
+A version of Ruby is automatically installed on macOS, but React Native development requires Ruby 2.7.6. You can check the current version of Ruby by running the following command.
+```sh
+ruby --version
+```
+
+If it isn't, we recommend using [Ruby Version Manager](https://rvm.io) or your preferred package manager to install the required version. The steps below are for using RVM.
+
+1. Install the GPG keys for RVM using the command found [here](https://rvm.io/rvm/install#install-gpg-keys).
+    1. If you don't have the `gpg` command, you can install it using Homebrew by running.
+        ```sh
+        brew install gnupg
+        ```
+2. Install the stable version of RVM using the following command.
+    ```sh
+    \curl -sSL https://get.rvm.io | bash -s stable --ruby
+    ```
+3. To load RVM, either open a new terminal or run the following command.
+    ```sh
+    source ~/.rvm/scripts/rvm
+    ```
+4. Install the required version of Ruby
+    ```sh
+    rvm install 2.7.6
+    ```
+5. (Optional) If you don't need to use a different version of Ruby for anything else, you'll want to change the default version of Ruby. Without this, you'll need to run `rvm use 2.7.6` any time you want to work on the mobile app.
+    ```sh
+    rvm alias create default 2.7.6
+    ```
 
 ## Additional setup for Android
 
