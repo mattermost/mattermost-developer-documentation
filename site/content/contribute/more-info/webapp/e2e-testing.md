@@ -28,7 +28,7 @@ If you're looking for information related to E2E tests and Redux, please check o
 * Test cases from {{<newtabref href="https://support.smartbear.com/zephyr-scale-cloud/docs/" title="Zephyr">}} - For example, see {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5850" title="Added Cypress tests MM-T1410, MM-T1415 and MM-T1419 #5850">}} which adds automated tests for `Guest Accounts`. 
     
 ### File Structure for E2E Testing
-E2E tests are located at the root of the repository in {{<newtabref href="https://github.com/mattermost/mattermost-server/tree/master/e2e-tests"> title="the `e2e-tests` folder"}}. The file structure is mostly based on the {{<newtabref href="https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests#Folder-Structure" title="Cypress scaffold">}}. Here is an overview of some important folders and files:
+E2E tests are located at the root of the repository in {{<newtabref href="https://github.com/mattermost/mattermost-server/tree/master/e2e-tests" title="the `e2e-tests` folder">}}. The file structure is mostly based on the {{<newtabref href="https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests#Folder-Structure" title="Cypress scaffold">}}. Here is an overview of some important folders and files:
 
 ```
 |-- e2e-tests
