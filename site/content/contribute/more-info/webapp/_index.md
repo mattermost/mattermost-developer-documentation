@@ -1,7 +1,7 @@
 ---
 title: "Web app"
 heading: "Contribute to the Mattermost web app"
-description: "The Mattermost web app is written in JavaScript using React and Redux and is powered by mattermost-redux."
+description: "The Mattermost web app is written in JavaScript using React and Redux."
 date: "2018-03-19T12:01:23-04:00"
 weight: 1
 aliases:
@@ -10,28 +10,25 @@ aliases:
 
 The Mattermost web app is written in JavaScript using {{< newtabref href="https://facebook.github.io/react/" title="React" >}} and {{< newtabref href="https://redux.js.org/" title="Redux" >}}.
 
-It is powered by [mattermost-redux]({{< ref "/contribute/more-info/webapp/redux" >}}) which handles the majority of the logic, client-side storage and server communication.
-
-Please note that issues associated with the Mattermost web app are found only in the {{< newtabref href="https://github.com/mattermost/mattermost-server" title="Mattermost Server repo" >}}
 ## Repository
 
-https://github.com/mattermost/mattermost-webapp
+It is located in the `webapp` directory of the {{< newtabref href="https://github.com/mattermost/mattermost-server" title="main Mattermost monorepo" >}}.
+
+https://github.com/mattermost/mattermost-server/tree/master/webapp
 
 ## Help Wanted
 
-{{< newtabref href="https://mattermost.com/pl/help-wanted-mattermost-webapp/" title="Find help wanted tickets here." >}}
+{{< newtabref href="https://mattermost.com/pl/help-wanted-mattermost-webapp/" title="Find help wanted tickets here" >}}.
 
-## Folder Structure
+## Package structure
 
-The main directories are:
+The web app is set up as a monorepo which has the code broken up into multiple packages. The main packages in the web app are:
 
-* `actions` - Redux action creators and other view logic
-* `components` - React UI components
-* `e2e` - End-to-end tests for the web app
-* `i18n` - Localization files and utilities
-* `packages` - Subpackages used by the web app and related projects, including {{< newtabref href="https://github.com/mattermost/mattermost-webapp/tree/master/packages/mattermost-redux" title="mattermost-redux" >}}
-* `plugins` - Plugin utilities, documentation and components
-* `reducers` - Web app specific Redux reducers
-* `selectors` - Web app specific Redux selectors
-* `tests` - Unit and component tests
-* `utils` - General utilities and constants
+* `boards` - The Boards section of the app. It was previously located at https://github.com/mattermost/focalboard/.
+* `channels` - The main web app which contains Channels, the System Console, login/signup pages, and most of the core infrastructure for the app. It was previously located at https://github.com/mattermost/mattermost-webapp/.
+* `platform` - Packages used by the web app and related projects
+    * `client` - The JavaScript client for Mattermost's REST API, available on NPM as {{< newtabref href="https://www.npmjs.com/package/@mattermost/client" title="@mattermost/client" >}}
+    * `components` - A work-in-progress package containing UI components designed to be used by different parts of Mattermost
+    * `types` - The TypeScript types used by Mattermost, available on NPM as {{< newtabref href="https://www.npmjs.com/package/@mattermost/types" title="@mattermost/types" >}}
+* `playbooks` - The Playbooks section of the app. It was previously located at https://github.com/mattermost/mattermost-plugin-playbooks/.
+
