@@ -42,7 +42,7 @@ Set up your development environment for building, running, and testing the Matte
 
 #### Mattermost Server
 
-To develop with the Desktop App, we recommend that you setup a Mattermost server specifically for this purpose. This lets you customize it as needed in cases where there are specific integration requirements needed for testing.
+To develop with the Desktop App, we recommend that you set up a Mattermost server specifically for this purpose. This lets you customize it as needed in cases where there are specific integration requirements needed for testing.
 
 You can find information on setting that up here:
  
