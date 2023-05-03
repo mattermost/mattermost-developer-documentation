@@ -30,7 +30,7 @@ import MyComponent from './my_component';
 function mapStateToProps(state, ownProps) {
     return {
         currentUser: getCurrentUser(state),
-        otherUser: getUser(state, ownProps.userId)
+        otherUser: getUser(state, ownProps.userId),
     };
 }
 
@@ -39,7 +39,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators({
-            messageUser
+            messageUser,
         }, dispatch)
     };
 }
@@ -50,19 +50,17 @@ export default connect(mapStateToProps, mapDispatchToProps)(MyComponent);
 
 import React from 'react';
 
-export default class MyComponent extends React.PureComponent {
-    handleClick = () => {
-        this.props.actions.messageUser(otherUser, currentUser, `Hello, ${this.props.otherUser.first_name}!`);
+function MyComponent(props) {
+    const handleClick = () => {
+        props.actions.messageUser(props.otherUser, props.currentUser, `Hello, ${props.otherUser.first_name}!`);
     };
 
-    render() {
-        return (
-            <label>
-                {`${this.props.otherUser.first_name} ${this.props.otherUser.last_name}: `}
-                <button onClick={this.handleClick}>{'Say Hi'}</button>
-            </label>
-        );
-    }
+    return (
+        <label>
+            {`${props.otherUser.first_name} ${props.otherUser.last_name}: `}
+            <button onClick={this.handleClick}>{'Say Hi'}</button>
+        </label>
+    );
 }
 ```
 
