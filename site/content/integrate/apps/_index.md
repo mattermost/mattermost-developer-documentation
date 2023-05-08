@@ -41,6 +41,12 @@ We have quick start guides for [TypeScript]({{< ref "quickstart/quick-start-ts" 
 
 ## FAQ
 
+### What version of Mattermost is needed?
+    
+For v1.0 of the apps framework, the minimum Mattermost Server version is v6.6.
+For v1.2.0 of the apps framework, Mattermost Server v7.2 or later is needed.
+For v1.2.1 of the apps framework, Mattermost Server v7.7.0 or later is needed.
+    
 ### When would you build an App vs. a custom slash command vs. a webhook vs. a plugin?
 
 That depends on your use case, as they each have benefits.

@@ -44,12 +44,11 @@ Set up your development environment for building, running, and testing the Matte
 
 ### Mattermost Server
 
-To develop with the Desktop App, we recommend that you setup a Mattermost server and webapp instance specifically for this purpose. This lets you customize it as needed in cases where there are specific integration requirements needed for testing.
+To develop with the Desktop App, we recommend that you set up a Mattermost server specifically for this purpose. This lets you customize it as needed in cases where there are specific integration requirements needed for testing.
 
-You can find information on setting up those instances here:
-
-[Server Developer Setup]({{< ref "/contribute/developer-setup" >}})  
-[Webapp Developer Setup]({{< ref "/contribute/developer-setup" >}})
+You can find information on setting that up here:
+ 
+[Developer Setup]({{< ref "/contribute/developer-setup" >}})
 
 Alternatively, for some changes you may be able to test using an existing Mattermost instance, or one that has been deployed on platforms like Docker, Linux, Kubernetes, Heroku, or others. Please refer to the [Mattermost Deployment Guide](https://docs.mattermost.com/guides/deployment.html) for more info.
 

@@ -148,15 +148,15 @@ When deciding which one to use though, try to match the area of the code that yo
 The steps for adding a new Redux action are as follows:
 
 1. Decide where to the action creator will be located. Depending on where the action will be located you will want to put it in one of the following locations:
-    - If the action is more general and affects Redux state stored in`state.entities`, it should be put somewhere in `packages/mattermost-redux/src/actions`.
+    - If the action is more general and affects Redux state stored in `state.entities`, it should be put somewhere in `webapp/channels/src/packages/mattermost-redux/src/actions`.
     - If the action is specific to the web app, affects `state.views` and will be used in multiple places throughout the app, it should be put in `actions`.
     - If the action is very specific and will likely only be used by one or more closely related components, it should be put in an `actions.ts` located in the same directory as those components.
 
 2. If the action creator will have an effect on the Redux state that isn't covered by existing action types, you'll need to add a new "action type" constant that will be used by the action creator and will be handled by a reducer. These are located separate from the definition of the action creator itself to avoid having reducers import code from the action creators directly.
 
     Depending on where the action is located, the action creator will be located in one of the following:
-    - If the action is located in `mattermost-redux`, the action type should be added to one of the files in `packages/mattermost-redux/src/action_types`.
-    - If the action is specific to the web app or a single component, the action type should be added to the `ActionTypes` object in `utils/constants.tsx`.
+    - If the action is located in `mattermost-redux`, the action type should be added to one of the files in `webapp/channels/src/packages/mattermost-redux/src/action_types`.
+    - If the action is specific to the web app or a single component, the action type should be added to the `ActionTypes` object in `webapp/channels/src/utils/constants.tsx`.
 
     ```typescript
     export default keyMirror({
@@ -211,7 +211,7 @@ The steps for adding a new Redux action are as follows:
 
 If your action is corresponds to an API call, there are a few extra steps required but also a helper function to simplify the error handling for the action. The additional steps are as follows:
 
-1. Ensure that `Client4`, the JavaScript API client for Mattermost which is located in `packages/client/src/client4.ts`, has a method that corresponds to the API endpoint that you're using. That method will likely involve simply constructing the URL for the endpoint, optionally constructing a body for the request, and then using the `doFetch` method to actually make the request.
+1. Ensure that `Client4`, the JavaScript API client for Mattermost which is located in `webapp/platform/client/src/client4.ts`, has a method that corresponds to the API endpoint that you're using. That method will likely involve simply constructing the URL for the endpoint, optionally constructing a body for the request, and then using the `doFetch` method to actually make the request.
 
     ```typescript
     class Client4 {

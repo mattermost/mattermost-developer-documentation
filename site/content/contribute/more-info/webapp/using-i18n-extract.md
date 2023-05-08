@@ -13,7 +13,9 @@ aliases:
 This page demonstrates how to review your results and to verify if your extraction was successful or not. If the extraction was not successful this page also provides a workaround to correct for this.
 
 {{<note "NOTE:">}}
-These steps apply for the `mattermost-webapp` repository only.
+These steps haven't been updated since Mattermost has switched to using a {{<newtabref href="https://github.com/mattermost/mattermost-server" title="monorepo">}}. We're in the process of updating our I18n workflow and these corresponding docs.
+
+In the meantime, these commands can be run from within each package (`webapp/boards`, `webapp/channels`, and `webapp/playbooks`) to update their corresponding translation files.
 {{</note>}}
 
 1. After you execute `make i18n-extract` you will need to review the results and validate that the strings were either added or removed in the `i18n/en.json` file.

@@ -1,14 +1,14 @@
 ---
 title: "Build a component"
 heading: "How to build a component in Mattermost"
-description: "This page describes how to build a new React component in the Mattermost webapp and the requirements it must meet."
+description: "This page describes how to build a new React component in the Mattermost web app and the requirements it must meet."
 date: 2017-08-20T11:35:32-04:00
 weight: 4
 aliases:
   - /contribute/webapp/build-component
 ---
 
-This page describes how to build a new React component in the Mattermost webapp. A new component must meet the following requirements:
+This page describes how to build a new React component in the Mattermost web app. A new component must meet the following requirements:
 
 1. Is pure, meaning that all information required to render is passed in by props.
 2. Has no direct store interaction. Use `connect` to wrap the component if needed.
@@ -20,8 +20,6 @@ If none of those make any sense to you or you're new to React and Redux, then ch
 
 - https://facebook.github.io/react/tutorial/tutorial.html
 - http://redux.js.org/
-
-The components for the webapp currently live in the `components/` directory in the {{< newtabref href="https://github.com/mattermost/mattermost-webapp" title="mattermost-webapp repository" >}}.
 
 These requirements are discussed in more detail in the following sections.
 
