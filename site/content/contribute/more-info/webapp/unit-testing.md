@@ -10,14 +10,15 @@ aliases:
 
 ### Unit Tests for Component and Utility Files
 
-The last required step in building a web app component is to test it. {{<newtabref href="https://jestjs.io/en/" title="Jest">}} and {{<newtabref href="https://enzymejs.github.io/enzyme/" title="Enzyme">}} are the main frameworks/testing utilities used in unit testing components and utility files in our web app. Please visit their respective documentation for detailed information on how to get started, best practices, and updates. Enzyme is used to render and interact with React components in isolation, while Jest is used to perform snapshot testing against these components.
+The last required step in building a web app component is to test it. {{<newtabref href="https://jestjs.io/en/" title="Jest">}} and {{<newtabref href="https://testing-library.com/docs/react-testing-library/intro/" title="React Testing Library">}} are the main frameworks/testing utilities used in unit testing components and utility files in our web app. Please visit their respective documentation for detailed information on how to get started, best practices, and updates. React Testing Library is used to render and interact with React components in a way that closely mirrors how users interact with them in the browser, while Jest is used to perform snapshot testing against these components.
 
+With React Testing Library, you can focus on testing the behavior of your components, rather than their implementation details. This means that your tests will be more resilient to changes in your codebase, and will give you more confidence that your application is working as expected.
 If you need to unit test something related to Redux, please check out [Redux Unit and E2E Testing]({{<relref "/contribute/more-info/webapp/redux/testing.md">}}).
 
 #### Writing unit tests
 Below is a brief guide on how to do component testing:
 
-1. Match snapshots using default or expected props. Use shallow rendering to render just the component itself, and not any of its child components. Note that while using snapshots is convenient, do not rely solely on this for every test case, as changes can be easily overlooked when using the command `jest -updateSnapshot` to update multiple snapshots at once. For example:
+1. Use `render` from React Testing Library to render the component and its child components. Use `screen` from React Testing Library to interact with the rendered component and assert on the expected results. Match snapshots using default or expected props. Note that while using snapshots is convenient, do not rely solely on this for every test case, as changes can be easily overlooked when using the command `jest -updateSnapshot` to update multiple snapshots at once. For example:
     ```javascript
     const baseProps = {
         active: true,
@@ -25,33 +26,35 @@ Below is a brief guide on how to do component testing:
     };
 
     test('should match snapshot, not send email notifications', () => {
-        const wrapper = shallow(<EmailNotificationSetting {...baseProps}/>);
+        const {container} = render(<EmailNotificationSetting {...baseProps}/>);
 
-        expect(wrapper).toMatchSnapshot();
+        expect(container.firstChild).toMatchSnapshot();
 
-        // Save a snapshot of part of a component when it has another render function like "renderOption".
-        // This creates a small snapshot of that particular render function's result instead of the entire component.
-        expect(wrapper.instance().renderOption()).toMatchSnapshot();
+        // Assert on a specific element rendered by the component
+        const submitButton = screen.getByRole('button', { name: 'Submit' });
+        expect(submitButton).toBeInTheDocument();
     });
     ```
-2. Use assertions to verify the existence and properties of important elements.
+2. Use screen from React Testing Library to query for elements by text or role and use assertions to verify their existence and properties.
     ```javascript
-    expect(wrapper.find('#emailNotificationImmediately').exists()).toBe(true);
-    expect(wrapper.find('h1').text()).toEqual(props.siteName);
-    expect(wrapper.find('h4').text()).toEqual(props.customDescriptionText);
+    expect(screen.getByRole('checkbox', { id: 'emailNotificationImmediately' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: props.siteName })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: props.customDescriptionText })).toBeInTheDocument();
     ```
-3. You should also use assertions to check CSS classes.
+3. Use toHaveClass matcher from Jest DOM to check CSS classes.
     ```javascript
-    expect(wrapper.find('#create_post').hasClass('center')).toBe(true);
+    expect(screen.getByTestId('create_post')).toHaveClass('center');
     ```
-4. Simulate events and verify state changes accordingly.
+4. Simulate events using fireEvent and verify state changes using expect.
     ```javascript
     test('should pass handleChange', () => {
-        const wrapper = mountWithIntl(<EmailNotificationSetting {...baseProps}/>);
-        wrapper.find('#emailNotificationImmediately').simulate('change');
+        const {getByRole} = render(<EmailNotificationSetting {...baseProps}/>);
+        const emailNotificationImmediately = getByRole('checkbox', { id: 'emailNotificationImmediately' });
 
-        expect(wrapper.state('enableEmail')).toBe('true');
-        expect(wrapper.state('emailInterval')).toBe(30);
+        fireEvent.click(emailNotificationImmediately);
+
+        expect(emailNotificationImmediately.checked).toBe(true);
+        expect(screen.getByTestId('emailInterval').value).toBe('30');
     });
     ```
 5. Ensure that all functions of a component are tested. This can be done via events, state changes, or just calling it directly.
@@ -61,10 +64,10 @@ Below is a brief guide on how to do component testing:
     };
 
     test('should call updateSection on handleExpand', () => {
-        // Jest mocks are automatically cleared between tests, so they don't need to be redefined.
-        const wrapper = mountWithIntl(<EmailNotificationSetting {...baseProps}/>);
+        const {getByRole} = render(<EmailNotificationSetting {...baseProps}/>);
+        const button = getByRole('button', { name: /expand/i });
 
-        wrapper.instance().handleExpand();
+        fireEvent.click(button);
 
         expect(baseProps.updateSection).toBeCalled();
         expect(baseProps.updateSection).toHaveBeenCalledTimes(1);
@@ -80,16 +83,19 @@ Below is a brief guide on how to do component testing:
     };
 
     test('should call functions on handleSubmit', () => {
-        const wrapper = mountWithIntl(<EmailNotificationSetting {...baseProps}/>);
+        const {getByTestId} = render(<EmailNotificationSetting {...baseProps}/>);
+        const submitButton = getByTestId('submit-button');
 
-        wrapper.instance().handleSubmit();
+        fireEvent.click(submitButton);
 
         expect(baseProps.onSubmit).not.toBeCalled();
         expect(baseProps.updateSection).toHaveBeenCalledTimes(1);
-        expect(baseProps.updateSection).toBeCalledWith('');
+        expect(baseProps.updateSection).toBeCalledWith('email');
 
-        wrapper.find('#emailNotificationNever').simulate('change');
-        wrapper.instance().handleSubmit();
+        const emailNotificationNever = getByTestId('email-notification-never');
+        fireEvent.change(emailNotificationNever);
+
+        fireEvent.click(submitButton);
 
         expect(baseProps.onSubmit).toBeCalled();
         expect(baseProps.onSubmit).toHaveBeenCalledTimes(1);
