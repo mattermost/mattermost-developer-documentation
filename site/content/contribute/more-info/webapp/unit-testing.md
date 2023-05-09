@@ -68,7 +68,7 @@ Below is a brief guide on how to do component testing:
         const {getByRole} = render(<EmailNotificationSetting {...baseProps}/>);
         const button = getByRole('button', { name: /expand/i });
 
-        fireEvent.click(button);
+        userEvent.click(button);
 
         expect(baseProps.updateSection).toBeCalled();
         expect(baseProps.updateSection).toHaveBeenCalledTimes(1);
@@ -87,16 +87,16 @@ Below is a brief guide on how to do component testing:
         const {getByTestId} = render(<EmailNotificationSetting {...baseProps}/>);
         const submitButton = getByTestId('submit-button');
 
-        fireEvent.click(submitButton);
+        userEvent.click(submitButton);
 
         expect(baseProps.onSubmit).not.toBeCalled();
         expect(baseProps.updateSection).toHaveBeenCalledTimes(1);
         expect(baseProps.updateSection).toBeCalledWith('email');
 
         const emailNotificationNever = getByTestId('email-notification-never');
-        fireEvent.change(emailNotificationNever);
+        userEvent.change(emailNotificationNever);
 
-        fireEvent.click(submitButton);
+        userEvent.click(submitButton);
 
         expect(baseProps.onSubmit).toBeCalled();
         expect(baseProps.onSubmit).toHaveBeenCalledTimes(1);
