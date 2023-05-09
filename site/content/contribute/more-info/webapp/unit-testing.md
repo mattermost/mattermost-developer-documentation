@@ -18,8 +18,9 @@ If you need to unit test something related to Redux, please check out [Redux Uni
 #### Writing unit tests
 Below is a brief guide on how to do component testing:
 
-1. Use `render` from React Testing Library to render the component and its child components. Use `screen` from React Testing Library to interact with the rendered component and assert on the expected results. Match snapshots using default or expected props. Note that while using snapshots is convenient, do not rely solely on this for every test case, as changes can be easily overlooked when using the command `jest -updateSnapshot` to update multiple snapshots at once. For example:
+1. Use our {{<newtabref href="https://github.com/mattermost/mattermost-server/blob/master/webapp/channels/src/tests/react_testing_utils.tsx" title="testing library helpers">}} to render a component and its child components. Use `screen` to interact with the rendered component and assert on the expected results. Match snapshots using default or expected props. Note that while using snapshots is convenient, do not rely solely on this for every test case, as changes can be easily overlooked when using the command `jest --updateSnapshot` to update multiple snapshots at once. For example:
     ```javascript
+    import {renderWithIntl, screen, userEvent} from 'tests/react_testing_utils';
     const baseProps = {
         active: true,
         onSubmit: jest.fn(),
@@ -45,13 +46,13 @@ Below is a brief guide on how to do component testing:
     ```javascript
     expect(screen.getByTestId('create_post')).toHaveClass('center');
     ```
-4. Simulate events using fireEvent and verify state changes using expect.
+4. Simulate events using userEvent and verify state changes using expect.
     ```javascript
     test('should pass handleChange', () => {
         const {getByRole} = render(<EmailNotificationSetting {...baseProps}/>);
         const emailNotificationImmediately = getByRole('checkbox', { id: 'emailNotificationImmediately' });
 
-        fireEvent.click(emailNotificationImmediately);
+        userEvent.click(emailNotificationImmediately);
 
         expect(emailNotificationImmediately.checked).toBe(true);
         expect(screen.getByTestId('emailInterval').value).toBe('30');
