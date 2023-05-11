@@ -42,12 +42,6 @@ This window is managed by the `SettingsWindow` module located at [main/windows/s
 - `show()`: Shows the Settings Window if it exists, and will create it if does not. When the window is closed, the `BrowserWindow` object is dereferenced;
 - `get()`: Retrieves the Settings Window `BrowserWindow` object if it exists, and returns `undefined` if it does not.
 
-#### Calls Widget
-
-![Calls Widget screenshot](calls-widget.png)
-
-TODO
-
 ### Views
 
 These are the internally managed views that are rendered on top of existing windows, adding additional functionality. All of these views are represented by a `BrowserView` object.
