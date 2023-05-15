@@ -26,7 +26,7 @@ We support reading from the Windows registry to allow system administrators to d
 
 Templates for these can be found under `resources\windows\gpo`.
 
-### Server Manager
+### Server manager
 
 The `ServerManager` is a singleton class that acts as a single source of truth for all server configuration, managing adding/modifying/removing servers and serving the server information to the rest of the application.
 
