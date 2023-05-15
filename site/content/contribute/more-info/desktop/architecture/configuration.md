@@ -10,7 +10,7 @@ aliases:
 
 ### Config Module
 
-The **configuration** module in the **Common** module is responsible for facilitating reading from and writing to external configuration sources. It also consolidates, verifies and upgrades configuration where applicable.
+The **configuration** module in the **Common** module is responsible for facilitating reading from and writing to external configuration sources. It also consolidates, verifies, and upgrades configuration where applicable.
 
 #### Files
 
