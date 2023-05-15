@@ -62,30 +62,13 @@ We will go through each of these migration types and discuss how we can make it 
 
 ### Conclusions
 
-**MySQL 5.7**
+**MySQL**
 
 | Operation      | Table rewrite | Concurrent DML allowed |
 | -----------    | ------------- | ---------------------- |
 | CREATE INDEX   | NO<sup>1</sup>| YES (with limitations)<sup>1</sup>|
 | DROP INDEX     | NO            | YES                    |
-| ADD COLUMN     | YES           | YES<sup>2</sup>                   |
-| ALTER COLUMN   | YES           | NO                     |
-| DROP COLUMN    | YES           | YES                    |
-| ADD FK CONSTRAINT| NO          | NO (avoidable)<sup>3</sup>        |
-| ADD UNIQUE CONSTRAINT | NO     | YES                    |
-
-Note:
-1. Fulltext and spatial indexes take locks. Adding a fulltext index can also rewrite the table if there is no user-defined FTS_DOC_ID column, or in other words if a fulltext index is being added for the first time.
-2. Concurrent DML is also not permitted while adding an auto-increment column. However we don’t use it and are unlikely to use it in future. So I have made the cell green for now.
-3. Setting `foreign_key_checks` to false avoids table locks. But it also defeats the purpose of a foreign key.
-
-**MySQL 8**
-
-| Operation      | Table rewrite | Concurrent DML allowed |
-| -----------    | ------------- | ---------------------- |
-| CREATE INDEX   | NO<sup>1</sup>| YES (with limitations)<sup>1</sup>|
-| DROP INDEX     | NO            | YES                    |
-| ADD COLUMN     | NO (only in certain cases) <sup>2</sup>           | YES<sup>3</sup>                   |
+| ADD COLUMN     | YES<sup>2</sup>| YES<sup>3</sup>                   |
 | ALTER COLUMN   | YES           | NO                     |
 | DROP COLUMN    | YES           | YES                    |
 | ADD FK CONSTRAINT| NO          | NO (avoidable)<sup>4</sup>        |
@@ -93,7 +76,7 @@ Note:
 
 Note:
 1. Fulltext and spatial indexes take locks. Adding a fulltext index can also rewrite the table if there is no user-defined FTS_DOC_ID column, or in other words if a fulltext index is being added for the first time.
-2. Table rewrite happens if the column is being added to a table with a fulltext index. Which means this will affect adding columns to the Posts or the Channels table for example.
+2. In MySQL 8 onwards, this is improved not to rewrite the table. But still an exception exists when it's being added to a table with a fulltext index. Which means this will affect adding columns to the Posts or the Channels table for example.
 3. Concurrent DML is also not permitted while adding an auto-increment column. However we don’t use it and are unlikely to use it in future. So I have made the cell green for now.
 4. Setting `foreign_key_checks` to false avoids table locks. But it also defeats the purpose of a foreign key.
 
@@ -230,6 +213,10 @@ Follow this long-winded procedure:
 
 For example, let’s say the next upcoming version is 8.4, and the next ESR is 8.6. So step 1 and 2, goes in 8.4. And in 8.7 onwards, we add the code to start using the new column, which will eventually be part of 8.12 (ESR after that). And then from 8.13 onwards, we can drop the column.
 
+The following diagram should explain things better:
+
+![ESR migrations](/contribute/more-info/server/ESR-diagram.png)
+
 The reasoning behind this is some customers will only upgrade from ESR to ESR. So we need to ensure backwards compatibility with the previous version.
 
 Following shows an example where we are adding a channel_count column to the status table. This is not exactly altering a column, but the idea remains the same, and you can extend this to fit your use-case.
@@ -332,6 +319,7 @@ $function$;
 1. Add the appropriate SQL script file containing the statements you want to run into the migrations directory. This directory is located in `{project_dir}/db/migrations/{driver_name}/`. Do not forget to add scripts for both `mysql` and `postgres` databases.
 2. Run `make migrations-extract` to add your new migrations to the `db/migrations/migrations.list` file. This will ensure that there will be merge conflicts in case there is a conflict on migration sequence numbers with the master branch. Since we don't want to have a collision on version numbers of the migration files, the developer should merge the upstream branch to the feature branch just before merging so that we can be sure that there are no versioning issues. In case of a version number collision, the build process will fail and main branch will be broken until it gets fixed.
 3. When you run the mattermost-server binary, the tool will automatically apply the migration if it's required. The migration name will be saved in the `db_migrations` table.
+4. Lastly, please also measure the time taken for the migration with an eye towards resource usage. Please use the DB dumps from the ~developers-performance channel in our Community server. You will find the links in the channel header.
 
 ### My migration has failed. What do I do?
 1. If you think your migration is applied, and you want to revert changes, you can run the down script to roll back in a clean way. You can use morph CLI to apply down migrations.
