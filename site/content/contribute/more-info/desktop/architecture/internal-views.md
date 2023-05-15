@@ -25,7 +25,7 @@ This is the primary view that encapsulates the core of the Desktop App interface
 This window is managed by the `MainWindow` module located at [main/windows/mainWindow](https://github.com/mattermost/desktop/blob/master/src/main/windows/mainWindow.ts).
 
 ##### Hooks
-- `init()`: Creates the `BrowserWindow` object for the Main Window, and adds all appropriate listeners.
+- `init()`: Creates the `BrowserWindow` object for the Main Window and adds all appropriate listeners.
 - `get()`: Returns the `BrowserWindow` object for the Main Window. This is directly exposed as there are many different functions affecting the behavior of the window, and thus the encapsulating module often needs to pass that control to other modules. If `true` is passed as an argument, `init()` will be called if the window does not exist, otherwise `undefined` is returned.
 - `getBounds()`: Returns the current size and location of the `BrowserWindow`, used for resize functionality, and to ensure that child windows/views are positioned correctly.
 - `focusThreeDotMenu()`: Sends a message to the Main process that focuses the view and highlights and focuses the 3-dot menu on Windows/Linux. This is used when the `ALT` key is pressed as a shortcut to focus the menu.
@@ -34,19 +34,19 @@ This window is managed by the `MainWindow` module located at [main/windows/mainW
 
 ![Settings Window screenshot](settings-window.png)
 
-This window is created when the user opens **Preferences** from the **File** menu. It contains an interface where the user can change settings specific to the Desktop App client that do not affect their Mattermost servers. This window is a child window of the Main Window, and will close/hide when the Main Window is closed/hidden.
+This window is created when the user opens **Preferences** from the **File** menu. It contains an interface where the user can change settings specific to the Desktop App client that do not affect their Mattermost servers. This window is a child window of the Main Window and will close/hide when the Main Window is closed/hidden.
 
 This window is managed by the `SettingsWindow` module located at [main/windows/settingsWindow](https://github.com/mattermost/desktop/blob/master/src/main/windows/settingsWindow.ts).
 
 ##### Hooks
-- `show()`: Shows the Settings Window if it exists, and will create it if does not. When the window is closed, the `BrowserWindow` object is dereferenced.
-- `get()`: Retrieves the Settings Window `BrowserWindow` object if it exists, and returns `undefined` if it does not.
+- `show()`: Shows the Settings Window if it exists and will create it if does not. When the window is closed, the `BrowserWindow` object is dereferenced.
+- `get()`: Retrieves the Settings Window `BrowserWindow` object if it exists and returns `undefined` if it does not.
 
 ### Views
 
 These are the internally managed views that are rendered on top of existing windows, adding additional functionality. All of these views are represented by a `BrowserView` object.
 
-Most of these views exist as they act as augments to the existing interface, and must be rendered over top of the external sandbox Mattermost `BrowserViews`.
+Most of these views exist as they act as augments to the existing interface and must be rendered over top of the external sandbox Mattermost `BrowserViews`.
 
 #### Loading screen
 

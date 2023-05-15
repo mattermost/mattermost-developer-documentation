@@ -16,13 +16,13 @@ The **configuration** module in the **Common** module is responsible for facilit
 
 We have a few different configuration files in the Desktop App, but the main one is `config.json`. Most of the user's configuration from the Settings Window is stored there, as well as any user-configured servers.
 
-The application supports different configuration versions, and allows for them to be migrating to the version supported by the configuration module via the `upgradePreferences` module. When no configuration is found, the `defaultPreferences` object is copied over to the main configuration module.
+The application supports different configuration versions and allows for them to be migrating to the version supported by the configuration module via the `upgradePreferences` module. When no configuration is found, the `defaultPreferences` object is copied over to the main configuration module.
 
-We also support a build configuration, in which the packager of the application can pre-define servers and a few other configuration items.
+We also support a build configuration in which the packager of the application can pre-define servers and a few other configuration items.
 
 #### Registry
 
-We support reading from the Windows registry to allow system administrators to define Group Policy that will pre-define servers, and potentially disable user-defined servers and automatic updates as per administrator wishes.
+We support reading from the Windows registry to allow system administrators to define Group Policy that will pre-define servers and potentially disable user-defined servers and automatic updates as per administrator wishes.
 
 Templates for these can be found under `resources\windows\gpo`.
 
@@ -38,11 +38,11 @@ An external call is responsible for populating information about the specific Ma
 
 #### Modification
 
-The `ServerManager` is the only place that allows the persistent server configuration to be modified, you cannot modify directly through the **configuration** module. Once a server is modified, the `ServerManager` will update the **configuration** module with the new changes.
+The `ServerManager` is the only place that allows the persistent server configuration to be modified. Changes cannot be made directly through the **configuration** module. Once a server is modified, the `ServerManager` will update the **configuration** module with the new changes.
 
 When a server is added or updating, up to two events will be emitted:
 - `SERVERS_UPDATE`: This event is emitted when the `ServerManager` has new changes. This could be a name, URL or an ordering change.
-- `SERVERS_URL_MODIFIED`: This event is emitted specifically when a URL has changed, signifying that the application might need to fetch new remote server information, or refresh any views associated with the server to reflect the new URL.
+- `SERVERS_URL_MODIFIED`: This event is emitted specifically when a URL has changed, signifying that the application might need to fetch new remote server information or refresh any views associated with the server to reflect the new URL.
 
 #### Lookup
 
