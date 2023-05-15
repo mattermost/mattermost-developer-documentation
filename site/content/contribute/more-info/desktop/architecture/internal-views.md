@@ -30,7 +30,7 @@ This window is managed by the `MainWindow` module located at [main/windows/mainW
 - `getBounds()`: Returns the current size and location of the `BrowserWindow`, used for resize functionality, and to ensure that child windows/views are positioned correctly.
 - `focusThreeDotMenu()`: Sends a message to the Main process that focuses the view and highlights and focuses the 3-dot menu on Windows/Linux. This is used when the `ALT` key is pressed as a shortcut to focus the menu.
 
-#### Settings Window
+#### Settings window
 
 ![Settings Window screenshot](settings-window.png)
 
