@@ -24,6 +24,21 @@ We have two overarching goals and a third auxiliary goal.
 
 We want to strictly follow this as much as possible (even at the cost of slower feature development).
 
+### Background
+
+Schema changes are always made synchronously when Mattermost starts up. This means the application won't be ready to serve requests until all schema changes are applied. In most cases, the new application won't be able to work until those schema changes are in place.
+
+In a high availability environment, multiple instances will try to run migrations. To prevent this, a lock table is used in the migration system. Until migrations are completed, none of the instances will start. Once the lock is released by a node, another instance will obtain the lock, and check the migrations table. Since the previous node already applied the migrations, the remaining nodes won't re-apply the migrations.
+
+From Mattermost release v6.4, we have started using a schema-based migration system. We are now creating SQL statement files to run migrations. A developer must create migration files for each database driver. Since we want our migrations to be reversible, the developer must create one `up` script along with a `down` script. For instance, a single migration would have the following files:
+
+- `000066_upgrade_posts_v6.0.down.sql`
+- `000066_upgrade_posts_v6.0.up.sql`
+
+A file naming convention is used to determine the order in which the migrations should be applied that appends `up|down.sql` suffix to the migration name. We were using a database version before the new migration system which is why the versions exist in the migration file name in the example. Going forward, using version identifiers for future next migration files is not mandatory. A developer can add any information to the name if they think it's going to be helpful.
+
+We are using {{< newtabref href="https://github.com/go-morph/morph" title="morph" >}} for the migration engine. The tool has a library and also a CLI. Mattermost server imports the library to have programmatic access to morph functions. A developer can use the morph CLI tool to test whether their migrations are working properly. Please follow instructions in the morph documentation to use the morph CLI tool.
+
 ### Analysis
 
 A rough analysis of our past schema migrations shows the following (some very early migrations were skipped which would be considered as base Mattermost):
@@ -309,6 +324,20 @@ BEGIN
 END
 $function$;
 ```
+
+## FAQ
+
+### I need to make a schema change. What do I do?
+
+1. Add the appropriate SQL script file containing the statements you want to run into the migrations directory. This directory is located in `{project_dir}/db/migrations/{driver_name}/`. Do not forget to add scripts for both `mysql` and `postgres` databases.
+2. Run `make migrations-extract` to add your new migrations to the `db/migrations/migrations.list` file. This will ensure that there will be merge conflicts in case there is a conflict on migration sequence numbers with the master branch. Since we don't want to have a collision on version numbers of the migration files, the developer should merge the upstream branch to the feature branch just before merging so that we can be sure that there are no versioning issues. In case of a version number collision, the build process will fail and main branch will be broken until it gets fixed.
+3. When you run the mattermost-server binary, the tool will automatically apply the migration if it's required. The migration name will be saved in the `db_migrations` table.
+
+### My migration has failed. What do I do?
+1. If you think your migration is applied, and you want to revert changes, you can run the down script to roll back in a clean way. You can use morph CLI to apply down migrations.
+    - Before rolling down the script, check the `db_migrations` table whether the migration is applied or not.
+    - If it's applied you can revert it using morph CLI command. An example command would look like `morph apply down --driver {your-driver} --dsn "{your-dsn}" --path {path-to-your-driver-specific-migration-files} --number 1`
+2. If the migration has been shipped in a release and you want to apply fixes, instead of changing the existing script, you should add a new one so that `db_migrations` will stay consistent. You can edit the existing migration to be a no-op for future releases in this case.
 
 ## GLOSSARY
 
