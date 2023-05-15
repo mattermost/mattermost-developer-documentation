@@ -16,7 +16,7 @@ As all of these views only load trusted scripts in the renderer process, all of 
 
 These are the internally-managed windows acting as the main user interface points for the user. All of these views are represented by a `BrowserWindow` object.
 
-#### Main Window
+#### Main window
 
 ![Main Window screenshot](main-window.png)
 
