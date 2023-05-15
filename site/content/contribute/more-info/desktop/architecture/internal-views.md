@@ -48,7 +48,7 @@ These are the internally managed views that are rendered on top of existing wind
 
 Most of these views exist as they act as augments to the existing interface, and must be rendered over top of the external sandbox Mattermost `BrowserViews`.
 
-#### Loading Screen
+#### Loading screen
 
 ![Loading Screen screenshot](loading-screen.png)
 
