@@ -74,11 +74,12 @@ We will go through each of these migration types and discuss how we can make it 
 | ADD FK CONSTRAINT| NO          | NO (avoidable)<sup>4</sup>        |
 | ADD UNIQUE CONSTRAINT | NO     | YES                    |
 
-Note:
+{{<note "Note:">}}
 1. Fulltext and spatial indexes take locks. Adding a fulltext index can also rewrite the table if there is no user-defined FTS_DOC_ID column, or in other words if a fulltext index is being added for the first time.
 2. In MySQL 8 onwards, this is improved not to rewrite the table. But still an exception exists when it's being added to a table with a fulltext index. Which means this will affect adding columns to the Posts or the Channels table for example.
-3. Concurrent DML is also not permitted while adding an auto-increment column. However we don’t use it and are unlikely to use it in future. So I have made the cell green for now.
+3. Concurrent DML is also not permitted while adding an auto-increment column. However we don’t use it and are unlikely to use it in future.
 4. Setting `foreign_key_checks` to false avoids table locks. But it also defeats the purpose of a foreign key.
+{{</note>}}
 
 **PostgreSQL 11+**
 
@@ -92,9 +93,10 @@ Note:
 | ADD FK CONSTRAINT| NO          | YES (only selects)<sup>2</sup>  |
 | ADD UNIQUE CONSTRAINT | NO     | YES                    |
 
-Note:
+{{<note "Note:">}}
 1. Technically it takes an ACCESS EXCLUSIVE LOCK, however it is only to add/remove the metadata. The command returns instantly.
 2. Adding FK constraint takes a SHARE ROW EXCLUSIVE [lock](https://www.postgresql.org/docs/11/sql-altertable.html).
+{{</note>}}
 
 ### Recommendations
 
