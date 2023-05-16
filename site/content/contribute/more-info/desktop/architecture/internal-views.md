@@ -44,7 +44,7 @@ This window is managed by the `SettingsWindow` module located at [main/windows/s
 
 ### Views
 
-These are the internally managed views that are rendered on top of existing windows, adding additional functionality. All of these views are represented by a `BrowserView` object.
+These are the internally managed views that are rendered on top of existing windows, adding additional functionality. Each of these views are represented by a `BrowserView` object.
 
 Most of these views exist as they act as augments to the existing interface and must be rendered over top of the external sandbox Mattermost `BrowserViews`.
 
