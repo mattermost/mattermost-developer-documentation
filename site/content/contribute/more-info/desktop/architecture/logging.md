@@ -24,8 +24,10 @@ const log = new Logger('MyModuleName');
 
 You can then use the resulting *log* object to call any of the provided `electron-log` functions, and each log entry with be automatically prefixed with your module name.
 
-    // Will print out "[MyModuleName] a long entry"
-    log.debug('a log entry'); 
+```js
+// Will print out "[MyModuleName] a long entry"
+log.debug('a log entry'); 
+```
 
 If you need to add additional prefixing, for example to log events on a specific object instance, we provide the `withPrefix()` method which allows you to add additional prefixes.
 
