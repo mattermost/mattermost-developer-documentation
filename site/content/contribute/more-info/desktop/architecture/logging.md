@@ -31,7 +31,9 @@ log.debug('a log entry');
 
 If you need to add additional prefixing, for example to log events on a specific object instance, we provide the `withPrefix()` method which allows you to add additional prefixes.
 
-    // Will print out "[MyModuleName] [some-id] a long entry"
-    const myObjectId = 'some-id';
-    log.withPrefix(myObjectId).debug('a log entry')
+```js
+// Will print out "[MyModuleName] [some-id] a long entry"
+const myObjectId = 'some-id';
+log.withPrefix(myObjectId).debug('a log entry');
+```
     
