@@ -18,7 +18,7 @@ We want to improve the situation and make upgrades a worry-free experience for o
 
 We have two overarching goals and a third auxiliary goal.
 
-1. Schema migrations should **ALWAYS** be backwards compatible till the last ESR.
+1. Schema migrations should **ALWAYS** be backwards compatible until the last ESR.
 2. Schema migrations should **NEVER** lock the entire table.
 3. Reduce migration time where possible.
 
@@ -80,7 +80,7 @@ Note:
 3. Concurrent DML is also not permitted while adding an auto-increment column. However we don’t use it and are unlikely to use it in future. So I have made the cell green for now.
 4. Setting `foreign_key_checks` to false avoids table locks. But it also defeats the purpose of a foreign key.
 
-**Postgres 11+**
+**PostgreSQL 11+**
 
 | Operation      | Table rewrite | Concurrent DML allowed |
 | -----------    | ------------- | ---------------------- |
@@ -107,13 +107,13 @@ However, if you MUST do it, take a look into the following sections.
 
 1. CREATE INDEX
 
-**Postgres**: CREATE INDEX CONCURRENTLY does not take any locks.
+**PostgreSQL**: CREATE INDEX CONCURRENTLY does not take any locks.
 
 **MySQL**: No lock taken in MySQL as well. (Exception for fulltext and spatial indexes)
 
 2. ALTER TABLE ADD COLUMN
 
-**Postgres**: Adding nullable columns already happened in constant time since pg10. And from pg11 onwards, adding non-null columns with a default value also happens in constant time. No issues seen with that.
+**PostgreSQL**: Adding nullable columns already happened in constant time since version 10. And from version 11 onwards, adding non-null columns with a default value also happens in constant time. No issues seen with that.
 
 **MySQL 5.7**: A table rewrite happens, but no lock is taken. (Exception for auto-increment columns)
 
@@ -123,7 +123,7 @@ The catch here is to be able to handle denormalization optimizations which typic
 
 3. ALTER TABLE ALTER COLUMN
 
-This takes an exclusive lock in both **MySQL** and **Postgres**. Suggestion is to strongly avoid doing this.
+This takes an exclusive lock in both **MySQL** and **PostgreSQL**. We strongly recommend you avoid doing this.
 
 To give some context, we have this particular migration `ALTER TABLE posts ALTER COLUMN props TYPE jsonb USING props::jsonb;` which has caused us more pain than it was worth. Several large customers have faced problems with this migration where in some cases, it has been observed to take 8+ hrs. Therefore, we strongly suggest to avoid making any `ALTER COLUMN` changes until absolutely unavoidable (for example, security issues).
 
@@ -131,13 +131,13 @@ However, if you MUST do this, then see the example later.
 
 4. ALTER TABLE DROP COLUMN
 
-**Postgres**: Only metadata lock is taken. No table rewrite takes place. The space is just marked as unused and later taken up by future DB writes.
+**PostgreSQL**: Only metadata lock is taken. No table rewrite takes place. The space is just marked as unused and later taken up by future DB writes.
 
 **MySQL**: Table rewrite happens but no lock is taken.
 
 5. ALTER TABLE ADD CONSTRAINT
 
-**Postgres**: Relatively rare, but out of those 6 cases, 2 are adding unique constraints. For example:
+**PostgreSQL**: Relatively rare, but out of those 6 cases, 2 are adding unique constraints. For example:
 
 ```sql
 ALTER TABLE oauthaccessdata ADD CONSTRAINT oauthaccessdata_clientid_userid_key UNIQUE (clientid, userid);
@@ -145,17 +145,17 @@ ALTER TABLE oauthaccessdata ADD CONSTRAINT oauthaccessdata_clientid_userid_key U
 
 This can be improved by first adding the index concurrently, and then attaching the index to the constraint. See example later.
 
-Adding a foreign key in postgres takes a share row exclusive lock, which means only SELECT queries are allowed. It is possible to bypass the table scanning by adding a “NOT VALID” suffix, but then it defeats the purpose of having a FK. Suggestion would be to avoid doing it.
+Adding a foreign key in PostgreSQL takes a share row exclusive lock, which means only SELECT queries are allowed. It is possible to bypass the table scanning by adding a “NOT VALID” suffix, but then it defeats the purpose of having a foreign key. We recommend against doing it.
 
 **MySQL**:
 
 Adding an unique constraint doesn't take locks, but does a table rebuild.
 
-Adding an FK takes locks. But avoidable by setting `SET  foreign_key_checks=0`. Then it doesn't take any locks, and neither rebuilds the table. But it partially defeats the purpose of using an FK. Recommend to AVOID.
+Adding a foreign key takes locks. But avoidable by setting `SET  foreign_key_checks=0`. Then it doesn't take any locks, and neither rebuilds the table. But it partially defeats the purpose of using an foreign key. We recommend you avoid this.
 
 6. DROP INDEX
 
-**Postgres**: DROP INDEX CONCURRENTLY does not take any locks.
+**PostgreSQL**: DROP INDEX CONCURRENTLY does not take any locks.
 
 **MySQL**: Fast operation. No locks are taken.
 
@@ -266,9 +266,9 @@ DROP TRIGGER tr_update_status_channel_count on status
 
 4. And in the ESR after that, now we can finally drop the old column.
 
-This deliberately skips renaming the column for simplicity. Depending on your use-case, you can do that if you want to. It is a fast operation that does not rebuild the table in both MySQL and Postgres, so there are no issues.
+This deliberately skips renaming the column for simplicity. Depending on your use-case, you can do that if you want to. It is a fast operation that does not rebuild the table in both MySQL and PostgreSQL, so there are no issues.
 
-### How do I add a unique constraint to a table (postgres only)
+### How do I add a unique constraint to a table (PostgreSQL only)
 
 ```sql
 CREATE UNIQUE INDEX CONCURRENTLY IF NOT EXISTS oauthaccessdata_clientid_userid_key on oauthaccessdata(clientid, userid);
