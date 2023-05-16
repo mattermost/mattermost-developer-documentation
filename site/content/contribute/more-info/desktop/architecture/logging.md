@@ -16,9 +16,11 @@ Our app supports the following log levels: `error`, `warn`, `info`, `verbose`, `
 In addition to the library, we provide a **Logger** object that simplifies and streamlines setting up logging for an individual module.
 To create a **Logger** object, simply create a new one:
 
-    import {Logger} from 'common/log'
+```js
+import {Logger} from 'common/log';
 
-    const log = new Logger('MyModuleName')
+const log = new Logger('MyModuleName');
+```
 
 You can then use the resulting *log* object to call any of the provided `electron-log` functions, and each log entry with be automatically prefixed with your module name.
 
