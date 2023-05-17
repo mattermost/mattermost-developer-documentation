@@ -64,6 +64,7 @@ We will go through each of these migration types and discuss how we can make it 
 
 **MySQL**
 
+{{< table "migration-table-sql" >}}
 | Operation      | Table rewrite | Concurrent DML allowed |
 | -----------    | ------------- | ---------------------- |
 | CREATE INDEX   | NO<sup>1</sup>| YES (with limitations)<sup>1</sup>|
@@ -73,6 +74,7 @@ We will go through each of these migration types and discuss how we can make it 
 | DROP COLUMN    | YES           | YES                    |
 | ADD FK CONSTRAINT| NO          | NO (avoidable)<sup>4</sup>        |
 | ADD UNIQUE CONSTRAINT | NO     | YES                    |
+{{</ table >}}
 
 {{<note "Note:">}}
 1. Fulltext and spatial indexes take locks. Adding a fulltext index can also rewrite the table if there is no user-defined FTS_DOC_ID column, or in other words if a fulltext index is being added for the first time.
@@ -83,6 +85,7 @@ We will go through each of these migration types and discuss how we can make it 
 
 **PostgreSQL 11+**
 
+{{< table "migration-table-posgresql" >}}
 | Operation      | Table rewrite | Concurrent DML allowed |
 | -----------    | ------------- | ---------------------- |
 | CREATE INDEX   | NO            | YES                    |
@@ -92,6 +95,7 @@ We will go through each of these migration types and discuss how we can make it 
 | DROP COLUMN    | YES           | YES<sup>1</sup>        |
 | ADD FK CONSTRAINT| NO          | YES (only selects)<sup>2</sup>  |
 | ADD UNIQUE CONSTRAINT | NO     | YES                    |
+{{</ table >}}
 
 {{<note "Note:">}}
 1. Technically it takes an ACCESS EXCLUSIVE LOCK, however it is only to add/remove the metadata. The command returns instantly.
