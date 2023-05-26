@@ -62,7 +62,7 @@ Before starting a new release, you want to make sure you do a few things:
 
 ### Generating additional release candidates
 
-If there are any bugs reported by QA, once they are fixed we will need to generate an additional release candidate to verify that any issues has been fixed.
+If there are any bugs reported by QA, once they are fixed we will need to generate an additional release candidate to verify that any issues have been fixed.
 
 To generate additional release candidates, you'll simply run the following commands to kick it off:
 ```
