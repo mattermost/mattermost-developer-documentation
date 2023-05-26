@@ -93,7 +93,7 @@ In this case, you won't get any notifications from Mattermost or GitHub, as we a
 4. In the Build section, select **Add Build**. Find the build corresponding to the version that was just built. 
     - You should be able to recognize it by timestamp, but if not, grab the build from TestFlight and verify that the version number is correct.
 5. Make sure under Version Release that "Manually release this version" is selected.
-6. Once that's all done, you can click the Add for Review button and follow the prompts to submit a review.
+6. Once that's all done, you can select the **Add for Review** button and follow the prompts to submit a review.
 
 If the app is **approved** by App Review, you will get an email from App Store Connect saying "Your submission was accepted". From there, you can go back and release the app once the final release has been cut.
 
