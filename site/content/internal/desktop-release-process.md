@@ -88,7 +88,7 @@ In this case, you won't get any notifications from Mattermost or GitHub, as we a
 
 1. Go to our app on [App Store Connect](https://appstoreconnect.apple.com/apps/1614666244/appstore) and log in with your credentials.
     - If you do not have access to App Store Connect, you'll have to ask your team lead.
-2. If there is not an unreleased version, click the **+** button on the top-left next to "macOS App" and fill out the version number (should just be `X.Y.Z`)
+2. If there is not an unreleased version, select the **+** button in the top-left next to "macOS App", and fill out the version number (should just be `X.Y.Z`)
 3. Copy the changelog for this version into the **"What's New in This Version"** section.
 4. In the Build section, click Add Build. Find the build corresponding to the version that was just built. 
     - You should be able to recognize it by timestamp, but if not, grab the build from TestFlight and verify that the version number is correct.
