@@ -8,17 +8,17 @@ weight: 101
 
 ***NOTE**: For the purposes of this document, the letter `X` will refer to the major version number, `Y` will refer to the minor version number, and `Z` will refer to the patch (dot) version number.*
 
-### Before you begin
+## Before you begin
 
 Before starting a new release, you want to make sure you do a few things:
 - Check to make sure that there are no further Story tickets waiting to be merged. You can check JIRA to see if there are any tickets with the Fix version: `vX.Y Desktop App`. If there are, you'll want to wait until those have been merged.
 
-- If you work off of a for of the `mattermost/desktop` repo, make sure your local master branch is up to date:
+- If you work off of a fork of the `mattermost/desktop` repository, make sure your local master branch is up to date:
     ```
     git checkout master && git fetch --all && git merge upstream/master`
     ```
 
-### Starting a new release
+## Start a new release
 
 1. For a new major or minor release, check out the `master` branch and create a new release branch from it.
     ```
@@ -60,7 +60,7 @@ Before starting a new release, you want to make sure you do a few things:
 7. There should be a draft release of your new release candidate. Click the Pencil icon to edit.
 8. Make sure it's checked off as a pre-release, then select **Publish Release**.
 
-### Generating additional release candidates
+## Generate additional release candidates
 
 If there are any bugs reported by QA, once they are fixed we will need to generate an additional release candidate to verify that any issues have been fixed.
 
@@ -73,7 +73,7 @@ git push --follow-tags upstream release-X.Y:release-X.Y
 
 You can then follow steps **5-8** above to make sure the release is published.
 
-### Mac App Store
+## Mac App Store
 
 Once the final release candidate has been approved by QA, you will need approval from the Mac App Store. To do so, we create a special release for them:
 ```
@@ -82,7 +82,7 @@ git checkout -b release-X.Y
 git push --follow-tags upstream release-X.Y:release-X.Y
 ```
 
-#### Submitting to App Review
+### Submit to App Review
 
 In this case, you won't get any notifications from Mattermost or GitHub, as we are submitting directly to Apple at this point. From here, we will need to submit the app for review:
 
@@ -99,7 +99,7 @@ If the app is **approved** by App Review, you will get an email from App Store C
 
 If the app is **rejected** by App Review, you will get an email from App Store Connect saying "We noticed an issue with your submission". At that point, you'll need to log back into App Store Connect and review their comments. Make the necessary changes and you can follow the same process as above to re-submit for review until the app has been approved.
 
-### Creating the final release
+## Cut the final release
 
 Once the app has been approved by all parties, we can cut the final release:
 ```
@@ -110,7 +110,7 @@ git push --follow-tags upstream release-X.Y:release-X.Y
 
 You can then follow steps **5-8** above to make sure the release is published, but make sure that the checkbox for 'set as pre-release` is unchecked.
 
-#### Final Steps
+### Final Steps
 
 Afterwards, you will need to update the [`ci/latest`](https://git.internal.mattermost.com/ci/latest) repository in GitLab to update the latest version of the Desktop App available on mattermost.com.
 
