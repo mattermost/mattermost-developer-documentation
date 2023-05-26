@@ -20,7 +20,7 @@ Before starting a new release, you want to make sure you do a few things:
 
 ### Starting a new release
 
-1. For a new major or minor release, checkout the `master` branch and create a new release branch from it.
+1. For a new major or minor release, check out the `master` branch and create a new release branch from it.
     ```
     git checkout master
     git checkout -b release-X.Y
