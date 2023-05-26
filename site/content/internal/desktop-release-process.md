@@ -11,7 +11,7 @@ weight: 101
 ### Before you begin
 
 Before starting a new release, you want to make sure you do a few things:
-- Check to make sure that there are no further Story tickets waiting to be merged. You can check JIRA to see if there are anything tickets with the Fix version: `vX.Y Desktop App`. If there are, you'll want to wait until those have been merged.
+- Check to make sure that there are no further Story tickets waiting to be merged. You can check JIRA to see if there are any tickets with the Fix version: `vX.Y Desktop App`. If there are, you'll want to wait until those have been merged.
 
 - If you work off of a for of the `mattermost/desktop` repo, make sure your local master branch is up to date:
     ```
