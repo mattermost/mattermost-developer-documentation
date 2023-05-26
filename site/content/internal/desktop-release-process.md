@@ -114,4 +114,4 @@ You can then follow steps **5-8** above to make sure the release is published, b
 
 Afterwards, you will need to update the [`ci/latest`](https://git.internal.mattermost.com/ci/latest) repository in GitLab to update the latest version of the Desktop App available on mattermost.com.
 
-In that repo there is a file called `release-updates.vars`, and in that file there is a line that says `DESKTOP_STREAM_LATEST`. You can replace that version number with the one you just released, and submit a PR to be reviewed by Release team.
+In that repository there is a file called `release-updates.vars`, and in that file there is a line that says `DESKTOP_STREAM_LATEST`. You can replace that version number with the one you just released, and submit a PR to be reviewed by Release team.
