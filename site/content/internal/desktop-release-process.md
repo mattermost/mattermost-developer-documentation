@@ -25,7 +25,7 @@ Before starting a new release, you want to make sure you do a few things:
     git checkout master
     git checkout -b release-X.Y
     ```
-    For a patch release, just checkout the existing release branch matching the version you're patching.
+    For a patch release, just check out the existing release branch matching the version you're patching.
     ```
     git checkout release-X.Y
     ```
