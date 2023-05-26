@@ -58,7 +58,7 @@ Before starting a new release, you want to make sure you do a few things:
 
 6. When the release process is finished, go to the `mattermost/desktop` GitHub repository and select **Releases**.
 7. There should be a draft release of your new release candidate. Click the Pencil icon to edit.
-8. Make sure it's checked off as a pre-release, then click Publish Release.
+8. Make sure it's checked off as a pre-release, then select **Publish Release**.
 
 ### Generating additional release candidates
 
