@@ -6,7 +6,7 @@ date: 2023-05-25T14:28:35-05:00
 weight: 101
 ---
 
-***NOTE**: For the purposes of this document, the letter `X` will refer to the major version number, `Y` wil refer to the minor version number, and `Z` will refer to the patch (dot) version number.*
+***NOTE**: For the purposes of this document, the letter `X` will refer to the major version number, `Y` will refer to the minor version number, and `Z` will refer to the patch (dot) version number.*
 
 ### Before you begin
 
