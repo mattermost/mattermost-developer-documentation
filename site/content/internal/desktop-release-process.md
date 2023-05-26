@@ -56,7 +56,7 @@ Before starting a new release, you want to make sure you do a few things:
 
 5. Wait for the release candidate to finish building. You can monitor the progress [here](https://github.com/mattermost/desktop/actions/workflows/release.yaml). When it's finished, there will be a post in the `Release: Desktop Apps` channel with the new version number and a changelog.
 
-6. When the release process is finished, go to the `mattermost/desktop` GitHub repository and click on **Releases**.
+6. When the release process is finished, go to the `mattermost/desktop` GitHub repository and select **Releases**.
 7. There should be a draft release of your new release candidate. Click the pencil to Edit.
 8. Make sure it's checked off as a pre-release, then click Publish Release.
 
