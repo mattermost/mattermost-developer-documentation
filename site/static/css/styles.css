@@ -3477,12 +3477,12 @@ table>tfoot>tr>td {
     padding: 8px;
     line-height: 1.42857;
     vertical-align: top;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid grey;
 }
 
 table>thead>tr>th {
     vertical-align: bottom;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 1px solid grey;
 }
 
 table>caption+thead>tr:first-child>th,
@@ -3500,6 +3500,56 @@ table>tbody+tbody {
 
 table>tbody>tr:nth-of-type(odd) {
     background-color: #f9f9f9;
+}
+
+table tbody tr td:nth-child(2),
+table thead tr:first-child th:nth-child(2) {
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+}
+
+
+/* Custom Tables */
+.migration-table-sql,
+.migration-table-posgresql {
+    border: 1px solid grey;
+}
+
+.migration-table-sql tbody > tr:nth-child(2) > td:nth-child(2),
+.migration-table-sql tbody > tr:nth-child(2) > td:nth-child(3),
+.migration-table-sql tbody > tr:nth-child(3) > td:nth-child(3),
+.migration-table-sql tbody > tr:nth-child(5) > td:nth-child(3),
+.migration-table-sql tbody > tr:nth-child(6) > td:nth-child(2),
+.migration-table-sql tbody > tr:nth-child(7) > td:nth-child(2),
+.migration-table-sql tbody > tr:nth-child(7) > td:nth-child(3),
+.migration-table-posgresql tbody > tr:nth-child(1) > td:nth-child(2),
+.migration-table-posgresql tbody > tr:nth-child(1) > td:nth-child(3),
+.migration-table-posgresql tbody > tr:nth-child(2) > td:nth-child(2),
+.migration-table-posgresql tbody > tr:nth-child(2) > td:nth-child(3),
+.migration-table-posgresql tbody > tr:nth-child(3) > td:nth-child(2),
+.migration-table-posgresql tbody > tr:nth-child(3) > td:nth-child(3),
+.migration-table-posgresql tbody > tr:nth-child(5) > td:nth-child(2),
+.migration-table-posgresql tbody > tr:nth-child(5) > td:nth-child(3),
+.migration-table-posgresql tbody > tr:nth-child(6) > td:nth-child(2),
+.migration-table-posgresql tbody > tr:nth-child(7) > td:nth-child(2),
+.migration-table-posgresql tbody > tr:nth-child(7) > td:nth-child(3) {
+    background-color: #B6D7A7;
+}
+
+.migration-table-sql tbody > tr:nth-child(1) > td:nth-child(2),
+.migration-table-sql tbody > tr:nth-child(1) > td:nth-child(3),
+.migration-table-sql tbody > tr:nth-child(3) > td:nth-child(2),
+.migration-table-sql tbody > tr:nth-child(6) > td:nth-child(3),
+.migration-table-posgresql tbody > tr:nth-child(6) > td:nth-child(3) {
+    background-color: #FFE599;
+}
+
+.migration-table-sql tbody > tr:nth-child(4) > td:nth-child(2),
+.migration-table-sql tbody > tr:nth-child(4) > td:nth-child(3),
+.migration-table-sql tbody > tr:nth-child(5) > td:nth-child(2),
+.migration-table-posgresql tbody > tr:nth-child(4) > td:nth-child(2),
+.migration-table-posgresql tbody > tr:nth-child(4) > td:nth-child(3) {
+    background-color: #EA9999;
 }
 
 .doc-content {

@@ -1,7 +1,7 @@
 ---
 title: "Unit tests"
 heading: "Unit tests for the Mattermost Web app"
-description: "Review our guidelines for unit testing for your Mattermost webapp, including a guide on how to do component testing."
+description: "Review our guidelines for unit testing for your Mattermost web app, including a guide on how to do component testing."
 date: 2018-11-20T11:35:32-04:00
 weight: 5
 aliases:
@@ -10,7 +10,7 @@ aliases:
 
 ### Unit Tests for Component and Utility Files
 
-The last required step in building a web app component is to test it. {{<newtabref href="https://jestjs.io/en/" title="Jest">}}and {{<newtabref href="https://enzymejs.github.io/enzyme/" title="Enzyme">}}are the main frameworks/testing utilities used in unit testing components and utility files of the `mattermost-webapp` repository. Please visit their respective documentation for detailed information on how to get started, best practices, and updates. Enzyme is used to render and interact with React components in isolation, while Jest is used to perform snapshot testing against these components.
+The last required step in building a web app component is to test it. {{<newtabref href="https://jestjs.io/en/" title="Jest">}} and {{<newtabref href="https://enzymejs.github.io/enzyme/" title="Enzyme">}} are the main frameworks/testing utilities used in unit testing components and utility files in our web app. Please visit their respective documentation for detailed information on how to get started, best practices, and updates. Enzyme is used to render and interact with React components in isolation, while Jest is used to perform snapshot testing against these components.
 
 If you need to unit test something related to Redux, please check out [Redux Unit and E2E Testing]({{<relref "/contribute/more-info/webapp/redux/testing.md">}}).
 
@@ -159,8 +159,6 @@ Below is a brief guide on how to do component testing:
         › Press Enter to trigger a test run.
         ```
         * To see if a component test passes, select `p` in `watch` mode and enter the filename for the component test.
-
-11. Check test coverage by running `npm run test:coverage`, and then opening up the corresponding generated html reports in the `coverage/lcov-report/components` folder. Update tests if necessary - however, note that it's not a requirement to meet 100% coverage of a component, especially if it will involve unnecessary or complicated mocking. Uncovered lines, statements, branches or functions will be recorded so that they will be handled by other forms of testing like integration or end-to-end testing.
 
 #### Troubleshooting
 
