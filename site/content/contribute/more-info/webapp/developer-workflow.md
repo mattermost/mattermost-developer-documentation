@@ -57,7 +57,7 @@ These packages will likely change over time as we aim to better integrate Boards
 Each package has a slightly different structure, but each package generally contains a `src` directory with subfolders for React components, Redux actions, i18n files and so on. As an example, `channels` contains:
 
 * `actions` - Contains Redux actions which make up much of the view logic for the web app
-* `components` - Contains UI components nad views written using React
+* `components` - Contains UI components and views written using React
 * `i18n` - Contains the localization files for the web app
 * `packages/mattermost-redux` - Contains most of the Redux logic used for handling data from the server
 * `plugins` - Contains the plugin framework, utility functions and components
