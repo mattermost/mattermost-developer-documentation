@@ -95,7 +95,7 @@ Install the plugin in one of the following ways:
 
     - Log in to Mattermost as a System Admin.
     - Open the System Console at `/admin_console`
-    - Navigate to **Plugins (Beta) > Management** and upload the `plugin.tar.gz` you generated above.
+    - Navigate to *Plugins > Plugin Management** and upload the `plugin.tar.gz` you generated above.
     - Click **Enable** under the plugin after it has uploaded.
 
 2) Or, manually:
