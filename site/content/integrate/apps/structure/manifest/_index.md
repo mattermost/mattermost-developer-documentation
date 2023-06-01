@@ -5,6 +5,7 @@ description: "App manifest spec"
 weight: 10
 aliases:
   - /integrate/apps/api/manifest/
+  - /integrate/apps/manifest
 ---
 
 All Apps should define a manifest ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Manifest">}}) as a JSON object.
