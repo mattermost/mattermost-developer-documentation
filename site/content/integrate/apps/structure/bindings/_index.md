@@ -4,6 +4,7 @@ heading: "Bindings"
 weight: 50
 aliases:
   - /integrate/apps/api/bindings/
+  - /integrate/apps/bindings
 ---
 Bindings ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding">}}) establish the relationship between [call]({{<ref "/integrate/apps/structure/call">}}) handlers and [locations]({{<ref "/integrate/apps/structure/manifest#locations">}}).
 Whenever the bindings call is executed the App provides a list of bindings based on the [request context]({{<ref "/integrate/apps/structure/call#context">}}).
