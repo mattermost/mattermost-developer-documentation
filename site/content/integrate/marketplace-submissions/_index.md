@@ -27,8 +27,8 @@ Every contribution goes through the following checklist before being added to th
 3. There is a public issue or bug tracker for users to report bugs or issues they encounter.
 4. You've included a link to an image for your contribution
     - Dimensions: 512 x 512 recommended
-    - Filesize: Maximum 5 MB
-    - File Types: PNG, JPG, or SVG
+    - File size: Maximum 5 MB
+    - File types: PNG, JPG, or SVG
 
 We will also reach out to you to learn more about the integration, your experience developing with Mattermost, and to coordinate postings for social media.
 
