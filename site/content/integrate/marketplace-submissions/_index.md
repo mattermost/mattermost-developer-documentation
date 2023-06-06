@@ -25,7 +25,7 @@ Every contribution goes through the following checklist before being added to th
 1. There is a link to the contribution so we can test it out.
 2. There is documentation to support people installing, configuring, and using the contribution. We also recommend including screenshots to give users a better understanding of the workflow and user experience.
 3. There is a public issue or bug tracker for users to report bugs or issues they encounter.
-4. You've included a link to an image for your contribution
+4. You've included a link to an image for your contribution:
     - Dimensions: 512 x 512 recommended
     - File size: Maximum 5 MB
     - File types: PNG, JPG, or SVG
