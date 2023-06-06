@@ -20,13 +20,14 @@ Below is a brief guide on how to do component testing:
 
 1. Use our {{<newtabref href="https://github.com/mattermost/mattermost-server/blob/master/webapp/channels/src/tests/react_testing_utils.tsx" title="testing library helpers">}} to render a component and its child components. Use `screen` to interact with the rendered component and assert on the expected results. Match snapshots using default or expected props. Note that while using snapshots is convenient, do not rely solely on this for every test case, as changes can be easily overlooked when using the command `jest --updateSnapshot` to update multiple snapshots at once. For example:
     ```javascript
-    import {renderWithIntl, screen, userEvent} from 'tests/react_testing_utils';
+    import {render, screen, userEvent} from 'tests/react_testing_utils';
     const baseProps = {
         active: true,
         onSubmit: jest.fn(),
     };
 
     test('should match snapshot, not send email notifications', () => {
+        // For components that use Redux, React Intl, or Reach Router, you can also use the renderWithFullContext helper
         const {container} = render(<EmailNotificationSetting {...baseProps}/>);
 
         expect(container.firstChild).toMatchSnapshot();
