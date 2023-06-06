@@ -4,6 +4,7 @@ heading: "Calls"
 weight: 20
 aliases:
   - /integrate/apps/api/call/
+  - /integrate/apps/call
 ---
 A Call defines an App action that can be invoked, or a request for App data.
 
