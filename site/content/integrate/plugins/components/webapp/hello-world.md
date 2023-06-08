@@ -161,7 +161,7 @@ Install the plugin in one of the following ways:
 
     - Log in to Mattermost as a System Admin.
     - Open the System Console at `/admin_console`
-    - Navigate to **Plugins (Beta) > Management** and upload the `plugin.tar.gz` you generated above.
+    - Navigate to **Plugins > Plugin Management** and upload the `plugin.tar.gz` you generated above.
     - Click **Enable** under the plugin after it has uploaded.
 
 2) Or, manually:
@@ -177,6 +177,6 @@ Install the plugin in one of the following ways:
                   main.js
       ```
     - Restart the Mattermost server.
-    - Enable the plugin in **System Console > Plugins (Beta) > Plugin Management**.
+    - Enable the plugin in **System Console > Plugins > Plugin Management**.
 
 Navigate to a regular Mattermost page and observe the new icon in the channel header. Click the icon and observe the alert dialog.
