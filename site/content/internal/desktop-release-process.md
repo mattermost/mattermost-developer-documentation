@@ -11,11 +11,22 @@ weight: 101
 ## Before you begin
 
 Before starting a new release, you want to make sure you do a few things:
-- Check to make sure that there are no further Story tickets waiting to be merged. You can check JIRA to see if there are any tickets with the Fix version: `vX.Y Desktop App`. If there are, you'll want to wait until those have been merged.
+- Check to make sure that there are no further Bug or Story tickets waiting to be merged. You can check JIRA to see if there are any tickets with the Fix version: `vX.Y Desktop App`. If there are, you'll want to wait until those have been merged.
 
 - If you work off of a fork of the `mattermost/desktop` repository, make sure your local master branch is up to date:
     ```
     git checkout master && git fetch --all && git merge upstream/master`
+    ```
+- You might need to install `jq`, a parsing tool for JSON files:
+    ```
+    // macOS
+    brew install jq
+
+    // Linux (Ubuntu/Debian)
+    sudo apt-get install jq
+
+    // Windows
+    choco install jq
     ```
 
 ## Start a new release
@@ -66,7 +77,7 @@ If there are any bugs reported by QA, once they are fixed we will need to genera
 
 To generate additional release candidates, you'll simply run the following commands to kick it off:
 ```
-git checkout -b release-X.Y
+git checkout release-X.Y
 ./scripts/release.sh rc
 git push --follow-tags upstream release-X.Y:release-X.Y
 ```
