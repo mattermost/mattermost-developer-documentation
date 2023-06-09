@@ -16,14 +16,14 @@ community: hanzei
 
 Because we rely on contributors to do the translations, we want to make it easy for them to translate new strings and determine whether already translated strings need to be updated because the "source" text changed. On the other hand, Matterpoll only has two maintainers ([@kaakaa](https://github.com/kaakaa) and [me](https://github.com/hanzei)) and no infrastructure of its own to work with. Using a translation server like [Transifex](https://en.wikipedia.org/wiki/Transifex) or [Weblate](https://en.wikipedia.org/wiki/Weblate) is not an option.
 
-The [Mattermost Server](https://github.com/mattermost/mattermost-server) uses the [go-i18n package](https://github.com/nicksnyder/go-i18n). The library is well maintained and very popular, which makes it an attractive tool for this purpose.
+The [Mattermost Server](https://github.com/mattermost/mattermost) uses the [go-i18n package](https://github.com/nicksnyder/go-i18n). The library is well maintained and very popular, which makes it an attractive tool for this purpose.
 
 This blog provides an outline for developers of how plugins can use the existing framework to support localization.
 
 
 #### Choosing a Version
 
-When [Translations where added to Mattermost](https://github.com/mattermost/mattermost-server/commit/8e404c1dcf820cf767e9d6899e8c1efc7bb5ca96#diff-db85c0ea4d2e69c8abaefa875ba77c51) in 2016, the latest version of go-i18n available was [`v1.4.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v1.4.0). In May of this year [`v2.0.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v2.0.0) was released and has a completely different API. The CLI tool [`goi18n`](https://github.com/nicksnyder/go-i18n#command-goi18n-) has also changed significantly. Hence, we had to decide whether to stick with the proven v1 or use the newer v2. 
+When [Translations where added to Mattermost](https://github.com/mattermost/mattermost/commit/8e404c1dcf820cf767e9d6899e8c1efc7bb5ca96#diff-db85c0ea4d2e69c8abaefa875ba77c51) in 2016, the latest version of go-i18n available was [`v1.4.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v1.4.0). In May of this year [`v2.0.0`](https://github.com/nicksnyder/go-i18n/releases/tag/v2.0.0) was released and has a completely different API. The CLI tool [`goi18n`](https://github.com/nicksnyder/go-i18n#command-goi18n-) has also changed significantly. Hence, we had to decide whether to stick with the proven v1 or use the newer v2. 
 
 Let's examine the difference between the two versions. In v1, translation strings are defined in the translation files; for example, `en-US.all.json` would contain:
 ```json

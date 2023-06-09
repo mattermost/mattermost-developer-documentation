@@ -95,7 +95,7 @@ SELECT Id FROM Posts WHERE ChannelId = '9tne5g44z7f1zn4z1whebb7jna'
 
 and they come back saying it ran successfully in the expected time.
 
-I pat myself on the back for a job well done, send a {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/14119" title="PR" >}}, and call it a day.
+I pat myself on the back for a job well done, send a {{< newtabref href="https://github.com/mattermost/mattermost/pull/14119" title="PR" >}}, and call it a day.
 
 ### Act II: The relapse
 
@@ -156,7 +156,7 @@ And here's where the query planner was getting it wrong. It was deciding the cos
 
 The situation looked pretty bleak. I was left with only a couple of approaches. Either we block "index_merge_intersection" from the optimizer plan, or we coerce the right index to be selected. Blocking an index merge would mean doing a `SET SESSION optimizer_switch="index_merge_intersection=off"` before the query, run the query, and then turn it back on. Alternatively, we can use an index hint in the form of "USE INDEX".
 
-Using a "USE INDEX" has the problem that we would be overriding MySQL's decision making, which might not be right every time. But toggling the optimizer switch was at a session level, not at the query level, and it looked very ugly. After a bit of back and forth, I gave in, and {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/15207" title="went" >}} with "USE INDEX".
+Using a "USE INDEX" has the problem that we would be overriding MySQL's decision making, which might not be right every time. But toggling the optimizer switch was at a session level, not at the query level, and it looked very ugly. After a bit of back and forth, I gave in, and {{< newtabref href="https://github.com/mattermost/mattermost/pull/15207" title="went" >}} with "USE INDEX".
 
 ### Finale
 

@@ -52,7 +52,7 @@ You'll be provided with a **Client ID** and **Client Secret**. Save these values
    - **Select a Trigger App:** This will trigger new messages in Mattermost. If the app you’re looking to connect isn’t supported on Zapier, consider firing in-app events to a Gmail account and then connecting Gmail to Mattermost using Zapier.
    - **Select the Trigger Event:** New messages in Mattermost will fire depending on these selected events in conjunction with any filters you apply.
    - **Connect the Trigger Account:** Connect the account from which you’d like to trigger events and **Test** it to ensure Zapier can connect successfully.
-4. **Filtering:** (Optional) Exclude certain events from triggering new messages. Learn more about using {{< newtabref href="https://zapier.com/learn/how-to-use-zapier/custom-filters" title="Zapier custom filtering" >}}.
+4. **Filtering:** (Optional) Exclude certain events from triggering new messages. Learn more about using {{< newtabref href="https://help.zapier.com/hc/en-us/articles/8496276332557" title="Zapier custom filtering" >}}.
    - Add a filter by selecting the small **+** icon before the **Action** step.
    - Zapier supports **AND** and **OR** filters. Use the dropdown selectors to choose what events will allow the trigger to send a Mattermost message.
 5. **Mattermost Action:** Connect your Mattermost Account and then specify posting details.

@@ -18,7 +18,7 @@ This page describes how to build a new React component in the Mattermost web app
 
 If none of those make any sense to you or you're new to React and Redux, then check out these links:
 
-- https://facebook.github.io/react/tutorial/tutorial.html
+- https://react.dev/learn/
 - http://redux.js.org/
 
 These requirements are discussed in more detail in the following sections.

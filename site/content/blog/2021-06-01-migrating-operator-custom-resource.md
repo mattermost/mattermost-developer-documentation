@@ -106,7 +106,7 @@ However, we can still delete the Deployment without deleting the Pods by using p
 
 In fact, the resources we orphan are not directly Pods but rather {{< newtabref href="https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/" title="Replica Sets" >}} that manage Pods on behalf of the Deployment.
 
-![Deployment-Replica-Sets-Pods](./2021-04-16-migrating-operator-custom-resource/deployment-replica-sets-pods.png)
+![Deployment-Replica-Sets-Pods](/blog/2021-04-16-migrating-operator-custom-resource/deployment-replica-sets-pods.png)
 
 Although the Replica Sets (RS) `spec.selector` field is also immutable, and we'll have to eventually delete it, Replica Sets names are not as unique as the Deployment names. They contain a random suffix attached after the Deployment name they are connected to, for example: `my-mattermost-8599f77fcb` (the suffix is also a part of Pods name suffix managed by the RS).
 

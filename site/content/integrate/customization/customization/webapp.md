@@ -26,7 +26,7 @@ With that in mind, customizing and deploying your Mattermost Web App can be done
     git checkout -b custom_branch
     ```
    
-3. Perform customization tasks by replacing image assets, changing strings, altering the UI, and whatever else may be necessary. Be mindful not to violate any of the {{< newtabref href="guidelines on trademark use" title="guidelines on trademark use" >}} during this process.
+3. Perform customization tasks by replacing image assets, changing strings, altering the UI, and whatever else may be necessary. Be mindful not to violate any of the {{< newtabref href="https://mattermost.com/trademark-standards-of-use/" title="guidelines on trademark use" >}} during this process.
 
 4. Once customization has been completed, build the files that will be used in your deployment and generate `mattermost-webapp.tar.gz` containing them.
 
