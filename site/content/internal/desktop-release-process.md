@@ -106,6 +106,8 @@ In this case, you won't get any notifications from Mattermost or GitHub, as we a
 5. Make sure under Version Release that "Manually release this version" is selected.
 6. Once that's all done, you can select the **Add for Review** button and follow the prompts to submit a review.
 
+The review process is relatively quick in most cases, usually taking up to about 24 hours to complete.
+
 If the app is **approved** by App Review, you will get an email from App Store Connect saying "Your submission was accepted". From there, you can go back and release the app once the final release has been cut.
 
 If the app is **rejected** by App Review, you will get an email from App Store Connect saying "We noticed an issue with your submission". At that point, you'll need to log back into App Store Connect and review their comments. Make the necessary changes and you can follow the same process as above to re-submit for review until the app has been approved.
