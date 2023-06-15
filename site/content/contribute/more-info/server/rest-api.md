@@ -69,7 +69,7 @@ To implement the API handler, you'll first need to [setup your developer environ
 #### Update the Golang driver
 The Go driver for APIv4 is in [/model/client4.go](https://github.com/mattermost/mattermost/blob/master/server/public/model/client4.go). To add a function to support your new endpoint:
 
-1.  Copy over an existing driver function, such as [CreateUser](https://github.com/mattermost/mattermost-server/tree/master/model/client4.go#L186).
+1.  Copy over an existing driver function, such as [CreateUser](https://github.com/mattermost/mattermost/blob/master/server/public/model/client4.go#L827).
 2.  Paste the function into the section for your endpoint. For example, `POST /teams` would go in the Teams section.
 3.  Modify the function to correctly hit your endpoint. Make sure to update the request method to match your endpoint's HTTP method.
 #### Write a unit test
