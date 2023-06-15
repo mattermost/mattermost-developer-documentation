@@ -8,9 +8,9 @@ aliases:
   - /contribute/webapp/migrating-to-typescript
 ---
 
-The Mattermost team wants to proactively improve the quality, security, and stability of {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/webapp" title="the code" >}}, and one way to do this is by introducing the usage of type checking. Thus, we have decided to introduce Typescript in our codebase as it's a mature and feature-rich approach. 
+The Mattermost team wants to proactively improve the quality, security, and stability of {{< newtabref href="https://github.com/mattermost/mattermost/tree/master/webapp" title="the code" >}}, and one way to do this is by introducing the usage of type checking. Thus, we have decided to introduce Typescript in our codebase as it's a mature and feature-rich approach. 
 
-As a first step, we have migrated the {{< newtabref href="https://github.com/mattermost/mattermost-redux" title="mattermost-redux" >}} library to use Typescript, and are now in the process of migrating the {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/webapp" title="web app" >}} to use Typescript.
+As a first step, we have migrated the {{< newtabref href="https://github.com/mattermost/mattermost-redux" title="mattermost-redux" >}} library to use Typescript, and are now in the process of migrating the {{< newtabref href="https://github.com/mattermost/mattermost/tree/master/webapp" title="web app" >}} to use Typescript.
 
 This campaign will help with the migration by converting files written in Javascript to type-safe files written in Typescript.
 
@@ -22,7 +22,7 @@ By completing this campaign, we're looking to:
 
 ## Contribute
 
-If you're interested in contributing, please join the {{< newtabref href="https://community.mattermost.com/core/channels/typescript-migration" title="Typescript Migration channel on community.mattermost.com" >}}. You can also check out the {{< newtabref href="https://community.mattermost.com/core/channels/tickets" title="Contributors" >}} channel, where there are several posts mentioning tickets related to this campaign, each containing the hashtag `#typescriptmigration`. You can work on migrating an individual module to Typescript by claiming a ticket that matches {{< newtabref href="https://github.com/mattermost/mattermost-server/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22Area%2FTechnical+Debt%22+label%3A%22Up+For+Grabs%22+Migrate+to+Typescript" title="this GitHub issue search" >}}.
+If you're interested in contributing, please join the {{< newtabref href="https://community.mattermost.com/core/channels/typescript-migration" title="Typescript Migration channel on community.mattermost.com" >}}. You can also check out the {{< newtabref href="https://community.mattermost.com/core/channels/tickets" title="Contributors" >}} channel, where there are several posts mentioning tickets related to this campaign, each containing the hashtag `#typescriptmigration`. You can work on migrating an individual module to Typescript by claiming a ticket that matches {{< newtabref href="https://github.com/mattermost/mattermost/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22Area%2FTechnical+Debt%22+label%3A%22Up+For+Grabs%22+Migrate+to+Typescript" title="this GitHub issue search" >}}.
 
 ## Component migration steps
 
@@ -32,7 +32,7 @@ There are a few steps involved with migrating a file to use Typescript. Some of 
 2. A component's `state` also needs to be defined using a type. The initial `state` assignment and any call to `setState` will be indicators of what values are present in the component's state.
 3. Once a component's `props` and `state` (if any) have been converted, you can define the component as `class MyComponent extends React.PureComponent<Props, State>`. You can omit the `State` portion if the component does not have its own `state`.
 4. Avoid use of the `any` type except in test files. The components themselves should be as well-defined as possible.
-5. Most objects we used are typed in the {{< newtabref href="https://github.com/mattermost/mattermost-server/tree/master/webapp/platform/types" title="@mattermost/types" >}} library, if you can't find a type you're looking for.
+5. Most objects we used are typed in the {{< newtabref href="https://github.com/mattermost/mattermost/tree/master/webapp/platform/types" title="@mattermost/types" >}} library, if you can't find a type you're looking for.
 6. Check that the types are all correct using the `make check-types` command.
 
 ## Examples

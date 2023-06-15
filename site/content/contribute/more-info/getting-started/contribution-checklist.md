@@ -20,9 +20,9 @@ Follow this checklist for submitting a pull request (PR):
     - If not, follow the process [here]({{< ref "/contribute/more-info/getting-started/contributions-without-ticket" >}}).
 3. Your code is thoroughly tested, including appropriate [unit, end-to-end, and integration tests for webapp]({{<ref "/contribute/more-info/getting-started/test-guideline">}}).
 4. If applicable, user interface strings are included in localization files:
-    - {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/master/i18n/en.json" title="../mattermost-server../en.json" >}}
-    - {{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json" title="../mattermost-webapp../en.json" >}}
-    - {{< newtabref href="https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json" title="../mattermost-mobile../en.json" >}}
+    - {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/server/i18n/en.json" title="mattermost/server/en.json" >}}
+    - {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/webapp/channels/src/i18n/en.json" title="mattermost/webapp/channels/src/i18n/en.json" >}}
+    - {{< newtabref href="https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json" title="mattermost-mobile/assets/base/i18n/en.json" >}}
 
     4.1. In the webapp repository run `make i18n-extract` to generate the new/updated strings.
 5. The PR is submitted against the Mattermost `master` branch from your fork.

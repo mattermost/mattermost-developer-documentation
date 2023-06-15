@@ -22,13 +22,13 @@ If you're looking for information related to E2E tests and Redux, please check o
 
 ### What requires an E2E test?
 
-* Test cases that are defined in {{<newtabref href="https://github.com/mattermost/mattermost-server/issues?q=label%3A%22Area%2FE2E+Tests%22+label%3A%22Help+Wanted%22+is%3Aopen+is%3Aissue+" title="help-wanted E2E issues">}}.
+* Test cases that are defined in {{<newtabref href="https://github.com/mattermost/mattermost/issues?q=label%3A%22Area%2FE2E+Tests%22+label%3A%22Help+Wanted%22+is%3Aopen+is%3Aissue+" title="help-wanted E2E issues">}}.
 * New features and stories - For example, check out {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/4243" title="MM-19922 Add E2E tests for Mark as Unread #4243">}} which contains E2E tests for the `Mark As Unread` feature. 
 * Bug fixes - For example, see {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5908" title="MM-26751: Fix highlighting of at-mentions of self #5908">}}, which fixes a highlighting issue and adds a related test.
 * Test cases from {{<newtabref href="https://support.smartbear.com/zephyr-scale-cloud/docs/" title="Zephyr">}} - For example, see {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5850" title="Added Cypress tests MM-T1410, MM-T1415 and MM-T1419 #5850">}} which adds automated tests for `Guest Accounts`. 
     
 ### File Structure for E2E Testing
-E2E tests are located at the root of the repository in {{<newtabref href="https://github.com/mattermost/mattermost-server/tree/master/e2e-tests" title="the `e2e-tests` folder">}}. The file structure is mostly based on the {{<newtabref href="https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests#Folder-Structure" title="Cypress scaffold">}}. Here is an overview of some important folders and files:
+E2E tests are located at the root of the repository in {{<newtabref href="https://github.com/mattermost/mattermost/tree/master/e2e-tests" title="the `e2e-tests` folder">}}. The file structure is mostly based on the {{<newtabref href="https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests#Folder-Structure" title="Cypress scaffold">}}. Here is an overview of some important folders and files:
 
 ```
 |-- e2e-tests
@@ -59,7 +59,7 @@ E2E tests are located at the root of the repository in {{<newtabref href="https:
 ### Writing End-to-End Tests
 
 #### Where should a new test go?
-You will need to either add the new test to an existing `spec` file, or create a new file. Sometimes, you will be informed (for example through issue descriptions) of the specific folder the test file should go in, or the actual test file being amended. As aforementioned, the `e2e-tests/cypress/tests/integration` folder is where all of the tests live, with subdirectories that roughly divide the tests by functional areas. Cypress is configured to look for and run tests that match the pattern of `*_spec.ts`, so a good new test file name for an issue like {{<newtabref href="https://github.com/mattermost/mattermost-server/issues/18184" title=`Write Web App E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}} would be `attachment_does_not_collapse_spec.ts`, to ensure that it gets picked up.
+You will need to either add the new test to an existing `spec` file, or create a new file. Sometimes, you will be informed (for example through issue descriptions) of the specific folder the test file should go in, or the actual test file being amended. As aforementioned, the `e2e-tests/cypress/tests/integration` folder is where all of the tests live, with subdirectories that roughly divide the tests by functional areas. Cypress is configured to look for and run tests that match the pattern of `*_spec.ts`, so a good new test file name for an issue like {{<newtabref href="https://github.com/mattermost/mattermost/issues/18184" title=`Write Web App E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}} would be `attachment_does_not_collapse_spec.ts`, to ensure that it gets picked up.
 > *Note*: There may be some JavaScript `spec` files, but new tests should be written in TypeScript. If you are adding a test to an existing `spec` file, convert that file to TypeScript if necessary.
 
 If you don't know where a test should go, first check the names of the subdirectories, and select a folder that describes the functional area of the test best. From there, look to see if there is already a `spec` file that may be similar to what you are testing; if there is one, it would be possible to add the test to the pre-existing file.
@@ -96,7 +96,7 @@ The metadata is part of a comment block that also includes information on copyri
 
 #### Setting up test code
 
-Underneath the comment header, we can add the starter code as defined from the "Test code arrangement" part of the issue. Each test (no matter the situation you're writing a test for) should have a corresponding test case in Zephyr. Therefore, the `describe` block encompassing the test code should correspond to folder name in Zephyr (e.g. "Incoming webhook"), and the `it` block should contain `Zephyr test case number` as `Test Key`, and then the test title. For {{<newtabref href="https://github.com/mattermost/mattermost-server/issues/18184" title=`Write Web App E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}}, in the spec file made for it (`attachment_does_not_collapse_spec.ts`), the starter code would be:
+Underneath the comment header, we can add the starter code as defined from the "Test code arrangement" part of the issue. Each test (no matter the situation you're writing a test for) should have a corresponding test case in Zephyr. Therefore, the `describe` block encompassing the test code should correspond to folder name in Zephyr (e.g. "Incoming webhook"), and the `it` block should contain `Zephyr test case number` as `Test Key`, and then the test title. For {{<newtabref href="https://github.com/mattermost/mattermost/issues/18184" title=`Write Web App E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}}, in the spec file made for it (`attachment_does_not_collapse_spec.ts`), the starter code would be:
   ```javascript
   describe('Integrations/Incoming Webhook', () => {
     it('MM-T642 Attachment does not collapse', () => {
@@ -181,7 +181,7 @@ describe('Change to Functional Group', () => {
 Use `camelCase` when assigning to `data-testid` or element ID. Also, watch out for potential breaking changes in the snapshot from [unit testing]({{<ref "/contribute/more-info/webapp/unit-testing">}}).  Run `make test` to see if all unit tests are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot tests.
 {{</note>}}
 
-Now, inside the body of the `it` block , we will write in code the "Steps" part of the E2E issue. The following steps and code are from {{<newtabref href="https://github.com/mattermost/mattermost-server/issues/18184" title=`Write Web App E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}}. Check out the complete file at: {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/11231/files" title="`attachment_does_not_collapse_spec.ts`">}}.
+Now, inside the body of the `it` block , we will write in code the "Steps" part of the E2E issue. The following steps and code are from {{<newtabref href="https://github.com/mattermost/mattermost/issues/18184" title=`Write Web App E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}}. Check out the complete file at: {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/11231/files" title="`attachment_does_not_collapse_spec.ts`">}}.
 
   * **Create an incoming webhook and send it through POST with attachment**:
     ```javascript

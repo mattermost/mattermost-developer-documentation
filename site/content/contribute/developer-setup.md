@@ -41,7 +41,7 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
 
 1. If you don't have it already, install libpng with your preferred package manager.
 
-1. Fork https://github.com/mattermost/mattermost-server.
+1. Fork https://github.com/mattermost/mattermost.
 
 1. Clone the Mattermost source code from your fork:
 

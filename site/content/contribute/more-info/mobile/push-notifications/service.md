@@ -198,4 +198,4 @@ This could also be because you generated a certificate for the wrong bundle ID. 
 
 ### Reporting issues
 
-For issues with repro steps, please report to https://github.com/mattermost/mattermost-server/issues
+For issues with repro steps, please report to https://github.com/mattermost/mattermost/issues
