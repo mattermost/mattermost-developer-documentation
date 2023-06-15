@@ -89,4 +89,4 @@ Returning the correct error code might require investigation in the {{< newtabre
 
 When completing this step, please make sure to use the new `model.NewAppError()` function ([see example](https://github.com/mattermost/mattermost/blob/master/server/channels/store/sqlstore/user_store.go)).
 #### Submit your pull request (PR)
-Please submit a pull request against the [mattermost/mattermost-server](https://github.com/mattermost/mattermost-server) repository by [following these instructions]({{< ref "/contribute/more-info/server/developer-workflow" >}}).
+Please submit a pull request against the [mattermost/mattermost](https://github.com/mattermost/mattermost) repository by [following these instructions]({{< ref "/contribute/more-info/server/developer-workflow" >}}).
