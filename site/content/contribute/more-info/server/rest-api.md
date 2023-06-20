@@ -49,7 +49,7 @@ At Mattermost, the [OpenAPI specification](https://github.com/OAI/OpenAPI-Specif
 #### Implement the API handler
 To implement the API handler, you'll first need to [setup your developer environment]({{< ref "/contribute/developer-setup" >}}), and then follow these steps:
 
-1.  Add the declaration for your endpoint. For an example, check out the [/api4/user.go](https://github.com/mattermost/mattermost/tree/master/server/channels/api4/user.go) file.
+1.  Add the declaration for your endpoint. For an example, check out the [/api4/user.go](https://github.com/mattermost/mattermost/blob/master/server/channels/api4/user.go) file.
 
 2.  Implement the handler for your endpoint. Follow this general pattern for handlers:
 
@@ -62,21 +62,21 @@ To implement the API handler, you'll first need to [setup your developer environ
         // 5. Format the response and write the response.
     }
     ```
-    For examples, see the [updateUser()](https://github.com/mattermost/mattermost/tree/master/server/channels/api4/user.go#L1230) and the [getUser()](https://github.com/mattermost/mattermost/tree/master/server/channels/api4/user.go#L177) handlers.
+    For examples, see the [createUser()](https://github.com/mattermost/mattermost/blob/d693f880431741e3e1482503c4e80d6148b0f1bf/server/channels/api4/user.go#L111) and the [getUser()](https://github.com/mattermost/mattermost/blob/d693f880431741e3e1482503c4e80d6148b0f1bf/server/channels/api4/user.go#L177) handlers.
 
 3.  Run the server using `make run-server` to check any other errors.
 4.  (Optional) Use `curl` or {{<newtabref title="Postman" href="https://www.getpostman.com/">}} to test the basics of your endpoint. The endpoint will also be tested [through a unit test](#write-a-unit-test), so this step is optional.
 #### Update the Golang driver
-The Go driver for APIv4 is in [/model/client4.go](https://github.com/mattermost/mattermost/tree/master/server/public/model/client4.go). To add a function to support your new endpoint:
+The Go driver for APIv4 is in [/model/client4.go](https://github.com/mattermost/mattermost/blob/master/server/public/model/client4.go). To add a function to support your new endpoint:
 
-1.  Copy over an existing driver function, such as [CreateUser](https://github.com/mattermost/mattermost/tree/master/server/public/model/client4.go#L827).
+1.  Copy over an existing driver function, such as [CreateUser](https://github.com/mattermost/mattermost/blob/master/server/public/model/client4.go#L827).
 2.  Paste the function into the section for your endpoint. For example, `POST /teams` would go in the Teams section.
 3.  Modify the function to correctly hit your endpoint. Make sure to update the request method to match your endpoint's HTTP method.
 #### Write a unit test
 The most important part of this process is to make sure the new endpoint works correctly. Follow these steps to write a unit test:
 
-1.  Open the test Go file related to your endpoint, or create one if necessary. For example, if you put your handler in [/api4/user.go](https://github.com/mattermost/mattermost/tree/master/server/channels/api4/user.go), your test will go in [/api4/user\_test.go](https://github.com/mattermost/mattermost/tree/master/server/channels/api4/user_test.go).
-2.  Write your test based on the other tests in your file (or folder). There are several helper functions in [/api4/apitestlib.go](https://github.com/mattermost/mattermost/tree/master/server/channels/api4/apitestlib.go) that you may use.
+1.  Open the test Go file related to your endpoint, or create one if necessary. For example, if you put your handler in [/api4/user.go](https://github.com/mattermost/mattermost/blob/master/server/channels/api4/user.go), your test will go in [/api4/user\_test.go](https://github.com/mattermost/mattermost/blob/master/server/channels/api4/user_test.go).
+2.  Write your test based on the other tests in your file (or folder). There are several helper functions in [/api4/apitestlib.go](https://github.com/mattermost/mattermost/blob/master/server/channels/api4/apitestlib.go) that you may use.
 3.  Ensure that your test covers the following:
     - All combinations of correct inputs to your endpoint.
     - Etags for your endpoint, if applicable.
@@ -89,4 +89,4 @@ Returning the correct error code might require investigation in the {{< newtabre
 
 When completing this step, please make sure to use the new `model.NewAppError()` function ([see example](https://github.com/mattermost/mattermost/blob/master/server/channels/store/sqlstore/user_store.go)).
 #### Submit your pull request (PR)
-Please submit a pull request against the [mattermost/mattermost-server](https://github.com/mattermost/mattermost) repository by [following these instructions]({{< ref "/contribute/more-info/server/developer-workflow" >}}).
+Please submit a pull request against the [mattermost/mattermost](https://github.com/mattermost/mattermost) repository by [following these instructions]({{< ref "/contribute/more-info/server/developer-workflow" >}}).
