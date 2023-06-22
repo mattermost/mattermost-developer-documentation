@@ -66,7 +66,7 @@ Thoroughly test your contributions! We recommend the following testing best prac
 
 
 3. If your PR adds a new plugin API method or hook, please add an example to the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="Plugin Starter Template" >}}.
-4. If your code adds a new user interface string, include it in the proper localization file, either for {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/master/i18n/en.json" title="the server repository" >}}, {{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json" title="the webapp repository" >}}, or {{< newtabref href="https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json" title="the mobile repository" >}}. 
+4. If your code adds a new user interface string, include it in the proper localization file, either for {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/i18n/en.json" title="the server repository" >}}, {{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json" title="the webapp repository" >}}, or {{< newtabref href="https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json" title="the mobile repository" >}}. 
 
 
 {{<note "Note:">}}

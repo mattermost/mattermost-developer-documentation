@@ -8,13 +8,13 @@ aliases:
   - /contribute/webapp/developer-workflow
 ---
 
-This page contains most of the information required for a developer to work with the Mattermost web app. Note that everything in this document will refer to working in the `webapp` directory of {{< newtabref href="https://github.com/mattermost/mattermost-server" title="the Mattermost monorepo" >}} unless otherwise stated.
+This page contains most of the information required for a developer to work with the Mattermost web app. Note that everything in this document will refer to working in the `webapp` directory of {{< newtabref href="https://github.com/mattermost/mattermost" title="the main Mattermost repository" >}} unless otherwise stated.
 
 ### Workflow
 
 1. If you haven't done so already, [set up your developer environment]({{< ref "/contribute/developer-setup" >}}).
 
-2. On your fork, create a feature branch for your changes. Name it `MM-$NUMBER_$DESCRIPTION` where `$NUMBER` is the {{< newtabref href="https://mattermost.atlassian.net" title="Jira" >}} ticket number you are working on and `$DESCRIPTION` is a short description of your changes. Example branch names are `MM-18150_plugin-panic-log` and `MM-22037_uppercase-email`. You can also use the name `GH-$NUMBER_$DESCRIPTION` for tickets come from {{< newtabref href="https://github.com/mattermost/mattermost-server/issues" title="GitHub Issues in the server repo" >}}.
+2. On your fork, create a feature branch for your changes. Name it `MM-$NUMBER_$DESCRIPTION` where `$NUMBER` is the {{< newtabref href="https://mattermost.atlassian.net" title="Jira" >}} ticket number you are working on and `$DESCRIPTION` is a short description of your changes. Example branch names are `MM-18150_plugin-panic-log` and `MM-22037_uppercase-email`. You can also use the name `GH-$NUMBER_$DESCRIPTION` for tickets come from {{< newtabref href="https://github.com/mattermost/mattermost/issues" title="GitHub Issues" >}}.
 
 3. Make the code changes required to complete your ticket, making sure to write or modify unit tests where appropriate. Use `make test` to run the unit tests.
 

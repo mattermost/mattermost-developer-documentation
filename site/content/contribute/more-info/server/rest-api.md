@@ -27,7 +27,7 @@ To add an endpoint to API version 4, all of the following must be completed:
 A full example of the process can be found through these two pull requests:
 
 - Documenting the `POST /teams` endpoint: {{< newtabref href="https://github.com/mattermost/mattermost-api-reference/pull/72" title="mattermost-api-reference#72" >}}
-- Implementing the `POST /teams` endpoint: {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/5220" title="mattermost-server#5220" >}}
+- Implementing the `POST /teams` endpoint: {{< newtabref href="https://github.com/mattermost/mattermost/pull/5220" title="mattermost-server#5220" >}}
 
 #### Document the endpoint
 At Mattermost, the [OpenAPI specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md) is used for API documentation. The API documentation lives in the [mattermost-api-reference](https://github.com/mattermost/mattermost-api-reference) repository. To document an endpoint, follow these steps:

@@ -32,7 +32,7 @@ This guide will help you configure your developer environment for the Focalboard
 
 ## Fork the project repositories
 
-Fork the {{< newtabref href="https://github.com/mattermost/focalboard" title="Focalboard GitHub repository" >}} and {{< newtabref href="https://github.com/mattermost/mattermost-server" title="Mattermost Server GitHub repository" >}}. Clone both repositories locally in sibling directories.
+Fork the {{< newtabref href="https://github.com/mattermost/focalboard" title="Focalboard GitHub repository" >}} and {{< newtabref href="https://github.com/mattermost/mattermost" title="Mattermost GitHub repository" >}}. Clone both repositories locally in sibling directories.
 
 ## Build via the terminal
 

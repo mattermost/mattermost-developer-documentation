@@ -20,7 +20,7 @@ Aaron Rothschild (2019.12.19), Abhilash K.R. (2020.05.07), Agniva De Sarker (202
 
 ## Platform Contributors
 
-Platform contributors by GitHub username and (first contribution date) are alphabetically listed below. The list is updated regularly (last updated March 20, 2020), and includes contributions to {{< newtabref href="https://github.com/mattermost/mattermost-server" title="mattermost-server" >}} and {{< newtabref href="https://github.com/mattermost/mattermost-webapp" title="mattermost-webapp" >}} repositories. We also plan to expand this list to include other Mattermost repositories.
+Platform contributors by GitHub username and (first contribution date) are alphabetically listed below. The list is updated regularly (last updated March 20, 2020), and includes contributions to {{< newtabref href="https://github.com/mattermost/mattermost" title="mattermost" >}} and {{< newtabref href="https://github.com/mattermost/mattermost-webapp" title="legacy mattermost-webapp" >}} repositories. We also plan to expand this list to include other Mattermost repositories.
 
 Join others who have contributed code to Mattermost repositories in GitHub, and [get started today]({{< ref "/contribute/more-info/getting-started" >}}).
 

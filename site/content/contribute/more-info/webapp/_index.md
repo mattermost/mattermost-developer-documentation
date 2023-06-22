@@ -12,9 +12,9 @@ The Mattermost web app is written in JavaScript using {{< newtabref href="https:
 
 ## Repository
 
-It is located in the `webapp` directory of the {{< newtabref href="https://github.com/mattermost/mattermost-server" title="main Mattermost monorepo" >}}.
+It is located in the `webapp` directory of the {{< newtabref href="https://github.com/mattermost/mattermost" title="main Mattermost repository" >}}.
 
-https://github.com/mattermost/mattermost-server/tree/master/webapp
+https://github.com/mattermost/mattermost/tree/master/webapp
 
 ## Help Wanted
 

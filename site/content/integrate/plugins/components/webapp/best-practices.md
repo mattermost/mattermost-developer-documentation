@@ -64,7 +64,7 @@ You can additionally [register a slash command]({{< ref "/integrate/plugins/comp
   ![popover user attribute component](/img/extend/bp-user-attributes.png)
 
 ### Actions related to emoji and GIFs
-- Recommendation: Have your plugin add a component to the emoji picker. This is not yet supported, but some {{< newtabref href="https://github.com/mattermost/mattermost-server/issues/10412#issuecomment-481776595" title="work had previously started" >}} with the issue currently opened as Help Wanted.
+- Recommendation: Have your plugin add a component to the emoji picker. This is not yet supported, but some {{< newtabref href="https://github.com/mattermost/mattermost/issues/10412#issuecomment-481776595" title="work had previously started" >}} with the issue currently opened as Help Wanted.
 - Examples: Bitmoji plugin; GIFs via Giphy or Gfycat
 
 ## Set up the plugin to properly communicate with the Mattermost Server

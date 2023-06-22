@@ -16,7 +16,7 @@ Data storage is done with MySQL or PostgreSQL for non-binary data. Files are sto
 
 ## Repository
 
-https://github.com/mattermost/mattermost-server
+https://github.com/mattermost/mattermost
 
 ## Server packages
 
