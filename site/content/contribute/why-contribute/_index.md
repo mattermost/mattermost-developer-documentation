@@ -18,7 +18,7 @@ There are many reasons you might be motivated to contribute to Mattermost:
 
 ## You’ve found a bug
 
-1. If the bug fix that you’re proposing would be larger than 20 lines of code, {{< newtabref href="https://github.com/mattermost/mattermost-server/issues" title="create a GitHub issue" >}}.
+1. If the bug fix that you’re proposing would be larger than 20 lines of code, {{< newtabref href="https://github.com/mattermost/mattermost/issues" title="create a GitHub issue" >}}.
 
     - You can speed up the process by asking about the issue in the  [Contributors](https://community.mattermost.com/core/channels/tickets) or  [Developers](https://community.mattermost.com/core/channels/developers) channels on the Mattermost Community Server.
 

@@ -22,7 +22,7 @@ aliases:
  
 #### :pencil2: Working on an issue/ticket
  
-3. Make changes to one of the projects. For example, you could be working on writing an End-to-End (E2E) test, like this issue {{<newtabref href="https://github.com/mattermost/mattermost-server/issues/18184" title=`Write Webapp E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}}. The development process is very similar to how you would work locally.
+3. Make changes to one of the projects. For example, you could be working on writing an End-to-End (E2E) test, like this issue {{<newtabref href="https://github.com/mattermost/mattermost/issues/18184" title=`Write Webapp E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}}. The development process is very similar to how you would work locally.
 
 #### :herb: Making branches and forks
 
@@ -78,7 +78,7 @@ aliases:
         * **Parts of a PR body**:
             * _Title_: a good title will refer back to the issue; and it should begin with the related Jira or GitHub ticket ID (e.g. [MM-394] or [GH-394]). In the context of the E2E issue example: `MM-T642: Attachment does not collapse - Cypress Webapp E2E Test`.
             * _Summary_: description of what the PR does, as well as QA test steps (if applicable and if not already added to the Jira ticket). For example: `Verifies that attachments on posts do not collapse after entering the slash command collapse`.
-            * _Ticket Link_: Either link the relevant Jira ticket or if you picked up an issue/ticket with a `Helped Wanted` label, link to the GitHub issue. For example: [Write Webapp E2E with Cypress: "MM-T642 Attachment does not collapse" #18184](https://github.com/mattermost/mattermost-server/issues/18184).
+            * _Ticket Link_: Either link the relevant Jira ticket or if you picked up an issue/ticket with a `Helped Wanted` label, link to the GitHub issue. For example: [Write Webapp E2E with Cypress: "MM-T642 Attachment does not collapse" #18184](https://github.com/mattermost/mattermost/issues/18184).
             * _Related Pull Requests_: Link other PRs here if they are related to this PR.
             * _Screenshots_: Illustrate what your changes have done.
             * _Release Note_: There are certain conditions that require release notes:

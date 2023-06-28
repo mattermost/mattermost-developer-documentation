@@ -14,20 +14,20 @@ Join the {{< newtabref href="https://community.mattermost.com/core/channels/deve
 
 ### Workflow
 
-Here's a general workflow for a Mattermost developer working on the {{< newtabref href="https://github.com/mattermost/mattermost-server" title="mattermost-server" >}} repository:
+Here's a general workflow for a Mattermost developer working on the {{< newtabref href="https://github.com/mattermost/mattermost" title="mattermost" >}} repository:
 
 #### Making code changes
 1. Review the repository structure to familiarize yourself with the project:
 
-    * [./api4/](https://github.com/mattermost/mattermost-server/tree/master/api4) holds all API and application related code.
-    * [./model/](https://github.com/mattermost/mattermost-server/tree/master/model) holds all data model definitions and the Go driver.
-    * [./store/](https://github.com/mattermost/mattermost-server/tree/master/store) holds all database querying code.
-    * [./utils/](https://github.com/mattermost/mattermost-server/tree/master/utils) holds all utilities, such as the mail utility.
-    * [./i18n/](https://github.com/mattermost/mattermost-server/tree/master/i18n) holds all localization files for the server.
+    * [./api4/](https://github.com/mattermost/mattermost/tree/master/server/channels/api4) holds all API and application related code.
+    * [./model/](https://github.com/mattermost/mattermost/tree/master/server/public/model) holds all data model definitions and the Go driver.
+    * [./store/](https://github.com/mattermost/mattermost/tree/master/server/channels/store) holds all database querying code.
+    * [./utils/](https://github.com/mattermost/mattermost/tree/master/server/channels/utils) holds all utilities, such as the mail utility.
+    * [./i18n/](https://github.com/mattermost/mattermost/tree/master/server/i18n) holds all localization files for the server.
 2. On your fork, create a feature branch for your changes. Name it `MM-$NUMBER_$DESCRIPTION` where `$NUMBER` is the [Jira](https://mattermost.atlassian.net) ticket number you are working on and `$DESCRIPTION` is a short description of your changes. Example branch names are `MM-18150_plugin-panic-log` and `MM-22037_uppercase-email`.
 3. Make the code changes required to complete your ticket.
 #### Running and writing tests
-4. Ensure that unit tests are written or modified where appropriate. For the server repository in general, Mattermost follows the opinionated way of testing in Go. You can learn more about this process in {{<newtabref title="DigitalOcean's How To Write Unit Tests in Go tutorial" href="https://www.digitalocean.com/community/tutorials/how-to-write-unit-tests-in-go-using-go-test-and-the-testing-package">}}. Test files must always end with `_test.go`, and should be located in the same folder where the code they are checking lives. For example, check out [download.go](https://github.com/mattermost/mattermost-server/blob/master/app/download.go) and [download_test.go](https://github.com/mattermost/mattermost-server/blob/master/app/download_test.go), which are both located in the `app` folder. Please also use {{<newtabref title="testify" href="https://github.com/stretchr/testify">}} for new tests.
+4. Ensure that unit tests are written or modified where appropriate. For the server repository in general, Mattermost follows the opinionated way of testing in Go. You can learn more about this process in {{<newtabref title="DigitalOcean's How To Write Unit Tests in Go tutorial" href="https://www.digitalocean.com/community/tutorials/how-to-write-unit-tests-in-go-using-go-test-and-the-testing-package">}}. Test files must always end with `_test.go`, and should be located in the same folder where the code they are checking lives. For example, check out [download.go](https://github.com/mattermost/mattermost/blob/master/server/channels/app/download.go) and [download_test.go](https://github.com/mattermost/mattermost/blob/master/server/channels/app/download_test.go), which are both located in the `app` folder. Please also use {{<newtabref title="testify" href="https://github.com/stretchr/testify">}} for new tests.
 5. If you made changes to the store, run `make store-mocks` and `make store-layers` to update test mocks and timing layer.
 6. To test your changes, run `make run-server` from the root directory of the server repository. This will start up the server at `http://localhost:8065`. To get changes to the server it must be restarted with `make restart-server`. If you want to test with the web app, you may also run `make run` which will start the server and a watcher for changes to the web app.
 7. Once everything works to meet the ticket requirements, stop Mattermost by running `make stop` in the server repository, then run `make check-style` to check your syntax.
