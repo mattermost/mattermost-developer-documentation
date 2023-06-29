@@ -46,7 +46,7 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
 1. Clone the Mattermost source code from your fork:
 
     ```sh
-    git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost-server.git
+    git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost.git
     ```
 
 1. Start the server:
