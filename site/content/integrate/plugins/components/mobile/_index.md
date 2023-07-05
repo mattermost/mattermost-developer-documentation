@@ -11,4 +11,4 @@ aliases:
 
 [Server plugins]({{< ref "/integrate/plugins/components/server" >}}) may use [interactive dialogs]({{< ref "/integrate/plugins/interactive-dialogs" >}}) and [interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}) to build cross platform interactions that are compatible with mobile. 
 
-It isn't possible to customize the mobile user experience in the same way the [webapp]({{< ref "/integrate/plugins/components/webapp" >}} can be extended.
+It isn't possible to customize the mobile user experience in the same way the [webapp]({{< ref "/integrate/plugins/components/webapp" >}}) can be extended.
