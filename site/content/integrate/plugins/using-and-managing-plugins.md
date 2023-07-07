@@ -234,7 +234,7 @@ Installing a custom plugin introduces some risks. As a result, plugin uploads ar
 
 To enable plugin uploads, manually set `PluginSettings > EnableUploads` to `true` in your `config.json` file and restart your server. 
 
-If you have installed Mattermost Omnibus, to enable plugin uploads, manually set enable_plugin_uploads: true in the mmomni.yml file and restart your server.
+If you have installed Mattermost Omnibus, to enable plugin uploads, manually set `enable_plugin_uploads:` true in the `mmomni.yml` file and restart your server.
 
 You can disable plugin uploads at any time without affecting previously uploaded plugins.
 
