@@ -84,7 +84,7 @@ Although the underlying changes are significant, the required migration for serv
 The plugin entry point was previously:
 
 ```go
-import "github.com/mattermost/mattermost-server/plugin/rpcplugin"
+import "github.com/mattermost/server/public/plugin/rpcplugin"
 
 func main() {
     rpcplugin.Main(&HelloWorldPlugin{})
@@ -94,7 +94,7 @@ func main() {
 Change the imported package and invoke `ClientMain` instead:
 
 ```go
-import "github.com/mattermost/mattermost-server/plugin"
+import "github.com/mattermost/mattermost/server/public/plugin"
 
 func main() {
     plugin.ClientMain(&HelloWorldPlugin{})

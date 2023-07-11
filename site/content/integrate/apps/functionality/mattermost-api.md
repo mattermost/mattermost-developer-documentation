@@ -21,7 +21,7 @@ An authorization token is required when invoking the Mattermost API via HTTP. Th
 
 Golang developers can also call the {{<newtabref title="Mattermost AddChannelMember API" href="https://api.mattermost.com/#tag/channels/operation/AddChannelMember">}} via the [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) using the following code.
 
-For example, the [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) `appclient` package includes a `Client` struct which implements the Mattermost Server's {{<newtabref title="client library" href="https://pkg.go.dev/github.com/mattermost/mattermost-server/v6@v6.7.2/model#Client4">}}.
+For example, the [Golang driver]({{<ref "/integrate/apps/drivers/golang">}}) `appclient` package includes a `Client` struct which implements the Mattermost Server's {{<newtabref title="client library" href="https://pkg.go.dev/github.com/mattermost/mattermost/server/public/model#Client4">}}.
 The following code creates an instance of the `Client` struct and adds a bot to a channel in response to a [call]({{<ref "/integrate/apps/structure/call">}}):
 
 ```go

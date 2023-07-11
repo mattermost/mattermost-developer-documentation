@@ -275,7 +275,7 @@ In most cases, your integration will do one or both of these things:
          "channel_id": "j6j53p28k6urx15fpcgsr20psq",
          "team_id": "5xxzt146eax4tul69409opqjlf",
          "context": {
-             "repo": "mattermost/mattermost-server",
+             "repo": "mattermost/mattermost",
              "pr": 1234,
              "action": "merge"
          }
@@ -293,7 +293,7 @@ In most cases, your integration will do one or both of these things:
          "channel_id": "j6j53p28k6urx15fpcgsr20psq",
          "team_id": "5xxzt146eax4tul69409opqjlf",
          "context": {
-             "repo": "mattermost/mattermost-server",
+             "repo": "mattermost/mattermost",
              "pr": 1234,
              "action": "merge",
              "token": "somerandomlygeneratedsecret"
@@ -312,7 +312,7 @@ In most cases, your integration will do one or both of these things:
          "channel_id": "j6j53p28k6urx15fpcgsr20psq",
          "team_id": "5xxzt146eax4tul69409opqjlf",
          "context": {
-             "repo": "mattermost/mattermost-server",
+             "repo": "mattermost/mattermost",
              "pr": 1234,
              "action": "merge",
              "signature": "mycryptographicsignature"
