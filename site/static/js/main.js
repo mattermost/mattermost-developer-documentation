@@ -15,7 +15,7 @@ $(document).ready(function () {
   // Keep "mm_notification_banner__" at the beginning of the key
   // Add system to clean out storage items that are no longer needed
   
-  const notification_banner_key = 'mm_notification_banner__mst';
+  const notification_banner_key = 'mm_notification_banner__8-0-release';
   const showBanner = localStorage.getItem(notification_banner_key);
 
   if (showBanner === null) {
