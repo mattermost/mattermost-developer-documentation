@@ -14,7 +14,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 | Version | Release date       | MVP                                                                               |
 |---------|--------------------|-----------------------------------------------------------------------------------|
-| 8.0     | July 14, 2023      | {{< newtabref href="https://github.com/Roy-Orbison" title="Roy-Orbitson" >}}  
+| 8.0     | July 14, 2023      | {{< newtabref href="https://github.com/Roy Orbison" title="Roy-Orbitson" >}}  
 | 7.10    | April 14, 2023     | {{< newtabref href="https://github.com/matthewdorner" title="Matthew Dorner" >}} and {{< newtabref href="https://github.com/anx-ag/" title="Alexander Griesser" >}}                                    |
 | 7.9     | March 16, 2023     | {{< newtabref href="https://github.com/matthew-src" title="Matthew Dalton" >}}                                    |
 | 7.8     | February 16, 2023  | {{< newtabref href="https://github.com/sinansonmez" title="Sinan Sonmez" >}}                                    |
