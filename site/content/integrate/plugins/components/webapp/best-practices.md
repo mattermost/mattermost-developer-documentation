@@ -24,6 +24,7 @@ You can additionally [register a slash command]({{< ref "/integrate/plugins/comp
 ### Actions that apply to specific messages
 - Recommendation: Have your plugin register a [post dropdown menu component]({{< ref "/integrate/plugins/components/webapp/reference#registerPostDropdownMenuComponent" >}}) with some text, icon and an action function. This adds your action to the "More Actions" post menu dropdown for easy discovery.
 - Examples: Create or attach to Jira issue from a message; copy a message to another channel; report an inappropriate message
+- Sample code: [mattermost/mattermost-plugin-todo/webapp/src/index.js](https://github.com/mattermost/mattermost-plugin-todo/blob/0c4dbfb58a72f8392ea66e101996afd06fdb2913/webapp/src/index.js#L30-L37)
 
   ![Post Dropdown Menu](/img/extend/bp-post-dropdown-menu.png)
 
