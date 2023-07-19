@@ -9,9 +9,9 @@ aliases:
 
 ## Create an outgoing webhook
 
-Suppose you want to write an external application, which executes software tests after someone posts a message starting with the word `#build` in the `town-square` channel.
+Suppose you want to write an external application, which executes software test-suite when someone posts a message starting with the word `#build` in the `town-square` channel. You can solve these types of use cases using Outgoing Webhooks. Webhooks are a mechanism for real-time communication between two applications. They allow one application to send automated HTTP requests to another application when a specific event or trigger occurs. The application receiving the webhook can then process the payload data and take appropriate actions based on the received information.
 
-You can follow these general guidelines to set up a Mattermost outgoing webhook for your application.
+This documentation provides step-by-step guidelines for setting up an outgoing webhook for your application in Mattermost.
 
 1. First, go to **Product menu > Integrations > Outgoing Webhook**. If you don't have the **Integrations** option available, outgoing webhooks may not be enabled on your Mattermost server or may be disabled for non-admins. Enable them from **System Console > Integrations > Integration Management** or ask your System Admin to do so.
 2. Select **Add Outgoing Webhook** and add name and description for the webhook. The description can be up to 500 characters.
@@ -85,8 +85,7 @@ You're all set!
 
 ## Parameters
 
-Outgoing webhooks support more than just the `text` field. Here is a full list of supported parameters.
-
+Outgoing webhooks offer a broader range of supported parameters beyond the text field. Below is a comprehensive list of these supported parameters.
 
 | Parameter       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Required                         |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|
@@ -124,4 +123,10 @@ The response would produce a message like the following:
 
 ![`test-automation` bot showing test results](outgoing_webhooks_full_example.png)
 
-Messages with advanced formatting can be created by including an [attachment array]({{< ref "/integrate/reference/message-attachments" >}}) and [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}) in the JSON payload.
+The JSON payload allows for the creation of messages with advanced formatting by incorporating an [attachment array]({{< ref "/integrate/reference/message-attachments" >}}) and [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}).
+
+## Building Webhook Handlers/Services
+
+Integrating webhooks requires deploying your webhook handler on a server endpoint (URL). Deploying a webhook handler may not always be immediately feasible. To facilitate iterative design and testing of your webhook handler, consider leveraging no-code tools such as [Beeceptor](https://beeceptor.com/).
+
+Beeceptor serves as HTTP catch-alls, enabling inspection of incoming payloads from Mattermost. You can respond with a desired HTTP response that Mattermost will consume, e.g. posting a message back on the same channel. Once your webhook design is ready, you can start coding your webhook handler. You can also use a local-tunnel to test payloads (from a live Mattermost instance) and send it to your code running on localhost.
