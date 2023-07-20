@@ -59,7 +59,7 @@ git cherry-pick --continue
 ```
 5. Finally, push your new branch as usual and create a PR. Make sure you select `release-[VERSION]` as the base branch, and not the default (master).
 ```sh
-git push -u origin
+git push -u origin manual-cherry-pick-pr-[PR_NUMBER]
 ```
 
 ## Reviewer process
