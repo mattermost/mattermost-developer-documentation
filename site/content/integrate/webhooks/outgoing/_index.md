@@ -130,3 +130,5 @@ The JSON payload allows for the creation of messages with advanced formatting by
 Integrating webhooks requires deploying your webhook handler on a server endpoint (URL). Deploying a webhook handler may not always be immediately feasible. To facilitate iterative design and testing of your webhook handler, consider leveraging no-code tools such as [Beeceptor](https://beeceptor.com/).
 
 Beeceptor serves as HTTP catch-alls, enabling inspection of incoming payloads from Mattermost. You can respond with a desired HTTP response that Mattermost will consume, e.g. posting a message back on the same channel. Once your webhook design is ready, you can start coding your webhook handler. You can also use a local-tunnel to test payloads (from a live Mattermost instance) and send it to your code running on localhost.
+
+Note: You should exercise caution when using an external (3rd party) tool as you might be sending sensitive data to it. You should only use sandbox/test tokens and rotate any secrets inadvertently sent to any third party.
