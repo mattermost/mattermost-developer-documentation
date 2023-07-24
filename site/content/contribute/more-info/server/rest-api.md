@@ -29,15 +29,13 @@ At Mattermost, the [OpenAPI specification](https://github.com/OAI/OpenAPI-Specif
 
 To document an endpoint, follow these steps:
 
-1. Create a branch for your changes.
-
-2. Find the `.yaml` file in the [api/v4/source](https://github.com/mattermost/mattermost/tree/master/api/v4/source) directory that fits your endpoint.
+1. Find the `.yaml` file in the [api/v4/source](https://github.com/mattermost/mattermost/tree/master/api/v4/source) directory that fits your endpoint.
     - For example, if you were adding the `GET /users/{user_id}` endpoint you would be looking for the [users.yaml](https://github.com/mattermost/mattermost/blob/master/api/v4/source/users.yaml) file.
     - If the file doesn't exist yet, you may need to create it and then update the [Makefile](https://github.com/mattermost/mattermost/tree/master/api/Makefile) to include the file.
 
-3. Copy an existing endpoint from the same or a different file.
+2. Copy an existing endpoint from the same or a different file.
 
-4. Update the documentation you copied with the correct information for your endpoint, including:
+3. Update the documentation you copied with the correct information for your endpoint, including:
     - `Tag` - the resource type
     - `Summary` - a summary of few words
     - `Description` - a brief 1-2 sentence description
@@ -45,9 +43,9 @@ To document an endpoint, follow these steps:
     - `Parameters` - the URL and body parameters
     - `Responses` - the success and error responses
 
-5.  Confirm you don't have any syntax errors by running `make build` within the [api](https://github.com/mattermost/mattermost/tree/master/api/) directory.
+4.  Confirm you don't have any syntax errors by running `make build` within the [api](https://github.com/mattermost/mattermost/tree/master/api/) directory.
 
-6.  Continue with the implementation of your API handler, updating this documentation as needed.
+5.  Continue with the implementation of your API handler, updating this documentation as needed.
 
 #### Implement the API handler
 To implement the API handler, you'll first need to [setup your developer environment]({{< ref "/contribute/developer-setup" >}}), and then follow these steps:
@@ -98,7 +96,7 @@ The most important part of this process is to make sure the new endpoint works c
 Returning the correct error code might require investigation in the [app](https://github.com/mattermost/mattermost/tree/master/server/channels/app) or [store](https://github.com/mattermost/mattermost/tree/master/server/channels/store) to find the source of errors. Status codes on errors should be set at the creation of the error. 
 
 #### Submit your pull request (PR)
-Submit a single pull request from your branch against the [mattermost/mattermost](https://github.com/mattermost/mattermost) repository by [following these instructions]({{< ref "/contribute/more-info/server/developer-workflow" >}}).
+Submit your pull request against the [mattermost/mattermost](https://github.com/mattermost/mattermost) repository by [following these instructions]({{< ref "/contribute/more-info/server/developer-workflow" >}}).
 
 ### Legacy Notes
 
