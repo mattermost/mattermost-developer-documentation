@@ -129,6 +129,6 @@ The JSON payload allows for the creation of messages with advanced formatting by
 
 Integrating webhooks requires deploying your webhook handler on a server endpoint (URL). Deploying a webhook handler may not always be immediately feasible. To facilitate iterative design and testing of your webhook handler, consider leveraging HTTP inspectors and debuggers such as [Beeceptor](https://beeceptor.com/), [RequestBin](https://pipedream.com/requestbin), [ngrok](https://ngrok.com/), [Request Inspector](https://requestinspector.com/), etc.
 
-{{<note "Note:">}}
+{{<note "Caution:">}}
 You should exercise caution when using an external (3rd party) tool as you might be sending sensitive data to it. You should only use sandbox/test tokens and rotate any secrets inadvertently sent to any third party.
 {{</note>}}
