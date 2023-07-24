@@ -94,6 +94,9 @@ Content-Type: application/json
     "token": "xxxxxxxxxxxx"
 }
 ```
+{{<note >}}
+A [bindings]({{<ref "/integrate/apps/structure/bindings">}}) refresh is triggered on every change of the user token.
+{{</note>}}
 
 {{<note "Updating a user access token:">}}
 To update an existing user access token, use the HTTP `PUT` method instead of the HTTP `POST` method.

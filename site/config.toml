@@ -8,6 +8,7 @@ languageCode = "en-us"
 publishDir = "../docs"
 pygmentsCodeFences = true
 pygmentsStyle = "manni"
+enableEmoji = true
 
 [taxonomies]
   category = "categories"
@@ -31,8 +32,8 @@ pygmentsStyle = "manni"
 
   [params.notification]
     enable = true
-    url = ""
-    text = "We're improving your developer experience."
+    url = "https://mattermost.com/blog/mattermost-v8-0-is-now-available/"
+    text = "Mattermost Version 8.0 is Now Available »"
 
   [params.search]
     enable = true

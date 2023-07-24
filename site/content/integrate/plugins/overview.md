@@ -29,7 +29,7 @@ Read more about the server-side of plugins [here]({{< ref "/integrate/plugins/co
 ### Web/desktop app
 The web app component of a plugin is written in JavaScript with {{< newtabref href="https://reactjs.org" title="React" >}} and {{< newtabref href="https://redux.js.org/" title="Redux" >}}. The plugin's bundled JavaScript is included on the page and runs alongside the web app code as a [PluginClass]({{< ref "/integrate/plugins/components/webapp/reference#pluginclass" >}}) that has initialize and deinitialize methods available for implementation. The initialize function is passed through the [registry]({{< ref "/integrate/plugins/components/webapp/reference#registry" >}}) which allows the plugin to register React components, actions and hooks to modify and interact with the Mattermost web app.
 
-The sample plugin has a {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template/blob/master/webapp/src/index.js" title="shell of an implemented PluginClass" >}}, while the demo plugin {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo/blob/master/webapp/src/plugin.jsx" title="contains a more complete example" >}}.
+The sample plugin has a {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template/blob/master/webapp/src/index.tsx" title="shell of an implemented PluginClass" >}}, while the demo plugin {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo/blob/master/webapp/src/plugin.jsx" title="contains a more complete example" >}}.
 
 The desktop app is a shim of the web app, meaning any plugin that works in the web app will also work in the desktop app.
 

@@ -8,12 +8,16 @@ aliases:
   - /contribute/focalboard/mattermost-boards-setup-guide
 ---
 
-**{{< newtabref href="https://mattermost.com/boards/" title="Mattermost Boards" >}}** is the Mattermost plugin version of Focalboard that combines project management tools with messaging and collaboration for teams of all sizes. It is installed and enabled by default in Mattermost v6.0 and later. For working with Focalboard as a standalone application, please refer to the [Personal Server Setup Guide]({{< ref "/contribute/more-info/focalboard/personal-server-setup-guide" >}}).
+{{<note "Important:">}}
+From Mattermost v7.11, Mattermost Boards is a core part of the product that cannot be disabled or built separately. Developers should read the updated [Developer Guide]({{< ref "/contribute/developer-setup" >}}) for details.
+{{</note>}}
+
+In Mattermost v7.10 and earlier releases, **{{< newtabref href="https://mattermost.com/boards/" title="Mattermost Boards" >}}** is the Mattermost plugin version of Focalboard that combines project management tools with messaging and collaboration for teams of all sizes. It is installed and enabled by default in Mattermost v6.0 and later. For working with Focalboard as a standalone application, please refer to the [Personal Server Setup Guide]({{< ref "/contribute/more-info/focalboard/personal-server-setup-guide" >}}).
 
 ## Build the plugin
 
 
-1. Fork the {{< newtabref href="https://github.com/mattermost/focalboard" title="Focalboard repository" >}} and clone it locally.
+1. Fork the {{< newtabref href="https://github.com/mattermost/focalboard" title="Focalboard repository" >}} and clone it locally. Clone {{< newtabref href="https://github.com/mattermost/mattermost" title="Mattermost" >}} in a sibling directory.
 2. Define an environment variable ``EXCLUDE_ENTERPRISE`` with a value of ``1``.
 3. To install the dependencies:
 ```
@@ -41,10 +45,10 @@ Refer to the {{< newtabref href="https://github.com/mattermost/focalboard/blob/m
 
 Instead of following the steps above, you can also set up a `mattermost-server` in local mode and automatically deploy `mattermost-plugin` via `make deploy`.
 
-* Follow the steps in the [`mattermost-webapp` developer setup guide]({{< ref "/contribute/more-info/webapp/developer-setup" >}}) and then:
+* Follow the steps in the [`mattermost-webapp` developer setup guide]({{< ref "/contribute/developer-setup" >}}) and then:
   * Open a new terminal window. In this terminal window, add an environmental variable to your bash via `MM_SERVICESETTINGS_SITEURL='http://localhost:8065'` ([docs](https://developers.mattermost.com/blog/subpath/#using-subpaths-in-development))
   * Build the web app via `make build`
-* Follow the steps in the [`mattermost-server` developer setup guide]({{< ref "/contribute/more-info/server/developer-setup" >}}) and then:
+* Follow the steps in the [`mattermost-server` developer setup guide]({{< ref "/contribute/developer-setup" >}}) and then:
   * Make sure Docker is running.
   * Run `make config-reset` to generate the `config/config.json` file:
     * Edit `config/config.json`:

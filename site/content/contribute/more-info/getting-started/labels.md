@@ -56,6 +56,7 @@ We leverage {{< newtabref href="https://help.github.com/en/articles/about-labels
 * `Lifecycle/<state>`: An [inactive contribution]({{< ref "/contribute/more-info/getting-started/inactive-contributions" >}}).
 * `Loadtest`: Triggers an automatic load test.
 * `Major Change`: The pull request is a major feature or affects large areas of the code base (e.g. {{< newtabref href="https://github.com/mattermost/platform/pull/6235" title="moving channel store and actions to Redux" >}}).
+* `QA Deferred`: Testing of this PR is expected to be completed after merge, likely when it is available on Community. Apply this in lieu of asking for `3: QA Review`.
 * `Setup Cloud Test Server`: Triggers the creation of a Enterprise Edition test server.
 * `Setup HA Cloud Test Server`: Triggers the creation of a test server that has high availability.
 * `Setup Cloud + CWS Test Server`: Triggers the creation of a test server that connects to our test Customer Web Server.

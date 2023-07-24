@@ -10,7 +10,7 @@ aliases:
 
 ## Mattermost Server
 
-In the {{< newtabref href="https://github.com/mattermost/mattermost-server" title="mattermost-server repository" >}} we are using {{< newtabref href="https://www.docker.com/" title="Docker" >}} images and {{< newtabref href="https://docs.docker.com/compose/" title="Docker Compose" >}} to set up the development enviroment. The following are required images:
+In the {{< newtabref href="https://github.com/mattermost/mattermost" title="mattermost repository" >}}, we are using {{< newtabref href="https://www.docker.com/" title="Docker" >}} images and {{< newtabref href="https://docs.docker.com/compose/" title="Docker Compose" >}} to set up the development enviroment. The following are required images:
 
 - {{< newtabref href="https://www.mysql.com/" title="MySQL" >}}
 - {{< newtabref href="https://www.postgresql.org/" title="PostgreSQL" >}}

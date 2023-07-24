@@ -12,6 +12,8 @@ aliases:
 
 The simplest way to debug the main process is to simply insert logging statements wherever needed and have the application output logs of whatever is necessary.
 
+For already built applications (or bugs that only appear in the packaged version of the application), you can view the Logs by going to Help > Show Logs in the 3-dot menu, which will open a file manager window showing the location of the log file.
+
 If you'd like to make use of better debugging tools, you can use the Chrome Dev Tools or the debugger in VSCode by following the steps here: https://www.electronjs.org/docs/latest/tutorial/debugging-main-process
 
 ## Debug the renderer process
@@ -55,7 +57,7 @@ Here are some ways of determining whether this is true:
 - Does the issue reproduce on the browser? Specifically Chrome?
 - Does the issue surround a piece of code on the server/webapp that only applies to the Desktop App? You can check this by seeing if there is a call to `isDesktopApp` in the webapp.
 
-If you have determined that the issue doesn't apply to the Desktop App code base directly, you can file a ticket in the appropriate repository, such as the {{< newtabref href="https://github.com/mattermost/mattermost-server" title="server" >}} or {{< newtabref href="https://github.com/mattermost/mattermost-webapp" title="webapp" >}} repository.
+If you have determined that the issue doesn't apply to the Desktop App code base directly, you can file a ticket in the appropriate repository, such as the {{< newtabref href="https://github.com/mattermost/mattermost" title="server and web app" >}} repository.
 
-If you are having trouble determining where the issue lies, feel free to post in the {{< newtabref href="https://community.mattermost.com/core/channels/desktop-app" title="Developers: Desktop App" >}} on Mattermost Community, or you can file a ticket in the {{< newtabref href="https://github.com/mattermost/mattermost-server" title="server" >}} repository and it will be triaged and transferred to the appropriate location.
+If you are having trouble determining where the issue lies, feel free to post in the {{< newtabref href="https://community.mattermost.com/core/channels/desktop-app" title="Developers: Desktop App" >}} on Mattermost Community, or you can file a ticket in the {{< newtabref href="https://github.com/mattermost/mattermost" title="server and web app" >}} repository and it will be triaged and transferred to the appropriate location.
 

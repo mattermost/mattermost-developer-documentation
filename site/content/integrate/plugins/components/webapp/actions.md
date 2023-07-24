@@ -25,42 +25,24 @@ It's assumed you have already set up your plugin development environment for web
 
 ## Basic example
 
-Here's an {{< newtabref href="https://github.com/mattermost/mattermost-plugin-jira/blob/master/webapp/src/components/modals/create_issue/index.ts" title="example" >}} of a web app plugin making use of {{< newtabref href="https://github.com/mattermost/mattermost-redux" title="mattermost-redux's" >}} functions:
+Here's an example of a web app plugin making use of {{< newtabref href="https://github.com/mattermost/mattermost-redux" title="mattermost-redux's" >}} selectors:
 
-```javascript
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+```ts
+import {useSelector} from 'react-redux';
 
 import {getPost} from 'mattermost-redux/selectors/entities/posts';
+import {getCurrentUser} from 'mattermost-redux/selectors/entities/users';
+import {getCurrentChannel} from 'mattermost-redux/selectors/entities/channels';
 import {getCurrentTeam} from 'mattermost-redux/selectors/entities/teams';
 
-import {closeCreateModal, createIssue, fetchJiraIssueMetadataForProjects, redirectConnect} from 'actions';
-import {isCreateModalVisible, getCreateModal} from 'selectors';
+const MyComponent = ({postId}) => {
+    const post = useSelector((state) => getPost(state, postId));
+    const currentUser = useSelector(getCurrentUser);
+    const currentChannel = useSelector(getCurrentChannel);
+    const currentTeam = useSelector(getCurrentTeam);
 
-import CreateIssue from './create_issue_modal';
-
-const mapStateToProps = (state) => {
-    const {postId, description, channelId} = getCreateModal(state);
-    const post = (postId) ? getPost(state, postId) : null;
-    const currentTeam = getCurrentTeam(state);
-
-    return {
-        visible: isCreateModalVisible(state),
-        post,
-        description,
-        channelId,
-        currentTeam,
-    };
+    // ...
 };
-
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-    close: closeCreateModal,
-    create: createIssue,
-    fetchJiraIssueMetadataForProjects,
-    redirectConnect,
-}, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateIssue);
 ```
 
 ## Some common actions
@@ -94,7 +76,7 @@ Dispatch this action to create a new user profile.
 
 ## Some common selectors
 
-We've listed out some of the commonly-used selectors you can use in your web app plugin. You can find all the selectors that are available for your plugin to import {{< newtabref href="https://github.com/mattermost/mattermost-redux/tree/master/src/selectors" title="in the source code for mattermost-redux" >}}.
+Here are some examples of commonly-used selectors you can use in your web app plugin. You can find all the selectors that are available for your plugin to import {{< newtabref href="https://github.com/mattermost/mattermost-redux/tree/master/src/selectors" title="in the source code for mattermost-redux" >}}.
 
 * ### {{< newtabref href="https://github.com/mattermost/mattermost-redux/blob/master/src/selectors/entities/common.ts#L46" title="getCurrentUserId(state)" >}}
 

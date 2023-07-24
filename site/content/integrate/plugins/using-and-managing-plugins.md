@@ -222,10 +222,6 @@ To manage plugins, go to **System Console > Plugins > Plugin Management**. From 
  - Enable or disable pre-packaged plugins.
  - Install and manage custom plugins.
 
-{{<note "Note:">}}
-In versions prior to 5.16, go to **System Console > Plugins (Beta) > Configuration**.
-{{</note>}}
-
 ### Pre-packaged plugins
 
 Mattermost ships with a number of pre-packaged plugins written and maintained by Mattermost. Instead of building these features directly into the product, you can selectively enable the functionality your installation requires. Install pre-packaged plugins from the Marketplace, even if your system cannot directly connect to the internet.

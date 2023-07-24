@@ -4,17 +4,14 @@ heading: "Bindings"
 weight: 50
 aliases:
   - /integrate/apps/api/bindings/
+  - /integrate/apps/bindings
 ---
 Bindings ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding">}}) establish the relationship between [call]({{<ref "/integrate/apps/structure/call">}}) handlers and [locations]({{<ref "/integrate/apps/structure/manifest#locations">}}).
 Whenever the bindings call is executed the App provides a list of bindings based on the [request context]({{<ref "/integrate/apps/structure/call#context">}}).
 
-Bindings are refreshed when the App is installed, on every channel switch, and when an OAuth2 process with a third party has completed. Bindings may also be refreshed when the user moves to a different context, such as opening a thread or a post in a search view.
+Bindings are refreshed when the App is installed, on every channel switch, and when an OAuth2 process with a third party has completed. Bindings may also be refreshed when the user moves to a different context, such as opening a thread or a post in a search view, or when explicitly specified in a call response.
 
 ## Top level bindings
-
-{{<note "Note:">}}
-Bindings are fetched (and refreshed) on every channel switch. When the user moves to a different context (like opening a thread, or a post in a search view) new bindings may be fetched to provide the correct bindings for the thread/post context. Bindings are also fetched when an OAuth2 process is completed and when the application gets installed.
-{{</note>}}
 
 | Name       | Type                                                                                                                             | Description                             |
 |:-----------|:---------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------|

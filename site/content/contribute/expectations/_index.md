@@ -36,7 +36,7 @@ To get started:
      - [Core Plugins]({{< ref "/contribute/more-info/plugins/" >}}): A core set of officially-maintained plugins that provide a variety of improvements to Mattermost.
      - [Boards]({{< ref "/contribute/more-info/focalboard/" >}}) and [Playbooks](https://github.com/mattermost/mattermost-plugin-playbooks) core integrations.
 
-2. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the **Edit in Github** button in the top right of its respective published page. You can read more about this process on the [why and how to contribute page]({{< ref "/contribute/why-contribute/#you-want-to-help-with-content" >}}). You can contribute to the following Mattermost documentation sites:
+2. To contribute to documentation, you should be able to edit any page and get to the source file in the documentation repository by selecting the **Edit on GitHub** button in the top right of its respective published page. You can read more about this process on the [why and how to contribute page]({{< ref "/contribute/why-contribute/#you-want-to-help-with-content" >}}). You can contribute to the following Mattermost documentation sites:
 
     - {{< newtabref href="https://github.com/mattermost/docs" title="Product documentation" >}}
     - {{< newtabref href="https://github.com/mattermost/mattermost-developer-documentation" title="Developer documentation" >}}
@@ -66,7 +66,7 @@ Thoroughly test your contributions! We recommend the following testing best prac
 
 
 3. If your PR adds a new plugin API method or hook, please add an example to the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="Plugin Starter Template" >}}.
-4. If your code adds a new user interface string, include it in the proper localization file, either for {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/master/i18n/en.json" title="the server repository" >}}, {{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json" title="the webapp repository" >}}, or {{< newtabref href="https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json" title="the mobile repository" >}}. 
+4. If your code adds a new user interface string, include it in the proper localization file, either for {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/i18n/en.json" title="the server repository" >}}, {{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/master/i18n/en.json" title="the webapp repository" >}}, or {{< newtabref href="https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json" title="the mobile repository" >}}. 
 
 
 {{<note "Note:">}}

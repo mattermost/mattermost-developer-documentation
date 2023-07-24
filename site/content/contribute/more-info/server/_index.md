@@ -8,7 +8,7 @@ aliases:
   - /contribute/server
 ---
 
-The server is the highly scalable backbone of the Mattermost project. Written in Go it compiles to a single, standalone binary. It's generally stateless except for the WebSocket connections and some in-memory caches.
+The server is the highly scalable backbone of the Mattermost project. Written in Go, it compiles to a single, standalone binary. It's generally stateless except for the WebSocket connections and some in-memory caches.
 
 Communication with Mattermost clients and integrations mainly occurs through the RESTful JSON web API and WebSocket connections primarily used for event delivery.
 
@@ -16,7 +16,7 @@ Data storage is done with MySQL or PostgreSQL for non-binary data. Files are sto
 
 ## Repository
 
-https://github.com/mattermost/mattermost-server
+https://github.com/mattermost/mattermost
 
 ## Server packages
 

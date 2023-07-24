@@ -10,22 +10,31 @@ $(document).ready(function () {
     $(this).toggleClass("fa-plus-square-o fa-minus-square-o");
   });
 
-  let hideBannerExist = document.cookie.split(";").filter((item) => {
-    return item.indexOf("hideBanner=") >= 0;
-  }).length;
+  // NOTE: Change the notification_banner_key to something unique everytime it changes
+  // So it will show up for new announcements
+  // Keep "mm_notification_banner__" at the beginning of the key
+  // Add system to clean out storage items that are no longer needed
+  
+  const notification_banner_key = 'mm_notification_banner__8-0-release';
+  const showBanner = localStorage.getItem(notification_banner_key);
 
-  if (hideBannerExist) {
+  if (showBanner === null) {
+		localStorage.setItem(notification_banner_key, true);
+  }
+
+  if (showBanner === 'false') {
     $(".notification-bar").addClass("closed");
     $("header").removeClass("with-notification-bar");
   }
 
   $(".notification-bar__close").on("click", function () {
-    if (!hideBannerExist) {
+    if (showBanner === 'true') {
       $(".notification-bar").addClass("closed");
       $("header").removeClass("with-notification-bar");
+      localStorage.setItem(notification_banner_key, false);
     }
-    document.cookie = "hideBanner=true";
   });
+
 });
 
 // 2021 Redesign - Navigation

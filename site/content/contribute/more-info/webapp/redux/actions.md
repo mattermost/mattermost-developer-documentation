@@ -1,7 +1,7 @@
 ---
 title: "Actions"
 heading: "Redux actions"
-description: "An explanation of Redux actions and how they're used in Mattermost"
+description: "An explanation of Redux actions and how they're used in Mattermost."
 date: 2017-08-20T11:35:32-04:00
 weight: 4
 aliases:
@@ -148,15 +148,15 @@ When deciding which one to use though, try to match the area of the code that yo
 The steps for adding a new Redux action are as follows:
 
 1. Decide where to the action creator will be located. Depending on where the action will be located you will want to put it in one of the following locations:
-    - If the action is more general and affects Redux state stored in`state.entities`, it should be put somewhere in `packages/mattermost-redux/src/actions`.
+    - If the action is more general and affects Redux state stored in `state.entities`, it should be put somewhere in `webapp/channels/src/packages/mattermost-redux/src/actions`.
     - If the action is specific to the web app, affects `state.views` and will be used in multiple places throughout the app, it should be put in `actions`.
     - If the action is very specific and will likely only be used by one or more closely related components, it should be put in an `actions.ts` located in the same directory as those components.
 
 2. If the action creator will have an effect on the Redux state that isn't covered by existing action types, you'll need to add a new "action type" constant that will be used by the action creator and will be handled by a reducer. These are located separate from the definition of the action creator itself to avoid having reducers import code from the action creators directly.
 
     Depending on where the action is located, the action creator will be located in one of the following:
-    - If the action is located in `mattermost-redux`, the action type should be added to one of the files in `packages/mattermost-redux/src/action_types`.
-    - If the action is specific to the web app or a single component, the action type should be added to the `ActionTypes` object in `utils/constants.tsx`.
+    - If the action is located in `mattermost-redux`, the action type should be added to one of the files in `webapp/channels/src/packages/mattermost-redux/src/action_types`.
+    - If the action is specific to the web app or a single component, the action type should be added to the `ActionTypes` object in `webapp/channels/src/utils/constants.tsx`.
 
     ```typescript
     export default keyMirror({
@@ -205,13 +205,13 @@ The steps for adding a new Redux action are as follows:
     ```
 
 4. If you added a new action type, make sure to add or update existing reducers to handle the new action. More information about reducers is available [here]({{< ref "/contribute/more-info/webapp/redux/reducers" >}}).
-5. Add unit tests to make sure that the action has the intended effects on the store. More information on unit testing reducers is available below.
+5. Add unit tests to make sure that the action has the intended effects on the store. More information on unit testing reducers is available on the page [Redux Unit and E2E Testing]({{<relref "/contribute/more-info/webapp/redux/testing.md">}}).
 
 ### Add a new API action
 
 If your action is corresponds to an API call, there are a few extra steps required but also a helper function to simplify the error handling for the action. The additional steps are as follows:
 
-1. Ensure that `Client4`, the JavaScript API client for Mattermost which is located in `packages/client/src/client4.ts`, has a method that corresponds to the API endpoint that you're using. That method will likely involve simply constructing the URL for the endpoint, optionally constructing a body for the request, and then using the `doFetch` method to actually make the request.
+1. Ensure that `Client4`, the JavaScript API client for Mattermost which is located in `webapp/platform/client/src/client4.ts`, has a method that corresponds to the API endpoint that you're using. That method will likely involve simply constructing the URL for the endpoint, optionally constructing a body for the request, and then using the `doFetch` method to actually make the request.
 
     ```typescript
     class Client4 {
@@ -270,93 +270,3 @@ If your action is corresponds to an API call, there are a few extra steps requir
         };
     }
     ```
-
-## Test an action
-
-### Unit tests
-
-Tests for both actions and action creators are written using {{< newtabref href="https://jestjs.io/" title="Jest" >}} and will often focus on seeing how dispatching an action affects the stored state in Redux. It'll often look similar to testing a reducer except you'll be looking at the whole store state instead of a single part of it.
-
-There are a few different ways of testing Redux actions used throughout Mattermost, but the most common way involves:
-
-1. Setting up an initial store state for the test case.
-2. Optionally mocking any external operations that may be required for the action. This includes API requests which are mocked using {{< newtabref href="https://github.com/nock/nock" title="Nock" >}}.
-3. Dispatching the result of the action creator.
-4. Looking at the resulting store state to ensure the required changes are made.
-
-    ```typescript
-    import nock from 'nock';
-
-    import mockStore from 'tests/test_store';
-
-    import {somethingAsyncHappened, somethingHappened} from './actions';
-
-    describe('somethingHappened', () => {
-        const channelId = 'channelId';
-
-        test('should update state.somethingCount', () => {
-            const store = mockStore({
-                somethingCount: 0,
-            });
-
-            // Remember to actually call your action creator since that's very easy to forget to do
-            store.dispatch(somethingHappened(channelId));
-
-            expect(store.getState().somethingCount).toBe(1234);
-        });
-    });
-
-    describe('somethingAsyncHappened', () => {
-        // Initial state may be shared between multiple test cases and may include state that's required for both
-        // testing and for thunk actions
-        const currentUserId = 'currentUserId';
-        const initialState = {
-            entities: {
-                users: {
-                    currentUserId: 'user1',
-                },
-            },
-            somethingCount: 0,
-        };
-
-        test('should update state.somethingCount on success', async () => {
-            const store = mockStore(initialState);
-
-            const expectedResult = {status: 'SomethingHappened'};
-            nock(Client4.getBaseRoute()).
-                post(`/channels/${channelId}/something`).
-                reply(200, {});
-
-            // Remember that tests for async requests need to themselves be async and we need to wait for the dispatch
-            await store.dispatch(somethingAsyncHappened(channelId));
-
-            expect(store.getState().somethingCount).toBe(1234);
-        });
-
-        test('should update state.somethingCount on failure', async () => {
-            const store = mockStore(initialState);
-
-            const expectedResult = {status: 'SomethingHappened'};
-            nock(Client4.getBaseRoute()).
-                post(`/channels/${channelId}/something`).
-                reply(400, {});
-
-            // You can also inspect the result of the action if desired
-            const result = await store.dispatch(somethingAsyncHappened(channelId));
-
-            expect(result.error).toBeDefined();
-            expect(result.data).not.toBeDefined();
-
-            expect(store.getState().somethingCount).toBe(0);
-        });
-    });
-    ```
-5. Add unit tests to make sure that the action has the intended effects on the store. Test location is adjacent to the file being tested. Example, for `src/actions/admin.js`, test is located at `src/actions/admin.test.js`.  Add test file if necessary. More information on unit testing reducers is available below.
-
-Some unit tests found throughout the web app may also test the actions dispatched by a thunk action rather than testing the effects on the changes to the store state. This method isn't considered as effective.
-
-### End-to-End tests
-
-Sometimes, it's not easy to test a redux action given it contains complicated async logic or requires a large amount of Redux state to be initialized to test it out. Other times, an action may feel too simple to test, especially if it's just dispatching an action that dictates specifically how the Redux state should change.
-
-In cases where the action will have an effect that's visible to the end user, it's possible to rely more on [end-to-end testing]({{< ref "/contribute/more-info/webapp/e2e/" >}}). While this might not test every code path of the action such as poor network conditions, end-to-end tests are often more valuble since they involve testing that the code as a whole does what is expected rather than testing just that a single piece of code works under artificial conditions which may not be realistic.
