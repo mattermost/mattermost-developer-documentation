@@ -23,9 +23,9 @@ If you're looking for information related to E2E tests and Redux, please check o
 ### What requires an E2E test?
 
 * Test cases that are defined in {{<newtabref href="https://github.com/mattermost/mattermost/issues?q=label%3A%22Area%2FE2E+Tests%22+label%3A%22Help+Wanted%22+is%3Aopen+is%3Aissue+" title="help-wanted E2E issues">}}.
-* New features and stories - For example, check out {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/4243" title="MM-19922 Add E2E tests for Mark as Unread #4243">}} which contains E2E tests for the `Mark As Unread` feature. 
-* Bug fixes - For example, see {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5908" title="MM-26751: Fix highlighting of at-mentions of self #5908">}}, which fixes a highlighting issue and adds a related test.
-* Test cases from {{<newtabref href="https://support.smartbear.com/zephyr-scale-cloud/docs/" title="Zephyr">}} - For example, see {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/5850" title="Added Cypress tests MM-T1410, MM-T1415 and MM-T1419 #5850">}} which adds automated tests for `Guest Accounts`. 
+* New features and stories - For example, check out {{<newtabref href="https://github.com/mattermost/mattermost/pull/4243" title="MM-19922 Add E2E tests for Mark as Unread #4243">}} which contains E2E tests for the `Mark As Unread` feature. 
+* Bug fixes - For example, see {{<newtabref href="https://github.com/mattermost/mattermost/pull/5908" title="MM-26751: Fix highlighting of at-mentions of self #5908">}}, which fixes a highlighting issue and adds a related test.
+* Test cases from {{<newtabref href="https://support.smartbear.com/zephyr-scale-cloud/docs/" title="Zephyr">}} - For example, see {{<newtabref href="https://github.com/mattermost/mattermost/pull/5850" title="Added Cypress tests MM-T1410, MM-T1415 and MM-T1419 #5850">}} which adds automated tests for `Guest Accounts`. 
     
 ### File Structure for E2E Testing
 E2E tests are located at the root of the repository in {{<newtabref href="https://github.com/mattermost/mattermost/tree/master/e2e-tests" title="the `e2e-tests` folder">}}. The file structure is mostly based on the {{<newtabref href="https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests#Folder-Structure" title="Cypress scaffold">}}. Here is an overview of some important folders and files:
@@ -181,7 +181,7 @@ describe('Change to Functional Group', () => {
 Use `camelCase` when assigning to `data-testid` or element ID. Also, watch out for potential breaking changes in the snapshot from [unit testing]({{<ref "/contribute/more-info/webapp/unit-testing">}}).  Run `make test` to see if all unit tests are passing, and run `npm run updatesnapshot` or `npm run test -- -u` if necessary to update snapshot tests.
 {{</note>}}
 
-Now, inside the body of the `it` block , we will write in code the "Steps" part of the E2E issue. The following steps and code are from {{<newtabref href="https://github.com/mattermost/mattermost/issues/18184" title=`Write Web App E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}}. Check out the complete file at: {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/11231/files" title="`attachment_does_not_collapse_spec.ts`">}}.
+Now, inside the body of the `it` block , we will write in code the "Steps" part of the E2E issue. The following steps and code are from {{<newtabref href="https://github.com/mattermost/mattermost/issues/18184" title=`Write Web App E2E with Cypress: "MM-T642 Attachment does not collapse" #18184`>}}. Check out the complete file at: {{<newtabref href="https://github.com/mattermost/mattermost/pull/11231/files" title="`attachment_does_not_collapse_spec.ts`">}}.
 
   * **Create an incoming webhook and send it through POST with attachment**:
     ```javascript
@@ -246,7 +246,7 @@ All tests are run by Mattermost in a CI pipeline, and they are grouped according
 
 Several environment variables (env variables) are used when testing with Cypress in order to easily change things when running tests in CI and to cater to different values across developer machines. 
 
-Environment variables are {{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/master/e2e/cypress/cypress.config.ts" title="defined in cypress.config.ts" >}} under the `env` key. In most cases you don't need to change the values, because it makes use of the default local developer setup. If you do need to make changes, the easiest method is to override by exporting `CYPRESS_*`, where `*` is the key of the variable, for example: `CYPRESS_adminUsername`. See the {{<newtabref href="https://docs.cypress.io/guides/guides/environment-variables.html#Setting" title="Cypress documentation on environment variables">}} for details.
+Environment variables are {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/e2e-tests/cypress/cypress.config.ts" title="defined in cypress.config.ts" >}} under the `env` key. In most cases you don't need to change the values, because it makes use of the default local developer setup. If you do need to make changes, the easiest method is to override by exporting `CYPRESS_*`, where `*` is the key of the variable, for example: `CYPRESS_adminUsername`. See the {{<newtabref href="https://docs.cypress.io/guides/guides/environment-variables.html#Setting" title="Cypress documentation on environment variables">}} for details.
 
 | Variable                  | Description                                                                                                                                                                                                                     |
 |---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

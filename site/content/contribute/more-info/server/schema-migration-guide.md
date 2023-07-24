@@ -324,7 +324,7 @@ $function$;
 
 1. Add the appropriate SQL script file containing the statements you want to run into the migrations directory. This directory is located in `{project_dir}/db/migrations/{driver_name}/`. Do not forget to add scripts for both `mysql` and `postgres` databases.
 2. Run `make migrations-extract` to add your new migrations to the `db/migrations/migrations.list` file. This will ensure that there will be merge conflicts in case there is a conflict on migration sequence numbers with the master branch. Since we don't want to have a collision on version numbers of the migration files, the developer should merge the upstream branch to the feature branch just before merging so that we can be sure that there are no versioning issues. In case of a version number collision, the build process will fail and main branch will be broken until it gets fixed.
-3. When you run the mattermost-server binary, the tool will automatically apply the migration if it's required. The migration name will be saved in the `db_migrations` table.
+3. When you run the mattermost/server binary, the tool will automatically apply the migration if it's required. The migration name will be saved in the `db_migrations` table.
 4. Lastly, please also measure the time taken for the migration with an eye towards resource usage. Please use the DB dumps from the ~developers-performance channel in our Community server. You will find the links in the channel header.
 
 ### My migration has failed. What do I do?

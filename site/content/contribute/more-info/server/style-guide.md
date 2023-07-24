@@ -247,7 +247,7 @@ func (worker *Worker) Run() {
 
 ### Performance sensitive areas
 
-Any PR that can potentially have a performance impact on the `mattermost-server` codebase is encouraged to have a performance review. For more information, please see this {{< newtabref href="https://docs.google.com/document/d/1Uzt3XHyKhDKipkuCmESkHoPio7vz7VYS4N_5_9ffgNU/edit" title="link" >}}. The following is a brief list of indicators that should to undergo a performance review:
+Any PR that can potentially have a performance impact on the `mattermost/server` codebase is encouraged to have a performance review. For more information, please see this {{< newtabref href="https://docs.google.com/document/d/1Uzt3XHyKhDKipkuCmESkHoPio7vz7VYS4N_5_9ffgNU/edit" title="link" >}}. The following is a brief list of indicators that should to undergo a performance review:
 
 - New features that might require benchmarks and/or are missing load-test coverage.
 - PRs touching performance of critical parts of the codebase (e.g. `Hub`/`WebConn`).

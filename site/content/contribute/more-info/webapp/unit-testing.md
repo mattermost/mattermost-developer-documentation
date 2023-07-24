@@ -172,7 +172,7 @@ Below is a brief guide on how to do component testing:
 
 * If you get an error similar to `UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'filter' of undefined`:
 
-    - Check if the code being tested uses native timer functions (i.e., `setTimeout`, `setInterval`, `clearTimeout`, `clearInterval`). You can mock the timers and/or run fake timers (e.g. `jest.useFakeTimers()`) if necessary. Note that `jest.useFakeTimers()` is already used in the {{<newtabref href="https://github.com/mattermost/mattermost-webapp/blob/master/tests/setup.js" title="Jest global setup">}}, but there are cases where it needs to run specifically depending on how the component uses the native timer functions.
+    - Check if the code being tested uses native timer functions (i.e., `setTimeout`, `setInterval`, `clearTimeout`, `clearInterval`). You can mock the timers and/or run fake timers (e.g. `jest.useFakeTimers()`) if necessary. Note that `jest.useFakeTimers()` is already used in the {{<newtabref href="https://github.com/mattermost/mattermost/blob/master/webapp/channels/src/tests/setup.js" title="Jest global setup">}}, but there are cases where it needs to run specifically depending on how the component uses the native timer functions.
     <br><br/>
 
 * If you get an error similar to `UnhandledPromiseRejectionWarning: TypeError: (0 , \_fff.hhh) is not a function`:
