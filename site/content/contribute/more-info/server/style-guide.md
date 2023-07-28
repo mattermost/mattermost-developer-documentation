@@ -261,12 +261,6 @@ Any PR that can potentially have a performance impact on the `mattermost/server`
 - Regular expressions, especially when creating `regexp.MustCompile` dynamically every time.
 - Use of the `reflect` package.
 
-### Generics
-
-Generics is a new feature coming in Go 1.18. This is a significant language feature which is yet to be used widely and the patterns around it are unknown. Following the Go team's {{< newtabref href="https://groups.google.com/g/golang-dev/c/iuB22_G9Kbo/m/7B1jd1I3BQAJ" title="recommendation" >}}, it's advised not to use these features in the main server unless we have more experience from the broader community in using them and some clear patterns emerge.
-
-You are welcome to use it in small tools under the Mattermost org, but usage in {{< newtabref href="https://github.com/mattermost/mattermost" title="the main repo" >}} is not advised for now.
-
 ## Propose a new rule
 
 To propose a new rule, follow the process below:
