@@ -26,7 +26,7 @@ The process that will communicate with the Mattermost server is built using a se
 Download the source code for the Mattermost server:
 
 ```bash
-go get -u github.com/mattermost/mattermost-server
+go get -u github.com/mattermost/server/v8
 ```
 
 Define `$GOPATH`. By default, this is already `$HOME/go`, but it's helpful to make this explicit:

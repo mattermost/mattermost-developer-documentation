@@ -16,7 +16,7 @@ Before proceeding with the steps below, make sure you have completed the [matter
 ## i18n files
 The `i18n` files define many of the contents seen in email notifications and responses from the server.
 
-1. Edit contents of files in the `mattermost-server/i18n` directory according to your requirements.
+1. Edit contents of files in the `mattermost/server/i18n` directory according to your requirements.
 
 2. Once you're ready, create a tarball or zip the files __within__ the `i18n` directory.
 

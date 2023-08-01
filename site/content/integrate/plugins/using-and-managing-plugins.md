@@ -230,9 +230,13 @@ Prior to v5.20, pre-packaged plugins were installed by default and could not be 
 
 ### Custom plugins
 
-Installing a custom plugin introduces some risk. As a result, plugin uploads are disabled by default and cannot be enabled via the System Console or REST API.
+Installing a custom plugin introduces some risks. As a result, plugin uploads are disabled by default and cannot be enabled via the System Console or REST API.
 
-To enable plugin uploads, manually set `PluginSettings > EnableUploads` to `true` in your `config.json` file and restart your server. You can disable plugin uploads at any time without affecting previously uploaded plugins.
+To enable plugin uploads, manually set `PluginSettings > EnableUploads` to `true` in your `config.json` file and restart your server. 
+
+If you have installed Mattermost Omnibus, to enable plugin uploads, manually set `enable_plugin_uploads:` true in the `mmomni.yml` file and restart your server.
+
+You can disable plugin uploads at any time without affecting previously uploaded plugins.
 
 With plugin uploads enabled, navigate to **System Console > Plugins > Management** and upload a plugin bundle. Plugin bundles are `*.tar.gz` files containing the server executables and web app resources for the plugin. You can also specify a URL to install a plugin bundle from a remote source.
 
