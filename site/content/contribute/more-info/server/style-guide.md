@@ -247,7 +247,7 @@ func (worker *Worker) Run() {
 
 ### Performance sensitive areas
 
-Any PR that can potentially have a performance impact on the `mattermost-server` codebase is encouraged to have a performance review. For more information, please see this {{< newtabref href="https://docs.google.com/document/d/1Uzt3XHyKhDKipkuCmESkHoPio7vz7VYS4N_5_9ffgNU/edit" title="link" >}}. The following is a brief list of indicators that should to undergo a performance review:
+Any PR that can potentially have a performance impact on the `mattermost/server` codebase is encouraged to have a performance review. For more information, please see this {{< newtabref href="https://docs.google.com/document/d/1Uzt3XHyKhDKipkuCmESkHoPio7vz7VYS4N_5_9ffgNU/edit" title="link" >}}. The following is a brief list of indicators that should to undergo a performance review:
 
 - New features that might require benchmarks and/or are missing load-test coverage.
 - PRs touching performance of critical parts of the codebase (e.g. `Hub`/`WebConn`).
@@ -260,12 +260,6 @@ Any PR that can potentially have a performance impact on the `mattermost-server`
 - Use of locks and/or other synchronization primitives.
 - Regular expressions, especially when creating `regexp.MustCompile` dynamically every time.
 - Use of the `reflect` package.
-
-### Generics
-
-Generics is a new feature coming in Go 1.18. This is a significant language feature which is yet to be used widely and the patterns around it are unknown. Following the Go team's {{< newtabref href="https://groups.google.com/g/golang-dev/c/iuB22_G9Kbo/m/7B1jd1I3BQAJ" title="recommendation" >}}, it's advised not to use these features in the main server unless we have more experience from the broader community in using them and some clear patterns emerge.
-
-You are welcome to use it in small tools under the Mattermost org, but usage in {{< newtabref href="https://github.com/mattermost/mattermost" title="the main repo" >}} is not advised for now.
 
 ## Propose a new rule
 

@@ -18,7 +18,7 @@ Also we use struct tags to identify access level for configuration values. If th
 
 ### Expose settings in the System Console
 
-To expose the newly-added field in the System Console, you need to add that same setting to the `AdminDefinition` JS object in `mattermost-webapp/components/admin_console/admin_definition.jsx`. This object defines most of the settings in the System Console.
+To expose the newly-added field in the System Console, you need to add that same setting to the `AdminDefinition` JS object in `webapp/channels/src/components/admin_console/admin_definition.jsx`. This object defines most of the settings in the System Console.
 
 
 ### Make settings available for non-admin users

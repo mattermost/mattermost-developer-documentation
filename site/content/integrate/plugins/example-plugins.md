@@ -34,7 +34,7 @@ Topics demonstrated:
 
 * Uses a custom HTTP handler to integrate with external systems.
 * Defines a settings schema, allowing system administrators to configure the plugin via system console UI.
-* Implements tests using the {{< newtabref href="https://godoc.org/github.com/mattermost/mattermost-server/v6/plugin/plugintest" title="plugin/plugintest" >}} package.
+* Implements tests using the {{< newtabref href="https://godoc.org/github.com/mattermost/mattermost/server/public/plugin/plugintest" title="plugin/plugintest" >}} package.
 * Creates rich posts using custom post types.
 * Extends existing webapp components to add elements to the UI.
 
@@ -48,7 +48,7 @@ Topics demonstrated:
 
 * Uses a custom HTTP handler to integrate with external systems.
 * Defines a settings schema, allowing system administrators to configure the plugin via system console UI.
-* Implements tests using the {{< newtabref href="https://godoc.org/github.com/mattermost/mattermost-server/v6/plugin/plugintest" title="plugin/plugintest" >}} package.
+* Implements tests using the {{< newtabref href="https://godoc.org/github.com/mattermost/mattermost/server/public/plugin/plugintest" title="plugin/plugintest" >}} package.
 * Compiles and publishes releases for multiple platforms using Travis-CI.
 
 ## Profanity filter

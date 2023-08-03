@@ -71,11 +71,11 @@ Using the `make attach-headless` command will allow you to use a debugger and st
 
 If the debugger is paused for more than 5 seconds, the RPC connection with the server times out. The server cannot communicate with the plugin anymore, so the plugin then needs to be restarted.
 
-In order to be able to pause the debugger for more than 5 seconds, two modifications need to be done to the `mattermost-server` repository:
+In order to be able to pause the debugger for more than 5 seconds, two modifications need to be done to the `mattermost/server` repository:
 
 1. The plugin health check job needs to be disabled. This can be done by setting the server config setting `PluginSettings.EnableHealthCheck` to `false`. Note that if your plugin crashes, you'll need to restart it, using `make reset` for example. This command will also kill any currently running `delve` process. If you want to continue debugging with `delve`, you'll need to run `make attach-headless` again after restarting the plugin.
 
-2. The `go-plugin`'s RPC client needs to be configured with a larger timeout duration. You can change the code at {{< newtabref href="https://github.com/mattermost/mattermost/blob/bf03f391e635b0b9b129768cec5ea13c571744fa/vendor/github.com/hashicorp/go-plugin/rpc_client.go#L63" title="mattermost-server/vendor/github.com/hashicorp/rpc_client.go" >}} to increase the duration. Here's the change you can make to extend the timeout to 5 minutes:
+2. The `go-plugin`'s RPC client needs to be configured with a larger timeout duration. You can change the code at {{< newtabref href="https://github.com/mattermost/mattermost/blob/bf03f391e635b0b9b129768cec5ea13c571744fa/vendor/github.com/hashicorp/go-plugin/rpc_client.go#L63" title="server/vendor/github.com/hashicorp/rpc_client.go" >}} to increase the duration. Here's the change you can make to extend the timeout to 5 minutes:
 
     ```go
     sessionConfig := yamux.DefaultConfig()

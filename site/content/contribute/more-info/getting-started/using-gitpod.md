@@ -96,7 +96,7 @@ aliases:
  
     * The last section details the code changes on your branch, including information on the commits on the branch, the files changed, and the contributors.
  
-18. Once you've created your pull request, you'll get taken to its page, like this one: {{<newtabref href="https://github.com/mattermost/mattermost-webapp/pull/11231" title="MM-T642: Attachment does not collapse - Cypress Webapp E2E Test #11231">}}. Below your initial body text of the PR will be a list of commits and other comments. At the end of this list is a checklist which notes the status of reviews required for the pull request, and the checks that the pull request must pass, plus a place to write your own additional comments.
+18. Once you've created your pull request, you'll get taken to its page, like this one: {{<newtabref href="https://github.com/mattermost/mattermost/pull/11231" title="MM-T642: Attachment does not collapse - Cypress Webapp E2E Test #11231">}}. Below your initial body text of the PR will be a list of commits and other comments. At the end of this list is a checklist which notes the status of reviews required for the pull request, and the checks that the pull request must pass, plus a place to write your own additional comments.
 ![mattermost-gitpod-real-PR-1](https://user-images.githubusercontent.com/43153413/194468726-afddf66f-eaf1-4dab-a6bf-7ddf39db78bf.jpeg)
  
 19. if you need to make any changes to your PR, you can return to Gitpod and stage and commit your changes from there onto your branch; and this will be reflected in GitHub.
