@@ -25,7 +25,9 @@ aliases:
   environments. To install appsctl, `go install
   github.com/mattermost/mattermost-plugin-apps/cmd/appsctl@latest`
 
-  Note: If you have self hosted Mattermost on AWS EC2 then default go version is 1.13.8
+{{<note "Note:">}}
+If you have a self-hosted Mattermost instance running on AWS EC2, the default Golang version is 1.13.8.
+{{</note>}}
   Due to which above go install command will give error stating
   `can't load package: package github.com/mattermost/mattermost-plugin-apps/cmd/appsctl@latest: cannot use path@version syntax in GOPATH mode`
 
