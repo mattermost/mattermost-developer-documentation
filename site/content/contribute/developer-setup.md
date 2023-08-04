@@ -41,6 +41,12 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
 
 1. If you don't have it already, install libpng with your preferred package manager.
 
+    - If you are on ARM based Mac, you'll need to install [Rosetta](https://support.apple.com/en-in/HT211861) to make `libpng` work. Rosetta can be installed by the following command-
+
+        ```sh
+        softwareupdate --install-rosetta
+        ```
+
 1. Fork https://github.com/mattermost/mattermost.
 
 1. Clone the Mattermost source code from your fork:
