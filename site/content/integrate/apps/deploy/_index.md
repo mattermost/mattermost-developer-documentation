@@ -24,3 +24,16 @@ aliases:
   `appsctl` CLI tool is provided to deploy AWS and OpenFaaS apps in self-managed
   environments. To install appsctl, `go install
   github.com/mattermost/mattermost-plugin-apps/cmd/appsctl@latest`
+
+{{<note "Note:">}}
+If you have a self-hosted Mattermost instance running on AWS EC2, the default Golang version is 1.13.8.
+{{</note>}}
+
+  Because of this, the Golang install command will give an error stating:
+  `can't load package: package github.com/mattermost/mattermost-plugin-apps/cmd/appsctl@latest: cannot use path@version syntax in GOPATH mode`
+
+  To fix this, update your Golang version to the latest release and run the command again.
+  When deploying to AWS, the `appsctl` binary is present in the `Home` directory inside the `go/bin` folder.
+  
+  To use `appsctl`, run the following command:
+  `./go/bin/appsctl`
