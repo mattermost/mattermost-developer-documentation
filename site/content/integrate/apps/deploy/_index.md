@@ -32,7 +32,7 @@ If you have a self-hosted Mattermost instance running on AWS EC2, the default Go
   Because of this, the Golang install command will give an error stating:
   `can't load package: package github.com/mattermost/mattermost-plugin-apps/cmd/appsctl@latest: cannot use path@version syntax in GOPATH mode`
 
-  To fix this update your golang version to latest and run above command.
+  To fix this, update your Golang version to the latest release and run the command again.
   When deploying to AWS the appsctl binary is present in Home directory inside `go/bin` folder
   
   To use appsctl, use below command
