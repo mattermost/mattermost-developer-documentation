@@ -35,5 +35,5 @@ If you have a self-hosted Mattermost instance running on AWS EC2, the default Go
   To fix this, update your Golang version to the latest release and run the command again.
   When deploying to AWS, the `appsctl` binary is present in the `Home` directory inside the `go/bin` folder.
   
-  To use appsctl, use below command
+  To use `appsctl`, run the following command:
   `./go/bin/appsctl`
