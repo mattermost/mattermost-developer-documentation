@@ -29,7 +29,7 @@ aliases:
 If you have a self-hosted Mattermost instance running on AWS EC2, the default Golang version is 1.13.8.
 {{</note>}}
 
-  Because of this, the Go install command will give an error stating:
+  Because of this, the Golang install command will give an error stating:
   `can't load package: package github.com/mattermost/mattermost-plugin-apps/cmd/appsctl@latest: cannot use path@version syntax in GOPATH mode`
 
   To fix this update your golang version to latest and run above command.
