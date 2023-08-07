@@ -136,8 +136,8 @@ The web app exposes a number of {{< newtabref href="https://github.com/mattermos
 
 | Library         | Exported Name         | Description                                                        |
 |-----------------|-----------------------|--------------------------------------------------------------------|
-| react           | window.React          | {{< newtabref href="https://reactjs.org/" title="ReactJS" >}}                                    |
-| react-dom       | window.ReactDOM       | {{< newtabref href="https://reactjs.org/docs/react-dom.html" title="ReactDOM" >}}                |
+| react           | window.React          | {{< newtabref href="https://react.dev/" title="ReactJS" >}}                                    |
+| react-dom       | window.ReactDOM       | {{< newtabref href="https://react.dev/docs/react-dom.html" title="ReactDOM" >}}                |
 | redux           | window.Redux          | {{< newtabref href="https://redux.js.org/" title="Redux" >}}                                     |
 | react-redux     | window.ReactRedux     | {{< newtabref href="https://github.com/reactjs/react-redux" title="React bindings for Redux" >}} |
 | react-bootstrap | window.ReactBootstrap | {{< newtabref href="https://react-bootstrap.github.io/" title="Bootstrap for React" >}}          |

@@ -18,11 +18,14 @@ Looking for the API reference? You can find it here: {{<newtabref title="https:/
 
 To add an endpoint to API version 4, all of the following must be completed:
 
-- [Document the endpoint](#document-the-endpoint)
-- [Implement the API handler](#implement-the-api-handler)
-- [Add a function to the Go driver](#update-the-golang-driver)
-- [Write a unit test](#write-a-unit-test)
-- [Submit your implementation!](#submit-your-pull-request-pr)
+- [Reference](#reference)
+- [Add an endpoint](#add-an-endpoint)
+  - [Document the endpoint](#document-the-endpoint)
+  - [Implement the API handler](#implement-the-api-handler)
+  - [Update the Golang driver](#update-the-golang-driver)
+  - [Write a unit test](#write-a-unit-test)
+  - [Submit your pull request (PR)](#submit-your-pull-request-pr)
+- [Legacy Notes](#legacy-notes)
 
 #### Document the endpoint
 At Mattermost, the [OpenAPI specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md) is used for API documentation. The API documentation lives in the main Mattermost repository alongside the server: [api](https://github.com/mattermost/mattermost/tree/master/api).
