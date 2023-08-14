@@ -8,7 +8,7 @@ aliases:
   - /contribute/focalboard
 ---
 
-The {{< newtabref href="https://www.focalboard.com" title="Focalboard" >}} / {{< newtabref href="https://mattermost.com/boards" title="Mattermost Boards" >}} project is written in {{< newtabref href="https://www.typescriptlang.org/" title="TypeScript" >}} and {{< newtabref href="https://go.dev/" title="Go" >}}.
+The {{< newtabref href="https://www.focalboard.com" title="Focalboard" >}} project is written in {{< newtabref href="https://www.typescriptlang.org/" title="TypeScript" >}} and {{< newtabref href="https://go.dev/" title="Go" >}}.
 
 Here's the process for contributing to Focalboard:
 
