@@ -13,8 +13,7 @@ aliases:
 
 An App designed and bundled for AWS Lambda can be deployed to the customer's own
 AWS environment, and then installed on a self-managed ("on-prem") Mattermost
-instance. Note that Mattermost Cloud instances only allows apps hosted by
-Mattermost.
+instance. Note that the only AWS-hosted apps available on Mattermost Cloud instances are the ones by Mattermost.
 
 For details on how to develop and package apps for AWS see [Package / AWS]({{< ref "/integrate/apps/deploy/package-for-aws" >}})
 
