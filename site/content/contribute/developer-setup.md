@@ -34,7 +34,7 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
 
     - First, install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
 
-    - Then, use NVM to install the correct version of Node.js for the Mattermost web app:
+    - Then, use NVM to install the correct version of Node.js for the Mattermost web app (this should be run within the `webapp` directory):
         ```sh
         nvm install
         ```
