@@ -1,5 +1,5 @@
 1. Open Terminal
-2. Install NodeJS from [NodeSource](https://github.com/nodesource/distributions#installation-instructions)
+2. Install NodeJS from [NodeSource](https://github.com/nodesource/distributions#installation-instructions):
 
     ```sh
     sudo apt-get update
