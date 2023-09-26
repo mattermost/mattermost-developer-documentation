@@ -5063,6 +5063,10 @@ footer.site-footer {
 	padding: 50px 0;
 }
 
+.homepage-footer {
+    padding: 0 0 20px;
+}
+
 @media (min-width:992px) {
 	footer.site-footer {
 		padding: 100px 0;
