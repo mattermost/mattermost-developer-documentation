@@ -32,8 +32,8 @@ enableEmoji = true
 
   [params.notification]
     enable = true
-    url = "https://mattermost.com/blog/mattermost-v9-0-is-now-available/"
-    text = "Mattermost Version 9.0 is Now Available »"
+    url = "https://mattermost.com/hacktoberfest/"
+    text = "Hacktoberfest 2023: Code, Celebrate, and Conserve!"
 
   [params.search]
     enable = true
