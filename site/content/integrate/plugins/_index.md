@@ -31,6 +31,6 @@ Extend the Mattermost REST API with custom endpoints for use by Web App plugins 
 
 ### Simple development and installation
 
-It's simple to set up a plugin development environment with the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="mattermost-plugin-starter-template" >}}. Just select "Use this template" when cloning the repo. Please see the [developer setup](https://developers.mattermost.com/integrate/plugins/developer-setup) and [developer workflow](https://developers.mattermost.com/integrate/plugins/developer-workflow) pages for more information.
+It's simple to set up a plugin development environment with the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="mattermost-plugin-starter-template" >}}. Just select "Use this template" when cloning the repository. Please see the [developer setup](https://developers.mattermost.com/integrate/plugins/developer-setup) and [developer workflow](https://developers.mattermost.com/integrate/plugins/developer-workflow) pages for more information.
 
 Read the plugins [overview]({{< ref "/integrate/plugins/overview" >}}) to learn more.
