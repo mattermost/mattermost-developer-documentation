@@ -5346,11 +5346,15 @@ footer.site-footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 1rem;
+    padding: 0 2rem;
 }
 
 .error-404-wrapper svg {
     margin-bottom: 1rem;
+}
+
+.error-404-wrapper p {
+    margin-bottom: 0;
 }
 
 .error-404-wrapper h1 {
@@ -5360,7 +5364,7 @@ footer.site-footer {
 
 @media (min-width: 768px) {
     .error-404-wrapper {
-       text-align: center;
+        align-items: center;
     }
     .error-404-wrapper h1 {
         line-height: 130%;
@@ -5369,7 +5373,6 @@ footer.site-footer {
         margin-bottom: 2rem;
     }
     .error-404-wrapper p {
-
         font-size: 1.3rem;
     }
     .error-404-wrapper a {
