@@ -5353,6 +5353,10 @@ footer.site-footer {
     margin-bottom: 1rem;
 }
 
+.error-404-wrapper a {
+    text-decoration: none;
+}
+
 .error-404-wrapper p {
     margin: 0;
 }
