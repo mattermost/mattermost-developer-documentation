@@ -5339,6 +5339,52 @@ footer.site-footer {
     background: #CC8F00;
 }
 
+/* 404 */
+.error-404-wrapper {
+    font-family: "trade-gothic-next",sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 2rem;
+}
+
+.error-404-wrapper svg {
+    margin-bottom: 1rem;
+}
+
+.error-404-wrapper a {
+    text-decoration: none;
+}
+
+.error-404-wrapper p {
+    margin: 0;
+}
+
+.error-404-wrapper h1 {
+    color: #1e325c;
+    font-weight: 800;
+}
+
+@media (min-width: 768px) {
+    .error-404-wrapper {
+        align-items: center;
+    }
+    .error-404-wrapper h1 {
+        line-height: 130%;
+        font-size: 3rem;
+        margin-top: 0rem;
+        margin-bottom: 2rem;
+    }
+    .error-404-wrapper p {
+        font-size: 1.3rem;
+    }
+    .error-404-wrapper a {
+        color: #1c58d9;
+    }
+}
+
+
 /* Footer */
 .footer__icons {
     margin: 0;
