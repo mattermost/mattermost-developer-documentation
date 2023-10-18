@@ -12,7 +12,7 @@ This quick start guide will walk you through the basics of using creating a serv
 - Contains a `manifest.json`, declares itself an HTTP application that uses a bot account, uses webhooks, and attaches UI elements to locations in the Mattermost interface.
 - Attaches `send` function to a `/hello-serverless` command, accepting an optional `message` argument.
 
-This App will focus on the functionality of the actual serverless App in this example. For more information about [how to package a Mattermost App for serverless deployments]({{< ref "/integrate/apps/deploy/package-for-aws" >}}), [how to deploy a Mattermost App to AWS]({{< ref "/integrate/apps/deploy/deploy-aws" >}}), or [how to deploy a Mattermost App to OpenFaaS]({{< ref "/integrate/apps/deploy/deploy-openfaas" >}}) please refer to the corresponding guides.
+This App will focus on the functionality of the actual serverless App in this example. For more information about [how to package a Mattermost App for serverless deployments]("https://docs.mattermost.com/guides/package-for-aws.html"), [how to deploy a Mattermost App to AWS]("https://docs.mattermost.com/guides/deploy-aws.html"), or [how to deploy a Mattermost App to OpenFaaS]("https://docs.mattermost.com/guides/deploy-openfaas.html") please refer to the corresponding guides.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ cd golang/serverless
 docker compose up
 ```
 
-The `docker-compose.yml` uses the [HTTP deployment]({{< ref "/integrate/apps/deploy/deploy-http/" >}}) of the serverless App for the sake of trying it out locally. You'll see Docker install the Go modules and then the App will come online and print the following message:
+The `docker-compose.yml` uses the [HTTP deployment]("https://docs.mattermost.com/guides/deploy-http.html") of the serverless App for the sake of trying it out locally. You'll see Docker install the Go modules and then the App will come online and print the following message:
 
     Install via /apps install http http://mattermost-apps-golang-serverless:8080/manifest.json 
 
@@ -84,7 +84,7 @@ docker compose down
 
 ## Explore serverless deployments
 
-Now that you've examined the App in HTTP mode, you can next look at deploying them to your desired serverless plaform. Check out the guides on [how to deploy a Mattermost App to AWS]({{< ref "/integrate/apps/deploy/deploy-aws/" >}}) or [how to deploy a Mattermost App to OpenFaaS]({{< ref "/integrate/apps/deploy/deploy-openfaas/" >}}), depending on which platform you're targeting.
+Now that you've examined the App in HTTP mode, you can next look at deploying them to your desired serverless plaform. Check out the guides on [how to deploy a Mattermost App to AWS]("https://docs.mattermost.com/guides/deploy-aws.html") or [how to deploy a Mattermost App to OpenFaaS]( "https://docs.mattermost.com/guides/deploy-openfaas.html"), depending on which platform you're targeting.
 
 ## Conclusion
 
