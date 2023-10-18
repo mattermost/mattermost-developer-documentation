@@ -5299,7 +5299,10 @@ footer.site-footer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 50px;
+    margin: auto;
+    display: flex;
+    text-align: center;
+    margin-bottom: 50px !important;
 }
 
 @media (min-width: 768px) {
