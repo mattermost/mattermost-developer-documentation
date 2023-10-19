@@ -1,4 +1,4 @@
-# Mattermost developer documentation [![Mattermost dev docs status badge](https://circleci.com/gh/mattermost/mattermost-developer-documentation.svg?style=svg)](https://circleci.com/gh/mattermost/mattermost-developer-documentation/tree/master)
+# Mattermost developer documentation ![Mattermost dev docs status badge](https://github.com/mattermost/mattermost-developer-documentation/actions/workflows/build.yml/badge.svg)
 
 Website for Mattermost developer documentation, built using [Hugo](https://gohugo.io/). The `master` branch is continuously deployed to [developers.mattermost.com](https://developers.mattermost.com/).
 

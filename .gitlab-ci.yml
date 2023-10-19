@@ -27,10 +27,19 @@ build-package:
 s3-release:
   image: $IMAGE_AWS_CI
   variables:
-    BUCKET: mattermost-developer-documentation/branches
+    BUCKET: mattermost-developer-documentation
   stage: deploy
   script:
-    - aws s3 cp dist/html s3://mattermost-developer-documentation/branches/master --recursive --cache-control no-cache --acl public-read
+  - |
+    echo "Remove all previous artifacts"
+    aws s3 rm s3://${BUCKET}/branches/master --recursive
+  - |
+    echo "Save new artifacts"
+    aws s3 cp dist/html s3://${BUCKET}/branches/master --recursive --cache-control no-cache --acl public-read
+  - |
+    echo "Check deployed artifacts"
+    curl --version
+    cat check-deployment.sh | /bin/bash
   needs:
     - build-package
   only:
