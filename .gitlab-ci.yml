@@ -26,11 +26,9 @@ build-package:
 
 s3-release:
   image: $IMAGE_AWS_CI
-  variables:
-    BUCKET: mattermost-developer-documentation/branches
   stage: deploy
   script:
-    - aws s3 cp dist/html s3://mattermost-developer-documentation/branches/master --recursive --cache-control no-cache --acl public-read
+    - aws s3 sync dist/html s3://mattermost-developer-documentation/branches/master --delete --cache-control no-cache --acl public-read --no-progress
   needs:
     - build-package
   only:
