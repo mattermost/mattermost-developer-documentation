@@ -30,16 +30,7 @@ s3-release:
     BUCKET: mattermost-developer-documentation
   stage: deploy
   script:
-  - |
-    echo "Remove all previous artifacts"
-    aws s3 rm s3://${BUCKET}/branches/master --recursive
-  - |
-    echo "Save new artifacts"
-    aws s3 cp dist/html s3://${BUCKET}/branches/master --recursive --cache-control no-cache --acl public-read
-  - |
-    echo "Check deployed artifacts"
-    curl --version
-    cat check-deployment.sh | /bin/bash
+    - aws s3 sync dist/html s3://mattermost-developer-documentation/branches/master --delete --cache-control no-cache --acl public-read --no-progress
   needs:
     - build-package
   only:
