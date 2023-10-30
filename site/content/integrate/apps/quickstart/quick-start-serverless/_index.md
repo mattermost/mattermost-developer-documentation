@@ -84,7 +84,7 @@ docker compose down
 
 ## Explore serverless deployments
 
-Now that you've examined the App in HTTP mode, you can next look at deploying them to your desired serverless plaform. Check out the guides on [how to deploy a Mattermost App to AWS]("https://docs.mattermost.com/guides/deploy-aws.html") or [how to deploy a Mattermost App to OpenFaaS]( "https://docs.mattermost.com/guides/deploy-openfaas.html"), depending on which platform you're targeting.
+Now that you've examined the App in HTTP mode, you can next look at deploying them to your desired serverless plaform. Check out the guides on {{< newtabref href="https://docs.mattermost.com/guides/deploy-aws.html" title="how to deploy a Mattermost App to AWS" >}} or {{< newtabref href="https://docs.mattermost.com/guides/deploy-openfaas.html" title="how to deploy a Mattermost App to OpenFaaS" >}}, depending on which platform you're targeting.
 
 ## Conclusion
 
