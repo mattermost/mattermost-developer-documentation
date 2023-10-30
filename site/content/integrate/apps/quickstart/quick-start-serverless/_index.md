@@ -29,7 +29,7 @@ cd golang/serverless
 docker compose up
 ```
 
-The `docker-compose.yml` uses the [HTTP deployment]("https://docs.mattermost.com/guides/deploy-http.html") of the serverless App for the sake of trying it out locally. You'll see Docker install the Go modules and then the App will come online and print the following message:
+The `docker-compose.yml` uses the {{< newtabref href="https://docs.mattermost.com/guides/deploy-http.html" title="HTTP deployment" >}} of the serverless App for the sake of trying it out locally. You'll see Docker install the Go modules and then the App will come online and print the following message:
 
     Install via /apps install http http://mattermost-apps-golang-serverless:8080/manifest.json 
 
