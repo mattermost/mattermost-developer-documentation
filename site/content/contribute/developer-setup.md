@@ -23,7 +23,7 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
 
 1. [Install WSL](https://learn.microsoft.com/en-us/windows/wsl/install) by running the following command as an administrator in PowerShell: `wsl --install`
 2. [Install Docker Desktop for Windows](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers#install-docker-desktop) on your Windows machine.
-3. Now make sure to perform the rest of the operations(except Docker installation) within the WSL environment and not in Windows.
+3. Perform the rest of the operations (except Docker installation) within the WSL environment and not in Windows.
 
 # Setup the Mattermost Server
 
