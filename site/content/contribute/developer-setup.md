@@ -19,7 +19,20 @@ If you're migrating from before the monorepo see the [migration notes]({{< ref "
 If you're developing plugins, see the plugin [developer setup]({{< ref "/integrate/plugins/developer-setup" >}}) documentation.
 {{</note>}}
 
+# Prerequisites for WSL Development Environment
+
+1. [Install WSL](https://learn.microsoft.com/en-us/windows/wsl/install) by running the following command as an administrator in PowerShell: `wsl --install`
+2. [Install Docker Desktop for Windows](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers#install-docker-desktop) on your Windows machine. Alternatively, you can also [install](https://docs.docker.com/engine/install/) docker engine directly on your linux distribution.
+3. Perform the rest of the operations (except Docker installation) within the WSL environment and not in Windows.
+
 # Setup the Mattermost Server
+
+1. Install `make`.
+    - On Ubuntu, you can install `build essential` tools which will also take care of installing the `make`:
+
+   ```sh
+   sudo apt install build-essential
+   ```
 
 1. Install [Docker](https://www.docker.com/).
 
