@@ -43,15 +43,7 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
     ```sh
     ulimit -n 8096
     ```
-1. Install NVM and use it to install the required version of Node.js:
-
-    - First, install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
-
-    - Then, use NVM to install the correct version of Node.js for the Mattermost web app (this should be run within the `webapp` directory):
-        ```sh
-        nvm install
-        ```
-
+    
 1. If you don't have it already, install libpng with your preferred package manager.
 
     - If you are on ARM based Mac, you'll need to install [Rosetta](https://support.apple.com/en-in/HT211861) to make `libpng` work. Rosetta can be installed by the following command-
@@ -67,6 +59,15 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
     ```sh
     git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost.git
     ```
+    
+1. Install NVM and use it to install the required version of Node.js:
+
+    - First, install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
+
+    - Then, use NVM to install the correct version of Node.js for the Mattermost web app (this should be run within the `webapp` directory):
+        ```sh
+        nvm install
+        ```
 
 1. Start the server:
 
