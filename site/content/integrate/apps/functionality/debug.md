@@ -7,7 +7,7 @@ weight: 50
 The Apps framework includes a built-in slash command, `/apps debug`, that enables App debugging features, such as viewing logs and listing key/value (K/V) store records.
 
 {{<note>}}
-App debug features require the **Developer Mode** to be enabled. This can be done via [`/apps settings`]({{<ref "/integrate/apps/deploy/settings/">}}).
+App debug features require the **Developer Mode** to be enabled. This can be done via {{< newtabref href="https://docs.mattermost.com/guides/configure-app-framework.html" title="`/apps settings`" >}}.
 {{</note>}}
 
 The following debug features are available as subcommands:
