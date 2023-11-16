@@ -14,6 +14,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 | Version | Release date       | MVP                                                                               |
 |---------|--------------------|-----------------------------------------------------------------------------------|
+| 9.2     | November 16, 2023  | {{< newtabref href="https://github.com/kaakaa" title="Yusuke Nemoto" >}}  
 | 9.1     | October 16, 2023   | {{< newtabref href="https://github.com/kyeongsoosoo" title="KyeongSoo Kim" >}}  
 | 9.0     | September 15, 2023 | {{< newtabref href="https://github.com/kayazeren" title="Kaya Zeren" >}}  
 | 8.1     | August 24, 2023    | {{< newtabref href="https://github.com/bbodenmiller" title="Ben Bodenmiller" >}}  
