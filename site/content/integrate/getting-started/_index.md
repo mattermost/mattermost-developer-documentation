@@ -10,6 +10,10 @@ aliases:
 ---
 Mattermost offers a wealth of methods to add functionality and customize the experience to suit your needs, whether you want to add new user capabilities with slash commands, build an advanced chatbot, or completely change the functionality of your server.
 
+{{<note "Tip:">}}
+See the [Mattermost Server reference]({{< ref "/integrate/plugins/components/server/reference" >}}) and [Mattermost Web App reference]({{< ref "/integrate/plugins/components/webapp/reference" >}}) documentation for comprehensive details on components that Mattermost customers can integrate with.
+{{</note>}}
+
 ## Webhooks
 
 Webhooks provide a simple way to post messages to a channel and trigger external actions.
