@@ -14,6 +14,8 @@ The {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-
 
 A more detailed example is the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo" title="Demo Plugin" >}}, which showcases many of the features of plugins.
 
+If you'd like to better understand how plugins work, [see the contributor documentation on plugins]({{< ref "/contribute/more-info/server/plugins" >}}).
+
 ### Manifest
 The plugin manifest provides required metadata about the plugin, such as name and ID. It is defined in JSON or YAML. This is `plugin.json` in both the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template/blob/master/plugin.json" title="sample" >}} and {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo/blob/master/plugin.json" title="demo" >}} plugins.
 
@@ -37,7 +39,3 @@ Read more about the web app component of plugins [here]({{< ref "/integrate/plug
 
 ### Mobile app
 Currently there is no mobile app component of plugins but it is planned for the near term.
-
-----
-
-If you'd like to better understand how plugins work, [see the contributor documentation on plugins]({{< ref "/contribute/more-info/server/plugins" >}}).
