@@ -30,7 +30,7 @@ Launch and manage Server plugins as services from your Mattermost server over RP
 Extend the Mattermost REST API with custom endpoints for use by Web App plugins or third-party services. Custom endpoints have access to all the features of the standard Mattermost REST API, including personal access tokens and OAuth 2.0.
 
 {{<note "Tip:">}}
-See the [Mattermost Server SDK Reference]({{< ref "/integrate/plugins/components/server/reference" >}}) and [Mattermost Client UI SDK Reference]({{< ref "/integrate/plugins/components/webapp/reference" >}}) documentation for details on available server API endpoints and client methods.
+See the [Mattermost Server SDK Reference]({{< ref "/integrate/reference/server/server-reference" >}}) and [Mattermost Client UI SDK Reference]({{< ref "/integrate/reference/webapp/webapp-reference" >}}) documentation for details on available server API endpoints and client methods.
 {{</note>}}
 
 ### Simple development and installation

@@ -39,7 +39,7 @@ Plugins are the most comprehensive way to add new features and customization, bu
 [Get started with plugins]({{< ref "/integrate/plugins" >}})
 
 {{<note "Tip:">}}
-See the [Mattermost Server SDK Reference]({{< ref "/integrate/plugins/components/server/reference" >}}) and [Mattermost Client UI SDK Reference]({{< ref "/integrate/plugins/components/webapp/reference" >}}) documentation for details on available server API endpoints and client methods.
+See the [Mattermost Server SDK Reference]({{< ref "/integrate/reference/server/server-reference" >}}) and [Mattermost Client UI SDK Reference]({{< ref "/integrate/reference/webapp/webapp-reference" >}}) documentation for details on available server API endpoints and client methods.
 {{</note>}}
 
 ## API

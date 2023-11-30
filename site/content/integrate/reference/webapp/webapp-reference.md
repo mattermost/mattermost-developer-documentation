@@ -1,6 +1,6 @@
 ---
-title: Web app reference
-heading: "Mattermost web app reference"
+title: Web app SDK reference
+heading: "Mattermost web app SDK reference"
 description: "Learn how to implement the PluginClass interface used by the Mattermost web app to initialize and uninitialize your plugin."
 date: 2018-07-10T00:00:00-05:00
 weight: 10
