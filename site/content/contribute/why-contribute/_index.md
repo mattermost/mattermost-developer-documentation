@@ -98,8 +98,8 @@ Good product and developer documentation content is as important as good code! I
 
     - Find a list of the Mattermost documentation specific repos on the [Contributor expectations page]({{< ref "/contribute/expectations/#before-contributing" >}}) of this guide.
 
-        {{<note "Tip:">}} 
-        The best place to discuss problems with the writing team is in the {{< newtabref href="https://community.mattermost.com/core/channels/dwg-documentation-working-group" title="Documentation Working Group channel" >}} where you can ping our technical writers with the group `@docsteam`.
+        {{<note "Tip:">}} The best place to discuss problems with the writing team is in the 
+        {{< newtabref href="https://community.mattermost.com/core/channels/dwg-documentation-working-group" title="Documentation Working Group channel" >}} where you can ping our technical writers with the group `@docsteam`.
         {{</note>}}
 
 2. If you’d like to contribute to our blog, website, or social media content, you also have a few options:
