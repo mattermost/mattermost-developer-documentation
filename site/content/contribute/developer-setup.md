@@ -21,7 +21,7 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
 
 # Prerequisites for Windows
 
-If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL) for Mattermost development. Docker, Go, and Node must all be run from within WSL, so you'll need to install them in WSL even if you already have the Windows versions of them installed.
+If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL) for Mattermost development. Go and Node must be run from within WSL, so you'll need to install them in WSL even if you already have the Windows versions of them installed.
 
 1. [Install WSL](https://learn.microsoft.com/en-us/windows/wsl/install) by running the following command as an administrator in PowerShell: `wsl --install`
 2. [Install Docker Desktop for Windows](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers#install-docker-desktop) on your Windows machine. Alternatively, you can also [install](https://docs.docker.com/engine/install/) docker engine directly on your linux distribution.
