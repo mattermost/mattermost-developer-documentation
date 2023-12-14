@@ -38,3 +38,7 @@ See the [Mattermost Server SDK Reference]({{< ref "/integrate/reference/server/s
 It's simple to set up a plugin development environment with the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="mattermost-plugin-starter-template" >}}. Just select "Use this template" when cloning the repository. Please see the [developer setup](https://developers.mattermost.com/integrate/plugins/developer-setup) and [developer workflow](https://developers.mattermost.com/integrate/plugins/developer-workflow) pages for more information.
 
 Read the plugins [overview]({{< ref "/integrate/plugins/overview" >}}) to learn more.
+
+{{<note "Tip:">}}
+Different plugin projects may require specific versions of Node.js. The recommended version for the given project is always defined in a file in the root of the repository called .nvmrc. You can use the tool {{< newtabref href="(https://nvm.sh)" title="Node Version Manager" >}} to install and switch between node versions in your terminal. If you have nvm installed, you can run nvm install anywhere in the plugin repository, and it will automatically find the .nvmrc file in the root, and install and use that version. If you already have that version installed, you can run nvm use, though nvm install is easier since you don't need to check if you already have it installed.
+{{</note>}}
