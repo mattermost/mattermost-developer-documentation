@@ -1,6 +1,6 @@
 ---
-title: Server reference
-heading: "Mattermost Server reference"
+title: Server SDK reference
+heading: "Mattermost Server SDK reference"
 description: "The plugin package is used by Mattermost Server plugins written in Go and enables you to manage and interact with the plugin environment."
 date: 2018-07-10T00:00:00-05:00
 weight: 10

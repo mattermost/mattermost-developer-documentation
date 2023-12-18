@@ -175,7 +175,7 @@ Get the client options to make requests to the server. Use this to create your o
 
 Reducers in Redux are pure functions that describe how the data in the store changes after any given action. Reducers will always produce the same resulting state for a given state and action. You can register a custom reducer for your plugin against the Redux store with the `registerReducer` function.
 
-### [registerReducer(reducer)]({{< ref "/integrate/plugins/components/webapp/reference#registerReducer" >}})
+### [registerReducer(reducer)]({{< ref "/integrate/reference/webapp/webapp-reference#registerReducer" >}})
 
 Registers a reducer against the Redux store. It will be accessible in Redux state under `state['plugins-<yourpluginid>']`. It generally accepts a reducer and returns undefined.
 
@@ -281,7 +281,7 @@ The container is doing two things. First, it's grabbing the current (logged in) 
 
 Now we can use `this.props.patchUser()` to update a user. The example component we made uses it to patch the current user's first name.
 
-To use our component in our plugin we would then use the registry in the initialization function of the plugin to register the component somewhere in the Mattermost UI. That is beyond the scope of this guide, but you can [read more about that here]({{< ref "/integrate/plugins/components/webapp/reference" >}}).
+To use our component in our plugin we would then use the registry in the initialization function of the plugin to register the component somewhere in the Mattermost UI. That is beyond the scope of this guide, but you can [read more about that here]({{< ref "/integrate/reference/webapp/webapp-reference" >}}).
 
 ## Available actions
 

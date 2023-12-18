@@ -109,7 +109,7 @@ See the [Slack compatibility]({{< ref "slack" >}}) page.
 
 #### If you are developing a plugin
 
-Use [`CreatePost`]({{< ref "/integrate/plugins/components/server/reference#API.CreatePost" >}}) plugin API. Make sure to set the  `UserId` of the post to the `UserId` of the Bot Account. If you want to create an ephemeral post, use [`SendEphemeralPost`]({{< ref "/integrate/plugins/components/server/reference#API.SendEphemeralPost" >}}) plugin API instead.
+Use [`CreatePost`]({{< ref "/integrate/reference/server/server-reference#API.CreatePost" >}}) plugin API. Make sure to set the  `UserId` of the post to the `UserId` of the Bot Account. If you want to create an ephemeral post, use [`SendEphemeralPost`]({{< ref "/integrate/reference/server/server-reference#API.SendEphemeralPost" >}}) plugin API instead.
 
 ## Troubleshoot slash commands
 

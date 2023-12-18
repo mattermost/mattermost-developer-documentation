@@ -55,10 +55,10 @@ Each type of existing integration is sort of a la carte, whereas the App framewo
 
 In the case of webhooks, the existing mechanism is only able to create posts, and only accepts an [incoming webhook]({{< ref "/integrate/webhooks/incoming" >}}) payload. It does not support other logic for handling arbitrary data structures from external systems.
 
-A plugin should be used when you need to [directly alter the UI]({{< ref "integrate/plugins/components/webapp/best-practices" >}}) in Mattermost or you have a feature that requires low latency with the server (such as replacing characters in any message [before it is saved]({{< ref "integrate/plugins/components/server/reference#Hooks.MessageWillBePosted" >}})).
+A plugin should be used when you need to [directly alter the UI]({{< ref "integrate/plugins/components/webapp/best-practices" >}}) in Mattermost or you have a feature that requires low latency with the server (such as replacing characters in any message [before it is saved]({{< ref "integrate/reference/server/server-reference#Hooks.MessageWillBePosted" >}})).
 
 {{<note "Note:">}}
-Plugins have several [UX hooks]({{< ref "integrate/plugins/components/server/reference#Hooks" >}}) that Apps cannot access. Please see the [plugin documentation]({{< ref "integrate/plugins" >}}) for more information.
+Plugins have several [UX hooks]({{< ref "integrate/reference/server/server-reference#Hooks" >}}) that Apps cannot access. Please see the [plugin documentation]({{< ref "integrate/plugins" >}}) for more information.
 {{</note>}}
 
 ### What's the difference between the Apps framework and the plugin framework?
