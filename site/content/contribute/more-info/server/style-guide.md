@@ -22,20 +22,9 @@ The following guidelines should be applied to both new and existing code. Howeve
 
 ### Project layout
 
-When starting with a new application, it's very tempting to declare a bunch of packages and interfaces right off the bat. Avoid that.  
+When creating a new Go module, please follow the [standardized guidelines](https://go.dev/doc/modules/layout) of the Go team.
 
-It's very hard to know how the project will grow or what the ideal package boundaries are when starting with a project. Don't split your code into `model`, `store`, `app` along with a bunch of interfaces in the first commit itself. Prematurely separating them will lead to an incorrect package API that may be hard to correct later on.
-
-Instead, put everything inside an `internal` package as your starting point. For example, if the name of your project is `mattercool`, the following can be a good first initial structure:
-
-```
-|
-|- cmd/mattercool
-|- internal/server
-|- go.mod,go.sum
-```
-
-Putting everything under `internal` has the advantage that you're free to change whatever you want without any fallout. After some time, when the project grows, package boundaries will start to appear. At that point, start to separate into sub-packages.
+[This blog article](https://go.dev/blog/package-names) provides additional guidance on package names.
 
 Following are some of the anti-patterns to keep in mind:
 
