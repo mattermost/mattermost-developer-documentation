@@ -139,14 +139,14 @@ And here is how it renders in Mattermost:
 
 Yes, you can use the {{< newtabref href="https://api.mattermost.com/#operation/CreatePost" title="create post RESTful API" >}}.
 
-You need to add an `attachment` key to the post's JSON. The value is an array of message attachments you want attached to the post. See below for an example curl command.
+You need to add an `attachments` key to the post’s `props` JSON field. The value is an array of message attachments you want attached to the post. See below for an example curl command.
 
-`curl -i -X POST -H 'Content-Type: application/json' -d '{"channel_id":"qmd5oqtwoibz8cuzxzg5ekshgr", "message":"Test message #testing", "attachments": [{"pretext": "This is the attachment pretext.","text": "This is the attachment text."}]}' http://{your-mattermost-site}/posts`
+`curl -i -X POST -H 'Content-Type: application/json' -d '{"channel_id":"qmd5oqtwoibz8cuzxzg5ekshgr", "message":"Test message #testing", "attachments": [{"pretext": "This is the attachment pretext.","text": "This is the attachment text."}]}' https://{your-mattermost-site}/api/v4/posts`
 
 Below is an example HTTP request:
 
 ```http request
-POST /posts HTTP/1.1
+POST /api/v4/posts HTTP/1.1
 Host: {your-mattermost-site}
 User-Agent: curl/7.63.0
 Accept: */*
@@ -154,4 +154,25 @@ Content-Type: application/json
 Content-Length: 192
 
 {"channel_id":"qmd5oqtwoibz8cuzxzg5ekshgr", "message":"Test message #testing", "attachments": [{"pretext": "This is the attachment pretext.","text": "This is the attachment text."}]}
+```
+
+### Can I post a message attachment using a webhook?
+
+Yes, you can also use the {{< newtabref href="https://api.mattermost.com/#operation/CreatePost" title="create post RESTful API" >}} to post a message attachment using a webhook.
+
+You need to add an `attachments` key to the post's JSON. The value is an array of message attachments you want attached to the post. See below for an example curl command.
+
+`curl -i -X POST -H 'Content-Type: application/json' -d '{"text":"Test message #testing", "attachments": [{"pretext": "This is the attachment pretext.","text": "This is the attachment text."}]}' https://{your-mattermost-site}/api/v4/posts`
+
+Below is an example HTTP request:
+
+```http request
+POST /api/v4/posts HTTP/1.1
+Host: {your-mattermost-site}
+User-Agent: curl/7.63.0
+Accept: */*
+Content-Type: application/json
+Content-Length: 192
+
+{"text":"Test message #testing", "attachments": [{"pretext": "This is the attachment pretext.","text": "This is the attachment text."}]}
 ```
