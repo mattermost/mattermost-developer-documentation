@@ -139,7 +139,7 @@ And here is how it renders in Mattermost:
 
 Yes, you can use the {{< newtabref href="https://api.mattermost.com/#operation/CreatePost" title="create post RESTful API" >}}.
 
-You need to add an “attachment” key to the post's JSON. The value is an array of message attachments you want attached to the post. See below for an example curl command.
+You need to add an `attachment` key to the post's JSON. The value is an array of message attachments you want attached to the post. See below for an example curl command.
 
 `curl -i -X POST -H 'Content-Type: application/json' -d '{"channel_id":"qmd5oqtwoibz8cuzxzg5ekshgr", "message":"Test message #testing", "attachments": [{"pretext": "This is the attachment pretext.","text": "This is the attachment text."}]}' http://{your-mattermost-site}/posts`
 
