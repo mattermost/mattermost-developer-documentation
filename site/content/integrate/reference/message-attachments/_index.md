@@ -167,7 +167,7 @@ You need to add an `attachments` key to the post's JSON. The value is an array o
 Below is an example HTTP request:
 
 ```http request
-POST /api/v4/posts HTTP/1.1
+POST /hooks/{your-webhook-id} HTTP/1.1
 Host: {your-mattermost-site}
 User-Agent: curl/7.63.0
 Accept: */*
