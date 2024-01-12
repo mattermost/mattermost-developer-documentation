@@ -158,7 +158,7 @@ Content-Length: 192
 
 ### Can I post a message attachment using a webhook?
 
-Yes, you can also use the {{< newtabref href="https://api.mattermost.com/#operation/CreatePost" title="create post RESTful API" >}} to post a message attachment using a webhook.
+Yes, you can also use an [incoming webhook]({{< ref "/integrate/webhooks/incoming" >}}) to post a message attachment.
 
 You need to add an `attachments` key to the post's JSON. The value is an array of message attachments you want attached to the post. See below for an example curl command.
 
