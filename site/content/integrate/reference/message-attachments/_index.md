@@ -146,7 +146,7 @@ You need to add an `attachments` key to the post’s `props` JSON field. The val
 Below is an example HTTP request:
 
 ```http request
-POST api/v4/posts HTTP/1.1
+POST /api/v4/posts HTTP/1.1
 Host: {your-mattermost-site}
 User-Agent: curl/7.63.0
 Accept: */*
