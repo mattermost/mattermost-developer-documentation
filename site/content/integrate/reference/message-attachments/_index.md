@@ -162,7 +162,7 @@ Yes, you can also use an [incoming webhook]({{< ref "/integrate/webhooks/incomin
 
 You need to add an `attachments` key to the post's JSON. The value is an array of message attachments you want attached to the post. See below for an example curl command.
 
-`curl -i -X POST -H 'Content-Type: application/json' -d '{"text":"Test message #testing", "attachments": [{"pretext": "This is the attachment pretext.","text": "This is the attachment text."}]}' https://{your-mattermost-site}/api/v4/posts`
+`curl -i -X POST -H 'Content-Type: application/json' -d '{"text":"Test message #testing", "attachments": [{"pretext": "This is the attachment pretext.","text": "This is the attachment text."}]}' https://{your-mattermost-site}/hooks/{your-webhook-id}`
 
 Below is an example HTTP request:
 
