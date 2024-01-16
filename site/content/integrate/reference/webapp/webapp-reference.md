@@ -1,13 +1,15 @@
 ---
-title: Web app SDK reference
-heading: "Mattermost web app SDK reference"
+title: Web app plugin SDK reference
+heading: "Mattermost web app plugin SDK reference"
 description: "Learn how to implement the PluginClass interface used by the Mattermost web app to initialize and uninitialize your plugin."
 date: 2018-07-10T00:00:00-05:00
 weight: 10
 aliases:
   - /extend/plugins/webapp/reference/
-  - /integrate/plugins/webapp/reference/
+  - /integrate/plugins/components/webapp/reference/
 ---
+
+Visit the [Plugins]({{< ref "/integrate/plugins" >}}) section to learn more about [developing Mattermost plugins]({{< ref "/integrate/plugins/developer-setup" >}}) and our recommended [developer workflow]({{< ref "/integrate/plugins/developer-workflow" >}}) for Mattermost plugins.
 
 ## Table of contents
 
