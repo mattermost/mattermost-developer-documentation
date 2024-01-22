@@ -91,7 +91,7 @@ For the sake of making this guide simple we located the files at `/home/ubuntu/m
     ```sh
     $ openssl pkcs12 -in Certificates.p12 -out aps_production_priv.pem -nodes -clcerts -passin pass: -legacy
     ```
-- Verify the certificate works with apple
+- Verify the certificate works with Apple
     ```sh
     $ openssl s_client -connect gateway.push.apple.com:2195 -cert aps_production.pem -key aps_production_priv.pem
     ```
