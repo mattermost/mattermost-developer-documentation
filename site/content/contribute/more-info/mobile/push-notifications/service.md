@@ -89,7 +89,7 @@ For the sake of making this guide simple we located the files at `/home/ubuntu/m
     ```
 - Extract the private key from the certificate you exported ..
     ```sh
-    $ openssl pkcs12 -in Certificates.p12 -out aps_production_priv.pem -nodes -clcerts -passin pass:
+    $ openssl pkcs12 -in Certificates.p12 -out aps_production_priv.pem -nodes -clcerts -passin pass: -legacy
     ```
 - Verify the certificate works with apple
     ```sh
