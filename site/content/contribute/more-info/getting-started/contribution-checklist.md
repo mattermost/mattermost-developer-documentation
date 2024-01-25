@@ -21,7 +21,7 @@ Follow this checklist for submitting a pull request (PR):
 3. Your ticket is a Help Wanted GitHub issue for the Mattermost project you're contributing to.
     - If not, follow the process [here]({{< ref "/contribute/more-info/getting-started/contributions-without-ticket" >}}).
 4. Your code is thoroughly tested, including appropriate [unit, end-to-end, and integration tests for webapp]({{< ref "/contribute/more-info/getting-started/test-guideline" >}}).
-6. If applicable, user interface strings are included in localization files:
+5. If applicable, user interface strings are included in localization files:
     - {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/server/i18n/en.json" title="mattermost/server/en.json" >}}
     - {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/webapp/channels/src/i18n/en.json" title="mattermost/webapp/channels/src/i18n/en.json" >}}
     - {{< newtabref href="https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json" title="mattermost-mobile/assets/base/i18n/en.json" >}}
