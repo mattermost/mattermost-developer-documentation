@@ -128,3 +128,34 @@ GetUsers(options *model.UserGetOptions) ([]*model.User, *model.AppError)
 ```
 
 Old servers won't do anything with new, unrecognized fields, but also won't break if they are present.
+
+
+## How to expose performance metrics for a plugin?
+
+From Mattermost v9.4, a [`ServeMetrics`]({{< ref "/integrate/reference/server/server-reference#API.ServeMetrics" >}}) hook can be used to expose performance metrics in the [open metrics format](https://openmetrics.io/) under the common HTTP listener controlled by the [`MetricsSettings.ListenAddress`](https://docs.mattermost.com/configure/environment-configuration-settings.html#listen-address-for-performance) config setting.
+
+Data returned by the hook's implementation through the given `http.ResponseWriter` object will be served through the `http://SITE_URL:8067/plugins/PLUGIN_ID/metrics` URL.
+
+Here's a sample implementation using the [Prometheus HTTP client
+library](https://pkg.go.dev/github.com/prometheus/client_golang/prometheus):
+
+```go
+import (
+  "net/http"
+
+  "github.com/mattermost/mattermost/server/public/plugin"
+
+  "github.com/prometheus/client_golang/prometheus"
+  "github.com/prometheus/client_golang/prometheus/promhttp"
+)
+
+func (p *Plugin) initMetrics() {
+  p.registry = prometheus.NewRegistry()
+  // ... Registrations
+}
+
+func (p *Plugin) ServeMetrics(_ *plugin.Context, w http.ResponseWriter, r *http.Request) {
+	promhttp.HandlerFor(p.registry, promhttp.HandlerOpts{}).ServeHTTP(w, r)
+}
+```
+
