@@ -27,13 +27,13 @@ Follow this checklist for submitting a pull request (PR):
     - {{< newtabref href="https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json" title="mattermost-mobile/assets/base/i18n/en.json" >}}
 
     5.1. In the webapp repository run `make i18n-extract` to generate the new/updated strings.
-7. The PR is submitted against the Mattermost `master` branch from your fork.
-8. The PR title begins with the Jira or GitHub ticket ID (e.g. `[MM-394]` or `[GH-394]`) and summary template is filled out.
-9. If your PR adds or changes a RESTful API endpoint, please update the {{< newtabref href="https://github.com/mattermost/mattermost-api-reference" title="API documentation" >}}.
-10. If your PR adds a new plugin API method or hook, please add an example to the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="Plugin Starter Template" >}}.
-11. If QA review is applicable, your PR includes test steps or expected results.
-12. If the PR adds a substantial feature, a feature flag is included. Please see [criteria here]({{< ref "/contribute/more-info/server/feature-flags#when-to-use" >}}).
-13. Your PR includes basic documentation about the change/addition you're submitting. View our {{< newtabref href="https://handbook.mattermost.com/operations/research-and-development/product/technical-writing-team-handbook#submit-documentation-with-your-pr-community" title="guidelines" >}} for more information about submitting documentation and the review process.
+6. The PR is submitted against the Mattermost `master` branch from your fork.
+7. The PR title begins with the Jira or GitHub ticket ID (e.g. `[MM-394]` or `[GH-394]`) and summary template is filled out.
+8. If your PR adds or changes a RESTful API endpoint, please update the {{< newtabref href="https://github.com/mattermost/mattermost-api-reference" title="API documentation" >}}.
+9. If your PR adds a new plugin API method or hook, please add an example to the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template" title="Plugin Starter Template" >}}.
+10. If QA review is applicable, your PR includes test steps or expected results.
+11. If the PR adds a substantial feature, a feature flag is included. Please see [criteria here]({{< ref "/contribute/more-info/server/feature-flags#when-to-use" >}}).
+12. Your PR includes basic documentation about the change/addition you're submitting. View our {{< newtabref href="https://handbook.mattermost.com/operations/research-and-development/product/technical-writing-team-handbook#submit-documentation-with-your-pr-community" title="guidelines" >}} for more information about submitting documentation and the review process.
 
 Once submitted, the automated build process must pass in order for the PR to be accepted. Any errors or failures need to be addressed in order for the PR to be accepted. Next, the PR goes through [code review]({{< ref "/contribute/more-info/getting-started/code-review" >}}). To learn about the review process for each project, read the `CONTRIBUTING.md` file of that GitHub repository. 
 
