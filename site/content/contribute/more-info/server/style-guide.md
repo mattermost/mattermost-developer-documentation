@@ -161,7 +161,7 @@ func OtherFunction() {
 
 ### Logging
 
-Log messages should be annotated with contextual information in the form of key-value pairs to make it easier to identify the context they originated from. The keys should use snake_case.
+Log messages should be annotated with contextual information in the form of key-value pairs to make it easier to identify the context they originated from. The keys should use snake_case. Refer to the corresponding JSON struct tags for key names.
 
 ```go
 func (a *App) SendNotifications(...) {
