@@ -159,7 +159,27 @@ func OtherFunction() {
 }
 ```
 
-### Log levels
+### Logging
+
+Log messages should be annotated with contextual information in the form of key-value pairs to make it easier to identify the context they originated from. The keys should use snake_case. Refer to the corresponding JSON struct tags for key names.
+
+```go
+func (a *App) SendNotifications(...) {
+	..
+	_, err := a.sendOutOfChannelMentions(c, sender, post, channel, ...)
+		if err != nil {
+			c.Logger().Error(
+				"Failed to send warning for out of channel mentions",
+				mlog.String("user_id", sender.Id),
+				mlog.String("post_id", post.Id),
+				mlog.Err(err),
+			)
+		}
+	..
+}
+```
+
+#### Log levels
 
 The purpose of logging is to provide observability - it enables the application communicate back to the administrator about what is happening. To communicate effectively logs should be meaningful and concise. To achieve this, log lines should conform to one of the definitions below:
 
