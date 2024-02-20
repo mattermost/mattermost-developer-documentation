@@ -4,7 +4,7 @@ heading: Outgoing OAuth connections
 weight: 20
 ---
 
-From Mattermost v9.6, you can integrate Mattermost with custom integrations hosted within your internal OAuth infrastructure. More specifically, integrations like [slash commands](https://developers.mattermost.com/integrate/slash-commands/custom), [outgoing webhooks](https://developers.mattermost.com/integrate/webhooks/outgoing), [interactive dialogs](https://developers.mattermost.com/integrate/plugins/interactive-dialogs), and [interactive messages](https://developers.mattermost.com/integrate/plugins/interactive-messages) support communicating via both the [Client Credentials](https://oauth.net/2/grant-types/client-credentials) and [Password](https://oauth.net/2/grant-types/password) OAuth 2.0 grant types.
+From Mattermost v9.6, you can integrate Mattermost with custom integrations hosted within your internal OAuth infrastructure. More specifically, [slash commands](https://developers.mattermost.com/integrate/slash-commands/custom) now support communicating to external systems using the [Client Credentials](https://oauth.net/2/grant-types/client-credentials) OAuth 2.0 grant type. In a future iteration of this feature, we plan to support [outgoing webhooks](https://developers.mattermost.com/integrate/webhooks/outgoing), [interactive dialogs](https://developers.mattermost.com/integrate/plugins/interactive-dialogs), and [interactive messages](https://developers.mattermost.com/integrate/plugins/interactive-messages).
 
 To configure Mattermost to communicate with your OAuth system, you first need to create an Outgoing OAuth Connection in Mattermost. This involves providing the following values in the connection configuration form:
 
@@ -27,7 +27,7 @@ Now we can configure our OAuth connection. With the values configured in the exa
 - Mattermost will request an access token from `Token URL`, by providing the `Client Id` and `Client Secret` via a URL-encoded form submission.
 - Mattermost will send a request to your slash command submission handler, with the access token in the request's `Authorization` HTTP header, in the format of `Bearer (token)`.
 
-Any further requests to your integration (such as interactive dialog submissions) will perform the above steps as well.
+In the future, any further requests to your integration (such as interactive dialog submissions) will perform the above steps as well.
 
 Notice that the `Audience URL` configured below ends in a wildcard `*`. This means that an access token will be retrieved for any integration request that matches that URL, i.e. any URL that has the prefix of the string leading up to the `*` character. If you would like to restrict the OAuth connection to exact URLs, simply omit the `*`, and supply the exact URLs you would like to configure for your integration. You can come back to this form to update these values at any time. Note that the `Client Secret` will not be shown again when you return to this form.
 
