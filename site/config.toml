@@ -32,8 +32,8 @@ enableEmoji = true
 
   [params.notification]
     enable = true
-    url = "https://mattermost.com/blog/inc-recognizes-mattermost-as-a-power-partner/"
-    text = "Inc. Recognizes Mattermost as a 2023 'Power Partner'!"
+    url = "https://mattermost.com/webinar/cybersecurity-incident-response/"
+    text = "[WEBINAR] Learn how to secure mission-critical work"
 
   [params.search]
     enable = true
