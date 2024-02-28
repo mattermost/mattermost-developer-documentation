@@ -1,7 +1,7 @@
 ---
 title: Slack compatibility
 heading: Slack compatibility
-weight: 30
+weight: 40
 ---
 Mattermost makes it easy to migrate integrations written for Slack to Mattermost.
 
