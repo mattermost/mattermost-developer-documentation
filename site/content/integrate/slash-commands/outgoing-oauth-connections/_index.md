@@ -1,7 +1,7 @@
 ---
 title: Outgoing OAuth connections
 heading: Outgoing OAuth connections
-weight: 20
+weight: 30
 ---
 
 From Mattermost v9.6, you can integrate Mattermost with custom integrations hosted within your internal OAuth infrastructure. More specifically, [slash commands](https://developers.mattermost.com/integrate/slash-commands/custom) now support communicating to external systems using the [Client Credentials](https://oauth.net/2/grant-types/client-credentials) OAuth 2.0 grant type. In a future iteration of this feature, we plan to support [outgoing webhooks](https://developers.mattermost.com/integrate/webhooks/outgoing), [interactive dialogs](https://developers.mattermost.com/integrate/plugins/interactive-dialogs), and [interactive messages](https://developers.mattermost.com/integrate/plugins/interactive-messages).
