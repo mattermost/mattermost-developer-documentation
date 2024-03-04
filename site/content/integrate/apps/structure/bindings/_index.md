@@ -77,7 +77,7 @@ For example, a slash command binding that returns one day or one week worth of w
               "location": "day",
               "label": "Weather for today",
               "description": "Show the weather conditions for today",
-              "call": {
+              "submit": {
                 "path": "/weather/day"
               }
             },
@@ -85,7 +85,7 @@ For example, a slash command binding that returns one day or one week worth of w
               "location": "week",
               "label": "Weather for the next week",
               "description": "Show the weather conditions for the next week",
-              "call": {
+              "submit": {
                 "path": "/weather/week"
               }
             }

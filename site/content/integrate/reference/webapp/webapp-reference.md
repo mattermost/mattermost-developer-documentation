@@ -1,13 +1,15 @@
 ---
-title: Web app reference
-heading: "Mattermost web app reference"
+title: Web app plugin SDK reference
+heading: "Mattermost web app plugin SDK reference"
 description: "Learn how to implement the PluginClass interface used by the Mattermost web app to initialize and uninitialize your plugin."
 date: 2018-07-10T00:00:00-05:00
 weight: 10
 aliases:
   - /extend/plugins/webapp/reference/
-  - /integrate/plugins/webapp/reference/
+  - /integrate/plugins/components/webapp/reference/
 ---
+
+Visit the [Plugins]({{< ref "/integrate/plugins" >}}) section to learn more about [developing Mattermost plugins]({{< ref "/integrate/plugins/developer-setup" >}}) and our recommended [developer workflow]({{< ref "/integrate/plugins/developer-workflow" >}}) for Mattermost plugins.
 
 ## Table of contents
 
@@ -132,12 +134,12 @@ The theme object has the following properties:
 
 ## Exported libraries and functions
 
-The web app exposes a number of {{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js" title="exported libraries and functions" >}} on the `window` object for plugins to use. To avoid bloating your plugin, we recommend depending on these using {{< newtabref href="https://webpack.js.org/configuration/externals/" title="Webpack externals" >}} or importing them manually from the window. Below is a list of the exposed libraries and functions:
+The web app exposes a number of {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/webapp/channels/src/plugins/export.js" title="exported libraries and functions" >}} on the `window` object for plugins to use. To avoid bloating your plugin, we recommend depending on these using {{< newtabref href="https://webpack.js.org/configuration/externals/" title="Webpack externals" >}} or importing them manually from the window. Below is a list of the exposed libraries and functions:
 
 | Library         | Exported Name         | Description                                                        |
 |-----------------|-----------------------|--------------------------------------------------------------------|
-| react           | window.React          | {{< newtabref href="https://reactjs.org/" title="ReactJS" >}}                                    |
-| react-dom       | window.ReactDOM       | {{< newtabref href="https://reactjs.org/docs/react-dom.html" title="ReactDOM" >}}                |
+| react           | window.React          | {{< newtabref href="https://react.dev/" title="ReactJS" >}}                                    |
+| react-dom       | window.ReactDOM       | {{< newtabref href="https://react.dev/docs/react-dom.html" title="ReactDOM" >}}                |
 | redux           | window.Redux          | {{< newtabref href="https://redux.js.org/" title="Redux" >}}                                     |
 | react-redux     | window.ReactRedux     | {{< newtabref href="https://github.com/reactjs/react-redux" title="React bindings for Redux" >}} |
 | react-bootstrap | window.ReactBootstrap | {{< newtabref href="https://react-bootstrap.github.io/" title="Bootstrap for React" >}}          |
@@ -145,7 +147,7 @@ The web app exposes a number of {{< newtabref href="https://github.com/mattermos
 | post-utils      | window.PostUtils      | Mattermost post utility functions (see below)                      |
 
 {{<note "Note:">}}
-Some sets of functions like "Functions exposed on window for plugin to use" and "Components exposed on window for internal plugin use only" are not listed here. You can refer to {{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/master/plugins/export.js" title="export.js" >}} file which contains all the exports.
+Some sets of functions like "Functions exposed on window for plugin to use" and "Components exposed on window for internal plugin use only" are not listed here. You can refer to {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/webapp/channels/src/plugins/export.js" title="export.js" >}} file which contains all the exports.
 {{</note>}}
 
 

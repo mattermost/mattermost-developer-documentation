@@ -19,7 +19,22 @@ If you're migrating from before the monorepo see the [migration notes]({{< ref "
 If you're developing plugins, see the plugin [developer setup]({{< ref "/integrate/plugins/developer-setup" >}}) documentation.
 {{</note>}}
 
+# Prerequisites for Windows
+
+If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL) for Mattermost development. Go and Node must be run from within WSL, so you'll need to install them in WSL even if you already have the Windows versions of them installed.
+
+1. [Install WSL](https://learn.microsoft.com/en-us/windows/wsl/install) by running the following command as an administrator in PowerShell: `wsl --install`
+2. [Install Docker Desktop for Windows](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers#install-docker-desktop) on your Windows machine. Alternatively, you can also [install](https://docs.docker.com/engine/install/) docker engine directly on your linux distribution.
+3. Perform the rest of the operations (except Docker installation) within the WSL environment and not in Windows.
+
 # Setup the Mattermost Server
+
+1. Install `make`.
+    - On Ubuntu, you can install `build essential` tools which will also take care of installing the `make`:
+
+   ```sh
+   sudo apt install build-essential
+   ```
 
 1. Install [Docker](https://www.docker.com/).
 
@@ -30,16 +45,14 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
     ```sh
     ulimit -n 8096
     ```
-1. Install NVM and use it to install the required version of Node.js:
-
-    - First, install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
-
-    - Then, use NVM to install the correct version of Node.js for the Mattermost web app:
-        ```sh
-        nvm install
-        ```
-
+    
 1. If you don't have it already, install libpng with your preferred package manager.
+
+    - If you are on ARM based Mac, you'll need to install [Rosetta](https://support.apple.com/en-in/HT211861) to make `libpng` work. Rosetta can be installed by the following command-
+
+        ```sh
+        softwareupdate --install-rosetta
+        ```
 
 1. Fork https://github.com/mattermost/mattermost.
 
@@ -48,6 +61,15 @@ If you're developing plugins, see the plugin [developer setup]({{< ref "/integra
     ```sh
     git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost.git
     ```
+    
+1. Install NVM and use it to install the required version of Node.js:
+
+    - First, install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
+
+    - Then, use NVM to install the correct version of Node.js for the Mattermost web app (this should be run within the `webapp` directory):
+        ```sh
+        nvm install
+        ```
 
 1. Start the server:
 

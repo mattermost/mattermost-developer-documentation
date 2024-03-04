@@ -14,10 +14,10 @@ Customizations to the Mattermost Web App can be performed in cases where you nee
 ## Customization steps 
 With that in mind, customizing and deploying your Mattermost Web App can be done in a few steps:  
 
-1. Fork the {{< newtabref href="https://github.com/mattermost/mattermost-webapp" title="mattermost-webapp" >}} repository and then clone your fork in your local environment.
+1. Fork the {{< newtabref href="https://github.com/mattermost/mattermost" title="mattermost" >}} repository and then clone your fork in your local environment.
    
     ```shell
-    git clone https://github.com/<yourgithubusername>/mattermost-webapp
+    git clone https://github.com/<yourgithubusername>/mattermost
     ```
 
 2. Create a separate branch for your customized version, as it's not recommended to perform them in the `master` branch (more details about that in the next section regarding rebasing).
@@ -26,7 +26,7 @@ With that in mind, customizing and deploying your Mattermost Web App can be done
     git checkout -b custom_branch
     ```
    
-3. Perform customization tasks by replacing image assets, changing strings, altering the UI, and whatever else may be necessary. Be mindful not to violate any of the {{< newtabref href="guidelines on trademark use" title="guidelines on trademark use" >}} during this process.
+3. Perform customization tasks by replacing image assets, changing strings, altering the UI, and whatever else may be necessary. Be mindful not to violate any of the {{< newtabref href="https://mattermost.com/trademark-standards-of-use/" title="guidelines on trademark use" >}} during this process.
 
 4. Once customization has been completed, build the files that will be used in your deployment and generate `mattermost-webapp.tar.gz` containing them.
 
@@ -54,14 +54,14 @@ With that in mind, customizing and deploying your Mattermost Web App can be done
     ```
 
 ## Rebasing to latest version
-Challenges arise when creating a separate custom branch from an active open-source project like `mattermost-webapp`. As the project gets new commits and pull requests on a daily basis, your custom webapp can quickly become outdated.
+Challenges arise when creating a separate custom branch from an active open-source project like `mattermost`. As the project gets new commits and pull requests on a daily basis, your custom webapp can quickly become outdated.
 
 To deal with that, you'll need to leverage Git's {{< newtabref href="https://git-scm.com/docs/git-rebase#_interactive_mode" title="interactive rebasing functionality" >}} in the following way:
 
-1. Add an upstream with the original `mattermost-webapp` repository.
+1. Add an upstream with the original `mattermost` repository.
 
     ```shell
-    git remote add upstream https://github.com/mattermost/mattermost-webapp.git
+    git remote add upstream https://github.com/mattermost/mattermost.git
     ```
 
 2. Update `master` branch to latest upstream commit.

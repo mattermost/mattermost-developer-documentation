@@ -2,7 +2,7 @@ const { parse } = require('@typescript-eslint/typescript-estree');
 const fetch = require('sync-fetch');
 
 // Parse the registry and extract the class methods, parameters and leading comments.
-const registryContent = fetch('https://raw.githubusercontent.com/mattermost/mattermost-webapp/master/plugins/registry.ts').text();
+const registryContent = fetch('https://raw.githubusercontent.com/mattermost/mattermost/master/webapp/channels/src/plugins/registry.ts').text();
 const registryParsed = parse(registryContent, { comment: true, loc: true });
 
 const pluginRegistryClassMethods = registryParsed.body.find(statement =>

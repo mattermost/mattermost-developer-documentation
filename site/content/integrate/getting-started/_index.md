@@ -38,6 +38,10 @@ Plugins are the most comprehensive way to add new features and customization, bu
 
 [Get started with plugins]({{< ref "/integrate/plugins" >}})
 
+{{<note "Tip:">}}
+See the [Mattermost Server SDK Reference]({{< ref "/integrate/reference/server/server-reference" >}}) and [Mattermost Client UI SDK Reference]({{< ref "/integrate/reference/webapp/webapp-reference" >}}) documentation for details on available server API endpoints and client methods.
+{{</note>}}
+
 ## API
 
 Interact with users, channels, and everything else that happens on your Mattermost server via a modern REST API that meets the OpenAPI specification. The API is for developers who want to build bots and other interactions that don’t rely on customizing the Mattermost user experience.

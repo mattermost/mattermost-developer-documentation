@@ -36,13 +36,13 @@ Let's start with `git revert`. This is one of many different ways to "undo" some
 
 Just over two years ago, I began working at Mattermost. As part of a team investigating performance improvements, I had been asked to dig into a slow SQL query to determine if there was an opportunity for improvement. After several days of analysis and testing, I {{< newtabref href="https://community.mattermost.com/core/pl/ezfwp364ct8bbewbji3ikpusrr" title="found" >}} a major issue and a very promising improvement: a query that took upwards of 3 seconds in a large dataset could be modified to run in just a few milliseconds instead. I implemented the improvement, we tested it in our own environment, and ultimately shipped it in Mattermost v4.9.
 
-Just over a month later, one of larger customers upgraded to v4.9 and found their system grinding to a halt. We hopped on an emergency call to glean some information, and everything pointed to my changes making things much worse instead of much better. You can read the {{< newtabref href="https://community.mattermost.com/core/pl/n8bfq7wq77rkff8mgrrstqeuye" title="details of my second investigation" >}} into what went wrong, but in the end, we decided to {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/8659" title="revert my changes" >}} and ship a patch release.
+Just over a month later, one of larger customers upgraded to v4.9 and found their system grinding to a halt. We hopped on an emergency call to glean some information, and everything pointed to my changes making things much worse instead of much better. You can read the {{< newtabref href="https://community.mattermost.com/core/pl/n8bfq7wq77rkff8mgrrstqeuye" title="details of my second investigation" >}} into what went wrong, but in the end, we decided to {{< newtabref href="https://github.com/mattermost/mattermost/pull/8659" title="revert my changes" >}} and ship a patch release.
 
 When I undid these changes, I wanted to bring the code back to exactly the way it was before my changes. We already knew how that code behaved for this customer, and the goal was to restore stability by using the old code instead. I could, of course, make the changes manually: finding the old code and copying it over top of the new code. But one of Git's built-in commands is an operation to do this automatically. Let's see it in action!
 
 ```sh
 # Checkout the mattermost-server repository
-git clone https://github.com/mattermost/mattermost-server.git
+git clone https://github.com/mattermost/mattermost.git
 cd mattermost-server
 
 # Go back in time to the v4.9.0 tag
@@ -83,7 +83,7 @@ Let's look at the most recent such feature release: v5.20.
 
 ```sh
 # Checkout the mattermost-server repository (if not already done)
-git clone https://github.com/mattermost/mattermost-server.git
+git clone https://github.com/mattermost/mattermost.git
 cd mattermost-server
 
 # Examine the combined history of release-5.20 and master
@@ -158,7 +158,7 @@ Let me walk you through an example. We're going to see about improving some code
 
 ```sh
 # Checkout the mattermost-server repository (if not already done)
-git clone https://github.com/mattermost/mattermost-server.git
+git clone https://github.com/mattermost/mattermost.git
 cd mattermost-server
 
 git checkout -b test-git-rebase

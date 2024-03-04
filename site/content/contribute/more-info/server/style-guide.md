@@ -22,20 +22,9 @@ The following guidelines should be applied to both new and existing code. Howeve
 
 ### Project layout
 
-When starting with a new application, it's very tempting to declare a bunch of packages and interfaces right off the bat. Avoid that.  
+When creating a new Go module, please follow the [standardized guidelines](https://go.dev/doc/modules/layout) of the Go team.
 
-It's very hard to know how the project will grow or what the ideal package boundaries are when starting with a project. Don't split your code into `model`, `store`, `app` along with a bunch of interfaces in the first commit itself. Prematurely separating them will lead to an incorrect package API that may be hard to correct later on.
-
-Instead, put everything inside an `internal` package as your starting point. For example, if the name of your project is `mattercool`, the following can be a good first initial structure:
-
-```
-|
-|- cmd/mattercool
-|- internal/server
-|- go.mod,go.sum
-```
-
-Putting everything under `internal` has the advantage that you're free to change whatever you want without any fallout. After some time, when the project grows, package boundaries will start to appear. At that point, start to separate into sub-packages.
+[This blog article](https://go.dev/blog/package-names) provides additional guidance on package names.
 
 Following are some of the anti-patterns to keep in mind:
 
@@ -170,7 +159,27 @@ func OtherFunction() {
 }
 ```
 
-### Log levels
+### Logging
+
+Log messages should be annotated with contextual information in the form of key-value pairs to make it easier to identify the context they originated from. The keys should use snake_case. Refer to the corresponding JSON struct tags for key names.
+
+```go
+func (a *App) SendNotifications(...) {
+	..
+	_, err := a.sendOutOfChannelMentions(c, sender, post, channel, ...)
+		if err != nil {
+			c.Logger().Error(
+				"Failed to send warning for out of channel mentions",
+				mlog.String("user_id", sender.Id),
+				mlog.String("post_id", post.Id),
+				mlog.Err(err),
+			)
+		}
+	..
+}
+```
+
+#### Log levels
 
 The purpose of logging is to provide observability - it enables the application communicate back to the administrator about what is happening. To communicate effectively logs should be meaningful and concise. To achieve this, log lines should conform to one of the definitions below:
 
@@ -247,7 +256,7 @@ func (worker *Worker) Run() {
 
 ### Performance sensitive areas
 
-Any PR that can potentially have a performance impact on the `mattermost-server` codebase is encouraged to have a performance review. For more information, please see this {{< newtabref href="https://docs.google.com/document/d/1Uzt3XHyKhDKipkuCmESkHoPio7vz7VYS4N_5_9ffgNU/edit" title="link" >}}. The following is a brief list of indicators that should to undergo a performance review:
+Any PR that can potentially have a performance impact on the `mattermost/server` codebase is encouraged to have a performance review. For more information, please see this {{< newtabref href="https://docs.google.com/document/d/1Uzt3XHyKhDKipkuCmESkHoPio7vz7VYS4N_5_9ffgNU/edit" title="link" >}}. The following is a brief list of indicators that should to undergo a performance review:
 
 - New features that might require benchmarks and/or are missing load-test coverage.
 - PRs touching performance of critical parts of the codebase (e.g. `Hub`/`WebConn`).
@@ -260,12 +269,6 @@ Any PR that can potentially have a performance impact on the `mattermost-server`
 - Use of locks and/or other synchronization primitives.
 - Regular expressions, especially when creating `regexp.MustCompile` dynamically every time.
 - Use of the `reflect` package.
-
-### Generics
-
-Generics is a new feature coming in Go 1.18. This is a significant language feature which is yet to be used widely and the patterns around it are unknown. Following the Go team's {{< newtabref href="https://groups.google.com/g/golang-dev/c/iuB22_G9Kbo/m/7B1jd1I3BQAJ" title="recommendation" >}}, it's advised not to use these features in the main server unless we have more experience from the broader community in using them and some clear patterns emerge.
-
-You are welcome to use it in small tools under the Mattermost org, but usage in {{< newtabref href="https://github.com/mattermost/mattermost" title="the main repo" >}} is not advised for now.
 
 ## Propose a new rule
 

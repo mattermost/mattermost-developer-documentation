@@ -57,7 +57,7 @@ Unfortunately, the underlying service implementation effectively deferred to `ht
 
 That is, this particular timeout is guaranteed to wait at least 100 milliseconds, but makes no promise how soon thereafter it will fire. Simply put, waiting just 101 milliseconds sometimes isn't enough.
 
-The best solution is to avoid using `time.Sleep` altogether in this case. We ended up {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/11712" title="rewriting" >}} the flaky test as something like:
+The best solution is to avoid using `time.Sleep` altogether in this case. We ended up {{< newtabref href="https://github.com/mattermost/mattermost/pull/11712" title="rewriting" >}} the flaky test as something like:
 
 ```go
 func TestHTTPTimeout(t *testing.T) {
@@ -153,13 +153,13 @@ Note the duplicate call to `ss.Scheme().Save(s1)`. The implementation of `Save` 
 	}
 ```
 
-As the {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/11701" title="fix discovered" >}}, MySQL will only return `rowsChanged == 1` if the row it found actually changes, not just if it found a row matching the constraints. The test would thus fail with an unexpected error whenever two consecutive `Save` operations occurred in the same millisecond.
+As the {{< newtabref href="https://github.com/mattermost/mattermost/pull/11701" title="fix discovered" >}}, MySQL will only return `rowsChanged == 1` if the row it found actually changes, not just if it found a row matching the constraints. The test would thus fail with an unexpected error whenever two consecutive `Save` operations occurred in the same millisecond.
 
 This actually deserved a more holistic fix at the store layer to avoid tripping over MySQL's unique `rowsChanged` semantics, but in practice this kind of event was considered unlikely in a production environment.
 
 ### 5) Keep in mind that random sometimes doesn't seem like it
 
-In addition to a number of {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/e5ba0a0a1808660d4885ef04888da437c2a5b6a0/model/team.go#L137-L196" title="length and character checks" >}}, the Mattermost server {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/969c032a1e9cb2ce0ef2c59143c071dbf78cdcb1/model/utils.go#L360" title="rejects certain prefixes" >}} to avoid team names like `signup` or `LOGIN21`.
+In addition to a number of {{< newtabref href="https://github.com/mattermost/mattermost/blob/e5ba0a0a1808660d4885ef04888da437c2a5b6a0/model/team.go#L137-L196" title="length and character checks" >}}, the Mattermost server {{< newtabref href="https://github.com/mattermost/mattermost/blob/969c032a1e9cb2ce0ef2c59143c071dbf78cdcb1/model/utils.go#L360" title="rejects certain prefixes" >}} to avoid team names like `signup` or `LOGIN21`.
 
 When unit testing, we often rely on `model.NewId` to generate random, UUID version 4 Guid values for testing:
 
@@ -175,7 +175,7 @@ When unit testing, we often rely on `model.NewId` to generate random, UUID versi
 
 Every so often, a test would fail claiming that {{< newtabref href="https://mattermost.atlassian.net/browse/MM-17053" title="the team name was invalid" >}}. It turned out that, from to time, some of those reserved prefixes would be randomly selected for the start of a `model.NewId`, e.g. `APICE0E9143C...`. Random? Yes! Invalid? Yes! Expected? No.
 
-The {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/11705" title="fix" >}} was simple, and replicated the pattern used in most other tests to prefix the team name:
+The {{< newtabref href="https://github.com/mattermost/mattermost/pull/11705" title="fix" >}} was simple, and replicated the pattern used in most other tests to prefix the team name:
 
 ```go
 	t1 := model.Team{}
@@ -193,13 +193,13 @@ We {{< newtabref href="https://golang.org/cmd/go/#hdr-Vendor_Directories" title=
 
 Unfortunately, for some plugin tests, our compilation strategy involved using a temporary directory outside of our `vendor` scope. This went undiscovered until some upstream resource couldn't be fetched and the CI build failed accordingly. This became especially problematic when {{< newtabref href="https://blogs.apache.org/infra/entry/subversion-to-git-service-git" title="git.apache.org" >}} went down and took many Go build pipelines along with it.
 
-We've since fixed the compilation issue for plugin tests, and even applied this strategy to {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/12365" title="other flaky tests" >}} to avoid connecting to remote dependencies outside of our control.
+We've since fixed the compilation issue for plugin tests, and even applied this strategy to {{< newtabref href="https://github.com/mattermost/mattermost/pull/12365" title="other flaky tests" >}} to avoid connecting to remote dependencies outside of our control.
 
 ### 7) Don't assume the test is actually flaky!
 
 One danger of having flaky tests is conditioning developers to believe that **any** unexpected test failure is likely to be flaky. As an example, we had received {{< newtabref href="https://mattermost.atlassian.net/browse/MM-16479" title="multiple reports" >}} of a flaky unit test concerning the `FileWillBeUploaded` plugin hook.  Much effort was spent statically analyzing the code and attempting to reproduce locally. Even with the test repeated 100x, it always succeeded locally. Given the ongoing impact to developers with unrelated changes, we were contemplating disabling the test altogether.
 
-Fastforward a few weeks, and a community member {{< newtabref href="https://community.mattermost.com/core/pl/oficg6nb9bb6igzz87fpumgxuo" title="reported" >}} a mysterious issue: sometimes files processed by a plugin using `FileWillBeUploaded` wouldn't successfully update. One of our newest staff members took a look, and immediately {{< newtabref href="https://community.mattermost.com/core/pl/5p9fjcqk3tdw7brjpfm1f3poza" title="spotted" >}} a race condition in the related code. The {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/12249" title="resulting fix" >}} addressed both the community member's issue and our longstanding "flaky" test.
+Fastforward a few weeks, and a community member {{< newtabref href="https://community.mattermost.com/core/pl/oficg6nb9bb6igzz87fpumgxuo" title="reported" >}} a mysterious issue: sometimes files processed by a plugin using `FileWillBeUploaded` wouldn't successfully update. One of our newest staff members took a look, and immediately {{< newtabref href="https://community.mattermost.com/core/pl/5p9fjcqk3tdw7brjpfm1f3poza" title="spotted" >}} a race condition in the related code. The {{< newtabref href="https://github.com/mattermost/mattermost/pull/12249" title="resulting fix" >}} addressed both the community member's issue and our longstanding "flaky" test.
 
 ## Conclusion
 

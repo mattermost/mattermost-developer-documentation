@@ -18,7 +18,7 @@ This guide will help you configure your developer environment for the Focalboard
 * {{< newtabref href="https://www.npmjs.com/get-npm" title="npm" >}}
 
 ### Windows
-* Install {{< newtabref href="https://chocolatey.org/packages/mingw" title="MinGW-w64" >}} via {{< newtabref href="https://chocolatey.org/" title="Chocolatey" >}}
+* Install {{< newtabref href="https://community.chocolatey.org/packages/mingw" title="MinGW-w64" >}} via {{< newtabref href="https://chocolatey.org/" title="Chocolatey" >}}
 * Install {{< newtabref href="https://gitforwindows.org/" title="Git for Windows" >}} and use the `git-bash` terminal shell
 
 ### Mac

@@ -67,14 +67,14 @@ Eliminating the `else` condition required pre-declaring `result` instead of defi
 
 ### Is it ok to still declare variables inline to a conditional?
 
-Idiomatic go still allows for variables declared inline with the conditional. Only variables that need to be used outside the conditional should be pre-declared. Here's a correct {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/ebd540d5fbc10bdc504f7349acbb90ddc4b5e826/app/scheme.go#L13-L15" title="example" >}} of writing idiomatic Go code using a single inline variable:
+Idiomatic go still allows for variables declared inline with the conditional. Only variables that need to be used outside the conditional should be pre-declared. Here's a correct {{< newtabref href="https://github.com/mattermost/mattermost/blob/ebd540d5fbc10bdc504f7349acbb90ddc4b5e826/app/scheme.go#L13-L15" title="example" >}} of writing idiomatic Go code using a single inline variable:
 ```go
 if err := a.IsPhase2MigrationCompleted(); err != nil {
     return nil, err
 }
 ```
 
-and a correct {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/5d6d4502992af4120fed19a9db43960d6269b871/store/local_cache_supplier.go#L69-L76" title="example" >}} using multiple inline variables:
+and a correct {{< newtabref href="https://github.com/mattermost/mattermost/blob/5d6d4502992af4120fed19a9db43960d6269b871/store/local_cache_supplier.go#L69-L76" title="example" >}} using multiple inline variables:
 ```go
 if cacheItem, ok := cache.Get(key); ok {
     if s.metrics != nil {

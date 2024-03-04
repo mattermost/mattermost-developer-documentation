@@ -41,13 +41,13 @@ We also decided to start off with the GitHub {{< newtabref href="https://golangc
 
 So with that taken care of, our next task was to decide on a set of linters to start off with. We couldn't begin with a huge set because first of all, it would take longer to run. Additionally, it would further delay our target of fixing all the existing issues in our codebase. We needed a small but powerful set of linters that would catch effective issues, but wouldn’t take too long to fix.
 
-After some trial and error, we settled down on {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/e2a2a1a5bce69f153e6e095e07dadf92b64df699/.golangci.yml#L18-L26" title="these" >}}.
+After some trial and error, we settled down on {{< newtabref href="https://github.com/mattermost/mattermost/blob/e2a2a1a5bce69f153e6e095e07dadf92b64df699/.golangci.yml#L18-L26" title="these" >}}.
 
 We chose not to include `staticcheck` for the first cut because a lot of the functionality was already provided by the other linters. We also did not include `errcheck` because it uncovered _too_ many issues which did not look likely to be fixed within a reasonable time frame.
 
 #### What Issues were Uncovered?
 
-Most of the issues fixed in the process were stylistic. We fixed {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/12943" title="formatting issues" >}}, {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/12928" title="removed unnecessary" >}} {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/12927" title="code" >}}, and {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/12924" title="removed" >}} {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/12968" title="a lot of" >}}, {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/12929" title="unused" >}} {{< newtabref href="https://github.com/mattermost/mattermost-server/pull/12926" title="code" >}}. These fixes are great to keep the code base clean and consistent but have no impact on the behavior of the software and did not reveal any bugs.
+Most of the issues fixed in the process were stylistic. We fixed {{< newtabref href="https://github.com/mattermost/mattermost/pull/12943" title="formatting issues" >}}, {{< newtabref href="https://github.com/mattermost/mattermost/pull/12928" title="removed unnecessary" >}} {{< newtabref href="https://github.com/mattermost/mattermost/pull/12927" title="code" >}}, and {{< newtabref href="https://github.com/mattermost/mattermost/pull/12924" title="removed" >}} {{< newtabref href="https://github.com/mattermost/mattermost/pull/12968" title="a lot of" >}}, {{< newtabref href="https://github.com/mattermost/mattermost/pull/12929" title="unused" >}} {{< newtabref href="https://github.com/mattermost/mattermost/pull/12926" title="code" >}}. These fixes are great to keep the code base clean and consistent but have no impact on the behavior of the software and did not reveal any bugs.
 
 The more interesting issues were found by `ineffassign` and `govet`.
 
@@ -63,9 +63,9 @@ if obj == nil {
 	return nil, model.NewAppError("SqlComplianceStore.Get", "store.sql_compliance.get.finding.app_error", nil, err.Error(), http.StatusNotFound)
 }
 ```
-Looks fine, doesn’t it? Except it contains a null pointer exception. At the second `return` we know that `err == nil` and hence `err.Error()` will panic. `govet` found this issue and {{< newtabref href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-c5a8591c69e26808c8171db5d5dddef7L78-R78" title="we fixed it" >}}. 
+Looks fine, doesn’t it? Except it contains a null pointer exception. At the second `return` we know that `err == nil` and hence `err.Error()` will panic. `govet` found this issue and {{< newtabref href="https://github.com/mattermost/mattermost/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-c5a8591c69e26808c8171db5d5dddef7L78-R78" title="we fixed it" >}}. 
 
-There were {{< newtabref href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-92d8335ab3456e9fd16cb67c739c52e0R163-R165" title="actually" >}}, {{< newtabref href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-2c6106afe8477623894c02707bffe06dL622-R622" title="a" >}} {{< newtabref href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-0425a0737e8b051835b0978d034d22fcL139-R139" title="couple" >}}, {{< newtabref href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-32736de6a4585a5384f7606e57b2792fR269-R290" title="of" >}} {{< newtabref href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-2c6106afe8477623894c02707bffe06dL589-R589" title="issues" >}} like this one. Finding these issues alone has been a huge success and proved that linters can help fix bugs before they occur in a production environment.
+There were {{< newtabref href="https://github.com/mattermost/mattermost/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-92d8335ab3456e9fd16cb67c739c52e0R163-R165" title="actually" >}}, {{< newtabref href="https://github.com/mattermost/mattermost/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-2c6106afe8477623894c02707bffe06dL622-R622" title="a" >}} {{< newtabref href="https://github.com/mattermost/mattermost/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-0425a0737e8b051835b0978d034d22fcL139-R139" title="couple" >}}, {{< newtabref href="https://github.com/mattermost/mattermost/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-32736de6a4585a5384f7606e57b2792fR269-R290" title="of" >}} {{< newtabref href="https://github.com/mattermost/mattermost/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-2c6106afe8477623894c02707bffe06dL589-R589" title="issues" >}} like this one. Finding these issues alone has been a huge success and proved that linters can help fix bugs before they occur in a production environment.
 
 Another issue found by `govet` lies in this piece of code:
 ```go
@@ -92,7 +92,7 @@ if err = a.Srv.Store.System().Save(system); err == nil {
 ```
 
 `a.Srv.Store.System().Save` returns a custom error type `model.AppError`, that is commonly used in the Mattermost code base. But assigning this custom error to the variable `err` of type `error` results in variable that will never be `nil`. Hence, the line `secret = newSecret` will never be reached. This is {{< newtabref href="https://golang.org/doc/faq#nil_error" title="a common gotcha in Go" >}}. Using a dedicated variable for the custom error is the right way to fix this.
-We found and fixed {{< newtabref href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-76e64b305c25e308c6b9f4c2fa572c51R204-R207" title="two" >}} of these {{< newtabref href="https://github.com/mattermost/mattermost-server/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-76e64b305c25e308c6b9f4c2fa572c51R142-R144" title="issues" >}}.
+We found and fixed {{< newtabref href="https://github.com/mattermost/mattermost/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-76e64b305c25e308c6b9f4c2fa572c51R204-R207" title="two" >}} of these {{< newtabref href="https://github.com/mattermost/mattermost/commit/812c40a30703efd159675a1ff1b26a64f18b14d0#diff-76e64b305c25e308c6b9f4c2fa572c51R142-R144" title="issues" >}}.
 
 
 #### What Issues were Encountered During the GolangCI-Lint Integration?
@@ -127,7 +127,7 @@ The warnings which should have been an error already had an {{< newtabref href="
 
 Lastly, we just wanted to touch upon something that might be surprising to new Gophers out there. Mattermost has a very thin enterprise layer which gets built by including the directory as a symlink from inside the open-source repo.
 
-While running GolangCI-Lint with the enterprise layer included, we observed that it was failing to run the checks inside the symlink. This is due to the fact that the Go toolchain does not work very well with symlinks. As a simple fix, we added another {{< newtabref href="https://github.com/mattermost/mattermost-server/blob/f672eb729103ef0c8512a3facb48d44c386cd00a/Makefile#L163" title="command" >}} to run that directory specifically.
+While running GolangCI-Lint with the enterprise layer included, we observed that it was failing to run the checks inside the symlink. This is due to the fact that the Go toolchain does not work very well with symlinks. As a simple fix, we added another {{< newtabref href="https://github.com/mattermost/mattermost/blob/f672eb729103ef0c8512a3facb48d44c386cd00a/Makefile#L163" title="command" >}} to run that directory specifically.
 
 #### Future Work
 

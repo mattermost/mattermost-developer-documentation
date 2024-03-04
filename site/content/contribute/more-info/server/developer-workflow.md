@@ -19,11 +19,11 @@ Here's a general workflow for a Mattermost developer working on the {{< newtabre
 #### Making code changes
 1. Review the repository structure to familiarize yourself with the project:
 
-    * [./api4/](https://github.com/mattermost/mattermost/tree/master/server/channels/api4) holds all API and application related code.
-    * [./model/](https://github.com/mattermost/mattermost/tree/master/server/public/model) holds all data model definitions and the Go driver.
-    * [./store/](https://github.com/mattermost/mattermost/tree/master/server/channels/store) holds all database querying code.
-    * [./utils/](https://github.com/mattermost/mattermost/tree/master/server/channels/utils) holds all utilities, such as the mail utility.
-    * [./i18n/](https://github.com/mattermost/mattermost/tree/master/server/i18n) holds all localization files for the server.
+    * [./server/channels/api4/](https://github.com/mattermost/mattermost/tree/master/server/channels/api4) holds all API and application related code.
+    * [./server/public/mmodel/](https://github.com/mattermost/mattermost/tree/master/server/public/model) holds all data model definitions and the Go driver.
+    * [./server/channels/store/](https://github.com/mattermost/mattermost/tree/master/server/channels/store) holds all database querying code.
+    * [./server/channels/utils/](https://github.com/mattermost/mattermost/tree/master/server/channels/utils) holds all utilities, such as the mail utility.
+    * [./server/i18n/](https://github.com/mattermost/mattermost/tree/master/server/i18n) holds all localization files for the server.
 2. On your fork, create a feature branch for your changes. Name it `MM-$NUMBER_$DESCRIPTION` where `$NUMBER` is the [Jira](https://mattermost.atlassian.net) ticket number you are working on and `$DESCRIPTION` is a short description of your changes. Example branch names are `MM-18150_plugin-panic-log` and `MM-22037_uppercase-email`.
 3. Make the code changes required to complete your ticket.
 #### Running and writing tests

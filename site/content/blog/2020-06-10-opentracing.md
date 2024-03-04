@@ -32,7 +32,7 @@ A trace recording usually looks something like this:
 
 ![trace image](/blog/2020-06-10-opentracing/trace.png) 
 
-We've previously explored an OpenTracing implementation in the [first post of this series]({{< relref "./2019-10-25-instrumenting-go-code-via-ast.md" >}}). Next, we want to add distributed tracing capabilities to {{< newtabref href="https://github.com/mattermost/mattermost-server" title="mattermost-server" >}}. For this, we've picked {{< newtabref href="https://github.com/opentracing/opentracing-go" title="OpenTracing Go" >}}. 
+We've previously explored an OpenTracing implementation in the [first post of this series]({{< relref "./2019-10-25-instrumenting-go-code-via-ast.md" >}}). Next, we want to add distributed tracing capabilities to {{< newtabref href="https://github.com/mattermost/mattermost" title="mattermost-server" >}}. For this, we've picked {{< newtabref href="https://github.com/opentracing/opentracing-go" title="OpenTracing Go" >}}. 
 
 In this article we'll discuss all the nitty-gritty details of implementing a tracing system in your Go application without littering your code with repetitive, boilerplate tracing code.
 
@@ -616,7 +616,7 @@ func (a *{{$.Name}}) {{$index}}({{$element.Params | joinParamsWithType}}) {{$ele
 {{end}}
 ```
 
-Phew, this was quite a trip, huh? I hope you found it interesting. You can see the actual generator implementation inside `mattermost-server` in [/app/layer_generators/main.go](https://github.com/mattermost/mattermost-server/blob/master/app/layer_generators/main.go).
+Phew, this was quite a trip, huh? I hope you found it interesting. You can see the actual generator implementation inside `mattermost-server` in [/server/channels/app/layer_generators/main.go](https://github.com/mattermost/mattermost/blob/master/server/channels/app/layer_generators/main.go).
 
 *Side note:* This is just one way of handling this problem. Not everyone wants to rely on using code-generation too much since it hides a lot of implementation and complicates the build process (you have to re-run the generators each time your interface changes). We've settled on this approach due to its flexibility and performance. 
 

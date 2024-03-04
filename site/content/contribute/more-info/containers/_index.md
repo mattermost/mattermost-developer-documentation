@@ -12,9 +12,9 @@ This page lists all the Docker repositories currently in use.
 
 ## Mattermost official docker images
 
-- {{< newtabref href="https://hub.docker.com/r/mattermost/mattermost-enterprise-edition" title="mattermost/mattermost-enterprise-edition" >}} - **Official Mattermost Server** image for the **Enterprise Edition version**. To find the Dockerfile please refer to the {{< newtabref href="https://github.com/mattermost/mattermost/tree/master/build" title="GitHub repo" >}}.
+- {{< newtabref href="https://hub.docker.com/r/mattermost/mattermost-enterprise-edition" title="mattermost/mattermost-enterprise-edition" >}} - **Official Mattermost Server** image for the **Enterprise Edition version**. To find the Dockerfile please refer to the {{< newtabref href="https://github.com/mattermost/mattermost/tree/master/server/build" title="GitHub repo" >}}.
 
-- {{< newtabref href="https://hub.docker.com/r/mattermost/mattermost-team-edition" title="mattermost/mattermost-team-edition" >}} - **Official Mattermost Server** image for the **Team Edition version**. To find the Dockerfile please refer to the {{< newtabref href="https://github.com/mattermost/mattermost/tree/master/build" title="GitHub repo" >}}.
+- {{< newtabref href="https://hub.docker.com/r/mattermost/mattermost-team-edition" title="mattermost/mattermost-team-edition" >}} - **Official Mattermost Server** image for the **Team Edition version**. To find the Dockerfile please refer to the {{< newtabref href="https://github.com/mattermost/mattermost/tree/master/server/build" title="GitHub repo" >}}.
 
 - {{< newtabref href="https://hub.docker.com/r/mattermost/mattermost-push-proxy" title="mattermost/mattermost-push-proxy" >}} - Mattermost Push Proxy. [Documentation]({{< ref "/contribute/more-info/mobile/push-notifications/service" >}}). {{< newtabref href="https://github.com/mattermost/mattermost-push-proxy" title="GitHub repo" >}}.
 
@@ -44,9 +44,7 @@ This page lists all the Docker repositories currently in use.
 
 - {{< newtabref href="https://hub.docker.com/r/mattermost/mattermost-elasticsearch-docker" title="mattermost/mattermost-elasticsearch-docker" >}} - Used in in CI and for local development. Please refer to the {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/docker-compose.yaml" title="GitHub repo" >}} for more information.
 
-- {{< newtabref href="https://hub.docker.com/r/mattermost/mattermost-build-server" title="mattermost/mattermost-build-server" >}} - Image used to build Mattermost used in CI. To check the Docker file refer to the {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/build/Dockerfile.buildenv" title="GitHub repo" >}}.
-
-- {{< newtabref href="https://hub.docker.com/r/mattermost/mattermost-build-webapp" title="mattermost/mattermost-build-webapp" >}} - Image used to build Mattermost Webapp used in CI. To check the Docker file refer to the {{< newtabref href="https://github.com/mattermost/mattermost-webapp/blob/master/build/Dockerfile" title="GitHub repo" >}}.
+- {{< newtabref href="https://hub.docker.com/r/mattermost/mattermost-build-server" title="mattermost/mattermost-build-server" >}} - Image used to build Mattermost used in CI. To check the Docker file refer to the {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/server/build/Dockerfile.buildenv" title="GitHub repo" >}}.
 
 - {{< newtabref href="https://hub.docker.com/r/mattermost/mattermost-wait-for-dep" title="mattermost/mattermost-wait-for-dep" >}} - Image used to wait for the other containers to start. Used in in CI and for local development. Please refer to the {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/docker-compose.yaml" title="GitHub repo" >}} for more information.
 

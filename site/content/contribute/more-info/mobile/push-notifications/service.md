@@ -55,16 +55,16 @@ For the sake of making this guide simple we located the files at `/home/ubuntu/m
 
 ### Set up Mattermost push notification service to send Android push notifications
 
-- Go to the {{< newtabref href="https://console.firebase.google.com" title="Firebase Console" >}} and select the project you've created. Once in the dashboard, go to the project settings and select **CLOUD MESSAGING**.
+- Go to the {{< newtabref href="https://console.firebase.google.com" title="Firebase Console" >}} and select the project you've created. Once in the dashboard, go to the project settings and select **Service Accounts**.
 ![image](/img/mobile/firebase_settings.png)
 ![image](/img/mobile/firebase_cloud_messaging.png)
 
-- Look for the value of the **Server key** and copy it.
+- Click on **Generate new private key** and store the downloaded file.
 ![image](/img/mobile/firebase_server_key.png)
 
-- Open the **mattermost-push-proxy.json** file in the `mattermost-push-proxy/config` directory and look for the  "AndroidApiKey" entry. Paste the **Server key** as its value.
+- Open the **mattermost-push-proxy.json** file in the `mattermost-push-proxy/config` directory and look for the "ServiceFileLocation" entry under "AndroidPushSettings". Paste the location of the file as its value.
   ```
-  "AndroidApiKey": "your Server key"
+  "ServiceFileLocation": "/path/to/downloaded_file"
   ```
 
 ### Set up Mattermost push notification service to send iOS push notifications
@@ -89,9 +89,9 @@ For the sake of making this guide simple we located the files at `/home/ubuntu/m
     ```
 - Extract the private key from the certificate you exported ..
     ```sh
-    $ openssl pkcs12 -in Certificates.p12 -out aps_production_priv.pem -nodes -clcerts -passin pass:
+    $ openssl pkcs12 -in Certificates.p12 -out aps_production_priv.pem -nodes -clcerts -passin pass: -legacy -rc2
     ```
-- Verify the certificate works with apple
+- Verify the certificate works with Apple
     ```sh
     $ openssl s_client -connect gateway.push.apple.com:2195 -cert aps_production.pem -key aps_production_priv.pem
     ```

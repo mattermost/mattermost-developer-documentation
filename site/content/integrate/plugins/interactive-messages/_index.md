@@ -275,7 +275,7 @@ In most cases, your integration will do one or both of these things:
          "channel_id": "j6j53p28k6urx15fpcgsr20psq",
          "team_id": "5xxzt146eax4tul69409opqjlf",
          "context": {
-             "repo": "mattermost/mattermost-server",
+             "repo": "mattermost/mattermost",
              "pr": 1234,
              "action": "merge"
          }
@@ -293,7 +293,7 @@ In most cases, your integration will do one or both of these things:
          "channel_id": "j6j53p28k6urx15fpcgsr20psq",
          "team_id": "5xxzt146eax4tul69409opqjlf",
          "context": {
-             "repo": "mattermost/mattermost-server",
+             "repo": "mattermost/mattermost",
              "pr": 1234,
              "action": "merge",
              "token": "somerandomlygeneratedsecret"
@@ -312,7 +312,7 @@ In most cases, your integration will do one or both of these things:
          "channel_id": "j6j53p28k6urx15fpcgsr20psq",
          "team_id": "5xxzt146eax4tul69409opqjlf",
          "context": {
-             "repo": "mattermost/mattermost-server",
+             "repo": "mattermost/mattermost",
              "pr": 1234,
              "action": "merge",
              "signature": "mycryptographicsignature"
@@ -371,7 +371,7 @@ If your `ephemeral_text` gets incorrectly handled by the Slack-compatibility log
 
 Yes, message buttons and menus are supported in ephemeral messages in Mattermost 5.10 and later. This applies to integrations using plugins, the RESTful API and webhooks, across the browser and Desktop App.
 
-As an advanced feature, you can also use plugins to update the contents of an ephemeral message with message buttons or menus with the [UpdateEphemeralMessage plugin API]({{< ref "/integrate/plugins/components/server/reference#API.UpdateEphemeralPost" >}}).
+As an advanced feature, you can also use plugins to update the contents of an ephemeral message with message buttons or menus with the [UpdateEphemeralMessage plugin API]({{< ref "/integrate/reference/server/server-reference#API.UpdateEphemeralPost" >}}).
 
 ### Why does an interactive button or menu return a 400 error?
 

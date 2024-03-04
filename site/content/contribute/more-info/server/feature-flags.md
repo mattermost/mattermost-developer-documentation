@@ -179,7 +179,7 @@ When the feature is rolled out to customers, logs will show if there are crashes
 
 ## Self-hosted releases
 
-For self-hosted releases, typically a flagged feature will be released in an enabled state. That said, you can release a feature to self-hosted disabled, {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/model/feature_flags.go#L75" title="it's not unprecedented" >}}.
+For self-hosted releases, typically a flagged feature will be released in an enabled state. That said, you can release a feature to self-hosted disabled, {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/server/public/model/feature_flags.go#L75" title="it's not unprecedented" >}}.
 
 ## Tests
 

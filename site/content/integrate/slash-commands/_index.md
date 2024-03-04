@@ -22,7 +22,7 @@ Mattermost includes a number of [built-in slash commands](https://docs.mattermos
 ## Tips and best practices
 
 1. Slash commands are designed to easily allow you to post messages. For other actions such as channel creation, you must also use the {{< newtabref title="Mattermost APIs" href="https://api.mattermost.com" >}}.
-2. Posts size is limited to 16393 characters for servers running {{< newtabref href="https://docs.mattermost.com/administration/important-upgrade-notes.html" title="Mattermost Server v5.0 or later" >}}. Use the `extra_responses` field to reply to a triggered slash command with more than one post.
+2. Posts size is limited to 16383 characters for servers running {{< newtabref href="https://docs.mattermost.com/administration/important-upgrade-notes.html" title="Mattermost Server v5.0 or later" >}}. Use the `extra_responses` field to reply to a triggered slash command with more than one post.
 3. You can restrict who can create slash commands in {{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html#enable-custom-slash-commands" title="System Console > Integrations > Integration Management" >}}.
 4. Mattermost [outgoing webhooks]({{< ref "/integrate/webhooks/outgoing" >}}) are Slack-compatible. You can copy-and-paste code used for a Slack outgoing webhook to create Mattermost integrations. Mattermost [automatically translates Slack's proprietary JSON payload format]({{< ref "slack#translate-slacks-data-format-to-mattermost" >}}).
 5. The external application may be written in any programming language. It needs to provide a URL which receives the request sent by your Mattermost Server and responds with in the required JSON format.
@@ -109,7 +109,7 @@ See the [Slack compatibility]({{< ref "slack" >}}) page.
 
 #### If you are developing a plugin
 
-Use [`CreatePost`]({{< ref "/integrate/plugins/components/server/reference#API.CreatePost" >}}) plugin API. Make sure to set the  `UserId` of the post to the `UserId` of the Bot Account. If you want to create an ephemeral post, use [`SendEphemeralPost`]({{< ref "/integrate/plugins/components/server/reference#API.SendEphemeralPost" >}}) plugin API instead.
+Use [`CreatePost`]({{< ref "/integrate/reference/server/server-reference#API.CreatePost" >}}) plugin API. Make sure to set the  `UserId` of the post to the `UserId` of the Bot Account. If you want to create an ephemeral post, use [`SendEphemeralPost`]({{< ref "/integrate/reference/server/server-reference#API.SendEphemeralPost" >}}) plugin API instead.
 
 ## Troubleshoot slash commands
 

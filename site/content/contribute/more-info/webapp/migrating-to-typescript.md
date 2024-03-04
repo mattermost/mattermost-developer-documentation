@@ -39,5 +39,5 @@ There are a few steps involved with migrating a file to use Typescript. Some of 
 
 You can see example pull requests here:
 
-- https://github.com/mattermost/mattermost-webapp/pull/5840
-- https://github.com/mattermost/mattermost-webapp/pull/5244
+- https://github.com/mattermost/mattermost/pull/5840
+- https://github.com/mattermost/mattermost/pull/5244

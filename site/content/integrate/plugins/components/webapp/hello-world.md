@@ -15,7 +15,7 @@ Note that the steps below are intentionally very manual to explain all of the pi
 
 ## Prerequisites
 
-Plugins, just like the Mattermost web app itself, are built using {{< newtabref href="https://reactjs.org/" title="ReactJS" >}} with {{< newtabref href="https://redux.js.org/" title="Redux" >}}. Make sure to install {{< newtabref href="https://www.npmjs.com/get-npm" title="npm" >}} to manage your JavaScript dependencies.
+Plugins, just like the Mattermost web app itself, are built using {{< newtabref href="https://react.dev/" title="ReactJS" >}} with {{< newtabref href="https://redux.js.org/" title="Redux" >}}. Make sure to install {{< newtabref href="https://www.npmjs.com/get-npm" title="npm" >}} to manage your JavaScript dependencies.
 
 You'll also need a Mattermost server to install and test the plugin. This server must have {{< newtabref href="https://docs.mattermost.com/administration/config-settings.html#enable-plugins" title="Enable" >}} set to true in the {{< newtabref href="https://docs.mattermost.com/administration/config-settings.html#plugins-beta" title="PluginSettings" >}} section of its config file. If you want to upload plugins via the System Console or API, you'll also need to set {{< newtabref href="https://docs.mattermost.com/administration/config-settings.html#enable-plugin-uploads" title="EnableUploads" >}} to true in the same section.
 
