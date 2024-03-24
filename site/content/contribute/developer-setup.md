@@ -36,7 +36,16 @@ If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL
    sudo apt install build-essential
    ```
 
-1. Install [Docker](https://www.docker.com/).
+1. Install [Docker](https://www.docker.com/). If you dont want to use Docker, you can follow the steps in the sub-bullets for manual database setup
+    1. Zet `MM_NO_DOCKER` to `true` in `server/config.mk` file
+    2. Install [PostgreSQL](https://www.postgresql.org/download/)
+    3. Run `psql postgres`. Then create `mmuser` by running `CREATE ROLE mmuser WITH LOGIN PASSWORD 'mostest';`
+    4. Modify the role to give rights to create ` database by running `ALTER ROLE mmuser CREATEDB;`
+    5. Check the role by running `\du`
+    6. Before creating the database, exit by running `\q`
+    7. Login again via mmuser by running `psql postgres -U mmuser`
+    8. Create the database   by running `CREATE DATABASE mattermost_test;` and exit again with `\q`
+    9. Login again with `psql postgres` and run `GRANT ALL PRIVILEGES ON DATABASE mattermost_test TO mmuser;` to give all rights to `mmuser`
 
 1. Install [Go](https://go.dev/).
 
