@@ -198,9 +198,9 @@ The list of supported fields for the `select` type element is included below:
 | `type`         | String  | Set this value to `select` for a `select` element.                                                                                 |
 | `data_source`  | String  | (Optional) One of `users`, or `channels`. If none specified, assumes a manual list of options is provided by the integration.      |
 | `optional`     | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
-| `options`      | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
-| `help_text`    | Array   | (Optional) An array of options for the select element. Not applicable for `users` or `channels` data sources.                      |
-| `default`      | String  | (Optional) (Optional) Set a default value for this form element. Maximum 3,000 characters.                                         |
+| `options`      | Array   | (Optional) An array of options for the select element. Not applicable for `users` or `channels` data sources.                      |
+| `help_text`    | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
+| `default`      | String  | (Optional) Set a default value for this form element. Maximum 3,000 characters.                                                    |
 | `placeholder`  | String  | (Optional) A string displayed to help guide users in completing the element. Maximum 3,000 characters.                             |
 
 

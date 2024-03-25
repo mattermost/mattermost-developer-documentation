@@ -120,3 +120,17 @@ $ npm run build:android
 ```
 
 This will start the build process following the environment variables you've set. Once it finishes, it will create the `.apk` file(s) with the `APP_NAME` as the filename in the project's root directory. If you have not set Fastlane to submit the app to the Play Store, you can use this file to manually publish and distribute the app.
+
+## Frequently Asked Questions
+### How do I update the lock file?
+We use lockfiles to lock dependencies and make sure the builds are reproductible. If we want to update the lockfile to update all dependencies to the latest, we can run these commands:
+```
+cd android
+./gradlew app:dependencies --update-locks "*:*"
+```
+
+In case we want to regenerate the lockfile from the scratch, we can delete the `android/buildscript-gradle.lockfile` and then run the following commands:
+```
+cd android
+./gradlew app:dependencies --write-locks
+```
