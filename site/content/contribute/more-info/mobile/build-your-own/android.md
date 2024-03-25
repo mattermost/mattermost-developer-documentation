@@ -128,3 +128,9 @@ We use lockfiles to lock dependencies and make sure the builds are reproductible
 cd android
 ./gradlew app:dependencies --update-locks "*:*"
 ```
+
+In case we want to regenerate the lockfile from the scratch, we can delete the `android/buildscript-gradle.lockfile` and then run the following commands:
+```
+cd android
+./gradlew app:dependencies --write-locks
+```
