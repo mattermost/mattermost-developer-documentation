@@ -37,7 +37,7 @@ If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL
    ```
 
 1. Install [Docker](https://www.docker.com/). If you don't want to use Docker, you can follow the steps in the sub-bullets below for manual database setup.
-    1. Zet `MM_NO_DOCKER` to `true` in `server/config.mk` file
+    1. Set `MM_NO_DOCKER` to `true` in the `server/config.mk` file.
     2. Install [PostgreSQL](https://www.postgresql.org/download/)
     3. Run `psql postgres`. Then create `mmuser` by running `CREATE ROLE mmuser WITH LOGIN PASSWORD 'mostest';`
     4. Modify the role to give rights to create ` database by running `ALTER ROLE mmuser CREATEDB;`
