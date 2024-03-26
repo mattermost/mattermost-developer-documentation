@@ -43,121 +43,15 @@ In all cases, ask yourself: Why do I need to add a feature flag? If I don't add 
 - Tests should be written to verify the feature flag works as expected. Note that in cases where there may be a migration or new data, off to on and on to off should both be tested.
 - Log messages by the feature should include the feature flag tag, with the feature flag name as a value, in order to ease debugging.
 
-## Split
+# Changing Feature Flag Values
 
-{{< newtabref href="https://split.io" title="Split" >}} is the feature flag management service we use for internal testing and for our production Cloud service. It enables us to create and control feature flags for multiple servers and environments as well as gives us the ability to run A/B split tests.
+## Self Hosted (and local development)
 
-We've used Split's SDK to integrate with the Mattermost server. You can find the {{< newtabref href="https://help.split.io/hc/en-us" title="Split documentation here" >}}.
+Feature flag values can be changed via environment variables. The environment variable set follows the pattern `MM_FEATUREFLAGS_<name>` where `<name>` is the uppercase key of the feature flag you added to model/feature_flags.go
 
-### Who has access to Split?
+## Cloud
 
-We currently have a limited number of seats for our Split account, so not everyone gets access. Currently, two people per each engineering team plus some PM/UX folk have access. If you need to manage some feature flags, ask your team lead who has access and can help you out. It's up to each team to determine who has access.
-
-You can request access to Split from @daniel.sischy in {{< newtabref href="https://community.mattermost.com/private-core/channels/systems" title="the Systems channel" >}} on the Staff team.
-
-### How do I log in?
-
-Login is controlled via OneLogin. If you have access you will be able to log in through there.
-
-### Terminology
-
-In Split, there's some terminology you will need to understand:
-
- - **Split** - A feature flag
- - **Treatment** - The values a split (e.g. feature flag) can have
- - **Environment** - Different environments that splits can target such as test, staging, and production
- - **Server** - Single Mattermost workspace
- - **Segment** - A list of servers that can be targeted by a split
-
-### Add a split
-
-After you've added the feature flag in code, you'll need to create a split for it.
-
- 1. Log in to Split.
- 2. On left sidebar, click **Splits**.
- 3. At the top click **Create split**.
- 4. Fill in the following:
-     1. Enter the name of your feature flag. It must match the name used in code in `model/feature_flags.go`.
-     2. Select ``server`` as the traffic type.
-     3. Optionally add tags and a description.
-     4. Click **Create**.
-
-The split is now created but not targeting anything. The next section covers adding basic targeting rules.
-
-### Add targeting rules to a split
-
-To have the split have any effect, it needs targeting rules to know which environment and servers it should set the feature flag value to. To add basic targeting rules:
-
- 1. Find your split and click on it.
- 2. Under the name of the split at the top, select the **Environment** that you want to target.
-     - See [Environments](#Environments) for a description of each.
- 3. In the center of the screen, select **Add Rules**.
- 4. Define your treatments:
-     - Recall that treatments are just the values your feature flag can have.
-     - Boolean flags should use the default "on" and "off" treatments.
-     - For non-boolean flags, change the treatments to be the possible values. E.g. for a split that specifies a plugin's version you could have three treatments of "1.0", "1.1" and "2.0".
- 5. Down the page a bit, set the default rule to one of your treatments.
-     - This will set the flag for all servers in the environment while you don't have any other targeting rules configured.
- 6. At the top right, click **Save changes** and confirm them on the next screen.
-
-That covers targeting an environment with a split and adding a default rule for all servers in that environment. The next section covers targeting specific servers.
-
-### Target a specific server
-
-The ID for a "server" as seen by Split is the Mattermost server's telemetry ID. To target a specific server you need that telemetry ID. The main way to get the telemetry ID from a server would be from the analytics but you can also manually grab the telemetry ID by one of the following methods:
-
-#### Get telemetry ID via inspecting browser traffic
-
- 1. In Chrome (any browser with dev tools will work but instructions are specific to Chrome), open the developer console and switch to the Network tab.
- 2. Type "config" into the filter for the network requests.
- 3. Go to the server's URL (e.g. xxxxxx.test.mattermost.cloud).
- 4. In the network tab, click on the request for `/api/v4/config/client?format=old`.
- 5. Click on the "Response" tab and search for "TelemetryId".
- 6. Copy the value of "TelemetryId".
-
-#### Get telemetry ID via curl and jq
-
-```bash
-$ curl -s https://<your-workspace-url>/api/v4/config/client?format=old | jq ".TelemetryId"
-```
-
-#### Target using the telemetry ID
-
-With the telemetry ID, go to your split and do the following:
-
- 1. Find the section "Create whitelists" and click **Add whitelist**.
- 2. Choose the treatment value you want the workspace to get.
- 3. Under "Server" paste in your telemetry ID.
- 4. At the top right, click **Save changes** and confirm them on the next screen.
-
-Now your workspace will have its feature flag set according to this rule, regardless of what the default for the split is set to.
-
-### Add or update a feature flag for community.mattermost.com
-
-Post the flag name and value in the [Community Configuration channel](https://community.mattermost.com/core/channels/community-configuration).
-
-To set a flag via Split for community:
-
- 1. Open the split for your flag.
- 2. At the top under the split name, select the "Cloud Staging" environment.
- 3. Find "Set targeting rules" and click **Add rule**.
-    - The rule may already exist, and in that case you can edit the existing one.
- 4. Leave the rule set to "is in segment" and click **Select Segment...** and choose "community".
- 5. Select the treatment you want community.mattermost.com to get.
- 6. At the top right, click **Save changes** and confirm them on the next screen.
-
-The feature flag is now set for community.mattermost.com.
-
-### Environments
-
- - Cloud Test - All the Cloud test servers/workspaces, including those created on PRs and by the ``/cloud`` command.
- - Cloud Staging - Mainly community.mattermost.com.
- - Cloud Production - All our production Cloud workspaces.
-
-### Split FAQ
-
-How long does it take for workspaces/servers to pick up on changes to feature flags in Split?
- - Syncing occurs once every 30 seconds so your feature flag will get changes at maximum 30 seconds after they're made.
+Feature flag adjustments (ie, turning something on or off) in the Mattermost Cloud environment are owned and controlled by the Cloud team. To change the value for a feature flag, please open a ticket.
 
 ## Timelines for rollouts
 
@@ -198,7 +92,7 @@ Some [examples are here](https://github.com/mattermost/mattermost/blob/master/se
        - "quick"
 
 2. Is it possible to use a plugin feature flag such as `PluginIncidentManagement` to "prepackage" a plugin only on Cloud by only setting a plugin version to that flag on Cloud? Can self-hosted customers manually set that flag to install the said plugin?
-   - Yes. If you leave the default "" then nothing will happen for self-hosted installations. You can ask the Cloud team to set ``split.io/environment`` to a specific version.
+   - Yes. If you leave the default "" then nothing will happen for self-hosted installations.
 
 3. How do feature flags work on webapp?
    - To add a feature flag that affects frontend, the following is needed:
@@ -217,17 +111,15 @@ Some [examples are here](https://github.com/mattermost/mattermost/blob/master/se
 6. Can plugins use feature flags to enable small features aside of the version forcing feature flag?
    - Yes. You can create feature flags as if they were added for the core product, and they'll get included in the plugin through the config.
 
-7. Does it make sense to use feature flags for A/B testing?
-   - Yes, this is something we've started to do using split.io.
 
-8. Do feature flag changes require the server to be restarted?
+7. Do feature flag changes require the server to be restarted?
    - Feature flags don’t require a server restart unless the feature being flagged requires a restart itself.
 
-9. For features that are requested by self-hosted customers, why do we have to deploy to Cloud first, rather than having the customer who has the test case test it?
+8. For features that are requested by self-hosted customers, why do we have to deploy to Cloud first, rather than having the customer who has the test case test it?
     - Cloud is the way to validate the stability of the feature before it goes to self-hosted customers. In exceptional cases we can let the self-hosted customer know that they can use environment variables to enable the feature flag (but specify that the feature is experimental).
 
-10. How does the current process take into account bugs that may arise on self-hosted specifically?
+9.  How does the current process take into account bugs that may arise on self-hosted specifically?
     - The process hasn’t changed much from the old release process: Features can still be tested on self-hosted servers once they have been rolled out to Cloud. The primary goal is that bugs are first identified on Cloud servers.
 
-11. How can self-hosted installations set feature flags?
+10. How can self-hosted installations set feature flags?
     - Self-hosted installations can set environment variables to set feature flag values. However, users should recognize that the feature is still considered "experimental" and should not be enabled on production servers.
