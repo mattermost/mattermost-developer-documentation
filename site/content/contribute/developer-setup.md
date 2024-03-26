@@ -40,7 +40,7 @@ If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL
     1. Set `MM_NO_DOCKER` to `true` in the `server/config.mk` file.
     2. Install [PostgreSQL](https://www.postgresql.org/download/)
     3. Run `psql postgres`. Then create `mmuser` by running `CREATE ROLE mmuser WITH LOGIN PASSWORD 'mostest';`
-    4. Modify the role to give rights to create ` database by running `ALTER ROLE mmuser CREATEDB;`
+    4. Modify the role to give rights to create a database by running `ALTER ROLE mmuser CREATEDB;`
     5. Check the role by running `\du`
     6. Before creating the database, exit by running `\q`
     7. Login again via mmuser by running `psql postgres -U mmuser`
