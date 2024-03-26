@@ -36,7 +36,7 @@ If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL
    sudo apt install build-essential
    ```
 
-1. Install [Docker](https://www.docker.com/). If you dont want to use Docker, you can follow the steps in the sub-bullets for manual database setup
+1. Install [Docker](https://www.docker.com/). If you don't want to use Docker, you can follow the steps in the sub-bullets below for manual database setup.
     1. Zet `MM_NO_DOCKER` to `true` in `server/config.mk` file
     2. Install [PostgreSQL](https://www.postgresql.org/download/)
     3. Run `psql postgres`. Then create `mmuser` by running `CREATE ROLE mmuser WITH LOGIN PASSWORD 'mostest';`
