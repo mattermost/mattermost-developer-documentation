@@ -43,7 +43,7 @@ If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL
     4. Modify the role to give rights to create a database by running `ALTER ROLE mmuser CREATEDB;`
     5. Confirm the role rights by running `\du`
     6. Before creating the database, exit by running `\q`
-    7. Login again via mmuser by running `psql postgres -U mmuser`
+    7. Login again via `mmuser` by running `psql postgres -U mmuser`
     8. Create the database   by running `CREATE DATABASE mattermost_test;` and exit again with `\q`
     9. Login again with `psql postgres` and run `GRANT ALL PRIVILEGES ON DATABASE mattermost_test TO mmuser;` to give all rights to `mmuser`
 
