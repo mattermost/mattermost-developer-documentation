@@ -14,6 +14,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 | Version | Release date       | MVP                                                                               |
 |---------|--------------------|-----------------------------------------------------------------------------------|
+| 9.7     | April 16, 2024     | {{< newtabref href="https://github.com/tanmaythole" title="Tanmay Thole" >}}  
 | 9.6     | March 15, 2024     | {{< newtabref href="https://github.com/Syed-Ali-Abbas-Zaidi" title="Syed Ali Abbas Zaidi" >}}   
 | 9.5     | February 16, 2024  | {{< newtabref href="https://github.com/ctlaltdieliet" title="Tom De Moor" >}}                                   |
 | 9.4     | January 16, 2024   | {{< newtabref href="https://github.com/Paul-Stern" title="Paul Stern" >}}  
