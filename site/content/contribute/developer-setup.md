@@ -37,8 +37,10 @@ If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL
    ```
 
 1. Install [Docker](https://www.docker.com/). If you don't want to use Docker, you can follow [this guide](#develop-mattermost-without-docker).
+    - When running `docker` commands under WSL2, if you receive the error `The command 'docker' could not be found in this WSL 2 distro.` you may need to toggle the `Use the WSL 2 based engine` off and on within Docker Settings after installation.
 
 1. Install [Go](https://go.dev/).
+    - Version 1.21 or higher is required.
 
 1. Increase the number of available file descriptors. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`), and add the following:
 
