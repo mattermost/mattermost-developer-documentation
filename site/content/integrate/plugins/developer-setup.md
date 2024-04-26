@@ -65,7 +65,7 @@ export MM_ADMIN_PASSWORD=password
 make deploy
 ```
 
-or with a {{< newtabref href="https://docs.mattermost.com/developer/personal-access-tokens.html" title="personal access token" >}}:
+or with a {{< newtabref href="https://developers.mattermost.com/integrate/reference/personal-access-token/" title="personal access token" >}}:
 
 ```shell
 export MM_SERVICESETTINGS_SITEURL=http://localhost:8065
@@ -74,5 +74,5 @@ make deploy
 ```
 
 {{<note "Tip:">}}
-Different plugin projects may require specific versions of Node.js. The recommended version for the given project is always defined in a file in the root of the repository called `.nvmrc`. You can use the tool {{< newtabref href="(https://nvm.sh)" title="Node Version Manager" >}} to install and switch between node versions in your terminal. If you have `nvm` installed, you can run `nvm install` anywhere in the plugin repository, and it will automatically find the `.nvmrc` file in the root, and install and use that version. If you already have that version installed, you can run `nvm use`, though `nvm install` can be easier since you don't need to check if you already have the specific Node version installed.
+Different plugin projects may require specific versions of Node.js. The recommended version for the given project is always defined in a file in the root of the repository called `.nvmrc`. You can use the tool {{< newtabref href="https://nvm.sh" title="Node Version Manager" >}} to install and switch between node versions in your terminal. If you have `nvm` installed, you can run `nvm install` anywhere in the plugin repository, and it will automatically find the `.nvmrc` file in the root, and install and use that version. If you already have that version installed, you can run `nvm use`, though `nvm install` can be easier since you don't need to check if you already have the specific Node version installed.
 {{</note>}}
