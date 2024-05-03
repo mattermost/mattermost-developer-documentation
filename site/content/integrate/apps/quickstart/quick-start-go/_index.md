@@ -18,7 +18,7 @@ This quick start guide will walk you through the basics of creating a hello worl
 
 Before you can start with your App, you should first set up your environment by following the [developer setup guide]({{< ref "/integrate/apps/quickstart" >}}).
 
-You also need Go v1.16 or later installed. Please follow the {{< newtabref href="https://golang.org/doc/install" title="official guide" >}} to install the latest version.
+You also need Go v1.16 or later installed. Please follow the {{< newtabref href="https://go.dev/doc/install" title="official guide" >}} to install the latest version.
 
 ## Download and start the App
 
