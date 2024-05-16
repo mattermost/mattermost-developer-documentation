@@ -117,12 +117,19 @@ From https://grafana.com/oss/loki/:
 
 Just as Prometheus is for metrics, think of Loki being for logs. Combined with promtail scraping the logs from Mattermost and all these supporting Docker containers, and Grafana for the frontend, Loki effectively provides a powerful user interface for slicing and dicing your developer logs.
 
+## keycloak
+
+From https://www.keycloak.org/documentation
+
+> Keycloak is an open source identity and access management solution.
+
+Keycloak can be used as a SAML identity provider with your local setup. See the setup instructions [here](https://github.com/mattermost/mattermost/blob/master/server/build/docker/keycloak/README.md).
+
 # Other Docker services
 
 Other Docker services supported by the development environment include:
 * minio
 * openldap
 * dejavu
-* keycloak
 * elasticsearch
 
