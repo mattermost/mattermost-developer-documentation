@@ -119,7 +119,7 @@ Just as Prometheus is for metrics, think of Loki being for logs. Combined with p
 
 ## keycloak
 
-From https://www.keycloak.org/documentation
+From https://www.keycloak.org/documentation:
 
 > Keycloak is an open source identity and access management solution.
 
