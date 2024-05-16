@@ -117,7 +117,7 @@ From https://grafana.com/oss/loki/:
 
 Just as Prometheus is for metrics, think of Loki being for logs. Combined with promtail scraping the logs from Mattermost and all these supporting Docker containers, and Grafana for the frontend, Loki effectively provides a powerful user interface for slicing and dicing your developer logs.
 
-# Other Docker Services
+# Other Docker services
 
 Other Docker services supported by the development environment include:
 * minio
