@@ -168,7 +168,7 @@ Performs formatting of text including Markdown, highlighting mentions and search
 * `markdown` - Enables markdown parsing. Defaults to true.
 * `siteURL` - The origin of this Mattermost instance. If provided, links to channels and posts will be replaced with internal links that can be handled by a special click handler.
 * `atMentions` - Whether or not to render "@" mentions into spans with a data-mention attribute. Defaults to false.
-* `channelNamesMap` - An object mapping channel display names to channels. If provided, ~channel mentions will be replaced with links to the relevant channel.
+* `channelNamesMap` - An object mapping channel display names to channels. If `channelNamesMap` and `team` are provided, ~channel mentions will be replaced with links to the relevant channel.
 * `team` - The current team object.
 * `proxyImages` - If specified, images are proxied. Defaults to false.
 
