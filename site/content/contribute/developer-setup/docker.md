@@ -17,7 +17,7 @@ But there are many additional services ready to work with your local environment
 ENABLED_DOCKER_SERVICES="postgres mysql inbucket minio openldap dejavu keycloak elasticsearch grafana prometheus promtail loki"
 ```
 
-To customize which services are started, either export the above enironment variable or copy [`config.mk`](https://github.com/mattermost/mattermost/blob/master/server/config.mk) as `config.override.mk` to tune appropriately.
+To customize which services are started, either export the above environment variable or copy [`config.mk`](https://github.com/mattermost/mattermost/blob/master/server/config.mk) as `config.override.mk` to tune appropriately.
 
 ## postgres
 
