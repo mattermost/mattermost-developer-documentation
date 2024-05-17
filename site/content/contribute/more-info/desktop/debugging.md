@@ -20,11 +20,12 @@ If you'd like to make use of better debugging tools, you can use the Chrome Dev 
 
 The renderer processes are controller by Chrome instances, so each of them will have their own Developer Tools instance.
 
-You can access these instances by going to the **View** menu (under the 3-dot menu on Windows/Linux, and in the top bar on macOS) and selecting:
+You can access these instances by going to the **View > Developer Tools** menu (under the 3-dot menu on Windows/Linux, and in the top bar on macOS) and selecting:
 - **Developer Tools for Application Wrapper** for anything involving the top bar.
 - **Developer Tools for Current Tab** for anything involving the Mattermost view or the preload script.
     {{<note "Note:">}} For this one, make sure you're currently on the tab where you want to load the Developer Tools. You can have instances open for tabs you aren't currently viewing, but to open them in the first place requires it to be opened.
     {{</note>}}
+- **Developer Tools for Call Widget** if you are using Mattermost Calls and the calls widget is currently open.
 
 There are other `BrowserViews` that are governed seperately from the main application wrapper, including:
 - Dropdown Menu

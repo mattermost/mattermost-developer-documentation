@@ -33,19 +33,16 @@ You can run the packager using this command:
 
     npm run package:<os>
 
-where **<os>** is one of the following values: `windows, mac, mac-universal, linux`
+where **\<os\>** is one of the following values: `windows, mac, mac-with-universal, mas, linux`
 
-All of the above values will generate builds for all applicable architectures:
-- `windows`: x86, x64 - `exe` format
-- `mac`: x64, arm64 (M1) - `dmg` and `zip` formats, one for each architecture.
-- `mac-universal`: universal binary for all architectures - `dmg`
-- `linux`: x64, x86 - `deb`, `rpm` and `tarball` formats
+All of the above values will generate builds for `x64` and `arm64` architectures:
+- `windows`: `exe`, `zip` and `msi` formats
+- `mac`: `dmg` and `zip` formats
+- `mac-with-universal`: universal binary for all architectures - `dmg`
+- `mas`: universal Mac App Store-compliant build
+- `linux`: `deb`, `rpm` and `tar.gz` formats
 
-If you want to build the MSI installer for Windows, you need to run the `Makefile.ps1` script in the `scripts/` folder.
-
-```powershell
-./scripts/Makefile.ps1 build
-```
+You can build for more specific targets using the commands [here]({{< ref "/contribute/more-info/desktop/build-commands#packaging" >}})
 
 #### After pack script
 
@@ -59,7 +56,7 @@ These files are under control of Mattermost and aren't generally distributed, bu
 
 For macOS, you'll need a valid `Mac Developer` or `Developer ID Application` certificate from the Apple Developer Program.
 
-For Windows, you'll need a valid `.pfx` file.
+For Windows, you'll need a valid code signing certificate.
 
 More information on Code Signing can be found here: https://www.electron.build/code-signing
 
