@@ -72,6 +72,8 @@ To disable the Mattermost plugin health check job, go into your `config.json` an
 
 ##### Disable `go-plugin` RPC client "keep alive"
 
+We'll be editing external library source code directly, so we only want to do this in a development environment.
+
 By default, the `go-plugin` package runs plugins with a "keep alive" feature enabled, which essentially pings the plugin RPC connection every 30 seconds, and if the plugin doesn't respond, the RPC connection will be terminated. There is a way to disable this, though the `go-plugin` currently doesn't expose a way to configure this setting, so we need to edit the `go-plugin` package's source code (using the script below) to have the right configuration for our debugging use case.
 
 In the script below, we automatically modify the file located at `${GOPATH}/pkg/mod/github.com/hashicorp/go-plugin@${GO_PLUGIN_PACKAGE_VERSION}/rpc_client.go`, where `GO_PLUGIN_PACKAGE_VERSION` is the version of `go-plugin` that your Mattermost server is using. This can be found in your local copy of the monorepo at [server/go.mod](https://github.com/mattermost/mattermost/blob/4bdd8bb18e47d16f9680905972516526b6fd61d8/server/go.mod#L141).
