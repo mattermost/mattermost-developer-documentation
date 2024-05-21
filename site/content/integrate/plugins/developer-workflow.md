@@ -74,11 +74,9 @@ To disable the Mattermost plugin health check job, go into your `config.json` an
 
 We'll be editing external library source code directly, so we only want to do this in a development environment.
 
-By default, the `go-plugin` package runs plugins with a "keep alive" feature enabled, which essentially pings the plugin RPC connection every 30 seconds, and if the plugin doesn't respond, the RPC connection will be terminated. There is a way to disable this, though the `go-plugin` currently doesn't expose a way to configure this setting, so we need to edit the `go-plugin` package's source code (using the script below) to have the right configuration for our debugging use case.
+By default, the `go-plugin` package runs plugins with a "keep alive" feature enabled, which essentially pings the plugin RPC connection every 30 seconds, and if the plugin doesn't respond, the RPC connection will be terminated. There is a way to disable this, though the `go-plugin` currently doesn't expose a way to configure this setting, so we need to edit the `go-plugin` package's source code to have the right configuration for our debugging use case.
 
-In the script below, we automatically modify the file located at `${GOPATH}/pkg/mod/github.com/hashicorp/go-plugin@${GO_PLUGIN_PACKAGE_VERSION}/rpc_client.go`, where `GO_PLUGIN_PACKAGE_VERSION` is the version of `go-plugin` that your Mattermost server is using. This can be found in your local copy of the monorepo at [server/go.mod](https://github.com/mattermost/mattermost/blob/4bdd8bb18e47d16f9680905972516526b6fd61d8/server/go.mod#L141).
-
-This script essentially replaces the line in [go-plugin/rpc_client.go](https://github.com/hashicorp/go-plugin/blob/586d14f3dcef1eb42bfb7da4c7af102ec6638668/rpc_client.go#L66) to have a custom configuration for the RPC client connection, that disables the "keep alive" feature. This makes it so the debugger can be paused for long amounts of time, and the Mattermost server will keep the connection with the plugin open.
+In the script below, we automatically modify the file located at `${GOPATH}/pkg/mod/github.com/hashicorp/go-plugin@${GO_PLUGIN_PACKAGE_VERSION}/rpc_client.go`, where `GO_PLUGIN_PACKAGE_VERSION` is the version of `go-plugin` that your Mattermost server is using. This can be found in your local copy of the monorepo at [server/go.mod](https://github.com/mattermost/mattermost/blob/4bdd8bb18e47d16f9680905972516526b6fd61d8/server/go.mod#L141). This script essentially replaces the line in [go-plugin/rpc_client.go](https://github.com/hashicorp/go-plugin/blob/586d14f3dcef1eb42bfb7da4c7af102ec6638668/rpc_client.go#L66) to have a custom configuration for the RPC client connection, that disables the "keep alive" feature. This makes it so the debugger can be paused for long amounts of time, and the Mattermost server will keep the connection with the plugin open.
 
 ```sh
 # patch_go_plugin.sh
@@ -106,6 +104,13 @@ sudo sed -i '' '/mux, err := yamux.Client(conn, nil)/c\
 ' $GO_PLUGIN_RPC_CLIENT_PATH
 
 echo "Patched go-plugin's rpc_client.go for debugging Mattermost plugins"
+```
+
+Then run the script like so:
+
+```sh
+chmod +x patch_go_plugin.sh
+./patch_go_plugin.sh v1.6.0 # as of writing, this is the version of `go-plugin` being used by the server
 ```
 
 #### Configure VSCode for debugging
