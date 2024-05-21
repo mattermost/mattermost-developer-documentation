@@ -50,8 +50,7 @@ If you would like to avoid using ngrok, there is another free option that you ca
 ssh -R 80:localhost:8065 ssh.localhost.run
 ```
 
-An `http` URL pointing to your server should show in the terminal. The `https` version of this same URL should also work, which is what you will want to use for your webhook URLs. One disadvantage of using `localhost.run` is there is no request/response logging dasboard that is available with ngrok.
-
+An `http` URL pointing to your server should show in the terminal. The `https` version of this same URL should also work, which is what you will want to use for your webhook URLs. One disadvantage of using `localhost.run` is there is no request/response logging dashboard that is available with ngrok.
 
 ### Debug server-side plugins using `delve`
 
@@ -145,7 +144,9 @@ This starts a headless `delve` process for your IDE to connect to. The process l
 
 Run the debugger in VSCode by navigating to the "Run and Debug" tab on the left side of the IDE, selecting your launch configuration, and clicking the green play button. This should bring up a debugging widget that looks like this:
 
-(image)
+![image](https://github.com/mattermost/mattermost-developer-documentation/assets/6913320/9419ce8b-c803-40b7-82bb-9ccd64971676)
+
+![image](https://github.com/mattermost/mattermost-developer-documentation/assets/6913320/f28681c3-c256-41a1-b1f4-835f96628d6a)
 
 Your IDE's debugger is now running and ready to pause your plugin's execution at any breakpoints you set in the IDE.
 
