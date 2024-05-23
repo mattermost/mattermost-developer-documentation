@@ -23,6 +23,7 @@ jobs:
       - name: Build Previews
         run: |
           rm -rf ./dist
+          make plugin-data
           hugo -F -s site --baseURL http://mattermost-dev-docs-preview-pulls.s3-website-us-east-1.amazonaws.com/${{ github.event.number }}/ --destination ../dist/html
 
       - name: Run tests
