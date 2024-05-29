@@ -3143,6 +3143,8 @@ span.collapseToggle>[class^="icon-"]:before, [class*=" icon-"]:before {
 
 .container-fluid {
     max-width: 1140px;
+    padding-right: 24px;
+    padding-left: 24px;
 }
 
 .container {
@@ -3552,10 +3554,6 @@ table thead tr:first-child th:nth-child(2) {
     background-color: #EA9999;
 }
 
-.doc-content {
-    margin: 50px 0 0;
-}
-
 .doc-content .edit-github {
     padding: 0.9rem;
 }
@@ -3788,11 +3786,6 @@ ol > li + li {
 }
 
 @media (max-width: 768px) {
-    .doc-content {
-        margin-top: 25px;
-        padding: 0 20px;
-    }
-
     .header__links--right {
         background: #fff;
         border-bottom: 1px solid #ddd;
@@ -3937,6 +3930,8 @@ ol > li + li {
 .col-9,
 .col-12,
 .col-lg-2,
+.col-lg-3,
+.col-lg-9,
 .col-lg-10,
 .col-md-2,
 .col-md-3,
