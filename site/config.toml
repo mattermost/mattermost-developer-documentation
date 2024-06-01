@@ -32,8 +32,8 @@ enableEmoji = true
 
   [params.notification]
     enable = true
-    url = "https://mattermost.com/webinar/cybersecurity-incident-response/"
-    text = "[WEBINAR] Learn how to secure mission-critical work"
+    url = "https://mattermost.com/webinar/ai-collaboration-landscape-of-tomorrow/"
+    text = "[WEBINAR] How AI is Transforming Mission-Critical Work"
 
   [params.search]
     enable = true
