@@ -5,11 +5,11 @@ weight: 1
 ---
 
 There are many reasons you might be motivated to contribute to Mattermost:
-- [You've found a bug](#youve-found-a-bug)
+- [You’ve found a bug](#youve-found-a-bug)
 - [You want to help with content](#you-want-to-help-with-content)
 - [You want to make something more inclusive or accessible](#you-want-to-make-something-more-inclusive-or-accessible)
 - [You have a feature idea](#you-have-a-feature-idea)
-- [You're looking to practice your skills or give back to the community](#youre-looking-to-practice-your-skills-or-give-back-to-the-community)
+- [You’re looking to practice your skills or give back to the community](#youre-looking-to-practice-your-skills-or-give-back-to-the-community)
 - [You want to help with product translation](#you-want-to-help-with-product-translation)
 - [You want to help test new features](#you-want-to-help-test-new-features)
 
@@ -45,7 +45,7 @@ There are many reasons you might be motivated to contribute to Mattermost:
     
     - **Update the appropriate Jira ticket** so everybody knows where the project stands. Resolve the ticket for QA from the **Ready for QA** button, and include QA test steps, or note **No Testing Required** if no QA testing is needed.
     
-    - If you need to test your changes on a test server, an [appropriate label]({{< ref "/contribute/more-info/getting-started/labels.md)" >}}) can be added to the PR. **Request this label as a comment in your PR to create a test server**. After about three to five minutes, a test server is created, and a bot will send a link and credentials in the form of a comment on the PR. The test server is destroyed when the label is removed.
+    - If you need to test your changes on a test server, an [appropriate label]({{< ref "/contribute/more-info/getting-started/labels.md" >}}) can be added to the PR. **Request this label as a comment in your PR to create a test server**. After about three to five minutes, a test server is created, and a bot will send a link and credentials in the form of a comment on the PR. The test server is destroyed when the label is removed.
 
 6. Once you address suggestions a reviewer has made, re-request a review from them. Their initial review was technically completed, so it’s no longer in a reviewer's queue until you re-request.
 
