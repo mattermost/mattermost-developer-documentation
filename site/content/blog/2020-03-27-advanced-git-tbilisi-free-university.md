@@ -11,9 +11,9 @@ github: lieut-data
 community: jesse.hallam
 ---
 
-On Monday, March 16, 2020, I had the privilege to (virtually) join [Shota Gvinepadze](https://community.mattermost.com/core/messages/@shota.gvinepadze) and his students at the [Free University of Tbilisi](http://freeuni.edu.ge/en) and speak about "Advanced Git @ Mattermost" for a portion of their class time.
+On Monday, March 16, 2020, I had the privilege to (virtually) join {{< newtabref href="https://community.mattermost.com/core/messages/@shota.gvinepadze" title="Shota Gvinepadze" >}} and his students at the {{< newtabref href="http://freeuni.edu.ge/en" title="Free University of Tbilisi" >}} and speak about "Advanced Git @ Mattermost" for a portion of their class time.
 
-The following are my speaking notes from the session, slightly modified from the [original slides](https://docs.google.com/presentation/d/1tVH2kw_WJ5_rCCOIGHPxVc8O07g1zHK0hQIloCwEYAk/edit) for this format. Keep in mind that the command line examples are illustrative of my workflow, and not meant to be run in isolation.
+The following are my speaking notes from the session, slightly modified from the {{< newtabref href="https://docs.google.com/presentation/d/1tVH2kw_WJ5_rCCOIGHPxVc8O07g1zHK0hQIloCwEYAk/edit" title="original slides" >}} for this format. Keep in mind that the command line examples are illustrative of my workflow, and not meant to be run in isolation.
 
 ### Introduction
 Today's session on open source will focus on understanding Git better. I've interacted with a lot of people who are "scared of Git." They know the basics -- pulling, committing, pushing -- but anytime something goes wrong, they're stuck. Or they know about some of the advanced Git commands, but worry every time they have to do one.
@@ -34,15 +34,15 @@ Keep in mind that I can't hope to exhaust the depths of how these commands are i
 
 Let's start with `git revert`. This is one of many different ways to "undo" something in Git. What motivates undoing something?
 
-Just over two years ago, I began working at Mattermost. As part of a team investigating performance improvements, I had been asked to dig into a slow SQL query to determine if there was an opportunity for improvement. After several days of analysis and testing, I [found](https://community.mattermost.com/core/pl/ezfwp364ct8bbewbji3ikpusrr) a major issue and a very promising improvement: a query that took upwards of 3 seconds in a large dataset could be modified to run in just a few milliseconds instead. I implemented the improvement, we tested it in our own environment, and ultimately shipped it in Mattermost v4.9.
+Just over two years ago, I began working at Mattermost. As part of a team investigating performance improvements, I had been asked to dig into a slow SQL query to determine if there was an opportunity for improvement. After several days of analysis and testing, I {{< newtabref href="https://community.mattermost.com/core/pl/ezfwp364ct8bbewbji3ikpusrr" title="found" >}} a major issue and a very promising improvement: a query that took upwards of 3 seconds in a large dataset could be modified to run in just a few milliseconds instead. I implemented the improvement, we tested it in our own environment, and ultimately shipped it in Mattermost v4.9.
 
-Just over a month later, one of larger customers upgraded to v4.9 and found their system grinding to a halt. We hopped on an emergency call to glean some information, and everything pointed to my changes making things much worse instead of much better. You can read the [details of my second investigation](https://community.mattermost.com/core/pl/n8bfq7wq77rkff8mgrrstqeuye) into what went wrong, but in the end, we decided to [revert my changes](https://github.com/mattermost/mattermost-server/pull/8659) and ship a patch release.
+Just over a month later, one of larger customers upgraded to v4.9 and found their system grinding to a halt. We hopped on an emergency call to glean some information, and everything pointed to my changes making things much worse instead of much better. You can read the {{< newtabref href="https://community.mattermost.com/core/pl/n8bfq7wq77rkff8mgrrstqeuye" title="details of my second investigation" >}} into what went wrong, but in the end, we decided to {{< newtabref href="https://github.com/mattermost/mattermost/pull/8659" title="revert my changes" >}} and ship a patch release.
 
 When I undid these changes, I wanted to bring the code back to exactly the way it was before my changes. We already knew how that code behaved for this customer, and the goal was to restore stability by using the old code instead. I could, of course, make the changes manually: finding the old code and copying it over top of the new code. But one of Git's built-in commands is an operation to do this automatically. Let's see it in action!
 
 ```sh
 # Checkout the mattermost-server repository
-git clone https://github.com/mattermost/mattermost-server.git
+git clone https://github.com/mattermost/mattermost.git
 cd mattermost-server
 
 # Go back in time to the v4.9.0 tag
@@ -83,14 +83,14 @@ Let's look at the most recent such feature release: v5.20.
 
 ```sh
 # Checkout the mattermost-server repository (if not already done)
-git clone https://github.com/mattermost/mattermost-server.git
+git clone https://github.com/mattermost/mattermost.git
 cd mattermost-server
 
 # Examine the combined history of release-5.20 and master
 git log --graph --oneline origin/release-5.20 master
 ```
 
-Observe that `master` has advanced in the weeks since we released v5.20. When we first released v5.20.0, a community member tried installing it and promptly [reported](https://community.mattermost.com/core/pl/877mkcc967ytjpgcgpbo6bi7ty) that his server was crashing! A bit of debugging on a Saturday, and I realized that we had introduced a regression into a code path we didn't often use ourselves. I filed [MM-21619](https://mattermost.atlassian.net/browse/MM-22619) and got to work on the fix. Let's find it in the `master` branch.
+Observe that `master` has advanced in the weeks since we released v5.20. When we first released v5.20.0, a community member tried installing it and promptly {{< newtabref href="https://community.mattermost.com/core/pl/877mkcc967ytjpgcgpbo6bi7ty" title="reported" >}} that his server was crashing! A bit of debugging on a Saturday, and I realized that we had introduced a regression into a code path we didn't often use ourselves. I filed {{< newtabref href="https://mattermost.atlassian.net/browse/MM-22619" title="MM-21619" >}} and got to work on the fix. Let's find it in the `master` branch.
 
 ```sh
 # Find the commit for MM-22619 in master and release 5.20
@@ -158,7 +158,7 @@ Let me walk you through an example. We're going to see about improving some code
 
 ```sh
 # Checkout the mattermost-server repository (if not already done)
-git clone https://github.com/mattermost/mattermost-server.git
+git clone https://github.com/mattermost/mattermost.git
 cd mattermost-server
 
 git checkout -b test-git-rebase

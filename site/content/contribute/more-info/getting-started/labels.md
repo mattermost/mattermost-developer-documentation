@@ -8,7 +8,7 @@ aliases:
   - /contribute/getting-started/labels
 ---
 
-We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to track the details and lifecycle of issues and pull requests.
+We leverage {{< newtabref href="https://help.github.com/en/articles/about-labels" title="GitHub labels" >}} to track the details and lifecycle of issues and pull requests.
 
 # Issue labels
 
@@ -28,12 +28,12 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 
 # Pull request labels
 
-* `1: PM Review`: Requires review by a [product manager](https://handbook.mattermost.com/contributors/contributors/core-committers#product-managers).
+* `1: PM Review`: Requires review by a {{< newtabref href="https://handbook.mattermost.com/contributors/contributors/core-committers#product-managers" title="product manager" >}}.
 * `1: UX Review`: Requires review by a UX designer.
 * `1: SME Review`: Requires review by a subject matter expert (used in the Handbook).
-* `2: Dev Review`: Requires review by a [core committer](https://handbook.mattermost.com/contributors/contributors/core-committers#core-committers).
-* `2: Editor Review`: Requires review by a [technical writer](https://handbook.mattermost.com/contributors/contributors/core-committers#technical-writers).
-* `3: QA Review`: Requires review by a [QA tester](https://handbook.mattermost.com/contributors/contributors/core-committers#qa-testers). May occur at the same time as Dev Review.
+* `2: Dev Review`: Requires review by a {{< newtabref href="https://handbook.mattermost.com/contributors/contributors/core-committers#core-committers" title="core committer" >}}.
+* `2: Editor Review`: Requires review by a {{< newtabref href="https://handbook.mattermost.com/contributors/contributors/core-committers#technical-writers" title="technical writer" >}}.
+* `3: QA Review`: Requires review by a {{< newtabref href="https://handbook.mattermost.com/contributors/contributors/core-committers#qa-testers" title="QA tester" >}}. May occur at the same time as Dev Review.
 * `4: Reviews Complete`: All reviewers have approved the pull request.
 * `Awaiting Submitter Action`: Blocked on the author.
 * `AutoMerge`: If all checks and approvals pass and the user adds this label, it will be in the queue to get merge automatically without a human intervention.
@@ -52,10 +52,11 @@ We leverage [GitHub labels](https://help.github.com/en/articles/about-labels) to
 * `Docs/Needed`: Requires documentation.
 * `Docs/Not Needed`: Does not require documentation.
 * `Hackfest`: Related to a Mattermost hackathon.
-* `Hacktoberfest`: Related to [Hacktoberfest](https://hacktoberfest.digitalocean.com/).
+* `Hacktoberfest`: Related to {{< newtabref href="https://hacktoberfest.digitalocean.com/" title="Hacktoberfest" >}}.
 * `Lifecycle/<state>`: An [inactive contribution]({{< ref "/contribute/more-info/getting-started/inactive-contributions" >}}).
 * `Loadtest`: Triggers an automatic load test.
-* `Major Change`: The pull request is a major feature or affects large areas of the code base (e.g. [moving channel store and actions to Redux](https://github.com/mattermost/platform/pull/6235)).
+* `Major Change`: The pull request is a major feature or affects large areas of the code base (e.g. {{< newtabref href="https://github.com/mattermost/platform/pull/6235" title="moving channel store and actions to Redux" >}}).
+* `QA Deferred`: Testing of this PR is expected to be completed after merge, likely when it is available on Community. Apply this in lieu of asking for `3: QA Review`.
 * `Setup Cloud Test Server`: Triggers the creation of a Enterprise Edition test server.
 * `Setup HA Cloud Test Server`: Triggers the creation of a test server that has high availability.
 * `Setup Cloud + CWS Test Server`: Triggers the creation of a test server that connects to our test Customer Web Server.

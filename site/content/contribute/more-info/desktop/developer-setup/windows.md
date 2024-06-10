@@ -5,7 +5,8 @@
 4. Install dependencies
 
     ```sh
-    choco install nodejs-lts git python3
+    choco install nvm git python3
     ```
 
 5. Restart PowerShell (to refresh the environment variables)
+6. Run `nvm install lts` and `nvm use lts` to install and use the latest NodeJS LTS version.

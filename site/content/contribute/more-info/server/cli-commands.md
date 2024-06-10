@@ -8,17 +8,17 @@ aliases:
   - /contribute/server/cli-commands
 ---
 
-As of 6.0, Mattermost CLI has been replaced by [mmctl](https://github.com/mattermost/mmctl). `mmctl` is built to enable access to Mattermost server from the command line. The tool leverages the public API so that administrator and user tasks can be performed.
+As of 6.0, Mattermost CLI has been replaced by {{< newtabref href="https://github.com/mattermost/mmctl" title="mmctl" >}}. `mmctl` is built to enable access to Mattermost server from the command line. The tool leverages the public API so that administrator and user tasks can be performed.
 
-Since `mmctl` uses the public API, an authorization mechanism is required. Which means the access rights are managed on the server side. There is a pre-run check to read credentials and use it in the client. In addition to authentication via credentials, `mmctl` can communicate to a local server without any authentication. This must be enabled via server configuration and both `mmctl` and `mattermost-server` needs to be running in the same machine.
+Since `mmctl` uses the public API, an authorization mechanism is required. Which means the access rights are managed on the server side. There is a pre-run check to read credentials and use it in the client. In addition to authentication via credentials, `mmctl` can communicate to a local server without any authentication. This must be enabled via server configuration and both `mmctl` and `mattermost/server` needs to be running in the same machine.
 
 In addition to provide more functionality towards testing and development, `db` subcommand has been added Mattermost server binary.
 
-The CLI interface is written using [Cobra](https://github.com/spf13/cobra), a
+The CLI interface is written using {{< newtabref href="https://github.com/spf13/cobra" title="Cobra" >}}, a
 powerful and modern CLI creation library. If you have never used Cobra before, it is
-well documented in its [GitHub Repository](https://github.com/spf13/cobra).
+well documented in its {{< newtabref href="https://github.com/spf13/cobra" title="GitHub Repository" >}}.
 
-The source code used to build our CLI interface is written in the `commands` directory of the [mmctl](https://github.com/mattermost/mmctl) repository.
+The source code used to build our CLI interface is written in the `commands` directory of the {{< newtabref href="https://github.com/mattermost/mmctl" title="mmctl" >}} repository.
 
 Each "command" of the CLI is stored in a different file of the
 `commands` directory. Within each file, you can find
@@ -102,4 +102,4 @@ Usually, you would then add several subcommands to perform various tasks.
 
 ## Submit your pull request
 
-Please submit a pull request against the [mattermost/mmctl](https://github.com/mattermost/mmctl) repository by [following these instructions]({{< ref "/contribute/more-info/server/developer-workflow" >}}).
+Please submit a pull request against the {{< newtabref href="https://github.com/mattermost/mmctl" title="mattermost/mmctl" >}} repository by [following these instructions]({{< ref "/contribute/more-info/server/developer-workflow" >}}).

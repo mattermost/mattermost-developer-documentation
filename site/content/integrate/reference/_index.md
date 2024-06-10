@@ -1,8 +1,8 @@
 ---
-title: Reference
-heading: Reference materials
-description: Reference materials
+title: Quick reference
+heading: Quick reference
+description: Quick reference
 weight: 90
 ---
 
-The reference section contains further information on integrating Apps and plugins with Mattermost, including API references.
+This reference section contains information on integrating Apps and plugins with Mattermost, including Server SDK, Web App SDK, and REST API references.

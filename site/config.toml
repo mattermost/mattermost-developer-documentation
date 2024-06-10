@@ -8,6 +8,7 @@ languageCode = "en-us"
 publishDir = "../docs"
 pygmentsCodeFences = true
 pygmentsStyle = "manni"
+enableEmoji = true
 
 [taxonomies]
   category = "categories"
@@ -31,11 +32,11 @@ pygmentsStyle = "manni"
 
   [params.notification]
     enable = true
-    url = "https://mattermost.com/hacktoberfest/"
-    text = "Join us for Hacktoberfest 2022!"
+    url = "https://mattermost.com/webinar/ai-collaboration-landscape-of-tomorrow/"
+    text = "[WEBINAR] How AI is Transforming Mission-Critical Work"
 
   [params.search]
-    enable = false
+    enable = true
 
   [params.sidebar]
   [[params.sidebar.item]]

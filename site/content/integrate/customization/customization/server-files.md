@@ -11,12 +11,12 @@ aliases:
 
 In both Mattermost Team and Enterprise editions, you have the freedom to alter how content is displayed by being able to change the contents of localized files and email templates.
 
-Before proceeding with the steps below, make sure you have completed the [mattermost-server]({{< ref "/contribute/more-info/server/developer-setup" >}}) and [mattermost-webapp]({{< ref "/contribute/more-info/webapp/developer-setup" >}}) setup process.
+Before proceeding with the steps below, make sure you have completed the [mattermost-server]({{< ref "/contribute/developer-setup" >}}) and [mattermost-webapp]({{< ref "/contribute/developer-setup" >}}) setup process.
 
 ## i18n files
 The `i18n` files define many of the contents seen in email notifications and responses from the server.
 
-1. Edit contents of files in the `mattermost-server/i18n` directory according to your requirements.
+1. Edit contents of files in the `mattermost/server/i18n` directory according to your requirements.
 
 2. Once you're ready, create a tarball or zip the files __within__ the `i18n` directory.
 

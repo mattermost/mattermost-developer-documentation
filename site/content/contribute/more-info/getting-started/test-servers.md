@@ -18,7 +18,7 @@ Core committers and staff can trigger test server creation on a PR by adding one
 
 After adding these labels, a bot will comment on the PR notifying you that a test server is being created. It should take approximately 3-5 minutes for the server to create it. Once it's ready, the bot will comment on the PR again with a link and credentials to the test server for both an admin and a regular user.
 
-If the bot comments that an error has occurred, try removing the label and then re-adding it again. If that still fails, please ask for help in [~Developers: Cloud](https://community.mattermost.com/core/channels/cloud). If you need urgent help, please mention `@sresupport` in your message.
+If the bot comments that an error has occurred, try removing the label and then re-adding it again. If that still fails, please ask for help in {{< newtabref href="https://community.mattermost.com/core/channels/cloud" title="~Developers: Cloud" >}}. If you need urgent help, please mention `@sresupport` in your message.
 
 Once testing is complete, remove the label and the test server will be destroyed.
 

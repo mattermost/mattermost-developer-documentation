@@ -7,18 +7,23 @@ weight: 30
 aliases:
   - /integrate/other-integrations/slash-commands/
   - /integrate/slash-commands/using-slash-commands/
+subsection: slash commands
+cascade:
+  - subsection: slash commands
 ---
 
 Slash commands are messages that begin with `/` and trigger an HTTP request to a web service that can in turn post one or more messages in response.
 
+Slash commands have an additional feature, **autocomplete**, that displays a list of possible commands based on what has been typed in the message box. Typing `/` in an empty message box will display a list of all slash commands. As the slash command is typed in the message box, autocomplete will also display possible arguments and flags for the command.
+
 Unlike [outgoing webhooks]({{< ref "/integrate/webhooks/outgoing" >}}), slash commands work in private channels and direct messages in addition to public channels, and can be configured to auto-complete when typing.
-Mattermost includes a number of [built-in slash commands]({{< ref "built-in" >}}). You can also create [custom slash commands]({{< ref "custom" >}}).
+Mattermost includes a number of [built-in slash commands](https://docs.mattermost.com/channels/interact-with-channels.html). You can also create [custom slash commands]({{< ref "custom" >}}).
 
 ## Tips and best practices
 
 1. Slash commands are designed to easily allow you to post messages. For other actions such as channel creation, you must also use the {{< newtabref title="Mattermost APIs" href="https://api.mattermost.com" >}}.
-2. Posts size is limited to 16393 characters for servers running [Mattermost Server v5.0 or later](https://docs.mattermost.com/administration/important-upgrade-notes.html). Use the `extra_responses` field to reply to a triggered slash command with more than one post.
-3. You can restrict who can create slash commands in [System Console > Integrations > Integration Management](https://docs.mattermost.com/configure/configuration-settings.html#enable-custom-slash-commands).
+2. Posts size is limited to 16383 characters for servers running {{< newtabref href="https://docs.mattermost.com/administration/important-upgrade-notes.html" title="Mattermost Server v5.0 or later" >}}. Use the `extra_responses` field to reply to a triggered slash command with more than one post.
+3. You can restrict who can create slash commands in {{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html#enable-custom-slash-commands" title="System Console > Integrations > Integration Management" >}}.
 4. Mattermost [outgoing webhooks]({{< ref "/integrate/webhooks/outgoing" >}}) are Slack-compatible. You can copy-and-paste code used for a Slack outgoing webhook to create Mattermost integrations. Mattermost [automatically translates Slack's proprietary JSON payload format]({{< ref "slack#translate-slacks-data-format-to-mattermost" >}}).
 5. The external application may be written in any programming language. It needs to provide a URL which receives the request sent by your Mattermost Server and responds with in the required JSON format.
 
@@ -70,7 +75,7 @@ Reply immediately with an `ephemeral` message to confirm response of the command
 
 By default, Mattermost prohibits outgoing connections that resolve to certain common IP ranges, including the loopback (`127.0.0.0/8`) and various private-use subnets.
 
-During development, you may override this behaviour by setting `ServiceSettings.AllowedUntrustedInternalConnections` to `"127.0.0.0/8"` in your `config.json` or via **System Console > Advanced > Developer**. See the [configuration settings documentation](https://docs.mattermost.com/configure/environment-configuration-settings.html#allow-untrusted-internal-connections) for more details.
+During development, you may override this behaviour by setting `ServiceSettings.AllowedUntrustedInternalConnections` to `"127.0.0.0/8"` in your `config.json` or via **System Console > Advanced > Developer**. See the {{< newtabref href="https://docs.mattermost.com/configure/environment-configuration-settings.html#allow-untrusted-internal-connections" title="configuration settings documentation" >}} for more details.
 
 ### Should I configure my slash command to use `POST` or `GET`?
 
@@ -104,14 +109,14 @@ See the [Slack compatibility]({{< ref "slack" >}}) page.
 
 #### If you are developing a plugin
 
-Use [`CreatePost`]({{< ref "/integrate/plugins/components/server/reference#API.CreatePost" >}}) plugin API. Make sure to set the  `UserId` of the post to the `UserId` of the Bot Account. If you want to create an ephemeral post, use [`SendEphemeralPost`]({{< ref "/integrate/plugins/components/server/reference#API.SendEphemeralPost" >}}) plugin API instead.
+Use [`CreatePost`]({{< ref "/integrate/reference/server/server-reference#API.CreatePost" >}}) plugin API. Make sure to set the  `UserId` of the post to the `UserId` of the Bot Account. If you want to create an ephemeral post, use [`SendEphemeralPost`]({{< ref "/integrate/reference/server/server-reference#API.SendEphemeralPost" >}}) plugin API instead.
 
 ## Troubleshoot slash commands
 
-Join the [Mattermost user community](https://mattermost.com/pl/default-ask-mattermost-community) for help troubleshooting your slash command.
+Join the {{< newtabref href="https://mattermost.com/pl/default-ask-mattermost-community" title="Mattermost user community" >}} for help troubleshooting your slash command.
 
 ## Share your integration
 
-If you've built an integration for Mattermost, please consider [sharing your work]({{< ref "/integrate/getting-started" >}}) in our [Marketplace](https://mattermost.com/marketplace/).
+If you've built an integration for Mattermost, please consider [sharing your work]({{< ref "/integrate/getting-started" >}}) in our {{< newtabref href="https://mattermost.com/marketplace/" title="Marketplace" >}}.
 
-The [Marketplace](https://mattermost.com/marketplace/) lists open source integrations developed by the Mattermost community and are available for download, customization, and deployment to your private cloud or self-hosted infrastructure.
+The {{< newtabref href="https://mattermost.com/marketplace/" title="Marketplace" >}} lists open source integrations developed by the Mattermost community and are available for download, customization, and deployment to your private cloud or self-hosted infrastructure.

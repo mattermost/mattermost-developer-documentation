@@ -11,4 +11,4 @@ If [Apps]({{< ref "/integrate/apps" >}}), the [API](https://api.mattermost.com),
 * Slash Commands - Enable your users to [trigger custom actions]({{< ref "/integrate/slash-commands" >}}) from within Mattermost.
 * Embed - Learn how to use the Mattermost API to [embed Mattermost]({{< ref "/integrate/customization/embedding" >}}) into web browsers and web applications.
 * Customize - Modify the source code for the server or web app to make basic [changes and customization]({{< ref "/integrate/customization/customization" >}}).
-* Interactive Messages - Create messages that include [interactive functionality](https://docs.mattermost.com/developer/interactive-messages.html).
+* Interactive Messages - Create messages that include {{< newtabref href="https://docs.mattermost.com/developer/interactive-messages.html" title="interactive functionality" >}}.

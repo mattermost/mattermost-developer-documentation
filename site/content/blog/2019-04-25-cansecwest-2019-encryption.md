@@ -9,7 +9,7 @@ github: crspeller
 community: christopher
 ---
 
-This year I had the opportunity to attend the security conference [CanSecWest](https://cansecwest.com/) in Vancouver, BC. Like any security conference, it was full of exploits and interesting anecdotes. There were plenty of interesting talks, but this post focuses on a talk by Zhiniang Peng and Minrui Yang on the dangers of homomorphic encryption. This post gives a high level overview and avoids giving too much technical detail.
+This year I had the opportunity to attend the security conference {{< newtabref href="https://cansecwest.com/" title="CanSecWest" >}} in Vancouver, BC. Like any security conference, it was full of exploits and interesting anecdotes. There were plenty of interesting talks, but this post focuses on a talk by Zhiniang Peng and Minrui Yang on the dangers of homomorphic encryption. This post gives a high level overview and avoids giving too much technical detail.
 
 #### What is Homomorphic Encryption?
 
@@ -27,7 +27,7 @@ Implementing a homomorphic encryption scheme for Mattermost could theoretically 
 
 #### The talk was called dangers...
 
-Homomorphic encryption is not ready for prime time. While there are [libraries](https://github.com/Microsoft/SEAL) that implement homomorphic encryption and that have made great strides in recent years in terms of performance, they are not turnkey solutions to many problems the way a well-developed cryptography library might be. One of the issues that was pointed out in the talk is that homomorphic encryption does not currently have some of the security guarantees we are used to having from other encryption schemes. For example, it does not guarantee indistinguishability under a chosen ciphertext attack, which means if an attacker can force a decryption of a ciphertext of their choice, they can recover your private key.
+Homomorphic encryption is not ready for prime time. While there are {{< newtabref href="https://github.com/Microsoft/SEAL" title="libraries" >}} that implement homomorphic encryption and that have made great strides in recent years in terms of performance, they are not turnkey solutions to many problems the way a well-developed cryptography library might be. One of the issues that was pointed out in the talk is that homomorphic encryption does not currently have some of the security guarantees we are used to having from other encryption schemes. For example, it does not guarantee indistinguishability under a chosen ciphertext attack, which means if an attacker can force a decryption of a ciphertext of their choice, they can recover your private key.
 
 #### Conclusion
 

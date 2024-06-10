@@ -3,6 +3,7 @@ title: "Storybook"
 heading: "Storybook for mobile"
 description: "Using Storybook to develop components"
 date: 2021-02-25T11:17:44+05:30
+weight: 6
 aliases:
   - /contribute/mobile/storybook
 ---
@@ -20,4 +21,4 @@ Storybook has been added to the `mobile` repository to help prototype components
    - If running on a real device, shaking the device brings up the react-native dev menu. You can also press `d` in the terminal window where you ran `npm start`.
 4. The Storybook interface opens in the mobile app. The stories can be controlled either through the desktop browser Storybook UI or the mobile browser Storybook UI. Both will render the component on the device.
 
->**Caveat**: Promises are currently broken in Storybook for react native. Components using promises will not work correctly. There is a temporary hacky fix to work around this issue: [storybookjs/react-native#57](https://github.com/storybookjs/react-native/issues/57#issuecomment-737931284).
+>**Caveat**: Promises are currently broken in Storybook for react native. Components using promises will not work correctly. There is a temporary hacky fix to work around this issue: {{< newtabref href="https://github.com/storybookjs/react-native/issues/57#issuecomment-737931284" title="storybookjs/react-native#57" >}}.

@@ -8,11 +8,11 @@ aliases:
   - /contribute/mobile/unsigned/ios
 ---
 
-With every Mattermost mobile app release, we publish the iOS unsigned ipa in in the [GitHub Releases](https://github.com/mattermost/mattermost-mobile/releases) page, this guide describes the steps needed to modify and sign the app, so it can be distributed and installed on iOS devices.
+With every Mattermost mobile app release, we publish the iOS unsigned ipa in in the {{< newtabref href="https://github.com/mattermost/mattermost-mobile/releases" title="GitHub Releases" >}} page, this guide describes the steps needed to modify and sign the app, so it can be distributed and installed on iOS devices.
 
 #### Requisites
 
-1. macOS with [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12) installed. The minimum required version is **11.0**.
+1. macOS with {{< newtabref href="https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12" title="Xcode" >}} installed. The minimum required version is **11.0**.
 2. Install the Xcode command line tools:
 	```bash
 	$ xcode-select --install
@@ -60,11 +60,11 @@ Now that all requisites are met, it's time to sign the Mattermost app for iOS. M
 and you should be using your own `provisioning profiles`, `certificate`, also you could change the app `display name`.
 
 * Create a folder that will serve as your working directory to store all the needed files.
-* Download your **Apple Distribution certificate** from the [Apple Developer portal](https://developer.apple.com/account/resources/certificates/list) and save it in your working directory.
-* Install the previously downloaded certificate into your macOS Keychain. [Learn more](https://developer.apple.com/support/certificates).
-* Download your **Provisioning profiles** from the [Apple Developer portal](https://developer.apple.com/account/resources/profiles/list) and save it in your working directory.
+* Download your **Apple Distribution certificate** from the {{< newtabref href="https://developer.apple.com/account/resources/certificates/list" title="Apple Developer portal" >}} and save it in your working directory.
+* Install the previously downloaded certificate into your macOS Keychain. {{< newtabref href="https://developer.apple.com/support/certificates" title="Learn more" >}}.
+* Download your **Provisioning profiles** from the {{< newtabref href="https://developer.apple.com/account/resources/profiles/list" title="Apple Developer portal" >}} and save it in your working directory.
 * Download the [sign-ios](/scripts/sign-ios) script and save it in your working directory.
-* Download the [iOS unsigned build](https://github.com/mattermost/mattermost-mobile/releases) and save it in your working directory.
+* Download the {{< newtabref href="https://github.com/mattermost/mattermost-mobile/releases" title="iOS unsigned build" >}} and save it in your working directory.
 * Open a terminal to your working directory and make sure the `sign-ios` script is executable.
 
 ```
@@ -88,8 +88,8 @@ $ ./sign-ios Mattermost-unsigned.ipa -c "Apple Distribution: XXXXXX. (XXXXXXXXXX
 Once the code sign is complete you should have a signed IPA in the working directory with the name **MyApp-signed.ipa**.
 
 ---
-**Note:**
-
+{{<note "Note:">}}
 The app name can be anything but be sure to use double quotes if the name includes white spaces. The name of the `certificate` should match the name in the macOS Keychain.
+{{</note>}}
 
 ---

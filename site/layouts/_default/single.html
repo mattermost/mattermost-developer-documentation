@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <div class="row">
                 {{ partial "sidebar-v2.html" .}}
-                <div class="col-lg-9 doc-content">
+                <div class="col-lg-9 mx-2 mx-lg-0 mt-4 mt-lg-5 doc-content">
                     {{ partial "page-edit.html" . }}
                     <h1 class="mt-0 doc-title">
                         {{ if .Params.heading }}
@@ -30,5 +30,6 @@
         </div>
     </div>
     {{ partial "footer.html" .}}
+    {{ partial "feedback.html" . }}
 </body>
 </html>

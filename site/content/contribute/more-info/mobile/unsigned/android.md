@@ -8,13 +8,13 @@ aliases:
 - /contribute/mobile/unsigned/android
 ---
 
-With every Mattermost mobile app release, we publish the Android unsigned apk in in the [GitHub Releases](https://github.com/mattermost/mattermost-mobile/releases) page. This guide describes the steps needed to modify and sign the app, so it can be distributed and installed on Android devices.
+With every Mattermost mobile app release, we publish the Android unsigned apk in in the {{< newtabref href="https://github.com/mattermost/mattermost-mobile/releases" title="GitHub Releases" >}} page. This guide describes the steps needed to modify and sign the app, so it can be distributed and installed on Android devices.
 
 #### Prerequisites
 
-1. [Apktool](https://ibotpeaches.github.io/Apktool/) is a tool for reverse engineering Android apk files.
-2. [XMLStarlet](http://xmlstar.sourceforge.net/doc/UG/xmlstarlet-ug.html) is a set of command line utilities (tools) which can be used to transform, query, validate, and edit XML documents and files using a simple set of shell commands in the same way it is done for plain text files using UNIX `grep`, `sed`, `awk`, `diff`, `patch`, `join`, etc., commands.
-3. [JQ](https://stedolan.github.io/jq/) is like `sed` for JSON data - you can use it to slice, filter, map, and transform structured data with the same ease that `sed`, `awk`, and `grep` let you work with text.
+1. {{< newtabref href="https://ibotpeaches.github.io/Apktool/" title="Apktool" >}} is a tool for reverse engineering Android apk files.
+2. {{< newtabref href="http://xmlstar.sourceforge.net/doc/UG/xmlstarlet-ug.html" title="XMLStarlet" >}} is a set of command line utilities (tools) which can be used to transform, query, validate, and edit XML documents and files using a simple set of shell commands in the same way it is done for plain text files using UNIX `grep`, `sed`, `awk`, `diff`, `patch`, `join`, etc., commands.
+3. {{< newtabref href="https://stedolan.github.io/jq/" title="JQ" >}} is like `sed` for JSON data - you can use it to slice, filter, map, and transform structured data with the same ease that `sed`, `awk`, and `grep` let you work with text.
 4. Android SDK as described in the [Developer Setup]({{< ref "/contribute/more-info/mobile/developer-setup#additional-setup-for-android" >}}).
 5. Set up keys and Google Services as described in steps 2, 3, 4, and 6 of the [Build your own App guide]({{< ref "/contribute/more-info/mobile/build-your-own/android#build-preparations" >}}).
 6. [sign-android](/scripts/sign-android) script to sign the Android app.
@@ -51,7 +51,7 @@ Now that all requirements are met, it's time to sign the Mattermost app for Andr
 
 * Create a folder that will serve as your working directory to store all the needed files.
 * Download the [sign-android](/scripts/sign-android) script and save it in your working directory.
-* Download the [Android unsigned build](https://github.com/mattermost/mattermost-mobile/releases) and save it in your working directory.
+* Download the {{< newtabref href="https://github.com/mattermost/mattermost-mobile/releases" title="Android unsigned build" >}} and save it in your working directory.
 * Open a terminal to your working directory and make sure the `sign-android` script is executable.
 
     ```
@@ -73,7 +73,8 @@ Now that all requirements are met, it's time to sign the Mattermost app for Andr
 Once the code sign is complete you should have a signed APK in the working directory with the name **MyApp-signed.apk**.
 
 ---
-**Note:**
+{{<note "Note:">}}
 The app name can be anything but be sure to use double quotes if the name includes white spaces. If you are using a `Google Services` JSON file, you need to specify a `package identifier` that has a corresponding client in the JSON configuration file.
+{{</note>}}
 
 ---

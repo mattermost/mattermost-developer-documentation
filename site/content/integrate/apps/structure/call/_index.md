@@ -4,6 +4,7 @@ heading: "Calls"
 weight: 20
 aliases:
   - /integrate/apps/api/call/
+  - /integrate/apps/call
 ---
 A Call defines an App action that can be invoked, or a request for App data.
 
@@ -16,7 +17,7 @@ Content on this page refers to the Mattermost Apps framework and not to the Matt
 The data structure of a call ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Call">}}) is described in the following table:
 
 | Name     | Type                                | Description                                                                                                                      |
-|:---------|:------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------|
+| :------- | :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------- |
 | `path`   | string                              | The path of the call. For Apps deployed using HTTP, the path is appended to the App's `RootURL`.                                 |
 | `expand` | [Expand]({{<ref "call-metadata">}}) | Specifies [additional metadata]({{<ref "call-metadata">}}) to include in the call request, such as channel and post information. |
 | `state`  | map                                 | A set of elements to be interpreted by the App. Forms and slash commands will also populate these values.                        |
@@ -41,7 +42,7 @@ When a call is performed, a POST request will be made to the endpoint defined in
 The data structure of a call request ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallRequest">}}) is described in the following table:
 
 | Name             | Type                                | Description                                                                                |
-|:-----------------|:------------------------------------|:-------------------------------------------------------------------------------------------|
+| :--------------- | :---------------------------------- | :----------------------------------------------------------------------------------------- |
 | `path`           | string                              | (See above)                                                                                |
 | `expand`         | [Expand]({{<ref "call-metadata">}}) | (See above)                                                                                |
 | `state`          | map                                 | (See above)                                                                                |
@@ -74,7 +75,7 @@ An example call request looks like the following (some `context` fields omitted 
 The request `context` field contains metadata about the request. The data structure of the context ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Context">}}) field is described in the following table:
 
 | Name                                                                                            | Type                                                                                                                            | Description                                                                         |
-|:------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------|
+| :---------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------- |
 | `subject`                                                                                       | Subject (`string`)                                                                                                              | Event subject.                                                                      |
 | `channel_id`                                                                                    | string                                                                                                                          | ID from the channel from within which the call was performed.                       |
 | `team_id`                                                                                       | string                                                                                                                          | ID from the team from within which the call was performed.                          |
@@ -90,21 +91,21 @@ The request `context` field contains metadata about the request. The data struct
 | `bot_user_id`                                                                                   | string                                                                                                                          | Bot user ID.                                                                        |
 | `bot_access_token`{{<compass-icon icon-star "Field will not be populated by default">}}         | string                                                                                                                          | (Expansion)                                                                         |
 | `app`{{<compass-icon icon-star "Field will not be populated by default">}}                      | {{<newtabref title="App" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#App">}}                     | Details about the installed record of the App.                                      |
-| `acting_user`{{<compass-icon icon-star "Field will not be populated by default">}}              | {{<newtabref title="User" href="https://pkg.go.dev/github.com/mattermost/mattermost-server/v6/model#User">}}                    | (Expansion)                                                                         |
+| `acting_user`{{<compass-icon icon-star "Field will not be populated by default">}}              | {{<newtabref title="User" href="https://pkg.go.dev/github.com/mattermost/mattermost/server/public/model#User">}}                    | (Expansion)                                                                         |
 | `acting_user_access_token`{{<compass-icon icon-star "Field will not be populated by default">}} | string                                                                                                                          | (Expansion)                                                                         |
 | `locale`{{<compass-icon icon-star "Field will not be populated by default">}}                   | string                                                                                                                          | (Expansion)                                                                         |
-| `channel`{{<compass-icon icon-star "Field will not be populated by default">}}                  | {{<newtabref title="Channel" href="https://pkg.go.dev/github.com/mattermost/mattermost-server/v6/model#Channel">}}              | (Expansion)                                                                         |
-| `channel_member`{{<compass-icon icon-star "Field will not be populated by default">}}           | {{<newtabref title="ChannelMember" href="https://pkg.go.dev/github.com/mattermost/mattermost-server/v6/model#ChannelMember">}}  | (Expansion)                                                                         |
-| `team`{{<compass-icon icon-star "Field will not be populated by default">}}                     | {{<newtabref title="Team" href="https://pkg.go.dev/github.com/mattermost/mattermost-server/v6/model#Team">}}                    | (Expansion)                                                                         |
-| `team_member`{{<compass-icon icon-star "Field will not be populated by default">}}              | {{<newtabref title="TeamMember" href="https://pkg.go.dev/github.com/mattermost/mattermost-server/v6/model#TeamMember">}}        | (Expansion)                                                                         |
-| `post`{{<compass-icon icon-star "Field will not be populated by default">}}                     | {{<newtabref title="Post" href="https://pkg.go.dev/github.com/mattermost/mattermost-server/v6/model#Post">}}                    | (Expansion)                                                                         |
-| `root_post`{{<compass-icon icon-star "Field will not be populated by default">}}                | {{<newtabref title="Post" href="https://pkg.go.dev/github.com/mattermost/mattermost-server/v6/model#Post">}}                    | (Expansion)                                                                         |
-| `user`{{<compass-icon icon-star "Field will not be populated by default">}}                     | {{<newtabref title="User" href="https://pkg.go.dev/github.com/mattermost/mattermost-server/v6/model#User">}}                    | (Expansion)                                                                         |
-| `mentioned`{{<compass-icon icon-star "Field will not be populated by default">}}                | {{<newtabref title="User" href="https://pkg.go.dev/github.com/mattermost/mattermost-server/v6/model#User">}} (list)             | (Expansion)                                                                         |
+| `channel`{{<compass-icon icon-star "Field will not be populated by default">}}                  | {{<newtabref title="Channel" href="https://pkg.go.dev/github.com/mattermost/mattermost/server/public/model#Channel">}}              | (Expansion)                                                                         |
+| `channel_member`{{<compass-icon icon-star "Field will not be populated by default">}}           | {{<newtabref title="ChannelMember" href="https://pkg.go.dev/github.com/mattermost/mattermost/server/public/model#ChannelMember">}}  | (Expansion)                                                                         |
+| `team`{{<compass-icon icon-star "Field will not be populated by default">}}                     | {{<newtabref title="Team" href="https://pkg.go.dev/github.com/mattermost/mattermost/server/public/model#Team">}}                    | (Expansion)                                                                         |
+| `team_member`{{<compass-icon icon-star "Field will not be populated by default">}}              | {{<newtabref title="TeamMember" href="https://pkg.go.dev/github.com/mattermost/mattermost/server/public/model#TeamMember">}}        | (Expansion)                                                                         |
+| `post`{{<compass-icon icon-star "Field will not be populated by default">}}                     | {{<newtabref title="Post" href="https://pkg.go.dev/github.com/mattermost/mattermost/server/public/model#Post">}}                    | (Expansion)                                                                         |
+| `root_post`{{<compass-icon icon-star "Field will not be populated by default">}}                | {{<newtabref title="Post" href="https://pkg.go.dev/github.com/mattermost/mattermost/server/public/model#Post">}}                    | (Expansion)                                                                         |
+| `user`{{<compass-icon icon-star "Field will not be populated by default">}}                     | {{<newtabref title="User" href="https://pkg.go.dev/github.com/mattermost/mattermost/server/public/model#User">}}                    | (Expansion)                                                                         |
+| `mentioned`{{<compass-icon icon-star "Field will not be populated by default">}}                | {{<newtabref title="User" href="https://pkg.go.dev/github.com/mattermost/mattermost/server/public/model#User">}} (list)             | (Expansion)                                                                         |
 | `oauth2`{{<compass-icon icon-star "Field will not be populated by default">}}                   | {{<newtabref title="OAuth2Context" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#OAuth2Context">}} | (Expansion)                                                                         |
 
-{{<note "Expanded metadata fields" "icon-star" "Fields will not be populated by default">}}
-The data in these fields will not be populated by default. The originating call's `expand` values, and the call session's permissions determine what fields are populated.
+{{<note "Expanded metadata fields" "icon-star" "Fields will not be expanded by default">}}
+The data in these fields will not be expanded by default. The originating call's `expand` values, and the call session's permissions determine what fields are expanded.
 For more information on expanding metadata in the request context, see the [Call metadata]({{<ref "call-metadata">}}) page.
 {{</note>}}
 
@@ -146,14 +147,15 @@ An example context field looks like this:
 
 The data structure of a call response is described in the following table:
 
-| Name                   | Type                                                                                                          | Description                                                                                                                 |
-|------------------------|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| `type`                 | [CallResponseType](#call-response-types)                                                                      | The type of response being returned.                                                                                        |
-| `text`                 | string                                                                                                        | Used by the `ok` and `error` response types to return a markdown message that is sent to the user as an ephemeral post.     |
-| `data`                 | map                                                                                                           | Used by the `ok` response type to return additional data.                                                                   |
-| `navigate_to_url`      | string                                                                                                        | Used by the `navigate` response type to redirect the user to a specified URL.                                               |
-| `use_external_browser` | bool                                                                                                          | Used by the `navigate` response type to indicate the system web browser should be used when redirecting the user to an URL. |
-| `form`                 | {{<newtabref title="Form" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form">}} | Used by the `form` response type to specify a form to display.                                                              |
+| Name                   | Type                                                                                                          | Description                                                                                                                                                                            |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`                 | [CallResponseType](#call-response-types)                                                                      | The type of response being returned.                                                                                                                                                   |
+| `text`                 | string                                                                                                        | Used by the `ok` and `error` response types to return a markdown message that is sent to the user as an ephemeral post.                                                                |
+| `data`                 | map                                                                                                           | Used by the `ok` response type to return additional data.                                                                                                                              |
+| `navigate_to_url`      | string                                                                                                        | Used by the `navigate` response type to redirect the user to a specified URL.                                                                                                          |
+| `use_external_browser` | bool                                                                                                          | Used by the `navigate` response type to indicate the system web browser should be used when redirecting the user to an URL.                                                            |
+| `form`                 | {{<newtabref title="Form" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Form">}} | Used by the `form` response type to specify a form to display.                                                                                                                         |
+| `refresh_bindings`     | bool                                                                                                          | If `true`, forces App bindings to be refreshed immediately. Does not apply to error responses or responses for bindings calls. For optimal performance, this should be used sparingly. |
 
 An example call response looks like this:
 
@@ -169,7 +171,7 @@ An example call response looks like this:
 There are several types of supported responses ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#CallResponseType">}}):
 
 | Value      | Description                         |
-|:-----------|:------------------------------------|
+| :--------- | :---------------------------------- |
 | `ok`       | The action completed successfully.  |
 | `error`    | An error has occurred.              |
 | `form`     | Should open a form.                 |

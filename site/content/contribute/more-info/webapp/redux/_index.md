@@ -1,34 +1,17 @@
 ---
 title: "Redux"
-heading: "Mattermost-Redux"
-description: "mattermost-redux is a library that contains logic for loading and working with data from the Mattermost server."
+heading: "Redux"
+description: "The Mattermost web app uses Redux as its state management library."
 date: "2020-04-01T12:00:00-04:00"
 weight: 8
 aliases:
   - /contribute/webapp/redux
 ---
 
-[mattermost-redux](https://github.com/mattermost/mattermost-webapp/tree/master/packages/mattermost-redux) is a library that contains logic for loading and working with data from the Mattermost server. It's currently used primarily by the Mattermost web app and by some plugins, and it was previously used by the Mattermost mobile app.
+The Mattermost web app uses {{< newtabref href="https://redux.js.org/" title="Redux" >}} as its state management library. Its key features are a centralized data store for the entire app and a pattern for predictably modifying and displaying that spplication state. Notably, we're not using Redux Toolkit since a large portion of our Redux code predates its existence.
 
-**Note:** As part of our current effort to turn [the mattermost-webapp repository](https://github.com/mattermost/mattermost-webapp) into a monorepo, we are also re-evaluating the purpose of mattermost-redux and how we can better expose its functionality for use in third party integrations. The structure of the library and what it exposes for integrations may change over time because of this.
+In addition to Redux itself, we also use:
+- {{< newtabref href="https://react-redux.js.org/" title="React Redux" >}} to connect React components to the Redux store using higher-order components like `connect` or hooks like `useSelector`.
+- {{< newtabref href="https://github.com/reduxjs/redux-thunk" title="Redux Thunk" >}} to write async actions and logic that interacts more closely with the Redux store.
 
-## Repository
-
-https://github.com/mattermost/mattermost-webapp/tree/master/packages/mattermost-redux
-
-## Channel
-
-https://community.mattermost.com/core/channels/redux
-
-## Folder structure
-
-mattermost-redux consists of the following folders:
-
-- `src` contains all source code that is compiled and shipped with the library.
-    - `src/actions` contains the Redux actions used by the library. Most of the logic that uses the stored data and contacts the server is located here.
-    - `src/client` contains the JavaScript drivers to communicate with the Mattermost server via HTTP and WebSockets.
-    - `src/reducers` contains the Redux reducers that handle actions and use them to update the stored data.
-    - `src/selectors` contains the selectors used to compute data from the store or just access it more easily.
-    - `src/store` contains the setup code for the Redux store that can be extended by applications that use this library.
-    - `src/utils` contains utility functions.
-- `test` contains unit testing utilities. Actual unit test is located on the same folder of the file being tested.
+Currently, the different packages in the web app use Redux in varying amounts. The bulk of our Redux code is in `channels` where it's split between logic that's more view-oriented, located at the root of its `src` directory, and logic that's more server-oriented, located in `channels/src/packages/mattermost-redux`.

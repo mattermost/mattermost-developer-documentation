@@ -1,18 +1,17 @@
 ---
 title: "Bindings"
 heading: "Bindings"
-weight: 30
+weight: 50
 aliases:
   - /integrate/apps/api/bindings/
+  - /integrate/apps/bindings
 ---
 Bindings ({{<newtabref title="godoc" href="https://pkg.go.dev/github.com/mattermost/mattermost-plugin-apps/apps#Binding">}}) establish the relationship between [call]({{<ref "/integrate/apps/structure/call">}}) handlers and [locations]({{<ref "/integrate/apps/structure/manifest#locations">}}).
 Whenever the bindings call is executed the App provides a list of bindings based on the [request context]({{<ref "/integrate/apps/structure/call#context">}}).
 
-Bindings are refreshed when the App is installed, on every channel switch, and when an OAuth2 process with a third party has completed. Bindings may also be refreshed when the user moves to a different context, such as opening a thread or a post in a search view.
+Bindings are refreshed when the App is installed, on every channel switch, and when an OAuth2 process with a third party has completed. Bindings may also be refreshed when the user moves to a different context, such as opening a thread or a post in a search view, or when explicitly specified in a call response.
 
 ## Top level bindings
-
-Bindings are organized by top level [locations]({{<ref "/integrate/apps/structure/manifest#locations">}}). The data structure of a top level binding is:
 
 | Name       | Type                                                                                                                             | Description                             |
 |:-----------|:---------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------|
@@ -78,7 +77,7 @@ For example, a slash command binding that returns one day or one week worth of w
               "location": "day",
               "label": "Weather for today",
               "description": "Show the weather conditions for today",
-              "call": {
+              "submit": {
                 "path": "/weather/day"
               }
             },
@@ -86,7 +85,7 @@ For example, a slash command binding that returns one day or one week worth of w
               "location": "week",
               "label": "Weather for the next week",
               "description": "Show the weather conditions for the next week",
-              "call": {
+              "submit": {
                 "path": "/weather/week"
               }
             }
@@ -161,7 +160,9 @@ For example:
 ## Example request and response
 
 {{<collapse id="client_bindings_request" title="Client requests bindings from server">}}
+
 `GET /plugins/com.mattermost.apps/api/v1/bindings?user_id=ws4o4macctyn5ko8uhkkxmgfur&channel_id=qphz13bzbf8c7j778tdnaw3huc&scope=webapp`
+
 {{</collapse>}}
 
 {{<collapse id="mm_bindings_request" title="Server requests bindings from App">}}
@@ -184,9 +185,11 @@ For example:
     }
 }
 ```
+
 {{</collapse>}}
 
 {{<collapse id="app_binding_response" title="Bindings response from App">}}
+
 ```json
 {
     "type": "ok",
@@ -242,4 +245,5 @@ For example:
     ]
 }
 ```
+
 {{</collapse>}}

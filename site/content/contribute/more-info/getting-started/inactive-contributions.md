@@ -8,7 +8,7 @@ aliases:
   - /contribute/getting-started/inactive-contributions
 ---
 
-This process describes how inactive contributions are managed at Mattermost, inspired by the [Kubernetes project](https://github.com/kubernetes/kubernetes):
+This process describes how inactive contributions are managed at Mattermost, inspired by the {{< newtabref href="https://github.com/kubernetes/kubernetes" title="Kubernetes project" >}}:
 
 1. After 10 days of inactivity, a contribution becomes stale and a bot will add the `lifecycle/1:stale` label to the contribution.
     - If action is required from submitter, Community Coordinator asks if the team can help clarify previous feedback or provide guidance on next steps.
@@ -16,9 +16,9 @@ This process describes how inactive contributions are managed at Mattermost, ins
 
 2. After 20 days of inactivity, a contribution becomes inactive.
     - Community Coordinator asks the submitter if the team can help with questions. They acknowledge that after another 30 days of inactivity the contribution will be closed. They also add a `lifecycle/2:inactive` label to the contribution.
-  {{< note "Note:" >}}
+  {{<note "Note:">}}
   Contributions should never become orphaned because of reviewers. The Coordinator will be responsible for receiving a response from the reviewers during the stale period, which may be that the maintainers aren't able to accept the contribution in its current form.
-  {{< /note >}}
+  {{</note>}}
 3. After 30 days of inactivity, a contribution becomes orphaned.
     - Community Coordinator notes that the contribution has been inactive for 60 days, thanks for the contribution and closes the contribution. They also add an `lifecycle/3:orphaned` label to the contribution, and adds an `Up For Grabs` label to the associated help wanted ticket, if appropriate.
 

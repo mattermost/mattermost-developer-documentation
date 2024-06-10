@@ -9,6 +9,6 @@ aliases:
   - /integrate/plugins/mobile/
 ---
 
-Full support for mobile plugins is still a work in progress.
+[Server plugins]({{< ref "/integrate/plugins/components/server" >}}) may use [interactive dialogs]({{< ref "/integrate/plugins/interactive-dialogs" >}}) and [interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}) to build cross platform interactions that are compatible with mobile. 
 
-[Server plugins]({{< ref "/integrate/plugins/components/server" >}}) can interact with mobile clients, but there isn't currently an ability to customize the mobile user experience, the user interface, or render custom post types.
+It isn't possible to customize the mobile user experience in the same way the [webapp]({{< ref "/integrate/plugins/components/webapp" >}}) can be extended.
