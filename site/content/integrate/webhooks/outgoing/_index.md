@@ -45,7 +45,7 @@ You can follow these general guidelines to set up a Mattermost outgoing webhook 
     Host: localhost:5000
     Accept: application/json
     Content-Type: application/x-www-form-urlencoded
-    
+
     channel_id=hawos4dqtby53pd64o4a4cmeoo&
     channel_name=town-square&
     team_domain=someteam&
@@ -93,6 +93,7 @@ Outgoing webhooks support more than just the `text` field. Here is a full list o
 | `attachments` | [Message attachments](https://docs.mattermost.com/developer/message-attachments.html) used for richer formatting options. | If `text` is not set, yes |
 | `type` | Sets the post `type`, mainly for use by plugins.<br> If not blank, must begin with "`custom_`". Passing `attachments` will ignore this field and set the type to `slack_attachment`. | No |
 | `props` | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br> Mainly used by other integrations accessing posts through the REST API.<br> The following keys are reserved: "from\_webhook", "override\_username", "override\_icon\_url", "webhook\_display\_name" and "attachments". | No |
+| `priority` | Set the priority of the message. See [Message Priority](/integrate/reference/message-priority/) | No |
 
 An example response using more parameters would look like this:
 
