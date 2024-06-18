@@ -9,7 +9,7 @@ aliases:
 
 You can create "zaps" that contain a trigger and an action for a task that you want to perform repeatedly. Zapier regularly checks your trigger for new data and automatically performs the action for you.
 
-Using Zapier you can integrate over 700 apps into Mattermost, including {{< newtabref href="https://zapier.com/apps/email-parser/integrations" title="Email" >}}, {{< newtabref href="https://zapier.com/apps/github/integrations" title="GitHub" >}}, {{< newtabref href="https://zapier.com/apps/jira/integrations" title="Jira" >}}, {{< newtabref href="https://zapier.com/apps/wufoo/integrations" title="Wufoo" >}}, {{< newtabref href="https://zapier.com/apps/salesforce/integrations" title="Salesforce" >}}, {{< newtabref href="https://zapier.com/apps/twitter/integrations" title="Twitter" >}}, {{< newtabref href="https://zapier.com/apps/gmail/integrations" title="Gmail" >}}, and {{< newtabref href="https://zapier.com/apps" title="many more" >}}.
+Using Zapier you can integrate over 700 apps into Mattermost, including {{< newtabref href="https://zapier.com/apps/email-parser/integrations" title="Email" >}}, {{< newtabref href="https://zapier.com/apps/github/integrations" title="GitHub" >}}, {{< newtabref href="https://zapier.com/apps/jira/integrations" title="Jira" >}}, {{< newtabref href="https://zapier.com/apps/wufoo/integrations" title="Wufoo" >}}, {{< newtabref href="https://zapier.com/apps/salesforce/integrations" title="Salesforce" >}}, {{< newtabref href="https://zapier.com/apps/gmail/integrations" title="Gmail" >}}, and {{< newtabref href="https://zapier.com/apps" title="many more" >}}.
 
 ## Zapier setup guide
 
