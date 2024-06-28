@@ -32,9 +32,9 @@ If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL
 1. Install `make`.
     - On Ubuntu, you can install `build essential` tools which will also take care of installing the `make`:
 
-   ```sh
-   sudo apt install build-essential
-   ```
+        ```sh
+        sudo apt install build-essential
+        ```
 
 1. Install [Docker](https://www.docker.com/). If you don't want to use Docker, you can follow [this guide](#develop-mattermost-without-docker).
     - When running `docker` commands under WSL2, if you receive the error `The command 'docker' could not be found in this WSL 2 distro.` you may need to toggle the `Use the WSL 2 based engine` off and on within Docker Settings after installation.
@@ -117,9 +117,9 @@ If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL
 # Develop Mattermost without Docker
 1. Install `make`.
     - On Ubuntu, you can install `build essential` tools which will also take care of installing the `make`:
-   ```sh
-   sudo apt install build-essential
-   ```
+        ```sh
+        sudo apt install build-essential
+        ```
 1. Set `MM_NO_DOCKER` to `true` in the `server/config.mk` file.
 1. Install [PostgreSQL](https://www.postgresql.org/download/)
 1. Run `psql postgres`. Then create `mmuser` by running `CREATE ROLE mmuser WITH LOGIN PASSWORD 'mostest';`
@@ -127,7 +127,7 @@ If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL
 1. Confirm the role rights by running `\du`
 1. Before creating the database, exit by running `\q`
 1. Login again via `mmuser` by running `psql postgres -U mmuser`
-1. Create the database   by running `CREATE DATABASE mattermost_test;` and exit again with `\q`
+1. Create the database by running `CREATE DATABASE mattermost_test;` and exit again with `\q`
 1. Login again with `psql postgres` and run `GRANT ALL PRIVILEGES ON DATABASE mattermost_test TO mmuser;` to give all rights to `mmuser`
 1. Install [Go](https://go.dev/).
 1. Increase the number of available file descriptors. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`), and add the following:
