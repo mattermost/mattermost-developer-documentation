@@ -138,9 +138,7 @@ Thank you for your enthusiasm! You can act on feature ideas in a few ways:
 
     - [Slash commands]({{< ref "/integrate/slash-commands" >}}) are apps that respond to triggers sent as messages inside Mattermost.
 
-    - More complicated Apps can be built as standard HTTP services in any programming language using a robust API. [Get started here]({{< ref "/integrate/apps" >}}).
-
-    - If you’re willing to deal with more complex development overhead, [plugins]({{< ref "/integrate/plugins" >}}) enable you to alter every component of the Mattermost experience.
+    - [plugins]({{< ref "/integrate/plugins" >}}) enable you to alter every component of the Mattermost experience.
 
 ## You’re looking to practice your skills or give back to the community
 
