@@ -107,7 +107,7 @@ Install {{< newtabref href="https://apps.apple.com/us/app/xcode/id497799835?ls=1
 
 ### Install Ruby
 
-A version of Ruby is automatically installed on macOS, but React Native development requires Ruby 2.7.6. You can check the current version of Ruby by running the following command.
+A version of Ruby is automatically installed on macOS, but Mattermost React Native app development requires Ruby 3.0.6. You can check the current version of Ruby by running the following command.
 ```sh
 ruby --version
 ```
