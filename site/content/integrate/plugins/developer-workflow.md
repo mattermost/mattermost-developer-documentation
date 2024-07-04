@@ -117,7 +117,7 @@ chmod +x patch_go_plugin.sh
 
 This section assumes you are using VSCode to debug your plugin. If you want to use a different IDE, the process will be mostly the same. If you want to debug in your terminal directly with `delve` instead of using an IDE, you can run `make attach` instead of `make attach-headless` below, which will launch a `delve` process as an interactive terminal.
 
-Include this configuration in your VSCode instance's `launch.json`:
+Include this configuration in your VSCode instance's [launch.json](https://learn.microsoft.com/en-us/microsoft-edge/visual-studio-code/microsoft-edge-devtools-extension/launch-json):
 
 ```json
 {
