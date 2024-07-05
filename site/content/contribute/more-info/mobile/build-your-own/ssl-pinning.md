@@ -40,7 +40,7 @@ Alternatively, to save it in PEM format:
 openssl s_client -connect yourserver.com:443 -showcerts < /dev/null | openssl x509 -outform PEM -out yourserver.crt
 ```
 
-#### Naming the Certificate Files
+#### 2. Naming the Certificate Files
 
 Name the certificate files using the domain name as the filename with either `.cer` or `.crt` as the extension. For example, if your server’s domain is `example.com`, your files should be named `example.com.cer` and/or `example.com.crt`.
 
