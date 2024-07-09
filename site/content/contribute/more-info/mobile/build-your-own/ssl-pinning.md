@@ -24,6 +24,12 @@ SSL (Secure Sockets Layer) pinning is a technique used in mobile app development
 2. **Deployment Complexity**: Coordination between development and deployment teams is necessary to avoid disruptions during certificate rotations.
 3. **Maintenance Overhead**: Adds additional steps and complexity to the app’s maintenance process.
 
+{{<note "Important Note:">}}
+SSL pinning requires that both development and deployment teams understand and follow best practices for cryptographic key management, certificate rotation, and incident response. 
+- Coordinating the timing of certificate updates and app updates is crucial to minimize impact on end-users. When the server's SSL certificate is renewed or rotated, the hardcoded public key in the app no longer matches the server's new certificate, leading to connection failures until the app is updated with the new key.
+- Both development and deployment teams need to align on a deployment window that considers factors like user downtime, mobile app store review timelines, and peak usage times, as well as a coordinated rollback plan.
+{{</note>}}
+
 ### Steps to Enable SSL Pinning in Your Mobile App
 
 #### 1. Obtain the Certificate from the Server
