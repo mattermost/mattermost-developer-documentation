@@ -69,11 +69,11 @@ You can follow these general guidelines to set up a Mattermost outgoing webhook 
 
     ```json
     {"text": "
-    | Component  | Tests Run   | Tests Failed                                   |
-    |:-----------|:------------|:-----------------------------------------------|
-    | Server     | 948         | :white_check_mark: 0                           |
-    | Web Client | 123         | :warning: [2 (see details)](http://linktologs) |
-    | iOS Client | 78          | :warning: [3 (see details)](http://linktologs) |
+    | Component  | Tests Run | Tests Failed                                   |
+    |:-----------|:----------|:-----------------------------------------------|
+    | Server     | 948       | :white_check_mark: 0                           |
+    | Web Client | 123       | :warning: [2 (see details)](http://linktologs) |
+    | iOS Client | 78        | :warning: [3 (see details)](http://linktologs) |
     "}
     ```
 
@@ -97,6 +97,7 @@ Outgoing webhooks support more than just the `text` field. Here is a full list o
 | `attachments`   | [Message attachments]({{<ref "/integrate/reference/message-attachments">}}) used for richer formatting options.                                                                                                                                                                                                                                                                                                                                                                                                           | If `text` is not set, yes        |
 | `type`          | Sets the post `type`, mainly for use by plugins.<br/>If not blank, must begin with "`custom_`".<br/>Specifying a value for the `attachments` property will cause this field to be ignored, and the `type` value set to `slack_attachment`.                                                                                                                                                                                                                                                                                | No                               |
 | `props`         | Sets the post `props`, a JSON property bag for storing extra or meta data on the post.<br/>Mainly used by other integrations accessing posts through the REST API.<br/>The following keys are reserved: `from_webhook`, `override_username`, `override_icon_url`, `webhook_display_name`, and `attachments`.                                                                                                                                                                                                              | No                               |
+| `priority`      | Set the priority of the message. See [Message Priority](/integrate/reference/message-priority/)                                                                                                                                                                                                                                                                                                                                                                                                                           | No                               |
 
 An example response using more parameters would look like this:
 

@@ -178,10 +178,6 @@ If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL
     ```sh
     make stop-server
     ```
-    The `stop-server` make target does not stop all the docker containers started by `run-server`. To stop the running docker containers:
-    ```sh
-    make stop-docker
-    ```
 
 1. Set your options:
     Some behaviors can be customized such as running the server in the foreground as described in the `config.mk` file in the server directory. See that file for details.
