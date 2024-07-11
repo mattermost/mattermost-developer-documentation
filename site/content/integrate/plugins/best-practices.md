@@ -1,7 +1,7 @@
 ---
 title: "Best practices"
 heading: "Best practices for plugins"
-description: "Learn more about best practices for using Mattermost plugins to better extend and integrate your Mattermost server and apps."
+description: "Learn more about best practices for using Mattermost plugins to better extend and integrate your Mattermost server."
 weight: 100
 aliases:
   - /extend/plugins/best-practices/
