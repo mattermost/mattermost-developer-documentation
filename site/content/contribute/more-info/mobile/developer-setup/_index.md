@@ -29,7 +29,7 @@ On macOS, we recommend using {{< newtabref href="https://brew.sh" title="Homebre
 
 ### Install NodeJS and NPM
 
-We recommend using NodeJS v18 and npm v8. Many of our team use {{< newtabref href="https://github.com/nvm-sh/nvm" title="nvm" >}} to manage npm and NodeJS versions.
+We recommend using NodeJS v20 and npm v10. Many of our team use {{< newtabref href="https://github.com/nvm-sh/nvm" title="nvm" >}} to manage npm and NodeJS versions.
 
 {{<tabs "node-npm" "node-npm-mac,macOS;node-npm-linux,Linux" "node-npm-mac">}}
 {{<tab "node-npm-mac" "display: block;">}}
@@ -39,10 +39,10 @@ To install NVM using Homebrew, open a terminal and execute:
 brew install nvm
 ```
 
-To install NodeJS v18 LTS using NVM, open a new terminal and execute:
+To install NodeJS v20 LTS using NVM, open a new terminal and execute:
 
 ```shell
-nvm install --lts=hydrogen
+nvm install --lts=iron
 ```
 {{</tab>}}
 {{<tab "node-npm-linux">}}
