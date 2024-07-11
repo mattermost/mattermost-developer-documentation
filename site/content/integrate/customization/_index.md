@@ -5,7 +5,7 @@ description: "Embed Mattermost or customize the appearance of your server"
 weight: 50
 ---
 
-If [Apps]({{< ref "/integrate/apps" >}}), the [API](https://api.mattermost.com), or [plugins]({{< ref "/integrate/plugins" >}}) don't meet your your needs, take a look at the other methods for integrating and extending Mattermost:
+If the [API](https://api.mattermost.com) or [plugins]({{< ref "/integrate/plugins" >}}) don't meet your your needs, take a look at the other methods for integrating and extending Mattermost:
 
 * Webhooks - Post to channels with [incoming webhooks]({{< ref "/integrate/webhooks/incoming" >}}), or listen for new messages with [outgoing webhooks]({{< ref "/integrate/webhooks/outgoing" >}}).
 * Slash Commands - Enable your users to [trigger custom actions]({{< ref "/integrate/slash-commands" >}}) from within Mattermost.

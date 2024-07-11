@@ -1,7 +1,7 @@
 ---
 title: "Get started"
 heading: "Integrate and extend Mattermost"
-description: "Extend Mattermost with Apps, APIs, plugins, webhooks, and more."
+description: "Extend Mattermost with APIs, plugins, webhooks, and more."
 weight: 10
 aliases: 
   - /integrate/getting-started/how-should-i-integrate/
@@ -21,16 +21,6 @@ Webhooks provide a simple way to post messages to a channel and trigger external
 Slash commands are messages that begin with `/` and trigger an HTTP request to a web service that can in turn post one or more messages in response.
 
 [Create your Slash command now]({{< ref "/integrate/slash-commands" >}})
-
-## Apps
-
-Apps are lightweight, interactive add-ons that can be written in any programming
-language and run on any HTTP-compatible hosting service or several serverless
-providers like {{< newtabref href="https://aws.amazon.com/lambda/" title="AWS Lambda" >}} or
-{{< newtabref href="https://www.openfaas.com/" title="OpenFaaS" >}}. They’re for developers who want the most
-effective way to build Mattermost customizations and improvements efficiently.
-
-[Build your App now]({{< ref "/integrate/apps" >}})
 
 ## Plugins
 
