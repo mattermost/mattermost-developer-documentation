@@ -17,3 +17,6 @@
 
 # node
 node_modules
+
+# `make run` artifacts
+docs
