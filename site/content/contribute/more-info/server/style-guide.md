@@ -8,11 +8,11 @@ aliases:
 
 Golang ("go") is a more opinionated language than many others when it comes to coding style. The compiler enforces some basic stylistic elements, such as the removal of unused variables and imports. Many others are enforced by the `gofmt` tool, such as usage of white-space, semicolons, indentation, and alignment. The `gofmt` tool is run over all code in the Mattermost Server CI pipeline. Any code which is not consistent with the formatting enforced by `gofmt` will not be accepted into the repository.
 
-Despite this, there are still many areas of coding style which are not dictated by these tools. Rather than reinventing the wheel, we are adopting {{< newtabref href="https://golang.org/doc/effective_go.html" title="Effective Go" >}} as a basis for our style guide. On top of that, we also follow the guidelines laid out by the Go project at {{< newtabref href="https://github.com/golang/go/wiki/CodeReviewComments" title="CodeReviewComments" >}}.
+Despite this, there are still many areas of coding style which are not dictated by these tools. Rather than reinventing the wheel, we are adopting {{< newtabref href="https://golang.org/doc/effective_go.html" title="Effective Go" >}} as a basis for our style guide. On top of that, we also follow the guidelines laid out by the Go project at {{< newtabref href="https://go.dev/wiki/CodeReviewComments" title="CodeReviewComments" >}}.
 
 However, at present, some of the guidelines from these sources come into conflict with existing patterns that are present in our codebase which cannot immediately be corrected due to the need to maintain backward compatibility.
 
-This document, which should be read in conjunction with {{< newtabref href="https://golang.org/doc/effective_go.html" title="Effective Go" >}} and {{< newtabref href="https://github.com/golang/go/wiki/CodeReviewComments" title="CodeReviewComments" >}}, outlines the small number of exceptions we make to maintain backward compatibility, as well as a number of additional stylistic rules we have adopted on top of those external recommendations.
+This document, which should be read in conjunction with {{< newtabref href="https://golang.org/doc/effective_go.html" title="Effective Go" >}} and {{< newtabref href="https://go.dev/wiki/CodeReviewComments" title="CodeReviewComments" >}}, outlines the small number of exceptions we make to maintain backward compatibility, as well as a number of additional stylistic rules we have adopted on top of those external recommendations.
 
 ### Application of guidelines
 
@@ -52,8 +52,8 @@ Always prefer synchronous functions by default. Async calls are hard to get righ
 
 Do not create one-off goroutines without knowing when/how they exit. They cause problems that are hard to debug, and can often cause performance degradation rather than an improvement. Have a look at:
 
-- https://github.com/golang/go/wiki/CodeReviewComments#goroutine-lifetimes
-- https://github.com/golang/go/wiki/CodeReviewComments#synchronous-functions
+- https://go.dev/wiki/CodeReviewComments#goroutine-lifetimes
+- https://go.dev/wiki/CodeReviewComments#synchronous-functions
 
 #### Pointers to slices
 
@@ -66,7 +66,7 @@ Do not create new `ToJSON` methods for model structs. Instead, just use `json.Ma
 - It avoids bugs due to the suppression of the JSON error which happens with `ToJSON` methods (we've had a number of bugs caused by this).
 - It's a common pattern to pass the output to something (like a network call) which accepts a byte-slice, leading to a double conversion from byte-slice to string to a byte-slice again if `ToJSON` methods are used.
 
-#### {{< newtabref href="https://github.com/golang/go/wiki/CodeReviewComments#interfaces" title="Interfaces" >}}
+#### {{< newtabref href="https://go.dev/wiki/CodeReviewComments#interfaces" title="Interfaces" >}}
 
 - Return structs, accept interfaces.
 - Interface names should end with “-er”. This is not a strict rule. Just a guideline which indicates the fact that interface functionalities are designed around the concept of “doing” something.
@@ -80,7 +80,7 @@ These are just guidelines and not strict rules. Understand your use case and app
 
 ### Stylistic
 
-#### {{< newtabref href="https://github.com/golang/go/wiki/CodeReviewComments#mixed-caps" title="CamelCase variables/constants" >}}
+#### {{< newtabref href="https://go.dev/wiki/CodeReviewComments#mixed-caps" title="CamelCase variables/constants" >}}
 
 We use CamelCase names like WebsocketEventPostEdited, not WEBSOCKET_EVENT_POST_EDITED.
 
@@ -88,7 +88,7 @@ We use CamelCase names like WebsocketEventPostEdited, not WEBSOCKET_EVENT_POST_E
 
 Use `foo == ""` to check for empty strings, not `len(foo) == 0`.
 
-#### {{< newtabref href="https://github.com/golang/go/wiki/CodeReviewComments#indent-error-flow" title="Reduce indentation" >}}
+#### {{< newtabref href="https://go.dev/wiki/CodeReviewComments#indent-error-flow" title="Reduce indentation" >}}
 
 If there are multiple return statements in an if-else statement, remove the else block and outdent it.
 
@@ -119,11 +119,11 @@ if !ok || d != '{' {
 }
 ```
 
-#### {{< newtabref href="https://github.com/golang/go/wiki/CodeReviewComments#initialisms" title="Initialisms" >}}
+#### {{< newtabref href="https://go.dev/wiki/CodeReviewComments#initialisms" title="Initialisms" >}}
 
 Use `userID` rather than `userId`. Same for abbreviations; `HTTP` is preferred over `Http` or `http`.
 
-#### {{< newtabref href="https://github.com/golang/go/wiki/CodeReviewComments#receiver-names" title="Receiver names" >}}
+#### {{< newtabref href="https://go.dev/wiki/CodeReviewComments#receiver-names" title="Receiver names" >}}
 
 The name of a method's receiver should be a reflection of its identity; often a one or two letter abbreviation of its type suffices (such as "c" or "cl" for "Client"). Don't use generic names such as "me", "this", or "self" identifiers typical of object-oriented languages that give the variable a special meaning.
 
