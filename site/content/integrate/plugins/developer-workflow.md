@@ -50,16 +50,78 @@ If you would like to avoid using ngrok, there is another free option that you ca
 ssh -R 80:localhost:8065 ssh.localhost.run
 ```
 
-An `http` URL pointing to your server should show in the terminal. The `https` version of this same URL should also work, which is what you will want to use for your webhook URLs. One disadvantage of using `localhost.run` is there is no request/response logging dasboard that is available with ngrok.
-
+An `http` URL pointing to your server should show in the terminal. The `https` version of this same URL should also work, which is what you will want to use for your webhook URLs. One disadvantage of using `localhost.run` is there is no request/response logging dashboard that is available with ngrok.
 
 ### Debug server-side plugins using `delve`
 
-Using the `make attach-headless` command will allow you to use a debugger and step through the plugin's server code. A {{< newtabref href="https://github.com/go-delve/delve" title="delve" >}} process will be created and attach to your plugin. You can then use an IDE or debug console to connect to the `delve` process. If you're using VSCode, you can use this `launch.json` configuration to connect.
+Using the `delve` debugger, we can step through code for a running plugin on our local Mattermost server. There are a few steps for setup to make this work properly.
+
+#### Configure Mattermost server for debugging plugins
+
+In order to allow the debugger to pause code execution, we need to disable Mattermost's "health check" for plugins and the Hashicorp `go-plugin` package's "keep alive" feature for its RPC connection. We'll configure the server with the following steps:
+
+- In the server's `config.json`, set `PluginSettings.EnableHealthCheck` to `false`
+- Run the script below with `./patch_go_plugin.sh $GO_PLUGIN_PACKAGE_VERSION` where `GO_PLUGIN_PACKAGE_VERSION` is the version of `go-plugin` that your Mattermost server is using. This can be found in the monorepo at [server/go.mod](https://github.com/mattermost/mattermost/blob/4bdd8bb18e47d16f9680905972516526b6fd61d8/server/go.mod#L141) on your local server.
+- Restart the server
+
+More details on this are explained below:
+
+##### Disable Mattermost plugin health check job
+
+To disable the Mattermost plugin health check job, go into your `config.json` and set `PluginSettings.EnableHealthCheck` to `false`. Note that this will make it so if your plugin panics/crashes for any reason during your development, the Mattermost server will not restart the plugin or notice that it crashed. It will remain with the status of "running" in the plugin management page, even though it has crashed. Because of this, you'll need to watch server logs for any information related to plugin panics during your debugging.
+
+##### Disable `go-plugin` RPC client "keep alive"
+
+We'll be editing external library source code directly, so we only want to do this in a development environment.
+
+By default, the `go-plugin` package runs plugins with a "keep alive" feature enabled, which essentially pings the plugin RPC connection every 30 seconds, and if the plugin doesn't respond, the RPC connection will be terminated. There is a way to disable this, though the `go-plugin` currently doesn't expose a way to configure this setting, so we need to edit the `go-plugin` package's source code to have the right configuration for our debugging use case.
+
+In the script below, we automatically modify the file located at `${GOPATH}/pkg/mod/github.com/hashicorp/go-plugin@${GO_PLUGIN_PACKAGE_VERSION}/rpc_client.go`, where `GO_PLUGIN_PACKAGE_VERSION` is the version of `go-plugin` that your Mattermost server is using. This can be found in your local copy of the monorepo at [server/go.mod](https://github.com/mattermost/mattermost/blob/4bdd8bb18e47d16f9680905972516526b6fd61d8/server/go.mod#L141). This script essentially replaces the line in [go-plugin/rpc_client.go](https://github.com/hashicorp/go-plugin/blob/586d14f3dcef1eb42bfb7da4c7af102ec6638668/rpc_client.go#L66) to have a custom configuration for the RPC client connection, that disables the "keep alive" feature. This makes it so the debugger can be paused for long amounts of time, and the Mattermost server will keep the connection with the plugin open.
+
+```sh
+# patch_go_plugin.sh
+
+GO_PLUGIN_PACKAGE_VERSION=$1
+
+GO_PLUGIN_RPC_CLIENT_PATH=${GOPATH}/pkg/mod/github.com/hashicorp/go-plugin@${GO_PLUGIN_PACKAGE_VERSION}/rpc_client.go
+
+echo "Patching $GO_PLUGIN_RPC_CLIENT_PATH for debugging Mattermost plugins"
+
+if ! grep -q 'mux, err := yamux.Client(conn, nil)' "$GO_PLUGIN_RPC_CLIENT_PATH"; then
+  echo "The file has already been patched or the target line was not found."
+  exit 0
+fi
+
+sudo sudo sed -i '' '/import (/a\
+    "time"
+' $GO_PLUGIN_RPC_CLIENT_PATH
+
+sudo sed -i '' '/mux, err := yamux.Client(conn, nil)/c\
+    sessionConfig := yamux.DefaultConfig()\
+    sessionConfig.EnableKeepAlive = false\
+    sessionConfig.ConnectionWriteTimeout = time.Minute * 5\
+    mux, err := yamux.Client(conn, sessionConfig)
+' $GO_PLUGIN_RPC_CLIENT_PATH
+
+echo "Patched go-plugin's rpc_client.go for debugging Mattermost plugins"
+```
+
+Then run the script like so:
+
+```sh
+chmod +x patch_go_plugin.sh
+./patch_go_plugin.sh v1.6.0 # as of writing, this is the version of `go-plugin` being used by the server
+```
+
+#### Configure VSCode for debugging
+
+This section assumes you are using VSCode to debug your plugin. If you want to use a different IDE, the process will be mostly the same. If you want to debug in your terminal directly with `delve` instead of using an IDE, you can run `make attach` instead of `make attach-headless` below, which will launch a `delve` process as an interactive terminal.
+
+Include this configuration in your VSCode instance's [launch.json](https://learn.microsoft.com/en-us/microsoft-edge/visual-studio-code/microsoft-edge-devtools-extension/launch-json):
 
 ```json
 {
-    "name": "Attach remote",
+    "name": "Attach to Mattermost plugin",
     "type": "go",
     "request": "attach",
     "mode": "remote",
@@ -69,18 +131,38 @@ Using the `make attach-headless` command will allow you to use a debugger and st
 }
 ```
 
-If the debugger is paused for more than 5 seconds, the RPC connection with the server times out. The server cannot communicate with the plugin anymore, so the plugin then needs to be restarted.
+#### Attach headless `delve` process to the running plugin
 
-In order to be able to pause the debugger for more than 5 seconds, two modifications need to be done to the `mattermost/server` repository:
+Build the plugin and deploy to your local Mattermost server:
 
-1. The plugin health check job needs to be disabled. This can be done by setting the server config setting `PluginSettings.EnableHealthCheck` to `false`. Note that if your plugin crashes, you'll need to restart it, using `make reset` for example. This command will also kill any currently running `delve` process. If you want to continue debugging with `delve`, you'll need to run `make attach-headless` again after restarting the plugin.
+```sh
+make deploy
+```
 
-2. The `go-plugin`'s RPC client needs to be configured with a larger timeout duration. You can change the code at {{< newtabref href="https://github.com/mattermost/mattermost/blob/bf03f391e635b0b9b129768cec5ea13c571744fa/vendor/github.com/hashicorp/go-plugin/rpc_client.go#L63" title="server/vendor/github.com/hashicorp/rpc_client.go" >}} to increase the duration. Here's the change you can make to extend the timeout to 5 minutes:
+In a separate terminal, open a `delve` process for VSCode to connect to:
 
-    ```go
-    sessionConfig := yamux.DefaultConfig()
-    sessionConfig.EnableKeepAlive = true
-    sessionConfig.ConnectionWriteTimeout = time.Minute * 5
-    
-    mux, err := yamux.Client(conn, sessionConfig)
-    ```
+```sh
+make attach-headless
+```
+
+This starts a headless `delve` process for your IDE to connect to. The process listens on port `2346`, which is the port defined in our `launch.json` configuration. Somewhat related, the Mattermost server's `Makefile` has a command `debug-server-headless`, which starts a headless `delve` process for the Mattermost server, listening on port `2345`. So you can create a similar `launch.json` configuration in the server directory of the monorepo to connect to your server by using that port.
+
+#### Attach the debugger to the `delve` process
+
+Run the debugger in VSCode by navigating to the "Run and Debug" tab on the left side of the IDE, selecting your launch configuration, and clicking the green play button. This should bring up a debugging widget that looks like this:
+
+![image](https://github.com/mattermost/mattermost-developer-documentation/assets/6913320/9419ce8b-c803-40b7-82bb-9ccd64971676)
+
+![image](https://github.com/mattermost/mattermost-developer-documentation/assets/6913320/f28681c3-c256-41a1-b1f4-835f96628d6a)
+
+Your IDE's debugger is now running and ready to pause your plugin's execution at any breakpoints you set in the IDE.
+
+### Troubleshooting
+
+If you run into issues with debugging, first make sure you've stopped any active debugging sessions by clicking the red disconnect button in the VSCode debugging widget.
+
+You can then use the `make reset` command in the plugin repository to do the following:
+- Disable and re-enable the plugin
+- Terminate any running `delve` processes running for this plugin
+
+For more discussion on this, please join the Toolkit channel on our community server: https://community.mattermost.com/core/channels/developer-toolkit
