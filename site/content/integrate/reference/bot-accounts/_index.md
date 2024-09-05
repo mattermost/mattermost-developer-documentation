@@ -11,6 +11,7 @@ Bot accounts access the Mattermost {{< newtabref href="https://api.mattermost.co
 
   - Can't be logged into.
   - Can't be used to create other bot accounts.
+  - Can't be used to upload files to a channel.
   - Don't count as a registered user and therefore don't count towards the total number of users for an Enterprise Edition license.
 
 Additional benefits include:
