@@ -14,6 +14,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 | Version | Release date       | MVP                                                                               |
 |---------|--------------------|-----------------------------------------------------------------------------------|
+| 10.0    | September 16, 2024 | {{< newtabref href="https://github.com/Camillarhi" title="Rita Anene" >}}  
 | 9.11    | August 16, 2024    | {{< newtabref href="https://github.com/Aryakoste" title="Arya Khochare" >}}  
 | 9.10    | July 16, 2024      | {{< newtabref href="https://translate.mattermost.com/user/frankps" title="Frank Paul Silye" >}}  
 | 9.9     | June 14, 2024      | {{< newtabref href="https://github.com/annaos" title="Anna Os" >}} and {{< newtabref href="https://github.com/ezekielchow" title="Ezekiel" >}}  
