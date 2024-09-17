@@ -32,8 +32,8 @@ enableEmoji = true
 
   [params.notification]
     enable = true
-    url = "https://mattermost.com/webinar/copilot-demo-ai-enhanced-collaboration/"
-    text = "[WEBINAR] Mattermost Copilot Demo: AI-Enhanced Collaboration"
+    url = "https://mattermost.com/blog/microsoft-teams-m365-mission-critical-workflows/"
+    text = "Mattermost v10.0 is now available! Learn what’s new »"
 
   [params.search]
     enable = true
