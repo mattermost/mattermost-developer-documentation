@@ -21,7 +21,7 @@ jobs:
       - name: Save PR number
         id: pr
         run: |
-          echo "::set-output name=id::$(<pr.txt)"
+          echo "id=$(<pr.txt)" >> $GITHUB_OUTPUT
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
