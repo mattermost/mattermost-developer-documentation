@@ -8,7 +8,7 @@ aliases:
   - /contribute/webapp/redux
 ---
 
-The Mattermost web app uses {{< newtabref href="https://redux.js.org/" title="Redux" >}} as its state management library. Its key features are a centralized data store for the entire app and a pattern for predictably modifying and displaying that spplication state. Notably, we're not using Redux Toolkit since a large portion of our Redux code predates its existence.
+The Mattermost web app uses {{< newtabref href="https://redux.js.org/" title="Redux" >}} as its state management library. Its key features are a centralized data store for the entire app and a pattern for predictably modifying and displaying that application state. Notably, we're not using Redux Toolkit since a large portion of our Redux code predates its existence.
 
 In addition to Redux itself, we also use:
 - {{< newtabref href="https://react-redux.js.org/" title="React Redux" >}} to connect React components to the Redux store using higher-order components like `connect` or hooks like `useSelector`.
