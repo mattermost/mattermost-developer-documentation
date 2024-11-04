@@ -43,7 +43,7 @@ The web app is set up as a monorepo which has the code broken up into multiple p
 ### Important libraries and technologies
 
 - {{< newtabref href="https://reactjs.org/" title="React" >}} - React is a user interface library used for React apps. Its key feature is that it uses a variation of JavaScript called JSX to declaratively define interfaces using HTML-like syntax.
-- {{< newtabref href="https://redux.js.org/" title="Redux" >}} - Redux is a state management library used for JavaScript apps. Its key features are a centralized data store for the entire app and a pattern for predictably modifying and displaying that spplication state. Notably, we're not using Redux Toolkit since a large portion of our Redux code predates its existence.
+- {{< newtabref href="https://redux.js.org/" title="Redux" >}} - Redux is a state management library used for JavaScript apps. Its key features are a centralized data store for the entire app and a pattern for predictably modifying and displaying that application state. Notably, we're not using Redux Toolkit since a large portion of our Redux code predates its existence.
 - {{< newtabref href="https://github.com/reduxjs/redux-thunk" title="Redux Thunk" >}} - Redux Thunk is a middleware for Redux that's used to write async actions and logic that interacts more closely with the Redux store.
 - {{< newtabref href="https://react-redux.js.org/" title="React Redux" >}} - React Redux is the library used to connect React components to a Redux store.
  
