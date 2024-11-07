@@ -107,7 +107,7 @@ Install {{< newtabref href="https://apps.apple.com/us/app/xcode/id497799835?ls=1
 
 ### Install Ruby
 
-A version of Ruby is automatically installed on macOS, but Mattermost React Native app development requires Ruby 3.0.6. You can check the current version of Ruby by running the following command.
+A version of Ruby is automatically installed on macOS, but Mattermost React Native app development requires Ruby 3.2.0. You can check the current version of Ruby by running the following command.
 ```sh
 ruby --version
 ```
@@ -129,11 +129,11 @@ If it isn't, we recommend using [Ruby Version Manager](https://rvm.io) or your p
     ```
 4. Install the required version of Ruby
     ```sh
-    rvm install 3.0.6
+    rvm install 3.2.0
     ```
-5. (Optional) If you don't need to use a different version of Ruby for anything else, you'll want to change the default version of Ruby. Without this, you'll need to run `rvm use 3.0.6` any time you want to work on the mobile app.
+5. (Optional) If you don't need to use a different version of Ruby for anything else, you'll want to change the default version of Ruby. Without this, you'll need to run `rvm use 3.2.0` any time you want to work on the mobile app.
     ```sh
-    rvm alias create default 3.0.6
+    rvm alias create default 3.2.0
     ```
 
 ## Additional setup for Android
