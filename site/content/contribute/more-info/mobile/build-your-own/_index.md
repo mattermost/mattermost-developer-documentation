@@ -1,4 +1,4 @@
----
+----
 title: "Build your own mobile app"
 heading: "Build your own Mattermost mobile app"
 description: "Learn how to build your own Mattermost mobile app and distribute it within your team."
