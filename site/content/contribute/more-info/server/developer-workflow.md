@@ -20,7 +20,7 @@ Here's a general workflow for a Mattermost developer working on the {{< newtabre
 1. Review the repository structure to familiarize yourself with the project:
 
     * [./server/channels/api4/](https://github.com/mattermost/mattermost/tree/master/server/channels/api4) holds all API and application related code.
-    * [./server/public/mmodel/](https://github.com/mattermost/mattermost/tree/master/server/public/model) holds all data model definitions and the Go driver.
+    * [./server/public/model/](https://github.com/mattermost/mattermost/tree/master/server/public/model) holds all data model definitions and the Go driver.
     * [./server/channels/store/](https://github.com/mattermost/mattermost/tree/master/server/channels/store) holds all database querying code.
     * [./server/channels/utils/](https://github.com/mattermost/mattermost/tree/master/server/channels/utils) holds all utilities, such as the mail utility.
     * [./server/i18n/](https://github.com/mattermost/mattermost/tree/master/server/i18n) holds all localization files for the server.
