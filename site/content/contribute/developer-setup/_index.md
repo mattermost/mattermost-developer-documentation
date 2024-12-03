@@ -12,11 +12,8 @@ aliases:
 Set up your development environment for building, running, and testing Mattermost.
 
 {{<note "Note:">}}
-If you're migrating from before the monorepo see the [migration notes]({{< ref "/contribute/monorepo-migration-notes" >}}).
-{{</note>}}
-
-{{<note "Note:">}}
-If you're developing plugins, see the plugin [developer setup]({{< ref "/integrate/plugins/developer-setup" >}}) documentation.
+- If you're migrating from before the monorepo see the [migration notes]({{< ref "/contribute/monorepo-migration-notes" >}}).
+- If you're developing plugins, see the plugin [developer setup]({{< ref "/integrate/plugins/developer-setup" >}}) documentation.
 {{</note>}}
 
 # Prerequisites for Windows
@@ -28,6 +25,10 @@ If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL
 3. Perform the rest of the operations (except Docker installation) within the WSL environment and not in Windows.
 
 # Setup the Mattermost Server
+
+{{<note "Note:">}}
+The webapp isn't exposed directly, it's exposed via the server. So if both server and webapp are running, you can open `localhost:8065`, the server's port to access the webapp.
+{{</note>}}
 
 1. Install `make`.
     - On Ubuntu, you can install `build essential` tools which will also take care of installing the `make`:
