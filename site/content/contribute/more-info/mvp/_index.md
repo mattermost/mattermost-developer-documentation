@@ -14,6 +14,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 | Version | Release date       | MVP                                                                               |
 |---------|--------------------|-----------------------------------------------------------------------------------|
+| 10.3    | December 16, 2024  | {{< newtabref href="https://github.com/KuSh" title="Nicolas Le Cam" >}}  
 | 10.2    | November 15, 2024  | {{< newtabref href="https://github.com/tanmaythole" title="Tanmay Thole" >}} and {{< newtabref href="https://github.com/Rutam21" title="Rutam Prita Mishra" >}}  
 | 10.1    | October 16, 2024   | {{< newtabref href="https://github.com/Gesare5" title="Ivy Gesare" >}}  
 | 10.0    | September 16, 2024 | {{< newtabref href="https://github.com/Camillarhi" title="Rita Anene" >}}  
