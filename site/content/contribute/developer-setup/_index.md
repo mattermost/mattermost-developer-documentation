@@ -81,7 +81,6 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
     make run-server
     ```
 
-
 1. Test your environment to ensure that the server is running:
 
     ```sh
@@ -185,19 +184,46 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
     make run-server
     ```
 
-1. Test your environment:
+1. Test your environment to ensure that the server is running:
+
     ```sh
     curl http://localhost:8065/api/v4/system/ping
     ```
+
     If successful, the `curl` step will return a JSON object:
     ```json
     {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
     ```
 
-1. Run the webapp and watch:
+1. Install mmctl and set up up your admin user:
+
+    1. In the server folder, build mmctl:
+  
+       ```sh
+       cd server
+       make mmctl-build
+       ```
+
+    1. Create your admin user:
+ 
+       ```sh
+       bin/mmctl user create --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system_admin
+       ```
+
+    1. Optionally, populate the database with random sample data
+  
+       ```sh
+       bin/mmctl sampledata
+       ```
+
+1. Start the web app:
+
     ```sh
+    cd webapp
     make run
     ```
+
+1. Open the web app by going to http://localhost:8065 in your browser or by adding it to the Mattermost desktop app.
 
 1. Stop the server:
     ```sh
