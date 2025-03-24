@@ -121,7 +121,7 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
     make run
     ```
 
-1. Visit the web app to ensure that by visiting http://localhost:8065 in your browser or by adding it as a server in the Mattermost desktop app.
+1. Open the web app by going to http://localhost:8065 in your browser or by adding it to the Mattermost desktop app.
 
 1. Stop the server:
 
