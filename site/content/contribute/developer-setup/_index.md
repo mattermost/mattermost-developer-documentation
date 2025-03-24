@@ -145,7 +145,7 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
         ```sh
         sudo apt install build-essential
         ```
-1. Set `MM_NO_DOCKER` to `true` in the `server/config.mk` file.
+1. Copy the file `server/config.mk` as `server/config.override.mk` and set `MM_NO_DOCKER` to `true` in the copy.
 1. Install [PostgreSQL](https://www.postgresql.org/download/)
 1. Run `psql postgres`. Then create `mmuser` by running `CREATE ROLE mmuser WITH LOGIN PASSWORD 'mostest';`
 1. Modify the role to give rights to create a database by running `ALTER ROLE mmuser CREATEDB;`
