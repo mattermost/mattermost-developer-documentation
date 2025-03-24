@@ -92,7 +92,7 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
     {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
     ```
 
-1. Install mmctl and set up up your admin user:
+1. Install mmctl and set up your admin user:
 
     1. In the server folder, build mmctl:
   
