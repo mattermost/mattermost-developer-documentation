@@ -42,7 +42,7 @@ brew install nvm
 To install NodeJS v22 LTS using NVM, open a new terminal and execute:
 
 ```shell
-nvm install --lts=iron
+nvm install --lts=jod
 ```
 {{</tab>}}
 {{<tab "node-npm-linux">}}
