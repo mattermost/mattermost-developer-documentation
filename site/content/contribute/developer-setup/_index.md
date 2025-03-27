@@ -92,23 +92,14 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
     {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
     ```
 
-1. Install mmctl and set up your admin user:
-
-    1. In the server folder, build mmctl:
-  
-       ```sh
-       cd server
-       make mmctl-build
-       ```
-
-    1. Create your admin user:
+1. Set up up your admin user using mmctl:
  
-       ```sh
-       bin/mmctl user create --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system_admin
-       ```
+   ```sh
+   bin/mmctl user create --local --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system_admin
+   ```
 
-    1. Optionally, populate the database with random sample data
-  
+    - Optionally, you can also populate the database with random sample data as well:
+
        ```sh
        bin/mmctl sampledata
        ```
@@ -195,23 +186,14 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
     {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
     ```
 
-1. Install mmctl and set up your admin user:
-
-    1. In the server folder, build mmctl:
-  
-       ```sh
-       cd server
-       make mmctl-build
-       ```
-
-    1. Create your admin user:
+1. Set up up your admin user using mmctl:
  
-       ```sh
-       bin/mmctl user create --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system_admin
-       ```
+   ```sh
+   bin/mmctl user create --local --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system_admin
+   ```
 
-    1. Optionally, populate the database with random sample data
-  
+    - Optionally, you can also populate the database with random sample data as well:
+
        ```sh
        bin/mmctl sampledata
        ```
