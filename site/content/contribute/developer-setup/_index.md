@@ -27,7 +27,7 @@ If you're using Windows, we recommend using the Windows Subsystem for Linux (WSL
 # Setup the Mattermost Server
 
 {{<note "Note:">}}
-The webapp isn't exposed directly, it's exposed via the server. So if both server and webapp are running, you can open `localhost:8065`, the server's port to access the webapp.
+The web app isn't exposed directly, it's exposed via the server. So if both server and web app are running, you can open `localhost:8065`, the server's port to access the web app.
 {{</note>}}
 
 1. Install `make`.
@@ -67,9 +67,9 @@ The webapp isn't exposed directly, it's exposed via the server. So if both serve
     
 1. Install NVM and use it to install the required version of Node.js:
 
-    - First, install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
+    1. Install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
 
-    - Then, use NVM to install the correct version of Node.js for the Mattermost web app (this should be run within the `webapp` directory):
+    1. Then, use NVM to install the correct version of Node.js for the Mattermost web app (this should be run within the `webapp` directory):
         ```sh
         nvm install
         ```
@@ -81,8 +81,7 @@ The webapp isn't exposed directly, it's exposed via the server. So if both serve
     make run-server
     ```
 
-
-1. Test your environment:
+1. Test your environment to ensure that the server is running:
 
     ```sh
     curl http://localhost:8065/api/v4/system/ping
@@ -93,11 +92,26 @@ The webapp isn't exposed directly, it's exposed via the server. So if both serve
     {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
     ```
 
-1. Run the webapp and watch:
+1. Set up up your admin user using mmctl:
+ 
+   ```sh
+   bin/mmctl user create --local --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system_admin
+   ```
+
+    - Optionally, you can also populate the database with random sample data as well:
+
+       ```sh
+       bin/mmctl sampledata
+       ```
+
+1. Start the web app:
 
     ```sh
+    cd webapp
     make run
     ```
+
+1. Open the web app by going to http://localhost:8065 in your browser or by adding it to the Mattermost desktop app.
 
 1. Stop the server:
 
@@ -121,7 +135,7 @@ The webapp isn't exposed directly, it's exposed via the server. So if both serve
         ```sh
         sudo apt install build-essential
         ```
-1. Set `MM_NO_DOCKER` to `true` in the `server/config.mk` file.
+1. Copy the file `server/config.mk` as `server/config.override.mk` and set `MM_NO_DOCKER` to `true` in the copy.
 1. Install [PostgreSQL](https://www.postgresql.org/download/)
 1. Run `psql postgres`. Then create `mmuser` by running `CREATE ROLE mmuser WITH LOGIN PASSWORD 'mostest';`
 1. Modify the role to give rights to create a database by running `ALTER ROLE mmuser CREATEDB;`
@@ -161,19 +175,37 @@ The webapp isn't exposed directly, it's exposed via the server. So if both serve
     make run-server
     ```
 
-1. Test your environment:
+1. Test your environment to ensure that the server is running:
+
     ```sh
     curl http://localhost:8065/api/v4/system/ping
     ```
+
     If successful, the `curl` step will return a JSON object:
     ```json
     {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
     ```
 
-1. Run the webapp and watch:
+1. Set up up your admin user using mmctl:
+ 
+   ```sh
+   bin/mmctl user create --local --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system_admin
+   ```
+
+    - Optionally, you can also populate the database with random sample data as well:
+
+       ```sh
+       bin/mmctl sampledata
+       ```
+
+1. Start the web app:
+
     ```sh
+    cd webapp
     make run
     ```
+
+1. Open the web app by going to http://localhost:8065 in your browser or by adding it to the Mattermost desktop app.
 
 1. Stop the server:
     ```sh
