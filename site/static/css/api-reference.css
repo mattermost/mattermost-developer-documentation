@@ -17,6 +17,18 @@ elements-api {
     min-height: calc(100vh - 200px); /* Account for header/footer */
 }
 
+/* Navigation styles */
+.site-nav__toplink .toplink-wrapper {
+    display: inline-flex;
+    align-items: center;
+}
+
+.site-nav__toplink .toplink-wrapper span {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 4px;
+}
+
 /* Ensure proper layout on all screens */
 #wrapper {
     overflow-x: hidden;
