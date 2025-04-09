@@ -1,6 +1,6 @@
 ---
 title: "API Reference"
-description: "Complete Mattermost API documentation with interactive examples"
+description: "Mattermost API documentation with interactive examples"
 layout: api-reference
 ---
 

@@ -129,7 +129,7 @@ enableEmoji = true
 
   [[params.intro.item]]
     title = "API Reference"
-    description = "Explore the complete Mattermost API documentation with interactive examples"
+    description = "Explore the Mattermost API documentation with interactive examples"
     url = "api-reference"
     button = "View API docs"
     icon = "img/home/apidocs.png"
