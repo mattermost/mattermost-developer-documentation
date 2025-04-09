@@ -1,3 +1,15 @@
+/**
+ * API Reference Layout and Structure Styles
+ *
+ * This file handles the structural layout and positioning of the API reference documentation.
+ * It affects:
+ * - Overall container and content area layout
+ * - Elements API component positioning and sizing
+ * - Navigation elements and their alignment
+ * - Responsive behavior and overflow handling
+ * - General layout fixes for the API reference section
+ */
+
 /* Base container styles */
 .container-fluid {
     padding: 0;
