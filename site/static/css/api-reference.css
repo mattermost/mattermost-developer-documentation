@@ -1,0 +1,40 @@
+/* Base container styles */
+.container-fluid {
+    padding: 0;
+    max-width: 100%;
+}
+
+/* Content area styles */
+.doc-content {
+    padding: 0;
+    max-width: 100%;
+}
+
+/* Elements API component styles */
+elements-api {
+    display: block;
+    width: 100%;
+    min-height: calc(100vh - 200px); /* Account for header/footer */
+}
+
+/* Ensure proper layout on all screens */
+#wrapper {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Remove any margins that might affect the layout */
+.row {
+    margin: 0;
+}
+
+.col-12 {
+    padding: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    elements-api {
+        overflow-x: auto;
+    }
+}

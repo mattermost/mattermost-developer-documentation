@@ -1,0 +1,13 @@
+{{ $apiDescriptionUrl := .Get "apiDescriptionUrl" | default "/mattermost-openapi-v4.yaml" }}
+{{ $router := .Get "router" | default "hash" }}
+{{ $layout := .Get "layout" | default "sidebar" }}
+
+<!-- Elements API Component -->
+<script src="https://unpkg.com/@stoplight/elements/web-components.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@stoplight/elements/styles.min.css">
+
+<elements-api
+    apiDescriptionUrl="{{ $apiDescriptionUrl }}"
+    router="{{ $router }}"
+    layout="{{ $layout }}"
+/>
