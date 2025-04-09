@@ -1,50 +1,40 @@
 /* Custom styles for Stoplight Elements code blocks */
 
-/* Style for code blocks without language specification */
-elements-api pre {
+/* Style for documentation code blocks */
+elements-api .content pre {
     background-color: #f6f8fa !important;
     border: 1px solid #e1e4e8 !important;
     border-radius: 6px !important;
     color: #24292e !important;
 }
 
-/* Style for code blocks with language specification */
-elements-api pre[class*="language-"] {
-    background-color: #f6f8fa !important;
-    color: #24292e !important;
-}
-
-/* Ensure proper contrast for JSON syntax highlighting */
-elements-api .token.property,
-elements-api .token.string {
-    color: #032f62 !important;
-}
-
-elements-api .token.number,
-elements-api .token.boolean {
-    color: #005cc5 !important;
-}
-
-elements-api .token.punctuation {
-    color: #24292e !important;
-}
-
-elements-api .token.operator {
-    color: #d73a49 !important;
+/* Style for interactive request bodies - no background */
+elements-api .try-it-api pre,
+elements-api .try-it pre {
+    background: none !important;
+    border: none !important;
 }
 
 /* Style for shell commands */
 elements-api .token.function,
 elements-api .shell-command,
 elements-api .token.command {
-    color: #6f42c1 !important;
+    color: #891101 !important;
     font-weight: bold !important;
 }
 
-/* Improve readability of inline code */
-elements-api code {
-    background-color: rgba(27,31,35,0.05) !important;
-    border-radius: 3px !important;
-    color: #24292e !important;
-    padding: 0.2em 0.4em !important;
+elements-api .sl-code-viewer {
+    color: #0b0b0b !important;
+}
+
+elements-api .token.string {
+    color: #2394a8 !important;
+}
+
+elements-api .token.number {
+    color: #404d98 !important;
+}
+
+elements-api .token.property {
+    color: #d4980c !important;
 }
