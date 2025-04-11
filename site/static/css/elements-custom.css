@@ -27,6 +27,20 @@ elements-api .try-it pre {
     border: none !important;
 }
 
+/* Style for response sections */
+elements-api .sl-panel__content-wrapper .sl-code-viewer,
+elements-api .sl-panel__content-wrapper .sl-code-highlight {
+    background: none !important;
+    border: none !important;
+}
+
+elements-api .sl-panel__content-wrapper .token.punctuation {
+    color: #e1e4e8 !important;
+}
+elements-api .sl-panel__content-wrapper .token.number {
+    color: #7b84b3 !important;
+}
+
 /* Style for shell commands */
 elements-api .token.function,
 elements-api .shell-command,
