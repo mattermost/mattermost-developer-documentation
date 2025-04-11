@@ -1,7 +1,7 @@
 ---
-title: "API Reference"
+title: "API Documentation"
 description: "Mattermost API documentation with interactive examples"
-layout: api-reference
+layout: api-documentation
 ---
 
 {{< elements-api >}}

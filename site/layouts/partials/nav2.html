@@ -483,13 +483,13 @@
 				<div class="col-12">
 					<ul class="second-nav">
 						<li class="second-nav__item">
-							<a href="/contribute/" class="second-nav__link">Contribute</a>
+							<a href="/contribute/" class="second-nav__link {{ if eq $.Section "contribute" }}active{{ end }}">Contribute</a>
 						</li>
 						<li class="second-nav__item">
-							<a href="/integrate/getting-started" class="second-nav__link">Integrate & Extend</a>
+							<a href="/integrate/getting-started" class="second-nav__link {{ if eq $.Section "integrate" }}active{{ end }}">Integrate & Extend</a>
 						</li>
 						<li class="second-nav__item">
-							<a href="/api-reference" class="second-nav__link">API Reference</a>
+							<a href="/api-documentation" class="second-nav__link {{ if eq $.Section "api-documentation" }}active{{ end }}">API Documentation</a>
 						</li>
 					</ul>
 				</div>
