@@ -14,6 +14,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 | Version | Release date       | MVP                                                                               |
 |---------|--------------------|-----------------------------------------------------------------------------------|
+| 10.7    | April 16, 2025     | {{< newtabref href="https://github.com/cinlloc" title="Clément Collin" >}}  
 | 10.6    | March 14, 2025     | {{< newtabref href="https://github.com/Victor-Nyagudi" title="Vicktor" >}}  
 | 10.5    | February 19, 2025  | {{< newtabref href="https://github.com/TheInvincibleRalph" title="TheInvincible" >}}  
 | 10.4    | January 16, 2025   | {{< newtabref href="https://github.com/RS-labhub" title="Rohan Sharma" >}}  
