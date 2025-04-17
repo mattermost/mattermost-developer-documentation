@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/css/elements-custom.css">
 
 <elements-api
-    apiDescriptionUrl="{{ $apiDescriptionUrl }}"
+    apiDescriptionUrl="{{ .Site.BaseURL }}{{ strings.TrimPrefix "/" $apiDescriptionUrl }}"
     router="{{ $router }}"
     layout="{{ $layout }}"
 />
