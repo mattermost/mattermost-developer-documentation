@@ -56,14 +56,14 @@ A successful request will get the following response:
 
 ```
 HTTP/1.1 200 OK
-Content-Type: application/json
+Content-Type: text/plain
 X-Request-Id: hoan6o9ws7rp5xj7wu9rmysrte
 X-Version-Id: 4.7.1.dev.12799cd77e172e8a2eba0f9091ec1471.false
 Date: Sun, 04 Mar 2018 17:19:09 GMT
 Content-Length: 2
-```
 
-Followed by a JSON representation of the created message. This representation follows the format used by the [Create Post API endpoint](https://api.mattermost.com/#tag/posts/operation/CreatePost).
+ok
+```
 
 All webhook posts will display a `BOT` indicator next to the username in Mattermost clients to help prevent against {{< newtabref href="https://en.wikipedia.org/wiki/Phishing" title="phishing attacks" >}}.
 
