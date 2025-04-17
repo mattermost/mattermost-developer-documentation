@@ -127,6 +127,14 @@ enableEmoji = true
     icon = "img/home/IntegrateExtend.svg"
     draft = false
 
+  [[params.intro.item]]
+    title = "API Documentation"
+    description = "Explore the Mattermost API documentation with interactive examples."
+    url = "api-documentation"
+    button = "View API docs"
+    icon = "img/home/apidocs.png"
+    draft = false
+
   #[params.intro.video]
   #  enable = true
   #  title = "Watch the video"
