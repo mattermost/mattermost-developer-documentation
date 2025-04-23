@@ -5330,8 +5330,8 @@ footer.site-footer {
 
 /* 2021 Reskin Global */
 .mm-container {
-    /* 2 cards of equal width + 40px space between the cards + 20px left padding + 20px right padding */
-    max-width: 760px;
+    /* 3 cards of equal width + 40px space between each card + 20px left padding + 20px right padding */
+    max-width: 1140px;
     margin: 0 auto;
 }
 
