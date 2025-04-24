@@ -174,7 +174,7 @@ To get started:
 
 5. Don’t hesitate to use tools like the [Online ICU Message Editor](https://format-message.github.io/icu-message-format-for-translators/editor.html), which can help you see how your string will look in context.
 
-6. If you’re not sure how to translate a technical term, you can search for it elsewhere in your language on the translation server, check [how Microsoft has translated it](https://www.microsoft.com/en-us/language/Search), and feel free to ask for additional string context in the localization channel.
+6. If you’re not sure how to translate a technical term, you can search for it elsewhere in your language on the translation server, check [how Microsoft has translated it](https://msit.powerbi.com/view?r=eyJrIjoiODJmYjU4Y2YtM2M0ZC00YzYxLWE1YTktNzFjYmYxNTAxNjQ0IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9), and feel free to ask for additional string context in the localization channel.
 
 ## You want to help test new features
 
