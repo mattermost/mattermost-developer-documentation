@@ -20,7 +20,7 @@ _____
 
 The {{< newtabref href="https://testing-library.com/" title="Testing Library" >}} is used through the package `@testing-library/cypress`, and it provides simple and complete custom Cypress commands and utilities that encourage such good testing practices. To decide on the queries from the Testing Library you should be using while writing Cypress tests, check out this {{< newtabref href="https://testing-library.com/docs/guide-which-query/" title="article" >}} to learn more. For instance, you can select something with test ID using: `cy.findByTestId`. 
 
-If you need more help, check out the {{< newtabref href="https://chrome.google.com/webstore/detail/testing-playground/hejbmebodbijjdhflfknehhcgaklhano/related" title="Testing Playground" >}} Chrome extension, which helps you find the best queries to select elements. It allows you to inspect the element hierarchies in Chrome Developer Tools, and provides you with suggestions on how to select them, while encouraging good testing practices.
+If you need more help, check out the {{< newtabref href="https://testing-playground.com/" title="online Testing Playground" >}}—no install required, always up-to-date, and it teaches you the exact Testing-Library queries you should be using as you click through the DOM. And if you’d rather stay in a VSCode editor, check out the {{< newtabref href="https://marketplace.visualstudio.com/items?itemName=aganglada.vscode-testing-playground" title="VS Code Testing Playground" >}} extension, which brings the same interactive query suggestions and best-practice guidance right into your IDE.
 
 The following is a short summary of the recommended order of priority for queries:
 
