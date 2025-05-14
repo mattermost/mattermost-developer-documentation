@@ -6,18 +6,14 @@ aliases:
   - /integrate/webhooks/incoming/incoming-webhooks/
   - /integrate/webhooks/incoming/using-incoming-webhooks/
 ---
-## Create an incoming webhook
 
-Let's learn how to create a simple incoming webhook that posts the following message to Mattermost.
+## Incoming Webhooks in Mattermost
 
-![An incoming webhook that posts `Hello, this is some text. This is some more text.](incoming_webhooks_create_simple.png)
+Incoming webhooks let you post messages from your applications directly into Mattermost channels. This is a simple way to automate notifications, alerts, or updates for your team.
 
-1. In Mattermost, go to **Product menu > Integrations > Incoming Webhook**.
-    - If you don't have the **Integrations** option, incoming webhooks may not be enabled on your Mattermost server or may be disabled for non-admins. They can be enabled by a System Admin from **System Console > Integrations > Integration Management**. Once incoming webhooks are enabled, continue with the steps below.
-2. Select **Add Incoming Webhook** and add a name and description for the webhook. The description can be up to 500 characters.
-3. Select the channel to receive webhook payloads, then select **Add** to create the webhook.
+### Creating an Incoming Webhook
 
-You will end up with a webhook endpoint that looks like so:
+To get started, go to **Product menu > Integrations > Incoming Webhook** in Mattermost. If you don't see the **Integrations** option, your server admin may need to enable it under **System Console > Integrations > Integration Management**. Once enabled, select **Add Incoming Webhook**, provide a name and description (up to 500 characters), and choose the channel where messages should appear. After saving, you'll receive a unique webhook URL like:
 
 ```
 https://your-mattermost-server.com/hooks/xxx-generatedkey-xxx
@@ -66,7 +62,6 @@ ok
 ```
 
 All webhook posts will display a `BOT` indicator next to the username in Mattermost clients to help prevent against {{< newtabref href="https://en.wikipedia.org/wiki/Phishing" title="phishing attacks" >}}.
-
 
 ### Parameters
 
@@ -162,7 +157,6 @@ GitLab is the leading open-source alternative to GitHub and offers built-in inte
 
 ### Tips and best practices
 
-
 1. If the `text` is longer than the allowable character limit per post, the message is split into multiple consecutive posts, each within the character limit. From Mattermost Server v5.0,  {{<newtabref title="posts up to 16383 characters are supported" href="https://docs.mattermost.com/upgrade/important-upgrade-notes.html">}}.
 2. Your webhook integration may be written in any programming language as long as it supports sending an HTTP POST request.
 3. Both `application/x-www-form-urlencoded` and `multipart/form-data` are supported `Content-Type` headers. If no `Content-Type` is provided, `application/json` is assumed.
@@ -176,10 +170,24 @@ GitLab is the leading open-source alternative to GitHub and offers built-in inte
 
    To send a message to a different direct message channel between two other users, you can specify the channel with the user IDs for the users separated with two underscore (_) symbols. To find the user ID you can use {{< newtabref href="https://docs.mattermost.com/manage/mmctl-command-line-tool.html#mmctl-user-search" title="mmctl user search" >}}.
 
-
     ```
     payload={"channel": "6w41z1q367dujfaxr1nrykr5oc__94dzjnkd8igafdraw66syi1cde", "text": "Hello, this is some text\nThis is more text. :tada:"}
     ```
+
+### Testing and Debugging Webhooks
+
+Before deploying your integration, you should test your webhook payloads. [Beeceptor](https://beeceptor.com/) is a great tool for this—you can create a custom endpoint, point your webhook to it, and inspect the payloads in real time. This helps you debug issues before sending data to your Mattermost server. Another useful tool is [HTTPBin](https://httpbin.org/), which lets you inspect and debug HTTP requests by sending them to endpoints like `https://httpbin.org/post`.
+
+#### Common Error Messages
+
+| Error Message                                              | What It Means / How to Fix                                                                                   |
+|------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `Couldn't find the channel`                                | The channel doesn't exist or is invalid. Check the `channel` parameter.                                      |
+| `Couldn't find the user`                                   | The user doesn't exist or is invalid. Check the `user` parameter.                                            |
+| `Unable to parse incoming data`                            | The request is malformed. Ensure your JSON payload is valid.                                                 |
+| `curl: (3) [globbing] unmatched close brace/bracket`       | Usually a cURL syntax error on Windows, often due to spaces around colons or using single quotes.            |
+
+If your integration prints the JSON payload instead of rendering the generated message, make sure your integration is returning the `application/json` content-type.
 
 ### Troubleshoot incoming webhooks
 
@@ -190,10 +198,6 @@ Some common error messages include:
 1. `Couldn't find the channel`: Indicates that the channel doesn't exist or is invalid. Please modify the ``channel`` parameter before sending another request.
 2. `Couldn't find the user`: Indicates that the user doesn't exist or is invalid. Please modify the ``user`` parameter before sending another request.
 3. `Unable to parse incoming data`: Indicates that the request received is malformed. Try reviewing that the JSON payload is in a correct format and doesn't have typos such as extra `"`.
-4. `curl: (3) [globbing] unmatched close brace/bracket in column N`: Typically an error when using cURL on Windows, when:
-
-    - You have space around JSON separator colons, `payload={"Hello" : "test"}` or
-    - You are using single quotes to wrap the `-d` data, `-d 'payload={"Hello":"test"}'`
 
 If your integration prints the JSON payload data instead of rendering the generated message, make sure your integration is returning the `application/json` content-type.
 
