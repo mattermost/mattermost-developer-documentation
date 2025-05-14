@@ -129,6 +129,10 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
 
     Some behaviors can be customized such as running the server in the foreground as described in the `config.mk` file in the server directory. See that file for details.
 
+# Build the Mattermost Server
+
+The `make package` command will package the application and place it under the `./dist` directory. You can distribute the .tar.gz file if you wish the run the application elsewhere. Note that you would need to run `make build` before this to build the binaries.
+
 # Develop Mattermost without Docker
 1. Install `make`.
     - On Ubuntu, you can install `build essential` tools which will also take care of installing the `make`:
