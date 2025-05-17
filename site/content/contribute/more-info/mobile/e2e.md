@@ -105,16 +105,37 @@ This is the typical flow for CI test run:
    brew install applesimutils
    ```
 2. Set XCode's build location so that the built app, especially debug, is expected at the project's location instead of the Library's folder which is unique/hashed.
-3. Open XCode, then go to **XCode > Preferences > Locations**.
+3. Open XCode, then go to **XCode > Settings > Locations**.
 4. Under **Derived Data**, click **Advanced...**.
 5. Select **Custom > Relative to Workspace**, then set **Products** as **Build/Products**.
 6. Click **Done** to save the changes.
 
 ##### Complete a test run in debug mode
 
-1. In one terminal window, run `npm run ios` from the root folder.
-2. In another terminal window, run `npm i` then `npm run e2e:ios-test` from the `/detox` folder.
+1. In one terminal window, from the root folder run `npm run start` and on another `npm run ios` from the root folder.
+2. Once the build is complete and installed, there will be a message informing of the path where the app is installed. Copy that path.  Sample output:
+   ```log
+   info Building (using "xcodebuild -workspace Mattermost.xcworkspace -configuration Debug -scheme Mattermost -destination id=00008110-00040CA10263801E")
+   info Installing "/Users/myuser/Proyectos/mattermost-mobile/ios/Build/Products/Debug-iphonesimulator/Mattermost.app
+   info Launching "com.mattermost.rnbeta"
+   success Successfully launched the app
+   ```
+3. Edit `/detox/.detoxrc` and 
+   - In **apps > ios.debug**, substitute `binaryPath` by that value. 
+   - In **devices > ios.simulator > device**, substitute `type` and `os` with the values corresponding to the ones being used by the simulator. If unsure wich ones, either open the simulator or go to Xcode to see where it is being built.
+4. Export the values for `ADMIN_USERNAME` and `ADMIN_PASSWORD` with the appropiate values for your test server. Check the Environment Variables section below to learn more about default values and other variables available.
+   ```sh
+   export SITE_1_URL="http://localhost:8065"
+   export ADMIN_USERNAME="sysadmin"
+   export ADMIN_PASSWORD="Sys@dmin-sample1"
+   ```
+5. In another terminal window, run `npm i` then `npm run e2e:ios-test` from the `/detox` folder.
     * For running a single test, follow this example command: `npm run e2e:ios-test -- connect_to_server.e2e.ts`.
+    ```sh
+    cd detox
+    npm i
+    npm run e2e:ios-test
+    ```
 
 ##### Complete a test run in release mode
 
