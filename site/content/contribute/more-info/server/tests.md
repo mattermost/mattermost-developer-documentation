@@ -33,21 +33,49 @@ This process helps us track and systematically address flaky tests while prevent
 
 ## Writing Parallel Tests
 
-Leveraging parallel tests can drastically reduce execution time for entire test packages, such as `api4` and `app`, which are notably heavy with hundreds of tests. However, careful implementation is essential to ensure reliability and prevent flakiness. Follow these guidelines when writing parallel tests:
+Leveraging parallel tests can drastically reduce execution time for entire test packages, such as [`api4`](https://github.com/mattermost/mattermost/tree/master/server/channels/api4) and [`app`](https://github.com/mattermost/mattermost/tree/master/server/channels/app), which are notably heavy with hundreds of tests. However, careful implementation is essential to ensure reliability and prevent flakiness. Follow these guidelines when writing parallel tests:
 
 ### Enabling Parallel Tests
 
-Ensure parallel tests run behind an explicit environment flag to control execution:
+In [`api4`](https://github.com/mattermost/mattermost/tree/master/server/channels/api4), [`app`](https://github.com/mattermost/mattermost/tree/master/server/channels/app), [`platform`](https://github.com/mattermost/mattermost/tree/master/server/channels/app/platform), [`email`](https://github.com/mattermost/mattermost/tree/master/server/channels/app/email), [`jobs`](https://github.com/mattermost/mattermost/tree/master/server/channels/jobs) packages:
 
 ```go
-// In api4 and app packages, check mainHelper.Options.RunParallel
-if mainHelper.Options.RunParallel {
-    t.Parallel()
+func TestExample(t *testing.T) {
+  mainHelper.Parallel(t)
+
+  ...
 }
 
-// In sqlstore package, a global enableFullyParallelTests variable is used instead
-if enableFullyParallelTests {
+// OR
+
+func TestExample(t *testing.T) {
+  th := Setup(t)
+  th.Parallel(t)
+
+  ...
+}
+
+// OR
+
+func TestExample(t *testing.T) {
+  if mainHelper.Options.RunParallel {
     t.Parallel()
+  }
+
+  ...
+}
+
+```
+
+If [`sqlstore`](https://github.com/mattermost/mattermost/tree/master/server/channels/store/sqlstore) package:
+
+```go
+func TestExample(t *testing.T) {
+  if enableFullyParallelTests {
+    t.Parallel()
+  }
+
+  ...
 }
 ```
 
@@ -77,7 +105,7 @@ Avoid reliance on global variables and registrations such as:
 
 #### Filesystem Operations
 
-Avoid using `os.Chdir` and relative paths tied to the test executable, as they may introduce inconsistencies when tests run in parallel.
+Avoid using `os.Chdir` (or `t.Chdir`) and relative paths tied to the test executable, as they may introduce inconsistencies when tests run in parallel. When possible, rely on temporary directories such as `th.tempWorkspace` which are dedicated to the test.
 
 #### Environment Variables
 
