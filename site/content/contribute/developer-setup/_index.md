@@ -37,7 +37,7 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
         sudo apt install build-essential
         ```
 
-1. Install & run [Docker](https://www.docker.com/). If you don't want to use Docker, you can follow [this guide](#develop-mattermost-without-docker).
+1. Install and run [Docker](https://www.docker.com/). If you don't want to use Docker, you can follow [this guide](#develop-mattermost-without-docker).
     - When running `docker` commands under WSL2, if you receive the error `The command 'docker' could not be found in this WSL 2 distro.` you may need to toggle the `Use the WSL 2 based engine` off and on within Docker Settings after installation.
     - Make sure that Docker has virtual file share access to the directory that you will clone the repository in
 
