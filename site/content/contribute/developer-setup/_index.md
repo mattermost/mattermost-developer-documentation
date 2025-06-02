@@ -37,8 +37,9 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
         sudo apt install build-essential
         ```
 
-1. Install [Docker](https://www.docker.com/). If you don't want to use Docker, you can follow [this guide](#develop-mattermost-without-docker).
+1. Install & run [Docker](https://www.docker.com/). If you don't want to use Docker, you can follow [this guide](#develop-mattermost-without-docker).
     - When running `docker` commands under WSL2, if you receive the error `The command 'docker' could not be found in this WSL 2 distro.` you may need to toggle the `Use the WSL 2 based engine` off and on within Docker Settings after installation.
+    - Make sure that Docker has virtual file share access to the directory that you will clone the repository in
 
 1. Install [Go](https://go.dev/).
     - Version 1.21 or higher is required.
@@ -48,7 +49,7 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
     ```sh
     ulimit -n 8096
     ```
-    
+
 1. If you don't have it already, install libpng with your preferred package manager.
 
     - If you are on ARM based Mac, you'll need to install [Rosetta](https://support.apple.com/en-in/HT211861) to make `libpng` work. Rosetta can be installed by the following command-
@@ -64,7 +65,7 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
     ```sh
     git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost.git
     ```
-    
+
 1. Install NVM and use it to install the required version of Node.js:
 
     1. Install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
@@ -93,7 +94,7 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
     ```
 
 1. Set up up your admin user using mmctl:
- 
+
    ```sh
    bin/mmctl user create --local --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system_admin
    ```
@@ -153,7 +154,7 @@ The `make package` command will package the application and place it under the `
     ```sh
     ulimit -n 8096
     ```
-    
+
 1. If you don't have it already, install libpng with your preferred package manager.
     - If you are on ARM based Mac, you'll need to install [Rosetta](https://support.apple.com/en-in/HT211861) to make `libpng` work. Rosetta can be installed by the following command-
         ```sh
@@ -165,7 +166,7 @@ The `make package` command will package the application and place it under the `
     ```sh
     git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost.git
     ```
-    
+
 1. Install NVM and use it to install the required version of Node.js:
     - First, install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
     - Then, use NVM to install the correct version of Node.js for the Mattermost web app (this should be run within the `webapp` directory):
@@ -191,7 +192,7 @@ The `make package` command will package the application and place it under the `
     ```
 
 1. Set up up your admin user using mmctl:
- 
+
    ```sh
    bin/mmctl user create --local --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system_admin
    ```
