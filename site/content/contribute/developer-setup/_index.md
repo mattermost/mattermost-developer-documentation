@@ -194,8 +194,10 @@ The `make package` command will package the application and place it under the `
 1. Set up up your admin user using mmctl:
 
    ```sh
-   bin/mmctl user create --local --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system_admin
+   bin/mmctl user create --local --email sysadmin@sample.mattermost.com --username sysadmin --password Sys@dmin-sample1 --system-admin
    ```
+
+    - The credentials above are used by [the end-to-end tests]({{< ref "/contribute/more-info/webapp/e2e-testing/" >}}). To use different credentials, you have to either create multiple admin users or modify the configurations used by the E2E tests.
 
     - Optionally, you can also populate the database with random sample data as well:
 
