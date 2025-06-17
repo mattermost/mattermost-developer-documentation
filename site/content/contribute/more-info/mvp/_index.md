@@ -14,6 +14,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 | Version | Release date       | MVP                                                                               |
 |---------|--------------------|-----------------------------------------------------------------------------------|
+| 10.9    | June 16, 2025      | {{< newtabref href="https://translate.mattermost.com/user/pineoak-audio/" title="Pineoak" >}} 
 | 10.8    | May 16, 2025       | {{< newtabref href="https://github.com/panoramix360" title="Lucas Reis" >}}  
 | 10.7    | April 16, 2025     | {{< newtabref href="https://github.com/cinlloc" title="Clément Collin" >}}  
 | 10.6    | March 14, 2025     | {{< newtabref href="https://github.com/Victor-Nyagudi" title="Vicktor" >}}  
