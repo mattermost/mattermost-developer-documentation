@@ -189,7 +189,7 @@ if r.Start > r.End {
 
 #### Return errors instead of boolean for ID validation errors
 
-A validation function can check various properties of an object. But if we simply return true or false, and then log that object is invalid, the user will have no idea about why is it invalid or even how to fix it.
+A validation function can check various properties of an object. But if we simply return true or false, and then log that object is invalid, the user will have no idea why it is invalid or how to fix it.
 
 For example:
 
