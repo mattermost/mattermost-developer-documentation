@@ -171,59 +171,35 @@ For example:
 
 Another example:
 
-```go
+```diff
 if r.Start > r.End {
-	return fmt.Errorf("report timestamps are erroneous")
+-	return fmt.Errorf("report timestamps are erroneous")
++ 	return fmt.Errorf("report timestamps are erroneous: start_timestamp %f is greater than end_timestamp %f", r.Start, r.End)
 }
 ```
-
-This does not give any indication about why the report timestamps are erroneous or even what the values are. An admin reading this would find it very difficult to understand what the problem is.
-
-A better way might be:
-
-```go
-if r.Start > r.End {
-	return fmt.Errorf("report timestamps are erroneous: start_timestamp %f is greater than end_timestamp %f", r.Start, r.End)
-}
-```
-
 #### Return errors instead of boolean for ID validation errors
 
 A validation function can check various properties of an object. But if we simply return true or false, and then log that object is invalid, the user will have no idea why it is invalid or how to fix it.
 
 For example:
 
-```go
-func IsValidId(value string) bool {
+```diff
+- func IsValidId(value string) bool {
++ func IsValidId(value string) error {
 	if len(value) != 26 {
-		return false
+-		return false
++		return fmt.Errorf("Invalid length. Found: %d; expected: %d", len(value), 26)
 	}
 
 	for _, r := range value {
 		if !unicode.IsLetter(r) && !unicode.IsNumber(r) {
-			return false
+-			return false
++			return fmt.Errorf("Rune %c in %s is not an unicode letter or number", r, value)
 		}
 	}
 
-	return true
-}
-```
-
-Here, when false is returned, there is no way to know if it is invalid because the length is not 26 characters or one of the characters is not a unicode letter or number. A better way might be:
-
-```go
-func IsValidId(value string) error {
-	if len(value) != 26 {
-		return fmt.Errorf("Invalid length. Found: %d; expected: %d", len(value), 26)
-	}
-
-	for _, r := range value {
-		if !unicode.IsLetter(r) && !unicode.IsNumber(r) {
-			return fmt.Errorf("Rune %c in %s is not an unicode letter or number", r, value)
-		}
-	}
-
-	return nil
+-	return true
++   return nil
 }
 ```
 
@@ -249,26 +225,19 @@ func (a *App) SendNotifications(...) {
 
 #### Avoid double-logging
 
-Double-logging is when you immediately log something after an error, and also return an error at the same time. This creates two log lines with the same error and is confusing to the admin.
+Double-logging is when you immediately log something after an error, and also return an error at the same time. This creates two log lines with the same error and is confusing to the admin. The best practice is to always pass the error upwards adding context and log it in the upper-most layer correct. Logging the error at the lowest layer does not give any additional context as to from where it was called, and what path did the code take to reach there.
 
 For example:
 
-```go
+```diff
 if err != nil {
-	mlog.Error("Failed to generate SQL query",
-		mlog.String("user_id", userID),
-		mlog.Int("timestamp", int(syncTime)),
-		mlog.Err(err),
-	)
-	return errors.Wrap(err, "failed to generate SQL query")
-}
-```
-
-A better way is:
-
-```go
-if err != nil {
-	return errors.Wrapf(err, "failed to generate SQL query: user_id: %s, timestamp: %d", userID, int(syncTime))
+-	mlog.Error("Failed to generate SQL query",
+-		mlog.String("user_id", userID),
+-		mlog.Int("timestamp", int(syncTime)),
+-		mlog.Err(err),
+-	)
+-	return errors.Wrap(err, "failed to generate SQL query")
++	return errors.Wrapf(err, "failed to generate SQL query: user_id: %s, timestamp: %d", userID, int(syncTime))
 }
 ```
 
