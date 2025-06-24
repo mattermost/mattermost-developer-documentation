@@ -94,4 +94,4 @@ This will start the build process following the environment variables you've set
 
 Ensure your Apple ID is lowercase and you have recently reset your password.
 Apple IDs must be lowercase. A username like "Example@icloud.com" may not work properly, while "example@icloud.com" will.
-"Old" passwords may be blocked by Apple when not connecting through browser, so they may block fastlane. Resetting it may solve this issue.
+"Old" passwords may be blocked by Apple when not connecting through a browser, so Apple may block Fastlane. Resetting the password may solve this issue.
