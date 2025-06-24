@@ -92,6 +92,4 @@ This will start the build process following the environment variables you've set
 
 ## I keep receiving `Invalid username and password combination.` but the user and password are correct
 
-Ensure your Apple ID is lowercase and you have recently reset your password.
-Apple IDs must be lowercase. A username like "Example@icloud.com" may not work properly, while "example@icloud.com" will.
-"Old" passwords may be blocked by Apple when not connecting through a browser, so Apple may block Fastlane. Resetting the password may solve this issue.
+Apple IDs must be lowercase. A username like "Example@icloud.com" may not work properly, while "example@icloud.com" will. Also ensure you have recently changed your Apple ID password. "Old" passwords may be blocked by Apple when not connecting through a browser, so Apple may block Fastlane. Resetting your password may solve this issue.
