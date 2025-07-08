@@ -167,7 +167,12 @@ Always add proper context to errors.
 
 For example:
 
-`return fmt.Errorf("invalid export type, must be one of: csv, actiance, globalrelay")` does not include what was the input value entered by the user. It needs to be included.
+`return fmt.Errorf("invalid export type, must be one of: csv, actiance, globalrelay")` does not include what was the input value entered by the user. A better way might be:
+
+```diff
+- return fmt.Errorf("invalid export type, must be one of: csv, actiance, globalrelay")
++ return fmt.Errorf("invalid export type: %s, must be one of: csv, actiance, globalrelay", exportType)
+```
 
 Another example:
 
