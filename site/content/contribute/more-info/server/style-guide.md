@@ -159,6 +159,55 @@ func OtherFunction() {
 }
 ```
 
+### Errors
+
+Always add proper context to errors.
+
+#### Include the user input for validation errors.
+
+For example:
+
+`return fmt.Errorf("invalid export type, must be one of: csv, actiance, globalrelay")` does not include what was the input value entered by the user. A better way might be:
+
+```diff
+- return fmt.Errorf("invalid export type, must be one of: csv, actiance, globalrelay")
++ return fmt.Errorf("invalid export type: %s, must be one of: csv, actiance, globalrelay", exportType)
+```
+
+Another example:
+
+```diff
+if r.Start > r.End {
+-	return fmt.Errorf("report timestamps are erroneous")
++ 	return fmt.Errorf("report timestamps are erroneous: start_timestamp %f is greater than end_timestamp %f", r.Start, r.End)
+}
+```
+#### Return errors instead of boolean for ID validation errors
+
+A validation function can check various properties of an object. But if we simply return true or false, and then log that object is invalid, the user will have no idea why it is invalid or how to fix it.
+
+For example:
+
+```diff
+- func IsValidId(value string) bool {
++ func IsValidId(value string) error {
+	if len(value) != 26 {
+-		return false
++		return fmt.Errorf("Invalid length. Found: %d; expected: %d", len(value), 26)
+	}
+
+	for _, r := range value {
+		if !unicode.IsLetter(r) && !unicode.IsNumber(r) {
+-			return false
++			return fmt.Errorf("Rune %c in %s is not an unicode letter or number", r, value)
+		}
+	}
+
+-	return true
++   return nil
+}
+```
+
 ### Logging
 
 Log messages should be annotated with contextual information in the form of key-value pairs to make it easier to identify the context they originated from. The keys should use snake_case. Refer to the corresponding JSON struct tags for key names.
@@ -176,6 +225,24 @@ func (a *App) SendNotifications(...) {
 			)
 		}
 	..
+}
+```
+
+#### Avoid double-logging
+
+Double-logging is when you immediately log something after an error, and also return an error at the same time. This creates two log lines with the same error and is confusing to the admin. The best practice is to always pass the error upwards adding context and log it in the upper-most layer correct. Logging the error at the lowest layer does not give any additional context as to from where it was called, and what path did the code take to reach there.
+
+For example:
+
+```diff
+if err != nil {
+-	mlog.Error("Failed to generate SQL query",
+-		mlog.String("user_id", userID),
+-		mlog.Int("timestamp", int(syncTime)),
+-		mlog.Err(err),
+-	)
+-	return errors.Wrap(err, "failed to generate SQL query")
++	return errors.Wrapf(err, "failed to generate SQL query: user_id: %s, timestamp: %d", userID, int(syncTime))
 }
 ```
 
