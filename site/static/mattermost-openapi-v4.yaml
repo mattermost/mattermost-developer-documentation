@@ -24913,8 +24913,6 @@ components:
           type: string
         SyncIntervalMinutes:
           type: integer
-        ReAddRemovedMembers:
-          type: boolean
         SkipCertificateVerification:
           type: boolean
         PublicCertificateFile:
