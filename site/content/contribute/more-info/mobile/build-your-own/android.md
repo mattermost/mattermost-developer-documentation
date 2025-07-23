@@ -101,7 +101,7 @@ To make it easier to customize your build, we've defined a few environment varia
 
 ---
 {{<note "Note:">}}
-To configure your variables create the file `./mattermost-mobile/fastlane/.env` where `.env` is the filename. You can find the sample file `env_vars_example` {{< newtabref href="https://github.com/mattermost/mattermost-mobile/blob/master/fastlane/env_vars_example" title="here" >}}.
+To configure your variables create the file `./mattermost-mobile/fastlane/.env` where `.env` is the filename. You can find the sample file `env_vars_example` {{< newtabref href="https://github.com/mattermost/mattermost-mobile/blob/main/fastlane/env_vars_example" title="here" >}}.
 {{</note>}}
 
 

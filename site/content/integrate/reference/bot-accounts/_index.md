@@ -79,7 +79,7 @@ Bot accounts which were converted from user accounts will have their authenticat
 
 ### Plugins
 
-Plugins can create bot accounts through an `EnsureBot` helper function. For an example, see {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo/blob/master/server/configuration.go#L210-L217" title="the Demo Plugin" >}}.
+Plugins can create bot accounts through an `EnsureBot` helper function. For an example, see {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo/blob/main/server/configuration.go#L210-L217" title="the Demo Plugin" >}}.
 
 Bots created by a plugin use the plugin's ID as the creator, unless otherwise specified by the plugin.
 

@@ -33,11 +33,11 @@ This process helps us track and systematically address flaky tests while prevent
 
 ## Writing Parallel Tests
 
-Leveraging parallel tests can drastically reduce execution time for entire test packages, such as [`api4`](https://github.com/mattermost/mattermost/tree/master/server/channels/api4) and [`app`](https://github.com/mattermost/mattermost/tree/master/server/channels/app), which are notably heavy with hundreds of tests. However, careful implementation is essential to ensure reliability and prevent flakiness. Follow these guidelines when writing parallel tests:
+Leveraging parallel tests can drastically reduce execution time for entire test packages, such as [`api4`](https://github.com/mattermost/mattermost/tree/main/server/channels/api4) and [`app`](https://github.com/mattermost/mattermost/tree/main/server/channels/app), which are notably heavy with hundreds of tests. However, careful implementation is essential to ensure reliability and prevent flakiness. Follow these guidelines when writing parallel tests:
 
 ### Enabling Parallel Tests
 
-In [`api4`](https://github.com/mattermost/mattermost/tree/master/server/channels/api4), [`app`](https://github.com/mattermost/mattermost/tree/master/server/channels/app), [`platform`](https://github.com/mattermost/mattermost/tree/master/server/channels/app/platform), [`email`](https://github.com/mattermost/mattermost/tree/master/server/channels/app/email), [`jobs`](https://github.com/mattermost/mattermost/tree/master/server/channels/jobs) packages:
+In [`api4`](https://github.com/mattermost/mattermost/tree/main/server/channels/api4), [`app`](https://github.com/mattermost/mattermost/tree/main/server/channels/app), [`platform`](https://github.com/mattermost/mattermost/tree/main/server/channels/app/platform), [`email`](https://github.com/mattermost/mattermost/tree/main/server/channels/app/email), [`jobs`](https://github.com/mattermost/mattermost/tree/main/server/channels/jobs) packages:
 
 ```go
 func TestExample(t *testing.T) {
@@ -67,7 +67,7 @@ func TestExample(t *testing.T) {
 
 ```
 
-If [`sqlstore`](https://github.com/mattermost/mattermost/tree/master/server/channels/store/sqlstore) package:
+If [`sqlstore`](https://github.com/mattermost/mattermost/tree/main/server/channels/store/sqlstore) package:
 
 ```go
 func TestExample(t *testing.T) {

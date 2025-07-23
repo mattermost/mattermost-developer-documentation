@@ -72,18 +72,18 @@ A plugin could define its own type of setting with a corresponding custom user i
 
 5. Once the user saves the changes, any handler that was registered with `registerSaveAction` will be executed to perform any additional custom actions the plugin may require, such as calling an additional endpoint within the plugin. 
 
-For examples of custom settings see: Demo Plugin {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo/blob/master/webapp/src/components/admin_settings/custom_setting.jsx" title="`CustomSetting`" >}} and Custom Attributes Plugin {{< newtabref href="https://github.com/mattermost/mattermost-plugin-custom-attributes/pull/18" title="implementation" >}}.
+For examples of custom settings see: Demo Plugin {{< newtabref href="https://github.com/mattermost/mattermost-plugin-demo/blob/main/webapp/src/components/admin_settings/custom_setting.jsx" title="`CustomSetting`" >}} and Custom Attributes Plugin {{< newtabref href="https://github.com/mattermost/mattermost-plugin-custom-attributes/pull/18" title="implementation" >}}.
 
 ## How can I review the entire code base of a plugin?
 
-Sometimes, you have been working on a personal repository for a new plugin, most probably based on the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template/" title="mattermost-plugin-starter-template" >}} repo. As it was a personal project, you may have pushed all of your commits directly to `master`. And now that it's functional, you need a reviewer to take a look at the whole thing.
+Sometimes, you have been working on a personal repository for a new plugin, most probably based on the {{< newtabref href="https://github.com/mattermost/mattermost-plugin-starter-template/" title="mattermost-plugin-starter-template" >}} repo. As it was a personal project, you may have pushed all of your commits directly to `main`. And now that it's functional, you need a reviewer to take a look at the whole thing.
 
 For this, it is useful to create a PR with only the commits you added. Follow these steps to do so:
 
 1. First of all, you need to obtain the identifier of the oldest commit that should be reviewed. You can review your history with `git log --oneline`, where you need to look for the very first commit that you added. Imagine that the output is something like the following:
 
     ```
-    f7d89b8 (HEAD -> master, origin/master) Lint code
+    f7d89b8 (HEAD -> main, origin/main) Lint code
     fa99500 Fix bug
     0b3b5bd Add feature
     8f6aef3 My first commit to the plugin
@@ -103,10 +103,10 @@ For this, it is useful to create a PR with only the commits you added. Follow th
 
     Note that `8f6aef3~1` means _the parent commit of `8f6aef3`_, effectively selecting all the commits in the branch except the ones that you added.
 
-3. Create a branch with all the commits, included the ones that you added, and push it. This branch, `compare`, will be an exact copy of `master`:
+3. Create a branch with all the commits, included the ones that you added, and push it. This branch, `compare`, will be an exact copy of `main`:
 
     ```sh
-    git branch compare master
+    git branch compare main
     git push origin compare
     ```
 
@@ -114,7 +114,7 @@ For this, it is useful to create a PR with only the commits you added. Follow th
 
 5. Request a code review on the resulting PR.
 
-For future changes, you can always repeat this process, making sure to identify the first commit you want to be reviewed. You can also consider the more common scenario of creating a feature branch (using something like `git checkout -b my.feature.branch`) and opening a PR whenever you want to merge the changes into `master`. It's up to you!
+For future changes, you can always repeat this process, making sure to identify the first commit you want to be reviewed. You can also consider the more common scenario of creating a feature branch (using something like `git checkout -b my.feature.branch`) and opening a PR whenever you want to merge the changes into `main`. It's up to you!
 
 ## When to write a new API method or hook?
 

@@ -14,7 +14,7 @@ The Mattermost web app is written in JavaScript using {{< newtabref href="https:
 
 It is located in the `webapp` directory of the {{< newtabref href="https://github.com/mattermost/mattermost" title="main Mattermost repository" >}}.
 
-https://github.com/mattermost/mattermost/tree/master/webapp
+https://github.com/mattermost/mattermost/tree/main/webapp
 
 ## Help Wanted
 

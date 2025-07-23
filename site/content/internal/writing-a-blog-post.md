@@ -46,7 +46,7 @@ Some popular blogs that are worth reading include:
 - https://www.freecodecamp.org/news/
 - https://alistapart.com/
 
-The [/site/content/blog/](https://github.com/mattermost/mattermost-developer-documentation/tree/master/site/content/blog) folder also has some good examples.
+The [/site/content/blog/](https://github.com/mattermost/mattermost-developer-documentation/tree/main/site/content/blog) folder also has some good examples.
 
 Writing Your Blog Post
 ----------------------
@@ -54,7 +54,7 @@ Writing Your Blog Post
 The steps below outline the process involved in creating the blog post file from a cloned repo, and then submitting the PR.  
 
 1. Clone https://github.com/mattermost/mattermost-developer-documentation.
-2. Create a new .md file in the [/site/content/blog/](https://github.com/mattermost/mattermost-developer-documentation/tree/master/site/content/blog) folder.
+2. Create a new .md file in the [/site/content/blog/](https://github.com/mattermost/mattermost-developer-documentation/tree/main/site/content/blog) folder.
   - Use `YYYY-MM-DD-<your-blog-post-title>.md` as the filename.
 
 3. Paste this template into your file

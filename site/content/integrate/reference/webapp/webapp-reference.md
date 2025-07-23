@@ -134,7 +134,7 @@ The theme object has the following properties:
 
 ## Exported libraries and functions
 
-The web app exposes a number of {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/webapp/channels/src/plugins/export.js" title="exported libraries and functions" >}} on the `window` object for plugins to use. To avoid bloating your plugin, we recommend depending on these using {{< newtabref href="https://webpack.js.org/configuration/externals/" title="Webpack externals" >}} or importing them manually from the window. Below is a list of the exposed libraries and functions:
+The web app exposes a number of {{< newtabref href="https://github.com/mattermost/mattermost/blob/main/webapp/channels/src/plugins/export.js" title="exported libraries and functions" >}} on the `window` object for plugins to use. To avoid bloating your plugin, we recommend depending on these using {{< newtabref href="https://webpack.js.org/configuration/externals/" title="Webpack externals" >}} or importing them manually from the window. Below is a list of the exposed libraries and functions:
 
 | Library         | Exported Name         | Description                                                        |
 |-----------------|-----------------------|--------------------------------------------------------------------|
@@ -147,7 +147,7 @@ The web app exposes a number of {{< newtabref href="https://github.com/mattermos
 | post-utils      | window.PostUtils      | Mattermost post utility functions (see below)                      |
 
 {{<note "Note:">}}
-Some sets of functions like "Functions exposed on window for plugin to use" and "Components exposed on window for internal plugin use only" are not listed here. You can refer to {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/webapp/channels/src/plugins/export.js" title="export.js" >}} file which contains all the exports.
+Some sets of functions like "Functions exposed on window for plugin to use" and "Components exposed on window for internal plugin use only" are not listed here. You can refer to {{< newtabref href="https://github.com/mattermost/mattermost/blob/main/webapp/channels/src/plugins/export.js" title="export.js" >}} file which contains all the exports.
 {{</note>}}
 
 
