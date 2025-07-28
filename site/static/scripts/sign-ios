@@ -78,7 +78,31 @@ DEFAULT_PROVISION=""
 TEMP_DIR="_floatsignTemp"
 USE_APP_ENTITLEMENTS=""
 APP_GROUP_ID=""
-XCODE_VERSION="$(xcodebuild -version | grep "Xcode" | /usr/bin/cut -f 2 -d ' ')"
+# Set timeout and retry values from environment variables or use defaults
+XCODEBUILD_TIMEOUT=${FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT:-30}
+XCODEBUILD_RETRIES=${FASTLANE_XCODEBUILD_SETTINGS_RETRIES:-2}
+
+# Function to get Xcode version with timeout and retry logic
+get_xcode_version() {
+    local retries=$1
+    local timeout=$2
+    
+    for ((i=1; i<=retries; i++)); do
+        log "Attempting to get Xcode version (attempt $i/$retries)..."
+        if XCODE_VERSION_OUTPUT=$(timeout "$timeout" xcodebuild -version 2>/dev/null); then
+            echo "$XCODE_VERSION_OUTPUT" | grep "Xcode" | /usr/bin/cut -f 2 -d ' '
+            return 0
+        fi
+        log "Attempt $i failed, retrying in 2 seconds..."
+        sleep 2
+    done
+    
+    warning "Failed to get Xcode version after $retries attempts. Using fallback version '12.0'"
+    echo "12.0"
+    return 1
+}
+
+XCODE_VERSION="$(get_xcode_version "$XCODEBUILD_RETRIES" "$XCODEBUILD_TIMEOUT")"
 
 # List of plist keys used for reference to and from nested apps and extensions
 NESTED_APP_REFERENCE_KEYS=(":WKCompanionAppBundleIdentifier" ":NSExtension:NSExtensionAttributes:WKAppBundleIdentifier")
