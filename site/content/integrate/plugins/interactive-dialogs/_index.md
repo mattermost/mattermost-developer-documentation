@@ -1,7 +1,7 @@
 ---
 title: "Interactive dialogs"
 heading: "Use interactive dialogs"
-description: "Interactive dialogs are used by applications that integrate with the Mattermost server. They are a method for integrations to receive some form-styled input from users and have that input submitted back to the integration. Use them to gather structured information from the end user to perform an action or a request."
+description: "Interactive dialogs are used by applications that integrate with the Mattermost server. They are a method for integrations to receive some form-styled input from users and have that input submitted back to the integration. Use them to gather structured information from the end user to perform an action or a request. Interactive dialogs support both single-step forms and multi-step wizard-like experiences."
 weight: 70
 aliases:
   - /integrate/admin-guide/admin-interactive-dialogs/
@@ -36,6 +36,8 @@ Interactive dialogs support the following parameters:
 | `submit_label`      | String  | (Optional) Label of the button to complete the dialog. Default is `Submit`.                                                                                                        |
 | `notify_on_cancel`  | Boolean | (Optional) When `true`, sends an event back to the integration whenever there's a user-induced dialog cancellation. No other data is sent back with the event. Default is `false`. |
 | `state`             | String  | (Optional) String provided by the integration that will be echoed back with dialog submission. Default is the empty string.                                                        |
+| `is_multistep`      | Boolean | (Optional) Set to `true` to enable multi-step dialog functionality. Default is `false`.                                                                                           |
+| `refresh_on_select` | Boolean | (Optional) When `true`, sends field refresh requests when select field values change. Default is `false`.                                                                         |
 
 Sample JSON is given below. Form submissions are sent back to the URL defined by the integration. You must also include the trigger ID you received from the slash command or interactive message.
 
@@ -50,7 +52,9 @@ Sample JSON is given below. Form submissions are sent back to the URL defined by
         "elements": ["<Array of UI elements to display in the dialog>"],
         "submit_label": "<label of the button to complete the dialog>",
         "notify_on_cancel": false,
-        "state": "<string provided by the integration that will be echoed back with dialog submission>"
+        "state": "<string provided by the integration that will be echoed back with dialog submission>",
+        "is_multistep": false,
+        "refresh_on_select": false
     }
 }
 ```
@@ -135,7 +139,7 @@ The list of supported fields is the same as for the `textarea` type element.
 
 ### Select elements
 
-Select elements are message menus that allow users to select one predefined option from a list. Below is an example of a `select` element that asks for one of three different options.
+Select elements are message menus that allow users to select one or multiple predefined options from a list. Below is an example of a `select` element that asks for one of three different options.
 
 ![image](interactive-dialog-select.png)
 
@@ -163,7 +167,99 @@ Select elements are message menus that allow users to select one predefined opti
 }
 ```
 
-Note that the JSON payload for `select` type elements matches [interactive message menus]({{< ref "/integrate/plugins/interactive-messages" >}}).
+#### Multiselect support
+
+Select elements can be configured to allow multiple selections by setting the `multiselect` parameter to `true`. When multiselect is enabled, users can choose multiple options from the list.
+
+```json
+{
+    "display_name": "Multiple Options",
+    "name": "multi_options",
+    "type": "select",
+    "multiselect": true,
+    "default": "opt1,opt3",
+    "options": [
+         {
+             "text": "Option1",
+             "value": "opt1"
+         },
+         {
+             "text": "Option2",
+             "value": "opt2"
+         },
+         {
+             "text": "Option3",
+             "value": "opt3"
+         }
+    ]
+}
+```
+
+For multiselect elements, default values can be specified as a comma-separated string (e.g., `"opt1,opt3"` to pre-select Option1 and Option3).
+
+#### Dynamic select support
+
+Select elements can be configured to load options dynamically from an external API endpoint. This enables real-time filtering, searching, and loading of options based on user input.
+
+To use dynamic select, set `data_source: "dynamic"` and provide a `data_source_url` that points to your lookup endpoint:
+
+```json
+{
+    "display_name": "Dynamic Options",
+    "name": "dynamic_field",
+    "type": "select",
+    "data_source": "dynamic",
+    "data_source_url": "https://your-mattermost-server.com/plugins/your-plugin-id/api/lookup",
+    "placeholder": "Search for options..."
+}
+```
+
+When users interact with a dynamic select field, Mattermost will send HTTP POST requests to your `data_source_url` with the following payload:
+
+```json
+{
+    "user_id": "user_id_here",
+    "channel_id": "channel_id_here", 
+    "team_id": "team_id_here",
+    "term": "user_search_input"
+}
+```
+
+Your endpoint should respond with an array of options:
+
+```json
+{
+    "items": [
+        {
+            "text": "Option 1",
+            "value": "option1"
+        },
+        {
+            "text": "Option 2", 
+            "value": "option2"
+        }
+    ]
+}
+```
+
+**Security Requirements:**
+- Dynamic select URLs must use HTTPS
+- URLs must be within the `/plugins/` path for security
+- The lookup endpoint should validate user permissions
+
+**Dynamic select with multiselect:**
+
+```json
+{
+    "display_name": "Multiple Dynamic Options",
+    "name": "multi_dynamic_field",
+    "type": "select",
+    "multiselect": true,
+    "data_source": "dynamic",
+    "data_source_url": "https://your-mattermost-server.com/plugins/your-plugin-id/api/lookup",
+    "placeholder": "Search and select multiple options..."
+}
+```
 
 The `select` element can also be generated dynamically from users and channels of the system.
 
@@ -178,7 +274,19 @@ For users, use:
 }
 ```
 
-and for Public channels, use:
+For multiple user selection:
+
+```json
+{
+    "display_name": "Multiple Assignees",
+    "name": "assignees",
+    "type": "select",
+    "multiselect": true,
+    "data_source": "users"
+}
+```
+
+For Public channels, use:
 
 ```json
 {
@@ -189,19 +297,33 @@ and for Public channels, use:
 }
 ```
 
+For multiple channel selection:
+
+```json
+{
+    "display_name": "Post to multiple channels",
+    "name": "channels",
+    "type": "select",
+    "multiselect": true,
+    "data_source": "channels"
+}
+```
+
 The list of supported fields for the `select` type element is included below:
 
-| Field          | Type    | Description                                                                                                                        |
-|----------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
-| `display_name` | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
-| `name`         | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
-| `type`         | String  | Set this value to `select` for a `select` element.                                                                                 |
-| `data_source`  | String  | (Optional) One of `users`, or `channels`. If none specified, assumes a manual list of options is provided by the integration.      |
-| `optional`     | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
-| `options`      | Array   | (Optional) An array of options for the select element. Not applicable for `users` or `channels` data sources.                      |
-| `help_text`    | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
-| `default`      | String  | (Optional) Set a default value for this form element. Maximum 3,000 characters.                                                    |
-| `placeholder`  | String  | (Optional) A string displayed to help guide users in completing the element. Maximum 3,000 characters.                             |
+| Field              | Type    | Description                                                                                                                        |
+|--------------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `display_name`     | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
+| `name`             | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
+| `type`             | String  | Set this value to `select` for a `select` element.                                                                                 |
+| `multiselect`      | Boolean | (Optional) Set to `true` to allow multiple selections from the list. Default is `false`.                                           |
+| `data_source`      | String  | (Optional) One of `users`, `channels`, or `dynamic`. If none specified, assumes a manual list of options is provided by the integration. |
+| `data_source_url`  | String  | (Optional) URL for dynamic option loading when `data_source` is `dynamic`. Must be HTTPS and within `/plugins/` path.             |
+| `optional`         | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
+| `options`          | Array   | (Optional) An array of options for the select element. Not applicable for `users`, `channels`, or `dynamic` data sources.         |
+| `help_text`        | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
+| `default`          | String  | (Optional) Set a default value for this form element. For multiselect, use comma-separated values. Maximum 3,000 characters.      |
+| `placeholder`      | String  | (Optional) A string displayed to help guide users in completing the element. Maximum 3,000 characters.                             |
 
 
 ### Checkbox element
@@ -314,6 +436,190 @@ The integration may also return a generic error message to the user that is not 
 Support for generic error messages was added in Mattermost v5.18.
 
 Finally, once the request is submitted, we recommend that the integration responds with a system message or an ephemeral message confirming the submission. This should be a separate request back to Mattermost once the service has received and responded to a submission request from a dialog. This can be done either via {{< newtabref href="https://api.mattermost.com/#tag/posts%2Fpaths%2F~1posts~1ephemeral%2Fpost" title="the REST API" >}}, or via the [Plugin API]({{< ref "/integrate/reference/server/server-reference#API.SendEphemeralPost" >}}) if you're developing a plugin.
+
+## Multi-step dialogs
+
+Multi-step dialogs enable wizard-like form experiences where users can navigate through multiple steps to complete a complex workflow. Each step can have different fields, and form values are preserved as users progress through the steps.
+
+To enable multi-step functionality, set `is_multistep: true` in your dialog configuration.
+
+### Multi-step workflow
+
+1. **Initial dialog**: Open with `is_multistep: true` and provide the first step's elements
+2. **Step navigation**: Users can navigate between steps using Next/Previous buttons
+3. **State preservation**: Form values are automatically preserved across steps
+4. **Final submission**: Submit the completed form with all step data
+
+### Multi-step submission handling
+
+When a user submits a multi-step dialog, your integration will receive webhook calls to handle step transitions and final submission:
+
+#### Step transition webhook
+
+When users navigate between steps, Mattermost sends a request to your configured URL with the following payload:
+
+```json
+{
+    "type": "dialog_multistep",
+    "callback_id": "<callback ID provided by the integration>",
+    "state": "<state provided by the integration>",
+    "user_id": "<user ID>",
+    "channel_id": "<channel ID>",
+    "team_id": "<team ID>",
+    "step": 2,
+    "direction": "next",
+    "submission": {
+        "field_name_from_step_1": "value",
+        "field_name_from_step_2": "value"
+    }
+}
+```
+
+Your integration should respond with the next step's dialog configuration:
+
+```json
+{
+    "dialog": {
+        "title": "Step 2 of 3",
+        "elements": [
+            {
+                "display_name": "Step 2 Field",
+                "name": "step2_field",
+                "type": "text"
+            }
+        ],
+        "submit_label": "Next",
+        "state": "updated_state_for_step_2"
+    }
+}
+```
+
+#### Final submission
+
+The final step submission uses the same format as regular dialog submissions, but includes data from all steps:
+
+```json
+{
+    "type": "dialog_submission",
+    "callback_id": "<callback ID>",
+    "state": "<final state>",
+    "user_id": "<user ID>",
+    "channel_id": "<channel ID>",
+    "team_id": "<team ID>",
+    "submission": {
+        "step1_field": "value_from_step_1",
+        "step2_field": "value_from_step_2",
+        "step3_field": "value_from_step_3"
+    },
+    "cancelled": false
+}
+```
+
+### Multi-step example
+
+```json
+{
+    "trigger_id": "trigger_id_here",
+    "url": "https://your-integration.com/dialog",
+    "dialog": {
+        "callback_id": "multistep_wizard",
+        "title": "Setup Wizard - Step 1 of 3",
+        "introduction_text": "Welcome to the setup wizard",
+        "is_multistep": true,
+        "elements": [
+            {
+                "display_name": "Project Name",
+                "name": "project_name",
+                "type": "text",
+                "placeholder": "Enter project name"
+            }
+        ],
+        "submit_label": "Next",
+        "state": "step_1"
+    }
+}
+```
+
+## Dynamic field refresh
+
+Interactive dialogs support dynamic field refresh functionality, allowing fields to be updated based on user input. This is useful for dependent dropdowns or conditional form fields.
+
+To enable field refresh, set `refresh_on_select: true` in your dialog configuration. When users change select field values, Mattermost will send a field refresh request to your configured URL.
+
+### Field refresh webhook
+
+The field refresh webhook payload includes the current form state and the changed field:
+
+```json
+{
+    "type": "dialog_field_refresh",
+    "callback_id": "<callback ID>",
+    "state": "<current state>",
+    "user_id": "<user ID>",
+    "channel_id": "<channel ID>",
+    "team_id": "<team ID>",
+    "field_name": "changed_field_name",
+    "submission": {
+        "changed_field_name": "new_value",
+        "other_field": "existing_value"
+    }
+}
+```
+
+Your integration should respond with updated field configurations:
+
+```json
+{
+    "elements": [
+        {
+            "display_name": "Updated Field",
+            "name": "dependent_field",
+            "type": "select",
+            "options": [
+                {
+                    "text": "New Option 1",
+                    "value": "new_opt1"
+                },
+                {
+                    "text": "New Option 2", 
+                    "value": "new_opt2"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### Field refresh example
+
+```json
+{
+    "trigger_id": "trigger_id_here",
+    "url": "https://your-integration.com/dialog",
+    "dialog": {
+        "callback_id": "dynamic_form",
+        "title": "Dynamic Form",
+        "refresh_on_select": true,
+        "elements": [
+            {
+                "display_name": "Category",
+                "name": "category",
+                "type": "select",
+                "options": [
+                    {"text": "Software", "value": "software"},
+                    {"text": "Hardware", "value": "hardware"}
+                ]
+            },
+            {
+                "display_name": "Subcategory",
+                "name": "subcategory",
+                "type": "select",
+                "options": []
+            }
+        ]
+    }
+}
+```
 
 {{<note "Note:">}}
 If the dialog is closed by clicking **Cancel** or **X**, no data will be submitted. If a user clicks away from the dialog, the dialog won’t close. This is to prevent accidentally losing any answers they've made to an unsubmitted dialog.
@@ -442,6 +748,45 @@ Below is a full example of a JSON payload that creates an interactive dialog in 
                 "value":"opt3"
              }
           ]
+       },
+       {
+          "display_name":"Multiple Option Selector",
+          "name":"somemultioptionselector",
+          "type":"select",
+          "multiselect":true,
+          "default":"opt1,opt3",
+          "placeholder":"Select multiple options...",
+          "help_text":"You can select multiple options from this list.",
+          "optional":true,
+          "data_source":"",
+          "options":[
+             {
+                "text":"Option1",
+                "value":"opt1"
+             },
+             {
+                "text":"Option2",
+                "value":"opt2"
+             },
+             {
+                "text":"Option3",
+                "value":"opt3"
+             },
+             {
+                "text":"Option4",
+                "value":"opt4"
+             }
+          ]
+       },
+       {
+          "display_name":"Dynamic Lookup",
+          "name":"somedynamicfield",
+          "type":"select",
+          "data_source":"dynamic",
+          "data_source_url":"https://your-mattermost-server.com/plugins/your-plugin-id/api/lookup",
+          "placeholder":"Search for dynamic options...",
+          "help_text":"Type to search for options from external API",
+          "optional":true
        }
     ],
     "submit_label":"Submit",
