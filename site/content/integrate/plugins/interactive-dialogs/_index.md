@@ -68,6 +68,8 @@ Each dialog supports elements for users to enter information.
 - `select`: Message menu. Use this for pre-selected choices. Can either be static menus or dynamic menus generated from users and Public channels of the system. For more information on message menus, see [the documentation]({{< ref "/integrate/plugins/interactive-messages" >}}).
 - `bool`: Checkbox option. Use this for binary selection.
 - `radio`: Radio button option. Use this to quickly select an option from pre-selected choices.
+- `date`: Date picker field. Use this for selecting dates without time information.
+- `datetime`: Date and time picker field. Use this for selecting both date and time with timezone support.
 
 Each element is required by default, otherwise the client will return an error as shown below. Note that the error message will appear below the help text, if one is specified. To make an element optional, set the field `"optional": "true"`.
 
@@ -393,6 +395,173 @@ The full list of supported fields are included below:
 | `options`      | Array  | (Optional) An array of options for the radio element.                                                                              |
 | `help_text`    | String | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
 | `default`      | String | (Optional) Set a default value for this form element.                                                                              |
+
+### Date elements
+
+Date elements provide native date picker functionality for selecting dates without time information. Below is an example of a `date` element for event scheduling.
+
+![image](interactive-dialog-date.png)
+
+```json
+{
+    "display_name": "Event Date",
+    "name": "event_date",
+    "type": "date",
+    "default": "2024-03-15",
+    "placeholder": "Select a date",
+    "help_text": "Choose the date for your event",
+    "optional": false,
+    "min_date": "today",
+    "max_date": "+30d"
+}
+```
+
+The full list of supported fields for `date` elements is included below:
+
+| Field          | Type    | Description                                                                                                                        |
+|----------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `display_name` | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
+| `name`         | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
+| `type`         | String  | Set this value to `date` for a date element.                                                                                       |
+| `default`      | String  | (Optional) Default value in ISO date format (YYYY-MM-DD) or relative format (`today`, `tomorrow`, `+1d`, `+1w`, `+1M`, `+1y`). Full ISO datetime strings are accepted but only the date part is parsed; timezone information is ignored. |
+| `placeholder`  | String  | (Optional) Placeholder text shown in the input field. Maximum 150 characters.                                                      |
+| `help_text`    | String  | (Optional) Help text displayed below the field. Maximum 150 characters.                                                            |
+| `optional`     | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
+| `min_date`     | String  | (Optional) Earliest selectable date. Supports ISO date format (YYYY-MM-DD) or relative formats (`today`, `tomorrow`, `+1d`, `-7d`, etc.). Full ISO datetime strings are accepted but only the date part is parsed; timezone information is ignored. |
+| `max_date`     | String  | (Optional) Latest selectable date. Supports ISO date format (YYYY-MM-DD) or relative formats (`today`, `+30d`, `+1y`, etc.). Full ISO datetime strings are accepted but only the date part is parsed; timezone information is ignored. |
+
+#### Date field usage examples
+
+**Basic date selection:**
+```json
+{
+    "display_name": "Project Deadline",
+    "name": "deadline",
+    "type": "date",
+    "help_text": "When is this project due?",
+    "min_date": "today",
+    "optional": false
+}
+```
+
+**Date range with relative defaults:**
+```json
+{
+    "display_name": "Flexible Date",
+    "name": "any_date",
+    "type": "date",
+    "help_text": "Any date within the next year",
+    "min_date": "today",
+    "max_date": "+1y",
+    "default": "+1w",
+    "optional": true
+}
+```
+
+### DateTime elements
+
+DateTime elements provide combined date and time picker functionality with timezone support. Below is an example of a `datetime` element for meeting scheduling.
+
+![image](interactive-dialog-datetime.png)
+
+```json
+{
+    "display_name": "Meeting Time",
+    "name": "meeting_time",
+    "type": "datetime",
+    "default": "2024-03-15T14:30:00Z",
+    "placeholder": "Select date and time",
+    "help_text": "Choose when the meeting should start",
+    "optional": false,
+    "time_interval": 30,
+    "min_date": "today",
+    "max_date": "+7d"
+}
+```
+
+The full list of supported fields for `datetime` elements is included below:
+
+| Field           | Type    | Description                                                                                                                        |
+|-----------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `display_name`  | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
+| `name`          | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
+| `type`          | String  | Set this value to `datetime` for a datetime element.                                                                               |
+| `default`       | String  | (Optional) Default value in ISO datetime format (RFC3339) or relative format. For relative dates, time defaults to noon. When specifying a time, it must align with the `time_interval` (be a multiple of the interval). |
+| `placeholder`   | String  | (Optional) Placeholder text shown in the input field. Maximum 150 characters.                                                      |
+| `help_text`     | String  | (Optional) Help text displayed below the field. Maximum 150 characters.                                                            |
+| `optional`      | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
+| `min_date`      | String  | (Optional) Earliest selectable date. Supports ISO format or relative formats (`today`, `tomorrow`, `+1d`, `-7d`, etc.).           |
+| `max_date`      | String  | (Optional) Latest selectable date. Supports ISO format or relative formats (`today`, `+30d`, `+1y`, etc.).                        |
+| `time_interval` | Integer | (Optional) Time selection interval in minutes. Must be between 1 and 1440, and must be a divisor of 1440 to create evenly spaced intervals throughout the day. Common values: 15, 30, 60, 90, 120. Default is 60. |
+
+#### DateTime field usage examples
+
+**Meeting scheduler with business hours:**
+```json
+{
+    "display_name": "Meeting Time",
+    "name": "meeting_time",
+    "type": "datetime",
+    "help_text": "Select a time during business hours",
+    "time_interval": 30,
+    "min_date": "+1d",
+    "max_date": "+14d",
+    "optional": false
+}
+```
+
+**Event with custom time intervals:**
+```json
+{
+    "display_name": "Event Start Time",
+    "name": "event_start",
+    "type": "datetime",
+    "help_text": "When does your event begin?",
+    "time_interval": 15,
+    "min_date": "today",
+    "max_date": "+90d",
+    "default": "today"
+}
+```
+
+#### Date and DateTime field specifications
+
+**Relative Date Formats:**
+- `today`: Current date
+- `tomorrow`: Next day
+- `yesterday`: Previous day
+- `+Nd`: N days from today (e.g., `+1d`, `+7d`)
+- `+Nw`: N weeks from today (e.g., `+1w`, `+2w`)
+- `+NM`: N months from today (e.g., `+1M`, `+6M`)
+- `+Ny`: N years from today (e.g., `+1y`)
+- `-Nd`: N days ago (e.g., `-1d`, `-7d`)
+
+**ISO Format Examples:**
+- Date: `2024-03-15` (YYYY-MM-DD)
+- DateTime: `2024-03-15T14:30:00Z` (RFC3339 format)
+- DateTime with timezone: `2024-03-15T14:30:00-05:00`
+
+**Form Submission Format:**
+- Date fields submit in ISO date format: `2024-03-15`
+- DateTime fields submit in RFC3339 format with user's timezone: `2024-03-15T14:30:00-05:00`
+
+**Localization:**
+- Date fields automatically format according to user's locale (e.g., "Mar 15, 2024" for en-US)
+- DateTime fields respect user's 12/24 hour preference and locale-specific formatting
+- Time picker displays times according to user's timezone
+
+**Validation:**
+- Client validates date formats and range constraints
+- Server validates relative date resolution and field configuration
+- For datetime fields, `time_interval` must be a divisor of 1440 (24 hours in minutes)
+- Default times must align with the specified `time_interval` (be a multiple of the interval)
+- Invalid dates, times, or out-of-range selections show appropriate error messages
+
+**Time Interval Examples:**
+- `time_interval: 15` creates options: 00:00, 00:15, 00:30, 00:45, 01:00, etc.
+- `time_interval: 30` creates options: 00:00, 00:30, 01:00, 01:30, etc.
+- `time_interval: 60` creates options: 00:00, 01:00, 02:00, 03:00, etc.
+- Invalid: `time_interval: 7` (7 is not a divisor of 1440)
 
 ## Dialog submission
 
@@ -786,6 +955,29 @@ Below is a full example of a JSON payload that creates an interactive dialog in 
           "data_source_url":"https://your-mattermost-server.com/plugins/your-plugin-id/api/lookup",
           "placeholder":"Search for dynamic options...",
           "help_text":"Type to search for options from external API",
+          "optional":true
+       },
+       {
+          "display_name":"Event Date",
+          "name":"eventdate",
+          "type":"date",
+          "default":"today",
+          "placeholder":"Select event date",
+          "help_text":"Choose when your event takes place",
+          "min_date":"today",
+          "max_date":"+30d",
+          "optional":false
+       },
+       {
+          "display_name":"Meeting Time",
+          "name":"meetingtime",
+          "type":"datetime",
+          "default":"",
+          "placeholder":"Select meeting date and time",
+          "help_text":"Schedule your meeting with date and time",
+          "time_interval":30,
+          "min_date":"today",
+          "max_date":"+14d",
           "optional":true
        }
     ],
