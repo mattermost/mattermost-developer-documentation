@@ -4,17 +4,18 @@ heading: "Set up your development environment"
 description: "Find out how to set up your development environment for building, running, and testing Mattermost."
 weight: 1
 aliases:
-  - /contribute/server/developer-setup
-  - /contribute/more-info/server/developer-setup/
-  - /contribute/more-info/webapp/developer-setup/
+    - /contribute/server/developer-setup
+    - /contribute/more-info/server/developer-setup/
+    - /contribute/more-info/webapp/developer-setup/
 ---
 
 Set up your development environment for building, running, and testing Mattermost.
 
 {{<note "Note:">}}
-- If you're migrating from before the monorepo see the [migration notes]({{< ref "/contribute/monorepo-migration-notes" >}}).
-- If you're developing plugins, see the plugin [developer setup]({{< ref "/integrate/plugins/developer-setup" >}}) documentation.
-{{</note>}}
+
+-   If you're migrating from before the monorepo see the [migration notes]({{< ref "/contribute/monorepo-migration-notes" >}}).
+-   If you're developing plugins, see the plugin [developer setup]({{< ref "/integrate/plugins/developer-setup" >}}) documentation.
+    {{</note>}}
 
 # Prerequisites for Windows
 
@@ -31,6 +32,7 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
 {{</note>}}
 
 1. Install `make`.
+
     - On Ubuntu, you can install `build essential` tools which will also take care of installing the `make`:
 
         ```sh
@@ -38,10 +40,12 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
         ```
 
 1. Install and run [Docker](https://www.docker.com/). If you don't want to use Docker, you can follow [this guide](#develop-mattermost-without-docker).
+
     - When running `docker` commands under WSL2, if you receive the error `The command 'docker' could not be found in this WSL 2 distro.` you may need to toggle the `Use the WSL 2 based engine` off and on within Docker Settings after installation.
     - Make sure that Docker has virtual file share access to the directory that you will clone the repository in
 
 1. Install [Go](https://go.dev/).
+
     - Version 1.21 or higher is required.
 
 1. Increase the number of available file descriptors. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`), and add the following:
@@ -89,21 +93,30 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
     ```
 
     If successful, the `curl` step will return a JSON object:
+
     ```json
-    {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
+    {
+        "AndroidLatestVersion": "",
+        "AndroidMinVersion": "",
+        "DesktopLatestVersion": "",
+        "DesktopMinVersion": "",
+        "IosLatestVersion": "",
+        "IosMinVersion": "",
+        "status": "OK"
+    }
     ```
 
 1. Set up up your admin user using mmctl:
 
-   ```sh
-   bin/mmctl user create --local --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system-admin
-   ```
+    ```sh
+    bin/mmctl user create --local --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system-admin
+    ```
 
     - Optionally, you can also populate the database with random sample data as well:
 
-       ```sh
-       bin/mmctl sampledata
-       ```
+        ```sh
+        bin/mmctl sampledata
+        ```
 
 1. Start the web app:
 
@@ -135,6 +148,7 @@ The web app isn't exposed directly, it's exposed via the server. So if both serv
 The `make package` command will package the application and place it under the `./dist` directory. You can distribute the .tar.gz file if you wish the run the application elsewhere. Note that you would need to run `make build` before this to build the binaries.
 
 # Develop Mattermost without Docker
+
 1. Install `make`.
     - On Ubuntu, you can install `build essential` tools which will also take care of installing the `make`:
         ```sh
@@ -151,11 +165,13 @@ The `make package` command will package the application and place it under the `
 1. Login again with `psql postgres` and run `GRANT ALL PRIVILEGES ON DATABASE mattermost_test TO mmuser;` to give all rights to `mmuser`
 1. Install [Go](https://go.dev/).
 1. Increase the number of available file descriptors. Update your shell's initialization script (e.g. `.bashrc` or `.zshrc`), and add the following:
+
     ```sh
     ulimit -n 8096
     ```
 
 1. If you don't have it already, install libpng with your preferred package manager.
+
     - If you are on ARM based Mac, you'll need to install [Rosetta](https://support.apple.com/en-in/HT211861) to make `libpng` work. Rosetta can be installed by the following command-
         ```sh
         softwareupdate --install-rosetta
@@ -163,11 +179,13 @@ The `make package` command will package the application and place it under the `
 
 1. Fork https://github.com/mattermost/mattermost.
 1. Clone the Mattermost source code from your fork:
+
     ```sh
     git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost.git
     ```
 
 1. Install NVM and use it to install the required version of Node.js:
+
     - First, install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
     - Then, use NVM to install the correct version of Node.js for the Mattermost web app (this should be run within the `webapp` directory):
         ```sh
@@ -175,6 +193,7 @@ The `make package` command will package the application and place it under the `
         ```
 
 1. Start the server:
+
     ```sh
     cd server
     make run-server
@@ -187,21 +206,30 @@ The `make package` command will package the application and place it under the `
     ```
 
     If successful, the `curl` step will return a JSON object:
+
     ```json
-    {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
+    {
+        "AndroidLatestVersion": "",
+        "AndroidMinVersion": "",
+        "DesktopLatestVersion": "",
+        "DesktopMinVersion": "",
+        "IosLatestVersion": "",
+        "IosMinVersion": "",
+        "status": "OK"
+    }
     ```
 
 1. Set up up your admin user using mmctl:
 
-   ```sh
-   bin/mmctl user create --local --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system_admin
-   ```
+    ```sh
+    bin/mmctl user create --local --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system-admin
+    ```
 
     - Optionally, you can also populate the database with random sample data as well:
 
-       ```sh
-       bin/mmctl sampledata
-       ```
+        ```sh
+        bin/mmctl sampledata
+        ```
 
 1. Start the web app:
 
@@ -213,9 +241,10 @@ The `make package` command will package the application and place it under the `
 1. Open the web app by going to http://localhost:8065 in your browser or by adding it to the Mattermost desktop app.
 
 1. Stop the server:
+
     ```sh
     make stop-server
     ```
 
 1. Set your options:
-    Some behaviors can be customized such as running the server in the foreground as described in the `config.mk` file in the server directory. See that file for details.
+   Some behaviors can be customized such as running the server in the foreground as described in the `config.mk` file in the server directory. See that file for details.
