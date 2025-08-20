@@ -104,7 +104,7 @@ During development you may want to reset the database and generate random data f
     * Optionally, you can assign that account System Admin rights with the following command:
 
       ```
-      mmctl user create --email user@example.com --username test1 --password mypassword --system_admin
+      mmctl user create --email user@example.com --username test1 --password mypassword --system-admin
       ```
 
 ### Customize your workflow
