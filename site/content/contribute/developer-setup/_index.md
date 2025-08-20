@@ -194,7 +194,7 @@ The `make package` command will package the application and place it under the `
 1. Set up up your admin user using mmctl:
 
    ```sh
-   bin/mmctl user create --local --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system_admin
+   bin/mmctl user create --local --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system-admin
    ```
 
     - Optionally, you can also populate the database with random sample data as well:
