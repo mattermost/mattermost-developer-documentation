@@ -165,13 +165,22 @@ The `make package` command will package the application and place it under the `
 1. Clone the Mattermost source code from your fork:
     ```sh
     git clone https://github.com/YOUR_GITHUB_USERNAME/mattermost.git
+    cd mattermost
     ```
 
 1. Install NVM and use it to install the required version of Node.js:
     - First, install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}} by following {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
     - Then, use NVM to install the correct version of Node.js for the Mattermost web app (this should be run within the `webapp` directory):
         ```sh
+        cd webapp
         nvm install
+        cd ..
+        ```
+    - NOTE: If you get `zsh: command not found: nvm` when running `nvm install`, you will need to add the following to your ~/.zshrc file:
+        ```zsh
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
         ```
 
 1. Start the server:
@@ -180,10 +189,10 @@ The `make package` command will package the application and place it under the `
     make run-server
     ```
 
-1. Test your environment to ensure that the server is running:
+1. Test your environment to ensure that the server is running by running the following in a different terminal session:
 
     ```sh
-    curl http://localhost:8065/api/v4/system/ping
+    curl -s http://localhost:8065/api/v4/system/ping | jq .
     ```
 
     If successful, the `curl` step will return a JSON object:
@@ -191,22 +200,26 @@ The `make package` command will package the application and place it under the `
     {"AndroidLatestVersion":"","AndroidMinVersion":"","DesktopLatestVersion":"","DesktopMinVersion":"","IosLatestVersion":"","IosMinVersion":"","status":"OK"}
     ```
 
+    Alternately, you can enter `http://localhost:8065/api/v4/system/ping` in a web browser.
+
 1. Set up up your admin user using mmctl:
 
    ```sh
    bin/mmctl user create --local --email ADMIN_EMAIL --username ADMIN_USERNAME --password ADMIN_PASSWORD --system-admin
    ```
 
+    - Note: `ADMIN_PASSWORD` must be 8 characters or more.
+
     - Optionally, you can also populate the database with random sample data as well:
 
        ```sh
-       bin/mmctl sampledata
+       bin/mmctl --local sampledata
        ```
 
-1. Start the web app:
+1. Start the web app (in another terminal window):
 
     ```sh
-    cd webapp
+    cd PATH_TO_MATTERMOST_REPO/webapp
     make run
     ```
 
@@ -214,6 +227,7 @@ The `make package` command will package the application and place it under the `
 
 1. Stop the server:
     ```sh
+    cd PATH_TO_MATTERMOST_REPO/server
     make stop-server
     ```
 
