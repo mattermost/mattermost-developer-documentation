@@ -1,40 +1,55 @@
 ---
 title: "iOS push notifications"
 heading: "iOS push notifications"
-description: "Push notifications on iOS are managed and dispatched using Apple’s Push Notification Service. Learn how to use this service with Mattermost."
-date: 2015-05-20T11:35:32-04:00
+description: "Learn how to generate an APNs Auth Key for iOS push notifications."
+date: 2025-09-19T08:44:00+08:00
 weight: 2
 aliases:
   - /contribute/mobile/push-notifications/ios
 ---
 
-Push notifications on iOS are managed and dispatched using {{< newtabref href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html" title="Apple's Push Notification Service" >}}. You must have a **Paid Apple Developer account** to create certificates needed to send notifications using this service.
+## Generate APNs Auth Key
 
-- Generate a Certificate from Keychain Access
-    - Launch the **Keychain Access application** in your Mac and select **KeyChain Access -\Certificate Assistant -\Request a Certificate From a Certificate Authority...**
-        ![image](/img/mobile/ios_keychain_request_certificate.png)
+To deliver push notifications on iOS, you need to authenticate with **Apple Push Notification service (APNs)**.  
+Mattermost recommends using **token-based authentication** with an APNs Auth Key (`.p8`) instead of certificates.
 
-    - Enter your email address in **User Email Address** and check the **"Save to disk"** option, then click **Continue**
-        ![image](/img/mobile/ios_keychain_create_cert_request.png)
+---
 
-    - Save the certificate request
-        ![image](/img/mobile/ios_keychain_save_cert_request.png)
+### Prerequisites
 
-- Log in to {{< newtabref href="https://developer.apple.com/account" title="Apple developer account" >}} and click **Certificates, Identifiers and Profiles**
-![image](/img/mobile/ios_account.png)
+- Apple Developer Program account  
+- Registered iOS app Bundle ID with **Push Notifications** capability enabled  
 
-- Select the plus icon to create a new certificate
-![image](/img/mobile/ios_new_certificate.png)
+---
 
-- Select a new "Apple Push Notifications service SSL (Sandbox & Production)"
-![image](/img/mobile/apns.png)
+### 1. Create an APNs Auth Key
 
-- Choose the App ID you're generating a certificate for. Use the regular App ID for the Mattermost app, **not** for the `.NotificationService`, etc.
-![image](/img/mobile/choose_app_id.png)
+1. Sign in to {{< newtabref href="https://developer.apple.com/account/resources/authkeys/list" title="Apple Developer: Keys" >}}.
+2. Click **+** to register a new key.
+   ![Apple Developer register new key](/img/mobile/ios-register-key.png)
+3. **Enter a Key Name** to easily identify it later (e.g., *Mattermost Push Proxy*).
+   ![Enter key name](/img/mobile/ios-key-name.png)
+4. **Enable APNs** by checking the **Apple Push Notifications service (APNs)** box and click **Configure** to configure the key.
+   ![Enable APNs](/img/mobile/ios-enable-apns.png)
+5. On the **Configure Key** screen:
+   - Select an **Environment**: *Sandbox*, *Production*, or *Sandbox & Production*.
+   - Choose a **Key Restriction**: *Team Scoped (All Topics)* or *Topic Specific*. 
+   ![Configure APNs key](/img/mobile/ios-configure-apns.png)
+   - If you select *Topic Specific*, add the topics (App IDs) you want to associate.
+   ![Add topics](/img/mobile/ios-add-topics.png)
+6. Click **Save**, then **Continue**.
+7. Review the Key details and click **Register**
+8. Download the generated file `AuthKey_XXXXXXXXXX.p8` and store it securely.
+   > You can only download the file once.
+9. Note the following values:
+   - **Key ID** (from the Keys list)
+   - **Team ID** (from your Apple Developer Membership)
+   - **Bundle ID** (your app identifier, used as the APNs topic)
 
-- Choose the certificate request file created using the Keychain access in the previous section and select **Continue**.
-![image](/img/mobile/ios_upload_csr.png)
+![Apple Developer key list](/img/mobile/ios-key-list.png)
 
-- Download the Certificate and click **Done** to finish the process
+---
 
-At this point, you can build the Mattermost app for iOS and use the above downloaded certificate to setup the [Mattermost Push Notification Service]({{< ref "/contribute/more-info/mobile/push-notifications/service" >}}).
+### 2. Next Steps
+
+Once you’ve generated your APNs Auth Key and collected the Key ID, Team ID, and Bundle ID, continue to the [Push Notification Service setup]({{< ref "/contribute/more-info/mobile/push-notifications/service" >}}) page to configure the Mattermost Push Notification Service (MPNS).
