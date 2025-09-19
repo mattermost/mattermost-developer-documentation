@@ -38,7 +38,7 @@ Mattermost recommends using **token-based authentication** with an APNs Auth Key
    - If you select *Topic Specific*, add the topics (App IDs) you want to associate.
    ![Add topics](/img/mobile/ios-add-topics.png)
 6. Click **Save**, then **Continue**.
-7. Review the Key details and click **Register**
+7. Review the Key details and click **Register**.
 8. Download the generated file `AuthKey_XXXXXXXXXX.p8` and store it securely.
    > You can only download the file once.
 9. Note the following values:
