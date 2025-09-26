@@ -21393,6 +21393,7 @@ paths:
           required: true
           schema:
             type: string
+      operationId: PatchCPAValuesForUser
       requestBody:
         description: Custom Profile Attribute values that are to be updated
         required: true
