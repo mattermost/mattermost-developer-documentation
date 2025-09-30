@@ -514,6 +514,58 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
+  /api/v4/users/login/sso/code-exchange:
+    post:
+      tags:
+        - users
+      summary: Exchange SSO login code for session tokens
+      description: >
+        Exchange a short-lived login_code for session tokens using SAML code exchange (mobile SSO flow). This endpoint is part of the mobile SSO code-exchange flow to prevent tokens  from appearing in deep links.
+
+        ##### Permissions
+
+        No permission required.
+
+      operationId: LoginSSOCodeExchange
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - login_code
+                - code_verifier
+                - state
+              properties:
+                login_code:
+                  description: Short-lived one-time code from SSO callback
+                  type: string
+                code_verifier:
+                  description: SAML verifier to prove code possession
+                  type: string
+                state:
+                  description: State parameter to prevent CSRF attacks
+                  type: string
+        description: SSO code exchange object
+        required: true
+      responses:
+        "200":
+          description: Code exchange successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    description: Session token for authentication
+                    type: string
+                  csrf:
+                    description: CSRF token for request validation
+                    type: string
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "403":
+          $ref: '#/components/responses/Forbidden'
   /api/v4/users/logout:
     post:
       tags:
@@ -618,8 +670,9 @@ paths:
       description: >
         Get a page of a list of users. Based on query string parameters, select users from a team, channel, or select users not in a specific channel.
 
-
         Since server version 4.0, some basic sorting is available using the `sort` query parameter. Sorting is currently only supported when selecting users on a team.
+
+        Some fields, like `email_verified` and `notify_props`, are only visible for the authorized user or if the authorized user has the `manage_system` permission.
 
         ##### Permissions
 
@@ -7107,92 +7160,6 @@ paths:
 
             	fmt.Printf("Found %d channels on team %s matching term '%s'\n", len(channels), teamId, searchTerm)
             }
-  /api/v4/teams/{team_id}/channels/search_archived:
-    post:
-      tags:
-        - channels
-      summary: Search archived channels
-      description: >
-        Search archived channels on a team based on the search term provided in the request body.
-
-
-        __Minimum server version__: 5.18
-
-
-        ##### Permissions
-
-        Must have the `list_team_channels` permission.
-
-
-        In server version 5.18 and later, a user without the `list_team_channels` permission will be able to use this endpoint, with the search results limited to the channels that the user is a member of.
-
-      operationId: SearchArchivedChannels
-      parameters:
-        - name: team_id
-          in: path
-          description: Team GUID
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - term
-              properties:
-                term:
-                  description: The search term to match against the name or display name of archived channels
-                  type: string
-        description: Search criteria
-        required: true
-      responses:
-        "201":
-          description: Channels search successful
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Channel'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "404":
-          $ref: '#/components/responses/NotFound'
-      x-codeSamples:
-        - lang: Go
-          source: |
-            package main
-
-            import (
-            	"context"
-            	"fmt"
-            	"log"
-            	"os"
-
-            	"github.com/mattermost/mattermost/server/public/model"
-            )
-
-            func main() {
-            	client := model.NewAPIv4Client(os.Getenv("MM_SERVICESETTINGS_SITEURL"))
-            	client.SetToken(os.Getenv("MM_AUTHTOKEN"))
-
-            	teamId := "team_id"
-            	searchTerm := "search"
-            	channels, _, err := client.SearchArchivedChannels(context.Background(), teamId, &model.ChannelSearch{
-            		Term: searchTerm,
-            	})
-            	if err != nil {
-            		log.Fatal(err)
-            	}
-
-            	fmt.Printf("Found %d archived channels on team %s matching term '%s'\n", len(channels), teamId, searchTerm)
-            }
   /api/v4/teams/{team_id}/channels/name/{channel_name}:
     get:
       tags:
@@ -8804,6 +8771,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SidebarCategory'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+  /api/v4/channels/{channel_id}/common_teams:
+    get:
+      tags:
+        - channels
+        - group message
+      summary: Get common teams for members of a Group Message.
+      description: |
+        Gets all the common teams for all active members of a Group Message channel.
+        Returns empty list of no common teams are found.
+
+        __Minimum server version__: 9.1
+
+        ##### Permissions
+        Must be authenticated and have the `read_channel` permission for the channel.
+      operationId: GetGroupMessageMembersCommonTeams
+      parameters:
+        - name: channel_id
+          in: path
+          description: Channel GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Common teams retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -21419,6 +21425,69 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
+    patch:
+      tags:
+        - custom profile attributes
+      summary: Update custom profile attribute values for a user
+      description: |
+        Update Custom Profile Attribute field values for a specific user.
+
+        _This endpoint is experimental._
+
+        __Minimum server version__: 11
+
+        ##### Permissions
+        Must have permission to edit the user. Users can only edit their own CPA values unless they are system administrators.
+      parameters:
+        - name: user_id
+          in: path
+          description: User GUID
+          required: true
+          schema:
+            type: string
+      operationId: PatchCPAValuesForUser
+      requestBody:
+        description: Custom Profile Attribute values that are to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  value:
+                    oneOf:
+                      - type: string
+                      - type: array
+                        items:
+                          type: string
+      responses:
+        "200":
+          description: Custom profile attribute values updated successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    value:
+                      oneOf:
+                        - type: string
+                        - type: array
+                          items:
+                            type: string
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
   /api/v4/audit_logs/certificate:
     post:
       tags:
@@ -21546,6 +21615,53 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ExpressionError'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/access_control_policies/cel/validate_requester:
+    post:
+      tags:
+        - access control
+      summary: Validate if the current user matches a CEL expression
+      description: |
+        Validates whether the current authenticated user matches the given CEL expression.
+        This is used to determine if a channel admin can test expressions they match.
+        ##### Permissions
+        Must have `manage_system` permission OR be a channel admin for the specified channel (channelId required for channel admins).
+      operationId: ValidateExpressionAgainstRequester
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                expression:
+                  type: string
+                  description: The CEL expression to validate against the current user.
+                channelId:
+                  type: string
+                  description: The channel ID for channel-specific permission checks (required for channel admins).
+              required:
+                - expression
+      responses:
+        "200":
+          description: Validation result returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  requester_matches:
+                    type: boolean
+                    description: Whether the current user matches the expression.
+                required:
+                  - requester_matches
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -26425,11 +26541,26 @@ components:
         first_name:
           type: string
           description: Set to "true" to enable mentions for first name. Defaults to "true" if a first name is set, "false" otherwise.
+        auto_responder_message:
+          type: string
+          description: The message sent to users when they are auto-responded to. Defaults to "".
+        push_threads:
+          type: string
+          description: Set to "all" to enable mobile push notifications for followed threads and "none" to disable. Defaults to "all".
+        comments:
+          type: string
+          description: Set to "any" to enable notifications for comments to any post you have replied to, "root" for comments on your posts, and "never" to disable. Only affects users with collapsed reply threads disabled. Defaults to "never".
+        desktop_threads:
+          type: string
+          description: Set to "all" to enable desktop notifications for followed threads and "none" to disable. Defaults to "all".
+        email_threads:
+          type: string
+          description: Set to "all" to enable email notifications for followed threads and "none" to disable. Defaults to "all".
     Timezone:
       type: object
       properties:
         useAutomaticTimezone:
-          type: boolean
+          type: string
           description: Set to "true" to use the browser/system timezone, "false" to set manually. Defaults to "true".
         manualTimezone:
           type: string
