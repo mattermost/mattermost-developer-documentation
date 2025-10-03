@@ -33,17 +33,18 @@ We recommend using NodeJS v22 and npm v10. Many of our team use {{< newtabref hr
 
 {{<tabs "node-npm" "node-npm-mac,macOS;node-npm-linux,Linux" "node-npm-mac">}}
 {{<tab "node-npm-mac" "display: block;">}}
-To install NVM using Homebrew, open a terminal and execute:
+To install NVM, use the official installer script:
 
 ```sh
-brew install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 ```
 
-To install NodeJS v22 LTS using NVM, open a new terminal and execute:
+Follow the post-install instructions printed by the installer to add the required lines to your shell profile (for example `~/.zshrc` or `~/.bash_profile`). Then open a new terminal and run:
 
-```shell
-nvm install --lts=jod
+```sh
+nvm install --lts
 ```
+
 {{</tab>}}
 {{<tab "node-npm-linux">}}
 There are three available options for installing NodeJS on Linux:
