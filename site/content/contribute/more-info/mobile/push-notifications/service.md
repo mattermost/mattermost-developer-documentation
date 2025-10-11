@@ -41,7 +41,7 @@ For the sake of making this guide simple we located the files at `/home/ubuntu/m
     Description=Mattermost Push Notification Service
 
     [Service]
-    Type=oneshot
+    Type=simple
     ExecStart=/bin/sh -c '/home/ubuntu/mattermost-push-proxy/bin/mattermost-push-proxy | logger'
     WorkingDirectory=/home/ubuntu/mattermost-push-proxy
 
