@@ -32,8 +32,8 @@ enableEmoji = true
 
   [params.notification]
     enable = true
-    url = "https://mattermost.com/blog/microsoft-teams-m365-mission-critical-workflows/"
-    text = "Mattermost v10.0 is now available! Learn what’s new »"
+    url = "https://docs.mattermost.com/about/maximize-microsoft-investments.html"
+    text = "Maximize your Microsoft investments"
 
   [params.search]
     enable = true
