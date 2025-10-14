@@ -33,7 +33,13 @@ We recommend using NodeJS v22 and npm v10. Many of our team use {{< newtabref hr
 
 {{<tabs "node-npm" "node-npm-mac,macOS;node-npm-linux,Linux" "node-npm-mac">}}
 {{<tab "node-npm-mac" "display: block;">}}
-To install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}}, follow {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}:
+To install {{< newtabref href="https://github.com/nvm-sh/nvm" title="NVM" >}}, follow {{< newtabref href="https://github.com/nvm-sh/nvm#installing-and-updating" title="these instructions" >}}.
+
+After installing, follow the post-install steps shown by the installer to add the necessary lines to your shell profile (for example `~/.zshrc` or `~/.bash_profile`). Then open a new terminal and run:
+
+```sh
+nvm install --lts
+```
 
 {{</tab>}}
 {{<tab "node-npm-linux">}}
