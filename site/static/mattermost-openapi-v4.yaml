@@ -29144,12 +29144,12 @@ components:
             $ref: '#/components/schemas/TeamReviewerConfig'
           description: Team-specific reviewer configuration, keyed by team ID
           example:
-            8guxic3sg7nijeu5dgxt1fh4ia:
-              Enabled: true
-              ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
               ReviewerIds: []
+            8guxic3sg7nijeu5dgxt1fh4ia:
+              ReviewerIds: []
+              Enabled: true
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
