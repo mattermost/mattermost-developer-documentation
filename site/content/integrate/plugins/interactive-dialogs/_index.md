@@ -170,6 +170,7 @@ Select elements are message menus that allow users to select one or multiple pre
 ```
 
 #### Multiselect support
+##### Minimum Server Version: 11.0
 
 Select elements can be configured to allow multiple selections by setting the `multiselect` parameter to `true`. When multiselect is enabled, users can choose multiple options from the list.
 
@@ -200,6 +201,7 @@ Select elements can be configured to allow multiple selections by setting the `m
 For multiselect elements, default values can be specified as a comma-separated string (e.g., `"opt1,opt3"` to pre-select Option1 and Option3).
 
 #### Dynamic select support
+##### Minimum Server Version: 11.0
 
 Select elements can be configured to load options dynamically from an external API endpoint. This enables real-time filtering, searching, and loading of options based on user input.
 
@@ -397,6 +399,7 @@ The full list of supported fields are included below:
 | `default`      | String | (Optional) Set a default value for this form element.                                                                              |
 
 ### Date elements
+##### Minimum Server Version: 11.1
 
 Date elements provide native date picker functionality for selecting dates without time information. Below is an example of a `date` element for event scheduling.
 
@@ -459,6 +462,7 @@ The full list of supported fields for `date` elements is included below:
 ```
 
 ### DateTime elements
+##### Minimum Server Version: 11.1
 
 DateTime elements provide combined date and time picker functionality with timezone support. Below is an example of a `datetime` element for meeting scheduling.
 
@@ -607,6 +611,7 @@ Support for generic error messages was added in Mattermost v5.18.
 Finally, once the request is submitted, we recommend that the integration responds with a system message or an ephemeral message confirming the submission. This should be a separate request back to Mattermost once the service has received and responded to a submission request from a dialog. This can be done either via {{< newtabref href="https://api.mattermost.com/#tag/posts%2Fpaths%2F~1posts~1ephemeral%2Fpost" title="the REST API" >}}, or via the [Plugin API]({{< ref "/integrate/reference/server/server-reference#API.SendEphemeralPost" >}}) if you're developing a plugin.
 
 ## Multi-step dialogs
+##### Minimum Server Version: 11.1
 
 Multi-step dialogs enable wizard-like form experiences where users can navigate through multiple steps to complete a complex workflow. Each step can have different fields, and form values are preserved as users progress through the steps.
 
@@ -710,6 +715,7 @@ The final step submission uses the same format as regular dialog submissions, bu
 ```
 
 ## Dynamic field refresh
+##### Minimum Server Version: 11.1
 
 Interactive dialogs support dynamic field refresh functionality, allowing fields to be updated based on user input. This is useful for dependent dropdowns or conditional form fields.
 
