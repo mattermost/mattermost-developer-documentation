@@ -25231,8 +25231,8 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
-            visibility: when_set
             sortOrder: 1
+            visibility: when_set
             options:
               - color: '#ff0000'
                 id: opt1
