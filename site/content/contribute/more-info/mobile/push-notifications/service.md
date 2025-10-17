@@ -1,7 +1,7 @@
 ---
 title: "Push notification service"
 heading: "Install the Mattermost push notification service"
-description: "This guide focuses on installing and configuring the push notification service for Mattermost apps."
+description: "Learn how to configure the Mattermost Push Notification Service (MPNS) with iOS and Android credentials."
 date: 2015-05-20T11:35:32-04:00
 weight: 3
 aliases:
@@ -12,25 +12,30 @@ Now that the app can receive push notifications, we need to make sure that the M
 
 ### Requirements
 
-- A Linux box server with at least 1GB of memory.
+- A Linux or FreeBSD box server with at least 1GB of memory.
 - A copy of the {{< newtabref href="https://github.com/mattermost/mattermost-push-proxy/releases" title="Mattermost Push Notification Service" >}}.
 - [Custom Android and/or iOS]({{< ref "/contribute/more-info/mobile/build-your-own" >}}) Mattermost mobile apps.
-- Private and public keys obtained from the {{< newtabref href="https://developer.apple.com/account/ios/certificate/" title="Apple Developer Program" >}}.
-- A Firebase Cloud Messaging Server key obtained from the {{< newtabref href="https://console.firebase.google.com" title="Firebase Console" >}}.
+- An APNs Auth Key (`.p8`) obtained by following the [iOS Push Notifications guide]({{< ref "/contribute/more-info/mobile/push-notifications/ios" >}}).
+- A Firebase Cloud Messaging Server key obtained by following the [Android Push Notifications guide]({{< ref "/contribute/more-info/mobile/push-notifications/android" >}}).
 
 ## Install and upgrade
 
 For the sake of making this guide simple we located the files at `/home/ubuntu/mattermost-push-proxy`. We've also elected to run the Push Notification Service as the `ubuntu` account for simplicity. We **recommend** setting up and running the service under a `mattermost-push-proxy` user account with limited permissions.
 
-1. Download the Mattermost Push Notification Service (any version):
+1. Download the latest Mattermost Push Notification Service:
 
-    `wget https://github.com/mattermost/mattermost-push-proxy/releases/download/vX.X.X/mattermost-push-proxy.tar.gz` (`mattermost-push-proxy-X.X.X.tar.gz` for releases earlier than v5.9)
+    `wget https://github.com/mattermost/mattermost-push-proxy/releases/download/vX.X.X/mattermost-push-proxy-linux-amd64.tar.gz`  
+    or  
+    `wget https://github.com/mattermost/mattermost-push-proxy/releases/download/vX.X.X/mattermost-push-proxy-freebsd-amd64.tar.gz` 
 
     In this command, `vX.X.X` refers to the release version you want to download. See {{< newtabref href="https://github.com/mattermost/mattermost-push-proxy/releases" title="Mattermost Push Notification Service releases" >}}.
 
 2. If you're upgrading a previous version of the Mattermost Push Notification Service make sure to back up your `mattermost-push-proxy.json` file before continuing.
 
-3. Unzip the downloaded Mattermost Push Notification Service using: `tar -xvzf mattermost-push-proxy.tar.gz`
+3. Unzip the downloaded Mattermost Push Notification Service using:  
+    `tar -xvzf mattermost-push-proxy-linux-amd64.tar.gz`  
+    or   
+    `tar -xvzf mattermost-push-proxy-freebsd-amd64.tar.gz`
 
 4. Configure the Mattermost Push Notification service by editing the `mattermost-push-proxy.json` file at `/home/ubuntu/mattermost-push-proxy/config`. Follow the steps in the [Android](#set-up-mattermost-push-notification-service-to-send-android-push-notifications)
     and [iOS](#set-up-mattermost-push-notification-service-to-send-ios-push-notifications) sections to replace the values in the config file.
@@ -69,39 +74,32 @@ For the sake of making this guide simple we located the files at `/home/ubuntu/m
 
 ### Set up Mattermost push notification service to send iOS push notifications
 
-- Double click the **Push Notifications Certificate** which is generated and downloaded while [Setting up Push Notifications for iOS]({{< ref "/contribute/more-info/mobile/push-notifications/ios" >}}) to add it to your Keychain Access. It downloads by default as `aps.cer`.
+Instead of certificates, we now recommend using an **APNs Auth Key (`.p8`)** to authenticate with Apple Push Notification service (APNs).  
+If you haven’t generated your key yet, see [Generate an APNs Auth Key]({{< ref "/contribute/more-info/mobile/push-notifications/ios" >}}).
 
-- Open **Keychain Access**, select the **login** keychain and **My Certificates** from the side menu.
-![image](/img/mobile/ios_keychain_select.png)
+- Open the **mattermost-push-proxy.json** file under the `mattermost-push-proxy/config` directory and configure it with your key details:
 
-- Find the certificate you imported and then right click to **export** it as a **.p12** file
-![image](/img/mobile/ios_keychain_export.png)
+  ```json
+  "ApplePushSettings":[
+      {
+          "Type":"apple_rn",
+          "ApplePushUseDevelopment":true,
+          "ApplePushTopic":"your.bundle.id",
+          "AppleAuthKeyFile":"./config/beta/YourAuthKeyFile.p8",
+          "AppleAuthKeyID":"YourAuthKeyID",
+          "AppleTeamID":"YourAppleTeamID"
+      }
+  ],
+  ```
+- **ApplePushTopic**: Your app’s bundle ID (APNs topic).  
+- **AppleAuthKeyFile**: Path to the `.p8` file.  
+- **AppleAuthKeyID**: Key ID from Apple Developer portal.  
+- **AppleTeamID**: Team ID from Apple Developer Membership.  
+- **ApplePushUseDevelopment**: `true` for sandbox APNs, `false` for production.
 
-- Enter a name for the filename and click **Save**
-![image](/img/mobile/ios_keychain_export_save.png)
-
-- Leave the **password** blank and then click **OK**
-![image](/img/mobile/ios_keychain_export_password.png)
-
-- Convert the downloaded certificate to **.pem**
-    ```sh
-    $ openssl x509 -in aps.cer -inform DER -out aps_production.pem
-    ```
-- Extract the private key from the certificate you exported ..
-    ```sh
-    $ openssl pkcs12 -in Certificates.p12 -out aps_production_priv.pem -nodes -clcerts -passin pass: -legacy -rc2
-    ```
-- Verify the certificate works with Apple
-    ```sh
-    $ openssl s_client -connect gateway.push.apple.com:2195 -cert aps_production.pem -key aps_production_priv.pem
-    ```
-- Copy the private key file `aps_production_priv.pem` into your `mattermost-push-proxy/config` directory
-
-- Open the **mattermost-push-proxy.json** file under the `mattermost-push-proxy/config` directory and add the path to the private key file as the value for **"ApplePushCertPrivate"** and the value for **"ApplePushTopic"** with your *Bundle Identifier*
-
-    ![image](/img/mobile/proxy-config.png)
-
-In the {{< newtabref href="https://github.com/mattermost/mattermost-push-proxy/tree/master/cmd/renew_apple_cert" title="mattermost-push-proxy project" >}} there are some scripts to ease the process involved for updating the iOS notification certificates. Please check the README.md for further details.
+{{% note %}}
+If you are migrating from certificate-based authentication, you can remove the `ApplePushCertPrivate` field and replace it with the new `AppleAuthKeyFile`, `AppleAuthKeyID`, and `AppleTeamID` values.  
+{{% /note %}}
 
 ### Configure the Mattermost Server to use the Mattermost push notification service
 
@@ -162,39 +160,11 @@ Note that device IDs can change somewhat frequently, as they are tied to a devic
 
 ### Troubleshooting
 
-##### High Sierra Apple Developer keys
-
-Follow these instructions if you run into an error like below:
-```
-2018/04/13 12:39:24 CRIT Failed to load the apple pem cert err=failed to parse PKCS1 private key for type=apple_rn
-panic: Failed to load the apple pem cert err=failed to parse PKCS1 private key for type=apple_rn
-```
-
-1. Follow the directions at {{< newtabref href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/DistributingEnterpriseProgramApps/DistributingEnterpriseProgramApps.html#//apple_ref/doc/uid/TP40012582-CH33-SW4" title="developer.apple.com" >}} to generate an Apple Push Notification service SSL Certificate, this should give you an `aps_production.cer`
-2. Convert the certificate format to .pem:
-   - `openssl x509 -in aps.cer -inform DER -out aps_production.pem`
-3. Double click `aps_production.cer` to install it into the keychain tool
-4. Right click the private cert in keychain access and export to .p12
-5. Extract the private key from the certificate into an intermediate state:
-   - `openssl pkcs12 -in Certificates.p12 -out intermediate.pem -nodes -clcerts`
-6. Generate an intermediate RSA private key
-   - `openssl rsa -in intermediate.pem -out intermediate_rsa_priv.pem`
-7. Remove the private key information from intermediate.pem
-   - `sed -i '/^-----BEGIN PRIVATE KEY-----$/,$d' intermediate.pem`
-8. Combine intermediate.pem and intermediate_rsa_priv.pem to create a valid bundle
-   - `cat intermediate.pem intermediate_rsa_priv.pem >> aps_production_priv.pem && rm intermediate.pem intermediate_rsa_priv.pem`
-9. Verifying the certificate works with Apple:
-   - `openssl s_client -connect gateway.push.apple.com:2195 -cert aps_production.pem -key aps_production_priv.pem`
-
 ##### DeviceTokenNotForTopic
 
 **For iOS / Apple Push Notifications**: If the logs are reflecting DeviceTokenNotForTopic (error 400) this may be because you're using an older / previous Device ID. Re-run the queries you need to get device IDs and test.
 
-This could also be because you generated a certificate for the wrong bundle ID. The bundle ID used in `mattermost-push-proxy.json` should be the same one as the app, and should be for the same app it was generated for.
-
-##### *TLS: Unknown Certificate Authority* error
-
-**For iOS / Apple Push Notifications**: If you see a message in the push proxy log that includes `tls: unknown certificate authority` for iOS devices, it's likely Apple has invalidated your client certificate, or you're using a client certificate without {{< newtabref href="https://developer.apple.com/news/?id=7gx0a2lp" title="the correct certificate authority." >}} To resolve this, follow [these instructions to generate a new certificate]({{< ref "/contribute/more-info/mobile/push-notifications/ios" >}}), and then [upload it to your push proxy server](#set-up-mattermost-push-notification-service-to-send-ios-push-notifications).
+This could also be because you generated a key for the wrong bundle ID. The bundle ID used in `mattermost-push-proxy.json` should be the same one as the app, and should be for the same app it was generated for.
 
 ### Reporting issues
 
