@@ -29261,8 +29261,8 @@ components:
               Enabled: true
               ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              ReviewerIds: []
               Enabled: false
+              ReviewerIds: []
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
