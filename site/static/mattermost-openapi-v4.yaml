@@ -421,6 +421,8 @@ tags:
     description: Endpoints related to metrics, including the Client Performance Monitoring feature.
   - name: audit_logs
     description: Endpoints for managing audit log certificates and configuration.
+  - name: ai
+    description: Endpoints for interacting with AI agents and services.
   - name: Playbooks
     description: Playbooks
   - name: PlaybookRuns
@@ -8771,43 +8773,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SidebarCategory'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "404":
-          $ref: '#/components/responses/NotFound'
-  /api/v4/sharedchannels/{channel_id}/remotes:
-    get:
-      tags:
-        - channels
-      summary: Get remote clusters for a shared channel
-      description: |
-        Gets the remote clusters information for a shared channel.
-
-        __Minimum server version__: 10.10
-
-        ##### Permissions
-        Must be authenticated and have the `read_channel` permission for the channel.
-      operationId: GetSharedChannelRemotes
-      parameters:
-        - name: channel_id
-          in: path
-          description: Channel GUID
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Remote clusters retrieval successful
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RemoteClusterInfo'
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -18475,6 +18440,43 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
+  /api/v4/sharedchannels/{channel_id}/remotes:
+    get:
+      tags:
+        - shared channels
+      summary: Get remote clusters for a shared channel
+      description: |
+        Gets the remote clusters information for a shared channel.
+
+        __Minimum server version__: 10.11
+
+        ##### Permissions
+        Must be authenticated and have the `read_channel` permission for the channel.
+      operationId: GetSharedChannelRemotes
+      parameters:
+        - name: channel_id
+          in: path
+          description: Channel GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Remote clusters retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RemoteClusterInfo'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
   /api/v4/sharedchannels/users/{user_id}/can_dm/{other_user_id}:
     get:
       tags:
@@ -22518,6 +22520,58 @@ paths:
           description: Internal server error.
         "501":
           description: Feature is disabled either via config or an Enterprise Advanced license is not available.
+  /api/v4/agents:
+    get:
+      tags:
+        - agents
+      summary: Get available agents
+      description: >
+        Retrieve all available agents from the plugin's bridge API. If a user ID is provided, only agents accessible to that user are returned.
+
+        ##### Permissions
+
+        Must be authenticated.
+
+        __Minimum server version__: 11.2
+
+      operationId: GetAgents
+      responses:
+        "200":
+          description: Agents retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentsResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/llmservices:
+    get:
+      tags:
+        - agents
+      summary: Get available LLM services
+      description: >
+        Retrieve all available LLM services from the plugin's bridge API. If a user ID is provided, only services accessible to that user (via their permitted bots) are returned.
+
+        ##### Permissions
+
+        Must be authenticated.
+
+        __Minimum server version__: 11.2
+
+      operationId: GetLLMServices
+      responses:
+        "200":
+          description: LLM services retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicesResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
   /plugins/playbooks/api/v0/runs:
     get:
       summary: List all playbook runs
@@ -28627,6 +28681,52 @@ components:
         bytes:
           type: number
           description: Total file storage usage for the instance in bytes rounded down to the most significant digit
+    BridgeAgentInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the agent
+        displayName:
+          type: string
+          description: Human-readable name for the agent
+        username:
+          type: string
+          description: Username associated with the agent bot
+        service_id:
+          type: string
+          description: ID of the service providing this agent
+        service_type:
+          type: string
+          description: Type of the service (e.g., openai, anthropic)
+    BridgeServiceInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the LLM service
+        name:
+          type: string
+          description: Name of the LLM service
+        type:
+          type: string
+          description: Type of the service (e.g., openai, anthropic, azure)
+    AgentsResponse:
+      type: object
+      properties:
+        agents:
+          type: array
+          items:
+            $ref: '#/components/schemas/BridgeAgentInfo'
+          description: List of available agents
+    ServicesResponse:
+      type: object
+      properties:
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/BridgeServiceInfo'
+          description: List of available LLM services
     PostAcknowledgement:
       type: object
       properties:
