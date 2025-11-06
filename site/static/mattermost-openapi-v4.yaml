@@ -25280,11 +25280,11 @@ components:
           additionalProperties: true
           example:
             visibility: when_set
-            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
+            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
