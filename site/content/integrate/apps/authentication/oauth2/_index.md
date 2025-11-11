@@ -60,16 +60,17 @@ OAuth 2.0 applications are off by default and can be enabled by the System Admin
 
     Only System Admins can set OAuth 2.0 applications as trusted.
 
-4. Specify the **Display Name**: Enter a name for your application made of up to 64 characters. This is the name users will see when granting access to the application, when viewing a list of authorized applications in **Settings > Security > OAuth 2.0 Applications** and when viewing a list of OAuth 2.0 applications in the **Integrations** menu.
-5. Add **Description**: This is a short description of your application that users will see when viewing a list of authorized applications in **Settings > Security > OAuth 2.0 Applications**.
-6. Specify the **Homepage**: This is the homepage of the OAuth 2.0 application and lets users visit the app page to learn more what it does. The URL must be a valid URL and start with `http://` or `https://` depending on your server configuration.
-7. (Optional) Add **Icon URL**: The image users will see when viewing a list of authorized applications in **Settings > Security > OAuth 2.0 Applications** and when viewing a list of OAuth 2.0 applications in the **Integrations** menu. Must be a valid URL and start with `http://` or `https://`.
-8. Add **Callback URLs**: These are the URL(s) to which Mattermost will redirect users after accepting or denying authorization of your application, and which will be the only URL(s) that handle authorization codes or access tokens. If more than one URL is specified, users will be redirected to the URL used for the initial authorization of the app. Each URL must be on a separate line and start with `http://` or `https://`.
-9. Select **Save** to create the application.
+4. Set **Is Public Client**: When set to **Yes**, your application is registered as a public client (for SPAs, mobile apps, etc.). Public clients do not receive a client secret and must use PKCE for the authorization code flow. When set to **No** (default), your application is registered as a confidential client with a client secret.
+5. Specify the **Display Name**: Enter a name for your application made of up to 64 characters. This is the name users will see when granting access to the application, when viewing a list of authorized applications in **Settings > Security > OAuth 2.0 Applications** and when viewing a list of OAuth 2.0 applications in the **Integrations** menu.
+6. Add **Description**: This is a short description of your application that users will see when viewing a list of authorized applications in **Settings > Security > OAuth 2.0 Applications**.
+7. Specify the **Homepage**: This is the homepage of the OAuth 2.0 application and lets users visit the app page to learn more what it does. The URL must be a valid URL and start with `http://` or `https://` depending on your server configuration.
+8. (Optional) Add **Icon URL**: The image users will see when viewing a list of authorized applications in **Settings > Security > OAuth 2.0 Applications** and when viewing a list of OAuth 2.0 applications in the **Integrations** menu. Must be a valid URL and start with `http://` or `https://`.
+9. Add **Callback URLs**: These are the URL(s) to which Mattermost will redirect users after accepting or denying authorization of your application, and which will be the only URL(s) that handle authorization codes or access tokens. If more than one URL is specified, users will be redirected to the URL used for the initial authorization of the app. Each URL must be on a separate line and start with `http://` or `https://`.
+10. Select **Save** to create the application.
 
     ![image](oauth2_app_screen.png)
 
-10. You'll be provided with a **Client ID**, **Client Secret**, and the authorized redirect URLs. Save these values and use them in your application to connect it to Mattermost.
+11. You'll be provided with a **Client ID**, **Client Secret**, and the authorized redirect URLs. Save these values and use them in your application to connect it to Mattermost.
 
     ![image](oauth2_confirmation_screen.png)
 
@@ -100,10 +101,10 @@ Mattermost supports the {{< newtabref href="https://oauth.net/2/grant-types/auth
 
 ### Flow support by client type
 
-| Client Type         | Authorization Code Flow | Implicit Flow | PKCE Required       |
-|---------------------|-------------------------|---------------|---------------------|
-| Public Client       | Supported               | Supported     | YES (code flow only)|
-| Confidential Client | Supported               | Supported     | Optional            |
+| Client Type         | Authorization Code Flow | Implicit Flow | PKCE Required        |
+|---------------------|-------------------------|---------------|----------------------|
+| Public Client       | Supported               | Supported     | YES (code flow only) |
+| Confidential Client | Supported               | Supported     | Optional             |
 
 **Key notes:**
 
