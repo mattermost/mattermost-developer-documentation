@@ -16150,6 +16150,71 @@ paths:
           $ref: '#/components/responses/NotFound'
         "501":
           $ref: '#/components/responses/NotImplemented'
+  /.well-known/oauth-authorization-server:
+    get:
+      tags:
+        - OAuth
+      summary: Get OAuth 2.0 Authorization Server Metadata
+      description: >
+        Get the OAuth 2.0 Authorization Server Metadata as defined in RFC 8414. This endpoint provides metadata about the OAuth 2.0 authorization server's configuration, including supported endpoints, grant types, response types, and authentication methods.
+
+        ##### Permissions
+
+        No authentication required. This endpoint is publicly accessible to allow OAuth clients to discover the authorization server's configuration.
+
+        ##### Notes
+
+        - This endpoint implements RFC 8414 (OAuth 2.0 Authorization Server Metadata) - The metadata is dynamically generated based on the server's configuration - OAuth Service Provider must be enabled in system settings for this endpoint to be available
+
+      operationId: GetAuthorizationServerMetadata
+      responses:
+        "200":
+          description: Metadata retrieval successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationServerMetadata'
+        "501":
+          description: OAuth Service Provider is not enabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppError'
+  /api/v4/oauth/apps/register:
+    post:
+      tags:
+        - OAuth
+      summary: Register OAuth client using Dynamic Client Registration
+      description: >
+        Register an OAuth 2.0 client application using Dynamic Client Registration (DCR) as defined in RFC 7591. This endpoint allows clients to register without requiring administrative approval.
+
+        ##### Permissions
+
+        No authentication required. This endpoint implements the OAuth 2.0 Dynamic Client Registration Protocol and can be called by unauthenticated clients.
+
+        ##### Notes
+
+        - This endpoint follows RFC 7591 (OAuth 2.0 Dynamic Client Registration Protocol) - The `client_uri` field, when provided, will be mapped to the OAuth app's homepage - All registered clients are marked as dynamically registered - Dynamic client registration must be enabled in system settings
+
+      operationId: RegisterOAuthClient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRegistrationRequest'
+        description: OAuth client registration request
+        required: true
+      responses:
+        "201":
+          description: Client registration successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientRegistrationResponse'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
   /api/v4/users/{user_id}/oauth/apps/authorized:
     get:
       tags:
@@ -27401,6 +27466,112 @@ components:
           type: integer
           description: The last time of update for the application
           format: int64
+    ClientRegistrationRequest:
+      type: object
+      description: OAuth 2.0 Dynamic Client Registration request as defined in RFC 7591
+      required:
+        - redirect_uris
+      properties:
+        redirect_uris:
+          type: array
+          items:
+            type: string
+          description: Array of redirection URI strings for use in redirect-based flows such as the authorization code and implicit flows
+          minItems: 1
+        client_name:
+          type: string
+          description: Human-readable string name of the client to be presented to the end-user during authorization
+          maxLength: 64
+        client_uri:
+          type: string
+          description: URL string of a web page providing information about the client
+          maxLength: 256
+          format: uri
+    ClientRegistrationResponse:
+      type: object
+      description: OAuth 2.0 Dynamic Client Registration response as defined in RFC 7591
+      properties:
+        client_id:
+          type: string
+          description: OAuth 2.0 client identifier string
+        client_secret:
+          type: string
+          description: OAuth 2.0 client secret string
+        redirect_uris:
+          type: array
+          items:
+            type: string
+          description: Array of the registered redirection URI strings
+        token_endpoint_auth_method:
+          type: string
+          description: String indicator of the requested authentication method for the token endpoint
+          enum:
+            - client_secret_post
+            - none
+        grant_types:
+          type: array
+          items:
+            type: string
+          description: Array of OAuth 2.0 grant type strings that the client can use at the token endpoint
+        response_types:
+          type: array
+          items:
+            type: string
+          description: Array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint
+        scope:
+          type: string
+          description: Space-separated list of scope values that the client can use when requesting access tokens
+        client_name:
+          type: string
+          description: Human-readable string name of the client to be presented to the end-user during authorization
+        client_uri:
+          type: string
+          description: URL string of a web page providing information about the client
+          format: uri
+    AuthorizationServerMetadata:
+      type: object
+      description: OAuth 2.0 Authorization Server Metadata as defined in RFC 8414
+      properties:
+        issuer:
+          type: string
+          description: The authorization server's issuer identifier, which is a URL that uses the "https" scheme
+        authorization_endpoint:
+          type: string
+          description: URL of the authorization server's authorization endpoint
+        token_endpoint:
+          type: string
+          description: URL of the authorization server's token endpoint
+        response_types_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of the OAuth 2.0 response_type values that this authorization server supports
+        registration_endpoint:
+          type: string
+          description: URL of the authorization server's OAuth 2.0 Dynamic Client Registration endpoint
+        scopes_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of the OAuth 2.0 scope values that this authorization server supports
+        grant_types_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of the OAuth 2.0 grant type values that this authorization server supports
+        token_endpoint_auth_methods_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of client authentication methods supported by the token endpoint
+        code_challenge_methods_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of PKCE code challenge methods supported by this authorization server
+      required:
+        - issuer
+        - response_types_supported
     Job:
       type: object
       properties:
@@ -29332,11 +29503,11 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
-              ReviewerIds: []
               Enabled: true
-            u1ujk34a47gfxp856pdczs9gey:
               ReviewerIds: []
+            u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
+              ReviewerIds: []
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
