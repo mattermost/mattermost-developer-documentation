@@ -8784,12 +8784,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - shared channels
+        - channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.11
+        __Minimum server version__: 10.10
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -15916,6 +15916,9 @@ paths:
                 is_trusted:
                   type: boolean
                   description: Set this to `true` to skip asking users for permission
+                is_public:
+                  type: boolean
+                  description: Set this to `true` to create a public client (no client secret). Public clients must use PKCE for authorization.
         description: OAuth application to register
         required: true
       responses:
@@ -29506,8 +29509,8 @@ components:
               Enabled: true
               ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              Enabled: false
               ReviewerIds: []
+              Enabled: false
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
