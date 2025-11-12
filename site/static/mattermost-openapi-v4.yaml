@@ -8784,12 +8784,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - channels
+        - shared channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.10
+        __Minimum server version__: 10.11
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -25422,11 +25422,11 @@ components:
           additionalProperties: true
           example:
             visibility: when_set
+            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
@@ -29506,8 +29506,8 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
-              Enabled: true
               ReviewerIds: []
+              Enabled: true
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
               ReviewerIds: []
