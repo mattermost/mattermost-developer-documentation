@@ -21,11 +21,11 @@ When sending an attachment, you can use any of the following to format how you w
 
 ![image](attachments-color.png)
 
-`pretext`: An optional line of text that will be shown above the attachment.
+`pretext`: An optional line of text that will be shown above the attachment. Supports @mentions.
 
 ![image](attachments-pretext.png)
 
-`text`: The text to be included in the attachment. It can be formatted using {{< newtabref href="https://docs.mattermost.com/help/messaging/formatting-text.html" title="Markdown" >}}. For long texts, the message is collapsed and a “Show More” link is added to expand the message.
+`text`: The text to be included in the attachment. It can be formatted using {{< newtabref href="https://docs.mattermost.com/help/messaging/formatting-text.html" title="Markdown" >}}. For long texts, the message is collapsed and a “Show More” link is added to expand the message. Supports @mentions.
 
 ![image](attachments-text.png)
 
@@ -53,7 +53,7 @@ Fields can be included as an optional array within `attachments`, and are used t
 
 `title`: A title shown in the table above the `value`.  As of v5.14 a title will render emojis properly.
 
-`value`: The text value of the field. It can be formatted using {{< newtabref href="https://docs.mattermost.com/help/messaging/formatting-text.html" title="Markdown" >}}.
+`value`: The text value of the field. It can be formatted using {{< newtabref href="https://docs.mattermost.com/help/messaging/formatting-text.html" title="Markdown" >}}. Supports @mentions.
 
 `short`: Optionally set to true or false (boolean) to indicate whether the `value` is short enough to be displayed beside other values.
 

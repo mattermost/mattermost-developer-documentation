@@ -5,4 +5,4 @@ description: Quick reference
 weight: 90
 ---
 
-This reference section contains information on integrating Apps and plugins with Mattermost, including Server SDK, Web App SDK, and REST API references.
+This reference section contains information on integrating plugins with Mattermost, including Server SDK, Web App SDK, and REST API references.

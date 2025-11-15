@@ -14,6 +14,23 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 | Version | Release date       | MVP                                                                               |
 |---------|--------------------|-----------------------------------------------------------------------------------|
+| 11.1    | November 14, 2025  | {{< newtabref href="https://github.com/Victor-Nyagudi" title="Vicktor" >}}  
+| 11.0    | October 16, 2025   | {{< newtabref href="https://github.com/kayazeren" title="Kaya Zeren" >}}  
+| 10.12   | September 16, 2025 | {{< newtabref href="https://github.com/panoramix360" title="Lucas Reis" >}}  
+| 10.11   | August 15, 2025    | {{< newtabref href="https://github.com/neflyte" title="Alan Lew" >}} 
+| 10.10   | July 16, 2025      | {{< newtabref href="https://github.com/AulakhHarsh" title="Harsh Aulakh" >}} 
+| 10.9    | June 16, 2025      | {{< newtabref href="https://translate.mattermost.com/user/pineoak-audio/" title="Pineoak" >}} 
+| 10.8    | May 16, 2025       | {{< newtabref href="https://github.com/panoramix360" title="Lucas Reis" >}}  
+| 10.7    | April 16, 2025     | {{< newtabref href="https://github.com/cinlloc" title="Clément Collin" >}}  
+| 10.6    | March 14, 2025     | {{< newtabref href="https://github.com/Victor-Nyagudi" title="Vicktor" >}}  
+| 10.5    | February 19, 2025  | {{< newtabref href="https://github.com/TheInvincibleRalph" title="TheInvincible" >}}  
+| 10.4    | January 16, 2025   | {{< newtabref href="https://github.com/RS-labhub" title="Rohan Sharma" >}}  
+| 10.3    | December 16, 2024  | {{< newtabref href="https://github.com/KuSh" title="Nicolas Le Cam" >}}
+| 10.2    | November 15, 2024  | {{< newtabref href="https://github.com/tanmaythole" title="Tanmay Thole" >}} and {{< newtabref href="https://github.com/Rutam21" title="Rutam Prita Mishra" >}}  
+| 10.1    | October 16, 2024   | {{< newtabref href="https://github.com/Gesare5" title="Ivy Gesare" >}}  
+| 10.0    | September 16, 2024 | {{< newtabref href="https://github.com/Camillarhi" title="Rita Anene" >}}  
+| 9.11    | August 16, 2024    | {{< newtabref href="https://github.com/Aryakoste" title="Arya Khochare" >}}  
+| 9.10    | July 16, 2024      | {{< newtabref href="https://translate.mattermost.com/user/frankps" title="Frank Paul Silye" >}}  
 | 9.9     | June 14, 2024      | {{< newtabref href="https://github.com/annaos" title="Anna Os" >}} and {{< newtabref href="https://github.com/ezekielchow" title="Ezekiel" >}}  
 | 9.8     | May 16, 2024       | {{< newtabref href="https://github.com/varghesejose2020" title="Varghese Jose" >}}  
 | 9.7     | April 16, 2024     | {{< newtabref href="https://github.com/tanmaythole" title="Tanmay Thole" >}}  

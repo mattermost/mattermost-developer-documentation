@@ -18,7 +18,7 @@ The {{<newtabref title="Mattermost web Marketplace" href="https://mattermost.com
 
 ## Submit your contribution for the web Marketplace
 
-Please fill out the information in {{<newtabref title="this form" href="https://forms.gle/PX6BwUF1QEkRjxDw7">}} to be reviewed by a member of the Mattermost team.
+Please fill out the information in {{<newtabref title="this form" href="https://forms.office.com/r/uw8QZLeSD5">}} to be reviewed by a member of the Mattermost team.
 
 Every contribution goes through the following checklist before being added to the web Marketplace at {{<newtabref title="mattermost.com/marketplace" href="https://mattermost.com/marketplace">}}:
 

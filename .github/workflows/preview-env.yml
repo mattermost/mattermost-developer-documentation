@@ -6,42 +6,10 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    uses: ./.github/workflows/preview-env-template.yml
     if: github.event.pull_request.head.repo.full_name == github.repository
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: true
-          fetch-depth: 0
-
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: 0.101.0
-          extended: true
-
-      - name: Build Previews
-        run: |
-          rm -rf ./dist
-          make plugin-data
-          hugo -F -s site --baseURL http://mattermost-dev-docs-preview-pulls.s3-website-us-east-1.amazonaws.com/${{ github.event.number }}/ --destination ../dist/html
-
-      - name: Run tests
-        run: make test
-
-      - uses: shallwefootball/s3-upload-action@master
-        name: Upload Preview Env
-        with:
-          aws_key_id: ${{ secrets.AWS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_bucket: ${{ secrets.AWS_BUCKET }}
-          source_dir: ./dist/html
-          destination_dir: ${{ github.event.number }}
-
-      - name: Add comment to PR
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.number }}
-          body: |
-            Newest code from ${{ github.actor }} has been published to [preview environment](http://mattermost-dev-docs-preview-pulls.s3-website-us-east-1.amazonaws.com/${{ github.event.number }}) for Git SHA ${{ github.event.pull_request.head.sha }}
+    secrets: inherit
+    with:
+      PR_NUMBER: ${{ github.event.number }}
+      TRIGGERING_ACTOR: ${{ github.event.pull_request.head.user.login }}
+      COMMIT_SHA: ${{ github.event.pull_request.head.sha }}

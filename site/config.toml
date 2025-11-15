@@ -32,8 +32,8 @@ enableEmoji = true
 
   [params.notification]
     enable = true
-    url = "https://mattermost.com/webinar/ai-collaboration-landscape-of-tomorrow/"
-    text = "[WEBINAR] How AI is Transforming Mission-Critical Work"
+    url = "https://mattermost.com/blog/mattermost-v11-powering-more-mission-critical-collaboration/"
+    text = "Mattermost v11.0 is now available! Learn what's new »"
 
   [params.search]
     enable = true
@@ -125,6 +125,14 @@ enableEmoji = true
     url = "integrate/getting-started/"
     button = "Integrate Today"
     icon = "img/home/IntegrateExtend.svg"
+    draft = false
+
+  [[params.intro.item]]
+    title = "API Documentation"
+    description = "Explore the Mattermost API documentation with interactive examples."
+    url = "api-documentation"
+    button = "View API docs"
+    icon = "img/home/apidocs.png"
     draft = false
 
   #[params.intro.video]

@@ -66,7 +66,7 @@ If you are a core committer seeking a review
 6. After UX review, request a review from two core committers.
     * The choice of core committers is up to you.
         - When picking your first core committer, consider someone with domain expertise relative to your changes. Sometimes GitHub will recommend a recent editor of the code, but often you must rely on your own intuition from past interactions.
-        - When picking your second core committer, consider someone who may have expertise in the language you're using or the problem you're solving, even if they aren't intricately familiar with the codebase. This can provide a fresh set of eyes on the code to reveal blindspots that are not biased by hitting deadlines, and helps expose the team to new parts of the code to help spread out domain knowledge. This may not make sense for every pull request but is a practice to keep in mind.
+        - When picking your second core committer, consider someone who may have expertise in the language you're using or the problem you're solving, even if they aren't intricately familiar with the codebase. This can provide a fresh set of eyes on the code to reveal blindspots that are not biased by hitting deadlines, and helps expose the team to new parts of the code to help spread out domain knowledge. This may not make sense for every pull request but is a practice to keep in mind. If you don't have someone specific in mind, consider using the [`@core-reviewers`](https://github.com/orgs/mattermost/teams/core-reviewers) group to assign an available reviewer automatically.
         - Don't be afraid to pick someone who gives "hard" reviews. Code review feedback is never a personal attack: it should "sharpen" the skills of both the author and the reviewers, not to mention improving the quality of the product.
         - Try to avoid assigning the same person to all of your reviews unless they are related.
         - When in doubt, ask for recommendations on our community server.
@@ -130,12 +130,16 @@ If you are a core committer asked to give a review
 4. Avoid leaving a review hanging.
     * Try to accept or reject the review instead of just leaving comments.
     * If you are the last developer to approve the changes, consider requesting a review from the appropriate QA tester to speed up the process.
-5. Merge the pull request.
+6. Run the E2E tests against the PR code
+    * After the PR has been reviewed, the reviewer should trigger an E2E test run on it by using [one of the available mechanisms](https://mattermost.atlassian.net/wiki/spaces/CLOUD/pages/2627371043/E2E+Tests). The E2E Test result will be posted back to the PR as a comment.
+    * It's the PR author's responsibility to address the E2E test failures, with the assistance of the reviewers.
+    * Core committers can refer to [this Confluence page](https://mattermost.atlassian.net/wiki/spaces/CLOUD/pages/2627371043/E2E+Tests) for additional informations on E2E testing and related processes.
+7. Merge the pull request.
     * Do not merge until the labels `1: UX Review`, `2: Dev Review` and `3: QA Review` labels have been removed.
     * Add the `4: Reviews Complete` label if the last reviewer did not already add it.
     * Do not merge if there are outstanding changes requested.
     * Do not merge if there are any `Do Not Merge` labels applied.
         - When in doubt, leave the merging of the pull request to the author.
     * Merge the pull request, and delete the branch if not from a fork.
-6. Handle any cherry-picks.
+8. Handle any cherry-picks.
     * There is an automated cherry-pick process and the author of the pull request should make sure the cherry-pick succeeds. Assume this is the case unless you are explicitly asked to help cherry-pick.
