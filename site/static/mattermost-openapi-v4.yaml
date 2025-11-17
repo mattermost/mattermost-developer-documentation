@@ -421,6 +421,8 @@ tags:
     description: Endpoints related to metrics, including the Client Performance Monitoring feature.
   - name: audit_logs
     description: Endpoints for managing audit log certificates and configuration.
+  - name: ai
+    description: Endpoints for interacting with AI agents and services.
   - name: Playbooks
     description: Playbooks
   - name: PlaybookRuns
@@ -9963,6 +9965,74 @@ paths:
           $ref: '#/components/responses/NotFound'
         "501":
           $ref: '#/components/responses/NotImplemented'
+  /api/v4/posts/rewrite:
+    post:
+      tags:
+        - posts
+      summary: Rewrite a message using AI
+      description: >
+        Rewrite a message using AI based on the specified action. The message will be processed by an AI agent and returned in a rewritten form.
+
+        ##### Permissions
+
+        Must be authenticated.
+
+        __Minimum server version__: 11.2
+
+      operationId: RewriteMessage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - agent_id
+                - message
+                - action
+              properties:
+                agent_id:
+                  type: string
+                  description: The ID of the AI agent to use for rewriting
+                message:
+                  type: string
+                  description: The message text to rewrite
+                action:
+                  type: string
+                  description: The rewrite action to perform
+                  enum:
+                    - custom
+                    - shorten
+                    - elaborate
+                    - improve_writing
+                    - fix_spelling
+                    - simplify
+                    - summarize
+                custom_prompt:
+                  type: string
+                  description: Custom prompt for rewriting. Required when action is "custom", optional otherwise.
+        description: Rewrite request object
+        required: true
+      responses:
+        "200":
+          description: Message rewritten successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rewritten_text:
+                    type: string
+                    description: The rewritten message text
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppError'
   /api/v4/users/{user_id}/preferences:
     get:
       tags:
@@ -12637,6 +12707,9 @@ paths:
                 icon_url:
                   type: string
                   description: The profile picture this incoming webhook will use when posting.
+                channel_locked:
+                  type: boolean
+                  description: Whether the webhook is locked to the channel.
         description: Incoming webhook to be created
         required: true
       responses:
@@ -12821,6 +12894,9 @@ paths:
                 icon_url:
                   type: string
                   description: The profile picture this incoming webhook will use when posting.
+                channel_locked:
+                  type: boolean
+                  description: Whether the webhook is locked to the channel.
         description: Incoming webhook to be updated
         required: true
       responses:
@@ -14124,30 +14200,24 @@ paths:
             schema:
               type: object
               required:
-                - group
+                - name
+                - display_name
+                - source
+                - allow_reference
                 - user_ids
               properties:
-                group:
-                  type: object
-                  required:
-                    - name
-                    - display_name
-                    - source
-                    - allow_reference
-                  description: Group object to create.
-                  properties:
-                    name:
-                      type: string
-                      description: The unique group name used for at-mentioning.
-                    display_name:
-                      type: string
-                      description: The display name of the group which can include spaces.
-                    source:
-                      type: string
-                      description: Must be `custom`
-                    allow_reference:
-                      type: boolean
-                      description: Must be true
+                name:
+                  type: string
+                  description: The unique group name used for at-mentioning.
+                display_name:
+                  type: string
+                  description: The display name of the group which can include spaces.
+                source:
+                  type: string
+                  description: Must be `custom`
+                allow_reference:
+                  type: boolean
+                  description: Must be true
                 user_ids:
                   type: array
                   description: The user ids of the group members to add.
@@ -15809,6 +15879,9 @@ paths:
                 is_trusted:
                   type: boolean
                   description: Set this to `true` to skip asking users for permission
+                is_public:
+                  type: boolean
+                  description: Set this to `true` to create a public client (no client secret). Public clients must use PKCE for authorization.
         description: OAuth application to register
         required: true
       responses:
@@ -16078,6 +16151,71 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "404":
           $ref: '#/components/responses/NotFound'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
+  /.well-known/oauth-authorization-server:
+    get:
+      tags:
+        - OAuth
+      summary: Get OAuth 2.0 Authorization Server Metadata
+      description: >
+        Get the OAuth 2.0 Authorization Server Metadata as defined in RFC 8414. This endpoint provides metadata about the OAuth 2.0 authorization server's configuration, including supported endpoints, grant types, response types, and authentication methods.
+
+        ##### Permissions
+
+        No authentication required. This endpoint is publicly accessible to allow OAuth clients to discover the authorization server's configuration.
+
+        ##### Notes
+
+        - This endpoint implements RFC 8414 (OAuth 2.0 Authorization Server Metadata) - The metadata is dynamically generated based on the server's configuration - OAuth Service Provider must be enabled in system settings for this endpoint to be available
+
+      operationId: GetAuthorizationServerMetadata
+      responses:
+        "200":
+          description: Metadata retrieval successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationServerMetadata'
+        "501":
+          description: OAuth Service Provider is not enabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppError'
+  /api/v4/oauth/apps/register:
+    post:
+      tags:
+        - OAuth
+      summary: Register OAuth client using Dynamic Client Registration
+      description: >
+        Register an OAuth 2.0 client application using Dynamic Client Registration (DCR) as defined in RFC 7591. This endpoint allows clients to register without requiring administrative approval.
+
+        ##### Permissions
+
+        No authentication required. This endpoint implements the OAuth 2.0 Dynamic Client Registration Protocol and can be called by unauthenticated clients.
+
+        ##### Notes
+
+        - This endpoint follows RFC 7591 (OAuth 2.0 Dynamic Client Registration Protocol) - The `client_uri` field, when provided, will be mapped to the OAuth app's homepage - All registered clients are marked as dynamically registered - Dynamic client registration must be enabled in system settings
+
+      operationId: RegisterOAuthClient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRegistrationRequest'
+        description: OAuth client registration request
+        required: true
+      responses:
+        "201":
+          description: Client registration successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientRegistrationResponse'
+        "400":
+          $ref: '#/components/responses/BadRequest'
         "501":
           $ref: '#/components/responses/NotImplemented'
   /api/v4/users/{user_id}/oauth/apps/authorized:
@@ -18447,12 +18585,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - channels
+        - shared channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.10
+        __Minimum server version__: 10.11
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -22524,6 +22662,58 @@ paths:
           description: Internal server error.
         "501":
           description: Feature is disabled either via config or an Enterprise Advanced license is not available.
+  /api/v4/agents:
+    get:
+      tags:
+        - agents
+      summary: Get available agents
+      description: >
+        Retrieve all available agents from the plugin's bridge API. If a user ID is provided, only agents accessible to that user are returned.
+
+        ##### Permissions
+
+        Must be authenticated.
+
+        __Minimum server version__: 11.2
+
+      operationId: GetAgents
+      responses:
+        "200":
+          description: Agents retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentsResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/llmservices:
+    get:
+      tags:
+        - agents
+      summary: Get available LLM services
+      description: >
+        Retrieve all available LLM services from the plugin's bridge API. If a user ID is provided, only services accessible to that user (via their permitted bots) are returned.
+
+        ##### Permissions
+
+        Must be authenticated.
+
+        __Minimum server version__: 11.2
+
+      operationId: GetLLMServices
+      responses:
+        "200":
+          description: LLM services retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicesResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
   /plugins/playbooks/api/v0/runs:
     get:
       summary: List all playbook runs
@@ -25231,12 +25421,12 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
-            visibility: when_set
             sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
+            visibility: when_set
     PropertyFieldPatch:
       type: object
       properties:
@@ -27279,6 +27469,112 @@ components:
           type: integer
           description: The last time of update for the application
           format: int64
+    ClientRegistrationRequest:
+      type: object
+      description: OAuth 2.0 Dynamic Client Registration request as defined in RFC 7591
+      required:
+        - redirect_uris
+      properties:
+        redirect_uris:
+          type: array
+          items:
+            type: string
+          description: Array of redirection URI strings for use in redirect-based flows such as the authorization code and implicit flows
+          minItems: 1
+        client_name:
+          type: string
+          description: Human-readable string name of the client to be presented to the end-user during authorization
+          maxLength: 64
+        client_uri:
+          type: string
+          description: URL string of a web page providing information about the client
+          maxLength: 256
+          format: uri
+    ClientRegistrationResponse:
+      type: object
+      description: OAuth 2.0 Dynamic Client Registration response as defined in RFC 7591
+      properties:
+        client_id:
+          type: string
+          description: OAuth 2.0 client identifier string
+        client_secret:
+          type: string
+          description: OAuth 2.0 client secret string
+        redirect_uris:
+          type: array
+          items:
+            type: string
+          description: Array of the registered redirection URI strings
+        token_endpoint_auth_method:
+          type: string
+          description: String indicator of the requested authentication method for the token endpoint
+          enum:
+            - client_secret_post
+            - none
+        grant_types:
+          type: array
+          items:
+            type: string
+          description: Array of OAuth 2.0 grant type strings that the client can use at the token endpoint
+        response_types:
+          type: array
+          items:
+            type: string
+          description: Array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint
+        scope:
+          type: string
+          description: Space-separated list of scope values that the client can use when requesting access tokens
+        client_name:
+          type: string
+          description: Human-readable string name of the client to be presented to the end-user during authorization
+        client_uri:
+          type: string
+          description: URL string of a web page providing information about the client
+          format: uri
+    AuthorizationServerMetadata:
+      type: object
+      description: OAuth 2.0 Authorization Server Metadata as defined in RFC 8414
+      properties:
+        issuer:
+          type: string
+          description: The authorization server's issuer identifier, which is a URL that uses the "https" scheme
+        authorization_endpoint:
+          type: string
+          description: URL of the authorization server's authorization endpoint
+        token_endpoint:
+          type: string
+          description: URL of the authorization server's token endpoint
+        response_types_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of the OAuth 2.0 response_type values that this authorization server supports
+        registration_endpoint:
+          type: string
+          description: URL of the authorization server's OAuth 2.0 Dynamic Client Registration endpoint
+        scopes_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of the OAuth 2.0 scope values that this authorization server supports
+        grant_types_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of the OAuth 2.0 grant type values that this authorization server supports
+        token_endpoint_auth_methods_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of client authentication methods supported by the token endpoint
+        code_challenge_methods_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of PKCE code challenge methods supported by this authorization server
+      required:
+        - issuer
+        - response_types_supported
     Job:
       type: object
       properties:
@@ -28633,6 +28929,52 @@ components:
         bytes:
           type: number
           description: Total file storage usage for the instance in bytes rounded down to the most significant digit
+    BridgeAgentInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the agent
+        displayName:
+          type: string
+          description: Human-readable name for the agent
+        username:
+          type: string
+          description: Username associated with the agent bot
+        service_id:
+          type: string
+          description: ID of the service providing this agent
+        service_type:
+          type: string
+          description: Type of the service (e.g., openai, anthropic)
+    BridgeServiceInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the LLM service
+        name:
+          type: string
+          description: Name of the LLM service
+        type:
+          type: string
+          description: Type of the service (e.g., openai, anthropic, azure)
+    AgentsResponse:
+      type: object
+      properties:
+        agents:
+          type: array
+          items:
+            $ref: '#/components/schemas/BridgeAgentInfo'
+          description: List of available agents
+    ServicesResponse:
+      type: object
+      properties:
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/BridgeServiceInfo'
+          description: List of available LLM services
     PostAcknowledgement:
       type: object
       properties:

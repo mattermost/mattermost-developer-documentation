@@ -14,6 +14,7 @@ The title of “Most Valued Professional” is awarded to an outstanding contrib
 
 | Version | Release date       | MVP                                                                               |
 |---------|--------------------|-----------------------------------------------------------------------------------|
+| 11.1    | November 14, 2025  | {{< newtabref href="https://github.com/Victor-Nyagudi" title="Vicktor" >}}  
 | 11.0    | October 16, 2025   | {{< newtabref href="https://github.com/kayazeren" title="Kaya Zeren" >}}  
 | 10.12   | September 16, 2025 | {{< newtabref href="https://github.com/panoramix360" title="Lucas Reis" >}}  
 | 10.11   | August 15, 2025    | {{< newtabref href="https://github.com/neflyte" title="Alan Lew" >}} 
