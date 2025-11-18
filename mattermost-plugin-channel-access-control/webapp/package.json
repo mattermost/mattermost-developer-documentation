@@ -1,0 +1,28 @@
+{
+  "name": "channel-access-control-webapp",
+  "version": "1.0.0",
+  "description": "Webapp component for Channel Access Control plugin",
+  "main": "src/index.jsx",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --watch",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "mattermost",
+    "plugin"
+  ],
+  "author": "Mattermost",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@babel/core": "^7.22.0",
+    "@babel/preset-react": "^7.22.0",
+    "babel-loader": "^9.1.2",
+    "webpack": "^5.85.0",
+    "webpack-cli": "^5.1.0"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}

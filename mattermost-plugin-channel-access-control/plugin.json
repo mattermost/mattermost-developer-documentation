@@ -1,0 +1,51 @@
+{
+    "id": "com.mattermost.channel-access-control",
+    "name": "Channel Access Control",
+    "description": "Restricts channel posting access to whitelisted users",
+    "version": "1.0.0",
+    "min_server_version": "5.20.0",
+    "server": {
+        "executables": {
+            "linux-amd64": "server/dist/plugin-linux-amd64",
+            "darwin-amd64": "server/dist/plugin-darwin-amd64",
+            "windows-amd64": "server/dist/plugin-windows-amd64.exe"
+        }
+    },
+    "webapp": {
+        "bundle_path": "webapp/dist/main.js"
+    },
+    "settings_schema": {
+        "header": "Configure channel access restrictions. Users not in the whitelist will be unable to post in restricted channels.",
+        "footer": "Configuration is saved automatically.",
+        "settings": [
+            {
+                "key": "Enabled",
+                "display_name": "Enable Plugin",
+                "type": "bool",
+                "help_text": "When true, the plugin will restrict channel access based on configured rules.",
+                "default": false
+            },
+            {
+                "key": "ChannelRules",
+                "display_name": "Channel Access Rules",
+                "type": "longtext",
+                "help_text": "JSON configuration for channel access rules. Format: {\"channel_id\": [\"user_id1\", \"user_id2\"]}. Example: {\"channelid123\": [\"userid1\", \"userid2\"], \"channelid456\": [\"userid3\"]}",
+                "default": "{}"
+            },
+            {
+                "key": "BlockMessage",
+                "display_name": "Block Message",
+                "type": "text",
+                "help_text": "Message to display when a user is blocked from posting.",
+                "default": "You do not have permission to post in this channel."
+            },
+            {
+                "key": "AdminBypass",
+                "display_name": "Allow System Admins to Bypass",
+                "type": "bool",
+                "help_text": "When true, system administrators can post in any restricted channel.",
+                "default": true
+            }
+        ]
+    }
+}
