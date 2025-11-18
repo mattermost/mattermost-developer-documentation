@@ -20756,8 +20756,8 @@ paths:
                 summary: Subsequent page using cursor
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  per_page: 100
                   cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
+                  per_page: 100
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
@@ -20769,8 +20769,8 @@ paths:
                 summary: Descending order from recent
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   sort_direction: desc
+                  cursor: ""
                   per_page: 100
       responses:
         "200":
@@ -20805,9 +20805,9 @@ paths:
                         message: First post
                         create_at: 1635638400000
                       post_id_2:
-                        id: post_id_2
                         message: Second post
                         create_at: 1635638500000
+                        id: post_id_2
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -20815,9 +20815,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
+                        create_at: 1635724800000
                         id: post_id_99
                         message: Last post
-                        create_at: 1635724800000
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -25654,12 +25654,12 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
+            visibility: when_set
             sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            visibility: when_set
     PropertyFieldPatch:
       type: object
       properties:
