@@ -2514,6 +2514,52 @@ paths:
           $ref: '#/components/responses/NotFound'
         "501":
           $ref: '#/components/responses/NotImplemented'
+  /api/v4/users/login/type:
+    post:
+      tags:
+        - users
+      summary: Get login authentication type
+      description: >
+        Get the authentication service type (auth_service) for a user to determine how they should authenticate. This endpoint is typically used in the login flow to determine which authentication method to use.
+
+
+        For this version, the endpoint only returns a non-empty `auth_service` if the user has magic_link enabled. For all other authentication methods (email/password, OAuth, SAML, LDAP), an empty string is returned.
+
+        ##### Permissions
+
+        No permission required
+
+      operationId: GetLoginType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  description: The user ID (optional, can be used with login_id)
+                  type: string
+                login_id:
+                  description: The login ID (email, username, or unique identifier)
+                  type: string
+                device_id:
+                  description: The device ID for audit logging purposes
+                  type: string
+        description: Login type request object
+        required: true
+      responses:
+        "200":
+          description: Login type retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  auth_service:
+                    description: The authentication service type. Returns the actual service type if guest_magic_link is enabled (in which case a magic link is also sent to the user's email). Returns an empty string for all other authentication methods.
+                    type: string
+        "400":
+          $ref: '#/components/responses/BadRequest'
   /api/v4/users/{user_id}/tokens:
     post:
       tags:
@@ -18585,12 +18631,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - shared channels
+        - channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.11
+        __Minimum server version__: 10.10
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -20761,9 +20807,9 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  cursor: ""
-                  start_time: 1635638400000
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  start_time: 1635638400000
+                  cursor: ""
                   per_page: 100
               descending_order:
                 summary: Descending order from recent
@@ -20800,14 +20846,14 @@ paths:
                   summary: Response with more pages available
                   value:
                     posts:
-                      post_id_2:
-                        id: post_id_2
-                        message: Second post
-                        create_at: 1635638500000
                       post_id_1:
+                        create_at: 1635638400000
                         id: post_id_1
                         message: First post
-                        create_at: 1635638400000
+                      post_id_2:
+                        create_at: 1635638500000
+                        id: post_id_2
+                        message: Second post
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -20815,9 +20861,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
-                        create_at: 1635724800000
                         id: post_id_99
                         message: Last post
+                        create_at: 1635724800000
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
