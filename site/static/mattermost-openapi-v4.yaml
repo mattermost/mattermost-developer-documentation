@@ -18585,12 +18585,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - channels
+        - shared channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.10
+        __Minimum server version__: 10.11
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -20755,15 +20755,15 @@ paths:
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
-                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
+                  per_page: 100
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  start_time: 1635638400000
                   cursor: ""
+                  start_time: 1635638400000
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
               descending_order:
                 summary: Descending order from recent
@@ -20800,14 +20800,14 @@ paths:
                   summary: Response with more pages available
                   value:
                     posts:
-                      post_id_1:
-                        message: First post
-                        create_at: 1635638400000
-                        id: post_id_1
                       post_id_2:
                         id: post_id_2
                         message: Second post
                         create_at: 1635638500000
+                      post_id_1:
+                        id: post_id_1
+                        message: First post
+                        create_at: 1635638400000
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -22451,6 +22451,40 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "500":
           $ref: '#/components/responses/InternalServerError'
+  /api/v4/access_control_policies/activate:
+    put:
+      tags:
+        - access control
+      summary: Activate or deactivate access control policies
+      description: |
+        Updates the active status of access control policies.
+
+        ##### Permissions
+        Must have the `manage_system` permission. OR be a channel admin with manage_channel_access_rules permission for the specified channels.
+      operationId: UpdateAccessControlPoliciesActive
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessControlPolicyActiveUpdateRequest'
+      responses:
+        "200":
+          description: Access control policies active status updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessControlPolicy'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
   /api/v4/content_flagging/flag/config:
     get:
       summary: Get content flagging configuration
@@ -29766,6 +29800,22 @@ components:
       required:
         - Enabled
         - ReviewerIds
+    AccessControlPolicyActiveUpdateRequest:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccessControlPolicyActiveUpdate'
+    AccessControlPolicyActiveUpdate:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the policy.
+        active:
+          type: boolean
+          description: The active status of the policy.
     PlaybookRun:
       type: object
       properties:
