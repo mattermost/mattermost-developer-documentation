@@ -26,7 +26,7 @@ Follow this checklist for submitting a pull request (PR):
     - {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/webapp/channels/src/i18n/en.json" title="mattermost/webapp/channels/src/i18n/en.json" >}}
     - {{< newtabref href="https://github.com/mattermost/mattermost-mobile/blob/master/assets/base/i18n/en.json" title="mattermost-mobile/assets/base/i18n/en.json" >}}
 
-    5.1. In the webapp repository run `make i18n-extract` to generate the new/updated strings.
+    5.1. In the webapp/channels repository run `npm run i18n-extract` to generate the new/updated strings.
 6. The PR is submitted against the Mattermost `master` branch from your fork.
 7. The PR title begins with the Jira or GitHub ticket ID (e.g. `[MM-394]` or `[GH-394]`) and summary template is filled out.
 8. If your PR adds or changes a RESTful API endpoint, please update the {{< newtabref href="https://github.com/mattermost/mattermost/tree/master/api" title="API documentation" >}}.
