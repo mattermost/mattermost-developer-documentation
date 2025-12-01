@@ -287,6 +287,7 @@ $function$;
 2. Run `make migrations-extract` to add your new migrations to the `db/migrations/migrations.list` file. This will ensure that there will be merge conflicts in case there is a conflict on migration sequence numbers with the master branch. Since we don't want to have a collision on version numbers of the migration files, the developer should merge the upstream branch to the feature branch just before merging so that we can be sure that there are no versioning issues. In case of a version number collision, the build process will fail and main branch will be broken until it gets fixed.
 3. When you run the mattermost/server binary, the tool will automatically apply the migration if it's required. The migration name will be saved in the `db_migrations` table.
 4. Lastly, please also measure the time taken for the migration with an eye towards resource usage. Please use the DB dumps from the ~developers-performance channel in our Community server. You will find the links in the channel header.
+5. In your PR, make sure to add release notes following the [Developer Schema Migration Template](https://docs.google.com/document/d/18lD7N32oyMtYjFrJKwsNv8yn6Fe5QtF-eMm8nn0O8tk/edit?tab=t.0).
 
 ### My migration has failed. What do I do?
 1. If you think your migration is applied, and you want to revert changes, you can run the down script to roll back in a clean way. You can use morph CLI to apply down migrations.
