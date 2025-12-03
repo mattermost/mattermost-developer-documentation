@@ -94,7 +94,7 @@ CREATE INDEX CONCURRENTLY does not take any locks.
 
 2. ALTER TABLE ADD COLUMN
 
-Adding nullable columns already happened in constant time since version 10. And from version 11 onwards, adding non-null columns with a default value also happens in constant time. No issues seen with that.
+Adding nullable columns happens in constant time from version 10. And from version 11 onwards, adding non-null columns with a default value also happens in constant time.
 
 The catch here is to be able to handle denormalization optimizations which typically adds a new column but needs to backfill that with data before using the column. Take a look at the next section on how to achieve that.
 
@@ -108,7 +108,7 @@ However, if you MUST do this, then see the example later.
 
 4. ALTER TABLE DROP COLUMN
 
-Only metadata lock is taken. No table rewrite takes place. The space is just marked as unused and later taken up by future DB writes.
+Only a metadata lock is taken. No table rewrite takes place. The space is just marked as unused and later taken up by future DB writes.
 
 5. ALTER TABLE ADD CONSTRAINT
 
