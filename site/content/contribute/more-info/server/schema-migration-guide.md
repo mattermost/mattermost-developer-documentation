@@ -233,7 +233,7 @@ DROP TRIGGER tr_update_status_channel_count on status
 
 4. And in the ESR after that, now we can finally drop the old column.
 
-This deliberately skips renaming the column for simplicity. Depending on your use-case, you can do that if you want to. It is a fast operation that does not rebuild the table in both MySQL and PostgreSQL, so there are no issues.
+This deliberately skips renaming the column for simplicity. Depending on your use-case, you can do that if you want to. It is a fast operation that does not rebuild the table, so there are no issues.
 
 ### How do I add a unique constraint to a table
 
