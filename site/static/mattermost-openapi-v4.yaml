@@ -8830,12 +8830,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - channels
+        - shared channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.10
+        __Minimum server version__: 10.11
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -20795,20 +20795,20 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  per_page: 100
                   cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
+                  per_page: 100
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   start_time: 1635638400000
                   per_page: 100
               descending_order:
@@ -20816,8 +20816,8 @@ paths:
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  sort_direction: desc
                   per_page: 100
+                  sort_direction: desc
       responses:
         "200":
           description: Posts retrieved successfully
@@ -20845,25 +20845,25 @@ paths:
                 with_more_pages:
                   summary: Response with more pages available
                   value:
+                    next_cursor:
+                      cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                     posts:
                       post_id_1:
                         id: post_id_1
                         message: First post
                         create_at: 1635638400000
                       post_id_2:
+                        message: Second post
                         create_at: 1635638500000
                         id: post_id_2
-                        message: Second post
-                    next_cursor:
-                      cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
                   summary: Last page (no more results)
                   value:
                     posts:
                       post_id_99:
-                        create_at: 1635724800000
                         id: post_id_99
                         message: Last post
+                        create_at: 1635724800000
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -25734,11 +25734,11 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
-            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
+            sortOrder: 1
             visibility: when_set
     PropertyFieldPatch:
       type: object
