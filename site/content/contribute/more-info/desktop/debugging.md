@@ -29,7 +29,7 @@ You can access these instances by going to the **View > Developer Tools** menu (
 
 There are other `BrowserViews` that are governed seperately from the main application wrapper, including:
 - Dropdown Menu
-    - You can open this one by adding a line in the `main/teamDropdownView.ts` file. In the constructor, at the end, add:
+    - You can open this one by adding a line in the `app/mainWindow/serverDropdownView.ts` file. In the constructor, at the end, add:
         ```js
         this.view.webContents.openDevTools({mode: 'detach'});
         ```
@@ -43,7 +43,7 @@ There are other `BrowserViews` that are governed seperately from the main applic
         $env:MM_DEBUG_MODALS = 1
         ```
 - URL View
-    - You can open this one by adding a line in the `main/viewManager.ts` file. In the function `showURLView`, at the end, add:
+    - You can open this one by adding a line in the `app/views/urlView.ts` file. In the function that creates the URL view, at the end, add:
         ```js
         urlView.webContents.openDevTools({mode: 'detach'});
         ```

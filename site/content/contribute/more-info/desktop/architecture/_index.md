@@ -32,9 +32,10 @@ Mattermost Desktop
 ├── resources/ - Assets such as images or sound files that the Desktop App uses
 ├── scripts/ - Automated scripts used for building or packaging the Desktop App
 └── src/ - Application source code
+    ├── app/ - Main application code including windows, views, menus, and navigation
     ├── assets/ - Assets such as images or sound files that the Desktop App uses
     ├── common/ - Common objects and utility functions that aren't specifically tied to Electron
-    ├── main/ - The majority of the main process code, including setup for the Electron app
-    ├── renderer/ - The web code for all of the main application wrapper, modals. and server dropdown views that are used by the renderer process
+    ├── main/ - Main process utilities and services, including core Electron setup, notifications, security, etc.
+    ├── renderer/ - The web code for all of the main application wrapper, modals, and server dropdown views that are used by the renderer process
     └── types/ - Common types for use between all of the individual modules
 ```

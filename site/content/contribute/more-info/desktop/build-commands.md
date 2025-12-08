@@ -21,11 +21,8 @@ Here's a list of all the commands used by the Desktop App. These can all be foun
     * `lint:js-quiet` - Same as above, but with the --quiet option
     * `fix:js` - Save as above, but attempts to fix some of the issues
 * `test` - Builds and runs all of the automated tests for the Desktop App
-    * `test:e2e` - Builds and runs the E2E tests for the Desktop App
-        * `test:e2e:no-rebuild` - Runs the E2E tests without rebuilding the entire app
-        * `test:e2e:run` - Runs the E2E tests without building them
-        * `test:e2e:send-report` - Uploads E2E results
-    * `test:unit` - Runs the unit tests for the main module
+    * `e2e` - Builds and runs the E2E tests for the Desktop App (runs from the root, which builds the app and then executes E2E tests in the `e2e/` directory)
+    * `test:unit` - Runs the unit tests for the app module
         * `test:unit-coverage` - Runs the unit tests and displays a coverage breakdown
 
 #### Building and Running
@@ -37,9 +34,7 @@ Here's a list of all the commands used by the Desktop App. These can all be foun
 * `build-prod` - Builds the app in production mode
     * `build-prod-mas` - Builds the app in production mode for Mac App Store distribution
     * `build-prod-upgrade` - Builds the app in production mode with auto-update functionality
-* `build-test`- Builds the app for E2E testing
-    * `build-test:e2e` - Builds only the E2E tests and not the app
-    * `build-test:robotjs` - Builds the RobotJS test module for the current Electron version
+* `build-test` - Builds the app for E2E testing
 * `start` - Runs the Desktop App using the current code built in the dist/ folder
 * `restart` - Re-runs the build process and then starts the app (amalgam of build and start)
 * `watch` - Runs the app, but watches for code changes and re-compiles on the fly when a file is changed
