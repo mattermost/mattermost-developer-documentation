@@ -8830,12 +8830,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - shared channels
+        - channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.11
+        __Minimum server version__: 10.10
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -20802,14 +20802,14 @@ paths:
                 summary: Subsequent page using cursor
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
                   per_page: 100
+                  cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   start_time: 1635638400000
+                  cursor: ""
                   per_page: 100
               descending_order:
                 summary: Descending order from recent
@@ -25735,11 +25735,11 @@ components:
           additionalProperties: true
           example:
             visibility: when_set
-            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
+            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
