@@ -1502,9 +1502,9 @@ paths:
     put:
       tags:
         - users
-      summary: Update user active status
+      summary: Activate or deactivate a user
       description: >
-        Update user active or inactive status.
+        Activate or deactivate a user's account. A deactivated user can't log into Mattermost or use it without being reactivated.
 
 
         __Since server version 4.6, users using a SSO provider to login can be activated or deactivated with this endpoint. However, if their activation status in Mattermost does not reflect their status in the SSO provider, the next synchronization or login by that user will reset the activation status to that of their account in the SSO provider. Server versions 4.5 and before do not allow activation or deactivation of SSO users from this endpoint.__
@@ -1533,11 +1533,11 @@ paths:
               properties:
                 active:
                   type: boolean
-        description: Use `true` to set the user active, `false` for inactive
+        description: Use `true` to activate the user or `false` to deactivate them
         required: true
       responses:
         "200":
-          description: User active status update successful
+          description: User activation/deactivation update successful
           content:
             application/json:
               schema:
@@ -2514,6 +2514,52 @@ paths:
           $ref: '#/components/responses/NotFound'
         "501":
           $ref: '#/components/responses/NotImplemented'
+  /api/v4/users/login/type:
+    post:
+      tags:
+        - users
+      summary: Get login authentication type
+      description: >
+        Get the authentication service type (auth_service) for a user to determine how they should authenticate. This endpoint is typically used in the login flow to determine which authentication method to use.
+
+
+        For this version, the endpoint only returns a non-empty `auth_service` if the user has magic_link enabled. For all other authentication methods (email/password, OAuth, SAML, LDAP), an empty string is returned.
+
+        ##### Permissions
+
+        No permission required
+
+      operationId: GetLoginType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  description: The user ID (optional, can be used with login_id)
+                  type: string
+                login_id:
+                  description: The login ID (email, username, or unique identifier)
+                  type: string
+                device_id:
+                  description: The device ID for audit logging purposes
+                  type: string
+        description: Login type request object
+        required: true
+      responses:
+        "200":
+          description: Login type retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  auth_service:
+                    description: The authentication service type. Returns the actual service type if guest_magic_link is enabled (in which case a magic link is also sent to the user's email). Returns an empty string for all other authentication methods.
+                    type: string
+        "400":
+          $ref: '#/components/responses/BadRequest'
   /api/v4/users/{user_id}/tokens:
     post:
       tags:
@@ -18585,12 +18631,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - shared channels
+        - channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.11
+        __Minimum server version__: 10.10
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -20656,6 +20702,176 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "500":
           $ref: '#/components/responses/InternalServerError'
+  /api/v4/reports/posts:
+    post:
+      tags:
+        - reports
+      summary: Get posts for reporting and compliance purposes using cursor-based pagination
+      description: >
+        Get posts from a specific channel for reporting, compliance, and auditing purposes. This endpoint uses cursor-based pagination to efficiently retrieve large datasets.
+
+        The cursor is an opaque, base64-encoded token that contains all pagination state. Clients should treat the cursor as an opaque string and pass it back unchanged. When a cursor is provided, query parameters from the initial request are embedded in the cursor and take precedence over request body parameters.
+
+        ##### Permissions
+
+        Requires `manage_system` permission (system admin only).
+
+        ##### License
+
+        Requires an Enterprise license (or higher).
+
+        ##### Features
+
+        - Cursor-based pagination for efficient large dataset retrieval - Support for both create_at and update_at time fields - Ascending or descending sort order - Time range filtering with optional end_time - Include/exclude deleted posts - Exclude system posts (any type starting with "system_") - Optional metadata enrichment (file info, reactions, emojis, priority, acknowledgements)
+
+      operationId: GetPostsForReporting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - channel_id
+              properties:
+                channel_id:
+                  type: string
+                  description: The ID of the channel to retrieve posts from
+                cursor:
+                  type: string
+                  description: >
+                    Opaque cursor string for pagination. Omit or use empty string for the first request. For subsequent requests, use the exact cursor value from the previous response's next_cursor. The cursor is base64-encoded and contains all pagination state including time, post ID, and query parameters. Do not attempt to parse or modify the cursor value.
+
+                  default: ""
+                start_time:
+                  type: integer
+                  format: int64
+                  description: >
+                    Optional start time for query range in Unix milliseconds. Only used for the first request (ignored when cursor is provided). - For "asc" (ascending): starts retrieving from this time going forward - For "desc" (descending): starts retrieving from this time going backward If omitted, defaults to 0 for ascending or MaxInt64 for descending.
+
+                time_field:
+                  type: string
+                  enum:
+                    - create_at
+                    - update_at
+                  default: create_at
+                  description: >
+                    Which timestamp field to use for sorting and filtering. Use "create_at" to retrieve posts by creation time, or "update_at" to retrieve posts by last modification time.
+
+                sort_direction:
+                  type: string
+                  enum:
+                    - asc
+                    - desc
+                  default: asc
+                  description: >
+                    Sort direction for pagination. Use "asc" to retrieve posts from oldest to newest, or "desc" to retrieve from newest to oldest.
+
+                per_page:
+                  type: integer
+                  minimum: !!float 1
+                  maximum: !!float 1000
+                  default: 100
+                  description: Number of posts to return per page. Maximum 1000.
+                include_deleted:
+                  type: boolean
+                  default: false
+                  description: >
+                    If true, include posts that have been deleted (DeleteAt > 0). By default, only non-deleted posts are returned.
+
+                exclude_system_posts:
+                  type: boolean
+                  default: false
+                  description: >
+                    If true, exclude all system posts.
+
+                include_metadata:
+                  type: boolean
+                  default: false
+                  description: >
+                    If true, enrich posts with additional metadata including file information, reactions, custom emojis, priority, and acknowledgements. Note that this may increase response time for large result sets.
+
+            examples:
+              first_page_ascending:
+                summary: First page, ascending order
+                value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
+                  per_page: 100
+              subsequent_page:
+                summary: Subsequent page using cursor
+                value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  per_page: 100
+                  cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
+              time_range_query:
+                summary: Query with time range starting from specific time
+                value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
+                  start_time: 1635638400000
+                  per_page: 100
+              descending_order:
+                summary: Descending order from recent
+                value:
+                  per_page: 100
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  sort_direction: desc
+                  cursor: ""
+      responses:
+        "200":
+          description: Posts retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  posts:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/Post'
+                    description: Map of post IDs to post objects
+                  next_cursor:
+                    type: object
+                    nullable: true
+                    description: >
+                      Opaque cursor for retrieving the next page. If null, there are no more pages. Pass the cursor string from this object in the next request.
+
+                    properties:
+                      cursor:
+                        type: string
+                        description: Base64-encoded opaque cursor string containing pagination state
+              examples:
+                with_more_pages:
+                  summary: Response with more pages available
+                  value:
+                    next_cursor:
+                      cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
+                    posts:
+                      post_id_1:
+                        id: post_id_1
+                        message: First post
+                        create_at: 1635638400000
+                      post_id_2:
+                        id: post_id_2
+                        message: Second post
+                        create_at: 1635638500000
+                last_page:
+                  summary: Last page (no more results)
+                  value:
+                    posts:
+                      post_id_99:
+                        id: post_id_99
+                        message: Last post
+                        create_at: 1635724800000
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
   /api/v4/limits/server:
     get:
       tags:
@@ -22281,6 +22497,40 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "500":
           $ref: '#/components/responses/InternalServerError'
+  /api/v4/access_control_policies/activate:
+    put:
+      tags:
+        - access control
+      summary: Activate or deactivate access control policies
+      description: |
+        Updates the active status of access control policies.
+
+        ##### Permissions
+        Must have the `manage_system` permission. OR be a channel admin with manage_channel_access_rules permission for the specified channels.
+      operationId: UpdateAccessControlPoliciesActive
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessControlPolicyActiveUpdateRequest'
+      responses:
+        "200":
+          description: Access control policies active status updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessControlPolicy'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
   /api/v4/content_flagging/flag/config:
     get:
       summary: Get content flagging configuration
@@ -24531,6 +24781,69 @@ paths:
           description: Property field deleted successfully.
         "403":
           $ref: '#/components/responses/403'
+        "500":
+          $ref: '#/components/responses/500'
+  /plugins/playbooks/api/v0/playbooks/{id}/property_fields/reorder:
+    post:
+      summary: Reorder property fields for a playbook
+      operationId: reorderPlaybookPropertyFields
+      security:
+        - BearerAuth: []
+      tags:
+        - Playbooks
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the playbook.
+          schema:
+            type: string
+            example: iz0g457ikesz55dhxcfa0fk9yy
+          example: iz0g457ikesz55dhxcfa0fk9yy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - field_id
+                - target_position
+              properties:
+                field_id:
+                  type: string
+                  description: ID of the property field to move.
+                  example: p7fj3k2l5m8n9q1r4s6t8v0w2x
+                target_position:
+                  type: integer
+                  format: int32
+                  description: Target position index (zero-based) where the field should be moved.
+                  example: 3
+      x-codeSamples:
+        - lang: curl
+          source: |
+            curl -X POST 'http://localhost:8065/plugins/playbooks/api/v0/playbooks/iz0g457ikesz55dhxcfa0fk9yy/property_fields/reorder' \
+            -H 'Authorization: Bearer 9g64ig7q9pds8yjz8rsgd6e36e' \
+            -H 'Content-Type: application/json' \
+            -d '{
+              "field_id": "p7fj3k2l5m8n9q1r4s6t8v0w2x",
+              "target_position": 3
+            }'
+      responses:
+        "200":
+          description: Property fields reordered successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PropertyField'
+        "400":
+          $ref: '#/components/responses/400'
+        "403":
+          $ref: '#/components/responses/403'
+        "404":
+          $ref: '#/components/responses/404'
         "500":
           $ref: '#/components/responses/500'
   /plugins/playbooks/api/v0/runs/{id}/property_fields:
@@ -29262,15 +29575,34 @@ components:
         term:
           type: string
           description: The search term to match against policy names or display names.
-        is_active:
+        type:
+          type: string
+          description: The type of policy (e.g., 'parent' or 'channel').
+        parent_id:
+          type: string
+          description: The ID of the parent policy to search within.
+        ids:
+          type: array
+          items:
+            type: string
+          description: List of policy IDs to filter by.
+        active:
           type: boolean
           description: Filter policies by active status.
-        page:
+        include_children:
+          type: boolean
+          description: Whether to include child policies in the result.
+        cursor:
+          $ref: '#/components/schemas/AccessControlPolicyCursor'
+        limit:
           type: integer
-          description: The page number to return.
-        per_page:
-          type: integer
-          description: The number of policies to return per page.
+          description: The maximum number of policies to return.
+    AccessControlPolicyCursor:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the policy to start searching after.
     AccessControlPolicyTestResponse:
       type: object
       properties:
@@ -29343,12 +29675,18 @@ components:
         after:
           type: string
           description: The ID of the user to start the test after (for pagination).
+        channelId:
+          type: string
+          description: The channel ID to contextually test the expression against (required for channel admins).
     CELExpression:
       type: object
       properties:
         expression:
           type: string
           description: The CEL expression to visualize.
+        channelId:
+          type: string
+          description: The channel ID to contextually test the expression against (required for channel admins).
     VisualExpression:
       type: object
       properties:
@@ -29533,6 +29871,22 @@ components:
       required:
         - Enabled
         - ReviewerIds
+    AccessControlPolicyActiveUpdateRequest:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccessControlPolicyActiveUpdate'
+    AccessControlPolicyActiveUpdate:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the policy.
+        active:
+          type: boolean
+          description: The active status of the policy.
     PlaybookRun:
       type: object
       properties:
