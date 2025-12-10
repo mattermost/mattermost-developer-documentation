@@ -62,29 +62,6 @@ We will go through each of these migration types and discuss how we can make it 
 
 ### Conclusions
 
-**MySQL**
-
-{{< table "migration-table-sql" >}}
-| Operation      | Table rewrite | Concurrent DML allowed |
-| -----------    | ------------- | ---------------------- |
-| CREATE INDEX   | NO<sup>1</sup>| YES (with limitations)<sup>1</sup>|
-| DROP INDEX     | NO            | YES                    |
-| ADD COLUMN     | YES<sup>2</sup>| YES<sup>3</sup>                   |
-| ALTER COLUMN   | YES           | NO                     |
-| DROP COLUMN    | YES           | YES                    |
-| ADD FK CONSTRAINT| NO          | NO (avoidable)<sup>4</sup>        |
-| ADD UNIQUE CONSTRAINT | NO     | YES                    |
-{{</ table >}}
-
-{{<note "Note:">}}
-1. Fulltext and spatial indexes take locks. Adding a fulltext index can also rewrite the table if there is no user-defined FTS_DOC_ID column, or in other words if a fulltext index is being added for the first time.
-2. In MySQL 8 onwards, this is improved not to rewrite the table. But still an exception exists when it's being added to a table with a fulltext index. Which means this will affect adding columns to the Posts or the Channels table for example.
-3. Concurrent DML is also not permitted while adding an auto-increment column. However we don’t use it and are unlikely to use it in future.
-4. Setting `foreign_key_checks` to false avoids table locks. But it also defeats the purpose of a foreign key.
-{{</note>}}
-
-**PostgreSQL 11+**
-
 {{< table "migration-table-posgresql" >}}
 | Operation      | Table rewrite | Concurrent DML allowed |
 | -----------    | ------------- | ---------------------- |
@@ -113,23 +90,17 @@ However, if you MUST do it, take a look into the following sections.
 
 1. CREATE INDEX
 
-**PostgreSQL**: CREATE INDEX CONCURRENTLY does not take any locks.
-
-**MySQL**: No lock taken in MySQL as well. (Exception for fulltext and spatial indexes)
+CREATE INDEX CONCURRENTLY does not take any locks.
 
 2. ALTER TABLE ADD COLUMN
 
-**PostgreSQL**: Adding nullable columns already happened in constant time since version 10. And from version 11 onwards, adding non-null columns with a default value also happens in constant time. No issues seen with that.
-
-**MySQL 5.7**: A table rewrite happens, but no lock is taken. (Exception for auto-increment columns)
-
-**MySQL 8.0**: This is improved to not rewrite tables at all, except tables with fulltext indexes. (Exception remains for auto-increment columns)
+Adding nullable columns happens in constant time from version 10. And from version 11 onwards, adding non-null columns with a default value also happens in constant time.
 
 The catch here is to be able to handle denormalization optimizations which typically adds a new column but needs to backfill that with data before using the column. Take a look at the next section on how to achieve that.
 
 3. ALTER TABLE ALTER COLUMN
 
-This takes an exclusive lock in both **MySQL** and **PostgreSQL**. We strongly recommend you avoid doing this.
+This takes an exclusive lock. We strongly recommend you avoid doing this.
 
 To give some context, we have this particular migration `ALTER TABLE posts ALTER COLUMN props TYPE jsonb USING props::jsonb;` which has caused us more pain than it was worth. Several large customers have faced problems with this migration where in some cases, it has been observed to take 8+ hrs. Therefore, we strongly suggest to avoid making any `ALTER COLUMN` changes until absolutely unavoidable (for example, security issues).
 
@@ -137,13 +108,11 @@ However, if you MUST do this, then see the example later.
 
 4. ALTER TABLE DROP COLUMN
 
-**PostgreSQL**: Only metadata lock is taken. No table rewrite takes place. The space is just marked as unused and later taken up by future DB writes.
-
-**MySQL**: Table rewrite happens but no lock is taken.
+Only a metadata lock is taken. No table rewrite takes place. The space is just marked as unused and later taken up by future DB writes.
 
 5. ALTER TABLE ADD CONSTRAINT
 
-**PostgreSQL**: Relatively rare, but out of those 6 cases, 2 are adding unique constraints. For example:
+Relatively rare, but out of those 6 cases, 2 are adding unique constraints. For example:
 
 ```sql
 ALTER TABLE oauthaccessdata ADD CONSTRAINT oauthaccessdata_clientid_userid_key UNIQUE (clientid, userid);
@@ -153,17 +122,9 @@ This can be improved by first adding the index concurrently, and then attaching 
 
 Adding a foreign key in PostgreSQL takes a share row exclusive lock, which means only SELECT queries are allowed. It is possible to bypass the table scanning by adding a “NOT VALID” suffix, but then it defeats the purpose of having a foreign key. We recommend against doing it.
 
-**MySQL**:
-
-Adding an unique constraint doesn't take locks, but does a table rebuild.
-
-Adding a foreign key takes locks. But avoidable by setting `SET  foreign_key_checks=0`. Then it doesn't take any locks, and neither rebuilds the table. But it partially defeats the purpose of using an foreign key. We recommend you avoid this.
-
 6. DROP INDEX
 
-**PostgreSQL**: DROP INDEX CONCURRENTLY does not take any locks.
-
-**MySQL**: Fast operation. No locks are taken.
+DROP INDEX CONCURRENTLY does not take any locks.
 
 7. CREATE TABLE
 
@@ -272,9 +233,9 @@ DROP TRIGGER tr_update_status_channel_count on status
 
 4. And in the ESR after that, now we can finally drop the old column.
 
-This deliberately skips renaming the column for simplicity. Depending on your use-case, you can do that if you want to. It is a fast operation that does not rebuild the table in both MySQL and PostgreSQL, so there are no issues.
+This deliberately skips renaming the column for simplicity. Depending on your use-case, you can do that if you want to. It is a fast operation that does not rebuild the table, so there are no issues.
 
-### How do I add a unique constraint to a table (PostgreSQL only)
+### How do I add a unique constraint to a table
 
 ```sql
 CREATE UNIQUE INDEX CONCURRENTLY IF NOT EXISTS oauthaccessdata_clientid_userid_key on oauthaccessdata(clientid, userid);
@@ -322,10 +283,11 @@ $function$;
 
 ### I need to make a schema change. What do I do?
 
-1. Add the appropriate SQL script file containing the statements you want to run into the migrations directory. This directory is located in `{project_dir}/db/migrations/{driver_name}/`. Do not forget to add scripts for both `mysql` and `postgres` databases.
+1. Add the appropriate SQL script file containing the statements you want to run into the migrations directory. This directory is located in `{project_dir}/db/migrations/{driver_name}/`.
 2. Run `make migrations-extract` to add your new migrations to the `db/migrations/migrations.list` file. This will ensure that there will be merge conflicts in case there is a conflict on migration sequence numbers with the master branch. Since we don't want to have a collision on version numbers of the migration files, the developer should merge the upstream branch to the feature branch just before merging so that we can be sure that there are no versioning issues. In case of a version number collision, the build process will fail and main branch will be broken until it gets fixed.
 3. When you run the mattermost/server binary, the tool will automatically apply the migration if it's required. The migration name will be saved in the `db_migrations` table.
 4. Lastly, please also measure the time taken for the migration with an eye towards resource usage. Please use the DB dumps from the ~developers-performance channel in our Community server. You will find the links in the channel header.
+5. In your PR, make sure to add release notes following the [Developer Schema Migration Template](https://docs.google.com/document/d/18lD7N32oyMtYjFrJKwsNv8yn6Fe5QtF-eMm8nn0O8tk/edit?tab=t.0).
 
 ### My migration has failed. What do I do?
 1. If you think your migration is applied, and you want to revert changes, you can run the down script to roll back in a clean way. You can use morph CLI to apply down migrations.
