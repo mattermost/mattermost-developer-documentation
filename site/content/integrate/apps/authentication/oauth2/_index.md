@@ -101,10 +101,10 @@ Mattermost supports the {{< newtabref href="https://oauth.net/2/grant-types/auth
 
 ### Flow support by client type
 
-| Client Type         | Authorization Code Flow | Implicit Flow | PKCE Required        |
-|---------------------|-------------------------|---------------|----------------------|
-| Public Client       | Supported               | Supported     | YES (code flow only) |
-| Confidential Client | Supported               | Supported     | Optional             |
+| Client Type         | Authorization Code Flow | Implicit Flow                   | PKCE Required        |
+|---------------------|-------------------------|---------------------------------|----------------------|
+| Public Client       | Supported               | Supported                       | YES (code flow only) |
+| Confidential Client | Supported               | Supported **(Not recommended)** | Optional             |
 
 **Key notes:**
 
