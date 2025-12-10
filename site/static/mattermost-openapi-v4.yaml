@@ -568,6 +568,131 @@ paths:
           $ref: '#/components/responses/BadRequest'
         "403":
           $ref: '#/components/responses/Forbidden'
+  /oauth/intune:
+    post:
+      tags:
+        - users
+      summary: Login with Microsoft Intune MAM
+      description: >
+        Authenticate a mobile user using a Microsoft Entra ID (Azure AD) access token for Intune Mobile Application Management (MAM) protected apps.
+
+
+        This endpoint enables authentication for mobile apps protected by Microsoft Intune MAM policies. The access token is obtained via the Microsoft Authentication Library (MSAL) and validated against the configured Azure AD tenant and Intune MAM app registration.
+
+
+        **Authentication Flow:**
+
+        1. Mobile app acquires an Entra ID access token via MSAL with the Intune MAM scope
+
+        2. Token is sent to this endpoint for validation
+
+        3. Server validates the token signature, claims, and tenant configuration
+
+        4. User is authenticated or created based on the token claims
+
+        5. Session token is returned for subsequent API requests
+
+
+        **User Provisioning:**
+
+        - **Office365 AuthService**: Users are automatically created on first login using the `oid` (Azure AD object ID) claim as the unique identifier
+
+        - **SAML AuthService**: Users must first login via web/desktop to establish their account with the `oid` (Azure AD object ID) as AuthData. Intune MAM  always uses objectId for SAML users. For Entra ID Domain Services LDAP sync, configure LdapSettings.IdAttribute to `msDS-aadObjectId` to ensure consistency.
+
+
+        **Error Handling:**
+
+        This endpoint returns specific HTTP status codes to help mobile apps handle different error scenarios:
+
+        - `428 Precondition Required`: SAML user needs to login via web/desktop first
+
+        - `403 Forbidden`: Configuration issues or bot accounts
+
+        - `409 Conflict`: User account is deactivated
+
+        - `401 Unauthorized`: Token has expired
+
+        - `400 Bad Request`: Invalid token format, claims, or configuration
+
+
+        ##### Permissions
+
+
+        No permission required. Authentication is performed via the Entra ID access token.
+
+
+        ##### Enterprise Feature
+
+
+        Requires Mattermost Enterprise Advanced license and proper Intune MAM configuration (tenant ID, client ID, and auth service).
+
+      operationId: LoginIntune
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntuneLoginRequest'
+        description: Intune login credentials containing the Entra ID access token
+        required: true
+      responses:
+        "200":
+          description: User authentication successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: >
+            Bad request - Invalid token format, signature, claims, or configuration. Common causes include: invalid JSON body, missing access_token, malformed JWT, invalid token issuer/audience/tenant, missing required claims (oid, email), or empty auth data after extraction.
+
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppError'
+        "401":
+          description: Unauthorized - The Entra ID access token has expired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppError'
+        "403":
+          description: >
+            Forbidden - Access denied. Common causes include: Intune MAM not properly configured or enabled, or user is a bot account (bots cannot use Intune login).
+
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppError'
+        "409":
+          description: Conflict - User account has been deactivated (DeleteAt != 0)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppError'
+        "428":
+          description: >
+            Precondition Required - SAML user account not found. The user must first login via web or desktop application to establish their Mattermost account with objectId as AuthData before using mobile Intune MAM authentication. For Entra ID Domain Services LDAP sync, ensure SamlSettings.IdAttribute references the objectidentifier claim and LdapSettings.IdAttribute is set to 'msDS-aadObjectId'.
+
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppError'
+        "500":
+          description: >
+            Internal Server Error - Server-side error. Common causes include: failed to initialize JWKS (JSON Web Key Set) from Microsoft's OpenID configuration, or failed to create user session.
+
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppError'
+        "501":
+          description: >
+            Not Implemented - Intune MAM feature is not available. This occurs when running Mattermost Team Edition or when enterprise features are not loaded.
+
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppError'
   /api/v4/users/logout:
     post:
       tags:
@@ -8819,6 +8944,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SidebarCategory'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+  /api/v4/sharedchannels/{channel_id}/remotes:
+    get:
+      tags:
+        - shared channels
+      summary: Get remote clusters for a shared channel
+      description: |
+        Gets the remote clusters information for a shared channel.
+
+        __Minimum server version__: 10.11
+
+        ##### Permissions
+        Must be authenticated and have the `read_channel` permission for the channel.
+      operationId: GetSharedChannelRemotes
+      parameters:
+        - name: channel_id
+          in: path
+          description: Channel GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Remote clusters retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RemoteClusterInfo'
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -18628,43 +18790,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
-  /api/v4/sharedchannels/{channel_id}/remotes:
-    get:
-      tags:
-        - channels
-      summary: Get remote clusters for a shared channel
-      description: |
-        Gets the remote clusters information for a shared channel.
-
-        __Minimum server version__: 10.10
-
-        ##### Permissions
-        Must be authenticated and have the `read_channel` permission for the channel.
-      operationId: GetSharedChannelRemotes
-      parameters:
-        - name: channel_id
-          in: path
-          description: Channel GUID
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Remote clusters retrieval successful
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RemoteClusterInfo'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "404":
-          $ref: '#/components/responses/NotFound'
   /api/v4/sharedchannels/users/{user_id}/can_dm/{other_user_id}:
     get:
       tags:
@@ -20802,8 +20927,8 @@ paths:
                 summary: Subsequent page using cursor
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  per_page: 100
                   cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
+                  per_page: 100
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
@@ -20814,10 +20939,10 @@ paths:
               descending_order:
                 summary: Descending order from recent
                 value:
-                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  sort_direction: desc
                   cursor: ""
+                  sort_direction: desc
+                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
@@ -20845,8 +20970,6 @@ paths:
                 with_more_pages:
                   summary: Response with more pages available
                   value:
-                    next_cursor:
-                      cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                     posts:
                       post_id_1:
                         id: post_id_1
@@ -20856,14 +20979,16 @@ paths:
                         id: post_id_2
                         message: Second post
                         create_at: 1635638500000
+                    next_cursor:
+                      cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
                   summary: Last page (no more results)
                   value:
                     posts:
                       post_id_99:
-                        id: post_id_99
                         message: Last post
                         create_at: 1635724800000
+                        id: post_id_99
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -25734,12 +25859,12 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
-            sortOrder: 1
+            visibility: when_set
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            visibility: when_set
+            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
@@ -27670,6 +27795,18 @@ components:
         private_key_file:
           description: Status is good when `true`
           type: boolean
+    IntuneLoginRequest:
+      type: object
+      description: Request body for Microsoft Intune MAM authentication using Azure AD/Entra ID access token
+      required:
+        - access_token
+      properties:
+        access_token:
+          type: string
+          description: Microsoft Entra ID access token obtained via MSAL (Microsoft Authentication Library). This token must be scoped to the Intune MAM app registration and will be validated against the configured tenant.
+        device_id:
+          type: string
+          description: Optional mobile device identifier used for push notifications. If provided, the device will be registered for receiving push notifications.
     Compliance:
       type: object
       properties:
@@ -29847,8 +29984,8 @@ components:
               Enabled: true
               ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              Enabled: false
               ReviewerIds: []
+              Enabled: false
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
