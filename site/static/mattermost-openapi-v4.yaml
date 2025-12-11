@@ -21013,21 +21013,21 @@ paths:
                 summary: First page, ascending order
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   per_page: 100
+                  cursor: ""
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
+                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
-                  per_page: 100
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
+                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   start_time: 1635638400000
-                  per_page: 100
               descending_order:
                 summary: Descending order from recent
                 value:
@@ -21078,9 +21078,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
+                        id: post_id_99
                         message: Last post
                         create_at: 1635724800000
-                        id: post_id_99
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
