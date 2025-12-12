@@ -21012,9 +21012,9 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   per_page: 100
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -21024,16 +21024,16 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  cursor: ""
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  start_time: 1635638400000
+                  cursor: ""
                   per_page: 100
+                  start_time: 1635638400000
               descending_order:
                 summary: Descending order from recent
                 value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   sort_direction: desc
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
       responses:
         "200":
@@ -25952,11 +25952,11 @@ components:
           additionalProperties: true
           example:
             visibility: when_set
+            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
