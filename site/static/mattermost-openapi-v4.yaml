@@ -8955,12 +8955,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - channels
+        - shared channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.10
+        __Minimum server version__: 10.11
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -21012,9 +21012,9 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
+                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -21024,17 +21024,17 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  cursor: ""
-                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
                   start_time: 1635638400000
+                  per_page: 100
               descending_order:
                 summary: Descending order from recent
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  per_page: 100
                   cursor: ""
                   sort_direction: desc
-                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
@@ -30076,8 +30076,8 @@ components:
               Enabled: true
               ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              Enabled: false
               ReviewerIds: []
+              Enabled: false
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
