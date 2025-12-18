@@ -21013,8 +21013,8 @@ paths:
                 summary: First page, ascending order
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  per_page: 100
                   cursor: ""
+                  per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -21024,17 +21024,17 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
+                  cursor: ""
                   start_time: 1635638400000
                   per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
               descending_order:
                 summary: Descending order from recent
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  sort_direction: desc
                   per_page: 100
                   cursor: ""
-                  sort_direction: desc
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
       responses:
         "200":
           description: Posts retrieved successfully
@@ -25951,8 +25951,8 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
-            visibility: when_set
             sortOrder: 1
+            visibility: when_set
             options:
               - color: '#ff0000'
                 id: opt1
@@ -30073,8 +30073,8 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
-              Enabled: true
               ReviewerIds: []
+              Enabled: true
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
               ReviewerIds: []
