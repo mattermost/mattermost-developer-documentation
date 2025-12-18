@@ -21013,28 +21013,28 @@ paths:
                 summary: First page, ascending order
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   per_page: 100
+                  cursor: ""
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
                   per_page: 100
+                  cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   start_time: 1635638400000
                   per_page: 100
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
               descending_order:
                 summary: Descending order from recent
                 value:
-                  sort_direction: desc
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
                   cursor: ""
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  sort_direction: desc
       responses:
         "200":
           description: Posts retrieved successfully
@@ -25951,8 +25951,8 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
-            sortOrder: 1
             visibility: when_set
+            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
@@ -30073,11 +30073,11 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
-              ReviewerIds: []
               Enabled: true
-            u1ujk34a47gfxp856pdczs9gey:
-              Enabled: false
               ReviewerIds: []
+            u1ujk34a47gfxp856pdczs9gey:
+              ReviewerIds: []
+              Enabled: false
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
