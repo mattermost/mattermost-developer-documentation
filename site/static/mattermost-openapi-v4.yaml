@@ -469,6 +469,9 @@ paths:
                 password:
                   description: The password used for email authentication.
                   type: string
+                magic_link_token:
+                  description: Magic link token for passwordless guest authentication. When provided, authenticates the user using the magic link token instead of password. Requires guest magic link feature to be enabled.
+                  type: string
         description: User authentication object
         required: true
       responses:
@@ -5579,6 +5582,16 @@ paths:
           required: true
           schema:
             type: string
+        - name: graceful
+          in: query
+          description: If true, returns an array with both successful invites and errors instead of aborting on first error.
+          schema:
+            type: boolean
+        - name: guest_magic_link
+          in: query
+          description: If true, invites guests with magic link (passwordless) authentication. Requires guest magic link feature to be enabled.
+          schema:
+            type: boolean
       requestBody:
         content:
           application/json:
@@ -8955,12 +8968,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - channels
+        - shared channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.10
+        __Minimum server version__: 10.11
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -21012,9 +21025,9 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  per_page: 100
                   cursor: ""
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -21024,8 +21037,8 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   start_time: 1635638400000
                   per_page: 100
               descending_order:
@@ -21033,8 +21046,8 @@ paths:
                 value:
                   per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   sort_direction: desc
+                  cursor: ""
       responses:
         "200":
           description: Posts retrieved successfully
@@ -21063,14 +21076,14 @@ paths:
                   summary: Response with more pages available
                   value:
                     posts:
-                      post_id_1:
-                        id: post_id_1
-                        message: First post
-                        create_at: 1635638400000
                       post_id_2:
                         id: post_id_2
                         message: Second post
                         create_at: 1635638500000
+                      post_id_1:
+                        id: post_id_1
+                        message: First post
+                        create_at: 1635638400000
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
