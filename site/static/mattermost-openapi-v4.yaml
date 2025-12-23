@@ -21025,8 +21025,8 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  cursor: ""
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
                   per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
@@ -21045,9 +21045,9 @@ paths:
                 summary: Descending order from recent
                 value:
                   cursor: ""
+                  sort_direction: desc
                   per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  sort_direction: desc
       responses:
         "200":
           description: Posts retrieved successfully
@@ -21091,9 +21091,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
+                        create_at: 1635724800000
                         id: post_id_99
                         message: Last post
-                        create_at: 1635724800000
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -30086,11 +30086,11 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
+              ReviewerIds: []
               Enabled: true
-              ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              Enabled: false
               ReviewerIds: []
+              Enabled: false
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
