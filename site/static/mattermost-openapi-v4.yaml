@@ -469,6 +469,9 @@ paths:
                 password:
                   description: The password used for email authentication.
                   type: string
+                magic_link_token:
+                  description: Magic link token for passwordless guest authentication. When provided, authenticates the user using the magic link token instead of password. Requires guest magic link feature to be enabled.
+                  type: string
         description: User authentication object
         required: true
       responses:
@@ -5579,6 +5582,16 @@ paths:
           required: true
           schema:
             type: string
+        - name: graceful
+          in: query
+          description: If true, returns an array with both successful invites and errors instead of aborting on first error.
+          schema:
+            type: boolean
+        - name: guest_magic_link
+          in: query
+          description: If true, invites guests with magic link (passwordless) authentication. Requires guest magic link feature to be enabled.
+          schema:
+            type: boolean
       requestBody:
         content:
           application/json:
@@ -8952,43 +8965,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
-  /api/v4/sharedchannels/{channel_id}/remotes:
-    get:
-      tags:
-        - shared channels
-      summary: Get remote clusters for a shared channel
-      description: |
-        Gets the remote clusters information for a shared channel.
-
-        __Minimum server version__: 10.11
-
-        ##### Permissions
-        Must be authenticated and have the `read_channel` permission for the channel.
-      operationId: GetSharedChannelRemotes
-      parameters:
-        - name: channel_id
-          in: path
-          description: Channel GUID
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Remote clusters retrieval successful
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RemoteClusterInfo'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "404":
-          $ref: '#/components/responses/NotFound'
   /api/v4/channels/{channel_id}/common_teams:
     get:
       tags:
@@ -10171,6 +10147,98 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
+  /api/v4/posts/{post_id}/reveal:
+    get:
+      tags:
+        - posts
+      summary: Reveal a burn-on-read post
+      description: >
+        Reveal a burn-on-read post. This endpoint allows a user to reveal a post that was created with burn-on-read functionality. Once revealed, the post content becomes visible to the user. If the post is already revealed and not expired, this is a no-op. If the post has expired, an error will be returned.
+
+        ##### Permissions
+
+        Must have `read_channel` permission for the channel the post is in.<br/> Must be a member of the channel the post is in.<br/> Cannot reveal your own post.
+
+        ##### Feature Flag
+
+        Requires `BurnOnRead` feature flag and Enterprise Advanced license.
+
+        __Minimum server version__: 11.2
+
+      operationId: RevealPost
+      parameters:
+        - name: post_id
+          in: path
+          description: The identifier of the post to reveal
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Post revealed successfully
+          headers:
+            Has-Inaccessible-Posts:
+              schema:
+                type: boolean
+              description: This header is included with the value "true" if the post is past the cloud's plan limit.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
+  /api/v4/posts/{post_id}/burn:
+    delete:
+      tags:
+        - posts
+      summary: Burn a burn-on-read post
+      description: >
+        Burn a burn-on-read post. This endpoint allows a user to burn a post that was created with burn-on-read functionality. If the user is the author of the post, the post will be permanently deleted. If the user is not the author, the post will be expired for that user by updating their read receipt expiration time. If the user has not revealed the post yet, an error will be returned. If the post is already expired for the user, this is a no-op.
+
+        ##### Permissions
+
+        Must have `read_channel` permission for the channel the post is in.<br/> Must be a member of the channel the post is in.
+
+        ##### Feature Flag
+
+        Requires `BurnOnRead` feature flag and Enterprise Advanced license.
+
+        __Minimum server version__: 11.2
+
+      operationId: BurnPost
+      parameters:
+        - name: post_id
+          in: path
+          description: The identifier of the post to burn
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Post burned successfully
+          headers:
+            Has-Inaccessible-Posts:
+              schema:
+                type: boolean
+              description: This header is included with the value "true" if the post is past the cloud's plan limit.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusOK'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
         "501":
           $ref: '#/components/responses/NotImplemented'
   /api/v4/posts/rewrite:
@@ -18790,6 +18858,43 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
+  /api/v4/sharedchannels/{channel_id}/remotes:
+    get:
+      tags:
+        - shared channels
+      summary: Get remote clusters for a shared channel
+      description: |
+        Gets the remote clusters information for a shared channel.
+
+        __Minimum server version__: 10.11
+
+        ##### Permissions
+        Must be authenticated and have the `read_channel` permission for the channel.
+      operationId: GetSharedChannelRemotes
+      parameters:
+        - name: channel_id
+          in: path
+          description: Channel GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Remote clusters retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RemoteClusterInfo'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
   /api/v4/sharedchannels/users/{user_id}/can_dm/{other_user_id}:
     get:
       tags:
@@ -20920,8 +21025,8 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
@@ -20976,9 +21081,9 @@ paths:
                         message: First post
                         create_at: 1635638400000
                       post_id_2:
-                        id: post_id_2
                         message: Second post
                         create_at: 1635638500000
+                        id: post_id_2
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -23631,17 +23736,17 @@ paths:
             schema:
               type: object
               properties:
-                active_stage:
-                  type: integer
-                  description: Zero-based index of the stage that will be made active.
-                  example: 2
+                name:
+                  type: string
+                  description: The new name of the playbook run.
+                  example: Updated Server Down Incident
       x-codeSamples:
         - lang: curl
           source: |
             curl -X PATCH 'http://localhost:8065/plugins/playbooks/api/v0/runs/mx3xyzdojfgyfdx8sc8of1gdme' \
             -H 'Authorization: Bearer 9g64ig7q9pds8yjz8rsgd6e36e'\
             -H 'Content-Type: application/json'\
-            -d '{"active_stage": 2}'
+            -d '{"name": "Updated Server Down Incident"}'
       responses:
         "200":
           description: Playbook run successfully updated.
@@ -25859,12 +25964,12 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
+            sortOrder: 1
             visibility: when_set
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
@@ -29984,8 +30089,8 @@ components:
               Enabled: true
               ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              ReviewerIds: []
               Enabled: false
+              ReviewerIds: []
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
