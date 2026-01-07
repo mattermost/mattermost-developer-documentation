@@ -18861,12 +18861,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - channels
+        - shared channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.10
+        __Minimum server version__: 10.11
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -21044,10 +21044,10 @@ paths:
               descending_order:
                 summary: Descending order from recent
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   sort_direction: desc
                   per_page: 100
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
       responses:
         "200":
           description: Posts retrieved successfully
