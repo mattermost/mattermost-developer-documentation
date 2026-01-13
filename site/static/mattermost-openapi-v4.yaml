@@ -421,8 +421,10 @@ tags:
     description: Endpoints related to metrics, including the Client Performance Monitoring feature.
   - name: audit_logs
     description: Endpoints for managing audit log certificates and configuration.
-  - name: ai
-    description: Endpoints for interacting with AI agents and services.
+  - name: recaps
+    description: Endpoints for creating and managing AI-powered channel recaps that summarize unread messages.
+  - name: agents
+    description: Endpoints for interacting with AI agents and LLM services.
   - name: Playbooks
     description: Playbooks
   - name: PlaybookRuns
@@ -11017,6 +11019,295 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
+  /api/v4/recaps:
+    post:
+      tags:
+        - recaps
+        - ai
+      summary: Create a channel recap
+      description: >
+        Create a new AI-powered recap for the specified channels. The recap will summarize unread messages in the selected channels, extracting highlights and action items. This creates a background job that processes the recap asynchronously. The recap is created for the authenticated user.
+
+        ##### Permissions
+
+        Must be authenticated. User must be a member of all specified channels.
+
+        __Minimum server version__: 11.2
+
+      operationId: CreateRecap
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - channel_ids
+                - title
+                - agent_id
+              properties:
+                title:
+                  type: string
+                  description: Title for the recap
+                channel_ids:
+                  type: array
+                  items:
+                    type: string
+                  description: List of channel IDs to include in the recap
+                  minItems: 1
+                agent_id:
+                  type: string
+                  description: ID of the AI agent to use for generating the recap
+        description: Recap creation request
+        required: true
+      responses:
+        "201":
+          description: Recap creation successful. The recap will be processed asynchronously.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recap'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+    get:
+      tags:
+        - recaps
+        - ai
+      summary: Get current user's recaps
+      description: >
+        Get a paginated list of recaps created by the authenticated user.
+
+        ##### Permissions
+
+        Must be authenticated.
+
+        __Minimum server version__: 11.2
+
+      operationId: GetRecapsForUser
+      parameters:
+        - name: page
+          in: query
+          description: The page to select.
+          schema:
+            type: integer
+            default: 0
+        - name: per_page
+          in: query
+          description: The number of recaps per page.
+          schema:
+            type: integer
+            default: 60
+      responses:
+        "200":
+          description: Recaps retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recap'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+  /api/v4/recaps/{recap_id}:
+    get:
+      tags:
+        - recaps
+        - ai
+      summary: Get a specific recap
+      description: >
+        Get a recap by its ID, including all channel summaries. Only the authenticated user who created the recap can retrieve it.
+
+        ##### Permissions
+
+        Must be authenticated. Can only retrieve recaps created by the current user.
+
+        __Minimum server version__: 11.2
+
+      operationId: GetRecap
+      parameters:
+        - name: recap_id
+          in: path
+          description: Recap GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Recap retrieval successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recap'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - recaps
+        - ai
+      summary: Delete a recap
+      description: >
+        Delete a recap by its ID. Only the authenticated user who created the recap can delete it.
+
+        ##### Permissions
+
+        Must be authenticated. Can only delete recaps created by the current user.
+
+        __Minimum server version__: 11.2
+
+      operationId: DeleteRecap
+      parameters:
+        - name: recap_id
+          in: path
+          description: Recap GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Recap deletion successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusOK'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+  /api/v4/recaps/{recap_id}/read:
+    post:
+      tags:
+        - recaps
+        - ai
+      summary: Mark a recap as read
+      description: >
+        Mark a recap as read by the authenticated user. This updates the recap's read status and timestamp.
+
+        ##### Permissions
+
+        Must be authenticated. Can only mark recaps created by the current user as read.
+
+        __Minimum server version__: 11.2
+
+      operationId: MarkRecapAsRead
+      parameters:
+        - name: recap_id
+          in: path
+          description: Recap GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Recap marked as read successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recap'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+  /api/v4/recaps/{recap_id}/regenerate:
+    post:
+      tags:
+        - recaps
+        - ai
+      summary: Regenerate a recap
+      description: >
+        Regenerate a recap by its ID. This creates a new background job to regenerate the AI-powered recap with the latest messages from the specified channels.
+
+        ##### Permissions
+
+        Must be authenticated. Can only regenerate recaps created by the current user.
+
+        __Minimum server version__: 11.2
+
+      operationId: RegenerateRecap
+      parameters:
+        - name: recap_id
+          in: path
+          description: Recap GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Recap regeneration initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recap'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+  /api/v4/ai/agents:
+    get:
+      tags:
+        - ai
+      summary: Get available AI agents
+      description: >
+        Retrieve all available AI agents from the AI plugin's bridge API. If a user ID is provided, only agents accessible to that user are returned.
+
+        ##### Permissions
+
+        Must be authenticated.
+
+        __Minimum server version__: 11.2
+
+      operationId: GetAIAgents
+      responses:
+        "200":
+          description: AI agents retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentsResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/ai/services:
+    get:
+      tags:
+        - ai
+      summary: Get available AI services
+      description: >
+        Retrieve all available AI services from the AI plugin's bridge API. If a user ID is provided, only services accessible to that user (via their permitted bots) are returned.
+
+        ##### Permissions
+
+        Must be authenticated.
+
+        __Minimum server version__: 11.2
+
+      operationId: GetAIServices
+      responses:
+        "200":
+          description: AI services retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicesResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
   /api/v4/uploads:
     post:
       tags:
@@ -21025,8 +21316,8 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  cursor: ""
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
                   per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
@@ -21037,8 +21328,8 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
                   start_time: 1635638400000
               descending_order:
@@ -21046,8 +21337,8 @@ paths:
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  sort_direction: desc
                   per_page: 100
+                  sort_direction: desc
       responses:
         "200":
           description: Posts retrieved successfully
@@ -21076,14 +21367,14 @@ paths:
                   summary: Response with more pages available
                   value:
                     posts:
-                      post_id_2:
-                        id: post_id_2
-                        message: Second post
-                        create_at: 1635638500000
                       post_id_1:
                         message: First post
                         create_at: 1635638400000
                         id: post_id_1
+                      post_id_2:
+                        id: post_id_2
+                        message: Second post
+                        create_at: 1635638500000
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -25964,12 +26255,12 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
+            visibility: when_set
             sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            visibility: when_set
     PropertyFieldPatch:
       type: object
       properties:
@@ -30129,6 +30420,87 @@ components:
         active:
           type: boolean
           description: The active status of the policy.
+    Recap:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the recap
+        user_id:
+          type: string
+          description: ID of the user who created the recap
+        title:
+          type: string
+          description: AI-generated title for the recap (max 5 words)
+        create_at:
+          type: integer
+          format: int64
+          description: The time in milliseconds the recap was created
+        update_at:
+          type: integer
+          format: int64
+          description: The time in milliseconds the recap was last updated
+        delete_at:
+          type: integer
+          format: int64
+          description: The time in milliseconds the recap was deleted
+        read_at:
+          type: integer
+          format: int64
+          description: The time in milliseconds the recap was marked as read
+        total_message_count:
+          type: integer
+          description: Total number of messages summarized across all channels
+        status:
+          type: string
+          enum:
+            - pending
+            - processing
+            - completed
+            - failed
+          description: Current status of the recap job
+        bot_id:
+          type: string
+          description: ID of the AI agent/bot used to generate this recap
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecapChannel'
+          description: List of channel summaries included in this recap
+    RecapChannel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the recap channel
+        recap_id:
+          type: string
+          description: ID of the parent recap
+        channel_id:
+          type: string
+          description: ID of the channel that was summarized
+        channel_name:
+          type: string
+          description: Display name of the channel
+        highlights:
+          type: array
+          items:
+            type: string
+          description: Key discussion points and important information from the channel
+        action_items:
+          type: array
+          items:
+            type: string
+          description: Tasks, todos, and action items mentioned in the channel
+        source_post_ids:
+          type: array
+          items:
+            type: string
+          description: IDs of the posts used to generate this summary
+        create_at:
+          type: integer
+          format: int64
+          description: The time in milliseconds the recap channel was created
     PlaybookRun:
       type: object
       properties:
