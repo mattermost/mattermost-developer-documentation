@@ -21335,10 +21335,10 @@ paths:
               descending_order:
                 summary: Descending order from recent
                 value:
-                  cursor: ""
-                  sort_direction: desc
                   per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
+                  sort_direction: desc
       responses:
         "200":
           description: Posts retrieved successfully
@@ -30377,8 +30377,8 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
-              ReviewerIds: []
               Enabled: true
+              ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
               ReviewerIds: []
