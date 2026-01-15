@@ -12,6 +12,7 @@ weight: 101
 
 Before starting a new release, you want to make sure you do a few things:
 - Check to make sure that there are no further Bug or Story tickets waiting to be merged. You can check JIRA to see if there are any tickets with the Fix version: `vX.Y Desktop App`. If there are, you'll want to wait until those have been merged.
+- For major/minor releases, check to make sure that an Electron upgrade has been done shortly before the release. It's important to keep up with the latest security changes in Electron and Chrome.
 
 - If you work off of a fork of the `mattermost/desktop` repository, make sure your local master branch is up to date:
     ```
@@ -31,12 +32,12 @@ Before starting a new release, you want to make sure you do a few things:
 
 ## Start a new release
 
-1. For a new major or minor release, check out the `master` branch and create a new release branch from it.
+1. For a new major or minor release, check out the `master` branch and create a new release branch from it
     ```
     git checkout master
     git checkout -b release-X.Y
     ```
-    For a patch release, just check out the existing release branch matching the version you're patching.
+    For a patch release, or if the branch already exists, just check out the existing release branch matching the version you're patching.
     ```
     git checkout release-X.Y
     ```
@@ -88,8 +89,8 @@ You can then follow steps **5-8** above to make sure the release is published.
 
 Once the final release candidate has been approved by QA, you will need approval from the Mac App Store. To do so, we create a special release for them:
 ```
-git checkout -b release-X.Y
-./scripts/release.sh mas
+git checkout release-X.Y
+./scripts/release.sh pre-final
 git push --follow-tags upstream release-X.Y:release-X.Y
 ```
 
@@ -116,15 +117,9 @@ If the app is **rejected** by App Review, you will get an email from App Store C
 
 Once the app has been approved by all parties, we can cut the final release:
 ```
-git checkout -b release-X.Y
+git checkout release-X.Y
 ./scripts/release.sh final
 git push --follow-tags upstream release-X.Y:release-X.Y
 ```
 
-You can then follow steps **5-8** above to make sure the release is published, but make sure that the checkbox for 'set as pre-release` is unchecked.
-
-### Final Steps
-
-Afterwards, you will need to update the [`ci/latest`](https://git.internal.mattermost.com/ci/latest) repository in GitLab to update the latest version of the Desktop App available on mattermost.com.
-
-In that repository there is a file called `release-updates.vars`, and in that file there is a line that says `DESKTOP_STREAM_LATEST`. You can replace that version number with the one you just released, and submit a PR to be reviewed by Release team.
+You can then follow steps **5-8** from the "Start a new release" section above to make sure the release is published, but make sure that the checkbox for 'Set as pre-release` is unchecked.
