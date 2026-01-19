@@ -8970,12 +8970,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - shared channels
+        - channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.11
+        __Minimum server version__: 10.10
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -21328,10 +21328,10 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  cursor: ""
-                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
                   start_time: 1635638400000
+                  per_page: 100
               descending_order:
                 summary: Descending order from recent
                 value:
@@ -21368,13 +21368,13 @@ paths:
                   value:
                     posts:
                       post_id_2:
-                        create_at: 1635638500000
                         id: post_id_2
                         message: Second post
+                        create_at: 1635638500000
                       post_id_1:
+                        create_at: 1635638400000
                         id: post_id_1
                         message: First post
-                        create_at: 1635638400000
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -21382,9 +21382,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
+                        id: post_id_99
                         message: Last post
                         create_at: 1635724800000
-                        id: post_id_99
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -26256,11 +26256,11 @@ components:
           additionalProperties: true
           example:
             visibility: when_set
+            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
@@ -30380,8 +30380,8 @@ components:
               Enabled: true
               ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              ReviewerIds: []
               Enabled: false
+              ReviewerIds: []
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
