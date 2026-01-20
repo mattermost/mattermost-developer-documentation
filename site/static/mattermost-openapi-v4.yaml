@@ -21315,9 +21315,9 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   per_page: 100
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -21327,17 +21327,17 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  cursor: ""
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  start_time: 1635638400000
                   per_page: 100
+                  cursor: ""
+                  start_time: 1635638400000
               descending_order:
                 summary: Descending order from recent
                 value:
-                  cursor: ""
-                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
                   sort_direction: desc
+                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
@@ -21365,17 +21365,17 @@ paths:
                 with_more_pages:
                   summary: Response with more pages available
                   value:
-                    next_cursor:
-                      cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                     posts:
                       post_id_1:
                         id: post_id_1
                         message: First post
                         create_at: 1635638400000
                       post_id_2:
-                        id: post_id_2
                         message: Second post
                         create_at: 1635638500000
+                        id: post_id_2
+                    next_cursor:
+                      cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
                   summary: Last page (no more results)
                   value:
@@ -30376,8 +30376,8 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
-              Enabled: true
               ReviewerIds: []
+              Enabled: true
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
               ReviewerIds: []
