@@ -8969,12 +8969,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - channels
+        - shared channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.10
+        __Minimum server version__: 10.11
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -21334,9 +21334,9 @@ paths:
               descending_order:
                 summary: Descending order from recent
                 value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   sort_direction: desc
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
       responses:
         "200":
@@ -21371,9 +21371,9 @@ paths:
                         message: First post
                         create_at: 1635638400000
                       post_id_2:
+                        create_at: 1635638500000
                         id: post_id_2
                         message: Second post
-                        create_at: 1635638500000
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -21381,9 +21381,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
+                        id: post_id_99
                         message: Last post
                         create_at: 1635724800000
-                        id: post_id_99
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -30376,8 +30376,8 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
-              ReviewerIds: []
               Enabled: true
+              ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
               ReviewerIds: []
