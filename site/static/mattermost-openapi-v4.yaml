@@ -8969,12 +8969,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - shared channels
+        - channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.11
+        __Minimum server version__: 10.10
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -21334,10 +21334,10 @@ paths:
               descending_order:
                 summary: Descending order from recent
                 value:
-                  cursor: ""
-                  sort_direction: desc
-                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
+                  per_page: 100
+                  sort_direction: desc
       responses:
         "200":
           description: Posts retrieved successfully
@@ -21366,14 +21366,14 @@ paths:
                   summary: Response with more pages available
                   value:
                     posts:
-                      post_id_1:
-                        id: post_id_1
-                        message: First post
-                        create_at: 1635638400000
                       post_id_2:
                         id: post_id_2
                         message: Second post
                         create_at: 1635638500000
+                      post_id_1:
+                        create_at: 1635638400000
+                        id: post_id_1
+                        message: First post
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -23454,6 +23454,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AgentsResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/agents/status:
+    get:
+      tags:
+        - agents
+      summary: Get agents bridge status
+      description: >
+        Retrieve the status of the AI plugin bridge. Returns availability boolean and a reason code if unavailable.
+
+        ##### Permissions
+
+        Must be authenticated.
+
+        __Minimum server version__: 11.2
+
+      operationId: GetAgentsStatus
+      responses:
+        "200":
+          description: Status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentsIntegrityResponse'
         "401":
           $ref: '#/components/responses/Unauthorized'
         "500":
@@ -29831,6 +29857,15 @@ components:
           items:
             $ref: '#/components/schemas/BridgeServiceInfo'
           description: List of available LLM services
+    AgentsIntegrityResponse:
+      type: object
+      properties:
+        available:
+          type: boolean
+          description: Whether the AI plugin bridge is available
+        reason:
+          type: string
+          description: Reason code if not available (translation ID)
     PostAcknowledgement:
       type: object
       properties:
