@@ -8969,12 +8969,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - shared channels
+        - channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.11
+        __Minimum server version__: 10.10
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -21329,14 +21329,14 @@ paths:
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  start_time: 1635638400000
                   per_page: 100
+                  start_time: 1635638400000
               descending_order:
                 summary: Descending order from recent
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  sort_direction: desc
                   cursor: ""
+                  sort_direction: desc
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
       responses:
         "200":
@@ -21367,9 +21367,9 @@ paths:
                   value:
                     posts:
                       post_id_1:
+                        id: post_id_1
                         message: First post
                         create_at: 1635638400000
-                        id: post_id_1
                       post_id_2:
                         id: post_id_2
                         message: Second post
@@ -21381,9 +21381,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
+                        id: post_id_99
                         message: Last post
                         create_at: 1635724800000
-                        id: post_id_99
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -26292,11 +26292,11 @@ components:
           additionalProperties: true
           example:
             visibility: when_set
-            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
+            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
