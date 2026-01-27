@@ -21315,9 +21315,9 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   per_page: 100
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -21327,17 +21327,17 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  cursor: ""
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  start_time: 1635638400000
+                  cursor: ""
                   per_page: 100
+                  start_time: 1635638400000
               descending_order:
                 summary: Descending order from recent
                 value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   sort_direction: desc
                   per_page: 100
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
       responses:
         "200":
           description: Posts retrieved successfully
@@ -21381,9 +21381,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
+                        create_at: 1635724800000
                         id: post_id_99
                         message: Last post
-                        create_at: 1635724800000
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -26296,12 +26296,12 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
+            visibility: when_set
+            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            sortOrder: 1
-            visibility: when_set
     PropertyFieldPatch:
       type: object
       properties:
@@ -30426,11 +30426,11 @@ components:
             $ref: '#/components/schemas/TeamReviewerConfig'
           description: Team-specific reviewer configuration, keyed by team ID
           example:
-            u1ujk34a47gfxp856pdczs9gey:
-              Enabled: false
-              ReviewerIds: []
             8guxic3sg7nijeu5dgxt1fh4ia:
               Enabled: true
+              ReviewerIds: []
+            u1ujk34a47gfxp856pdczs9gey:
+              Enabled: false
               ReviewerIds: []
       required:
         - CommonReviewers
