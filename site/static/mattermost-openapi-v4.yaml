@@ -8969,12 +8969,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - shared channels
+        - channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.11
+        __Minimum server version__: 10.10
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -21322,8 +21322,8 @@ paths:
                 summary: Subsequent page using cursor
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  per_page: 100
                   cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
+                  per_page: 100
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
@@ -21365,6 +21365,8 @@ paths:
                 with_more_pages:
                   summary: Response with more pages available
                   value:
+                    next_cursor:
+                      cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                     posts:
                       post_id_1:
                         id: post_id_1
@@ -21374,16 +21376,14 @@ paths:
                         id: post_id_2
                         message: Second post
                         create_at: 1635638500000
-                    next_cursor:
-                      cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
                   summary: Last page (no more results)
                   value:
                     posts:
                       post_id_99:
+                        id: post_id_99
                         message: Last post
                         create_at: 1635724800000
-                        id: post_id_99
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -30430,8 +30430,8 @@ components:
               Enabled: true
               ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              ReviewerIds: []
               Enabled: false
+              ReviewerIds: []
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
