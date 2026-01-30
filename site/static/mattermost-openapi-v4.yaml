@@ -8966,43 +8966,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
-  /api/v4/sharedchannels/{channel_id}/remotes:
-    get:
-      tags:
-        - shared channels
-      summary: Get remote clusters for a shared channel
-      description: |
-        Gets the remote clusters information for a shared channel.
-
-        __Minimum server version__: 10.11
-
-        ##### Permissions
-        Must be authenticated and have the `read_channel` permission for the channel.
-      operationId: GetSharedChannelRemotes
-      parameters:
-        - name: channel_id
-          in: path
-          description: Channel GUID
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Remote clusters retrieval successful
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RemoteClusterInfo'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "404":
-          $ref: '#/components/responses/NotFound'
   /api/v4/channels/{channel_id}/common_teams:
     get:
       tags:
@@ -19185,6 +19148,43 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
+  /api/v4/sharedchannels/{channel_id}/remotes:
+    get:
+      tags:
+        - shared channels
+      summary: Get remote clusters for a shared channel
+      description: |
+        Gets the remote clusters information for a shared channel.
+
+        __Minimum server version__: 10.11
+
+        ##### Permissions
+        Must be authenticated and have the `read_channel` permission for the channel.
+      operationId: GetSharedChannelRemotes
+      parameters:
+        - name: channel_id
+          in: path
+          description: Channel GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Remote clusters retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RemoteClusterInfo'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
   /api/v4/sharedchannels/users/{user_id}/can_dm/{other_user_id}:
     get:
       tags:
@@ -21315,9 +21315,9 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
+                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -21367,13 +21367,13 @@ paths:
                   value:
                     posts:
                       post_id_1:
+                        id: post_id_1
                         message: First post
                         create_at: 1635638400000
-                        id: post_id_1
                       post_id_2:
+                        id: post_id_2
                         message: Second post
                         create_at: 1635638500000
-                        id: post_id_2
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -30427,8 +30427,8 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
-              ReviewerIds: []
               Enabled: true
+              ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
               ReviewerIds: []
