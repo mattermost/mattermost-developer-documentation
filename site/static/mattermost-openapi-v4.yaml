@@ -7993,6 +7993,59 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
+  /api/v4/channels/{channel_id}/members/{user_id}/autotranslation:
+    put:
+      tags:
+        - channels
+      summary: Update channel member autotranslation setting
+      description: >
+        Update a user's autotranslation setting for a channel. This controls whether messages in the channel should not be automatically translated for the user. By default, autotranslations are enabled for all users if the channel is enabled for autotranslation.
+
+        ##### Permissions
+
+        Must be logged in as the user or have `edit_other_users` permission.
+
+      operationId: UpdateChannelMemberAutotranslation
+      parameters:
+        - name: channel_id
+          in: path
+          description: Channel GUID
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: path
+          description: User GUID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - autotranslation_disabled
+              properties:
+                autotranslation_disabled:
+                  type: boolean
+                  description: Whether to disable autotranslation for the user in this channel
+        required: true
+      responses:
+        "200":
+          description: Channel member autotranslation setting update successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusOK'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
   /api/v4/channels/members/{user_id}/view:
     post:
       tags:
@@ -8958,6 +9011,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SidebarCategory'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+  /api/v4/sharedchannels/{channel_id}/remotes:
+    get:
+      tags:
+        - shared channels
+      summary: Get remote clusters for a shared channel
+      description: |
+        Gets the remote clusters information for a shared channel.
+
+        __Minimum server version__: 10.11
+
+        ##### Permissions
+        Must be authenticated and have the `read_channel` permission for the channel.
+      operationId: GetSharedChannelRemotes
+      parameters:
+        - name: channel_id
+          in: path
+          description: Channel GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Remote clusters retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RemoteClusterInfo'
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -19148,43 +19238,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
-  /api/v4/sharedchannels/{channel_id}/remotes:
-    get:
-      tags:
-        - channels
-      summary: Get remote clusters for a shared channel
-      description: |
-        Gets the remote clusters information for a shared channel.
-
-        __Minimum server version__: 10.10
-
-        ##### Permissions
-        Must be authenticated and have the `read_channel` permission for the channel.
-      operationId: GetSharedChannelRemotes
-      parameters:
-        - name: channel_id
-          in: path
-          description: Channel GUID
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Remote clusters retrieval successful
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RemoteClusterInfo'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "404":
-          $ref: '#/components/responses/NotFound'
   /api/v4/sharedchannels/users/{user_id}/can_dm/{other_user_id}:
     get:
       tags:
@@ -21344,8 +21397,8 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  cursor: ""
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
                   per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
@@ -21356,17 +21409,17 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  per_page: 100
                   start_time: 1635638400000
+                  per_page: 100
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
               descending_order:
                 summary: Descending order from recent
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  per_page: 100
                   sort_direction: desc
+                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
@@ -26326,11 +26379,11 @@ components:
           additionalProperties: true
           example:
             visibility: when_set
+            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
@@ -30456,8 +30509,8 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
-              Enabled: true
               ReviewerIds: []
+              Enabled: true
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
               ReviewerIds: []
