@@ -21397,8 +21397,8 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
@@ -21416,9 +21416,9 @@ paths:
               descending_order:
                 summary: Descending order from recent
                 value:
+                  cursor: ""
                   sort_direction: desc
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   per_page: 100
       responses:
         "200":
@@ -21449,9 +21449,9 @@ paths:
                   value:
                     posts:
                       post_id_1:
+                        create_at: 1635638400000
                         id: post_id_1
                         message: First post
-                        create_at: 1635638400000
                       post_id_2:
                         id: post_id_2
                         message: Second post
@@ -21463,9 +21463,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
-                        id: post_id_99
                         message: Last post
                         create_at: 1635724800000
+                        id: post_id_99
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -26379,11 +26379,11 @@ components:
           additionalProperties: true
           example:
             visibility: when_set
+            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
@@ -30512,8 +30512,8 @@ components:
               Enabled: true
               ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              ReviewerIds: []
               Enabled: false
+              ReviewerIds: []
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
