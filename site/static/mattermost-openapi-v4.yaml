@@ -21421,17 +21421,17 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   start_time: 1635638400000
                   cursor: ""
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
               descending_order:
                 summary: Descending order from recent
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  per_page: 100
                   sort_direction: desc
+                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
