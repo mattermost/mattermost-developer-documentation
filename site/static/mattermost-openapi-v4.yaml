@@ -21409,22 +21409,22 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  per_page: 100
                   cursor: ""
+                  per_page: 100
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
                   cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
-                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  per_page: 100
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  per_page: 100
                   start_time: 1635638400000
+                  per_page: 100
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
               descending_order:
                 summary: Descending order from recent
                 value:
@@ -22070,8 +22070,6 @@ paths:
       description: |
         List all the Custom Profile Attributes fields.
 
-        _This endpoint is experimental._
-
         __Minimum server version__: 10.5
 
         ##### Permissions
@@ -22094,8 +22092,6 @@ paths:
       summary: Create a Custom Profile Attribute field
       description: |
         Create a new Custom Profile Attribute field on the system.
-
-        _This endpoint is experimental._
 
         __Minimum server version__: 10.5
 
@@ -22192,8 +22188,6 @@ paths:
 
         **Note:** Fields with `attrs.protected = true` cannot be
         modified and will return an error.
-
-        _This endpoint is experimental._
 
         __Minimum server version__: 10.5
 
@@ -22293,8 +22287,6 @@ paths:
         Marks a Custom Profile Attribute field and all its values as
         deleted.
 
-        _This endpoint is experimental._
-
         __Minimum server version__: 10.5
 
         ##### Permissions
@@ -22334,8 +22326,6 @@ paths:
 
         **Note:** Values for fields with `attrs.protected = true` cannot be
         updated and will return an error.
-
-        _This endpoint is experimental._
 
         __Minimum server version__: 10.5
 
@@ -22420,8 +22410,6 @@ paths:
       description: |
         List all the Custom Profile Attributes values for specified user.
 
-        _This endpoint is experimental._
-
         __Minimum server version__: 10.5
 
         ##### Permissions
@@ -22455,8 +22443,6 @@ paths:
 
         **Note:** Values for fields with `attrs.protected = true` cannot be
         updated and will return an error.
-
-        _This endpoint is experimental._
 
         __Minimum server version__: 11
 
