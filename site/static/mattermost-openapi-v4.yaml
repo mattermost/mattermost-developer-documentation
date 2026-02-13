@@ -21416,8 +21416,8 @@ paths:
                 summary: Subsequent page using cursor
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  per_page: 100
                   cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
+                  per_page: 100
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
@@ -21460,14 +21460,14 @@ paths:
                   summary: Response with more pages available
                   value:
                     posts:
-                      post_id_2:
-                        message: Second post
-                        create_at: 1635638500000
-                        id: post_id_2
                       post_id_1:
-                        id: post_id_1
                         message: First post
                         create_at: 1635638400000
+                        id: post_id_1
+                      post_id_2:
+                        id: post_id_2
+                        message: Second post
+                        create_at: 1635638500000
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -30544,8 +30544,8 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
-              ReviewerIds: []
               Enabled: true
+              ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
               ReviewerIds: []
