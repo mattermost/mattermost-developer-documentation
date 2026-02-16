@@ -523,11 +523,14 @@ paths:
           $ref: '#/components/responses/Forbidden'
   /api/v4/users/login/sso/code-exchange:
     post:
+      deprecated: true
       tags:
         - users
       summary: Exchange SSO login code for session tokens
       description: >
-        Exchange a short-lived login_code for session tokens using SAML code exchange (mobile SSO flow). This endpoint is part of the mobile SSO code-exchange flow to prevent tokens  from appearing in deep links.
+        Exchange a short-lived login_code for session tokens using SAML code exchange (mobile SSO flow).
+
+        **Deprecated:** This endpoint is deprecated and will be removed in a future release. Mobile clients should use the direct SSO callback flow instead.
 
         ##### Permissions
 
@@ -573,6 +576,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         "403":
           $ref: '#/components/responses/Forbidden'
+        "410":
+          description: Endpoint is deprecated and disabled
   /oauth/intune:
     post:
       tags:
@@ -21415,9 +21420,9 @@ paths:
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
                   per_page: 100
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
@@ -21429,9 +21434,9 @@ paths:
                 summary: Descending order from recent
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  per_page: 100
                   cursor: ""
                   sort_direction: desc
+                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
@@ -21461,9 +21466,9 @@ paths:
                   value:
                     posts:
                       post_id_1:
-                        create_at: 1635638400000
                         id: post_id_1
                         message: First post
+                        create_at: 1635638400000
                       post_id_2:
                         id: post_id_2
                         message: Second post
@@ -26413,12 +26418,12 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
+            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
             visibility: when_set
-            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
@@ -30547,8 +30552,8 @@ components:
               Enabled: true
               ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              ReviewerIds: []
               Enabled: false
+              ReviewerIds: []
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
