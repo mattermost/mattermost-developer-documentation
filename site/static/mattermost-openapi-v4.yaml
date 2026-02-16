@@ -21421,9 +21421,9 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
+                  cursor: ""
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   start_time: 1635638400000
-                  cursor: ""
                   per_page: 100
               descending_order:
                 summary: Descending order from recent
