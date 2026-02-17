@@ -523,11 +523,14 @@ paths:
           $ref: '#/components/responses/Forbidden'
   /api/v4/users/login/sso/code-exchange:
     post:
+      deprecated: true
       tags:
         - users
       summary: Exchange SSO login code for session tokens
       description: >
-        Exchange a short-lived login_code for session tokens using SAML code exchange (mobile SSO flow). This endpoint is part of the mobile SSO code-exchange flow to prevent tokens  from appearing in deep links.
+        Exchange a short-lived login_code for session tokens using SAML code exchange (mobile SSO flow).
+
+        **Deprecated:** This endpoint is deprecated and will be removed in a future release. Mobile clients should use the direct SSO callback flow instead.
 
         ##### Permissions
 
@@ -573,6 +576,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         "403":
           $ref: '#/components/responses/Forbidden'
+        "410":
+          description: Endpoint is deprecated and disabled
   /oauth/intune:
     post:
       tags:
@@ -21415,9 +21420,9 @@ paths:
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
                   per_page: 100
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
@@ -21429,9 +21434,9 @@ paths:
                 summary: Descending order from recent
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
                   per_page: 100
                   sort_direction: desc
-                  cursor: ""
       responses:
         "200":
           description: Posts retrieved successfully
@@ -21465,9 +21470,9 @@ paths:
                         message: First post
                         create_at: 1635638400000
                       post_id_2:
-                        create_at: 1635638500000
                         id: post_id_2
                         message: Second post
+                        create_at: 1635638500000
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -21475,9 +21480,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
-                        id: post_id_99
                         message: Last post
                         create_at: 1635724800000
+                        id: post_id_99
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -22070,8 +22075,6 @@ paths:
       description: |
         List all the Custom Profile Attributes fields.
 
-        _This endpoint is experimental._
-
         __Minimum server version__: 10.5
 
         ##### Permissions
@@ -22094,8 +22097,6 @@ paths:
       summary: Create a Custom Profile Attribute field
       description: |
         Create a new Custom Profile Attribute field on the system.
-
-        _This endpoint is experimental._
 
         __Minimum server version__: 10.5
 
@@ -22192,8 +22193,6 @@ paths:
 
         **Note:** Fields with `attrs.protected = true` cannot be
         modified and will return an error.
-
-        _This endpoint is experimental._
 
         __Minimum server version__: 10.5
 
@@ -22293,8 +22292,6 @@ paths:
         Marks a Custom Profile Attribute field and all its values as
         deleted.
 
-        _This endpoint is experimental._
-
         __Minimum server version__: 10.5
 
         ##### Permissions
@@ -22334,8 +22331,6 @@ paths:
 
         **Note:** Values for fields with `attrs.protected = true` cannot be
         updated and will return an error.
-
-        _This endpoint is experimental._
 
         __Minimum server version__: 10.5
 
@@ -22420,8 +22415,6 @@ paths:
       description: |
         List all the Custom Profile Attributes values for specified user.
 
-        _This endpoint is experimental._
-
         __Minimum server version__: 10.5
 
         ##### Permissions
@@ -22455,8 +22448,6 @@ paths:
 
         **Note:** Values for fields with `attrs.protected = true` cannot be
         updated and will return an error.
-
-        _This endpoint is experimental._
 
         __Minimum server version__: 11
 
@@ -26427,12 +26418,12 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
-            visibility: when_set
-            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
+            sortOrder: 1
+            visibility: when_set
     PropertyFieldPatch:
       type: object
       properties:
