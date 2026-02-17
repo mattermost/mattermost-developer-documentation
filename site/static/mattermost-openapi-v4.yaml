@@ -19221,12 +19221,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - shared channels
+        - channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.11
+        __Minimum server version__: 10.10
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -21414,8 +21414,8 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
@@ -21427,16 +21427,16 @@ paths:
                 summary: Query with time range starting from specific time
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   start_time: 1635638400000
+                  cursor: ""
                   per_page: 100
               descending_order:
                 summary: Descending order from recent
                 value:
-                  per_page: 100
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   sort_direction: desc
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
@@ -21464,17 +21464,17 @@ paths:
                 with_more_pages:
                   summary: Response with more pages available
                   value:
-                    posts:
-                      post_id_1:
-                        message: First post
-                        create_at: 1635638400000
-                        id: post_id_1
-                      post_id_2:
-                        create_at: 1635638500000
-                        id: post_id_2
-                        message: Second post
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
+                    posts:
+                      post_id_1:
+                        id: post_id_1
+                        message: First post
+                        create_at: 1635638400000
+                      post_id_2:
+                        id: post_id_2
+                        message: Second post
+                        create_at: 1635638500000
                 last_page:
                   summary: Last page (no more results)
                   value:
@@ -26418,8 +26418,8 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
-            visibility: when_set
             sortOrder: 1
+            visibility: when_set
             options:
               - color: '#ff0000'
                 id: opt1
@@ -30549,11 +30549,11 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
+              ReviewerIds: []
               Enabled: true
-              ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              ReviewerIds: []
               Enabled: false
+              ReviewerIds: []
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
