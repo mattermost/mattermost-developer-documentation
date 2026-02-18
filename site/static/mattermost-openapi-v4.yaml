@@ -9036,6 +9036,43 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
+  /api/v4/sharedchannels/{channel_id}/remotes:
+    get:
+      tags:
+        - shared channels
+      summary: Get remote clusters for a shared channel
+      description: |
+        Gets the remote clusters information for a shared channel.
+
+        __Minimum server version__: 10.11
+
+        ##### Permissions
+        Must be authenticated and have the `read_channel` permission for the channel.
+      operationId: GetSharedChannelRemotes
+      parameters:
+        - name: channel_id
+          in: path
+          description: Channel GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Remote clusters retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RemoteClusterInfo'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
   /api/v4/channels/{channel_id}/common_teams:
     get:
       tags:
@@ -19218,43 +19255,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
-  /api/v4/sharedchannels/{channel_id}/remotes:
-    get:
-      tags:
-        - shared channels
-      summary: Get remote clusters for a shared channel
-      description: |
-        Gets the remote clusters information for a shared channel.
-
-        __Minimum server version__: 10.11
-
-        ##### Permissions
-        Must be authenticated and have the `read_channel` permission for the channel.
-      operationId: GetSharedChannelRemotes
-      parameters:
-        - name: channel_id
-          in: path
-          description: Channel GUID
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Remote clusters retrieval successful
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RemoteClusterInfo'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "404":
-          $ref: '#/components/responses/NotFound'
   /api/v4/sharedchannels/users/{user_id}/can_dm/{other_user_id}:
     get:
       tags:
@@ -21426,17 +21426,17 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   start_time: 1635638400000
-                  cursor: ""
                   per_page: 100
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
               descending_order:
                 summary: Descending order from recent
                 value:
-                  per_page: 100
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   sort_direction: desc
+                  per_page: 100
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
       responses:
         "200":
           description: Posts retrieved successfully
@@ -21480,9 +21480,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
-                        id: post_id_99
                         message: Last post
                         create_at: 1635724800000
+                        id: post_id_99
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -30548,11 +30548,11 @@ components:
             $ref: '#/components/schemas/TeamReviewerConfig'
           description: Team-specific reviewer configuration, keyed by team ID
           example:
-            8guxic3sg7nijeu5dgxt1fh4ia:
-              Enabled: true
-              ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
+              ReviewerIds: []
+            8guxic3sg7nijeu5dgxt1fh4ia:
+              Enabled: true
               ReviewerIds: []
       required:
         - CommonReviewers
