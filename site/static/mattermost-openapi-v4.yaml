@@ -19221,12 +19221,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - shared channels
+        - channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.11
+        __Minimum server version__: 10.10
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -21433,10 +21433,10 @@ paths:
               descending_order:
                 summary: Descending order from recent
                 value:
-                  per_page: 100
-                  sort_direction: desc
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
+                  per_page: 100
+                  sort_direction: desc
       responses:
         "200":
           description: Posts retrieved successfully
@@ -21465,14 +21465,14 @@ paths:
                   summary: Response with more pages available
                   value:
                     posts:
-                      post_id_2:
-                        id: post_id_2
-                        message: Second post
-                        create_at: 1635638500000
                       post_id_1:
                         message: First post
                         create_at: 1635638400000
                         id: post_id_1
+                      post_id_2:
+                        message: Second post
+                        create_at: 1635638500000
+                        id: post_id_2
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -30552,8 +30552,8 @@ components:
               Enabled: true
               ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              ReviewerIds: []
               Enabled: false
+              ReviewerIds: []
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
