@@ -21414,8 +21414,8 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
@@ -21426,8 +21426,8 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  cursor: ""
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
                   start_time: 1635638400000
                   per_page: 100
               descending_order:
@@ -26418,12 +26418,12 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
+            visibility: when_set
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
             sortOrder: 1
-            visibility: when_set
     PropertyFieldPatch:
       type: object
       properties:
@@ -30552,8 +30552,8 @@ components:
               Enabled: true
               ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              ReviewerIds: []
               Enabled: false
+              ReviewerIds: []
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
