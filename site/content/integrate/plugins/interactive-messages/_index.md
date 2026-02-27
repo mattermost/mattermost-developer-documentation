@@ -37,6 +37,7 @@ The following payload gives an example that uses message buttons.
         {
           "id": "message",
           "name": "Ephemeral Message",
+          "tooltip": "Send a message only visible to you",
           "integration": {
             "url": "http://127.0.0.1:7357",
             "context": {
@@ -46,6 +47,7 @@ The following payload gives an example that uses message buttons.
         }, {
           "id": "update",
           "name": "Update",
+          "tooltip": "Update this message",
           "integration": {
             "url": "http://127.0.0.1:7357",
             "context": {
@@ -70,6 +72,18 @@ In the HTTP response for this request, the integration can choose to update the 
   "ephemeral_text": "You updated the post!"
 }
 ```
+
+To return a custom error message to the user, your integration can respond with an error object:
+
+```json
+{
+  "error": {
+    "message": "Unable to complete action. Please check your permissions."
+  }
+}
+```
+
+The error message will be displayed to the user below the message attachment. If no custom error message is provided, a default "Action failed to execute" message is shown. This feature is available in Mattermost v10.5 and later.
 
 ![image](interactive_message.gif)
 
@@ -112,6 +126,51 @@ The actions used in the previous example include the following:
     "style": "danger"
   }
 ]
+```
+
+### Tooltips on buttons
+
+You can add tooltips to provide helpful information when users hover over action buttons:
+
+```json
+{
+  "attachments": [
+    {
+      "pretext": "Review this pull request",
+      "text": "Pull request #1234: Add new feature",
+      "actions": [
+        {
+          "id": "approve",
+          "type": "button",
+          "name": "Approve",
+          "tooltip": "Click to approve this pull request",
+          "style": "primary",
+          "integration": {
+            "url": "http://127.0.0.1:7357",
+            "context": {
+              "action": "approve",
+              "pr_id": 1234
+            }
+          }
+        },
+        {
+          "id": "reject",
+          "type": "button",
+          "name": "Reject",
+          "tooltip": "Click to reject this pull request",
+          "style": "danger",
+          "integration": {
+            "url": "http://127.0.0.1:7357",
+            "context": {
+              "action": "reject",
+              "pr_id": 1234
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
 ```
 
 ## Message menus
@@ -244,6 +303,9 @@ A per post unique identifier.
 **Name**<br/>
 Give your action a descriptive name.
 
+**Tooltip** (optional)<br/>
+Display helpful text when users hover over the button. Available in Mattermost v10.5 and later.
+
 **URL**<br/>
 The actions are backed by an integration that handles HTTP POST requests when users select the message button. The URL parameter determines where this action is sent. The request contains an `application/json` JSON string. As of 5.14, relative URLs are accepted, simplifying the workflow when a plugin handles the action.
 
@@ -335,6 +397,31 @@ In most cases, your integration will do one or both of these things:
      ```
 
      Then, when the integration receives the request, it can act based on the action ID.
+
+## Error handling
+
+When an action button integration fails, Mattermost automatically displays an error message to the user below the message attachment. This provides immediate feedback when button actions don't work as expected.
+
+![image](action-button-error.png)
+
+**Key behaviors:**
+- Integrations can return custom error messages using the error response format (see above)
+- If no custom message is provided, a default "Action failed to execute" message is shown
+- Previous errors are automatically cleared when a new action is triggered
+- Error display works for both button and menu actions
+
+This feature is available in Mattermost v10.5 and later.
+
+**Automatic error display scenarios:**
+
+When your integration returns an error response with a custom message, that message is displayed to the user. For system-level errors where no custom message can be returned, a default error message is shown:
+
+- Network connection fails when contacting the integration URL
+- Integration URL is invalid or unreachable
+- Integration returns a non-200 HTTP status code
+- Integration returns invalid JSON
+
+For troubleshooting integration errors from the server side, see the FAQ section "Why does an interactive button or menu return a 400 error?" below.
 
 ## Tips and best practices
 
