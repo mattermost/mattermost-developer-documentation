@@ -567,6 +567,322 @@ The full list of supported fields for `datetime` elements is included below:
 - `time_interval: 60` creates options: 00:00, 01:00, 02:00, 03:00, etc.
 - Invalid: `time_interval: 7` (7 is not a divisor of 1440)
 
+#### Advanced DateTime Configuration (v11.6)
+
+For more advanced datetime field features, use the `datetime_config` object to group related properties. This approach provides better organization and enables new features like timezone support and manual time entry.
+
+**DialogDateTimeConfig Structure:**
+
+```json
+{
+    "display_name": "Event Time",
+    "name": "event_time",
+    "type": "datetime",
+    "help_text": "When is your event?",
+    "datetime_config": {
+        "time_interval": 30,
+        "location_timezone": "America/New_York",
+        "allow_manual_time_entry": true
+    }
+}
+```
+
+**datetime_config Properties:**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `time_interval` | Integer | Time selection interval in minutes (1-1440, must be divisor of 1440). Default: 60. |
+| `location_timezone` | String | IANA timezone for displaying times (e.g., "America/New_York", "Europe/London", "Asia/Tokyo"). When set, times are shown in this timezone with an indicator. Values are still stored in UTC. |
+| `allow_manual_time_entry` | Boolean | When `true`, shows a text input for typing times instead of dropdown. Supports formats: `9am`, `3:45pm`, `14:30`, `12a`. Default: `false`. |
+
+**Backward Compatibility:**
+
+The original flat structure is still supported:
+```json
+{
+    "type": "datetime",
+    "time_interval": 30,    // Legacy format
+    "min_date": "today",
+    "max_date": "+7d"
+}
+```
+
+New features require `datetime_config`:
+```json
+{
+    "type": "datetime",
+    "min_date": "today",        // Can use legacy fields alongside datetime_config
+    "datetime_config": {
+        "time_interval": 30,
+        "location_timezone": "Asia/Tokyo"
+    }
+}
+```
+
+**Timezone Support Example:**
+
+Display event times in a specific timezone (useful for global teams):
+
+```json
+{
+    "display_name": "London Office Hours",
+    "name": "london_time",
+    "type": "datetime",
+    "help_text": "Times shown in GMT (with 🌍 indicator)",
+    "datetime_config": {
+        "location_timezone": "Europe/London",
+        "time_interval": 60
+    }
+}
+```
+
+**Behavior:**
+- User in Denver (UTC-7) sees times in London (GMT)
+- Dropdown shows: 00:00, 01:00, 02:00 (London time)
+- User selects 14:00 (2 PM London)
+- Value submitted: `2024-03-15T14:00:00Z` (UTC)
+- 🌍 indicator shows "Times in GMT"
+
+**Manual Time Entry Example:**
+
+Allow users to type exact times instead of selecting from dropdown:
+
+```json
+{
+    "display_name": "Precise Event Time",
+    "name": "event_time",
+    "type": "datetime",
+    "help_text": "Type exact time: 9am, 14:30, 3:45pm",
+    "datetime_config": {
+        "allow_manual_time_entry": true
+    }
+}
+```
+
+**Behavior:**
+- Text input shown instead of dropdown
+- Accepts formats: `12a`, `3:45pm`, `14:30`, `9pm`
+- No rounding - exact minutes preserved
+- Respects user's 12h/24h display preference
+- Shows placeholder `--:--` until time entered
+
+**Combined Example (Timezone + Manual Entry):**
+
+```json
+{
+    "display_name": "Tokyo Meeting Time",
+    "name": "tokyo_meeting",
+    "type": "datetime",
+    "help_text": "Enter time in JST (Japan Standard Time)",
+    "datetime_config": {
+        "location_timezone": "Asia/Tokyo",
+        "allow_manual_time_entry": true
+    }
+}
+```
+
+**Behavior:**
+- Shows times in Tokyo timezone
+- User can type exact time (e.g., `10:30am`)
+- 🌍 indicator shows "Times in JST"
+- Value stored in UTC after conversion
+
+**Supported Time Formats (Manual Entry):**
+- Short 12-hour: `9a`, `3p`
+- Full 12-hour: `9:15am`, `3:45pm`, `12:30 PM`
+- 24-hour: `14:30`, `09:15`, `00:00`
+- Without minutes: `9am` → `09:00`, `14` → `14:00`
+
+#### Date and DateTime Range Selection (v11.6)
+
+Date and DateTime fields can be configured as range selectors, allowing users to select a start and end date (and optionally time). This is useful for booking systems, event scheduling, and time-period selections.
+
+##### Date Range Configuration
+
+Date ranges use the `datetime_config` object to enable range functionality:
+
+```json
+{
+    "display_name": "Event Date Range",
+    "name": "event_dates",
+    "type": "date",
+    "help_text": "Select start and end dates for your event",
+    "optional": false,
+    "datetime_config": {
+        "is_range": true,
+        "allow_single_day_range": false
+    }
+}
+```
+
+**Date Range Behavior:**
+- Users select both a start date and end date using a single calendar picker
+- The calendar allows drag-selection for quickly choosing a range
+- Once a start date is selected, users can click to select the end date
+- Submitted as an array: `["2024-03-15", "2024-03-20"]`
+
+##### DateTime Range Configuration
+
+DateTime ranges display separate start and end fields with both date and time selection:
+
+```json
+{
+    "display_name": "Meeting Time Range",
+    "name": "meeting_times",
+    "type": "datetime",
+    "help_text": "Select start and end times for your meeting",
+    "optional": false,
+    "datetime_config": {
+        "is_range": true,
+        "range_layout": "horizontal",
+        "allow_single_day_range": true,
+        "time_interval": 30
+    }
+}
+```
+
+**DateTime Range Behavior:**
+- Displays two separate datetime pickers labeled "Start Date & Time" and "End Date & Time"
+- Each picker has independent date and time selection
+- End date picker automatically disables dates before the start date
+- Submitted as an array: `["2024-03-15T09:00:00-05:00", "2024-03-15T17:00:00-05:00"]`
+
+##### Range Configuration Options
+
+The `datetime_config` object supports the following range-specific properties:
+
+| Field                   | Type    | Description                                                                                                                        |
+|-------------------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `is_range`              | Boolean | Set to `true` to enable range selection. Default is `false`.                                                                       |
+| `range_layout`          | String  | (DateTime ranges only) Layout for start/end fields: `"horizontal"` (side-by-side) or `"vertical"` (stacked). Default is `"horizontal"`. |
+| `allow_single_day_range`| Boolean | Set to `true` to allow selecting the same day for start and end dates. Default is `false`.                                         |
+| `time_interval`         | Integer | (DateTime ranges only) Time selection interval in minutes. Applies to both start and end time pickers. Default is 60.             |
+
+**Note:** When using `datetime_config` for ranges, the `time_interval` property within `datetime_config` takes precedence over the top-level `time_interval` field.
+
+##### Range Usage Examples
+
+**Basic date range (vacation booking):**
+```json
+{
+    "display_name": "Vacation Dates",
+    "name": "vacation",
+    "type": "date",
+    "help_text": "Select your vacation start and end dates",
+    "optional": false,
+    "min_date": "today",
+    "max_date": "+365d",
+    "datetime_config": {
+        "is_range": true,
+        "allow_single_day_range": false
+    }
+}
+```
+
+**DateTime range with horizontal layout (meeting scheduler):**
+```json
+{
+    "display_name": "Meeting Window",
+    "name": "meeting_window",
+    "type": "datetime",
+    "help_text": "Select the meeting start and end times",
+    "optional": false,
+    "min_date": "today",
+    "max_date": "+30d",
+    "datetime_config": {
+        "is_range": true,
+        "range_layout": "horizontal",
+        "allow_single_day_range": true,
+        "time_interval": 15
+    }
+}
+```
+
+**DateTime range with vertical layout (conference session):**
+```json
+{
+    "display_name": "Session Time Slot",
+    "name": "session_slot",
+    "type": "datetime",
+    "help_text": "Select when your session starts and ends",
+    "optional": false,
+    "datetime_config": {
+        "is_range": true,
+        "range_layout": "vertical",
+        "allow_single_day_range": true,
+        "time_interval": 30
+    }
+}
+```
+
+**Date range allowing single-day events:**
+```json
+{
+    "display_name": "Event Duration",
+    "name": "event_duration",
+    "type": "date",
+    "help_text": "Select event dates (can be a single day)",
+    "optional": false,
+    "min_date": "today",
+    "datetime_config": {
+        "is_range": true,
+        "allow_single_day_range": true
+    }
+}
+```
+
+##### Range Validation
+
+**Required Range Fields:**
+- Both start and end dates must be selected for required fields
+- Submitting with only a start date will show a validation error with code `"range_incomplete"`
+- Optional range fields with only a start date are considered valid
+
+**Date Constraints:**
+- For datetime ranges, the end date picker automatically disables dates before the start date
+- If `allow_single_day_range` is `false`, the start date itself is also disabled in the end picker
+- If `allow_single_day_range` is `true`, users can select the same date for both start and end
+
+**Form Submission Format:**
+- Date ranges submit as string arrays: `["2024-03-15", "2024-03-20"]`
+- DateTime ranges submit as string arrays with timezone: `["2024-03-15T09:00:00-05:00", "2024-03-15T17:00:00-05:00"]`
+- Empty optional range fields submit as `null` or empty array
+
+##### Combining Range with Other Features
+
+Range functionality can be combined with other `datetime_config` properties:
+
+**Range with timezone:**
+```json
+{
+    "display_name": "Global Meeting Window",
+    "name": "global_meeting",
+    "type": "datetime",
+    "help_text": "Select times in London timezone",
+    "datetime_config": {
+        "is_range": true,
+        "range_layout": "horizontal",
+        "location_timezone": "Europe/London",
+        "time_interval": 30
+    }
+}
+```
+
+**Range with manual time entry:**
+```json
+{
+    "display_name": "Precise Event Timeframe",
+    "name": "event_timeframe",
+    "type": "datetime",
+    "help_text": "Type exact start and end times",
+    "datetime_config": {
+        "is_range": true,
+        "allow_manual_time_entry": true,
+        "allow_single_day_range": true
+    }
+}
+```
+
 ## Dialog submission
 
 When a user submits a dialog, Mattermost will perform client-side input validation to make sure:
