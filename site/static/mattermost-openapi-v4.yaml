@@ -19227,12 +19227,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - shared channels
+        - channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.11
+        __Minimum server version__: 10.10
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -21421,8 +21421,8 @@ paths:
                 summary: First page, ascending order
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   per_page: 100
+                  cursor: ""
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -21432,17 +21432,17 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
-                  start_time: 1635638400000
                   per_page: 100
+                  cursor: ""
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  start_time: 1635638400000
               descending_order:
                 summary: Descending order from recent
                 value:
-                  cursor: ""
-                  sort_direction: desc
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  sort_direction: desc
                   per_page: 100
+                  cursor: ""
       responses:
         "200":
           description: Posts retrieved successfully
@@ -21472,9 +21472,9 @@ paths:
                   value:
                     posts:
                       post_id_1:
+                        message: First post
                         create_at: 1635638400000
                         id: post_id_1
-                        message: First post
                       post_id_2:
                         id: post_id_2
                         message: Second post
@@ -21486,9 +21486,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
-                        id: post_id_99
                         message: Last post
                         create_at: 1635724800000
+                        id: post_id_99
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -30567,8 +30567,8 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
-              ReviewerIds: []
               Enabled: true
+              ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
               ReviewerIds: []
