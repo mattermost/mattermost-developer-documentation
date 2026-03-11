@@ -14418,7 +14418,7 @@ paths:
   /api/v4/ldap/groups:
     get:
       tags:
-        - ldap
+        - LDAP
       summary: Returns a list of LDAP groups
       description: >
         ##### Permissions
@@ -14464,7 +14464,7 @@ paths:
   /api/v4/ldap/groups/{remote_id}/link:
     post:
       tags:
-        - ldap
+        - LDAP
       summary: Link a LDAP group
       description: >
         ##### Permissions
@@ -18704,7 +18704,7 @@ paths:
         Get a list of remote clusters.
 
         ##### Permissions
-        `manage_secure_connections`
+        `manage_secure_connections` or `manage_shared_channels`
       operationId: GetRemoteClusters
       parameters:
         - name: page
@@ -18829,7 +18829,7 @@ paths:
         Get the Remote Cluster details from the provided id string.
 
         ##### Permissions
-        `manage_secure_connections`
+        `manage_secure_connections` or `manage_shared_channels`
       operationId: GetRemoteCluster
       parameters:
         - name: remote_id
@@ -19052,7 +19052,7 @@ paths:
         and their status.
 
         ##### Permissions
-        `manage_secure_connections`
+        `manage_secure_connections` or `manage_shared_channels`
       operationId: GetSharedChannelRemotesByRemoteCluster
       parameters:
         - name: remote_id
@@ -19129,6 +19129,12 @@ paths:
           required: true
           schema:
             type: string
+        - name: include_deleted
+          in: query
+          description: Include deleted remote clusters
+          schema:
+            type: boolean
+            default: false
       responses:
         "200":
           description: Remote cluster info retrieval successful
@@ -21414,8 +21420,8 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  cursor: ""
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
                   per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
@@ -21427,16 +21433,16 @@ paths:
                 summary: Query with time range starting from specific time
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   start_time: 1635638400000
                   per_page: 100
+                  cursor: ""
               descending_order:
                 summary: Descending order from recent
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  per_page: 100
                   sort_direction: desc
+                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
@@ -23186,6 +23192,7 @@ paths:
         An enterprise advanced license is required.
       tags:
         - Content Flagging
+      operationId: GetCFFlagConfig
       responses:
         "200":
           description: Configuration retrieved successfully
@@ -23223,6 +23230,7 @@ paths:
           schema:
             type: string
           description: The ID of the team to retrieve the content flagging status for
+      operationId: GetCFTeamStatus
       responses:
         "200":
           description: Content flagging status retrieved successfully
@@ -23257,6 +23265,7 @@ paths:
           schema:
             type: string
           description: The ID of the post to be flagged
+      operationId: PostCFPostFlag
       requestBody:
         required: true
         content:
@@ -23295,6 +23304,7 @@ paths:
         An enterprise advanced license is required.
       tags:
         - Content Flagging
+      operationId: GetCFFields
       responses:
         "200":
           description: Custom fields retrieved successfully
@@ -23326,6 +23336,7 @@ paths:
           schema:
             type: string
           description: The ID of the post to retrieve property field values for
+      operationId: GetCFPostFieldValues
       responses:
         "200":
           description: Property field values retrieved successfully
@@ -23359,6 +23370,7 @@ paths:
           schema:
             type: string
           description: The ID of the post to retrieve
+      operationId: GetCFPost
       responses:
         "200":
           description: The flagged post is fetched correctly
@@ -23390,6 +23402,7 @@ paths:
           schema:
             type: string
           description: The ID of the post to be removed
+      operationId: RemoveCFPost
       responses:
         "200":
           description: Post removed successfully
@@ -23421,6 +23434,7 @@ paths:
           schema:
             type: string
           description: The ID of the post to be kept
+      operationId: KeepCFPost
       responses:
         "200":
           description: Post marked to be kept successfully
@@ -23444,6 +23458,7 @@ paths:
         Only system admins can access this endpoint.
       tags:
         - Content Flagging
+      operationId: GetCFConfig
       responses:
         "200":
           description: Configuration retrieved successfully
@@ -23464,6 +23479,7 @@ paths:
         Only system admins can access this endpoint.
       tags:
         - Content Flagging
+      operationId: UpdateCFConfig
       requestBody:
         required: true
         content:
@@ -23503,6 +23519,7 @@ paths:
           schema:
             type: string
           description: The search term to filter content reviewers by
+      operationId: SearchCFTeamReviewers
       responses:
         "200":
           description: Content reviewers retrieved successfully
@@ -23542,6 +23559,7 @@ paths:
           schema:
             type: string
           description: The ID of the user to be assigned as the content reviewer for the post
+      operationId: PostCFPostReviewer
       responses:
         "200":
           description: Content reviewer assigned successfully
@@ -26418,12 +26436,12 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
+            visibility: when_set
+            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            sortOrder: 1
-            visibility: when_set
     PropertyFieldPatch:
       type: object
       properties:
@@ -27054,8 +27072,8 @@ components:
         Attachments:
           type: array
           items:
-            $ref: '#/components/schemas/SlackAttachment'
-    SlackAttachment:
+            $ref: '#/components/schemas/MessageAttachment'
+    MessageAttachment:
       type: object
       properties:
         Id:
@@ -27081,7 +27099,7 @@ components:
         Fields:
           type: array
           items:
-            $ref: '#/components/schemas/SlackAttachmentField'
+            $ref: '#/components/schemas/MessageAttachmentField'
         ImageURL:
           type: string
         ThumbURL:
@@ -27091,9 +27109,9 @@ components:
         FooterIcon:
           type: string
         Timestamp:
-          description: The timestamp of the slack attachment, either type of string or integer
+          description: The timestamp of the message attachment, either type of string or integer
           type: string
-    SlackAttachmentField:
+    MessageAttachmentField:
       type: object
       properties:
         Title:
