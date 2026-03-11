@@ -18704,7 +18704,7 @@ paths:
         Get a list of remote clusters.
 
         ##### Permissions
-        `manage_secure_connections`
+        `manage_secure_connections` or `manage_shared_channels`
       operationId: GetRemoteClusters
       parameters:
         - name: page
@@ -18829,7 +18829,7 @@ paths:
         Get the Remote Cluster details from the provided id string.
 
         ##### Permissions
-        `manage_secure_connections`
+        `manage_secure_connections` or `manage_shared_channels`
       operationId: GetRemoteCluster
       parameters:
         - name: remote_id
@@ -19052,7 +19052,7 @@ paths:
         and their status.
 
         ##### Permissions
-        `manage_secure_connections`
+        `manage_secure_connections` or `manage_shared_channels`
       operationId: GetSharedChannelRemotesByRemoteCluster
       parameters:
         - name: remote_id
@@ -21421,8 +21421,8 @@ paths:
                 summary: First page, ascending order
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  per_page: 100
                   cursor: ""
+                  per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -21440,8 +21440,8 @@ paths:
                 summary: Descending order from recent
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  sort_direction: desc
                   cursor: ""
+                  sort_direction: desc
                   per_page: 100
       responses:
         "200":
@@ -21486,9 +21486,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
-                        id: post_id_99
                         message: Last post
                         create_at: 1635724800000
+                        id: post_id_99
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
