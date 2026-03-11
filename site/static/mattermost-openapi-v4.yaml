@@ -21420,8 +21420,8 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  cursor: ""
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
                   per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
@@ -21440,8 +21440,8 @@ paths:
                 summary: Descending order from recent
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  sort_direction: desc
                   cursor: ""
+                  sort_direction: desc
                   per_page: 100
       responses:
         "200":
@@ -21476,9 +21476,9 @@ paths:
                         message: First post
                         create_at: 1635638400000
                       post_id_2:
-                        create_at: 1635638500000
                         id: post_id_2
                         message: Second post
+                        create_at: 1635638500000
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -30570,8 +30570,8 @@ components:
               ReviewerIds: []
               Enabled: true
             u1ujk34a47gfxp856pdczs9gey:
-              Enabled: false
               ReviewerIds: []
+              Enabled: false
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
