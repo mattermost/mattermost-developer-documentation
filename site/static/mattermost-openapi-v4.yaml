@@ -21434,14 +21434,14 @@ paths:
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  per_page: 100
                   start_time: 1635638400000
+                  per_page: 100
               descending_order:
                 summary: Descending order from recent
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   sort_direction: desc
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
       responses:
         "200":
@@ -21471,14 +21471,14 @@ paths:
                   summary: Response with more pages available
                   value:
                     posts:
-                      post_id_1:
-                        id: post_id_1
-                        message: First post
-                        create_at: 1635638400000
                       post_id_2:
                         id: post_id_2
                         message: Second post
                         create_at: 1635638500000
+                      post_id_1:
+                        create_at: 1635638400000
+                        id: post_id_1
+                        message: First post
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -26436,8 +26436,8 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
-            sortOrder: 1
             visibility: when_set
+            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
@@ -30566,11 +30566,11 @@ components:
             $ref: '#/components/schemas/TeamReviewerConfig'
           description: Team-specific reviewer configuration, keyed by team ID
           example:
-            u1ujk34a47gfxp856pdczs9gey:
-              ReviewerIds: []
-              Enabled: false
             8guxic3sg7nijeu5dgxt1fh4ia:
               Enabled: true
+              ReviewerIds: []
+            u1ujk34a47gfxp856pdczs9gey:
+              Enabled: false
               ReviewerIds: []
       required:
         - CommonReviewers
