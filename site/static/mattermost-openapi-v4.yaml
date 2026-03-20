@@ -21420,9 +21420,9 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
+                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -21441,8 +21441,8 @@ paths:
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   sort_direction: desc
-                  per_page: 100
                   cursor: ""
+                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
@@ -30570,8 +30570,8 @@ components:
               Enabled: true
               ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              ReviewerIds: []
               Enabled: false
+              ReviewerIds: []
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
