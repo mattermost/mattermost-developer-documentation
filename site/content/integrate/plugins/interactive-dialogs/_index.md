@@ -68,6 +68,7 @@ Each dialog supports elements for users to enter information.
 - `radio`: Radio button option. Use this to quickly select an option from pre-selected choices.
 - `date`: Date picker field. Use this for selecting dates without time information.
 - `datetime`: Date and time picker field. Use this for selecting both date and time with timezone support.
+- `file`: File upload field. Use this to allow users to attach one or more files as part of a dialog submission.
 
 Each element is required by default, otherwise the client will return an error as shown below. Note that the error message will appear below the help text, if one is specified. To make an element optional, set the field `"optional": "true"`.
 
@@ -576,6 +577,52 @@ The full list of supported fields for `datetime` elements is included below:
 - `time_interval: 60` creates options: 00:00, 01:00, 02:00, 03:00, etc.
 - Invalid: `time_interval: 7` (7 is not a divisor of 1440)
 
+### File elements
+
+File elements allow users to upload one or more files as part of an interactive dialog submission. Below is an example of a `file` element that requests a single file attachment.
+
+```json
+{
+    "display_name": "Attachment",
+    "name": "attachment",
+    "type": "file",
+    "optional": true
+}
+```
+
+To allow multiple file uploads, set `allow_multiple` to `true`:
+
+```json
+{
+    "display_name": "Attachments",
+    "name": "attachments",
+    "type": "file",
+    "allow_multiple": true,
+    "optional": true
+}
+```
+
+The full list of supported fields is included below:
+
+| Field            | Type    | Description                                                                                                                        |
+|------------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `display_name`   | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
+| `name`           | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
+| `type`           | String  | Set this value to `file` for a file upload element.                                                                                |
+| `optional`       | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
+| `help_text`      | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
+| `allow_multiple` | Boolean | (Optional) Set to `true` to allow the user to upload more than one file. Default is `false`.                                       |
+
+#### File upload limits
+
+- A maximum of 10 file IDs may be submitted per dialog submission.
+- The server validates that each submitted file ID was uploaded by the submitting user. Referencing a file uploaded by a different user will be rejected.
+- Duplicate file IDs are automatically deduplicated before validation.
+
+#### File IDs in the submission payload
+
+When a dialog containing file elements is submitted, the uploaded file IDs are sent in a top-level `file_ids` array alongside the standard `submission` map. Use `file_ids` as the authoritative source of uploaded file IDs — each ID can be used with the [Files API](https://api.mattermost.com/#tag/files) to attach files to posts or retrieve file metadata.
+
 ## Dialog submission
 
 When a user submits a dialog, Mattermost will perform client-side input validation to make sure:
@@ -597,6 +644,7 @@ The submission payload sent to the integration is:
         "some_element_name": "<value of that element>",
         "some_other_element": "<value of some other element>"
     },
+    "file_ids": ["<file ID 1>", "<file ID 2>"],
     "cancelled": false
 }
 ```
