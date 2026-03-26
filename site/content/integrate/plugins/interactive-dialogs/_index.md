@@ -36,8 +36,7 @@ Interactive dialogs support the following parameters:
 | `submit_label`      | String  | (Optional) Label of the button to complete the dialog. Default is `Submit`.                                                                                                        |
 | `notify_on_cancel`  | Boolean | (Optional) When `true`, sends an event back to the integration whenever there's a user-induced dialog cancellation. No other data is sent back with the event. Default is `false`. |
 | `state`             | String  | (Optional) String provided by the integration that will be echoed back with dialog submission. Default is the empty string.                                                        |
-| `is_multistep`      | Boolean | (Optional) Set to `true` to enable multi-step dialog functionality. Default is `false`.                                                                                           |
-| `refresh_on_select` | Boolean | (Optional) When `true`, sends field refresh requests when select field values change. Default is `false`.                                                                         |
+| `source_url`        | String  | (Optional) URL for field refresh requests. When a select element with `refresh: true` changes value, Mattermost sends a refresh request to this URL. Also used as the endpoint for multi-step form responses. |
 
 Sample JSON is given below. Form submissions are sent back to the URL defined by the integration. You must also include the trigger ID you received from the slash command or interactive message.
 
@@ -53,8 +52,7 @@ Sample JSON is given below. Form submissions are sent back to the URL defined by
         "submit_label": "<label of the button to complete the dialog>",
         "notify_on_cancel": false,
         "state": "<string provided by the integration that will be echoed back with dialog submission>",
-        "is_multistep": false,
-        "refresh_on_select": false
+        "source_url": "<optional URL for field refresh and multi-step form handling>"
     }
 }
 ```
@@ -218,16 +216,26 @@ To use dynamic select, set `data_source: "dynamic"` and provide a `data_source_u
 }
 ```
 
-When users interact with a dynamic select field, Mattermost will send HTTP POST requests to your `data_source_url` with the following payload:
+When users interact with a dynamic select field, Mattermost sends an HTTP POST request to the `/api/v4/actions/dialogs/lookup` endpoint, which proxies the request to your `data_source_url`. The payload uses the same `SubmitDialogRequest` structure:
 
 ```json
 {
-    "user_id": "user_id_here",
-    "channel_id": "channel_id_here", 
-    "team_id": "team_id_here",
-    "term": "user_search_input"
+    "type": "dialog_lookup",
+    "url": "<your data_source_url>",
+    "callback_id": "<callback ID>",
+    "state": "<state>",
+    "user_id": "<user ID>",
+    "channel_id": "<channel ID>",
+    "team_id": "<team ID>",
+    "submission": {
+        "query": "user_search_input",
+        "selected_field": "dynamic_field",
+        "other_field_name": "current_value"
+    }
 }
 ```
+
+The `submission` map contains `query` (the user's search input), `selected_field` (the field being searched), and current values of all other form fields.
 
 Your endpoint should respond with an array of options:
 
@@ -239,7 +247,7 @@ Your endpoint should respond with an array of options:
             "value": "option1"
         },
         {
-            "text": "Option 2", 
+            "text": "Option 2",
             "value": "option2"
         }
     ]
@@ -247,8 +255,8 @@ Your endpoint should respond with an array of options:
 ```
 
 **Security Requirements:**
-- Dynamic select URLs must use HTTPS
-- URLs must be within the `/plugins/` path for security
+- External URLs must use HTTPS
+- Plugin paths (starting with `/plugins/`) are proxied locally and do not require HTTPS
 - The lookup endpoint should validate user permissions
 
 **Dynamic select with multiselect:**
@@ -322,7 +330,8 @@ The list of supported fields for the `select` type element is included below:
 | `type`             | String  | Set this value to `select` for a `select` element.                                                                                 |
 | `multiselect`      | Boolean | (Optional) Set to `true` to allow multiple selections from the list. Default is `false`.                                           |
 | `data_source`      | String  | (Optional) One of `users`, `channels`, or `dynamic`. If none specified, assumes a manual list of options is provided by the integration. |
-| `data_source_url`  | String  | (Optional) URL for dynamic option loading when `data_source` is `dynamic`. Must be HTTPS and within `/plugins/` path.             |
+| `data_source_url`  | String  | (Optional) URL for dynamic option loading when `data_source` is `dynamic`. Must be HTTPS or a `/plugins/` path.                   |
+| `refresh`          | Boolean | (Optional) When `true`, triggers a field refresh request to the dialog's `source_url` when this field's value changes. Use this for dependent dropdowns or conditional form fields. Default is `false`. |
 | `optional`         | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
 | `options`          | Array   | (Optional) An array of options for the select element. Not applicable for `users`, `channels`, or `dynamic` data sources.         |
 | `help_text`        | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
@@ -613,48 +622,45 @@ Finally, once the request is submitted, we recommend that the integration respon
 ## Multi-step dialogs
 ##### Minimum Server Version: 11.1
 
-Multi-step dialogs enable wizard-like form experiences where users can navigate through multiple steps to complete a complex workflow. Each step can have different fields, and form values are preserved as users progress through the steps.
+Multi-step dialogs enable wizard-like form experiences where users progress through multiple steps to complete a complex workflow. Each step can have different fields, and form values are accumulated across steps.
 
-To enable multi-step functionality, set `is_multistep: true` in your dialog configuration.
+Multi-step behavior is achieved by having your submit handler return a new form instead of closing the dialog. No special dialog property is required.
 
 ### Multi-step workflow
 
-1. **Initial dialog**: Open with `is_multistep: true` and provide the first step's elements
-2. **Step navigation**: Users can navigate between steps using Next/Previous buttons
-3. **State preservation**: Form values are automatically preserved across steps
-4. **Final submission**: Submit the completed form with all step data
+1. **Initial dialog**: Open a normal dialog with the first step's elements. Use the `state` field to track which step you're on (e.g., `"step_1"`).
+2. **Step submission**: When the user clicks Submit, your integration receives a standard `dialog_submission` request with `type: "dialog_submission"`.
+3. **Return next step**: Instead of returning an empty response (which closes the dialog), return a response with `type: "form"` and a `form` object containing the next step's dialog definition.
+4. **Value accumulation**: The client automatically accumulates submission values across steps. Each step's submission includes all values from previous steps plus the current step.
+5. **Final submission**: On the last step, return an empty response (HTTP 200) or `{"type": "ok"}` to close the dialog.
 
 ### Multi-step submission handling
 
-When a user submits a multi-step dialog, your integration will receive webhook calls to handle step transitions and final submission:
-
-#### Step transition webhook
-
-When users navigate between steps, Mattermost sends a request to your configured URL with the following payload:
+Each step submission uses the standard dialog submission format:
 
 ```json
 {
-    "type": "dialog_multistep",
-    "callback_id": "<callback ID provided by the integration>",
-    "state": "<state provided by the integration>",
+    "type": "dialog_submission",
+    "callback_id": "<callback ID>",
+    "state": "step_1",
     "user_id": "<user ID>",
     "channel_id": "<channel ID>",
     "team_id": "<team ID>",
-    "step": 2,
-    "direction": "next",
     "submission": {
-        "field_name_from_step_1": "value",
-        "field_name_from_step_2": "value"
-    }
+        "step1_field": "value_from_step_1"
+    },
+    "cancelled": false
 }
 ```
 
-Your integration should respond with the next step's dialog configuration:
+To advance to the next step, your integration responds with a new form:
 
 ```json
 {
-    "dialog": {
-        "title": "Step 2 of 3",
+    "type": "form",
+    "form": {
+        "callback_id": "multistep_wizard",
+        "title": "Setup Wizard - Step 2 of 3",
         "elements": [
             {
                 "display_name": "Step 2 Field",
@@ -663,20 +669,18 @@ Your integration should respond with the next step's dialog configuration:
             }
         ],
         "submit_label": "Next",
-        "state": "updated_state_for_step_2"
+        "state": "step_2"
     }
 }
 ```
 
-#### Final submission
-
-The final step submission uses the same format as regular dialog submissions, but includes data from all steps:
+On the final step, the submission includes accumulated values from all steps:
 
 ```json
 {
     "type": "dialog_submission",
     "callback_id": "<callback ID>",
-    "state": "<final state>",
+    "state": "step_3",
     "user_id": "<user ID>",
     "channel_id": "<channel ID>",
     "team_id": "<team ID>",
@@ -689,6 +693,8 @@ The final step submission uses the same format as regular dialog submissions, bu
 }
 ```
 
+Return an empty response (HTTP 200 with empty body) or `{"type": "ok"}` to close the dialog.
+
 ### Multi-step example
 
 ```json
@@ -699,7 +705,6 @@ The final step submission uses the same format as regular dialog submissions, bu
         "callback_id": "multistep_wizard",
         "title": "Setup Wizard - Step 1 of 3",
         "introduction_text": "Welcome to the setup wizard",
-        "is_multistep": true,
         "elements": [
             {
                 "display_name": "Project Name",
@@ -719,67 +724,89 @@ The final step submission uses the same format as regular dialog submissions, bu
 
 Interactive dialogs support dynamic field refresh functionality, allowing fields to be updated based on user input. This is useful for dependent dropdowns or conditional form fields.
 
-To enable field refresh, set `refresh_on_select: true` in your dialog configuration. When users change select field values, Mattermost will send a field refresh request to your configured URL.
+To enable field refresh, two things are required:
+1. Set `refresh: true` on the **element** that should trigger refreshes when its value changes.
+2. Set `source_url` on the **dialog** to specify where refresh requests are sent.
+
+When a user changes a select element that has `refresh: true`, Mattermost sends a request to the dialog's `source_url` via the `/api/v4/actions/dialogs/submit` endpoint.
 
 ### Field refresh webhook
 
-The field refresh webhook payload includes the current form state and the changed field:
+The field refresh request uses the standard `SubmitDialogRequest` structure with `type` set to `"refresh"`:
 
 ```json
 {
-    "type": "dialog_field_refresh",
+    "type": "refresh",
+    "url": "<source_url>",
     "callback_id": "<callback ID>",
     "state": "<current state>",
     "user_id": "<user ID>",
     "channel_id": "<channel ID>",
     "team_id": "<team ID>",
-    "field_name": "changed_field_name",
     "submission": {
-        "changed_field_name": "new_value",
-        "other_field": "existing_value"
+        "category": "software",
+        "subcategory": "",
+        "selected_field": "category"
     }
 }
 ```
 
-Your integration should respond with updated field configurations:
+The `submission` map contains the current values of all form fields, plus a `selected_field` key indicating which field triggered the refresh. Cleared fields are sent as empty strings.
+
+Your integration should respond with a complete updated dialog wrapped in a `form` response:
 
 ```json
 {
-    "elements": [
-        {
-            "display_name": "Updated Field",
-            "name": "dependent_field",
-            "type": "select",
-            "options": [
-                {
-                    "text": "New Option 1",
-                    "value": "new_opt1"
-                },
-                {
-                    "text": "New Option 2", 
-                    "value": "new_opt2"
-                }
-            ]
-        }
-    ]
+    "type": "form",
+    "form": {
+        "callback_id": "dynamic_form",
+        "title": "Dynamic Form",
+        "source_url": "/plugins/your-plugin-id/refresh",
+        "elements": [
+            {
+                "display_name": "Category",
+                "name": "category",
+                "type": "select",
+                "refresh": true,
+                "options": [
+                    {"text": "Software", "value": "software"},
+                    {"text": "Hardware", "value": "hardware"}
+                ]
+            },
+            {
+                "display_name": "Subcategory",
+                "name": "subcategory",
+                "type": "select",
+                "options": [
+                    {"text": "Frontend", "value": "frontend"},
+                    {"text": "Backend", "value": "backend"}
+                ]
+            }
+        ],
+        "submit_label": "Submit",
+        "state": "step_1"
+    }
 }
 ```
+
+The response replaces the entire dialog with the new form definition. The client preserves the user's current field values where field names match.
 
 ### Field refresh example
 
 ```json
 {
     "trigger_id": "trigger_id_here",
-    "url": "https://your-integration.com/dialog",
+    "url": "https://your-integration.com/dialog/submit",
     "dialog": {
         "callback_id": "dynamic_form",
         "title": "Dynamic Form",
-        "refresh_on_select": true,
+        "source_url": "/plugins/your-plugin-id/refresh",
         "elements": [
             {
                 "display_name": "Category",
                 "name": "category",
                 "type": "select",
+                "refresh": true,
                 "options": [
                     {"text": "Software", "value": "software"},
                     {"text": "Hardware", "value": "hardware"}
@@ -791,7 +818,9 @@ Your integration should respond with updated field configurations:
                 "type": "select",
                 "options": []
             }
-        ]
+        ],
+        "submit_label": "Submit",
+        "state": "step_1"
     }
 }
 ```
