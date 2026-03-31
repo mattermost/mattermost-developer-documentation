@@ -197,5 +197,9 @@ Some common error messages include:
 
 If your integration prints the JSON payload data instead of rendering the generated message, make sure your integration is returning the `application/json` content-type.
 
+#### Why aren't my message attachments rendering?
+ 
+Make sure `attachments` is a **top-level field** in your webhook JSON payload, not nested inside `props`. While the REST API uses `props.attachments`, incoming webhooks expect `attachments` at the top level.
+
 For further assistance, review the {{< newtabref href="https://forum.mattermost.org/t/how-to-use-the-troubleshooting-forum/150" title="Troubleshooting forum" >}} for previously reported errors, or {{< newtabref href="https://mattermost.com/pl/default-ask-mattermost-community/" title="join the Mattermost user community" >}} for troubleshooting help.
 
