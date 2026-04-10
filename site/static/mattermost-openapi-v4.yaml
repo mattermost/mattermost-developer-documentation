@@ -21902,9 +21902,9 @@ paths:
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
+                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
-                  per_page: 100
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
@@ -21916,9 +21916,9 @@ paths:
                 summary: Descending order from recent
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  per_page: 100
                   cursor: ""
                   sort_direction: desc
-                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
