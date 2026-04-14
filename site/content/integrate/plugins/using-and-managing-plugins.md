@@ -195,21 +195,17 @@ This command will generate `com.mattermost.demo-plugin-0.1.0.tar.gz.sig`, which 
 
 ## Plugin verification
 
-Mattermost server will verify plugin signatures downloaded from the Marketplace. To add custom public keys, run the following command on the Mattermost server:
+Mattermost server will verify plugin signatures downloaded from the Marketplace. Plugins are verified against a hard-coded Mattermost public key, as well as any additional public keys configured on the server.
 
-`mattermost plugin add key my-pub-key`
+To add custom public keys for plugin signature verification, add the key file names to the `PluginSettings.SignaturePublicKeyFiles` setting in your `config.json`:
 
-Multiple public keys can be added to the Mattermost server:
+```json
+"PluginSettings": {
+    "SignaturePublicKeyFiles": ["my-pub-key-1", "my-pub-key-2"]
+}
+```
 
-`mattermost plugin add key my-pk-file1 my-pk-file2`
-
-To list the names of all public keys installed on your Mattermost server, use:
-
-`mattermost plugin keys`
-
-To delete public key(s) from your Mattermost server, use:
-
-`mattermost plugin delete key my-pk-file1 my-pk-file2`
+The key files themselves must be stored in the Mattermost server's config directory.
 
 ### Implementation
 
