@@ -19544,12 +19544,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - channels
+        - shared channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.10
+        __Minimum server version__: 10.11
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -27577,12 +27577,12 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
-            visibility: when_set
-            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
+            sortOrder: 1
+            visibility: when_set
     PropertyFieldPatch:
       type: object
       properties:
