@@ -22121,23 +22121,23 @@ paths:
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
-                  per_page: 100
-                  cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
+                  per_page: 100
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  start_time: 1635638400000
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   per_page: 100
+                  cursor: ""
+                  start_time: 1635638400000
               descending_order:
                 summary: Descending order from recent
                 value:
+                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   sort_direction: desc
-                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
@@ -22171,9 +22171,9 @@ paths:
                         message: First post
                         create_at: 1635638400000
                       post_id_2:
+                        create_at: 1635638500000
                         id: post_id_2
                         message: Second post
-                        create_at: 1635638500000
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -27578,11 +27578,11 @@ components:
           additionalProperties: true
           example:
             visibility: when_set
+            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
