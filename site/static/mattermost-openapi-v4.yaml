@@ -9266,12 +9266,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - channels
+        - shared channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.10
+        __Minimum server version__: 10.11
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -22115,9 +22115,9 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
+                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -22127,16 +22127,16 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   start_time: 1635638400000
+                  cursor: ""
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
               descending_order:
                 summary: Descending order from recent
                 value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   sort_direction: desc
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
       responses:
         "200":
@@ -22167,9 +22167,9 @@ paths:
                   value:
                     posts:
                       post_id_1:
+                        message: First post
                         create_at: 1635638400000
                         id: post_id_1
-                        message: First post
                       post_id_2:
                         id: post_id_2
                         message: Second post
@@ -22181,9 +22181,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
-                        message: Last post
                         create_at: 1635724800000
                         id: post_id_99
+                        message: Last post
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -27581,8 +27581,8 @@ components:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            sortOrder: 1
             visibility: when_set
+            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
@@ -31846,8 +31846,8 @@ components:
               ReviewerIds: []
               Enabled: true
             u1ujk34a47gfxp856pdczs9gey:
-              ReviewerIds: []
               Enabled: false
+              ReviewerIds: []
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
