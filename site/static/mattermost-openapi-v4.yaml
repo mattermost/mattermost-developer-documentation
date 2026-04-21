@@ -9266,12 +9266,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - shared channels
+        - channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.11
+        __Minimum server version__: 10.10
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -22115,9 +22115,9 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
+                  per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -22128,14 +22128,14 @@ paths:
                 summary: Query with time range starting from specific time
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  per_page: 100
                   start_time: 1635638400000
                   cursor: ""
+                  per_page: 100
               descending_order:
                 summary: Descending order from recent
                 value:
-                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  per_page: 100
                   cursor: ""
                   sort_direction: desc
       responses:
@@ -24434,6 +24434,11 @@ paths:
                     Permission level for managing options on select/multiselect fields. Only system admins can set this; ignored for non-admin users.
 
                   default: member
+                linked_field_id:
+                  type: string
+                  description: >
+                    The ID of a template field to link to. The source must be a template field in the same group, must not itself be linked, and must not be deleted. When set, the created field inherits the source's type, options, and security attributes; the `type` field in the request body is ignored. Can only be set at creation time.
+
         description: Property field object to create
         required: true
       responses:
@@ -24449,6 +24454,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
+        "409":
+          $ref: '#/components/responses/Conflict'
     get:
       tags:
         - properties
@@ -24525,6 +24532,15 @@ paths:
       description: >
         Partially update a property field by providing only the fields you want to update. Omitted fields will not be updated. The `attrs` object uses merge semantics: only the keys present in the patch are updated; omitted keys are preserved. Setting a key to `null` removes it from attrs.
 
+
+        **Immutable fields:** `target_type`, `target_id`, and `object_type` cannot be changed after creation and are ignored if included in the patch.
+
+
+        **Linked fields:** Fields with a `linked_field_id` cannot have their `type` or `attrs.options` modified (returns 400). The `linked_field_id` can only be cleared (set to empty string `""`) to unlink the field; it cannot be changed to a different value. For non-linked fields, `linked_field_id` cannot be set to a new value (linking is only allowed at creation time).
+
+
+        **Propagation:** When a template field's options are updated, the changes propagate atomically to all fields that link to it.
+
       operationId: UpdatePropertyField
       parameters:
         - name: group_name
@@ -24567,12 +24583,14 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
+        "409":
+          $ref: '#/components/responses/Conflict'
     delete:
       tags:
         - properties
       summary: Delete a property field
       description: >
-        Deletes a property field and all its associated values.
+        Deletes a property field and all its associated values. Returns 409 Conflict if the field has active linked dependents; unlink or delete dependent fields first.
 
       operationId: DeletePropertyField
       parameters:
@@ -24609,13 +24627,15 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
+        "409":
+          $ref: '#/components/responses/Conflict'
   /api/v4/properties/groups/{group_name}/{object_type}/values/{target_id}:
     get:
       tags:
         - properties
       summary: Get property values for a target
       description: >
-        Get all property values for a specific target within a group.
+        Get all property values for a specific target within a group. The `template` object type cannot have values and will return 400.
 
       operationId: GetPropertyValues
       parameters:
@@ -24674,7 +24694,7 @@ paths:
         - properties
       summary: Update property values for a target
       description: >
-        Update one or more property values for a specific target within a group. Uses upsert semantics: creates the value if it doesn't exist, updates it if it does. All field IDs must belong to the specified group.
+        Update one or more property values for a specific target within a group. Uses upsert semantics: creates the value if it doesn't exist, updates it if it does. All field IDs must belong to the specified group. The `template` object type cannot have values and will return 400.
 
       operationId: UpdatePropertyValues
       parameters:
@@ -27100,6 +27120,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/AppError'
+    Conflict:
+      description: Request conflicts with current state of the resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppError'
     TooLarge:
       description: Content too large
       content:
@@ -27592,6 +27618,10 @@ components:
           type: string
         attrs:
           type: object
+        linked_field_id:
+          type: string
+          description: |
+            Set to empty string to unlink a linked field. Cannot be set to a new value on an existing field; linking is only allowed at creation time.
     PropertyValue:
       type: object
       properties:
@@ -31842,11 +31872,11 @@ components:
             $ref: '#/components/schemas/TeamReviewerConfig'
           description: Team-specific reviewer configuration, keyed by team ID
           example:
-            8guxic3sg7nijeu5dgxt1fh4ia:
-              Enabled: true
-              ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
+              ReviewerIds: []
+            8guxic3sg7nijeu5dgxt1fh4ia:
+              Enabled: true
               ReviewerIds: []
       required:
         - CommonReviewers
