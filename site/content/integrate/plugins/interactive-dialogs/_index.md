@@ -560,26 +560,27 @@ The full list of supported fields for `datetime` elements is included below:
     "help_text": "All attendees see this time in the conference timezone",
     "datetime_config": {
         "location_timezone": "America/Denver",
-        "allow_manual_time_entry": true,
+        "manual_time_entry": true,
         "time_interval": 30
     }
 }
 ```
 
 #### datetime_config object
-##### Minimum Server Version: 11.8
+##### Minimum Server Version: 11.6
 
 The `datetime_config` object groups date/datetime configuration into a single nested structure. It is supported on both `date` and `datetime` elements.
 
-| Field                     | Type    | Applies to       | Description                                                                                                                 |
-|---------------------------|---------|------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| `min_date`                | String  | `date`, `datetime` | (Optional) Earliest selectable date. Supports ISO format or relative formats (`today`, `+1d`, etc.).                      |
-| `max_date`                | String  | `date`, `datetime` | (Optional) Latest selectable date. Supports ISO format or relative formats (`+30d`, `+1y`, etc.).                         |
-| `time_interval`           | Integer | `datetime`       | (Optional) Time selection interval in minutes. Must be between 1 and 1440, and must be a divisor of 1440. Default is 60.    |
-| `location_timezone`       | String  | `datetime`       | (Optional) IANA timezone used to display and submit the time (e.g. `America/Denver`, `Asia/Tokyo`). When set, all users see the same wall-clock time regardless of their own timezone. Defaults to the viewing user's timezone. |
-| `allow_manual_time_entry` | Boolean | `datetime`       | (Optional) When `true`, users can type the time directly in addition to using the dropdown. Default is `false`.             |
+| Field                     | Type    | Applies to         | Since  | Description                                                                                                                 |
+|---------------------------|---------|--------------------|--------|-----------------------------------------------------------------------------------------------------------------------------|
+| `min_date`                | String  | `date`, `datetime` | 11.8   | (Optional) Earliest selectable date. Supports ISO format or relative formats (`today`, `+1d`, etc.).                        |
+| `max_date`                | String  | `date`, `datetime` | 11.8   | (Optional) Latest selectable date. Supports ISO format or relative formats (`+30d`, `+1y`, etc.).                           |
+| `time_interval`           | Integer | `datetime`         | 11.6   | (Optional) Time selection interval in minutes. Must be between 1 and 1440, and must be a divisor of 1440. Default is 60.    |
+| `location_timezone`       | String  | `datetime`         | 11.6   | (Optional) IANA timezone used to display and submit the time (e.g. `America/Denver`, `Asia/Tokyo`). When set, all users see the same wall-clock time regardless of their own timezone. Defaults to the viewing user's timezone. |
+| `manual_time_entry`       | Boolean | `datetime`         | 11.8   | (Optional) When `true`, users can type the time directly in addition to using the dropdown. Default is `false`.             |
+| `allow_manual_time_entry` | Boolean | `datetime`         | 11.6 (deprecated in 11.8) | (Deprecated — use `manual_time_entry`.) When both are set, either enabling turns the feature on.         |
 
-**Backward compatibility:** The top-level `min_date`, `max_date`, and `time_interval` fields are still accepted for existing integrations, but are deprecated in favor of `datetime_config`. When both are provided on the same element, values inside `datetime_config` take precedence over the legacy top-level values.
+**Backward compatibility (new in 11.8):** The top-level `min_date`, `max_date`, and `time_interval` fields on `date` and `datetime` elements are still accepted for existing integrations, but are deprecated in favor of `datetime_config`. When both are provided on the same element, values inside `datetime_config` take precedence over the legacy top-level values.
 
 #### Date and DateTime field specifications
 
