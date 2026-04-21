@@ -22116,8 +22116,8 @@ paths:
                 summary: First page, ascending order
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   per_page: 100
+                  cursor: ""
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -22135,8 +22135,8 @@ paths:
                 summary: Descending order from recent
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  sort_direction: desc
                   cursor: ""
+                  sort_direction: desc
                   per_page: 100
       responses:
         "200":
@@ -22171,9 +22171,9 @@ paths:
                         message: First post
                         create_at: 1635638400000
                       post_id_2:
+                        id: post_id_2
                         message: Second post
                         create_at: 1635638500000
-                        id: post_id_2
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -22181,9 +22181,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
-                        id: post_id_99
                         message: Last post
                         create_at: 1635724800000
+                        id: post_id_99
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
