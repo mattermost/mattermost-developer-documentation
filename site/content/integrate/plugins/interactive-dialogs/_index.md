@@ -437,13 +437,13 @@ The full list of supported fields for `date` elements is included below:
 | `display_name`    | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
 | `name`            | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
 | `type`            | String  | Set this value to `date` for a date element.                                                                                       |
-| `default`         | String  | (Optional) Default value in ISO date format (YYYY-MM-DD) or relative format (`today`, `tomorrow`, `+1d`, `+1w`, `+1M`, `+1y`). Full ISO datetime strings are accepted but only the date part is parsed; timezone information is ignored. |
+| `default`         | String  | (Optional) Default value in ISO date format (YYYY-MM-DD) or relative format (`today`, `tomorrow`, `+1d`, `+1w`, `+1M`, `+1y`). Full ISO datetime strings are accepted, but only the date part is parsed; timezone information is ignored. |
 | `placeholder`     | String  | (Optional) Placeholder text shown in the input field. Maximum 150 characters.                                                      |
 | `help_text`       | String  | (Optional) Help text displayed below the field. Maximum 150 characters.                                                            |
 | `optional`        | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
 | `datetime_config` | Object  | (Optional) Nested date configuration object. See [datetime_config object](#datetime_config-object) for supported properties.       |
-| `min_date`        | String  | (Deprecated — use `datetime_config.min_date`.) Earliest selectable date. Supports ISO date format (YYYY-MM-DD) or relative formats (`today`, `tomorrow`, `+1d`, `-7d`, etc.). Full ISO datetime strings are accepted but only the date part is parsed; timezone information is ignored. |
-| `max_date`        | String  | (Deprecated — use `datetime_config.max_date`.) Latest selectable date. Supports ISO date format (YYYY-MM-DD) or relative formats (`today`, `+30d`, `+1y`, etc.). Full ISO datetime strings are accepted but only the date part is parsed; timezone information is ignored. |
+| `min_date`        | String  | (Deprecated — use `datetime_config.min_date`.) Earliest selectable date. Supports ISO date format (YYYY-MM-DD) or relative formats (`today`, `tomorrow`, `+1d`, `-7d`, etc.). Full ISO datetime strings are accepted, but only the date part is parsed; timezone information is ignored. |
+| `max_date`        | String  | (Deprecated — use `datetime_config.max_date`.) Latest selectable date. Supports ISO date format (YYYY-MM-DD) or relative formats (`today`, `+30d`, `+1y`, etc.). Full ISO datetime strings are accepted, but only the date part is parsed; timezone information is ignored. |
 
 #### Date field usage examples
 
