@@ -22115,9 +22115,9 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  per_page: 100
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -22129,8 +22129,8 @@ paths:
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  per_page: 100
                   start_time: 1635638400000
+                  per_page: 100
               descending_order:
                 summary: Descending order from recent
                 value:
@@ -27603,8 +27603,8 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
-            sortOrder: 1
             visibility: when_set
+            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
@@ -31872,11 +31872,11 @@ components:
             $ref: '#/components/schemas/TeamReviewerConfig'
           description: Team-specific reviewer configuration, keyed by team ID
           example:
+            8guxic3sg7nijeu5dgxt1fh4ia:
+              ReviewerIds: []
+              Enabled: true
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
-              ReviewerIds: []
-            8guxic3sg7nijeu5dgxt1fh4ia:
-              Enabled: true
               ReviewerIds: []
       required:
         - CommonReviewers
