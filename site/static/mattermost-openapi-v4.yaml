@@ -9263,43 +9263,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
-  /api/v4/sharedchannels/{channel_id}/remotes:
-    get:
-      tags:
-        - channels
-      summary: Get remote clusters for a shared channel
-      description: |
-        Gets the remote clusters information for a shared channel.
-
-        __Minimum server version__: 10.10
-
-        ##### Permissions
-        Must be authenticated and have the `read_channel` permission for the channel.
-      operationId: GetSharedChannelRemotes
-      parameters:
-        - name: channel_id
-          in: path
-          description: Channel GUID
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Remote clusters retrieval successful
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RemoteClusterInfo'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "404":
-          $ref: '#/components/responses/NotFound'
   /api/v4/channels/{channel_id}/common_teams:
     get:
       tags:
@@ -19578,6 +19541,43 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
+  /api/v4/sharedchannels/{channel_id}/remotes:
+    get:
+      tags:
+        - channels
+      summary: Get remote clusters for a shared channel
+      description: |
+        Gets the remote clusters information for a shared channel.
+
+        __Minimum server version__: 10.10
+
+        ##### Permissions
+        Must be authenticated and have the `read_channel` permission for the channel.
+      operationId: GetSharedChannelRemotes
+      parameters:
+        - name: channel_id
+          in: path
+          description: Channel GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Remote clusters retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RemoteClusterInfo'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
   /api/v4/sharedchannels/users/{user_id}/can_dm/{other_user_id}:
     get:
       tags:
@@ -22127,17 +22127,17 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  per_page: 100
                   cursor: ""
+                  per_page: 100
                   start_time: 1635638400000
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
               descending_order:
                 summary: Descending order from recent
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  per_page: 100
-                  sort_direction: desc
                   cursor: ""
+                  sort_direction: desc
+                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
@@ -22166,14 +22166,14 @@ paths:
                   summary: Response with more pages available
                   value:
                     posts:
-                      post_id_1:
-                        id: post_id_1
-                        message: First post
-                        create_at: 1635638400000
                       post_id_2:
                         create_at: 1635638500000
                         id: post_id_2
                         message: Second post
+                      post_id_1:
+                        message: First post
+                        create_at: 1635638400000
+                        id: post_id_1
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -24461,7 +24461,7 @@ paths:
         - properties
       summary: Get property fields
       description: >
-        Get a list of property fields for a specific group and object type. Requires a target_type parameter to scope the query. Filter further by target_id to narrow results. Uses cursor-based pagination.
+        Get a list of property fields for a specific group and object type. Requires a target_type parameter to scope the query, except when `object_type=system` — in that case `target_type` is implicit and any value supplied is ignored. Filter further by target_id to narrow results. Uses cursor-based pagination.
 
       operationId: GetPropertyFields
       parameters:
@@ -24635,7 +24635,7 @@ paths:
         - properties
       summary: Get property values for a target
       description: >
-        Get all property values for a specific target within a group. The `template` object type cannot have values and will return 400.
+        Get all property values for a specific target within a group. The `template` object type cannot have values and will return 400. The `system` object type must use the dedicated `/api/v4/properties/groups/{group_name}/system/values` endpoint and will return 400 on this route.
 
       operationId: GetPropertyValues
       parameters:
@@ -24694,7 +24694,7 @@ paths:
         - properties
       summary: Update property values for a target
       description: >
-        Update one or more property values for a specific target within a group. Uses upsert semantics: creates the value if it doesn't exist, updates it if it does. All field IDs must belong to the specified group. The `template` object type cannot have values and will return 400.
+        Update one or more property values for a specific target within a group. Uses upsert semantics: creates the value if it doesn't exist, updates it if it does. All field IDs must belong to the specified group. The `template` object type cannot have values and will return 400. The `system` object type must use the dedicated `/api/v4/properties/groups/{group_name}/system/values` endpoint and will return 400 on this route.
 
       operationId: UpdatePropertyValues
       parameters:
@@ -24737,6 +24737,100 @@ paths:
       responses:
         "200":
           description: Property values update successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PropertyValue'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+  /api/v4/properties/groups/{group_name}/system/values:
+    get:
+      tags:
+        - properties
+      summary: Get property values for the system
+      description: >
+        Get all property values attached to the Mattermost instance itself within a group. System-scoped values are readable by any authenticated user. This endpoint is the dedicated route for `system` object type; the `{object_type}/values/{target_id}` route returns 400 for `system`.
+
+      operationId: GetSystemPropertyValues
+      parameters:
+        - name: group_name
+          in: path
+          description: The name of the property group
+          required: true
+          schema:
+            type: string
+        - name: cursor_id
+          in: query
+          description: The ID of the last property value from the previous page, for cursor-based pagination.
+          schema:
+            type: string
+        - name: cursor_create_at
+          in: query
+          description: The create_at timestamp of the last property value from the previous page. Must be provided together with cursor_id.
+          schema:
+            type: integer
+            format: int64
+        - name: per_page
+          in: query
+          description: The number of property values per page.
+          schema:
+            type: integer
+            default: 60
+      responses:
+        "200":
+          description: System property values retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PropertyValue'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      tags:
+        - properties
+      summary: Update property values for the system
+      description: >
+        Update one or more property values attached to the Mattermost instance itself. Uses upsert semantics: creates the value if it doesn't exist, updates it if it does. Requires system administrator access. All field IDs must reference `system` object-type fields in the specified group; template field IDs are rejected with 400.
+
+      operationId: UpdateSystemPropertyValues
+      parameters:
+        - name: group_name
+          in: path
+          description: The name of the property group
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                required:
+                  - field_id
+                  - value
+                properties:
+                  field_id:
+                    type: string
+                    description: The ID of the property field
+                  value:
+                    description: The value to set for this property. Can be any JSON type.
+        description: Array of property values to update
+        required: true
+      responses:
+        "200":
+          description: System property values update successful
           content:
             application/json:
               schema:
@@ -31878,8 +31972,8 @@ components:
               Enabled: true
               ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              Enabled: false
               ReviewerIds: []
+              Enabled: false
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
