@@ -9263,6 +9263,43 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
+  /api/v4/sharedchannels/{channel_id}/remotes:
+    get:
+      tags:
+        - channels
+      summary: Get remote clusters for a shared channel
+      description: |
+        Gets the remote clusters information for a shared channel.
+
+        __Minimum server version__: 10.10
+
+        ##### Permissions
+        Must be authenticated and have the `read_channel` permission for the channel.
+      operationId: GetSharedChannelRemotes
+      parameters:
+        - name: channel_id
+          in: path
+          description: Channel GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Remote clusters retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RemoteClusterInfo'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
   /api/v4/channels/{channel_id}/common_teams:
     get:
       tags:
@@ -12156,7 +12193,7 @@ paths:
       description: >
         Configure the in-memory AI bridge test helper used by end-to-end tests to mock agent availability, agent/service listings, queued completion responses, and test-only AI feature flag overrides.
 
-        This endpoint is only available when `EnableTesting` is enabled.
+        This endpoint is only available when `EnableTesting` is enabled. `EnableTesting` is intended only for isolated non-production environments and must never be enabled in production.
 
         ##### Permissions
 
@@ -12190,7 +12227,7 @@ paths:
       description: >
         Retrieve the current in-memory AI bridge test helper state used for end-to-end tests.
 
-        This endpoint is only available when `EnableTesting` is enabled.
+        This endpoint is only available when `EnableTesting` is enabled. `EnableTesting` is intended only for isolated non-production environments and must never be enabled in production.
 
         ##### Permissions
 
@@ -12215,7 +12252,7 @@ paths:
       description: >
         Reset the in-memory AI bridge test helper state used for end-to-end tests.
 
-        This endpoint is only available when `EnableTesting` is enabled.
+        This endpoint is only available when `EnableTesting` is enabled. `EnableTesting` is intended only for isolated non-production environments and must never be enabled in production.
 
         ##### Permissions
 
@@ -19541,43 +19578,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
-  /api/v4/sharedchannels/{channel_id}/remotes:
-    get:
-      tags:
-        - shared channels
-      summary: Get remote clusters for a shared channel
-      description: |
-        Gets the remote clusters information for a shared channel.
-
-        __Minimum server version__: 10.11
-
-        ##### Permissions
-        Must be authenticated and have the `read_channel` permission for the channel.
-      operationId: GetSharedChannelRemotes
-      parameters:
-        - name: channel_id
-          in: path
-          description: Channel GUID
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Remote clusters retrieval successful
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RemoteClusterInfo'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "404":
-          $ref: '#/components/responses/NotFound'
   /api/v4/sharedchannels/users/{user_id}/can_dm/{other_user_id}:
     get:
       tags:
@@ -22128,16 +22128,16 @@ paths:
                 summary: Query with time range starting from specific time
                 value:
                   per_page: 100
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   start_time: 1635638400000
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
               descending_order:
                 summary: Descending order from recent
                 value:
-                  cursor: ""
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  sort_direction: desc
                   per_page: 100
+                  sort_direction: desc
+                  cursor: ""
       responses:
         "200":
           description: Posts retrieved successfully
@@ -22171,9 +22171,9 @@ paths:
                         message: First post
                         create_at: 1635638400000
                       post_id_2:
-                        message: Second post
                         create_at: 1635638500000
                         id: post_id_2
+                        message: Second post
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -22181,9 +22181,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
-                        create_at: 1635724800000
                         id: post_id_99
                         message: Last post
+                        create_at: 1635724800000
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -28615,6 +28615,7 @@ components:
               type: boolean
             EnableTesting:
               type: boolean
+              description: Intended only for isolated non-production environments and must never be enabled in production.
             EnableDeveloper:
               type: boolean
             EnableSecurityFixAlert:
@@ -29097,6 +29098,7 @@ components:
               type: boolean
             EnableTesting:
               type: boolean
+              description: Intended only for isolated non-production environments and must never be enabled in production.
             EnableDeveloper:
               type: boolean
             EnableSecurityFixAlert:
@@ -31873,8 +31875,8 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
-              ReviewerIds: []
               Enabled: true
+              ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
               ReviewerIds: []
