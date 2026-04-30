@@ -866,6 +866,19 @@ paths:
           description: When used with `not_in_channel` or `not_in_team`, returns only the users that are allowed to join the channel or team based on its group constrains.
           schema:
             type: boolean
+        - name: abac_match_only
+          in: query
+          description: >
+            When used with `not_in_channel`, restricts the result to users whose attributes satisfy the channel's Attribute-Based Access Control (ABAC) membership policy.
+
+
+            On private channels with an ABAC policy this filter is always applied regardless of this parameter (hard gate). On public channels with an advisory ABAC policy the full not_in_channel candidate list is returned by default; set this to `true` to fetch only the matching subset of candidates (for example to annotate recommended members in the invite UI).
+
+
+            __Minimum server version__: 11.8
+
+          schema:
+            type: boolean
         - name: without_team
           in: query
           description: Whether or not to list users that are not on any team. This option takes precendence over `in_team`, `in_channel`, and `not_in_channel`.
@@ -7154,6 +7167,53 @@ paths:
 
             	fmt.Printf("Found %d private channels for team %s\n", len(channels), teamId)
             }
+  /api/v4/teams/{team_id}/channels/recommended:
+    get:
+      tags:
+        - channels
+      summary: Get recommended public channels for the current user
+      description: |
+        Return the public channels on a team that have a membership policy
+        assigned, where the requesting user's attributes match to the policy.
+
+        Membership policies on public channels are advisory: anyone can still join
+        these channels. This endpoint surfaces them as "Recommended channels"
+        for the requester.
+
+        Returns an empty list if the Enterprise Advanced license is not
+        active, if `AccessControlSettings.EnableAttributeBasedAccessControl`
+        is `false`, or if the user's attributes do not match any active
+        public-channel policy in the team.
+
+        __Minimum server version__: 11.8
+
+        ##### Permissions
+        Must be authenticated and have `list_team_channels` on the team.
+      operationId: GetRecommendedChannelsForTeam
+      parameters:
+        - name: team_id
+          in: path
+          description: Team GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Recommended channels retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Channel'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
   /api/v4/teams/{team_id}/channels/deleted:
     get:
       tags:
@@ -12156,7 +12216,7 @@ paths:
       description: >
         Configure the in-memory AI bridge test helper used by end-to-end tests to mock agent availability, agent/service listings, queued completion responses, and test-only AI feature flag overrides.
 
-        This endpoint is only available when `EnableTesting` is enabled.
+        This endpoint is only available when `EnableTesting` is enabled. `EnableTesting` is intended only for isolated non-production environments and must never be enabled in production.
 
         ##### Permissions
 
@@ -12190,7 +12250,7 @@ paths:
       description: >
         Retrieve the current in-memory AI bridge test helper state used for end-to-end tests.
 
-        This endpoint is only available when `EnableTesting` is enabled.
+        This endpoint is only available when `EnableTesting` is enabled. `EnableTesting` is intended only for isolated non-production environments and must never be enabled in production.
 
         ##### Permissions
 
@@ -12215,7 +12275,7 @@ paths:
       description: >
         Reset the in-memory AI bridge test helper state used for end-to-end tests.
 
-        This endpoint is only available when `EnableTesting` is enabled.
+        This endpoint is only available when `EnableTesting` is enabled. `EnableTesting` is intended only for isolated non-production environments and must never be enabled in production.
 
         ##### Permissions
 
@@ -19544,12 +19604,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - shared channels
+        - channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.11
+        __Minimum server version__: 10.10
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -22129,14 +22189,14 @@ paths:
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  per_page: 100
                   start_time: 1635638400000
+                  per_page: 100
               descending_order:
                 summary: Descending order from recent
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   sort_direction: desc
+                  cursor: ""
                   per_page: 100
       responses:
         "200":
@@ -22166,14 +22226,14 @@ paths:
                   summary: Response with more pages available
                   value:
                     posts:
-                      post_id_1:
-                        id: post_id_1
-                        message: First post
-                        create_at: 1635638400000
                       post_id_2:
                         id: post_id_2
                         message: Second post
                         create_at: 1635638500000
+                      post_id_1:
+                        id: post_id_1
+                        message: First post
+                        create_at: 1635638400000
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -24461,7 +24521,7 @@ paths:
         - properties
       summary: Get property fields
       description: >
-        Get a list of property fields for a specific group and object type. Requires a target_type parameter to scope the query. Filter further by target_id to narrow results. Uses cursor-based pagination.
+        Get a list of property fields for a specific group and object type. Requires a target_type parameter to scope the query, except when `object_type=system` — in that case `target_type` is implicit and any value supplied is ignored. Filter further by target_id to narrow results. Uses cursor-based pagination.
 
       operationId: GetPropertyFields
       parameters:
@@ -24635,7 +24695,7 @@ paths:
         - properties
       summary: Get property values for a target
       description: >
-        Get all property values for a specific target within a group. The `template` object type cannot have values and will return 400.
+        Get all property values for a specific target within a group. The `template` object type cannot have values and will return 400. The `system` object type must use the dedicated `/api/v4/properties/groups/{group_name}/system/values` endpoint and will return 400 on this route.
 
       operationId: GetPropertyValues
       parameters:
@@ -24694,7 +24754,7 @@ paths:
         - properties
       summary: Update property values for a target
       description: >
-        Update one or more property values for a specific target within a group. Uses upsert semantics: creates the value if it doesn't exist, updates it if it does. All field IDs must belong to the specified group. The `template` object type cannot have values and will return 400.
+        Update one or more property values for a specific target within a group. Uses upsert semantics: creates the value if it doesn't exist, updates it if it does. All field IDs must belong to the specified group. The `template` object type cannot have values and will return 400. The `system` object type must use the dedicated `/api/v4/properties/groups/{group_name}/system/values` endpoint and will return 400 on this route.
 
       operationId: UpdatePropertyValues
       parameters:
@@ -24737,6 +24797,100 @@ paths:
       responses:
         "200":
           description: Property values update successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PropertyValue'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+  /api/v4/properties/groups/{group_name}/system/values:
+    get:
+      tags:
+        - properties
+      summary: Get property values for the system
+      description: >
+        Get all property values attached to the Mattermost instance itself within a group. System-scoped values are readable by any authenticated user. This endpoint is the dedicated route for `system` object type; the `{object_type}/values/{target_id}` route returns 400 for `system`.
+
+      operationId: GetSystemPropertyValues
+      parameters:
+        - name: group_name
+          in: path
+          description: The name of the property group
+          required: true
+          schema:
+            type: string
+        - name: cursor_id
+          in: query
+          description: The ID of the last property value from the previous page, for cursor-based pagination.
+          schema:
+            type: string
+        - name: cursor_create_at
+          in: query
+          description: The create_at timestamp of the last property value from the previous page. Must be provided together with cursor_id.
+          schema:
+            type: integer
+            format: int64
+        - name: per_page
+          in: query
+          description: The number of property values per page.
+          schema:
+            type: integer
+            default: 60
+      responses:
+        "200":
+          description: System property values retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PropertyValue'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      tags:
+        - properties
+      summary: Update property values for the system
+      description: >
+        Update one or more property values attached to the Mattermost instance itself. Uses upsert semantics: creates the value if it doesn't exist, updates it if it does. Requires system administrator access. All field IDs must reference `system` object-type fields in the specified group; template field IDs are rejected with 400.
+
+      operationId: UpdateSystemPropertyValues
+      parameters:
+        - name: group_name
+          in: path
+          description: The name of the property group
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                required:
+                  - field_id
+                  - value
+                properties:
+                  field_id:
+                    type: string
+                    description: The ID of the property field
+                  value:
+                    description: The value to set for this property. Can be any JSON type.
+        description: Array of property values to update
+        required: true
+      responses:
+        "200":
+          description: System property values update successful
           content:
             application/json:
               schema:
@@ -27603,12 +27757,12 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
+            visibility: when_set
             sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            visibility: when_set
     PropertyFieldPatch:
       type: object
       properties:
@@ -28615,6 +28769,7 @@ components:
               type: boolean
             EnableTesting:
               type: boolean
+              description: Intended only for isolated non-production environments and must never be enabled in production.
             EnableDeveloper:
               type: boolean
             EnableSecurityFixAlert:
@@ -29097,6 +29252,7 @@ components:
               type: boolean
             EnableTesting:
               type: boolean
+              description: Intended only for isolated non-production environments and must never be enabled in production.
             EnableDeveloper:
               type: boolean
             EnableSecurityFixAlert:
@@ -31876,8 +32032,8 @@ components:
               Enabled: true
               ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
-              ReviewerIds: []
               Enabled: false
+              ReviewerIds: []
       required:
         - CommonReviewers
         - SystemAdminsAsReviewers
