@@ -22175,9 +22175,9 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   per_page: 100
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -22187,16 +22187,16 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  start_time: 1635638400000
-                  cursor: ""
-                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
+                  start_time: 1635638400000
+                  per_page: 100
               descending_order:
                 summary: Descending order from recent
                 value:
+                  sort_direction: desc
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  sort_direction: desc
                   per_page: 100
       responses:
         "200":
@@ -22227,13 +22227,13 @@ paths:
                   value:
                     posts:
                       post_id_1:
+                        create_at: 1635638400000
                         id: post_id_1
                         message: First post
-                        create_at: 1635638400000
                       post_id_2:
-                        create_at: 1635638500000
                         id: post_id_2
                         message: Second post
+                        create_at: 1635638500000
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
