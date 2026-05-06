@@ -9326,12 +9326,12 @@ paths:
   /api/v4/sharedchannels/{channel_id}/remotes:
     get:
       tags:
-        - channels
+        - shared channels
       summary: Get remote clusters for a shared channel
       description: |
         Gets the remote clusters information for a shared channel.
 
-        __Minimum server version__: 10.10
+        __Minimum server version__: 10.11
 
         ##### Permissions
         Must be authenticated and have the `read_channel` permission for the channel.
@@ -21519,6 +21519,8 @@ paths:
         - views
       summary: List channel views
       description: |
+        *__Experimental__: This endpoint is experimental and may change or be removed in a future release.*
+
         Get a list of views for a channel.
 
         __Minimum server version__: 11.6
@@ -21581,6 +21583,8 @@ paths:
         - views
       summary: Create channel view
       description: |
+        *__Experimental__: This endpoint is experimental and may change or be removed in a future release.*
+
         Create a new view for a channel.
 
         __Minimum server version__: 11.6
@@ -21651,6 +21655,8 @@ paths:
         - views
       summary: Get a channel view
       description: |
+        *__Experimental__: This endpoint is experimental and may change or be removed in a future release.*
+
         Get a single view by its ID.
 
         __Minimum server version__: 11.6
@@ -21693,6 +21699,8 @@ paths:
         - views
       summary: Update a channel view
       description: |
+        *__Experimental__: This endpoint is experimental and may change or be removed in a future release.*
+
         Partially update a channel view by providing only the fields
         you want to update. Omitted fields will not be updated.
 
@@ -21743,6 +21751,8 @@ paths:
         - views
       summary: Delete a channel view
       description: |
+        *__Experimental__: This endpoint is experimental and may change or be removed in a future release.*
+
         Soft-deletes a channel view. Sets `delete_at` to current timestamp.
 
         __Minimum server version__: 11.6
@@ -21786,6 +21796,8 @@ paths:
         - views
       summary: Get posts for a view
       description: |
+        *__Experimental__: This endpoint is experimental and may change or be removed in a future release.*
+
         Get a paginated list of posts that belong to a specific view.
 
         __Minimum server version__: 11.6
@@ -21842,6 +21854,8 @@ paths:
         - views
       summary: Update a channel view's sort order
       description: |
+        *__Experimental__: This endpoint is experimental and may change or be removed in a future release.*
+
         Updates the sort order of a channel view, setting its new index
         from the request body and updating the rest of the views in the
         channel to accommodate the change.
@@ -22194,10 +22208,10 @@ paths:
               descending_order:
                 summary: Descending order from recent
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  sort_direction: desc
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
+                  sort_direction: desc
       responses:
         "200":
           description: Posts retrieved successfully
@@ -22227,13 +22241,13 @@ paths:
                   value:
                     posts:
                       post_id_1:
+                        id: post_id_1
                         message: First post
                         create_at: 1635638400000
-                        id: post_id_1
                       post_id_2:
-                        id: post_id_2
                         message: Second post
                         create_at: 1635638500000
+                        id: post_id_2
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -22241,9 +22255,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
-                        id: post_id_99
                         message: Last post
                         create_at: 1635724800000
+                        id: post_id_99
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -27789,12 +27803,12 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
-            visibility: when_set
             sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
+            visibility: when_set
     PropertyFieldPatch:
       type: object
       properties:
@@ -32061,8 +32075,8 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
-              Enabled: true
               ReviewerIds: []
+              Enabled: true
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
               ReviewerIds: []
