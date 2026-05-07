@@ -5999,7 +5999,10 @@ paths:
                   description: "'O' for a public channel, 'P' for a private channel"
                 managed_category_name:
                   type: string
-                  description: The name of the managed category to assign this channel to. Requires an Enterprise license and the `EnableManagedChannelCategories` config setting to be enabled.
+                  description: The name of the managed category to assign this channel to. Requires an Enterprise license and the `ManagedChannelCategories` feature flag to be enabled.
+                default_category_name:
+                  type: string
+                  description: Default sidebar category name for members when joining this channel. Requires `EnableChannelCategorySorting` to be enabled on the server.
         description: Channel object to be created
         required: true
       responses:
@@ -6746,7 +6749,10 @@ paths:
                   $ref: '#/components/schemas/ChannelBanner'
                 managed_category_name:
                   type: string
-                  description: The name of the managed category to assign this channel to. Set to an empty string to clear. Requires an Enterprise license and the `EnableManagedChannelCategories` config setting to be enabled.
+                  description: The name of the managed category to assign this channel to. Set to an empty string to clear. Requires an Enterprise license and the `ManagedChannelCategories` feature flag to be enabled.
+                default_category_name:
+                  type: string
+                  description: Default sidebar category name for members when joining this channel. Set to an empty string to clear. Requires `EnableChannelCategorySorting` to be enabled on the server.
         description: Channel patch object; include only the fields to update. At least one field must be provided.
         required: true
       responses:
@@ -7365,7 +7371,7 @@ paths:
         Returns a map of channel ID to managed category name for all channels the requesting user is a member of in the given team that have a managed category assigned.
 
 
-        Requires an Enterprise license and the `EnableManagedChannelCategories` config setting to be enabled.
+        Requires an Enterprise license and the `ManagedChannelCategories` feature flag to be enabled.
 
 
         ##### Permissions
@@ -7392,8 +7398,10 @@ paths:
                 description: A map of channel ID to managed category name
         "401":
           $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
+        "404":
+          description: Returned when the `ManagedChannelCategories` feature flag is disabled.
+        "501":
+          description: Returned when the server does not have an Enterprise license.
   /api/v4/teams/{team_id}/channels/search:
     post:
       tags:
@@ -22236,17 +22244,17 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   start_time: 1635638400000
+                  cursor: ""
                   per_page: 100
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
               descending_order:
                 summary: Descending order from recent
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  per_page: 100
                   cursor: ""
                   sort_direction: desc
-                  per_page: 100
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
       responses:
         "200":
           description: Posts retrieved successfully
@@ -22280,9 +22288,9 @@ paths:
                         message: First post
                         create_at: 1635638400000
                       post_id_2:
+                        id: post_id_2
                         message: Second post
                         create_at: 1635638500000
-                        id: post_id_2
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -27838,8 +27846,8 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
-            visibility: when_set
             sortOrder: 1
+            visibility: when_set
             options:
               - color: '#ff0000'
                 id: opt1
