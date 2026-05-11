@@ -18,9 +18,9 @@ info:
 
       * [Authentication](#/#authentication-1)
 
-      * [Websocket Events](#/#websocket-events)
+      * [WebSocket Events](#/#websocket-events)
 
-      * [Websocket API](#/#websocket-api)
+      * [WebSocket API](#/#websocket-api)
 
     ### Drivers
     * [Official Drivers](#/#official-drivers)
@@ -87,7 +87,7 @@ info:
       ```bash
       curl -i -H 'Authorization: Bearer ckh3t4knu3fzujt76o57f5jo4w' http://localhost:8065/api/v4/users/me
       ```
-      Alternatively, include the `Token` as your `MMAUTHTOKEN` cookie value on you future API requests:
+      Alternatively, include the `Token` as your `MMAUTHTOKEN` cookie value on your future API requests:
 
       ```bash
       curl -i -H 'Cookie: MMAUTHTOKEN=ckh3t4knu3fzujt76o57f5jo4w' http://localhost:8065/api/v4/users/me
@@ -190,7 +190,7 @@ info:
 
       Once successfully authenticated, the server will pass a `hello` WebSocket event containing server version over the connection.
 
-    ### Websocket Events
+    ### WebSocket Events
 
       WebSocket events are primarily used to alert the client to changes in Mattermost, such as delivering new posts or alerting the client that another user is typing in a channel.
 
@@ -266,7 +266,7 @@ info:
       - property_field_deleted
       - property_values_updated
 
-    ### Websocket API
+    ### WebSocket API
 
       Mattermost has some basic support for WebSocket APIs. A connected WebSocket can make requests by sending the following over the connection:
 
@@ -397,7 +397,7 @@ tags:
   - name: LDAP
     description: Endpoints for configuring and interacting with LDAP.
   - name: groups
-    description: Endpoints related to LDAP groups.
+    description: Endpoints related to groups, including LDAP-synced and custom groups.
   - name: compliance
     description: Endpoints for creating, getting and downloading compliance reports.
   - name: cluster
@@ -492,6 +492,43 @@ paths:
                 $ref: '#/components/schemas/User'
         "400":
           $ref: '#/components/responses/BadRequest'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+  /api/v4/users/login/desktop_token:
+    post:
+      tags:
+        - users
+      summary: Login using desktop token
+      description: >
+        Login to Mattermost with a short-lived desktop token.
+
+        ##### Permissions No permission required.
+
+      operationId: LoginWithDesktopToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - token
+              properties:
+                token:
+                  type: string
+                device_id:
+                  type: string
+      responses:
+        "200":
+          description: Desktop token login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
   /api/v4/users/login/cws:
@@ -730,6 +767,64 @@ paths:
                 $ref: '#/components/schemas/StatusOK'
         "400":
           $ref: '#/components/responses/BadRequest'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+  /api/v4/users/notify-admin:
+    post:
+      tags:
+        - users
+      summary: Save notify-admin intent
+      description: >
+        Save a notify-admin request for upgrade or trial flows.
+
+        ##### Permissions Must be authenticated.
+
+      operationId: NotifyAdmin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotifyAdminToUpgradeRequest'
+      responses:
+        "200":
+          description: Notify-admin request saved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusOK'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+  /api/v4/users/trigger-notify-admin-posts:
+    post:
+      tags:
+        - users
+      summary: Trigger notify-admin posts
+      description: >
+        Trigger admin notification posts manually when enabled by configuration.
+
+        ##### Permissions Must be authenticated and have `manage_system` permission.
+
+      operationId: TriggerNotifyAdminPosts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotifyAdminToUpgradeRequest'
+      responses:
+        "200":
+          description: Notify-admin posts triggered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusOK'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
   /api/v4/users:
@@ -2142,44 +2237,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
-  /api/v4/users/mfa:
-    post:
-      tags:
-        - users
-      summary: Check MFA
-      description: >
-        Check if a user has multi-factor authentication active on their account by providing a login id. Used to check whether an MFA code needs to be provided when logging in.
-
-        ##### Permissions
-
-        No permission required.
-
-      operationId: CheckUserMfa
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - login_id
-              properties:
-                login_id:
-                  description: The email or username used to login
-                  type: string
-        required: true
-      responses:
-        "200":
-          description: MFA check successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  mfa_required:
-                    description: Value will `true` if MFA is active, `false` otherwise
-                    type: boolean
-        "400":
-          $ref: '#/components/responses/BadRequest'
   /api/v4/users/{user_id}/password:
     put:
       tags:
@@ -3442,7 +3499,7 @@ paths:
                   type: boolean
       responses:
         "200":
-          description: Successfully migrated authentication type to LDAP.
+          description: Successfully migrated authentication type to SAML.
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -3525,41 +3582,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserThreads'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "404":
-          $ref: '#/components/responses/NotFound'
-  /api/v4/users/{user_id}/teams/{team_id}/threads/mention_counts:
-    get:
-      tags:
-        - threads
-      summary: Get all unread mention counts from followed threads, per-channel
-      description: |
-        Get all unread mention counts from followed threads
-
-        __Minimum server version__: 5.29
-
-        ##### Permissions
-        Must be logged in as the user or have `edit_other_users` permission.
-      operationId: GetThreadMentionCountsByChannel
-      parameters:
-        - name: user_id
-          in: path
-          description: The ID of the user. This can also be "me" which will point to the current user.
-          required: true
-          schema:
-            type: string
-        - name: team_id
-          in: path
-          description: The ID of the team in which the thread is.
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Get was successful
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -3819,6 +3841,159 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "404":
           $ref: '#/components/responses/NotFound'
+  /api/v4/drafts:
+    post:
+      tags:
+        - users
+        - drafts
+      summary: Upsert synced draft
+      description: |
+        Create or update a synced draft for the current user.
+        ##### Permissions
+        Must be authenticated, have permission to create posts in the channel, and synced drafts must be enabled.
+      operationId: UpsertDraft
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DraftUpsertRequest'
+      responses:
+        "201":
+          description: Draft upsert successful. Returns `null` when an empty message deletes the draft.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Draft'
+                nullable: true
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
+  /api/v4/users/{user_id}/teams/{team_id}/drafts:
+    get:
+      tags:
+        - users
+        - drafts
+      summary: Get synced drafts for a team
+      description: |
+        Get synced drafts for the current user in a team.
+        ##### Permissions
+        Must have `view_team` permission for the team and synced drafts must be enabled.
+      operationId: GetDrafts
+      parameters:
+        - name: user_id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: string
+        - name: team_id
+          in: path
+          description: Team ID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Drafts retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Draft'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
+  /api/v4/users/{user_id}/channels/{channel_id}/drafts:
+    delete:
+      tags:
+        - users
+        - drafts
+      summary: Delete synced draft
+      description: |
+        Delete a synced draft for a channel.
+        ##### Permissions
+        Must be authenticated as the draft owner and synced drafts must be enabled.
+      operationId: DeleteDraft
+      parameters:
+        - name: user_id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: string
+        - name: channel_id
+          in: path
+          description: Channel ID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Draft deletion successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusOK'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
+  /api/v4/users/{user_id}/channels/{channel_id}/drafts/{thread_id}:
+    delete:
+      tags:
+        - users
+        - drafts
+      summary: Delete synced thread draft
+      description: |
+        Delete a synced draft for a channel thread.
+        ##### Permissions
+        Must be authenticated as the draft owner and synced drafts must be enabled.
+      operationId: DeleteDraftForThread
+      parameters:
+        - name: user_id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: string
+        - name: channel_id
+          in: path
+          description: Channel ID
+          required: true
+          schema:
+            type: string
+        - name: thread_id
+          in: path
+          description: Root post ID of the thread
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Thread draft deletion successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusOK'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
   /api/v4/users/{user_id}/data_retention/team_policies:
     get:
       tags:
@@ -4632,7 +4807,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
-  /api/v4/teams/name/{name}:
+  /api/v4/teams/name/{team_name}:
     get:
       tags:
         - teams
@@ -4646,7 +4821,7 @@ paths:
 
       operationId: GetTeamByName
       parameters:
-        - name: name
+        - name: team_name
           in: path
           description: Team Name
           required: true
@@ -4746,7 +4921,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
-  /api/v4/teams/name/{name}/exists:
+  /api/v4/teams/name/{team_name}/exists:
     get:
       tags:
         - teams
@@ -4757,7 +4932,7 @@ paths:
         Must be authenticated.
       operationId: TeamExists
       parameters:
-        - name: name
+        - name: team_name
           in: path
           description: Team Name
           required: true
@@ -8358,6 +8533,83 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
+  /api/v4/channels/members/{user_id}/mark_read:
+    post:
+      tags:
+        - channels
+      summary: Mark multiple channels as read
+      description: |
+        Mark multiple channels as viewed for the given user.
+        ##### Permissions
+        Must be logged in as the user or have `edit_other_users` permission.
+      operationId: MarkChannelsReadForUser
+      parameters:
+        - in: path
+          name: user_id
+          description: User ID to mark channels read for
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        "200":
+          description: Channels marked as read
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  last_viewed_at_times:
+                    type: object
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+  /api/v4/channels/stats/member_count:
+    post:
+      tags:
+        - channels
+      summary: Get member counts for multiple channels
+      description: |
+        Get channel member counts for a list of channel IDs.
+        ##### Permissions
+        Must have access to member count for all requested channels.
+      operationId: GetChannelsMemberCount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        "200":
+          description: Channel member counts retrieval successful
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int64
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
   /api/v4/channels/members/{user_id}/view:
     post:
       tags:
@@ -9331,6 +9583,43 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
+  /api/v4/sharedchannels/{channel_id}/remotes:
+    get:
+      tags:
+        - shared channels
+      summary: Get remote clusters for a shared channel
+      description: |
+        Gets the remote clusters information for a shared channel.
+
+        __Minimum server version__: 10.11
+
+        ##### Permissions
+        Must be authenticated and have the `read_channel` permission for the channel.
+      operationId: GetSharedChannelRemotes
+      parameters:
+        - name: channel_id
+          in: path
+          description: Channel GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Remote clusters retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RemoteClusterInfo'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
   /api/v4/channels/{channel_id}/common_teams:
     get:
       tags:
@@ -9362,6 +9651,53 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Team'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+  /api/v4/channels/{channel_id}/convert_to_channel:
+    post:
+      tags:
+        - channels
+        - group message
+      summary: Convert group message to private channel
+      description: |
+        Converts a group message channel into a private channel in the specified team.
+        ##### Permissions
+        Must have `create_private_channel` permission in the destination team.
+      operationId: ConvertGroupMessageToChannel
+      parameters:
+        - name: channel_id
+          in: path
+          description: Group message channel ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - channel_id
+                - team_id
+              properties:
+                channel_id:
+                  type: string
+                team_id:
+                  type: string
+      responses:
+        "200":
+          description: Conversion successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -9491,6 +9827,50 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Post'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+  /api/v4/posts/search:
+    post:
+      tags:
+        - posts
+      summary: Search posts across all teams
+      description: |
+        Search posts visible to the current user across all teams.
+        ##### Permissions
+        Must be authenticated.
+      operationId: SearchPostsInAllTeams
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - terms
+              properties:
+                terms:
+                  type: string
+                is_or_search:
+                  type: boolean
+                time_zone_offset:
+                  type: integer
+                include_deleted_channels:
+                  type: boolean
+                page:
+                  type: integer
+                per_page:
+                  type: integer
+        required: true
+      responses:
+        "200":
+          description: Post search successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostListWithSearchMatches'
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -9919,6 +10299,72 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
+  /api/v4/posts/{post_id}/info:
+    get:
+      tags:
+        - posts
+      summary: Get post info
+      description: |
+        Get additional metadata and access information for a post.
+        ##### Permissions
+        Must be able to access the post's team and channel context.
+      operationId: GetPostInfo
+      parameters:
+        - name: post_id
+          in: path
+          description: Post ID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Post info retrieval successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostInfo'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+  /api/v4/posts/{post_id}/edit_history:
+    get:
+      tags:
+        - posts
+      summary: Get post edit history
+      description: |
+        Get edit history entries for a post.
+        ##### Permissions
+        Must have `edit_post` permission in the channel. For most posts, only the original author can access history.
+      operationId: GetEditHistoryForPost
+      parameters:
+        - name: post_id
+          in: path
+          description: Post ID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Edit history retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
   /api/v4/channels/{channel_id}/posts:
     get:
       tags:
@@ -11013,6 +11459,31 @@ paths:
           $ref: '#/components/responses/NotFound'
         "501":
           $ref: '#/components/responses/NotImplemented'
+    head:
+      tags:
+        - files
+      summary: Get file metadata headers
+      description: |
+        Performs the same permission and existence checks as getting a file, but returns headers only.
+      operationId: HeadFile
+      parameters:
+        - name: file_id
+          in: path
+          description: The ID of the file to get
+          required: true
+          schema:
+            type: string
+      responses:
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
   /api/v4/files/{file_id}/thumbnail:
     get:
       tags:
@@ -11050,6 +11521,31 @@ paths:
           $ref: '#/components/responses/NotFound'
         "501":
           $ref: '#/components/responses/NotImplemented'
+    head:
+      tags:
+        - files
+      summary: Get thumbnail metadata headers
+      description: |
+        Performs the same permission and existence checks as getting a thumbnail, but returns headers only.
+      operationId: HeadFileThumbnail
+      parameters:
+        - name: file_id
+          in: path
+          description: The ID of the file to get
+          required: true
+          schema:
+            type: string
+      responses:
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
   /api/v4/files/{file_id}/preview:
     get:
       tags:
@@ -11083,6 +11579,31 @@ paths:
               schema:
                 type: integer
               description: This header is included with the value "1" if the file is past the cloud's plan limit.
+        "404":
+          $ref: '#/components/responses/NotFound'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
+    head:
+      tags:
+        - files
+      summary: Get preview metadata headers
+      description: |
+        Performs the same permission and existence checks as getting a preview, but returns headers only.
+      operationId: HeadFilePreview
+      parameters:
+        - name: file_id
+          in: path
+          description: The ID of the file to get
+          required: true
+          schema:
+            type: string
+      responses:
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
         "501":
@@ -11217,6 +11738,37 @@ paths:
               schema:
                 type: integer
               description: This header is included with the value "1" if the file is past the cloud's plan limit.
+        "404":
+          $ref: '#/components/responses/NotFound'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
+    head:
+      tags:
+        - files
+      summary: Get public file metadata headers
+      description: |
+        Performs the same validation checks as getting a public file, but returns headers only.
+      operationId: HeadFilePublic
+      parameters:
+        - name: file_id
+          in: path
+          description: The ID of the file to get
+          required: true
+          schema:
+            type: string
+        - name: h
+          in: query
+          description: File hash
+          required: true
+          schema:
+            type: string
+      responses:
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
         "501":
@@ -11623,58 +12175,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
-  /api/v4/ai/agents:
-    get:
-      tags:
-        - ai
-      summary: Get available AI agents
-      description: >
-        Retrieve all available AI agents from the AI plugin's bridge API. If a user ID is provided, only agents accessible to that user are returned.
-
-        ##### Permissions
-
-        Must be authenticated.
-
-        __Minimum server version__: 11.2
-
-      operationId: GetAIAgents
-      responses:
-        "200":
-          description: AI agents retrieved successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AgentsResponse'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "500":
-          $ref: '#/components/responses/InternalServerError'
-  /api/v4/ai/services:
-    get:
-      tags:
-        - ai
-      summary: Get available AI services
-      description: >
-        Retrieve all available AI services from the AI plugin's bridge API. If a user ID is provided, only services accessible to that user (via their permitted bots) are returned.
-
-        ##### Permissions
-
-        Must be authenticated.
-
-        __Minimum server version__: 11.2
-
-      operationId: GetAIServices
-      responses:
-        "200":
-          description: AI services retrieved successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ServicesResponse'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "500":
-          $ref: '#/components/responses/InternalServerError'
   /api/v4/uploads:
     post:
       tags:
@@ -11773,9 +12273,17 @@ paths:
             type: string
       requestBody:
         content:
-          application/x-www-form-urlencoded:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+          multipart/form-data:
             schema:
               type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
       responses:
         "201":
           description: Upload successful
@@ -11800,15 +12308,27 @@ paths:
       tags:
         - jobs
       summary: Get the jobs.
-      description: >
-        Get a page of jobs. Use the query parameters to modify the behaviour of this endpoint.
+      description: |
+        Get a page of jobs. Use the query parameters to modify the behaviour of
+        this endpoint.
 
         __Minimum server version: 4.1__
 
         ##### Permissions
+        Must have permission to read at least one job type returned by this call.
+        When no `job_type` query parameter is set, the server only includes job types your session may read; required permission depends on the job type:
 
-        Must have `manage_jobs` permission.
+        - `read_data_retention_job` — `data_retention`
+        - `read_compliance_export_job` — `message_export`
+        - `read_elasticsearch_post_indexing_job` — `elasticsearch_post_indexing`
+        - `read_elasticsearch_post_aggregation_job` — `elasticsearch_post_aggregation`
+        - `read_ldap_sync_job` — `ldap_sync`
+        - `read_jobs` — `migrations`, `plugins`, `product_notices`, `expiry_notify`, `active_users`, `import_process`, `import_delete`, `export_process`, `export_delete`, `cloud`, `mobile_session_metadata`, `extract_content`
+        - `manage_system` — `access_control_sync`
 
+        When `job_type` is set, you must have the permission that matches that type (same mapping as above).
+
+        This endpoint does not accept `team_id`. To list `access_control_sync` jobs scoped to a team without `manage_system`, use `GET /api/v4/jobs/type/access_control_sync` with query parameter `team_id` set to the team GUID (requires `manage_team_access_rules` on that team).
       operationId: GetJobs
       parameters:
         - name: page
@@ -11856,7 +12376,15 @@ paths:
         Create a new job.
         __Minimum server version: 4.1__
         ##### Permissions
-        Must have `manage_jobs` permission.
+        Must have permission to create the requested job type. Required permission depends on `type`:
+
+        - `create_data_retention_job` — `data_retention`
+        - `create_compliance_export_job` — `message_export`
+        - `create_elasticsearch_post_indexing_job` — `elasticsearch_post_indexing`
+        - `create_elasticsearch_post_aggregation_job` — `elasticsearch_post_aggregation`
+        - `create_ldap_sync_job` — `ldap_sync`
+        - `manage_jobs` — `migrations`, `plugins`, `product_notices`, `expiry_notify`, `active_users`, `import_process`, `import_delete`, `export_process`, `export_delete`, `cloud`, `extract_content`
+        - `access_control_sync` — `manage_system`, or `manage_channel_access_rules` on the channel given in job `data`, or `manage_team_access_rules` on the team in job `data` (see server logic for scoped sync jobs)
       operationId: CreateJob
       requestBody:
         content:
@@ -11896,7 +12424,15 @@ paths:
         Gets a single job.
         __Minimum server version: 4.1__
         ##### Permissions
-        Must have `manage_jobs` permission.
+        Must have permission to read the job's type:
+
+        - `read_data_retention_job` — `data_retention`
+        - `read_compliance_export_job` — `message_export`
+        - `read_elasticsearch_post_indexing_job` — `elasticsearch_post_indexing`
+        - `read_elasticsearch_post_aggregation_job` — `elasticsearch_post_aggregation`
+        - `read_ldap_sync_job` — `ldap_sync`
+        - `read_jobs` — `migrations`, `plugins`, `product_notices`, `expiry_notify`, `active_users`, `import_process`, `import_delete`, `export_process`, `export_delete`, `cloud`, `mobile_session_metadata`, `extract_content`
+        - `manage_system` — `access_control_sync`
       operationId: GetJob
       parameters:
         - name: job_id
@@ -11929,7 +12465,7 @@ paths:
         Download the result of a single job.
         __Minimum server version: 5.28__
         ##### Permissions
-        Must have `manage_jobs` permission.
+        Must have `download_compliance_export_result` permission for message export jobs.
       operationId: DownloadJob
       parameters:
         - name: job_id
@@ -11956,7 +12492,15 @@ paths:
         Cancel a job.
         __Minimum server version: 4.1__
         ##### Permissions
-        Must have `manage_jobs` permission.
+        Same as creating that job type (cancel uses the create permission check):
+
+        - `create_data_retention_job` — `data_retention`
+        - `create_compliance_export_job` — `message_export`
+        - `create_elasticsearch_post_indexing_job` — `elasticsearch_post_indexing`
+        - `create_elasticsearch_post_aggregation_job` — `elasticsearch_post_aggregation`
+        - `create_ldap_sync_job` — `ldap_sync`
+        - `manage_jobs` — `migrations`, `plugins`, `product_notices`, `expiry_notify`, `active_users`, `import_process`, `import_delete`, `export_process`, `export_delete`, `cloud`, `extract_content`
+        - `access_control_sync` — `manage_system`, or `manage_channel_access_rules` / `manage_team_access_rules` for scoped jobs as when creating
       operationId: CancelJob
       parameters:
         - name: job_id
@@ -11980,26 +12524,41 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "404":
           $ref: '#/components/responses/NotFound'
-  /api/v4/jobs/type/{type}:
+  /api/v4/jobs/type/{job_type}:
     get:
       tags:
         - jobs
       summary: Get the jobs of the given type.
-      description: >
-        Get a page of jobs of the given type. Use the query parameters to modify the behaviour of this endpoint.
+      description: |
+        Get a page of jobs of the given type. Use the query parameters to modify
+        the behaviour of this endpoint.
 
         __Minimum server version: 4.1__
 
         ##### Permissions
+        Must have permission to read the path `job_type`, using the same mapping as `GET /api/v4/jobs`:
 
-        Must have `manage_jobs` permission.
+        - `read_data_retention_job` — `data_retention`
+        - `read_compliance_export_job` — `message_export`
+        - `read_elasticsearch_post_indexing_job` — `elasticsearch_post_indexing`
+        - `read_elasticsearch_post_aggregation_job` — `elasticsearch_post_aggregation`
+        - `read_ldap_sync_job` — `ldap_sync`
+        - `read_jobs` — `migrations`, `plugins`, `product_notices`, `expiry_notify`, `active_users`, `import_process`, `import_delete`, `export_process`, `export_delete`, `cloud`, `mobile_session_metadata`, `extract_content`
+        - `manage_system` — `access_control_sync`
 
+        When `job_type` is `access_control_sync` and query parameter `team_id` is set to a valid team GUID, team admins with `manage_team_access_rules` on that team may list jobs scoped to that team without `manage_system`. When `team_id` is set, results include only jobs whose stored data matches that team for the requested type.
       operationId: GetJobsByType
       parameters:
-        - name: type
+        - name: job_type
           in: path
           description: Job type
           required: true
+          schema:
+            type: string
+        - name: team_id
+          in: query
+          description: |
+            Optional team GUID. When set, the server returns jobs of the given `job_type` whose job data includes this `team_id` (see server filtering). For `access_control_sync`, team admins with `manage_team_access_rules` on this team may use this parameter to read team-scoped jobs without `manage_system`.
           schema:
             type: string
         - name: page
@@ -12034,11 +12593,24 @@ paths:
       tags:
         - jobs
       summary: Update the status of a job
-      description: >
-        Update the status of a job. Valid status updates: - 'in_progress' -> 'pending' - 'in_progress' | 'pending' -> 'cancel_requested' - 'cancel_requested' -> 'canceled'
+      description: |
+        Update the status of a job. Valid status updates:
+        - 'in_progress' -> 'pending'
+        - 'in_progress' | 'pending' -> 'cancel_requested'
+        - 'cancel_requested' -> 'canceled'
 
         Add force to the body of the PATCH request to bypass the given rules, the only statuses you can go to are: pending, cancel_requested and canceled. This can have unexpected consequences and should be used with caution.
 
+        ##### Permissions
+        Must have permission to manage the job's type:
+
+        - `manage_data_retention_job` — `data_retention`
+        - `manage_compliance_export_job` — `message_export`
+        - `manage_elasticsearch_post_indexing_job` — `elasticsearch_post_indexing`
+        - `manage_elasticsearch_post_aggregation_job` — `elasticsearch_post_aggregation`
+        - `manage_ldap_sync_job` — `ldap_sync`
+        - `manage_jobs` — `migrations`, `plugins`, `product_notices`, `expiry_notify`, `active_users`, `import_process`, `import_delete`, `export_process`, `export_delete`, `cloud`, `extract_content`
+        - `manage_system` — `access_control_sync`
       operationId: UpdateJobStatus
       parameters:
         - name: job_id
@@ -12168,13 +12740,97 @@ paths:
                 $ref: '#/components/schemas/SystemStatusResponse'
         "500":
           $ref: '#/components/responses/InternalServerError'
-  /api/v4/system/notices/{teamId}:
+  /api/v4/websocket:
+    get:
+      tags:
+        - system
+      summary: Open a WebSocket connection
+      description: |
+        Upgrades the HTTP connection to a WebSocket connection used for real-time events and websocket actions.
+
+        ##### Permissions
+        No permission required to connect. Authentication can be performed via standard API auth (cookie/header)
+        or by sending an `authentication_challenge` action after connecting.
+      operationId: ConnectWebSocket
+      security: []
+      parameters:
+        - name: connection_id
+          in: query
+          description: Existing connection identifier for reconnect flows.
+          schema:
+            type: string
+        - name: sequence_number
+          in: query
+          description: Last received sequence number for reconnect flows.
+          schema:
+            type: string
+        - name: posted_ack
+          in: query
+          description: Whether post acknowledgement events are enabled for this connection.
+          schema:
+            type: boolean
+        - name: disconnect_err_code
+          in: query
+          description: Optional close code used by clients to indicate disconnect reason.
+          schema:
+            type: string
+      responses:
+        "101":
+          description: Switching Protocols
+        "400":
+          $ref: '#/components/responses/BadRequest'
+  /manualtest:
+    get:
+      tags:
+        - system
+      summary: Run manual testing helpers
+      description: |
+        Invokes manual test helpers used by developers and automated manual test scenarios.
+        This endpoint is only registered when `ServiceSettings.EnableTesting` is enabled.
+
+        ##### Permissions
+
+        None. Authentication is not required; this route uses the same handler stack as other unauthenticated API handlers (`APIHandler`).
+
+        __Security note:__ Only enable `EnableTesting` on non-production, developer-oriented deployments.
+      operationId: ManualTest
+      security: []
+      parameters:
+        - name: test
+          in: query
+          description: Name of the manual test to run.
+          required: true
+          schema:
+            type: string
+        - name: uid
+          in: query
+          description: Optional unique value used to randomize generated resources.
+          schema:
+            type: string
+        - name: username
+          in: query
+          description: Optional username used for helper account creation.
+          schema:
+            type: string
+        - name: teamname
+          in: query
+          description: Optional team display name used for helper team creation.
+          schema:
+            type: string
+      responses:
+        "307":
+          description: Manual test setup completed and redirected to the default channel.
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/system/notices/{team_id}:
     get:
       tags:
         - system
       summary: Get notices for logged in user in specified team
       description: >
-        Will return appropriate product notices for current user in the team specified by teamId parameter.
+        Will return appropriate product notices for current user in the team specified by team_id parameter.
 
         __Minimum server version__: 5.26
 
@@ -12201,7 +12857,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: teamId
+        - name: team_id
           in: path
           description: ID of the team
           required: true
@@ -12251,6 +12907,68 @@ paths:
                 $ref: '#/components/schemas/StatusOK'
         "500":
           $ref: '#/components/responses/InternalServerError'
+  /api/v4/system/onboarding/complete:
+    get:
+      tags:
+        - system
+      summary: Get first admin onboarding completion status
+      description: >
+        Get whether first admin onboarding is complete.
+
+        ##### Permissions Must have `manage_system` permission.
+
+      operationId: GetOnboardingComplete
+      responses:
+        "200":
+          description: Onboarding completion state retrieval successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+        - system
+      summary: Complete first admin onboarding
+      description: >
+        Mark first admin onboarding as complete and optionally trigger plugin installation.
+
+        ##### Permissions Must have `manage_system` permission.
+
+      operationId: CompleteOnboarding
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                organization:
+                  type: string
+                  description: Organization name for self-hosted onboarding.
+                install_plugins:
+                  type: array
+                  description: Marketplace plugin IDs to install as part of onboarding.
+                  items:
+                    type: string
+      responses:
+        "200":
+          description: Onboarding completion successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusOK'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
   /api/v4/system/e2e/ai_bridge:
     put:
       tags:
@@ -12581,6 +13299,42 @@ paths:
           $ref: '#/components/responses/BadRequest'
         "403":
           $ref: '#/components/responses/Forbidden'
+  /api/v4/config/migrate:
+    post:
+      tags:
+        - system
+      summary: Migrate config storage
+      description: |
+        Migrate configuration between storage backends.
+        This endpoint is only exposed over a local socket.
+
+        ##### Permissions
+        Must have `manage_system` permission.
+      operationId: MigrateConfig
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - from
+                - to
+              properties:
+                from:
+                  type: string
+                  description: Source config store name.
+                to:
+                  type: string
+                  description: Destination config store name.
+      responses:
+        "200":
+          description: Config migration successful
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
   /api/v4/config/client:
     get:
       tags:
@@ -12785,36 +13539,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "500":
           $ref: '#/components/responses/InternalServerError'
-  /api/v4/license/renewal:
-    get:
-      tags:
-        - system
-      summary: Request the license renewal link
-      description: >
-        Request the renewal link that would be used to start the license renewal process
-
-        __Minimum server version__: 5.32
-
-        ##### Permissions
-
-        Must have `sysconsole_write_about` permission.
-
-      operationId: RequestLicenseRenewalLink
-      responses:
-        "200":
-          description: License renewal link obtained
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LicenseRenewalLink'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "500":
-          $ref: '#/components/responses/InternalServerError'
   /api/v4/trial-license:
     post:
       tags:
@@ -12859,13 +13583,13 @@ paths:
       summary: Get last trial license used
       operationId: GetPrevTrialLicense
       description: >
-        Get the last trial license used on the sevrer
+        Get the last trial license used on the server
 
         __Minimum server version__: 5.36
 
         ##### Permissions
 
-        Must have `manage_systems` permissions.
+        Must have `manage_system` permission.
 
       responses:
         "200":
@@ -13015,6 +13739,76 @@ paths:
                   type: string
         "403":
           $ref: '#/components/responses/Forbidden'
+  /api/v4/logs/query:
+    post:
+      tags:
+        - system
+      summary: Query server logs with filters
+      description: >
+        Query server logs using filter criteria.
+
+        ##### Permissions Must have `get_logs` permission.
+
+      operationId: QueryLogs
+      parameters:
+        - name: page
+          in: query
+          description: The page to select.
+          schema:
+            type: integer
+            default: 0
+        - name: logs_per_page
+          in: query
+          description: The number of logs per page.
+          schema:
+            type: string
+            default: "10000"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                server_names:
+                  type: array
+                  items:
+                    type: string
+                log_levels:
+                  type: array
+                  items:
+                    type: string
+                date_from:
+                  type: string
+                  description: >
+                    Inclusive start of the time range. The server parses this using the layout `YYYY-MM-DD HH:MM:SS.mmm ±HH:MM` (milliseconds optional; timezone offset required), matching Go reference time `2006-01-02 15:04:05.999 -07:00`.
+
+                  example: "2024-01-15 14:30:45.123 -05:00"
+                date_to:
+                  type: string
+                  description: >
+                    Inclusive end of the time range. Same format as `date_from` (`YYYY-MM-DD HH:MM:SS.mmm ±HH:MM`, e.g. `2006-01-02 15:04:05.999 -07:00`).
+
+                  example: "2024-01-15 14:30:45.123 -05:00"
+      responses:
+        "200":
+          description: Log query successful
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: object
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
   /api/v4/analytics/old:
     get:
       tags:
@@ -13056,6 +13850,76 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
+  /api/v4/latest_version:
+    get:
+      tags:
+        - system
+      summary: Get latest public server release information
+      description: >
+        Retrieves metadata about the latest Mattermost server release from GitHub.
+
+        ##### Permissions Must have `manage_system` permission.
+
+      operationId: GetLatestVersion
+      responses:
+        "200":
+          description: Latest release metadata retrieval successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  tag_name:
+                    type: string
+                  name:
+                    type: string
+                  created_at:
+                    type: string
+                  published_at:
+                    type: string
+                  body:
+                    type: string
+                  html_url:
+                    type: string
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/system/schema/version:
+    get:
+      tags:
+        - system
+      summary: Get applied database schema migrations
+      description: >
+        Returns the list of applied database schema migrations.
+
+        ##### Permissions Must have at least one sysconsole read permission.
+
+      operationId: GetAppliedSchemaMigrations
+      responses:
+        "200":
+          description: Applied schema migrations retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    version:
+                      type: integer
+                    name:
+                      type: string
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
   /api/v4/server_busy:
     post:
       tags:
@@ -15456,9 +16320,11 @@ paths:
         - groups
       summary: Link a team to a group
       description: |
-        Link a team to a group
+        Link a team to a group.
+
         ##### Permissions
-        Must have `manage_team` permission.
+        Requires `invite_user` on the target team, or `sysconsole_write_user_management_groups`.
+        If the group has `allow_reference` disabled, also requires `sysconsole_read_user_management_groups`.
 
         __Minimum server version__: 5.11
       operationId: LinkGroupSyncableForTeam
@@ -15471,13 +16337,13 @@ paths:
             type: string
         - name: team_id
           in: path
-          description: Team GUID
+          description: Team GUID.
           required: true
           schema:
             type: string
       responses:
         "201":
-          description: Team successfully linked to group
+          description: Team linked to group
           content:
             application/json:
               schema:
@@ -15493,11 +16359,13 @@ paths:
     delete:
       tags:
         - groups
-      summary: Delete a link from a team to a group
+      summary: Unlink a team from a group
       description: |
-        Delete a link from a team to a group
+        Delete a link between a team and a group.
+
         ##### Permissions
-        Must have `manage_team` permission.
+        Requires `invite_user` on the target team, or `sysconsole_write_user_management_groups`.
+        If the group has `allow_reference` disabled, also requires `sysconsole_read_user_management_groups`.
 
         __Minimum server version__: 5.11
       operationId: UnlinkGroupSyncableForTeam
@@ -15510,13 +16378,13 @@ paths:
             type: string
         - name: team_id
           in: path
-          description: Team GUID
+          description: Team GUID.
           required: true
           schema:
             type: string
       responses:
         "200":
-          description: Successfully deleted link between team and group
+          description: Team unlinked from group
           content:
             application/json:
               schema:
@@ -15534,18 +16402,17 @@ paths:
       tags:
         - groups
       summary: Link a channel to a group
-      description: >
-        Link a channel to a group
+      description: |
+        Link a channel to a group.
 
         ##### Permissions
-
-        If the channel is private, you must have `manage_private_channel_members` permission.
-
-        Otherwise, you must have the `manage_public_channel_members` permission.
-
+        Requires `manage_private_channel_members` (private channel) or
+        `manage_public_channel_members` (public channel) on the target channel.
+        If this is the group's first linkage into the channel's team context, also
+        requires `invite_user` on the team, or `sysconsole_write_user_management_groups`.
+        If the group has `allow_reference` disabled, also requires `sysconsole_read_user_management_groups`.
 
         __Minimum server version__: 5.11
-
       operationId: LinkGroupSyncableForChannel
       parameters:
         - name: group_id
@@ -15556,13 +16423,13 @@ paths:
             type: string
         - name: channel_id
           in: path
-          description: Channel GUID
+          description: Channel GUID.
           required: true
           schema:
             type: string
       responses:
         "201":
-          description: Channel successfully linked to group
+          description: Channel linked to group
           content:
             application/json:
               schema:
@@ -15578,19 +16445,18 @@ paths:
     delete:
       tags:
         - groups
-      summary: Delete a link from a channel to a group
-      description: >
-        Delete a link from a channel to a group
+      summary: Unlink a channel from a group
+      description: |
+        Delete a link between a channel and a group.
 
         ##### Permissions
-
-        If the channel is private, you must have `manage_private_channel_members` permission.
-
-        Otherwise, you must have the `manage_public_channel_members` permission.
-
+        Requires `manage_private_channel_members` (private channel) or
+        `manage_public_channel_members` (public channel) on the target channel.
+        If unlinking would leave the group with no remaining linkage in that channel's team context (last/only linkage for that team), also
+        requires `invite_user` on the team, or `sysconsole_write_user_management_groups`.
+        If the group has `allow_reference` disabled, also requires `sysconsole_read_user_management_groups`.
 
         __Minimum server version__: 5.11
-
       operationId: UnlinkGroupSyncableForChannel
       parameters:
         - name: group_id
@@ -15601,13 +16467,13 @@ paths:
             type: string
         - name: channel_id
           in: path
-          description: Channel GUID
+          description: Channel GUID.
           required: true
           schema:
             type: string
       responses:
         "200":
-          description: Successfully deleted link between channel and group
+          description: Channel unlinked from group
           content:
             application/json:
               schema:
@@ -15624,9 +16490,10 @@ paths:
     get:
       tags:
         - groups
-      summary: Get GroupSyncable from Team ID
+      summary: Get a team syncable for a group
       description: |
-        Get the GroupSyncable object with group_id and team_id from params
+        Get the GroupSyncableTeam object with the provided group and team identifiers.
+
         ##### Permissions
         Must have `manage_system` permission.
 
@@ -15641,13 +16508,13 @@ paths:
             type: string
         - name: team_id
           in: path
-          description: Team GUID
+          description: Team GUID.
           required: true
           schema:
             type: string
       responses:
         "200":
-          description: GroupSyncable object retrieval successful
+          description: Team syncable retrieved
           content:
             application/json:
               schema:
@@ -15666,9 +16533,10 @@ paths:
     get:
       tags:
         - groups
-      summary: Get GroupSyncable from channel ID
+      summary: Get a channel syncable for a group
       description: |
-        Get the GroupSyncable object with group_id and channel_id from params
+        Get the GroupSyncableChannel object with the provided group and channel identifiers.
+
         ##### Permissions
         Must have `manage_system` permission.
 
@@ -15683,13 +16551,13 @@ paths:
             type: string
         - name: channel_id
           in: path
-          description: Channel GUID
+          description: Channel GUID.
           required: true
           schema:
             type: string
       responses:
         "200":
-          description: GroupSyncable object retrieval successful
+          description: Channel syncable retrieved
           content:
             application/json:
               schema:
@@ -15708,9 +16576,10 @@ paths:
     get:
       tags:
         - groups
-      summary: Get group teams
+      summary: Get team syncables for a group
       description: |
-        Retrieve the list of teams associated to the group
+        Retrieve the list of team syncables associated with the group.
+
         ##### Permissions
         Must have `manage_system` permission.
 
@@ -15725,7 +16594,7 @@ paths:
             type: string
       responses:
         "200":
-          description: Teams list retrieval successful
+          description: Team syncables retrieved
           content:
             application/json:
               schema:
@@ -15746,9 +16615,10 @@ paths:
     get:
       tags:
         - groups
-      summary: Get group channels
+      summary: Get channel syncables for a group
       description: |
-        Retrieve the list of channels associated to the group
+        Retrieve the list of channel syncables associated with the group.
+
         ##### Permissions
         Must have `manage_system` permission.
 
@@ -15763,7 +16633,7 @@ paths:
             type: string
       responses:
         "200":
-          description: Channel list retrieval successful
+          description: Channel syncables retrieved
           content:
             application/json:
               schema:
@@ -15784,15 +16654,11 @@ paths:
     put:
       tags:
         - groups
-      summary: Patch a GroupSyncable associated to Team
+      summary: Patch a team syncable for a group
       description: >
-        Partially update a GroupSyncable by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored.
+        Partially update a GroupSyncableTeam by providing only the fields you want to update. Omitted fields will not be updated.
 
-
-        ##### Permissions
-
-        Must have `manage_system` permission.
-
+        ##### Permissions Must have `manage_system` permission.
 
         __Minimum server version__: 5.11
 
@@ -15806,12 +16672,12 @@ paths:
             type: string
         - name: team_id
           in: path
-          description: Team GUID
+          description: Team GUID.
           required: true
           schema:
             type: string
       requestBody:
-        description: GroupSyncable object that is to be updated
+        description: GroupSyncableTeam object that is to be updated
         required: true
         content:
           application/json:
@@ -15822,7 +16688,7 @@ paths:
                   type: boolean
       responses:
         "200":
-          description: GroupSyncable patch successful
+          description: Team syncable patched
           content:
             application/json:
               schema:
@@ -15839,15 +16705,11 @@ paths:
     put:
       tags:
         - groups
-      summary: Patch a GroupSyncable associated to Channel
+      summary: Patch a channel syncable for a group
       description: >
-        Partially update a GroupSyncable by providing only the fields you want to update. Omitted fields will not be updated. The fields that can be updated are defined in the request body, all other provided fields will be ignored.
+        Partially update a GroupSyncableChannel by providing only the fields you want to update. Omitted fields will not be updated.
 
-
-        ##### Permissions
-
-        Must have `manage_system` permission.
-
+        ##### Permissions Must have `manage_system` permission.
 
         __Minimum server version__: 5.11
 
@@ -15861,12 +16723,12 @@ paths:
             type: string
         - name: channel_id
           in: path
-          description: Channel GUID
+          description: Channel GUID.
           required: true
           schema:
             type: string
       requestBody:
-        description: GroupSyncable object that is to be updated
+        description: GroupSyncableChannel object that is to be updated
         required: true
         content:
           application/json:
@@ -15877,7 +16739,7 @@ paths:
                   type: boolean
       responses:
         "200":
-          description: GroupSyncable patch successful
+          description: Channel syncable patched
           content:
             application/json:
               schema:
@@ -16298,8 +17160,9 @@ paths:
             application/json:
               schema:
                 type: object
-                items:
-                  $ref: '#/components/schemas/GroupsAssociatedToChannels'
+                properties:
+                  groups:
+                    $ref: '#/components/schemas/GroupsAssociatedToChannels'
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -17384,34 +18247,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         "501":
           $ref: '#/components/responses/NotImplemented'
-  /api/v4/bleve/purge_indexes:
-    post:
-      tags:
-        - bleve
-      summary: Purge all Bleve indexes
-      description: >
-        Deletes all Bleve indexes and their contents. After calling this endpoint, it is
-
-        necessary to schedule a new Bleve indexing job to repopulate the indexes.
-
-        __Minimum server version__: 5.24
-
-        ##### Permissions
-
-        Must have `sysconsole_write_experimental` permission.
-
-      operationId: PurgeBleveIndexes
-      responses:
-        "200":
-          description: Indexes purged successfully.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusOK'
-        "500":
-          $ref: '#/components/responses/InternalServerError'
-        "501":
-          $ref: '#/components/responses/NotImplemented'
   /api/v4/data_retention/policy:
     get:
       tags:
@@ -18421,17 +19256,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - id
-                - version
-              properties:
-                id:
-                  type: string
-                  description: The ID of the plugin to install.
-                version:
-                  type: string
-                  description: The version of the plugin to install.
+              $ref: '#/components/schemas/InstallMarketplacePluginRequest'
         description: The metadata identifying the plugin to install.
         required: true
       responses:
@@ -18559,6 +19384,60 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "500":
           $ref: '#/components/responses/InternalServerError'
+  /api/v4/plugins/reattach:
+    post:
+      tags:
+        - plugins
+      summary: Reattach a plugin process
+      description: |
+        Reattaches the server to an already running plugin process.
+        This endpoint is only exposed over a local socket.
+
+        ##### Permissions
+        Must have `manage_system` permission.
+      operationId: ReattachPlugin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginReattachRequest'
+      responses:
+        "200":
+          description: Plugin reattached successfully
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+  /api/v4/plugins/{plugin_id}/detach:
+    post:
+      tags:
+        - plugins
+      summary: Detach a reattached plugin process
+      description: |
+        Detaches a previously reattached plugin from the server.
+        This endpoint is only exposed over a local socket.
+
+        ##### Permissions
+        Must have `manage_system` permission.
+      operationId: DetachPlugin
+      parameters:
+        - name: plugin_id
+          in: path
+          description: The ID of the plugin to detach.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Plugin detached successfully
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
   /api/v4/roles:
     get:
       tags:
@@ -19415,6 +20294,170 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
+  /api/v4/remotecluster/ping:
+    post:
+      tags:
+        - remote clusters
+      summary: Receive a ping from a remote cluster.
+      description: |
+        Receives heartbeat traffic from an already linked remote cluster.
+        This endpoint is authenticated with a remote-cluster token and is
+        used by the secure connection transport layer.
+
+        ##### Permissions
+        No user session permissions required.
+      operationId: RemoteClusterPing
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoteClusterFrame'
+      responses:
+        "200":
+          description: Ping response successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoteClusterPing'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+  /api/v4/remotecluster/msg:
+    post:
+      tags:
+        - remote clusters
+      summary: Receive a remote cluster message.
+      description: |
+        Receives and processes an incoming transport message from a linked
+        remote cluster. This endpoint is authenticated with a remote-cluster
+        token and is part of the secure connection protocol.
+
+        ##### Permissions
+        No user session permissions required.
+      operationId: RemoteClusterAcceptMessage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoteClusterFrame'
+      responses:
+        "200":
+          description: Message accepted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoteClusterResponse'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+  /api/v4/remotecluster/confirm_invite:
+    post:
+      tags:
+        - remote clusters
+      summary: Confirm an invite with a remote cluster.
+      description: |
+        Confirms an invitation handshake from a linked remote cluster.
+        This endpoint is authenticated with a remote-cluster token and is
+        used by the secure connection protocol.
+
+        ##### Permissions
+        No user session permissions required.
+      operationId: RemoteClusterConfirmInvite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoteClusterFrame'
+      responses:
+        "200":
+          description: Invitation confirmation successful
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+  /api/v4/remotecluster/upload/{upload_id}:
+    post:
+      tags:
+        - remote clusters
+      summary: Upload file data for a remote upload session.
+      description: |
+        Streams file data into an existing upload session from a linked
+        remote cluster. This endpoint is authenticated with a remote-cluster token.
+
+        ##### Permissions
+        No user session permissions required.
+      operationId: UploadRemoteClusterData
+      parameters:
+        - name: upload_id
+          in: path
+          description: The upload session ID.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Upload chunk accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileInfo'
+        "204":
+          description: Upload data accepted with no file completion yet
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+  /api/v4/remotecluster/{user_id}/image:
+    post:
+      tags:
+        - remote clusters
+      summary: Set profile image for a remote user.
+      description: |
+        Uploads and sets a profile image for a remote user managed by the
+        requesting remote cluster. This endpoint is authenticated with a
+        remote-cluster token.
+
+        ##### Permissions
+        No user session permissions required.
+      operationId: RemoteSetProfileImage
+      parameters:
+        - name: user_id
+          in: path
+          description: The remote user ID.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Profile image updated successfully
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
   /api/v4/sharedchannels/{team_id}:
     get:
       tags:
@@ -19426,7 +20469,9 @@ paths:
         __Minimum server version__: 5.50
 
         ##### Permissions
-        Must be authenticated.
+        Must be authenticated and have the `view_team` permission for the team.
+        Results are restricted to channels the user is a member of unless the user has
+        `manage_shared_channels`.
       operationId: GetAllSharedChannels
       parameters:
         - name: team_id
@@ -19640,60 +20685,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatusOK'
+        "204":
+          description: Channel was not shared with the remote cluster. No action needed.
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
-  /api/v4/sharedchannels/{channel_id}/remotes:
-    get:
-      tags:
-        - channels
-      summary: Get remote clusters for a shared channel
-      description: |
-        Gets the remote clusters information for a shared channel.
-
-        __Minimum server version__: 10.10
-
-        ##### Permissions
-        Must be authenticated and have the `read_channel` permission for the channel.
-      operationId: GetSharedChannelRemotes
-      parameters:
-        - name: channel_id
-          in: path
-          description: Channel GUID
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Remote clusters retrieval successful
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RemoteClusterInfo'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "404":
-          $ref: '#/components/responses/NotFound'
   /api/v4/sharedchannels/users/{user_id}/can_dm/{other_user_id}:
     get:
       tags:
         - shared channels
       summary: Check if user can DM another user in shared channels context
       description: |
-        Checks if a user can send direct messages to another user, considering shared channel restrictions.
-        This is specifically for shared channels where DMs require direct connections between clusters.
+        Checks if a user can send direct messages to another user in a shared channels context.
+        In addition to user visibility, this evaluates remote-cluster direct-connect restrictions
+        for remote users.
 
         __Minimum server version__: 10.11
 
         ##### Permissions
-        Must be authenticated and have permission to view the user.
+        Must be authenticated and able to view the target user.
       operationId: CanUserDirectMessage
       parameters:
         - name: user_id
@@ -20318,127 +21329,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
-  /api/v4/bots/{bot_user_id}/icon:
-    get:
-      tags:
-        - bots
-      summary: Get bot's LHS icon
-      description: |
-        Get a bot's LHS icon image based on bot_user_id string parameter.
-        ##### Permissions
-        Must be logged in.
-        __Minimum server version__: 5.14
-      operationId: GetBotIconImage
-      parameters:
-        - name: bot_user_id
-          in: path
-          description: Bot user ID
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Bot's LHS icon image
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "404":
-          $ref: '#/components/responses/NotFound'
-        "500":
-          $ref: '#/components/responses/InternalServerError'
-        "501":
-          $ref: '#/components/responses/NotImplemented'
-    post:
-      tags:
-        - bots
-      summary: Set bot's LHS icon image
-      description: >
-        Set a bot's LHS icon image based on bot_user_id string parameter. Icon image must be SVG format, all other formats are rejected.
-
-        ##### Permissions
-
-        Must have `manage_bots` permission.
-
-        __Minimum server version__: 5.14
-
-      operationId: SetBotIconImage
-      parameters:
-        - name: bot_user_id
-          in: path
-          description: Bot user ID
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                image:
-                  description: SVG icon image to be uploaded
-                  type: string
-                  format: binary
-              required:
-                - image
-      responses:
-        "200":
-          description: SVG icon image set successful
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusOK'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "413":
-          $ref: '#/components/responses/TooLarge'
-        "500":
-          $ref: '#/components/responses/InternalServerError'
-        "501":
-          $ref: '#/components/responses/NotImplemented'
-    delete:
-      tags:
-        - bots
-      summary: Delete bot's LHS icon image
-      description: |
-        Delete bot's LHS icon image based on bot_user_id string parameter.
-        ##### Permissions
-        Must have `manage_bots` permission.
-        __Minimum server version__: 5.14
-      operationId: DeleteBotIconImage
-      parameters:
-        - name: bot_user_id
-          in: path
-          description: Bot user ID
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Icon image deletion successful
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusOK'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "404":
-          $ref: '#/components/responses/NotFound'
-        "500":
-          $ref: '#/components/responses/InternalServerError'
-        "501":
-          $ref: '#/components/responses/NotImplemented'
   /api/v4/bots/{bot_user_id}/convert_to_user:
     post:
       tags:
@@ -20569,70 +21459,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
         "501":
           $ref: '#/components/responses/NotImplemented'
-  /api/v4/cloud/payment:
-    post:
-      tags:
-        - cloud
-      summary: Create a customer setup payment intent
-      description: |
-        Creates a customer setup payment intent for the given Mattermost cloud installation.
-
-        ##### Permissions
-
-        Must have `manage_system` permission and be licensed for Cloud.
-
-        __Minimum server version__: 5.28
-        __Note:__: This is intended for internal use and is subject to change.
-      operationId: CreateCustomerPayment
-      responses:
-        "201":
-          description: Payment setup intented created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaymentSetupIntent'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "501":
-          $ref: '#/components/responses/NotImplemented'
-  /api/v4/cloud/payment/confirm:
-    post:
-      tags:
-        - cloud
-      summary: Completes the payment setup intent
-      description: >
-        Confirms the payment setup intent initiated when posting to `/cloud/payment`.
-
-        ##### Permissions
-
-        Must have `manage_system` permission and be licensed for Cloud.
-
-        __Minimum server version__: 5.28 __Note:__ This is intended for internal use and is subject to change.
-
-      operationId: ConfirmCustomerPayment
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                stripe_setup_intent_id:
-                  type: string
-      responses:
-        "200":
-          description: Payment setup intent confirmed successfully
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "501":
-          $ref: '#/components/responses/NotImplemented'
   /api/v4/cloud/customer:
     get:
       tags:
@@ -20741,6 +21567,73 @@ paths:
                 $ref: '#/components/schemas/CloudCustomer'
         "400":
           $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
+  /api/v4/cloud/validate-business-email:
+    post:
+      tags:
+        - cloud
+      summary: Validate business email
+      description: >
+        Validate whether an email address is considered a business email by the cloud service.
+
+        ##### Permissions Must be authenticated.
+
+      operationId: ValidateBusinessEmail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+      responses:
+        "200":
+          description: Email validation successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  is_valid:
+                    type: boolean
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
+  /api/v4/cloud/validate-workspace-business-email:
+    post:
+      tags:
+        - cloud
+      summary: Validate workspace business email
+      description: >
+        Validate the current workspace customer/admin email as a business email.
+
+        ##### Permissions Must have `sysconsole_write_billing` permission and be licensed for Cloud.
+
+      operationId: ValidateWorkspaceBusinessEmail
+      responses:
+        "200":
+          description: Workspace email validation successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  is_valid:
+                    type: boolean
         "401":
           $ref: '#/components/responses/Unauthorized'
         "403":
@@ -20868,6 +21761,22 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
+  /api/v4/hosted_customer/signup_available:
+    get:
+      tags:
+        - cloud
+      summary: Check hosted signup availability
+      description: >
+        Checks whether hosted signup is available for self-hosted workspaces.
+
+        ##### Permissions Must be authenticated.
+
+      operationId: HostedCustomerSignupAvailable
+      responses:
+        "401":
+          $ref: '#/components/responses/Unauthorized'
         "501":
           $ref: '#/components/responses/NotImplemented'
   /api/v4/cloud/check-cws-connection:
@@ -21001,6 +21910,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StorageUsage'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/usage/teams:
+    get:
+      tags:
+        - usage
+      summary: Get current usage of teams
+      description: >
+        Retrieve rounded total number of teams for this instance.
+
+        ##### Permissions Must be authenticated.
+
+      operationId: GetTeamsUsage
+      responses:
+        "200":
+          description: Total number of teams returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  active:
+                    type: integer
+                  cloud_archived:
+                    type: integer
+                  teams:
+                    type: integer
         "401":
           $ref: '#/components/responses/Unauthorized'
         "500":
@@ -21175,6 +22113,46 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+  /api/v4/exports/{export_name}/presign-url:
+    post:
+      tags:
+        - exports
+      summary: Create a presigned URL for export download
+      description: |
+        Creates a presigned URL for downloading an export file.
+
+        __Minimum server version__: 5.33
+
+        ##### Permissions
+        Must have `manage_system` permission.
+      operationId: PresignExport
+      parameters:
+        - name: export_name
+          in: path
+          description: The name of the export file
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Presigned URL created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
         "500":
           $ref: '#/components/responses/InternalServerError'
   /api/v4/ip_filtering:
@@ -22232,14 +23210,14 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
-                  cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NzI0ODAwMDAwOnBvc3QxMjM
                   per_page: 100
               time_range_query:
                 summary: Query with time range starting from specific time
@@ -22251,10 +23229,10 @@ paths:
               descending_order:
                 summary: Descending order from recent
                 value:
-                  cursor: ""
-                  sort_direction: desc
-                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  sort_direction: desc
+                  cursor: ""
+                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
@@ -22433,7 +23411,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         "501":
           $ref: '#/components/responses/NotImplemented'
-  /api/v4/oauth/outgoing_connections/{connection_id}:
+  /api/v4/oauth/outgoing_connections/{outgoing_oauth_connection_id}:
     get:
       tags:
         - oauth
@@ -22447,6 +23425,12 @@ paths:
 
       operationId: GetOutgoingOAuthConnection
       parameters:
+        - name: outgoing_oauth_connection_id
+          in: path
+          description: Outgoing OAuth connection ID
+          required: true
+          schema:
+            type: string
         - name: team_id
           in: query
           description: Current Team ID in integrations backstage
@@ -22479,6 +23463,12 @@ paths:
 
       operationId: UpdateOutgoingOAuthConnection
       parameters:
+        - name: outgoing_oauth_connection_id
+          in: path
+          description: Outgoing OAuth connection ID
+          required: true
+          schema:
+            type: string
         - name: team_id
           in: query
           description: Current Team ID in integrations backstage
@@ -22521,6 +23511,12 @@ paths:
 
       operationId: DeleteOutgoingOAuthConnection
       parameters:
+        - name: outgoing_oauth_connection_id
+          in: path
+          description: Outgoing OAuth connection ID
+          required: true
+          schema:
+            type: string
         - name: team_id
           in: query
           description: Current Team ID in integrations backstage
@@ -27854,6 +28850,200 @@ components:
           type: string
         metadata:
           $ref: '#/components/schemas/PostMetadata'
+    PostPriority:
+      type: object
+      description: Priority metadata associated with a post or draft.
+      properties:
+        priority:
+          type: string
+          description: The priority label of a post, either empty, important, or urgent.
+          enum:
+            - ""
+            - important
+            - urgent
+        requested_ack:
+          type: boolean
+          description: Whether the post author has requested acknowledgements.
+        persistent_notifications:
+          type: boolean
+          description: Whether persistent notifications are enabled for the post.
+    PostInfo:
+      type: object
+      description: Additional team and channel context metadata for a post.
+      properties:
+        channel_id:
+          type: string
+          description: The ID of the channel containing the post.
+        channel_type:
+          type: string
+          description: The type of the channel containing the post.
+        channel_display_name:
+          type: string
+          description: The display name of the channel containing the post.
+        has_joined_channel:
+          type: boolean
+          description: Whether the requesting user is already a member of the channel.
+        team_id:
+          type: string
+          description: The ID of the team containing the channel, if applicable.
+        team_type:
+          type: string
+          description: The type of the team containing the channel, if applicable.
+        team_display_name:
+          type: string
+          description: The display name of the team containing the channel, if applicable.
+        has_joined_team:
+          type: boolean
+          description: Whether the requesting user is already a member of the team.
+    Draft:
+      type: object
+      properties:
+        create_at:
+          type: integer
+          format: int64
+        update_at:
+          type: integer
+          format: int64
+        delete_at:
+          type: integer
+          format: int64
+          description: Deprecated. Drafts are hard-deleted.
+        user_id:
+          type: string
+        channel_id:
+          type: string
+        root_id:
+          type: string
+        message:
+          type: string
+        type:
+          type: string
+        props:
+          type: object
+          additionalProperties: true
+        file_ids:
+          type: array
+          items:
+            type: string
+        metadata:
+          $ref: '#/components/schemas/PostMetadata'
+        priority:
+          $ref: '#/components/schemas/PostPriority'
+    DraftUpsertRequest:
+      type: object
+      required:
+        - channel_id
+        - message
+      properties:
+        channel_id:
+          type: string
+        root_id:
+          type: string
+        message:
+          type: string
+          description: Draft message. Set to an empty string to delete the draft.
+        type:
+          type: string
+        props:
+          type: object
+          additionalProperties: true
+        file_ids:
+          type: array
+          items:
+            type: string
+        priority:
+          $ref: '#/components/schemas/PostPriority'
+    NotifyAdminToUpgradeRequest:
+      type: object
+      properties:
+        trial_notification:
+          type: boolean
+        required_plan:
+          type: string
+        required_feature:
+          type: string
+    PluginReattachAddress:
+      type: object
+      properties:
+        Name:
+          type: string
+        Net:
+          type: string
+    PluginReattachConfig:
+      type: object
+      properties:
+        Protocol:
+          type: string
+        ProtocolVersion:
+          type: integer
+        Addr:
+          $ref: '#/components/schemas/PluginReattachAddress'
+        Pid:
+          type: integer
+        Test:
+          type: boolean
+    PluginReattachRequest:
+      type: object
+      required:
+        - Manifest
+        - PluginReattachConfig
+      properties:
+        Manifest:
+          $ref: '#/components/schemas/PluginManifest'
+        PluginReattachConfig:
+          $ref: '#/components/schemas/PluginReattachConfig'
+    InstallMarketplacePluginRequest:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          description: The ID of the plugin to install.
+        version:
+          type: string
+          description: Optional plugin version. If omitted, the latest compatible version is installed.
+    RemoteClusterMsg:
+      type: object
+      properties:
+        id:
+          type: string
+        topic:
+          type: string
+        create_at:
+          type: integer
+          format: int64
+        payload:
+          description: Raw message payload.
+          type: object
+          additionalProperties: true
+    RemoteClusterFrame:
+      type: object
+      properties:
+        remote_id:
+          type: string
+        msg:
+          $ref: '#/components/schemas/RemoteClusterMsg'
+    RemoteClusterPing:
+      type: object
+      properties:
+        sent_at:
+          type: integer
+          format: int64
+        recv_at:
+          type: integer
+          format: int64
+    RemoteClusterResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        err:
+          type: string
+        payload:
+          description: Raw response payload.
+          type: object
+          additionalProperties: true
     PropertyField:
       type: object
       properties:
@@ -27896,8 +29086,8 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
-            visibility: when_set
             sortOrder: 1
+            visibility: when_set
             options:
               - color: '#ff0000'
                 id: opt1
@@ -28070,16 +29260,10 @@ components:
           items:
             $ref: '#/components/schemas/Reaction'
         priority:
-          type: object
+          allOf:
+            - $ref: '#/components/schemas/PostPriority'
           description: |
             Post priority set for this post. This field will be null if no priority metadata has been set.
-          properties:
-            priority:
-              type: string
-              description: The priority label of a post, could be either empty, important, or urgent.
-            requested_ack:
-              type: boolean
-              description: Whether the post author has requested for acknowledgements or not.
         acknowledgements:
           type: array
           description: |
@@ -30639,13 +31823,6 @@ components:
         active:
           type: integer
           nullable: true
-    PaymentSetupIntent:
-      type: object
-      properties:
-        id:
-          type: string
-        client_secret:
-          type: string
     PaymentMethod:
       type: object
       properties:
@@ -31391,12 +32568,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserThread'
-    LicenseRenewalLink:
-      type: object
-      properties:
-        renewal_link:
-          description: License renewal link
-          type: string
     System:
       type: object
       properties:
