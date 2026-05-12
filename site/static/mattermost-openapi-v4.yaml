@@ -23210,9 +23210,9 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
-                  per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
+                  per_page: 100
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -23223,16 +23223,16 @@ paths:
                 summary: Query with time range starting from specific time
                 value:
                   cursor: ""
-                  start_time: 1635638400000
                   per_page: 100
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  start_time: 1635638400000
               descending_order:
                 summary: Descending order from recent
                 value:
-                  per_page: 100
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   sort_direction: desc
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
@@ -23262,9 +23262,9 @@ paths:
                   value:
                     posts:
                       post_id_2:
-                        id: post_id_2
                         message: Second post
                         create_at: 1635638500000
+                        id: post_id_2
                       post_id_1:
                         id: post_id_1
                         message: First post
@@ -23276,9 +23276,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
-                        create_at: 1635724800000
                         id: post_id_99
                         message: Last post
+                        create_at: 1635724800000
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -33338,11 +33338,11 @@ components:
             $ref: '#/components/schemas/TeamReviewerConfig'
           description: Team-specific reviewer configuration, keyed by team ID
           example:
-            8guxic3sg7nijeu5dgxt1fh4ia:
-              Enabled: true
-              ReviewerIds: []
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
+              ReviewerIds: []
+            8guxic3sg7nijeu5dgxt1fh4ia:
+              Enabled: true
               ReviewerIds: []
       required:
         - CommonReviewers
