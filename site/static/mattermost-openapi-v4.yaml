@@ -3588,6 +3588,60 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "404":
           $ref: '#/components/responses/NotFound'
+  /api/v4/users/{user_id}/teams/{team_id}/read:
+    put:
+      tags:
+        - channels
+      summary: Mark all channels and threads in a team as read
+      description: |
+        Mark all channels and threads in a team as read for a user.
+
+        ##### Permissions
+
+        Must be logged in as user or have `edit_other_users` permission. Must have `view_team` permission for the team.
+
+        __Minimum server version__: 11.3
+      operationId: MarkAllTeamChannelsRead
+      parameters:
+        - name: user_id
+          in: path
+          description: User ID to mark channels as read for
+          required: true
+          schema:
+            type: string
+        - name: team_id
+          in: path
+          description: Team ID to mark all channels as read in
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Team channels marked as read successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Value should be "OK" if successful
+                  last_viewed_at_times:
+                    type: object
+                    description: A JSON object mapping channel IDs to the last viewed times
+                    additionalProperties:
+                      type: integer
+                      format: int64
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
   /api/v4/users/{user_id}/teams/{team_id}/threads/read:
     put:
       tags:
@@ -8698,6 +8752,52 @@ paths:
             		log.Fatal(err)
             	}
             }
+  /api/v4/channels/members/{user_id}/direct/read:
+    put:
+      tags:
+        - channels
+      summary: Mark all direct and group messages as read
+      description: |
+        Mark all direct and group messages as read for a user.
+
+        ##### Permissions
+
+        Must be logged in as user or have `edit_other_users` permission.
+
+        __Minimum server version__: 11.3
+      operationId: MarkAllDirectMessagesRead
+      parameters:
+        - in: path
+          name: user_id
+          description: User ID to mark messages as read for
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Direct messages marked as read successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Value should be "OK" if successful
+                  last_viewed_at_times:
+                    type: object
+                    description: A JSON object mapping channel IDs to the last viewed times
+                    additionalProperties:
+                      type: integer
+                      format: int64
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
   /api/v4/users/{user_id}/teams/{team_id}/channels/members:
     get:
       tags:
@@ -23210,9 +23310,9 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   per_page: 100
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -23223,9 +23323,9 @@ paths:
                 summary: Query with time range starting from specific time
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  cursor: ""
                   start_time: 1635638400000
                   per_page: 100
-                  cursor: ""
               descending_order:
                 summary: Descending order from recent
                 value:
@@ -23266,9 +23366,9 @@ paths:
                         message: First post
                         create_at: 1635638400000
                       post_id_2:
+                        create_at: 1635638500000
                         id: post_id_2
                         message: Second post
-                        create_at: 1635638500000
                     next_cursor:
                       cursor: MTphYmMxMjM6Y3JlYXRlX2F0OmZhbHNlOmZhbHNlOmFzYzoxNjM1NjM4NTAwMDAwOnBvc3RfaWRfMg
                 last_page:
@@ -29087,11 +29187,11 @@ components:
           additionalProperties: true
           example:
             visibility: when_set
+            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
@@ -33339,8 +33439,8 @@ components:
           description: Team-specific reviewer configuration, keyed by team ID
           example:
             8guxic3sg7nijeu5dgxt1fh4ia:
-              Enabled: true
               ReviewerIds: []
+              Enabled: true
             u1ujk34a47gfxp856pdczs9gey:
               Enabled: false
               ReviewerIds: []
