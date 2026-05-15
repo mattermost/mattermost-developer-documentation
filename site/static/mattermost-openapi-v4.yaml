@@ -374,6 +374,8 @@ tags:
     description: Endpoints for creating, getting and interacting with channel bookmarks.
   - name: views
     description: Endpoints for creating, getting and interacting with channel views.
+  - name: boards
+    description: Endpoints for creating and managing board channels (kanban-backed channels with linked properties). Gated behind the `IntegratedBoards` feature flag.
   - name: preferences
     description: Endpoints for saving and modifying user preferences.
   - name: status
@@ -3588,6 +3590,60 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "404":
           $ref: '#/components/responses/NotFound'
+  /api/v4/users/{user_id}/teams/{team_id}/read:
+    put:
+      tags:
+        - channels
+      summary: Mark all channels and threads in a team as read
+      description: |
+        Mark all channels and threads in a team as read for a user.
+
+        ##### Permissions
+
+        Must be logged in as user or have `edit_other_users` permission. Must have `view_team` permission for the team.
+
+        __Minimum server version__: 11.3
+      operationId: MarkAllTeamChannelsRead
+      parameters:
+        - name: user_id
+          in: path
+          description: User ID to mark channels as read for
+          required: true
+          schema:
+            type: string
+        - name: team_id
+          in: path
+          description: Team ID to mark all channels as read in
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Team channels marked as read successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Value should be "OK" if successful
+                  last_viewed_at_times:
+                    type: object
+                    description: A JSON object mapping channel IDs to the last viewed times
+                    additionalProperties:
+                      type: integer
+                      format: int64
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
   /api/v4/users/{user_id}/teams/{team_id}/threads/read:
     put:
       tags:
@@ -8698,6 +8754,52 @@ paths:
             		log.Fatal(err)
             	}
             }
+  /api/v4/channels/members/{user_id}/direct/read:
+    put:
+      tags:
+        - channels
+      summary: Mark all direct and group messages as read
+      description: |
+        Mark all direct and group messages as read for a user.
+
+        ##### Permissions
+
+        Must be logged in as user or have `edit_other_users` permission.
+
+        __Minimum server version__: 11.3
+      operationId: MarkAllDirectMessagesRead
+      parameters:
+        - in: path
+          name: user_id
+          description: User ID to mark messages as read for
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Direct messages marked as read successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: Value should be "OK" if successful
+                  last_viewed_at_times:
+                    type: object
+                    description: A JSON object mapping channel IDs to the last viewed times
+                    additionalProperties:
+                      type: integer
+                      format: int64
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "501":
+          $ref: '#/components/responses/NotImplemented'
   /api/v4/users/{user_id}/teams/{team_id}/channels/members:
     get:
       tags:
@@ -9575,6 +9677,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SidebarCategory'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+  /api/v4/sharedchannels/{channel_id}/remotes:
+    get:
+      tags:
+        - channels
+      summary: Get remote clusters for a shared channel
+      description: |
+        Gets the remote clusters information for a shared channel.
+
+        __Minimum server version__: 10.10
+
+        ##### Permissions
+        Must be authenticated and have the `read_channel` permission for the channel.
+      operationId: GetSharedChannelRemotes
+      parameters:
+        - name: channel_id
+          in: path
+          description: Channel GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Remote clusters retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RemoteClusterInfo'
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -20654,43 +20793,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
-  /api/v4/sharedchannels/{channel_id}/remotes:
-    get:
-      tags:
-        - channels
-      summary: Get remote clusters for a shared channel
-      description: |
-        Gets the remote clusters information for a shared channel.
-
-        __Minimum server version__: 10.10
-
-        ##### Permissions
-        Must be authenticated and have the `read_channel` permission for the channel.
-      operationId: GetSharedChannelRemotes
-      parameters:
-        - name: channel_id
-          in: path
-          description: Channel GUID
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Remote clusters retrieval successful
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RemoteClusterInfo'
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "403":
-          $ref: '#/components/responses/Forbidden'
-        "404":
-          $ref: '#/components/responses/NotFound'
   /api/v4/sharedchannels/users/{user_id}/can_dm/{other_user_id}:
     get:
       tags:
@@ -22534,6 +22636,81 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "403":
           $ref: '#/components/responses/Forbidden'
+  /api/v4/boards:
+    post:
+      tags:
+        - boards
+      summary: Create a board channel
+      description: |
+        *__Experimental__: This endpoint is experimental and may change or be removed in a future release.*
+
+        Create a new board channel. Boards are channels with a kanban view backed
+        by linked properties (status and assignee by default), and live alongside
+        regular channels but cannot be created or modified through the
+        `/api/v4/channels` endpoints.
+
+        The request body is a `Channel` object whose `type` must be `BO`
+        (open board) or `BP` (private board). `team_id` and `display_name` are
+        required.
+
+        This endpoint is gated behind the `IntegratedBoards` feature flag. When
+        the flag is off, the route is not registered and requests return `404`.
+
+        ##### Permissions
+        Must have `create_public_channel` for type `BO`, or
+        `create_private_channel` for type `BP`, on the target team.
+      operationId: CreateBoard
+      requestBody:
+        required: true
+        description: Board channel to be created
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - team_id
+                - type
+                - display_name
+              properties:
+                team_id:
+                  type: string
+                  description: The team ID the board belongs to
+                type:
+                  type: string
+                  enum:
+                    - BO
+                    - BP
+                  description: |
+                    The board channel type.
+                    * `BO` - open board (visible to all team members)
+                    * `BP` - private board (visible to invited members)
+                display_name:
+                  type: string
+                  description: Human-readable name shown in the UI. Must not be empty.
+                name:
+                  type: string
+                  description: URL-safe channel name. Auto-generated if omitted.
+                header:
+                  type: string
+                purpose:
+                  type: string
+      responses:
+        "201":
+          description: Board channel creation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: '#/components/responses/NotFound'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
   /api/v4/channels/{channel_id}/views:
     get:
       tags:
@@ -23210,9 +23387,9 @@ paths:
               first_page_ascending:
                 summary: First page, ascending order
                 value:
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
                   per_page: 100
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -23222,17 +23399,17 @@ paths:
               time_range_query:
                 summary: Query with time range starting from specific time
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  start_time: 1635638400000
                   per_page: 100
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
+                  start_time: 1635638400000
               descending_order:
                 summary: Descending order from recent
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  per_page: 100
                   cursor: ""
                   sort_direction: desc
-                  per_page: 100
       responses:
         "200":
           description: Posts retrieved successfully
@@ -29087,11 +29264,11 @@ components:
           additionalProperties: true
           example:
             visibility: when_set
+            sortOrder: 1
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
