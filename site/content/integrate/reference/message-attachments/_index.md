@@ -179,7 +179,7 @@ Content-Length: 192
 
 ## Trigger AI agent responses
 
-To have Mattermost AI agents respond to a post created by an integration, set the `activate_ai` property to `"true"` in the post's `props` field. This applies to posts created via either an incoming webhook or the {{< newtabref href="https://api.mattermost.com/#operation/CreatePost" title="create post RESTful API" >}}, and works independently of `attachments` — you can use it with or without an attachment payload.
+To have Mattermost AI agents respond to a post created by an integration, set the `activate_ai` property to `"true"` in the post's `props` field. 
 
 ```json
     "props": {
