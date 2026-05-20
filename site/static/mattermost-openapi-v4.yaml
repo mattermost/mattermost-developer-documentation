@@ -23429,8 +23429,8 @@ paths:
                 summary: First page, ascending order
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
                   per_page: 100
+                  cursor: ""
               subsequent_page:
                 summary: Subsequent page using cursor
                 value:
@@ -23442,15 +23442,15 @@ paths:
                 value:
                   channel_id: 4xp9fdt77pncbef59f4k1qe83o
                   cursor: ""
-                  per_page: 100
                   start_time: 1635638400000
+                  per_page: 100
               descending_order:
                 summary: Descending order from recent
                 value:
-                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
-                  cursor: ""
-                  sort_direction: desc
                   per_page: 100
+                  cursor: ""
+                  channel_id: 4xp9fdt77pncbef59f4k1qe83o
+                  sort_direction: desc
       responses:
         "200":
           description: Posts retrieved successfully
@@ -23494,9 +23494,9 @@ paths:
                   value:
                     posts:
                       post_id_99:
+                        create_at: 1635724800000
                         id: post_id_99
                         message: Last post
-                        create_at: 1635724800000
         "400":
           $ref: '#/components/responses/BadRequest'
         "401":
@@ -29304,12 +29304,12 @@ components:
           description: Additional attributes for the property field (options for select fields, visibility, etc.).
           additionalProperties: true
           example:
+            sortOrder: 1
             visibility: when_set
             options:
               - color: '#ff0000'
                 id: opt1
                 name: High
-            sortOrder: 1
     PropertyFieldPatch:
       type: object
       properties:
