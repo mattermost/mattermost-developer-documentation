@@ -25930,6 +25930,7 @@ paths:
                     - none
                     - sysadmin
                     - member
+                    - admin
                   description: >
                     Permission level for editing the field definition. Only system admins can set this; ignored for non-admin users.
 
@@ -25940,6 +25941,7 @@ paths:
                     - none
                     - sysadmin
                     - member
+                    - admin
                   description: >
                     Permission level for setting values on objects. Only system admins can set this; ignored for non-admin users.
 
@@ -25950,6 +25952,7 @@ paths:
                     - none
                     - sysadmin
                     - member
+                    - admin
                   description: >
                     Permission level for managing options on select/multiselect fields. Only system admins can set this; ignored for non-admin users.
 
