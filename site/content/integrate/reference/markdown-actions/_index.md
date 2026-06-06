@@ -5,8 +5,8 @@ description: "Markdown action buttons let an integration turn an inline post-mar
 weight: 45
 ---
 
-{{<note "Part of a broader framework">}}
-Markdown action buttons are one binding surface in a broader Interactive Messages framework under active development. Additional binding surfaces and action types are planned for future iterations.
+{{<note "Part of the Interactive Messages framework">}}
+Markdown action buttons are one binding surface in the Interactive Messages framework alongside [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}). All surfaces share the same `mm_blocks_actions` action registry.
 {{</note>}}
 
 Use markdown action buttons to add inline, in-text affordances to a post — without using a message attachment. They're useful when:
@@ -15,7 +15,7 @@ Use markdown action buttons to add inline, in-text affordances to a post — wit
 - An integration wants to mix narrative text and action affordances in the same post body.
 - The visual weight of a full message attachment isn't warranted.
 
-For attachment-style buttons and menus, see [interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}).
+For block-style buttons and menus, see [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}). For legacy attachment actions, see [interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}).
 
 ## How it works
 
@@ -137,7 +137,7 @@ Plugin updates to `mm_blocks_actions` via `UpdatePost` are accepted only when th
 The link text rendered as the button label.
 
 **`<action_id>`**<br/>
-The host portion of the URL. Must match a key in `props.mm_blocks_actions`. Must be alphanumeric (`[A-Za-z0-9]+`), matched case-sensitively.
+The host portion of the URL. Must match a key in `props.mm_blocks_actions`. Must contain only letters, numbers, underscores, or hyphens (`[A-Za-z0-9_-]+`), matched case-sensitively.
 
 **`<query_string>`** (optional)<br/>
 `key=value` pairs that are forwarded with the dispatched action and merged into the target URL's query string by the server. Link-supplied values override registry-supplied values on key conflict.
@@ -186,7 +186,7 @@ The diagram below describes the lifecycle of a single click on a markdown action
 
 ## Receiving action callbacks
 
-When a user clicks a markdown action button, the Mattermost server sends an HTTP POST request to the `url` configured in the matching `mm_blocks_actions` entry. The request body follows the same `PostActionIntegrationRequest` shape used by [message attachment]({{< ref "/integrate/reference/message-attachments" >}}) buttons — the integration responds with the same post-action response format.
+When a user clicks a markdown action button, the Mattermost server sends an HTTP POST request to the `url` configured in the matching `mm_blocks_actions` entry. The request body follows the same `PostActionIntegrationRequest` shape used by [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) and legacy [message attachment]({{< ref "/integrate/reference/message-attachments" >}}) buttons — the integration responds with the same post-action response format.
 
 ## Validation limits
 
@@ -196,7 +196,7 @@ Posts that exceed any of the following limits are rejected at create or update t
 | --- | --- |
 | Maximum entries in `mm_blocks_actions` | 50 |
 | Maximum length of an action ID (map key) | 64 characters |
-| Action ID character set | `[A-Za-z0-9]+` |
+| Action ID character set | `[A-Za-z0-9_-]+` |
 | Maximum entries in `query` (link or registry) | 50 |
 | Maximum length of a query key | 128 characters |
 | Maximum length of a query value | 2048 characters |
@@ -221,7 +221,8 @@ Markdown action buttons follow the same security model as message attachment act
 
 ## See also
 
-- [Interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}) — message-attachment buttons and menus.
+- [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) — block-based buttons, menus, and layout.
+- [Interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}) — overview and legacy attachment actions.
 - [Message attachments]({{< ref "/integrate/reference/message-attachments" >}}) — broader message format reference.
 - [Incoming webhooks]({{< ref "/integrate/webhooks/incoming" >}}) — submitting posts via webhooks.
 - {{< newtabref href="https://api.mattermost.com/#operation/CreatePost" title="REST API: create post" >}}

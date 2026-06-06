@@ -1,7 +1,7 @@
 ---
 title: "Interactive messages"
 heading: "Interactive messages"
-description: "Mattermost supports interactive message buttons and menus for incoming and outgoing webhooks, custom slash commands, and plugins via actions. They help make your integrations richer by completing common tasks inside Mattermost conversations, increasing user engagement and productivity."
+description: "Mattermost supports interactive message buttons and menus through MM Blocks, markdown action buttons, and legacy message attachments. They help make your integrations richer by completing common tasks inside Mattermost conversations, increasing user engagement and productivity."
 weight: 80
 aliases:
   - /integrate/admin-guide/admin-interactive-messages/
@@ -21,15 +21,51 @@ To try it out, you can use this {{< newtabref href="https://github.com/matterpol
 
 ![image](poll.png)
 
+## MM Blocks (recommended)
+
+[MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) are the recommended way to build interactive integration posts. Send a block tree in `props.mm_blocks` for layout, text, images, buttons, and menus, and register action handlers in `props.mm_blocks_actions`.
+
+```json
+{
+  "message": "Deployment #42 finished.",
+  "props": {
+    "mm_blocks": [
+      {"type": "text", "text": "Deployed `main` to **staging**."},
+      {
+        "type": "button",
+        "text": "View logs",
+        "style": "primary",
+        "action_id": "view_logs"
+      }
+    ],
+    "mm_blocks_actions": {
+      "view_logs": {
+        "type": "external",
+        "url": "https://integration.example.com/actions/view-logs",
+        "context": {"deployment_id": "42"}
+      }
+    }
+  }
+}
+```
+
+See [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) for the full block schema, action types, validation limits, and examples.
+
 ## Markdown action buttons
 
-In addition to message-attachment buttons and menus, you can embed interactive affordances directly in a post's markdown body using `mmaction://` links backed by a `mm_blocks_actions` post prop. This is useful when a short message reads naturally with an inline "Approve" or "Reject" link and a full message attachment isn't warranted.
+Embed interactive affordances directly in a post's markdown body using `mmaction://` links backed by the same `mm_blocks_actions` registry. This is useful when a short message reads naturally with an inline "Approve" or "Reject" link.
 
 See [markdown action buttons]({{< ref "/integrate/reference/markdown-actions" >}}) for the full schema, limits, and end-to-end flow.
 
+## Legacy message attachment buttons and menus
+
+{{<note "Legacy format">}}
+The sections below describe interactive buttons and menus placed inside legacy [message attachments]({{< ref "/integrate/reference/message-attachments" >}}). Existing integrations continue to work — Mattermost translates attachment actions into MM Blocks at render time — but new integrations should use [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) directly.
+{{</note>}}
+
 ## Message buttons
 
-Add message buttons as `actions` in your integration {{< newtabref href="https://docs.mattermost.com/developer/message-attachments.html" title="message attachments" >}}.
+Add message buttons as `actions` in your integration [message attachments]({{< ref "/integrate/reference/message-attachments" >}}).
 
 The following payload gives an example that uses message buttons.
 
@@ -89,7 +125,7 @@ To return a custom error message to the user, your integration can respond with 
 }
 ```
 
-The error message will be displayed to the user below the message attachment. If no custom error message is provided, a default "Action failed to execute" message is shown. This feature is available in Mattermost v10.5 and later.
+The error message will be displayed to the user below the interactive content. If no custom error message is provided, a default "Action failed to execute" message is shown. This feature is available in Mattermost v10.5 and later.
 
 ![image](interactive_message.gif)
 
@@ -301,7 +337,7 @@ Specify `users` as your action's `data_source` as follows:
 
 ### Parameters
 
-Below is a brief description of each parameter to help you customize the interactive message button and menu in Mattermost. For more information on message attachments, {{< newtabref href="https://docs.mattermost.com/developer/message-attachments.html" title="see our documentation" >}}.
+Below is a brief description of each parameter to help you customize legacy attachment interactive buttons and menus in Mattermost. For new integrations, see [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}). For more information on message attachments, see [message attachments]({{< ref "/integrate/reference/message-attachments" >}}).
 
 **ID**<br/>
 A per post unique identifier.
@@ -406,7 +442,7 @@ In most cases, your integration will do one or both of these things:
 
 ## Error handling
 
-When an action button integration fails, Mattermost automatically displays an error message to the user below the message attachment. This provides immediate feedback when button actions don't work as expected.
+When an action button integration fails, Mattermost automatically displays an error message to the user below the interactive content. This provides immediate feedback when button actions don't work as expected.
 
 ![image](action-button-error.png)
 
@@ -476,7 +512,7 @@ It is likely for one of three reasons:
 
 ### How do I manage properties of an interactive message?
 
-Use `update.Props` in the following ways to manage properties (`Props`) of an interactive message after a user performs an action via an interactive button or menu:
+Use `update.Props` in the following ways to manage properties (`Props`) of an interactive message after a user performs an action via an interactive button or menu. When using MM Blocks, include updated `mm_blocks` and `mm_blocks_actions` in `update.props` as needed:
 
  - `update.Props == nil` - Do not update `Props` field.
  - `update.Props == {}` - Clear all properties, except the username and icon of the original message, as well as whether the message was pinned to channel or contained emoji reactions.
