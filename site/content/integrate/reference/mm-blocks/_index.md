@@ -7,7 +7,7 @@ weight: 42
 
 MM Blocks are the recommended way to build [interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}). Instead of placing buttons and menus inside legacy [message attachments]({{< ref "/integrate/reference/message-attachments" >}}), integrations send a block tree in `props.mm_blocks` and register action handlers in `props.mm_blocks_actions`.
 
-Legacy `attachments`, Slack Block Kit (`props.blocks`), and Microsoft Adaptive Cards (`props.cards`) are still accepted. Mattermost translates them into MM Blocks at render time, but new integrations should use native MM Blocks directly.
+Legacy attachment arrays (top-level `attachments` on webhooks and slash-command responses, or `props.attachments` on REST API posts), Slack Block Kit (`props.blocks`), and Microsoft Adaptive Cards (`props.cards`) are still accepted. Mattermost translates them into MM Blocks at render time, but new integrations should use native MM Blocks directly.
 
 {{<note "Feature flag">}}
 MM Blocks are controlled by the `MmBlocksEnabled` feature flag (enabled by default). When disabled, MM Blocks payloads are not rendered and MM Blocks action cookies are rejected.
@@ -377,7 +377,7 @@ After the post is stored, clients receive an encrypted cookie string in place of
 
 ### Action types
 
-| Type | Behaviour |
+| Type | Behavior |
 | --- | --- |
 | `external` | The server sends an HTTP POST request to `url` with the standard post-action request body. The integration responds with a post-action response (update, ephemeral message, or navigation). Relative plugin paths such as `/plugins/myplugin/action` are supported. |
 | `openURL` | Navigates the user without calling an integration. Relative paths (for example `/myteam/channels/off-topic`) navigate inside Mattermost. `http://` and `https://` URLs open in a new browser tab. Plugin paths are not allowed. |

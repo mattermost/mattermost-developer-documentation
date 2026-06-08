@@ -27,7 +27,7 @@ To try it out, you can use this {{< newtabref href="https://github.com/matterpol
 
 ```json
 {
-  "message": "Deployment #42 finished.",
+  "text": "Deployment #42 finished.",
   "props": {
     "mm_blocks": [
       {"type": "text", "text": "Deployed `main` to **staging**."},
