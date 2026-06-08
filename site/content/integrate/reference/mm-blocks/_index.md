@@ -262,7 +262,7 @@ Malformed blocks are omitted at render time; valid sibling blocks still display.
 | --- | --- | --- |
 | `action_id` | yes | Must match a key in `mm_blocks_actions`. |
 | `placeholder` | yes | Placeholder text for the menu. |
-| `options` | depends | Array of `{text, value}` pairs. Required unless `data_source` is set. |
+| `options` | depends on | Array of `{text, value}` pairs. Required unless `data_source` is set. |
 | `initial_option` | no | Pre-selected option value. |
 | `disabled` | no | When `true`, the menu renders but cannot be used. |
 | `data_source` | no | Dynamic option source: `channels` or `users`. When set, `options` is optional. Users can only select public channels in their teams. |
@@ -443,7 +443,7 @@ Integrations respond with the same post-action response format used by attachmen
 | `error` | Returns a custom error message displayed below the interactive content. |
 | `skip_slack_parsing` | Set to `true` to bypass Slack-compatibility parsing of `ephemeral_text`. |
 
-See [interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}) for error handling details and `update.Props` semantics.
+See [interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}) for error handling details and `update.props` semantics.
 
 ## Legacy format compatibility
 

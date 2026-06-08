@@ -216,7 +216,7 @@ Markdown action buttons follow the same security model as message attachment act
 
 - The action `url` is invoked server-to-server, never directly from the client.
 - `context` values are server-only and are not exposed to the rendering client.
-- Action IDs are validated as alphanumeric strings and matched case-sensitively.
+- Action IDs must match the pattern `[A-Za-z0-9_-]+` — alphanumerics, underscore, and hyphen — and are matched case-sensitively.
 - Action entries with malformed or unknown `type` values are rejected at post-create time and never reach the click-dispatch path.
 
 ## See also
