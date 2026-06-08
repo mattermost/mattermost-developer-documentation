@@ -623,6 +623,7 @@ The `datetime_config` object groups date/datetime configuration into a single ne
 - Invalid: `"time_interval": 7` (7 is not a divisor of 1440)
 
 ### File elements
+##### Minimum Server Version: 11.9
 
 File elements allow users to upload one or more files as part of an interactive dialog submission. Below is an example of a `file` element that requests a single file attachment.
 
