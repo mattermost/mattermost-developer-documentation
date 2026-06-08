@@ -58,7 +58,7 @@ You can follow these general guidelines to set up a custom Mattermost slash comm
 
 6. To have your application post a message back to `town-square`, it can respond to the HTTP `POST` or `GET` request with a JSON payload.
    
-   Mattermost supports several [parameters](#response-parameters) in the response to fine-tune the user's experience. For instance, you can override the username and profile picture the messages post as, or specify a custom post type when sending a webhook message for use by [plugins]({{< ref "/integrate/plugins" >}}). Messages with advanced formatting can be created by including [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}), an [attachment array]({{< ref "/integrate/reference/message-attachments" >}}), or [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}) in the response payload.
+   Mattermost supports several [parameters](#response-parameters) in the response to fine-tune the user's experience. For instance, you can override the username and profile picture the messages post as, or specify a custom post type in the slash command response payload for use by [plugins]({{< ref "/integrate/plugins" >}}). Messages with advanced formatting can be created by including [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}), an [attachment array]({{< ref "/integrate/reference/message-attachments" >}}), or [interactive message buttons]({{< ref "/integrate/plugins/interactive-messages" >}}) in the response payload.
 
    Our external weather application could respond with a JSON payload like so:
 
