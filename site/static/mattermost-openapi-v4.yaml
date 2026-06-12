@@ -5522,6 +5522,50 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "404":
           $ref: "#/components/responses/NotFound"
+  "/api/v4/teams/{team_id}/access_control/policy":
+    get:
+      tags:
+        - teams
+      summary: Get the access control policy for a team
+      description: |
+        Get the attribute-based access control policy assigned to a team, along
+        with whether the team currently enforces a membership policy. `policy` is
+        null when no policy is assigned or attribute-based access control is not
+        available on the server.
+        ##### Permissions
+        Must have the `manage_system` permission or the `manage_team_access_rules`
+        permission for the team.
+      operationId: GetTeamAccessControlPolicy
+      parameters:
+        - name: team_id
+          in: path
+          description: Team GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Team access control policy retrieval successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  policy:
+                    nullable: true
+                    allOf:
+                      - $ref: "#/components/schemas/AccessControlPolicy"
+                  enforced:
+                    type: boolean
+                    description: Whether the team currently enforces a membership access control policy.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
   "/api/v4/teams/{team_id}/regenerate_invite_id":
     post:
       tags:
@@ -25241,9 +25285,9 @@ paths:
     post:
       tags:
         - access control
-      summary: Assign an access control policy to channels
+      summary: Assign an access control policy to channels or teams
       description: |
-        Assigns an access control policy to a list of channels.
+        Assigns an access control policy to a list of channels and/or teams.
         ##### Permissions
         Must have the `manage_system` permission.
       operationId: AssignAccessControlPolicyToChannels
@@ -25266,9 +25310,16 @@ paths:
                   items:
                     type: string
                   description: The IDs of the channels to assign the policy to.
+                team_ids:
+                  type: array
+                  items:
+                    type: string
+                  description: >
+                    The IDs of the teams to assign the policy to. Requires the `manage_system` permission. Any unknown team ID is rejected with a 400.
+
       responses:
         "200":
-          description: Policy assigned to channels successfully.
+          description: Policy assigned to the channels and/or teams successfully.
           content:
             application/json:
               schema:
@@ -25287,9 +25338,9 @@ paths:
     delete:
       tags:
         - access control
-      summary: Unassign an access control policy from channels
+      summary: Unassign an access control policy from channels or teams
       description: |
-        Unassigns an access control policy from a list of channels.
+        Unassigns an access control policy from a list of channels and/or teams.
         ##### Permissions
         Must have the `manage_system` permission.
       operationId: UnassignAccessControlPolicyFromChannels
@@ -25312,9 +25363,16 @@ paths:
                   items:
                     type: string
                   description: The IDs of the channels to unassign the policy from.
+                team_ids:
+                  type: array
+                  items:
+                    type: string
+                  description: >
+                    The IDs of the teams to unassign the policy from. Requires the `manage_system` permission. Any unknown team ID is rejected with a 400.
+
       responses:
         "200":
-          description: Policy unassigned from channels successfully.
+          description: Policy unassigned from the channels and/or teams successfully.
           content:
             application/json:
               schema:
