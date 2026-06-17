@@ -22,7 +22,7 @@ Before adding sidebar components, ensure you have:
 There are three main types of sidebar components you can register:
 
 1. **Left Sidebar Header Component** - Appears above the channel list in a team, ideal for team-specific actions
-2. **Bottom Team Sidebar Component** - Appears in the lower left corner, great for quick links and status summaries
+2. **Bottom Team Sidebar Component** - Appears in the lower-left corner, great for quick links and status summaries
 3. **App Bar Component** (experimental) - Appears in the global apps bar at the top of the sidebar (requires [Apps Bar]({{< ref "/integrate/plugins/components/webapp/app-bar" >}}) to be enabled)
 
 ### Left Sidebar Header Component
@@ -105,7 +105,7 @@ The left sidebar header component is team-specific. It will only appear in the t
 
 ### Bottom Team Sidebar Component
 
-The bottom team sidebar component adds icons to the lower left corner of the UI. This is ideal for displaying status indicators or providing quick access to key features that users can access from anywhere in the team.
+The bottom team sidebar component adds icons to the lower-left corner of the UI. This is ideal for displaying status indicators or providing quick access to key features that users can access from anywhere in the team.
 
 #### When to use
 
@@ -456,4 +456,4 @@ class PluginClass {
 ## Examples
 
 - [Mattermost customer plugin](https://github.com/coltoneshaw/mattermost-customer-plugin) - Complete sidebar plugin with App Bar integration
-- [Mattermost plugin todo](https://github.com/mattermost/mattermost-plugin-todo) - Example with sidebar components
+- [Mattermost plugin to-do](https://github.com/mattermost/mattermost-plugin-todo) - Example with sidebar components

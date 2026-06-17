@@ -78,12 +78,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
   });
 
   // Close mobile menu when viewport expands beyond mobile breakpoint
+  // Breakpoint aligns with CSS: hamburger hidden at min-width: 992px
+  let resizeTimer;
   window.addEventListener("resize", function () {
-    if (window.innerWidth > 767) {
-      hamburger.classList.remove("is-active");
-      document.body.classList.remove("nav-open");
-      document.getElementById("navigation").classList.remove("active");
-    }
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (window.innerWidth > 991) {
+        hamburger.classList.remove("is-active");
+        document.body.classList.remove("nav-open");
+        document.getElementById("navigation").classList.remove("active");
+      }
+    }, 150);
   });
 });
 
