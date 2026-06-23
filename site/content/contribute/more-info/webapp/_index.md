@@ -18,7 +18,7 @@ https://github.com/mattermost/mattermost/tree/master/webapp
 
 ## Help Wanted
 
-{{< newtabref href="https://mattermost.com/pl/help-wanted-mattermost-webapp/" title="Find help wanted tickets here" >}}.
+{{< newtabref href="https://github.com/mattermost/mattermost/issues?q=is%3Aissue%20is%3Aopen%20label%3A%22Help%20Wanted%22%20webapp" title="Find help wanted tickets here" >}}.
 
 ## Package structure
 
