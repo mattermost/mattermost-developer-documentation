@@ -25,30 +25,6 @@ To try it out, you can use this {{< newtabref href="https://github.com/matterpol
 
 [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) are the recommended way to build interactive integration posts. Send a block tree in `props.mm_blocks` for layout, text, images, buttons, and menus, and register action handlers in `props.mm_blocks_actions`.
 
-```json
-{
-  "text": "Deployment #42 finished.",
-  "props": {
-    "mm_blocks": [
-      {"type": "text", "text": "Deployed `main` to **staging**."},
-      {
-        "type": "button",
-        "text": "View logs",
-        "style": "primary",
-        "action_id": "view_logs"
-      }
-    ],
-    "mm_blocks_actions": {
-      "view_logs": {
-        "type": "external",
-        "url": "https://integration.example.com/actions/view-logs",
-        "context": {"deployment_id": "42"}
-      }
-    }
-  }
-}
-```
-
 See [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) for the full block schema, action types, validation limits, and examples.
 
 ## Markdown action buttons

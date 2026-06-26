@@ -3,11 +3,10 @@ title: "MM Blocks"
 heading: "Use MM Blocks"
 description: "MM Blocks are Mattermost's canonical format for structured, interactive integration posts. Use props.mm_blocks for layout and controls, and props.mm_blocks_actions for server-side action dispatch."
 weight: 42
+mermaid: true
 ---
 
-MM Blocks are the recommended way to build [interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}). Instead of placing buttons and menus inside legacy [message attachments]({{< ref "/integrate/reference/message-attachments" >}}), integrations send a block tree in `props.mm_blocks` and register action handlers in `props.mm_blocks_actions`.
-
-Legacy attachment arrays (top-level `attachments` on webhooks and slash-command responses, or `props.attachments` on REST API posts), Slack Block Kit (`props.blocks`), and Microsoft Adaptive Cards (`props.cards`) are still accepted. Mattermost translates them into MM Blocks at render time, but new integrations should use native MM Blocks directly.
+MM Blocks are Mattermost's structured post format for integration messages. An integration sends a block tree in `props.mm_blocks` to define layout, text, images, buttons, and menus, and registers action handlers in `props.mm_blocks_actions` so the server can dispatch clicks and menu selections back to the integration.
 
 {{<note "Feature flag">}}
 MM Blocks are controlled by the `MmBlocksEnabled` feature flag (enabled by default). When disabled, MM Blocks payloads are not rendered and MM Blocks action cookies are rejected.
@@ -17,7 +16,7 @@ MM Blocks are controlled by the `MmBlocksEnabled` feature flag (enabled by defau
 
 An interactive MM Blocks post has two parts:
 
-1. **`props.mm_blocks`** — an array of block objects that define layout, text, images, buttons, and menus.
+1. **`props.mm_blocks`** — an array of block objects that define layout, text, images, buttons, and menus. A post may contain up to 100 blocks in total, counting nested blocks throughout the tree.
 2. **`props.mm_blocks_actions`** — a map keyed by action ID. Each entry tells the server what to do when a user clicks a button, selects a menu option, or activates a [markdown action button]({{< ref "/integrate/reference/markdown-actions" >}}).
 
 When the post is stored, the server validates that every referenced action ID has a matching registry entry (and no unused entries remain). It then encrypts the action registry into an opaque cookie string that clients send back when dispatching actions.
@@ -120,7 +119,7 @@ For webhook payloads, place `mm_blocks` and `mm_blocks_actions` inside `props`. 
 
 ### Submit from a plugin
 
-```go
+```golang
 post := &model.Post{
     ChannelId: channelID,
     UserId:    p.botID,
@@ -156,15 +155,17 @@ Each element of `props.mm_blocks` is an object with a required `type` field. The
 
 | Type | Purpose |
 | --- | --- |
-| `text` | Markdown-formatted text |
-| `image` | Remote image with optional sizing and alignment |
-| `divider` | Horizontal rule between blocks |
-| `button` | Interactive button |
-| `static_select` | Dropdown menu with static options or dynamic data sources |
-| `container` | Groups blocks with optional border, accent bar, background, and layout flow |
-| `collapsible` | Expandable section with separate header and content block arrays |
-| `column_set` | Horizontal row of columns |
-| `column` | Column inside a `column_set` (not valid as a top-level block) |
+| [`text`](#text) | Markdown-formatted text |
+| [`image`](#image) | Remote image with optional sizing and alignment |
+| [`divider`](#divider) | Horizontal rule between blocks |
+| [`button`](#button) | Interactive button |
+| [`static_select`](#static-select) | Dropdown menu with static options or dynamic data sources |
+| [`container`](#container) | Groups blocks with optional border, accent bar, background, and layout flow |
+| [`collapsible`](#collapsible) | Expandable section with separate header and content block arrays |
+| [`column_set`](#column-set-and-column) | Horizontal row of columns |
+| [`column`](#column-set-and-column) | Column inside a `column_set` (not valid as a top-level block) |
+
+Nested layout blocks (`container`, `collapsible`, `column_set`, and `column`) may nest up to 32 levels deep.
 
 Malformed blocks are omitted at render time; valid sibling blocks still display.
 
@@ -181,7 +182,7 @@ Malformed blocks are omitted at render time; valid sibling blocks still display.
 
 | Field | Required | Description |
 | --- | --- | --- |
-| `text` | yes | Markdown-formatted content. Supports @mentions. |
+| `text` | yes | Markdown-formatted content. Supports @mentions. All `text` and [button](#button) `text` fields in a post share a combined limit of 16,000 characters. |
 | `is_subtle` | no | When `true`, renders in a muted color. Does not change font size. |
 | `size` | no | Typography scale: `small` or `default`. Omitted is equivalent to `default`. |
 
@@ -234,12 +235,12 @@ Malformed blocks are omitted at render time; valid sibling blocks still display.
 
 | Field | Required | Description |
 | --- | --- | --- |
-| `text` | yes | Button label. Supports Markdown. |
+| `text` | yes | Button label. Supports Markdown. Counts toward the combined 16,000-character limit for [text](#text) and button blocks. |
 | `action_id` | yes | Must match a key in `mm_blocks_actions`. |
 | `style` | no | Semantic color: `default`, `primary`, `danger`, `good`, `success`, or `warning`. Hex colors such as `#2d81ff` are also accepted. |
 | `tooltip` | no | Help text shown on hover. |
 | `disabled` | no | When `true`, the button renders but cannot be clicked. |
-| `query` | no | Static query parameters merged into the action URL when clicked. |
+| `query` | no | Static query parameters merged into the action URL when clicked. Up to 50 entries; each key may be up to 128 characters and each value up to 2048 characters. |
 
 ### Static select
 
@@ -349,7 +350,7 @@ When a user selects an option, the integration callback receives `selected_optio
 
 ## The `mm_blocks_actions` registry
 
-The `mm_blocks_actions` post prop is a map keyed by action ID. Each entry describes how the server handles clicks on that action.
+The `mm_blocks_actions` post prop is a map keyed by action ID. Each entry describes how the server handles clicks on that action. The registry supports up to 50 action entries. Each action ID must match `[A-Za-z0-9_-]+`, may be up to 64 characters long, and is matched case-sensitively.
 
 ```json
 {
@@ -368,8 +369,8 @@ The `mm_blocks_actions` post prop is a map keyed by action ID. Each entry descri
 | --- | --- | --- |
 | `type` | yes | Action type. See [Action types](#action-types) below. |
 | `url` | depends on type | Target URL. Required for `external` and `openURL`. |
-| `context` | no | Server-side context forwarded to the integration in the post-action request body. Not visible to clients. |
-| `query` | no | Static `string → string` map merged into the target URL's query string. Combined with any per-control `query` on the block — block values win on key conflict. |
+| `context` | no | Server-side context forwarded to the integration in the post-action request body. Not visible to clients. Up to 50 entries; each key may be up to 128 characters. |
+| `query` | no | Static `string → string` map merged into the target URL's query string. Combined with any per-control `query` on the block — block values win on key conflict. Up to 50 entries; each key may be up to 128 characters and each value up to 2048 characters. |
 
 Every action ID referenced by interactive content — MM Blocks controls, markdown `mmaction://` links, Block Kit actions, or Adaptive Card actions — must have a matching registry entry. Unused registry entries are rejected at post-create time.
 
@@ -385,6 +386,25 @@ After the post is stored, clients receive an encrypted cookie string in place of
 Additional action types may be introduced in future releases. Entries with an unknown `type` value are rejected at post-create time.
 
 ## Action dispatch flow
+
+{{< mermaid >}}
+sequenceDiagram
+    participant Integration
+    participant Server as Mattermost server
+    participant Client
+    Integration->>Server: Create post (mm_blocks + mm_blocks_actions)
+    Server->>Server: Validate and encrypt action registry
+    Server->>Client: Store and deliver post
+    Client->>Client: Render blocks
+    Client->>Server: POST /api/v4/posts/{id}/actions/{action_id}
+    alt openURL
+        Server->>Client: Navigate user
+    else external
+        Server->>Integration: POST action callback
+        Integration->>Server: Post-action response
+        Server->>Client: Update post / ephemeral message
+    end
+{{</ mermaid >}}
 
 1. **Integration** creates a post with `mm_blocks` controls and matching `mm_blocks_actions` entries.
 2. **Mattermost server** validates the pairing, encrypts the action registry, and stores the post.
@@ -456,21 +476,6 @@ Mattermost continues to accept these older payload formats:
 | `cards` | Microsoft Adaptive Cards | Translated into MM Blocks. Interactive card actions require matching `mm_blocks_actions` entries keyed by action `id`. |
 
 New integrations should prefer native `mm_blocks` for full control over layout and action registration.
-
-## Validation limits
-
-Posts that exceed any of the following limits are rejected at create or update time.
-
-| Limit | Value |
-| --- | --- |
-| Maximum entries in `mm_blocks_actions` | 50 |
-| Maximum length of an action ID (map key) | 64 characters |
-| Action ID character set | `[A-Za-z0-9_-]+` |
-| Maximum entries in `query` (link, registry, or block) | 50 |
-| Maximum length of a query key | 128 characters |
-| Maximum length of a query value | 2048 characters |
-| Maximum entries in `context` per action | 50 |
-| Maximum length of a context key | 128 characters |
 
 ## Security considerations
 
