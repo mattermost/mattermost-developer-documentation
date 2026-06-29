@@ -625,7 +625,7 @@ The `datetime_config` object groups date/datetime configuration into a single ne
 - Invalid: `"time_interval": 7` (7 is not a divisor of 1440)
 
 ### Action button elements
-##### Minimum Server Version: 11.10
+#### Minimum Server Version: 11.10
 
 Action button elements render a clickable button inside a dialog. Instead of submitting the current dialog, clicking the button asks your integration to open a *child* dialog that is stacked on top of the current one. Use this to branch into a follow-up workflow (for example, "Add another item" or "Configure advanced options") while preserving the dialog the user is already working in.
 
