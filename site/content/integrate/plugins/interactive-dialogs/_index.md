@@ -70,7 +70,7 @@ Each dialog supports elements for users to enter information.
 - `radio`: Radio button option. Use this to quickly select an option from pre-selected choices.
 - `date`: Date picker field. Use this for selecting dates without time information.
 - `datetime`: Date and time picker field. Use this for selecting both date and time with timezone support.
-- `collapsible`: A section that groups child elements under a toggleable header. Use this to organize long forms; sections can be nested and can start expanded or collapsed.
+- `collapsible`: A section that groups child elements under a toggleable header. Use this to organize long forms. Sections can be nested and can start expanded or collapsed.
 - `file`: File upload field. Use this to allow users to attach one or more files as part of a dialog submission.
 - `action_button`: Clickable button that opens a child (stacked) dialog. Use this to branch into a follow-up dialog without submitting the current one. (Minimum server version 11.10.)
 
