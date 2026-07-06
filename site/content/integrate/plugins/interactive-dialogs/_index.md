@@ -68,7 +68,7 @@ Each dialog supports elements for users to enter information.
 - `radio`: Radio button option. Use this to quickly select an option from pre-selected choices.
 - `date`: Date picker field. Use this for selecting dates without time information.
 - `datetime`: Date and time picker field. Use this for selecting both date and time with timezone support.
-- `collapsible`: A section that groups child elements under a toggleable header. Use this to organize long forms; sections can be nested and can start expanded or collapsed.
+- `collapsible`: A section that groups child elements under a toggleable header. Use this to organize long forms. Sections can be nested and can start expanded or collapsed.
 
 Each element is required by default, otherwise the client will return an error as shown below. Note that the error message will appear below the help text, if one is specified. To make an element optional, set the field `"optional": "true"`.
 
