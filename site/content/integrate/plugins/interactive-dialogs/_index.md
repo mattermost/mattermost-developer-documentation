@@ -623,7 +623,7 @@ The `datetime_config` object groups date/datetime configuration into a single ne
 - Invalid: `"time_interval": 7` (7 is not a divisor of 1440)
 
 ### Collapsible elements
-##### Minimum Server Version: 11.10.0
+##### Minimum Server Version: 11.10
 
 Collapsible elements group other elements under a toggleable header, letting you organize long forms into sections. Sections start expanded by default; set `collapsed` to `true` to have a section start closed. By default a section renders with a box outline; set `borderless` to `true` to remove it. A `collapsible` element does not submit a value itself — only its child `elements` appear in the submission payload. There can be, at most, 3 levels of nesting.
 
