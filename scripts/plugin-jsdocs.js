@@ -54,10 +54,11 @@ const methodsOutput = pluginRegistryClassMethods.map((statement) => {
             s => s.type === "ArrowFunctionExpression"
         );
         if (funcExpr && funcExpr[0]) {
-            params = funcExpr[0].params.map(param => {
-                return param.properties.map(prop => {
-                    return prop.key.name;
-                });
+            params = funcExpr[0].params.flatMap(param => {
+                if (param.properties) {
+                    return param.properties.map(prop => prop.key.name);
+                }
+                return param.name ? [param.name] : [];
             });
         }
     } else {
