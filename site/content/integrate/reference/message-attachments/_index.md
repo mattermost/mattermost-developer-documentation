@@ -9,7 +9,11 @@ aliases:
 
 For additional formatting options, and for compatibility with Slack non-markdown integrations, an `attachments` array can be sent by integrations and rendered by Mattermost.
 
-You can also add interactive message buttons as part of attachments. They help make your integrations richer by completing common tasks inside Mattermost conversations, increasing user engagement and productivity. For more information, see [documentation]({{< ref "/integrate/plugins/interactive-messages" >}}).
+{{<note "Legacy interactive content">}}
+For new integrations, prefer [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) over attachment `actions` for buttons and menus. Legacy attachments remain fully supported — Mattermost translates them into MM Blocks at render time — but native MM Blocks give you more layout control and a unified action registry in `props.mm_blocks_actions`.
+{{</note>}}
+
+You can also add interactive message buttons as part of attachments. They help make your integrations richer by completing common tasks inside Mattermost conversations, increasing user engagement and productivity. For more information, see [interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}) and [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}).
 
 ## Attachment options
 
@@ -139,7 +143,9 @@ And here is how it renders in Mattermost:
 
 Yes, you can use the {{< newtabref href="https://api.mattermost.com/#operation/CreatePost" title="create post RESTful API" >}}.
 
-You need to add an `attachments` key to the post’s `props` JSON field. The value is an array of message attachments you want attached to the post. See below for an example curl command.
+You need to add an `attachments` key to the post's `props` JSON field. The value is an array of message attachments you want attached to the post. See below for an example curl command.
+
+For new interactive content, prefer `props.mm_blocks` and `props.mm_blocks_actions` instead. See [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}).
 
 `curl -i -X POST -H 'Content-Type: application/json' -d '{"channel_id":"qmd5oqtwoibz8cuzxzg5ekshgr", "message":"Test message #testing", "props":{"attachments": [{"pretext": "This is the attachment pretext.","text": "This is the attachment text."}]}}' https://{your-mattermost-site}/api/v4/posts`
 
