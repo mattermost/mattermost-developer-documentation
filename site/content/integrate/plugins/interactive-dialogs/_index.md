@@ -68,8 +68,9 @@ Each dialog supports elements for users to enter information.
 - `radio`: Radio button option. Use this to quickly select an option from pre-selected choices.
 - `date`: Date picker field. Use this for selecting dates without time information.
 - `datetime`: Date and time picker field. Use this for selecting both date and time with timezone support.
+- `collapsible`: A section that groups child elements under a toggleable header. Use this to organize long forms; sections can be nested and can start expanded or collapsed.
 
-Each element is required by default, otherwise the client will return an error as shown below. Note that the error message will appear below the help text, if one is specified. To make an element optional, set the field `"optional": "true"`.
+Each element is required by default, otherwise the client will return an error as shown below. Note that the error message will appear below the help text, if one is specified. To make an element optional, set the field `"optional": true`.
 
 ![image](interactive-dialog-error.png)
 
@@ -620,6 +621,48 @@ The `datetime_config` object groups date/datetime configuration into a single ne
 - `"time_interval": 30` creates options: 00:00, 00:30, 01:00, 01:30, etc.
 - `"time_interval": 60` creates options: 00:00, 01:00, 02:00, 03:00, etc.
 - Invalid: `"time_interval": 7` (7 is not a divisor of 1440)
+
+### Collapsible elements
+##### Minimum Server Version: 11.10
+
+Collapsible elements group other elements under a toggleable header, letting you organize long forms into sections. Sections start expanded by default; set `collapsed` to `true` to have a section start closed. By default a section renders with a box outline; set `borderless` to `true` to remove it. A `collapsible` element does not submit a value itself — only its child `elements` appear in the submission payload. There can be, at most, 3 levels of nesting.
+
+```json
+{
+    "display_name": "Contact Details",
+    "name": "contact_section",
+    "type": "collapsible",
+    "collapsed": true,
+    "borderless": true,
+    "elements": [
+        {
+            "display_name": "Email",
+            "name": "email",
+            "type": "text",
+            "subtype": "email",
+            "placeholder": "you@example.com"
+        },
+        {
+            "display_name": "Phone",
+            "name": "phone",
+            "type": "text",
+            "optional": true
+        }
+    ]
+}
+```
+
+The full list of supported fields is included below:
+
+| Field          | Type    | Description                                                                                                                        |
+|----------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `display_name` | String  | Header text shown for the section. Maximum 24 characters.                                                                          |
+| `name`         | String  | Name of the section element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
+| `type`         | String  | Set this value to `collapsible` for a collapsible section.                                                                         |
+| `collapsed`    | Boolean | (Optional) When `true`, the section starts collapsed. Default is `false` (expanded).                                             |
+| `borderless`   | Boolean | (Optional) When `true`, the section renders without a box outline. Default is `false` (bordered).                                |
+| `elements`     | Array   | Child elements rendered inside the section. May include other `collapsible` elements to create nested sections (up to 3 levels deep). Note that each collapsible element must have at least one child, or validation will fail.|
+
 
 ## Dialog submission
 
