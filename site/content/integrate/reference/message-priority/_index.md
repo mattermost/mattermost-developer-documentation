@@ -15,7 +15,7 @@ When sending a message, you can use any of the following to format how you want 
 
 `requested_ack`: If set to `true`, the message will be marked as requiring an acknowledgment from the users by displaying a checkmark icon next to the message. Keep in mind that this requires the message priority to be set to _Important_ or _Urgent_.
 
-`persistent_notifications`: Only for _Urgent_ messages. If set to `true` recipients will receive a persistent notification every five minutes until they acknowledge the message.
+`persistent_notifications`: Only for _Urgent_ messages. If set to `true` recipients will receive a persistent notification every five minutes until they acknowledge the message. Mutually exclusive with the [`silent`]({{< ref "/integrate/webhooks/incoming#parameters" >}}) field on incoming webhooks — a post cannot be both persistent and silent.
 
 ## Example of post priority
 
