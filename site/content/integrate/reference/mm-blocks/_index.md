@@ -489,6 +489,7 @@ MM Blocks follow the same security model as legacy interactive messages:
 
 ## See also
 
+- [Troubleshoot MM Blocks]({{< ref "/integrate/reference/mm-blocks/troubleshooting" >}}) — common rendering, action, and mobile issues.
 - [Interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}) — overview, error handling, and legacy attachment actions.
 - [Markdown action buttons]({{< ref "/integrate/reference/markdown-actions" >}}) — inline `mmaction://` links using the same action registry.
 - [Message attachments]({{< ref "/integrate/reference/message-attachments" >}}) — legacy attachment format reference.
