@@ -21,6 +21,12 @@ To try it out, you can use this {{< newtabref href="https://github.com/matterpol
 
 ![image](poll.png)
 
+## Markdown action buttons
+
+In addition to message-attachment buttons and menus, you can embed interactive affordances directly in a post's markdown body using `mmaction://` links backed by a `mm_blocks_actions` post prop. This is useful when a short message reads naturally with an inline "Approve" or "Reject" link and a full message attachment isn't warranted.
+
+See [markdown action buttons]({{< ref "/integrate/reference/markdown-actions" >}}) for the full schema, limits, and end-to-end flow.
+
 ## Message buttons
 
 Add message buttons as `actions` in your integration {{< newtabref href="https://docs.mattermost.com/developer/message-attachments.html" title="message attachments" >}}.
