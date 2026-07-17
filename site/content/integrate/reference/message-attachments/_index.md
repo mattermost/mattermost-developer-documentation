@@ -182,7 +182,11 @@ Content-Length: 192
 To have Mattermost AI agents respond to a post created by an integration, set the `activate_ai` property to `"true"` in the post's `props` field. 
 
 ```json
-    "props": {
-        "activate_ai": "true"
+    {
+        "channel_id": "qmd5oqtwoibz8cuzxzg5ekshgr",
+        "message": "Summarize the latest deployment status.",
+        "props": {
+            "activate_ai": "true"
+        }
     }
 ```
