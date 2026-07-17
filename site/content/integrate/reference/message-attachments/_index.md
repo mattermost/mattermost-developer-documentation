@@ -133,6 +133,20 @@ And here is how it renders in Mattermost:
 1. The footer timestamp field (`ts`) is not yet supported.
 2. Message Attachment contents do not show up in search.
 
+## Trigger AI agent responses
+
+To have Mattermost AI agents respond to a post created by a bot or plugin integration, set the `activate_ai` property to `"true"` in the post's `props` field. 
+
+```json
+    {
+        "channel_id": "qmd5oqtwoibz8cuzxzg5ekshgr",
+        "message": "Summarize the latest deployment status.",
+        "props": {
+            "activate_ai": "true"
+        }
+    }
+```
+
 ## Frequently asked questions
 
 ### Can I send a message attachment via the API?
