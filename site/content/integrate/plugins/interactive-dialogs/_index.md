@@ -68,6 +68,7 @@ Each dialog supports elements for users to enter information.
 - `radio`: Radio button option. Use this to quickly select an option from pre-selected choices.
 - `date`: Date picker field. Use this for selecting dates without time information.
 - `datetime`: Date and time picker field. Use this for selecting both date and time with timezone support.
+- `file`: File upload field. Use this to allow users to attach one or more files as part of a dialog submission.
 
 Each element is required by default, otherwise the client will return an error as shown below. Note that the error message will appear below the help text, if one is specified. To make an element optional, set the field `"optional": "true"`.
 
@@ -423,24 +424,27 @@ Date elements provide native date picker functionality for selecting dates witho
     "placeholder": "Select a date",
     "help_text": "Choose the date for your event",
     "optional": false,
-    "min_date": "today",
-    "max_date": "+30d"
+    "datetime_config": {
+        "min_date": "today",
+        "max_date": "+30d"
+    }
 }
 ```
 
 The full list of supported fields for `date` elements is included below:
 
-| Field          | Type    | Description                                                                                                                        |
-|----------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
-| `display_name` | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
-| `name`         | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
-| `type`         | String  | Set this value to `date` for a date element.                                                                                       |
-| `default`      | String  | (Optional) Default value in ISO date format (YYYY-MM-DD) or relative format (`today`, `tomorrow`, `+1d`, `+1w`, `+1M`, `+1y`). Full ISO datetime strings are accepted but only the date part is parsed; timezone information is ignored. |
-| `placeholder`  | String  | (Optional) Placeholder text shown in the input field. Maximum 150 characters.                                                      |
-| `help_text`    | String  | (Optional) Help text displayed below the field. Maximum 150 characters.                                                            |
-| `optional`     | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
-| `min_date`     | String  | (Optional) Earliest selectable date. Supports ISO date format (YYYY-MM-DD) or relative formats (`today`, `tomorrow`, `+1d`, `-7d`, etc.). Full ISO datetime strings are accepted but only the date part is parsed; timezone information is ignored. |
-| `max_date`     | String  | (Optional) Latest selectable date. Supports ISO date format (YYYY-MM-DD) or relative formats (`today`, `+30d`, `+1y`, etc.). Full ISO datetime strings are accepted but only the date part is parsed; timezone information is ignored. |
+| Field             | Type    | Description                                                                                                                        |
+|-------------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `display_name`    | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
+| `name`            | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
+| `type`            | String  | Set this value to `date` for a date element.                                                                                       |
+| `default`         | String  | (Optional) Default value in ISO date format (YYYY-MM-DD) or relative format (`today`, `tomorrow`, `+1d`, `+1w`, `+1M`, `+1y`). Full ISO datetime strings are accepted, but only the date part is parsed; timezone information is ignored. |
+| `placeholder`     | String  | (Optional) Placeholder text shown in the input field. Maximum 150 characters.                                                      |
+| `help_text`       | String  | (Optional) Help text displayed below the field. Maximum 150 characters.                                                            |
+| `optional`        | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
+| `datetime_config` | Object  | (Optional) Nested date configuration object. See [datetime_config object](#datetime_config-object) for supported properties.       |
+| `min_date`        | String  | (Deprecated — use `datetime_config.min_date`.) Earliest selectable date. Supports ISO date format (YYYY-MM-DD) or relative formats (`today`, `tomorrow`, `+1d`, `-7d`, etc.). Full ISO datetime strings are accepted, but only the date part is parsed; timezone information is ignored. |
+| `max_date`        | String  | (Deprecated — use `datetime_config.max_date`.) Latest selectable date. Supports ISO date format (YYYY-MM-DD) or relative formats (`today`, `+30d`, `+1y`, etc.). Full ISO datetime strings are accepted, but only the date part is parsed; timezone information is ignored. |
 
 #### Date field usage examples
 
@@ -451,7 +455,9 @@ The full list of supported fields for `date` elements is included below:
     "name": "deadline",
     "type": "date",
     "help_text": "When is this project due?",
-    "min_date": "today",
+    "datetime_config": {
+        "min_date": "today"
+    },
     "optional": false
 }
 ```
@@ -463,8 +469,10 @@ The full list of supported fields for `date` elements is included below:
     "name": "any_date",
     "type": "date",
     "help_text": "Any date within the next year",
-    "min_date": "today",
-    "max_date": "+1y",
+    "datetime_config": {
+        "min_date": "today",
+        "max_date": "+1y"
+    },
     "default": "+1w",
     "optional": true
 }
@@ -486,26 +494,29 @@ DateTime elements provide combined date and time picker functionality with timez
     "placeholder": "Select date and time",
     "help_text": "Choose when the meeting should start",
     "optional": false,
-    "time_interval": 30,
-    "min_date": "today",
-    "max_date": "+7d"
+    "datetime_config": {
+        "min_date": "today",
+        "max_date": "+7d",
+        "time_interval": 30
+    }
 }
 ```
 
 The full list of supported fields for `datetime` elements is included below:
 
-| Field           | Type    | Description                                                                                                                        |
-|-----------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
-| `display_name`  | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
-| `name`          | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
-| `type`          | String  | Set this value to `datetime` for a datetime element.                                                                               |
-| `default`       | String  | (Optional) Default value in ISO datetime format (RFC3339) or relative format. For relative dates, time defaults to noon. When specifying a time, it must align with the `time_interval` (be a multiple of the interval). |
-| `placeholder`   | String  | (Optional) Placeholder text shown in the input field. Maximum 150 characters.                                                      |
-| `help_text`     | String  | (Optional) Help text displayed below the field. Maximum 150 characters.                                                            |
-| `optional`      | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
-| `min_date`      | String  | (Optional) Earliest selectable date. Supports ISO format or relative formats (`today`, `tomorrow`, `+1d`, `-7d`, etc.).           |
-| `max_date`      | String  | (Optional) Latest selectable date. Supports ISO format or relative formats (`today`, `+30d`, `+1y`, etc.).                        |
-| `time_interval` | Integer | (Optional) Time selection interval in minutes. Must be between 1 and 1440, and must be a divisor of 1440 to create evenly spaced intervals throughout the day. Common values: 15, 30, 60, 90, 120. Default is 60. |
+| Field             | Type    | Description                                                                                                                        |
+|-------------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `display_name`    | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
+| `name`            | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
+| `type`            | String  | Set this value to `datetime` for a datetime element.                                                                               |
+| `default`         | String  | (Optional) Default value in ISO datetime format (RFC3339) or relative format. For relative dates, time defaults to noon. When specifying a time, it must align with `datetime_config.time_interval` (be a multiple of the interval). |
+| `placeholder`     | String  | (Optional) Placeholder text shown in the input field. Maximum 150 characters.                                                      |
+| `help_text`       | String  | (Optional) Help text displayed below the field. Maximum 150 characters.                                                            |
+| `optional`        | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
+| `datetime_config` | Object  | (Optional) Nested datetime configuration object. See [datetime_config object](#datetime_config-object) for supported properties.   |
+| `min_date`        | String  | (Deprecated — use `datetime_config.min_date`.) Earliest selectable date. Supports ISO format or relative formats (`today`, `tomorrow`, `+1d`, `-7d`, etc.). |
+| `max_date`        | String  | (Deprecated — use `datetime_config.max_date`.) Latest selectable date. Supports ISO format or relative formats (`today`, `+30d`, `+1y`, etc.). |
+| `time_interval`   | Integer | (Deprecated — use `datetime_config.time_interval`.) Time selection interval in minutes. Must be between 1 and 1440, and must be a divisor of 1440 to create evenly spaced intervals throughout the day. Common values: 15, 30, 60, 90, 120. Default is 60. |
 
 #### DateTime field usage examples
 
@@ -516,9 +527,11 @@ The full list of supported fields for `datetime` elements is included below:
     "name": "meeting_time",
     "type": "datetime",
     "help_text": "Select a time during business hours",
-    "time_interval": 30,
-    "min_date": "+1d",
-    "max_date": "+14d",
+    "datetime_config": {
+        "min_date": "+1d",
+        "max_date": "+14d",
+        "time_interval": 30
+    },
     "optional": false
 }
 ```
@@ -530,12 +543,45 @@ The full list of supported fields for `datetime` elements is included below:
     "name": "event_start",
     "type": "datetime",
     "help_text": "When does your event begin?",
-    "time_interval": 15,
-    "min_date": "today",
-    "max_date": "+90d",
+    "datetime_config": {
+        "min_date": "today",
+        "max_date": "+90d",
+        "time_interval": 15
+    },
     "default": "today"
 }
 ```
+
+**Fixed location timezone with manual entry:**
+```json
+{
+    "display_name": "Conference Start",
+    "name": "conference_start",
+    "type": "datetime",
+    "help_text": "All attendees see this time in the conference timezone",
+    "datetime_config": {
+        "location_timezone": "America/Denver",
+        "manual_time_entry": true,
+        "time_interval": 30
+    }
+}
+```
+
+#### datetime_config object
+##### Minimum Server Version: 11.6
+
+The `datetime_config` object groups date/datetime configuration into a single nested structure. It is supported on both `date` and `datetime` elements.
+
+| Field                     | Type    | Applies to         | Since  | Description                                                                                                                 |
+|---------------------------|---------|--------------------|--------|-----------------------------------------------------------------------------------------------------------------------------|
+| `min_date`                | String  | `date`, `datetime` | 11.8   | (Optional) Earliest selectable date. Supports ISO format or relative formats (`today`, `+1d`, etc.).                        |
+| `max_date`                | String  | `date`, `datetime` | 11.8   | (Optional) Latest selectable date. Supports ISO format or relative formats (`+30d`, `+1y`, etc.).                           |
+| `time_interval`           | Integer | `datetime`         | 11.6   | (Optional) Time selection interval in minutes. Must be between 1 and 1440, and must be a divisor of 1440. Default is 60.    |
+| `location_timezone`       | String  | `datetime`         | 11.6   | (Optional) IANA timezone used to display and submit the time (e.g. `America/Denver`, `Asia/Tokyo`). When set, all users see the same wall-clock time regardless of their own timezone. Defaults to the viewing user's timezone. |
+| `manual_time_entry`       | Boolean | `datetime`         | 11.8   | (Optional) When `true`, users can type the time directly in addition to using the dropdown. Default is `false`.             |
+| `allow_manual_time_entry` | Boolean | `datetime`         | 11.6 (deprecated in 11.8) | (Deprecated — use `manual_time_entry`.) When both are set, either enabling turns the feature on.         |
+
+**Backward compatibility (new in 11.8):** The top-level `min_date`, `max_date`, and `time_interval` fields on `date` and `datetime` elements are still accepted for existing integrations, but are deprecated in favor of `datetime_config`. When both are provided on the same element, values inside `datetime_config` take precedence over the legacy top-level values.
 
 #### Date and DateTime field specifications
 
@@ -566,15 +612,64 @@ The full list of supported fields for `datetime` elements is included below:
 **Validation:**
 - Client validates date formats and range constraints
 - Server validates relative date resolution and field configuration
-- For datetime fields, `time_interval` must be a divisor of 1440 (24 hours in minutes)
-- Default times must align with the specified `time_interval` (be a multiple of the interval)
+- For datetime fields, `datetime_config.time_interval` must be a divisor of 1440 (24 hours in minutes)
+- Default times must align with the effective `time_interval` (be a multiple of the interval)
 - Invalid dates, times, or out-of-range selections show appropriate error messages
 
 **Time Interval Examples:**
-- `time_interval: 15` creates options: 00:00, 00:15, 00:30, 00:45, 01:00, etc.
-- `time_interval: 30` creates options: 00:00, 00:30, 01:00, 01:30, etc.
-- `time_interval: 60` creates options: 00:00, 01:00, 02:00, 03:00, etc.
-- Invalid: `time_interval: 7` (7 is not a divisor of 1440)
+- `"time_interval": 15` creates options: 00:00, 00:15, 00:30, 00:45, 01:00, etc.
+- `"time_interval": 30` creates options: 00:00, 00:30, 01:00, 01:30, etc.
+- `"time_interval": 60` creates options: 00:00, 01:00, 02:00, 03:00, etc.
+- Invalid: `"time_interval": 7` (7 is not a divisor of 1440)
+
+### File elements
+##### Minimum Server Version: 11.9
+
+File elements allow users to upload one or more files as part of an interactive dialog submission. Below is an example of a `file` element that requests a single file attachment.
+
+```json
+{
+    "display_name": "Attachment",
+    "name": "attachment",
+    "type": "file",
+    "optional": true
+}
+```
+
+To allow multiple file uploads, set `allow_multiple` to `true`:
+
+```json
+{
+    "display_name": "Attachments",
+    "name": "attachments",
+    "type": "file",
+    "allow_multiple": true,
+    "optional": true
+}
+```
+
+The full list of supported fields is included below:
+
+| Field            | Type    | Description                                                                                                                        |
+|------------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `display_name`   | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
+| `name`           | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
+| `type`           | String  | Set this value to `file` for a file upload element.                                                                                |
+| `optional`       | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
+| `help_text`      | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
+| `default`        | String  | (Optional) Comma-separated list of file IDs, from files the user previously uploaded, used to pre-populate the field. Limited to a single ID unless `allow_multiple` is `true`, and no more than 10 IDs. Maximum 300 characters. |
+| `placeholder`    | String  | (Optional) Hint text shown beneath the upload button while no file is selected. Maximum 300 characters.                            |
+| `allow_multiple` | Boolean | (Optional) Set to `true` to allow the user to upload more than one file. Default is `false`.                                       |
+
+#### File upload limits
+
+- A maximum of 10 file IDs may be submitted per dialog submission.
+- The server validates that each submitted file ID was uploaded by the submitting user. Referencing a file uploaded by a different user will be rejected.
+- Duplicate file IDs are automatically deduplicated before validation.
+
+#### File IDs in the submission payload
+
+When a dialog containing file elements is submitted, the uploaded file IDs are sent in a top-level `file_ids` array alongside the standard `submission` map. Use `file_ids` as the authoritative source of uploaded file IDs — each ID can be used with the [Files API](https://api.mattermost.com/#tag/files) to attach files to posts or retrieve file metadata.
 
 ## Dialog submission
 
@@ -597,6 +692,7 @@ The submission payload sent to the integration is:
         "some_element_name": "<value of that element>",
         "some_other_element": "<value of some other element>"
     },
+    "file_ids": ["<file ID 1>", "<file ID 2>"],
     "cancelled": false
 }
 ```
@@ -999,8 +1095,10 @@ Below is a full example of a JSON payload that creates an interactive dialog in 
           "default":"today",
           "placeholder":"Select event date",
           "help_text":"Choose when your event takes place",
-          "min_date":"today",
-          "max_date":"+30d",
+          "datetime_config":{
+             "min_date":"today",
+             "max_date":"+30d"
+          },
           "optional":false
        },
        {
@@ -1010,9 +1108,11 @@ Below is a full example of a JSON payload that creates an interactive dialog in 
           "default":"",
           "placeholder":"Select meeting date and time",
           "help_text":"Schedule your meeting with date and time",
-          "time_interval":30,
-          "min_date":"today",
-          "max_date":"+14d",
+          "datetime_config":{
+             "min_date":"today",
+             "max_date":"+14d",
+             "time_interval":30
+          },
           "optional":true
        }
     ],
