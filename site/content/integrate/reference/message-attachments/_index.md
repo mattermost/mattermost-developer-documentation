@@ -179,7 +179,7 @@ Content-Length: 192
 
 ## Trigger AI agent responses
 
-To have Mattermost AI agents respond to a post created by an integration, set the `activate_ai` property to `"true"` in the post's `props` field. 
+To have Mattermost AI agents respond to a post created by a bot or plugin integration, set the `activate_ai` property to `"true"` in the post's `props` field. 
 
 ```json
     {
