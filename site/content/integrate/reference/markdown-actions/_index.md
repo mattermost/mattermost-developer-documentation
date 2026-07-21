@@ -191,7 +191,7 @@ When a user clicks a markdown action button, the Mattermost server sends an HTTP
 ## Updating and removing actions
 
 - An integration session (bot account, personal access token, or OAuth app) may add, replace, or remove `mm_blocks_actions` on a post **it authored**, via the update and patch post endpoints. Other sessions can edit the message but not another author's actions.
-- An update that omits `mm_blocks_actions` keeps the existing actions, so a message-only edit never wipes buttons.
+- `mm_blocks_actions` is an exception to the usual update rule that omitted fields are cleared: the server preserves the post's existing actions when an update leaves the prop out, so a message-only edit never wipes buttons. (Sending an empty or altered value still replaces them.)
 - Removing a button's `mmaction://` link from the message revokes its action: the entry is pruned and later clicks return a not-found error.
 
 ## Validation limits
