@@ -125,7 +125,7 @@ post := &model.Post{
 _, err := p.API.CreatePost(post)
 ```
 
-Plugin updates to `mm_blocks_actions` via `UpdatePost` are accepted only when the updated value passes validation. Removal of the `mm_blocks_actions` prop by non-integration sessions is restricted to prevent dropping or corrupting actions on posts owned by another integration.
+A plugin can also change markdown actions later via `API.UpdatePost`. See [Updating and removing actions](#updating-and-removing-actions) for who may change `mm_blocks_actions` and how actions are removed.
 
 ## Link syntax
 
@@ -187,6 +187,12 @@ The diagram below describes the lifecycle of a single click on a markdown action
 ## Receiving action callbacks
 
 When a user clicks a markdown action button, the Mattermost server sends an HTTP POST request to the `url` configured in the matching `mm_blocks_actions` entry. The request body follows the same `PostActionIntegrationRequest` shape used by [message attachment]({{< ref "/integrate/reference/message-attachments" >}}) buttons — the integration responds with the same post-action response format.
+
+## Updating and removing actions
+
+- An integration session (bot account, personal access token, or OAuth app) may add, replace, or remove `mm_blocks_actions` on a post **it authored**, via the update and patch post endpoints. Other sessions can edit the message but not another author's actions.
+- `mm_blocks_actions` is an exception to the usual update rule that omitted fields are cleared: the server preserves the post's existing actions when an update leaves the prop out, so a message-only edit never wipes buttons. (Sending an empty or altered value still replaces them.)
+- Removing a button's `mmaction://` link from the message revokes its action: the entry is pruned and later clicks return a not-found error.
 
 ## Validation limits
 
