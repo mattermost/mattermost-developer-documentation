@@ -68,6 +68,8 @@ Each dialog supports elements for users to enter information.
 - `select`: Message menu. Use this for pre-selected choices. Can either be static menus or dynamic menus generated from users and Public channels of the system. For more information on message menus, see [the documentation]({{< ref "/integrate/plugins/interactive-messages" >}}).
 - `bool`: Checkbox option. Use this for binary selection.
 - `radio`: Radio button option. Use this to quickly select an option from pre-selected choices.
+- `checkbox_group`: Multi-select list of checkboxes under one header. Use this when users should select zero or more options from a fixed list (as of v11.10).
+- `checkbox_matrix`: Row × column grid of checkboxes (or radios per row). Use this for two-dimensional selections such as severity by reason (as of v11.10).
 - `date`: Date picker field. Use this for selecting dates without time information.
 - `datetime`: Date and time picker field. Use this for selecting both date and time with timezone support.
 - `file`: File upload field. Use this to allow users to attach one or more files as part of a dialog submission.
@@ -354,21 +356,23 @@ From Mattermost v5.16 you can use `checkbox` elements. It looks like a plain tex
     "display_name": "Can you please select below",
     "placeholder": "The meeting was helpful.",
     "name": "meeting_input",
-    "type": "bool"
+    "type": "bool",
+    "label_position": "after"
 }
 ```
 
 The full list of supported fields is included below:
 
-| Field          | Type    | Description                                                                                                                        |
-|----------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
-| `display_name` | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
-| `name`         | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
-| `type`         | String  | Set this value to `bool` for a checkbox element.                                                                                   |
-| `optional`     | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
-| `help_text`    | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
-| `default`      | String  | (Optional) Set a default value for this form element. `true` or `false`.                                                           |
-| `placeholder`  | String  | (Optional) A string displayed to include a label besides the checkbox. Maximum 150 characters.                                     |
+| Field            | Type    | Description                                                                                                                        |
+|------------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `display_name`   | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
+| `name`           | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
+| `type`           | String  | Set this value to `bool` for a checkbox element.                                                                                   |
+| `optional`       | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
+| `help_text`      | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
+| `default`        | String  | (Optional) Set a default value for this form element. `true` or `false`.                                                           |
+| `placeholder`    | String  | (Optional) A string displayed to include a label besides the checkbox. Maximum 150 characters.                                     |
+| `label_position` | String  | (Optional, as of v11.10) Position of the `placeholder` label relative to the checkbox. One of `before` or `after`. Default is `after`. |
 
 ### Radio element
 
@@ -396,20 +400,180 @@ From Mattermost v5.16 you can use `radio` elements. It looks like a plain text f
         }
     ],
     "help_text": "Please indicate your department as of January 1.",
-    "default": "engineering"
+    "default": "engineering",
+    "optional": true,
+    "label_position": "after"
 }
 ```
 
+When `optional` is `true` and a value is selected (including a `default`), the client shows a **Clear selection** control so the user can clear the choice. A cleared optional radio submits an empty string for that field.
+
 The full list of supported fields are included below:
 
-| Field          | Type   | Description                                                                                                                        |
-|----------------|--------|------------------------------------------------------------------------------------------------------------------------------------|
-| `display_name` | String | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
-| `name`         | String | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
-| `type`         | String | Set this value to `radio` for a radio element.                                                                                     |
-| `options`      | Array  | (Optional) An array of options for the radio element.                                                                              |
-| `help_text`    | String | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
-| `default`      | String | (Optional) Set a default value for this form element.                                                                              |
+| Field            | Type    | Description                                                                                                                        |
+|------------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `display_name`   | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
+| `name`           | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
+| `type`           | String  | Set this value to `radio` for a radio element.                                                                                     |
+| `options`        | Array   | An array of options for the radio element. Each option is an object with `text` and `value` strings.                               |
+| `optional`       | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`. When `true`, users can clear a selection.       |
+| `help_text`      | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
+| `default`        | String  | (Optional) Set a default value for this form element. Must match one of the option `value`s.                                       |
+| `label_position` | String  | (Optional, as of v11.10) Position of each option label relative to its radio input. One of `before` or `after`. Default is `after`. |
+
+### Checkbox group elements
+##### Minimum Server Version: 11.10
+
+Checkbox group elements render a multi-select list of checkboxes under a single `display_name` header. Use this instead of stacking multiple `bool` elements when users should pick zero or more options from one fixed list.
+
+```json
+{
+    "display_name": "Waiver Reasons",
+    "name": "reasons",
+    "type": "checkbox_group",
+    "help_text": "Check all that apply.",
+    "optional": false,
+    "default": "reason_1,reason_3",
+    "label_position": "before",
+    "options": [
+        {
+            "text": "Reason 1",
+            "value": "reason_1"
+        },
+        {
+            "text": "Reason 2",
+            "value": "reason_2"
+        },
+        {
+            "text": "Reason 3",
+            "value": "reason_3"
+        }
+    ]
+}
+```
+
+The submitted value is an array of selected option values. If nothing is selected, the field is submitted as an empty array (`[]`).
+
+```json
+"reasons": ["reason_1", "reason_3"]
+```
+
+The full list of supported fields is included below:
+
+| Field            | Type    | Description                                                                                                                        |
+|------------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `display_name`   | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
+| `name`           | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
+| `type`           | String  | Set this value to `checkbox_group` for a checkbox group element.                                                                   |
+| `options`        | Array   | Required. An array of options (1–50). Each option is an object with `text` and `value` strings. Option values must not contain `,`. |
+| `optional`       | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
+| `help_text`      | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
+| `default`        | String  | (Optional) Comma-separated list of option values to pre-select (for example, `"reason_1,reason_3"`). Whitespace around commas is ignored. |
+| `label_position` | String  | (Optional) Position of each option label relative to its checkbox. One of `before` or `after`. Default is `after`.                 |
+| `refresh`        | Boolean | (Optional) Set to `true` to request a field refresh when the selection changes (requires `source_url` on the dialog).              |
+
+`checkbox_group` must not set `data_source`, `placeholder`, `multiselect`, or `matrix_config`.
+
+### Checkbox matrix elements
+##### Minimum Server Version: 11.10
+
+Checkbox matrix elements render a two-dimensional grid: rows down the side and columns across the top. Cell inputs are checkboxes when `row_selection` is `multiple` (default), or radios when `row_selection` is `single` (at most one column per row).
+
+Matrix shape and behavior live in a nested `matrix_config` object (same pattern as `datetime_config` on date/datetime elements).
+
+```json
+{
+    "display_name": "Severity by Reason",
+    "name": "waiver_severity",
+    "type": "checkbox_matrix",
+    "optional": true,
+    "default": "reason_1:high,severe;reason_3:high",
+    "matrix_config": {
+        "row_selection": "multiple",
+        "rows": [
+            {
+                "text": "Reason 1",
+                "value": "reason_1"
+            },
+            {
+                "text": "Reason 2",
+                "value": "reason_2"
+            },
+            {
+                "text": "Reason 3",
+                "value": "reason_3"
+            }
+        ],
+        "columns": [
+            {
+                "text": "High",
+                "value": "high"
+            },
+            {
+                "text": "Severe",
+                "value": "severe"
+            }
+        ]
+    }
+}
+```
+
+#### Default and submission format
+
+- **Default string:** `;`-separated row entries of the form `rowValue:col1,col2`.
+- **Submission value:** an array of the same `rowValue:col1,col2` strings (one entry per row with at least one column selected). Rows with no selection are omitted. If nothing is selected, the field is submitted as an empty array (`[]`).
+
+```json
+"waiver_severity": ["reason_1:high,severe", "reason_3:high"]
+```
+
+Row and column `value` strings must not contain `:`, `,`, or `;` (those characters delimit the encoded default/submission format).
+
+The full list of supported fields is included below:
+
+| Field           | Type    | Description                                                                                                                        |
+|-----------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `display_name`  | String  | Display name of the field shown to the user in the dialog. Maximum 24 characters.                                                  |
+| `name`          | String  | Name of the field element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
+| `type`          | String  | Set this value to `checkbox_matrix` for a checkbox matrix element.                                                                 |
+| `matrix_config` | Object  | Required. Matrix configuration. See [matrix_config object](#matrix_config-object) below.                                           |
+| `optional`      | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
+| `help_text`     | String  | (Optional) Set help text for this form element. Maximum 150 characters.                                                            |
+| `default`       | String  | (Optional) Encoded default selection: `;`-separated `rowValue:col1,col2` entries.                                                  |
+| `refresh`       | Boolean | (Optional) Set to `true` to request a field refresh when the selection changes (requires `source_url` on the dialog).              |
+
+`checkbox_matrix` must not set top-level `options`, `data_source`, `placeholder`, or `multiselect`. `label_position` does not apply (row and column headers are used instead; cells use accessible labels).
+
+#### matrix_config object
+
+| Field            | Type   | Description                                                                                          |
+|------------------|--------|------------------------------------------------------------------------------------------------------|
+| `rows`           | Array  | Required. Row definitions (1–30). Each entry is `{ "text": "...", "value": "..." }`.                 |
+| `columns`        | Array  | Required. Column definitions (1–10). Each entry is `{ "text": "...", "value": "..." }`.              |
+| `row_selection`  | String | (Optional) `multiple` (default) allows several columns per row; `single` allows at most one column per row (radio-style). |
+
+**Single-selection example** (`row_selection: "single"`):
+
+```json
+{
+    "display_name": "Priority by Reason",
+    "name": "priority_single",
+    "type": "checkbox_matrix",
+    "optional": true,
+    "matrix_config": {
+        "row_selection": "single",
+        "rows": [
+            {"text": "Reason 1", "value": "reason_1"},
+            {"text": "Reason 2", "value": "reason_2"}
+        ],
+        "columns": [
+            {"text": "Low", "value": "low"},
+            {"text": "Medium", "value": "medium"},
+            {"text": "High", "value": "high"}
+        ]
+    }
+}
+```
 
 ### Date elements
 ##### Minimum Server Version: 11.1
@@ -756,13 +920,16 @@ The submission payload sent to the integration is:
     "team_id": "<team ID the channel belongs to, empty for DM/GM channels>",
     "submission": {
         "some_element_name": "<value of that element>",
-        "some_other_element": "<value of some other element>"
+        "some_other_element": "<value of some other element>",
+        "checkbox_group_field": ["option_a", "option_c"],
+        "checkbox_matrix_field": ["row_1:col_a,col_b", "row_2:col_a"]
     },
     "file_ids": ["<file ID 1>", "<file ID 2>"],
     "cancelled": false
 }
 ```
 
+Most element types submit a string (or boolean for `bool`). `select` with `multiselect: true`, `checkbox_group`, and `checkbox_matrix` submit a JSON array of strings. Empty optional checkbox group/matrix fields submit `[]`. Cleared optional radio fields submit an empty string.
 {{<note "team_id behavior change (server version 11.10):">}}
 For the `/api/v4/actions/dialogs/submit`, `/api/v4/actions/dialogs/lookup`, and `/api/v4/actions/dialogs/execute` endpoints, the `team_id` forwarded to your integration is now always derived by the server from the channel the dialog was opened in, rather than from the value supplied by the client. Any client-supplied `team_id` is ignored. For direct (DM) and group (GM) message channels — which do not belong to a team — `team_id` is sent as an empty string. If your integration previously relied on a client-supplied `team_id` for team-specific logic, update it to use this channel-derived value (and to handle the empty case for DM/GM channels).
 {{</note>}}
