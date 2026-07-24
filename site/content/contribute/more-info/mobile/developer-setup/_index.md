@@ -141,7 +141,13 @@ brew install rv
 rv ruby install 3.2.11
 ```
 
-`rv` reads the repository's `.ruby-version` file, so it selects the pinned version automatically when you `cd` into the project.
+To have `rv` switch Ruby versions automatically, install its shell integration once. For example, for `zsh`:
+
+```sh
+echo 'eval "$(rv shell init zsh)"' >> ~/.zshrc
+```
+
+Run `rv shell <your-shell>` (`bash`, `fish`, etc.) to see the equivalent for your shell, then open a new terminal. After that, `rv` reads the repository's `.ruby-version` file and selects the pinned version automatically when you `cd` into the project.
 {{</note>}}
 
 ## Additional setup for Android
