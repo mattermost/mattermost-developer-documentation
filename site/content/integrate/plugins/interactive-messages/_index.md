@@ -427,7 +427,7 @@ When your integration returns an error response with a custom message, that mess
 - Integration returns a non-200 HTTP status code
 - Integration returns invalid JSON
 
-For troubleshooting integration errors from the server side, see the FAQ section "Why does an interactive button or menu return a 400 error?" below.
+For troubleshooting integration errors from the server side, see the FAQ section "Why does an interactive button or menu return an error?" below.
 
 ## Tips and best practices
 
@@ -466,13 +466,13 @@ Yes, message buttons and menus are supported in ephemeral messages in Mattermost
 
 As an advanced feature, you can also use plugins to update the contents of an ephemeral message with message buttons or menus with the [UpdateEphemeralMessage plugin API]({{< ref "/integrate/reference/server/server-reference#API.UpdateEphemeralPost" >}}).
 
-### Why does an interactive button or menu return a 400 error?
+### Why does an interactive button or menu return an error?
 
 It is likely for one of three reasons:
 
-1. Mattermost wasn't able to connect to the integration. If the integration is on your internal infrastructure, it'll need to be whitelisted (see {{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html#allow-untrusted-internal-connections-to" title="AllowedUntrustedInternalConnections config.json setting">}}). The log will include the text `err=address forbidden` in the error message.
-2. The integration didn't return HTTP status 200. The log will include the text `status=XXX` in the error message.
-3. The integration didn't return a valid JSON response. The log will include the text `err=some json error message` in the error message.
+1. Mattermost wasn't able to connect to the integration. If the integration is on your internal infrastructure, it'll need to be whitelisted (see {{< newtabref href="https://docs.mattermost.com/configure/configuration-settings.html#allow-untrusted-internal-connections-to" title="AllowedUntrustedInternalConnections config.json setting">}}). The log will include the text `err=address forbidden` in the error message. Mattermost surfaces this as HTTP 400.
+2. The integration didn't return HTTP status 200. The log will include the text `status=XXX` in the error message with the original upstream code. Mattermost surfaces the response to the API client as follows: `429` (rate-limited) and `503` (unavailable) are preserved verbatim so clients can honor retry semantics, other 5xx responses are surfaced as `502 Bad Gateway`, and other 4xx responses are surfaced as `400 Bad Request`.
+3. The integration didn't return a valid JSON response. The log will include the text `err=some json error message` in the error message. Mattermost surfaces this as HTTP 400.
 
 ### How do I manage properties of an interactive message?
 
