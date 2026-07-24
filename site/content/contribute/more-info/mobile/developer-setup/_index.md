@@ -104,7 +104,7 @@ Install {{< newtabref href="https://apps.apple.com/us/app/xcode/id497799835?ls=1
 
 ### Install Ruby
 
-A version of Ruby is automatically installed on macOS, but Mattermost React Native app development requires Ruby 3.2.0. You can check the current version of Ruby by running the following command.
+A version of Ruby is automatically installed on macOS, but Mattermost React Native app development requires the Ruby version pinned in the repository's `.ruby-version` file (currently 3.2.11). You can check the current version of Ruby by running the following command.
 ```sh
 ruby --version
 ```
@@ -126,12 +126,23 @@ If it isn't, we recommend using [Ruby Version Manager](https://rvm.io) or your p
     ```
 4. Install the required version of Ruby
     ```sh
-    rvm install 3.2.0
+    rvm install 3.2.11
     ```
-5. (Optional) If you don't need to use a different version of Ruby for anything else, you'll want to change the default version of Ruby. Without this, you'll need to run `rvm use 3.2.0` any time you want to work on the mobile app.
+5. (Optional) If you don't need to use a different version of Ruby for anything else, you'll want to change the default version of Ruby. Without this, you'll need to run `rvm use 3.2.11` any time you want to work on the mobile app.
     ```sh
-    rvm alias create default 3.2.0
+    rvm alias create default 3.2.11
     ```
+
+{{<note "Apple Silicon">}}
+On recent Apple Silicon Macs, installing Ruby through RVM can fail with repeated OpenSSL errors. If you hit those, [`rv`](https://github.com/spinel-coop/rv) (a Ruby version manager) is a reliable alternative:
+
+```sh
+brew install rv
+rv ruby install 3.2.11
+```
+
+`rv` reads the repository's `.ruby-version` file, so it selects the pinned version automatically when you `cd` into the project.
+{{</note>}}
 
 ## Additional setup for Android
 
