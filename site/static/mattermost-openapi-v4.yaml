@@ -31565,12 +31565,6 @@ components:
           type: integer
         LoginFieldName:
           type: string
-        LoginButtonColor:
-          type: string
-        LoginButtonBorderColor:
-          type: string
-        LoginButtonTextColor:
-          type: string
     LdapDiagnosticResult:
       type: object
       properties:
