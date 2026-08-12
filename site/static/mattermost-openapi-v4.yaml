@@ -14073,6 +14073,9 @@ paths:
                   is_gov_sku:
                     type: boolean
                     description: Whether this is a government SKU license
+                  is_non_production:
+                    type: boolean
+                    description: Whether the license is a non-production (developer) key
                   customer:
                     type: object
                     properties:
@@ -31561,12 +31564,6 @@ components:
         MaxPageSize:
           type: integer
         LoginFieldName:
-          type: string
-        LoginButtonColor:
-          type: string
-        LoginButtonBorderColor:
-          type: string
-        LoginButtonTextColor:
           type: string
     LdapDiagnosticResult:
       type: object
