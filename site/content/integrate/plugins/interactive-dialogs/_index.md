@@ -579,7 +579,7 @@ The `datetime_config` object groups date/datetime configuration into a single ne
 | `manual_time_entry`       | Boolean | `datetime`         | 11.8   | (Optional) When `true`, users can type the time directly in addition to using the dropdown. Default is `false`.             |
 
 {{<note "DateTime field breaking change (server version 12.0):">}}
-The top-level `min_date`, `max_date`, and `time_interval` fields on `date`/`datetime` elements, and the `datetime_config.allow_manual_time_entry` field, have been removed. Integrations must send these values under `datetime_config` (using `manual_time_entry` instead of `allow_manual_time_entry`) or they will be silently ignored.
+The top-level `min_date`, `max_date`, and `time_interval` fields on `date`/`datetime` elements, and the `datetime_config.allow_manual_time_entry` field, have been removed with Mattermost v12. Integrations must send these values under `datetime_config` (using `manual_time_entry` instead of `allow_manual_time_entry`) or they will be silently ignored.
 {{</note>}}
 
 #### Date and DateTime field specifications
