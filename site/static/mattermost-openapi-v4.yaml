@@ -24579,6 +24579,12 @@ paths:
                 props:
                   description: A general JSON property bag to attach to the post
                   type: object
+                repeat_type:
+                  type: string
+                  description: Set to `weekly` for a recurring weekly schedule, or omit for a one-time schedule
+                repeat_timezone:
+                  type: string
+                  description: IANA timezone for weekly recurrence; required when `repeat_type` is `weekly`
       responses:
         "200":
           description: Created scheduled post
@@ -24687,6 +24693,12 @@ paths:
                 message:
                   type: string
                   description: The message contents, can be formatted with Markdown
+                repeat_type:
+                  type: string
+                  description: Set to `weekly` for a recurring weekly schedule, or empty for a one-time schedule
+                repeat_timezone:
+                  type: string
+                  description: IANA timezone for weekly recurrence; required when `repeat_type` is `weekly`
       responses:
         "200":
           description: Updated scheduled post
@@ -34603,6 +34615,14 @@ components:
         error_code:
           type: string
           description: Explains the error behind why a scheduled post could not have been sent
+        repeat_type:
+          type: string
+          description: |
+            Empty for a one-time schedule, or `weekly` for a recurring weekly schedule in `repeat_timezone`.
+        repeat_timezone:
+          type: string
+          description: |
+            IANA timezone name (for example `America/New_York`) used to interpret weekly recurrence; required when `repeat_type` is `weekly`.
         metadata:
           $ref: "#/components/schemas/PostMetadata"
     AccessControlFieldsAutocompleteResponse:
