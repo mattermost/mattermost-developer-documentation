@@ -1,20 +1,20 @@
 ---
-title: "MM Blocks"
-heading: "Use MM Blocks"
-description: "MM Blocks are Mattermost's canonical format for structured, interactive integration posts. Use props.mm_blocks for layout and controls, and props.mm_blocks_actions for server-side action dispatch."
+title: "Mattermost Blocks"
+heading: "Use Mattermost Blocks"
+description: "Mattermost Blocks are the canonical format for structured, interactive integration posts. Use props.mm_blocks for layout and controls, and props.mm_blocks_actions for server-side action dispatch."
 weight: 42
 mermaid: true
 ---
 
-MM Blocks are Mattermost's structured post format for integration messages. An integration sends a block tree in `props.mm_blocks` to define layout, text, images, buttons, and menus, and registers action handlers in `props.mm_blocks_actions` so the server can dispatch clicks and menu selections back to the integration.
+Mattermost Blocks are the structured post format for integration messages. An integration sends a block tree in `props.mm_blocks` to define layout, text, images, buttons, and menus, and registers action handlers in `props.mm_blocks_actions` so the server can dispatch clicks and menu selections back to the integration.
 
 {{<note "Feature flag">}}
-MM Blocks are controlled by the `MmBlocksEnabled` feature flag (enabled by default). When disabled, MM Blocks payloads are not rendered and MM Blocks action cookies are rejected.
+Mattermost Blocks are controlled by the `MmBlocksEnabled` feature flag (enabled by default). When disabled, Mattermost Blocks payloads are not rendered and Mattermost Blocks action cookies are rejected.
 {{</note>}}
 
 ## How it works
 
-An interactive MM Blocks post has two parts:
+An interactive Mattermost Blocks post has two parts:
 
 1. **`props.mm_blocks`** — an array of block objects that define layout, text, images, buttons, and menus. A post may contain up to 100 blocks in total, counting nested blocks throughout the tree.
 2. **`props.mm_blocks_actions`** — a map keyed by action ID. Each entry tells the server what to do when a user clicks a button, selects a menu option, or activates a [markdown action button]({{< ref "/integrate/reference/markdown-actions" >}}).
@@ -174,7 +174,7 @@ Malformed blocks are omitted at render time; valid sibling blocks still display.
 ```json
 {
   "type": "text",
-  "text": "Hello **from** MM Blocks.",
+  "text": "Hello **from** Mattermost Blocks.",
   "is_subtle": false,
   "size": "default"
 }
@@ -372,7 +372,7 @@ The `mm_blocks_actions` post prop is a map keyed by action ID. Each entry descri
 | `context` | no | Server-side context forwarded to the integration in the post-action request body. Not visible to clients. Up to 50 entries; each key may be up to 128 characters. |
 | `query` | no | Static `string → string` map merged into the target URL's query string. Combined with any per-control `query` on the block — block values win on key conflict. Up to 50 entries; each key may be up to 128 characters and each value up to 2048 characters. |
 
-Every action ID referenced by interactive content — MM Blocks controls, markdown `mmaction://` links, Block Kit actions, or Adaptive Card actions — must have a matching registry entry. Unused registry entries are rejected at post-create time.
+Every action ID referenced by interactive content — Mattermost Blocks controls, markdown `mmaction://` links, Block Kit actions, or Adaptive Card actions — must have a matching registry entry. Unused registry entries are rejected at post-create time.
 
 After the post is stored, clients receive an encrypted cookie string in place of the plaintext registry map.
 
@@ -471,15 +471,15 @@ Mattermost continues to accept these older payload formats:
 
 | Prop | Format | Notes |
 | --- | --- | --- |
-| `attachments` | Legacy [message attachments]({{< ref "/integrate/reference/message-attachments" >}}) | Attachment `actions` arrays are translated into MM Blocks buttons and selects at render time. |
-| `blocks` | Slack Block Kit | Translated into MM Blocks. Interactive Block Kit elements require matching `mm_blocks_actions` entries keyed by `action_id`. |
-| `cards` | Microsoft Adaptive Cards | Translated into MM Blocks. Interactive card actions require matching `mm_blocks_actions` entries keyed by action `id`. |
+| `attachments` | Legacy [message attachments]({{< ref "/integrate/reference/message-attachments" >}}) | Attachment `actions` arrays are translated into Mattermost Blocks buttons and selects at render time. |
+| `blocks` | Slack Block Kit | Translated into Mattermost Blocks. Interactive Block Kit elements require matching `mm_blocks_actions` entries keyed by `action_id`. |
+| `cards` | Microsoft Adaptive Cards | Translated into Mattermost Blocks. Interactive card actions require matching `mm_blocks_actions` entries keyed by action `id`. |
 
 New integrations should prefer native `mm_blocks` for full control over layout and action registration.
 
 ## Security considerations
 
-MM Blocks follow the same security model as legacy interactive messages:
+Mattermost Blocks follow the same security model as legacy interactive messages:
 
 - Integration `url` values are invoked server-to-server, never directly from the client.
 - `context` values are server-only and are not exposed to rendering clients.
@@ -489,7 +489,7 @@ MM Blocks follow the same security model as legacy interactive messages:
 
 ## See also
 
-- [Troubleshoot MM Blocks]({{< ref "/integrate/reference/mm-blocks/troubleshooting" >}}) — common rendering, action, and mobile issues.
+- [Troubleshoot Mattermost Blocks]({{< ref "/integrate/reference/mm-blocks/troubleshooting" >}}) — common rendering, action, and mobile issues.
 - [Interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}) — overview, error handling, and legacy attachment actions.
 - [Markdown action buttons]({{< ref "/integrate/reference/markdown-actions" >}}) — inline `mmaction://` links using the same action registry.
 - [Message attachments]({{< ref "/integrate/reference/message-attachments" >}}) — legacy attachment format reference.

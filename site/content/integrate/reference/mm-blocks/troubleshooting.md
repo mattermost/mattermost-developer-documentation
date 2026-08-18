@@ -1,21 +1,21 @@
 ---
-title: "Troubleshoot MM Blocks"
-heading: "Troubleshoot MM Blocks"
-description: "Common issues when MM Blocks posts do not render or respond as expected, with guidance for integration developers and mobile client behavior."
+title: "Troubleshoot Mattermost Blocks"
+heading: "Troubleshoot Mattermost Blocks"
+description: "Common issues when Mattermost Blocks posts do not render or respond as expected, with guidance for integration developers and mobile client behavior."
 weight: 43
 ---
 
-Integration posts that use MM Blocks show structured content—including text, images, buttons, and menus—directly in a channel. This page covers common issues when MM Blocks do not render or respond as expected. Use it alongside the [MM Blocks reference]({{< ref "/integrate/reference/mm-blocks" >}}) when debugging payloads, action handlers, and client rendering.
+Integration posts that use Mattermost Blocks show structured content—including text, images, buttons, and menus—directly in a channel. This page covers common issues when Mattermost Blocks do not render or respond as expected. Use it alongside the [Mattermost Blocks reference]({{< ref "/integrate/reference/mm-blocks" >}}) when debugging payloads, action handlers, and client rendering.
 
-## MM Blocks content does not appear
+## Mattermost Blocks content does not appear
 
 **Symptoms:** A post shows only plain text (or no content) and the expected buttons, images, or content blocks are missing.
 
 **Try the following:**
 
 1. **Confirm the integration payload.** The post must include a non-empty `props.mm_blocks` array (or a legacy format such as [message attachments]({{< ref "/integrate/reference/message-attachments" >}}) that the client translates). Verify the webhook, bot, plugin, or REST API payload before testing in a client.
-2. **Check the feature flag (self-hosted admins).** MM Blocks are controlled by the `MmBlocksEnabled` feature flag (enabled by default). Self-hosted deployments can disable MM Blocks by setting `MM_FEATUREFLAGS_MMBLOCKSENABLED=false`. When disabled, native MM Blocks payloads are not rendered and their actions are rejected.
-3. **Update the client.** MM Blocks require a current Mattermost web, desktop, or mobile app. See {{< newtabref href="https://docs.mattermost.com/end-user-guide/access/client-availability.html" title="client availability" >}} in the product documentation for platform support.
+2. **Check the feature flag (self-hosted admins).** Mattermost Blocks are controlled by the `MmBlocksEnabled` feature flag (enabled by default). Self-hosted deployments can disable Mattermost Blocks by setting `MM_FEATUREFLAGS_MMBLOCKSENABLED=false`. When disabled, native Mattermost Blocks payloads are not rendered and their actions are rejected.
+3. **Update the client.** Mattermost Blocks require a current Mattermost web, desktop, or mobile app. See {{< newtabref href="https://docs.mattermost.com/end-user-guide/access/client-availability.html" title="client availability" >}} in the product documentation for platform support.
 4. **Reload the channel.** Pull to refresh on mobile, or switch channels and return, to fetch the latest post data.
 
 ## Buttons or menus do not respond
@@ -57,14 +57,14 @@ On web and desktop, the same clipped regions scroll inside the post; a separate 
 **Try the following:**
 
 1. **Collapsible sections:** Select the section header to toggle between expanded and collapsed states. If the header is missing or empty, the integration payload may be incomplete. Both `header` and `content` arrays are required on `collapsible` blocks.
-2. **Images:** External images require a valid URL and may be blocked by your server's image proxy or SVG settings. Contact your system admin if images from other integrations load but MM Blocks images do not.
+2. **Images:** External images require a valid URL and may be blocked by your server's image proxy or SVG settings. Contact your system admin if images from other integrations load but Mattermost Blocks images do not.
 3. **Partial content:** Clients skip individual malformed blocks and still render valid ones in the same post. If only some elements are missing, the integration payload likely contains invalid block entries. Compare the payload against the [block types]({{< ref "/integrate/reference/mm-blocks#block-types" >}}) reference.
 
 ## Not all blocks appear or text is cut off
 
 **Symptoms:** Only part of an integration post renders, blocks at the end of the post are missing, or text in a block or on a button label ends abruptly.
 
-Mattermost enforces size limits on MM Blocks payloads. Content that exceeds a limit is truncated when the post is rendered.
+Mattermost enforces size limits on Mattermost Blocks payloads. Content that exceeds a limit is truncated when the post is rendered.
 
 **Try the following:**
 
@@ -77,12 +77,12 @@ Mattermost enforces size limits on MM Blocks payloads. Content that exceeds a li
 
 ## Legacy message attachments
 
-Older integrations that use [message attachments]({{< ref "/integrate/reference/message-attachments" >}}) are translated into the MM Blocks UI at render time. Button and menu behavior should match native MM Blocks posts. If an attachment-based post behaves differently from a native MM Blocks post, compare the attachment `actions` array and callback URLs against an equivalent `mm_blocks` payload.
+Older integrations that use [message attachments]({{< ref "/integrate/reference/message-attachments" >}}) are translated into the Mattermost Blocks UI at render time. Button and menu behavior should match native Mattermost Blocks posts. If an attachment-based post behaves differently from a native Mattermost Blocks post, compare the attachment `actions` array and callback URLs against an equivalent `mm_blocks` payload.
 
 ## Get more help
 
-- **Payload format and actions:** See the [MM Blocks reference]({{< ref "/integrate/reference/mm-blocks" >}}) for block schema, action types, and migration guidance.
+- **Payload format and actions:** See the [Mattermost Blocks reference]({{< ref "/integrate/reference/mm-blocks" >}}) for block schema, action types, and migration guidance.
 - **Interactive message errors:** See [interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}) for post-action responses, error handling, and legacy attachment actions.
-- **Mobile deployment issues:** See {{< newtabref href="https://docs.mattermost.com/deploy/mobile-troubleshoot.html" title="mobile deployment troubleshooting" >}} for connectivity, push notification, and app install problems unrelated to MM Blocks content.
+- **Mobile deployment issues:** See {{< newtabref href="https://docs.mattermost.com/deploy/mobile-troubleshoot.html" title="mobile deployment troubleshooting" >}} for connectivity, push notification, and app install problems unrelated to Mattermost Blocks content.
 
 If you continue to experience issues, visit the {{< newtabref href="https://forum.mattermost.com/c/trouble-shoot/16" title="Mattermost Troubleshooting forum" >}} or contact your system administrator.

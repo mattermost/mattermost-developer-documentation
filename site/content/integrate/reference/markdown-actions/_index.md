@@ -7,7 +7,7 @@ mermaid: true
 ---
 
 {{<note "Part of the Interactive Messages framework">}}
-Markdown action buttons are one binding surface in the Interactive Messages framework alongside [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}). All surfaces share the same `mm_blocks_actions` action registry.
+Markdown action buttons are one binding surface in the Interactive Messages framework alongside [Mattermost Blocks]({{< ref "/integrate/reference/mm-blocks" >}}). All surfaces share the same `mm_blocks_actions` action registry.
 {{</note>}}
 
 Use markdown action buttons to add inline, in-text affordances to a post — without using a message attachment. They're useful when:
@@ -16,7 +16,7 @@ Use markdown action buttons to add inline, in-text affordances to a post — wit
 - An integration wants to mix narrative text and action affordances in the same post body.
 - The visual weight of a full message attachment isn't warranted.
 
-For block-style buttons and menus, see [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}). For legacy attachment actions, see [interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}).
+For block-style buttons and menus, see [Mattermost Blocks]({{< ref "/integrate/reference/mm-blocks" >}}). For legacy attachment actions, see [interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}).
 
 ## How it works
 
@@ -203,7 +203,7 @@ sequenceDiagram
 
 ## Receiving action callbacks
 
-When a user clicks a markdown action button, the Mattermost server sends an HTTP POST request to the `url` configured in the matching `mm_blocks_actions` entry. The request body follows the same `PostActionIntegrationRequest` shape used by [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) and legacy [message attachment]({{< ref "/integrate/reference/message-attachments" >}}) buttons — the integration responds with the same post-action response format.
+When a user clicks a markdown action button, the Mattermost server sends an HTTP POST request to the `url` configured in the matching `mm_blocks_actions` entry. The request body follows the same `PostActionIntegrationRequest` shape used by [Mattermost Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) and legacy [message attachment]({{< ref "/integrate/reference/message-attachments" >}}) buttons — the integration responds with the same post-action response format.
 
 ## Updating and removing actions
 
@@ -244,7 +244,7 @@ Markdown action buttons follow the same security model as message attachment act
 
 ## See also
 
-- [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) — block-based buttons, menus, and layout.
+- [Mattermost Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) — block-based buttons, menus, and layout.
 - [Interactive messages]({{< ref "/integrate/plugins/interactive-messages" >}}) — overview and legacy attachment actions.
 - [Message attachments]({{< ref "/integrate/reference/message-attachments" >}}) — broader message format reference.
 - [Incoming webhooks]({{< ref "/integrate/webhooks/incoming" >}}) — submitting posts via webhooks.

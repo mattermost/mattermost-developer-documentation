@@ -1,7 +1,7 @@
 ---
 title: "Interactive messages"
 heading: "Interactive messages"
-description: "Mattermost supports interactive message buttons and menus through MM Blocks, markdown action buttons, and legacy message attachments. They help make your integrations richer by completing common tasks inside Mattermost conversations, increasing user engagement and productivity."
+description: "Mattermost supports interactive message buttons and menus through Mattermost Blocks, markdown action buttons, and legacy message attachments. They help make your integrations richer by completing common tasks inside Mattermost conversations, increasing user engagement and productivity."
 weight: 80
 aliases:
   - /integrate/admin-guide/admin-interactive-messages/
@@ -21,11 +21,11 @@ To try it out, you can use this {{< newtabref href="https://github.com/matterpol
 
 ![image](poll.png)
 
-## MM Blocks (recommended)
+## Mattermost Blocks (recommended)
 
-[MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) are the recommended way to build interactive integration posts. Send a block tree in `props.mm_blocks` for layout, text, images, buttons, and menus, and register action handlers in `props.mm_blocks_actions`.
+[Mattermost Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) are the recommended way to build interactive integration posts. Send a block tree in `props.mm_blocks` for layout, text, images, buttons, and menus, and register action handlers in `props.mm_blocks_actions`.
 
-See [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) for the full block schema, action types, validation limits, and examples.
+See [Mattermost Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) for the full block schema, action types, validation limits, and examples.
 
 ## Markdown action buttons
 
@@ -36,7 +36,7 @@ See [markdown action buttons]({{< ref "/integrate/reference/markdown-actions" >}
 ## Legacy message attachment buttons and menus
 
 {{<note "Legacy format">}}
-The sections below describe interactive buttons and menus placed inside legacy [message attachments]({{< ref "/integrate/reference/message-attachments" >}}). Existing integrations continue to work — Mattermost translates attachment actions into MM Blocks at render time — but new integrations should use [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) directly.
+The sections below describe interactive buttons and menus placed inside legacy [message attachments]({{< ref "/integrate/reference/message-attachments" >}}). Existing integrations continue to work — Mattermost translates attachment actions into Mattermost Blocks at render time — but new integrations should use [Mattermost Blocks]({{< ref "/integrate/reference/mm-blocks" >}}) directly.
 {{</note>}}
 
 ## Message buttons
@@ -313,7 +313,7 @@ Specify `users` as your action's `data_source` as follows:
 
 ### Parameters
 
-Below is a brief description of each parameter to help you customize legacy attachment interactive buttons and menus in Mattermost. For new integrations, see [MM Blocks]({{< ref "/integrate/reference/mm-blocks" >}}). For more information on message attachments, see [message attachments]({{< ref "/integrate/reference/message-attachments" >}}).
+Below is a brief description of each parameter to help you customize legacy attachment interactive buttons and menus in Mattermost. For new integrations, see [Mattermost Blocks]({{< ref "/integrate/reference/mm-blocks" >}}). For more information on message attachments, see [message attachments]({{< ref "/integrate/reference/message-attachments" >}}).
 
 **ID**<br/>
 A per post unique identifier.
@@ -488,7 +488,7 @@ It is likely for one of three reasons:
 
 ### How do I manage properties of an interactive message?
 
-Use `update.Props` in the following ways to manage properties (`Props`) of an interactive message after a user performs an action via an interactive button or menu. When using MM Blocks, include updated `mm_blocks` and `mm_blocks_actions` in `update.props` as needed:
+Use `update.Props` in the following ways to manage properties (`Props`) of an interactive message after a user performs an action via an interactive button or menu. When using Mattermost Blocks, include updated `mm_blocks` and `mm_blocks_actions` in `update.props` as needed:
 
  - `update.Props == nil` - Do not update `Props` field.
  - `update.Props == {}` - Clear all properties, except the username and icon of the original message, as well as whether the message was pinned to channel or contained emoji reactions.
