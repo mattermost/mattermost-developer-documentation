@@ -224,11 +224,11 @@ mmctl export create --team-name engineering --channel-name dev-talk
 # Poll until the job's status is "success"
 mmctl export job list
 
-# Confirm the export file is ready
+# Confirm the export file is ready and note the server-assigned name
 mmctl export list
 
 # Pull it down locally so it can be moved to the destination server
-mmctl export download dev-talk-export.zip dev-talk-export.zip
+mmctl export download <exportname> dev-talk-export.zip
 ```
 
 On the destination server:
