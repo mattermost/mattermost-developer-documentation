@@ -113,7 +113,7 @@ Usually, you would then add several subcommands to perform various tasks.
 | `--channel-name` | One or more channel names within the specified team(s), comma-separated. | Requires `--team-name` or `--team-id`. Mutually exclusive with `--channel-id`. Only validated client-side (at invocation time) when exactly one team is in scope; with multiple teams, channels that don't exist are silently skipped. |
 | `--channel-id` | One or more channel IDs, comma-separated. The team is inferred from each channel when no team flag is given. | Mutually exclusive with `--channel-name`. If teams are given, each channel must belong to one of them. |
 
-```
+```bash
 # Export a single team by name
 mmctl export create --team-name engineering
 
@@ -127,7 +127,7 @@ mmctl export create --team-name engineering --channel-name dev-talk,announcement
 mmctl export create --channel-id xyz789
 ```
 
-Direct messages and group messages are never included in a scoped export — a full, unscoped export is required to migrate DM history. The export's version line records the source team/channel scope (`ExportScopeAdditional`) so the import side knows what it's dealing with; exports produced by older binaries without this metadata still work when `--destination-team-name` is used, falling back to inferring the source team name from the first team entry in the export file.
+Direct messages and group messages are never included in a scoped export — a full, unscoped export is required to migrate DM history. The export's version line records the source team/channel scope (`ExportScopeAdditional`) so the import side knows what it's dealing with. Exports produced by older binaries without this metadata still work with `--destination-team-name`, falling back to inferring the source team name from the first team entry in the export file — but that fallback only reliably remaps a single-team export; for a legacy full-server export containing multiple teams, only the first team found is remapped and the documented "fails on multi-team" behavior does not kick in, since there's no scope metadata to detect the multi-team case.
 
 ### Import flags
 
@@ -140,7 +140,7 @@ Direct messages and group messages are never included in a scoped export — a f
 | `--skip-preflight` | Skip the check that source SSO/auth providers are enabled on the destination. | By default, import fails if an auth provider present in the export (LDAP, SAML, GitLab, Google, Office 365, or OpenID) isn't configured on the destination. Only applies to ZIP-packaged imports; JSONL-only imports skip this check regardless. |
 | `--workers` | Number of concurrent import goroutines. Defaults to the host CPU count; capped at 4x CPU count. | Optional; omit to use the default. |
 
-```
+```bash
 # Remap the source team to a destination team by name (created if missing)
 mmctl import process <importname> --destination-team-name engineering-destination
 
@@ -157,14 +157,14 @@ mmctl import process <importname> --destination-team-name engineering-destinatio
 
 1. **Export from the source server.**
 
-    ```
+    ```bash
     # Kick off a scoped export job on the source server
     mmctl export create --team-name engineering
     ```
 
     This starts an export job and prints its job ID. Poll it until it succeeds:
 
-    ```
+    ```bash
     # See recent export jobs and their status
     mmctl export job list
 
@@ -174,7 +174,7 @@ mmctl import process <importname> --destination-team-name engineering-destinatio
 
 2. **Find and download the export file**, still against the source server:
 
-    ```
+    ```bash
     # List completed export files available to download
     mmctl export list
 
@@ -184,7 +184,7 @@ mmctl import process <importname> --destination-team-name engineering-destinatio
 
 3. **Upload the file to the destination server.** Point `mmctl` at the destination instance (switch context, or pass `--server`/config flags) and upload it:
 
-    ```
+    ```bash
     # Upload the downloaded file to the destination server
     mmctl import upload engineering-export.zip
 
@@ -196,14 +196,14 @@ mmctl import process <importname> --destination-team-name engineering-destinatio
 
 4. **Run the import**, mapping to the destination team (and channel, if this was a channel-scoped export):
 
-    ```
+    ```bash
     # Start the import job, remapping to the destination team
     mmctl import process <importname> --destination-team-name engineering-destination
     ```
 
-5. **Monitor the job**, and re-run the same command if it fails partway through — it detects its own checkpoint and prompts to resume rather than starting over:
+5. **Monitor the job**, and re-run the same command if it fails partway through. For imports with 100 MB or more of uncompressed JSONL content, re-running against the same filename from an interactive terminal detects the checkpoint and prompts to resume rather than starting over (see [Behavior notes](#behavior-notes) below for the exact conditions):
 
-    ```
+    ```bash
     # See recent import jobs and their status
     mmctl import job list
 
@@ -217,7 +217,7 @@ Move the `dev-talk` channel out of the `engineering` team on one instance, into 
 
 On the source server:
 
-```
+```bash
 # Create a channel-scoped export of dev-talk from the engineering team
 mmctl export create --team-name engineering --channel-name dev-talk
 
@@ -233,7 +233,7 @@ mmctl export download <exportname> dev-talk-export.zip
 
 On the destination server:
 
-```
+```bash
 # Upload the export file to the destination server
 mmctl import upload dev-talk-export.zip
 
