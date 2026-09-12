@@ -5,5 +5,5 @@
     {{- else -}}
 <div id="{{ $tabid }}" class="tabcontent" style="{{ $divstyle | safeCSS }}">
 {{- end -}}
-{{ .Inner | markdownify }}
+{{- .Inner | markdownify -}}
 </div>
