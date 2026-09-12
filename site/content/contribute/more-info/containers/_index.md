@@ -42,7 +42,7 @@ This page lists all the Docker repositories currently in use.
 
 - {{< newtabref href="https://hub.docker.com/r/mattermost/mattermost-test-team" title="mattermost/mattermost-test-team" >}} - Repository where all testing images are published and available for any type of testing. These images are built from the CircleCI Pipelines from the {{< newtabref href="https://github.com/mattermost/mattermost" title="mattermost-server" >}} and {{< newtabref href="https://github.com/mattermost/mattermost-webapp" title="mattermost-webapp" >}}.
 
-- {{< newtabref href="https://hub.docker.com/r/mattermost/mattermost-elasticsearch-docker" title="mattermost/mattermost-elasticsearch-docker" >}} - Used in in CI and for local development. Please refer to the {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/docker-compose.yaml" title="GitHub repo" >}} for more information.
+- {{< newtabref href="https://hub.docker.com/r/mattermost/mattermost-elasticsearch-docker" title="mattermost/mattermost-elasticsearch-docker" >}} - Used in in CI and for local development. Please refer to the {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/server/docker-compose.yaml" title="GitHub repo" >}} for more information.
 
 - {{< newtabref href="https://hub.docker.com/r/mattermost/mattermost-build-server" title="mattermost/mattermost-build-server" >}} - Image used to build Mattermost used in CI. To check the Docker file refer to the {{< newtabref href="https://github.com/mattermost/mattermost/blob/master/server/build/Dockerfile.buildenv" title="GitHub repo" >}}.
 
