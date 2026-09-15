@@ -112,6 +112,7 @@ Usually, you would then add several subcommands to perform various tasks.
 | `--team-id` | One or more team IDs, comma-separated. | Mutually exclusive with `--team-name`. |
 | `--channel-name` | One or more channel names within the specified team(s), comma-separated. | Requires `--team-name` or `--team-id`. Mutually exclusive with `--channel-id`. Only validated client-side (at invocation time) when exactly one team is in scope; with multiple teams, channels that don't exist are silently skipped. |
 | `--channel-id` | One or more channel IDs, comma-separated. The team is inferred from each channel when no team flag is given. | Mutually exclusive with `--channel-name`. If teams are given, each channel must belong to one of them. |
+| `--include-custom-emoji` | Include the instance's custom emoji in a scoped export. | Optional. Custom emoji are instance-wide, so scoped exports omit them by default; full-instance exports always include them. |
 
 ```bash
 # Export a single team by name
@@ -137,18 +138,21 @@ Direct messages and group messages are never included in a scoped export — a f
 | `--destination-team-id` | Remap to an existing destination team by ID. The team must already exist — the ID is looked up and validated before the job is created. | Mutually exclusive with `--destination-team-name`. Requires a single-team export; fails if the export contains multiple teams. |
 | `--destination-channel-name` | Rename the imported channel on the destination, by name. | Only valid for channel-scoped exports; mutually exclusive with `--destination-channel-id`. Validated when the import job starts, not at invocation time. |
 | `--destination-channel-id` | Map to an existing destination channel by ID. | Only valid for channel-scoped exports; mutually exclusive with `--destination-channel-name`. The channel must already exist — the ID is looked up and validated at invocation time. |
+| `--imported-users` | Access posture for accounts the import creates: `active` or `inactive`. | **Required for any scoped (team- or channel-scoped) export** — the import fails at the version line if it's omitted. Use `active` when importing into a new instance these users are moving to, so they can sign in. Use `inactive` when importing into an existing instance, so accounts created from weak identity matches stay deactivated (and `importedInactive`-tagged) until an admin reviews them. Users deactivated on the source stay deactivated either way, and accounts that already exist on the destination are unaffected. Ignored for a full-instance import. |
 | `--skip-preflight` | Skip the check that source SSO/auth providers are enabled on the destination. | By default, import fails if an auth provider present in the export (LDAP, SAML, GitLab, Google, Office 365, or OpenID) isn't configured on the destination. Only applies to ZIP-packaged imports; JSONL-only imports skip this check regardless. |
 | `--workers` | Number of concurrent import goroutines. Defaults to the host CPU count; capped at 4x CPU count. | Optional; omit to use the default. |
 
 ```bash
-# Remap the source team to a destination team by name (created if missing)
-mmctl import process <importname> --destination-team-name engineering-destination
+# Remap the source team to a destination team by name (created if missing).
+# --imported-users is required for any scoped export; use active for a new
+# instance the users are moving to, or inactive for an existing instance.
+mmctl import process <importname> --destination-team-name engineering-destination --imported-users active
 
 # Remap to an existing destination team by ID instead
-mmctl import process <importname> --destination-team-id abc-123-def
+mmctl import process <importname> --destination-team-id abc-123-def --imported-users active
 
 # Channel-scoped import: also rename the channel on the destination
-mmctl import process <importname> --destination-team-name engineering-destination --destination-channel-name team-announcements
+mmctl import process <importname> --destination-team-name engineering-destination --destination-channel-name team-announcements --imported-users active
 ```
 
 `<importname>` is the name the file is known by on the destination server (returned by `mmctl import upload`), not a local file path — see the steps below.
@@ -194,11 +198,11 @@ mmctl import process <importname> --destination-team-name engineering-destinatio
 
     `import list available` shows the `<importname>` the server assigned to the upload — use that in the next step. If `mmctl` and the destination server run on the same machine, you can skip the upload step entirely with `--local --bypass-upload`, passing the local file path directly as `<importname>`. Note that `--bypass-upload` does not work when the destination server is running in high availability (HA) mode.
 
-4. **Run the import**, mapping to the destination team (and channel, if this was a channel-scoped export):
+4. **Run the import**, mapping to the destination team (and channel, if this was a channel-scoped export). A scoped import requires `--imported-users` to declare whether the accounts it creates should be able to sign in — use `active` when the destination is a new instance these users are moving to, or `inactive` when importing into an instance that already holds other people's content:
 
     ```bash
     # Start the import job, remapping to the destination team
-    mmctl import process <importname> --destination-team-name engineering-destination
+    mmctl import process <importname> --destination-team-name engineering-destination --imported-users active
     ```
 
 5. **Monitor the job**, and re-run the same command if it fails partway through. For imports with 100 MB or more of uncompressed JSONL content, re-running against the same filename from an interactive terminal detects the checkpoint and prompts to resume rather than starting over (see [Behavior notes](#behavior-notes) below for the exact conditions):
@@ -240,22 +244,24 @@ mmctl import upload dev-talk-export.zip
 # Note the <importname> mmctl reports, e.g. 35uy6cwrqfnhdx3genrhqqznxc_dev-talk-export.zip
 mmctl import list available
 
-# Import it, remapping to the destination team and renaming the channel
+# Import it, remapping to the destination team and renaming the channel.
+# --imported-users is required for a scoped export (active shown here).
 mmctl import process 35uy6cwrqfnhdx3genrhqqznxc_dev-talk-export.zip \
   --destination-team-name engineering-destination \
-  --destination-channel-name archived-dev-talk
+  --destination-channel-name archived-dev-talk \
+  --imported-users active
 
 # Watch the import job until it completes (re-run the command above to resume if it fails)
 mmctl import job list
 ```
 
-If `engineering-destination` doesn't exist yet on the destination, it's created automatically. All of the channel's posts, reactions, and file attachments are recreated under `archived-dev-talk`; any post author not already present on the destination is created as a deactivated, `importedInactive`-tagged placeholder account.
+If `engineering-destination` doesn't exist yet on the destination, it's created automatically. All of the channel's posts, reactions, and file attachments are recreated under `archived-dev-talk`; any post author not already present on the destination is created as a placeholder account so the post keeps its author. With `--imported-users inactive` (shown above using `active`), those placeholders are deactivated and `importedInactive`-tagged pending admin review; with `--imported-users active` they can sign in.
 
 ### Behavior notes
 
-- **User matching**: For scoped imports (any export with team or channel scope), the importer matches post authors to destination users first by `auth_data` (for SSO/LDAP-authenticated accounts). If no `auth_data` match is found, a deactivated placeholder account is created — there is no username fallback for SSO users in this path, because usernames can change across instances (e.g. via SAML attribute sync) and a username match could silently link content to the wrong account. For local (non-SSO) accounts, matching falls back to username; if no match is found, a deactivated placeholder is created so the post keeps its author. For full (non-scoped) imports, SSO users that don't match by `auth_data` do fall back to username before a placeholder is created.
+- **User matching**: For scoped imports (any export with team or channel scope), the importer matches post authors to destination users first by `auth_data` (for SSO/LDAP-authenticated accounts). If no `auth_data` match is found, a placeholder account is created — there is no username fallback for SSO users in this path, because usernames can change across instances (e.g. via SAML attribute sync) and a username match could silently link content to the wrong account. For local (non-SSO) accounts, matching falls back to username; if no match is found, a placeholder is created so the post keeps its author. For full (non-scoped) imports, SSO users that don't match by `auth_data` do fall back to username before a placeholder is created.
 
-- **Deactivated placeholder accounts**: Placeholder accounts created for unmatched users are tagged with an `importedInactive = "true"` user property. This allows admin tooling and the Mattermost UI to distinguish imported-inactive placeholders from ordinary deactivated accounts.
+- **Placeholder accounts and `--imported-users`**: The access posture of placeholder accounts created for unmatched users is set by the required `--imported-users` flag. With `inactive`, placeholders are deactivated and tagged with an `importedInactive = "true"` user property, which lets admin tooling and the Mattermost UI distinguish imported-inactive placeholders from ordinary deactivated accounts; an admin can review and activate them later. With `active`, placeholders are left able to sign in. Either way, a user deactivated on the source (a `delete_at` in the export) stays deactivated, and accounts that already exist on the destination are not modified.
 
 - **Team display name**: When `--destination-team-name` or `--destination-team-id` is used and the destination team already exists, the team's current display name on the destination is preserved rather than overwritten by the export. If the destination team does not yet exist, it is created using the display name from the export. For a plain re-import without a destination-remap flag, the display name is always set from the export (overwriting the current value if the team already exists).
 
