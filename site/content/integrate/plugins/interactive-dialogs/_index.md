@@ -653,6 +653,20 @@ Collapsible elements group other elements under a toggleable header, letting you
             "optional": true
         }
     ]
+}
+```
+
+The full list of supported fields is included below:
+
+| Field          | Type    | Description                                                                                                                        |
+|----------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `display_name` | String  | Header text shown for the section. Maximum 24 characters.                                                                          |
+| `name`         | String  | Name of the section element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
+| `type`         | String  | Set this value to `collapsible` for a collapsible section.                                                                         |
+| `collapsed`    | Boolean | (Optional) When `true`, the section starts collapsed. Default is `false` (expanded).                                             |
+| `borderless`   | Boolean | (Optional) When `true`, the section renders without a box outline. Default is `false` (bordered).                                |
+| `elements`     | Array   | Child elements rendered inside the section. May include other `collapsible` elements to create nested sections (up to 3 levels deep). Note that each collapsible element must have at least one child, or validation will fail.|
+
 ### File elements
 ##### Minimum Server Version: 11.10
 
@@ -722,15 +736,6 @@ Action button elements render a clickable button inside a dialog. Instead of sub
 ```
 
 The full list of supported fields is included below:
-
-| Field          | Type    | Description                                                                                                                        |
-|----------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
-| `display_name` | String  | Header text shown for the section. Maximum 24 characters.                                                                          |
-| `name`         | String  | Name of the section element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
-| `type`         | String  | Set this value to `collapsible` for a collapsible section.                                                                         |
-| `collapsed`    | Boolean | (Optional) When `true`, the section starts collapsed. Default is `false` (expanded).                                             |
-| `borderless`   | Boolean | (Optional) When `true`, the section renders without a box outline. Default is `false` (bordered).                                |
-| `elements`     | Array   | Child elements rendered inside the section. May include other `collapsible` elements to create nested sections (up to 3 levels deep). Note that each collapsible element must have at least one child, or validation will fail.|
 
 | Field           | Type   | Description                                                                                                                                       |
 |-----------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------|
