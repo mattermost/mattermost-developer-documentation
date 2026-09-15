@@ -430,10 +430,16 @@ tags:
     description: Endpoints related to metrics, including the Client Performance Monitoring feature.
   - name: audit_logs
     description: Endpoints for managing audit log certificates and configuration.
+  - name: ephemeral mode
+    description: Endpoints for logging client-side ephemeral mode audit events.
   - name: recaps
     description: Endpoints for creating and managing AI-powered channel recaps that summarize unread messages.
+  - name: scheduled recaps
+    description: Endpoints for creating and managing scheduled recaps that run automatically on a configured schedule.
   - name: agents
     description: Endpoints for interacting with AI agents and LLM services.
+  - name: Delivery Tracking
+    description: Endpoints for configuring post delivery audit logging.
   - name: Playbooks
     description: Playbooks
   - name: PlaybookRuns
@@ -3240,6 +3246,56 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+  /api/v4/users/tokens/rotate:
+    post:
+      tags:
+        - users
+      summary: Rotate a personal access token
+      description: >
+        Generate a new secret for an existing personal access token, immediately invalidating the old secret and any sessions that used it. The response includes the new token secret (shown once, like token creation).
+
+
+        __Minimum server version__: 10.10
+
+
+        ##### Permissions
+
+        Must have `create_user_access_token` permission. For non-self requests, must also have the `edit_other_users` permission. To rotate a token belonging to a system admin, must also have the `manage_system` permission. OAuth sessions cannot use this endpoint.
+
+      operationId: RotateUserAccessToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - token_id
+              properties:
+                token_id:
+                  description: The personal access token GUID to rotate
+                  type: string
+                expires_at:
+                  description: >
+                    New expiry for the token as a Unix timestamp in milliseconds. Use 0 for no expiry (subject to server policy).
+
+                  type: integer
+                  format: int64
+        required: true
+      responses:
+        "200":
+          description: Personal access token rotation successful; response includes the new secret
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserAccessToken"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   /api/v4/users/tokens/search:
     post:
       tags:
@@ -5634,6 +5690,47 @@ paths:
           $ref: "#/components/responses/Forbidden"
         "500":
           $ref: "#/components/responses/InternalServerError"
+  "/api/v4/teams/{team_id}/access_control/attributes":
+    get:
+      tags:
+        - teams
+      summary: Get the access control attributes governing a team
+      description: |
+        Get the attributes used by the team's membership access control policy,
+        as a map of attribute name to the values that satisfy the rule. This lets
+        membership surfaces explain the requirement to join the team. Values that
+        are source-only or shared-only are stripped, so no sensitive value is
+        disclosed. The map is empty when no membership policy governs the team.
+        ##### Permissions
+        Must have the `view_team` permission for the team.
+      operationId: GetTeamAccessControlAttributes
+      parameters:
+        - name: team_id
+          in: path
+          description: Team GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Team access control attributes retrieval successful
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+                description: Map of attribute name to the values that satisfy the membership rule.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
   "/api/v4/teams/{team_id}/regenerate_invite_id":
     post:
       tags:
@@ -6008,14 +6105,58 @@ paths:
           required: true
           schema:
             type: string
+        - name: graceful
+          in: query
+          description: When provided with a non-empty value, returns an array with both successful invites and errors instead of aborting on the first error. Required when using `profiles`.
+          required: false
+          schema:
+            type: boolean
       requestBody:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                type: string
-        description: List of user's email
+              oneOf:
+                - type: array
+                  items:
+                    type: string
+                - type: object
+                  required:
+                    - emails
+                  properties:
+                    emails:
+                      type: array
+                      items:
+                        type: string
+                      description: List of user's email
+                    channelIds:
+                      type: array
+                      items:
+                        type: string
+                      description: List of channel IDs to invite the users to
+                    message:
+                      type: string
+                      description: Custom message included in the invitation email
+                    profiles:
+                      type: array
+                      description: |
+                        Profile fields to pre-set on the accounts created from these invitations. Each entry must reference an email present in `emails`. Requires a non-empty `graceful` query parameter, an Enterprise license, and locked profile fields to be enabled.
+
+                        __Minimum server version__: 11.11
+                      items:
+                        type: object
+                        required:
+                          - email
+                          - username
+                        properties:
+                          email:
+                            type: string
+                          username:
+                            type: string
+                          first_name:
+                            type: string
+                          last_name:
+                            type: string
+        description: List of user's email, or an object with emails and invitation options
         required: true
       responses:
         "200":
@@ -6129,60 +6270,6 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-  "/api/v4/teams/{team_id}/import":
-    post:
-      tags:
-        - teams
-      summary: Import a Team from other application
-      description: >
-        Import a team into a existing team. Import users, channels, posts, hooks.
-
-        ##### Permissions
-
-        Must have `permission_import_team` permission.
-
-      operationId: ImportTeam
-      parameters:
-        - name: team_id
-          in: path
-          description: Team GUID
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                file:
-                  description: A file to be uploaded in zip format.
-                  type: string
-                  format: binary
-                filesize:
-                  description: The size of the zip file to be imported.
-                  type: integer
-                importFrom:
-                  description: String that defines from which application the team was exported to be imported into Mattermost.
-                  type: string
-              required:
-                - file
-                - filesize
-                - importFrom
-      responses:
-        "200":
-          description: JSON object containing a base64 encoded text file of the import logs in its `results` property.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  results:
-                    type: string
-        "400":
-          $ref: "#/components/responses/BadRequest"
         "403":
           $ref: "#/components/responses/Forbidden"
   "/api/v4/teams/invite/{invite_id}":
@@ -10974,6 +11061,24 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "429":
+          description: The upstream integration rate-limited the request. The original status code is preserved so clients can honor retry semantics.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppError"
+        "502":
+          description: The upstream integration returned a 5xx (other than 503). Surfaced as Bad Gateway because the failure is upstream of Mattermost.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppError"
+        "503":
+          description: The upstream integration is unavailable. The original status code is preserved so clients can honor retry semantics.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppError"
   "/api/v4/posts/ids":
     post:
       tags:
@@ -12294,6 +12399,33 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+  "/api/v4/recaps/limit_status":
+    get:
+      tags:
+        - recaps
+        - ai
+      summary: Get recap limit status for the current user
+      description: >
+        Get the current user's recap usage limits and status, including daily usage, effective limits, and cooldown information.
+
+        ##### Permissions
+
+        Must be authenticated.
+
+        __Minimum server version__: 11.2
+
+      operationId: GetRecapLimitStatus
+      responses:
+        "200":
+          description: Recap limit status retrieval successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RecapLimitStatus"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Recaps feature is not enabled
   "/api/v4/recaps/mark_viewed":
     post:
       tags:
@@ -13891,6 +14023,9 @@ paths:
                   is_gov_sku:
                     type: boolean
                     description: Whether this is a government SKU license
+                  is_non_production:
+                    type: boolean
+                    description: Whether the license is a non-production (developer) key
                   customer:
                     type: object
                     properties:
@@ -13929,20 +14064,9 @@ paths:
         No permission required but having the `manage_system` permission returns more information.
 
       operationId: GetClientLicense
-      parameters:
-        - name: format
-          in: query
-          required: true
-          description: Must be `old`, other formats not implemented yet
-          schema:
-            type: string
       responses:
         "200":
           description: License retrieval successful
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "501":
-          $ref: "#/components/responses/NotImplemented"
   /api/v4/license/load_metric:
     get:
       tags:
@@ -21322,40 +21446,6 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
-  /api/v4/posts/ids/reactions:
-    post:
-      tags:
-        - reactions
-      summary: Bulk get the reaction for posts
-      description: |
-        Get a list of reactions made by all users to a given post.
-        ##### Permissions
-        Must have `read_channel` permission for the channel the post is in.
-
-        __Minimum server version__: 5.8
-      operationId: GetBulkReactions
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: string
-        description: Array of post IDs
-        required: true
-      responses:
-        "200":
-          description: Reactions retrieval successful
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PostIdToReactionsMap"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
   /api/v4/actions/dialogs/open:
     post:
       tags:
@@ -21405,7 +21495,19 @@ paths:
                     elements:
                       type: array
                       description: >
-                        Input elements, see https://docs.mattermost.com/developer/interactive-dialogs.html#elements. Supported element types include `text`, `textarea`, `select`, `radio`, `bool`, and `action_button`. An `action_button` element (minimum server version 11.10) renders a clickable button — fields: `name`, `display_name`, `type` set to "action_button", and an `action_button` object with a required `url` (must be a valid lookup URL) and optional `context` (string map). Clicking it calls `POST /api/v4/actions/dialogs/execute`. `action_button` elements are not included in the dialog submission payload.
+                        Input elements, see https://docs.mattermost.com/developer/interactive-dialogs.html#elements. Supported element types include `text`, `textarea`, `select`, `radio`, `bool`, `checkbox_group`, `checkbox_matrix`, and `action_button`.
+
+
+                        An `action_button` element (minimum server version 11.10) renders a clickable button — fields: `name`, `display_name`, `type` set to "action_button", and an `action_button` object with a required `url` (must be a valid lookup URL) and optional `context` (string map). Clicking it calls `POST /api/v4/actions/dialogs/execute`. `action_button` elements are not included in the dialog submission payload.
+
+
+                        A `checkbox_group` element (minimum server version 11.10) renders a multi-select list of checkboxes. It uses `options` (array of `{text, value}`, up to 50) and an optional `default` of comma-separated option values. It must not set `data_source` or `placeholder`. The submitted value is an array of the selected option values.
+
+
+                        A `checkbox_matrix` element (minimum server version 11.10) renders a grid of checkboxes. Instead of `options` it uses a `matrix_config` object with `rows` and `columns` (each an array of `{text, value}`; up to 30 rows and 10 columns) and an optional `row_selection` of `"multiple"` (default) or `"single"` (at most one column selectable per row). The optional `default` is a `;`-separated list of `"rowValue:col1,col2"` entries. It must not set `options`, `data_source`, or `placeholder`. The submitted value is an array of the same `"rowValue:col1,col2"` entries. Row and column values must not contain `:`, `,`, or `;`.
+
+
+                        `checkbox_group`, `radio`, and `bool` elements accept an optional `label_position` of `"before"` or `"after"` (default `"after"`) controlling whether the option label renders before or after its input.
 
                       items:
                         type: object
@@ -21495,6 +21597,24 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "429":
+          description: The upstream integration rate-limited the request. The original status code is preserved so clients can honor retry semantics.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppError"
+        "502":
+          description: The upstream integration returned a 5xx (other than 503). Surfaced as Bad Gateway because the failure is upstream of Mattermost.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppError"
+        "503":
+          description: The upstream integration is unavailable. The original status code is preserved so clients can honor retry semantics.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppError"
   /api/v4/actions/dialogs/lookup:
     post:
       tags:
@@ -21564,6 +21684,24 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "429":
+          description: The upstream integration rate-limited the request. The original status code is preserved so clients can honor retry semantics.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppError"
+        "502":
+          description: The upstream integration returned a 5xx (other than 503). Surfaced as Bad Gateway because the failure is upstream of Mattermost.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppError"
+        "503":
+          description: The upstream integration is unavailable. The original status code is preserved so clients can honor retry semantics.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppError"
   /api/v4/actions/dialogs/execute:
     post:
       tags:
@@ -24358,6 +24496,12 @@ paths:
                 props:
                   description: A general JSON property bag to attach to the post
                   type: object
+                repeat_type:
+                  type: string
+                  description: Set to `weekly` for a recurring weekly schedule, or omit for a one-time schedule
+                repeat_timezone:
+                  type: string
+                  description: IANA timezone for weekly recurrence; required when `repeat_type` is `weekly`
       responses:
         "200":
           description: Created scheduled post
@@ -24466,6 +24610,12 @@ paths:
                 message:
                   type: string
                   description: The message contents, can be formatted with Markdown
+                repeat_type:
+                  type: string
+                  description: Set to `weekly` for a recurring weekly schedule, or empty for a one-time schedule
+                repeat_timezone:
+                  type: string
+                  description: IANA timezone for weekly recurrence; required when `repeat_type` is `weekly`
       responses:
         "200":
           description: Updated scheduled post
@@ -25050,6 +25200,184 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "501":
+          $ref: "#/components/responses/NotImplemented"
+  /api/v4/ephemeral_mode/cleanup:
+    post:
+      tags:
+        - ephemeral mode
+      summary: Log an ephemeral mode cleanup run
+      description: >
+        Records the outcome of a client-side ephemeral mode auto cache cleanup run as an audit event.
+
+        __Minimum server version__: 11.10
+
+        ##### Permissions
+
+        Must be logged in.
+
+        ##### License
+
+        Requires an Enterprise Advanced license.
+
+      operationId: LogCleanup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                posts_deleted:
+                  description: >
+                    The number of posts deleted by the cleanup run. Required unless error_reason is provided, since a successful run with no counts records no evidence of what was deleted. If omitted, no posts_deleted value is recorded on the audit event.
+
+                  type: integer
+                  format: int64
+                  nullable: true
+                playbook_runs_deleted:
+                  description: >
+                    The number of playbook runs deleted by the cleanup run. Required unless error_reason is provided. If omitted, no playbook_runs_deleted value is recorded on the audit event.
+
+                  type: integer
+                  format: int64
+                  nullable: true
+                cleanup_at:
+                  description: >
+                    The time in milliseconds the cleanup run completed. Always optional; it does not satisfy the requirement for the deleted record counts. If omitted, no cleanup_at value is recorded on the audit event; the server-observed time is always recorded separately as server_ts.
+
+                  type: integer
+                  format: int64
+                  nullable: true
+                error_reason:
+                  description: >
+                    A reason describing why the cleanup run failed. Its presence alone marks the audit event as a failure, so clients must omit this field entirely (or send null) when the run succeeded; sending an empty string records a failure with no description attached. Reasons longer than 400 characters are truncated to 400 with a trailing ellipsis rather than rejected.
+
+                  type: string
+                  nullable: true
+        required: true
+      responses:
+        "200":
+          description: Cleanup logged successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusOK"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          $ref: "#/components/responses/NotImplemented"
+  /api/v4/ephemeral_mode/purge:
+    post:
+      tags:
+        - ephemeral mode
+      summary: Log an ephemeral mode offline purge
+      description: >
+        Records the outcome of a client-side ephemeral mode offline purge as an audit event.
+
+        __Minimum server version__: 11.10
+
+        ##### Permissions
+
+        Must be logged in.
+
+        ##### License
+
+        Requires an Enterprise Advanced license.
+
+      operationId: LogOfflinePurge
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                offline_time_minutes:
+                  description: >
+                    The number of minutes the client was offline before the purge. Required unless error_reason is provided, since a successful purge with no offline time records no evidence of why it ran. If omitted, no offline_time_minutes value is recorded on the audit event.
+
+                  type: integer
+                  format: int64
+                  nullable: true
+                purge_at:
+                  description: >
+                    The time in milliseconds the purge completed. Always optional; it does not satisfy the requirement for offline_time_minutes. If omitted, no purge_at value is recorded on the audit event; the server-observed time is always recorded separately as server_ts.
+
+                  type: integer
+                  format: int64
+                  nullable: true
+                error_reason:
+                  description: >
+                    A reason describing why the offline purge failed. Its presence alone marks the audit event as a failure, so clients must omit this field entirely (or send null) when the purge succeeded; sending an empty string records a failure with no description attached. Reasons longer than 400 characters are truncated to 400 with a trailing ellipsis rather than rejected.
+
+                  type: string
+                  nullable: true
+        required: true
+      responses:
+        "200":
+          description: Offline purge logged successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusOK"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          $ref: "#/components/responses/NotImplemented"
+  /api/v4/ephemeral_mode/wipe:
+    post:
+      tags:
+        - ephemeral mode
+      summary: Log an ephemeral mode session wipe
+      description: >
+        Records a client-side ephemeral mode wipe confirming that a session revoked by the server has completed its local wipe. Sent without a session, since the session being confirmed is already revoked by the time the client can report it.
+
+        __Minimum server version__: 11.10
+
+        ##### License
+
+        Requires an Enterprise Advanced license.
+
+      operationId: LogSessionWipe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                signature:
+                  description: >
+                    The `signature` field of the session wipe push notification that triggered this wipe, echoed back verbatim. The server verifies it and takes the actor, device and ack id of the audit event from its claims. Always required, including on failure reports: this endpoint accepts unauthenticated requests, so an unattributable audit record is not accepted.
+
+                  type: string
+                wipe_at:
+                  description: >
+                    The time in milliseconds the wipe completed. Optional. If omitted, no wipe_at value is recorded on the audit event; the server-observed time is always recorded separately as server_ts.
+
+                  type: integer
+                  format: int64
+                  nullable: true
+                error_reason:
+                  description: >
+                    A reason describing why the session wipe failed. Its presence alone marks the audit event as a failure, so clients must omit this field entirely (or send null) when the wipe succeeded; sending an empty string records a failure with no description attached. Reasons longer than 400 characters are truncated to 400 with a trailing ellipsis rather than rejected.
+
+                  type: string
+                  nullable: true
+              required:
+                - signature
+        required: true
+      responses:
+        "200":
+          description: Session wipe logged successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusOK"
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "501":
           $ref: "#/components/responses/NotImplemented"
   /api/v4/access_control_policies:
@@ -25727,6 +26055,47 @@ paths:
           $ref: "#/components/responses/InternalServerError"
         "501":
           $ref: "#/components/responses/NotImplemented"
+  /api/v4/access_control/decisions/actions/search:
+    post:
+      tags:
+        - access control
+      summary: Search allowed actions for the current user (render-time decision)
+      description: |
+        Returns non-authoritative, render-time ABAC decisions for the current
+        session user on a given resource and set of actions. Use these decisions
+        to decide whether to show or hide UI controls before the user attempts
+        an action.
+
+        The subject is always the authenticated session user; there is no way to
+        probe another user's decisions. Server-side enforcement always re-evaluates
+        the full policy on the actual request and remains the source of truth.
+
+        Gated by the `PermissionPolicies` feature flag and an Enterprise license.
+        When ABAC is inactive for the resource, every action is returned as
+        `allowed: true, evaluated: true`.
+
+        ##### Permissions
+        Must be authenticated (any logged-in user).
+      operationId: SearchAccessControlDecisionActions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ActionSearchRequest"
+      responses:
+        "200":
+          description: Render-time action decisions returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ActionSearchResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
   /api/v4/content_flagging/flag/config:
     get:
       summary: Get content flagging configuration
@@ -26170,6 +26539,113 @@ paths:
           description: Internal server error.
         '501':
           description: Feature is disabled either via config or an Enterprise Advanced license is not available.
+  /api/v4/content_flagging/post/{post_id}/exposure_report:
+    post:
+      summary: Generate and download a post exposure report
+      description: |
+        Generates a CSV report listing the users who may have been exposed to a flagged post, derived from the channel membership history between the post's creation and it being flagged, and from each member's channel read state. All other content reviewers of the post's team are notified that an exposure report has been generated.
+        The user must be a content reviewer of the team to which the post belongs to, and the post must be flagged. The report remains available after the review is closed, in any status.
+        Exposure reports are not available for direct or group message channels.
+        An enterprise advanced license is required.
+      tags:
+        - Content Flagging
+      parameters:
+        - in: path
+          name: post_id
+          required: true
+          schema:
+            type: string
+          description: The ID of the flagged post to generate the exposure report for
+      operationId: GenerateCFPostExposureReport
+      responses:
+        '200':
+          description: Report generated successfully. The response body is a CSV file. Metadata and the reporting window are emitted as `#`-prefixed comment lines above the header row.
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+              description: Specifies the suggested filename for the downloaded file (e.g. `attachment; filename="post-exposure-{post_id}-{timestamp}.csv"`).
+          content:
+            text/csv:
+              schema:
+                type: string
+        '400':
+          description: Bad request - Invalid post ID, or the post is in a direct or group message channel.
+        '403':
+          description: Forbidden - User does not have permission to access this post, or is not a reviewer of the post's team.
+        '404':
+          description: Post not found or post is not flagged.
+        '500':
+          description: Internal server error.
+        '501':
+          description: Feature is disabled either via config or an Enterprise Advanced license is not available.
+  /api/v4/delivery_tracking/config:
+    get:
+      summary: Get the post delivery audit logging configuration
+      description: |
+        Returns the post delivery audit logging configuration: whether the feature is enabled, whether it applies to
+        all channels, and the ids of the channels deliveries are recorded in.
+
+        Requires an Enterprise Advanced license and the `PostDeliveryTracking` feature flag. Only system admins can
+        access this endpoint.
+      tags:
+        - Delivery Tracking
+      operationId: GetDeliveryTrackingConfig
+      responses:
+        '200':
+          description: Configuration retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeliveryTrackingConfig"
+        '403':
+          description: User does not have permission to manage system configuration.
+        '500':
+          description: Internal server error.
+        '404':
+          description: |
+            The endpoint is not registered because the `PostDeliveryTracking` feature flag was disabled at server start. Enabling the flag requires a server restart.
+        '501':
+          description: An Enterprise Advanced license is not available, or the `PostDeliveryTracking` feature flag was disabled after the server started.
+    put:
+      summary: Update the post delivery audit logging configuration
+      description: |
+        Updates the post delivery audit logging configuration.
+
+        `ChannelIds` fully replaces the stored list. Omit the field to leave the stored list unchanged; send an empty
+        array to clear it. An empty array is only accepted when the resulting configuration is still valid, which means
+        `EnableForAllChannels` must be true. Turning `Enable` off does not clear the list.
+
+        Direct and group message channels can never be recorded. The request is rejected in full if any submitted
+        channel is a DM or GM, or does not exist.
+
+        Requires an Enterprise Advanced license and the `PostDeliveryTracking` feature flag. Only system admins can
+        access this endpoint.
+      tags:
+        - Delivery Tracking
+      operationId: UpdateDeliveryTrackingConfig
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeliveryTrackingConfig"
+      responses:
+        '200':
+          description: Configuration updated successfully
+        '400':
+          description: |
+            Bad request. Returned when `EnableForAllChannels` is false and no channels are selected, when a channel id
+            is malformed, when a submitted channel does not exist, or when a submitted channel is a DM or GM.
+        '403':
+          description: User does not have permission to manage system configuration.
+        '500':
+          description: Internal server error.
+        '404':
+          description: |
+            The endpoint is not registered because the `PostDeliveryTracking` feature flag was disabled at server start. Enabling the flag requires a server restart.
+        '501':
+          description: An Enterprise Advanced license is not available, or the `PostDeliveryTracking` feature flag was disabled after the server started.
   /api/v4/agents:
     get:
       tags:
@@ -26248,6 +26724,427 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "500":
           $ref: "#/components/responses/InternalServerError"
+  /api/v4/scheduled_recaps:
+    post:
+      tags:
+        - scheduled recaps
+        - ai
+      summary: Create a scheduled recap
+      description: >
+        Create a new scheduled recap configuration. Scheduled recaps run on a recurring or one-time schedule, generating AI-powered channel summaries at the configured time and day(s).
+
+        ##### Permissions
+
+        Must be authenticated. The recap is created for the authenticated user.
+
+        __Minimum server version__: 11.2
+
+      operationId: CreateScheduledRecap
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - days_of_week
+                - time_of_day
+                - timezone
+                - time_period
+                - channel_mode
+                - agent_id
+              properties:
+                title:
+                  type: string
+                  description: Title for the scheduled recap
+                  maxLength: 255
+                days_of_week:
+                  type: integer
+                  description: >
+                    Bitmask for days of the week the recap should run. Sun=1, Mon=2, Tue=4, Wed=8, Thu=16, Fri=32, Sat=64. For example, weekdays = 62, every day = 127.
+
+                  minimum: 1
+                  maximum: 127
+                time_of_day:
+                  type: string
+                  description: Time of day in HH:MM format (e.g., "09:00")
+                  pattern: "^([0-1][0-9]|2[0-3]):([0-5][0-9])$"
+                timezone:
+                  type: string
+                  description: IANA timezone (e.g., "America/New_York")
+                time_period:
+                  type: string
+                  description: The lookback period for the recap content
+                  enum:
+                    - last_24h
+                    - last_week
+                    - since_last_read
+                channel_mode:
+                  type: string
+                  description: How channels are selected for the recap
+                  enum:
+                    - specific
+                    - all_unreads
+                channel_ids:
+                  type: array
+                  items:
+                    type: string
+                  description: List of channel IDs to include (required when channel_mode is "specific")
+                custom_instructions:
+                  type: string
+                  description: Custom AI instructions for the recap
+                agent_id:
+                  type: string
+                  description: ID of the AI agent to use for generating the recap
+                is_recurring:
+                  type: boolean
+                  description: Whether the recap runs on a recurring schedule or just once
+              oneOf:
+                - properties:
+                    channel_mode:
+                      type: string
+                      enum:
+                        - specific
+                    channel_ids:
+                      type: array
+                      items:
+                        type: string
+                      minItems: 1
+                  required:
+                    - channel_mode
+                    - channel_ids
+                - properties:
+                    channel_mode:
+                      type: string
+                      enum:
+                        - all_unreads
+                  required:
+                    - channel_mode
+        description: Scheduled recap configuration
+        required: true
+      responses:
+        "201":
+          description: Scheduled recap created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduledRecap"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          $ref: "#/components/responses/NotImplemented"
+    get:
+      tags:
+        - scheduled recaps
+        - ai
+      summary: Get current user's scheduled recaps
+      description: >
+        Get a paginated list of scheduled recaps for the authenticated user.
+
+        ##### Permissions
+
+        Must be authenticated.
+
+        __Minimum server version__: 11.2
+
+      operationId: GetScheduledRecaps
+      parameters:
+        - name: page
+          in: query
+          description: The page to select.
+          schema:
+            type: integer
+            default: 0
+        - name: per_page
+          in: query
+          description: The number of scheduled recaps per page.
+          schema:
+            type: integer
+            default: 60
+      responses:
+        "200":
+          description: Scheduled recaps retrieval successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ScheduledRecap"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          $ref: "#/components/responses/NotImplemented"
+  /api/v4/scheduled_recaps/{scheduled_recap_id}:
+    get:
+      tags:
+        - scheduled recaps
+        - ai
+      summary: Get a scheduled recap
+      description: >
+        Get a scheduled recap by its ID. Only the user who owns the scheduled recap can retrieve it.
+
+        ##### Permissions
+
+        Must be authenticated. Must own the scheduled recap.
+
+        __Minimum server version__: 11.2
+
+      operationId: GetScheduledRecap
+      parameters:
+        - name: scheduled_recap_id
+          in: path
+          description: Scheduled Recap GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Scheduled recap retrieval successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduledRecap"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "501":
+          $ref: "#/components/responses/NotImplemented"
+    put:
+      tags:
+        - scheduled recaps
+        - ai
+      summary: Update a scheduled recap
+      description: >
+        Update a scheduled recap configuration. Only the user who owns the scheduled recap can update it. The `user_id` and `create_at` fields are preserved from the original and cannot be changed.
+
+        ##### Permissions
+
+        Must be authenticated. Must own the scheduled recap.
+
+        __Minimum server version__: 11.2
+
+      operationId: UpdateScheduledRecap
+      parameters:
+        - name: scheduled_recap_id
+          in: path
+          description: Scheduled Recap GUID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Title for the scheduled recap
+                  maxLength: 255
+                days_of_week:
+                  type: integer
+                  description: >
+                    Bitmask for days of the week the recap should run. Sun=1, Mon=2, Tue=4, Wed=8, Thu=16, Fri=32, Sat=64.
+
+                  minimum: 1
+                  maximum: 127
+                time_of_day:
+                  type: string
+                  description: Time of day in HH:MM format (e.g., "09:00")
+                  pattern: "^([0-1][0-9]|2[0-3]):([0-5][0-9])$"
+                timezone:
+                  type: string
+                  description: IANA timezone (e.g., "America/New_York")
+                time_period:
+                  type: string
+                  description: The lookback period for the recap content
+                  enum:
+                    - last_24h
+                    - last_week
+                    - since_last_read
+                channel_mode:
+                  type: string
+                  description: How channels are selected for the recap
+                  enum:
+                    - specific
+                    - all_unreads
+                channel_ids:
+                  type: array
+                  items:
+                    type: string
+                  description: List of channel IDs to include (required when channel_mode is "specific")
+                custom_instructions:
+                  type: string
+                  description: Custom AI instructions for the recap
+                agent_id:
+                  type: string
+                  description: ID of the AI agent to use for generating the recap
+                is_recurring:
+                  type: boolean
+                  description: Whether the recap runs on a recurring schedule or just once
+                enabled:
+                  type: boolean
+                  description: Whether the scheduled recap is active
+              oneOf:
+                - properties:
+                    channel_mode:
+                      type: string
+                      enum:
+                        - specific
+                    channel_ids:
+                      type: array
+                      items:
+                        type: string
+                      minItems: 1
+                  required:
+                    - channel_mode
+                    - channel_ids
+                - properties:
+                    channel_mode:
+                      type: string
+                      enum:
+                        - all_unreads
+                  required:
+                    - channel_mode
+        description: Updated scheduled recap configuration
+        required: true
+      responses:
+        "200":
+          description: Scheduled recap updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduledRecap"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "501":
+          $ref: "#/components/responses/NotImplemented"
+    delete:
+      tags:
+        - scheduled recaps
+        - ai
+      summary: Delete a scheduled recap
+      description: >
+        Delete a scheduled recap by its ID. Only the user who owns the scheduled recap can delete it.
+
+        ##### Permissions
+
+        Must be authenticated. Must own the scheduled recap.
+
+        __Minimum server version__: 11.2
+
+      operationId: DeleteScheduledRecap
+      parameters:
+        - name: scheduled_recap_id
+          in: path
+          description: Scheduled Recap GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Scheduled recap deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusOK"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "501":
+          $ref: "#/components/responses/NotImplemented"
+  /api/v4/scheduled_recaps/{scheduled_recap_id}/pause:
+    post:
+      tags:
+        - scheduled recaps
+        - ai
+      summary: Pause a scheduled recap
+      description: >
+        Pause a scheduled recap, preventing it from running until resumed. Only the user who owns the scheduled recap can pause it.
+
+        ##### Permissions
+
+        Must be authenticated. Must own the scheduled recap.
+
+        __Minimum server version__: 11.2
+
+      operationId: PauseScheduledRecap
+      parameters:
+        - name: scheduled_recap_id
+          in: path
+          description: Scheduled Recap GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Scheduled recap paused successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduledRecap"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "501":
+          $ref: "#/components/responses/NotImplemented"
+  /api/v4/scheduled_recaps/{scheduled_recap_id}/resume:
+    post:
+      tags:
+        - scheduled recaps
+        - ai
+      summary: Resume a scheduled recap
+      description: >
+        Resume a previously paused scheduled recap, allowing it to run on its configured schedule again. Only the user who owns the scheduled recap can resume it.
+
+        ##### Permissions
+
+        Must be authenticated. Must own the scheduled recap.
+
+        __Minimum server version__: 11.2
+
+      operationId: ResumeScheduledRecap
+      parameters:
+        - name: scheduled_recap_id
+          in: path
+          description: Scheduled Recap GUID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Scheduled recap resumed successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduledRecap"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "501":
+          $ref: "#/components/responses/NotImplemented"
   "/api/v4/properties/groups/{group_name}/{object_type}/fields":
     post:
       tags:
@@ -28108,6 +29005,19 @@ paths:
                     - closed
                   example: closed
                   default: ""
+                requirement_values:
+                  type: object
+                  additionalProperties:
+                    type: string
+                  description: |
+                    Optional map of requirement ID to filled value. When the task requirements
+                    beta feature is enabled and the item has requirements, closing the item
+                    requires every requirement to have a non-empty value (either already stored
+                    on the item or supplied here). Clients that cannot collect requirement
+                    values (for example mobile, until supported) will receive 400 when trying
+                    to close such items.
+                  example:
+                    req1abcxyz: https://jira.example.com/browse/ABC-123
               required:
                 - new_state
       x-codeSamples:
@@ -28115,7 +29025,7 @@ paths:
           source: |
             curl -X PUT 'http://localhost:8065/plugins/playbooks/api/v0/runs/7l37isroz4e63giev62hs318bn/checklists/1/item/2/state' \
             -H 'Authorization: Bearer 9g64ig7q9pds8yjz8rsgd6e36e'
-            -d '{"new_state": "closed"}'
+            -d '{"new_state": "closed", "requirement_values": {"req1abcxyz": "https://jira.example.com/browse/ABC-123"}}'
       responses:
         "200":
           description: Item's state successfully updated.
@@ -29543,9 +30453,10 @@ components:
         roles:
           type: string
         last_viewed_at:
-          description: The time in milliseconds the channel was last viewed by the user
+          description: The time in milliseconds the channel was last viewed by the user. This field is omitted when the membership belongs to a user other than the requester, as the value is private to that user.
           type: integer
           format: int64
+          nullable: true
         msg_count:
           type: integer
         mention_count:
@@ -29553,9 +30464,10 @@ components:
         notify_props:
           $ref: "#/components/schemas/ChannelNotifyProps"
         last_update_at:
-          description: The time in milliseconds the channel member was last updated
+          description: The time in milliseconds the channel member was last updated. This field is omitted when the membership belongs to a user other than the requester, as the value is private to that user.
           type: integer
           format: int64
+          nullable: true
     ChannelMemberWithTeamData:
       allOf:
         - $ref: "#/components/schemas/ChannelMember"
@@ -30922,12 +31834,6 @@ components:
         MaxPageSize:
           type: integer
         LoginFieldName:
-          type: string
-        LoginButtonColor:
-          type: string
-        LoginButtonBorderColor:
-          type: string
-        LoginButtonTextColor:
           type: string
     LdapDiagnosticResult:
       type: object
@@ -32438,6 +33344,13 @@ components:
             The minimum Mattermost server version required for the plugin.
 
             Available as server version 5.6.
+        required_add_on:
+          type: string
+          description: |
+            The add-on the server license must grant before the plugin can be
+            enabled.
+
+            Available as server version 12.0.
         backend:
           type: object
           description: Deprecated in Mattermost 5.2 release.
@@ -32696,12 +33609,6 @@ components:
           description: The time in milliseconds that this action was performed.
           type: integer
           format: int64
-    PostIdToReactionsMap:
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          $ref: "#/components/schemas/Reaction"
     Product:
       type: object
       properties:
@@ -33967,6 +34874,14 @@ components:
         error_code:
           type: string
           description: Explains the error behind why a scheduled post could not have been sent
+        repeat_type:
+          type: string
+          description: |
+            Empty for a one-time schedule, or `weekly` for a recurring weekly schedule in `repeat_timezone`.
+        repeat_timezone:
+          type: string
+          description: |
+            IANA timezone name (for example `America/New_York`) used to interpret weekly recurrence; required when `repeat_type` is `weekly`.
         metadata:
           $ref: "#/components/schemas/PostMetadata"
     AccessControlFieldsAutocompleteResponse:
@@ -34588,6 +35503,25 @@ components:
       required:
         - Enabled
         - ReviewerIds
+    DeliveryTrackingConfig:
+      type: object
+      description: Post delivery audit logging configuration. The toggles are stored in the server configuration; the channel list is stored separately in the database.
+      properties:
+        Enable:
+          type: boolean
+          description: Whether an audit log entry is recorded each time a post is delivered to a user. The records are emitted on the `audit-delivery` log level, which is not part of the default audit file target — an admin must add a target for it via `ExperimentalAuditSettings.AdvancedLoggingJSON`.
+          example: true
+        EnableForAllChannels:
+          type: boolean
+          description: When true, deliveries are recorded in every eligible channel. When false, only in the channels listed in ChannelIds.
+          example: false
+        ChannelIds:
+          type: array
+          items:
+            type: string
+          description: IDs of the channels deliveries are recorded in. Only used when EnableForAllChannels is false. On update this fully replaces the stored list; omit the field to leave it unchanged, or send an empty array to clear it. An empty array is only accepted when the resulting configuration is still valid, which means EnableForAllChannels must be true. Direct and group message channels are rejected.
+          example:
+            - onymzj7qcjnz7dcnhtjp1noc3w
     AccessControlPolicyActiveUpdateRequest:
       type: object
       properties:
@@ -34689,6 +35623,262 @@ components:
           type: integer
           format: int64
           description: The time in milliseconds the recap channel was created
+    AccessControlResource:
+      type: object
+      description: Identifies a resource (type + id) for an ABAC decision request.
+      required:
+        - type
+        - id
+      properties:
+        type:
+          type: string
+          description: The resource type (e.g. "channel").
+        id:
+          type: string
+          description: The resource identifier.
+    RenderPermissionDecision:
+      type: object
+      description: |
+        A non-authoritative, render-time ABAC decision for a single action.
+        Must not be used to authorize an action — server enforcement is authoritative.
+      required:
+        - allowed
+        - evaluated
+      properties:
+        allowed:
+          type: boolean
+          description: Whether the action is permitted for rendering purposes.
+        evaluated:
+          type: boolean
+          description: Whether the server intentionally computed this decision.
+        reason:
+          type: string
+          description: Generic denial reason (e.g. "restricted_by_policy"). Never contains policy names, expressions, or attribute values.
+    ActionSearchResult:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+              description: Name of a permitted action. Denial is expressed by omission from the results list.
+    ActionSearchSubject:
+      type: object
+      description: |
+        RESERVED for Phase 3 cross-subject evaluation. In Phase 2 the ID must equal the authenticated session user ID; mismatches return 403. Present to allow Phase 3 as a non-breaking extension.
+      required:
+        - id
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+    ActionSearchPage:
+      type: object
+      description: |
+        RESERVED for Phase 3 pagination. Accepted in requests but always ignored; next_token is never emitted in responses. Present to allow Phase 3 pagination as a non-breaking extension.
+      properties:
+        next_token:
+          type: string
+    ActionSearchRequest:
+      type: object
+      description: Request body for the Action Search render-decision endpoint.
+      required:
+        - resource
+      properties:
+        resource:
+          $ref: "#/components/schemas/AccessControlResource"
+        actions:
+          type: array
+          description: |
+            Actions to evaluate (max 16). Omit or leave empty for discovery mode: the server evaluates all registered actions for the resource type and returns the permitted set.
+          maxItems: 16
+          items:
+            type: string
+        subject:
+          $ref: "#/components/schemas/ActionSearchSubject"
+        page:
+          $ref: "#/components/schemas/ActionSearchPage"
+    ActionSearchResponse:
+      type: object
+      description: Response from the Action Search render-decision endpoint.
+      required:
+        - resource
+        - results
+        - decisions
+      properties:
+        resource:
+          $ref: "#/components/schemas/AccessControlResource"
+        results:
+          type: array
+          description: |
+            AuthZEN-canonical list: only PERMITTED actions appear here. Denial is expressed by omission. Always present; an empty array [] is meaningful (all evaluated actions were denied).
+          items:
+            $ref: "#/components/schemas/ActionSearchResult"
+        decisions:
+          type: object
+          description: |
+            Mattermost extension: all evaluated actions with full decision detail (allowed, evaluated, reason), including denied ones. Always present.
+          additionalProperties:
+            $ref: "#/components/schemas/RenderPermissionDecision"
+        page:
+          $ref: "#/components/schemas/ActionSearchPage"
+    RecapLimitStatus:
+      type: object
+      description: The current user's recap limit status including usage and cooldown information
+      properties:
+        effective_limits:
+          $ref: "#/components/schemas/EffectiveRecapLimits"
+        daily:
+          $ref: "#/components/schemas/DailyUsageStatus"
+        cooldown:
+          $ref: "#/components/schemas/CooldownStatus"
+    EffectiveRecapLimits:
+      type: object
+      description: Resolved recap limit values for a user. A value of -1 means the limit is disabled/unlimited.
+      properties:
+        max_recaps_per_day:
+          type: integer
+          description: Maximum number of recaps the user can create per day (-1 = unlimited)
+        max_scheduled_recaps:
+          type: integer
+          description: Maximum number of scheduled recaps (-1 = unlimited)
+        max_channels_per_recap:
+          type: integer
+          description: Maximum number of channels per recap (-1 = unlimited)
+        max_posts_per_recap:
+          type: integer
+          description: Maximum number of posts per recap (-1 = unlimited)
+        max_tokens_per_recap:
+          type: integer
+          description: Maximum number of tokens per recap (-1 = unlimited)
+        max_posts_per_day:
+          type: integer
+          description: Maximum number of posts that can be processed per day (-1 = unlimited)
+        cooldown_minutes:
+          type: integer
+          description: Cooldown period in minutes between recap creations (-1 = no cooldown)
+        source:
+          type: string
+          enum:
+            - system
+            - group
+            - user
+          description: Where the effective limits originated from
+        source_id:
+          type: string
+          description: Group ID or User ID if overridden, empty for system defaults
+    DailyUsageStatus:
+      type: object
+      description: Daily recap usage tracking
+      properties:
+        used:
+          type: integer
+          description: Number of recaps used today
+        limit:
+          type: integer
+          description: Maximum recaps allowed per day
+        reset_at:
+          type: integer
+          format: int64
+          description: Unix timestamp in milliseconds when daily usage resets
+    CooldownStatus:
+      type: object
+      description: Cooldown state for recap creation
+      properties:
+        is_active:
+          type: boolean
+          description: Whether the cooldown is currently active
+        available_at:
+          type: integer
+          format: int64
+          description: Unix timestamp in milliseconds when cooldown ends
+        retry_after_seconds:
+          type: integer
+          description: Seconds until recap creation is available again
+    ScheduledRecap:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the scheduled recap
+        user_id:
+          type: string
+          description: The ID of the user who owns this scheduled recap
+        title:
+          type: string
+          description: Title for the scheduled recap
+          maxLength: 255
+        days_of_week:
+          type: integer
+          description: |
+            Bitmask for days of the week the recap should run. Sun=1, Mon=2, Tue=4, Wed=8, Thu=16, Fri=32, Sat=64.
+          minimum: 1
+          maximum: 127
+        time_of_day:
+          type: string
+          description: Time of day in HH:MM format (e.g., "09:00")
+        timezone:
+          type: string
+          description: IANA timezone (e.g., "America/New_York")
+        time_period:
+          type: string
+          description: The lookback period for the recap content
+          enum:
+            - last_24h
+            - last_week
+            - since_last_read
+        next_run_at:
+          type: integer
+          format: int64
+          description: The next scheduled execution time in UTC milliseconds
+        last_run_at:
+          type: integer
+          format: int64
+          description: The last execution time in UTC milliseconds
+        run_count:
+          type: integer
+          description: Number of times this schedule has executed
+        channel_mode:
+          type: string
+          description: How channels are selected for the recap
+          enum:
+            - specific
+            - all_unreads
+        channel_ids:
+          type: array
+          items:
+            type: string
+          description: List of channel IDs to include (when channel_mode is "specific")
+        custom_instructions:
+          type: string
+          description: Custom AI instructions for the recap
+        agent_id:
+          type: string
+          description: ID of the AI agent to use for generating the recap
+        is_recurring:
+          type: boolean
+          description: Whether the recap runs on a recurring schedule or just once
+        enabled:
+          type: boolean
+          description: Whether the scheduled recap is active (false when paused)
+        create_at:
+          type: integer
+          format: int64
+          description: The time in milliseconds the scheduled recap was created
+        update_at:
+          type: integer
+          format: int64
+          description: The time in milliseconds the scheduled recap was last updated
+        delete_at:
+          type: integer
+          format: int64
+          description: The time in milliseconds the scheduled recap was soft-deleted (0 if not deleted)
     PlaybookRun:
       type: object
       properties:
@@ -34894,6 +36084,14 @@ components:
             type: string
             description: User ID of the playbook member.
             example: ilh6s1j4yefbdhxhtlzt179i6m
+        channel_name_template:
+          type: string
+          description: A template used to derive the channel name and the run name/title when a run is created from this playbook. May reference property fields and system tokens such as {SEQ}.
+          example: Incident - {SEQ}
+        channel_name_template_locked:
+          type: boolean
+          description: When true, the channel_name_template always overrides the supplied name when creating a run. When false (the default), the template is only a suggested default and the caller may supply their own name.
+          example: false
     PlaybookList:
       type: object
       properties:
@@ -34990,7 +36188,10 @@ components:
           example: 1607774621321
         task_actions:
           type: array
-          description: An array of all the task actions associated with this task.
+          description: |
+            An array of all the task actions associated with this task.
+            Enabled mark-as-done message triggers are mutually exclusive with requirements
+            on the same checklist item.
           items:
             type: object
             properties:
@@ -35002,6 +36203,15 @@ components:
                 description: The actions to be executed when the trigger is activated.
                 items:
                   type: object
+        requirements:
+          type: array
+          description: |
+            Labeled fields that must be filled when checking off this task in a run.
+            Only used when the task requirements beta feature is enabled. Mutually exclusive
+            with enabled mark-as-done message triggers on the same item. On playbook writes,
+            requirement values are cleared so templates do not prefill run values.
+          items:
+            $ref: "#/components/schemas/TaskRequirement"
         update_at:
           type: integer
           format: int64
@@ -35023,6 +36233,21 @@ components:
           type: string
           description: A string representation of the condition that affects this checklist item. Empty string if no condition is associated with this item.
           example: Severity is Critical AND Status is not Closed
+    TaskRequirement:
+      type: object
+      properties:
+        id:
+          type: string
+          description: A unique identifier for the requirement field.
+          example: req1abcxyz
+        label:
+          type: string
+          description: The label shown to users when filling this requirement.
+          example: Ticket URL
+        value:
+          type: string
+          description: The filled value for this requirement on a run. Empty on playbook templates.
+          example: https://jira.example.com/browse/ABC-123
     Error:
       type: object
       required:
