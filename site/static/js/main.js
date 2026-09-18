@@ -76,6 +76,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
     document.body.classList.toggle("nav-open");
     document.getElementById("navigation").classList.toggle("active");
   });
+
+  // Close mobile menu when viewport expands beyond mobile breakpoint
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 767) {
+      hamburger.classList.remove("is-active");
+      document.body.classList.remove("nav-open");
+      document.getElementById("navigation").classList.remove("active");
+    }
+  });
 });
 
 const searchForm = document.getElementById("search-form");
