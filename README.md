@@ -1,3 +1,13 @@
+# ⚠️ This repository is archived
+
+The Mattermost developer documentation has moved to the main Mattermost repository. Please see:
+
+**https://github.com/mattermost/mattermost/tree/master/docs/develop**
+
+This repository is no longer maintained. Please open issues and pull requests against the new location.
+
+---
+
 # Mattermost developer documentation ![Mattermost dev docs status badge](https://github.com/mattermost/mattermost-developer-documentation/actions/workflows/build.yml/badge.svg)
 
 Website for Mattermost developer documentation, built using [Hugo](https://gohugo.io/). The `master` branch is continuously deployed to [developers.mattermost.com](https://developers.mattermost.com/).
