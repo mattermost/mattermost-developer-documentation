@@ -76,6 +76,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
     document.body.classList.toggle("nav-open");
     document.getElementById("navigation").classList.toggle("active");
   });
+
+  // Close mobile menu when viewport expands beyond mobile breakpoint
+  // Breakpoint aligns with CSS: hamburger hidden at min-width: 992px
+  let resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (window.innerWidth > 991) {
+        hamburger.classList.remove("is-active");
+        document.body.classList.remove("nav-open");
+        document.getElementById("navigation").classList.remove("active");
+      }
+    }, 150);
+  });
 });
 
 const searchForm = document.getElementById("search-form");
