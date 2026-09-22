@@ -430,6 +430,8 @@ tags:
     description: Endpoints related to metrics, including the Client Performance Monitoring feature.
   - name: audit_logs
     description: Endpoints for managing audit log certificates and configuration.
+  - name: ephemeral mode
+    description: Endpoints for logging client-side ephemeral mode audit events.
   - name: recaps
     description: Endpoints for creating and managing AI-powered channel recaps that summarize unread messages.
   - name: scheduled recaps
@@ -3059,7 +3061,7 @@ paths:
         - users
       summary: Count non-compliant personal access tokens
       description: >
-        Count the active personal access tokens that violate the configured `ServiceSettings.MaximumPersonalAccessTokenLifetimeDays` policy (tokens that never expire or expire beyond the cap). Bot account tokens are exempt and never counted. Returns 0 when no maximum lifetime is configured.
+        Count the active personal access tokens that violate the configured `ServiceSettings.MaximumPersonalAccessTokenLifetimeDays` policy (tokens that never expire or expire beyond the cap). Returns 0 when no maximum lifetime is configured.
 
 
         __Minimum server version__: 11.1
@@ -3092,7 +3094,7 @@ paths:
         - users
       summary: Revoke non-compliant personal access tokens
       description: >
-        Revoke (hard-delete) every active personal access token that violates the configured `ServiceSettings.MaximumPersonalAccessTokenLifetimeDays` policy, along with any sessions created from them, and return the number of tokens revoked. Bot account tokens are exempt. The request is rejected with 400 when no maximum lifetime is configured, since there is nothing to revoke. This is irreversible; use `/users/tokens/non_compliant/count` first to preview the blast radius.
+        Revoke (hard-delete) every active personal access token that violates the configured `ServiceSettings.MaximumPersonalAccessTokenLifetimeDays` policy, along with any sessions created from them, and return the number of tokens revoked. The request is rejected with 400 when no maximum lifetime is configured, since there is nothing to revoke. This is irreversible; use `/users/tokens/non_compliant/count` first to preview the blast radius.
 
 
         __Minimum server version__: 11.1
@@ -10281,6 +10283,14 @@ paths:
           schema:
             type: boolean
             default: false
+        - name: propertyGroup
+          in: query
+          description: >
+            The name of a single property group whose values should be hydrated onto each post's metadata. Only **PSAv2** groups are accepted; passing a legacy v1 group, or an unrecognized name, returns 404. There is no support for requesting more than one group per request.
+
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: Post retrieval successful
@@ -10299,6 +10309,8 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
     delete:
       tags:
         - posts
@@ -10566,6 +10578,14 @@ paths:
           schema:
             type: boolean
             default: false
+        - name: propertyGroup
+          in: query
+          description: >
+            The name of a single property group whose values should be hydrated onto each post's metadata. Only **PSAv2** groups are accepted; passing a legacy v1 group, or an unrecognized name, returns 404. There is no support for requesting more than one group per request.
+
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: Post list retrieval successful
@@ -10579,6 +10599,8 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   "/api/v4/users/{user_id}/posts/flagged":
     get:
       tags:
@@ -10804,6 +10826,32 @@ paths:
           description: Filter posts by type.
           schema:
             type: string
+        - name: skipFetchThreads
+          in: query
+          description: Whether to skip fetching threads or not.
+          schema:
+            type: boolean
+            default: false
+        - name: collapsedThreads
+          in: query
+          description: Whether the client uses CRT or not.
+          schema:
+            type: boolean
+            default: false
+        - name: collapsedThreadsExtended
+          in: query
+          description: Whether to return the associated users as part of the response or not.
+          schema:
+            type: boolean
+            default: false
+        - name: propertyGroup
+          in: query
+          description: >
+            The name of a single property group whose values should be hydrated onto each post's metadata. Only **PSAv2** groups are accepted; passing a legacy v1 group, or an unrecognized name, returns 404. There is no support for requesting more than one group per request.
+
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: Post list retrieval successful
@@ -10817,6 +10865,8 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   "/api/v4/users/{user_id}/channels/{channel_id}/posts/unread":
     get:
       tags:
@@ -10879,6 +10929,14 @@ paths:
           schema:
             type: boolean
             default: false
+        - name: propertyGroup
+          in: query
+          description: >
+            The name of a single property group whose values should be hydrated onto each post's metadata. Only **PSAv2** groups are accepted; passing a legacy v1 group, or an unrecognized name, returns 404. There is no support for requesting more than one group per request.
+
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: Post list retrieval successful
@@ -10892,6 +10950,8 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   "/api/v4/teams/{team_id}/posts/search":
     post:
       tags:
@@ -23629,6 +23689,14 @@ paths:
             type: integer
             default: 60
             maximum: 200
+        - name: propertyGroup
+          in: query
+          description: >
+            The name of a single property group whose values should be hydrated onto each post's metadata. Only **PSAv2** groups are accepted; passing a legacy v1 group, or an unrecognized name, returns 404. There is no support for requesting more than one group per request.
+
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: Post list retrieval successful
@@ -25198,6 +25266,184 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "501":
+          $ref: "#/components/responses/NotImplemented"
+  /api/v4/ephemeral_mode/cleanup:
+    post:
+      tags:
+        - ephemeral mode
+      summary: Log an ephemeral mode cleanup run
+      description: >
+        Records the outcome of a client-side ephemeral mode auto cache cleanup run as an audit event.
+
+        __Minimum server version__: 11.10
+
+        ##### Permissions
+
+        Must be logged in.
+
+        ##### License
+
+        Requires an Enterprise Advanced license.
+
+      operationId: LogCleanup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                posts_deleted:
+                  description: >
+                    The number of posts deleted by the cleanup run. Required unless error_reason is provided, since a successful run with no counts records no evidence of what was deleted. If omitted, no posts_deleted value is recorded on the audit event.
+
+                  type: integer
+                  format: int64
+                  nullable: true
+                playbook_runs_deleted:
+                  description: >
+                    The number of playbook runs deleted by the cleanup run. Required unless error_reason is provided. If omitted, no playbook_runs_deleted value is recorded on the audit event.
+
+                  type: integer
+                  format: int64
+                  nullable: true
+                cleanup_at:
+                  description: >
+                    The time in milliseconds the cleanup run completed. Always optional; it does not satisfy the requirement for the deleted record counts. If omitted, no cleanup_at value is recorded on the audit event; the server-observed time is always recorded separately as server_ts.
+
+                  type: integer
+                  format: int64
+                  nullable: true
+                error_reason:
+                  description: >
+                    A reason describing why the cleanup run failed. Its presence alone marks the audit event as a failure, so clients must omit this field entirely (or send null) when the run succeeded; sending an empty string records a failure with no description attached. Reasons longer than 400 characters are truncated to 400 with a trailing ellipsis rather than rejected.
+
+                  type: string
+                  nullable: true
+        required: true
+      responses:
+        "200":
+          description: Cleanup logged successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusOK"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          $ref: "#/components/responses/NotImplemented"
+  /api/v4/ephemeral_mode/purge:
+    post:
+      tags:
+        - ephemeral mode
+      summary: Log an ephemeral mode offline purge
+      description: >
+        Records the outcome of a client-side ephemeral mode offline purge as an audit event.
+
+        __Minimum server version__: 11.10
+
+        ##### Permissions
+
+        Must be logged in.
+
+        ##### License
+
+        Requires an Enterprise Advanced license.
+
+      operationId: LogOfflinePurge
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                offline_time_minutes:
+                  description: >
+                    The number of minutes the client was offline before the purge. Required unless error_reason is provided, since a successful purge with no offline time records no evidence of why it ran. If omitted, no offline_time_minutes value is recorded on the audit event.
+
+                  type: integer
+                  format: int64
+                  nullable: true
+                purge_at:
+                  description: >
+                    The time in milliseconds the purge completed. Always optional; it does not satisfy the requirement for offline_time_minutes. If omitted, no purge_at value is recorded on the audit event; the server-observed time is always recorded separately as server_ts.
+
+                  type: integer
+                  format: int64
+                  nullable: true
+                error_reason:
+                  description: >
+                    A reason describing why the offline purge failed. Its presence alone marks the audit event as a failure, so clients must omit this field entirely (or send null) when the purge succeeded; sending an empty string records a failure with no description attached. Reasons longer than 400 characters are truncated to 400 with a trailing ellipsis rather than rejected.
+
+                  type: string
+                  nullable: true
+        required: true
+      responses:
+        "200":
+          description: Offline purge logged successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusOK"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          $ref: "#/components/responses/NotImplemented"
+  /api/v4/ephemeral_mode/wipe:
+    post:
+      tags:
+        - ephemeral mode
+      summary: Log an ephemeral mode session wipe
+      description: >
+        Records a client-side ephemeral mode wipe confirming that a session revoked by the server has completed its local wipe. Sent without a session, since the session being confirmed is already revoked by the time the client can report it.
+
+        __Minimum server version__: 11.10
+
+        ##### License
+
+        Requires an Enterprise Advanced license.
+
+      operationId: LogSessionWipe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                signature:
+                  description: >
+                    The `signature` field of the session wipe push notification that triggered this wipe, echoed back verbatim. The server verifies it and takes the actor, device and ack id of the audit event from its claims. Always required, including on failure reports: this endpoint accepts unauthenticated requests, so an unattributable audit record is not accepted.
+
+                  type: string
+                wipe_at:
+                  description: >
+                    The time in milliseconds the wipe completed. Optional. If omitted, no wipe_at value is recorded on the audit event; the server-observed time is always recorded separately as server_ts.
+
+                  type: integer
+                  format: int64
+                  nullable: true
+                error_reason:
+                  description: >
+                    A reason describing why the session wipe failed. Its presence alone marks the audit event as a failure, so clients must omit this field entirely (or send null) when the wipe succeeded; sending an empty string records a failure with no description attached. Reasons longer than 400 characters are truncated to 400 with a trailing ellipsis rather than rejected.
+
+                  type: string
+                  nullable: true
+              required:
+                - signature
+        required: true
+      responses:
+        "200":
+          description: Session wipe logged successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusOK"
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "501":
           $ref: "#/components/responses/NotImplemented"
   /api/v4/access_control_policies:
@@ -27026,8 +27272,9 @@ paths:
                     - sysadmin
                     - member
                     - admin
+                    - creator
                   description: >
-                    Permission level for editing the field definition. Only system admins can set this; ignored for non-admin users.
+                    Permission level for editing (and deleting) the field definition. `creator` grants the user recorded in the field's `created_by`, in addition to everyone `admin` grants. It is only valid on fields whose object type is `post` or `channel`; any other object type is rejected with 400. Only system admins can set this; ignored for non-admin users.
 
                   default: member
                 permission_values:
@@ -27037,8 +27284,9 @@ paths:
                     - sysadmin
                     - member
                     - admin
+                    - creator
                   description: >
-                    Permission level for setting values on objects. Only system admins can set this; ignored for non-admin users.
+                    Permission level for setting values on objects. `creator` grants the creator of the object the value is attached to — the post's author for `post` fields, the channel's creator for `channel` fields — in addition to everyone `admin` grants. It is only valid on fields whose object type is `post` or `channel`; any other object type is rejected with 400. Only system admins can set this; ignored for non-admin users.
 
                   default: member
                 permission_options:
@@ -27048,8 +27296,9 @@ paths:
                     - sysadmin
                     - member
                     - admin
+                    - creator
                   description: >
-                    Permission level for managing options on select/multiselect fields. Only system admins can set this; ignored for non-admin users.
+                    Permission level for managing options on select/multiselect fields. `creator` grants the user recorded in the field's `created_by`, in addition to everyone `admin` grants. It is only valid on fields whose object type is `post` or `channel`; any other object type is rejected with 400. Only system admins can set this; ignored for non-admin users.
 
                   default: member
                 linked_field_id:
@@ -30931,6 +31180,16 @@ components:
             Any acknowledgements made to this point.
           items:
             $ref: "#/components/schemas/PostAcknowledgement"
+        property_values:
+          type: array
+          description: |
+            The property values attached to this post for the property group named in the `propertyGroup` query parameter. Present only when that parameter was supplied, the lookup succeeded, and the post has at least one value in that group.
+          items:
+            $ref: "#/components/schemas/PropertyValue"
+        property_values_unavailable:
+          type: boolean
+          description: |
+            Present and `true` when the lookup of this post's property values failed; omitted otherwise. It does **not** mean the post has no property values, it means they could not be retrieved, and `property_values` is therefore absent or incomplete.
     TeamMap:
       type: object
       description: A mapping of teamIds to teams.
@@ -33164,6 +33423,13 @@ components:
             The minimum Mattermost server version required for the plugin.
 
             Available as server version 5.6.
+        required_add_on:
+          type: string
+          description: |
+            The add-on the server license must grant before the plugin can be
+            enabled.
+
+            Available as server version 12.0.
         backend:
           type: object
           description: Deprecated in Mattermost 5.2 release.

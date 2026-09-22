@@ -70,10 +70,11 @@ Each dialog supports elements for users to enter information.
 - `radio`: Radio button option. Use this to quickly select an option from pre-selected choices.
 - `date`: Date picker field. Use this for selecting dates without time information.
 - `datetime`: Date and time picker field. Use this for selecting both date and time with timezone support.
+- `collapsible`: A section that groups child elements under a toggleable header. Use this to organize long forms. Sections can be nested and can start expanded or collapsed.
 - `file`: File upload field. Use this to allow users to attach one or more files as part of a dialog submission.
 - `action_button`: Clickable button that opens a child (stacked) dialog. Use this to branch into a follow-up dialog without submitting the current one. (Minimum server version 11.10.)
 
-Each element is required by default, otherwise the client will return an error as shown below. Note that the error message will appear below the help text, if one is specified. To make an element optional, set the field `"optional": "true"`.
+Each element is required by default, otherwise the client will return an error as shown below. Note that the error message will appear below the help text, if one is specified. To make an element optional, set the field `"optional": true`.
 
 ![image](interactive-dialog-error.png)
 
@@ -446,8 +447,6 @@ The full list of supported fields for `date` elements is included below:
 | `help_text`       | String  | (Optional) Help text displayed below the field. Maximum 150 characters.                                                            |
 | `optional`        | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
 | `datetime_config` | Object  | (Optional) Nested date configuration object. See [datetime_config object](#datetime_config-object) for supported properties.       |
-| `min_date`        | String  | (Deprecated — use `datetime_config.min_date`.) Earliest selectable date. Supports ISO date format (YYYY-MM-DD) or relative formats (`today`, `tomorrow`, `+1d`, `-7d`, etc.). Full ISO datetime strings are accepted, but only the date part is parsed; timezone information is ignored. |
-| `max_date`        | String  | (Deprecated — use `datetime_config.max_date`.) Latest selectable date. Supports ISO date format (YYYY-MM-DD) or relative formats (`today`, `+30d`, `+1y`, etc.). Full ISO datetime strings are accepted, but only the date part is parsed; timezone information is ignored. |
 
 #### Date field usage examples
 
@@ -517,9 +516,6 @@ The full list of supported fields for `datetime` elements is included below:
 | `help_text`       | String  | (Optional) Help text displayed below the field. Maximum 150 characters.                                                            |
 | `optional`        | Boolean | (Optional) Set to `true` if this form element is not required. Default is `false`.                                                 |
 | `datetime_config` | Object  | (Optional) Nested datetime configuration object. See [datetime_config object](#datetime_config-object) for supported properties.   |
-| `min_date`        | String  | (Deprecated — use `datetime_config.min_date`.) Earliest selectable date. Supports ISO format or relative formats (`today`, `tomorrow`, `+1d`, `-7d`, etc.). |
-| `max_date`        | String  | (Deprecated — use `datetime_config.max_date`.) Latest selectable date. Supports ISO format or relative formats (`today`, `+30d`, `+1y`, etc.). |
-| `time_interval`   | Integer | (Deprecated — use `datetime_config.time_interval`.) Time selection interval in minutes. Must be between 1 and 1440, and must be a divisor of 1440 to create evenly spaced intervals throughout the day. Common values: 15, 30, 60, 90, 120. Default is 60. |
 
 #### DateTime field usage examples
 
@@ -582,9 +578,10 @@ The `datetime_config` object groups date/datetime configuration into a single ne
 | `time_interval`           | Integer | `datetime`         | 11.6   | (Optional) Time selection interval in minutes. Must be between 1 and 1440, and must be a divisor of 1440. Default is 60.    |
 | `location_timezone`       | String  | `datetime`         | 11.6   | (Optional) IANA timezone used to display and submit the time (e.g. `America/Denver`, `Asia/Tokyo`). When set, all users see the same wall-clock time regardless of their own timezone. Defaults to the viewing user's timezone. |
 | `manual_time_entry`       | Boolean | `datetime`         | 11.8   | (Optional) When `true`, users can type the time directly in addition to using the dropdown. Default is `false`.             |
-| `allow_manual_time_entry` | Boolean | `datetime`         | 11.6 (deprecated in 11.8) | (Deprecated — use `manual_time_entry`.) When both are set, either enabling turns the feature on.         |
 
-**Backward compatibility (new in 11.8):** The top-level `min_date`, `max_date`, and `time_interval` fields on `date` and `datetime` elements are still accepted for existing integrations, but are deprecated in favor of `datetime_config`. When both are provided on the same element, values inside `datetime_config` take precedence over the legacy top-level values.
+{{<note "DateTime field breaking change (server version 12.0):">}}
+The top-level `min_date`, `max_date`, and `time_interval` fields on `date`/`datetime` elements, and the `datetime_config.allow_manual_time_entry` field, have been removed with Mattermost v12. Integrations must send these values under `datetime_config` (using `manual_time_entry` instead of `allow_manual_time_entry`) or they will be silently ignored.
+{{</note>}}
 
 #### Date and DateTime field specifications
 
@@ -624,6 +621,47 @@ The `datetime_config` object groups date/datetime configuration into a single ne
 - `"time_interval": 30` creates options: 00:00, 00:30, 01:00, 01:30, etc.
 - `"time_interval": 60` creates options: 00:00, 01:00, 02:00, 03:00, etc.
 - Invalid: `"time_interval": 7` (7 is not a divisor of 1440)
+
+### Collapsible elements
+#### Minimum Server Version: 12.0
+
+Collapsible elements group other elements under a toggleable header, letting you organize long forms into sections. Sections start expanded by default; set `collapsed` to `true` to have a section start closed. By default a section renders with a box outline; set `borderless` to `true` to remove it. A `collapsible` element does not submit a value itself — only its child `elements` appear in the submission payload. There can be, at most, 3 levels of nesting.
+
+```json
+{
+    "display_name": "Contact Details",
+    "name": "contact_section",
+    "type": "collapsible",
+    "collapsed": true,
+    "borderless": true,
+    "elements": [
+        {
+            "display_name": "Email",
+            "name": "email",
+            "type": "text",
+            "subtype": "email",
+            "placeholder": "you@example.com"
+        },
+        {
+            "display_name": "Phone",
+            "name": "phone",
+            "type": "text",
+            "optional": true
+        }
+    ]
+}
+```
+
+The full list of supported fields is included below:
+
+| Field          | Type    | Description                                                                                                                        |
+|----------------|---------|------------------------------------------------------------------------------------------------------------------------------------|
+| `display_name` | String  | Header text shown for the section. Maximum 24 characters.                                                                          |
+| `name`         | String  | Name of the section element used by the integration. Maximum 300 characters. You should use unique `name` fields in the same dialog. |
+| `type`         | String  | Set this value to `collapsible` for a collapsible section.                                                                         |
+| `collapsed`    | Boolean | (Optional) When `true`, the section starts collapsed. Default is `false` (expanded).                                             |
+| `borderless`   | Boolean | (Optional) When `true`, the section renders without a box outline. Default is `false` (bordered).                                |
+| `elements`     | Array   | Child elements rendered inside the section. May include other `collapsible` elements to create nested sections (up to 3 levels deep). Note that each collapsible element must have at least one child, or validation will fail.|
 
 ### File elements
 ##### Minimum Server Version: 11.10
