@@ -10283,6 +10283,14 @@ paths:
           schema:
             type: boolean
             default: false
+        - name: propertyGroup
+          in: query
+          description: >
+            The name of a single property group whose values should be hydrated onto each post's metadata. Only **PSAv2** groups are accepted; passing a legacy v1 group, or an unrecognized name, returns 404. There is no support for requesting more than one group per request.
+
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: Post retrieval successful
@@ -10301,6 +10309,8 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
     delete:
       tags:
         - posts
@@ -10568,6 +10578,14 @@ paths:
           schema:
             type: boolean
             default: false
+        - name: propertyGroup
+          in: query
+          description: >
+            The name of a single property group whose values should be hydrated onto each post's metadata. Only **PSAv2** groups are accepted; passing a legacy v1 group, or an unrecognized name, returns 404. There is no support for requesting more than one group per request.
+
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: Post list retrieval successful
@@ -10581,6 +10599,8 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   "/api/v4/users/{user_id}/posts/flagged":
     get:
       tags:
@@ -10806,6 +10826,32 @@ paths:
           description: Filter posts by type.
           schema:
             type: string
+        - name: skipFetchThreads
+          in: query
+          description: Whether to skip fetching threads or not.
+          schema:
+            type: boolean
+            default: false
+        - name: collapsedThreads
+          in: query
+          description: Whether the client uses CRT or not.
+          schema:
+            type: boolean
+            default: false
+        - name: collapsedThreadsExtended
+          in: query
+          description: Whether to return the associated users as part of the response or not.
+          schema:
+            type: boolean
+            default: false
+        - name: propertyGroup
+          in: query
+          description: >
+            The name of a single property group whose values should be hydrated onto each post's metadata. Only **PSAv2** groups are accepted; passing a legacy v1 group, or an unrecognized name, returns 404. There is no support for requesting more than one group per request.
+
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: Post list retrieval successful
@@ -10819,6 +10865,8 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   "/api/v4/users/{user_id}/channels/{channel_id}/posts/unread":
     get:
       tags:
@@ -10881,6 +10929,14 @@ paths:
           schema:
             type: boolean
             default: false
+        - name: propertyGroup
+          in: query
+          description: >
+            The name of a single property group whose values should be hydrated onto each post's metadata. Only **PSAv2** groups are accepted; passing a legacy v1 group, or an unrecognized name, returns 404. There is no support for requesting more than one group per request.
+
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: Post list retrieval successful
@@ -10894,6 +10950,8 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
   "/api/v4/teams/{team_id}/posts/search":
     post:
       tags:
@@ -23631,6 +23689,14 @@ paths:
             type: integer
             default: 60
             maximum: 200
+        - name: propertyGroup
+          in: query
+          description: >
+            The name of a single property group whose values should be hydrated onto each post's metadata. Only **PSAv2** groups are accepted; passing a legacy v1 group, or an unrecognized name, returns 404. There is no support for requesting more than one group per request.
+
+          required: false
+          schema:
+            type: string
       responses:
         "200":
           description: Post list retrieval successful
@@ -31114,6 +31180,16 @@ components:
             Any acknowledgements made to this point.
           items:
             $ref: "#/components/schemas/PostAcknowledgement"
+        property_values:
+          type: array
+          description: |
+            The property values attached to this post for the property group named in the `propertyGroup` query parameter. Present only when that parameter was supplied, the lookup succeeded, and the post has at least one value in that group.
+          items:
+            $ref: "#/components/schemas/PropertyValue"
+        property_values_unavailable:
+          type: boolean
+          description: |
+            Present and `true` when the lookup of this post's property values failed; omitted otherwise. It does **not** mean the post has no property values, it means they could not be retrieved, and `property_values` is therefore absent or incomplete.
     TeamMap:
       type: object
       description: A mapping of teamIds to teams.
